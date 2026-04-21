@@ -9,6 +9,8 @@
     <ui:define name="pageContent">
 
       <h:form id="absences-management-form" styleClass="absences-management-form ">
+        <p:remoteCommand name="reloadAbsenceTable" update="@(.absence-table) @(.substitute-table)"
+          global="false" />
         <div id="absences-management-container" class="ui-g-12 absences-management-container">
           <div class="ui-g-12">
             <p:growl id="absences-management-info" showDetail="true"
@@ -102,22 +104,24 @@
                             <h:outputText value="#{absence.period}" styleClass="absence-column-value" />
                           </p:column>
                           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/amount')}"
-                            sortBy="#{absence.amount}" styleClass="absence-amount">
+                            sortBy="#{absence.amount}" styleClass="absence-amount w-1">
                             <h:outputText value="#{absence.amount} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/days')}" styleClass="absence-column-value" />
                           </p:column>
-                          <p:column rendered="#{absenceManagementBean.canReadSubstitute(absenceManagementBean.selectedAbsenceUser)}" groupRow="true"
-                            headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Substitutes')}">
-                              <ui:repeat value="#{absenceManagementBean.fetchDisplaySubstitutesOnAbsenceTab()}" var="deputy">
-                              <c:set var="isPermanent" value="#{absenceManagementBean.isPermanentDeputy(deputy)}" />
-                              <div class="flex align-items-center">
-                                <pc:securityMemberNameAndAvatar 
-                                  displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.memberName)}"
-                                  securityMember="#{deputy}" />
-                                <h:panelGroup layout="span" styleClass="ml-2" rendered="#{isPermanent}">
-                                  <i class="fa fa-star"></i>
-                                </h:panelGroup>
-                                </div>
-                              </ui:repeat>
+                          <p:column rendered="#{absenceManagementBean.canReadSubstitute(absenceManagementBean.selectedAbsenceUser)}" groupRow="true" styleClass="vertical-align-top"
+                            headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Substitutes')}" >
+                              <div class="subsitute-column">
+                                <ui:repeat value="#{absenceManagementBean.displaySubstitutesOnAbsenceTab}" var="deputy">
+                                <c:set var="isPermanent" value="#{absenceManagementBean.isPermanentDeputy(deputy)}" />
+                                <div class="flex align-items-center mb-2 subsitute-column">
+                                  <pc:securityMemberNameAndAvatar 
+                                    displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.memberName)}"
+                                    securityMember="#{deputy}" />
+                                  <h:panelGroup layout="span" styleClass="ml-2 permanent-deputy" rendered="#{isPermanent}">
+                                    <i class="fa fa-star"></i>
+                                  </h:panelGroup>
+                                  </div>
+                                </ui:repeat>
+                              </div>
                           </p:column>
                           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}" 
                             sortBy="#{absence.comment}" styleClass="u-truncate-text">

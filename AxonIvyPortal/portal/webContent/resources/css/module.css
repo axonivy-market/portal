@@ -3268,13 +3268,22 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   overflow-y: auto;
 }
 
-.add-absence-dialog .deputy-type, .absence-table .deputy-type {
+.add-absence-dialog .deputy-type {
   color: var(--ivy-primary-color);
   border: 1px solid var(--ivy-primary-color);
   border-radius: 1rem;
   padding: 0.15rem 0.6rem;
   font-size: 0.8rem;
   white-space: nowrap;
+}
+
+.absence-table .permanent-deputy {
+  color: var(--ivy-primary-color);
+  font-size: 0.5rem;
+}
+
+.absence-table .subsitute-column {
+  vertical-align: top;
 }
 
 .add-absence-dialog .ui-dialog-titlebar {

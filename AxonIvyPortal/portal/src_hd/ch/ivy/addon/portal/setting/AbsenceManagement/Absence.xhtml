@@ -143,7 +143,7 @@
                   ariaLabel="Set as permanent">
                 </p:menuitem>
                 <p:menuitem id="delete-deputy" icon="si si-bin-1" styleClass="rounded-button ui-button-outlined ui-button-danger color-destroy" disabled="#{!absenceManagementBean.canCreateSubstitute(absenceManagementBean.selectedAbsenceUser)}"
-                  actionListener="#{logic.removeDeputy(deputy)}" update="absence-form:edit-deputy-selection-panel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+                  actionListener="#{absenceManagementBean.removeDeputy(deputy)}" update="absence-form:edit-deputy-selection-panel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
                 </p:menuitem>
               </p:menu>
@@ -154,12 +154,12 @@
       </h:panelGroup>
 
       <div class="text-right ui-g-12">
-        <p:commandButton process="@form" id="save-absence" disabled="#{absenceManagementBean.validationError}"
+        <p:commandButton process="@form" id="save-absence"
           styleClass="w-full"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveContext', [ivy.cms.co(absenceManagementBean.createMode ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/editAbsence')])}"
-          oncomplete="if (args &amp;&amp; !args.validationFailed)PF('absence-dialog').hide();"
+          oncomplete="if (args &amp;&amp; !args.validationFailed) { PF('absence-dialog').hide(); reloadAbsenceTable(); }"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{absenceManagementBean.saveAbsence()}"
-          update=":absence-form @(.absence-table) @(.substitute-table)" />
+          update=":absence-form" />
       </div>
     </h:form>
   </p:dialog>
