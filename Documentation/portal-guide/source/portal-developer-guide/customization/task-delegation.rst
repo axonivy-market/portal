@@ -25,7 +25,7 @@ create a callable subprocess with:
 **Result**
 
 ``status`` (java.lang.String)
-    Operation status: ``OK`` or ``SKIP``. Set to ``SKIP`` to exclude this subprocess result from the combined delegate list.
+    Operation status: ``OK`` or ``SKIP``. Set to ``SKIP`` to always return an empty list. 
 
 ``roles`` (java.util.List<com.axonivy.portal.components.dto.RoleDTO>)
     Filtered list of roles that can be delegated to.

@@ -70,8 +70,7 @@ public class BulkDelegateService {
             }
           }
         } else {
-          cacheAllUserDTOs = getCachedUsers(query, cacheAllUserDTOs);
-          customUsers.addAll(cacheAllUserDTOs);
+          customUsers.addAll(new ArrayList<>());
         }
       }
       intersectedUsers = getIntersectedUserIds(intersectedUsers, customUsers);
@@ -126,8 +125,7 @@ public class BulkDelegateService {
             customRoles.addAll((List<RoleDTO>) rolesObj);
           }
         } else {
-          cacheAllRoleDTOs = getCachedRoles(query, cacheAllRoleDTOs);
-          customRoles.addAll(cacheAllRoleDTOs);
+          customRoles.addAll(new ArrayList<>());
         }
       }
       intersectedRoles = getIntersectedRoleIds(intersectedRoles, customRoles);
