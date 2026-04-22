@@ -26,5 +26,17 @@
     "name" : "processId"
   }, {
     "name" : "activeTabIndex"
+  }, {
+    "name" : "caseWidget",
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget"
+  }, {
+    "name" : "taskWidget",
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget"
+  }, {
+    "name" : "isSmartWorkflowFound",
+    "type" : "Boolean"
+  }, {
+    "name" : "searchAiResults",
+    "type" : "List<ch.ivy.addon.portalkit.datamodel.GlobalSearchAiResultModel>"
   } ]
 }

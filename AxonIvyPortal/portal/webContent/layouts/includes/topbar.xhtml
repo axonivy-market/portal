@@ -47,7 +47,11 @@
             </h:form>
            </h:panelGroup>
         </li>
-
+        <li>
+          <p:commandLink id="AI-search" value="AI search"
+            process="@this"
+            actionListener="#{userMenuBean.navigateToAISearchPageOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"/>
+        </li>
         <li class="topbar-item custom-search-item" jsf:rendered="#{showGlobalSearch or showQuickGlobalSearch}">
           <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" showQuickGlobalSearch="#{showQuickGlobalSearch}"
             isWorkingOnATask="#{isWorkingOnATask}" case="#{case}" task="#{task}" />

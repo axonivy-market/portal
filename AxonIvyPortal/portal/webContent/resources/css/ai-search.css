@@ -1,0 +1,19 @@
+/* AI Search Styles */
+
+@keyframes ai-glow-border {
+  0% { box-shadow: 0 0 5px #4f46e5, 0 0 15px #06b6d4; border-color: #4f46e5; }
+  33% { box-shadow: 0 0 5px #c026d3, 0 0 15px #4f46e5; border-color: #c026d3; }
+  66% { box-shadow: 0 0 5px #06b6d4, 0 0 15px #c026d3; border-color: #06b6d4; }
+  100% { box-shadow: 0 0 5px #4f46e5, 0 0 15px #06b6d4; border-color: #4f46e5; }
+}
+
+body .ui-inputfield.ai-loading-input,
+body .ui-button.ai-loading-button {
+  animation: ai-glow-border 2s linear infinite;
+  transition: all 0.3s ease;
+}
+
+/* Make it look nice normally too maybe? */
+.ai-search-container {
+  border-radius: var(--border-radius);
+}

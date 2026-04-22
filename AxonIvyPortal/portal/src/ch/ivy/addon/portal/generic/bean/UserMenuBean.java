@@ -193,6 +193,20 @@ public class UserMenuBean implements Serializable {
     }
   }
 
+  public void navigateToAISearchPageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = getAISearchPageUrl();
+    } else {
+      executeJSResetPortalMenuState();
+      navigateToAISearchPage();
+    }
+  }
+
+  private String getAISearchPageUrl() {
+    return PortalNavigator.buildAISearchPageUrl();
+  }
+
   private String getAbsencesUrl() {
     return PortalNavigator.buildAbsencesUrl();
   }
@@ -286,6 +300,10 @@ public class UserMenuBean implements Serializable {
 
   private void navigateToPortalManagement() throws IOException {
     getExternalContext().redirect(getPortalManagementUrl());
+  }
+
+  public void navigateToAISearchPage() throws IOException {
+    getExternalContext().redirect(getAISearchPageUrl());
   }
 
   private String getPortalManagementUrl() {

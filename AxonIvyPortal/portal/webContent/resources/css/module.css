@@ -422,11 +422,15 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   flex: 1 0 auto;
   flex-basis: calc(100% - 14px);
   margin: auto;
-  display: flex;
   align-items: flex-end;
   line-height: normal;
   padding-bottom: 10px;
   height: 45px;
+}
+  
+.case-widget-container .widget-column-header .global-search-case-widget-column,
+.case-default-widget-container .widget-column-header .global-search-case-widget-column {
+  display: inline-block !important;
 }
 
 .case-widget-container .sort-icon {
