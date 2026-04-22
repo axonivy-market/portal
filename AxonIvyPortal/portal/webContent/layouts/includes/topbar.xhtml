@@ -7,7 +7,7 @@
   <!-- TOPBAR START -->
   <div class="layout-topbar-left">
     <a href="#" class="menu-button">
-      <i class="ti ti-menu-2" />
+      <i class="si si-navigation-menu" />
     </a>
     <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component"
       rendered="#{isWorkingOnATask}" leaveActionListener="#{userMenuBean.resetTaskAndNavigateWithGrowl(task)}"
@@ -37,7 +37,7 @@
                  <p:commandLink id="back-to-previous-dashboard-page" action="#{navigationDashboardWidgetBean.backToPreviousDashboard()}"
                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
                    styleClass="inline-flex align-items-center hover:underline" rendered="#{topBarBean.showNavigationBackButton}" process="@this">
-                   <i class="ti ti-chevron-left" />
+                   <i class="si si-arrow-left-1" />
                    <p:spacer width="3px" />
                    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
                  </p:commandLink>
@@ -62,14 +62,13 @@
         </li>
         <li class="topbar-item">
           <p:commandLink id="open-notifications-panel" global="false" update="#{p:resolveFirstComponentWithId('has-notifications', view).clientId}" 
-          rendered="#{notificationBean.isBellIconNeeded}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationsBadgeLabel', [notificationBean.countUnread])}"
+          rendered="#{notificationBean.isBellIconNeeded}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/openNotifications')}"
           actionListener="#{notificationBean.setRender(true)}" onclick="openNotificationPanel()" process="@this">
-            <i class="topbar-icon ti ti-bell" />
+            <i class="topbar-icon pi pi-bell" />
             <h:panelGroup class="notifications-badge" id="topbar-unread-notifications-container">
               <h:outputText id="topbar-unread-notifications"
                 value="#{notificationBean.getUnreadNotifications()}" />
-              <input type="hidden" id="notifications-badge-value" value="#{notificationBean.countUnread}"/>
-              <input type="hidden" id="notifications-badge-label-template" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationsBadgeLabel', ['{0}'])}"/>
+              <input type="hidden" id="notifications-badge-value" value="#{notificationBean.countUnread}"/>  
             </h:panelGroup>
           </p:commandLink>
         </li>
@@ -88,7 +87,7 @@
           <p:commandLink id="toggle-chat-panel-command" global="false" 
             ariaLabel="#{ivy.cms.co('/Labels/Chat')}"
             styleClass="notification-badge mod-chat-menu">
-            <i class="topbar-icon ti ti-message" />
+            <i class="topbar-icon si si-messages-bubble" />
           </p:commandLink>
         </li>
 
@@ -103,7 +102,7 @@
                actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />
              </li>
 
-            <li class="ui-menu-items u-hidden-sm-down" jsf:rendered="#{userMenuBean.showDashboardConfigurationMenu}">
+            <li class="ui-menu-items" jsf:rendered="#{userMenuBean.showDashboardConfigurationMenu}">
               <p:commandLink id="dashboard-configuration"
                 process="@this" 
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}"
@@ -111,7 +110,7 @@
                 actionListener="#{userMenuBean.navigateToDashboardConfigurationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"/>
             </li>
 
-            <li class="ui-menu-items u-hidden-sm-down" jsf:rendered="#{userMenuBean.showAdminSetting}">
+            <li class="ui-menu-items" jsf:rendered="#{userMenuBean.showAdminSetting}">
               <p:commandLink id="adminui-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"
                 process="@this"
                 actionListener="#{userMenuBean.navigateToPortalManagementDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />
@@ -193,7 +192,7 @@
                   styleClass="qr-code-image" />
               </div>
               <div class="ui-g-7">
-                <span class="ti ti-info-circle" />
+                <span class="si si-information-circle" />
                 <h:outputText
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/QRCodeDescription')}"
                   styleClass="MarLeft10" />
@@ -210,7 +209,7 @@
               </div>
               <div class="ui-g-7">
                 <div class="ui-g-12">
-                  <span class="ti ti-info-circle" />
+                  <span class="si si-information-circle" />
                   <h:outputText
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/QRCodeDownloadDescription')}"
                     styleClass="MarLeft10" />
@@ -235,7 +234,7 @@
               </div>
               <div class="ui-g-7">
                 <div class="ui-g-12">
-                  <span class="ti ti-info-circle" />
+                  <span class="si si-information-circle" />
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/QRCodeDownloadDescription')}" styleClass="MarLeft10" />
                 </div>
                 <div class="ui-g-12">
@@ -254,7 +253,7 @@
         <div class="u-dialog-footer-actions-group">
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="mobile-app-close-button" type="button"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-            icon="#{visibilityBean.generateButtonIcon('ti ti-x')}" onclick="PF('mobile-app-dialog').hide();" />
+            icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('mobile-app-dialog').hide();" />
         </div>
       </p:dialog>
 

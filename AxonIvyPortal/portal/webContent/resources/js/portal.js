@@ -2,7 +2,6 @@
 // We need to delay a bit before calculating scrollbar
 var isFinishedRestoreMenuState = false;
 var delayTime = 0;
-var DEFAULT_SIDEBAR_RAIL_WIDTH = '50px';
 
 var Portal = {
   init : function(responsiveToolkit) {
@@ -93,17 +92,7 @@ var Portal = {
       });
       $('.notification-scroll .ui-datascroller-content').outerHeight(notificationContentHeight * 0.95 + 'px')
     }
-
-    let notificationsBadgeValueEl = document.getElementById('notifications-badge-value');
-    if (notificationsBadgeValueEl) {
-      let notificationsBadgeTemplate = document.getElementById('notifications-badge-label-template');
-      let notificationsBadgeLink = document.getElementById('open-notifications-panel');
-      if (notificationsBadgeTemplate && notificationsBadgeLink) {
-        let count = notificationsBadgeValueEl.value;
-        notificationsBadgeLink.setAttribute('aria-label', notificationsBadgeTemplate.value.replace('{0}', count));
-      }
-    }
-
+    
     $portalHeader.removeClass('u-invisibility');
     $layoutMain.removeClass('u-invisibility');
     $portalFooter.removeClass('u-invisibility');
@@ -128,8 +117,6 @@ var Portal = {
         var breadCrumbMarginLeft = 0;
         if (layoutWrapper.hasClass('layout-static')) {
           breadCrumbMarginLeft = leftSidebarMenu.outerWidth(true) - leftTopbar.outerWidth(true) - parseInt(rightTopbar.css("padding-left")) + "px";
-        } else if (layoutWrapper.hasClass('sidebar-click-mode')) {
-          breadCrumbMarginLeft = ($('.js-layout-main').css('padding-left') || DEFAULT_SIDEBAR_RAIL_WIDTH);
         } else {
           if ($("a.menu-button").is(":visible")) {
             breadCrumbMarginLeft = 0;
@@ -482,15 +469,15 @@ function showQuickSearchInput(index) {
   function changeQuickSearchIconButton(index) {
     var spanEl = "button[id$='quick-search-icon-" + index + "'] > span";
     var quickSearchButton = "button[id$='quick-search-icon-" + index + "']";
-    if ($(spanEl).hasClass("ti-search")) {
-      $(spanEl).removeClass("ti-search");
-      $(spanEl).addClass("ti-x");
+    if ($(spanEl).hasClass("si-search")) {
+      $(spanEl).removeClass("si-search");
+      $(spanEl).addClass("si-remove");
       $(quickSearchButton).blur();
       $(quickSearchInput).focus();
       $(quickSearchInput).click();  
     } else {
-      $(spanEl).removeClass("ti-x");
-      $(spanEl).addClass("ti-search");
+      $(spanEl).removeClass("si-remove");
+      $(spanEl).addClass("si-search");
     }
   }
 }
@@ -556,12 +543,8 @@ $(document).ready(function () {
 
   function toggleLeftMenu(key) {
     if (key === 'Digit7') {
-      if (SidebarClickMode.mode === 'CLICK') {
-        SidebarClickMode.toggle();
-      } else {
-        addFocusClass($(pinButton));
-        $(pinButton).trigger('click');
-      }
+      addFocusClass($(pinButton));
+      $(pinButton).trigger('click');
       return true;
     }
     removeFocusClass($(pinButton));
@@ -918,31 +901,14 @@ function addMissingAttr(query, attrName, attrValue) {
   });
 }
 
-function isTopMostPanel(panel, targetWindow) {
-  var maxZIndex = -1;
-  var topPanel = null;
-  var widgets = targetWindow.PrimeFaces.widgets;
-  for (var key in widgets) {
-    var w = widgets[key];
-    if (w instanceof targetWindow.PrimeFaces.widget.OverlayPanel && w.isVisible()) {
-      var zIndex = parseInt(w.jq.css('z-index'), 10) || 0;
-      if (zIndex > maxZIndex) {
-        maxZIndex = zIndex;
-        topPanel = w;
-      }
-    }
-  }
-  return topPanel === panel;
-}
-
 function initFocusManagament(targetWindow) {
   if (!targetWindow || !targetWindow.PrimeFaces) {
     return;
   }
   var lastFocusedElements = [];
 
-  // OverlayPanel - only extend once per window
-  if (targetWindow.PrimeFaces.widget.OverlayPanel && !targetWindow.PrimeFaces.widget.OverlayPanel._focusManaged) {
+  // OverlayPanel
+  if (targetWindow.PrimeFaces.widget.OverlayPanel) {
     targetWindow.PrimeFaces.widget.OverlayPanel = targetWindow.PrimeFaces.widget.OverlayPanel.extend({
         init: function(cfg) {
           this._super(cfg);
@@ -964,17 +930,6 @@ function initFocusManagament(targetWindow) {
             } catch(e) {
               console.warn("Cannot store focused element");
             }
-
-            if (self.escHandler) {
-              targetWindow.document.removeEventListener('keydown', self.escHandler);
-            }
-            var panel = self;
-            self.escHandler = function(e) {
-              if (e.key === 'Escape' && panel.isVisible() && isTopMostPanel(panel, targetWindow)) {
-                panel.hide();
-              }
-            };
-            targetWindow.document.addEventListener('keydown', self.escHandler);
           };
 
           cfg.onHide = function() {            
@@ -986,16 +941,10 @@ function initFocusManagament(targetWindow) {
               } catch (e) {
                 console.warn("Cannot focus on last element");
               }
-              if (self.escHandler) {
-                targetWindow.document.removeEventListener('keydown', self.escHandler);
-                self.escHandler = null;
-              }
           };
       }
     })
-    targetWindow.PrimeFaces.widget.OverlayPanel._focusManaged = true;
   }
-
 }
 
 function storeFocusedElement(targetDocument, focusElements, containerId, targetElement) {

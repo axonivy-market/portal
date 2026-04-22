@@ -62,7 +62,7 @@ public class MenuTest extends BaseTest {
     createJSonFile("default-dashboard.json", PortalVariable.DASHBOARD.key);
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     String name = "Dashboard Menu Item";
-    String icon = "ti-coffee";
+    String icon = "fa-coffee";
     String description = "Dashboard Menu Item";
     List<String> permissions = new ArrayList<>();
     permissions.add("Everybody");
@@ -131,7 +131,7 @@ public class MenuTest extends BaseTest {
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
 	redirectToRelativeLink(createSampleDashboardUrl);
     String iconClass = mainMenuPage.getIconClassMainMenuEntryAsString();
-    Assertions.assertEquals("ti ti-file-pencil",iconClass);
+    Assertions.assertEquals("si si-layout-bullets",iconClass);
   }
   
   @Test
@@ -188,56 +188,14 @@ public class MenuTest extends BaseTest {
 
   @Test
   public void keepSidebarExpand() {
-    updatePortalSetting(Variable.SIDEBAR_MODE.getKey(), "STICK");
+    updatePortalSetting(Variable.EXPAND_SIDEBAR.getKey(), "true");
     login(TestAccount.DEMO_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.isSidebarAlwaysExpand();
     mainMenuPage.openProcessList();
     mainMenuPage.isSidebarAlwaysExpand();
   }
-
-  @Test
-  public void testSidebarClickModeBasicToggle() {
-    updatePortalSetting(Variable.SIDEBAR_MODE.getKey(), "CLICK");
-    login(TestAccount.DEMO_USER);
-    MainMenuPage mainMenuPage = new MainMenuPage();
-
-    // Verify initial collapsed state
-    mainMenuPage.isSidebarClickModeCollapsed();
-
-    // Click toggle button to expand
-    mainMenuPage.clickSidebarToggleButton();
-    mainMenuPage.isSidebarClickModeExpanded();
-
-    // Click toggle button to collapse
-    mainMenuPage.clickSidebarToggleButton();
-    mainMenuPage.isSidebarClickModeCollapsed();
-  }
-
-  @Test
-  public void testSidebarClickModeResetsToCollapsedAfterNavigation() {
-    updatePortalSetting(Variable.SIDEBAR_MODE.getKey(), "CLICK");
-    login(TestAccount.DEMO_USER);
-    MainMenuPage mainMenuPage = new MainMenuPage();
-
-    mainMenuPage.isSidebarClickModeCollapsed();
-    mainMenuPage.clickSidebarToggleButton();
-    mainMenuPage.isSidebarClickModeExpanded();
-
-    mainMenuPage.openProcessList();
-    mainMenuPage.isSidebarClickModeCollapsed();
-  }
-
-  @Test
-  public void testSidebarHiddenMode() {
-    updatePortalSetting(Variable.SIDEBAR_MODE.getKey(), "HIDDEN");
-    login(TestAccount.DEMO_USER);
-    NewDashboardPage dashboardPage = new NewDashboardPage();
-
-    dashboardPage.isSidebarHidden();
-  }
-
-
+  
   private void setUserLanguage(NewDashboardPage newDashboardPage, int index) {
 	UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
 	userProfilePage.selectLanguage(index);

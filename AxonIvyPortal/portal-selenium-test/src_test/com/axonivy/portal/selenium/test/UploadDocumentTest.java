@@ -96,21 +96,21 @@ public class UploadDocumentTest extends BaseTest {
     casePage = menuPage.openCaseList();
     caseDetailsPage = casePage.openDetailsCase("Leave Request");
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(pdfFile));
-    isCorrectIconExtension(pdfFile, "ti ti-file-type-pdf");
+    isCorrectIconExtension(pdfFile, "si si-office-file-pdf-1");
     // can preview this document
     assertTrue(caseDetailsPage.getFirstItemPreviewDocumentVisible());
 
     casePage = menuPage.openCaseList();
     caseDetailsPage = casePage.openDetailsCase("Leave Request");
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(wordFile));
-    isCorrectIconExtension(wordFile, "ti ti-file-type-doc");
+    isCorrectIconExtension(wordFile, "si si-office-file-doc-1");
     // can not preview
     assertFalse(caseDetailsPage.getFirstItemPreviewDocumentVisible());
 
     casePage = menuPage.openCaseList();
     caseDetailsPage = casePage.openDetailsCase("Leave Request");
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(unsupportFile));
-    isCorrectIconExtension(unsupportFile, "ti ti-file");
+    isCorrectIconExtension(unsupportFile, "si si-common-file-empty");
     // can not preview
     assertFalse(caseDetailsPage.getFirstItemPreviewDocumentVisible());
   }
