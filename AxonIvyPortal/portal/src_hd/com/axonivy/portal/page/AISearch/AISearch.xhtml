@@ -21,15 +21,13 @@
                 <i class="si si-search" />
                 <p:inputText id="keyword" value="#{data.keyword}" styleClass="w-full ai-input"
                   placeholder="Enter keyword to search..."
-                  onkeypress="if (event.keyCode == 13) { PF('searchBtn').jq.click(); return false; }">
-                  <p:ajax event="input" delay="300" update="search-btn" />
-                </p:inputText>
+                  onkeypress="if (event.keyCode == 13 &amp;&amp; this.value.trim() !== '') { PF('searchBtn').jq.click(); return false; }"
+                  oninput="var btn = PF('searchBtn'); var disabled = this.value.trim() === ''; btn.jq.prop('disabled', disabled).toggleClass('ui-state-disabled', disabled);" />
               </span>
               <p:commandButton id="search-btn" widgetVar="searchBtn" value="Search"
-                disabled="#{empty data.keyword}"
                 icon="si si-search" iconPos="left"
                 action="#{aISearchBean.searchWithAI(data.keyword)}"
-                update="form results-panel"
+                update="messages rephrased-panel results-panel"
                 onstart="$('.ai-input').addClass('ai-loading-input'); $('.ai-btn').addClass('ai-loading-button');"
                 oncomplete="$('.ai-input').removeClass('ai-loading-input'); $('.ai-btn').removeClass('ai-loading-button');"
                 styleClass="ui-button-primary ai-btn" />
@@ -71,6 +69,16 @@
         </div>
       </p:outputPanel>
       <script>
+      $(document).ready(function() {
+        var input = document.getElementById('form:keyword');
+        if (input) {
+          input.value = '';
+          var btn = PF('searchBtn');
+          if (btn) {
+            btn.jq.prop('disabled', true).addClass('ui-state-disabled');
+          }
+        }
+      });
       // Scroll events do not bubble, so jQuery delegated events .on('scroll', ...) fail.
       // We must use a native capture listener to intercept scroll events from the body.
       document.addEventListener('scroll', function(e) {

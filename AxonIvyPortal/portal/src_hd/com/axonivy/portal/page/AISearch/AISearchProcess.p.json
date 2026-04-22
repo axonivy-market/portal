@@ -17,13 +17,13 @@
         "at" : { "x" : 96, "y" : 64 }
       },
       "connect" : [
-        { "id" : "f2", "to" : "f1" }
+        { "id" : "f2", "to" : "f6" }
       ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 },
+        "at" : { "x" : 352, "y" : 64 },
         "labelOffset" : { "x" : 10, "y" : 30 }
       }
     }, {
@@ -46,5 +46,19 @@
         "at" : { "x" : 224, "y" : 160 },
         "labelOffset" : { "x" : 10, "y" : 30 }
       }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : "in.keyword = \"\";"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f1", "color" : "default" }
+      ]
     } ]
 }
