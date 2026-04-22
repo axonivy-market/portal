@@ -59,6 +59,6 @@ public class ProcessData {
     this.name = process.getName();
     this.description = process.getDescription();
     this.link = process.getLinkEmbedded().getAbsolute();
-    this.icon = StringUtils.defaultIfBlank(process.customFields().value("cssIcon"), "ti ti-sitemap");
+    this.icon = StringUtils.defaultIfBlank(process.customFields().value("cssIcon"), "ti ti-sitemap ti-rotate-270");
   }
 }

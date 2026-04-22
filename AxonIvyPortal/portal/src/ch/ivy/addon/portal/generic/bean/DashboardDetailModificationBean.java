@@ -113,7 +113,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
   private static final String DEFAULT_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:user-filter";
   private static final String DEFAULT_WIDGET_TITLE_ID = "widget-configuration-form:new-widget-configuration-component:widget-title-group";
   private static final String PROCESS_ICON_CUSTOM_FIELD = "cssIcon";
-  private static final String DEFAULT_PROCESS_ICON = "ti ti-sitemap";
+  private static final String DEFAULT_PROCESS_ICON = "ti ti-sitemap ti-rotate-270";
   
   private List<WidgetSample> samples;
   private String newWidgetHeader;
@@ -221,7 +221,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
 
   private WidgetSample processViewerSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText"), PROCESS_VIEWER,
-        "ti ti-sitemap", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processViewerIntroduction"));
+        "ti ti-sitemap ti-rotate-270", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processViewerIntroduction"));
   }
 
   private WidgetSample welcomeWidgetSample() {

@@ -120,7 +120,7 @@
                   rendered="#{chatRendererBean.isGroupChatRendered and !(currentTask.state eq 'CREATED')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" update="chat-assignee-dialog" />
                 
-                 <p:menuitem id="side-steps-process" icon="ti ti-sitemap"
+                 <p:menuitem id="side-steps-process" icon="ti ti-sitemap ti-rotate-270"
                   rendered="#{sideStepProcessBean.isRendered(currentTask)}" onclick="PF('side-step-process-dialog').show();"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/SideStep/SideStepProcess')}" />
                 <p:divider styleClass="separator"

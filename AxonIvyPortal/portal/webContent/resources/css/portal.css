@@ -26,6 +26,10 @@
   font-size: var(--portal-tabler-icon-size);
 }
 
+.ti-rotate-90 { transform: rotate(90deg); }
+.ti-rotate-180 { transform: rotate(180deg); }
+.ti-rotate-270 { transform: rotate(270deg); }
+
 .portal-icon.ui-widget.ti,
 .portal-icon.ui-widget.tif,
 .portal-icon-container .ui-widget.ti,

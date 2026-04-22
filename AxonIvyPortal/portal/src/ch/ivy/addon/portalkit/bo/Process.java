@@ -15,7 +15,7 @@ import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public interface Process {
-  public static final String DEFAULT_PROCESS_ICON = "ti ti-sitemap";
+  public static final String DEFAULT_PROCESS_ICON = "ti ti-sitemap ti-rotate-270";
   public String getName();
   public String getStartLink();
   public String getDescription();

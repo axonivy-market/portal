@@ -8,7 +8,7 @@ import com.axonivy.portal.components.enums.MenuKind;
 
 public class ProcessSubMenuItem extends SubMenuItem {
   public ProcessSubMenuItem() {
-    this.icon = "ti ti-sitemap";
+    this.icon = "ti ti-sitemap ti-rotate-270";
     this.menuKind = MenuKind.PROCESS;
     this.label = ApplicationMultiLanguageAPI.getCmsValueByUserLocale("/ch.ivy.addon.portalkit.ui.jsf/common/processes");
     this.name = HomepageType.PROCESS.name();
