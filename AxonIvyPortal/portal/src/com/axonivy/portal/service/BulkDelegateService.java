@@ -26,6 +26,7 @@ import ch.ivyteam.ivy.process.call.SubProcessCallStartEvent;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.SearchScope;
 import ch.ivyteam.ivy.security.ISecurityMember;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ITask;
 
 public class BulkDelegateService {
@@ -38,16 +39,15 @@ public class BulkDelegateService {
     return BulkDelegateService.instance;
   }
 
-  @SuppressWarnings("unchecked")
   public List<UserDTO> completeUserForBulkDelegate(String query, List<ITask> selectedTasks) {
     boolean customDelegateAvailable = checkCustomDelegateAvailable();
     if (!customDelegateAvailable) {
-      return findUsers(query);
+      return findAllUsers(query);
     }
     if (selectedTasks == null || selectedTasks.isEmpty()) {
       return new ArrayList<>();
     }
-    List<UserDTO> allUserDTOs = findUsers(query);
+    List<UserDTO> allUserDTOs = findAllUsers(query);
     List<UserDTO> intersectedUsers = null;
     for (ITask task : selectedTasks) {
       List<Map<String, Object>> result = callCustomDelegate(task, allUserDTOs, null);
@@ -58,9 +58,7 @@ public class BulkDelegateService {
       for (Map<String, Object> map : (List<Map<String, Object>>) result) {
         if (!CustomProcessUtils.isSkipCustomProcess(map)) {
           Object usersObj = map.get("users");
-          if (usersObj instanceof List) {
-            customUsers.addAll((List<UserDTO>) usersObj);
-          }
+          extractListItems(usersObj, customUsers, UserDTO.class);
         }
       }
       intersectedUsers = getIntersectedUserIds(intersectedUsers, customUsers);
@@ -68,22 +66,23 @@ public class BulkDelegateService {
     return intersectedUsers;
   }
 
-  private List<UserDTO> findUsers(String query) {
-    var userDtos = SecurityService.newInstance().findUsersWithRoles(query, 0, 101, null, null);
-    return userDtos.getUsers();
+  private List<UserDTO> findAllUsers(String query) {
+    return Sudo.get(() -> {
+      var userDtos = SecurityService.newInstance().findUsersWithRoles(query, 0, 101, null, null);
+      return userDtos.getUsers(); 
+    });
   }
 
-  @SuppressWarnings("unchecked")
   public List<RoleDTO> completeRoleForBulkDelegate(String query, List<ITask> selectedTasks) {
     boolean customDelegateAvailable = checkCustomDelegateAvailable();
     if (!customDelegateAvailable) {
-      return RoleUtils.findRoles(null, null, query);
+      return findAllRoles(query);
     }
     if (selectedTasks == null || selectedTasks.isEmpty()) {
       return new ArrayList<>();
     }
     List<RoleDTO> intersectedRoles = null;
-    List<RoleDTO> allRoleDTOs = RoleUtils.findRoles(null, null, query);
+    List<RoleDTO> allRoleDTOs = findAllRoles(query);
     for (ITask task : selectedTasks) {
       List<Map<String, Object>> result = callCustomDelegate(task, null, allRoleDTOs);
       if (CollectionUtils.isEmpty(result)) {
@@ -94,9 +93,7 @@ public class BulkDelegateService {
       for (Map<String, Object> map : (List<Map<String, Object>>) result) {
         if (!CustomProcessUtils.isSkipCustomProcess(map)) {
           Object rolesObj = map.get("roles");
-          if (rolesObj instanceof List) {
-            customRoles.addAll((List<RoleDTO>) rolesObj);
-          }
+          extractListItems(rolesObj, customRoles, RoleDTO.class);
         }
       }
       intersectedRoles = getIntersectedRoleIds(intersectedRoles, customRoles);
@@ -104,6 +101,22 @@ public class BulkDelegateService {
     return intersectedRoles;
   }
   
+  private <T> void extractListItems(Object listObj, List<T> listTarget, Class<T> clazz) {
+    if (listObj instanceof List<?>) {
+      for (Object item : (List<?>) listObj) {
+        if (clazz.isInstance(item)) {
+          listTarget.add(clazz.cast(item));
+        }
+      }
+    }
+  }
+
+  private List<RoleDTO> findAllRoles(String query) {
+    return Sudo.get(() -> {
+      return RoleUtils.findRoles(null, null, query);
+    });
+  }
+
   private static boolean checkCustomDelegateAvailable() {
     var filter = SubProcessSearchFilter.create()
         .setSearchScope(SearchScope.SECURITY_CONTEXT)

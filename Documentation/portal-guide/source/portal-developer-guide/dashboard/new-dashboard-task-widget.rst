@@ -165,6 +165,9 @@ JSON Configuration Reference
 ``isTopMenu`` (boolean, default: ``false``)
    ``true`` = top-level nav item, ``false`` = under Dashboard menu
 
+``showBulkDelegateToggle`` (boolean, default: ``false``)
+   Show/hide bulk delegate toggle for multi-select task delegation
+
 **Columns Configuration**
 
 Each column object in the ``columns`` array:
