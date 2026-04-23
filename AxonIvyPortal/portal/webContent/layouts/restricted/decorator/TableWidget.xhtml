@@ -45,11 +45,11 @@
       <h:panelGroup rendered="#{dashboardBean.isTaskWidget(widget) and bulkActionBean.isInBulkMode(widget)}">
         <h:form id="delegation-action-form">
           <h:panelGroup layout="block" styleClass="flex align-items-center gap-2">
-            <h:outputText value="#{bulkActionBean.getBulkSelectCount(widget.id)} item selected"
-              styleClass="text-color-secondary white-space-nowrap"
+            <h:outputText value="#{bulkActionBean.generateItemSelectedText(widget.id)}"
+              styleClass="text-color-secondary white-space-nowrap" id="selected-count-#{index}"
               rendered="#{empty bulkActionBean.getMaximumSelectedTasks() or bulkActionBean.getMaximumSelectedTasks() le 0}" />
-            <h:outputFormat value="#{bulkActionBean.getBulkSelectCount(widget.id)} / #{bulkActionBean.getMaximumSelectedTasks()} item selected"
-              styleClass="text-color-secondary white-space-nowrap"
+            <h:outputFormat value="#{bulkActionBean.generateItemSelectedLimitText(widget.id)}"
+              styleClass="text-color-secondary white-space-nowrap" id="selected-count-limit-#{index}"
               rendered="#{not empty bulkActionBean.getMaximumSelectedTasks() and bulkActionBean.getMaximumSelectedTasks() gt 0}">
             </h:outputFormat>
 

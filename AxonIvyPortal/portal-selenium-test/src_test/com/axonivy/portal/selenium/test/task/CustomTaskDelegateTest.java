@@ -8,6 +8,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
@@ -187,5 +188,20 @@ public class CustomTaskDelegateTest extends BaseTest {
     dashboardPage.waitForCaseWidgetLoaded();
   }
 
-  
+  @Test
+  public void testBulkDelegateMaximumSelection() {
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    createTestingTasks();
+    updateGlobalVariable(Variable.MAXIMUM_SELECTED_TASKS.getKey(), "2");
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForCaseWidgetLoaded();
+
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
+    taskWidget.clickBulkDelegateToggleButton(0);
+    taskWidget.selectTaskByName(MATERNITY_LEAVE_REQUEST);
+    taskWidget.selectTaskByName(SICK_LEAVE_REQUEST);
+
+    taskWidget.checkLimitTaskSelection(0, "2 / 2");
+  }
 }

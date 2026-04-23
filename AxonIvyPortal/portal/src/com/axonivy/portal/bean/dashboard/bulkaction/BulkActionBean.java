@@ -125,6 +125,18 @@ public class BulkActionBean implements Serializable {
         List.of(getBulkSelectCount(widgetId)));
   }
 
+  public String generateItemSelectedText(String widgetId) {
+    if (getBulkSelectCount(widgetId) == 1) {
+      return Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/MultipleTaskItemsDelegate/ItemSelected");
+    }
+    return Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/MultipleTaskItemsDelegate/ItemsSelected", List.of(getBulkSelectCount(widgetId)));
+  }
+
+  public String generateItemSelectedLimitText(String widgetId) {
+    return Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/MultipleTaskItemsDelegate/ItemsSelectedWithLimit",
+        List.of(getBulkSelectCount(widgetId), getMaximumSelectedTasks()));
+  }
+
   public boolean isRenderBulkDelegateToggle(TaskDashboardWidget widget) {
     return widget.isShowBulkDelegateToggle()
         && PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION);

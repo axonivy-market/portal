@@ -765,6 +765,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     waitForPageLoad();
   }
 
+  public void checkLimitTaskSelection(int widgetIndex, String limit) {
+    $("span[id$='selected-count-limit-" + widgetIndex + "']").shouldHave(Condition.partialText(limit), DEFAULT_TIMEOUT);
+  }
+
   public SelenideElement getResponsibleCellByTaskName(String taskName) {
     int rowIndex = getAllTasksOfTaskWidget().asFixedIterable().stream()
         .map(WebElement::getText).collect(Collectors.toList()).indexOf(taskName);

@@ -1484,6 +1484,9 @@ Dialogs:
             IconSelection:
               IconLinkTooltip: クリックしてアイコンを変更
             MultipleTaskItemsDelegate:
+              ItemSelected: 1 件のアイテムが選択されました
+              ItemsSelected: '{0} 件のアイテムが選択されました'
+              ItemsSelectedWithLimit: '{0} / {1} 件のアイテムが選択されました'
               DelegateMultipleTaskTitle: '{0} 個のタスクを委任する'
               bulkDelegatePerformanceWarning: 複数のタスクの委任には時間がかかる場合があります。しばらくお待ちください。
             TaskItemDetails:

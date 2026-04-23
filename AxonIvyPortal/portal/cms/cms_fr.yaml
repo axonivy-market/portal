@@ -1487,6 +1487,9 @@ Dialogs:
             IconSelection:
               IconLinkTooltip: Cliquez pour changer d'icône
             MultipleTaskItemsDelegate:
+              ItemSelected: 1 élément sélectionné
+              ItemsSelected: '{0} éléments sélectionnés'
+              ItemsSelectedWithLimit: '{0} / {1} éléments sélectionnés'
               DelegateMultipleTaskTitle: Déléguer {0} tâches
               bulkDelegatePerformanceWarning: La délégation de plusieurs tâches peut prendre un certain temps. Veuillez patienter.
             TaskItemDetails:
