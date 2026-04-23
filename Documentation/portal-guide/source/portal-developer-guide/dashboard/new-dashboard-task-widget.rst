@@ -46,6 +46,8 @@ Below is a sample JSON definition of a task widget in the Portal dashboard:
       "filterTasksByCurrentCaseOwner": false,
       "canWorkOn": false,
       "enableQuickSearch": true,
+      "showBulkDelegateToggle": true,
+      "showPinnedToggle": true,
       "columns": [
          {
             "field": "start"
@@ -165,8 +167,11 @@ JSON Configuration Reference
 ``isTopMenu`` (boolean, default: ``false``)
    ``true`` = top-level nav item, ``false`` = under Dashboard menu
 
-``showBulkDelegateToggle`` (boolean, default: ``false``)
+``showBulkDelegateToggle`` (boolean, default: ``true``)
    Show/hide bulk delegate toggle for multi-select task delegation
+
+``showPinnedToggle`` (boolean, default: ``true``)
+   Show/hide pinned toggle for pinning tasks to top
 
 **Columns Configuration**
 
