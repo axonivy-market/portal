@@ -95,7 +95,7 @@ public enum GlobalVariable {
       "enablePinCase"),ALLOW_KEYBOARD_SHORTCUTS_CONFIGURATION(
           "Portal.Accessibility.AllowKeyboardShortcutsConfiguration", GlobalVariableType.SELECTION, Option.TRUE.toString(), "allowKeyboardShortcutsConfiguration"),
   SIDEBAR_MODE("Portal.Sidebar.Mode", GlobalVariableType.EXTERNAL_SELECTION, SidebarMode.HOVER.name(), "sidebarMode", getSidebarModes()),
-  MAXIMUM_SELECTED_TASKS("Portal.Tasks.MaximumSelectedTasks", GlobalVariableType.NUMBER, "", "maximumSelectedTasks");
+  MAXIMUM_SELECTED_TASKS("Portal.Tasks.MaximumSelectedTasks", GlobalVariableType.NUMBER, "20", "maximumSelectedTasks");
 
   private String key;
   private GlobalVariableType type;
