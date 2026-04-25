@@ -2,7 +2,6 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.$x;
 
 import java.time.Duration;
 import java.util.List;
@@ -41,12 +40,8 @@ public class DashboardModificationPage extends TemplatePage {
   }
 
   public SelenideElement getDashboardRowByName(String dashboardName) {
-    for (SelenideElement dashboardRow : getDashboardRows()) {
-      if (dashboardRow.$("td:nth-child(1)").getText().contentEquals(dashboardName)) {
-        return dashboardRow;
-      }
-    }
-    return null;
+    return $$("tbody[id='dashboard-modification-component:dashboard-table_data'] tr:not(.ui-datatable-empty-message)")
+        .filterBy(Condition.text(dashboardName)).first();
   }
 
   private SelenideElement getEditDashboardDialog() {
@@ -55,12 +50,8 @@ public class DashboardModificationPage extends TemplatePage {
 
   public NewDashboardDetailsEditPage navigateToEditDashboardDetailsByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
-    if (dashboardRow != null) {
-      clickButtonOnDashboardConfigurationActionMenu("Configuration", dashboardRow);
-      NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-      return newDashboardDetailsEditPage;
-    }
-    return null;
+    clickButtonOnDashboardConfigurationActionMenu("Configuration", dashboardRow);
+    return new NewDashboardDetailsEditPage();
   }
   
   private SelenideElement getDashboardConfigurationActionMenu(SelenideElement dashboardRow) {
@@ -153,10 +144,9 @@ public class DashboardModificationPage extends TemplatePage {
   }
 
   public SelenideElement getDashboardCellByNameAndPosition(String dashboardName, int position) {
-    return $x("//tbody[@id='dashboard-modification-component:dashboard-table_data']"
-        + "//tr[not(contains(@class,'ui-datatable-empty-message'))]"
-        + "[td[1][normalize-space(.)='" + dashboardName + "']]"
-        + "/td[" + position + "]");
+    SelenideElement dashboard = getDashboardRowByName(dashboardName);
+    dashboard.shouldBe(Condition.appear);
+    return dashboard.$("td:nth-child(" + position + ")");
   }
 
   public SelenideElement getDashboardExportButtonOfDashboard(String dashboardName) {
