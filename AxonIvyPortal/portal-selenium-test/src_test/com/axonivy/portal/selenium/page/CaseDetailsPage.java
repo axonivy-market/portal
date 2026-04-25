@@ -894,10 +894,14 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public TaskTemplatePage startRelatedTask(String taskName) {
+    clickStartRelatedTask(taskName);
+    return new TaskTemplatePage();
+  }
+
+  public void clickStartRelatedTask(String taskName) {
     Integer index = getTaskRowIndex(taskName);
     WebElement element = $$("[id$='task-action-component']").get(index);
     element.click();
-    return new TaskTemplatePage();
   }
 
   public void resetTask(String taskName) {

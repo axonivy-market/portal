@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
-
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -307,7 +306,7 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public SelenideElement getImportDashboardDialog() {
     $("a[id$=':import-dashboard']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    return $("div[id$='dashboard-import-dialog']");
+    return $("div[id$='dashboard-import-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getDashboardImportButtonOfDashboard() {
@@ -327,6 +326,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   public void uploadFile(String fileName) {
     var importDialog = $("div[id$='dashboard-import-dialog']");
     importDialog.find("[id$=':dashboard-upload_input']").sendKeys(FileHelper.getAbsolutePathToTestFile(fileName));
+    getDashboardImportSaveButton().shouldBe(Condition.enabled, DEFAULT_TIMEOUT);
   }
 
   public void setPermissions(List<String> permissions) {
