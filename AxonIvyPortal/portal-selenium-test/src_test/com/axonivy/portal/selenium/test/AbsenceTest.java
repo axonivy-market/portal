@@ -188,7 +188,7 @@ public class AbsenceTest extends BaseTest {
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
-
+    absencePage.showAbsencesInThePast(true);
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
     absencePage = openAbsencePage();
@@ -205,7 +205,8 @@ public class AbsenceTest extends BaseTest {
     List<String> deputyNames = Arrays.asList(TestAccount.GUEST_USER.getFullName());
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
     absencePage.saveSubstitute();
-
+    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE))
+        .shouldBe(Condition.text(TestAccount.GUEST_USER.getFullName()));
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateOwnSubstitutePermission.ivp");
     absencePage = openAbsencePage();
@@ -234,7 +235,8 @@ public class AbsenceTest extends BaseTest {
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(TODAY, TODAY, "For other reason", absencePage);
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
-    absencePage.countAbsences(1);
+    absencePage.showAbsencesInThePast(true);
+    absencePage.countAbsences(2);
 
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
@@ -254,7 +256,8 @@ public class AbsenceTest extends BaseTest {
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(TODAY, TODAY, "For other reason", absencePage);
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
-    absencePage.countAbsences(1);
+    absencePage.showAbsencesInThePast(true);
+    absencePage.countAbsences(2);
 
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");

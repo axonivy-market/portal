@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.$x;
 
 import java.time.Duration;
 import java.util.List;
@@ -40,8 +41,10 @@ public class DashboardModificationPage extends TemplatePage {
   }
 
   public SelenideElement getDashboardRowByName(String dashboardName) {
-    return $$("tbody[id='dashboard-modification-component:dashboard-table_data'] tr:not(.ui-datatable-empty-message)")
-        .filterBy(Condition.text(dashboardName)).first();
+    return $x("//tbody[@id='dashboard-modification-component:dashboard-table_data']"
+        + "//tr[not(contains(@class,'ui-datatable-empty-message'))]"
+        + "[td[1][normalize-space(.)='" + dashboardName + "']]")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   private SelenideElement getEditDashboardDialog() {
@@ -145,7 +148,6 @@ public class DashboardModificationPage extends TemplatePage {
 
   public SelenideElement getDashboardCellByNameAndPosition(String dashboardName, int position) {
     SelenideElement dashboard = getDashboardRowByName(dashboardName);
-    dashboard.shouldBe(Condition.appear);
     return dashboard.$("td:nth-child(" + position + ")");
   }
 

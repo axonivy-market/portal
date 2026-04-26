@@ -147,6 +147,8 @@ public class AbsencePage extends TemplatePage {
     substituted.sendKeys(substitutedUser);
     waitForElementClickableThenClick(
         "[id='absences-management-form:user-absence-selection-component:user-absence_panel']");
+    $("[id$=':user-absence-selection-component:user-absence_panel']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $(selectedUserInput).shouldHave(Condition.value(substitutedUser), DEFAULT_TIMEOUT);
   }
 
   public String getSubstitutedByAdmin(int rowIndex) {
