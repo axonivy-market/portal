@@ -24,6 +24,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deputies: Remplaçant
     description: Veuillez inscrire vos vacances, maladies ou autres obligations extérieures conduisant à une absence.
     editAbsence: Editer les absences
+    editSubstitute: Modifier le substitut
     from: Du
     noDeputy: Aucun remplaçant
     noPermissionToSeeThisArea: Vous n'avez pas l'autorisation requise pour visiter cette zone.
@@ -40,6 +41,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskForRole: 'Tâche pour le rôle:'
     till: Jusqu'à
   AbsenceManagement:
+    Duration: Durée
     Messages:
       addNewAbsence: Une nouvelle absence est ajoutée pour {0}.
       removedAbsences: Absence supprimée pour {0}

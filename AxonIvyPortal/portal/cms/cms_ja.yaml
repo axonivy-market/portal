@@ -20,26 +20,28 @@ ch.ivy.addon.portalkit.ui.jsf:
     Substitutes: '代理人:'
     absences: 不在
     addAbsence: 不在の追加
+    addSubstitute: 代行者を追加
     deputies: 代行者
     description: 不在につながる休暇、病気、その他の外的要因を設定します。
     editAbsence: 不在の編集
+    editSubstitute: 代用を編集
     from: 開始日
     noDeputy: 代理なし
     noPermissionToSeeThisArea: この領域を表示するために必要な権限がありません。
     period: 期間
     personalTaskDuringAbsenceDeputies: この不在期間中、個人的に割り当てられたタスクを代行する人
     personalTaskPermanentDeputies: 個人的に割り当てられたタスクを恒久的に代行する人
-    addSubstitute: 代行者を追加
     selectDeputies: 代行者の選択
     selectSubstitute: 代行者を選択
     selectedDeputies: 選択された代行者
     showAbsencesInThePast: 過去の不在を表示
-    substituteType: 代行者タイプ
     substituteName: 代行者名
+    substituteType: 代行者タイプ
     substitutedUser: 代行されたユーザー
     taskForRole: 役割のタスク
     till: 終了日
   AbsenceManagement:
+    Duration: 所要時間
     Messages:
       addNewAbsence: 新しい不在者が{0}に追加されました
       removedAbsences: '{0}から削除された不在者'
@@ -58,9 +60,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     noSubstitutesDefined: 代行者が定義されていません
     notSubstitutingAnybody: 現在、誰の代行者でもありません
     requestAbsences: 不在申請
-    substitutes: 代行者
     selectedDeputyFor: 選択されたユーザーは、以下のメンバーの代行者です
     selectedUser: 選択されたユーザー
+    substitutes: 代行者
   AccessibilityShortcuts:
     processName: アクセシビリティーショートカットの処理
   AllTasks:
@@ -289,7 +291,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideUploadDocumentForDoneCaseNote: ケース完了後のドキュメントのアップロード（および削除）を拒否するには、true に設定します。
       hideYear: true に設定すると、年は非表示になり、そうでない場合は表示されます。
       imageUploadSizeLimit: 画像アップロードのサイズ制限をメガバイト（MB）単位で設定します。デフォルト値は6MBです。
-      sidebarMode: サイドバーのモードを制御します。ホバーはマウスオーバーで展開、クリックはトグルボタンで切り替え、固定は常に展開、非表示はサイドバーを完全に非表示にします。
       loggedInUserFormat: ログインしたユーザー形式を表示するオプション
       refreshTaskListIntervalNote: タスクリストの更新間隔。（秒単位）
       showAvatar: ユーザー／ロールのアバターの表示のオン／オフを切り替えます。
@@ -301,6 +302,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showQuickGlobalSearch: クイックグローバル検索の表示のオン/オフを切り替えます。
       showTaskDurationTime: タスク詳細ページでの所要時間の表示のオン／オフを切り替えます。
       showTooltipTechnicalName: ツールチップにユーザーの技術名を表示できるようにする。
+      sidebarMode: サイドバーのモードを制御します。ホバーはマウスオーバーで展開、クリックはトグルボタンで切り替え、固定は常に展開、非表示はサイドバーを完全に非表示にします。
       uploadDocumentWhiteListExtensionNote: すべての拡張子を許可する場合は、空欄にしてください。一部の拡張子のみを許可する場合は、対象の拡張子をカンマで区切って入力してください。（例：pdf, txt, doc, docx）
     key: キー
     link: リンク
@@ -461,16 +463,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: 更新
     Widget: ウィジェット
     action: アクション
-    actionMenuContext: "プロセス{0}のアクションメニューを開く"
-    taskActionMenuContext: "タスク{0}のアクションメニューを開く"
+    actionMenuContext: プロセス{0}のアクションメニューを開く
     active: アクティブ
-    collapseWidgetContext: "{0}ウィジェットを縮小"
-    expandWidgetContext: "{0}ウィジェットを展開"
-    openWidgetFiltersContext: "{0}のフィルターを開く"
-    openWidgetFiltersWithCountContext: "{0}のフィルターを開く、{1}件のアクティブフィルター"
-    openWidgetInfoContext: "{0}ウィジェットの情報を開く"
     add: 追加
-    addContext: "{0}を追加"
+    addContext: '{0}を追加'
     addDocument: ドキュメントを追加
     addLink: リンクを追加
     addNote: ノートを追加
@@ -478,14 +474,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     allTypes: 戻る
     allowPng: png形式のみ許可されます
     apply: 適用
-    applyContext: "{0}を適用"
+    applyContext: '{0}を適用'
     at: に
     author: 作成者
     back: 戻る
     backToCaseMap: ケースマップに戻る
     backgroundColor: 背景色
     cancel: キャンセル
-    cancelContext: "{0}をキャンセル"
+    cancelContext: '{0}をキャンセル'
     case: ケース
     caseCategory: ケースカテゴリー
     caseInformation: ケース情報
@@ -493,8 +489,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: カテゴリー
     change: 変更
     close: 閉じる
-    closeContext: "{0}を閉じる"
+    closeContext: '{0}を閉じる'
     cockpit: コックピット
+    collapseWidgetContext: '{0}ウィジェットを縮小'
     colors: 色
     comment: コメント
     completedOn: 完了日
@@ -514,9 +511,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: 初期値
     defaultNotificationMessage: 問題が発生しましたようです。
     delete: 削除
-    deleteContext: "{0}を削除"
     deleteAbsenceHeaderText: この不在日程を削除しますか?
     deleteChartHeaderText: このチャートを削除しますか?
+    deleteContext: '{0}を削除'
     deleteDocumentHeaderText: このドキュメントを削除しますか?
     deleteFilterHeaderText: このフィルターを削除しますか?
     deleteSettingHeaderText: この設定を削除しますか?
@@ -538,6 +535,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: Web サイトのコンテンツを更新できませんでした
     escalationTaskHeaderText: エスカレーションのトリガー
     escalationTaskMessage: 有効期限が現在に設定されているため、タスクは期限切れになります。よろしいですか？
+    expandWidgetContext: '{0}ウィジェットを展開'
     filter:
       from: 開始
       moreOptions: その他のオプション
@@ -594,9 +592,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     okContext: OK {0}
     'on': オン
+    openWidgetFiltersContext: '{0}のフィルターを開く'
+    openWidgetFiltersWithCountContext: '{0}のフィルターを開く、{1}件のアクティブフィルター'
+    openWidgetInfoContext: '{0}ウィジェットの情報を開く'
     pin: ピン留め
-    pinCaseContext: "ケース{0}をピン留め"
-    pinTaskContext: "タスク{0}をピン留め"
+    pinCaseContext: ケース{0}をピン留め
+    pinTaskContext: タスク{0}をピン留め
     pleaseAddDocument: 上記のリンクにドキュメントを追加してください。
     pleaseAddNote: 上記のリンクにノートを追加してください。
     previousStage: 前のステージ
@@ -619,8 +620,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: デフォルトのチャートに戻しますか？
     role: ロール
     save: 保存
-    saveContext: "{0}を保存"
     saveAll: すべて保存
+    saveContext: '{0}を保存'
     saveSuccessfully: データの保存に成功しました。
     search: 検索
     second: 秒
@@ -644,6 +645,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     state: 状態
     status: ステータス
     switchToDesktopVersion: デスクトップバージョンに切り替え
+    taskActionMenuContext: タスク{0}のアクションメニューを開く
     taskCanceledAndLeftSuccessfully: タスクをキャンセルして正常に終了しました。タスクはダッシュボードまたはタスクリストで見つけることができます。
     taskFinishedSuccessfully: タスクを正常に完了しました
     taskFromSubstitution: あなたは代行者なので、このタスクが表示されます
@@ -658,8 +660,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAllUsers: すべてのユーザー
     typeOnlyMe: 自分のみ
     unpin: ピン留めを外す
-    unpinCaseContext: "ケース{0}のピン留めを解除"
-    unpinTaskContext: "タスク{0}のピン留めを解除"
+    unpinCaseContext: ケース{0}のピン留めを解除
+    unpinTaskContext: タスク{0}のピン留めを解除
     uploadHere: 有効な日付を入力してください。
     uploadOneHere: ここにアップロード
     user: '{0} ユーザー'
