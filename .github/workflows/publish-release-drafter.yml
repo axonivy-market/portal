@@ -41,7 +41,7 @@ jobs:
           fi
 
       - name: Use Release Drafter
-        uses: release-drafter/release-drafter@v6
+        uses: release-drafter/release-drafter@v7
         with:
           disable-autolabeler: true
           name: ${{inputs.tag}} 🛒
