@@ -6,172 +6,11 @@
     "data" : "ch.ivy.addon.portal.setting.AbsenceManagement.AbsenceManagementData"
   },
   "elements" : [ {
-      "id" : "f86",
-      "type" : "Script",
-      "name" : "update data",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;",
-            "import java.util.Arrays;",
-            "import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;",
-            "import java.util.Set;",
-            "import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;",
-            "",
-            "boolean showNewAbsence = in.selectedAbsence.user.name.equals(in.selectedAbsenceUser.name);",
-            "",
-            "if (showNewAbsence && (!AbsenceAndSubstituteUtils.isInThePast(in.selectedAbsence) || in.absenceInThePastShown)){",
-            "  in.displayedAbsences.add(in.selectedAbsence);",
-            "  (in.absencesByUser.get(in.selectedAbsenceUser.getName()) as Set).add(in.selectedAbsence);",
-            "  AbsenceAndSubstituteUtils.sortAbsences(in.displayedAbsences);",
-            "}",
-            "",
-            "in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/Messages/addNewAbsence\", Arrays.asList(in.selectedAbsence.user.name));"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1376, "y" : 696 }
-      },
-      "connect" : [
-        { "id" : "f58", "to" : "f47", "via" : [ { "x" : 1488, "y" : 696 } ] }
-      ]
-    }, {
-      "id" : "f98",
-      "type" : "Alternative",
-      "name" : "is create absence?",
-      "config" : {
-        "conditions" : {
-          "f106" : "in.isCreateMode"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 192, "y" : 688 },
-        "labelOffset" : { "x" : 82, "y" : 5 }
-      },
-      "connect" : [
-        { "id" : "f106", "to" : "f137", "via" : [ { "x" : 192, "y" : 744 } ], "label" : {
-            "name" : "yes",
-            "segment" : 1.25,
-            "offset" : { "y" : 10 }
-          } },
-        { "id" : "f107", "to" : "f65", "via" : [ { "x" : 192, "y" : 552 } ] }
-      ]
-    }, {
-      "id" : "f37",
-      "type" : "Script",
-      "name" : "Backup absence",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.enums.DeputyRoleType;",
-            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
-            "in.backupAbsence.setUser(in.selectedAbsence.getUser());",
-            "in.backupAbsence.setFrom(in.selectedAbsence.getFrom());",
-            "in.backupAbsence.setUntil(in.selectedAbsence.getUntil());",
-            "in.backupAbsence.setComment(in.selectedAbsence.getComment());",
-            "in.selectedUser = in.selectedAbsence.getUser();",
-            "in.isCreateMode = false;",
-            "in.selectedDeputyRole = DeputyRoleUtils.findDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);",
-            "",
-            "if (in.selectedDeputyRole != null) {",
-            "  in.selectedDeputies = DeputyRoleUtils.cloneDeputyList(in.selectedDeputyRole.getDeputies());",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 264, "y" : 1096 }
-      },
-      "connect" : [
-        { "id" : "f132", "to" : "f130" }
-      ]
-    }, {
-      "id" : "f55",
-      "type" : "Script",
-      "name" : "Reset",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import java.util.ArrayList;",
-            "import ch.ivy.addon.portalkit.enums.DeputyRoleType;",
-            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
-            "out.selectedAbsence.setUser(in.backupAbsence.getUser());",
-            "out.selectedAbsence.setFrom(in.backupAbsence.getFrom());",
-            "out.selectedAbsence.setUntil(in.backupAbsence.getUntil());",
-            "out.selectedAbsence.setComment(in.backupAbsence.getComment());",
-            "out.selectedDeputies = DeputyRoleUtils.findDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE).getDeputies();",
-            "out.permanentDeputies = new ArrayList();"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 264, "y" : 1192 }
-      },
-      "connect" : [
-        { "id" : "f87", "to" : "f57" }
-      ]
-    }, {
-      "id" : "f96",
-      "type" : "HtmlDialogEventStart",
-      "name" : "saveSubstitutes",
-      "config" : {
-        "guid" : "1756E446A9C4FC28"
-      },
-      "visual" : {
-        "at" : { "x" : 104, "y" : 424 },
-        "labelOffset" : { "x" : 5 }
-      },
-      "connect" : [
-        { "id" : "f62", "to" : "f51" }
-      ]
-    }, {
       "id" : "f19",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1248, "y" : 1000 }
+        "at" : { "x" : 640, "y" : 352 }
       }
-    }, {
-      "id" : "f138",
-      "type" : "Script",
-      "name" : "Validation",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import java.util.Set;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
-            "import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;",
-            "",
-            "in.validationError = false;",
-            "String username = in.selectedUser.getName();",
-            "boolean fromBiggerThanTill = AbsenceAndSubstituteUtils.checkFromBiggerThanTill(in.selectedAbsence);",
-            "in.selectedAbsence.user = in.selectedUser;",
-            "",
-            "if (fromBiggerThanTill) {",
-            "  in.validationError = true;",
-            "}",
-            "",
-            "boolean doesNewAbsenceOverlap = AbsenceAndSubstituteUtils.doesNewAbsenceOverlap(in.absencesByUser.get(username) as Set, in.selectedAbsence);",
-            "if (doesNewAbsenceOverlap) {",
-            "  in.validationError = true;",
-            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence\"), \"\"));",
-            "}",
-            "",
-            "if (in.validationError) {",
-            "  FacesContext.getCurrentInstance().validationFailed();",
-            "}"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 716, "y" : 744 }
-      },
-      "connect" : [
-        { "id" : "f155", "to" : "f140" }
-      ]
     }, {
       "id" : "f17",
       "type" : "HtmlDialogMethodStart",
@@ -202,53 +41,10 @@
         "guid" : "1756E446A9CC288A"
       },
       "visual" : {
-        "at" : { "x" : 704, "y" : 1000 }
+        "at" : { "x" : 96, "y" : 352 }
       },
       "connect" : [
         { "id" : "f33", "to" : "f48" }
-      ]
-    }, {
-      "id" : "f130",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 384, "y" : 1096 }
-      }
-    }, {
-      "id" : "f54",
-      "type" : "HtmlDialogEventStart",
-      "name" : "cancel",
-      "config" : {
-        "guid" : "1756E446A9C95213"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 1192 },
-        "labelOffset" : { "x" : 7, "y" : 36 }
-      },
-      "connect" : [
-        { "id" : "f56", "to" : "f55" }
-      ]
-    }, {
-      "id" : "f11",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "editAbsence(IvyAbsence)",
-      "config" : {
-        "signature" : "editAbsence",
-        "input" : {
-          "params" : [
-            { "name" : "selectedAbsence", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence", "desc" : "" }
-          ],
-          "map" : {
-            "out.selectedAbsence" : "param.selectedAbsence",
-            "out.validationError" : "false"
-          }
-        },
-        "guid" : "1756E446A9C6B05E"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 1096 }
-      },
-      "connect" : [
-        { "id" : "f131", "to" : "f37" }
       ]
     }, {
       "id" : "f7",
@@ -263,65 +59,6 @@
       },
       "connect" : [
         { "id" : "f179", "to" : "f178" }
-      ]
-    }, {
-      "id" : "f8",
-      "type" : "Script",
-      "name" : "Init",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;",
-            "import java.util.stream.Collectors;",
-            "import java.util.stream.Collector;",
-            "import ch.ivyteam.ivy.security.SubstitutionType;",
-            "import java.util.ArrayList;",
-            "import ch.ivyteam.ivy.security.ISecurityMember;",
-            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
-            "import com.axonivy.portal.components.dto.UserDTO;",
-            "import ch.ivyteam.ivy.security.IPermission;",
-            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
-            "import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;",
-            "import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;",
-            "import ch.ivy.addon.portalkit.enums.DeputyRoleType;",
-            "import ch.ivy.addon.portalkit.dto.DeputyRole;",
-            "",
-            "UserDTO currentUserDTO = in.canCreateAbsenceForOtherUsers ? ",
-            "  new UserDTO(in.selectedAbsenceUser) : new UserDTO(ivy.session.getSessionUser());",
-            "",
-            "in.selectedAbsence = new IvyAbsence();",
-            "in.selectedAbsence.from = new Date();",
-            "in.selectedAbsence.until = new Date();",
-            "in.selectedAbsence.user = currentUserDTO;",
-            "",
-            "in.selectedUser = currentUserDTO;",
-            "in.selectedDeputy = null;",
-            "in.validationError = false;",
-            "in.isCreateMode = true;",
-            "in.permanentDeputies = new ArrayList();",
-            "in.onAbsenceDeputies = new ArrayList();",
-            "in.selectedDeputies = new ArrayList();",
-            "in.selectedDeputyRole = DeputyRoleUtils.findDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);",
-            "",
-            "if (in.selectedDeputyRole != null) {",
-            "  in.onAbsenceDeputies = DeputyRoleUtils.cloneDeputyList(in.selectedDeputyRole.getDeputies());",
-            "}",
-            "",
-            "DeputyRole permanentDeputyRole = DeputyRoleUtils.findDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT);",
-            "if (permanentDeputyRole != null) {",
-            "  in.permanentDeputies = DeputyRoleUtils.cloneDeputyList(permanentDeputyRole.getDeputies());",
-            "}",
-            "in.selectedDeputies.addAll(in.onAbsenceDeputies);",
-            "in.selectedDeputies.addAll(in.permanentDeputies);"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 264, "y" : 1000 }
-      },
-      "connect" : [
-        { "id" : "f36", "to" : "f35" }
       ]
     }, {
       "id" : "f53",
@@ -348,152 +85,12 @@
         "guid" : "1756E446A9D252D7"
       },
       "visual" : {
-        "at" : { "x" : 704, "y" : 1096 },
+        "at" : { "x" : 96, "y" : 480 },
         "labelOffset" : { "x" : 26, "y" : 42 }
       },
       "connect" : [
         { "id" : "f46", "to" : "f45" }
       ]
-    }, {
-      "id" : "f136",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 1248, "y" : 784 }
-      }
-    }, {
-      "id" : "f140",
-      "type" : "Alternative",
-      "name" : "no errors?",
-      "config" : {
-        "conditions" : {
-          "f158" : "!in.validationError"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 840, "y" : 744 },
-        "labelOffset" : { "x" : 56, "y" : 7 }
-      },
-      "connect" : [
-        { "id" : "f158", "to" : "f129", "via" : [ { "x" : 840, "y" : 696 } ] },
-        { "id" : "f61", "to" : "f136", "via" : [ { "x" : 840, "y" : 784 } ] }
-      ]
-    }, {
-      "id" : "f31",
-      "type" : "HtmlDialogEventStart",
-      "name" : "add",
-      "config" : {
-        "guid" : "1756E446A9D175DA"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 1000 }
-      },
-      "connect" : [
-        { "id" : "f20", "to" : "f8" }
-      ]
-    }, {
-      "id" : "f57",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 384, "y" : 1192 }
-      }
-    }, {
-      "id" : "f111",
-      "type" : "SubProcessCall",
-      "name" : "AbsenceService",
-      "config" : {
-        "processCall" : "Ivy Data Processes/AbsenceService:updateAbsences(String,java.util.Set)",
-        "call" : {
-          "map" : {
-            "param.username" : "in.selectedAbsenceUser.getName()",
-            "param.ivyAbsences" : "in.absencesByUser.get(in.selectedAbsenceUser.getName()) as java.util.Set"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 504, "y" : 552 }
-      },
-      "connect" : [
-        { "id" : "f67", "to" : "f121" }
-      ]
-    }, {
-      "id" : "f121",
-      "type" : "Script",
-      "name" : "update data",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;",
-            "import java.util.Set;",
-            "",
-            "Set<IvyAbsence> absencesFromUser = in.absencesByUser.get(in.selectedUser.getName()) as Set;",
-            "absencesFromUser.add(in.selectedAbsence);",
-            "AbsenceAndSubstituteUtils.sortAbsences(in.displayedAbsences);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 648, "y" : 552 }
-      },
-      "connect" : [
-        { "id" : "f60", "to" : "f169" }
-      ]
-    }, {
-      "id" : "f137",
-      "type" : "Script",
-      "name" : [
-        "Set end date",
-        "to selected absence - created mode true"
-      ],
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.util.Dates;",
-            "",
-            "java.util.Date endOfDate = Dates.toEndOfDate(in.selectedAbsence.getUntil());",
-            "in.selectedAbsence.setUntil(endOfDate);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 336, "y" : 744 },
-        "size" : { "width" : 144 }
-      },
-      "connect" : [
-        { "id" : "f148", "to" : "f147" }
-      ]
-    }, {
-      "id" : "f147",
-      "type" : "SubProcessCall",
-      "name" : [
-        "Find current ",
-        "user's absences"
-      ],
-      "config" : {
-        "processCall" : "Ivy Data Processes/AbsenceService:findAbsences(String)",
-        "call" : {
-          "map" : {
-            "param.username" : "in.selectedAbsence.getUsername()"
-          }
-        },
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.absencesByUser" : "result.absencesByUser"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 528, "y" : 744 }
-      },
-      "connect" : [
-        { "id" : "f149", "to" : "f138" }
-      ]
-    }, {
-      "id" : "f100",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 1656, "y" : 424 }
-      }
     }, {
       "id" : "f45",
       "type" : "SubProcessCall",
@@ -515,7 +112,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 960, "y" : 1096 },
+        "at" : { "x" : 352, "y" : 480 },
         "size" : { "width" : 192 }
       },
       "connect" : [
@@ -525,60 +122,8 @@
       "id" : "f10",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1248, "y" : 1096 }
+        "at" : { "x" : 640, "y" : 480 }
       }
-    }, {
-      "id" : "f52",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "saveAbsence()",
-      "config" : {
-        "signature" : "saveAbsence",
-        "guid" : "1756E446A9D22ECA"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 688 },
-        "labelOffset" : { "x" : 24 }
-      },
-      "connect" : [
-        { "id" : "f99", "to" : "f98" }
-      ]
-    }, {
-      "id" : "f129",
-      "type" : "SubProcessCall",
-      "name" : "AbsenceService",
-      "config" : {
-        "processCall" : "Ivy Data Processes/AbsenceService:createAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence)",
-        "call" : {
-          "map" : {
-            "param.absence" : "in.selectedAbsence"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 920, "y" : 696 }
-      },
-      "connect" : [
-        { "id" : "f165", "to" : "f167" }
-      ]
-    }, {
-      "id" : "f101",
-      "type" : "SubProcessCall",
-      "name" : "save substitutes",
-      "config" : {
-        "processCall" : "Ivy Data Processes/SubstituteService:saveSubstitutes(com.axonivy.portal.components.dto.UserDTO,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>)",
-        "call" : {
-          "map" : {
-            "param.userDTO" : "in.selectedAbsenceUser",
-            "param.substitutes" : "in.substitutes"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 528, "y" : 424 }
-      },
-      "connect" : [
-        { "id" : "f24", "to" : "f32" }
-      ]
     }, {
       "id" : "f48",
       "type" : "SubProcessCall",
@@ -600,22 +145,16 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 920, "y" : 1000 }
+        "at" : { "x" : 312, "y" : 352 }
       },
       "connect" : [
         { "id" : "f43", "to" : "f19" }
       ]
     }, {
-      "id" : "f35",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 384, "y" : 1000 }
-      }
-    }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1608, "y" : 96 }
+        "at" : { "x" : 496, "y" : 208 }
       }
     }, {
       "id" : "f2",
@@ -626,7 +165,7 @@
         "guid" : "1756E4AF3567EC52"
       },
       "visual" : {
-        "at" : { "x" : 1208, "y" : 96 },
+        "at" : { "x" : 96, "y" : 208 },
         "labelOffset" : { "x" : 24 }
       },
       "connect" : [
@@ -654,414 +193,12 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1384, "y" : 96 },
+        "at" : { "x" : 272, "y" : 208 },
         "size" : { "width" : 160 }
       },
       "connect" : [
         { "id" : "f4", "to" : "f1" }
       ]
-    }, {
-      "id" : "f47",
-      "type" : "Script",
-      "name" : "Show message",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import org.primefaces.context.PrimeFacesContext;",
-            "import javax.faces.application.FacesMessage;",
-            "",
-            "FacesMessage message = new javax.faces.application.FacesMessage(FacesMessage.SEVERITY_INFO, \"\", in.message);",
-            "PrimeFacesContext.getCurrentInstance().addMessage(\"absences-management-info\", message);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1488, "y" : 424 }
-      },
-      "connect" : [
-        { "id" : "f18", "to" : "f100" }
-      ]
-    }, {
-      "id" : "f32",
-      "type" : "Script",
-      "name" : "Add message",
-      "config" : {
-        "output" : {
-          "code" : "in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/Messages/saveAbsenceSetting\");"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 716, "y" : 424 }
-      },
-      "connect" : [
-        { "id" : "f49", "to" : "f47" }
-      ]
-    }, {
-      "id" : "f28",
-      "type" : "Script",
-      "name" : "Add message",
-      "config" : {
-        "output" : {
-          "code" : "in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/Messages/updateAbsence\");"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1232, "y" : 552 }
-      },
-      "connect" : [
-        { "id" : "f27", "to" : "f47", "via" : [ { "x" : 1488, "y" : 552 } ] }
-      ]
-    }, {
-      "id" : "f34",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "addDeputy(DeputyRoleType)",
-      "config" : {
-        "signature" : "addDeputy",
-        "input" : {
-          "params" : [
-            { "name" : "deputyRoleType", "type" : "ch.ivy.addon.portalkit.enums.DeputyRoleType", "desc" : "" }
-          ],
-          "map" : { }
-        },
-        "guid" : "178C51E41C8D1372"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 1384 },
-        "labelOffset" : { "x" : 1 }
-      },
-      "connect" : [
-        { "id" : "f68", "to" : "f44" }
-      ]
-    }, {
-      "id" : "f41",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 672, "y" : 1384 }
-      }
-    }, {
-      "id" : "f44",
-      "type" : "Script",
-      "name" : "Add deputy",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import java.util.Arrays;",
-            "import ch.ivy.addon.portalkit.enums.DeputyRoleType;",
-            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
-            "import ch.ivyteam.ivy.security.ISecurityMember;",
-            "",
-            "String messageId = \"absence-form:absence-messages\";",
-            "ISecurityMember selectedAssignee = in.#selectedDeputy is initialized ? ISecurityContext.current().members().find(in.selectedDeputy.getMemberName()) : null;",
-            "if (!(#selectedAssignee is initialized) || in.selectedDeputies.contains(selectedAssignee)) {",
-            "  FacesContext.getCurrentInstance().addMessage(messageId, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectInvalidDeputy\")));",
-            "} else if (DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT, selectedAssignee)) {",
-            "  String errorMessage = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectedInPersonalTaskPermanentDeputies\", Arrays.asList(ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskPermanentDeputies\")));",
-            "  FacesContext.getCurrentInstance().addMessage(messageId, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", errorMessage));",
-            "} else if (DeputyRoleType.PERSONAL_TASK_PERMANENT.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE, selectedAssignee)) {",
-            "  String errorMessage = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectedInPersonalTaskPermanentDeputies\", Arrays.asList(ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies\")));",
-            "  FacesContext.getCurrentInstance().addMessage(messageId, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", errorMessage));",
-            "} else {",
-            "  in.selectedDeputies.add(selectedAssignee);",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 256, "y" : 1384 }
-      },
-      "connect" : [
-        { "id" : "f29", "to" : "f41" }
-      ]
-    }, {
-      "id" : "f69",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 672, "y" : 1480 }
-      }
-    }, {
-      "id" : "f70",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "removeDeputy(ISecurityMember)",
-      "config" : {
-        "signature" : "removeDeputy",
-        "input" : {
-          "params" : [
-            { "name" : "assignee", "type" : "ch.ivyteam.ivy.security.ISecurityMember", "desc" : "" }
-          ],
-          "map" : { },
-          "code" : "out.selectedDeputies.remove(param.assignee);"
-        },
-        "guid" : "178C53ACFA8D53DD"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 1480 },
-        "labelOffset" : { "x" : 11, "y" : 36 }
-      },
-      "connect" : [
-        { "id" : "f71", "to" : "f69" }
-      ]
-    }, {
-      "id" : "f72",
-      "type" : "HtmlDialogEventStart",
-      "name" : "closeDialog",
-      "config" : {
-        "guid" : "0178C5540F2D37A3"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 1640 }
-      },
-      "connect" : [
-        { "id" : "f79", "to" : "f78" }
-      ]
-    }, {
-      "id" : "f74",
-      "type" : "Script",
-      "name" : "Initialize dialog",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
-            "",
-            "in.selectedDeputies = DeputyRoleUtils.cloneDeputyList(in.selectedDeputyRole.getDeputies());",
-            "in.selectedDeputy = null;"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 256, "y" : 1544 }
-      },
-      "connect" : [
-        { "id" : "f82", "to" : "f76" }
-      ]
-    }, {
-      "id" : "f76",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 704, "y" : 1544 }
-      }
-    }, {
-      "id" : "f77",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "initSelectedDeputies(DeputyRole)",
-      "config" : {
-        "signature" : "initSelectedDeputies",
-        "input" : {
-          "params" : [
-            { "name" : "deputyRole", "type" : "ch.ivy.addon.portalkit.dto.DeputyRole", "desc" : "" }
-          ],
-          "map" : {
-            "out.selectedDeputyRole" : "param.deputyRole"
-          }
-        },
-        "guid" : "178C5540F2DB1373"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 1544 },
-        "labelOffset" : { "x" : 31 }
-      },
-      "connect" : [
-        { "id" : "f83", "to" : "f74" }
-      ]
-    }, {
-      "id" : "f78",
-      "type" : "Script",
-      "name" : "Reset dialog inputs",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
-            "import java.util.ArrayList;",
-            "",
-            "out.selectedDeputy = null;",
-            "out.selectedDeputies = DeputyRoleUtils.cloneDeputyList(out.selectedDeputyRole.getDeputies());"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 608, "y" : 1640 }
-      },
-      "connect" : [
-        { "id" : "f81", "to" : "f76", "via" : [ { "x" : 704, "y" : 1640 } ] }
-      ]
-    }, {
-      "id" : "f51",
-      "type" : "Script",
-      "name" : "update substitutes",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
-            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
-            "",
-            "in.selectedDeputyRole.setDeputies(in.selectedDeputies);",
-            "in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRole(in.selectedDeputyRole);"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 336, "y" : 424 }
-      },
-      "connect" : [
-        { "id" : "f64", "to" : "f101" }
-      ]
-    }, {
-      "id" : "f65",
-      "type" : "Script",
-      "name" : [
-        "Set end date",
-        "to selected absence"
-      ],
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.util.Dates;",
-            "",
-            "java.util.Date endOfDate = Dates.toEndOfDate(in.selectedAbsence.getUntil());",
-            "in.selectedAbsence.setUntil(endOfDate);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 336, "y" : 552 },
-        "size" : { "width" : 144 }
-      },
-      "connect" : [
-        { "id" : "f21", "to" : "f111" }
-      ]
-    }, {
-      "id" : "f164",
-      "type" : "SubProcessCall",
-      "name" : "Save selected deputies",
-      "config" : {
-        "processCall" : "Ivy Data Processes/SubstituteService:saveSubstitutes(com.axonivy.portal.components.dto.UserDTO,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>)",
-        "call" : {
-          "map" : {
-            "param.userDTO" : "in.selectedAbsenceUser",
-            "param.substitutes" : "in.substitutes"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1240, "y" : 696 }
-      },
-      "connect" : [
-        { "id" : "f166", "to" : "f86" }
-      ]
-    }, {
-      "id" : "f167",
-      "type" : "Script",
-      "name" : "Update selected deputies",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.enums.DeputyRoleType;",
-            "import ch.ivy.addon.portalkit.dto.DeputyRole;",
-            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
-            "",
-            "if (!in.onAbsenceDeputies.isEmpty()) {",
-            "  DeputyRole deputyRole = DeputyRoleUtils.findDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);",
-            "  deputyRole.setDeputies(in.onAbsenceDeputies);",
-            "  in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRole(deputyRole);",
-            "}",
-            "",
-            "if (!in.permanentDeputies.isEmpty()) {",
-            "  DeputyRole deputyRole = DeputyRoleUtils.findDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT);",
-            "  deputyRole.setDeputies(in.permanentDeputies);",
-            "  in.substitutes.addAll(DeputyRoleUtils.getSubstitutesFromDeputyRole(deputyRole));",
-            "}",
-            "",
-            "ivy.log.info(in.substitutes);"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 1080, "y" : 696 }
-      },
-      "connect" : [
-        { "id" : "f168", "to" : "f164", "color" : "default" }
-      ]
-    }, {
-      "id" : "f169",
-      "type" : "Script",
-      "name" : "Update selected deputies",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
-            "in.selectedDeputyRole.setDeputies(in.selectedDeputies);",
-            "in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRole(in.selectedDeputyRole);"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 840, "y" : 552 }
-      },
-      "connect" : [
-        { "id" : "f170", "to" : "f171", "color" : "default" }
-      ]
-    }, {
-      "id" : "f171",
-      "type" : "SubProcessCall",
-      "name" : "Save selected deputies",
-      "config" : {
-        "processCall" : "Ivy Data Processes/SubstituteService:saveSubstitutes(com.axonivy.portal.components.dto.UserDTO,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>)",
-        "call" : {
-          "map" : {
-            "param.userDTO" : "in.selectedAbsenceUser",
-            "param.substitutes" : "in.substitutes"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1024, "y" : 552 }
-      },
-      "connect" : [
-        { "id" : "f172", "to" : "f28", "color" : "default" }
-      ]
-    }, {
-      "id" : "f173",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "setAsPermanent(ISecurityMember,Boolean)",
-      "config" : {
-        "signature" : "setAsPermanent",
-        "input" : {
-          "params" : [
-            { "name" : "selectedDeputy", "type" : "ch.ivyteam.ivy.security.ISecurityMember", "desc" : "" },
-            { "name" : "isPermanent", "type" : "Boolean", "desc" : "" }
-          ],
-          "map" : { },
-          "code" : [
-            "if (out.permanentDeputies.contains(param.selectedDeputy)) {",
-            "  out.permanentDeputies.remove(param.selectedDeputy);",
-            "} else {",
-            "  out.permanentDeputies.add(param.selectedDeputy);",
-            "}",
-            "if (param.isPermanent) {",
-            "  out.permanentDeputies.remove(param.selectedDeputy);",
-            "}"
-          ]
-        },
-        "guid" : "19D95284DE540EAD"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 1768 }
-      },
-      "connect" : [
-        { "id" : "f177", "to" : "f176" }
-      ]
-    }, {
-      "id" : "f176",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 256, "y" : 1768 }
-      }
     }, {
       "id" : "f178",
       "type" : "HtmlDialogEnd",
