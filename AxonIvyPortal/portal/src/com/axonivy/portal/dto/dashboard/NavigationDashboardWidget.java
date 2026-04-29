@@ -1,6 +1,5 @@
 package com.axonivy.portal.dto.dashboard;
 
-import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,7 +12,7 @@ import ch.ivy.addon.portalkit.enums.VisualType;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 
-public class NavigationDashboardWidget extends DashboardWidget implements Serializable {
+public class NavigationDashboardWidget extends DashboardWidget {
   
   private static final long serialVersionUID = -565012312312361L;
 

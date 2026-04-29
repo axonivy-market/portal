@@ -191,6 +191,64 @@ a.left-sidebar-menu-icon {
 }
 /* END APPLICATION MENU */
 
+.sidebar-hidden .menu-wrapper {
+  display: none !important;
+}
+.sidebar-hidden .layout-main {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+.sidebar-hidden .layout-topbar {
+  left: 0 !important;
+}
+.sidebar-hidden .layout-topbar-left {
+  display: none !important;
+}
+
+.sidebar-click-mode.layout-static .menu-wrapper .layout-menu-container {
+  overflow: auto;
+}
+
+.sidebar-collapse-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--menuitem-text-color, var(--text-color));
+}
+
+.sidebar-collapse-btn:hover {
+  color: var(--menuitem-hover-text-color, var(--primary-color));
+}
+
+.layout-wrapper:not(.layout-static) .menu-wrapper .sidebar-logo .portal-home-logo-small img {
+  height: 30px;
+}
+
+/* Collapsed: on hover, hide logo and show toggle button */
+.sidebar-click-mode:not(.layout-static) .menu-wrapper:hover .sidebar-logo a[id$='logo'],
+.sidebar-click-mode:not(.layout-static) .menu-wrapper:hover .sidebar-logo .portal-home-logo-small {
+  display: none;
+}
+
+.sidebar-click-mode:not(.layout-static) .menu-wrapper:hover .sidebar-collapse-btn {
+  display: flex;
+}
+
+/* Expanded: always show the button */
+.sidebar-click-mode.layout-static .sidebar-collapse-btn {
+  display: flex;
+}
+
+.sidebar-click-mode .menu-wrapper {
+  cursor: pointer;
+}
+
+.sidebar-click-mode.layout-static .menu-wrapper {
+  cursor: default;
+}
+
 .task-template-title-horizontal-container {
   display: flex;
   flex-wrap: wrap;

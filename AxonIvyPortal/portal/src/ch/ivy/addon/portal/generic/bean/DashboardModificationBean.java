@@ -1,7 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.io.ByteArrayInputStream;
-import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -58,7 +57,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
 @ManagedBean
-public class DashboardModificationBean extends DashboardBean implements Serializable {
+public class DashboardModificationBean extends DashboardBean {
 
   private static final long serialVersionUID = 1L;
   protected static final String PUBLIC_DASHBOARD_DEFAULT_ICON = "si-network-share";
@@ -131,7 +130,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     if (CollectionUtils.isNotEmpty(responsibles)) {
       Collection<SecurityMemberDTO> distinctPermissionDTOs = responsibles.stream()
           .collect(Collectors
-              .toMap(SecurityMemberDTO::getMemberName, responsible -> responsible, (responsible1, responsible2) -> responsible1)).values();
+              .toMap(SecurityMemberDTO::getMemberName, responsible -> responsible, (responsible1, _) -> responsible1)).values();
       responsibles.clear();
       responsibles.addAll(distinctPermissionDTOs);
       displayedPermission = responsibles.stream().map(SecurityMemberDTO::getDisplayName).collect(Collectors.joining(", "));
@@ -309,7 +308,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     List<DisplayName> languages = this.selectedDashboard.getTitles();
     return languages.stream()
         .filter(o -> o.getLocale() != null)
-        .collect(Collectors.toMap(o -> o.getLocale().getLanguage(), o -> o, (existing, replacement) -> existing));
+        .collect(Collectors.toMap(o -> o.getLocale().getLanguage(), o -> o, (existing, _) -> existing));
   }
 
   private void initMultipleLanguagesForDashboardName(String currentTitle) {
@@ -401,7 +400,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     all.addAll(DashboardUtils.getPublicDashboards());
     all.addAll(DashboardUtils.getPrivateDashboards());
     return all.stream().filter(d -> d.getId() != null)
-        .collect(Collectors.toMap(Dashboard::getId, d -> d, (a, b) -> a));
+        .collect(Collectors.toMap(Dashboard::getId, d -> d, (a, _) -> a));
   }
 
   private void prepareDashboardForExport(Dashboard dashboard) {

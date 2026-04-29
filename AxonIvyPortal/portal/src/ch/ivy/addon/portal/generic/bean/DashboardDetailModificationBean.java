@@ -16,7 +16,6 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -107,7 +106,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ViewScoped
 @ManagedBean
-public class DashboardDetailModificationBean extends DashboardBean implements Serializable, PropertyChangeListener {
+public class DashboardDetailModificationBean extends DashboardBean implements PropertyChangeListener {
 
   private static final long serialVersionUID = -5272278165636659596L;
   private static final String DEFAULT_COMPLEX_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:predefined-filter";
@@ -570,7 +569,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
   }
   
-  public void onReset(@SuppressWarnings("unused") DashboardWidget widget) {
+  public void onReset(DashboardWidget widget) {
     resetUserFilter();
   }
 

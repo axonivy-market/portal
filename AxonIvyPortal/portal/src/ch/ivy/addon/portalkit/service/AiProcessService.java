@@ -2,7 +2,7 @@ package ch.ivy.addon.portalkit.service;
 
 import com.axonivy.portal.components.util.ProcessStartUtils;
 
-import ch.ivyteam.ivy.workflow.IProcessStart;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class AiProcessService {
 
@@ -17,8 +17,8 @@ public class AiProcessService {
     return instance;
   }
 
-  public IProcessStart findAssistantDashboardProcess() {
-    return ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(
+  public IWebStartable findAssistantDashboardProcess() {
+    return ProcessStartUtils.findWebStartableByUserFriendlyRequestPath(
         AI_DASHBOARD_FRIENDLY_REQUEST_PATH);
   }
 }

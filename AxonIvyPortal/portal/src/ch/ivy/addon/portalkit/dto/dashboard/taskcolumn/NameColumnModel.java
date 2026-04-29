@@ -1,11 +1,9 @@
 package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
-import java.io.Serializable;
-
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.workflow.ITask;
 
-public class NameColumnModel extends TaskColumnModel implements Serializable {
+public class NameColumnModel extends TaskColumnModel {
 
   private static final long serialVersionUID = -4315469062114036720L;
 
