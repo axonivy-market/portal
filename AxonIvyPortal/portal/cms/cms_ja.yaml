@@ -41,7 +41,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskForRole: 役割のタスク
     till: 終了日
   AbsenceManagement:
-    Duration: 所要時間
     Messages:
       addNewAbsence: 新しい不在者が{0}に追加されました
       removedAbsences: '{0}から削除された不在者'

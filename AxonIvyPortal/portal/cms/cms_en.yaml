@@ -41,7 +41,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskForRole: 'Task for role: '
     till: Until
   AbsenceManagement:
-    Duration: Duration
     Messages:
       addNewAbsence: New absence is added for {0}
       removedAbsences: Removed absence for {0}
@@ -54,6 +53,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationAndRole: Application and role
     definedDeputies: Defined substitutes
     deputyFor: I am substitute for
+    duration: Duration
     myAbsences: My absences
     myDeputies: My substitutes
     nextAbsence: Upcoming absence

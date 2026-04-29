@@ -26,17 +26,17 @@
             <div class="setting-header ui-g-12 u-no-padding-bottom">
               <h2 id="absence">#{ivy.cms.co(absenceManagementBean.supervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/allAbsences' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myAbsences')}</h2>
             </div>
-            <p:tabView id="absences-tabview" dynamic="true" cache="false" styleClass="ui-g-12">
+            <p:tabView id="absences-tabview" dynamic="true" cache="false" styleClass="ui-g-12" >
               <p:tab id="request-absences-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}">
                   <div class="ui-g-12 absence-management">
-                    <div class="w-8 pl-2 absence-user-selection-wrapper" jsf:rendered="#{absenceManagementBean.supervisor}">
+                    <div class="flex w-full pb-3 align-items-center" jsf:rendered="#{absenceManagementBean.supervisor}">
                       <ic:com.axonivy.portal.components.UserSelection id="user-absence-selection-absences"
                         componentId="user-absence-absences"
                         selectedUser="#{absenceManagementBean.selectedAbsenceUser}"
                         completeMethod="#{logic.autoCompleteForUserOnApp}"
                         isRenderedMessage="false"
                         label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedUser')}"
-                        autoCompletePanelStyleClass="w-8 ui-sm-12 ui-fluid"
+                        autoCompletePanelStyleClass="w-12 ui-fluid"
                         autoCompleteStyleClass="absence-user-selection"
                         scrollHeight="200"
                         hasCustomizedSelectionList="true" size="35">
@@ -50,6 +50,22 @@
                             update="@(.absence-table) @(.substitute-table) @(.substitution-table) absences-management-form" />
                         </f:facet>
                       </ic:com.axonivy.portal.components.UserSelection>
+                      <div class="w-3 pt-5 pl-3">
+                        <div class="#{absenceManagementBean.supervisor ? ' ui-sm-12' : ''} add-absence-panel pl-0">
+                          <div class="ui-fluid flex justify-content-start gap-3 align-items-center h-full">
+                            <h:panelGroup layout="block">
+                              <p:outputLabel id="show-absence-in-the-past-label"
+                                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/showAbsencesInThePast')}"
+                                for="show-absence-in-the-past" />
+                            </h:panelGroup>
+                            <p:toggleSwitch id="show-absence-in-the-past" value="#{absenceManagementBean.absenceInThePastShown}"
+                              styleClass="show-absence-in-the-past-panel">
+                              <p:ajax event="change" listener="#{absenceManagementBean.findAbsencesAndSubstitutes()}" global="false"
+                                update="@(.absence-table)" partialSubmit="true" />
+                            </p:toggleSwitch>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div class="ui-fluid u-padding-0">
                       <p:commandButton id="add-absence"
@@ -74,23 +90,6 @@
                         rendered="#{absenceManagementBean.absencesCreatable || absenceManagementBean.ownAbsencesCreatable}" />
                     </div>
                     <div class="ui-g-12 u-no-padding-top">
-                      <div class="flex flex-wrap align-items-end">
-                        <div class="#{absenceManagementBean.supervisor ? ' ui-sm-12 ui-g-6' : 'ui-g-6'} add-absence-panel pl-0">
-                          <div class="ui-fluid flex justify-content-start gap-3 align-items-center h-full">
-                            <h:panelGroup layout="block">
-                              <p:outputLabel id="show-absence-in-the-past-label"
-                                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/showAbsencesInThePast')}"
-                                for="show-absence-in-the-past" />
-                            </h:panelGroup>
-                            <p:toggleSwitch id="show-absence-in-the-past" value="#{absenceManagementBean.absenceInThePastShown}"
-                              styleClass="show-absence-in-the-past-panel">
-                              <p:ajax event="change" listener="#{absenceManagementBean.findAbsencesAndSubstitutes()}" global="false"
-                                update="@(.absence-table)" partialSubmit="true" />
-                            </p:toggleSwitch>
-                          </div>
-                        </div>
-                      </div>
-
                       <div class="ui-g-12 u-no-padding-top mb-2 pl-0">
                         <p:tooltip globalSelector="i"/>
                         <p:dataTable id="absence-table" styleClass="absence-table pl-0"
@@ -160,6 +159,28 @@
 
                 <!-- Substitutes Tab ============ -->
                 <p:tab id="substitutes-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/substitutes')}">
+                  <div class="ui-g-12" jsf:rendered="#{absenceManagementBean.supervisor}">
+                    <ic:com.axonivy.portal.components.UserSelection id="user-absence-selection-substitutes"
+                      componentId="user-absence-substitutes"
+                      selectedUser="#{absenceManagementBean.selectedAbsenceUser}"
+                      completeMethod="#{logic.autoCompleteForUserOnApp}"
+                      isRenderedMessage="false"
+                      label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedUser')}"
+                      autoCompletePanelStyleClass="ui-sm-12 ui-fluid"
+                      autoCompleteStyleClass="absence-user-selection"
+                      scrollHeight="200"
+                      hasCustomizedSelectionList="true" size="35">
+                      <p:column>
+                        <pc:securityMemberNameAndAvatar
+                          displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+                          securityMember="#{user}" />
+                      </p:column>
+                      <f:facet name="event">
+                        <p:ajax event="itemSelect" listener="#{absenceManagementBean.findAbsencesAndSubstitutes()}" partialSubmit="true"
+                          update="@(.absence-table) @(.substitute-table) @(.substitution-table) absences-management-form" />
+                      </f:facet>
+                    </ic:com.axonivy.portal.components.UserSelection>
+                  </div>
                 <!-- Deputy setting ============ -->
                   <div id="deputy-setting" class="ui-g-12" jsf:rendered="#{absenceManagementBean.canReadSubstitute(absenceManagementBean.selectedAbsenceUser)}">
                     <div class="ui-fluid u-padding-0">
@@ -308,12 +329,12 @@
         <ui:include src="Absence.xhtml" />
       </c:if>
       <p:dialog id="choose-deputy-dialog" styleClass="choose-deputy-dialog w-3" dynamic="true" closable="false"
-        header="#{absenceManagementBean.createDeputyMode}" widgetVar="choose-deputy-dialog"
+        header="#{absenceManagementBean.createDeputyMode ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addSubstitute') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/editSubstitute')}" widgetVar="choose-deputy-dialog"
         modal="true" appendTo="@(body)" resizable="false" responsive="true">
         <f:facet name="header" >
           <div class="flex">
-            <div class="w-12 pl-2">
-              <h:outputText value="#{absenceManagementBean.createDeputyMode}" />
+            <div class="w-12">
+              <h:outputText value="#{absenceManagementBean.createDeputyMode ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addSubstitute') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/editSubstitute')}" />
             </div>
               <h:form id="choose-deputy-close-form">
                 <p:commandButton icon="pi pi-times"
