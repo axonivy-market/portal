@@ -2,9 +2,12 @@ package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
+import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ITask;
 
 public class WorkerColumnModel extends TaskColumnModel implements Serializable {
@@ -15,10 +18,10 @@ public class WorkerColumnModel extends TaskColumnModel implements Serializable {
   public void initDefaultValue() {
     super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.WORKER.getField();
-    this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
-    this.quickSearch = defaultIfEmpty(this.quickSearch, true);
     this.styleToDisplay = initDefaultStyle();
     this.format = getDefaultFormat();
+    this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
+    this.quickSearch = defaultIfEmpty(this.quickSearch, false);
   }
 
   @Override
@@ -30,24 +33,24 @@ public class WorkerColumnModel extends TaskColumnModel implements Serializable {
   public DashboardColumnFormat getDefaultFormat() {
     return DashboardColumnFormat.CUSTOM;
   }
-
-  @Override
-  public String getDefaultStyleClass() {
-    return "dashboard-tasks__name widget-column";
-  }
   
   @Override
   protected int getDefaultColumnWidth() {
-    return 200;
+    return EXTRA_WIDTH;
+  }
+  
+  @Override
+  public String getDefaultStyleClass() {
+    return "dashboard-tasks__worker widget-column";
   }
   
   @Override
   public Object display(ITask task) {
-    Ivy.log().info("loc ne");
-    if (task == null) {
-      return null;
+    if (task == null || task.getWorkerUser() == null) {
+      return StringUtils.EMPTY;
     }
-    return task.getWorkerUserName();
+    ISecurityMember member = task.getWorkerUser();
+    return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(member, member.getMemberName());
   }
 
   @Override

@@ -54,6 +54,7 @@ public class TaskFilterFieldFactory {
     standarFieldMap.put(DashboardStandardTaskColumn.PRIORITY.getField(), new TaskFilterFieldPriority());
     standarFieldMap.put(DashboardStandardTaskColumn.STATE.getField(), new TaskFilterFieldState());
     standarFieldMap.put(DashboardStandardTaskColumn.APPLICATION.getField(), new TaskFilterFieldApplication());
+    standarFieldMap.put(DashboardStandardTaskColumn.WORKER.getField(), new TaskFilterFieldApplication());
     return standarFieldMap;
   }
 
