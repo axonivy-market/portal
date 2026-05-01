@@ -642,6 +642,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskFinishedSuccessfully: Vous avez terminé la tâche avec succès
     taskFromSubstitution: Vous voyez cette tâche parce que vous êtes le remplaçant
     taskName: Nom de tâche
+    worker: Utilisateur travailleur
     tasks: Tâches
     theCasemap: La carte des cas
     theProcess: Le processus
@@ -1883,6 +1884,7 @@ Labels:
       RESPONSIBLE: Responsable
       START: Démarrage
       STATE: État
+      WORKER: Utilisateur travailleur
     FilterOperator:
       AFTER: Est après
       BEFORE: Est avant

@@ -641,6 +641,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskFinishedSuccessfully: タスクを正常に完了しました
     taskFromSubstitution: あなたは代行者なので、このタスクが表示されます
     taskName: タスク名
+    worker: 作業者ユーザー
     tasks: タスク
     theCasemap: このケースマップ
     theProcess: プロセス
@@ -1867,6 +1868,7 @@ Labels:
       RESPONSIBLE: 責任者
       START: 開始
       STATE: 状態
+      WORKER: 作業者ユーザー
     FilterOperator:
       AFTER: 指定の値の後にある
       BEFORE: 指定の値の前にある

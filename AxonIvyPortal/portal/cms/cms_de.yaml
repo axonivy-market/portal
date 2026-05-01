@@ -640,6 +640,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskFinishedSuccessfully: Sie haben die Aufgabe erfolgreich abgeschlossen
     taskFromSubstitution: Sie sehen diese Aufgabe, weil Sie der Stellvertreter sind
     taskName: Aufgabenname
+    worker: Bearbeiter-Benutzer
     tasks: Aufgaben
     theCasemap: Die Case Map
     theProcess: Der Prozess
@@ -1880,6 +1881,7 @@ Labels:
       RESPONSIBLE: Verantwortlich
       START: Start
       STATE: Status
+      WORKER: Bearbeiter-Benutzer
     FilterOperator:
       AFTER: Ist nach
       BEFORE: Ist vor
