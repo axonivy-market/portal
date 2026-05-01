@@ -137,6 +137,8 @@ public class DashboardWidgetUtils {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CategoryColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.APPLICATION, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ApplicationColumnModel.class;
+      } else if (equals(DashboardStandardTaskColumn.WORKER, field)) {
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.WorkerColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.ACTIONS, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ActionsColumnModel.class;
       }
@@ -488,6 +490,9 @@ public class DashboardWidgetUtils {
   public static List<TaskColumnModel> initStandardTaskColumns() {
     List<TaskColumnModel> columnModels = new ArrayList<>();
     for (var col : DashboardStandardTaskColumn.values()) {
+//      if (DashboardStandardTaskColumn.WORKER.equals(col)) {
+//        continue;
+//      }
       TaskColumnModel columnModel = new TaskColumnModel();
       columnModel.setField(col.getField());
       columnModels.add(columnModel);

@@ -638,6 +638,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskFinishedSuccessfully: You have finished the task successfully
     taskFromSubstitution: You see this task because you are the substitute
     taskName: Task name
+    worker: Worker user
     tasks: Tasks
     theCasemap: The case map
     theProcess: The process
@@ -1691,6 +1692,7 @@ Labels:
       RESPONSIBLE: Responsible
       START: Start
       STATE: State
+      WORKER: Worker user
     FilterOperator:
       AFTER: Is After
       BEFORE: Is Before
