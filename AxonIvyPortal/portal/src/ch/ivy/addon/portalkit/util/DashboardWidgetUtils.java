@@ -490,9 +490,6 @@ public class DashboardWidgetUtils {
   public static List<TaskColumnModel> initStandardTaskColumns() {
     List<TaskColumnModel> columnModels = new ArrayList<>();
     for (var col : DashboardStandardTaskColumn.values()) {
-//      if (DashboardStandardTaskColumn.WORKER.equals(col)) {
-//        continue;
-//      }
       TaskColumnModel columnModel = new TaskColumnModel();
       columnModel.setField(col.getField());
       columnModels.add(columnModel);
