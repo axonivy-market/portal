@@ -1166,6 +1166,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
     return false;
   }
 
+  public boolean displayBulkDelegateToggleOption(DashboardWidget widget) {
+    return widget instanceof TaskDashboardWidget;
+  }
+
   public List<CaseQueryType> getAllCaseQueryTypes() {
     return Arrays.asList(CaseQueryType.values());
   }

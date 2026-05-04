@@ -2055,9 +2055,16 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
   box-sizing: border-box;
 }
 
-body .ui-button.ui-widget.ui-widget-filter-btn {
+body .ui-button.ui-widget.ui-widget-filter-btn, .ui-button.ui-widget.ui-deselect-all-button {
   background: var(--widget-filter-background-color);
   color: var(--text-color);
+  border: none;
+}
+
+body .ui-button.ui-delegate-all-tasks-button {
+  background: var(--portal-accessibility-bg-color);
+  color: var(--portal-button-text-color);
+  font-weight: 600;
   border: none;
 }
 
@@ -2119,4 +2126,21 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
 /* Drill-down chart styling */
 .chart-content-card-clickable {
   cursor: pointer;
+}
+
+/* 1. Turn OFF the border for ALL columns completely */
+body .ui-datatable:not(.ui-datatable-gridlines) thead th:before,
+body .ui-treetable:not(.ui-treetable-gridlines) thead th:before {
+    display: none !important;
+}
+
+/* 2. Turn the border ON ONLY if a visible column has another visible column anywhere before it */
+body .ui-datatable:not(.ui-datatable-gridlines) thead th:not(.ui-helper-hidden) ~ th:not(.ui-helper-hidden):before,
+body .ui-treetable:not(.ui-treetable-gridlines) thead th:not(.ui-helper-hidden) ~ th:not(.ui-helper-hidden):before {
+    display: block !important;
+}
+
+.dashboard-tasks__selection-column {
+  text-align: center;
+  width: 40px;
 }

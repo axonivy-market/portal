@@ -162,6 +162,26 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
   }
 
   @Test
+  public void screenshotBulkDelegateFeature() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    showNewDashboard();
+    homePage = new NewDashboardPage();
+    homePage.waitForCaseWidgetLoaded();
+
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
+
+    // Toggle bulk delegate selection mode on
+    taskWidget.clickBulkDelegateToggleButton(0);
+
+    // Select the first task checkbox
+    taskWidget.selectTaskToDelegateAtRow(0, 0);
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getTaskWidget(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-bulk-delegate-selection", 
+        new ScreenshotMargin(20, 350, 20, 20));
+  }
+
+  @Test
   public void screenshotNewDashboardUserGuide() throws IOException {
     redirectToRelativeLink(createTechnicalStateUrl);
     redirectToRelativeLink(createTestingTasksUrl);
