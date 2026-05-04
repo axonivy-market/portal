@@ -2,9 +2,12 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.Keys;
@@ -17,8 +20,7 @@ import com.codeborne.selenide.SelenideElement;
 
 public class NewAbsencePage extends TemplatePage {
 
-  private static final String ABSENCE_ERROR_MESSAGE_SELECTOR = "[id*='absence-messages'] span.ui-messages-error-summary";
-
+  private static final String ERROR_MESSAGE_SELECTOR = "div[id$=':absence-messages']";
   private static final String ABSENCE_DETAIL_ERROR_MESSAGE_SELECTOR = "[id*='absence-messages'] span.ui-messages-error-detail";
 
   @Override
@@ -34,6 +36,11 @@ public class NewAbsencePage extends TemplatePage {
     commentInput.sendKeys(comment);
   }
 
+  public void updateDates(LocalDate absenceFrom, LocalDate absenceTill) {
+    inputDate(absenceFrom, "input[id*='absence-start-date']");
+    inputDate(absenceTill, "input[id*='absence-end-date']");
+  }
+
   public void input(String fullName, LocalDate absenceFrom, LocalDate absenceTill, String comment) {
     $("textarea[id*='comment']").sendKeys(comment);
     $("div[class*='absence-dialog-header']").shouldBe(appear, DEFAULT_TIMEOUT).click();
@@ -46,6 +53,44 @@ public class NewAbsencePage extends TemplatePage {
     }
     inputDate(absenceFrom, "input[id*='absence-start-date']");
     inputDate(absenceTill, "input[id*='absence-end-date']");
+  }
+
+  public void addDeputy(String fullName) {
+    SelenideElement input = $("input[id$='absence-form:user-selection-component:user-selection_input']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    input.clear();
+    input.sendKeys(fullName);
+    String panelSelector = "[id$='absence-form:user-selection-component:user-selection_panel']";
+    $(panelSelector).shouldBe(appear, DEFAULT_TIMEOUT);
+    String itemSelector = "tr[data-item-label*='" + fullName + "'].ui-state-highlight";
+    $(itemSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(panelSelector).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("button[id$='absence-form:add-deputy-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void setDeputyAsPermanent(int deputyIndex) {
+    openDeputyActionMenu(deputyIndex);
+    $(String.format("[id$='absence-form:selected-deputy-panel:%d:change-deputy-type']", deputyIndex))
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void removeDeputy(int deputyIndex) {
+    openDeputyActionMenu(deputyIndex);
+    $(String.format("[id$='absence-form:selected-deputy-panel:%d:delete-deputy']", deputyIndex))
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public List<String> getSelectedDeputyNames() {
+    return $$("tbody[id$='absence-form:selected-deputy-panel_data'] tr")
+        .asFixedIterable()
+        .stream()
+        .map(row -> row.getText())
+      .collect(Collectors.toList());
+  }
+
+  private void openDeputyActionMenu(int deputyIndex) {
+    String actionButton = String.format("[id$='absence-form:selected-deputy-panel:%d:substitute-action-button']", deputyIndex);
+    $(actionButton).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   private void inputDate(LocalDate absenceFrom, String inputCssSelector) {
@@ -67,14 +112,8 @@ public class NewAbsencePage extends TemplatePage {
     }
   }
 
-  public boolean isErrorMessageDisplayed() {
-    $(ABSENCE_ERROR_MESSAGE_SELECTOR).shouldBe(appear, DEFAULT_TIMEOUT);
-    return true;
-  }
-
-  public String getErrorMessage() {
-    WebElement errorMessage = $(ABSENCE_ERROR_MESSAGE_SELECTOR);
-    return errorMessage.getText();
+  public boolean isAbsenceErrorMessageDisplayed() {
+    return $("div[id$=':absence-messages']").shouldBe(appear, DEFAULT_TIMEOUT).exists();
   }
 
     public String getErrorDetailMessage() {
@@ -88,6 +127,13 @@ public class NewAbsencePage extends TemplatePage {
   }
 
   public void proceed() {
+    $("div[class*='absence-dialog-header']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
+    $("[id$='absence-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public void tryProceed() {
     $("div[class*='absence-dialog-header']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
