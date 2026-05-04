@@ -179,7 +179,7 @@ public abstract class DashboardWidget implements Serializable {
     }
 
     var searchResult = getUserFilterCollection().getWidgetFilterSelections().stream()
-        .filter(filter -> Strings.CS.contains(filter.getName(), searchSavedFilterKeyword))
+        .filter(filter -> Strings.CI.contains(filter.getName(), searchSavedFilterKeyword))
         .collect(Collectors.toList());
     setSavedFilters(searchResult);
   }
