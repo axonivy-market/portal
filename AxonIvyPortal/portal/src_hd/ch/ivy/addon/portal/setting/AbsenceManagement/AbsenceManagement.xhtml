@@ -26,28 +26,30 @@
             <p:tabView id="absences-tabview" dynamic="true" cache="false" styleClass="w-full" >
               <p:tab id="request-absences-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}">
                   <div class="absence-management w-full">
-                    <div class="flex w-full pb-2 align-items-center" jsf:rendered="#{absenceManagementBean.supervisor}">
-                      <ic:com.axonivy.portal.components.UserSelection id="user-absence-selection-absences"
-                        componentId="user-absence-absences"
-                        selectedUser="#{absenceManagementBean.selectedAbsenceUser}"
-                        completeMethod="#{logic.autoCompleteForUserOnApp}"
-                        isRenderedMessage="false"
-                        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedUser')}"
-                        autoCompletePanelStyleClass="w-12 ui-fluid"
-                        autoCompleteStyleClass="absence-user-selection"
-                        scrollHeight="200"
-                        hasCustomizedSelectionList="true" size="35">
-                        <p:column>
-                          <pc:securityMemberNameAndAvatar
-                            displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
-                            securityMember="#{user}" />
-                        </p:column>
-                        <f:facet name="event">
-                          <p:ajax event="itemSelect" listener="#{absenceManagementBean.findAbsencesAndSubstitutes()}" partialSubmit="true"
-                            update="@(.absence-table) @(.substitute-table) @(.substitution-table) absences-management-form" />
-                        </f:facet>
-                      </ic:com.axonivy.portal.components.UserSelection>
-                      <div class="w-3 pt-5 pl-3">
+                    <div class="flex align-items-center">
+                      <div class="w-10 pb-2 " jsf:rendered="#{absenceManagementBean.supervisor}">
+                        <ic:com.axonivy.portal.components.UserSelection id="user-absence-selection-absences"
+                          componentId="user-absence-absences"
+                          selectedUser="#{absenceManagementBean.selectedAbsenceUser}"
+                          completeMethod="#{logic.autoCompleteForUserOnApp}"
+                          isRenderedMessage="false"
+                          label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedUser')}"
+                          autoCompletePanelStyleClass="w-12 ui-fluid"
+                          autoCompleteStyleClass="absence-user-selection"
+                          scrollHeight="200"
+                          hasCustomizedSelectionList="true" size="35">
+                          <p:column>
+                            <pc:securityMemberNameAndAvatar
+                              displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+                              securityMember="#{user}" />
+                          </p:column>
+                          <f:facet name="event">
+                            <p:ajax event="itemSelect" listener="#{absenceManagementBean.findAbsencesAndSubstitutes()}" partialSubmit="true"
+                              update="@(.absence-table) @(.substitute-table) @(.substitution-table) absences-management-form" />
+                          </f:facet>
+                        </ic:com.axonivy.portal.components.UserSelection>
+                      </div>
+                      <div class="w-3 pt-3 pl-3">
                         <div class="#{absenceManagementBean.supervisor ? 'sm:w-full' : ''} add-absence-panel pl-0">
                           <div class="ui-fluid flex justify-content-start gap-3 align-items-center h-full">
                             <h:panelGroup layout="block">
@@ -101,10 +103,10 @@
                             <h:outputText value="#{absence.period}" styleClass="absence-column-value" />
                           </p:column>
                           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duration')}"
-                            sortBy="#{absence.amount}" styleClass="absence-amount w-1">
+                            sortBy="#{absence.amount}" styleClass="absence-duration w-1">
                             <h:outputText value="#{absence.amount} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/days')}" styleClass="absence-column-value" />
                           </p:column>
-                          <p:column rendered="#{absenceManagementBean.canReadSubstitute(absenceManagementBean.selectedAbsenceUser)}" groupRow="true" styleClass="vertical-align-top"
+                          <p:column rendered="#{absenceManagementBean.canReadSubstitute(absenceManagementBean.selectedAbsenceUser)}" groupRow="true" styleClass="vertical-align-top absence-substitutes"
                             headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Substitutes')}" >
                               <c:set var="showAvatar" value="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
                               <c:set var="isMoreThanOneUser" value="#{absenceManagementBean.displaySubstitutesOnAbsenceTab.size() gt 1}" />
