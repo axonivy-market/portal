@@ -94,7 +94,7 @@
                 "}",
                 "",
                 "String userProcessSetting = UserSettingService.newInstance().getDefaultProcessMode();",
-                "if (StringUtils.isBlank(userProcessSetting) || Strings.CS.equals(userProcessSetting, UserSettingService.DEFAULT)) {",
+                "if (StringUtils.isBlank(userProcessSetting) || Strings.CI.equals(userProcessSetting, UserSettingService.DEFAULT)) {",
                 "  userProcessSetting = defaultProcessModeSetting;",
                 "}",
                 "",
@@ -555,7 +555,7 @@
             "List<SelectItem> items = in.language.getFormattingLanguages();",
             "in.formatLanguages.clear();",
             "for (SelectItem item: items){",
-            "  if (Strings.CS.equals(item.label, in.queryLanguage)){",
+            "  if (Strings.CI.contains(item.label, in.queryLanguage)){",
             "    in.formatLanguages.add(item);",
             "  }",
             "}"

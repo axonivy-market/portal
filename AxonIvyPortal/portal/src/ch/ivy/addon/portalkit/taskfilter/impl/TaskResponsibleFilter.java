@@ -86,7 +86,7 @@ public class TaskResponsibleFilter extends TaskFilter {
    * then find correspond SecurityMemberDTO of selectedResponsibleMemberName
    */
   public void findSelectedResponsible() {
-    if (selectedResponsible == null || !Strings.CI.equals(selectedResponsibleMemberName, selectedResponsible.getMemberName())) {
+    if (selectedResponsible == null || !Strings.CS.equals(selectedResponsibleMemberName, selectedResponsible.getMemberName())) {
       setSelectedResponsible(getResponsibles(selectedResponsibleMemberName));
     }
   }
