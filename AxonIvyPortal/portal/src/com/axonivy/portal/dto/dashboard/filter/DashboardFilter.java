@@ -127,11 +127,12 @@ public class DashboardFilter extends BaseFilter {
         .filter(Objects::nonNull).collect(Collectors.toList());
   }
 
-<<<<<<< HEAD
-=======
   @JsonIgnore
   public List<SecurityMemberDTO> getUsers() {
-    return this.values.stream().map(this::findSecurityMember)
+    if (getValues() == null) {
+      return List.of();
+    }
+    return getValues().stream().map(this::findSecurityMember)
         .filter(Objects::nonNull).collect(Collectors.toList());
   }
 
@@ -139,7 +140,6 @@ public class DashboardFilter extends BaseFilter {
     return ServiceUtilities.findSecurityMemberByName(memberName);
   }
 
->>>>>>> 0caced027f (feature/IVYPORTAL-20428-Introduce-new-column-worker-12 - refactor code)
   private SecurityMemberDTO findUser(String memberName) {
     return ServiceUtilities.findSecurityMemberByName("#".concat(memberName));
   }
