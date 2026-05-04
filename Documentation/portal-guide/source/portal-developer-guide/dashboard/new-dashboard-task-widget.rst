@@ -328,7 +328,7 @@ corresponding filter conditions.
 
 Standard Column:
 
-   - ``activator``
+   - ``activator`` and ``worker``
 
       .. code-block:: javascript
 
@@ -346,14 +346,20 @@ Standard Column:
                   "values": [ "backendDev2" ],
                   "operator": "not_in",
                   "type": "standard"
+               },
+               {
+                  "field": "worker",
+                  "values": [ "admin" ],
+                  "operator": "in",
+                  "type": "standard"
                }
             ]
          }
 
       ..
 
-      This column only accepts a list of role names or usernames as filter conditions
-      for the task's responsible username. The available filter operators are ``in``, ``not_in`` and ``current_user``.
+      These columns only accept a list of role names or usernames as filter conditions
+      for the task's responsible username or working username. The available filter operators are ``in``, ``not_in`` and ``current_user``.
       The ``current_user`` operator does not require value field.
 
    - ``name``
