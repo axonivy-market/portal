@@ -1,6 +1,7 @@
 package com.axonivy.portal.util.filter.operator.task.worker;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
@@ -27,8 +28,8 @@ public class WorkerContainsOperatorHandler {
 
     TaskQuery query = TaskQuery.create();
     IFilterQuery filterQuery = query.where();
-    for (String responsible : filter.getValues()) {
-      filterQuery.or().workerUserDisplayName().isLikeIgnoreCase(String.format(LIKE_FORMAT, responsible.toLowerCase()));
+    for (String worker : filter.getValues()) {
+      filterQuery.or().workerUserDisplayName().isLikeIgnoreCase(String.format(LIKE_FORMAT, StringUtils.lowerCase(worker)));
     }
 
     return query;

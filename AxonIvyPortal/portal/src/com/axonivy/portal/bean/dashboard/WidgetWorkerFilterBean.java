@@ -32,7 +32,7 @@ public class WidgetWorkerFilterBean implements Serializable {
   public void init(DashboardFilter filter) {
     selectedWorkers = new ArrayList<>();
     if (CollectionUtils.isNotEmpty(filter.getValues())) {
-      selectedWorkers.addAll(filter.getResponsibles());
+      selectedWorkers.addAll(filter.getUsers());
     }
   }
 
