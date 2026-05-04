@@ -56,7 +56,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
       case STATE -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE";
       case CATEGORY -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY";
       case APPLICATION -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/APPLICATION";
-      case WORKER -> "/ch.ivy.addon.portalkit.ui.jsf/common/worker";
+      case WORKER -> "/ch.ivy.addon.portalkit.ui.jsf/common/workingUser";
       default -> "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/" + columnField.name();
     };
 

@@ -447,7 +447,8 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   }
 }
 
-.task-configuration__responsibles-selection {
+.task-configuration__responsibles-selection,
+.task-configuration__workers-selection {
   min-width: fit-content;
 }
 
@@ -2074,6 +2075,7 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
 .state-filter-operator-panel,
 .priority-filter-operator-panel,
 .responsible-filter-operator-panel,
+.worker-filter-operator-panel,
 .id-filter-operator-panel {
   min-width: 130px;
 }

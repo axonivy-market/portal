@@ -26,7 +26,7 @@ public class WorkerColumnModel extends TaskColumnModel implements Serializable {
 
   @Override
   public String getDefaultHeaderCMS() {
-    return "/ch.ivy.addon.portalkit.ui.jsf/common/worker";
+    return "/ch.ivy.addon.portalkit.ui.jsf/common/workingUser";
   }
   
   @Override

@@ -148,6 +148,11 @@ public class DashboardFilter implements Serializable {
   public boolean isResponsible() {
     return this.field == DashboardStandardTaskColumn.RESPONSIBLE.getField();
   }
+  
+  @JsonIgnore
+  public boolean isWorker() {
+    return this.field == DashboardStandardTaskColumn.WORKER.getField();
+  }
 
   @JsonIgnore
   public boolean isCategory() {
