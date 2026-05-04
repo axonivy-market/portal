@@ -130,21 +130,21 @@
                 securityMember="#{deputy}" />
               <h:panelGroup layout="block" styleClass="deputy-type flex align-items-center gap-1 mr-2" rendered="#{isPermanent}">
                 <i class="fa fa-star"></i>
-                <span>Set as permanent</span>
+                <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/setAsPermanent')}</span>
               </h:panelGroup>
               <p:commandButton id="substitute-action-button" icon="fa fa-ellipsis-h"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
                 styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page ml-auto"
                 type="button" />
-              <p:menu class="absence-column-value" overlay="true" trigger="substitute-action-button"
-                my="right top" at="right bottom" styleClass="settings-action-menu">
+              <p:menu overlay="true" trigger="substitute-action-button"
+                my="right top" at="right bottom" styleClass="absence-column-value settings-action-menu">
                 <p:menuitem id="change-deputy-type" icon="#{isPermanent ? 'fa fa-star' : 'fa fa-star-o'}" styleClass="" disabled="#{!absenceManagementBean.canCreateSubstitute(absenceManagementBean.selectedAbsenceUser)}"
-                  update="absence-form:edit-deputy-selection-panel" value="Set as permanent" action="#{absenceManagementBean.setAsPermanent(deputy,isPermanent)}"
-                  ariaLabel="Set as permanent">
+                  update="absence-form:edit-deputy-selection-panel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/setAsPermanent')}" action="#{absenceManagementBean.setAsPermanent(deputy,isPermanent)}"
+                  process="@this" immediate="true" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/setAsPermanent')}">
                 </p:menuitem>
                 <p:menuitem id="delete-deputy" icon="si si-bin-1" styleClass="rounded-button ui-button-outlined ui-button-danger color-destroy" disabled="#{!absenceManagementBean.canCreateSubstitute(absenceManagementBean.selectedAbsenceUser)}"
                   actionListener="#{absenceManagementBean.removeDeputy(deputy)}" update="absence-form:edit-deputy-selection-panel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
+                  process="@this" immediate="true" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
                 </p:menuitem>
               </p:menu>
             </div>

@@ -34,6 +34,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectDeputies: 代行者の選択
     selectSubstitute: 代行者を選択
     selectedDeputies: 選択された代行者
+    setAsPermanent: 恒久として設定
     showAbsencesInThePast: 過去の不在を表示
     substituteName: 代行者名
     substituteType: 代行者タイプ

@@ -3282,6 +3282,31 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   vertical-align: top;
 }
 
+.your-deputy, .your-deputy-for {
+  padding-top: 24px;
+}
+
+.deputy-avatar-stack {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+.deputy-avatar-stack .deputy-avatar-stack-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.deputy-avatar-stack .deputy-avatar-stack-item + .deputy-avatar-stack-item {
+  margin-left: -10px;
+}
+
+.deputy-avatar-stack .deputy-avatar-stack-item .ui-avatar,
+.deputy-avatar-stack .deputy-avatar-stack-item img {
+  border: 2px solid var(--surface-0, #fff);
+  box-sizing: content-box;
+}
+
 .add-absence-dialog .ui-dialog-titlebar {
   padding: 1.5rem 1.5rem 0 1.5rem !important;
 }

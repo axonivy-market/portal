@@ -34,6 +34,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectDeputies: Choisir des substituts
     selectSubstitute: Sélectionner un substitut
     selectedDeputies: Substituts sélectionnés
+    setAsPermanent: Définir comme permanent
     showAbsencesInThePast: Afficher les absences du passé
     substituteName: Nom du substitut
     substituteType: Type de substitut

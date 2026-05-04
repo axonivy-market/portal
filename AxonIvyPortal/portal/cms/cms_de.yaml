@@ -34,6 +34,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectDeputies: Stellvertreter auswählen
     selectSubstitute: Stellvertreter auswählen
     selectedDeputies: Ausgewählte Stellvertreter
+    setAsPermanent: Als dauerhaft festlegen
     showAbsencesInThePast: Vergangene Abwesenheiten anzeigen
     substituteName: Stellvertretername
     substituteType: Stellvertretertyp

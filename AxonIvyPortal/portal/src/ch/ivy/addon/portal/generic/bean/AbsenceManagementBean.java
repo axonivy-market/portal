@@ -575,6 +575,9 @@ public class AbsenceManagementBean implements Serializable {
   }
 
   public void removeDeputy(ISecurityMember deputy) {
+    if (!permanentDeputies.isEmpty() && permanentDeputies.contains(deputy)) {
+      permanentDeputies.remove(deputy);
+    }
     selectedDeputies.remove(deputy);
   }
 
