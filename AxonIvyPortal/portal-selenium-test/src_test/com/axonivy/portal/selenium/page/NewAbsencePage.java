@@ -20,9 +20,6 @@ import com.codeborne.selenide.SelenideElement;
 
 public class NewAbsencePage extends TemplatePage {
 
-  private static final String ERROR_MESSAGE_SELECTOR = "div[id$=':absence-messages']";
-  private static final String ABSENCE_DETAIL_ERROR_MESSAGE_SELECTOR = "[id*='absence-messages'] span.ui-messages-error-detail";
-
   @Override
   protected String getLoadedLocator() {
     return "[class*='absence-dialog-header']";
@@ -113,17 +110,7 @@ public class NewAbsencePage extends TemplatePage {
   }
 
   public boolean isAbsenceErrorMessageDisplayed() {
-    return $("div[id$=':absence-messages']").shouldBe(appear, DEFAULT_TIMEOUT).exists();
-  }
-
-    public String getErrorDetailMessage() {
-    WebElement errorMessage = $(ABSENCE_DETAIL_ERROR_MESSAGE_SELECTOR);
-    return errorMessage.getText();
-  }
-
-  public String getAbsenceDialogErrorMessage() {
-    String selector = "[id*='absence-messages'] span.ui-messages-error-detail";
-    return $(selector).shouldBe(appear, DEFAULT_TIMEOUT).getText();
+    return $("div[id&=':absence-messages']").shouldBe(appear, DEFAULT_TIMEOUT).exists();
   }
 
   public void proceed() {
@@ -131,12 +118,6 @@ public class NewAbsencePage extends TemplatePage {
     $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
     $("[id$='absence-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
-  }
-
-  public void tryProceed() {
-    $("div[class*='absence-dialog-header']").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
-        .click();
   }
 
   public void closeAddAbsenceDialog() {

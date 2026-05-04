@@ -86,7 +86,7 @@ public class AbsencePage extends TemplatePage {
   }
 
   public int getAbsenceRowCount() {
-    return $$("tbody[id$='absence-table_data'] tr").size();
+    return $("tbody[id$='absence-table_data']").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").size();
   }
 
   public boolean isEmptyMessageAvailable() {

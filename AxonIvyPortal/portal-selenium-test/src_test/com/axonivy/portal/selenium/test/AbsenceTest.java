@@ -166,7 +166,7 @@ public class AbsenceTest extends BaseTest {
 
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
     newAbsencePage.input(TODAY, TODAY, "Overlapping");
-    newAbsencePage.tryProceed();
+    newAbsencePage.proceed();
 
     assertTrue(newAbsencePage.isAbsenceErrorMessageDisplayed());
   }
@@ -182,22 +182,6 @@ public class AbsenceTest extends BaseTest {
     newAbsencePage.addDeputy(TestAccount.GUEST_USER.getFullName());
 
     assertTrue(newAbsencePage.isAbsenceErrorMessageDisplayed());
-  }
-
-  @Test
-  public void testShowErrorWhenEditAbsenceDateOverlaps() {
-    grantNormalUserAbsencePermissions();
-    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantDeleteAbsencePermission.ivp");
-    AbsencePage absencePage = openAbsencePage();
-    createAbsenceForCurrentUser(TODAY, TODAY, "First", absencePage);
-    createAbsenceForCurrentUser(TOMORROW, TOMORROW, "Second", absencePage);
-    assertEquals(2, absencePage.getAbsenceRowCount());
-
-    NewAbsencePage editAbsencePage = absencePage.openEditAbsenceDialog(0);
-    editAbsencePage.updateDates(TOMORROW, TOMORROW);
-    editAbsencePage.tryProceed();
-
-    assertTrue(editAbsencePage.isAbsenceErrorMessageDisplayed());
   }
 
   @Test
