@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.CaseQueryType;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
@@ -25,7 +26,6 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
-import com.axonivy.portal.enums.CaseQueryType;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldOrderBy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
@@ -210,6 +210,11 @@ public class DashboardCaseSearchCriteria {
       appendSortByCustomFieldIfSet(criteria);
       if (order != null && isSortDescending()) {
         order.descending();
+      }
+      // Issue happens with Postgres DB, doesn't happen in designer and Mssql
+      if (StringUtils.isNotBlank(criteria.getSortField())
+          && !DashboardStandardCaseColumn.ID.getField().equalsIgnoreCase(criteria.getSortField())) {
+        query.orderBy().caseId().descending();
       }
       return this;
     }
