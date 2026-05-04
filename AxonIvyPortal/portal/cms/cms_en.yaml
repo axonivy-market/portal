@@ -1869,7 +1869,7 @@ Labels:
       RESPONSIBLE: Responsible
       START: Start
       STATE: State
-      WORKER: Worker user
+      WORKER: Working user
     FilterOperator:
       AFTER: Is After
       BEFORE: Is Before
