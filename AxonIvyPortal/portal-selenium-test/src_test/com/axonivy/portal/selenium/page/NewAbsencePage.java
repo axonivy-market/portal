@@ -110,7 +110,7 @@ public class NewAbsencePage extends TemplatePage {
   }
 
   public boolean isAbsenceErrorMessageDisplayed() {
-    return $("div[id&=':absence-messages']").shouldBe(appear, DEFAULT_TIMEOUT).exists();
+    return $("div[id$=':absence-messages']").shouldBe(appear, DEFAULT_TIMEOUT).exists();
   }
 
   public void proceed() {

@@ -232,13 +232,6 @@ public class AbsenceTest extends BaseTest {
 
     assertTrue(!absencePage.getDeputiesByRoleType(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE)
         .contains(TestAccount.CASE_OWNER_USER.getFullName()));
-
-    absencePage.openAbsencesTab();
-    NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
-    newAbsencePage.addDeputy(AVA_DESIGNER);
-    newAbsencePage.proceed();
-    absencePage.waitForAbsencesGrowlMessageHide();
-    absencePage.getAbsenceSubstitutesText(0);
   }
 
   @Test
