@@ -8,9 +8,14 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 
 @IvyWebTest
 public class CustomTaskDelegateTest extends BaseTest {
@@ -93,9 +98,110 @@ public class CustomTaskDelegateTest extends BaseTest {
     assertEquals("This task cannot be delegated to any other user or group.", taskWidget.getCannotDelegateText());
   }
 
+  @Test
+  public void testBulkDelegateTasksOnDashboard() {
+    login(TestAccount.HUANG_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForCaseWidgetLoaded();
+
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
+
+    // Toggle selection mode
+    taskWidget.clickBulkDelegateToggleButton(0);
+
+    // Select both tasks
+    taskWidget.selectTaskByName(MATERNITY_LEAVE_REQUEST);
+    taskWidget.selectTaskByName(SICK_LEAVE_REQUEST);
+
+    // Open bulk delegate dialog
+    taskWidget.clickDelegateTasksButton(0);
+
+    // Open user autocomplete dropdown and assert 2 items: emma and ethan
+    ElementsCollection items = taskWidget.openBulkDelegateUserDropdownAndGetItems()
+        .shouldHave(CollectionCondition.size(2), DEFAULT_TIMEOUT);
+    items.filter(Condition.text("Emma")).shouldHave(CollectionCondition.size(1));
+    items.filter(Condition.text("Ethan")).shouldHave(CollectionCondition.size(1));
+
+    // Select Emma and proceed with delegation
+    taskWidget.selectUserFromBulkDelegateDropdown(items, "Emma");
+    taskWidget.clickBulkDelegateProceedButton();
+
+    // Re-login as admin to verify task responsible
+    login(TestAccount.EMMA_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage adminDashboard = new NewDashboardPage();
+    adminDashboard.waitForCaseWidgetLoaded();
+
+    // Verify Responsible column shows Emma for both delegated tasks
+    TaskWidgetNewDashBoardPage adminTaskWidget = new TaskWidgetNewDashBoardPage();
+    adminTaskWidget.getResponsibleCellByTaskName(MATERNITY_LEAVE_REQUEST)
+        .shouldHave(Condition.text("Emma"), DEFAULT_TIMEOUT);
+    adminTaskWidget.getResponsibleCellByTaskName(SICK_LEAVE_REQUEST)
+        .shouldHave(Condition.text("Emma"), DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testBulkDelegateTaskForRole() {
+    login(TestAccount.HUANG_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForCaseWidgetLoaded();
+
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
+
+    // Toggle selection mode
+    taskWidget.clickBulkDelegateToggleButton(0);
+
+    // Select both tasks
+    taskWidget.selectTaskByName(MATERNITY_LEAVE_REQUEST);
+    taskWidget.selectTaskByName(SICK_LEAVE_REQUEST);
+
+    // Open bulk delegate dialog
+    taskWidget.clickDelegateTasksButton(0);
+
+    // Switch to Role radio button
+    taskWidget.clickRoleRadioButtonInBulkDelegate();
+
+    // Open role autocomplete dropdown and assert only General Manager is available
+    ElementsCollection roleItems = taskWidget.openBulkDelegateRoleDropdownAndGetItems()
+        .shouldHave(CollectionCondition.size(1), DEFAULT_TIMEOUT);
+    roleItems.filter(Condition.text("General Manager")).shouldHave(CollectionCondition.size(1));
+
+    // Select General Manager and proceed with delegation
+    taskWidget.selectRoleFromBulkDelegateDropdown(roleItems, "General Manager");
+    taskWidget.clickBulkDelegateProceedButton();
+
+    // Login as gm1 and verify tasks are assigned
+    login(TestAccount.GM_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage gmDashboard = new NewDashboardPage();
+    gmDashboard.waitForCaseWidgetLoaded();
+
+    TaskWidgetNewDashBoardPage gmTaskWidget = new TaskWidgetNewDashBoardPage();
+    gmTaskWidget.countAllTasks().shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+  }
+
   private void openDashboard() {
     redirectToNewDashBoard();
     NewDashboardPage dashboardPage = new NewDashboardPage();
     dashboardPage.waitForCaseWidgetLoaded();
+  }
+
+  @Test
+  public void testBulkDelegateMaximumSelection() {
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    createTestingTasks();
+    updateGlobalVariable(Variable.MAXIMUM_SELECTED_TASKS.getKey(), "2");
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForCaseWidgetLoaded();
+
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
+    taskWidget.clickBulkDelegateToggleButton(0);
+    taskWidget.selectTaskByName(MATERNITY_LEAVE_REQUEST);
+    taskWidget.selectTaskByName(SICK_LEAVE_REQUEST);
+
+    taskWidget.checkLimitTaskSelection(0, "2 / 2");
   }
 }

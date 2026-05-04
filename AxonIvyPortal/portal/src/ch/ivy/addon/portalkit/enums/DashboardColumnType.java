@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.enums;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum DashboardColumnType {

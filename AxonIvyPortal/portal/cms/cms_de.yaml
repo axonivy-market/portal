@@ -236,6 +236,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       EnableSwitchThemeModeButton: Setzen Sie diesen Wert auf true, um die Schaltfläche "Thema wechseln" zu aktivieren.
       GlobalSearchScopeCategoriesNote: Festlegung der Typen, nach denen bei der globalen Suche gesucht werden soll
       GooglePlayURL: Legen Sie die URL fest, um die Axon Ivy-Mobilanwendung auf Google Play herunterzuladen.
+      maximumSelectedTasks: Definiert die maximale Anzahl von Aufgaben, die ein Benutzer gleichzeitig innerhalb eines Aufgaben-Widgets für Massenoperationen auswählen kann. Setzen Sie diesen Wert auf eine positive Ganzzahl, um ein bestimmtes Limit zu erzwingen, oder lassen Sie ihn leer, um eine unbegrenzte
+        Aufgabenauswahl zu ermöglichen.
       RoleDirectChildrenLimit: 'Die eingestellte Zahl steuert die Anzahl der direkten untergeordneten Rollen, die auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 10, 50, 100'
       RoleParentLimit: 'Die eingestellte Zahl steuert die Anzahl der übergeordneten Rollen, die beim Filtern von Rollen auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 5, 10, 20'
       SearchScopeCaseFields: Festlegung der Felder, die bei der globalen Suche verwendet werden sollen, um neben der Fallnummer übereinstimmende Vorgänge zu finden (dies kann die Leistung der Suche beeinflussen)
@@ -511,6 +513,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Standardeinstellung
     defaultNotificationMessage: Hmm... Hier ist wohl etwas schief gelaufen.
     delete: Löschen
+    deleteContext: "{0} löschen"
+    delegateTasks: Aufgaben delegieren
+    toggleBulkDelegation: Massendelegierung umschalten
     deleteAbsenceHeaderText: 'Diese Abwesenheit löschen? '
     deleteChartHeaderText: Dieses Diagramm löschen?
     deleteContext: '{0} löschen'
@@ -1496,6 +1501,12 @@ Dialogs:
               CustomWidgetIFrameTitle: Benutzerdefinierter Widget-Rahmen
             IconSelection:
               IconLinkTooltip: Zum Ändern des Symbols anklicken
+            MultipleTaskItemsDelegate:
+              ItemSelected: 1 Element ausgewählt
+              ItemsSelected: '{0} Elemente ausgewählt'
+              ItemsSelectedWithLimit: '{0} / {1} Elemente ausgewählt'
+              DelegateMultipleTaskTitle: '{0} Aufgaben delegieren'
+              bulkDelegatePerformanceWarning: Das Delegieren mehrerer Aufgaben kann einige Zeit dauern. Bitte haben Sie Geduld.
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: Sie können nicht an der Aufgabe arbeiten, weil sie zerstört wurde.
               CannotWorkOnTaskWarning: Sie können die Aufgabe nicht bearbeiten, weil der Benutzer <strong>{0}</strong> gerade daran arbeitet.
@@ -1631,6 +1642,7 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen
+              ShowBulkDelegateToggle: '''Sammelweiterleitung'' umschalten anzeigen'
             filter:
               DashboardFilter:
                 HasCmsValuesEnabledTooltip: Dieses Feld erlaubt nur die Verwendung des Operators „Enthält"

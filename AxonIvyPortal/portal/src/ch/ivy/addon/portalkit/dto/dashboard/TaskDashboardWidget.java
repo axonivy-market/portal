@@ -49,6 +49,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   private boolean showWidgetInfo;
   private boolean showFullscreenMode;
   private boolean showPinnedToggle;
+  private boolean showBulkDelegateToggle;
 
   @JsonIgnore
   private List<String> errors;
@@ -61,6 +62,15 @@ public class TaskDashboardWidget extends DashboardWidget {
     setShowWidgetInfo(true);
     setShowFullscreenMode(true);
     setShowPinnedToggle(true);
+    setShowBulkDelegateToggle(true);
+  }
+
+  public boolean isShowBulkDelegateToggle() {
+    return showBulkDelegateToggle;
+  }
+
+  public void setShowBulkDelegateToggle(boolean showBulkDelegateToggle) {
+    this.showBulkDelegateToggle = showBulkDelegateToggle;
   }
 
   @Override
@@ -287,7 +297,6 @@ public class TaskDashboardWidget extends DashboardWidget {
     WidgetFilterService.getInstance().updateFilterOptionsData(this, latestUserFilterOptions);
   }
   
-
   @JsonIgnore
   @Override
   public void onApplyUserFilters() {
