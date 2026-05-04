@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.FilterField;
-import com.axonivy.portal.util.filter.operator.task.responsible.ReponsibleContainsOperatorHandler;
-import com.axonivy.portal.util.filter.operator.task.responsible.ReponsibleCurrentUserOperatorHandler;
-import com.axonivy.portal.util.filter.operator.task.responsible.ResponsibleInOperatorHandler;
+import com.axonivy.portal.util.filter.operator.task.worker.WorkerContainsOperatorHandler;
+import com.axonivy.portal.util.filter.operator.task.worker.WorkerCurrentUserOperatorHandler;
+import com.axonivy.portal.util.filter.operator.task.worker.WorkerInOperatorHandler;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
@@ -48,10 +48,10 @@ public class TaskFilterFieldWorker extends FilterField {
   @Override
   public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
     return switch (filter.getOperator()) {
-      case IN -> ResponsibleInOperatorHandler.getInstance().buildInQuery(filter);
-      case NOT_IN -> ResponsibleInOperatorHandler.getInstance().buildNotInQuery(filter);
-      case CURRENT_USER -> ReponsibleCurrentUserOperatorHandler.getInstance().buildQuery();
-      case CONTAINS -> ReponsibleContainsOperatorHandler.getInstance().buildContainsQuery(filter);
+      case IN -> WorkerInOperatorHandler.getInstance().buildInQuery(filter);
+      case NOT_IN -> WorkerInOperatorHandler.getInstance().buildNotInQuery(filter);
+      case CURRENT_USER -> WorkerCurrentUserOperatorHandler.getInstance().buildQuery();
+      case CONTAINS -> WorkerContainsOperatorHandler.getInstance().buildContainsQuery(filter);
       default -> null;
     };
   }

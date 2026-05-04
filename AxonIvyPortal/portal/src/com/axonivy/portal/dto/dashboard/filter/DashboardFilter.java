@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -73,7 +74,12 @@ public class DashboardFilter extends BaseFilter {
     return getField() == DashboardStandardCaseColumn.CREATOR.getField();
   }
 
-  @JsonIgnore 
+  @JsonIgnore
+  public boolean isWorker() {
+    return DashboardStandardTaskColumn.WORKER.getField().equals(getField());
+  }
+
+  @JsonIgnore
   public boolean isApplication() {
     return APPLICATION.equals(getField());
   }

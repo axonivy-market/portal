@@ -641,7 +641,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskFinishedSuccessfully: タスクを正常に完了しました
     taskFromSubstitution: あなたは代行者なので、このタスクが表示されます
     taskName: タスク名
-    worker: 作業者ユーザー
     tasks: タスク
     theCasemap: このケースマップ
     theProcess: プロセス
@@ -665,6 +664,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: エクスポートの準備中、数分かかる場合があります
     warning: 警告
     welcomeToPortal: ようこそ、ログインしてください
+    workingUser: 作業中ユーザー
     wrongDateFormat: 有効な日付を入力してください。
     year: 年
     years: 年
@@ -1264,7 +1264,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: このタスクにはエスカレーション処理ロジックが含まれていないため、有効期限を設定できません。
     technicalCase: テクニカルケース
     workflowEventDialog: 'タスク #{0} のワークフローイベント'
-    workingUser: 作業中ユーザー
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: タスクの期限の設定に成功しました。
