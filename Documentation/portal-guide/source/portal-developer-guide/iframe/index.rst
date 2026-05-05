@@ -338,37 +338,42 @@ If your project has navigation buttons that don't complete a task (e.g., Cancel)
 JavaScript String Sanitization
 -------------------------------
 
-Always sanitize your data before sending it to prevent XSS attacks. Portal provides the public API ``SanitizeAPI.escapeForJavascript`` in the ``portal-components`` project.
-
-**Example:**
-
-.. code-block:: java
-
-   import com.axonivy.portal.components.publicapi.SanitizeAPI;
-
-   public class TaskBean {
-      public String getSafeTaskName() {
-         String rawTaskName = getUserInputTaskName();
-         return SanitizeAPI.escapeForJavascript(rawTaskName);
-      }
-   }
-
-**In your HTML dialog:**
+The ``IFrameTaskConfig`` component automatically escapes all its string attributes using
+``SanitizeAPI.escapeForJavascript`` internally. Pass raw values directly — do **not**
+pre-escape them before passing to the component, as that would cause double-escaping.
 
 .. code-block:: xml
 
-   <ic:com.axonivy.portal.components.IFrameTaskConfig 
-      taskName="#{taskBean.safeTaskName}"
+   <ic:com.axonivy.portal.components.IFrameTaskConfig
+      taskName="#{taskBean.rawTaskName}"
    />
 
+If you are building inline ``<script>`` tags outside the component, use
+``SanitizeAPI.escapeForJavascript`` (or ``htmlSanitizerBean.escapeForJS`` in EL) and
+place the result in a **single-quoted** JavaScript string, not a template literal:
+
+.. code-block:: xml
+
+   <script>
+      var taskName = '#{htmlSanitizerBean.escapeForJS(taskBean.rawTaskName)}';
+   </script>
+
+.. warning::
+   Never embed user-controlled data inside a JavaScript template literal (backtick string).
+   Even with ``escapeForJavascript``, using a backtick context requires the output to be
+   placed in single or double quotes to be safe against ``${...}`` injection.
+
 .. tip::
-   Always sanitize user input, database values, or any dynamic content before passing to Portal components or JavaScript.
+   Always pass raw, unescaped values to Portal components. The components handle escaping
+   internally. Only call ``SanitizeAPI.escapeForJavascript`` when writing your own
+   ``<script>`` tags with dynamic content.
 
 Best Practices
 ==============
 
 #. **Use IFrameTaskConfig Component**: Prefer the component-based approach over JavaScript configuration
-#. **Sanitize All Parameters**: Use ``SanitizeAPI.escapeForJavascript`` for dynamic values
+#. **Pass Raw Values to Components**: Do not pre-escape values passed to ``IFrameTaskConfig`` — the component escapes internally and pre-escaping causes double-escaping
+#. **Use Single-Quoted Strings in Scripts**: When using ``escapeForJS`` in your own ``<script>`` tags, always use single-quoted strings, not template literals
 #. **Process Steps**: Provide clear, descriptive step names for better user experience
 #. **Task Icons**: Use consistent icon styles (Streamline or Font Awesome) across your application
 #. **Card Frame**: Enable ``isCardFrame`` for better visual separation of embedded content

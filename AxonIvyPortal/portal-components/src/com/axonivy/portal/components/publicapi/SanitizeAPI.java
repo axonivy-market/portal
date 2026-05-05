@@ -10,8 +10,9 @@ public class SanitizeAPI {
 
   /**
    * Escape Javascript String in order to prevent XSS attacks and Javascript
-   * injections.
-   * 
+   * injections. Safe for use in single-quoted, double-quoted, and template
+   * literal (backtick) JavaScript string contexts.
+   *
    * @param value the Javascript String to escape
    * @return escaped Javascript String
    */
@@ -33,6 +34,8 @@ public class SanitizeAPI {
         case '>' -> "\\u003E"; // Escape `>` (XSS prevention)
         case '/' -> "\\/"; // Escape `/` (prevents `</script>` issues)
         case '`' -> "\\`"; // Escape backtick (template literals)
+        case '$' -> "\\$"; // Escape $ (template literal interpolation)
+        case '{' -> "\\{"; // Escape { (template literal interpolation)
         default -> String.valueOf(character);
       });
     }
