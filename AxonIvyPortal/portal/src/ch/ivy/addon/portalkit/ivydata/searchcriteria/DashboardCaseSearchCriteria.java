@@ -210,9 +210,14 @@ public class DashboardCaseSearchCriteria {
       if (order != null && isSortDescending()) {
         order.descending();
       }
+      // Issue happens with Postgres DB, doesn't happen in designer and Mssql
+      if (StringUtils.isNotBlank(criteria.getSortField())
+          && !DashboardStandardCaseColumn.ID.getField().equalsIgnoreCase(criteria.getSortField())) {
+        query.orderBy().caseId().descending();
+      }
       return this;
     }
-    
+
     private void appendSortByEndDateIfSet(DashboardCaseSearchCriteria criteria) {
       if (DashboardStandardCaseColumn.FINISHED.getField().equalsIgnoreCase(criteria.getSortField())) {
         order = query.orderBy().endTimestamp();
