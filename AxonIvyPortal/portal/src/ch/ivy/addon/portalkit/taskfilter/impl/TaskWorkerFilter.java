@@ -74,7 +74,7 @@ public class TaskWorkerFilter extends TaskFilter {
    * @param memberName is selectedWorkerMemberName
    */
   private void findWorker(String memberName) {
-    if (selectedWorker == null || !Strings.CI.equals(selectedWorkerMemberName, selectedWorker.getMemberName())) {
+    if (selectedWorker == null || !Strings.CS.equals(selectedWorkerMemberName, selectedWorker.getMemberName())) {
       setSelectedWorker(ServiceUtilities.findUserDTO(memberName.replaceFirst("#", "")));
     }
   }
