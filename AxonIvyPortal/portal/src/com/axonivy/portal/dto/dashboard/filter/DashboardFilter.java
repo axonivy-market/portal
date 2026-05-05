@@ -127,19 +127,6 @@ public class DashboardFilter extends BaseFilter {
         .filter(Objects::nonNull).collect(Collectors.toList());
   }
 
-  @JsonIgnore
-  public List<SecurityMemberDTO> getUsers() {
-    if (getValues() == null) {
-      return List.of();
-    }
-    return getValues().stream().map(this::findSecurityMember)
-        .filter(Objects::nonNull).collect(Collectors.toList());
-  }
-
-  private SecurityMemberDTO findSecurityMember(String memberName) {
-    return ServiceUtilities.findSecurityMemberByName(memberName);
-  }
-
   private SecurityMemberDTO findUser(String memberName) {
     return ServiceUtilities.findSecurityMemberByName("#".concat(memberName));
   }
