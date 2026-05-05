@@ -1191,8 +1191,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     escalationActivatorDesc: Ändern Sie den Eskalations-Aktivator der Aufgabe auf einen bestimmten Benutzer oder eine Gruppe
     escalationActivatorHeader: Auswahl des Eskalations-Aktivators der Aufgabe
   taskBusinessState:
-    DELAYED: Überfällig
-    DELAYED_UPPERCASE: ÜBERFÄLLIG
+    DELAYED: Verzögert
+    DELAYED_UPPERCASE: VERZÖGERT
     DESTROYED: gelöscht
     DESTROYED_UPPERCASE: GELÖSCHTE
     DONE: Erledigt
