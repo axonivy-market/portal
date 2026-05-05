@@ -71,11 +71,22 @@ The :ref:`dashboard-configuration` menu entry allows you to manage your private 
 Absences
 ^^^^^^^^
 
-The :guilabel:`Absences` menu entry provides an absence management component where you can enter your absences and define delegates for tasks assigned to you or the roles you hold.
+The :guilabel:`Absences` menu entry provides an absence management page where you can manage your absences and define substitutes for tasks assigned to you or the roles you hold. The page is organized into two tabs: **Absences** and **Substitutes**.
 
 |portal-absences|
 
-The absence table displays all current and upcoming absences, substitutes for personally assigned tasks during the absence. You can also view past absences by activating the :guilabel:`Display absences in the past` option. Edit or delete absences using the |edit-icon| **Edit** or |trash-icon| **Delete** actions in the respective absence row.
+Absences Tab
+""""""""""""
+
+The Absences tab displays all current and upcoming absences in a table with the following columns:
+
+- **Period**: The start and end dates of the absence
+- **Duration**: The number of days
+- **Substitutes**: Avatars of the substitutes covering your personally assigned tasks during the absence
+- **Comment**: An optional note about the absence
+- **Actions**: Edit or delete options for each absence row
+
+Toggle :guilabel:`Display absences in the past` to also show historical absence records.
 
 .. tip::
    Specify delegates only for tasks assigned directly to you. Roles are typically held by multiple users, so if you're absent, another member can handle the task.
@@ -87,36 +98,44 @@ HowTo: Add Absence
 #. The :guilabel:`Add absence` dialog opens
 #. Enter :guilabel:`From` and :guilabel:`Until` dates
 #. Optionally provide an explanatory comment
-#. Select substitutes for your personal tasks during the absence
+#. Optionally add substitutes for your personal tasks: type a name in the :guilabel:`Substitutes` field, select from the suggestion list, and click :guilabel:`Add`
+#. To mark a substitute as permanent, open its action menu and select :guilabel:`Set as permanent`
 #. Confirm your absence by clicking the :guilabel:`Save` button
 
 |how-to-add-an-absence|
 
-HowTo: Set Substitute
-"""""""""""""""""""""
+Substitutes Tab
+"""""""""""""""
+
 |how-to-set-absence-substitutes|
 
-The substitute list contains entries for your personal tasks and each role you hold.
+The Substitutes tab shows two sections
+
+**My substitutes** lists all your configured substitutes by application and role. For each entry you can edit the assigned substitutes using the |edit-icon| action.
+
+**I am substitute for** shows users for whom you are acting as a substitute, along with their active and upcoming absences.
 
 **Substitute Types:**
 
 - **For roles**: You can choose multiple substitutes for each role
 - **For personal tasks**: You can choose multiple substitutes in two categories:
 
-  - **Permanent substitute**: Permanent substitutes for personally assigned tasks
-  - **Substitutes during absence**: Subsitutes for personally assigned tasks during absence
+  - **Permanent substitute**: Covers all personally assigned tasks at all times
+  - **Substitutes during absence**: Covers personally assigned tasks only during an active absence
 
   .. note::
      - A substitute can only belong to one type.
-     - For **Substitutes during absence** type, you can select substitutes directly on add new absence dialog.
+     - You can also select substitutes for absence directly in the :guilabel:`Add absence` dialog.
 
-To add a new substitute:
+HowTo: Add Substitute
+"""""""""""""""""""""
 
-#. Click on the link to specify substitutes
-#. In the dialog, type the name of the user you want to add as a substitute
-#. Select the user from the suggestion list and click the :guilabel:`Add` button
+#. Click the :guilabel:`Add substitute` button on the :guilabel:`Substitutes` tab
+#. The :guilabel:`Add substitute` dialog opens
+#. Select the :guilabel:`Substitute type` from the dropdown
+#. Type the substitute's name in the :guilabel:`Substitute name` field, select from the suggestion list, and click :guilabel:`Add`
 #. Repeat for additional substitutes if needed
-#. Confirm your substitutes with the :guilabel:`Save` button
+#. Confirm with the :guilabel:`Save` button
 
 |how-to-add-deputy-dialog|
 

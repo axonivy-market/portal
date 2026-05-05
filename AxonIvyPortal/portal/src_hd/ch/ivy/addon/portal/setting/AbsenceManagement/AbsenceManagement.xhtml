@@ -9,8 +9,9 @@
     <ui:define name="pageContent">
 
       <h:form id="absences-management-form" styleClass="absences-management-form ">
-        <p:remoteCommand name="reloadAbsenceTable" update="@(.absence-table) @(.substitute-table)"
-          global="false" />
+        <p:remoteCommand name="reloadAbsenceTable"
+          actionListener="#{absenceManagementBean.findAbsencesAndSubstitutes()}"
+          update="@(.absence-table) @(.substitute-table)" global="false" />
         <div id="absences-management-container" class="absences-management-container w-full">
           <p:growl id="absences-management-info" showDetail="true"
             severity="info"
@@ -27,7 +28,7 @@
               <p:tab id="request-absences-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}">
                   <div class="absence-management w-full">
                     <div class="flex align-items-center">
-                      <div class="w-10 pb-2 " jsf:rendered="#{absenceManagementBean.supervisor}">
+                      <div class="w-10 pb-2 pr-3 " jsf:rendered="#{absenceManagementBean.supervisor}">
                         <ic:com.axonivy.portal.components.UserSelection id="user-absence-selection-absences"
                           componentId="user-absence-absences"
                           selectedUser="#{absenceManagementBean.selectedAbsenceUser}"
@@ -49,7 +50,7 @@
                           </f:facet>
                         </ic:com.axonivy.portal.components.UserSelection>
                       </div>
-                      <div class="w-3 pt-3 pl-3">
+                      <div class="w-3 pt-3">
                         <div class="#{absenceManagementBean.supervisor ? 'sm:w-full' : ''} add-absence-panel pl-0">
                           <div class="ui-fluid flex justify-content-start gap-3 align-items-center h-full">
                             <h:panelGroup layout="block">

@@ -107,6 +107,16 @@ public class AbsencePage extends TemplatePage {
         .shouldNotHave(Condition.text(oldPeriod), DEFAULT_TIMEOUT);
   }
 
+  public void waitForAbsenceTableChange(int newRowCount) {
+    $("tbody[id$='absence-table_data']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $$("tbody[id$='absence-table_data'] tr").shouldHave(CollectionCondition.size(newRowCount), DEFAULT_TIMEOUT);
+  }
+
+  public void waitForSubstituteRowCountToChange(int newRowCount) {
+    $("tbody[id$='substitute-table_data']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $$("tbody[id$='substitute-table_data'] tr").shouldHave(CollectionCondition.size(newRowCount), DEFAULT_TIMEOUT);
+  }
+
   public String getAbsenceSubstitutesText(int rowIndex) {
     SelenideElement row = $$("tbody[id$='absence-table_data'] tr").get(rowIndex);
     return row.$("td.absence-substitutes").getText();
@@ -145,15 +155,11 @@ public class AbsencePage extends TemplatePage {
   }
 
   public int indexOfDeputyRole(DeputyRoleType deputyRoleType) {
-    String deputyRoleTypeSelector = ".substitute-table .substition-role-type";
-    ElementsCollection elements = $$(deputyRoleTypeSelector);
-    if (!elements.isEmpty()) {
-      for (int index = 0; index < elements.size(); index++) {
-        SelenideElement element = elements.get(index);
-        String deputyRoleTypeValue = element.getAttribute("deputy-role-type");
-        if (deputyRoleTypeValue != null && deputyRoleTypeValue.equals(String.valueOf(deputyRoleType))) {
-          return index;
-        }
+    ElementsCollection rows = $$("tbody[id$='substitute-table_data'] tr");
+    for (int index = 0; index < rows.size(); index++) {
+      SelenideElement roleTypeCell = rows.get(index).$(".substition-role-type");
+      if (roleTypeCell.exists() && String.valueOf(deputyRoleType.name()).equals(roleTypeCell.getAttribute("deputy-role-type"))) {
+        return index;
       }
     }
     return -1;
@@ -247,12 +253,16 @@ public class AbsencePage extends TemplatePage {
     return $(errorMessageDiv).shouldBe(appear, DEFAULT_TIMEOUT).$(".ui-messages-error-detail").getText();
   }
 
-  public void setSubstitutedByAdmin(String substitutedUser) {
+  public void setSelectedUser(String selectedUser) {
     String selectedUserInput = "input[id$='user-absence-absences_input']";
-    SelenideElement substituted = $(selectedUserInput).shouldBe(appear, DEFAULT_TIMEOUT);
-    substituted.clear();
-    substituted.sendKeys(substitutedUser);
-    waitForElementClickableThenClick("[id$='user-absence-absences_panel']");
+    SelenideElement input = $(selectedUserInput).shouldBe(appear, DEFAULT_TIMEOUT);
+    input.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    input.setValue(selectedUser);
+    String panelSelector = isAbsencesTabActive()
+        ? "span[id$='user-absence-absences_panel'] tbody tr"
+        : "span[id$='user-absence-substitutes_panel'] tbody tr";
+    ElementsCollection rows = $$(panelSelector);
+    rows.first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void setSubstituteUserByAdmin(String substitutedUser) {

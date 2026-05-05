@@ -117,12 +117,11 @@ public class NewAbsencePage extends TemplatePage {
     $("div[class*='absence-dialog-header']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
-    $("[id$='absence-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void closeAddAbsenceDialog() {
     $("div[class*='absence-dialog-header']").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    $("div[id='absence-dialog']").$("span.ui-icon-closethick").shouldBe(appear, DEFAULT_TIMEOUT)
+    $("div[id*='absence-dialog']").$("span.ui-icon-closethick").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='absence-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }

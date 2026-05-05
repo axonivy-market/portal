@@ -21,7 +21,6 @@ import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 
 @IvyWebTest
 public class AbsenceTest extends BaseTest {
-  private static final String AVA_DESIGNER = "Ava Designer";
   private static final String PERMANENT_SUBSTITUTE_TYPE = "Permanent substitutes for personally assigned tasks";
   private static final String DURING_ABSENCE_SUBSTITUTE_TYPE = "Substitutes for personally assigned tasks during the absence";
   private static final LocalDate TODAY = LocalDate.now();
@@ -103,9 +102,10 @@ public class AbsenceTest extends BaseTest {
 
     createAbsenceForCurrentUser(TODAY, TODAY, "For party", absencePage);
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
+    absencePage.waitForAbsencesGrowlMessageHide();
     assertEquals(1, absencePage.getAbsenceRowCount());
     absencePage.showAbsencesInThePast(true);
-    absencePage.waitForAbsencesGrowlMessageHide();
+    absencePage.waitForAbsenceTableChange(2);
     assertEquals(2, absencePage.getAbsenceRowCount());
   }
 
@@ -118,7 +118,7 @@ public class AbsenceTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     grantAdminAbsencePermissions();
     AbsencePage adminAbsencePage = openAbsencePage();
-    adminAbsencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+    adminAbsencePage.setSelectedUser(TestAccount.DEMO_USER.getFullName());
     assertEquals(1, adminAbsencePage.getAbsenceRowCount());
   }
 
@@ -131,8 +131,8 @@ public class AbsenceTest extends BaseTest {
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
     newAbsencePage.input(TestAccount.DEMO_USER.getFullName(), TODAY, TODAY, "Admin adds");
     newAbsencePage.proceed();
-
-    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+    absencePage.openAbsencesTab();
+    absencePage.setSelectedUser(TestAccount.DEMO_USER.getFullName());
     assertEquals(1, absencePage.getAbsenceRowCount());
   }
 
@@ -141,20 +141,19 @@ public class AbsenceTest extends BaseTest {
     grantNormalUserAbsencePermissions();
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(TODAY, TODAY, "For party", absencePage);
-
+    absencePage.waitForAbsencesGrowlMessageHide();
     login(TestAccount.ADMIN_USER);
     grantAdminAbsencePermissions();
     AbsencePage adminAbsencePage = openAbsencePage();
-    adminAbsencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+    adminAbsencePage.setSelectedUser(TestAccount.DEMO_USER.getFullName());
     assertEquals(1, adminAbsencePage.getAbsenceRowCount());
-    String initialPeriod = adminAbsencePage.getAbsencePeriodText(0);
-
     NewAbsencePage editAbsencePage = adminAbsencePage.openEditAbsenceDialog(0);
-    editAbsencePage.updateDates(TOMORROW, TOMORROW);
+    editAbsencePage.updateDates(YESTERDAY, YESTERDAY);
     editAbsencePage.proceed();
     absencePage.waitForAbsencesGrowlMessageHide();
+    assertTrue(absencePage.isEmptyMessageAvailable());
+    absencePage.showAbsencesInThePast(true);
     assertEquals(1, adminAbsencePage.getAbsenceRowCount());
-    assertTrue(!adminAbsencePage.getAbsencePeriodText(0).equals(initialPeriod));
   }
 
   @Test
@@ -240,16 +239,19 @@ public class AbsenceTest extends BaseTest {
     grantNormalUserSubstitutePermissions();
     AbsencePage absencePage = openAbsencePage();
     absencePage.openSubstitutesTab();
-    absencePage.addSubstitute(PERMANENT_SUBSTITUTE_TYPE, Arrays.asList(TestAccount.GUEST_USER.getFullName()));
-
+    absencePage.addSubstitute(DURING_ABSENCE_SUBSTITUTE_TYPE, Arrays.asList(TestAccount.GUEST_USER.getFullName()));
+    absencePage.waitForSubstituteRowCountToChange(1);
     login(TestAccount.ADMIN_USER);
     grantAdminAbsencePermissions();
     AbsencePage adminAbsencePage = openAbsencePage();
     adminAbsencePage.openSubstitutesTab();
     adminAbsencePage.setSubstituteUserByAdmin(TestAccount.DEMO_USER.getFullName());
+    adminAbsencePage.waitForSubstituteRowCountToChange(1);
     assertEquals(TestAccount.DEMO_USER.getFullName(), adminAbsencePage.getSelectedSubstituteUser());
-    assertTrue(adminAbsencePage.getDeputiesByRoleType(DeputyRoleType.PERSONAL_TASK_PERMANENT)
-        .contains(TestAccount.GUEST_USER.getFullName()));
+    adminAbsencePage.openAbsencesTab();
+    adminAbsencePage.openSubstitutesTab();
+    String addedSubstitutes = adminAbsencePage.getDeputiesByRoleType(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    assertTrue(addedSubstitutes.contains(TestAccount.GUEST_USER.getFullName()));
   }
 
   private void createAbsence(String fullname, LocalDate from, LocalDate till, String comment, AbsencePage absencePage) {
