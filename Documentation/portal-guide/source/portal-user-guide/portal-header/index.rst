@@ -107,7 +107,7 @@ HowTo: Add Absence
 Substitutes Tab
 """""""""""""""
 
-|how-to-set-absence-substitutes|
+|substitute-tab|
 
 The Substitutes tab shows two sections
 
@@ -149,7 +149,7 @@ When a user has the required permissions (e.g., :ref:`UserCreateAbsence <UserCre
 #. The absence and substitute tables will update to show the selected user's data
 #. You can then add, edit, or delete absences and substitutes for the selected user
 
-|select-absence-user|
+|select-user|
 
 Change Password
 ^^^^^^^^^^^^^^^
@@ -269,15 +269,15 @@ Different header features require specific permissions:
 
 .. |portal-header| image:: ../../screenshots/dashboard/portal-header-with-numbering-annotation.png
    :alt: Portal header items
-.. |portal-absences| image:: ../../screenshots/settings/absence.png
+.. |portal-absences| image:: ../../screenshots/settings/absence-management-page.png
    :alt: Absences page
-.. |how-to-add-an-absence| image:: ../../screenshots/settings/new-absence.png
+.. |how-to-add-an-absence| image:: ../../screenshots/settings/add-absence-dialog.png
    :alt: Absences page: Add new absence dialog
 .. |how-to-add-deputy-dialog| image:: ../../screenshots/settings/add-deputy-dialog.png
    :alt: Absences page: Add deputy dialog
-.. |how-to-set-absence-substitutes| image:: ../../screenshots/settings/set-deputy.png
+.. |substitute-tab| image:: ../../screenshots/settings/substitute-tab.png
    :alt: Absences page: Set deputy section
-.. |select-absence-user| image:: ../../screenshots/settings/select-absence-user.png
+.. |select-user| image:: ../../screenshots/settings/select-user.png
    :alt: Absences page: Select absence user option
 .. |portal-password-change-dialog| image:: ../../screenshots/settings/change-password.png
    :alt: Change password dialog

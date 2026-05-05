@@ -21,7 +21,7 @@ import com.axonivy.portal.selenium.page.ProjectVersionPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class SettingScreenshotTest extends ScreenshotBaseTest {
 
   private static final LocalDate TODAY = LocalDate.now();
@@ -116,29 +116,33 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     showNewDashboard();
     NewDashboardPage homePage = new NewDashboardPage();
     AbsencePage absencePage = homePage.openAbsencePage();
-    createAbsenceForCurrentUser(TOMORROW, TOMORROW, "Vacation", absencePage);
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(absencePage.getAbsenceManagement(),
-        ScreenshotUtils.SETTINGS_FOLDER + "select-absence-user", new ScreenshotMargin(10, 20));
 
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
     newAbsencePage.enterCommentForAbsence("Add new absence");
     newAbsencePage.addDeputy(TestAccount.DEMO_USER.getFullName());
     newAbsencePage.addDeputy("Emma Project Lead");
     newAbsencePage.setDeputyAsPermanent(1);
+    
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(absencePage.getAddAbsenceDialog(),
-        ScreenshotUtils.SETTINGS_FOLDER + "new-absence", new ScreenshotMargin(20));
+        ScreenshotUtils.SETTINGS_FOLDER + "add-absence-dialog", new ScreenshotMargin(20));
     newAbsencePage.proceed();
-    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.SETTINGS_FOLDER + "absence");
+    createAbsenceForCurrentUser(TOMORROW, TOMORROW, "Vacation", absencePage);
+    absencePage.waitForAbsenceTableChange(1);
 
     absencePage.openSubstitutesTab();
+    ScreenshotUtils.capturePageScreenshot( ScreenshotUtils.SETTINGS_FOLDER + "substitute-tab");
     absencePage.openAddSubstituteDialog();
     absencePage.addDeputyInChooseDialog(TestAccount.DEMO_USER.getFullName());
+    absencePage.addDeputyInChooseDialog("Ava Designer");
+
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(absencePage.getChooseDeputyDialog(),
         ScreenshotUtils.SETTINGS_FOLDER + "add-deputy-dialog", new ScreenshotMargin(20));
-    absencePage.addDeputyInChooseDialog("Ava Designer");
     absencePage.saveSelectedDeputies();
-    ScreenshotUtils.captureElementScreenshot(absencePage.getAbsenceForm(),
-        ScreenshotUtils.SETTINGS_FOLDER + "set-deputy");
+    absencePage.openAbsencesTab();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.SETTINGS_FOLDER + "absence-management-page");
+    login(TestAccount.ADMIN_USER);
+    homePage.openAbsencePage();
+    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.SETTINGS_FOLDER + "select-user");
   }
 
   private void createAbsenceForCurrentUser(LocalDate from, LocalDate till, String comment, AbsencePage absencePage) {
