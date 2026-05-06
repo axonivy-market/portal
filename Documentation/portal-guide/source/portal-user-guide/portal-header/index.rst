@@ -82,8 +82,8 @@ The Absences tab displays all current and upcoming absences in a table with the 
 
 - **Period**: The start and end dates of the absence
 - **Duration**: The number of days
-- **Substitutes**: Avatars of the substitutes covering your personally assigned tasks during the absence
-- **Comment**: An optional note about the absence
+- **Substitutes**: User's subsitutes of these types: ``Permanent substitute`` and ``Substitutes during absence``
+- **Comment**: The comment about the absence
 - **Actions**: Edit or delete options for each absence row
 
 Toggle :guilabel:`Display absences in the past` to also show historical absence records.
