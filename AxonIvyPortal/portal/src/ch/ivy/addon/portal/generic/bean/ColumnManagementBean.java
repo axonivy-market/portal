@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -146,28 +147,42 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     if (CollectionUtils.isEmpty(taskWidget.getColumns())) {
       return;
     }
-    List<String> fieldNames = taskWidget.getColumns().stream()
-        .map(TaskColumnModel::getField).collect(Collectors.toList());
+    Set<String> enabledFilterFields = taskWidget.getColumns().stream().filter(Objects::nonNull)
+        .filter(column -> BooleanUtils.isTrue(column.getEnableFilter())).map(TaskColumnModel::getField)
+        .collect(Collectors.toSet());
 
     List<DashboardFilter> filterToKeep = taskWidget.getFilters().stream()
-        .filter(filter -> fieldNames.contains(filter.getField()))
+        .filter(filter -> enabledFilterFields.contains(filter.getField()))
         .collect(Collectors.toList());
 
     taskWidget.setFilters(filterToKeep);
+
+    List<DashboardFilter> userFilterToKeep = taskWidget.getUserFilters().stream()
+        .filter(filter -> enabledFilterFields.contains(filter.getField()))
+        .collect(Collectors.toList());
+
+    taskWidget.setUserFilters(userFilterToKeep);
   }
 
   private void updateFiltersForCaseWidget(CaseDashboardWidget caseWidget) {
     if (CollectionUtils.isEmpty(caseWidget.getColumns())) {
       return;
     }
-    List<String> fieldNames = caseWidget.getColumns().stream()
-        .map(CaseColumnModel::getField).collect(Collectors.toList());
+    Set<String> enabledFilterFields = caseWidget.getColumns().stream().filter(Objects::nonNull)
+        .filter(column -> BooleanUtils.isTrue(column.getEnableFilter())).map(CaseColumnModel::getField)
+        .collect(Collectors.toSet());
 
     List<DashboardFilter> filterToKeep = caseWidget.getFilters().stream()
-        .filter(filter -> fieldNames.contains(filter.getField()))
+        .filter(filter -> enabledFilterFields.contains(filter.getField()))
         .collect(Collectors.toList());
 
     caseWidget.setFilters(filterToKeep);
+
+    List<DashboardFilter> userFilterToKeep = caseWidget.getUserFilters().stream()
+        .filter(filter -> enabledFilterFields.contains(filter.getField()))
+        .collect(Collectors.toList());
+
+    caseWidget.setUserFilters(userFilterToKeep);
   }
   
   public void remove(ColumnModel col) {
@@ -215,6 +230,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     columnModel.setHeader(this.fieldDisplayName);
     columnModel.setHeaders(this.fieldDisplayNames);
     columnModel.setField(this.selectedField);
+    columnModel.setEnableFilter(true);
     columnModel.setQuickSearch(false);
     if (this.selectedFieldType == DashboardColumnType.CUSTOM
         || this.selectedFieldType == DashboardColumnType.CUSTOM_CASE
@@ -440,6 +456,10 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
 
   public void handleQuickSearch(ColumnModel column) {
     column.setQuickSearch(BooleanUtils.isFalse(column.getQuickSearch()));
+  }
+
+  public void handleFilter(ColumnModel column) {
+    column.setEnableFilter(BooleanUtils.isFalse(column.getEnableFilter()));
   }
   
   public List<DisplayName> getFieldDisplayNames() {

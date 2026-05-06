@@ -534,6 +534,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       worker: Bearbeiter
       wrongFromDateFormat: Bitte geben Sie ein gültiges Datum "von" an. Das Format ist {0}
       wrongToDateFormat: Bitte geben Sie ein gültiges Datum "bis" an. Das Format ist {0}
+    filterLabel: Filter
     finish: Beenden
     general: Allgemein
     generalInformation: Allgemeine Informationen
