@@ -356,7 +356,7 @@ public class ExpressManagementUtils {
     rootNode.put(VERSION, 2);
     var arrayExpress = rootNode.putArray(EXPRESS_WORKFLOW);
     CollectionUtils.emptyIfNull(selectedExpressProcesses).forEach(express -> {
-      var expressAsJson = BusinessEntityConverter.entityToJsonValue(express);
+      var expressAsJson = BusinessEntityConverter.entityToJsonValueExcludeInternalView(express);
       JsonNode expressNode = null;
       try {
         expressNode = BusinessEntityConverter.getObjectMapper().readTree(expressAsJson);
@@ -364,7 +364,6 @@ public class ExpressManagementUtils {
         Ivy.log().warn("Cannot paste express object", e.getMessage());
       }
       if (expressNode != null) {
-        removeEmailAttachmentsFromNode(expressNode);
         arrayExpress.add(expressNode);
       }
     });
@@ -375,18 +374,6 @@ public class ExpressManagementUtils {
         .stream(() -> inputStream)
         .contentType(MediaType.APPLICATION_JSON)
         .name(getExportFileName()).build();
-  }
-
-  private static void removeEmailAttachmentsFromNode(JsonNode expressNode) {
-    JsonNode taskDefinitions = expressNode.path("taskDefinitions");
-    if (taskDefinitions.isArray()) {
-      for (JsonNode taskDef : taskDefinitions) {
-        JsonNode email = taskDef.path("email");
-        if (email.isObject()) {
-          ((ObjectNode) email).remove("attachments");
-        }
-      }
-    }
   }
 
   private static String getExportFileName() {

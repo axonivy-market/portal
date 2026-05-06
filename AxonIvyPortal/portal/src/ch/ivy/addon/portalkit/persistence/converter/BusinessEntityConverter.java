@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
+import ch.ivy.addon.portal.generic.view.PortalJsonView;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -43,6 +44,18 @@ public class BusinessEntityConverter {
       return getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(entity);
     } catch (JsonProcessingException e) {
       Ivy.log().error("Can't write json value", e);
+      throw new PortalException(e);
+    }
+  }
+  
+  public static String entityToJsonValueExcludeInternalView(Object entity) {
+    return objectEntityToJsonValueExcludeInternalView(entity);
+  }
+  
+  private static String objectEntityToJsonValueExcludeInternalView(Object entity) {
+    try {
+      return getObjectMapper().writerWithView(PortalJsonView.Public.class).writeValueAsString(entity);
+    } catch (JsonProcessingException e) {
       throw new PortalException(e);
     }
   }
