@@ -35,6 +35,7 @@ import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import ch.ivy.addon.portalkit.bo.ExpressFormElement;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
@@ -363,6 +364,7 @@ public class ExpressManagementUtils {
         Ivy.log().warn("Cannot paste express object", e.getMessage());
       }
       if (expressNode != null) {
+        removeEmailAttachmentsFromNode(expressNode);
         arrayExpress.add(expressNode);
       }
     });
@@ -373,6 +375,18 @@ public class ExpressManagementUtils {
         .stream(() -> inputStream)
         .contentType(MediaType.APPLICATION_JSON)
         .name(getExportFileName()).build();
+  }
+
+  private static void removeEmailAttachmentsFromNode(JsonNode expressNode) {
+    JsonNode taskDefinitions = expressNode.path("taskDefinitions");
+    if (taskDefinitions.isArray()) {
+      for (JsonNode taskDef : taskDefinitions) {
+        JsonNode email = taskDef.path("email");
+        if (email.isObject()) {
+          ((ObjectNode) email).remove("attachments");
+        }
+      }
+    }
   }
 
   private static String getExportFileName() {
