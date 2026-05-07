@@ -190,11 +190,7 @@ public class AbsenceManagementBean implements Serializable {
     Set<IvyAbsence> userAbsences = absencesByUser.get(username);
     if (userAbsences != null) {
       if (!absenceInThePastShown) {
-        for (IvyAbsence absence : userAbsences) {
-          if (!AbsenceAndSubstituteUtils.isInThePast(absence)) {
-            displayedAbsences.add(absence);
-          }
-        }
+        displayedAbsences.addAll(AbsenceAndSubstituteUtils.removeAbsenceHasTillInThePast(new ArrayList<>(userAbsences)));
       } else {
         displayedAbsences.addAll(userAbsences);
       }
@@ -293,13 +289,13 @@ public class AbsenceManagementBean implements Serializable {
     AbsenceService.newInstance().createAbsence(selectedAbsence);
 
     saveAbsenceSubstitutes();
+    String targetUserName = selectedAbsenceUser != null ? selectedAbsenceUser.getName() : selectedUser.getName();
+    boolean showNewAbsence = selectedAbsence.getUser().getName().equals(targetUserName);
 
-    boolean showNewAbsence = selectedAbsence.getUser().getName().equals(
-        selectedAbsenceUser != null ? selectedAbsenceUser.getName() : selectedUser.getName());
     if (showNewAbsence && (!AbsenceAndSubstituteUtils.isInThePast(selectedAbsence) || absenceInThePastShown)) {
       displayedAbsences.add(selectedAbsence);
       Set<IvyAbsence> userAbsences = absencesByUser
-          .get(selectedAbsenceUser != null ? selectedAbsenceUser.getName() : selectedUser.getName());
+          .get(targetUserName);
       if (userAbsences != null) {
         userAbsences.add(selectedAbsence);
       }
@@ -460,13 +456,9 @@ public class AbsenceManagementBean implements Serializable {
   }
 
   public List<DeputyRole> getFilteredDeputyRoleList() {
-    List<DeputyRole> result = new ArrayList<>();
-    for (DeputyRole item : this.deputyRoles) {
-      if (!item.getDeputies().isEmpty()) {
-        result.add(item);
-      }
-    }
-    return result;
+    return CollectionUtils.emptyIfNull(deputyRoles).stream()
+        .filter(item -> !item.getDeputies().isEmpty())
+        .collect(Collectors.toList());
   }
 
   private void saveAbsenceSubstitutes() {
@@ -508,10 +500,7 @@ public class AbsenceManagementBean implements Serializable {
   }
 
   private void persistAllSubstitutes() {
-    substitutes = new ArrayList<>();
-    for (DeputyRole role : deputyRoles) {
-      substitutes.addAll(DeputyRoleUtils.getSubstitutesFromDeputyRole(role));
-    }
+    substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRoles(deputyRoles);
     SubstituteService.newInstance().saveSubstitutes(selectedAbsenceUser, substitutes);
     displaySubstitutesOnAbsenceTab = null;
   }
@@ -604,21 +593,6 @@ public class AbsenceManagementBean implements Serializable {
         .findFirst().get();
     this.selectedDeputies = new ArrayList<>();
     this.selectedDeputy = null;
-  }
-
-  public List<ISecurityMember> getDeputyListDisplayedOnAbsenceTable() {
-    List<ISecurityMember> displayDeputyList = new ArrayList<>();
-    DeputyRole deputyRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles,
-        DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
-    if (deputyRole != null) {
-      displayDeputyList.addAll(deputyRole.getDeputies());
-    }
-    deputyRole = DeputyRoleUtils.findDeputyRoleByType(deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT);
-
-    if (deputyRole != null) {
-      displayDeputyList.addAll(deputyRole.getDeputies());
-    }
-    return displayDeputyList;
   }
 
   public void setAsPermanent(ISecurityMember selectedMember, boolean isPermanent) {
