@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
@@ -46,10 +48,16 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
   }
 
   private void initFilterFields() {
+    Set<String> disabledStandardFilterFieldNames = this.widget.getColumns().stream().filter(Objects::nonNull)
+      .filter(column -> DashboardColumnType.STANDARD == column.getType())
+      .filter(column -> BooleanUtils.isFalse(column.getEnableFilter())).map(ColumnModel::getField)
+      .collect(Collectors.toSet());
+
     this.filterFields = new ArrayList<>();
     this.filterFields.add(TaskFilterFieldFactory.getDefaultFilterField());
-    this.filterFields
-        .addAll(TaskFilterFieldFactory.getStandardFilterableFields(this.widget.getId()));
+    this.filterFields.addAll(TaskFilterFieldFactory.getStandardFilterableFields(this.widget.getId()).stream()
+      .filter(field -> !disabledStandardFilterFieldNames.contains(field.getName()))
+      .collect(Collectors.toList()));
 
     updateFilterLabels();
     // Add custom fields which are selected by user.
