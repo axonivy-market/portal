@@ -303,13 +303,13 @@ public class DashboardFilter implements Serializable {
   }
 
   @JsonIgnore
-  public List<SecurityMemberDTO> getCreators() {
+  public List<SecurityMemberDTO> getUsers() {
     return this.values.stream().map(this::findUser)
         .filter(Objects::nonNull).collect(Collectors.toList());
   }
 
   @JsonIgnore
-  public List<SecurityMemberDTO> getUsers() {
+  public List<SecurityMemberDTO> getResponsibles() {
     return this.values.stream().map(this::findSecurityMember)
         .filter(Objects::nonNull).collect(Collectors.toList());
   }
