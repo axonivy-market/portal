@@ -43,7 +43,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       updateAbsence: Asence updated successfully
     absenceAndDeputy: Absences and substitutes
     allAbsences: Absences of all users
-    amount: Amount
     applicationAndRole: Application and role
     definedDeputies: Defined Substitutes
     deputyFor: I am substitute for

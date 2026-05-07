@@ -50,7 +50,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     absenceAndDeputy: Ausencias y sustituciones
     activeAbsence: Ausencia activa
     allAbsences: Ausencias de todos los usuarios
-    amount: Cantidad
     applicationAndRole: Aplicación y rol
     definedDeputies: Sustitutos definidos
     deputyFor: Soy sustituto de
@@ -236,8 +235,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       EnableSwitchThemeModeButton: Establecer en true para habilitar el botón de cambio de tema.
       GlobalSearchScopeCategoriesNote: Definición de los tipos que buscará la búsqueda global
       GooglePlayURL: Establece la URL para descargar la aplicación móvil Axon Ivy en Google Play.
-      maximumSelectedTasks: Define el número máximo de tareas que un usuario puede seleccionar simultáneamente dentro de un widget de tareas para operaciones masivas. Establezca este valor en un número entero positivo para imponer un límite específico, o déjelo en blanco para permitir una selección de
-        tareas ilimitada.
       RoleDirectChildrenLimit: 'El número establecido controla la cantidad de roles hijos directos que se muestra en la pestaña de gestión de roles. Número válido: 10, 50, 100'
       RoleParentLimit: 'El número establecido controla la cantidad de roles padre que se muestra al filtrar los roles en la pestaña Gestión de roles. Número válido: 5, 10, 20'
       SearchScopeCaseFields: Definición de los campos que la búsqueda global utilizará para encontrar casos coincidentes además del Id de caso (esto puede influir en el rendimiento de la búsqueda)
@@ -294,6 +291,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideYear: activar para ocultar el año, de lo contrario se mostrará.
       imageUploadSizeLimit: Establece el límite de tamaño para la carga de imágenes en megabytes (MB). El valor predeterminado es 6 MB.
       loggedInUserFormat: Opción para definir el formato visible del usuario conectado
+      maximumSelectedTasks: Define el número máximo de tareas que un usuario puede seleccionar simultáneamente dentro de un widget de tareas para operaciones masivas. Establezca este valor en un número entero positivo para imponer un límite específico, o déjelo en blanco para permitir una selección de
+        tareas ilimitada.
       refreshTaskListIntervalNote: Actualización de la lista de tareas en segundos
       showAvatar: Para activar/desactivar la visualización de los avatares de los usuarios/roles.
       showButtonIcon: Para encender o apagar el icono de la pantalla en el botón.
@@ -512,10 +511,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     days: día(s)
     default: Por defecto
     defaultNotificationMessage: Hmm… Parece que algo ha ido mal.
-    delete: Borrar
-    deleteContext: "Borrar {0}"
     delegateTasks: Delegar tareas
-    toggleBulkDelegation: Alternar delegación masiva
+    delete: Borrar
     deleteAbsenceHeaderText: ¿Borrar esta ausencia?
     deleteChartHeaderText: ¿Borrar este gráfico?
     deleteContext: Borrar {0}
@@ -660,6 +657,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: El proceso
     timeInformation: Informaciones de tiempo
     timestamp: Marca de tiempo
+    toggleBulkDelegation: Alternar delegación masiva
     type: Tipo
     typeAdmin: Todos los administradores
     typeAllUsers: Todos los usuarios
@@ -1501,10 +1499,10 @@ Dialogs:
             IconSelection:
               IconLinkTooltip: Haga clic para cambiar el icono
             MultipleTaskItemsDelegate:
+              DelegateMultipleTaskTitle: Delegar {0} tareas
               ItemSelected: 1 elemento seleccionado
               ItemsSelected: '{0} elementos seleccionados'
               ItemsSelectedWithLimit: '{0} / {1} elementos seleccionados'
-              DelegateMultipleTaskTitle: Delegar {0} tareas
               bulkDelegatePerformanceWarning: La delegación de varias tareas puede tardar algún tiempo. Por favor, sea paciente.
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: No puedes trabajar en la tarea porque ha sido destruida.

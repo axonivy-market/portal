@@ -50,7 +50,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     absenceAndDeputy: Absences et remplacements
     activeAbsence: Absence active
     allAbsences: Absences de tous les utilisateurs
-    amount: Quantité
     applicationAndRole: Application et rôle
     definedDeputies: Remplaçant définis
     deputyFor: Je suis remplaçant pour
@@ -236,8 +235,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       EnableSwitchThemeModeButton: Défini à true pour activer le bouton de changement de thème.
       GlobalSearchScopeCategoriesNote: Définition des types recherchés par la recherche globale
       GooglePlayURL: Définir l'URL pour télécharger l'application mobile Axon Ivy sur Google Play.
-      maximumSelectedTasks: Définit le nombre maximum de tâches qu'un utilisateur peut sélectionner simultanément dans un widget de tâches pour des opérations en masse. Définissez cette valeur sur un entier positif pour imposer une limite spécifique, ou laissez-la vide pour autoriser une sélection de
-        tâches illimitée.
       RoleDirectChildrenLimit: 'Le nombre défini contrôle la quantité de rôles d''enfants directs qui est affichée dans l''onglet Gestion des rôles. Nombre valide : 10, 50, 100'
       RoleParentLimit: 'Le nombre défini contrôle la quantité de rôles parents qui est affichée lors du filtrage des rôles dans l''onglet Gestion des rôles. Nombre valide : 5, 10, 20'
       SearchScopeCaseFields: Définir les champs que la recherche globale utilisera pour trouver les cas correspondants en dehors de l'identifiant du cas (cela peut influencer les performances de la recherche).
@@ -294,6 +291,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideYear: Définissez la valeur true, l'année sera cachée, sinon elle sera montrée.
       imageUploadSizeLimit: Définissez la limite de taille pour le téléchargement d’images en mégaoctets (Mo). La valeur par défaut est de 6 Mo.
       loggedInUserFormat: L'option pour afficher le format de l'utilisateur connecté
+      maximumSelectedTasks: Définit le nombre maximum de tâches qu'un utilisateur peut sélectionner simultanément dans un widget de tâches pour des opérations en masse. Définissez cette valeur sur un entier positif pour imposer une limite spécifique, ou laissez-la vide pour autoriser une sélection de
+        tâches illimitée.
       refreshTaskListIntervalNote: Intervalle d'actualisation de la liste des tâches en secondes.
       showAvatar: Pour activer/désactiver l'affichage des avatars des utilisateurs/rôles.
       showButtonIcon: Pour activer/désactiver l'icône d'affichage dans le bouton.
@@ -512,10 +511,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     days: jour(s)
     default: Par défaut
     defaultNotificationMessage: Hmm... On dirait que quelque chose ne va pas.
-    delete: Supprimer
-    deleteContext: "Supprimer {0}"
     delegateTasks: Déléguer les tâches
-    toggleBulkDelegation: Basculer la délégation en masse
+    delete: Supprimer
     deleteAbsenceHeaderText: Supprimer cette absence ?
     deleteChartHeaderText: Supprimer ce tableau ?
     deleteContext: Supprimer {0}
@@ -660,6 +657,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: Le processus
     timeInformation: Informations sur le temps
     timestamp: Horodatage
+    toggleBulkDelegation: Basculer la délégation en masse
     type: Type
     typeAdmin: Tous les administrateurs
     typeAllUsers: Tous les utilisateurs
@@ -1500,10 +1498,10 @@ Dialogs:
             IconSelection:
               IconLinkTooltip: Cliquez pour changer d'icône
             MultipleTaskItemsDelegate:
+              DelegateMultipleTaskTitle: Déléguer {0} tâches
               ItemSelected: 1 élément sélectionné
               ItemsSelected: '{0} éléments sélectionnés'
               ItemsSelectedWithLimit: '{0} / {1} éléments sélectionnés'
-              DelegateMultipleTaskTitle: Déléguer {0} tâches
               bulkDelegatePerformanceWarning: La délégation de plusieurs tâches peut prendre un certain temps. Veuillez patienter.
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: Vous ne pouvez pas travailler sur la tâche parce qu'elle a été détruite.
