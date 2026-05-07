@@ -159,7 +159,7 @@
             "",
             "String url = URLDecoder.decode(in.callbackUrl, \"UTF-8\");",
             "",
-            "if (request != null && StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityUtil.isValid(url, request)){",
+            "if (request != null && StringUtils.isNotBlank(url) && !url.startsWith(\"//\") && OpenRedirectVulnerabilityUtil.isValid(url, request)){",
             "  context.redirect(url);",
             "} else {",
             "  PortalNavigatorAPI.navigateToPortalHome();",
