@@ -10,6 +10,8 @@ import ch.ivyteam.ivy.workflow.ITask;
 
 public class WorkerColumnModel extends TaskColumnModel {
 
+  private static final long serialVersionUID = -1L;
+
   @Override
   public void initDefaultValue() {
     super.initDefaultValue();
