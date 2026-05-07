@@ -21,6 +21,8 @@ public class DashboardColumnManagementTest extends BaseTest {
 
   private static final String YOUR_CASES_WIDGET = "Your Cases";
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
+  private static final String CASE_NAME_FIELD = "name";
+  private static final String TASK_NAME_FIELD = "name";
 
   private NewDashboardPage newDashboardPage;
 
@@ -70,6 +72,92 @@ public class DashboardColumnManagementTest extends BaseTest {
 
     caseEditWidget.selectCustomType();
     caseEditWidget.getCustomField(addedCustomField2).shouldBe(Condition.exist);
+  }
+
+  @Test
+  public void testColumnManagementFilterToggleForCaseStandardAndCustomFields() {
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.openColumnManagementDialog();
+
+    String caseNameDisplay = caseEditWidget.getDisplayNameByField(CASE_NAME_FIELD);
+    String addedCustomField = caseEditWidget.addFirstCustomField();
+    String customFieldDisplay = caseEditWidget.getDisplayNameByField(addedCustomField);
+
+    assertTrue(caseEditWidget.isFilterClicked(CASE_NAME_FIELD));
+    assertTrue(caseEditWidget.isFilterClicked(addedCustomField));
+
+    caseEditWidget.clickOnFilterCheckBoxByField(CASE_NAME_FIELD);
+    caseEditWidget.clickOnFilterCheckBoxByField(addedCustomField);
+    assertFalse(caseEditWidget.isFilterClicked(CASE_NAME_FIELD));
+    assertFalse(caseEditWidget.isFilterClicked(addedCustomField));
+    caseEditWidget.saveColumn();
+
+    caseEditWidget.openFilter();
+    assertFalse(caseEditWidget.isFilterFieldOptionAvailable(caseNameDisplay));
+    assertFalse(caseEditWidget.isFilterFieldOptionAvailable(customFieldDisplay));
+    caseEditWidget.closeFilter();
+
+    caseEditWidget.openColumnManagementDialog();
+    caseEditWidget.clickOnFilterCheckBoxByField(CASE_NAME_FIELD);
+    caseEditWidget.clickOnFilterCheckBoxByField(addedCustomField);
+    assertTrue(caseEditWidget.isFilterClicked(CASE_NAME_FIELD));
+    assertTrue(caseEditWidget.isFilterClicked(addedCustomField));
+    caseEditWidget.saveColumn();
+
+    caseEditWidget.openFilter();
+    assertTrue(caseEditWidget.isFilterFieldOptionAvailable(caseNameDisplay));
+    assertTrue(caseEditWidget.isFilterFieldOptionAvailable(customFieldDisplay));
+    caseEditWidget.closeFilter();
+  }
+
+  @Test
+  public void testColumnManagementFilterToggleForTaskStandardAndCustomFields() {
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+
+    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
+    taskEditWidget.openColumnManagementDialog();
+
+    String taskNameDisplay = taskEditWidget.getDisplayNameByField(TASK_NAME_FIELD);
+    String addedCustomField = taskEditWidget.addFirstCustomField();
+    String customFieldDisplay = taskEditWidget.getDisplayNameByField(addedCustomField);
+
+    assertTrue(taskEditWidget.isFilterClicked(TASK_NAME_FIELD));
+    assertTrue(taskEditWidget.isFilterClicked(addedCustomField));
+
+    taskEditWidget.clickOnFilterCheckBoxByField(TASK_NAME_FIELD);
+    taskEditWidget.clickOnFilterCheckBoxByField(addedCustomField);
+    assertFalse(taskEditWidget.isFilterClicked(TASK_NAME_FIELD));
+    assertFalse(taskEditWidget.isFilterClicked(addedCustomField));
+    taskEditWidget.saveColumn();
+
+    taskEditWidget.openFilter();
+    assertFalse(taskEditWidget.isFilterFieldOptionAvailable(taskNameDisplay));
+    assertFalse(taskEditWidget.isFilterFieldOptionAvailable(customFieldDisplay));
+    taskEditWidget.closeFilter();
+
+    taskEditWidget.openColumnManagementDialog();
+    taskEditWidget.clickOnFilterCheckBoxByField(TASK_NAME_FIELD);
+    taskEditWidget.clickOnFilterCheckBoxByField(addedCustomField);
+    assertTrue(taskEditWidget.isFilterClicked(TASK_NAME_FIELD));
+    assertTrue(taskEditWidget.isFilterClicked(addedCustomField));
+    taskEditWidget.saveColumn();
+
+    taskEditWidget.openFilter();
+    assertTrue(taskEditWidget.isFilterFieldOptionAvailable(taskNameDisplay));
+    assertTrue(taskEditWidget.isFilterFieldOptionAvailable(customFieldDisplay));
+    taskEditWidget.closeFilter();
   }
 
   @Test
