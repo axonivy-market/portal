@@ -1738,7 +1738,7 @@ Enums:
               STATE:
                 name: Zustand
               WORKER_NAME:
-                name: Name des Arbeiters
+                name: Bearbeiter
               WORKING_TIME:
                 name: Arbeitszeiten
             AggregationInterval:
@@ -1880,7 +1880,7 @@ Labels:
       RESPONSIBLE: Verantwortlich
       START: Start
       STATE: Status
-      WORKER: Bearbeiter-Benutzer
+      WORKER: Bearbeiter
     FilterOperator:
       AFTER: Ist nach
       BEFORE: Ist vor

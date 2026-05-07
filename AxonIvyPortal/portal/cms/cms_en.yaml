@@ -1730,7 +1730,7 @@ Enums:
               STATE:
                 name: State
               WORKER_NAME:
-                name: Worker name
+                name: Working user
               WORKING_TIME:
                 name: Working time
             AggregationInterval:

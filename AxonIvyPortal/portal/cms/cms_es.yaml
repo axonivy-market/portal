@@ -1743,7 +1743,7 @@ Enums:
               STATE:
                 name: Estado
               WORKER_NAME:
-                name: Nombre del trabajador
+                name: Usuario trabajador
               WORKING_TIME:
                 name: Tiempo de trabajo
             AggregationInterval:
