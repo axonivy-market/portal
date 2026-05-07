@@ -202,8 +202,12 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
         standardFields.add(col.getField());
       }
     } else if (widget.getType() == DashboardWidgetType.CASE) {
+      boolean enablePinCase = GlobalSettingService.getInstance().isEnablePinCase();
       var enableCaseOwner = GlobalSettingService.getInstance().isCaseOwnerEnabled();
       for (DashboardStandardCaseColumn col : DashboardStandardCaseColumn.values()) {
+        if (!enablePinCase && DashboardStandardCaseColumn.PIN == col) {
+          continue;
+        }
         if (!enableCaseOwner && DashboardStandardCaseColumn.OWNER == col) {
           continue;
         }

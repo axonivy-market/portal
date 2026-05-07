@@ -37,8 +37,7 @@
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filterLabel')}" width="50" styleClass="text-center">
           <p:commandLink id="toggle-filter" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget" process="@this"
             rendered="#{column.canFilter()}"
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.
-            portalkit.ui.jsf/common/filterLabel')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filterLabel')}"
             actionListener="#{columnManagementBean.handleFilter(column)}"
             global="false" update="column-management-datatable" partialSubmit="true" immediate="true">
             <h:panelGroup styleClass="ui-chkbox-box ui-widget ui-corner-all ui-state-default #{column.enableFilter ? 'ui-state-active':''}">
