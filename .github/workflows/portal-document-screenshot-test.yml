@@ -26,13 +26,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '21'
 
       - name: Set up Maven
-        uses: stCarolas/setup-maven@v5
+        uses: stCarolas/setup-maven@v5.1
         with:
           maven-version: 3.9.8
       - name: Export environment variables
@@ -118,7 +118,7 @@ jobs:
           cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
           
       - name: Archive screenshot image
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: screenshots
           retention-days: 5
@@ -126,7 +126,7 @@ jobs:
             AxonIvyPortal/portal-selenium-test/target/*.zip
       
       - name: Archive test reports
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: screenshot-test-reports
           retention-days: 5
@@ -134,7 +134,7 @@ jobs:
             AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
       
       - name: Report
-        uses: dorny/test-reporter@v1.9.1
+        uses: dorny/test-reporter@v3
         with:
           artifact: screenshot-test-reports
           name: Screenshot Tests
