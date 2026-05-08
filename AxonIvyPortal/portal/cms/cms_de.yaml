@@ -1691,7 +1691,7 @@ Labels:
       RESPONSIBLE: Verantwortlich
       START: Start
       STATE: Status
-      WORKER: Bearbeiter-Benutzer
+      WORKER: Bearbeiter
     FilterOperator:
       AFTER: Ist nach
       BEFORE: Ist vor

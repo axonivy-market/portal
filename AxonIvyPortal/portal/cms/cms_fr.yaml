@@ -1695,7 +1695,7 @@ Labels:
       RESPONSIBLE: Responsable
       START: Démarrage
       STATE: État
-      WORKER: Utilisateur travailleur
+      WORKER: Gestionnaire
     FilterOperator:
       AFTER: Est après
       BEFORE: Est avant

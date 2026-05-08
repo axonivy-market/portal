@@ -1686,7 +1686,7 @@ Labels:
       RESPONSIBLE: 責任者
       START: 開始
       STATE: 状態
-      WORKER: 作業者ユーザー
+      WORKER: 作業中ユーザー
     FilterOperator:
       AFTER: 指定の値の後にある
       BEFORE: 指定の値の前にある
