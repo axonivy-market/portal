@@ -33,9 +33,9 @@
       <version>1.21.2</version>
     </dependency>
     <dependency>
-      <groupId>com.itextpdf</groupId>
-      <artifactId>itextpdf</artifactId>
-      <version>5.5.13.4</version>
+      <groupId>org.apache.pdfbox</groupId>
+      <artifactId>pdfbox</artifactId>
+      <version>3.0.7</version>
     </dependency>
     <dependency>
       <groupId>com.axonivy.ivy.api</groupId>
