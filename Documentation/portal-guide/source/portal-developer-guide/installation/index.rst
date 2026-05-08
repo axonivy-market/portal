@@ -164,18 +164,6 @@ Please access the :ref:`Dashboard Configuration <dashboard-configuration>` page 
 2. The global variable ``Portal.KeepSidebarExpanded`` has been removed. Use ``Portal.Sidebar.Mode`` instead.
 Set ``Portal.Sidebar.Mode`` to ``STICK`` to achieve the same effect as ``Portal.KeepSidebarExpanded=true``.
 
-3. ``SanitizeAPI.escapeForJavascript`` now additionally escapes ``$`` and ``{`` (to ``\$`` and ``\{``).
-This is backward-compatible for single-quoted and double-quoted JavaScript strings (the backslash before these characters is a no-op identity escape in those contexts).
-However, if you were passing the output of ``escapeForJavascript`` directly to an ``IFrameTaskConfig`` component attribute, **stop doing that** — the component already escapes internally, causing double-escaping. Pass the raw value instead:
-
-.. code-block:: xml
-
-   <!-- WRONG — causes double-escaping -->
-   <ic:com.axonivy.portal.components.IFrameTaskConfig taskName="#{taskBean.getSafeTaskName()}" />
-
-   <!-- CORRECT — pass raw value, the component escapes internally -->
-   <ic:com.axonivy.portal.components.IFrameTaskConfig taskName="#{taskBean.getRawTaskName()}" />
-
 Migrate 13.1 To 13.2
 --------------------
 
