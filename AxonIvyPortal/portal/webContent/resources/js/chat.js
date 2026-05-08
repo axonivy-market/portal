@@ -703,7 +703,7 @@ function View(uri)
           $('.js-users-participants').removeClass('hidden');
           $(users).each(function(index, user) {
             var userDom = document.createElement('li');
-            userDom.innerHTML = user;
+            userDom.innerHTML = escapeHtml(user);
               $usersParticipants.get(0).appendChild(userDom);
             });
         } else {
@@ -721,7 +721,7 @@ function View(uri)
           var roleGroupDom = document.createElement('li');
           var roleName = document.createElement('span');
           roleName.className = 'js-role-name role-name';
-          roleName.innerHTML = key;
+          roleName.innerHTML = escapeHtml(key);
           roleGroupDom.appendChild(roleName);
 
           var userList = document.createElement('ul');
@@ -729,7 +729,7 @@ function View(uri)
           if (participant.length != 0) {
             for (var username in participant) {
               var userDom = document.createElement('li');
-              userDom.innerHTML = participant[username];
+              userDom.innerHTML = escapeHtml(participant[username]);
               userList.appendChild(userDom);
             }
           } else {
