@@ -151,7 +151,7 @@ public class DashboardFilter implements Serializable {
   
   @JsonIgnore
   public boolean isWorker() {
-    return this.field == DashboardStandardTaskColumn.WORKER.getField();
+    return DashboardStandardTaskColumn.WORKER.getField().equals(this.field);
   }
 
   @JsonIgnore

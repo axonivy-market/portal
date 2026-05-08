@@ -14,7 +14,6 @@ import javax.faces.validator.ValidatorException;
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.util.filter.field.FilterField;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -37,7 +36,7 @@ public class DashboardDefaultListFilterValidator implements Validator {
       UIComponent component, String messageComponentId) {
     if (CollectionUtils.isEmpty(value)) {
       FacesContext.getCurrentInstance().addMessage(messageComponentId,
-          new FacesMessage(FacesMessage.SEVERITY_ERROR, getRequiredMessage(filter.getFilterField(), filterIndex), null));
+          new FacesMessage(FacesMessage.SEVERITY_ERROR, getRequiredMessage(filter, filterIndex), null));
       invalidate(component);
     }
   }
@@ -48,12 +47,14 @@ public class DashboardDefaultListFilterValidator implements Validator {
     input.setValid(false);
   }
 
-  private String getMessagePrefix(FilterField filterField, int index) {
-    return String.format(MESSAGE_PREFIX_PATTERN, filterField.getLabel(), index + 1);
+  private String getMessagePrefix(DashboardFilter filter, int index) {
+    return filter.getFilterField() != null 
+        ? String.format(MESSAGE_PREFIX_PATTERN, filter.getFilterField().getLabel(), index + 1) 
+        : "";
   }
 
-  public String getRequiredMessage(FilterField filterField, int index) {
-    return String.join(": ", getMessagePrefix(filterField, index),
+  public String getRequiredMessage(DashboardFilter filter, int index) {
+    return String.join(": ", getMessagePrefix(filter, index),
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage"));
   }
 }
