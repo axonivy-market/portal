@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 20  # Fetch more commits for history
 
@@ -305,7 +305,7 @@ jobs:
       needs: show-branch-info
       steps:
         - name: Checkout code
-          uses: actions/checkout@v5
+          uses: actions/checkout@v6
 
         - name: Set up Java
           uses: actions/setup-java@v5
@@ -314,7 +314,7 @@ jobs:
             java-version: '21'
 
         - name: Set up Maven
-          uses: stCarolas/setup-maven@v5
+          uses: stCarolas/setup-maven@v5.1
           with:
             maven-version: 3.9.8
       
@@ -382,7 +382,7 @@ jobs:
             cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
 
         - name: Archive screenshot image
-          uses: actions/upload-artifact@v4
+          uses: actions/upload-artifact@v7
           with:
             name: screenshots
             retention-days: 5
@@ -390,7 +390,7 @@ jobs:
               AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
 
         - name: Archive test reports
-          uses: actions/upload-artifact@v4
+          uses: actions/upload-artifact@v7
           with:
             name: selenium-test-reports
             retention-days: 5
@@ -649,7 +649,7 @@ jobs:
               }
         
         - name: Report
-          uses: dorny/test-reporter@v2.1.1
+          uses: dorny/test-reporter@v3
           with:
             artifact: selenium-test-reports
             name: Selenium tests
