@@ -619,6 +619,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     columnManagement: Column management
     configuration:
       CustomWidgetExternalLinkWarning: Some websites are not compatible with iframe due to security concerns. Please contact your administrator if the external website is not working properly.
+      CustomWidgetUrlInvalidScheme: 'URL must start with http://, https://, or /'
       Parameters: Parameters
       SelectYourTemplate: Select your template
       configuration: Configuration
