@@ -195,10 +195,10 @@ public class ComplexFilterHelper{
   }
   
   private static void handleFilterWorker(SelenideElement filterElement, Object... values) {
-    var creatorInput = filterElement.$("div[id$=':workers-dropdown']").$("input").shouldBe(appear);
+    var workerInput = filterElement.$("div[id$=':workers-dropdown']").$("input").shouldBe(appear);
     for (int i = 0; i < values.length; i++) {
-      creatorInput.clear();
-      creatorInput.sendKeys(String.valueOf(values[i]));
+      workerInput.clear();
+      workerInput.sendKeys(String.valueOf(values[i]));
       var selectPanel = $("span[id$=':workers-dropdown_panel'][style*='display: block']").shouldBe(appear);
       selectPanel.$(".ui-avatar-text").shouldBe(appear);
       selectPanel.shouldBe(getClickableCondition()).click();
