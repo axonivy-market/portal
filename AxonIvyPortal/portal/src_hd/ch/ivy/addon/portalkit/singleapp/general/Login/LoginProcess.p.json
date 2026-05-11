@@ -144,11 +144,10 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
-            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivy.addon.portalkit.util.RequestUtils;",
             "import javax.faces.context.ExternalContext;",
             "import javax.faces.context.FacesContext;",
             "import javax.servlet.http.HttpServletRequest;",
-            "import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;",
             "import java.net.URLDecoder;",
             "",
             "HttpServletRequest request = null;",
@@ -159,7 +158,7 @@
             "",
             "String url = URLDecoder.decode(in.callbackUrl, \"UTF-8\");",
             "",
-            "if (request != null && StringUtils.isNotBlank(url) && !url.startsWith(\"//\") && OpenRedirectVulnerabilityUtil.isValid(url, request)){",
+            "if (RequestUtils.isSafeRedirectUrl(url, request)){",
             "  context.redirect(url);",
             "} else {",
             "  PortalNavigatorAPI.navigateToPortalHome();",
