@@ -7,6 +7,7 @@ import org.apache.pdfbox.cos.COSArray;
 import org.apache.pdfbox.cos.COSDictionary;
 import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 
 import ch.ivyteam.ivy.bpm.error.BpmError;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -32,7 +33,7 @@ public class PDFDocumentDetector implements DocumentDetector {
       boolean hasOpenAction = root.getDictionaryObject(COSName.OPEN_ACTION) != null;
 
       return !hasEmbeddedFiles && !hasAcroForm && !hasOpenAction;
-    } catch (NoClassDefFoundError e) {
+    } catch (InvalidPasswordException e) {
       Ivy.log().error("This file is encrypted and cannot be scanned for security threats before uploading.");
       BpmError.create("portal:file:encrypted").throwError();
     } catch (Exception e) {
