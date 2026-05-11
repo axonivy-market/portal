@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidgetParam;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
+import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import ch.ivyteam.ivy.workflow.start.StartParameter;
 
@@ -35,7 +36,7 @@ public class DashboardCustomWidgetData implements Serializable {
   }
 
   public void setUrl(String url) {
-    this.url = url;
+    this.url = UrlUtils.isSafeIframeUrl(url) ? url : "";
   }
 
   public String getProcessPath() {

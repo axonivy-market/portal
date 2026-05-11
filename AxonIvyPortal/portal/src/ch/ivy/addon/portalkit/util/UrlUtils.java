@@ -59,6 +59,19 @@ public class UrlUtils {
         || urlInLowerCase.startsWith("/");
   }
 
+  public static boolean isSafeIframeUrl(String url) {
+    if (StringUtils.isBlank(url)) {
+      return true;
+    }
+    String trimmed = url.trim().toLowerCase();
+    if (trimmed.startsWith("//")) {
+      return false;
+    }
+    return trimmed.startsWith(Protocol.HTTP.getValue())
+        || trimmed.startsWith(Protocol.HTTPS.getValue())
+        || trimmed.startsWith("/");
+  }
+
   public static String formatLinkWithEmbedInFrameParam(String link) {
     if (StringUtils.isBlank(link) || link.contains(EMBED_IN_FRAME)) {
       return link;
