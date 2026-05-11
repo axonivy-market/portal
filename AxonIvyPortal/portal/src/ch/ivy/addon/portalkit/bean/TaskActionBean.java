@@ -16,6 +16,7 @@ import org.primefaces.PF;
 
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
+import com.axonivy.portal.enums.BulkActionType;
 
 import ch.ivy.addon.portal.generic.bean.UserMenuBean;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -401,5 +402,12 @@ public class TaskActionBean implements Serializable {
 
   public boolean isTaskPinned(ITask task) {
     return TaskUtils.isPinnedTask(task);
+  }
+
+  public boolean handleSelectionAction(BulkActionType bulkActionType, ITask task) {
+    if (bulkActionType == BulkActionType.DELEGATE) {
+      return canDelegate(task);
+    }
+    return false;
   }
 }

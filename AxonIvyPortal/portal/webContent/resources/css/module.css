@@ -1366,6 +1366,15 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 }
 /********************************** END PROCESSES **********************************/
 /******************START DELEGATE DIALOG********************/
+.bulk-delegate-warning {
+  width: 100%;
+}
+
+.delegate-dialog-user-label {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .delegate-dialog-activator-panel {
   margin-top: 5px;
 }
