@@ -58,8 +58,8 @@ public class RequestUtils {
         return false;
       }
       URI current = new URI(request.getRequestURL().toString());
-      return StringUtils.equalsIgnoreCase(target.getHost(), current.getHost())
-          && StringUtils.equalsIgnoreCase(target.getScheme(), current.getScheme())
+      return target.getHost().equalsIgnoreCase(current.getHost())
+          && target.getScheme().equalsIgnoreCase(current.getScheme())
           && effectivePort(target) == effectivePort(current);
     } catch (URISyntaxException ex) {
       return false;
