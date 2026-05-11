@@ -25,10 +25,10 @@
       <h:panelGroup rendered="#{responsibles != null and responsibleSize gt 1}"> 
         <h:panelGroup id="all-responsibles" styleClass="ml-1" >
           <p:commandLink onclick="#{cc.attrs.onClick}" rendered="#{cc.attrs.popupLink}" ariaLabel="#{responsibleSize}">
-            (<i class="mr-1 si si-multiple-neutral-1" /><h:outputText value="#{responsibleSize}" />)
+            (<i class="mr-1 ti ti-users" /><h:outputText value="#{responsibleSize}" />)
           </p:commandLink>
           <h:panelGroup rendered="#{!cc.attrs.popupLink}">
-            (<i class="mr-1 si si-multiple-neutral-1" /><h:outputText value="#{responsibleSize}" />)
+            (<i class="mr-1 ti ti-users" /><h:outputText value="#{responsibleSize}" />)
           </h:panelGroup>
         </h:panelGroup>
         <p:tooltip for="all-responsibles" position="top" autoHide="false">
@@ -55,7 +55,7 @@
         </p:tooltip>
       </h:panelGroup>
       <h:panelGroup id="deputy-info" rendered="#{responsibleBean.isSubstituteForTask(responsibles)}" styleClass="deputy-info">
-        <i class="si si-information-circle" />
+        <i class="ti ti-info-circle" />
       </h:panelGroup>
       <p:tooltip for="deputy-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskFromSubstitution')}" trackMouse="true" hideEvent="mouseleave click"
         rendered="#{responsibleBean.isSubstituteForTask(responsibles)}"/>

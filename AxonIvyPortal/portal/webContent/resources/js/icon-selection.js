@@ -13,7 +13,15 @@ function updateIconDisplay(iconDisplayJQ, iconCode, type) {
     return;
   }
   iconDisplayJQ.removeClass();
-  iconDisplayJQ.toggleClass(type === "awesome" ? "fa fa-2x" : "si si-lg");
+  if (type === "awesome") {
+    iconDisplayJQ.toggleClass("fa fa-2x");
+  } else if (type === "tabler-filled") {
+    iconDisplayJQ.toggleClass("tif");
+  } else if (type === "streamline") {
+    iconDisplayJQ.toggleClass("si");
+  } else {
+    iconDisplayJQ.toggleClass("ti");
+  }
   iconDisplayJQ.toggleClass("vertical-align-middle");
   iconDisplayJQ.addClass(iconCode);
 }
@@ -66,76 +74,240 @@ function reoderSelectedIconOnTop(icons, selectedIconCode, clientId) {
   icons.splice(numberVisibleIcon, icons.length - numberVisibleIcon);
 }
 
-function loadDialogStreamlineIcon(clientId) {
-  var iconsStylesheet = Object.values(document.styleSheets).filter(sheet => sheet.href?.includes("StreamlineIcons.css"))[0];
-  var icons = Object.values(iconsStylesheet.rules).filter(rule => rule.selectorText?.startsWith(".si-"));
+function loadDialogTablerIconAll(clientId) {
+  loadDialogTablerIcon(clientId);
+  loadDialogTablerFilledIcon(clientId);
+  loadDialogStreamlineIcon(clientId);
+
+  var searchField = document.getElementById(clientId + ":search-icon-name-field");
+  searchIconByName(searchField);
+  var selectionIconDialogId = clientId + "-select-icon-dialog";
+  PF(selectionIconDialogId).initPosition();
+}
+
+function loadDialogTablerIcon(clientId) {
+  var outlineStylesheet = Object.values(document.styleSheets).filter(sheet => sheet.href?.includes("tabler-icons.min.css") && !sheet.href?.includes("filled"))[0];
+  if (!outlineStylesheet) return;
+  var icons = Object.values(outlineStylesheet.rules).filter(rule => rule.selectorText?.startsWith(".ti-") && rule.selectorText?.endsWith("::before"));
   icons.sort((a, b) => (a.selectorText > b.selectorText) ? 1 : -1);
 
   var selectionIconDialogId = clientId + "-select-icon-dialog";
-  var container = document.getElementById(clientId + ":icons-selection-form:icons");
+  var container = document.getElementById(clientId + ":icons-selection-form:tabler-icons");
+  if (!container) return;
   container.innerHTML = "";
   icons.forEach(icon => {
     var iconCode = icon.selectorText.substring(1, icon.selectorText.length - 8);
     var iconImage = document.createElement("i");
-    iconImage.className = "si " + iconCode + " si-lg";
+    iconImage.className = "ti " + iconCode + " ti-lg";
 
     var iconAnchor = document.createElement("a");
     iconAnchor.className = "icon-selection-dialog-selecting-icon icon-color";
     iconAnchor.appendChild(iconImage);
     iconAnchor.title = iconCode;
-    iconAnchor.tabindex="0";
+    iconAnchor.tabindex = "0";
     iconAnchor.onclick = function() {
-      updateSelectedIconDisplay(iconCode, "streamline", clientId);
+      updateSelectedIconDisplay(iconCode, "tabler", clientId);
+      reloadArrayTablerIcon(clientId, iconCode);
       PF(selectionIconDialogId).hide();
-      reloadArrayStreamlineIcon(clientId, iconCode);
       return false;
     };
-    
+
     container.appendChild(iconAnchor);
   });
-  
-  var searchField = document.getElementById(clientId + ":search-icon-name-field");
-  searchIconByName(searchField);
-  PF(selectionIconDialogId).initPosition();
+}
+
+function loadDialogTablerFilledIcon(clientId) {
+  var filledStylesheet = Object.values(document.styleSheets).filter(sheet => sheet.href?.includes("tabler-icons-filled.min.css"))[0];
+  if (!filledStylesheet) return;
+  var icons = Object.values(filledStylesheet.rules).filter(rule => rule.selectorText?.startsWith(".tif-") && rule.selectorText?.endsWith("::before"));
+  icons.sort((a, b) => (a.selectorText > b.selectorText) ? 1 : -1);
+
+  var selectionIconDialogId = clientId + "-select-icon-dialog";
+  var container = document.getElementById(clientId + ":icons-selection-form:tabler-filled-icons");
+  if (!container) return;
+  container.innerHTML = "";
+  icons.forEach(icon => {
+    var iconCode = icon.selectorText.substring(1, icon.selectorText.length - 8);
+    var iconImage = document.createElement("i");
+    iconImage.className = "tif " + iconCode + " ti-lg";
+
+    var iconAnchor = document.createElement("a");
+    iconAnchor.className = "icon-selection-dialog-selecting-icon icon-color";
+    iconAnchor.appendChild(iconImage);
+    iconAnchor.title = iconCode;
+    iconAnchor.tabindex = "0";
+    iconAnchor.onclick = function() {
+      updateSelectedIconDisplay(iconCode, "tabler-filled", clientId);
+      reloadArrayTablerFilledIcon(clientId, iconCode);
+      PF(selectionIconDialogId).hide();
+      return false;
+    };
+
+    container.appendChild(iconAnchor);
+  });
+}
+
+function loadDialogStreamlineIcon(clientId) {
+  var streamlineStylesheet = Object.values(document.styleSheets).filter(sheet => sheet.href?.includes("streamline"))[0];
+  if (!streamlineStylesheet) return;
+  var icons;
+  try {
+    icons = Object.values(streamlineStylesheet.rules).filter(rule => rule.selectorText?.startsWith(".si-") && rule.selectorText?.endsWith("::before"));
+  } catch(e) {
+    return;
+  }
+  if (!icons || icons.length === 0) return;
+  icons.sort((a, b) => (a.selectorText > b.selectorText) ? 1 : -1);
+
+  var selectionIconDialogId = clientId + "-select-icon-dialog";
+  var container = document.getElementById(clientId + ":icons-selection-form:streamline-icons");
+  if (!container) return;
+  container.innerHTML = "";
+  icons.forEach(icon => {
+    var iconCode = icon.selectorText.substring(1, icon.selectorText.length - 8);
+    var iconImage = document.createElement("i");
+    iconImage.className = "si " + iconCode;
+
+    var iconAnchor = document.createElement("a");
+    iconAnchor.className = "icon-selection-dialog-selecting-icon icon-color";
+    iconAnchor.appendChild(iconImage);
+    iconAnchor.title = iconCode;
+    iconAnchor.tabindex = "0";
+    iconAnchor.onclick = function() {
+      updateSelectedIconDisplay(iconCode, "streamline", clientId);
+      reloadArrayStreamlineIcon(clientId, iconCode);
+      PF(selectionIconDialogId).hide();
+      return false;
+    };
+
+    container.appendChild(iconAnchor);
+  });
 }
 
 function reloadArrayStreamlineIcon(clientId, currentIconCode) {
   var container = document.getElementById(clientId + ":custom-array-icon");
-  if(container) {
-    var iconsStylesheet = Object.values(document.styleSheets).filter(sheet => sheet.href?.includes("StreamlineIcons.css"))[0];
-    var icons = Object.values(iconsStylesheet.rules).filter(rule => rule.selectorText?.startsWith(".si-"));
-    reoderSelectedIconOnTop(icons, currentIconCode, clientId);
-    container.innerHTML = "";
-    icons.forEach((icon, index) => {
-      var iconCode = icon.selectorText.substring(1, icon.selectorText.length - 8);
-      var iconImage = document.createElement("i");
-      iconImage.className = "si " + iconCode;
-      
-      var iconAnchor = document.createElement("a");
-      if(currentIconCode == iconCode) {
-        iconAnchor.className = "icon-selection-array-selecting-icon icon-color highlight-selected-icon";
-      } else {
-        iconAnchor.className = "icon-selection-array-selecting-icon icon-color opacity-40";
-      }
-
-      iconAnchor.appendChild(iconImage);
-      iconAnchor.title = iconCode;
-      iconAnchor.tabindex="0";
-      iconAnchor.onclick = function() {
-        updateSelectedIconDisplay(iconCode, "streamline", clientId);
-        resetIconArrayStyle(container);
-        highlightSelectedIcon(this);
-      };
-      container.appendChild(iconAnchor);
-    });
+  if (!container) return;
+  var streamlineStylesheet = Object.values(document.styleSheets).filter(
+    sheet => sheet.href?.includes("streamline")
+  )[0];
+  if (!streamlineStylesheet) return;
+  var icons;
+  try {
+    icons = Object.values(streamlineStylesheet.rules).filter(
+      rule => rule.selectorText?.startsWith(".si-") && rule.selectorText?.endsWith("::before")
+    );
+  } catch(e) {
+    return;
   }
+  reoderSelectedIconOnTop(icons, currentIconCode, clientId);
+  container.innerHTML = "";
+  icons.forEach(icon => {
+    var iconCode = icon.selectorText.substring(1, icon.selectorText.length - 8);
+    var iconImage = document.createElement("i");
+    iconImage.className = "si " + iconCode;
+
+    var iconAnchor = document.createElement("a");
+    if (currentIconCode === iconCode) {
+      iconAnchor.className = "icon-selection-array-selecting-icon icon-color highlight-selected-icon";
+    } else {
+      iconAnchor.className = "icon-selection-array-selecting-icon icon-color opacity-40";
+    }
+
+    iconAnchor.appendChild(iconImage);
+    iconAnchor.title = iconCode;
+    iconAnchor.tabindex = "0";
+    iconAnchor.onclick = function() {
+      updateSelectedIconDisplay(iconCode, "streamline", clientId);
+      resetIconArrayStyle(container);
+      highlightSelectedIcon(this);
+    };
+    container.appendChild(iconAnchor);
+  });
+}
+
+function reloadArrayTablerIcon(clientId, currentIconCode) {
+  var container = document.getElementById(clientId + ":custom-array-icon");
+  if (!container) return;
+  var outlineStylesheet = Object.values(document.styleSheets).filter(
+    sheet => sheet.href?.includes("tabler-icons.min.css") && !sheet.href?.includes("filled")
+  )[0];
+  if (!outlineStylesheet) return;
+  var icons = Object.values(outlineStylesheet.rules).filter(
+    rule => rule.selectorText?.startsWith(".ti-") && rule.selectorText?.endsWith("::before")
+  );
+  reoderSelectedIconOnTop(icons, currentIconCode, clientId);
+  container.innerHTML = "";
+  icons.forEach(icon => {
+    var iconCode = icon.selectorText.substring(1, icon.selectorText.length - 8);
+    var iconImage = document.createElement("i");
+    iconImage.className = "ti " + iconCode;
+
+    var iconAnchor = document.createElement("a");
+    if (currentIconCode === iconCode) {
+      iconAnchor.className = "icon-selection-array-selecting-icon icon-color highlight-selected-icon";
+    } else {
+      iconAnchor.className = "icon-selection-array-selecting-icon icon-color opacity-40";
+    }
+
+    iconAnchor.appendChild(iconImage);
+    iconAnchor.title = iconCode;
+    iconAnchor.tabindex = "0";
+    iconAnchor.onclick = function() {
+      updateSelectedIconDisplay(iconCode, "tabler", clientId);
+      resetIconArrayStyle(container);
+      highlightSelectedIcon(this);
+    };
+    container.appendChild(iconAnchor);
+  });
 };
+
+function reloadArrayTablerFilledIcon(clientId, currentIconCode) {
+  var container = document.getElementById(clientId + ":custom-array-icon");
+  if (!container) return;
+  var filledStylesheet = Object.values(document.styleSheets).filter(
+    sheet => sheet.href?.includes("tabler-icons-filled.min.css")
+  )[0];
+  if (!filledStylesheet) return;
+  var icons = Object.values(filledStylesheet.rules).filter(
+    rule => rule.selectorText?.startsWith(".tif-") && rule.selectorText?.endsWith("::before")
+  );
+  reoderSelectedIconOnTop(icons, currentIconCode, clientId);
+  container.innerHTML = "";
+  icons.forEach(icon => {
+    var iconCode = icon.selectorText.substring(1, icon.selectorText.length - 8);
+    var iconImage = document.createElement("i");
+    iconImage.className = "tif " + iconCode;
+
+    var iconAnchor = document.createElement("a");
+    if (currentIconCode === iconCode) {
+      iconAnchor.className = "icon-selection-array-selecting-icon icon-color highlight-selected-icon";
+    } else {
+      iconAnchor.className = "icon-selection-array-selecting-icon icon-color opacity-40";
+    }
+
+    iconAnchor.appendChild(iconImage);
+    iconAnchor.title = iconCode;
+    iconAnchor.tabindex = "0";
+    iconAnchor.onclick = function() {
+      updateSelectedIconDisplay(iconCode, "tabler-filled", clientId);
+      resetIconArrayStyle(container);
+      highlightSelectedIcon(this);
+    };
+    container.appendChild(iconAnchor);
+  });
+}
 
 function loadIconsFirstTime(hideIconArray, clientId, currentIcon) {
   if(hideIconArray == true) {
     return;
   }
-  reloadArrayStreamlineIcon(clientId, currentIcon);
+  if(currentIcon.includes('si-')) {
+    reloadArrayStreamlineIcon(clientId, currentIcon);
+  } else if (currentIcon.includes('tif-')) {
+    reloadArrayTablerFilledIcon(clientId, currentIcon);
+  } else {
+    reloadArrayTablerIcon(clientId, currentIcon);
+  }
   if(currentIcon.includes('fa-')) {
     createAwesomeTag(currentIcon, clientId);
   }

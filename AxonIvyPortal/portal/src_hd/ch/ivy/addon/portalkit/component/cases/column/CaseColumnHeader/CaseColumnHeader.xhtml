@@ -30,8 +30,8 @@
     oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();">
     <f:actionListener binding="#{logic.sort(sortedField, dataModel.sortField eq sortedField and !dataModel.isSortDescending())}" />
     <h:outputText value="#{value}" />
-    <i class="sort-icon fa fa-angle-down" jsf:rendered="#{dataModel.sortField eq sortedField and dataModel.isSortDescending()}" />
-    <i class="sort-icon fa fa-angle-up" jsf:rendered="#{dataModel.sortField eq sortedField and !dataModel.isSortDescending()}" />
+    <i class="sort-icon ti ti-chevron-down" jsf:rendered="#{dataModel.sortField eq sortedField and dataModel.isSortDescending()}" />
+    <i class="sort-icon ti ti-chevron-up" jsf:rendered="#{dataModel.sortField eq sortedField and !dataModel.isSortDescending()}" />
   </p:commandLink>
   <h:panelGroup id="unsortable-#{id}" rendered="#{!sortable and dataModel.isSelectedColumn(sortedField)}"
     styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} case-list-unsortable-header-cell js-unsortable-header-cell">

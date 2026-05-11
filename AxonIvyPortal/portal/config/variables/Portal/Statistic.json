@@ -27,7 +27,7 @@
     ],
     "chartTarget": "task",
     "chartType": "pie",
-    "icon": "si si-analytics-pie-2",
+    "icon": "ti ti-chart-pie",
     "names": [
       {
         "locale": "de",
@@ -86,7 +86,7 @@
     ],
     "chartTarget": "task",
     "chartType": "bar",
-    "icon": "si si-analytics-bars",
+    "icon": "ti ti-chart-bar",
     "names": [
       {
         "locale": "de",
@@ -206,7 +206,7 @@
     ],
     "chartTarget": "task",
     "chartType": "bar",
-    "icon": "si si-analytics-bars",
+    "icon": "ti ti-chart-bar",
     "names": [
       {
         "locale": "de",
@@ -313,7 +313,7 @@
     ],
     "chartTarget": "case",
     "chartType": "bar",
-    "icon": "si si-analytics-bars",
+    "icon": "ti ti-chart-bar",
     "names": [
       {
         "locale": "de",
@@ -421,7 +421,7 @@
     ],
     "chartTarget": "case",
     "chartType": "line",
-    "icon": "si si-analytics-board-graph-line",
+    "icon": "ti ti-chart-line",
     "names": [
       {
         "locale": "de",
@@ -527,7 +527,7 @@
     ],
     "chartTarget": "case",
     "chartType": "line",
-    "icon": "si si-analytics-board-graph-line",
+    "icon": "ti ti-chart-line",
     "names": [
       {
         "locale": "de",
@@ -641,7 +641,7 @@
     ],
     "chartTarget": "case",
     "chartType": "number",
-    "icon": "si si-pie-line-graph",
+    "icon": "ti ti-number",
     "names": [
       {
         "locale": "de",
@@ -703,7 +703,7 @@
     ],
     "chartTarget": "task",
     "chartType": "number",
-    "icon": "si si-pie-line-graph",
+    "icon": "ti ti-number",
     "names": [
       {
         "locale": "de",
@@ -780,7 +780,7 @@
     ],
     "chartTarget": "task",
     "chartType": "number",
-    "icon": "si si-pie-line-graph",
+    "icon": "ti ti-number",
     "names": [
       {
         "locale": "de",
@@ -847,7 +847,7 @@
     ],
     "chartTarget": "task",
     "chartType": "number",
-    "icon": "si si-pie-line-graph",
+    "icon": "ti ti-number",
     "names": [
       {
         "locale": "de",
@@ -910,7 +910,7 @@
     ],
     "chartTarget": "task",
     "chartType": "number",
-    "icon": "si si-pie-line-graph",
+    "icon": "ti ti-number",
     "names": [
       {
         "locale": "de",

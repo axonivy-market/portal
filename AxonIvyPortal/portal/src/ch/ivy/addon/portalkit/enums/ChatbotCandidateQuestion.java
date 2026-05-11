@@ -4,9 +4,9 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public enum ChatbotCandidateQuestion {
 
-  EXPLORE("si-bulb"),
-  TUTORIAL("si-touch-finger_1"),
-  INTERACT("si-cog");
+  EXPLORE("ti-bulb"),
+  TUTORIAL("ti-hand-finger"),
+  INTERACT("ti-settings-cog");
 
   private String icon;
 

@@ -12,9 +12,13 @@ import org.apache.commons.lang3.Strings;
 @ViewScoped
 public class IconSelectionBean implements Serializable {
   
+  private static final String TABLER_ICON_PREFIX = "ti-";
+  private static final String TABLER_FILLED_ICON_PREFIX = "tif-";
   private static final String STREAMLINE_ICON_PREFIX = "si-";
   private static final String ICON_WITH_FONT_FAMILY_PATTERN = " %s %s ";
   private static final String AWESOME_FAMILY = "fa";
+  private static final String TABLER_FAMILY = "ti";
+  private static final String TABLER_FILLED_FAMILY = "tif";
   private static final String STREAMLINE_FAMILY = "si";
   private static final String DEFAULT_ICON = "fa-play";
   private String icon;
@@ -31,8 +35,12 @@ public class IconSelectionBean implements Serializable {
     }
 
     this.icon = cssIcon;
-    if (isStreamlineIcons(cssIcon)) {
-      this.iconPattern = String.format(ICON_WITH_FONT_FAMILY_PATTERN, STREAMLINE_FAMILY, "si-xl");
+    if (isTablerFilledIcons(cssIcon)) {
+      this.iconPattern = String.format(ICON_WITH_FONT_FAMILY_PATTERN, TABLER_FILLED_FAMILY, "");
+    } else if (isTablerIcons(cssIcon)) {
+      this.iconPattern = String.format(ICON_WITH_FONT_FAMILY_PATTERN, TABLER_FAMILY, "");
+    } else if (isStreamlineIcons(cssIcon)) {
+      this.iconPattern = String.format(ICON_WITH_FONT_FAMILY_PATTERN, STREAMLINE_FAMILY, "");
     } else {
       this.iconPattern = String.format(ICON_WITH_FONT_FAMILY_PATTERN, AWESOME_FAMILY, "fa-2x");
     }
@@ -45,6 +53,20 @@ public class IconSelectionBean implements Serializable {
     return Strings.CS.contains(cssIcon, STREAMLINE_ICON_PREFIX);
   }
 
+  public boolean isTablerIcons(String cssIcon) {
+    if (StringUtils.isBlank(cssIcon)) {
+      return false;
+    }
+    return Strings.CS.contains(cssIcon, TABLER_ICON_PREFIX) && !isTablerFilledIcons(cssIcon);
+  }
+
+  public boolean isTablerFilledIcons(String cssIcon) {
+    if (StringUtils.isBlank(cssIcon)) {
+      return false;
+    }
+    return Strings.CS.contains(cssIcon, TABLER_FILLED_ICON_PREFIX);
+  }
+
   public String generateIconWithFontFamily(String cssIcon) {
     String iconWithFontFamily = String.format(ICON_WITH_FONT_FAMILY_PATTERN, AWESOME_FAMILY, DEFAULT_ICON);
     if (StringUtils.isBlank(cssIcon)) {
@@ -52,7 +74,11 @@ public class IconSelectionBean implements Serializable {
     }
 
     iconWithFontFamily = String.format(ICON_WITH_FONT_FAMILY_PATTERN, AWESOME_FAMILY, cssIcon);
-    if (isStreamlineIcons(cssIcon)) {
+    if (isTablerFilledIcons(cssIcon)) {
+      iconWithFontFamily = String.format(ICON_WITH_FONT_FAMILY_PATTERN, TABLER_FILLED_FAMILY, cssIcon);
+    } else if (isTablerIcons(cssIcon)) {
+      iconWithFontFamily = String.format(ICON_WITH_FONT_FAMILY_PATTERN, TABLER_FAMILY, cssIcon);
+    } else if (isStreamlineIcons(cssIcon)) {
       iconWithFontFamily = String.format(ICON_WITH_FONT_FAMILY_PATTERN, STREAMLINE_FAMILY, cssIcon);
     }
     return iconWithFontFamily;

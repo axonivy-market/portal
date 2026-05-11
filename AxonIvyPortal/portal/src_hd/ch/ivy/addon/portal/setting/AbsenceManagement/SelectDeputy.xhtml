@@ -53,7 +53,7 @@
           value="#{absenceManagementBean.selectedDeputies}" var="deputy">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/SelectedSubtitutes')}">
             <h:outputText rendered="#{not avatarBean.isShowAvatar()}"
-              id="deputy-type-icon" class="si si-single-neutral-actions" />
+              id="deputy-type-icon" class="ti ti-user-check" />
             <pc:securityMemberNameAndAvatar
               displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.getName())}"
               securityMember="#{deputy}" />

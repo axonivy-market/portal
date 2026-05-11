@@ -381,16 +381,16 @@ if (document) {
     let iconClass;
     switch (priority) {
       case 'LOW':
-        iconClass = "priority si si-navigation-down-circle low-priority";
+        iconClass = "priority ti ti-circle-arrow-down low-priority";
         break;
       case 'NORMAL':
-        iconClass = "priority si si-navigation-right-circle-1 normal-priority";
+        iconClass = "priority ti ti-circle-arrow-right normal-priority";
         break;
       case 'HIGH':
-        iconClass = "priority si si-navigation-up-circle high-priority";
+        iconClass = "priority ti ti-circle-arrow-up high-priority";
         break;
       default:
-        iconClass = "priority si si-alert-circle exception-priority";
+        iconClass = "priority ti ti-alert-circle exception-priority";
         break;
     }
 
