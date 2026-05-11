@@ -38,8 +38,9 @@ public class RequestUtils {
   /**
    * Returns true if {@code url} is safe to use as a server-side redirect target.
    * A URL is considered safe when it is either a relative path or an absolute URL
-   * whose host matches the current request host. Protocol-relative URLs ({@code //host})
-   * and opaque schemes ({@code javascript:}, {@code data:}, ...) are rejected.
+   * with the same origin as the current request (matching scheme, host, and effective port).
+   * Protocol-relative URLs ({@code //host}) and opaque schemes ({@code javascript:},
+   * {@code data:}, ...) are rejected.
    */
   public static boolean isSafeRedirectUrl(String url, HttpServletRequest request) {
     if (StringUtils.isBlank(url) || request == null) {
@@ -57,9 +58,19 @@ public class RequestUtils {
         return false;
       }
       URI current = new URI(request.getRequestURL().toString());
-      return target.getHost().equals(current.getHost());
+      return StringUtils.equalsIgnoreCase(target.getHost(), current.getHost())
+          && StringUtils.equalsIgnoreCase(target.getScheme(), current.getScheme())
+          && effectivePort(target) == effectivePort(current);
     } catch (URISyntaxException ex) {
       return false;
     }
+  }
+
+  private static int effectivePort(URI uri) {
+    int port = uri.getPort();
+    if (port != -1) {
+      return port;
+    }
+    return "https".equalsIgnoreCase(uri.getScheme()) ? 443 : 80;
   }
 }
