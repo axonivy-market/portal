@@ -8,3 +8,4 @@ Showcase/InternalSupport/target/
 **/mvn-deps/
 .vscode
 AxonIvyPortal/portal/bin/src_dataClasses/
+.copilot/**

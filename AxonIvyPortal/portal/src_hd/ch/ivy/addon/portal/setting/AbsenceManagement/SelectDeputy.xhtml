@@ -8,31 +8,49 @@
     <p:messages id="error-message" showSummary="false" showDetail="true">
       <p:autoUpdate/>
     </p:messages>
-    <p:panelGrid id="deputy-selection-panel" columns="1" styleClass="deputy-selection-panel ui-g-12" layout="tabular">
-      <h:panelGroup id="select-deputy" layout="block" styleClass="select-deputy w-full flex no-wrap">
-        <ic:com.axonivy.portal.components.UserSelection id="user-selection-component"
-          completeMethod="#{logic.autoCompleteForSubstituteOnApp}"
-          selectedUser="#{data.selectedDeputy}" queryDelay="500" isRenderedMessage="false"
-          autoCompletePanelStyleClass="flex-grow-1" hasCustomizedSelectionList="true">
-          <p:column>
-            <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
-              securityMember="#{user}" isStandAlone="false"/>
-          </p:column>
-          <f:facet name="event">
-            <p:ajax event="itemSelect" update="deputy-selection-form:add-deputy-button" />
-          </f:facet>
-        </ic:com.axonivy.portal.components.UserSelection>
+    <h:panelGroup id="deputy-selection-panel" layout="block" styleClass="deputy-selection-panel ui-g-12 ui-fluid">
 
-        <p:commandButton id="add-deputy-button" styleClass="add-deputy-button px-2 ml-2" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectDeputies')])}"
-          disabled="#{data.selectedDeputy == null}" actionListener="#{logic.addDeputy()}" global="false"
-          update="error-message selected-deputy-fieldset" ignoreAutoUpdate="true" />
-      </h:panelGroup>
+      <div class="field mb-3">
+        <p:outputLabel for="deputy-role-selection"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/substituteType')}" indicateRequired="true" />
+        <p:selectOneMenu id="deputy-role-selection" value="#{absenceManagementBean.selectedDeputyRole}" converter="pojoConverter"
+          styleClass="w-full" disabled="#{not absenceManagementBean.createDeputyMode}">
+          <f:selectItems value="#{absenceManagementBean.selectableDeputyRoles}" var="role"
+            itemLabel="#{role.deputyRoleDisplayName}" itemValue="#{role}" />
+          <p:ajax event="change" listener="#{absenceManagementBean.onDeputyRoleTypeChanged()}"
+            update="deputy-selection-form:selected-deputy-fieldset" />
+        </p:selectOneMenu>
+      </div>
+
+      <div class="field mb-3">
+        <p:outputLabel for="user-selection-component"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/substituteName')}" indicateRequired="true" />
+        <h:panelGroup id="select-deputy" layout="block" styleClass="select-deputy w-full flex no-wrap">
+          <ic:com.axonivy.portal.components.UserSelection id="user-selection-component"
+            completeMethod="#{logic.autoCompleteForSubstituteOnApp}"
+            selectedUser="#{absenceManagementBean.selectedDeputy}" queryDelay="500" isRenderedMessage="false"
+            autoCompletePanelStyleClass="flex-grow-1" hasCustomizedSelectionList="true"
+            placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectSubstitute')}">
+            <p:column>
+              <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+                securityMember="#{user}" isStandAlone="false"/>
+            </p:column>
+            <f:facet name="event">
+              <p:ajax event="itemSelect" update="deputy-selection-form:add-deputy-button deputy-selection-form:save-deputy-button" />
+            </f:facet>
+          </ic:com.axonivy.portal.components.UserSelection>
+
+          <p:commandButton id="add-deputy-button" styleClass="add-deputy-button px-2 ml-2 w-2" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+            disabled="#{absenceManagementBean.selectedDeputy == null}" actionListener="#{absenceManagementBean.addDeputy(absenceManagementBean.selectedDeputyRole.deputyRoleType)}" global="false"
+            update="error-message selected-deputy-fieldset save-deputy-button" ignoreAutoUpdate="true" />
+        </h:panelGroup>
+      </div>
 
       <p:fieldset id="selected-deputy-fieldset" styleClass="selected-deputy-panel m-0">
         <p:dataTable id="selected-deputy-panel" styleClass="deputy-selection"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-          value="#{data.selectedDeputies}" var="deputy">
+          value="#{absenceManagementBean.selectedDeputies}" var="deputy">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/SelectedSubtitutes')}">
             <h:outputText rendered="#{not avatarBean.isShowAvatar()}"
               id="deputy-type-icon" class="ti ti-user-check" />
@@ -41,22 +59,24 @@
               securityMember="#{deputy}" />
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="w-2 text-center">
-            <p:commandLink id="delete-deputy" styleClass="ti ti-trash delete-deputy"
-              actionListener="#{logic.removeDeputy(deputy)}" update="deputy-selection-form"
+            <p:commandLink id="delete-deputy" styleClass="si si-bin-1 delete-deputy"
+              actionListener="#{absenceManagementBean.removeDeputy(deputy)}" update="deputy-selection-form"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteContext', [securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.getName())])}" />
           </p:column>
         </p:dataTable>
       </p:fieldset>
 
-      <p:outputPanel styleClass="text-right">
-        <p:commandButton id="save-deputy-button" styleClass="save-deputy-button w-full"
-          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectDeputies')])}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.updateSelectedDeputies()}"
-          oncomplete="PF('choose-deputy-dialog').hide();" update="#{data.selectedDeputyRoleId}">
+      <div class="mt-3">
+        <p:commandButton id="save-deputy-button" styleClass="save-deputy-button w-full" partialSubmit="true"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectDeputies')])}" update=":absences-management-form"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" global="true" validateClient="true" actionListener="#{absenceManagementBean.saveSubstitutes()}"
+          disabled="#{empty absenceManagementBean.selectedDeputies and absenceManagementBean.createDeputyMode}"
+          oncomplete="PF('choose-deputy-dialog').hide();" >
           <p:resetInput target="choose-deputy-dialog" />
         </p:commandButton>
-      </p:outputPanel>
-    </p:panelGrid>
+      </div>
+
+    </h:panelGroup>
   </h:form>
 </h:body>
 
