@@ -515,7 +515,7 @@ releases of Axon Ivy.
 Changes in 12.0.16
 ------------------
 
-- Fixed an open redirect vulnerability in the Portal login flow. The ``callbackUrl`` parameter passed to ``DefaultLoginPage.ivp`` is now validated using ``OpenRedirectVulnerabilityUtil`` before use as the post-login redirect target. Only same-origin and relative URLs are accepted; invalid or external URLs fall back to the Portal home page.
+- Fixed an open redirect vulnerability in the Portal login flow. The ``callbackUrl`` parameter passed to ``DefaultLoginPage.ivp`` is now validated before use as the post-login redirect target. Only same-origin and relative URLs are accepted; invalid or external URLs fall back to the Portal home page.
 
 Changes in 12.0.11
 ------------------
