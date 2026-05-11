@@ -148,6 +148,11 @@ public class DashboardFilter implements Serializable {
   public boolean isResponsible() {
     return this.field == DashboardStandardTaskColumn.RESPONSIBLE.getField();
   }
+  
+  @JsonIgnore
+  public boolean isWorker() {
+    return DashboardStandardTaskColumn.WORKER.getField().equals(this.field);
+  }
 
   @JsonIgnore
   public boolean isCategory() {
@@ -298,7 +303,7 @@ public class DashboardFilter implements Serializable {
   }
 
   @JsonIgnore
-  public List<SecurityMemberDTO> getCreators() {
+  public List<SecurityMemberDTO> getUsers() {
     return this.values.stream().map(this::findUser)
         .filter(Objects::nonNull).collect(Collectors.toList());
   }

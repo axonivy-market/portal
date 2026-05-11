@@ -664,6 +664,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Nous créons l'export, cela peut prendre quelques minutes
     warning: Attention!
     welcomeToPortal: Bienvenue, veuillez vous connecter
+    workingUser: Gestionnaire
     wrongDateFormat: Veuillez entrer une date valide
     year: an
     years: ans
@@ -1240,7 +1241,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: Cette tâche ne contient pas de logique d'escalade. Aucune période d'expiration ne peut donc être définie.
     technicalCase: Dossier technique
     workflowEventDialog: 'Événements du flux de travail de la tâche #{0}'
-    workingUser: Gestionnaire
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: La date limite de la tâche a été réglée avec succès.
@@ -1695,6 +1695,7 @@ Labels:
       RESPONSIBLE: Responsable
       START: Démarrage
       STATE: État
+      WORKER: Gestionnaire
     FilterOperator:
       AFTER: Est après
       BEFORE: Est avant

@@ -662,6 +662,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
     warning: Warnung!
     welcomeToPortal: Willkommen, bitte melden Sie sich an
+    workingUser: Bearbeiter
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
     year: Jahr
     years: Jahre
@@ -1239,7 +1240,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: Es kann keine Ablaufzeit gesetzt werden, da diese Aufgabe keine Eskalationslogik enthält.
     technicalCase: Technischer Vorgang
     workflowEventDialog: 'Workflow Events für Aufgabe #{0}'
-    workingUser: Bearbeiter
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: Die Aufgabenfrist wurde erfolgreich gespeichert
@@ -1691,6 +1691,7 @@ Labels:
       RESPONSIBLE: Verantwortlich
       START: Start
       STATE: Status
+      WORKER: Bearbeiter
     FilterOperator:
       AFTER: Ist nach
       BEFORE: Ist vor
