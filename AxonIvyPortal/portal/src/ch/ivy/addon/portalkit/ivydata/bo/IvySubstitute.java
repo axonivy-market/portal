@@ -23,7 +23,7 @@ public class IvySubstitute {
     this.substitutionType = substitutionType;
   }
 
-  public IRole getSubstitionRole() {
+  public IRole getSubstitutionRole() {
     return substitionRole;
   }
 

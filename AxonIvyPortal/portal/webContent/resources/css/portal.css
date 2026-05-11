@@ -982,13 +982,16 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .admin-settings-no-permission-message {
   color: var(--admin-setting-no-permission-message-color); }
 
-/* Absences and Debuty -------------------------*/
+/* Absences and Deputy -------------------------*/
 .substituted-user-text {
   color: var(--substituted-user-text-color); }
 
 .choose-deputy-dialog .deputy-selection-panel .delete-deputy {
   font-size: var(--delete-deputy-icon-font-size); }
 
+.absence-page-close-button {
+  color: var(--ivy-primary-color-black) !important;
+}
 /*Awesome Icon Selection--------------------------*/
 
 .icon-selection-dialog-selecting-icon:hover {
@@ -1351,6 +1354,17 @@ color: var(--button-text-color);
 }
 body.in-dialog .ui-widget-overlay {
   background-color: transparent;
+}
+
+.absence-user-selection-wrapper [id$="autocomplete-panel"] {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.absence-user-selection-wrapper [id$="autocomplete-panel"] label {
+  white-space: nowrap;
+  margin-bottom: 0;
 }
 
 .time-information .si-graphic-tablet-drawing-pen,

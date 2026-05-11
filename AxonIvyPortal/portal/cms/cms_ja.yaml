@@ -17,11 +17,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       overlappingAbsence: この不在日程は、別の不在日程と重複しています。
       userNameRequired: ユーザー名は空欄に出来ません。
     SelectedSubtitutes: 選択された代行者
+    Substitutes: '代理人:'
     absences: 不在
     addAbsence: 不在の追加
+    addSubstitute: 代行者を追加
     deputies: 代行者
     description: 不在につながる休暇、病気、その他の外的要因を設定します。
     editAbsence: 不在の編集
+    editSubstitute: 代用を編集
     from: 開始日
     noDeputy: 代理なし
     noPermissionToSeeThisArea: この領域を表示するために必要な権限がありません。
@@ -29,8 +32,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     personalTaskDuringAbsenceDeputies: この不在期間中、個人的に割り当てられたタスクを代行する人
     personalTaskPermanentDeputies: 個人的に割り当てられたタスクを恒久的に代行する人
     selectDeputies: 代行者の選択
+    selectSubstitute: 代行者を選択
     selectedDeputies: 選択された代行者
+    setAsPermanent: 恒久として設定
     showAbsencesInThePast: 過去の不在を表示
+    substituteName: 代行者名
+    substituteType: 代行者タイプ
     substitutedUser: 代行されたユーザー
     taskForRole: 役割のタスク
     till: 終了日
@@ -49,8 +56,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     myAbsences: 私の不在情報
     myDeputies: 私の代行者情報
     nextAbsence: 次の不在日程
+    noSubstitutesDefined: 代行者が定義されていません
+    notSubstitutingAnybody: 現在、誰の代行者でもありません
+    requestAbsences: 不在申請
     selectedDeputyFor: 選択されたユーザーは、以下のメンバーの代行者です
     selectedUser: 選択されたユーザー
+    substitutes: 代行者
   AccessibilityShortcuts:
     processName: アクセシビリティーショートカットの処理
   AllTasks:
@@ -226,7 +237,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       EnableSwitchThemeModeButton: テーマ切り替えボタンを有効にするには true に設定してください。
       GlobalSearchScopeCategoriesNote: グローバル検索で検索するタイプを定義する
       GooglePlayURL: Google Play で Axon Ivy モバイル アプリをダウンロードするための URL を設定します。
-      maximumSelectedTasks: 一括操作のために、ユーザーがタスクウィジェット内で同時に選択できるタスクの最大数を定義します。特定の制限を設けるにはこの値を正の整数に設定し、無制限のタスク選択を許可するには空のままにします。
       RoleDirectChildrenLimit: 設定された数値は、ロール管理タブに表示される直接の子ロールの数を制御します。有効な数値：10、50、100
       RoleParentLimit: 設定された数値は、ロール管理タブでロールをフィルタリングするときに表示される親ロールの数を制御します。有効な数値：5、10、20
       SearchScopeCaseFields: グローバル検索で一致するケースを見つけるために、ケースIDのほかに使用するフィールドを定義します。（検索のパフォーマンスに影響する可能性があります）
@@ -280,8 +290,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideUploadDocumentForDoneCaseNote: ケース完了後のドキュメントのアップロード（および削除）を拒否するには、true に設定します。
       hideYear: true に設定すると、年は非表示になり、そうでない場合は表示されます。
       imageUploadSizeLimit: 画像アップロードのサイズ制限をメガバイト（MB）単位で設定します。デフォルト値は6MBです。
-      sidebarMode: サイドバーのモードを制御します。ホバーはマウスオーバーで展開、クリックはトグルボタンで切り替え、固定は常に展開、非表示はサイドバーを完全に非表示にします。
       loggedInUserFormat: ログインしたユーザー形式を表示するオプション
+      maximumSelectedTasks: 一括操作のために、ユーザーがタスクウィジェット内で同時に選択できるタスクの最大数を定義します。特定の制限を設けるにはこの値を正の整数に設定し、無制限のタスク選択を許可するには空のままにします。
       refreshTaskListIntervalNote: タスクリストの更新間隔。（秒単位）
       showAvatar: ユーザー／ロールのアバターの表示のオン／オフを切り替えます。
       showButtonIcon: ボタン内のアイコンの表示のオン／オフを切り替えます。
@@ -292,6 +302,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showQuickGlobalSearch: クイックグローバル検索の表示のオン/オフを切り替えます。
       showTaskDurationTime: タスク詳細ページでの所要時間の表示のオン／オフを切り替えます。
       showTooltipTechnicalName: ツールチップにユーザーの技術名を表示できるようにする。
+      sidebarMode: サイドバーのモードを制御します。ホバーはマウスオーバーで展開、クリックはトグルボタンで切り替え、固定は常に展開、非表示はサイドバーを完全に非表示にします。
       uploadDocumentWhiteListExtensionNote: すべての拡張子を許可する場合は、空欄にしてください。一部の拡張子のみを許可する場合は、対象の拡張子をカンマで区切って入力してください。（例：pdf, txt, doc, docx）
     key: キー
     link: リンク
@@ -452,16 +463,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: 更新
     Widget: ウィジェット
     action: アクション
-    actionMenuContext: "プロセス{0}のアクションメニューを開く"
-    taskActionMenuContext: "タスク{0}のアクションメニューを開く"
+    actionMenuContext: プロセス{0}のアクションメニューを開く
     active: アクティブ
-    collapseWidgetContext: "{0}ウィジェットを縮小"
-    expandWidgetContext: "{0}ウィジェットを展開"
-    openWidgetFiltersContext: "{0}のフィルターを開く"
-    openWidgetFiltersWithCountContext: "{0}のフィルターを開く、{1}件のアクティブフィルター"
-    openWidgetInfoContext: "{0}ウィジェットの情報を開く"
     add: 追加
-    addContext: "{0}を追加"
+    addContext: '{0}を追加'
     addDocument: ドキュメントを追加
     addLink: リンクを追加
     addNote: ノートを追加
@@ -469,14 +474,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     allTypes: 戻る
     allowPng: png形式のみ許可されます
     apply: 適用
-    applyContext: "{0}を適用"
+    applyContext: '{0}を適用'
     at: に
     author: 作成者
     back: 戻る
     backToCaseMap: ケースマップに戻る
     backgroundColor: 背景色
     cancel: キャンセル
-    cancelContext: "{0}をキャンセル"
+    cancelContext: '{0}をキャンセル'
     case: ケース
     caseCategory: ケースカテゴリー
     caseInformation: ケース情報
@@ -484,8 +489,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: カテゴリー
     change: 変更
     close: 閉じる
-    closeContext: "{0}を閉じる"
+    closeContext: '{0}を閉じる'
     cockpit: コックピット
+    collapseWidgetContext: '{0}ウィジェットを縮小'
     colors: 色
     comment: コメント
     completedOn: 完了日
@@ -504,12 +510,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     days: 日
     default: 初期値
     defaultNotificationMessage: 問題が発生しましたようです。
-    delete: 削除
-    deleteContext: "{0}を削除"
     delegateTasks: タスクを委任する
-    toggleBulkDelegation: 一括委任の切り替え
+    delete: 削除
     deleteAbsenceHeaderText: この不在日程を削除しますか?
     deleteChartHeaderText: このチャートを削除しますか?
+    deleteContext: '{0}を削除'
     deleteDocumentHeaderText: このドキュメントを削除しますか?
     deleteFilterHeaderText: このフィルターを削除しますか?
     deleteSettingHeaderText: この設定を削除しますか?
@@ -531,6 +536,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: Web サイトのコンテンツを更新できませんでした
     escalationTaskHeaderText: エスカレーションのトリガー
     escalationTaskMessage: 有効期限が現在に設定されているため、タスクは期限切れになります。よろしいですか？
+    expandWidgetContext: '{0}ウィジェットを展開'
     filter:
       from: 開始
       moreOptions: その他のオプション
@@ -587,9 +593,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     okContext: OK {0}
     'on': オン
+    openWidgetFiltersContext: '{0}のフィルターを開く'
+    openWidgetFiltersWithCountContext: '{0}のフィルターを開く、{1}件のアクティブフィルター'
+    openWidgetInfoContext: '{0}ウィジェットの情報を開く'
     pin: ピン留め
-    pinCaseContext: "ケース{0}をピン留め"
-    pinTaskContext: "タスク{0}をピン留め"
+    pinCaseContext: ケース{0}をピン留め
+    pinTaskContext: タスク{0}をピン留め
     pleaseAddDocument: 上記のリンクにドキュメントを追加してください。
     pleaseAddNote: 上記のリンクにノートを追加してください。
     previousStage: 前のステージ
@@ -612,8 +621,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: デフォルトのチャートに戻しますか？
     role: ロール
     save: 保存
-    saveContext: "{0}を保存"
     saveAll: すべて保存
+    saveContext: '{0}を保存'
     saveSuccessfully: データの保存に成功しました。
     search: 検索
     second: 秒
@@ -637,6 +646,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     state: 状態
     status: ステータス
     switchToDesktopVersion: デスクトップバージョンに切り替え
+    taskActionMenuContext: タスク{0}のアクションメニューを開く
     taskCanceledAndLeftSuccessfully: タスクをキャンセルして正常に終了しました。タスクはダッシュボードまたはタスクリストで見つけることができます。
     taskFinishedSuccessfully: タスクを正常に完了しました
     taskFromSubstitution: あなたは代行者なので、このタスクが表示されます
@@ -646,13 +656,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: プロセス
     timeInformation: 時間情報
     timestamp: タイムスタンプ
+    toggleBulkDelegation: 一括委任の切り替え
     type: タイプ
     typeAdmin: すべての管理者
     typeAllUsers: すべてのユーザー
     typeOnlyMe: 自分のみ
     unpin: ピン留めを外す
-    unpinCaseContext: "ケース{0}のピン留めを解除"
-    unpinTaskContext: "タスク{0}のピン留めを解除"
+    unpinCaseContext: ケース{0}のピン留めを解除
+    unpinTaskContext: タスク{0}のピン留めを解除
     uploadHere: 有効な日付を入力してください。
     uploadOneHere: ここにアップロード
     user: '{0} ユーザー'
@@ -761,9 +772,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: 公開用
       savedFilters: 保存されたフィルター：
   dashboard:
+    CaseQueryType:
+      info: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
+      label: ケースタイプ
     CloneWidget: ウィジェット複製
     CustomWidgets: カスタムウィジェット
-    dataSettings: データ設定
     DashboardConfiguration:
       CreateFromScratch: 最初から作成
       CreateFromScratchDescription: 最初から独自のダッシュボードを作成する
@@ -773,10 +786,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: ダッシュボードの設定は、モバイルデバイスではサポートされていません。
       EditPrivateDashboards: 個人用ダッシュボードを編集する
       EditPublicDashboards: 公開用ダッシュボードを編集する
+      ExportDashboard: ダッシュボードをエクスポート
       ExportReferencedDialogHeader: ダッシュボードが他のダッシュボードを参照しています
       ExportReferencedDialogMessage: '以下のダッシュボードはナビゲーションウィジェットから参照されています。ウィジェットが正しく機能するように、それらもエクスポートおよびインポートしてください:'
       ExportReferencedDialogProceed: このままエクスポート
-      ExportDashboard: ダッシュボードをエクスポート
       PrivateDashboard: 個人用ダッシュボード
       PrivateDashboardConfiguration: 個人用ダッシュボードの設定
       PublicDashboard: 公開用ダッシュボード
@@ -786,7 +799,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: アクションを選択してください
       SomeThingWentWrong: 問題が発生しました
       Title: ダッシュボードの設定
-    displaySettings: 表示設定
     DrillDownWidget:
       caseDrillDown: 「{0}」用ドリルダウンケースウィジェット
       taskDrillDown: 「{0}」用ドリルダウンタスクウィジェット
@@ -809,9 +821,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: クイック検索
     QuickSearchInfo: ウィジェットの列管理で、クイック検索の範囲をカスタマイズできます。「含む」に基づいて検索しますが、多数の列を追加する場合はパフォーマンスに注意してください。
     QuickSearchScope: 検索範囲：{0}
-    CaseQueryType:
-      info: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
-      label: ケースタイプ
     RestoreDefaultDashboardMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。<span class="dashboard-template-name-message">{0}</span> の標準設定が適用されます。
     SaveNewWidgetFilterHeader: 新しいウィジェットフィルターを保存
     SavedFilterHeader: 保存されたフィルター
@@ -821,14 +830,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: 標準ウィジェット
     StatisticWidget:
       EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！
-      failToRenderChartMessage: チャートを描画中にエラーが発生しました。設定を変更して再試行してください。
-      firstConfigChartMessage: チャートはまだ利用できません。チャートを生成するには設定を構成してください。
       TooltipAverageKpiLabel: '{0}の平均'
       TooltipMaxKpiLabel: '{0}の最大値'
       TooltipMinKpiLabel: '{0}の最小値'
       TooltipSumKpiLabel: '{0}の合計'
       TooltipTotalCaseLabel: '合計ケース: {0}'
       TooltipTotalTaskLabel: '合計タスク: {0}'
+      failToRenderChartMessage: チャートを描画中にエラーが発生しました。設定を変更して再試行してください。
+      firstConfigChartMessage: チャートはまだ利用できません。チャートを生成するには設定を構成してください。
     WelcomeWidgetIntroduction: このウィジェットは、ダッシュボードにウェルカムテキストと画像を表示します。
     WelcomeWidgetNotFoundMessage: ウィジェットの画像が見つかりません。画像を再設定してください。
     WidgetFilterName: ウィジェットフィルター名
@@ -910,7 +919,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: ダッシュボードの編集
       manageDashboard: ダッシュボードの管理
       removeDashboardHeader: 「{0}」のダッシュボードを削除
+    dataSettings: データ設定
     deleteWidget: ウィジェットを削除
+    displaySettings: 表示設定
     downloadZipFileExplanation: エクスポートするアイテム数が Excel の行数の制限を超える場合、データは複数の Excel ファイルに分割され、ZIP ファイルに圧縮されてダウンロードされます。
     editWidget: ウィジェットの編集
     existingField: '{0} フィールドは既に存在します'
@@ -1484,10 +1495,10 @@ Dialogs:
             IconSelection:
               IconLinkTooltip: クリックしてアイコンを変更
             MultipleTaskItemsDelegate:
+              DelegateMultipleTaskTitle: '{0} 個のタスクを委任する'
               ItemSelected: 1 件のアイテムが選択されました
               ItemsSelected: '{0} 件のアイテムが選択されました'
               ItemsSelectedWithLimit: '{0} / {1} 件のアイテムが選択されました'
-              DelegateMultipleTaskTitle: '{0} 個のタスクを委任する'
               bulkDelegatePerformanceWarning: 複数のタスクの委任には時間がかかる場合があります。しばらくお待ちください。
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: タスクは破棄されたため、作業できません。
@@ -1579,7 +1590,7 @@ Dialogs:
               FileInfomation: ファイル情報
               ImportPrivate: 個人用ダッシュボードをインポートする
               ImportPublic: 公開用ダッシュボードをインポートする
-              NavigationWidgetMissingTarget: 'ナビゲーションウィジェット"{0}"は、インポートされておらず、このポータルに存在しないダッシュボードを参照しています。ウィジェットが正しく機能しない可能性があります。'
+              NavigationWidgetMissingTarget: ナビゲーションウィジェット"{0}"は、インポートされておらず、このポータルに存在しないダッシュボードを参照しています。ウィジェットが正しく機能しない可能性があります。
               chooseAJsonFile: JSON ファイルを選択してください
             DashboardSharing:
               ShareDashboard: ダッシュボードを共有
@@ -1704,6 +1715,13 @@ Enums:
     axonivy:
       portal:
         enums:
+          CaseQueryType:
+            ALL:
+              name: ビジネスケース + サブケース
+            BUSINESS_CASE:
+              name: ビジネスケース（デフォルト）
+            SUB_CASE:
+              name: 技術サブケース
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1773,13 +1791,6 @@ Enums:
                 name: より小さい
               LESSOREQUAL:
                 name: 以下
-          CaseQueryType:
-            ALL:
-              name: ビジネスケース + サブケース
-            BUSINESS_CASE:
-              name: ビジネスケース（デフォルト）
-            SUB_CASE:
-              name: 技術サブケース
 Labels:
   AI:
     Error:

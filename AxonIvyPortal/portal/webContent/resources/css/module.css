@@ -3249,10 +3249,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   display: none;
 }
 
-.substitution-table .ui-datatable-empty-message td {
-  padding-left: 0 !important;
-}
-
 .absences-management-container .substitute-table tbody.ui-datatable-data .substition-role-display-name,
 .substitute-table .task-responsible-link,
 .absences-management-container .substitution-table tbody.ui-datatable-data .substition-role-display-name {
@@ -3270,6 +3266,54 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .ui-button.primary-color-light-button:hover {
   background: hsla(var(--ivy-primary-light-color-h), var(--ivy-primary-light-color-s), 89%, 1); 
   color: var(--ivy-primary-color);
+}
+
+.add-absence-dialog .deputy-selection-scroll-wrapper {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.add-absence-dialog .deputy-type {
+  color: var(--ivy-primary-color);
+  border: 1px solid var(--ivy-primary-color);
+  border-radius: 1rem;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.absence-table .permanent-deputy {
+  color: var(--ivy-primary-color);
+  font-size: 0.5rem;
+}
+
+.absence-table .subsitute-column {
+  vertical-align: top;
+}
+
+.your-deputy, .your-deputy-for {
+  padding-top: 24px;
+}
+
+.deputy-avatar-stack {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+.deputy-avatar-stack .deputy-avatar-stack-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.deputy-avatar-stack .deputy-avatar-stack-item + .deputy-avatar-stack-item {
+  margin-left: -10px;
+}
+
+.deputy-avatar-stack .deputy-avatar-stack-item .ui-avatar,
+.deputy-avatar-stack .deputy-avatar-stack-item img {
+  border: 2px solid var(--surface-0, #fff);
+  box-sizing: content-box;
 }
 
 .add-absence-dialog .ui-dialog-titlebar {

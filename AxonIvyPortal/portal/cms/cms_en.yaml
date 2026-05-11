@@ -17,11 +17,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       overlappingAbsence: The absence is overlapping with another absence.
       userNameRequired: User name must not be empty.
     SelectedSubtitutes: Selected subtitutes
+    Substitutes: Substitutes
     absences: Absences
     addAbsence: Add absence
+    addSubstitute: Add substitute
     deputies: Substitutes
     description: Set up your vacations, illnesses or other external obligations that leads to any absence.
     editAbsence: Edit absence
+    editSubstitute: Edit substitute
     from: From
     noDeputy: No substitute
     noPermissionToSeeThisArea: You do not have the required permission to see this area.
@@ -29,8 +32,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     personalTaskDuringAbsenceDeputies: Substitutes for personally assigned tasks during the absence
     personalTaskPermanentDeputies: Permanent substitutes for personally assigned tasks
     selectDeputies: Select substitutes
+    selectSubstitute: Select substitute
     selectedDeputies: Selected substitutes
+    setAsPermanent: Set as permanent
     showAbsencesInThePast: Display absences in the past
+    substituteName: Substitute name
+    substituteType: Substitute type
     substitutedUser: Substituted user
     taskForRole: 'Task for role: '
     till: Until
@@ -46,11 +53,16 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationAndRole: Application and role
     definedDeputies: Defined substitutes
     deputyFor: I am substitute for
+    duration: Duration
     myAbsences: My absences
     myDeputies: My substitutes
     nextAbsence: Upcoming absence
+    noSubstitutesDefined: No substitutes defined
+    notSubstitutingAnybody: Currently not substituting anybody
+    requestAbsences: Request absences
     selectedDeputyFor: Selected user is substitute for
     selectedUser: Selected user
+    substitutes: Substitutes
   AccessibilityShortcuts:
     processName: Accessibility shortcuts process
   AllTasks:
@@ -224,7 +236,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       EnableSwitchThemeModeButton: Set to true to enable the switch theme button.
       GlobalSearchScopeCategoriesNote: Defining the types that the global search will search for
       GooglePlayURL: Set URL to download Axon Ivy mobile app on Google Play.
-      maximumSelectedTasks: Defines the maximum number of tasks a user can select simultaneously within a task widget for bulk operations. Set this value to a positive integer to enforce a specific limit, or leave it empty to allow unlimited task selection.
       RoleDirectChildrenLimit: 'The set number controls the amount of direct children roles that is shown in Role Management tab. Valid number: 10, 50, 100'
       RoleParentLimit: 'The set number controls the amount of parent roles that is shown when filtering roles in Role Management tab. Valid number: 5, 10, 20'
       SearchScopeCaseFields: Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
@@ -278,8 +289,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideUploadDocumentForDoneCaseNote: Set to true to deny upload (also delete) document after a case is done.
       hideYear: Set to true, year will be hidden, otherwise it will be shown.
       imageUploadSizeLimit: Set the size limit for uploading images in megabytes (MB). The default value is 6MB.
-      sidebarMode: Controls how the sidebar navigation behaves. Hover expands on hover, Click uses a toggle button, Stick keeps it always expanded, Hidden removes the sidebar completely.
       loggedInUserFormat: The option to show logged-in user format
+      maximumSelectedTasks: Defines the maximum number of tasks a user can select simultaneously within a task widget for bulk operations. Set this value to a positive integer to enforce a specific limit, or leave it empty to allow unlimited task selection.
       refreshTaskListIntervalNote: Task list refresh interval in seconds.
       showAvatar: For switch on/off the display of user/role avatars.
       showButtonIcon: For switch on/off the display icons in button.
@@ -290,6 +301,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showQuickGlobalSearch: For switch on/off the display of the quick global search.
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
       showTooltipTechnicalName: Enable to show users' technical name on tooltips.
+      sidebarMode: Controls how the sidebar navigation behaves. Hover expands on hover, Click uses a toggle button, Stick keeps it always expanded, Hidden removes the sidebar completely.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
     key: Key
     link: Link
@@ -450,14 +462,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: Update
     Widget: Widget
     action: Actions
-    actionMenuContext: "Open actions menu for {0} process"
-    taskActionMenuContext: "Open actions menu for {0} task"
+    actionMenuContext: Open actions menu for {0} process
     active: Active
-    collapseWidgetContext: "Collapse {0} widget"
-    expandWidgetContext: "Expand {0} widget"
-    openWidgetFiltersContext: "Open {0} filters"
-    openWidgetFiltersWithCountContext: "Open {0} filters, {1} active filters"
-    openWidgetInfoContext: "Open {0} widget information"
     add: Add
     addContext: Add {0}
     addDocument: Add document
@@ -484,6 +490,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     close: Close
     closeContext: Close {0}
     cockpit: Cockpit
+    collapseWidgetContext: Collapse {0} widget
     colors: Colors
     comment: Comment
     completedOn: Completed on
@@ -499,15 +506,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     dateRequired: Date can not be empty.
     day: Day
     dayUnit: day
-    days: days
+    days: day(s)
     default: Default
     defaultNotificationMessage: Hmm... Looks like something went wrong.
-    delete: Delete
-    deleteContext: Delete {0}
     delegateTasks: Delegate tasks
-    toggleBulkDelegation: Toggle bulk delegation
+    delete: Delete
     deleteAbsenceHeaderText: Delete this absence?
     deleteChartHeaderText: Delete this chart?
+    deleteContext: Delete {0}
     deleteDocumentHeaderText: Delete this document?
     deleteFilterHeaderText: Delete this filter?
     deleteSettingHeaderText: Delete this setting?
@@ -529,6 +535,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: Failed to update website content
     escalationTaskHeaderText: Trigger Escalation
     escalationTaskMessage: Expiry is set to now, thus the task expires. Are you sure?
+    expandWidgetContext: Expand {0} widget
     filter:
       from: from
       moreOptions: More options
@@ -585,9 +592,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     okContext: OK {0}
     'on': 'on'
+    openWidgetFiltersContext: Open {0} filters
+    openWidgetFiltersWithCountContext: Open {0} filters, {1} active filters
+    openWidgetInfoContext: Open {0} widget information
     pin: Pin
-    pinCaseContext: "Pin case {0}"
-    pinTaskContext: "Pin task {0}"
+    pinCaseContext: Pin case {0}
+    pinTaskContext: Pin task {0}
     pleaseAddDocument: Please add a document with the link above.
     pleaseAddNote: Please add a note with the link above.
     previousStage: Previous stage
@@ -610,8 +620,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Restore to default charts?
     role: Role
     save: Save
-    saveContext: Save {0}
     saveAll: Save all
+    saveContext: Save {0}
     saveSuccessfully: Data saved successfully.
     search: Search
     second: second
@@ -635,6 +645,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     state: State
     status: Status
     switchToDesktopVersion: Switch to desktop version
+    taskActionMenuContext: Open actions menu for {0} task
     taskCanceledAndLeftSuccessfully: You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.
     taskFinishedSuccessfully: You have finished the task successfully
     taskFromSubstitution: You see this task because you are the substitute
@@ -644,13 +655,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: The process
     timeInformation: Time Information
     timestamp: Timestamp
+    toggleBulkDelegation: Toggle bulk delegation
     type: Type
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
     unpin: Unpin
-    unpinCaseContext: "Unpin case {0}"
-    unpinTaskContext: "Unpin task {0}"
+    unpinCaseContext: Unpin case {0}
+    unpinTaskContext: Unpin task {0}
     uploadHere: Upload here
     uploadOneHere: Upload one here
     user: '{0} user'
@@ -764,7 +776,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       label: Case Type
     CloneWidget: Clone widget
     CustomWidgets: Custom Widgets
-    dataSettings: Data Settings
     DashboardConfiguration:
       CreateFromScratch: Create from scratch
       CreateFromScratchDescription: Create your own dashboard from scratch
@@ -774,10 +785,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: Dashboard configuration is not supported for mobile devices.
       EditPrivateDashboards: Edit your private dashboards
       EditPublicDashboards: Edit public dashboards
+      ExportDashboard: Export dashboard
       ExportReferencedDialogHeader: Dashboard references other dashboards
       ExportReferencedDialogMessage: 'The following dashboards are referenced by navigation widgets. Export and import them too for the widgets to work correctly:'
       ExportReferencedDialogProceed: Export anyway
-      ExportDashboard: Export dashboard
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
       PublicDashboard: Public dashboards
@@ -787,7 +798,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Select the action
       SomeThingWentWrong: Something went wrong
       Title: Dashboard configuration
-    displaySettings: Display Settings
     DrillDownWidget:
       caseDrillDown: Drill-down case widget for {0}
       taskDrillDown: Drill-down task widget for {0}
@@ -819,14 +829,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Standard Widgets
     StatisticWidget:
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
-      failToRenderChartMessage: Error while rendering chart. Please retry with different settings.
-      firstConfigChartMessage: No chart available yet. Please configure your settings to generate a chart.
       TooltipAverageKpiLabel: Average of {0}
       TooltipMaxKpiLabel: Max of {0}
       TooltipMinKpiLabel: Min of {0}
       TooltipSumKpiLabel: Sum of {0}
       TooltipTotalCaseLabel: 'Total cases: {0}'
       TooltipTotalTaskLabel: 'Total tasks: {0}'
+      failToRenderChartMessage: Error while rendering chart. Please retry with different settings.
+      firstConfigChartMessage: No chart available yet. Please configure your settings to generate a chart.
     WelcomeWidgetIntroduction: This widget displays a welcome text and image on dashboard.
     WelcomeWidgetNotFoundMessage: We cannot find the image of widget, please reconfigure your image!
     WidgetFilterName: Widget filter name
@@ -908,7 +918,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
+    dataSettings: Data Settings
     deleteWidget: Delete widget
+    displaySettings: Display Settings
     downloadZipFileExplanation: If the number of items to export exceeds the limit of Excel rows, data will be split to multiple Excel files, then compressed in a ZIP file to download.
     editWidget: Edit widget
     existingField: The {0} field has already been existing
@@ -1484,11 +1496,11 @@ Dialogs:
             IconSelection:
               IconLinkTooltip: Click to change icon
             MultipleTaskItemsDelegate:
+              DelegateMultipleTaskTitle: |
+                Delegate {0} tasks
               ItemSelected: 1 item selected
               ItemsSelected: '{0} items selected'
               ItemsSelectedWithLimit: '{0} / {1} items selected'
-              DelegateMultipleTaskTitle: |
-                Delegate {0} tasks
               bulkDelegatePerformanceWarning: Delegating multiple tasks may take some time. Please be patient.
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: You cannot work on the task because it was destroyed.
@@ -1578,7 +1590,7 @@ Dialogs:
               FileInfomation: File Infomation
               ImportPrivate: Import Private Dashboard
               ImportPublic: Import Public Dashboard
-              NavigationWidgetMissingTarget: 'Navigation widget "{0}" references a dashboard that was not imported and does not exist in this portal. The widget may not work correctly.'
+              NavigationWidgetMissingTarget: Navigation widget "{0}" references a dashboard that was not imported and does not exist in this portal. The widget may not work correctly.
               chooseAJsonFile: Choose a json file
             DashboardSharing:
               ShareDashboard: Share Dashboard
@@ -1703,6 +1715,13 @@ Enums:
     axonivy:
       portal:
         enums:
+          CaseQueryType:
+            ALL:
+              name: Business Cases + Sub Cases
+            BUSINESS_CASE:
+              name: Business Cases (Default)
+            SUB_CASE:
+              name: Sub Cases
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1772,13 +1791,6 @@ Enums:
                 name: Less than
               LESSOREQUAL:
                 name: Less than or equal to
-          CaseQueryType:
-            ALL:
-              name: Business Cases + Sub Cases
-            BUSINESS_CASE:
-              name: Business Cases (Default)
-            SUB_CASE:
-              name: Sub Cases
 Labels:
   AI:
     Error:
