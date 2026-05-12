@@ -91,7 +91,7 @@
           <p:commandLink id="related-case-link" value="#{history.displayCaseName}"
             ariaLabel="#{history.displayCaseName}"
             rendered="#{not empty history.displayCaseName}"
-            actionListener="#{caseDetailsBean.navigateToCaseDetails(history.uuid)}"
+            actionListener="#{caseDetailsBean.navigateToCaseDetails(history.caseUUID)}"
             disabled="#{history.disabledCaseName}"/>
         </p:column>
 
