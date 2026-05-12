@@ -33,7 +33,7 @@ public class WidgetResponsibleFilterBean implements Serializable {
   public void init(BaseFilter filter) {
     selectedResponsibles = new ArrayList<>();
     if (CollectionUtils.isNotEmpty(filter.getValues())) {
-      selectedResponsibles.addAll(filter.getResponsibles());
+      selectedResponsibles.addAll(filter.findAllUsers());
     }
   }
 

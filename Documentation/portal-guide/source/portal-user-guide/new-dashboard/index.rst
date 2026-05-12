@@ -167,7 +167,7 @@ In the column management dialog, you find two sections to configure the table co
 
     Quick search feature is supporting these fields:
 
-      #. Standard fields: Id, name, description, category, responsible (display name), and application.
+      #. Standard fields: Id, name, description, category, responsible (display name), working user (display name), and application.
       #. Task custom fields: fields that have type ``STRING`` or ``TEXT``.
       #. Case custom fields: fields that have type ``STRING`` or ``TEXT``.
       #. Business case custom fields: fields that have type ``STRING`` or ``TEXT``.

@@ -676,6 +676,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Estamos creando la Exportación, esto puede tardar unos minutos
     warning: Advertencia!
     welcomeToPortal: Bienvenido, por favor inicie su sesión
+    workingUser: Usuario trabajador
     wrongDateFormat: Por favor ingrese una fecha válida.
     year: Año
     years: Años
@@ -1276,7 +1277,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: Esta tarea no tiene manejo lógico de escalado, por lo tanto no se puede establecer el tiempo de expiración.
     technicalCase: Caso técnico
     workflowEventDialog: 'Eventos del Workflow de la tarea #{0}'
-    workingUser: Usuario trabajador
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: La fecha límite de la tarea se ha establecido con éxito.
@@ -1761,7 +1761,7 @@ Enums:
               STATE:
                 name: Estado
               WORKER_NAME:
-                name: Nombre del trabajador
+                name: Usuario trabajador
               WORKING_TIME:
                 name: Tiempo de trabajo
             AggregationInterval:
@@ -1898,6 +1898,7 @@ Labels:
       RESPONSIBLE: Responsable
       START: Inicio
       STATE: Estado
+      WORKER: Usuario trabajador
     FilterOperator:
       AFTER: Es Después
       BEFORE: Es Antes
