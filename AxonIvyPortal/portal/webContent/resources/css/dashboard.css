@@ -514,8 +514,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   }
 }
 
-.task-configuration__responsibles-selection,
-.task-configuration__workers-selection {
+.task-configuration__responsibles-selection {
   min-width: fit-content;
 }
 
