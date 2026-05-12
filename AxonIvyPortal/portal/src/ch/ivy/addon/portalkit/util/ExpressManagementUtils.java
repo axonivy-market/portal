@@ -355,7 +355,7 @@ public class ExpressManagementUtils {
     rootNode.put(VERSION, 2);
     var arrayExpress = rootNode.putArray(EXPRESS_WORKFLOW);
     CollectionUtils.emptyIfNull(selectedExpressProcesses).forEach(express -> {
-      var expressAsJson = BusinessEntityConverter.entityToJsonValue(express);
+      var expressAsJson = BusinessEntityConverter.entityToJsonValueExcludeInternalView(express);
       JsonNode expressNode = null;
       try {
         expressNode = BusinessEntityConverter.getObjectMapper().readTree(expressAsJson);

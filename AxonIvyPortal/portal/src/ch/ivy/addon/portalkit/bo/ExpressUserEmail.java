@@ -6,7 +6,9 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonView;
 
+import ch.ivy.addon.portal.generic.view.PortalJsonView;
 import ch.ivy.addon.portalkit.dto.ExpressAttachment;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -17,6 +19,8 @@ public class ExpressUserEmail implements Serializable {
 	private String responseTo;
 	private String subject;
 	private String content;
+	
+	@JsonView(PortalJsonView.Internal.class)
 	private List<ExpressAttachment> attachments;
 
 	public String getRecipients() {

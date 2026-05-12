@@ -91,7 +91,7 @@
           <p:messages id="document-message" for="attachment-table" closable="true" />
         </div>
         <div class="ui-g-12 u-no-padding-top">
-          <p:dataTable id="attachment-table" value="#{email.attachments}" var="attachment" filteredValue="#{emailBean.filteredAttachments}"
+          <p:dataTable id="attachment-table" value="#{emailBean.filteredAttachments}" var="attachment"
             emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}" styleClass="MarTop5" widgetVar="attachmentTableVar" lazy="false">
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" styleClass="email-attachment-text" >
               <h:outputText value="#{attachment.name}" title="#{attachment.name}"/>
@@ -108,9 +108,9 @@
                 <p:fileDownload value="#{emailBean.file}" />
               </p:commandLink>
               <p:commandLink id="document-delete" styleClass="si si-bin-1 email-attachment"
-                actionListener="#{emailBean.deleteAttachment(attachment)}" immediate="true" update="attachment-table"
+                actionListener="#{emailBean.deleteAttachment(attachment)}" immediate="true" update="@form" process="@this"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" oncomplete="PF('attachmentTableVar').filter();">
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
               </p:commandLink>
             </p:column>
           </p:dataTable>
