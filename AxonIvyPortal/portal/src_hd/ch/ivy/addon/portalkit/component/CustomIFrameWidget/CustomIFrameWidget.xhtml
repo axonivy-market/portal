@@ -15,7 +15,7 @@
   <c:set var="referenceId" value="#{cc.attrs.referenceId}" />
   <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
 
-  <h:panelGroup id="custom-iframe" rendered="#{(widget.type eq 'custom') and (not empty widget.data.url)}"
+  <h:panelGroup id="custom-iframe" rendered="#{(widget.type eq 'custom') and (not empty dashboardCustomWidgetBean.safeUrlOrEmpty(widget.data.url))}"
     styleClass="card custom-widget-card #{cc.attrs.widgetStyleClass} grid-stack-item-content #{managedBean.readOnlyMode ? '' : 'moveable-area'} iframe-widget">
     <ui:fragment rendered="#{not empty widget.data.processPath}">
       <form id="#{cc.clientId}:custom-widget-iframe-data" target="#{cc.clientId}:custom-widget-iframe" action="#{dashboardCustomWidgetBean.safeUrlOrEmpty(widget.data.url)}" method="post">

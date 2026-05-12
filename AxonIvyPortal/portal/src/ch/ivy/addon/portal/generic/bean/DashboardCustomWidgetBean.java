@@ -64,7 +64,8 @@ public class DashboardCustomWidgetBean implements Serializable {
   }
 
   public String safeUrlOrEmpty(String url) {
-    return UrlUtils.isSafeIframeUrl(url) ? url : "";
+    String trimmed = url == null ? null : url.trim();
+    return UrlUtils.isSafeIframeUrl(trimmed) ? trimmed : "";
   }
 
   public void validateUrl(FacesContext context, UIComponent component, Object value) {

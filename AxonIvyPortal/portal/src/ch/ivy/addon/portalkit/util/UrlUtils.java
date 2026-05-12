@@ -6,6 +6,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -63,7 +64,7 @@ public class UrlUtils {
     if (StringUtils.isBlank(url)) {
       return true;
     }
-    String trimmed = url.trim().toLowerCase();
+    String trimmed = url.trim().toLowerCase(Locale.ROOT);
     if (trimmed.startsWith("//")) {
       return false;
     }
