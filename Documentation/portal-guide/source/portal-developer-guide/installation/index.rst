@@ -164,10 +164,6 @@ Please access the :ref:`Dashboard Configuration <dashboard-configuration>` page 
 2. The global variable ``Portal.KeepSidebarExpanded`` has been removed. Use ``Portal.Sidebar.Mode`` instead.
 Set ``Portal.Sidebar.Mode`` to ``STICK`` to achieve the same effect as ``Portal.KeepSidebarExpanded=true``.
 
-3. Custom dashboard widget (External Page) URLs are now restricted to ``http://``, ``https://``, and relative paths starting with ``/``.
-Existing widgets configured with other schemes (e.g. ``javascript:``, ``data:``, ``ftp:``) will render as blank iframes after upgrade.
-Review your persisted ``Portal.Dashboard`` Ivy variable and reconfigure any affected widgets through the dashboard editor.
-
 Migrate 13.1 To 13.2
 --------------------
 
