@@ -854,7 +854,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       STANDARD: 標準の列
     configuration:
       CustomWidgetExternalLinkWarning: 一部のウェブサイトは、セキュリティ上の懸念から iframe と互換性がありません。外部ウェブサイトが正常に動作しない場合は、管理者にお問い合わせください。
-      CustomWidgetUrlInvalidScheme: 'URL は http://、https://、または / で始まる必要があります'
+      CustomWidgetUrlInvalidScheme: 指定された URL は無効です
       CustomWidgetTitlePlaceholder: ウィジェットのヘッダーを非表示にするには、空白のままにしてください
       Parameters: パラメーター
       RestoreDefaultDashboardTemplateTooltip: ダッシュボードのテンプレートが見つからないため、標準設定にリセットできません。詳細については管理者に確認してください。
