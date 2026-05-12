@@ -95,6 +95,7 @@ import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
@@ -961,7 +962,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public List<Dashboard> initCloneableDashboards() {
     List<Dashboard> availableDashboards = new ArrayList<>();
-    availableDashboards.addAll(DashboardUtils.getPublicDashboards());
+    availableDashboards.addAll(DashboardUtils.getVisiblePublicDashboards());
     DashboardUtils
         .addDefaultTaskCaseListDashboardsIfMissing(availableDashboards);
 
@@ -1187,7 +1188,40 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     widget.getColumns().forEach(col -> col.initDefaultStyle());
   }
 
+  private boolean canCloneFromVisibleSource() {
+    if (cloneFromDashboard == null || cloneFromWidget == null) {
+      return false;
+    }
+
+    List<Dashboard> sourceDashboards = CollectionUtils.isNotEmpty(cloneableDashboards)
+        ? cloneableDashboards
+        : initCloneableDashboards();
+
+    return sourceDashboards.stream()
+        .filter(dashboard -> dashboard.getId().equals(cloneFromDashboard.getId()))
+        .findFirst()
+        .map(Dashboard::getWidgets)
+        .map(CollectionUtils::emptyIfNull)
+        .orElseGet(List::of)
+        .stream()
+        .anyMatch(widget -> widget.getId().equals(cloneFromWidget.getId())
+            && widget.getType() == cloneFromWidget.getType());
+  }
+
+  private boolean canWriteCurrentDashboard() {
+    if (selectedDashboard == null) {
+      return false;
+    }
+
+    return Boolean.TRUE.equals(selectedDashboard.getIsPublic()) ? PermissionUtils.hasDashboardWritePublicPermission()
+        : PermissionUtils.hasDashboardWriteOwnPermission();
+  }
+
   public void cloneWidget() {
+    if (!canCloneFromVisibleSource() || !canWriteCurrentDashboard()) {
+      return;
+    }
+
     widget = DashboardCloneUtils.cloneWidget(cloneFromWidget);
 
     if (widget.getType() == CLIENT_STATISTIC) {
