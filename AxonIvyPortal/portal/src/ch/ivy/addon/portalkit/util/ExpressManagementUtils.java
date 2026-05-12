@@ -35,7 +35,6 @@ import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import ch.ivy.addon.portalkit.bo.ExpressFormElement;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;

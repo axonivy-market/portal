@@ -56,6 +56,7 @@ public class BusinessEntityConverter {
     try {
       return getObjectMapper().writerWithView(PortalJsonView.Public.class).writeValueAsString(entity);
     } catch (JsonProcessingException e) {
+      Ivy.log().error("Can't write json value", e);
       throw new PortalException(e);
     }
   }
