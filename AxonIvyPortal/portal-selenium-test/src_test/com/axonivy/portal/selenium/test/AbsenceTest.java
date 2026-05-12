@@ -150,9 +150,9 @@ public class AbsenceTest extends BaseTest {
     NewAbsencePage editAbsencePage = adminAbsencePage.openEditAbsenceDialog(0);
     editAbsencePage.updateDates(YESTERDAY, YESTERDAY);
     editAbsencePage.proceed();
-    absencePage.waitForAbsencesGrowlMessageHide();
-    assertTrue(absencePage.isEmptyMessageAvailable());
-    absencePage.showAbsencesInThePast(true);
+    adminAbsencePage.waitForAbsencesGrowlMessageHide();
+    assertTrue(adminAbsencePage.isEmptyMessageAvailable());
+    adminAbsencePage.showAbsencesInThePast(true);
     assertEquals(1, adminAbsencePage.getAbsenceRowCount());
   }
 
