@@ -71,7 +71,7 @@
           </h:panelGroup>
         </ui:fragment>
 
-        <ui:fragment rendered="#{empty widget.data.processPath}">
+        <ui:fragment rendered="#{empty widget.data.processPath and not empty dashboardCustomWidgetBean.safeUrlOrEmpty(widget.data.url)}">
           <iframe name="custom-widget-iframe-#{index}" src="#{dashboardCustomWidgetBean.safeUrlOrEmpty(widget.data.url)}"
             id="id-custom-widget-iframe-#{index}"
             class="dashboard-custom-iframe hidden"

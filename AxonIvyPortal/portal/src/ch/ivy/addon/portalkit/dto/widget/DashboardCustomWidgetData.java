@@ -36,7 +36,8 @@ public class DashboardCustomWidgetData implements Serializable {
   }
 
   public void setUrl(String url) {
-    this.url = UrlUtils.isSafeIframeUrl(url) ? url : "";
+    String trimmed = url == null ? null : url.trim();
+    this.url = UrlUtils.isSafeIframeUrl(trimmed) ? trimmed : "";
   }
 
   public String getProcessPath() {
