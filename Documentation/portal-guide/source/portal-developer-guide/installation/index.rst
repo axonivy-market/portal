@@ -154,20 +154,17 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
-Migrate To 12.0.16
-------------------
-
-1. The ``callbackUrl`` parameter accepted by ``DefaultLoginPage.ivp`` is now validated before use as a
-post-login redirect target. Only same-origin and relative URLs are permitted. External URLs are silently
-rejected and will redirect to the Portal home page instead.
-If your application previously relied on redirecting users to an external URL after login via ``callbackUrl``,
-you must implement a custom login page or a separate redirect mechanism to replicate that behavior.
-
 Migrate To 12.0.15
 ------------------
 
 1. The global variable ``Portal.KeepSidebarExpanded`` is deprecated and will be removed in a future version.
 Use ``Portal.Sidebar.Mode`` instead.
+
+2. The ``callbackUrl`` parameter accepted by ``DefaultLoginPage.ivp`` is now validated before use as a
+post-login redirect target. Only same-origin and relative URLs are permitted. External URLs are silently
+rejected and will redirect to the Portal home page instead.
+If your application previously relied on redirecting users to an external URL after login via ``callbackUrl``,
+you must implement a custom login page or a separate redirect mechanism to replicate that behavior.
 
 Migrate 11.3.2 To 12.0.0
 ------------------------
@@ -512,7 +509,7 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of Axon Ivy.
 
-Changes in 12.0.16
+Changes in 12.0.15
 ------------------
 
 - Fixed an open redirect vulnerability in the Portal login flow. The ``callbackUrl`` parameter passed to ``DefaultLoginPage.ivp`` is now validated before use as the post-login redirect target. Only same-origin and relative URLs are accepted; invalid or external URLs fall back to the Portal home page.
