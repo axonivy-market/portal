@@ -245,7 +245,7 @@ public class AbsenceTest extends BaseTest {
     grantAdminAbsencePermissions();
     AbsencePage adminAbsencePage = openAbsencePage();
     adminAbsencePage.openSubstitutesTab();
-    adminAbsencePage.setSubstituteUserByAdmin(TestAccount.DEMO_USER.getFullName());
+    adminAbsencePage.setSelectedUserInSubstitutesTab(TestAccount.DEMO_USER.getFullName());
     adminAbsencePage.waitForSubstituteRowCountToChange(1);
     assertEquals(TestAccount.DEMO_USER.getFullName(), adminAbsencePage.getSelectedSubstituteUser());
     adminAbsencePage.openAbsencesTab();

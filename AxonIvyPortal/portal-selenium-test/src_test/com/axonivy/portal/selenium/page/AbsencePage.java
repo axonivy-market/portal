@@ -135,12 +135,6 @@ public class AbsencePage extends TemplatePage {
     }
   }
 
-  public SelenideElement getMyDeputy(int deputyRoleIndex) {
-    String deputiesSelector = String
-        .format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
-    return $(deputiesSelector).shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
   public String getMyDisabledDeputy(int deputyRoleIndex) {
     String deputiesSelector = String
         .format(
@@ -265,7 +259,7 @@ public class AbsencePage extends TemplatePage {
     rows.first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
-  public void setSubstituteUserByAdmin(String substitutedUser) {
+  public void setSelectedUserInSubstitutesTab(String substitutedUser) {
     String selectedUserInput = "input[id$='user-absence-substitutes_input']";
     SelenideElement substituted = $(selectedUserInput).shouldBe(appear, DEFAULT_TIMEOUT);
     substituted.clear();
