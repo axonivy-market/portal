@@ -32,16 +32,15 @@ public class DisabledUserTest extends BaseTest {
   public void testAbsenceWithDisabledUser() {
     redirectToRelativeLink(cleanUpAbsencesAndSubstituesLink);
     AbsencePage absencePage = new NewDashboardPage().openAbsencePage();
-    absencePage.setSubstitutedByAdmin(VISIBILITY_USER_FULL_NAME);
+    absencePage.setSelectedUser(VISIBILITY_USER_FULL_NAME);
     absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName()), 0);
-    absencePage.saveSubstitute();
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     absencePage = new NewDashboardPage().openAbsencePage();
-    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+    absencePage.setSelectedUser(TestAccount.DEMO_USER.getFullName());
     assertEquals(DISABLED_VISIBILITY_USER_BRIEF_DISPLAY_NAME, absencePage.getSubstitutedByAdmin(0));
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     absencePage = new NewDashboardPage().openAbsencePage();
-    absencePage.setSubstitutedByAdmin(VISIBILITY_USER_FULL_NAME);
+    absencePage.setSelectedUser(VISIBILITY_USER_FULL_NAME);
     absencePage.getMyDeputy(0).shouldBe(Condition.text(TestAccount.DEMO_USER.getFullName()), DEFAULT_TIMEOUT);
   }
 }

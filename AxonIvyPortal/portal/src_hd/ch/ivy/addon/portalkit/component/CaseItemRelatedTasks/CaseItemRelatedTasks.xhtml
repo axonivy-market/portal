@@ -21,7 +21,7 @@
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
     <div class="case-detail-section-title case-details-related-task-header-section ui-g-12">
       <div class="ui-g-6 u-truncate-text u-padding-0 task-details-panel-title" role="heading" aria-level="1">
-        <i class="si si-task-list-edit" />
+        <i class="ti ti-checklist" />
         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')}
       </div>
       <h:panelGroup layout="block" styleClass="ui-g-6 related-task-section-header-actions" id="related-task-actions">
@@ -38,7 +38,7 @@
           <p:commandLink ajax="false" id="related-task-export-to-excel" 
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
             onclick="PrimeFaces.monitorDownload(startRelatedTaskExportToExcel, stopRelatedTaskExportToExcel);">
-            <i class="si si-office-file-xls-1 u-mar-right-5" />
+            <i class="ti ti-file-type-xls u-mar-right-5" />
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
             <p:fileDownload value="#{logic.getExportedFile(caseWidgetBean.getRelatedTaskColumns(data.dataModel))}" />
           </p:commandLink>
@@ -157,7 +157,7 @@
     <ui:param name="id" value="reset-task-dialog" />
     <ui:param name="widgetVar" value="reset-task-dialog" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconClass" value="ti ti-alert-triangle" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetTaskHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
@@ -170,7 +170,7 @@
         <p:commandButton actionListener="#{logic.resetAndOpenTask(data.currentPortalPage, taskWidgetBean.selectedTaskItemId)}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}"
+          icon="#{visibilityBean.generateButtonIcon('ti ti-arrow-back-up')}"
           onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
       </h:form>
     </ui:define>
@@ -180,7 +180,7 @@
     <ui:param name="id" value="reset-task-confirmation-dialog" />
     <ui:param name="widgetVar" value="reset-task-confirmation-dialog" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconClass" value="ti ti-alert-triangle" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetTaskHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
@@ -193,7 +193,7 @@
         <p:commandButton actionListener="#{logic.resetAndOpenTask(data.currentPortalPage, caseDetailsBean.selectedTask.id)}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}"
+          icon="#{visibilityBean.generateButtonIcon('ti ti-arrow-back-up')}"
           onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
       </h:form>
     </ui:define>
@@ -203,7 +203,7 @@
     <ui:param name="id" value="destroy-task-confirmation-dialog" />
     <ui:param name="widgetVar" value="destroy-task-dialog" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-delete-1" />
+    <ui:param name="iconClass" value="ti ti-trash" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyTaskHeaderText')}" />
     <ui:param name="dialogContent" value="#{taskWidgetBean.getDestroyTaskMessage()}" />
@@ -226,7 +226,7 @@
     <ui:param name="id" value="escalation-task-confirmation-dialog" />
     <ui:param name="widgetVar" value="escalation-task-dialog" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconClass" value="ti ti-alert-triangle" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/escalationTaskHeaderText')}" />
     <ui:param name="dialogContent"
@@ -238,7 +238,7 @@
         onclick="PF('escalation-task-dialog').hide();" styleClass="u-mar-right-15" />
       <p:commandButton id="confirm-escalation" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-        icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+        icon="#{visibilityBean.generateButtonIcon('ti ti-check')}"
         actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
         oncomplete="PF('escalation-task-dialog').hide()" update="#{cc.clientId}:related-tasks #{cc.attrs.componentToUpdateTrigger}" process="@this" />
     </ui:define>

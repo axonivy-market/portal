@@ -28,12 +28,11 @@ public class HtmlUtils {
       return "";
     }
 
-    final String ICON_REGEX = "^(fa|si)\\s+(fa|si)-[a-zA-Z0-9\\-]+$";
+    final String ICON_REGEX = "^(fa|si|ti|tif)\\s+(fa|si|ti|tif)-[a-zA-Z0-9\\-]+$";
 
     // Trim spaces
     String sanitizedIcon = input.trim();
 
-    // Ensure only valid Font Awesome / Streamline classes are allowed
     if (!sanitizedIcon.matches(ICON_REGEX)) {
       return ""; // Default fallback to a harmless icon
     }

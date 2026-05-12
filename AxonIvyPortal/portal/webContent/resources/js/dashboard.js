@@ -146,7 +146,7 @@ function handleFilterCategoryHeight(e) {
     var categoryInfo = filterTab.find(".js-category-filter-info");
     if (categoryInfo.length > 0 && categoryInfo.get(0).offsetHeight > 160) {
       $(categoryInfo).toggleClass("minimize-content");
-      filterTab.find(".js-category-toggle").toggleClass("si-add-circle").toggleClass("si-subtract-circle");
+      filterTab.find(".js-category-toggle").toggleClass("ti-circle-plus").toggleClass("ti-circle-minus");
     }
   }
 }
@@ -155,7 +155,7 @@ function toggleCategoryInfo(e) {
   var categoryToggle = $(e);
   var categoryInfo = categoryToggle.parent().find(".js-category-filter-info");
   categoryInfo.toggleClass("minimize-content");
-  categoryToggle.toggleClass("si-add-circle").toggleClass("si-subtract-circle");
+  categoryToggle.toggleClass("ti-circle-plus").toggleClass("ti-circle-minus");
 }
 
 function disabledResetDashboardActions() {

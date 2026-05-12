@@ -27,19 +27,19 @@
       </p:commandLink>
       
       <h:panelGroup layout="block" styleClass="new-widget-dialog__item-menu-wrapper absolute top-0 right-0 mt-2 mr-2 z-5" rendered="#{widget.isCustom and dashboardDetailModificationBean.canEditStatistic()}">
-        <p:commandButton id="custom-statistic-action-button" icon="si si-navigation-menu-horizontal-filled"
+        <p:commandButton id="custom-statistic-action-button" icon="ti ti-dots"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
           styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page"
           type="button"
           onkeydown="if(event.keyCode === 13 || event.keyCode === 32) { event.preventDefault(); this.click(); return false; }" />
         <p:menu id="custom-statistic-action-menu" styleClass="w-auto" overlay="true"
           trigger="custom-statistic-action-button" my="right top" at="right bottom">
-          <p:menuitem id="edit" process="@this" icon="si si-graphic-tablet-drawing-pen"
+          <p:menuitem id="edit" process="@this" icon="ti ti-pencil"
             actionListener="#{dashboardDetailModificationBean.navigateToCustomStatisticWidgetPage(widget.id)}"
             global="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
             target="_blank" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" />
           <p:menuitem id="delete-dashboard" process="@this"
-            styleClass="rounded-button ui-button-outlined ui-button-danger color-destroy" icon="si si-bin-1"
+            styleClass="rounded-button ui-button-outlined ui-button-danger color-destroy" icon="ti ti-trash"
             global="false"
             actionListener="#{dashboardDetailModificationBean.onSelectedDeleteStatistic(widget)}"
             title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"

@@ -16,16 +16,16 @@ sizeLimit,null,Long,Maximum size of an individual file in bytes.
 uploadText,Upload,String,Label text displayed on the upload button.
 updatedComponentAfterUploaded,null,String,"Space-separated clientIds (or EL expressions) of components to update after a successful upload. Example: 'document-table document-messages'."
 previewTitle,Preview,String,Tooltip text displayed when hovering over the preview icon.
-previewIcon,fa-eye,String,Icon class for the preview link.
+previewIcon,ti-eye,String,Icon class for the preview link.
 previewStyleClass,null,String,Custom CSS style class to apply to the preview link.
 previewDialogStyleClass,null,String,Custom CSS style class to apply to the preview dialog.
 previewPDFStyleClass,null,String,Custom CSS style class to apply to PDF preview media element.
 previewImageStyleClass,null,String,Custom CSS style class to apply to image preview element.
 downloadTitle,Download,String,Tooltip text displayed when hovering over the download icon.
-downloadIcon,fa-download,String,Icon class will be displayed in download link.
+downloadIcon,ti-download,String,Icon class will be displayed in download link.
 downloadStyleClass,null,String,Styles for download link.
 deleteTitle,Delete,String,Tooltip text displayed when hovering over the delete icon.
-deleteIcon,fa-trash-o,String,Icon class will be displayed in delete link.
+deleteIcon,ti-trash,String,Icon class will be displayed in delete link.
 deleteStyleClass,null,String,Custom CSS style class to apply to the download link.
 updatedComponentAfterDeleted,null,String,"Space-separated clientIds (or EL expressions) of components to update after a successful deletion. Example: 'document-table document-messages'."
 renameText,Rename document,String,Tooltip text displayed when hovering over the rename icon.

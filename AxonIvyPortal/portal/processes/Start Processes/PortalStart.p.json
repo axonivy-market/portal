@@ -983,7 +983,7 @@
         "request" : {
           "name" : "<%=ivy.cms.co(\"/Processes/portalHome\")%>",
           "customFields" : [
-            { "name" : "cssIcon", "value" : "si si-layout-dashboard" },
+            { "name" : "cssIcon", "value" : "ti ti-layout-dashboard" },
             { "name" : "embedInFrame", "value" : "false" }
           ]
         },

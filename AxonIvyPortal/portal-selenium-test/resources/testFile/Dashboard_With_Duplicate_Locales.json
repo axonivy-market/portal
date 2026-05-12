@@ -25,7 +25,7 @@
         "value": "Duplicate German Entry"
       }
     ],
-    "icon": "fa-warning",
+    "icon": "ti-alert-triangle",
     "widgets": [
       {
         "type": "task",

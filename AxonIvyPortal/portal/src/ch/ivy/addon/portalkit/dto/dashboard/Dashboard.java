@@ -102,7 +102,14 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     if (StringUtils.isBlank(this.icon)) {
       return StringUtils.EMPTY;
     }
-    return (this.icon.startsWith("fa") ? "fa " : "si ") + this.icon;
+    if (this.icon.startsWith("fa")) {
+      return "fa " + this.icon;
+    } else if (this.icon.startsWith("tif")) {
+      return "tif " + this.icon;
+    } else if (this.icon.startsWith("si")) {
+      return "si " + this.icon;
+    }
+    return "ti " + this.icon;
   }
 
   public String getDescription() {

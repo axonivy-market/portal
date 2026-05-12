@@ -36,7 +36,7 @@ public class DashboardNavigationWidgetTest extends BaseTest{
   public void testNavigateToAnotherDashboardUsingWidget() {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     String name = "New public dashboard";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "New public dashboard description";
     List<String> permissions = Arrays.asList("Everybody");
     configurationPage.openCreatePublicDashboardMenu();
@@ -64,7 +64,7 @@ public class DashboardNavigationWidgetTest extends BaseTest{
     modificationPage.saveEditDashboard();
     
     String name = "New public dashboard";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "New public dashboard description";
     List<String> permissions = Arrays.asList("Everybody");
     configurationPage.openCreatePublicDashboardMenu();

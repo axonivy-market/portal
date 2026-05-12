@@ -155,7 +155,7 @@
             styleClass="task-expiry-activator-edit"
             href="#"
             onclick="#{cc.attrs.onEditTaskExpiryActivator}; return false;">
-            <i class="si si-graphic-tablet-drawing-pen icon-compact-mode" />
+            <i class="ti ti-pencil icon-compact-mode" />
           </p:link>
         </div>
       </h:panelGroup>
@@ -195,7 +195,7 @@
               <f:facet name="output">
                 <h:outputText value="#{formattingNullWrapperBean.format(task.getDelayTimestamp())}"/>
                 <i jsf:rendered="#{taskActionBean.canChangeDelayTimestamp(task)}"
-                  class="si si-graphic-tablet-drawing-pen" />
+                  class="ti ti-pencil" />
               </f:facet>
 
               <p:ajax event="save" listener="#{logic.updateDelayTimestamp(task)}"
@@ -226,7 +226,7 @@
                 disabled="#{cc.attrs.readOnly}" rendered="#{taskActionBean.canChangeExpiry(task)}">
                 <f:facet name="output">
                   <h:outputText value="#{formattingNullWrapperBean.format(task.expiryTimestamp)}"/>
-                  <i jsf:rendered="#{!cc.attrs.readOnly}" class="si si-graphic-tablet-drawing-pen" />
+                  <i jsf:rendered="#{!cc.attrs.readOnly}" class="ti ti-pencil" />
                 </f:facet>
 
                 <p:ajax event="save" listener="#{logic.updateExpiryTime(task)}"
@@ -277,7 +277,7 @@
         <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 text-ellipsis">
           <h:outputText id="duration-time" value="#{taskActionBean.getDurationOfTask(task)}" />
           <h:panelGroup id="duration-time-info">
-            <i class="si si-information-circle" />
+            <i class="ti ti-info-circle" />
           </h:panelGroup>
         </div>
       </h:panelGroup>

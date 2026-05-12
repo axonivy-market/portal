@@ -65,7 +65,7 @@
               </ui:include>
               <f:facet name="loader">
                 <h:panelGroup layout="block" styleClass="text-center" rendered="#{isReadOnlyMode}">
-                  <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." icon="si si-button-refresh-arrows"
+                  <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." icon="ti ti-refresh"
                     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
                     styleClass="rounded-button ui-button-outlined"
                     onclick="setupNewsWidgetContent('#{htmlSanitizerBean.escapeForJS(widget.id)}', true)" />
@@ -74,7 +74,7 @@
             </p:dataScroller>
             <h:panelGroup layout="block" id="empty-message" rendered="#{empty widget.newsList}"
               styleClass="empty-message-container">
-              <i class="si si-advertising-megaphone-2 empty-message-icon" />
+              <i class="ti ti-speakerphone empty-message-icon" />
               <br />
               <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NoNewsAvailable')}" styleClass="empty-message-text" />
             </h:panelGroup>

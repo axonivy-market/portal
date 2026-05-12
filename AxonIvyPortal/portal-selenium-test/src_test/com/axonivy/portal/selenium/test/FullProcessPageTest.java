@@ -75,7 +75,7 @@ public class FullProcessPageTest extends BaseTest {
     processWidgetPage.changeProcessIcon();
     processWidgetPage.addNewRolePermission(TestRole.HR_ROLE);
     processWidgetPage.saveEditProcessDialog();
-    $("i.fa-adjust").shouldBe(exist);
+    $("i[class*='ti-']").shouldBe(exist);
     processWidgetPage = NavigationHelper.navigateToProcessList();
     
     processWidgetPage.selectGridMode();

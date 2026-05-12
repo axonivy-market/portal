@@ -42,7 +42,7 @@ jobs:
           server-password: MAVEN_PASSWORD
 
       - name: Set up Maven
-        uses: stCarolas/setup-maven@v5
+        uses: stCarolas/setup-maven@v5.1
         with:
           maven-version: 3.9.8
 
@@ -71,7 +71,7 @@ jobs:
 
       - name: Download screenshot artifacts from head branch
         id: get_screenshots_head_branch
-        uses: dawidd6/action-download-artifact@v11
+        uses: dawidd6/action-download-artifact@v21
         continue-on-error: true
         with:
           workflow: portal-document-screenshot-test.yml
@@ -81,7 +81,7 @@ jobs:
 
       - name: Download artifacts from screenshot workflow
         if: steps.get_screenshots_head_branch.outcome != 'success' && github.ref_name != 'master'
-        uses: dawidd6/action-download-artifact@v11
+        uses: dawidd6/action-download-artifact@v21
         with:
           workflow: portal-document-screenshot-test.yml
           name: screenshots

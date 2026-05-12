@@ -193,14 +193,14 @@ public class MainMenuPage extends TemplatePage {
   public void isSidebarClickModeCollapsed() {
     $(".js-layout-wrapper.sidebar-click-mode").should(Condition.exist, DEFAULT_TIMEOUT);
     $(".js-sidebar-toggle-btn").shouldHave(Condition.attribute("aria-expanded", "false"), DEFAULT_TIMEOUT);
-    $(".js-sidebar-toggle-icon").shouldHave(Condition.cssClass("si-navigation-right-circle-1"), DEFAULT_TIMEOUT);
+    $(".js-sidebar-toggle-icon").shouldHave(Condition.cssClass("ti-layout-sidebar-left-collapse"), DEFAULT_TIMEOUT);
     $(".js-layout-wrapper").shouldNotHave(Condition.cssClass("layout-static"));
   }
 
   public void isSidebarClickModeExpanded() {
     $(".js-layout-wrapper.sidebar-click-mode").should(Condition.exist, DEFAULT_TIMEOUT);
     $(".js-sidebar-toggle-btn").shouldHave(Condition.attribute("aria-expanded", "true"), DEFAULT_TIMEOUT);
-    $(".js-sidebar-toggle-icon").shouldHave(Condition.cssClass("si-navigation-left-circle-1"), DEFAULT_TIMEOUT);
+    $(".js-sidebar-toggle-icon").shouldHave(Condition.cssClass("ti-layout-sidebar-left-expand"), DEFAULT_TIMEOUT);
     $(".js-layout-wrapper").shouldHave(Condition.cssClass("layout-static"));
   }
 
