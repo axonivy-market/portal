@@ -508,9 +508,6 @@ Changes in 12.0.11
 
 - Enhanced the document preview feature for the task and case detail. If you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context, you can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
 - Enhanced the **Document Table** component by adding the lazy loading functionality to the Document Table component, enabling efficient data loading through pagination.
-- Custom dashboard widget (External Page) URLs are now restricted to ``http://``, ``https://``, and relative paths starting with ``/``.
-  Existing widgets configured with other schemes (e.g. ``javascript:``, ``data:``, ``ftp:``) will render as blank iframes after upgrade.
-  Review your persisted ``Portal.Dashboard`` Ivy variable and reconfigure any affected widgets through the dashboard editor.
 
 Changes in 12.0.9
 -----------------
