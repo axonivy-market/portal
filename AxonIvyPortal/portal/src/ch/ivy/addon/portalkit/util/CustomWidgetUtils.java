@@ -6,7 +6,6 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -34,9 +33,6 @@ public class CustomWidgetUtils {
   public static final String CUSTOM_FIELD_PREFIX = "customFields";
   public static final String USER_PREFIX = "user";
   public static final String PROPERTY_PREFIX = "property";
-
-  public static List<IWebStartable> allPortalProcesses;
-  public static List<IWebStartable> allCustomDashboardProcesses;
 
   public static String getPropertyByKeyPattern(Long referenceId , String keyPattern) {
     String propertyValue = keyPattern;
@@ -180,13 +176,6 @@ public class CustomWidgetUtils {
         customWidget.setErrorIcon("si si-alert-circle");
         return;
       } 
-      boolean isViewerAllowed = Ivy.session().getAllStartables().anyMatch(item-> item.getId().equals(startable.getId()));
-      if (!isViewerAllowed) {
-        customWidget.getData().setStartRequestPath(EMPTY);
-        customWidget.setErrorIcon("si si-lock-1");
-        customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/NoPermissionToView"));
-        return;
-      }
       customWidget.getData().setStartableProcessStart(startable);
       customWidget.loadParameters();
       customWidget.getData().setStartRequestPath(startable.getLink().getRelative());
@@ -206,7 +195,7 @@ public class CustomWidgetUtils {
     }
   }
 
-  public static IWebStartable findWebStartableByProcessPath(String processPath) {
+  private static IWebStartable findWebStartableByProcessPath(String processPath) {
     // Find IWebStartable by ProcessID first
     // If not found, try to find by IWebStartable by friendly request path then find IWebStartable by link
     IWebStartable webStartable = getAllPortalProcesses().stream()
@@ -222,12 +211,14 @@ public class CustomWidgetUtils {
   }
 
   public static IWebStartable findStartableOfCustomDashboardProcess(String processPath) {
-    IWebStartable startable = getAllCustomDashboardProcesses().stream()
+    List<IWebStartable> allCustomDashboardProcesses = getAllCustomDashboardProcesses();
+     
+    IWebStartable startable = allCustomDashboardProcesses.stream()
         .filter(proccess -> processPath.endsWith(proccess.getId()))
         .findAny().orElse(null);
     if (isNull(startable)) {
       String processStartLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(processPath);
-      startable = getAllCustomDashboardProcesses().stream()
+      startable = allCustomDashboardProcesses.stream()
           .filter(proccess -> proccess.getLink().getRelative().equals(processStartLink))
           .findAny().orElse(null);
     }
@@ -235,16 +226,10 @@ public class CustomWidgetUtils {
   }
   
   private static List<IWebStartable> getAllPortalProcesses() {
-    if (CollectionUtils.isEmpty(allPortalProcesses)) {
-      allPortalProcesses = ProcessService.getInstance().findProcesses();
-    }
-    return allPortalProcesses;
+    return ProcessService.getInstance().findProcesses();
   }
 
   public static List<IWebStartable> getAllCustomDashboardProcesses() {
-    if (CollectionUtils.isEmpty(allCustomDashboardProcesses)) {
-      allCustomDashboardProcesses = ProcessService.getInstance().findCustomDashboardProcesses();
-    }
-    return allCustomDashboardProcesses;
+    return ProcessService.getInstance().findCustomDashboardProcesses();
   }
 }
