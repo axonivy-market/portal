@@ -60,6 +60,4 @@ public enum FilterOperator {
   public static final Set<FilterOperator> CATEGORY_OPERATORS = Collections.unmodifiableSet(EnumSet.of(IN, NOT_IN, CONTAINS, NOT_CONTAINS, NO_CATEGORY));
   public static final Set<FilterOperator> APPLICATION_OPERATORS = Collections.unmodifiableSet(EnumSet.of(IN));
   public static final Set<FilterOperator> ID_OPERATORS = Collections.unmodifiableSet(EnumSet.of(CONTAINS));
-  public static final Set<FilterOperator> WORKER_OPERATORS = Collections.unmodifiableSet(EnumSet.of(IN, NOT_IN, CURRENT_USER));
-
 }

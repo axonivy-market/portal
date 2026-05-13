@@ -174,26 +174,6 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
   }
   
   @Test
-  public void testFilterWorker() {
-    LinkNavigator.redirectToPortalDashboardConfiguration();
-    var configurationPage = new DashboardConfigurationPage();
-    var modificationPage = configurationPage.openEditPublicDashboardsPage();
-    newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    
-    newDashboardDetailsEditPage.addWidget();
-    TaskEditWidgetNewDashBoardPage taskWidget = newDashboardDetailsEditPage.addNewTaskWidget();
-    taskWidget.waitPreviewTableLoaded();
-    
-    taskWidget.openFilter();
-    taskWidget.addFilter("Working user", FilterOperator.CURRENT_USER);
-    taskWidget.addFilter("Working user", FilterOperator.IN);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.WORKER_TYPE, "admin");
-    taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
-  }
-
-  
-  @Test
   public void testDefaultSortOnTaskWidget() {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();

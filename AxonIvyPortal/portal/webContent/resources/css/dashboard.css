@@ -331,7 +331,6 @@ td.dashboard-cases__name span {
 
 td.dashboard-tasks__description span,
 td.dashboard-tasks__name span,
-td.dashboard-tasks__worker span,
 td.dashboard-cases__description span,
 td.dashboard-cases__name span,
 td.dashboard-widget-column__custom span,
@@ -2074,7 +2073,6 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
 .state-filter-operator-panel,
 .priority-filter-operator-panel,
 .responsible-filter-operator-panel,
-.worker-filter-operator-panel,
 .id-filter-operator-panel {
   min-width: 130px;
 }

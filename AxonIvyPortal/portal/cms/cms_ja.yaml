@@ -663,7 +663,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: エクスポートの準備中、数分かかる場合があります
     warning: 警告
     welcomeToPortal: ようこそ、ログインしてください
-    workingUser: 作業中ユーザー
     wrongDateFormat: 有効な日付を入力してください。
     year: 年
     years: 年
@@ -1240,6 +1239,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: このタスクにはエスカレーション処理ロジックが含まれていないため、有効期限を設定できません。
     technicalCase: テクニカルケース
     workflowEventDialog: 'タスク #{0} のワークフローイベント'
+    workingUser: 作業中ユーザー
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: タスクの期限の設定に成功しました。
@@ -1687,7 +1687,6 @@ Labels:
       RESPONSIBLE: 責任者
       START: 開始
       STATE: 状態
-      WORKER: 作業中ユーザー
     FilterOperator:
       AFTER: 指定の値の後にある
       BEFORE: 指定の値の前にある
