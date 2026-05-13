@@ -8,6 +8,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import org.openqa.selenium.WebElement;
+import java.util.List;
+
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -399,5 +401,16 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
         .shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public List<String> getCloneTargetDashboardNames() {
+    $("[id$='clone-widget-component:clone-widget-form:clone-dashboard']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    return $("[id$='clone-widget-component:clone-widget-form:clone-dashboard_items']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("li").asFixedIterable().stream()
+        .map(SelenideElement::getText)
+        .filter(name -> !name.isBlank())
+        .toList();
   }
 }

@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -108,5 +109,29 @@ public class DashboardCloneWidgetTest extends BaseTest {
         "Tasks Due Today", true);
 
     assertTrue(detailsEditPage.hasWidgetWithName("Tasks Due Today"));
+  }
+
+  @Test
+  public void cloneWidgetTargetsShouldRespectWritePermission() {
+    DashboardConfigurationPage configurationPage = newDashboardPage
+        .openDashboardConfigurationPage();
+
+    redirectToRelativeLink(denyDashboardWritePublicPermissionUrl);
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
+
+    configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    configurationPage.openCreatePrivateDashboardMenu();
+    configurationPage.createPrivateDashboardFromTemplate(
+      "Private clone target dashboard", "fa-coffee",
+        "private dashboard for clone target test", 1);
+
+    NewDashboardDetailsEditPage detailsEditPage = new NewDashboardDetailsEditPage();
+    detailsEditPage.openCloneWidgetDialog(0);
+
+    List<String> cloneTargetDashboardNames = detailsEditPage
+        .getCloneTargetDashboardNames();
+    assertTrue(cloneTargetDashboardNames.contains("Private clone target dashboard"));
+    assertFalse(cloneTargetDashboardNames.contains("Dashboard"));
   }
 }

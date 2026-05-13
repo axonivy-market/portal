@@ -23,7 +23,9 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.widget.DashboardCustomWidgetData;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.service.DashboardService;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -52,6 +54,12 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
       return;
     }
 
+    targetDashboard = validateTargetDashboard();
+
+    if (targetDashboard == null) {
+      return;
+    }
+
     if (targetDashboard.getWidgets() == null) {
       targetDashboard.setWidgets(new ArrayList<>());
     }
@@ -62,10 +70,42 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
     targetDashboard = null;
   }
 
+  private Dashboard validateTargetDashboard() {
+    if (CollectionUtils.isEmpty(availableDashboards)) {
+      availableDashboards = initCloneableDashboards();
+    }
+
+    return availableDashboards.stream()
+        .filter(dashboard -> StringUtils.equals(dashboard.getId(), targetDashboard.getId()))
+        .findFirst()
+        .orElse(null);
+  }
+
   public List<Dashboard> getAvailableDashboards() {
     if (CollectionUtils.isEmpty(availableDashboards)) {
       availableDashboards = initCloneableDashboards();
     }
+    return availableDashboards;
+  }
+
+  @Override
+  public List<Dashboard> initCloneableDashboards() {
+    List<Dashboard> availableDashboards = new ArrayList<>();
+
+    if (PermissionUtils.hasDashboardWritePublicPermission()) {
+      availableDashboards.addAll(DashboardUtils.getPublicDashboards());
+      DashboardUtils.addDefaultTaskCaseListDashboardsIfMissing(availableDashboards);
+    }
+
+    if (PermissionUtils.hasDashboardWriteOwnPermission()) {
+      String dashboardInUserProperty = readDashboardBySessionUser();
+      if (StringUtils.isNotBlank(dashboardInUserProperty)) {
+        List<Dashboard> myDashboards = DashboardUtils
+            .getVisibleDashboards(dashboardInUserProperty);
+        availableDashboards.addAll(myDashboards);
+      }
+    }
+
     return availableDashboards;
   }
 
