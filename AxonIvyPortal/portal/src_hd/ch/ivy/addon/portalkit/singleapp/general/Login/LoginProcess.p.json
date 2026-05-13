@@ -143,8 +143,34 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
             "import ch.ivy.addon.portalkit.util.RequestUtils;",
-            "RequestUtils.redirect(in.callbackUrl);"
+            "import org.apache.commons.lang3.StringUtils;",
+            "import javax.faces.context.ExternalContext;",
+            "import javax.faces.context.FacesContext;",
+            "import javax.servlet.http.HttpServletRequest;",
+            "import java.net.URLDecoder;",
+            "",
+            "HttpServletRequest request = null;",
+            "ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();",
+            "if (context != null){",
+            "  request = context.getRequest() as HttpServletRequest;",
+            "}",
+            "",
+            "String url = null;",
+            "if (StringUtils.isNotBlank(in.callbackUrl)) {",
+            "  try {",
+            "    url = URLDecoder.decode(in.callbackUrl, \"UTF-8\");",
+            "  } catch (IllegalArgumentException ex) {",
+            "    url = null;",
+            "  }",
+            "}",
+            "",
+            "if (RequestUtils.isSafeRedirectUrl(url, request)){",
+            "  context.redirect(url);",
+            "} else {",
+            "  PortalNavigatorAPI.navigateToPortalHome();",
+            "}"
           ]
         }
       },
