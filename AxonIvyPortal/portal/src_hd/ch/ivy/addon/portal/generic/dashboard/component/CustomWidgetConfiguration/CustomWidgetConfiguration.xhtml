@@ -74,7 +74,8 @@
       </div>
       <div class="ui-g-8 ui-fluid">
         <p:inputText id="external-url" value="#{widget.data.url}"
-          required="#{!isIvyProcess and param['skipValidator'] == null}" />
+          required="#{!isIvyProcess and param['skipValidator'] == null}"
+          validator="#{dashboardCustomWidgetBean.validateUrl}" />
       </div>
       <div class="ui-g-12">
         <h:outputText
