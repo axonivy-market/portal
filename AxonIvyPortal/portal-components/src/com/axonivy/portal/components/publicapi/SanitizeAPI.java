@@ -33,6 +33,8 @@ public class SanitizeAPI {
         case '\n' -> "\\n"; // Escape new lines
         case '\r' -> "\\r"; // Escape carriage return
         case '\t' -> "\\t"; // Escape tab characters
+        case '\u2028' -> "\\u2028"; // Escape Unicode line separator (JS line terminator)
+        case '\u2029' -> "\\u2029"; // Escape Unicode paragraph separator (JS line terminator)
         case '<' -> "\\u003C"; // Escape `<` (XSS prevention)
         case '>' -> "\\u003E"; // Escape `>` (XSS prevention)
         case '/' -> "\\/"; // Escape `/` (prevents `</script>` issues)
