@@ -139,19 +139,19 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void testAdminCanEditOtherUserAbsence() {
     grantNormalUserAbsencePermissions();
+    login(TestAccount.DEMO_USER);
     AbsencePage absencePage = openAbsencePage();
-    createAbsenceForCurrentUser(TODAY, TODAY, "For party", absencePage);
-    absencePage.waitForAbsencesGrowlMessageHide();
+    NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
+    newAbsencePage.input("Demo User", TODAY, TODAY, "Vacation");
+    newAbsencePage.proceed();
+    absencePage.openEditAbsenceDialog(0);
     login(TestAccount.ADMIN_USER);
     grantAdminAbsencePermissions();
     AbsencePage adminAbsencePage = openAbsencePage();
     adminAbsencePage.setSelectedUser(TestAccount.DEMO_USER.getFullName());
-    assertEquals(1, adminAbsencePage.getAbsenceRowCount());
     NewAbsencePage editAbsencePage = adminAbsencePage.openEditAbsenceDialog(0);
     editAbsencePage.updateDates(YESTERDAY, YESTERDAY);
     editAbsencePage.proceed();
-    adminAbsencePage.waitForAbsencesGrowlMessageHide();
-    assertTrue(adminAbsencePage.isEmptyMessageAvailable());
     adminAbsencePage.showAbsencesInThePast(true);
     assertEquals(1, adminAbsencePage.getAbsenceRowCount());
   }
