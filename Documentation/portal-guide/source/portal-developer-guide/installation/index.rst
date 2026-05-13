@@ -166,7 +166,6 @@ Set ``Portal.Sidebar.Mode`` to ``STICK`` to achieve the same effect as ``Portal.
 
 3. The ``originalUrl`` parameter accepted by ``DefaultLoginPage.ivp`` is now validated before use as a post-login redirect target.
 Only same-origin and relative URLs are permitted. External URLs are silently rejected and will redirect to the Portal home page instead.
-If your application previously relied on redirecting users to an external URL after login via ``originalUrl``, you must implement a custom login page or a separate redirect mechanism to replicate that behavior.
 
 Migrate 13.1 To 13.2
 --------------------
