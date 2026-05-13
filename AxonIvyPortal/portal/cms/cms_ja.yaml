@@ -537,6 +537,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       worker: エディター
       wrongFromDateFormat: 有効な「開始」日を入力してください。日付形式は {0} です
       wrongToDateFormat: 有効な「終了」日を入力してください。日付形式は {0} です
+    filterLabel: フィルター
     finish: 終了
     general: 一般
     generalInformation: 一般情報

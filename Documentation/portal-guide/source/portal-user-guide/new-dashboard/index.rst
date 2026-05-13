@@ -135,6 +135,8 @@ refer to :ref:`Complex Filter <complex-filter>` for more details.
 
   ``Filter tasks by current case owner`` filter is hidden by default. To make it visible, you need to set the ``Portal.Cases.EnableOwner`` setting to ``true`` in the :ref:`Admin Settings <update-portal-settings>`.
 
+.. _task-widget-column-management:
+
 **Column Management**
 
 By clicking on the :guilabel:`Manage Columns` button at the top right of the configuration panel. You get the following dialog:
@@ -145,11 +147,18 @@ In the column management dialog, you find two sections to configure the table co
 
    #. Add field section: add any available fields to your widget table
    #. Columns section: configure the widget table itself as follows:
- 
+
       - Enable visibility
+      - Use the Filter checkbox to include or exclude a field from the complex filter options
       - Enable the quick search by selecting the quick search checkbox
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
+
+   .. note::
+
+      - Newly added fields are filter-enabled by default.
+      - In some cases, if you want to disable the filter for a field but it does not exist in the column management dialog, add the field first.
+      - If existing filters use a field that you disable, these filter conditions are removed after saving.
 
   .. important::
 
@@ -234,6 +243,8 @@ refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 |case-list-widget-configuration|
 
+.. _case-widget-column-management:
+
 **Column Management**
 
 By clicking on the :guilabel:`Manage Columns` button at the top right of the configuration panel. You get the following dialog:
@@ -246,9 +257,16 @@ In the column management dialog, you find two sections to configure the table co
    #. Columns section: configure the widget table itself as follows:
 
       - Enable visibility
+      - Use the Filter checkbox to include or exclude a field from the complex filter options
       - Enable quick search by selecting the quick search checkbox
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
+
+   .. note::
+
+      - Newly added fields are filter-enabled by default.
+      - In some cases, if you want to disable the filter for a field but it does not exist in the column management dialog, add the field first.
+      - If existing filters use a field that you disable, these filter conditions are removed after saving.
 
   .. important::
 

@@ -359,6 +359,61 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
         .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").$("span span")
         .getAttribute("class").contains("ui-chkbox-icon");
   }
+
+  public void clickOnFilterCheckBoxByField(String fieldName) {
+    boolean filterWasEnabled = isFilterClicked(fieldName);
+    var filterCheckBox = getColumnRowByField(fieldName).$("a[id$='toggle-filter']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    filterCheckBox.click();
+
+    if (filterWasEnabled) {
+      getColumnRowByField(fieldName).$("a[id$='toggle-filter']").$("span span")
+          .shouldNotHave(Condition.cssClass("ui-icon-check"), DEFAULT_TIMEOUT);
+    } else {
+      getColumnRowByField(fieldName).$("a[id$='toggle-filter']").$("span span")
+          .shouldHave(Condition.cssClass("ui-icon-check"), DEFAULT_TIMEOUT);
+    }
+  }
+
+  public boolean isFilterClicked(String fieldName) {
+    return getColumnRowByField(fieldName).$("a[id$='toggle-filter']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("span span").getAttribute("class").contains("ui-icon-check");
+  }
+
+  public String getDisplayNameByField(String fieldName) {
+    return getColumnRowByField(fieldName).$$("td").get(2).getText();
+  }
+
+  private SelenideElement getColumnRowByField(String fieldName) {
+    SelenideElement dataTable = getColumnManagementDialog().$("div[id$='column-management-datatable']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    String fieldCellSelector = String.format("tbody td.js-column-field-%s", fieldName);
+    ElementsCollection fieldCells = dataTable.$$(fieldCellSelector);
+    if (!fieldCells.isEmpty()) {
+      return fieldCells.first().parent();
+    }
+
+    return dataTable.$("table tbody").$$("tr").filter(text(fieldName)).first();
+  }
+
+  public boolean isFilterFieldOptionAvailable(String filterName) {
+    int currentIndex = countFilterSelect().size();
+    $("button[id$=':add-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    String fieldSelectionId = String.format("div[id$=':%s:filter-component:field-selection']", currentIndex);
+    $(fieldSelectionId).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    String fieldSelectionPanelId =
+        String.format("div[id$=':%s:filter-component:field-selection_panel'][style*='display: block']", currentIndex);
+    ElementsCollection options = $(fieldSelectionPanelId).shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("ul li");
+    boolean isAvailable = options.texts().stream().anyMatch(option -> option.equalsIgnoreCase(filterName));
+
+    if (!options.isEmpty()) {
+      options.first().click();
+    }
+    removeFilter(currentIndex);
+    return isAvailable;
+  }
   
 
   public boolean isQuickSearchInputShow(String widgetIndex) {

@@ -39,4 +39,9 @@ public class PinColumnModel extends TaskColumnModel implements Serializable {
     return "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PIN";
   }
 
+  @Override
+  public boolean canFilter() {
+    return false;
+  }
+
 }

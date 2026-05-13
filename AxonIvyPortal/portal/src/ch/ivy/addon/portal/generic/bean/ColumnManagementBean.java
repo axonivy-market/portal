@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -146,28 +147,38 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     if (CollectionUtils.isEmpty(taskWidget.getColumns())) {
       return;
     }
-    List<String> fieldNames = taskWidget.getColumns().stream()
-        .map(TaskColumnModel::getField).collect(Collectors.toList());
+    Set<String> disabledFilterFields = taskWidget.getColumns().stream().filter(Objects::nonNull)
+        .filter(column -> BooleanUtils.isFalse(column.getEnableFilter())).map(TaskColumnModel::getField)
+        .collect(Collectors.toSet());
 
-    List<DashboardFilter> filterToKeep = taskWidget.getFilters().stream()
-        .filter(filter -> fieldNames.contains(filter.getField()))
-        .collect(Collectors.toList());
+    List<DashboardFilter> filters = new ArrayList<>(
+        Optional.ofNullable(taskWidget.getFilters()).orElse(Collections.emptyList()));
+    filters.removeIf(filter -> filter != null && disabledFilterFields.contains(filter.getField()));
+    taskWidget.setFilters(filters);
 
-    taskWidget.setFilters(filterToKeep);
+    List<DashboardFilter> userFilters = new ArrayList<>(
+        Optional.ofNullable(taskWidget.getUserFilters()).orElse(Collections.emptyList()));
+    userFilters.removeIf(filter -> filter != null && disabledFilterFields.contains(filter.getField()));
+    taskWidget.setUserFilters(userFilters);
   }
 
   private void updateFiltersForCaseWidget(CaseDashboardWidget caseWidget) {
     if (CollectionUtils.isEmpty(caseWidget.getColumns())) {
       return;
     }
-    List<String> fieldNames = caseWidget.getColumns().stream()
-        .map(CaseColumnModel::getField).collect(Collectors.toList());
+    Set<String> disabledFilterFields = caseWidget.getColumns().stream().filter(Objects::nonNull)
+        .filter(column -> BooleanUtils.isFalse(column.getEnableFilter())).map(CaseColumnModel::getField)
+        .collect(Collectors.toSet());
 
-    List<DashboardFilter> filterToKeep = caseWidget.getFilters().stream()
-        .filter(filter -> fieldNames.contains(filter.getField()))
-        .collect(Collectors.toList());
+    List<DashboardFilter> filters = new ArrayList<>(
+        Optional.ofNullable(caseWidget.getFilters()).orElse(Collections.emptyList()));
+    filters.removeIf(filter -> filter != null && disabledFilterFields.contains(filter.getField()));
+    caseWidget.setFilters(filters);
 
-    caseWidget.setFilters(filterToKeep);
+    List<DashboardFilter> userFilters = new ArrayList<>(
+        Optional.ofNullable(caseWidget.getUserFilters()).orElse(Collections.emptyList()));
+    userFilters.removeIf(filter -> filter != null && disabledFilterFields.contains(filter.getField()));
+    caseWidget.setUserFilters(userFilters);
   }
   
   public void remove(ColumnModel col) {
@@ -187,8 +198,12 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
         standardFields.add(col.getField());
       }
     } else if (widget.getType() == DashboardWidgetType.CASE) {
+      boolean enablePinCase = GlobalSettingService.getInstance().isEnablePinCase();
       var enableCaseOwner = GlobalSettingService.getInstance().isCaseOwnerEnabled();
       for (DashboardStandardCaseColumn col : DashboardStandardCaseColumn.values()) {
+        if (!enablePinCase && DashboardStandardCaseColumn.PIN == col) {
+          continue;
+        }
         if (!enableCaseOwner && DashboardStandardCaseColumn.OWNER == col) {
           continue;
         }
@@ -440,6 +455,10 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
 
   public void handleQuickSearch(ColumnModel column) {
     column.setQuickSearch(BooleanUtils.isFalse(column.getQuickSearch()));
+  }
+
+  public void handleFilter(ColumnModel column) {
+    column.setEnableFilter(BooleanUtils.isFalse(column.getEnableFilter()));
   }
   
   public List<DisplayName> getFieldDisplayNames() {
