@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
@@ -31,7 +32,9 @@ public class ProcessViewerUtils {
   private static List<IWebStartable> webStartables;
 
   public static ProcessViewerDTO initProcessViewer(Long taskId, Long caseId, String processLink) {
-    boolean isViewerAllowed = false;
+    // change from primitive type boolean boolean isViewerAllowed = false
+    // reason: it makes bug when not found process will be considered as no permission
+    Boolean isViewerAllowed = null;
     IWebStartable webStartable = null;
     WebLink webLink = null;
     boolean isError = false;
@@ -82,7 +85,7 @@ public class ProcessViewerUtils {
     // check result
     if (webLink == null) {
       isError = true;
-      if (!isViewerAllowed) {
+      if (BooleanUtils.isFalse(isViewerAllowed)) {
         errorIcon = "si si-lock-1";
         errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/NoPermissionToView");
       } else {
