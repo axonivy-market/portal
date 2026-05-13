@@ -32,7 +32,7 @@ public class WidgetCreatorFilterBean implements Serializable {
   public void init(DashboardFilter filter) {
     selectedCreators = new ArrayList<>();
     if (CollectionUtils.isNotEmpty(filter.getValues())) {
-      selectedCreators.addAll(filter.getUsers());
+      selectedCreators.addAll(filter.getCreators());
     }
   }
 
