@@ -17,7 +17,7 @@ Dialogs:
             Process:
               ProcessName: プロセス名
             RequiredFieldMessage: このフィールドは必須です
-            Save: 'TODO: Save'
+            Save: '保存'
             SaveContext: "{0}を保存"
             SideStepPrefix: サイドステップ：
             Task:
@@ -38,15 +38,15 @@ Dialogs:
             FileContainVirus: アップロードに失敗しました。ウイルス／感染が検出されました。
             FileFunction: 機能
             FileLimitMessage: すでに最大数のファイルがアップロードされています！
-            FilenameEmpty: 'TODO: Filename cannot be empty.'
+            FilenameEmpty: 'ファイル名は空にできません。'
             InvalidFileMessage: このファイルの種類は受け入れられません！
             Name: ファイル名
             NoFile: ファイルが見つかりません！
             Preview: プレビュー
-            RenamingDocument: 'TODO: Rename document'
-            RenamingDocumentNote: 'TODO: {0} has renamed the file {1} to {2}'
-            RenamingDocumentSuccess: 'TODO: Rename successfully.'
-            RenamingFailed: 'TODO: An error occurs while renaming the document.'
+            RenamingDocument: 'ドキュメントの名前を変更'
+            RenamingDocumentNote: '{0} がファイル {1} を {2} に名前変更しました'
+            RenamingDocumentSuccess: '名前の変更に成功しました。'
+            RenamingFailed: 'ドキュメントの名前変更中にエラーが発生しました。'
             Size: ファイルサイズ
             SupportFileTypes: アップロード可能なファイル形式：{0}
             Type: タイプ
@@ -114,12 +114,12 @@ Labels:
   DisabledUserPrefix: （無効）
   Enums:
     NewFilenameValidation:
-      ALREADY_EXIST: 'TODO: There is already a file with the same name in this location.'
-      INVALID_FORMAT: 'TODO: A file name can''t contain any of the following characters: \ / : * ? " < > |'
+      ALREADY_EXIST: 'この場所には同じ名前のファイルがすでに存在します。'
+      INVALID_FORMAT: 'ファイル名には次の文字を含めることができません： \ / : * ? " < > |'
   NoName: 名前なし
   NoResults: 結果なし
   None: なし
   NotAvailable: 利用不可
   ParentRole: 親ロール
-  TooltipNoNameFormatted: TODO <{0}> ({1})
-  TooltipUserNameFormatted: TODO {0} ({1})
+  TooltipNoNameFormatted: <{0}> ({1})
+  TooltipUserNameFormatted: {0} ({1})
