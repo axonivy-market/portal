@@ -95,7 +95,7 @@
     <ui:define name="content">
       <script>
         $(document).ready(function() {
-          var taskUrl = `#{htmlSanitizerBean.escapeForJS(iFrameTaskTemplateBean.taskUrl)}`;
+          var taskUrl = '#{htmlSanitizerBean.escapeForJS(iFrameTaskTemplateBean.taskUrl)}';
           if (!taskUrl) {
             loadIframe();
             return;
