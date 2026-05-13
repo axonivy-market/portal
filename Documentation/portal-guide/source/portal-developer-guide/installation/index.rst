@@ -164,9 +164,6 @@ Please access the :ref:`Dashboard Configuration <dashboard-configuration>` page 
 2. The global variable ``Portal.KeepSidebarExpanded`` has been removed. Use ``Portal.Sidebar.Mode`` instead.
 Set ``Portal.Sidebar.Mode`` to ``STICK`` to achieve the same effect as ``Portal.KeepSidebarExpanded=true``.
 
-3. The ``originalUrl`` parameter accepted by ``DefaultLoginPage.ivp`` is now validated before use as a post-login redirect target.
-Only same-origin and relative URLs are permitted. External URLs are silently rejected and will redirect to the Portal home page instead.
-
 Migrate 13.1 To 13.2
 --------------------
 
@@ -517,11 +514,6 @@ Release notes
 
 This part lists all relevant changes since the last official product
 releases of Axon Ivy.
-
-Changes in 14.0
----------------
-
-- Fixed an open redirect vulnerability in the Portal login flow. The ``originalUrl`` parameter passed to ``DefaultLoginPage.ivp`` is now validated before use as the post-login redirect target. Only same-origin and relative URLs are accepted; invalid or external URLs fall back to the Portal home page.
 
 Changes in 13.2.0
 -----------------
