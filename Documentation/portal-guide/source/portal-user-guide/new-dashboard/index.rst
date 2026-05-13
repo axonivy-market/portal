@@ -149,17 +149,14 @@ In the column management dialog, you find two sections to configure the table co
    #. Columns section: configure the widget table itself as follows:
 
       - Enable visibility
-      - Enable or disable a column for complex filters by selecting the checkbox in the **Filter** column
+      - Use the Filter checkbox to include or exclude a field from the complex filter options
       - Enable the quick search by selecting the quick search checkbox
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
 
    .. note::
 
-      - If the checkbox in the **Filter** column is checked, users can select this field in the complex filter options.
-      - If you uncheck it and save, this field is no longer shown in the complex filter options.
-      - By default, all fields are filter-enabled.
-      - Newly added fields are also filter-enabled by default.
+      - Newly added fields are filter-enabled by default.
       - In some cases, if you want to disable the filter for a field but it does not exist in the column management dialog, add the field first.
       - If existing filters use a field that you disable, these filter conditions are removed after saving.
 
@@ -260,17 +257,14 @@ In the column management dialog, you find two sections to configure the table co
    #. Columns section: configure the widget table itself as follows:
 
       - Enable visibility
-      - Enable or disable a column for complex filters by selecting the checkbox in the **Filter** column
+      - Use the Filter checkbox to include or exclude a field from the complex filter options
       - Enable quick search by selecting the quick search checkbox
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
 
    .. note::
 
-      - If the checkbox in the **Filter** column is checked, users can select this field in the complex filter options.
-      - If you uncheck it and save, this field is no longer shown in the complex filter options.
-      - By default, all fields are filter-enabled.
-      - Newly added fields are also filter-enabled by default.
+      - Newly added fields are filter-enabled by default.
       - In some cases, if you want to disable the filter for a field but it does not exist in the column management dialog, add the field first.
       - If existing filters use a field that you disable, these filter conditions are removed after saving.
 

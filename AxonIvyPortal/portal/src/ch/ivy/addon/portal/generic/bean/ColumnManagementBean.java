@@ -230,7 +230,6 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     columnModel.setHeader(this.fieldDisplayName);
     columnModel.setHeaders(this.fieldDisplayNames);
     columnModel.setField(this.selectedField);
-    columnModel.setEnableFilter(true);
     columnModel.setQuickSearch(false);
     if (this.selectedFieldType == DashboardColumnType.CUSTOM
         || this.selectedFieldType == DashboardColumnType.CUSTOM_CASE

@@ -190,8 +190,7 @@ public class DashboardWidgetUtils {
     if (CollectionUtils.isNotEmpty(taskColumns)) {
       filterableColumns = taskColumns.stream().filter(Objects::nonNull)
           .filter(col -> BooleanUtils.isTrue(col.getEnableFilter()))
-          .filter(col -> !Strings.CI.equals(col.getField(), DashboardStandardTaskColumn.START.name())
-              && !Strings.CI.equals(col.getField(), DashboardStandardTaskColumn.ID.toString()))
+          .filter(col -> !Strings.CI.equals(col.getField(), DashboardStandardTaskColumn.START.name()))
           .collect(Collectors.toList());
     }
 

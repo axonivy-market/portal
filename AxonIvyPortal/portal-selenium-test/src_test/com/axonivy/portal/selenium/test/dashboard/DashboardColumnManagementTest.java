@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,8 +22,7 @@ public class DashboardColumnManagementTest extends BaseTest {
 
   private static final String YOUR_CASES_WIDGET = "Your Cases";
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
-  private static final String CASE_NAME_FIELD = "name";
-  private static final String TASK_NAME_FIELD = "name";
+  private static final String STATE_FIELD = "state";
 
   private NewDashboardPage newDashboardPage;
 
@@ -84,36 +84,29 @@ public class DashboardColumnManagementTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
-    caseEditWidget.openColumnManagementDialog();
-
-    String caseNameDisplay = caseEditWidget.getDisplayNameByField(CASE_NAME_FIELD);
-    String addedCustomField = caseEditWidget.addFirstCustomField();
-    String customFieldDisplay = caseEditWidget.getDisplayNameByField(addedCustomField);
-
-    assertTrue(caseEditWidget.isFilterClicked(CASE_NAME_FIELD));
-    assertTrue(caseEditWidget.isFilterClicked(addedCustomField));
-
-    caseEditWidget.clickOnFilterCheckBoxByField(CASE_NAME_FIELD);
-    caseEditWidget.clickOnFilterCheckBoxByField(addedCustomField);
-    assertFalse(caseEditWidget.isFilterClicked(CASE_NAME_FIELD));
-    assertFalse(caseEditWidget.isFilterClicked(addedCustomField));
-    caseEditWidget.saveColumn();
-
     caseEditWidget.openFilter();
-    assertFalse(caseEditWidget.isFilterFieldOptionAvailable(caseNameDisplay));
-    assertFalse(caseEditWidget.isFilterFieldOptionAvailable(customFieldDisplay));
+    assertThat(caseEditWidget.countFilterSelect().size()).isGreaterThanOrEqualTo(1);
     caseEditWidget.closeFilter();
 
     caseEditWidget.openColumnManagementDialog();
-    caseEditWidget.clickOnFilterCheckBoxByField(CASE_NAME_FIELD);
+
+    String caseStateDisplay = caseEditWidget.getDisplayNameByField(STATE_FIELD);
+    String addedCustomField = caseEditWidget.addFirstCustomField();
+    String customFieldDisplay = caseEditWidget.getDisplayNameByField(addedCustomField);
+
+    assertThat(caseEditWidget.isFilterClicked(STATE_FIELD)).isTrue();
+    assertThat(caseEditWidget.isFilterClicked(addedCustomField)).isTrue();
+
+    caseEditWidget.clickOnFilterCheckBoxByField(STATE_FIELD);
     caseEditWidget.clickOnFilterCheckBoxByField(addedCustomField);
-    assertTrue(caseEditWidget.isFilterClicked(CASE_NAME_FIELD));
-    assertTrue(caseEditWidget.isFilterClicked(addedCustomField));
+    assertThat(caseEditWidget.isFilterClicked(STATE_FIELD)).isFalse();
+    assertThat(caseEditWidget.isFilterClicked(addedCustomField)).isFalse();
     caseEditWidget.saveColumn();
 
     caseEditWidget.openFilter();
-    assertTrue(caseEditWidget.isFilterFieldOptionAvailable(caseNameDisplay));
-    assertTrue(caseEditWidget.isFilterFieldOptionAvailable(customFieldDisplay));
+    assertThat(caseEditWidget.countFilterSelect().size()).isZero();
+    assertThat(caseEditWidget.isFilterFieldOptionAvailable(caseStateDisplay)).isFalse();
+    assertThat(caseEditWidget.isFilterFieldOptionAvailable(customFieldDisplay)).isFalse();
     caseEditWidget.closeFilter();
   }
 
@@ -127,36 +120,29 @@ public class DashboardColumnManagementTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    taskEditWidget.openColumnManagementDialog();
-
-    String taskNameDisplay = taskEditWidget.getDisplayNameByField(TASK_NAME_FIELD);
-    String addedCustomField = taskEditWidget.addFirstCustomField();
-    String customFieldDisplay = taskEditWidget.getDisplayNameByField(addedCustomField);
-
-    assertTrue(taskEditWidget.isFilterClicked(TASK_NAME_FIELD));
-    assertTrue(taskEditWidget.isFilterClicked(addedCustomField));
-
-    taskEditWidget.clickOnFilterCheckBoxByField(TASK_NAME_FIELD);
-    taskEditWidget.clickOnFilterCheckBoxByField(addedCustomField);
-    assertFalse(taskEditWidget.isFilterClicked(TASK_NAME_FIELD));
-    assertFalse(taskEditWidget.isFilterClicked(addedCustomField));
-    taskEditWidget.saveColumn();
-
     taskEditWidget.openFilter();
-    assertFalse(taskEditWidget.isFilterFieldOptionAvailable(taskNameDisplay));
-    assertFalse(taskEditWidget.isFilterFieldOptionAvailable(customFieldDisplay));
+    assertThat(taskEditWidget.countFilterSelect().size()).isGreaterThanOrEqualTo(1);
     taskEditWidget.closeFilter();
 
     taskEditWidget.openColumnManagementDialog();
-    taskEditWidget.clickOnFilterCheckBoxByField(TASK_NAME_FIELD);
+
+    String taskStateDisplay = taskEditWidget.getDisplayNameByField(STATE_FIELD);
+    String addedCustomField = taskEditWidget.addFirstCustomField();
+    String customFieldDisplay = taskEditWidget.getDisplayNameByField(addedCustomField);
+
+    assertThat(taskEditWidget.isFilterClicked(STATE_FIELD)).isTrue();
+    assertThat(taskEditWidget.isFilterClicked(addedCustomField)).isTrue();
+
+    taskEditWidget.clickOnFilterCheckBoxByField(STATE_FIELD);
     taskEditWidget.clickOnFilterCheckBoxByField(addedCustomField);
-    assertTrue(taskEditWidget.isFilterClicked(TASK_NAME_FIELD));
-    assertTrue(taskEditWidget.isFilterClicked(addedCustomField));
+    assertThat(taskEditWidget.isFilterClicked(STATE_FIELD)).isFalse();
+    assertThat(taskEditWidget.isFilterClicked(addedCustomField)).isFalse();
     taskEditWidget.saveColumn();
 
     taskEditWidget.openFilter();
-    assertTrue(taskEditWidget.isFilterFieldOptionAvailable(taskNameDisplay));
-    assertTrue(taskEditWidget.isFilterFieldOptionAvailable(customFieldDisplay));
+    assertThat(taskEditWidget.countFilterSelect().size()).isZero();
+    assertThat(taskEditWidget.isFilterFieldOptionAvailable(taskStateDisplay)).isFalse();
+    assertThat(taskEditWidget.isFilterFieldOptionAvailable(customFieldDisplay)).isFalse();
     taskEditWidget.closeFilter();
   }
 
