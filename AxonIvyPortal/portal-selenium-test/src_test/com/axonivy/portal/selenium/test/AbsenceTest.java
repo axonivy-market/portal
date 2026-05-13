@@ -150,9 +150,9 @@ public class AbsenceTest extends BaseTest {
     NewAbsencePage editAbsencePage = adminAbsencePage.openEditAbsenceDialog(0);
     editAbsencePage.updateDates(YESTERDAY, YESTERDAY);
     editAbsencePage.proceed();
-    absencePage.waitForAbsencesGrowlMessageHide();
-    assertTrue(absencePage.isEmptyMessageAvailable());
-    absencePage.showAbsencesInThePast(true);
+    adminAbsencePage.waitForAbsencesGrowlMessageHide();
+    assertTrue(adminAbsencePage.isEmptyMessageAvailable());
+    adminAbsencePage.showAbsencesInThePast(true);
     assertEquals(1, adminAbsencePage.getAbsenceRowCount());
   }
 
@@ -245,7 +245,7 @@ public class AbsenceTest extends BaseTest {
     grantAdminAbsencePermissions();
     AbsencePage adminAbsencePage = openAbsencePage();
     adminAbsencePage.openSubstitutesTab();
-    adminAbsencePage.setSubstituteUserByAdmin(TestAccount.DEMO_USER.getFullName());
+    adminAbsencePage.setSelectedUserInSubstitutesTab(TestAccount.DEMO_USER.getFullName());
     adminAbsencePage.waitForSubstituteRowCountToChange(1);
     assertEquals(TestAccount.DEMO_USER.getFullName(), adminAbsencePage.getSelectedSubstituteUser());
     adminAbsencePage.openAbsencesTab();

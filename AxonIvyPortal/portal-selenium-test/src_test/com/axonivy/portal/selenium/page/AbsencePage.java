@@ -135,12 +135,6 @@ public class AbsencePage extends TemplatePage {
     }
   }
 
-  public SelenideElement getMyDeputy(int deputyRoleIndex) {
-    String deputiesSelector = String
-        .format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
-    return $(deputiesSelector).shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
   public String getMyDisabledDeputy(int deputyRoleIndex) {
     String deputiesSelector = String
         .format(
@@ -242,8 +236,8 @@ public class AbsencePage extends TemplatePage {
     element.sendKeys(responsible);
     String panelSelector = "[id$='deputy-selection-form:user-selection-component:user-selection_panel']";
     $(panelSelector).shouldBe(appear, DEFAULT_TIMEOUT);
-    String itemSelector = "tr[data-item-label*='" + responsible + "'].ui-state-highlight";
-    $(itemSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    String itemSelector = panelSelector + " tr[data-item-label*='" + responsible + "']";
+    $$(itemSelector).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $(panelSelector).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick("[id$='deputy-selection-form:add-deputy-button']");
   }
@@ -265,7 +259,7 @@ public class AbsencePage extends TemplatePage {
     rows.first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
-  public void setSubstituteUserByAdmin(String substitutedUser) {
+  public void setSelectedUserInSubstitutesTab(String substitutedUser) {
     String selectedUserInput = "input[id$='user-absence-substitutes_input']";
     SelenideElement substituted = $(selectedUserInput).shouldBe(appear, DEFAULT_TIMEOUT);
     substituted.clear();
@@ -367,9 +361,14 @@ public class AbsencePage extends TemplatePage {
   }
 
   public void waitForAbsencesGrowlMessageHide() {
-    SelenideElement growlMessage = $("div[id$='absences-management-form:absences-management-info_container']")
-        .shouldBe(appear, DEFAULT_TIMEOUT);
-    $(growlMessage.findElement(By.className("ui-growl-item-container"))).shouldBe(disappear, DEFAULT_TIMEOUT);
+    SelenideElement growlMessage = $("div[id$='absences-management-form:absences-management-info_container']");
+    if (!growlMessage.exists()) {
+      return;
+    }
+    SelenideElement growlItem = $(growlMessage.findElement(By.className("ui-growl-item-container")));
+    if (growlItem.exists() && growlItem.isDisplayed()) {
+      growlItem.shouldBe(disappear, DEFAULT_TIMEOUT);
+    }
   }
 
   public void clickOnAbsenceAction(int index) {

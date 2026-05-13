@@ -45,8 +45,8 @@ public class NewAbsencePage extends TemplatePage {
       WebElement usernameInput = $("input[id*='absence-username']").shouldBe(appear, DEFAULT_TIMEOUT);
       usernameInput.clear();
       usernameInput.sendKeys(fullName);
-      String itemSelector = "tr[data-item-label*='" + fullName + "'].ui-state-highlight";
-      $(itemSelector).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      String panelSelector = "span[id$='absence-username_panel'] tbody tr[data-item-label*='" + fullName + "']";
+      $$(panelSelector).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
     inputDate(absenceFrom, "input[id*='absence-start-date']");
     inputDate(absenceTill, "input[id*='absence-end-date']");
@@ -59,8 +59,8 @@ public class NewAbsencePage extends TemplatePage {
     input.sendKeys(fullName);
     String panelSelector = "[id$='absence-form:user-selection-component:user-selection_panel']";
     $(panelSelector).shouldBe(appear, DEFAULT_TIMEOUT);
-    String itemSelector = "tr[data-item-label*='" + fullName + "'].ui-state-highlight";
-    $(itemSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    String itemSelector = panelSelector + " tr[data-item-label*='" + fullName + "']";
+    $$(itemSelector).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $(panelSelector).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     $("button[id$='absence-form:add-deputy-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
