@@ -165,8 +165,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: 通知チャネル
     notificationChannelsReset: 通知チャネルをリセットしました
     subscribed: 通知する
-    unpinAllPinnedCases: 'ユーザー: {0} のすべてのピン留めされたケースが削除されました。'
-    unpinAllPinnedTasks: 'ユーザー: {0} のすべてのピン留めされたタスクが削除されました'
+    unpinAllPinnedCases: 'ユーザー:{0}のすべてのピン留めされたケースが削除されました。'
+    unpinAllPinnedTasks: 'ユーザー:{0}のすべてのピン留めされたタスクが削除されました。'
   PortalManagement:
     AdminSetting: 管理者設定
   ProcessViewer:
@@ -446,7 +446,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       DateFromTo: '%s - %s'
       TextListOut: '%s、%s、。。'
       TextWithColon: '%s：%s'
-      TextWithContextInBrackets: '%s (%s: %s)'
+      TextWithContextInBrackets: '%s（%s：%s）'
       TextWithRoundBracket: '%s（%s）'
     TaskCaseInformation: タスク／ケース情報
     Update: 更新
@@ -800,13 +800,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoWidgetAvailable: ウィジェットがありません。
     QuickSearch: クイック検索
     QuickSearchInfo: ウィジェットの列管理で、クイック検索の範囲をカスタマイズできます。「含む」に基づいて検索しますが、多数の列を追加する場合はパフォーマンスに注意してください。
-    QuickSearchScope: '検索範囲: {0}'
+    QuickSearchScope: '検索範囲:{0}'
     RestoreDefaultDashboardMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。<span class="dashboard-template-name-message">{0}</span> の標準設定が適用されます。
     SaveNewWidgetFilterHeader: 新しいウィジェットフィルターを保存
     SavedFilterHeader: 保存されたフィルター
     SearchForFilter: フィルターを検索
     ShareThisDashboard: このダッシュボードを共有
-    ShowPinnedToggle: '''ピン留めされたタスク''トグルの表示'
+    ShowPinnedToggle: '「ピン留めされたタスク」トグルの表示'
     CaseQueryType:
       info: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
       label: ケースタイプ
@@ -970,18 +970,18 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcesses: プロセス
     yourTasks: タスク
   dashboardProcess:
-    processAriaLabel: 'プロセス名: {0}。プロセスの説明: {1}'
+    processAriaLabel: 'プロセス名:{0}。プロセスの説明:{1}'
   documentFiles:
     FilenameEmpty: 'ファイル名は空にできません。'
     PreviewDocument: タスクの詳細にアクセス
     RenameFile: 'ファイルの名前を変更'
     RenamingDocument: 'ドキュメントの名前を変更'
-    RenamingDocumentNote: '{0} がファイル {1} を {2} に名前変更しました'
+    RenamingDocumentNote: '{0}がファイル{1}を{2}に名前変更しました'
     RenamingDocumentSuccess: '名前の変更に成功しました。'
     RenamingFailed: 'ドキュメントの名前変更中にエラーが発生しました。'
     confirmation: 確認
     confirmationUploadDocument: 暗号化されたファイルのスクリプトスキャンは利用できません。プレビューを続行しますか？
-    deleteDocumentNote: '{0} が {1} を削除しました'
+    deleteDocumentNote: '{0}が {1} を削除しました'
     deleteSuceed: ファイルの削除に成功しました
     download: ダウンロード
     fileContainScript: このファイルにはスクリプトが含まれているため、アップロードできません。
