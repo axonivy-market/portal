@@ -121,5 +121,7 @@ Labels:
   None: なし
   NotAvailable: 利用不可
   ParentRole: 親ロール
-  TooltipNoNameFormatted: <{0}> ({1})
-  TooltipUserNameFormatted: {0} ({1})
+  TooltipNoNameFormatted: 'TODO <{0}> ({1})'
+  TooltipUserNameFormatted: 'TODO {0} ({1})'
+patterns:
+  timePattern: HH:mm
