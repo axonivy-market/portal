@@ -29,7 +29,7 @@ Dialogs:
             AddDocumentHelpText: ファイルをここにドラッグ＆ドロップしてアップロードするか、
             BrowseFiles: ファイルを閲覧する
             Delete: 削除
-            DeleteDocumentNote: '{0} が {1} を削除しました'
+            DeleteDocumentNote: '{0}が{1}を削除しました'
             DeleteSuceed: ファイルが正常に削除されました
             Download: ダウンロード
             EmptyFileMessage: ファイルサイズは空にしないでください
@@ -51,9 +51,9 @@ Dialogs:
             SupportFileTypes: アップロード可能なファイル形式：{0}
             Type: タイプ
             Upload: 新しいファイルをアップロード
-            UploadDocumentNote: '{0} が {1} をアップロードしました'
+            UploadDocumentNote: '{0}が{1}をアップロードしました'
             UploadFailed: このファイルのアップロード中にエラーが発生しました。管理者にお問い合わせください。
-            UploadFileExists: ファイル：{0} は既に存在します
+            UploadFileExists: ファイル：{0}は既に存在します
             UploadSucceed: ファイルのアップロードに成功しました
           Enums:
             BasicDocumentType:
