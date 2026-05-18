@@ -95,14 +95,14 @@ public class UploadDocumentTest extends BaseTest {
     casePage = menuPage.openCaseList();
     caseDetailsPage = casePage.openDetailsCase("Leave Request");
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(pdfFile));
-    isCorrectIconExtension(pdfFile, "ti-filepdf-1");
+    isCorrectIconExtension(pdfFile, "ti-file-type-pdf");
     // can preview this document
     assertTrue(caseDetailsPage.getFirstItemPreviewDocumentVisible());
 
     casePage = menuPage.openCaseList();
     caseDetailsPage = casePage.openDetailsCase("Leave Request");
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(wordFile));
-    isCorrectIconExtension(wordFile, "ti-filedoc-1");
+    isCorrectIconExtension(wordFile, "ti-file-type-doc");
     // can not preview
     assertFalse(caseDetailsPage.getFirstItemPreviewDocumentVisible());
 
@@ -122,7 +122,7 @@ public class UploadDocumentTest extends BaseTest {
       String uploadedFileName = doc.$(".js-document-name").shouldBe(Condition.appear, DEFAULT_TIMEOUT).getText();
       if (uploadedFileName.equalsIgnoreCase(fileName)) {
         SelenideElement docSymbol = doc.$(By.cssSelector("." + caseDetailDocumentClass))
-            .shouldBe(Condition.exist, DEFAULT_TIMEOUT);
+            .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
         docSymbol.shouldHave(Condition.cssClass(iconClass), DEFAULT_TIMEOUT);
       }
     });
