@@ -76,7 +76,7 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
     }
 
     return availableDashboards.stream()
-        .filter(dashboard -> StringUtils.equals(dashboard.getId(), targetDashboard.getId()))
+        .filter(dashboard -> dashboard.getId().equals(targetDashboard.getId()))
         .findFirst()
         .orElse(null);
   }
@@ -94,7 +94,6 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
 
     if (PermissionUtils.hasDashboardWritePublicPermission()) {
       availableDashboards.addAll(DashboardUtils.getPublicDashboards());
-      DashboardUtils.addDefaultTaskCaseListDashboardsIfMissing(availableDashboards);
     }
 
     if (PermissionUtils.hasDashboardWriteOwnPermission()) {

@@ -113,14 +113,12 @@ public class DashboardCloneWidgetTest extends BaseTest {
 
   @Test
   public void cloneWidgetTargetsShouldRespectWritePermission() {
-    DashboardConfigurationPage configurationPage = newDashboardPage
-        .openDashboardConfigurationPage();
-
     redirectToRelativeLink(denyDashboardWritePublicPermissionUrl);
     redirectToNewDashBoard();
-    newDashboardPage = new NewDashboardPage();
 
-    configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardConfigurationPage configurationPage = newDashboardPage
+            .openDashboardConfigurationPage();
+
     configurationPage.openCreatePrivateDashboardMenu();
     configurationPage.createPrivateDashboardFromTemplate(
       "Private clone target dashboard", "fa-coffee",
