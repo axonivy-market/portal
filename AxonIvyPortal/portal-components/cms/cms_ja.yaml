@@ -122,4 +122,4 @@ Labels:
   NotAvailable: 利用不可
   ParentRole: 親ロール
   TooltipNoNameFormatted: <{0}> ({1})
-  TooltipUserNameFormatted: {0} ({1})
+  TooltipUserNameFormatted: '{0} ({1})'
