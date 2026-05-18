@@ -88,7 +88,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WELCOME: ウェルカムウィジェット
     DelegationAppendOption:
       NONE: なし
-      PARENT_NAME: 'TODO: Parent name'
+      PARENT_NAME: '親の名前'
     GlobalVariable:
       Option:
         DISPLAY_NAME: 表示名
@@ -105,7 +105,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       BY_ALPHABETICALLY: アルファベット順
       BY_CUSTOM_ORDER: ユーザー設定順序
       BY_INDEX: 並べ替えインデックス
-      BY_SMART_ORDER: 'TODO: Most used'
+      BY_SMART_ORDER: '最もよく使用される'
     ProcessType:
       EXTERNAL_LINK: 外部リンク
       IVY_PROCESS: ビジネスプロセス
@@ -145,18 +145,18 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: 見出し 3
       NORMAL_TEXT: 通常のテキスト
   MyProfile:
-    Accessibility: 'TODO: Accessibility'
+    Accessibility: 'アクセシビリティ'
     CaseList: ケースリスト
     DateFormat: 日付の形式
     FormattingLanguage: 書式設定言語
     General: 一般
     Homepage: ホームページ
-    KeyboardShortcutsNavigation: 'TODO: Keyboard shortcuts for navigation'
-    KeyboardShortcutsNavigationInfor: 'TODO: Toggle to enable or disable keyboard navigation shortcuts.'
-    KeyboardShortcutsTooltip: 'TODO: This button is currently unavailable and cannot be used due to settings.'
+    KeyboardShortcutsNavigation: 'ナビゲーションのキーボードショートカット'
+    KeyboardShortcutsNavigationInfor: 'キーボードナビゲーションショートカットを有効または無効にするトグルです。'
+    KeyboardShortcutsTooltip: 'このボタンは現在、設定により使用できません。'
     Language: 言語
     ProcessList: プロセスリスト
-    TaskList: 'TODO: Task List'
+    TaskList: 'タスクリスト'
     byDefault: （初期値）
     defaultOption: 初期値（{0}）
     defaultViewMode: 表示モードの初期値
@@ -165,8 +165,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: 通知チャネル
     notificationChannelsReset: 通知チャネルをリセットしました
     subscribed: 通知する
-    unpinAllPinnedCases: 'TODO: All pinned cases have been removed for user: {0}.'
-    unpinAllPinnedTasks: 'TODO: All pinned tasks have been removed for user: {0}'
+    unpinAllPinnedCases: 'ユーザー:{0}のすべてのピン留めされたケースが削除されました。'
+    unpinAllPinnedTasks: 'ユーザー:{0}のすべてのピン留めされたタスクが削除されました。'
   PortalManagement:
     AdminSetting: 管理者設定
   ProcessViewer:
@@ -228,16 +228,16 @@ ch.ivy.addon.portalkit.ui.jsf:
       RoleParentLimit: 設定された数値は、ロール管理タブでロールをフィルタリングするときに表示される親ロールの数を制御します。有効な数値：5、10、20
       SearchScopeCaseFields: グローバル検索で一致するケースを見つけるために、ケースIDのほかに使用するフィールドを定義します。（検索のパフォーマンスに影響する可能性があります）
       SearchScopeTaskFields: グローバル検索で一致するタスクを見つけるために、タスクIDのほかに使用するフィールドを定義します。（検索のパフォーマンスに影響する可能性があります）
-      SessionCacheTimeout: 'TODO: Defines the session cache timeout duration (in seconds) for the Portal. This value can be set between 300 (5 minutes) and 86,400 (24 hours).'
+      SessionCacheTimeout: 'ポータルのセッションキャッシュタイムアウト時間（秒）を定義します。この値は300（5分）から86,400（24時間）の間で設定できます。'
       ShowLoginPageFooter: ログインページのフッターの表示のオン／オフを切り替えます。
       ShowQRCode: QRコードの表示のオン／オフを切り替えます。
-      allowKeyboardShortcutsConfiguration: 'TODO: Set to true to allow the user interact with the keyboard shortcuts button.'
+      allowKeyboardShortcutsConfiguration: 'ユーザーがキーボードショートカットボタンを操作できるようにするには、trueに設定してください。'
       behaviourWhenClickingOnLineInCaseList: ダッシュボード・グローバル検索・関連ケース・または複合モードのプロセスウィジェットの各ケースウィジェットでケースをクリックしたときに、ケースの詳細またはビジネスの詳細へのアクセスを切り替えます。
       behaviourWhenClickingOnLineInTaskList: タスク リスト、ダッシュボードのタスク ウィジェット、およびケース詳細ページの関連タスクの行をクリックしたときの動作（タスクを実行するか、タスクの詳細にアクセスするか）を切り替えます。
       chatMaxConnection: 設定された数値は、アクティブなチャットで許可されるタブの数を制御します。それ以上のタブが開かれると、非アクティブなタブではチャットが無効になります。許可される値は 1 から 5 です。
       chatResponseTimeout: 'チャット応答タイムアウトで単位は秒。初期値は 0 で、これはタイムアウトなしを意味します。チャットメッセージがリバースプロキシ Nginx を通過する場合、チャット応答タイムアウトは Nginx タイムアウトよりも短くする必要があります。（例: 60 秒未満）'
-      checkSystemNotesByDefault: TODO If the value is true and system notes are visible, the checkbox will appear checked.
-      checkSystemTasksByDefault: TODO If the value is true and system tasks are visible, the checkbox will appear checked.
+      checkSystemNotesByDefault: 値がtrueでシステムノートが表示されている場合、チェックボックスはチェック済みで表示されます。
+      checkSystemTasksByDefault: 値がtrueでシステムタスクが表示されている場合、チェックボックスはチェック済みで表示されます。
       dateFilterWithTime: 時間による日付フィルタリングを有効にするには、true に設定してください。この設定は、タスク リスト、ケース リスト、および統計に影響します。
       deepLAuthKey: DeepL認証キー（末尾は:fx）
       defaultHomepage: ホームアイコンまたはロゴをクリックしたときにリダイレクトされる標準ホームページを設定します。この設定は、タスク完了後の終了ページにも適用されます。
@@ -247,19 +247,19 @@ ch.ivy.addon.portalkit.ui.jsf:
       defaultSortDirectionOfTaskList: タスクリストのソート方向の初期値
       defaultSortFieldOfCaseList: ケースリストのソートフィールドの初期値
       defaultSortFieldOfTaskList: タスクリストのソートフィールドの初期値
-      delegationAppendOption: 'TODO: This setting determines which additional information is included when formatting role names.'
+      delegationAppendOption: 'この設定は、役割名のフォーマット時に含める追加情報を決定します。'
       disableCaseCount: ケース リストでケースのカウントを無効にするには true に設定してください
       disableTaskCount: タスク リストでタスクのカウントを無効にするには true に設定してください
       displayAllUsersOfTaskActivator: この設定は SecurityMemberDisplayName コンポーネントに使用します。SecurityMember がロールである場合、この設定を true に設定すると、このロールのすべてのユーザーが一覧表示されます。true に設定すると、ロール名の横にアイコン情報が表示されます。
       displayMessageAfterFinishOrLeaveTask: ユーザーがタスクを完了または退出すると、フィードバック メッセージが表示されます。
-      documentUploadSizeLimit: 'TODO: Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.'
+      documentUploadSizeLimit: 'ドキュメントのアップロードサイズ制限をメガバイト（MB）で設定してください。デフォルト値は20MBです。'
       embedInFrame: プロセス／タスクをIFrameモードで開始するには true に設定してください
       enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。デフォルトでは非表示になっているタスクウィジェットで、「現在のケース所有者でタスクをフィルタする」フィルタも利用可能になります。
       enableDeepLTranslation: DeepL翻訳サポートを有効にするには、このプロパティーを true に設定してください。
-      enableDocumentPreview: 'TODO: Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
+      enableDocumentPreview: '特定のファイルタイプのドキュメントプレビューを有効にするには、trueに設定してください。サポートされているファイルタイプ：pdf、png、txt、log。'
       enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
-      enablePinCase: 'TODO: Set this property to true to enable the ability to pin cases.'
-      enablePinTask: 'TODO: Set this property to true to enable the ability to pin tasks.'
+      enablePinCase: 'ケースをピン留めする機能を有効にするには、このプロパティをtrueに設定してください。'
+      enablePinTask: 'タスクをピン留めする機能を有効にするには、このプロパティをtrueに設定してください。'
       enablePrivateChat: 個人用チャット機能を有効にするには、このプロパティーを true に設定してください。
       enableProcessViewer: タスク／ケースアクションでプロセスビューアーオプションを有効にするには、このプロパティをtrueに設定してください。
       enableScriptCheckingForUploadedDocumentNote: アップロードされたドキュメントのスクリプトチェックを有効にするには、true に設定してください。現在、この機能は PDF、Excel、Word のチェックをサポートしています。
@@ -291,7 +291,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: プロセスページ（グリッド モード）とケースの詳細にプロセスの情報を表示するためのリンクを無効にするには、false に設定してください。
       showQuickGlobalSearch: クイックグローバル検索の表示のオン/オフを切り替えます。
       showTaskDurationTime: タスク詳細ページでの所要時間の表示のオン／オフを切り替えます。
-      showTooltipTechnicalName: TODO Enable to show users' technical name on tooltips.
+      showTooltipTechnicalName: ツールチップにユーザーの技術的な名前を表示するには有効にしてください。
       uploadDocumentWhiteListExtensionNote: すべての拡張子を許可する場合は、空欄にしてください。一部の拡張子のみを許可する場合は、対象の拡張子をカンマで区切って入力してください。（例：pdf, txt, doc, docx）
     key: キー
     link: リンク
@@ -378,7 +378,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ID: ケース ID
       NAME: 名前／説明
       OWNER: オーナー
-      PIN: 'TODO: Pin'
+      PIN: 'ピン'
       STATE: 状態
     deletionNoteContent: このケースは{0}によって破棄されました
     destroyCaseMessage: 'この操作は元に戻せません。このケース<b>{0}(ID: {1})</b>とそのすべてのタスクを破棄してもよろしいですか？'
@@ -394,8 +394,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'ケース #{0} {1}'
     relatedCases: 関連するケース
     title: タイトル
-    unknownCase: 'TODO: Unknown Case'
-    unknownId: 'TODO: Unknown ID'
+    unknownCase: '不明なケース'
+    unknownId: '不明なID'
   caseState:
     CREATED: 作成済み
     CREATED_UPPERCASE: 作成済み
@@ -433,7 +433,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     All: すべて
     And: と
-    AutoTranslation: TODO Auto translation
+    AutoTranslation: 自動翻訳
     BusinessCaseInformation: ビジネスケース情報
     Clone: 複製
     CollapseAll: すべて折りたたむ
@@ -446,7 +446,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       DateFromTo: '%s - %s'
       TextListOut: '%s、%s、。。'
       TextWithColon: '%s：%s'
-      TextWithContextInBrackets: 'TODO: %s (%s: %s)'
+      TextWithContextInBrackets: '%s（%s：%s）'
       TextWithRoundBracket: '%s（%s）'
     TaskCaseInformation: タスク／ケース情報
     Update: 更新
@@ -544,7 +544,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     globalSearch: 検索...
     goToDetail: 詳細へ移動
     growlMessage:
-      PROCESS_VIEWER: TODO You closed the process viewer.
+      PROCESS_VIEWER: プロセスビューアーを閉じました。
       TASK_FINISHED: タスクを正常に完了しました
       TASK_LEFT: タスクをキャンセルして正常に終了しました。タスクはダッシュボードまたはタスクリストで見つけることができます。
     hasPrecondition: このプロセスには前提条件があります
@@ -586,7 +586,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     okContext: OK {0}
     'on': オン
-    pin: 'TODO: Pin'
+    pin: 'ピン'
     pinCaseContext: "ケース{0}をピン留め"
     pinTaskContext: "タスク{0}をピン留め"
     pleaseAddDocument: 上記のリンクにドキュメントを追加してください。
@@ -650,7 +650,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: すべての管理者
     typeAllUsers: すべてのユーザー
     typeOnlyMe: 自分のみ
-    unpin: 'TODO: Unpin'
+    unpin: 'ピンを外す'
     unpinCaseContext: "ケース{0}のピン留めを解除"
     unpinTaskContext: "タスク{0}のピン留めを解除"
     uploadHere: 有効な日付を入力してください。
@@ -792,21 +792,21 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: フィルターが見つかりません
       WidgetNameColumn: ウィジェット名
       WrongDateFormat: 日付が無効です
-    FilterTasksByCurrentCaseOwner: TODO Filter tasks by current case owner
+    FilterTasksByCurrentCaseOwner: 現在のケースオーナーによるタスクのフィルタリング
     ManageFilter: フィルターの管理
-    NoColumnsEnabledForQuickSearch: 'TODO: No columns are enabled for quick search'
+    NoColumnsEnabledForQuickSearch: 'クイック検索に有効なカラムがありません'
     NoData: データなし
     NoSavedFilterMessage: 保存されたフィルターが見つかりません。［フィルターを保存］ ボタンをクリックして新しいフィルターを作成してください
     NoWidgetAvailable: ウィジェットがありません。
     QuickSearch: クイック検索
     QuickSearchInfo: ウィジェットの列管理で、クイック検索の範囲をカスタマイズできます。「含む」に基づいて検索しますが、多数の列を追加する場合はパフォーマンスに注意してください。
-    QuickSearchScope: 'TODO: Search Scope: {0}'
+    QuickSearchScope: '検索範囲:{0}'
     RestoreDefaultDashboardMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。<span class="dashboard-template-name-message">{0}</span> の標準設定が適用されます。
     SaveNewWidgetFilterHeader: 新しいウィジェットフィルターを保存
     SavedFilterHeader: 保存されたフィルター
     SearchForFilter: フィルターを検索
     ShareThisDashboard: このダッシュボードを共有
-    ShowPinnedToggle: 'TODO: Show ''Pinned Tasks'' Toggle'
+    ShowPinnedToggle: '「ピン留めされたタスク」トグルの表示'
     CaseQueryType:
       info: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
       label: ケースタイプ
@@ -970,18 +970,18 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcesses: プロセス
     yourTasks: タスク
   dashboardProcess:
-    processAriaLabel: 'TODO Process name: {0}. Process description: {1}'
+    processAriaLabel: 'プロセス名:{0}。プロセスの説明:{1}'
   documentFiles:
-    FilenameEmpty: 'TODO: Filename cannot be empty.'
+    FilenameEmpty: 'ファイル名は空にできません。'
     PreviewDocument: タスクの詳細にアクセス
-    RenameFile: 'TODO: Rename file'
-    RenamingDocument: 'TODO: Rename document'
-    RenamingDocumentNote: 'TODO: {0} has renamed the file {1} to {2}'
-    RenamingDocumentSuccess: 'TODO: Rename successfully.'
-    RenamingFailed: 'TODO: An error occurs while renaming the document.'
+    RenameFile: 'ファイルの名前を変更'
+    RenamingDocument: 'ドキュメントの名前を変更'
+    RenamingDocumentNote: '{0}がファイル{1}を{2}に名前変更しました'
+    RenamingDocumentSuccess: '名前の変更に成功しました。'
+    RenamingFailed: 'ドキュメントの名前変更中にエラーが発生しました。'
     confirmation: 確認
     confirmationUploadDocument: 暗号化されたファイルのスクリプトスキャンは利用できません。プレビューを続行しますか？
-    deleteDocumentNote: '{0} が {1} を削除しました'
+    deleteDocumentNote: '{0}が {1} を削除しました'
     deleteSuceed: ファイルの削除に成功しました
     download: ダウンロード
     fileContainScript: このファイルにはスクリプトが含まれているため、アップロードできません。
@@ -1283,7 +1283,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME: 有効期限
       ID: タスクID
       NAME: 名前／説明
-      PIN: 'TODO: Pin'
+      PIN: 'ピン'
       PRIORITY: 優先度
       STATE: 状態
       TASK_FOR_UNAVAILABLE_ACTIVATOR: アクティベーターがありません
@@ -1314,8 +1314,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: 優先度（低から高）
     triggerEscalationNote: 'タスク #{2} の {0} ({1}) によってエスカレーションされました'
     type: タイプ
-    unknownId: 'TODO: Unknown ID'
-    unknownTask: 'TODO: Unknown Task'
+    unknownId: '不明なID'
+    unknownTask: '不明なタスク'
   taskPriority:
     EXCEPTION: 例外
     EXCEPTION_LOWERCASE: 例外
@@ -1431,11 +1431,11 @@ Dialogs:
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Axon Ivy Portalへようこそ
                 WelcomeWidgetConfiguration:
-                  AltText: TODO Alternative text
+                  AltText: 代替テキスト
           setting:
             UserProfile:
-              unpinAllPinnedCases: 'TODO: Unpin all pinned cases'
-              unpinAllPinnedTasks: 'TODO: Unpin all pinned tasks'
+              unpinAllPinnedCases: 'すべてのピン留めされたケースのピンを外す'
+              unpinAllPinnedTasks: 'すべてのピン留めされたタスクのピンを外す'
         portalkit:
           component:
             CaseItemDetails:
@@ -1577,9 +1577,9 @@ Dialogs:
             filter:
               DashboardFilter:
                 HasCmsValuesEnabledTooltip: このフィールドは「含む」演算子のみ使用できます
-                SelectFilterField: TODO Select Filter Field
+                SelectFilterField: フィルターフィールドの選択
               DateFilter:
-                SelectPeriod: TODO Select period
+                SelectPeriod: 期間の選択
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: ケース詳細フレーム
@@ -1630,21 +1630,21 @@ Labels:
     TaskDetailsResult: |-
       タスクの詳細 **{0} (#{1})**：
       {2}
-  AIAssistant: TODO AI Assistant
-  AllTasks: 'TODO: All Tasks'
+  AIAssistant: AIアシスタント
+  AllTasks: 'すべてのタスク'
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
-  AssignToRole: 'TODO: Select assigned group'
-  AssignToUser: 'TODO: Select assigned user'
-  Chat: TODO Chat
-  Collapse: TODO 折りたたむ
+  AssignToRole: '割り当てられたグループを選択'
+  AssignToUser: '割り当てられたユーザーを選択'
+  Chat: チャット
+  Collapse: 折りたたむ
   Comma: 、
   CreateNewDashboard: 新しいダッシュボードを作成
   EditDescription: 説明を編集
-  EnterFromValue: TODO Enter from value
-  EnterToValue: TODO Enter to value
-  EnterValue: TODO Enter value
-  EnterValues: TODO Enter values
+  EnterFromValue: 開始値を入力
+  EnterToValue: 終了値を入力
+  EnterValue: 値を入力
+  EnterValues: 値を入力
   Enums:
     ChatbotCandidateQuestion:
       EXPLORE:
@@ -1671,19 +1671,19 @@ Labels:
       ID: ID
       NAME: 名前
       OWNER: ケースオーナー
-      PIN: 'TODO: Pin'
+      PIN: 'ピン'
       STATE: 状態
     DashboardStandardTaskColumn:
       ACTIONS: アクション
       APPLICATION: アプリケーション
       CATEGORY: カテゴリー
-      COMPLETED: 'TODO: Completed Date'
+      COMPLETED: '完了日'
       CREATED: 作成日
       DESCRIPTION: 説明
       EXPIRY: 有効期限
       ID: ID
       NAME: 名前
-      PIN: 'TODO: Pin'
+      PIN: 'ピン'
       PRIORITY: 優先度
       RESPONSIBLE: 責任者
       START: 開始
@@ -1748,21 +1748,21 @@ Labels:
     ThemeMode:
       DARK: 暗い
       LIGHT: 明るい
-  Expand: TODO 展開
+  Expand: 展開
   InsertTask-Explain: タスクを挿入します。私のタスクは延期されます。
   InsertTheTask: タスクを挿入
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: 権限
-  PinnedCases: 'TODO: Pinned Cases'
-  PinnedTasks: 'TODO: Pinned Tasks'
+  PinnedCases: 'ピン留めされたケース'
+  PinnedTasks: 'ピン留めされたタスク'
   RequiredFieldMessage: '{0}:値が必要です'
-  SelectOperator: TODO Choose Operator
-  SelectProcess: 'TODO: Select a process'
-  SelectValues: TODO Select values
+  SelectOperator: 演算子を選択
+  SelectProcess: 'プロセスを選択'
+  SelectValues: 値を選択
   Share: 共有
-  StepType: 'TODO: Step type'
+  StepType: 'ステップタイプ'
   Submit: 送信
   Task: タスク
   TaskItemDetail: タスクの詳細
