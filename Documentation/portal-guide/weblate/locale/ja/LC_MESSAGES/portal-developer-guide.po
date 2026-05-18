@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-18 10:03+0000\n"
-"PO-Revision-Date: 2026-04-06 10:51+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"PO-Revision-Date: 2026-05-18 10:42+0000\n"
+"Last-Translator: Tung Le <tung.le@axonactive.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-12/doc/portal-developer-guide/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-12/doc/portal-developer-guide/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.6.dev0\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
@@ -3271,6 +3272,13 @@ msgid ""
 "``http`` or ``https``) to prevent open-redirect or protocol-injection "
 "attacks."
 msgstr ""
+"``url`` パラメータとして、サニタイズされていないユーザー制御の入力を直接渡さ"
+"ないでください。 ``navigateToUrl()`` および ``resetTaskAndNavigateToUrl()`` "
+"は、内部で値をURLデコードし、 ``SanitizeAPI.escapeForJavascript()`` を使用し"
+"てJavaScriptコンテキスト向けにエスケープします。ただし、オープンリダイレクト"
+"やプロトコルインジェクション攻撃を防ぐため、アプリケーションの境界でURLを検証"
+"する必要があります（例：スキームが ``http`` または ``https`` であることを確認"
+"する）。"
 
 #: ../../source/portal-developer-guide/customization/navigate-back.rst:37
 msgid "Reset Task and Navigate"
@@ -10069,15 +10077,16 @@ msgid "Redeploy Portal projects and customer project."
 msgstr "ポータルプロジェクトと顧客プロジェクトを再展開します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:158
-#, fuzzy
 msgid "Migrate To 12.0.15"
-msgstr "11.3.2 から 12.0.0 への移行"
+msgstr "12.0.15 への移行"
 
 #: ../../source/portal-developer-guide/installation/index.rst:160
 msgid ""
 "1. The global variable ``Portal.KeepSidebarExpanded`` is deprecated and "
 "will be removed in a future version. Use ``Portal.Sidebar.Mode`` instead."
 msgstr ""
+"1。 グローバル変数 ``Portal.KeepSidebarExpand`` は非推奨であり、将来の"
+"バージョンで削除されます。 ``Portal.Sidebar.Mode``."
 
 #: ../../source/portal-developer-guide/installation/index.rst:164
 msgid "Migrate 11.3.2 To 12.0.0"
@@ -10497,6 +10506,8 @@ msgid ""
 "After migrating to version 10, reset the ``StandardProcess.DefaultPages``"
 " value in your application configuration as needed."
 msgstr ""
+"バージョン 10 への移行後、必要に応じてアプリケーション設定の および "
+"``StandardProcess.DefaultPages`` の値をリセットしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:303
 msgid "Migrate 9.3 To 9.4"
@@ -20159,4 +20170,3 @@ msgstr "Portal.UserMenu変数の変更は即時反映されます。更新内容
 #~ "関連タスクを表示するには: :bdg-ref-"
 #~ "warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` または"
 #~ " :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`"
-
