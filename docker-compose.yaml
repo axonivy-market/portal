@@ -1,0 +1,29 @@
+version: '3.8'
+name: axonivy-oracle
+services:
+  ivy-db:
+    image: gvenzl/oracle-xe:21-slim
+    environment:
+      - ORACLE_PASSWORD=W4w4@CH$
+      - ORACLE_DATABASE=AXONIVY
+    ports:
+      - "1521:1521"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+
+  axonivy:
+    image: axonivy/axonivy-engine:12.0
+    depends_on:
+      ivy-db:
+        condition: service_healthy
+    environment:
+      - IVY_SYSTEMDB_TYPE=oracle
+      - IVY_SYSTEMDB_URL=jdbc:oracle:thin:@//ivy-db:1521/AXONIVY
+      - IVY_SYSTEMDB_USER=system
+      - IVY_SYSTEMDB_PASS=W4w4@CH$
+    ports:
+      - "8080:8080"
