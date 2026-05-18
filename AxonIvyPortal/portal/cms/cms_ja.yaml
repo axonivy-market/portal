@@ -800,6 +800,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       SidebarMode: サイドバーモード
       DisableSidebar: サイドバーを無効にする
       SidebarBehaviour: サイドバーの動作
+      SidebarSettingsReloadWarning: 'サイドバーの設定が保存されました。変更を反映するにはページをリロードしてください。'
+      Reload: リロード
       AddItem: 項目を追加
       Label: ラベル
       LinksTo: リンク先
@@ -934,6 +936,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardPermission: ダッシュボードの権限
       dashboardTitle: ダッシュボードのタイトル
       deleteDashboardMessage: 「{0}」のダッシュボードを削除してもよろしいですか？
+      deleteMenuItemMessage: 「{0}」のメニュー項目を削除してもよろしいですか？
       editDashboard: ダッシュボードの編集
       manageDashboard: ダッシュボードの管理
       removeDashboardHeader: 「{0}」のダッシュボードを削除
@@ -1665,6 +1668,8 @@ Dialogs:
             MenuIcon: TODO Menu icon
             MenuTitle: TODO Menu title
             MenuType: TODO Menu type
+            InvalidUrl: 'URLが無効です。'
+            InvalidUrlScheme: 'httpまたはhttpsのURLのみ許可されています。'
             OpenInNewTab: TODO Open in new tab
             StaticPagePath: TODO Static Page Path
           StatisticConfiguration:

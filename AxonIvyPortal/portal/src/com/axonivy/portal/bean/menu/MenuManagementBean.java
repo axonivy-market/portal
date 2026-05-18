@@ -39,13 +39,14 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
   private List<PortalMenuItemDefinition> menuDefinitions;
   private PortalMenuItemDefinition selectedMenuDefinition;
   private SidebarMode sidebarMode;
+  private boolean sidebarSettingsSaved;
 
   @PostConstruct
   public void init() {
     menuDefinitions = MenuLoader.loadMenuDefinitions();
     menuDefinitions.forEach(menu -> initDisplayPermissions(menu));
-    boolean hasNewItems = MenuOrderManager.initOrder(menuDefinitions);
-    if (hasNewItems) {
+    boolean needsSave = MenuOrderManager.initOrder(menuDefinitions);
+    if (needsSave) {
       PortalMenuItemDefinitionService.getInstance().saveAllPublicConfig(menuDefinitions);
     }
     String storedMode = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.SIDEBAR_MODE);
@@ -78,6 +79,7 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
 
   public void onRowReorder(ReorderEvent event) {
     MenuOrderManager.reorderMenu(menuDefinitions, event.getFromIndex(), event.getToIndex());
+    MenuOrderManager.correctMenuIndex(menuDefinitions);
     PortalMenuItemDefinitionService.getInstance().saveAllPublicConfig(menuDefinitions);
   }
 
@@ -93,6 +95,9 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
   public void removeMenu() {
     MenuRemovalHandler.removeMenu(getSelectedMenuDefinition());
     init();
+    // Explicit save prunes the stale MENU entry for the deleted item.
+    // init() only re-saves when it finds items without a saved entry, which is not the case here.
+    PortalMenuItemDefinitionService.getInstance().saveAllPublicConfig(menuDefinitions);
   }
 
   public List<PortalMenuItemDefinition> getMenuDefinitions() {
@@ -194,5 +199,14 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
         .findGlobalSettingByGlobalVariable(GlobalVariable.SIDEBAR_MODE);
     setting.setValue(sidebarMode != null ? sidebarMode.name() : SidebarMode.HOVER.name());
     GlobalSettingService.getInstance().save(setting);
+    sidebarSettingsSaved = true;
+  }
+
+  public boolean isSidebarSettingsSaved() {
+    return sidebarSettingsSaved;
+  }
+
+  public void setSidebarSettingsSaved(boolean sidebarSettingsSaved) {
+    this.sidebarSettingsSaved = sidebarSettingsSaved;
   }
 }

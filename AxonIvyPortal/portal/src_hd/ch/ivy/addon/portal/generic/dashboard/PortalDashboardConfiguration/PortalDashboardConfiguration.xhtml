@@ -111,7 +111,7 @@
                         <label>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/DisableSidebar')}</label>
                         <p:inputSwitch id="disable-sidebar-switch" value="#{menuManagementBean.sidebarDisabled}">
                           <p:ajax event="change" listener="#{menuManagementBean.saveSidebarMode}"
-                            update="sidebar-behaviour-panel" oncomplete="location.reload();" />
+                            update="sidebar-settings-form" />
                         </p:inputSwitch>
                       </div>
                       <h:panelGroup id="sidebar-behaviour-panel" layout="block" rendered="#{not menuManagementBean.sidebarDisabled}"
@@ -122,10 +122,17 @@
                           <f:selectItems value="#{menuManagementBean.sidebarBehaviourModes}" var="mode"
                             itemValue="#{mode}" itemLabel="#{mode.label}" />
                           <p:ajax event="change" listener="#{menuManagementBean.saveSidebarMode}"
-                            oncomplete="location.reload();" />
+                            update="sidebar-settings-form" />
                         </p:selectOneMenu>
                       </h:panelGroup>
                     </div>
+                    <h:panelGroup layout="block" rendered="#{menuManagementBean.sidebarSettingsSaved}"
+                      styleClass="flex align-items-center gap-2 u-mar-top-10 p-message p-message-warn p-component">
+                      <span class="p-message-icon pi pi-exclamation-triangle" />
+                      <span class="p-message-detail">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SidebarSettingsReloadWarning')}</span>
+                      <p:commandButton id="sidebar-reload-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Reload')}"
+                        styleClass="ui-button-outlined ml-2" onclick="location.reload();" type="button" />
+                    </h:panelGroup>
                   </h:form>
                 </div>
               </div>
@@ -228,14 +235,14 @@
         <ui:param name="closeOnEscape" value="true" />
         <ui:param name="iconStyleClass" value="portal-dialog-error-icon portal-dialog-icon" />
         <ui:param name="headerText"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/deleteDashboardMessage',[menuManagementBean.getDisplayMenuTitle(menuManagementBean.selectedMenuDefinition)])}" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/deleteMenuItemMessage',[menuManagementBean.getDisplayMenuTitle(menuManagementBean.selectedMenuDefinition)])}" />
         <ui:define name="dialogFooter">
           <div class="flex flex-column">
           <p:commandButton id="remove-menu-button" styleClass="w-full portal-remove-button"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
             actionListener="#{menuManagementBean.removeMenu}"
             update="menu-table-container"
-            oncomplete="location.reload();" />
+            oncomplete="PF('remove-menu-dialog').hide();" />
           <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             onclick="PF('remove-menu-dialog').hide();" styleClass="ui-button-flat pt-3 flex justify-content-center" />
           </div>

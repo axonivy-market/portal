@@ -29,7 +29,6 @@ public class CustomMenuItemDefinitionAdapter
     menu.setSource(type);
     menu.setId(source.getId());
     menu.setProcessStartPath(source.getLink());
-    menu.setUrl(source.getLink());
     menu.setIcon(source.getIcon());
     menu.setIndex(source.getIndex());
     menu.setVersion(source.getVersion());

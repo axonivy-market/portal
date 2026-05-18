@@ -648,6 +648,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
+      deleteMenuItemMessage: Are you sure you want to delete the "{0}" menu item?
     deleteWidget: Delete widget
     editWidget: Edit widget
     existingField: The {0} field has already been existing
@@ -1162,6 +1163,8 @@ Dialogs:
             HelpText: Customize the menu in this section to match your specific needs or preferences.
             MenuIcon: Menu icon
             MenuType: Menu type
+            InvalidUrl: 'The URL is not valid.'
+            InvalidUrlScheme: 'Only http and https URLs are allowed.'
             OpenInNewTab: Open in new tab
           StatisticConfiguration:
             Aggregate: Aggregate

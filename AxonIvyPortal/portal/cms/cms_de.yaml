@@ -802,6 +802,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       SidebarMode: Seitenleisten-Modus
       DisableSidebar: Seitenleiste deaktivieren
       SidebarBehaviour: Seitenleisten-Verhalten
+      SidebarSettingsReloadWarning: 'Seitenleisten-Einstellungen gespeichert. Laden Sie die Seite neu, um die Änderungen zu übernehmen.'
+      Reload: Neu laden
       AddItem: Eintrag hinzufügen
       Label: Bezeichnung
       LinksTo: Verlinkt auf
@@ -936,6 +938,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardPermission: Dashboard Berechtigung
       dashboardTitle: Dashboard Titel
       deleteDashboardMessage: Sind Sie sicher, dass Sie das Dashboard "{0}" löschen wollen?
+      deleteMenuItemMessage: Sind Sie sicher, dass Sie den Menüeintrag "{0}" löschen wollen?
       editDashboard: Dashboard editieren
       manageDashboard: Dashboard verwalten
       removeDashboardHeader: Dashboard "{0}" entfernen
@@ -1671,6 +1674,8 @@ Dialogs:
             MenuIcon: Menü-Symbol
             MenuTitle: Menütitel
             MenuType: Menütyp
+            InvalidUrl: 'Die URL ist ungültig.'
+            InvalidUrlScheme: 'Nur http- und https-URLs sind erlaubt.'
             OpenInNewTab: In neuem Tab öffnen
             StaticPagePath: Statischer Seitenpfad
           StatisticConfiguration:

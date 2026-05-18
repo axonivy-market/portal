@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -79,11 +80,10 @@ public class PortalConfigurationPage extends TemplatePage {
   }
 
   public SelenideElement findMenuRowByTitle(String menuTitle) {
-    return getMenuTableRows().asFixedIterable()
-        .stream()
-        .filter(row -> row.$("td:first-child").getText().contains(menuTitle))
-        .findFirst()
-        .orElseThrow(() -> new AssertionError("Menu row not found: " + menuTitle));
+    // Lazy filter: Selenide re-queries on every interaction, so the returned element
+    // survives AJAX re-renders of the menu table (which would otherwise produce
+    // StaleElementReferenceException after the create/update dialog closes).
+    return getMenuTableRows().filterBy(text(menuTitle)).first().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public String getMenuTypeByTitle(String menuTitle) {
@@ -126,8 +126,8 @@ public class PortalConfigurationPage extends TemplatePage {
   public void confirmRemoveMenu() {
     $("button[id$='remove-menu-button']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    // Page reloads after deletion; wait for the configuration group to be back
-    $("[id$='configuration-group']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='remove-menu-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("[id$='menu-table-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void cancelRemoveMenu() {
@@ -149,7 +149,6 @@ public class PortalConfigurationPage extends TemplatePage {
     $("[id$='menu-type_items']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("li").filter(Condition.text(menuKindLabel)).first()
         .shouldBe(getClickableCondition()).click();
-    // wait for AJAX update
     $("[id$='menu-configuration-form']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -167,12 +166,19 @@ public class PortalConfigurationPage extends TemplatePage {
 
   public void submitCreateMenu() {
     $("[id$='create-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("[id$='configuration-group']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='menu-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("[id$='menu-table-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void submitCreateMenuExpectingValidationError() {
+    $("[id$='create-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("[id$='menu-configuration-messages']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void submitUpdateMenu() {
     $("[id$='update-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("[id$='configuration-group']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='menu-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("[id$='menu-table-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public String getMenuConfigurationDialogHeader() {
@@ -184,7 +190,6 @@ public class PortalConfigurationPage extends TemplatePage {
     return $(".sidebar-settings-card").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  /** Returns the disable-sidebar input switch element. */
   public SelenideElement getDisableSidebarSwitch() {
     return $("[id$='disable-sidebar-switch']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -194,28 +199,35 @@ public class PortalConfigurationPage extends TemplatePage {
   }
 
   public void clickDisableSidebarSwitch() {
-    SelenideElement configGroupRef = $("[id$='configuration-group']");
-    configGroupRef.shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id$='disable-sidebar-switch']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    configGroupRef.shouldBe(disappear, DEFAULT_TIMEOUT);
-    $("[id$='configuration-group']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='sidebar-settings-form']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void ensureSidebarEnabled() {
     if (getSidebarBehaviourPanel().is(disappear)) {
       clickDisableSidebarSwitch();
-      // After reload the sidebar is now enabled; re-select the tab which also
-      // waits for the menu table that is now rendered again.
-      selectMenuManagementTab();
+      getSidebarBehaviourPanel().shouldBe(appear, DEFAULT_TIMEOUT);
     }
   }
 
   public void ensureSidebarDisabled() {
     if (getSidebarBehaviourPanel().is(appear)) {
       clickDisableSidebarSwitch();
-      selectMenuManagementTabWhenSidebarMayBeDisabled();
+      getSidebarBehaviourPanel().shouldBe(disappear, DEFAULT_TIMEOUT);
     }
+  }
+
+  public SelenideElement getSidebarReloadWarningBanner() {
+    return $("[id$='sidebar-settings-form'] .p-message-warn");
+  }
+
+  public SelenideElement getSidebarReloadButton() {
+    return $("[id$='sidebar-reload-button']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getMenuConfigValidationMessages() {
+    return $("[id$='menu-configuration-messages']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void openSidebarBehaviourDropdown() {
@@ -224,7 +236,6 @@ public class PortalConfigurationPage extends TemplatePage {
     $("[id$='sidebar-mode-select_items']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  /** Returns the open sidebar behaviour dropdown items panel. */
   public SelenideElement getSidebarBehaviourDropdownItems() {
     return $("[id$='sidebar-mode-select_items']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -241,7 +252,6 @@ public class PortalConfigurationPage extends TemplatePage {
     return $("[id$=':dashboard-table']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  /** Returns the hidden dashboard table (HIDDEN dashboards). */
   public SelenideElement getHiddenDashboardTable() {
     return $("[id$='hidden-dashboard-table']").shouldBe(appear, DEFAULT_TIMEOUT);
   }

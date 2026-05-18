@@ -18,7 +18,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -38,16 +37,12 @@ import org.primefaces.model.menu.MenuModel;
 
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
-import com.axonivy.portal.components.util.Locales;
-import com.axonivy.portal.dto.menu.ExternalLinkMenuItemDefinition;
 import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
 import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
 import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
 import com.axonivy.portal.menu.management.enums.MenuSource;
 import com.axonivy.portal.menu.view.MenuMatcher;
 import com.axonivy.portal.service.PortalMenuItemDefinitionService;
-import com.axonivy.portal.util.MenuUtils;
-
 import ch.addon.portal.generic.menu.PortalMenuItem.PortalMenuBuilder;
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
@@ -60,7 +55,6 @@ import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.service.MainMenuEntryService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
-import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -104,46 +98,84 @@ public class MenuView implements Serializable {
     initTaskParams(workingTask, isWorkingOnATask);
     mainMenuModel = new DefaultMenuModel();
 
-    List<PortalMenuItemDefinition> menuDefinitions = Optional
-        .ofNullable(PortalMenuItemDefinitionService.getInstance().findAll()).orElseGet(ArrayList::new);
-
+    List<PortalMenuItemDefinition> savedOrder = loadSavedMenuOrder();
     List<SubMenuItem> subMenuItems = PortalMenuNavigator.callSubMenuItemsProcess();
-
-    List<PortalMenuItem> menuList = subMenuItems.stream().map(subMenu -> {
-      Predicate<PortalMenuItemDefinition> matcher = MenuMatcher.matcherFor(subMenu);
-
-      int menuIndex = menuDefinitions.stream().filter(matcher).findFirst().map(PortalMenuItemDefinition::getIndex)
-          .orElseGet(() -> menuDefinitions.size() + subMenuItems.indexOf(subMenu));
-
-      return buildSubMenuItem(subMenu, menuIndex);
-    }).collect(Collectors.toList());
-
-    // Add third-party apps to the menu list
     List<Application> thirdPartyApps = PortalMenuNavigator.getThirdPartyApps();
-    menuList.addAll(thirdPartyApps.stream().map(app -> {
-      DisplayNameAdaptor adaptor = new DisplayNameAdaptor(app.getDisplayName(), Locales.getCurrentLocale());
-      int index = menuDefinitions.stream().filter(menu -> menu.getSource() == MenuSource.THIRD_PARTY_APP_CONFIGURATION)
-          .filter(menu -> {
-            ExternalLinkMenuItemDefinition externalMenu = (ExternalLinkMenuItemDefinition) menu;
-            return adaptor.getDisplayNameAsString().contentEquals(MenuUtils.getDisplayTitle(externalMenu));
-          }).findFirst().map(PortalMenuItemDefinition::getIndex).orElseGet(() -> menuDefinitions.size() + thirdPartyApps.indexOf(app));
 
-      return buildThirdPartyItem(app, index);
-    }).collect(Collectors.toList()));
+    List<PortalMenuItem> menuItems = new ArrayList<>();
+    menuItems.addAll(buildSubMenuItems(subMenuItems, savedOrder));
+    menuItems.addAll(buildThirdPartyMenuItems(thirdPartyApps, savedOrder, subMenuItems.size()));
 
-    // Sort and put the menu list to the main menu model
-    menuList.sort(Comparator.comparingInt(PortalMenuItem::getIndex));
-    mainMenuModel.getElements().addAll(menuList);
+    menuItems.sort(Comparator.comparingInt(PortalMenuItem::getIndex));
+    mainMenuModel.getElements().addAll(menuItems);
 
-    // Handle default dashboard
-    MenuElement defaultDashboardMenu = buildDashboardItem();
-    int defaultDashboardMenuIndex = menuDefinitions.stream().filter(menu -> menu.getType() == MenuKind.STANDARD)
-        .filter(
-            menu -> ((StandardMenuItemDefinition) menu).getStandardType() == StandardMenuItemDefinitionType.DASHBOARD)
-        .findFirst().map(PortalMenuItemDefinition::getIndex).orElse(0);
-    mainMenuModel.getElements().add(defaultDashboardMenuIndex, defaultDashboardMenu);
-
+    insertDefaultDashboardAtSavedPosition(savedOrder);
     mainMenuModel.generateUniqueIds();
+  }
+
+  private List<PortalMenuItemDefinition> loadSavedMenuOrder() {
+    return Optional.ofNullable(PortalMenuItemDefinitionService.getInstance().findAll())
+        .orElseGet(ArrayList::new);
+  }
+
+  private List<PortalMenuItem> buildSubMenuItems(List<SubMenuItem> subMenuItems,
+      List<PortalMenuItemDefinition> savedOrder) {
+    List<PortalMenuItem> result = new ArrayList<>(subMenuItems.size());
+    for (int i = 0; i < subMenuItems.size(); i++) {
+      SubMenuItem subMenu = subMenuItems.get(i);
+      int fallback = savedOrder.size() + i;
+      int index = findSavedIndex(subMenu, savedOrder).orElse(fallback);
+      result.add(buildSubMenuItem(subMenu, index));
+    }
+    return result;
+  }
+
+  private List<PortalMenuItem> buildThirdPartyMenuItems(List<Application> thirdPartyApps,
+      List<PortalMenuItemDefinition> savedOrder, int subMenuCount) {
+    List<PortalMenuItem> result = new ArrayList<>(thirdPartyApps.size());
+    for (int i = 0; i < thirdPartyApps.size(); i++) {
+      Application app = thirdPartyApps.get(i);
+      int fallback = savedOrder.size() + subMenuCount + i;
+      int index = findSavedIndex(app, savedOrder).orElse(fallback);
+      result.add(buildThirdPartyItem(app, index));
+    }
+    return result;
+  }
+
+  private void insertDefaultDashboardAtSavedPosition(List<PortalMenuItemDefinition> savedOrder) {
+    MenuElement dashboardMenu = buildDashboardItem();
+    int dashboardIndex = findDefaultDashboardSavedIndex(savedOrder);
+    int safeIndex = Math.min(dashboardIndex, mainMenuModel.getElements().size());
+    mainMenuModel.getElements().add(safeIndex, dashboardMenu);
+  }
+
+  private Optional<Integer> findSavedIndex(SubMenuItem subMenu,
+      List<PortalMenuItemDefinition> savedOrder) {
+    Predicate<PortalMenuItemDefinition> matcher = MenuMatcher.matcherFor(subMenu);
+    if (matcher == null) {
+      return Optional.empty();
+    }
+    return savedOrder.stream().filter(matcher).findFirst().map(PortalMenuItemDefinition::getIndex);
+  }
+
+  private Optional<Integer> findSavedIndex(Application app, List<PortalMenuItemDefinition> savedOrder) {
+    if (app.getId() == null) {
+      return Optional.empty();
+    }
+    return savedOrder.stream()
+        .filter(menu -> menu.getSource() == MenuSource.THIRD_PARTY_APP_CONFIGURATION)
+        .filter(menu -> app.getId().equals(menu.getId()))
+        .findFirst()
+        .map(PortalMenuItemDefinition::getIndex);
+  }
+
+  private int findDefaultDashboardSavedIndex(List<PortalMenuItemDefinition> savedOrder) {
+    return savedOrder.stream()
+        .filter(menu -> menu instanceof StandardMenuItemDefinition standard
+            && standard.getStandardType() == StandardMenuItemDefinitionType.DASHBOARD)
+        .findFirst()
+        .map(PortalMenuItemDefinition::getIndex)
+        .orElse(0);
   }
 
   private void initTaskParams(ITask workingTask, boolean isWorkingOnATask) {
@@ -310,30 +342,40 @@ public class MenuView implements Serializable {
     this.breadcrumbModel = breadcrumbModel;
   }
 
+  private static final Map<BreadCrumbKind, String> SIMPLE_BREADCRUMB_CMS_KEYS = Map.of(
+      BreadCrumbKind.USER_PROFILE,            "/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle",
+      BreadCrumbKind.ABSENCES_MANAGEMENT,     "/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/absenceAndDeputy",
+      BreadCrumbKind.DASHBOARD_CONFIGURATION, "/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title",
+      BreadCrumbKind.EDIT_DASHBOARD_DETAILS,  "/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/editDashboard",
+      BreadCrumbKind.PORTAL_MANAGEMENT,       "/ch.ivy.addon.portalkit.ui.jsf/PortalManagement/AdminSetting",
+      BreadCrumbKind.NOTIFICATION,            "/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle",
+      BreadCrumbKind.STATISTIC_CONFIGURATION, "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/StatisticConfiguration");
+
   public void loadBreadcrumb(String viewName, ITask userTask, ICase userCase) {
     breadcrumbModel = new DefaultMenuModel();
     if (StringUtils.isBlank(viewName)) {
       return;
     }
-    BreadCrumbKind breadCrumbKind = BreadCrumbKind.valueOf(viewName);
-    switch (breadCrumbKind) {
+    BreadCrumbKind kind = BreadCrumbKind.valueOf(viewName);
+    String simpleCmsKey = SIMPLE_BREADCRUMB_CMS_KEYS.get(kind);
+    if (simpleCmsKey != null) {
+      buildSimpleBreadcrumb(simpleCmsKey);
+      return;
+    }
+    switch (kind) {
       case TECHNICAL_CASE -> buildBreadCrumbForTechnicalCaseList(userCase);
       case RELATED_TASK -> buildBreadCrumbForRelatedTask(userCase);
       case PROCESS -> buildBreadCrumbForProcess();
       case TASK_DETAIL -> buildBreadCrumbForTaskDetails(userTask);
       case CASE_DETAIL -> buildBreadCrumbForCaseDetails(userCase);
-      case USER_PROFILE -> buildBreadCrumbForUserProfile();
-      case ABSENCES_MANAGEMENT -> buildBreadCrumbForAbsences();
-      case DASHBOARD_CONFIGURATION -> buildBreadCrumbForDashboardConfiguration();
-      case EDIT_DASHBOARD_DETAILS -> buildBreadCrumbForEditDashboardDetail();
       case PROCESS_VIEWER -> buildBreadCrumbForProcessViewer(userTask, userCase);
-      case PORTAL_MANAGEMENT -> {
-        setPortalHomeMenuToBreadcrumbModel();
-        breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/PortalManagement/AdminSetting"));}
-      case NOTIFICATION -> buildBreadCrumbForNotification();
-      case STATISTIC_CONFIGURATION -> buildBreadCrumbForStatisticConfiguration();
       default -> {}
     }
+  }
+
+  private void buildSimpleBreadcrumb(String cmsKey) {
+    setPortalHomeMenuToBreadcrumbModel();
+    breadcrumbModel.getElements().add(buildGenericMenuItem(cmsKey));
   }
 
   private void buildBreadCrumbForProcessViewer(ITask userTask, ICase userCase) {
@@ -349,16 +391,6 @@ public class MenuView implements Serializable {
       menuItem.setValue(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/Breadcrumb", Arrays.asList(userCase.getProcessStart().getName())));
     }
     breadcrumbModel.getElements().add(menuItem);
-  }
-
-  private void buildBreadCrumbForUserProfile() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle"));
-  }
-
-  private void buildBreadCrumbForAbsences() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/absenceAndDeputy"));
   }
 
   private void buildBreadCrumbForTechnicalCaseList(ICase userCase) {
@@ -400,18 +432,6 @@ public class MenuView implements Serializable {
     setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements().add(buildCaseListMenuItem());
     breadcrumbModel.getElements().add(buildCaseDetailsMenuItem(userCase));
-  }
-
-  private void buildBreadCrumbForDashboardConfiguration() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements()
-        .add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title"));
-  }
-
-  private void buildBreadCrumbForEditDashboardDetail() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements()
-        .add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/editDashboard"));
   }
 
   private MenuItem buildPortalHomeMenuItem() {
@@ -522,14 +542,4 @@ public class MenuView implements Serializable {
     return Ivy.session();
   }
 
-  private void buildBreadCrumbForNotification() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle"));
-  }
-
-  private void buildBreadCrumbForStatisticConfiguration() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements()
-        .add(buildGenericMenuItem("/Dialogs/com/axonivy/portal/page/StatisticConfiguration/StatisticConfiguration"));
-  }
 }

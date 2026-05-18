@@ -19,7 +19,7 @@ public enum PortalVariable {
   STATISTIC("Portal.Statistic"),
   CUSTOM_STATISTIC("Portal.CustomStatistic"),
   SESSION_CACHE_TIMEOUT("Portal.SessionCacheTimeout"),
-  MENU_ORDER("Portal.MenuOrder");
+  MENU("Portal.Menu");
 
   public String key;
 

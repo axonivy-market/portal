@@ -800,6 +800,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       SidebarMode: Mode de la barre latérale
       DisableSidebar: Désactiver la barre latérale
       SidebarBehaviour: Comportement de la barre latérale
+      SidebarSettingsReloadWarning: 'Paramètres de la barre latérale enregistrés. Rechargez la page pour appliquer les modifications.'
+      Reload: Recharger
       AddItem: Ajouter un élément
       Label: Libellé
       LinksTo: Lien vers
@@ -934,6 +936,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardPermission: Autorisation du tableau de bord
       dashboardTitle: Titre du tableau de bord
       deleteDashboardMessage: Êtes-vous sûr de vouloir supprimer le "{0}" tableau de bord?
+      deleteMenuItemMessage: Êtes-vous sûr de vouloir supprimer l'élément de menu "{0}" ?
       editDashboard: Modifier le tableau de bord
       manageDashboard: Gérer le tableau de bord
       removeDashboardHeader: Supprimez le tableau de bord "{0}".
@@ -1667,6 +1670,8 @@ Dialogs:
             MenuIcon: Icône du menu
             MenuTitle: Titre du menu
             MenuType: Type de menu
+            InvalidUrl: "L'URL n'est pas valide."
+            InvalidUrlScheme: 'Seules les URLs http et https sont autorisées.'
             OpenInNewTab: Ouvrir dans un nouvel onglet
             StaticPagePath: Chemin de page statique
           StatisticConfiguration:

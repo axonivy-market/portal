@@ -66,6 +66,7 @@ public abstract class PortalMenuItemDefinition extends AbstractConfiguration imp
   @JsonIgnore
   private boolean isIncludedIconFamily;
 
+  @JsonIgnore
   private String displayedPermission;
 
   public List<DisplayName> getTitles() {

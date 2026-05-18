@@ -18,7 +18,7 @@ import com.axonivy.portal.selenium.page.PortalConfigurationPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-@IvyWebTest (headless = false)
+@IvyWebTest 
 public class MenuManagementTest extends BaseTest {
 
   private static final String STANDARD_MENU_DASHBOARD = "Dashboard";
@@ -229,19 +229,66 @@ public class MenuManagementTest extends BaseTest {
     PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
     page.selectMenuManagementTabWhenSidebarMayBeDisabled();
 
-    // Ensure sidebar is currently enabled so the behaviour panel is visible.
     page.ensureSidebarEnabled();
     page.getSidebarBehaviourPanel().shouldBe(appear, DEFAULT_TIMEOUT);
 
-    // Disable the sidebar — this triggers an AJAX save + page reload.
     page.clickDisableSidebarSwitch();
 
-    // After reload the behaviour panel must be gone.
     page.getSidebarBehaviourPanel().shouldBe(disappear, DEFAULT_TIMEOUT);
 
-    // Restore: re-enable the sidebar so subsequent tests start in a clean state.
     page.selectMenuManagementTabWhenSidebarMayBeDisabled();
     page.ensureSidebarEnabled();
+  }
+
+  @Test
+  public void testSidebarSettingsSavedShowsReloadWarning() {
+    PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
+    page.selectMenuManagementTabWhenSidebarMayBeDisabled();
+    page.ensureSidebarEnabled();
+
+    page = LinkNavigator.navigateToPortalConfiguration();
+    page.selectMenuManagementTabWhenSidebarMayBeDisabled();
+
+    page.getSidebarReloadWarningBanner().shouldBe(disappear, DEFAULT_TIMEOUT);
+
+    page.clickDisableSidebarSwitch();
+
+    page.getSidebarReloadWarningBanner().shouldBe(appear, DEFAULT_TIMEOUT);
+    page.getSidebarReloadButton().shouldBe(appear, DEFAULT_TIMEOUT);
+
+    page.clickDisableSidebarSwitch();
+    page.selectMenuManagementTabWhenSidebarMayBeDisabled();
+    page.ensureSidebarEnabled();
+  }
+
+  @Test
+  public void testExternalLinkWithJavascriptSchemeIsRejected() {
+    PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
+    page.selectMenuManagementTab();
+
+    page.clickAddNewMenu();
+    page.selectMenuType(TYPE_EXTERNAL_LINK);
+    page.setExternalLink("javascript:alert(1)");
+    page.setMenuTitle("XSS Menu");
+    page.submitCreateMenuExpectingValidationError();
+
+    page.waitForMenuConfigurationDialogVisible();
+    page.getMenuConfigValidationMessages().$(".ui-messages-error").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testExternalLinkWithDataSchemeIsRejected() {
+    PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
+    page.selectMenuManagementTab();
+
+    page.clickAddNewMenu();
+    page.selectMenuType(TYPE_EXTERNAL_LINK);
+    page.setExternalLink("data:text/html,<script>alert(1)</script>");
+    page.setMenuTitle("Data URL Menu");
+    page.submitCreateMenuExpectingValidationError();
+
+    page.waitForMenuConfigurationDialogVisible();
+    page.getMenuConfigValidationMessages().$(".ui-messages-error").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -256,7 +303,6 @@ public class MenuManagementTest extends BaseTest {
     items.$$("li").filter(text("Hover")).first().shouldBe(appear, DEFAULT_TIMEOUT);
     items.$$("li").filter(text("Click")).first().shouldBe(appear, DEFAULT_TIMEOUT);
     items.$$("li").filter(text("Stick")).first().shouldBe(appear, DEFAULT_TIMEOUT);
-    // Close the dropdown by clicking elsewhere.
     $("body").click();
   }
 
@@ -272,7 +318,6 @@ public class MenuManagementTest extends BaseTest {
     header.$$("th").filter(text("Links to")).first().shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th").filter(text("Type")).first().shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th").filter(text("Action")).first().shouldBe(appear, DEFAULT_TIMEOUT);
-    // Reorder column has no header text; verify it exists via CSS class.
     header.$$("th.settings-table-reorder").first().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -310,15 +355,12 @@ public class MenuManagementTest extends BaseTest {
   public void testInfoPanelIsVisibleOnEachTab() {
     PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
 
-    // Private Dashboard tab
     page.selectPrivateDashboardTab();
     page.getInfoPanelButton().shouldBe(appear, DEFAULT_TIMEOUT);
 
-    // Public Dashboard tab
     page.selectPublicDashboardTab();
     page.getInfoPanelButton().shouldBe(appear, DEFAULT_TIMEOUT);
 
-    // Sidebar Navigation tab
     page.selectMenuManagementTab();
     page.getInfoPanelButton().shouldBe(appear, DEFAULT_TIMEOUT);
   }

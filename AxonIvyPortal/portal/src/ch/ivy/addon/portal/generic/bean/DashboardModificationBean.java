@@ -175,6 +175,20 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     if (previousDisplayType == newDisplayType) {
       return;
     }
+    try {
+      applyMenuOrderForDisplayTypeChange(newDisplayType);
+    } catch (Exception e) {
+      // Dashboard was already saved with newDisplayType before this call. Roll it back
+      // so dashboard state and Portal.Menu don't diverge if the menu-order write failed.
+      Ivy.log().error("Menu order update failed for dashboard {0}; rolling back display type {1} -> {2}",
+          e, selectedDashboard.getId(), newDisplayType, previousDisplayType);
+      selectedDashboard.setDashboardDisplayType(previousDisplayType);
+      saveDashboards(new ArrayList<>(this.dashboards));
+      throw new RuntimeException("Failed to update menu order. Dashboard display type has been rolled back.", e);
+    }
+  }
+
+  private void applyMenuOrderForDisplayTypeChange(DashboardDisplayType newDisplayType) {
     PortalMenuItemDefinitionService menuService = PortalMenuItemDefinitionService.getInstance();
     if (DashboardDisplayType.TOP_MENU.equals(newDisplayType)) {
       // add to top menu: add to menu order at the bottom

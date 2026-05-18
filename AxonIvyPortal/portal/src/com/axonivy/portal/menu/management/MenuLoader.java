@@ -14,12 +14,16 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.dto.menu.ExternalLinkMenuItemDefinition;
 import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
 import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
 import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
+import com.axonivy.portal.menu.MenuId;
 import com.axonivy.portal.menu.management.adapter.CustomMenuItemDefinitionAdapter;
 import com.axonivy.portal.menu.management.adapter.DashboardMenuItemDefinitionAdapter;
 import com.axonivy.portal.menu.management.adapter.ExternalLinkMenuItemDefinitionAdapter;
@@ -71,16 +75,28 @@ public final class MenuLoader implements Serializable {
   }
 
   private static List<PortalMenuItemDefinition> buildCallableMenus() {
-    List<PortalMenuItemDefinition> result = new ArrayList<>();
-    Optional.ofNullable(CustomSubMenuItemService.loadFromSubProcess())
-        .ifPresent(menus -> menus.forEach(menu -> result.add(convertToMenuDefinition(menu, CALLABLE))));
-    return result;
+    return buildCustomMenus(CustomSubMenuItemService.loadFromSubProcess(), CALLABLE);
   }
 
   private static List<PortalMenuItemDefinition> buildConfigurationMenus() {
+    return buildCustomMenus(CustomSubMenuItemService.loadFromConfiguration(), CUSTOM_MENU_CONFIGURATION);
+  }
+
+  /**
+   * Shared pipeline for callable + configuration custom menus. Items without an
+   * explicit ID get a deterministic hash (via {@link MenuId#compute}) before
+   * conversion so MENU can track them across reloads — otherwise {@code migrate()}
+   * would stamp a fresh random UUID each load and order persistence would break.
+   * Developers can override by setting their own ID in the source.
+   */
+  private static List<PortalMenuItemDefinition> buildCustomMenus(List<CustomSubMenuItem> menus, MenuSource source) {
     List<PortalMenuItemDefinition> result = new ArrayList<>();
-    Optional.ofNullable(CustomSubMenuItemService.loadFromConfiguration()).ifPresent(menus -> menus
-        .forEach(menu -> result.add(convertToMenuDefinition(menu, CUSTOM_MENU_CONFIGURATION))));
+    Optional.ofNullable(menus).ifPresent(items -> items.forEach(menu -> {
+      if (StringUtils.isBlank(menu.getId())) {
+        menu.setId(MenuId.compute(menu));
+      }
+      result.add(convertToMenuDefinition(menu, source));
+    }));
     return result;
   }
 
@@ -105,6 +121,7 @@ public final class MenuLoader implements Serializable {
   private static PortalMenuItemDefinition buildDefaultDashboardMenu() {
     PortalMenuItemDefinition menu = new StandardMenuItemDefinition(StandardMenuItemDefinitionType.DASHBOARD);
     menu.setSource(STANDARD);
+    menu.setVersion(AbstractJsonVersion.LATEST);
     menu.setIndex(0);
     return menu;
   }
@@ -112,6 +129,7 @@ public final class MenuLoader implements Serializable {
   private static PortalMenuItemDefinition buildDefaultProcessMenu() {
     PortalMenuItemDefinition menu = new StandardMenuItemDefinition(StandardMenuItemDefinitionType.PROCESS);
     menu.setSource(STANDARD);
+    menu.setVersion(AbstractJsonVersion.LATEST);
     menu.setIndex(1);
     return menu;
   }

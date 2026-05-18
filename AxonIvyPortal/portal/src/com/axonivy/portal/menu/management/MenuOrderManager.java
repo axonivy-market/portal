@@ -2,15 +2,18 @@ package com.axonivy.portal.menu.management;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
 import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
+import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
 import com.axonivy.portal.service.PortalMenuItemDefinitionService;
-import com.axonivy.portal.util.MenuUtils;
 
+import ch.ivyteam.ivy.environment.Ivy;
 /**
  * Responsible for managing menu ordering, including reordering based on saved
  * configurations and handling index assignments.
@@ -20,41 +23,41 @@ public final class MenuOrderManager implements Serializable {
   private static final long serialVersionUID = 2760396027616082120L;
 
   /**
-   * Reorders menu definitions based on saved snapshots.
-   * 
-   * @param menuDefinitions Current menu definitions to reorder
+   * Applies saved MENU to menuDefinitions. Items not found in MENU keep the natural
+   * index assigned by {@code loadMenuDefinitions()} and trigger a re-save so they are tracked
+   * on subsequent loads. Returns true when the caller must persist MENU: on first boot
+   * (empty saved order) or when a new item has no saved entry.
    */
   public static boolean initOrder(List<PortalMenuItemDefinition> menuDefinitions) {
-    List<PortalMenuItemDefinition> snapshotMenuDefinitions = PortalMenuItemDefinitionService.getInstance().findAll();
+    List<PortalMenuItemDefinition> savedOrder = PortalMenuItemDefinitionService.getInstance().findAll();
 
-    if (CollectionUtils.isEmpty(snapshotMenuDefinitions)) {
+    if (CollectionUtils.isEmpty(savedOrder)) {
       correctMenuIndex(menuDefinitions);
-      return true; // first load — bootstrap the JSON
+      return true;
     }
 
-    boolean[] matched = new boolean[menuDefinitions.size()];
+    Map<String, Integer> indexById = savedOrder.stream()
+        .filter(s -> s.getId() != null && s.getIndex() != null)
+        .collect(Collectors.toMap(PortalMenuItemDefinition::getId, PortalMenuItemDefinition::getIndex, (a, b) -> a));
 
-    for (int i = 0; i < menuDefinitions.size(); i++) {
-      var menu = menuDefinitions.get(i);
-      for (var menuOrder : snapshotMenuDefinitions) {
-        menuOrder.setDisplayTitle(MenuUtils.getDisplayTitle(menuOrder));
-        if (tryMatchIndex(menu, menuOrder)) {
-          matched[i] = true;
-        }
-      }
-    }
+    Map<StandardMenuItemDefinitionType, Integer> indexByStandardType = savedOrder.stream()
+        .filter(s -> s instanceof StandardMenuItemDefinition && s.getIndex() != null)
+        .collect(Collectors.toMap(
+            s -> ((StandardMenuItemDefinition) s).getStandardType(),
+            PortalMenuItemDefinition::getIndex, (a, b) -> a));
 
-    // New items (not in snapshot) get appended at the end
-    int maxIndex = snapshotMenuDefinitions.stream()
-        .map(PortalMenuItemDefinition::getIndex)
-        .filter(idx -> idx != null)
-        .max(Integer::compareTo)
-        .orElse(menuDefinitions.size());
+    Map<String, Integer> indexByDisplayTitle = savedOrder.stream()
+        .filter(s -> !(s instanceof StandardMenuItemDefinition))
+        .filter(s -> StringUtils.isNotBlank(s.getDisplayTitle()) && s.getIndex() != null)
+        .collect(Collectors.toMap(PortalMenuItemDefinition::getDisplayTitle,
+            PortalMenuItemDefinition::getIndex, (a, b) -> a));
 
     boolean hasNewItems = false;
-    for (int i = 0; i < menuDefinitions.size(); i++) {
-      if (!matched[i]) {
-        menuDefinitions.get(i).setIndex(++maxIndex);
+    for (var menu : menuDefinitions) {
+      Integer savedIndex = lookupIndex(menu, indexById, indexByStandardType, indexByDisplayTitle);
+      if (savedIndex != null) {
+        menu.setIndex(savedIndex);
+      } else {
         hasNewItems = true;
       }
     }
@@ -63,38 +66,17 @@ public final class MenuOrderManager implements Serializable {
     return hasNewItems;
   }
 
-  private static boolean tryMatchIndex(PortalMenuItemDefinition menu, PortalMenuItemDefinition menuOrder) {
-    switch (menu.getType()) {
-      case MAIN_DASHBOARD:
-        if (menu.getId() != null && menu.getId().contentEquals(menuOrder.getId())) {
-          menu.setIndex(menuOrder.getIndex());
-          return true;
-        }
-        break;
-      case STANDARD:
-        if (menuOrder.getType() == MenuKind.STANDARD) {
-          StandardMenuItemDefinition standardMenu = (StandardMenuItemDefinition) menu;
-          StandardMenuItemDefinition standardOrder = (StandardMenuItemDefinition) menuOrder;
-          if (standardMenu.getStandardType() == standardOrder.getStandardType()) {
-            menu.setIndex(menuOrder.getIndex());
-            return true;
-          }
-        }
-        break;
-      case CUSTOM:
-      case THIRD_PARTY:
-      case EXTERNAL_LINK:
-      case STATIC_PAGE:
-        if (menu.getDisplayTitle() != null && menuOrder.getDisplayTitle() != null
-            && menu.getDisplayTitle().contentEquals(menuOrder.getDisplayTitle())) {
-          menu.setIndex(menuOrder.getIndex());
-          return true;
-        }
-        break;
-      default:
-        break;
+  private static Integer lookupIndex(PortalMenuItemDefinition menu,
+      Map<String, Integer> indexById, Map<StandardMenuItemDefinitionType, Integer> indexByStandardType,
+      Map<String, Integer> indexByDisplayTitle) {
+    if (menu instanceof StandardMenuItemDefinition standard) {
+      return indexByStandardType.get(standard.getStandardType());
     }
-    return false;
+    Integer byId = menu.getId() != null ? indexById.get(menu.getId()) : null;
+    if (byId != null) {
+      return byId;
+    }
+    return StringUtils.isNotBlank(menu.getDisplayTitle()) ? indexByDisplayTitle.get(menu.getDisplayTitle()) : null;
   }
 
   /**
@@ -103,12 +85,10 @@ public final class MenuOrderManager implements Serializable {
    * @param menuDefinitions Menu definitions to order
    */
   public static void correctMenuIndex(List<PortalMenuItemDefinition> menuDefinitions) {
-    // Sort by current index to maintain relative order
     menuDefinitions.sort((menu1, menu2) -> {
       Integer index1 = menu1.getIndex();
       Integer index2 = menu2.getIndex();
 
-      // Handle null indices
       if (index1 == null && index2 == null)
         return 0;
       if (index1 == null)
@@ -119,9 +99,6 @@ public final class MenuOrderManager implements Serializable {
       return Integer.compare(index1, index2);
     });
 
-    // Eliminates duplicate indices by reassigning indices by their position in the
-    // list
-    // Example: [1, 2, 2, 3] becomes [1, 2, 3, 4]
     for (int i = 0; i < menuDefinitions.size(); i++) {
       menuDefinitions.get(i).setIndex(i);
     }
@@ -139,7 +116,12 @@ public final class MenuOrderManager implements Serializable {
       return;
     }
 
+    Ivy.log().info("Menu reorder: position {0} -> {1}", fromIndex, toIndex);
+
     for (var menu : menuDefinitions) {
+      if (menu.getIndex() == null) {
+        continue;
+      }
       int index = menu.getIndex();
 
       if (fromIndex > toIndex) {
