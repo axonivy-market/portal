@@ -22,7 +22,9 @@ import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.widget.DashboardCustomWidgetData;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.service.DashboardService;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -65,6 +67,19 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
       availableDashboards = initCloneableDashboards();
     }
     return availableDashboards;
+  }
+
+  @Override
+  public List<Dashboard> initCloneableDashboards() {
+    if (PermissionUtils.hasDashboardWritePublicPermission()) {
+      return DashboardUtils.getPublicDashboards();
+    }
+
+    if (PermissionUtils.hasDashboardWriteOwnPermission()) {
+      return DashboardUtils.getPrivateDashboards();
+    }
+
+    return new ArrayList<>();
   }
 
   public void setAvailableDashboards(List<Dashboard> targetDashboards) {
