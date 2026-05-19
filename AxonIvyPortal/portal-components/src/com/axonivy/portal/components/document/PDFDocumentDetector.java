@@ -44,7 +44,7 @@ public class PDFDocumentDetector implements DocumentDetector {
 
   private boolean detectJavaScript(COSDictionary root) {
     COSDictionary names = root.getCOSDictionary(COSName.NAMES);
-    if (names != null && names.getCOSDictionary(COSName.getPDFName("JavaScript")) != null) {
+    if (names != null && names.getCOSDictionary(COSName.JAVA_SCRIPT) != null) {
       return true;
     }
     return root.getCOSDictionary(COSName.AA) != null;
