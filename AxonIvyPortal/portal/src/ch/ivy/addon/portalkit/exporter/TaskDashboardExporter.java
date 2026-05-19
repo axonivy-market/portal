@@ -56,7 +56,6 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
       case STATE -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE";
       case CATEGORY -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY";
       case APPLICATION -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/APPLICATION";
-      case WORKER -> "/ch.ivy.addon.portalkit.ui.jsf/common/workingUser";
       default -> "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/" + columnField.name();
     };
 
@@ -97,9 +96,6 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
       case CATEGORY -> taskItem.getCategory().getPath();
       case DESCRIPTION -> taskItem.getDescription();
       case APPLICATION -> taskItem.getApplication().getName();
-      case WORKER -> taskItem.getWorkerUser() == null
-          ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable")
-          : taskItem.getWorkerUser().getDisplayName();
       default -> "";
     };
   }

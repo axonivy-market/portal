@@ -58,7 +58,6 @@ public class TaskColumnModel extends ColumnModel {
       case EXPIRY -> new ExpiryDateColumnModel();
       case CATEGORY -> new CategoryColumnModel();
       case APPLICATION -> new ApplicationColumnModel();
-      case WORKER -> new WorkerColumnModel();
       case ACTIONS -> new ActionsColumnModel();
     }).orElse(new TaskColumnModel());
   }

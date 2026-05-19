@@ -12,6 +12,8 @@ import static com.codeborne.selenide.Selenide.$$;
 import java.time.Duration;
 import java.util.Arrays;
 
+import org.openqa.selenium.Keys;
+
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -90,9 +92,6 @@ public class ComplexFilterHelper{
         break;
       case WITHIN:
         handleFilterWithin(filterElement, values);
-        break;
-      case WORKER_TYPE:
-        handleFilterWorker(filterElement, values);
         break;
       default:
         break;
@@ -191,19 +190,6 @@ public class ComplexFilterHelper{
       selectPanel.shouldBe(getClickableCondition()).click();
       selectPanel.shouldBe(disappear);
       filterElement.$("div[id$=':responsibles']").$("ul li.ui-helper-hidden").should(disappear);
-    }
-  }
-  
-  private static void handleFilterWorker(SelenideElement filterElement, Object... values) {
-    var workerInput = filterElement.$("div[id$=':workers-dropdown']").$("input").shouldBe(appear);
-    for (int i = 0; i < values.length; i++) {
-      workerInput.clear();
-      workerInput.sendKeys(String.valueOf(values[i]));
-      var selectPanel = $("span[id$=':workers-dropdown_panel'][style*='display: block']").shouldBe(appear);
-      selectPanel.$(".ui-avatar-text").shouldBe(appear);
-      selectPanel.shouldBe(getClickableCondition()).click();
-      selectPanel.shouldBe(disappear);
-      filterElement.$("div[id$=':workers-dropdown']").$("ul li.ui-helper-hidden").should(disappear);
     }
   }
 

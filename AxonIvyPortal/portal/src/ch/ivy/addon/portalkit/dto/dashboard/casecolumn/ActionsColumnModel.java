@@ -47,4 +47,9 @@ public class ActionsColumnModel extends CaseColumnModel implements Serializable 
     }
     return caze.getCategory().getName();
   }
+
+  @Override
+  public boolean canFilter() {
+    return false;
+  }
 }

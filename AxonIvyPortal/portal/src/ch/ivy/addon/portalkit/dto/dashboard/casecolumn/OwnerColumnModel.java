@@ -116,4 +116,9 @@ public class OwnerColumnModel extends CaseColumnModel implements Serializable {
     return false;
   }
 
+  @Override
+  public boolean canFilter() {
+    return false;
+  }
+
 }

@@ -536,6 +536,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       worker: Bearbeiter
       wrongFromDateFormat: Bitte geben Sie ein gültiges Datum "von" an. Das Format ist {0}
       wrongToDateFormat: Bitte geben Sie ein gültiges Datum "bis" an. Das Format ist {0}
+    filterLabel: Filter
     finish: Beenden
     general: Allgemein
     generalInformation: Allgemeine Informationen
@@ -662,7 +663,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
     warning: Warnung!
     welcomeToPortal: Willkommen, bitte melden Sie sich an
-    workingUser: Bearbeiter
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
     year: Jahr
     years: Jahre
@@ -840,6 +840,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       STANDARD: Standard-Feld
     configuration:
       CustomWidgetExternalLinkWarning: Einige Websites sind aufgrund von Sicherheitsbedenken nicht mit iframe kompatibel. Bitte wenden Sie sich an Ihren Administrator, wenn die externe Website nicht ordnungsgemäß funktioniert.
+      CustomWidgetUrlInvalidScheme: Die angegebene URL ist ungültig
       CustomWidgetTitlePlaceholder: Lassen Sie es leer, um die Kopfzeile des Widgets auszublenden
       Parameters: Parameter
       RestoreDefaultDashboardTemplateTooltip: Wir können die Vorlage für Ihr Dashboard nicht finden und es daher nicht auf die Standardkonfiguration zurücksetzen. Bitte erkundigen Sie sich bei Ihrem Administrator nach weiteren Details!
@@ -1240,6 +1241,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: Es kann keine Ablaufzeit gesetzt werden, da diese Aufgabe keine Eskalationslogik enthält.
     technicalCase: Technischer Vorgang
     workflowEventDialog: 'Workflow Events für Aufgabe #{0}'
+    workingUser: Bearbeiter
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: Die Aufgabenfrist wurde erfolgreich gespeichert
@@ -1691,7 +1693,6 @@ Labels:
       RESPONSIBLE: Verantwortlich
       START: Start
       STATE: Status
-      WORKER: Bearbeiter
     FilterOperator:
       AFTER: Ist nach
       BEFORE: Ist vor

@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-06 10:38+0000\n"
-"PO-Revision-Date: 2026-04-06 10:51+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"POT-Creation-Date: 2026-05-18 10:03+0000\n"
+"PO-Revision-Date: 2026-05-18 10:42+0000\n"
+"Last-Translator: Tung Le <tung.le@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-12/doc/portal-developer-guide/ja/>\n"
 "Language: ja\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 2026.6.dev0\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
@@ -3263,14 +3263,32 @@ msgid ""
 msgstr "**特定のURL**:``PortalNavigatorInFrameAPI.navigateToUrl(String url)`` を使用"
 
 #: ../../source/portal-developer-guide/customization/navigate-back.rst:30
+msgid ""
+"Never pass unsanitized, user-controlled input directly as the ``url`` "
+"parameter. Both ``navigateToUrl()`` and ``resetTaskAndNavigateToUrl()`` "
+"internally URL-decode the value and escape it for JavaScript context via "
+"``SanitizeAPI.escapeForJavascript()``. However, you should still validate"
+" the URL at the application boundary (e.g., check that the scheme is "
+"``http`` or ``https``) to prevent open-redirect or protocol-injection "
+"attacks."
+msgstr ""
+"``url`` パラメータとして、サニタイズされていないユーザー制御の入力を直接渡さ"
+"ないでください。 ``navigateToUrl()`` および ``resetTaskAndNavigateToUrl()`` "
+"は、内部で値をURLデコードし、 ``SanitizeAPI.escapeForJavascript()`` を使用し"
+"てJavaScriptコンテキスト向けにエスケープします。ただし、オープンリダイレクト"
+"やプロトコルインジェクション攻撃を防ぐため、アプリケーションの境界でURLを検証"
+"する必要があります（例：スキームが ``http`` または ``https`` であることを確認"
+"する）。"
+
+#: ../../source/portal-developer-guide/customization/navigate-back.rst:37
 msgid "Reset Task and Navigate"
 msgstr "タスクをリセットして移動"
 
-#: ../../source/portal-developer-guide/customization/navigate-back.rst:32
+#: ../../source/portal-developer-guide/customization/navigate-back.rst:39
 msgid "To reset a task and navigate to a URL, use the following approach:"
 msgstr "タスクをリセットしてURLに移動するには、次の方法を使用します："
 
-#: ../../source/portal-developer-guide/customization/navigate-back.rst:38
+#: ../../source/portal-developer-guide/customization/navigate-back.rst:45
 msgid ""
 "Alternatively, if the task is not in the CREATED state and has not been "
 "persisted, you can use the following approach:"
@@ -5885,11 +5903,9 @@ msgid ""
 "only top-level cases, ``\"SUB_CASE\"`` shows only sub-cases (children of "
 "a business case), ``\"ALL\"`` shows both business cases and sub-cases"
 msgstr ""
-"表示するケースのレベルを定義します。デフォルトでは、ウィジェットは ``` およ"
-"び `\"BUSINESS_CASE\"`` を参照します。利用可能な値：``\"BUSINESS_CASE\"`` は"
-"トップレベルのケースのみを表示します。``\"SUB_CASE\"`` はサブケース（"
-"ビジネスケースの子）のみを表示します。``\"ALL\"`` はビジネスケースと"
-"サブケースの両方を表示します。"
+"表示するケースのレベルを定義します。デフォルトでは、ウィジェットは ``` および `\"BUSINESS_CASE\"`` "
+"を参照します。利用可能な値：``\"BUSINESS_CASE\"`` はトップレベルのケースのみを表示します。``\"SUB_CASE\"`` "
+"はサブケース（ビジネスケースの子）のみを表示します。``\"ALL\"`` はビジネスケースとサブケースの両方を表示します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:194
 msgid "``isTopMenu``"
@@ -10061,10 +10077,22 @@ msgid "Redeploy Portal projects and customer project."
 msgstr "ポータルプロジェクトと顧客プロジェクトを再展開します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:158
+msgid "Migrate To 12.0.15"
+msgstr "12.0.15 への移行"
+
+#: ../../source/portal-developer-guide/installation/index.rst:160
+msgid ""
+"1. The global variable ``Portal.KeepSidebarExpanded`` is deprecated and "
+"will be removed in a future version. Use ``Portal.Sidebar.Mode`` instead."
+msgstr ""
+"1。 グローバル変数 ``Portal.KeepSidebarExpand`` は非推奨であり、将来の"
+"バージョンで削除されます。 ``Portal.Sidebar.Mode``."
+
+#: ../../source/portal-developer-guide/installation/index.rst:164
 msgid "Migrate 11.3.2 To 12.0.0"
 msgstr "11.3.2 から 12.0.0 への移行"
 
-#: ../../source/portal-developer-guide/installation/index.rst:160
+#: ../../source/portal-developer-guide/installation/index.rst:166
 msgid ""
 "1. Custom field values for business details pages are migrated silently "
 "from the process link relative path to its :dev-url:`IWebStartable ID "
@@ -10077,7 +10105,7 @@ msgstr ""
 "api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` "
 "にサイレントに移行されます。 管理者が何かを行う必要はありません。これは単なる参考情報です。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:164
+#: ../../source/portal-developer-guide/installation/index.rst:170
 msgid ""
 "2. We implemented a new feature to adjusting column widths in the Task "
 "and Case widgets. This change may slightly impact the column widths of "
@@ -10091,11 +10119,11 @@ msgstr ""
 "列の幅を手動で調整する方法については、:ref:`タスクウィジェットの設定 <new-dashboard-task-list-widget>` と"
 " :ref:`ケースウィジェットの設定 <new-dashboard-case-list-widget>` を参照してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:170
+#: ../../source/portal-developer-guide/installation/index.rst:176
 msgid "Migrate 11.1.0 To 11.2.0"
 msgstr "11.1.0 から 11.2.0 への移行"
 
-#: ../../source/portal-developer-guide/installation/index.rst:172
+#: ../../source/portal-developer-guide/installation/index.rst:178
 msgid ""
 "The ``AxonIvyExpress`` module is renamed to ``axonivy-express`` and "
 "becomes an item on the Axon Ivy Market, To migrate it you need to do the "
@@ -10104,7 +10132,7 @@ msgstr ""
 "``AxonIvyExpress`` モジュールは ``axonivy-express`` という名前に変更され、Axon Ivy Market "
 "で入手できるようになりました。移行するには、以下の手順を実行する必要があります。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:174
+#: ../../source/portal-developer-guide/installation/index.rst:180
 msgid ""
 "Open **Portal**, go to **Setting** -> **Express Management**. Export all "
 "Express configurations."
@@ -10112,29 +10140,29 @@ msgstr ""
 "**ポータル** を開き、［ **設定** ］、［ **Express の管理** ］の順に移動します。Express "
 "のすべての設定をエクスポートします。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:175
+#: ../../source/portal-developer-guide/installation/index.rst:181
 msgid ""
 "Open the **Cockpit**, stop the PM **AxonIvyExpress** in your **Portal** "
 "application."
 msgstr "**コックピット** を開き、 **ポータル** アプリケーションで PM **AxonIvyExpress** を停止します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:176
+#: ../../source/portal-developer-guide/installation/index.rst:182
 msgid ""
 "Deploy the **axonivy-express** module which gets from the Axon Ivy Market"
 " into the **Portal** application."
 msgstr "Axon Ivy Market から取得した **axonivy-express** モジュールを **ポータル** アプリケーションに展開します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:177
+#: ../../source/portal-developer-guide/installation/index.rst:183
 msgid "Restart Engine."
 msgstr "エンジンを再起動します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:178
+#: ../../source/portal-developer-guide/installation/index.rst:184
 msgid ""
 "Open **Portal**, go to **Setting** -> **Express Management**. Import the "
 "configuration which is exported at the first step."
 msgstr "**ポータル** を開き、［ **設定** ］、［ **Expressの管理** ］の順に移動します。最初にエクスポートした設定をインポートします。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:181
+#: ../../source/portal-developer-guide/installation/index.rst:187
 msgid ""
 "If you override ``PortalStartTimeCleanObsoletedDataExpression`` variable,"
 " please update it to new Ivy CRON job pattern."
@@ -10142,7 +10170,7 @@ msgstr ""
 "``PortalStartTimeCleanObsoletedDataExpression`` 変数をオーバーライドする場合は、新しい Ivy "
 "CRON のジョブパターンに更新します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:182
+#: ../../source/portal-developer-guide/installation/index.rst:188
 msgid ""
 "Refer to Axon Ivy CRON job pattern: `CRON Expression "
 "<https://developer.axonivy.com/doc/12.0/engine-guide/configuration"
@@ -10152,17 +10180,17 @@ msgstr ""
 "<https://developer.axonivy.com/doc/12.0/engine-guide/configuration"
 "/advanced-configuration.html#cron-expression>`_ ）。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:183
+#: ../../source/portal-developer-guide/installation/index.rst:189
 msgid ""
 "Example: Change ``0 0 1 * * ?`` to ``0 1 * * *`` for job trigger 01:00 AM"
 " everyday."
 msgstr "例：毎日 01:00 AM にジョブをトリガーする場合は、 ``0 0 1 * * ?`` を ``0 1 * * *`` に変更します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:186
+#: ../../source/portal-developer-guide/installation/index.rst:192
 msgid "Migrate 10.0.19 To 10.0.20"
 msgstr "10.0.19 から 10.0.20 への移行"
 
-#: ../../source/portal-developer-guide/installation/index.rst:188
+#: ../../source/portal-developer-guide/installation/index.rst:194
 msgid ""
 "So far, Portal supports configuring process steps of :ref:`Process chain "
 "<components-portal-components-process-chain>` with String or Array "
@@ -10174,7 +10202,7 @@ msgstr ""
 "process-chain>` のプロセスステップの設定をサポートしてきました。 "
 "文字列形式は非推奨ですが、後方互換性のため、引き続きサポートします。配列形式を使用することを推奨します。以下のように変更できます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:191
+#: ../../source/portal-developer-guide/installation/index.rst:197
 msgid ""
 "Change ``window.processSteps = \"Create Investment Request,Approve "
 "Investment Request\";`` to ``window.processSteps = [\"Create Investment "
@@ -10184,7 +10212,7 @@ msgstr ""
 "Request\";`` を ``window.processSteps = [\"Create Investment Request\", "
 "\"Approve Investment Request\"];`` に変更します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:193
+#: ../../source/portal-developer-guide/installation/index.rst:199
 #, python-brace-format
 msgid ""
 "Change ``window.processSteps = \"#{fn:join(data.steps.toArray(), "
@@ -10195,11 +10223,11 @@ msgstr ""
 "``window.processSteps = "
 "#{portalComponentUtilsBean.convertToJSON(data.steps)};`` に変更します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:196
+#: ../../source/portal-developer-guide/installation/index.rst:202
 msgid "Migrate 10.0.12 To 10.0.13"
 msgstr "10.0.12 から 10.0.13 への移行"
 
-#: ../../source/portal-developer-guide/installation/index.rst:198
+#: ../../source/portal-developer-guide/installation/index.rst:204
 msgid ""
 "Override HTML dialog ``UserWithEnvironmentInfo`` is removed and no longer"
 " supported, use ``GlobalFooterInfo`` dialog instead with the "
@@ -10209,7 +10237,7 @@ msgstr ""
 "が削除され、サポート対象外になりました。代わりに ``GlobalFooterInfo`` ダイアログと GlobalVariable "
 "を使用してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:200
+#: ../../source/portal-developer-guide/installation/index.rst:206
 msgid ""
 "Override HTML dialog ``PageHeader`` and ``PageFooter`` are no longer "
 "supported, use callable instead."
@@ -10217,22 +10245,22 @@ msgstr ""
 "HTML のオーバーライドダイアログである ``PageHeader`` と ``PageFooter`` がサポート対象外になりました。代わりに"
 " callable を使用してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:203
+#: ../../source/portal-developer-guide/installation/index.rst:209
 msgid "Migrate 10.0.11 To 10.0.12"
 msgstr "10.0.11 から 10.0.12 への移行"
 
-#: ../../source/portal-developer-guide/installation/index.rst:205
+#: ../../source/portal-developer-guide/installation/index.rst:211
 msgid ""
 "Portal no longer supports the override process approach for some "
 "subprocesses. Please follow the guidelines below to migrate your override"
 " subprocesses."
 msgstr "いくつかのサブプロセスについて、プロセスのオーバーライドがサポート対象外になりました。以下のガイドラインに従って、サブプロセスのオーバーライドを移行してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:207
+#: ../../source/portal-developer-guide/installation/index.rst:213
 msgid ":ref:`Customize Forgot Password <customization-forgot-password>`"
 msgstr ":ref:`パスワードを忘れた場合のカスタマイズ <customization-forgot-password>`"
 
-#: ../../source/portal-developer-guide/installation/index.rst:208
+#: ../../source/portal-developer-guide/installation/index.rst:214
 msgid ""
 "Remove subprocess override of ``ResetPassword`` and "
 "``SendPasswordResetEmail``` from your project."
@@ -10240,53 +10268,53 @@ msgstr ""
 "プロジェクトから ``ResetPassword``、 ``SendPasswordResetEmail`` "
 "のサブプロセスのオーバーライドを削除します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:209
-#: ../../source/portal-developer-guide/installation/index.rst:237
-#: ../../source/portal-developer-guide/installation/index.rst:249
-#: ../../source/portal-developer-guide/installation/index.rst:259
-#: ../../source/portal-developer-guide/installation/index.rst:269
+#: ../../source/portal-developer-guide/installation/index.rst:215
+#: ../../source/portal-developer-guide/installation/index.rst:243
+#: ../../source/portal-developer-guide/installation/index.rst:255
+#: ../../source/portal-developer-guide/installation/index.rst:265
+#: ../../source/portal-developer-guide/installation/index.rst:275
 msgid "Change the signature of your callable start as described below."
 msgstr "以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:212
-#: ../../source/portal-developer-guide/installation/index.rst:224
-#: ../../source/portal-developer-guide/installation/index.rst:240
-#: ../../source/portal-developer-guide/installation/index.rst:252
-#: ../../source/portal-developer-guide/installation/index.rst:262
-#: ../../source/portal-developer-guide/installation/index.rst:272
+#: ../../source/portal-developer-guide/installation/index.rst:218
+#: ../../source/portal-developer-guide/installation/index.rst:230
+#: ../../source/portal-developer-guide/installation/index.rst:246
+#: ../../source/portal-developer-guide/installation/index.rst:258
+#: ../../source/portal-developer-guide/installation/index.rst:268
+#: ../../source/portal-developer-guide/installation/index.rst:278
 msgid "Subprocess"
 msgstr "サブプロセス"
 
-#: ../../source/portal-developer-guide/installation/index.rst:212
-#: ../../source/portal-developer-guide/installation/index.rst:224
-#: ../../source/portal-developer-guide/installation/index.rst:240
-#: ../../source/portal-developer-guide/installation/index.rst:252
-#: ../../source/portal-developer-guide/installation/index.rst:262
-#: ../../source/portal-developer-guide/installation/index.rst:272
+#: ../../source/portal-developer-guide/installation/index.rst:218
+#: ../../source/portal-developer-guide/installation/index.rst:230
+#: ../../source/portal-developer-guide/installation/index.rst:246
+#: ../../source/portal-developer-guide/installation/index.rst:258
+#: ../../source/portal-developer-guide/installation/index.rst:268
+#: ../../source/portal-developer-guide/installation/index.rst:278
 msgid "New signature"
 msgstr "新しいシグネチャ"
 
-#: ../../source/portal-developer-guide/installation/index.rst:214
+#: ../../source/portal-developer-guide/installation/index.rst:220
 msgid "ResetPassword"
 msgstr "ResetPassword"
 
-#: ../../source/portal-developer-guide/installation/index.rst:214
+#: ../../source/portal-developer-guide/installation/index.rst:220
 msgid "portalResetPassword"
 msgstr "portalResetPassword"
 
-#: ../../source/portal-developer-guide/installation/index.rst:216
+#: ../../source/portal-developer-guide/installation/index.rst:222
 msgid "SendPasswordResetEmail"
 msgstr "SendPasswordResetEmail"
 
-#: ../../source/portal-developer-guide/installation/index.rst:216
+#: ../../source/portal-developer-guide/installation/index.rst:222
 msgid "portalSendPasswordResetEmail"
 msgstr "portalSendPasswordResetEmail"
 
-#: ../../source/portal-developer-guide/installation/index.rst:219
+#: ../../source/portal-developer-guide/installation/index.rst:225
 msgid ":ref:`Document Processes <customization-document-processes>`"
 msgstr ":ref:`ドキュメントのプロセス <customization-document-processes>`"
 
-#: ../../source/portal-developer-guide/installation/index.rst:220
+#: ../../source/portal-developer-guide/installation/index.rst:226
 msgid ""
 "Remove subprocess override of ``GetDocumentList``, ``UploadDocument``, "
 "``DeleteDocument``, and ``DownloadDocument`` from your project."
@@ -10294,123 +10322,123 @@ msgstr ""
 "プロジェクトから ``GetDocumentList``、 ``UploadDocument``、 ``DeleteDocument``、 "
 "``DownloadDocument`` のサブプロセスのオーバーライドを削除します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:221
+#: ../../source/portal-developer-guide/installation/index.rst:227
 msgid "Change the signature of your callable starts as described below."
 msgstr "以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:226
-#: ../../source/portal-developer-guide/installation/index.rst:314
+#: ../../source/portal-developer-guide/installation/index.rst:232
+#: ../../source/portal-developer-guide/installation/index.rst:322
 msgid "GetDocumentList"
 msgstr "GetDocumentList"
 
-#: ../../source/portal-developer-guide/installation/index.rst:226
+#: ../../source/portal-developer-guide/installation/index.rst:232
 msgid "portalGetDocumentList"
 msgstr "portalGetDocumentList"
 
-#: ../../source/portal-developer-guide/installation/index.rst:228
-#: ../../source/portal-developer-guide/installation/index.rst:316
+#: ../../source/portal-developer-guide/installation/index.rst:234
+#: ../../source/portal-developer-guide/installation/index.rst:324
 msgid "UploadDocument"
 msgstr "UploadDocument"
 
-#: ../../source/portal-developer-guide/installation/index.rst:228
+#: ../../source/portal-developer-guide/installation/index.rst:234
 msgid "portalUploadDocument"
 msgstr "portalUploadDocument"
 
-#: ../../source/portal-developer-guide/installation/index.rst:230
-#: ../../source/portal-developer-guide/installation/index.rst:318
+#: ../../source/portal-developer-guide/installation/index.rst:236
+#: ../../source/portal-developer-guide/installation/index.rst:326
 msgid "DeleteDocument"
 msgstr "DeleteDocument"
 
-#: ../../source/portal-developer-guide/installation/index.rst:230
+#: ../../source/portal-developer-guide/installation/index.rst:236
 msgid "portalDeleteDocument"
 msgstr "portalDeleteDocument"
 
-#: ../../source/portal-developer-guide/installation/index.rst:232
-#: ../../source/portal-developer-guide/installation/index.rst:320
+#: ../../source/portal-developer-guide/installation/index.rst:238
+#: ../../source/portal-developer-guide/installation/index.rst:328
 msgid "DownloadDocument"
 msgstr "DownloadDocument"
 
-#: ../../source/portal-developer-guide/installation/index.rst:232
+#: ../../source/portal-developer-guide/installation/index.rst:238
 msgid "portalDownloadDocument"
 msgstr "portalDownloadDocument"
 
-#: ../../source/portal-developer-guide/installation/index.rst:235
+#: ../../source/portal-developer-guide/installation/index.rst:241
 msgid ":ref:`Customize Logout Process <customization-logout>`"
 msgstr ":ref:`ログアウトプロセスのカスタマイズ <customization-logout>`"
 
-#: ../../source/portal-developer-guide/installation/index.rst:236
+#: ../../source/portal-developer-guide/installation/index.rst:242
 msgid ""
 "Remove subprocess override of ``LogoutPage`` and ``Logout`` from your "
 "project."
 msgstr "プロジェクトから ``LogoutPage``、 ``Logout`` のサブプロセスのオーバーライドを削除します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:242
+#: ../../source/portal-developer-guide/installation/index.rst:248
 msgid "LogoutPage"
 msgstr "LogoutPage"
 
-#: ../../source/portal-developer-guide/installation/index.rst:242
+#: ../../source/portal-developer-guide/installation/index.rst:248
 msgid "portalGetLogoutPage"
 msgstr "portalGetLogoutPage"
 
-#: ../../source/portal-developer-guide/installation/index.rst:244
+#: ../../source/portal-developer-guide/installation/index.rst:250
 msgid "Logout"
 msgstr "Logout"
 
-#: ../../source/portal-developer-guide/installation/index.rst:244
+#: ../../source/portal-developer-guide/installation/index.rst:250
 msgid "portalLogout"
 msgstr "portalLogout"
 
-#: ../../source/portal-developer-guide/installation/index.rst:247
+#: ../../source/portal-developer-guide/installation/index.rst:253
 msgid ""
 ":ref:`Customize Change Password Process <customization-change-password-"
 "process>`"
 msgstr ":ref:`パスワードの変更プロセスのカスタマイズ <customization-change-password-process>`"
 
-#: ../../source/portal-developer-guide/installation/index.rst:248
+#: ../../source/portal-developer-guide/installation/index.rst:254
 msgid "Remove subprocess override of ``ChangePassword`` from your project."
 msgstr "プロジェクトから ``ChangePassword`` のサブプロセスのオーバーライドを削除します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:254
+#: ../../source/portal-developer-guide/installation/index.rst:260
 msgid "ChangePassword"
 msgstr "ChangePassword"
 
-#: ../../source/portal-developer-guide/installation/index.rst:254
+#: ../../source/portal-developer-guide/installation/index.rst:260
 msgid "portalChangePassword"
 msgstr "portalChangePassword"
 
-#: ../../source/portal-developer-guide/installation/index.rst:257
+#: ../../source/portal-developer-guide/installation/index.rst:263
 msgid ":ref:`Task Delegation <customization-task-delegation>`"
 msgstr ":ref:`タスクの委任 <customization-task-delegation>`"
 
-#: ../../source/portal-developer-guide/installation/index.rst:258
+#: ../../source/portal-developer-guide/installation/index.rst:264
 msgid "Remove subprocess override of ``CalculateTaskDelegate`` from your project."
 msgstr "プロジェクトから ``CalculateTaskDelegate`` のサブプロセスのオーバーライドを削除します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:264
+#: ../../source/portal-developer-guide/installation/index.rst:270
 msgid "CalculateTaskDelegate"
 msgstr "CalculateTaskDelegate"
 
-#: ../../source/portal-developer-guide/installation/index.rst:264
+#: ../../source/portal-developer-guide/installation/index.rst:270
 msgid "portalCalculateTaskDelegate"
 msgstr "portalCalculateTaskDelegate"
 
-#: ../../source/portal-developer-guide/installation/index.rst:267
+#: ../../source/portal-developer-guide/installation/index.rst:273
 msgid ":ref:`Customize Menu Items <customization-menu-customization>`"
 msgstr ":ref:`メニュー項目のカスタマイズ <customization-menu-customization>`"
 
-#: ../../source/portal-developer-guide/installation/index.rst:268
+#: ../../source/portal-developer-guide/installation/index.rst:274
 msgid "Remove subprocess override of ``LoadSubMenuItems`` from your project."
 msgstr "プロジェクトから ``LoadSubMenuItems`` のサブプロセスのオーバーライドを削除します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:274
+#: ../../source/portal-developer-guide/installation/index.rst:280
 msgid "LoadSubMenuItems"
 msgstr "LoadSubMenuItems"
 
-#: ../../source/portal-developer-guide/installation/index.rst:274
+#: ../../source/portal-developer-guide/installation/index.rst:280
 msgid "portalLoadSubMenuItems"
 msgstr "portalLoadSubMenuItems"
 
-#: ../../source/portal-developer-guide/installation/index.rst:276
+#: ../../source/portal-developer-guide/installation/index.rst:282
 msgid ""
 "To hide default menu items, you can utilize variables. Here's a link "
 ":ref:`Show/hide default menu items <customization-menu-hide-default-menu-"
@@ -10419,11 +10447,11 @@ msgstr ""
 "デフォルトのメニュー項目を非表示にするには、変数を使用します。方法については、:ref:`デフォルトのメニュー項目の非表示 "
 "<customization-menu-hide-default-menu-item>` を参照してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:277
+#: ../../source/portal-developer-guide/installation/index.rst:283
 msgid "Update ``index`` for each custom menu item."
 msgstr "各カスタムメニュー項目の ``index`` を更新します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:278
+#: ../../source/portal-developer-guide/installation/index.rst:284
 msgid ""
 "Refer to process ``CustomLoadSubMenuItems`` in the project ``portal-"
 "developer-examples`` for an example of how to create custom menu items."
@@ -10431,7 +10459,7 @@ msgstr ""
 "カスタムメニュー項目の作成方法の例については、 ``portal-developer-examples`` プロジェクトの "
 "``CustomLoadSubMenuItems`` プロセスを参照してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:280
+#: ../../source/portal-developer-guide/installation/index.rst:286
 msgid ""
 "We changed the **External Link** configuration for the field "
 "``imageContent``, refer to :ref:`Portal Processes External Links <portal-"
@@ -10447,11 +10475,11 @@ msgstr ""
 "`Portal.Processes.ExternalLinks` ファイルで `data:image/jpeg;base64` "
 "のようなプレフィックスを削除して、 ``imageContent`` フィールドを更新してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:283
+#: ../../source/portal-developer-guide/installation/index.rst:289
 msgid "Migrate 10.0 To 10.0.7"
 msgstr "10.0 から 10.0.7 への移行"
 
-#: ../../source/portal-developer-guide/installation/index.rst:285
+#: ../../source/portal-developer-guide/installation/index.rst:291
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI`` class "
 "is removed and no longer supported, use "
@@ -10462,22 +10490,30 @@ msgstr ""
 "``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` "
 "を使用してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:289
+#: ../../source/portal-developer-guide/installation/index.rst:295
 msgid "Migrate 8.x To 10.0"
 msgstr "8.x から 10.0 への移行"
 
-#: ../../source/portal-developer-guide/installation/index.rst:291
-#: ../../source/portal-developer-guide/installation/index.rst:487
+#: ../../source/portal-developer-guide/installation/index.rst:297
+#: ../../source/portal-developer-guide/installation/index.rst:495
 msgid ""
 "You need to do all steps starting at ``Migrate 8.x To ...`` up to and "
 "including ``Migrate ... To 9.x``"
 msgstr "``8.x から ... への移行`` から ``... から9.x への移行`` までのすべての手順を実行する必要があります。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:295
+#: ../../source/portal-developer-guide/installation/index.rst:300
+msgid ""
+"After migrating to version 10, reset the ``StandardProcess.DefaultPages``"
+" value in your application configuration as needed."
+msgstr ""
+"バージョン 10 への移行後、必要に応じてアプリケーション設定の および "
+"``StandardProcess.DefaultPages`` の値をリセットしてください。"
+
+#: ../../source/portal-developer-guide/installation/index.rst:303
 msgid "Migrate 9.3 To 9.4"
 msgstr "9.3 から 9.4 への移行"
 
-#: ../../source/portal-developer-guide/installation/index.rst:297
+#: ../../source/portal-developer-guide/installation/index.rst:305
 msgid ""
 "``PortalStyle``, ``PortalKit`` and ``PortalTemplate`` have been replaced "
 "by ``portal-components`` and ``portal`` from 9.4, refer to "
@@ -10486,7 +10522,7 @@ msgstr ""
 "9.4 から ``PortalStyle``、 ``PortalKit``、``PortalTemplate`` が ``portal-"
 "components`` と ``portal`` に置き換えられました。:ref:`architecture` を参照してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:299
+#: ../../source/portal-developer-guide/installation/index.rst:307
 msgid ""
 "If you have customized PortalStyle, please refer to :ref:`Customization "
 "Portal Logos And Colors <customization-portal-logos-and-colors>` to "
@@ -10497,7 +10533,7 @@ msgstr ""
 "logos-and-colors>` を参照して、ログインの背景、ファビコン、ロゴの画像をオーバーライドします。``PortalStyle`` で"
 " CMS を変更している場合は、``portal`` の CMS をそれに合わせます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:303
+#: ../../source/portal-developer-guide/installation/index.rst:311
 msgid ""
 "The ``customization.css`` file has been removed, in case you use it in "
 "your project, please switch to using :dev-url:`Engine Branding </doc/12.0"
@@ -10508,7 +10544,7 @@ msgstr ""
 "url:`エンジンのブランディング </doc/12.0/designer-guide/user-interface/branding"
 "/branding-engine.html>` の使用に切り替えて、スタイルをカスタマイズしてください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:306
+#: ../../source/portal-developer-guide/installation/index.rst:314
 msgid ""
 "Subprocesses related to documents are moved to the independent project "
 "``portal-components``. If you customized these processes, please override"
@@ -10517,37 +10553,37 @@ msgstr ""
 "ドキュメントに関連するサブプロセスが独立した ``portal-components`` "
 "プロジェクトに移動されました。これらのプロセスをカスタマイズした場合は、対応するサブプロセスをもう一度オーバーライドしてからカスタマイズしてください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:309
+#: ../../source/portal-developer-guide/installation/index.rst:317
 msgid ""
 "Below is a list of deprecated processes in project ``portal`` and new "
 "processes in project ``portal-components``."
 msgstr "以下は ``portal`` プロジェクトの非推奨プロセスと ``portal-components`` プロジェクトの新しいプロセスのリストです。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:312
+#: ../../source/portal-developer-guide/installation/index.rst:320
 msgid "New subprocess"
 msgstr "新しいサブプロセス"
 
-#: ../../source/portal-developer-guide/installation/index.rst:312
+#: ../../source/portal-developer-guide/installation/index.rst:320
 msgid "Deprecated subprocess"
 msgstr "非推奨のサブプロセス"
 
-#: ../../source/portal-developer-guide/installation/index.rst:314
+#: ../../source/portal-developer-guide/installation/index.rst:322
 msgid "GetDocumentItems"
 msgstr "GetDocumentItems"
 
-#: ../../source/portal-developer-guide/installation/index.rst:316
+#: ../../source/portal-developer-guide/installation/index.rst:324
 msgid "UploadDocumentItem"
 msgstr "UploadDocumentItem"
 
-#: ../../source/portal-developer-guide/installation/index.rst:318
+#: ../../source/portal-developer-guide/installation/index.rst:326
 msgid "DeleteDocumentItem"
 msgstr "DeleteDocumentItem"
 
-#: ../../source/portal-developer-guide/installation/index.rst:320
+#: ../../source/portal-developer-guide/installation/index.rst:328
 msgid "DownloadDocumentItem"
 msgstr "DownloadDocumentItem"
 
-#: ../../source/portal-developer-guide/installation/index.rst:323
+#: ../../source/portal-developer-guide/installation/index.rst:331
 msgid ""
 "Some classes of the Portal have been moved to the independent project "
 "``portal-components``. Please refer to below table to migrate them "
@@ -10628,7 +10664,7 @@ msgstr "ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus"
 msgid "com.axonivy.portal.components.enums.UploadDocumentCheckStatus"
 msgstr "com.axonivy.portal.components.enums.UploadDocumentCheckStatus"
 
-#: ../../source/portal-developer-guide/installation/index.rst:331
+#: ../../source/portal-developer-guide/installation/index.rst:339
 msgid ""
 "Some components of the Portal have been moved to the independent project "
 "``portal-components``. Please follow these steps to migrate them:"
@@ -10636,7 +10672,7 @@ msgstr ""
 "ポータルのいくつかのコンポーネントが独立した ``portal-components`` "
 "プロジェクトに移動されました。以下の手順に従って移行してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:333
+#: ../../source/portal-developer-guide/installation/index.rst:341
 msgid ""
 ":ref:`Migration steps <components-portal-components-migrate-from-old-"
 "user-selection>` for the new :ref:`User Selection <components-portal-"
@@ -10646,7 +10682,7 @@ msgstr ""
 " :ref:`移行手順 <components-portal-components-migrate-from-old-user-"
 "selection>`。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:335
+#: ../../source/portal-developer-guide/installation/index.rst:343
 msgid ""
 ":ref:`Migration steps <components-portal-components-migrate-from-old-"
 "role-selection>` for the new :ref:`Role Selection <components-portal-"
@@ -10656,7 +10692,7 @@ msgstr ""
 ":ref:`移行手順 <components-portal-components-migrate-from-old-role-"
 "selection>`。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:337
+#: ../../source/portal-developer-guide/installation/index.rst:345
 msgid ""
 ":ref:`Migration steps <components-portal-components-migrate-from-old-"
 "document-table>` for the new :ref:`Document Table <components-portal-"
@@ -10666,7 +10702,7 @@ msgstr ""
 "コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-"
 "document-table>`。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:339
+#: ../../source/portal-developer-guide/installation/index.rst:347
 msgid ""
 ":ref:`Migration steps <components-portal-components-migrate-from-old-"
 "process-chain>` for the new :ref:`Process Chain <components-portal-"
@@ -10676,7 +10712,7 @@ msgstr ""
 " :ref:`移行手順 <components-portal-components-migrate-from-old-process-"
 "chain>`。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:341
+#: ../../source/portal-developer-guide/installation/index.rst:349
 msgid ""
 "Portal dashboard widgets only support the ``CustomFields`` declared in "
 "the ``custom-fields.yaml`` file. If your ``CustomFields`` are used in the"
@@ -10689,7 +10725,7 @@ msgstr ""
 "url:`カスタムフィールドのメタ情報 </doc/12.0/designer-guide/how-to/workflow/custom-"
 "fields.html#meta-information>` に従って、データを適合させてください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:344
+#: ../../source/portal-developer-guide/installation/index.rst:352
 msgid ""
 "The ``DefaultChartColor.p.json`` subprocess has been removed, in case you"
 " use it in your project, please remove override this subprocess and "
@@ -10702,7 +10738,7 @@ msgstr ""
 "url:`エンジンのブランディング </doc/12.0/designer-guide/user-interface/branding"
 "/branding-engine.html>` の使用に切り替えて、チャート、データラベル、凡例の色をカスタマイズしてください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:347
+#: ../../source/portal-developer-guide/installation/index.rst:355
 msgid ""
 "Deploy :download:`portal-migration-9.4.0.iar <documents/portal-"
 "migration-9.4-9.4.0.iar>` project to your Ivy application and run it by "
@@ -10715,8 +10751,8 @@ msgstr ""
 "migration/175F92F71BC45295/startMigrateConfiguration.ivp`` "
 "リンクにアクセスして実行します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:351
-#: ../../source/portal-developer-guide/installation/index.rst:365
+#: ../../source/portal-developer-guide/installation/index.rst:359
+#: ../../source/portal-developer-guide/installation/index.rst:373
 msgid ""
 "If you have many applications, deploy to only one application and run it "
 "by access the migration link, for example: ``https://portal.io/Portal/pro"
@@ -10726,18 +10762,18 @@ msgstr ""
 "/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp`` "
 "などの移行リンクにアクセスして実行してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:354
-#: ../../source/portal-developer-guide/installation/index.rst:368
+#: ../../source/portal-developer-guide/installation/index.rst:362
+#: ../../source/portal-developer-guide/installation/index.rst:376
 msgid "Use an administrator account to sign in"
 msgstr "管理者アカウントを使用してサインインしてください"
 
-#: ../../source/portal-developer-guide/installation/index.rst:355
-#: ../../source/portal-developer-guide/installation/index.rst:369
-#: ../../source/portal-developer-guide/installation/index.rst:396
+#: ../../source/portal-developer-guide/installation/index.rst:363
+#: ../../source/portal-developer-guide/installation/index.rst:377
+#: ../../source/portal-developer-guide/installation/index.rst:404
 msgid "Run migration process only once"
 msgstr "移行プロセスは一度だけ実行してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:356
+#: ../../source/portal-developer-guide/installation/index.rst:364
 msgid ""
 "You must remove some process models: ``portal-migration``, "
 "``PortalStyle``, ``PortalKit`` and ``PortalTemplate`` after successfully "
@@ -10746,11 +10782,11 @@ msgstr ""
 "移行に成功した後、 ``portal-migration``、 ``PortalStyle``、 "
 "``PortalKit``、``PortalTemplate`` プロセスモデルを削除する必要があります。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:359
+#: ../../source/portal-developer-guide/installation/index.rst:367
 msgid "Migrate 9.2 To 9.3"
 msgstr "9.2 から 9.3 への移行"
 
-#: ../../source/portal-developer-guide/installation/index.rst:361
+#: ../../source/portal-developer-guide/installation/index.rst:369
 msgid ""
 "Deploy :download:`portal-migration.iar <documents/portal-"
 "migration-9.3.0.iar>` project to your Ivy application and run it by "
@@ -10762,7 +10798,7 @@ msgstr ""
 "migration/175F92F71BC45295/startMigrateConfiguration.ivp`` "
 "リンクにアクセスして実行します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:371
+#: ../../source/portal-developer-guide/installation/index.rst:379
 msgid ""
 "We changed the way to navigate to Task Analysis component. Process "
 "``Start Processes/TaskAnalysis/start.ivp`` is moved to new place ``Start "
@@ -10772,7 +10808,7 @@ msgstr ""
 "プロセスが新しい場所である ``Start Processes/PortalStart/showTaskAnalysis.ivp`` "
 "に移動されました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:373
+#: ../../source/portal-developer-guide/installation/index.rst:381
 msgid ""
 "We moved the configuration of announcement, thirdparty applications, "
 "default statistic charts, application favorite processes, public external"
@@ -10781,7 +10817,7 @@ msgstr ""
 "通知、サードパーティーのアプリケーション、デフォルトの統計チャート、アプリケーションのお気に入りのプロセス、公開用外部リンク、Express "
 "のプロセスの設定を BusinessData から変数に移動しました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:375
+#: ../../source/portal-developer-guide/installation/index.rst:383
 msgid ""
 "Copy the PortalStart process from PortalTemplate to your project because "
 "we changed something relate to DefaultApplicationHomePage.ivp and "
@@ -10792,7 +10828,7 @@ msgstr ""
 "に関連する変更を行ったため、PortalStart プロセスを PortalTemplate "
 "からプロジェクトにコピーしてください。それから、プロジェクトの PortalStart をカスタマイズしてください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:378
+#: ../../source/portal-developer-guide/installation/index.rst:386
 msgid ""
 "Portal date filter such as TaskCreationDateFilter, "
 "CaseCreationDateFilter... messages ``<p:messages for=\"...\" />`` have "
@@ -10804,7 +10840,7 @@ msgstr ""
 "などのポータルの日付フィルターの ``<p:messages for=\"...\" />`` "
 "メッセージが各カレンダーコンポーネントに追加されました。プロジェクトでカスタマイズされた日付フィルターを使用している場合は、それに合わせてテンプレートを交信してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:381
+#: ../../source/portal-developer-guide/installation/index.rst:389
 msgid ""
 "The callable process ``DefaultChart.p.json``, "
 "``DefaultUserProcess.p.json`` has been removed. They are replaced by the "
@@ -10815,11 +10851,11 @@ msgstr ""
 "呼び出し可能プロセスが削除されました。これらは、:dev-url:`変数 </doc/12.0/designer-"
 "guide/configuration/variables.html>` の設定に置き換えられます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:386
+#: ../../source/portal-developer-guide/installation/index.rst:394
 msgid "Migrate 9.1 To 9.2"
 msgstr "9.1 から 9.2 への移行"
 
-#: ../../source/portal-developer-guide/installation/index.rst:388
+#: ../../source/portal-developer-guide/installation/index.rst:396
 msgid ""
 "Deploy :download:`MigrateData.iar <documents/MigrateData.iar>` project to"
 " your Ivy application and run it by access link "
@@ -10830,7 +10866,7 @@ msgstr ""
 "``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``"
 " リンクにアクセスして実行します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:391
+#: ../../source/portal-developer-guide/installation/index.rst:399
 msgid ""
 "If you have many applications, deploy to only one application and run it "
 "by access link "
@@ -10840,7 +10876,7 @@ msgstr ""
 "``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``"
 " リンクにアクセスして実行してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:394
+#: ../../source/portal-developer-guide/installation/index.rst:402
 msgid ""
 "Example: "
 "``https://portal.io/Portal/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``"
@@ -10848,13 +10884,13 @@ msgstr ""
 "例： "
 "``https://portal.io/Portal/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``"
 
-#: ../../source/portal-developer-guide/installation/index.rst:398
+#: ../../source/portal-developer-guide/installation/index.rst:406
 msgid ""
 "We remove implementation of Portal multiple applications. So that you "
 "need to adapt some points below:"
 msgstr "ポータルのマルチアプリケーションの実装を削除しました。そのため、以下を適合させる必要があります。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:400
+#: ../../source/portal-developer-guide/installation/index.rst:408
 msgid ""
 "Adapt start process signature of ``PasswordService`` in "
 "``ChangePassword.mod`` if you overrode this callable."
@@ -10862,7 +10898,7 @@ msgstr ""
 "この呼び出し可能プロセスをオーバーライドしている場合は、 ``ChangePassword.mod`` の ``PasswordService``"
 " 開始プロセスのシグネチャを適合させます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:401
+#: ../../source/portal-developer-guide/installation/index.rst:409
 msgid ""
 "If you are using ``ProcessStartCollector``, replace constructor "
 "``ProcessStartCollector(application)`` with ``ProcessStartCollector()``."
@@ -10871,7 +10907,7 @@ msgstr ""
 "``ProcessStartCollector(application)`` コンストラクターを "
 "``ProcessStartCollector()`` に置き換えます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:402
+#: ../../source/portal-developer-guide/installation/index.rst:410
 msgid ""
 "If you have TaskLazyDataModel, CaseLazyDataModel customization, remove "
 "``setInvolvedApplications()`` method, ``setInvolvedUsername`` in search "
@@ -10880,17 +10916,17 @@ msgstr ""
 "TaskLazyDataModel、CaseLazyDataModel をカスタマイズしている場合は、検索基準から "
 "``setInvolvedApplications()`` メソッド、 ``setInvolvedUsername`` を削除します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:404
+#: ../../source/portal-developer-guide/installation/index.rst:412
 msgid ""
 "In PortalNavigatorInFrame.java, change the methods from non-static to "
 "static."
 msgstr "PortalNavigatorInFrame.java のメソッドを非 static から static に変更します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:406
+#: ../../source/portal-developer-guide/installation/index.rst:414
 msgid "CaseDetails component in PortalTemplate is removed."
 msgstr "PortalTemplate の CaseDetails コンポーネントが削除されました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:408
+#: ../../source/portal-developer-guide/installation/index.rst:416
 msgid ""
 "Deprecated callable processes: ``OpenPortalSearch.mod``, "
 "``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, "
@@ -10900,7 +10936,7 @@ msgstr ""
 " ``OpenPortalCases.mod``、``OpenPortalCaseDetails.mod`` "
 "プロセスが非推奨の呼び出し可能プロセスになりました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:410
+#: ../../source/portal-developer-guide/installation/index.rst:418
 msgid ""
 "Portal recommends using :dev-url:`Axon Ivy HtmlOverride wizard </doc/12.0"
 "/designer-guide/how-to/overrides.html?#override-new-wizard>` to customize"
@@ -10910,13 +10946,13 @@ msgstr ""
 "to/overrides.html?#override-new-wizard>` を使用して、 ``ポータルの HTML ダイアログ`` "
 "をカスタマイズすることを推奨します"
 
-#: ../../source/portal-developer-guide/installation/index.rst:412
+#: ../../source/portal-developer-guide/installation/index.rst:420
 msgid ""
 "The callable process which is supporting to open customization dialog "
 "will be removed in the future, do not use it in the new project"
 msgstr "カスタマイズダイアログを開く呼び出し可能プロセスは将来削除されます。新しいプロジェクトでは使用ないでください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:414
+#: ../../source/portal-developer-guide/installation/index.rst:422
 msgid ""
 "We remove ivy-icon.css and replace current classes with new classes from "
 "Streamline icons, which can be found in the `HTML Dialog Demo "
@@ -10927,7 +10963,7 @@ msgstr ""
 "/html-dialog-demo>`_ にある新しいクラスに置き換えました。そのため、ivy-icon.css "
 "のクラスを使用しているファイルを更新する必要があります。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:416
+#: ../../source/portal-developer-guide/installation/index.rst:424
 msgid ""
 "If you have taskItemDetailCustomPanelTop, taskItemDetailCustomPanelBottom"
 " customization, follow :ref:`How to override TaskItemDetail "
@@ -10937,7 +10973,7 @@ msgstr ""
 "をカスタマイズしている場合は、:ref:`タスク項目の詳細 <customization-task-item-details>` "
 "に従って、カスタムウィジェットを追加してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:418
+#: ../../source/portal-developer-guide/installation/index.rst:426
 msgid ""
 "If you have ``caseItemDetailCustomTop`` or ``caseItemDetailCustomMiddle``"
 " or ``caseItemDetailCustomBottom`` customization, follow :ref:`How to "
@@ -10948,11 +10984,11 @@ msgstr ""
 "``caseItemDetailCustomBottom`` をカスタマイズしている場合は、:ref:`ケース項目の詳細 "
 "<customization-case-item-details>` に従って、これらのカスタムウィジェットを追加してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:421
+#: ../../source/portal-developer-guide/installation/index.rst:429
 msgid "Migrate 8.x To 9.1"
 msgstr "8.x から 9.1 への移行"
 
-#: ../../source/portal-developer-guide/installation/index.rst:423
+#: ../../source/portal-developer-guide/installation/index.rst:431
 msgid ""
 "Remove the ``views`` field in SubMenuItem.java. Adapt it if you overrode "
 "the ``LoadSubMenuItems`` callable process"
@@ -10960,7 +10996,7 @@ msgstr ""
 "SubMenuItem.java の ``views`` を削除します。 ``LoadSubMenuItems`` "
 "呼び出し可能プロセスをオーバーライドしている場合は、適合させます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:425
+#: ../../source/portal-developer-guide/installation/index.rst:433
 msgid ""
 "Add parameter ``<ui:param name=\"viewName\" value=\"TASK\" />`` to your "
 "customized ``PortalTasksTemplate`` to displayed breadcrumb of Task list."
@@ -10968,7 +11004,7 @@ msgstr ""
 "``<ui:param name=\"viewName\" value=\"TASK\" />`` パラメーターをカスタマイズした "
 "``PortalTasksTemplate`` に追加して、タスクリストのパンくずリストを表示します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:427
+#: ../../source/portal-developer-guide/installation/index.rst:435
 msgid ""
 "Add parameter ``<ui:param name=\"viewName\" value=\"CASE\" />`` to your "
 "customized ``PortalCasesTemplate`` to displayed breadcrumb of Case list."
@@ -10976,13 +11012,13 @@ msgstr ""
 "``<ui:param name=\"viewName\" value=\"CASE\" />`` パラメーターをカスタマイズした "
 "``PortalCasesTemplate`` に追加して、ケースリストのパンくずリストを表示します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:429
+#: ../../source/portal-developer-guide/installation/index.rst:437
 msgid ""
 "Ivy core has enhanced the Ivy URI, so Portal needs to make a migration. "
 "For each of your applications, execute the following steps:"
 msgstr "Ivy のコアにより、Ivy の URI が拡張されました。ポータルで移行が必要です。アプリケーションごとに、以下の手順を実行してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:432
+#: ../../source/portal-developer-guide/installation/index.rst:440
 msgid ""
 "Deploy process model :download:`PortalUrlMigration.iar "
 "<documents/PortalUrlMigration.iar>` to your Ivy Application."
@@ -10990,19 +11026,19 @@ msgstr ""
 ":download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>` "
 "プロセスモデルを Ivy アプリケーションに展開します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:435
+#: ../../source/portal-developer-guide/installation/index.rst:443
 msgid ""
 "run ``migratePortalUrl.ivp`` once and wait until it is redirected to "
 "another page (i.e. the Homepage) without error."
 msgstr "``migratePortalUrl.ivp`` を 1 回実行し、エラーなしで他のページ（ホームページ）にリダイレクトされるまで待ちます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:438
+#: ../../source/portal-developer-guide/installation/index.rst:446
 msgid ""
 "Remove the process model ``migratePortalUrl.ivp`` after successfully "
 "migrating."
 msgstr "移行に成功したら、 ``migratePortalUrl.ivp`` プロセスモデルを削除します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:440
+#: ../../source/portal-developer-guide/installation/index.rst:448
 msgid ""
 "HOMEPAGE_URL (single Portal app mode) and registered application link "
 "(multi Portal app mode) are not available anymore. To let Portal know "
@@ -11016,7 +11052,7 @@ msgstr ""
 "url:`デフォルトのページ </doc/12.0/designer-guide/user-interface/default-"
 "pages/index.html>` に従って、デフォルトのページをカスタマイズしてください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:446
+#: ../../source/portal-developer-guide/installation/index.rst:454
 msgid ""
 "Portal now uses |css_variable| instead of SASS. Therefore, you have to "
 "convert the SASS syntax to the new CSS variables or use online tools such"
@@ -11025,7 +11061,7 @@ msgstr ""
 "ポータルは、 SASS の代わりに |css_variable| を使用します。そのため、SASS 構文を新しい CSS "
 "変数に変換するか、|css_variable_convert| などのオンラインツールを使用して変換する必要があります。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:450
+#: ../../source/portal-developer-guide/installation/index.rst:458
 msgid ""
 "If the Engine Administrator activates the ``Portal.Cases.EnableOwner`` "
 "setting and you have a customized case list, customize this field to this"
@@ -11034,7 +11070,7 @@ msgstr ""
 "エンジンの管理者が ``Portal.Cases.EnableOwner`` "
 "設定をアクティブ化しており、カスタマイズされたケースリストがある場合は、このフィールドをそのケースリストにカスタマイズします（フィルターの追加、列の設定、ヘッダーなど）。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:454
+#: ../../source/portal-developer-guide/installation/index.rst:462
 msgid ""
 "Starting in 9.1, the Ivy engine uses a new mechanism to synchronize user "
 "data. Therefore, the Portal has to adapt some data related to users. Some"
@@ -11045,7 +11081,7 @@ msgstr ""
 "そのため、ポータルでユーザーに関連するデータを適合させる必要があります。正しく動作するように、いくつかのデータを移行する必要があります。 "
 "以下の手順に従って、アプリケーションの既存のデータを移行してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:459
+#: ../../source/portal-developer-guide/installation/index.rst:467
 msgid ""
 "Deploy process model :download:`MigrateRelatedDataOfUserTo9.iar "
 "<documents/MigrateRelatedDataOfUserTo9.iar>` to your application."
@@ -11053,21 +11089,21 @@ msgstr ""
 ":download:`MigrateRelatedDataOfUserTo9.iar "
 "<documents/MigrateRelatedDataOfUserTo9.iar>` プロセスモデルをアプリケーションに展開します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:462
+#: ../../source/portal-developer-guide/installation/index.rst:470
 msgid "Run ``migratePrivateChat.ivp`` to migrate private chat messages."
 msgstr "``migratePrivateChat.ivp`` を実行して、プライベートチャットメッセージを移行します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:464
+#: ../../source/portal-developer-guide/installation/index.rst:472
 msgid "Run ``migrateGroupChat.ivp`` to migrate group chat."
 msgstr "``migrateGroupChat.ivp`` を実行して、グループチャットを移行します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:466
+#: ../../source/portal-developer-guide/installation/index.rst:474
 msgid ""
 "Run ``migrateUserProcessesAndExternalLinks.ivp`` to migrate user "
 "processes and external links."
 msgstr "``migrateUserProcessesAndExternalLinks.ivp`` を実行して、ユーザープロセスと外部リンクを移行します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:469
+#: ../../source/portal-developer-guide/installation/index.rst:477
 msgid ""
 "Run ``migrateExpressProcesses.ivp`` to migrate Express processes. Please "
 "skip this step if your application does not include Express."
@@ -11075,11 +11111,11 @@ msgstr ""
 "``migrateExpressProcesses.ivp`` を実行して、Express のプロセスを移行します。アプリケーションに "
 "Express が含まれない場合は、この手順をスキップしてください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:472
+#: ../../source/portal-developer-guide/installation/index.rst:480
 msgid "Restart Ivy engine."
 msgstr "Ivy エンジンを再起動します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:474
+#: ../../source/portal-developer-guide/installation/index.rst:482
 msgid ""
 "Use ``pageContent`` to define your section in ``BasicTemplate.xhtml`` "
 "instead of ``simplePageContent``."
@@ -11087,7 +11123,7 @@ msgstr ""
 "``simplePageContent`` の代わりに、 ``pageContent`` を使用して "
 "``BasicTemplate.xhtml`` のセクションを定義します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:476
+#: ../../source/portal-developer-guide/installation/index.rst:484
 msgid ""
 "``TaskTemplate-7`` has been removed, change it to ``TaskTemplate-8``. "
 "``TaskTemplate`` has been removed, too, change it to ``frame-8`` "
@@ -11096,7 +11132,7 @@ msgstr ""
 "``TaskTemplate-7`` が削除されました。 ``TaskTemplate-8`` に変更してください。 "
 "``TaskTemplate`` も削除されました。``frame-8`` （Ivy により提供）に変更してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:478
+#: ../../source/portal-developer-guide/installation/index.rst:486
 msgid ""
 "The ``MenuKind`` enum has one more entry: EXTERNAL_LINK. Use it if your "
 "item is an external link. Use CUSTOM if it is an internal link."
@@ -11105,7 +11141,7 @@ msgstr ""
 "に複数のエントリ（EXTERNAL_LINK）があります。これは、項目が外部リンクの場合に使用します。内部リンクの場合は CUSTOM "
 "を使用してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:481
+#: ../../source/portal-developer-guide/installation/index.rst:489
 msgid ""
 "The ``PortalNavigatorInFrameAPI#navigateToPortalHome`` method is "
 "deprecated, redirect to ivy.html.applicationHomeRef() in your page "
@@ -11114,26 +11150,26 @@ msgstr ""
 "``PortalNavigatorInFrameAPI#navigateToPortalHome`` メソッドは非推奨です。代わりにページの "
 "ivy.html.applicationHomeRef() にリダイレクトしてください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:485
+#: ../../source/portal-developer-guide/installation/index.rst:493
 msgid "Migrate 8.x To 9.x"
 msgstr "8.x から 9.x への移行"
 
-#: ../../source/portal-developer-guide/installation/index.rst:493
+#: ../../source/portal-developer-guide/installation/index.rst:501
 msgid "Release notes"
 msgstr "リリースノート"
 
-#: ../../source/portal-developer-guide/installation/index.rst:495
+#: ../../source/portal-developer-guide/installation/index.rst:503
 msgid ""
 "This part lists all relevant changes since the last official product "
 "releases of Axon Ivy."
 msgstr "ここには、 Axon Ivy の前回の正式な製品リリース以降のすべての関連する変更が記載されています。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:499
+#: ../../source/portal-developer-guide/installation/index.rst:507
 msgid "Changes in 12.0.11"
 msgstr "12.0.11 での変更点"
 
-#: ../../source/portal-developer-guide/installation/index.rst:501
-#: ../../source/portal-developer-guide/installation/index.rst:508
+#: ../../source/portal-developer-guide/installation/index.rst:509
+#: ../../source/portal-developer-guide/installation/index.rst:516
 msgid ""
 "Enhanced the document preview feature for the task and case detail. If "
 "you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory"
@@ -11144,7 +11180,7 @@ msgstr ""
 "<https://market.axonivy.com/doc-factory#tab-description>` がある場合、Word(doc,"
 " docx)、Excel(xls, xlsx)、メール(eml)ドキュメントをプレビューできます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:502
+#: ../../source/portal-developer-guide/installation/index.rst:510
 msgid ""
 "Enhanced the **Document Table** component by adding the lazy loading "
 "functionality to the Document Table component, enabling efficient data "
@@ -11153,11 +11189,11 @@ msgstr ""
 "**Document Table** "
 "コンポーネントにレイジーローディング機能を追加することで、ページネーションによる効率的なデータロードを可能にしました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:505
+#: ../../source/portal-developer-guide/installation/index.rst:513
 msgid "Changes in 12.0.9"
 msgstr "12.0.9での変更点"
 
-#: ../../source/portal-developer-guide/installation/index.rst:507
+#: ../../source/portal-developer-guide/installation/index.rst:515
 msgid ""
 "Introduced **Renaming Document** feature for the task and case detail. "
 "You can rename document in document table of task and case detail page, "
@@ -11166,11 +11202,11 @@ msgstr ""
 "タスクと案件の詳細ページに **ドキュメント名の変更** "
 "機能を導入。タスクや案件の詳細ページの文書テーブルで文書名を変更することができ、その操作は履歴ノートに記録されます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:511
+#: ../../source/portal-developer-guide/installation/index.rst:519
 msgid "Changes in 12.0.6"
 msgstr "12.0.6の変更点"
 
-#: ../../source/portal-developer-guide/installation/index.rst:512
+#: ../../source/portal-developer-guide/installation/index.rst:520
 msgid ""
 "Introduced the Portal Setting ``Portal.Cases.EnablePinnedCase`` and "
 "``Portal.Tasks.EnablePinnedTask`` to enable the pinning feature for the "
@@ -11180,11 +11216,11 @@ msgstr ""
 "``Portal.Tasks.EnablePinnedTask`` "
 "を導入し、ダッシュボードのケースとタスクウィジェットのピン留め機能を有効にした。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:515
+#: ../../source/portal-developer-guide/installation/index.rst:523
 msgid "Changes in 12.0.4"
 msgstr "12.0.4 での変更内容"
 
-#: ../../source/portal-developer-guide/installation/index.rst:516
+#: ../../source/portal-developer-guide/installation/index.rst:524
 msgid ""
 "Introduced the Portal Setting "
 "``Portal.Cases.BehaviourWhenClickingOnLineInCaseList`` to toggle between "
@@ -11195,11 +11231,11 @@ msgstr ""
 "ダッシュボード、グローバル検索、関連ケース、複合モードのプロセスウィジェットのケースウィジェットでケースをクリックしたときに、ケースの詳細またはビジネスの詳細へのアクセスを切り替える"
 " ``Portal.Cases.BehaviourWhenClickingOnLineInCaseList`` ポータル設定を導入しました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:519
+#: ../../source/portal-developer-guide/installation/index.rst:527
 msgid "Changes in 12.0.1"
 msgstr "12.0.1 での変更内容"
 
-#: ../../source/portal-developer-guide/installation/index.rst:520
+#: ../../source/portal-developer-guide/installation/index.rst:528
 msgid ""
 "Introduced the document preview feature for the task and case detail. You"
 " can preview images(png or jpeg), plain text(txt or log) and pdf "
@@ -11208,7 +11244,7 @@ msgstr ""
 "タスクの詳細とケースの詳細のドキュメントプレビュー機能を導入しました。画像（png またはjpeg）、プレーンテキスト（txt または "
 "log）、pdf ドキュメントをプレビューできます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:521
+#: ../../source/portal-developer-guide/installation/index.rst:529
 msgid ""
 "Introduced the Portal Setting ``Portal.Document.EnablePreview`` to "
 "control visibility of the preview document icon in Portal."
@@ -11216,17 +11252,17 @@ msgstr ""
 "ポータルのドキュメントのプレビューアイコンの表示設定を制御する ``Portal.Document.EnablePreview`` "
 "ポータル設定を導入しました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:524
+#: ../../source/portal-developer-guide/installation/index.rst:532
 msgid "Changes in 12.0.0"
 msgstr "12.0.0 での変更内容"
 
-#: ../../source/portal-developer-guide/installation/index.rst:526
+#: ../../source/portal-developer-guide/installation/index.rst:534
 msgid ""
 "The old statistic chart is removed, use the new :ref:`statistic-chart` "
 "instead."
 msgstr "古い統計チャートが削除されました。代わりに新しい :ref:`statistic-chart` を使用してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:527
+#: ../../source/portal-developer-guide/installation/index.rst:535
 msgid ""
 "Introduce the component IFrameTaskConfig to configure IFrame tasks. Refer"
 " to :ref:`iframe-configure-template` for more information."
@@ -11234,7 +11270,7 @@ msgstr ""
 "IFrame のタスクを設定する IFrameTaskConfig コンポーネントを導入しました。詳細については、:ref:`iframe-"
 "configure-template` を参照してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:528
+#: ../../source/portal-developer-guide/installation/index.rst:536
 msgid ""
 "The :ref:`full task list page <full-task-list>` and :ref:`full case list "
 "page <full-case-list>` have been redesigned to align with the concept of "
@@ -11245,17 +11281,17 @@ msgstr ""
 ":ref:`全ケースリスト <full-case-list>` のデザインが一新されました。ページは 1 "
 "つの全幅ウィジェットを含むダッシュボードとして機能します。他のウィジェットと同じように調整して設定できます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:530
+#: ../../source/portal-developer-guide/installation/index.rst:538
 msgid ""
 "Support multiple case owners. The single case owner sort feature is "
 "removed."
 msgstr "複数ケースのオーナーをサポートします。1 つのケースのオーナーの並べ替え機能は削除されます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:533
+#: ../../source/portal-developer-guide/installation/index.rst:541
 msgid "Changes in 11.2.0"
 msgstr "11.2.0 での変更内容"
 
-#: ../../source/portal-developer-guide/installation/index.rst:535
+#: ../../source/portal-developer-guide/installation/index.rst:543
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI`` "
 "class is removed and no longer supported, use "
@@ -11267,7 +11303,7 @@ msgstr ""
 "``com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI`` "
 "を使用してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:536
+#: ../../source/portal-developer-guide/installation/index.rst:544
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.CaseAPI`` class is removed and no "
 "longer supported, use ``com.axonivy.portal.components.publicapi.CaseAPI``"
@@ -11276,7 +11312,7 @@ msgstr ""
 "``ch.ivy.addon.portalkit.publicapi.CaseAPI`` クラスが削除され、サポート対象外になりました。代わりに "
 "``com.axonivy.portal.components.publicapi.CaseAPI`` を使用してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:537
+#: ../../source/portal-developer-guide/installation/index.rst:545
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI`` "
 "class is removed and no longer supported, use "
@@ -11288,7 +11324,7 @@ msgstr ""
 "``com.axonivy.portal.components.publicapi.PortalGlobalGrowInIFrameAPI`` "
 "を使用してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:538
+#: ../../source/portal-developer-guide/installation/index.rst:546
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI`` class is "
 "removed and no longer supported, use "
@@ -11298,7 +11334,7 @@ msgstr ""
 "クラスが削除され、サポート対象外になりました。代わりに "
 "``com.axonivy.portal.components.publicapi.PortalNavigatorAPI`` を使用してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:539
+#: ../../source/portal-developer-guide/installation/index.rst:547
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.ProcessStartAPI`` class is removed"
 " and no longer supported, use "
@@ -11308,7 +11344,7 @@ msgstr ""
 "クラスが削除され、サポート対象外になりました。代わりに "
 "``com.axonivy.portal.components.publicapi.ProcessStartAPI`` を使用してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:540
+#: ../../source/portal-developer-guide/installation/index.rst:548
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.RoleAPI`` class is removed and no "
 "longer supported, use ``com.axonivy.portal.components.publicapi.RoleAPI``"
@@ -11317,7 +11353,7 @@ msgstr ""
 "``ch.ivy.addon.portalkit.publicapi.RoleAPI`` クラスが削除され、サポート対象外になりました。代わりに "
 "``com.axonivy.portal.components.publicapi.RoleAPI`` を使用してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:541
+#: ../../source/portal-developer-guide/installation/index.rst:549
 msgid ""
 "The ``ch.ivy.addon.portalkit.publicapi.TaskAPI`` class is removed and no "
 "longer supported, use ``com.axonivy.portal.components.publicapi.TaskAPI``"
@@ -11326,7 +11362,7 @@ msgstr ""
 "``ch.ivy.addon.portalkit.publicapi.TaskAPI`` クラスが削除され、サポート対象外になりました。代わりに "
 "``com.axonivy.portal.components.publicapi.TaskAPI`` を使用してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:542
+#: ../../source/portal-developer-guide/installation/index.rst:550
 msgid ""
 "The ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` "
 "class is removed and no longer supported, use "
@@ -11338,13 +11374,13 @@ msgstr ""
 "``com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI`` "
 "を使用してください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:543
+#: ../../source/portal-developer-guide/installation/index.rst:551
 msgid ""
 "Introduced the sort feature for the process dashboard widget. User can "
 "sort the processes by index, alphabetical order or by custom order."
 msgstr "プロセスダッシュボードウィジェットの並べ替え機能を導入しました。ユーザーは、インデックス、アルファベット順、ユーザー設定順序でプロセスを並べ替えることができます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:544
+#: ../../source/portal-developer-guide/installation/index.rst:552
 msgid ""
 "Introduced the ``taskId`` param for the component "
 "``ic:com.axonivy.portal.components.ProcessViewer`` to highlight the "
@@ -11354,11 +11390,11 @@ msgstr ""
 "``ic:com.axonivy.portal.components.ProcessViewer`` コンポーネントの ``taskId`` "
 "パラメーターを導入しました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:545
+#: ../../source/portal-developer-guide/installation/index.rst:553
 msgid "Portal Legacy dashboard has been removed."
 msgstr "ポータルのレガシーダッシュボードが削除されました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:546
+#: ../../source/portal-developer-guide/installation/index.rst:554
 msgid ""
 "The ``AxonIvyExpress`` module is renamed to ``axonivy-express`` and "
 "becomes an item on the Axon Ivy Market."
@@ -11366,11 +11402,11 @@ msgstr ""
 "``AxonIvyExpress`` モジュールは ``axonivy-express`` という名前に変更され、Axon Ivy Market "
 "で入手できるようになりました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:549
+#: ../../source/portal-developer-guide/installation/index.rst:557
 msgid "Changes in 10"
 msgstr "10 での変更内容"
 
-#: ../../source/portal-developer-guide/installation/index.rst:551
+#: ../../source/portal-developer-guide/installation/index.rst:559
 msgid ""
 "Introduced the ``Application`` filter and the ``Application`` column in "
 "the following places: full task list, full case list, dashboard task "
@@ -11379,11 +11415,11 @@ msgstr ""
 "全タスクリスト、全ケースリスト、ダッシュボードのタスクリスト、ダッシュボードのケースリスト、タスクの分析に ``アプリケーション`` フィルターと"
 " ``アプリケーション`` 列を導入しました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:554
+#: ../../source/portal-developer-guide/installation/index.rst:562
 msgid "Changes in 9.4"
 msgstr "9.4 での変更内容"
 
-#: ../../source/portal-developer-guide/installation/index.rst:556
+#: ../../source/portal-developer-guide/installation/index.rst:564
 msgid ""
 "Combined projects ``PortalStyle``, ``PortalKit``, and ``PortalTemplate`` "
 "to one project named ``portal``."
@@ -11391,7 +11427,7 @@ msgstr ""
 "``PortalStyle``、 ``PortalKit``、 ``PortalTemplate`` プロジェクトを ``portal`` "
 "という名前の1 つのプロジェクトにまとめました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:558
+#: ../../source/portal-developer-guide/installation/index.rst:566
 msgid ""
 "Introduced the ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` "
 "Portal setting to set behaviour when clicking on a line in task list, "
@@ -11402,7 +11438,7 @@ msgstr ""
 "``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` "
 "ポータル設定を導入しました。各ユーザーはユーザープロファイルから変更を行うことができます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:561
+#: ../../source/portal-developer-guide/installation/index.rst:569
 msgid ""
 "Introduced the ``Portal.StatisticChartScalingInterval`` Portal setting to"
 " set the interval in seconds to do periodic statistic chart scaling "
@@ -11411,19 +11447,19 @@ msgstr ""
 "統計チャートのスケーリングの定期的なリクエストを行う際の間隔を秒単位で設定する "
 "``Portal.StatisticChartScalingInterval`` ポータル設定を導入しました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:563
+#: ../../source/portal-developer-guide/installation/index.rst:571
 msgid ""
 "Introduced the ``Portal.LoginPage.ShowFooter`` Portal setting to control "
 "visibility of the footer on the login page."
 msgstr "ログインページのフッターの表示設定を制御する ``Portal.LoginPage.ShowFooter`` ポータル設定を導入しました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:565
+#: ../../source/portal-developer-guide/installation/index.rst:573
 msgid ""
 "Introduced the ``Portal.Theme.Mode`` Portal setting to set the default "
 "theme mode: Light or Dark."
 msgstr "デフォルトのテーマモード（ライトまたはダーク）を設定する ``Portal.Theme.Mode`` ポータル設定を導入しました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:567
+#: ../../source/portal-developer-guide/installation/index.rst:575
 msgid ""
 "Introduced the ``Portal.Theme.EnableSwitchThemeModeButton`` Portal "
 "setting to control state of the switch theme button on the top-bar."
@@ -11431,7 +11467,7 @@ msgstr ""
 "トップバーのテーマの切り替えボタンの状態を制御する ``Portal.Theme.EnableSwitchThemeModeButton`` "
 "ポータル設定を導入しました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:569
+#: ../../source/portal-developer-guide/installation/index.rst:577
 msgid ""
 "Introduced new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` "
 "filter in the Portal full task list and case list."
@@ -11439,7 +11475,7 @@ msgstr ""
 "ポータルの全タスクリストと全ケースリストに新しい ``タスク ID``、 ``タスク名``、 ``ケース ID``、 ``ケース名`` "
 "フィルターを導入しました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:571
+#: ../../source/portal-developer-guide/installation/index.rst:579
 msgid ""
 "Introduced the ``Process Viewer`` page, user can get the visual viewer of"
 " the process start. See details :ref:`Show Process Viewer <how-to-show-"
@@ -11448,14 +11484,14 @@ msgstr ""
 "``プロセスビューアー`` ページを導入しました。ユーザーは、プロセスの開始を視覚的に表示できます。 :ref:`プロセスビューアーの表示 "
 "<how-to-show-process-viewer>` で詳細をご覧ください。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:573
+#: ../../source/portal-developer-guide/installation/index.rst:581
 msgid ""
 "Introduced the ``Formatting language setting`` to format values, for "
 "example the decimal separator is displayed differently in different "
 "regions of the world."
 msgstr "値の形式を設定する ``書式設定言語の設定`` を導入しました。例えば、小数点は世界中の異なる地域で異なる形式で表示されます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:575
+#: ../../source/portal-developer-guide/installation/index.rst:583
 msgid ""
 "Removed subprocess ``DefaultChartColor.p.json``, introduced some Portal "
 "variables for customizing the default chart color."
@@ -11463,55 +11499,55 @@ msgstr ""
 "``DefaultChartColor.p.json`` "
 "サブプロセスを削除し、デフォルトのチャートの色をカスタマイズするためのポータルの変数を導入しました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:577
+#: ../../source/portal-developer-guide/installation/index.rst:585
 msgid "Introduce some components in new ``portal-components`` project."
 msgstr "新しい ``portal-components`` プロジェクトに以下のコンポーネントを導入しました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:579
+#: ../../source/portal-developer-guide/installation/index.rst:587
 msgid ""
 ":ref:`User Selection Component <components-portal-components-user-"
 "selection>`"
 msgstr ":ref:`ユーザーの選択コンポーネント <components-portal-components-user-selection>`"
 
-#: ../../source/portal-developer-guide/installation/index.rst:581
+#: ../../source/portal-developer-guide/installation/index.rst:589
 msgid ""
 ":ref:`Role Selection Component <components-portal-components-role-"
 "selection>`"
 msgstr ":ref:`ロールの選択コンポーネント <components-portal-components-role-selection>`"
 
-#: ../../source/portal-developer-guide/installation/index.rst:583
+#: ../../source/portal-developer-guide/installation/index.rst:591
 msgid ""
 ":ref:`Document Table Component <components-portal-components-document-"
 "table>`"
 msgstr ":ref:`ドキュメントテーブルコンポーネント <components-portal-components-document-table>`"
 
-#: ../../source/portal-developer-guide/installation/index.rst:585
+#: ../../source/portal-developer-guide/installation/index.rst:593
 msgid ""
 ":ref:`Process Chain Component <components-portal-components-process-"
 "chain>`"
 msgstr ":ref:`プロセスチェーンコンポーネント <components-portal-components-process-chain>`"
 
-#: ../../source/portal-developer-guide/installation/index.rst:587
+#: ../../source/portal-developer-guide/installation/index.rst:595
 msgid ""
 ":ref:`Process Viewer Component <components-portal-components-process-"
 "viewer>`"
 msgstr ":ref:`プロセスビューアーコンポーネント <components-portal-components-process-viewer>`"
 
-#: ../../source/portal-developer-guide/installation/index.rst:590
+#: ../../source/portal-developer-guide/installation/index.rst:598
 msgid "Changes in 9.3"
 msgstr "9.3 での変更内容"
 
-#: ../../source/portal-developer-guide/installation/index.rst:592
+#: ../../source/portal-developer-guide/installation/index.rst:600
 msgid ""
 "No need to update PortalGroupId variable when you change group id of "
 "Portal."
 msgstr "ポータルのグループ ID を変更するときに PortalGroupId 変数を更新する必要はなくなりました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:596
+#: ../../source/portal-developer-guide/installation/index.rst:604
 msgid "Changes in 9.2"
 msgstr "9.2 での変更内容"
 
-#: ../../source/portal-developer-guide/installation/index.rst:598
+#: ../../source/portal-developer-guide/installation/index.rst:606
 msgid ""
 "Included new TaskState such as ``Destroyed``, ``Failed``, ``Join failed``"
 " and ``Waiting for event`` in Portal Task list, also in Task State "
@@ -11520,13 +11556,13 @@ msgstr ""
 "ポータルのタスクリストとタスクの状態フィルターに ``破棄済``、 ``失敗``、 ``参加失敗``、``イベント待機中`` "
 "などの新しいタスクの状態を含めました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:600
+#: ../../source/portal-developer-guide/installation/index.rst:608
 msgid ""
 "Included new CaseState ``Destroyed`` in Portal Case list, also in Case "
 "State filter."
 msgstr "ポータルのケースリストとケースの状態フィルターに新しいケースの状態 ``破棄済`` を含めました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:602
+#: ../../source/portal-developer-guide/installation/index.rst:610
 msgid ""
 "Introduced :ref:`Workflow Events table <how-to-show-workflow-events>`, "
 "user who has permission 🔑WorkflowEventReadAll can see all "
@@ -11535,7 +11571,7 @@ msgstr ""
 ":ref:`Workflow Events table <how-to-show-workflow-events>` を導入。権限 "
 "🔑WorkflowEventReadAll を持つユーザーは、すべての``WORKFLOW_EVENTS`` を閲覧可能。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:604
+#: ../../source/portal-developer-guide/installation/index.rst:612
 msgid ""
 "Introduced the ``Portal.Homepage`` Portal setting to set the default "
 "homepage, each user can change it via user profile."
@@ -11543,7 +11579,7 @@ msgstr ""
 "デフォルトのホームページを設定する ``Portal.Homepage`` "
 "ポータル設定を導入しました。各ユーザーはユーザープロファイルから変更を行うことができます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:606
+#: ../../source/portal-developer-guide/installation/index.rst:614
 msgid ""
 "Introduced new approach to customize :ref:`Portal Case Item details "
 "<customization-case-item-details>`. Now, your case information in Case "
@@ -11552,7 +11588,7 @@ msgstr ""
 ":ref:`ポータルのケース項目の詳細 <customization-case-item-details>` "
 "をカスタマイズする新しい方法を導入しました。ケースの詳細ページとケース情報ダイアログには、同じケース情報が表示されます。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:608
+#: ../../source/portal-developer-guide/installation/index.rst:616
 msgid ""
 "Introduced new approach to customize :ref:`Portal Task Item Details "
 "<customization-task-item-details>`."
@@ -11560,14 +11596,14 @@ msgstr ""
 ":ref:`ポータルのタスク項目の詳細 <customization-task-item-details>` "
 "をカスタマイズする新しい方法を導入しました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:610
-#: ../../source/portal-developer-guide/installation/index.rst:627
+#: ../../source/portal-developer-guide/installation/index.rst:618
+#: ../../source/portal-developer-guide/installation/index.rst:635
 msgid ""
 "Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control "
 "visibility of icon of button in Portal."
 msgstr "ポータルのボタンアイコンの表示設定を制御する ``Portal.ShowButtonIcon`` ポータル設定を導入しました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:612
+#: ../../source/portal-developer-guide/installation/index.rst:620
 msgid ""
 "Introduced new variable named ``PortalLoginPageDisplay`` to show Login "
 "page or hide it then show error page instead."
@@ -11575,7 +11611,7 @@ msgstr ""
 "ログインページを表示するか、非表示にして代わりにエラーページを表示する ``PortalLoginPageDisplay`` "
 "という名前の新しい変数を導入しました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:614
+#: ../../source/portal-developer-guide/installation/index.rst:622
 msgid ""
 "No multiple applications anymore, Portal now only works in current "
 "application. It means administrator can not add new Ivy application."
@@ -11583,33 +11619,33 @@ msgstr ""
 "マルチアプリケーションがサポート対象外になりました。ポータルは現在のアプリケーションでのみ動作します。つまり、管理者は新しい Ivy "
 "アプリケーションを追加できません。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:616
+#: ../../source/portal-developer-guide/installation/index.rst:624
 msgid "Statistic charts support multiple names for each supported languages."
 msgstr "統計チャートは、サポートされる言語ごとに複数の名前をサポートします。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:618
+#: ../../source/portal-developer-guide/installation/index.rst:626
 msgid "Portal supports multilingual user favorites"
 msgstr "ポータルは、複数言語のユーザーのお気に入りをサポートします。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:620
+#: ../../source/portal-developer-guide/installation/index.rst:628
 msgid "Portal supports logos in SVG format."
 msgstr "ポータルは SVG 形式のロゴをサポートします。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:623
+#: ../../source/portal-developer-guide/installation/index.rst:631
 msgid "Changes in 9.1"
 msgstr "9.1 での変更内容"
 
-#: ../../source/portal-developer-guide/installation/index.rst:625
+#: ../../source/portal-developer-guide/installation/index.rst:633
 msgid ""
 "Refactored style customization approach. From now on, Portal use CSS "
 "Variable as technology to customize CSS."
 msgstr "スタイルのカスタマイズ方法をリファクタリングしました。今後は、ポータルは CSS をカスタマイズするテクノロジーとして CSS 変数を使用します。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:629
+#: ../../source/portal-developer-guide/installation/index.rst:637
 msgid "Introduced new Portal dialog with icon decorator."
 msgstr "アイコンデコレーターを含む新しいポータルダイアログを導入しました。"
 
-#: ../../source/portal-developer-guide/installation/index.rst:631
+#: ../../source/portal-developer-guide/installation/index.rst:639
 msgid "TaskTemplate-7, TaskTemplate and TwoColumnTemplate have been removed."
 msgstr "TaskTemplate-7、TaskTemplate、TwoColumnTemplate が削除されました。"
 

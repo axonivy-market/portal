@@ -43,4 +43,9 @@ public class ActionsColumnModel extends TaskColumnModel implements Serializable 
   public String getDefaultStyleClass() {
     return "dashboard-tasks__actions text-center widget-column";
   }
+
+  @Override
+  public boolean canFilter() {
+    return false;
+  }
 }

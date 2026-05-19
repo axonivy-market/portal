@@ -42,6 +42,11 @@ public class ColumnModel extends AbstractColumn implements Serializable {
   public boolean canQuickSearch() {
     return false;
   }
+
+  @JsonIgnore
+  public boolean canFilter() {
+    return true;
+  }
   
   public String displayStringFieldContent(ICustomFields customFields) {
     if (Boolean.TRUE.equals(this.hasCmsValues)) {

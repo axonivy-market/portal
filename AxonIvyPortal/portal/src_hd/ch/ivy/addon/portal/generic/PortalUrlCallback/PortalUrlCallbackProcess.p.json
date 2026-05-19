@@ -70,6 +70,7 @@
             "",
             "String url = URLDecoder.decode(in.callbackUrl, \"UTF-8\");",
             "",
+            "// TODO Migrate to RequestUtils.isSafeRedirectUrl to remove the dependency on ch.ivyteam.ivy.request internals.",
             "if (request != null && StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityUtil.isValid(url, request)){  ",
             "  context.redirect(url);",
             "} else {",

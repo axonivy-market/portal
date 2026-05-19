@@ -536,6 +536,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       worker: Editor
       wrongFromDateFormat: Please enter a valid 'from' date. Date format is {0}
       wrongToDateFormat: Please enter a valid 'to' date. Date format is {0}
+    filterLabel: Filter
     finish: Finish
     general: General
     generalInformation: General information
@@ -662,7 +663,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: We are creating the Export, this can take a few minutes
     warning: Warning!
     welcomeToPortal: Welcome, please login
-    workingUser: Working user
     wrongDateFormat: Please enter valid date.
     year: year
     years: years
@@ -838,6 +838,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       STANDARD: Standard column
     configuration:
       CustomWidgetExternalLinkWarning: Some websites are not compatible with iframe due to security concerns. Please contact your administrator if the external website is not working properly.
+      CustomWidgetUrlInvalidScheme: The provided URL is not valid
       CustomWidgetTitlePlaceholder: Leave it blank to hide the header of the widget
       Parameters: Parameters
       RestoreDefaultDashboardTemplateTooltip: We cannot find the template of your dashboard, so we cannot reset it to the standard configuration. Please check with your administrator for more details!
@@ -1238,6 +1239,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: This task does not contain any escalation handling logic, therefore no expiry time can be set.
     technicalCase: Technical Case
     workflowEventDialog: 'Workflow Events of task #{0}'
+    workingUser: Working user
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: Task deadline has been set successfully.
@@ -1691,7 +1693,6 @@ Labels:
       RESPONSIBLE: Responsible
       START: Start
       STATE: State
-      WORKER: Working user
     FilterOperator:
       AFTER: Is After
       BEFORE: Is Before

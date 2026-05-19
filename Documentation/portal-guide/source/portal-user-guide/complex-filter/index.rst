@@ -26,6 +26,10 @@ How to use
     
     |filter-operator-dropdown|
 
+.. note::
+  The available fields in the dropdown to select when adding a new filter are controlled in the widget's Column Management dialog
+  (see :ref:`Task list column management <task-widget-column-management>` and :ref:`Case list column management <case-widget-column-management>`).
+
 - Portal allows you to combine filters, these filters connect to each other using the **AND** operator.
 
     |case-task-widget-filter-combine|
