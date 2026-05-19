@@ -6,6 +6,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -56,6 +57,19 @@ public class UrlUtils {
     return urlInLowerCase.startsWith(Protocol.HTTP.getValue())
         || urlInLowerCase.startsWith(Protocol.HTTPS.getValue())
         || urlInLowerCase.startsWith("/");
+  }
+
+  public static boolean isSafeIframeUrl(String url) {
+    if (StringUtils.isBlank(url)) {
+      return true;
+    }
+    String trimmed = url.trim().toLowerCase(Locale.ROOT);
+    if (trimmed.startsWith("//")) {
+      return false;
+    }
+    return trimmed.startsWith(Protocol.HTTP.getValue())
+        || trimmed.startsWith(Protocol.HTTPS.getValue())
+        || trimmed.startsWith("/");
   }
 
   public static String formatLinkWithEmbedInFrameParam(String link) {

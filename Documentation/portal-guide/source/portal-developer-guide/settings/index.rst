@@ -464,7 +464,7 @@ Data model:
       {
          "id": "284352a58c7a48a2b64be8a946857c7a",
          "displayName": "{\"de\":\"AxonIvy ger\",\"en\":\"AxonIvy\"}",
-         "menuIcon": "fa-group",
+         "menuIcon": "ti-users",
          "menuOrdinal": 1,
          "name": "{\"de\":\"AxonIvy ger\",\"en\":\"AxonIvy\"}",
          "link": "https://developer.axonivy.com/download"
@@ -726,7 +726,7 @@ Data model:
          "name": "Download latest Axon Ivy",
          "link": "https://developer.axonivy.com/download",
          "creatorId": 2,
-         "icon": "fa-paperclip",
+         "icon": "ti-paperclip",
          "description": "https://developer.axonivy.com/download",
          "imageContent": "<your-image-data-as-base64>",
          "imageLocation": "/com/axonivy/portal/ExternalLink/dd91ec84-c5aa-4202-aeea-4500fbd394ef",

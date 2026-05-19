@@ -162,6 +162,26 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
   }
 
   @Test
+  public void screenshotBulkDelegateFeature() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    showNewDashboard();
+    homePage = new NewDashboardPage();
+    homePage.waitForCaseWidgetLoaded();
+
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
+
+    // Toggle bulk delegate selection mode on
+    taskWidget.clickBulkDelegateToggleButton(0);
+
+    // Select the first task checkbox
+    taskWidget.selectTaskToDelegateAtRow(0, 0);
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getTaskWidget(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-bulk-delegate-selection", 
+        new ScreenshotMargin(20, 350, 20, 20));
+  }
+
+  @Test
   public void screenshotNewDashboardUserGuide() throws IOException {
     redirectToRelativeLink(createTechnicalStateUrl);
     redirectToRelativeLink(createTestingTasksUrl);
@@ -346,7 +366,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
     String name = "New public dashboard";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "New public dashboard description";
     List<String> permissions = Arrays.asList("Everybody");
     configPage.openCreatePublicDashboardMenu();
@@ -418,7 +438,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     DashboardNewsWidgetPage newDashboardPage = new DashboardNewsWidgetPage("News feed");
 
     newDashboardPage.openAddNewsFeedItemDialog();
-    newDashboardPage.enterNewsItemData("en", "si-send-email", "Welcome to Portal News feed",
+    newDashboardPage.enterNewsItemData("en", "ti-mail", "Welcome to Portal News feed",
         "Welcome to Portal News feed");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "news-feed-widget-manage-content");
   }

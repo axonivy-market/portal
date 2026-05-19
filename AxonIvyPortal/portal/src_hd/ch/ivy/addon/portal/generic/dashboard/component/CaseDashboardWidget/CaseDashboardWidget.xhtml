@@ -54,7 +54,7 @@
         <p:commandLink ajax="false" id="export-to-excel-#{index}"
                        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
                        onclick="PrimeFaces.monitorDownload(startDownload, stopDownload);">
-          <i class="si si-office-file-xls-1 u-mar-right-5" />
+          <i class="ti ti-file-type-xls u-mar-right-5" />
           <span class="link-text"> <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
           </span>
           <p:fileDownload value="#{logic.getExportedFileForCaseWidget(widget)}" />

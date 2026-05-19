@@ -133,6 +133,7 @@ The configuration panel offers the following options:
 
 - **Show pinned items toggle**: Show or hide the pinned items toggle. When enabled, users can filter the widget to get only the pinned tasks.
 
+- **Show Bulk Delegate toggle**: Show or hide the bulk delegate toggle. When enabled, users can select multiple tasks and delegate them in bulk.
 
 **Filters panel**
 
@@ -177,7 +178,7 @@ In the column management dialog, you find two sections to configure the table co
 
     Quick search feature is supporting these fields:
 
-      #. Standard fields: Id, name, description, category, responsible (display name), and application.
+      #. Standard fields: Id, name, description, category, responsible (display name), working user (display name), and application.
       #. Task custom fields: fields that have type ``STRING`` or ``TEXT``.
       #. Case custom fields: fields that have type ``STRING`` or ``TEXT``.
       #. Business case custom fields: fields that have type ``STRING`` or ``TEXT``.
@@ -219,6 +220,12 @@ You may also notice gridlines on the table which implemented by Portal to help y
   .. important::
 
     If the total width of the columns is less than the widget’s width, the Portal will automatically adjust the column widths to match the widget’s width.
+
+**Bulk delegate**
+
+In view mode, you can select multiple tasks and delegate them at once by clicking the :guilabel:`Toggle bulk delegation` button in the widget header.
+
+|bulk-delegate-task|
 
 .. _new-dashboard-case-list-widget:
 
@@ -601,3 +608,5 @@ After selecting the :guilabel:`Clone` option, the :guilabel:`Clone widget` dialo
 .. |navigation-dashboard-widget-configuration| image:: ../../screenshots/new-dashboard/navigation-dashboard-widget-configuration.png
    :alt: Navigation dashboard widget configuration
 .. |navigation-dashboard-widget| image:: ../../screenshots/new-dashboard/navigation-dashboard-widget.png
+.. |bulk-delegate-task| image:: ../../screenshots/new-dashboard/task-widget-bulk-delegate-selection.png
+   :alt: Dashboard task widget bulk delegate feature

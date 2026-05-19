@@ -23,8 +23,8 @@ public class ReorderDashboardPage extends TemplatePage {
   }
 
   public void reorderPrivateDashboard(String fromDashboardName, String toDashboardName) {
-    var toRow = findPrivateDashboardRowByName(toDashboardName).$("i.si-navigation-menu");
-    var fromRow = findPrivateDashboardRowByName(fromDashboardName).$("i.si-navigation-menu");
+    var toRow = findPrivateDashboardRowByName(toDashboardName).$("i.ti-menu-2");
+    var fromRow = findPrivateDashboardRowByName(fromDashboardName).$("i.ti-menu-2");
     dragAndDropTo(toRow, fromRow);
   }
 
@@ -40,8 +40,8 @@ public class ReorderDashboardPage extends TemplatePage {
   }
 
   public void reorderPublicDashboard(String fromDashboardName, String toDashboardName) {
-    var toRow = findPublicDashboardRowByName(toDashboardName).$("i.si-navigation-menu");
-    var fromRow = findPublicDashboardRowByName(fromDashboardName).$("i.si-navigation-menu");
+    var toRow = findPublicDashboardRowByName(toDashboardName).$("i.ti-menu-2");
+    var fromRow = findPublicDashboardRowByName(fromDashboardName).$("i.ti-menu-2");
     dragAndDropTo(toRow, fromRow);
   }
 

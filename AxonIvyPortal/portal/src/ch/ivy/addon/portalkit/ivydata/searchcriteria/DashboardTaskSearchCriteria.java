@@ -230,12 +230,18 @@ public class DashboardTaskSearchCriteria {
       appendSortByStateIfSet(criteria);
       appendSortByPriorityIfSet(criteria);
       appendSortByCustomFieldIfSet(criteria);
+      appendSortByWorkerIfSet(criteria);
       if (order != null && isSortDescending()) {
         order.descending();
       }
+      // Issue happens with Postgres DB, doesn't happen in designer and Mssql
+      if (StringUtils.isNotBlank(criteria.getSortField())
+          && !DashboardStandardTaskColumn.ID.getField().equalsIgnoreCase(criteria.getSortField())) {
+        query.orderBy().taskId().descending();
+      }
       return this;
     }
-    
+
     private void appendSortByNameIfSet(DashboardTaskSearchCriteria criteria) {
       if (DashboardStandardTaskColumn.NAME.getField().equalsIgnoreCase(criteria.getSortField())) {
         order = query.orderBy().name();
@@ -281,6 +287,13 @@ public class DashboardTaskSearchCriteria {
     private void appendSortByCompletedDateIfSet(DashboardTaskSearchCriteria criteria) {
       if (DashboardStandardTaskColumn.COMPLETED.getField().equalsIgnoreCase(criteria.getSortField())) {
         order = query.orderBy().endTimestamp();
+        sortStandardColumn = true;
+      }
+    }
+    
+    private void appendSortByWorkerIfSet(DashboardTaskSearchCriteria criteria) {
+      if (DashboardStandardTaskColumn.WORKER.getField().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().workerUserDisplayName();
         sortStandardColumn = true;
       }
     }

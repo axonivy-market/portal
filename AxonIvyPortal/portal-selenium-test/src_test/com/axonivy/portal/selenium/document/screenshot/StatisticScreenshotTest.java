@@ -152,7 +152,7 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromScratch("My Dashboard", "fa-coffee", "description", Arrays.asList("Everybody"), DashboardDisplayType.SUB_MENU);
+    configurationPage.createPublicDashboardFromScratch("My Dashboard", "ti-coffee", "description", Arrays.asList("Everybody"), DashboardDisplayType.SUB_MENU);
     ScreenshotUtils.maximizeBrowser();
     configurationPage.clickOnAddWidgetButton();
     StatisticConfigurationPage statisticConfigurationPage = configurationPage

@@ -167,7 +167,7 @@ public class BaseFilter implements Serializable{
   }
 
   @JsonIgnore
-  public List<SecurityMemberDTO> getResponsibles() {
+  public List<SecurityMemberDTO> findAllUsers() {
     return getValues().stream().map(this::findSecurityMember)
         .filter(Objects::nonNull).collect(Collectors.toList());
   }
