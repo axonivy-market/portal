@@ -71,15 +71,17 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
 
   @Override
   public List<Dashboard> initCloneableDashboards() {
+    List<Dashboard> availableDashboards = new ArrayList<>();
+
     if (PermissionUtils.hasDashboardWritePublicPermission()) {
-      return DashboardUtils.getPublicDashboards();
+      availableDashboards.addAll(DashboardUtils.getPublicDashboards());
     }
 
     if (PermissionUtils.hasDashboardWriteOwnPermission()) {
-      return DashboardUtils.getPrivateDashboards();
+      availableDashboards.addAll(DashboardUtils.getPrivateDashboards());
     }
-
-    return new ArrayList<>();
+    
+    return availableDashboards;
   }
 
   public void setAvailableDashboards(List<Dashboard> targetDashboards) {
