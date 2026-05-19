@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static org.apache.commons.lang3.StringUtils.EMPTY;
-
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
