@@ -8,6 +8,7 @@
   <cc:attribute name="renderedAvatar" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
   <cc:attribute name="useLowercaseEmail" default="true" shortDescription="Convert the email address to lowercase before looking up the avatar." />
   <cc:attribute name="representName" />
+  <cc:attribute name="showLabel" type="boolean" default="true" />
 
 </cc:interface>
 
@@ -16,6 +17,6 @@
 
   <p:avatar id="#{cc.attrs.id}" rendered="#{cc.attrs.renderedAvatar}"
     gravatar="#{cc.attrs.representName != null ? cc.attrs.representName : portalComponentAvatarBean.getEmailAddress(cc.attrs.securityMember, cc.attrs.useLowercaseEmail)}" gravatarConfig="d=blank"
-    label="#{cc.attrs.representName != null ? cc.attrs.representName : portalComponentAvatarBean.getNameInitials(cc.attrs.securityMember.getDisplayName())}" styleClass="gravatar" shape="circle" />
+    label="#{cc.attrs.showLabel ? (cc.attrs.representName != null ? cc.attrs.representName : portalComponentAvatarBean.getNameInitials(cc.attrs.securityMember.getDisplayName())) : ''}" styleClass="gravatar" shape="circle" />
 </cc:implementation>
 </html>

@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 
-import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -18,7 +17,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 
-public class FinishedDateColumnModel  extends CaseColumnModel implements Serializable {
+public class FinishedDateColumnModel  extends CaseColumnModel {
 
   private static final long serialVersionUID = -1044297302783214986L;
 

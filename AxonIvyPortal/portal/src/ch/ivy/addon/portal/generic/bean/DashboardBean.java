@@ -622,4 +622,12 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     return Ivy.cms().co("/Labels/PinnedCases");
   }
 
+  public boolean isTaskWidget(DashboardWidget widget) {
+    return widget instanceof TaskDashboardWidget;
+  }
+
+  public boolean isRenderMultipleTaskItemsDelegate(DashboardWidget widget) {
+    return isTaskWidget(widget) && ((TaskDashboardWidget) widget).isShowBulkDelegateToggle();
+  }
+
 }

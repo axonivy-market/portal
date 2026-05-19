@@ -17,11 +17,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       overlappingAbsence: Die Abwesenheit überschneidet sich mit einer anderen Abwesenheit.
       userNameRequired: '''Benutzername'' darf nicht leer sein.'
     SelectedSubtitutes: Auswahl Stellvertreter:in
+    Substitutes: 'Stellvertreter:'
     absences: Abwesenheiten
     addAbsence: Abwesenheit erfassen
+    addSubstitute: Stellvertreter hinzufügen
     deputies: Stellvertreter
     description: Während meiner Abwesenheit werden Workflow Aufgaben automatisch den definierten Stellvertretern zugeteilt.
     editAbsence: Abwesenheiten bearbeiten
+    editSubstitute: Ersatz bearbeiten
     from: Von
     noDeputy: Kein Stellvertreter
     noPermissionToSeeThisArea: Fehlende Berechtigung für diesen Bereich.
@@ -29,8 +32,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     personalTaskDuringAbsenceDeputies: Vertretungen für persönlich zugewiesene Aufgaben während der Abwesenheit
     personalTaskPermanentDeputies: Ständige Stellvertreter für persönlich zugewiesene Aufgaben
     selectDeputies: Stellvertreter auswählen
+    selectSubstitute: Stellvertreter auswählen
     selectedDeputies: Ausgewählte Stellvertreter
+    setAsPermanent: Als dauerhaft festlegen
     showAbsencesInThePast: Vergangene Abwesenheiten anzeigen
+    substituteName: Stellvertretername
+    substituteType: Stellvertretertyp
     substitutedUser: Vertretener Benutzer
     taskForRole: 'Aufgabe für Rolle: '
     till: Bis
@@ -49,8 +56,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     myAbsences: Meine Abwesenheit
     myDeputies: Meine Stellvertreter
     nextAbsence: Bevorstehende Abwesenheit
+    noSubstitutesDefined: Keine Stellvertreter definiert
+    notSubstitutingAnybody: Derzeit kein Stellvertreter für andere
+    requestAbsences: Abwesenheiten beantragen
     selectedDeputyFor: Ausgewählter Benutzer ist Stellvertreter für
     selectedUser: Ausgewählter Benutzer
+    substitutes: Stellvertreter
   AccessibilityShortcuts:
     processName: Barrierefreiheit Tastenkombinationen Widgets
   AllTasks:
@@ -283,8 +294,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideUploadDocumentForDoneCaseNote: Auf "true" setzen, um das Hochladen und Löschen von Dokumenten bei einem abgeschlossenen Vorgang zu unterbinden.
       hideYear: Auf "true" um das Jahr auszublenden, andernfalls wird es angezeigt.
       imageUploadSizeLimit: Legen Sie das Größenlimit für das Hochladen von Bildern in Megabyte (MB) fest. Der Standardwert beträgt 6 MB.
-      sidebarMode: Steuert den Modus der Seitenleiste. Hover öffnet beim Darüberfahren, Klick verwendet eine Umschalttaste, Fixiert hält sie immer geöffnet, Versteckt entfernt die Seitenleiste vollständig.
       loggedInUserFormat: Definiert das Format, um den eingeloggten Benutzer anzuzeigen
+      maximumSelectedTasks: Definiert die maximale Anzahl von Aufgaben, die ein Benutzer gleichzeitig innerhalb eines Aufgaben-Widgets für Massenoperationen auswählen kann. Setzen Sie diesen Wert auf eine positive Ganzzahl, um ein bestimmtes Limit zu erzwingen, oder lassen Sie ihn leer, um eine unbegrenzte
+        Aufgabenauswahl zu ermöglichen.
       refreshTaskListIntervalNote: Intervall in Sekunden um die Aufgabenliste neu zu laden.
       showAvatar: Zum Ein- und Ausschalten der Anzeige von Benutzer-/Rollenavataren.
       showButtonIcon: Zum Ein-/Ausschalten des Anzeigesymbols bei Butons im Portal
@@ -295,6 +307,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showQuickGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Schnellsuche.
       showTaskDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Aufgabendetailseite.
       showTooltipTechnicalName: Ermöglicht die Anzeige des technischen Namens der Benutzer in den Tooltips.
+      sidebarMode: Steuert den Modus der Seitenleiste. Hover öffnet beim Darüberfahren, Klick verwendet eine Umschalttaste, Fixiert hält sie immer geöffnet, Versteckt entfernt die Seitenleiste vollständig.
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
     key: Schlüssel
     link: Link
@@ -455,16 +468,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: Aktualisieren
     Widget: Widget
     action: Aktionen
-    actionMenuContext: "Aktionsmenü für Prozess {0} öffnen"
-    taskActionMenuContext: "Aktionsmenü für Aufgabe {0} öffnen"
+    actionMenuContext: Aktionsmenü für Prozess {0} öffnen
     active: Aktiviert
-    collapseWidgetContext: "Widget {0} minimieren"
-    expandWidgetContext: "Widget {0} erweitern"
-    openWidgetFiltersContext: "Filter für {0} öffnen"
-    openWidgetFiltersWithCountContext: "Filter für {0} öffnen, {1} aktive Filter"
-    openWidgetInfoContext: "Widget-Informationen zu {0} öffnen"
     add: Hinzufügen
-    addContext: "{0} hinzufügen"
+    addContext: '{0} hinzufügen'
     addDocument: Dokument hinzufügen
     addLink: Link hinzufügen
     addNote: Notiz hinzufügen
@@ -472,14 +479,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     allTypes: Alle Typen
     allowPng: Nur das png Format wird unterstützt
     apply: Anwenden
-    applyContext: "{0} anwenden"
+    applyContext: '{0} anwenden'
     at: am
     author: Autor
     back: Zurück
     backToCaseMap: Zurück zur Case Map
     backgroundColor: Hintergrundfarbe
     cancel: Abbrechen
-    cancelContext: "{0} abbrechen"
+    cancelContext: '{0} abbrechen'
     case: Vorgang
     caseCategory: Vorgangskategorie
     caseInformation: Vorgangsinformationen
@@ -487,8 +494,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: Kategorien
     change: Ändern
     close: Schließen
-    closeContext: "{0} schließen"
+    closeContext: '{0} schließen'
     cockpit: Cockpit
+    collapseWidgetContext: Widget {0} minimieren
     colors: Farben
     comment: Kommentar
     completedOn: Erledigt am
@@ -504,13 +512,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     dateRequired: Datum darf nicht leer sein.
     day: Tag
     dayUnit: Tag
-    days: Tage
+    days: Tag(e)
     default: Standardeinstellung
     defaultNotificationMessage: Hmm... Hier ist wohl etwas schief gelaufen.
+    delegateTasks: Aufgaben delegieren
     delete: Löschen
-    deleteContext: "{0} löschen"
     deleteAbsenceHeaderText: 'Diese Abwesenheit löschen? '
     deleteChartHeaderText: Dieses Diagramm löschen?
+    deleteContext: '{0} löschen'
     deleteDocumentHeaderText: 'Dieses Dokument löschen? '
     deleteFilterHeaderText: Diesen Filter löschen?
     deleteSettingHeaderText: Diese Einstellung löschen?
@@ -532,6 +541,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: Fehler beim aktualisieren der Webseiteinhalte
     escalationTaskHeaderText: Eskalation auslösen
     escalationTaskMessage: Frist wird auf jetzt gesetzt, somit läuft die Bearbeitungsfrist ab. Sind Sie sicher?
+    expandWidgetContext: Widget {0} erweitern
     filter:
       from: von
       moreOptions: Mehr Optionen
@@ -588,9 +598,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     okContext: OK {0}
     'on': am
+    openWidgetFiltersContext: Filter für {0} öffnen
+    openWidgetFiltersWithCountContext: Filter für {0} öffnen, {1} aktive Filter
+    openWidgetInfoContext: Widget-Informationen zu {0} öffnen
     pin: Anheften
-    pinCaseContext: "Vorgang {0} anheften"
-    pinTaskContext: "Aufgabe {0} anheften"
+    pinCaseContext: Vorgang {0} anheften
+    pinTaskContext: Aufgabe {0} anheften
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
     pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
     previousStage: Vorherige Stufe
@@ -613,8 +626,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Auf Standarddiagramme zurücksetzen?
     role: Rolle
     save: Speichern
-    saveContext: "{0} speichern"
     saveAll: Speichern
+    saveContext: '{0} speichern'
     saveSuccessfully: Daten erfolgreich gespeichert.
     search: Suche
     second: Sekunde
@@ -638,6 +651,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     state: Status
     status: Status
     switchToDesktopVersion: Zur Desktop-Version wechseln
+    taskActionMenuContext: Aktionsmenü für Aufgabe {0} öffnen
     taskCanceledAndLeftSuccessfully: Sie haben die Aufgabe abgebrochen. Sie finden die Aufgabe im Dashboard oder in Ihrer Aufgabenliste.
     taskFinishedSuccessfully: Sie haben die Aufgabe erfolgreich abgeschlossen
     taskFromSubstitution: Sie sehen diese Aufgabe, weil Sie der Stellvertreter sind
@@ -647,13 +661,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: Der Prozess
     timeInformation: Zeitangaben
     timestamp: Zeitstempel
+    toggleBulkDelegation: Massendelegierung umschalten
     type: Typ
     typeAdmin: Alle Administratoren
     typeAllUsers: Alle Benutzer
     typeOnlyMe: Nur für mich
     unpin: Anheftung aufheben
-    unpinCaseContext: "Anheftung von Vorgang {0} aufheben"
-    unpinTaskContext: "Anheftung von Aufgabe {0} aufheben"
+    unpinCaseContext: Anheftung von Vorgang {0} aufheben
+    unpinTaskContext: Anheftung von Aufgabe {0} aufheben
     uploadHere: Hier hochladen
     uploadOneHere: Auswählen
     user: '{0} Benutzer'
@@ -665,6 +680,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
     warning: Warnung!
     welcomeToPortal: Willkommen, bitte melden Sie sich an
+    workingUser: Bearbeiter
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
     year: Jahr
     years: Jahre
@@ -885,6 +901,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       STANDARD: Standard-Feld
     configuration:
       CustomWidgetExternalLinkWarning: Einige Websites sind aufgrund von Sicherheitsbedenken nicht mit iframe kompatibel. Bitte wenden Sie sich an Ihren Administrator, wenn die externe Website nicht ordnungsgemäß funktioniert.
+      CustomWidgetUrlInvalidScheme: Die angegebene URL ist ungültig
       CustomWidgetTitlePlaceholder: Lassen Sie es leer, um die Kopfzeile des Widgets auszublenden
       Parameters: Parameter
       RestoreDefaultDashboardTemplateTooltip: Wir können die Vorlage für Ihr Dashboard nicht finden und es daher nicht auf die Standardkonfiguration zurücksetzen. Bitte erkundigen Sie sich bei Ihrem Administrator nach weiteren Details!
@@ -1247,8 +1264,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     escalationActivatorDesc: Ändern Sie den Eskalations-Aktivator der Aufgabe auf einen bestimmten Benutzer oder eine Gruppe
     escalationActivatorHeader: Auswahl des Eskalations-Aktivators der Aufgabe
   taskBusinessState:
-    DELAYED: Überfällig
-    DELAYED_UPPERCASE: ÜBERFÄLLIG
+    DELAYED: Verzögert
+    DELAYED_UPPERCASE: VERZÖGERT
     DESTROYED: gelöscht
     DESTROYED_UPPERCASE: GELÖSCHTE
     DONE: Erledigt
@@ -1297,7 +1314,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: Es kann keine Ablaufzeit gesetzt werden, da diese Aufgabe keine Eskalationslogik enthält.
     technicalCase: Technischer Vorgang
     workflowEventDialog: 'Workflow Events für Aufgabe #{0}'
-    workingUser: Bearbeiter
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: Die Aufgabenfrist wurde erfolgreich gespeichert
@@ -1519,6 +1535,12 @@ Dialogs:
               CustomWidgetIFrameTitle: Benutzerdefinierter Widget-Rahmen
             IconSelection:
               IconLinkTooltip: Zum Ändern des Symbols anklicken
+            MultipleTaskItemsDelegate:
+              DelegateMultipleTaskTitle: '{0} Aufgaben delegieren'
+              ItemSelected: 1 Element ausgewählt
+              ItemsSelected: '{0} Elemente ausgewählt'
+              ItemsSelectedWithLimit: '{0} / {1} Elemente ausgewählt'
+              bulkDelegatePerformanceWarning: Das Delegieren mehrerer Aufgaben kann einige Zeit dauern. Bitte haben Sie Geduld.
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: Sie können nicht an der Aufgabe arbeiten, weil sie zerstört wurde.
               CannotWorkOnTaskWarning: Sie können die Aufgabe nicht bearbeiten, weil der Benutzer <strong>{0}</strong> gerade daran arbeitet.
@@ -1654,6 +1676,7 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen
+              ShowBulkDelegateToggle: '''Sammelweiterleitung'' umschalten anzeigen'
             filter:
               DashboardFilter:
                 HasCmsValuesEnabledTooltip: Dieses Feld erlaubt nur die Verwendung des Operators „Enthält"
@@ -1787,7 +1810,7 @@ Enums:
               STATE:
                 name: Zustand
               WORKER_NAME:
-                name: Name des Arbeiters
+                name: Bearbeiter
               WORKING_TIME:
                 name: Arbeitszeiten
             AggregationInterval:
@@ -1922,6 +1945,7 @@ Labels:
       RESPONSIBLE: Verantwortlich
       START: Start
       STATE: Status
+      WORKER: Bearbeiter
     FilterOperator:
       AFTER: Ist nach
       BEFORE: Ist vor

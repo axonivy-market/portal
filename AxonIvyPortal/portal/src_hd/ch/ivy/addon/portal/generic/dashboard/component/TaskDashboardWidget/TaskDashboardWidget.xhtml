@@ -21,12 +21,14 @@
     <ui:param name="panelStyleClass" value="task-dashboard-widget__panel" />
     <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
     <ui:param name="onStatisticTabShow" value="handleFilterCategoryHeight(this);" />
+    <ui:param name="componentToUpdateAfterDelegateAllTasks" value="@widgetVar(dashboard-tasks-#{widget.id})" />
     <ui:param name="componentToProcessOnApplyFilter" value="filter-container" />
     <ui:param name="componentToUpdateOnApplyFilter" value="#{cc.clientId}:task-component:dashboard-tasks #{cc.clientId}:task-component:empty-message-container" />
     <ui:param name="componentToUpdateOnResetFilter" value="#{cc.clientId}:task-component:dashboard-tasks #{cc.clientId}:task-component:empty-message-container" />
     <ui:param name="onCompleteApplyFilters" value="PF('dashboard-tasks-#{widget.id}').filter()" />
     <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
     <ui:param name="isRenderInfo" value="#{widget.isShowWidgetInfo()}" />
+    <ui:param name="isRenderSelectionToggle" value="#{bulkActionBean.isRenderBulkDelegateToggle(widget)}" />
     <ui:param name="widgetContentStyleClass" value="task-widget" />
     <ui:define name="widgetInformationContent">
       <ui:include src="TaskInfo.xhtml">
@@ -49,7 +51,7 @@
       <h:form id="export-to-excel-form-#{index}" styleClass="dashboard-excel-export-form">
         <p:commandLink ajax="false" id="export-to-excel-#{index}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
           onclick="PrimeFaces.monitorDownload(startDownload, stopDownload);">
-          <i class="si si-office-file-xls-1 u-mar-right-5" />
+          <i class="ti ti-file-type-xls u-mar-right-5" />
           <span class="link-text">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
           </span>

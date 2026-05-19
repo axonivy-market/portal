@@ -10,7 +10,7 @@
 <cc:implementation>
   <p:outputPanel id="loginPanel" styleClass="admin-settings-no-permission-message" layout="block"
     rendered="#{!permissionBean.hasAdminPermission()}">
-    <span class="si si-alert-circle" />
+    <span class="ti ti-alert-circle" />
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/permission/noPermission')}" />
   </p:outputPanel>
   <h:panelGroup styleClass="w-full pt-2 pb-2 mb-4" layout="block">
@@ -19,7 +19,7 @@
          <h3>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}</h3>
       </div>
       <h:panelGroup layout="block" class="applications-setting-info-circle">
-        <h:outputText id="applications-setting-info" styleClass="applications-setting-info si si-information-circle" />
+        <h:outputText id="applications-setting-info" styleClass="applications-setting-info ti ti-info-circle" />
         <p:tooltip for="applications-setting-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationHint')}" />
       </h:panelGroup>
     </div>
@@ -71,7 +71,7 @@
 
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
               styleClass="text-center settings-table-action-buttons">
-              <p:commandButton id="applications-action-button" icon="fa fa-ellipsis-h"
+              <p:commandButton id="applications-action-button" icon="ti ti-dots"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
                 styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page" type="button"/>
               <p:menu id="applications-action-menu" overlay="true"
@@ -81,7 +81,7 @@
                 <p:menuitem id="edit-application"
                   global="false"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
-                  icon="si si-graphic-tablet-drawing-pen"
+                  icon="ti ti-pencil"
                   oncomplete="PF('appDialog').show()"
                   actionListener="#{thirdPartyApplicationBean.editApplication(app)}"
                   update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}"
@@ -90,7 +90,7 @@
                   </p:menuitem>
                 <p:menuitem id="delete-application"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-                  icon="si si-bin-1" styleClass="color-destroy" 
+                  icon="ti ti-trash" styleClass="color-destroy"
                   oncomplete="PF('deleteConfirmation').show()" action="#{logic.updateContentMsg(app)}"
                   actionListener="#{thirdPartyApplicationBean.setSelectedApp(app)}"
                   update=":#{p:resolveFirstComponentWithId('deleteConfirmationDialog', view).clientId}"
@@ -106,7 +106,7 @@
     <p:tab id="setting-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}">
       <h:form prependId="false" id="settingForm">
         <h:panelGroup layout="block" styleClass="setting-tab-action-buttons text-right">
-          <p:commandButton id="restore-all-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-undo')}"
+          <p:commandButton id="restore-all-to-default-button" icon="#{visibilityBean.generateButtonIcon('ti ti-arrow-back-up')}"
             styleClass="ui-button-flat font-medium"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreAllToDefault')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreAllToDefault')}"
@@ -137,7 +137,7 @@
           <p:column id="settings-table-action-buttons"
             headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
             styleClass="text-center settings-table-action-buttons">
-            <p:commandButton id="settings-action-button" icon="fa fa-ellipsis-h"
+            <p:commandButton id="settings-action-button" icon="ti ti-dots"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
               styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page ui-focused" type="button"/>
             <p:menu id="settings-action-menu" overlay="true"
@@ -147,14 +147,14 @@
               <p:menuitem id="edit-application"
                 global="false"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
-                icon="si si-graphic-tablet-drawing-pen"
+                icon="ti ti-pencil"
                 oncomplete="PF('settingDialog').show()"
                 actionListener="#{logic.editSetting(setting)}"
                 update=":#{p:resolveFirstComponentWithId('settingDialog', view).clientId}"
                 process="@this" />
               <p:menuitem id="restore-default"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}"
-                icon="si si-undo"
+                icon="ti ti-arrow-back-up"
                 oncomplete="PF('resetConfirmation').show()"
                 actionListener="#{logic.submitResetSetting(setting)}"
                 update=":#{p:resolveFirstComponentWithId('resetConfirmationDialog', view).clientId}"
@@ -251,7 +251,7 @@
                         styleClass="admin-settings-form-input w-full" required="true" />
                       <p:commandButton styleClass="app-setting-button"
                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-                        icon="si si-chat-translate" id="app-display-name-language-button"
+                        icon="ti ti-language" id="app-display-name-language-button"
                         actionListener="#{thirdPartyApplicationBean.updateDisplayNameByLocale()}"
                         process="appDisplayName3rd"
                         update="#{cc.clientId}:application-display-name-language-config:multiple-languages-dialog"
@@ -402,7 +402,7 @@
     <ui:param name="id" value="deleteConfirmationDialog" />
     <ui:param name="widgetVar" value="deleteConfirmation" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-delete-1" />
+    <ui:param name="iconClass" value="ti ti-trash" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteSettingHeaderText')}" />
     <ui:param name="dialogContent" value="#{data.confirmMsg}" />
@@ -426,7 +426,7 @@
     <ui:param name="id" value="resetConfirmationDialog" />
     <ui:param name="widgetVar" value="resetConfirmation" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconClass" value="ti ti-alert-triangle" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetSettingHeaderText')}" />
     <ui:param name="dialogContent" value="#{data.confirmMsg}" />

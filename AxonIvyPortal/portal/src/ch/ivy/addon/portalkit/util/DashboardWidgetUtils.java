@@ -137,6 +137,8 @@ public class DashboardWidgetUtils {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CategoryColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.APPLICATION, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ApplicationColumnModel.class;
+      } else if (equals(DashboardStandardTaskColumn.WORKER, field)) {
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.WorkerColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.ACTIONS, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ActionsColumnModel.class;
       }
@@ -404,7 +406,7 @@ public class DashboardWidgetUtils {
   }
 
 
-  private static DashboardWidget buildDefaultStatisticWidget(String id, @SuppressWarnings("unused") String name, @SuppressWarnings("unused") DashboardWidgetType widgetType) {
+  private static DashboardWidget buildDefaultStatisticWidget(String id, String name, DashboardWidgetType widgetType) {
     DashboardWidget widget = null;
     widget = new StatisticDashboardWidget();
     widget.setId(id);
@@ -580,6 +582,7 @@ public class DashboardWidgetUtils {
     return publicExternalLinksNotForIvySessionUser.stream().map(link -> link.getId()).toList();
   }
 
+  @SuppressWarnings("removal")
   private static void updateProcessStartIdForCombined(ProcessDashboardWidget processWidget, DashboardProcess process) {
     if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE && process.getProcessStartId() == null) {
       Ivy.session().getStartableProcessStarts().stream()

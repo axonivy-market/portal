@@ -259,6 +259,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
   }
 
+  @SuppressWarnings("removal")
   protected void initSelectedColumns() {
     TaskColumnsConfigurationService service = TaskColumnsConfigurationService.getInstance();
     Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null);
@@ -352,6 +353,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/" + column);
   }
 
+  @SuppressWarnings("removal")
   public void saveColumnsConfiguration() {
     // avoid duplicating
     for (String requiredColumn : portalRequiredColumns) {
@@ -374,6 +376,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     initSelectedColumns();
   }
 
+  @SuppressWarnings("removal")
   private TaskColumnsConfiguration createNewTaskColumnsConfigurationData() {
     TaskColumnsConfiguration taskColumnsConfiguration = new TaskColumnsConfiguration();
     taskColumnsConfiguration.setProcessModelId(Ivy.request().getProcessModelVersion().getId());

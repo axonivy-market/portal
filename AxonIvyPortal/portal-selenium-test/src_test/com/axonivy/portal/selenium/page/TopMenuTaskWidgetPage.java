@@ -257,12 +257,12 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
 
   public void waitUntilTaskCountDifferentThanZero() {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until((driver) -> countAllTasks().size() != 0);
+        .until((_) -> countAllTasks().size() != 0);
   }
 
   public void waitUntilTaskFilterReturnResultCount(int count) {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until((driver) -> countAllTasks().size() == count);
+        .until((_) -> countAllTasks().size() == count);
   }
 
   public void isDelegateTypeSelectAvailable() {

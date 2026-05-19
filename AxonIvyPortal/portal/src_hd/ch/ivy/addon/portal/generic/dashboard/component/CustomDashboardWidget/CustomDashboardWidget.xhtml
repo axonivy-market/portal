@@ -71,10 +71,10 @@
           </h:panelGroup>
         </ui:fragment>
 
-        <ui:fragment rendered="#{empty widget.data.processPath}">
-          <iframe name="custom-widget-iframe-#{index}" src="#{widget.data.url}"
+        <ui:fragment rendered="#{empty widget.data.processPath and not empty dashboardCustomWidgetBean.safeUrlOrEmpty(widget.data.url)}">
+          <iframe name="custom-widget-iframe-#{index}" src="#{dashboardCustomWidgetBean.safeUrlOrEmpty(widget.data.url)}"
             id="id-custom-widget-iframe-#{index}"
-            class="dashboard-custom-iframe hidden" 
+            class="dashboard-custom-iframe hidden"
             title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/CustomDashboardWidget/CustomWidgetIFrameTitle', [widget.name])}" />
           <script type="text/javascript">
               setTimeout(function(){

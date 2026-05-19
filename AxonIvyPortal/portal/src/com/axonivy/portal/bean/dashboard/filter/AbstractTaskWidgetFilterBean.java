@@ -132,7 +132,7 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
 
   public abstract void addNewFilter(TaskDashboardWidget widget);
 
-  public List<SecurityMemberDTO> completeCreators(String query) {
+  public List<SecurityMemberDTO> completeUsers(String query) {
     return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE).stream()
         .filter(SecurityMemberDTO::isUser).collect(Collectors.toList());
   }

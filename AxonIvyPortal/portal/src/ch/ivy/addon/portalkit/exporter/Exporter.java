@@ -21,8 +21,6 @@ import org.primefaces.model.StreamedContent;
 
 import ch.ivy.addon.portalkit.bo.ExcelExportSheet;
 import ch.ivy.addon.portalkit.util.ExcelExport;
-import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.ITask;
 
 /**
  * Base class for export
@@ -74,7 +72,7 @@ public abstract class Exporter {
 
   /**
    * Create stream content {@link StreamedContent} to export
-   * @param <T> data type {@link ITask} or {@link ICase}
+   * @param <T> data type {@link ch.ivyteam.ivy.workflow.ITask} or {@link ch.ivyteam.ivy.workflow.ICase}
    * @param data list of tasks or cases to export
    * @return stream content
    * @throws IOException

@@ -40,8 +40,9 @@
 
   /* Default Portal styles */
   --header-font-size: 2rem;
-  --portal-icon-font-family: "StreamlineIcons";
+  --portal-icon-font-family: "tabler-icons";
   --portal-icon-font-size: 1em;
+  --portal-tabler-icon-size: 1.2em;
   --portal-icon-line-height: 1;
   --portal-icon-ui-icon-font-size: 1.4rem;
   --default-font-style: normal;

@@ -146,7 +146,7 @@
                         </div>
                         <c:set var="subscription" value="#{channel.getSubscription(event)}" />
                         <div class="flex align-content-center gap-3">
-                          <i class="flex align-items-center si table-icon si-#{subscription.icon} subscription-icon " title="#{subscription.title}" />
+                          <i class="flex align-items-center si table-icon ti-#{subscription.icon} subscription-icon " title="#{subscription.title}" />
                           <p:triStateCheckbox rendered="#{userProfileBean.hasNotificationChannelsSettingPermission()}" id="subscriptionCheckbox" value="#{subscription.stateAsString}" styleClass="flex align-items-center">
                             <p:ajax event="change" global="false"
                               update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
@@ -163,7 +163,7 @@
                       update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
                       styleClass="ui-button-flat setting-tab-action-buttons font-medium"
                       rendered="#{userProfileBean.hasNotificationChannelsSettingPermission()}" >
-                        <i class="si si-undo"/>
+                        <i class="ti ti-arrow-back-up"/>
                         <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}</span>
                       </p:commandLink>
                       

@@ -226,7 +226,7 @@
       <h:panelGroup layout="block" id="stage-info-#{counter.index}"
         styleClass="process-step #{cc.attrs.currentIndex eq counter.index ? 'current' :  cc.attrs.currentIndex > counter.index ? 'visited' : 'waiting'}">
         <span class="stage-title">
-          <i class="#{stage.icon.cssClass eq '' ? 'fa fa-square' : stage.icon.cssClass}" /><br />
+          <i class="#{stage.icon.cssClass eq '' ? 'ti ti-square' : stage.icon.cssClass}" /><br />
           <span class="stage-name">#{stage.name}</span>
         </span>
       </h:panelGroup>

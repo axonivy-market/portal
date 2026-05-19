@@ -1,8 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.CollectionCondition.containExactTextsCaseSensitive;
-import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
@@ -24,9 +22,8 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebElementsCondition;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
+import com.codeborne.selenide.SelenideElement;
 
 public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
@@ -86,7 +83,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void startFirstTaskAndWaitShowHomePageButton() {
     $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
     getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    // $("a>span.si-house-chimney-2.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
+    // $("a>span.ti-home.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void startTask(int taskIndex) {
@@ -708,5 +705,73 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .stream()
         .map(SelenideElement::getText)
         .collect(Collectors.toList());
+  }
+
+  public void selectTaskToDelegateAtRow(int rowIndex, int widgetIndex) {
+    $(taskWidgetId).$("tbody[id$='dashboard-tasks_data']")
+        .$("tr[data-ri='" + rowIndex + "']")
+        .$("td.dashboard-tasks__selection-column .ui-chkbox-box")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("button[id$='delegate-tasks-btn-" + widgetIndex + "']")
+        .shouldNotHave(Condition.cssClass("ui-state-disabled"), DEFAULT_TIMEOUT);
+  }
+
+  public void selectTaskByName(String taskName) {
+    int rowIndex = getAllTasksOfTaskWidget().asFixedIterable().stream()
+        .map(WebElement::getText).collect(Collectors.toList()).indexOf(taskName);
+    $(taskWidgetId).$("tbody[id$='dashboard-tasks_data']")
+        .$("tr[data-ri='" + rowIndex + "']")
+        .$("td.dashboard-tasks__selection-column .ui-chkbox-box")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(".delegation-action-bar").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickBulkDelegateToggleButton(int widgetIndex) {
+    $("button[id$='bulk-delegate-toggle-button-" + widgetIndex + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(".dashboard-tasks__selection-column").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickDelegateTasksButton(int widgetIndex) {
+    $("button[id$='delegate-tasks-btn-" + widgetIndex + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div.task-delegate-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public ElementsCollection openBulkDelegateUserDropdownAndGetItems() {
+    $("button[id$='user-activator-select_button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $$("span[id$='user-activator-select_panel'] .ui-autocomplete-item");
+  }
+
+  public void selectUserFromBulkDelegateDropdown(ElementsCollection items, String userName) {
+    items.filter(Condition.text(userName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void clickRoleRadioButtonInBulkDelegate() {
+    $$("label[for$='activator-type-select:1']").first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("input[id$='group-activator-select_input']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public ElementsCollection openBulkDelegateRoleDropdownAndGetItems() {
+    $("button[id$='group-activator-select_button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $$("span[id$='group-activator-select_panel'] .ui-autocomplete-item");
+  }
+
+  public void selectRoleFromBulkDelegateDropdown(ElementsCollection items, String roleName) {
+    items.filter(Condition.text(roleName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void clickBulkDelegateProceedButton() {
+    $("button[id$='proceed-multiple-task-delegate-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div.task-delegate-dialog").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitForPageLoad();
+  }
+
+  public void checkLimitTaskSelection(int widgetIndex, String limit) {
+    $("span[id$='selected-count-limit-" + widgetIndex + "']").shouldHave(Condition.partialText(limit), DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getResponsibleCellByTaskName(String taskName) {
+    int rowIndex = getAllTasksOfTaskWidget().asFixedIterable().stream()
+        .map(WebElement::getText).collect(Collectors.toList()).indexOf(taskName);
+    return getCellByRowAndColumnName(rowIndex, "Responsible");
   }
 }

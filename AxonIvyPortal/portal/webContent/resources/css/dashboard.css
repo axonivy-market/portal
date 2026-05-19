@@ -248,6 +248,8 @@
 }
 
 .widget__header .widget__header-title,
+.widget__header .ui-link.ti,
+.widget__header .ui-link.tif,
 .widget__header .ui-link.si, .navigation-widget-title {
   font-size: var(--widget-header-font-size);
 }
@@ -259,7 +261,11 @@
   text-align: center;
 }
 
+.process-grid-item__action--combined a.ti,
+.process-grid-item__action--combined a.tif,
 .process-grid-item__action--combined a.si,
+.widget__header-actions > a.ti,
+.widget__header-actions > a.tif,
 .widget__header-actions > a.si {
   font-size: var(--widget-header-font-size);
 }
@@ -398,6 +404,7 @@ td.dashboard-cases__name span {
 
 td.dashboard-tasks__description span,
 td.dashboard-tasks__name span,
+td.dashboard-tasks__worker span,
 td.dashboard-cases__description span,
 td.dashboard-cases__name span,
 td.dashboard-widget-column__custom span,
@@ -826,7 +833,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   width: 7rem;
 }
 
-span.new-widget-dialog__icon.si, span.new-widget-dialog__icon.fa {
+span.new-widget-dialog__icon.ti, span.new-widget-dialog__icon.tif, span.new-widget-dialog__icon.si, span.new-widget-dialog__icon.fa {
   font-size: 40px;
   text-align: center;
   line-height: 1;
@@ -2047,6 +2054,7 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
 .state-filter-operator-panel,
 .priority-filter-operator-panel,
 .responsible-filter-operator-panel,
+.worker-filter-operator-panel,
 .id-filter-operator-panel {
   min-width: 130px;
 }
@@ -2055,9 +2063,16 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
   box-sizing: border-box;
 }
 
-body .ui-button.ui-widget.ui-widget-filter-btn {
+body .ui-button.ui-widget.ui-widget-filter-btn, .ui-button.ui-widget.ui-deselect-all-button {
   background: var(--widget-filter-background-color);
   color: var(--text-color);
+  border: none;
+}
+
+body .ui-button.ui-delegate-all-tasks-button {
+  background: var(--portal-accessibility-bg-color);
+  color: var(--portal-button-text-color);
+  font-weight: 600;
   border: none;
 }
 

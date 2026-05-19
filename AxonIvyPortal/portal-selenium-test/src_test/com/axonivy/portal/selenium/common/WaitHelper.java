@@ -46,7 +46,7 @@ public final class WaitHelper {
 
   public static void assertTrueWithWait(Supplier<Boolean> supplier) {
     try {
-      wait(WebDriverRunner.getWebDriver()).until(webDriver -> supplier.get());
+      wait(WebDriverRunner.getWebDriver()).until(_ -> supplier.get());
     } catch (Exception e) {
       e.printStackTrace();
       assertTrue(false);

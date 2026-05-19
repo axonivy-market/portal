@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +14,7 @@ import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
-public class StateColumnModel extends TaskColumnModel implements Serializable {
+public class StateColumnModel extends TaskColumnModel {
 
   private static final long serialVersionUID = -4315469062114036720L;
   private static final String TASK_BUSINESS_STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/";

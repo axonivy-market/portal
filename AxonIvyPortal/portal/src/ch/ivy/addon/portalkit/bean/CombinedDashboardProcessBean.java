@@ -74,6 +74,7 @@ public class CombinedDashboardProcessBean
     newWidget.setName(StringUtils.EMPTY);
   }
 
+  @SuppressWarnings("removal")
   public void updateProcessStartId() {
     if (CollectionUtils.isEmpty(startableProcessStarts)) {
       initStartableProcessStarts();

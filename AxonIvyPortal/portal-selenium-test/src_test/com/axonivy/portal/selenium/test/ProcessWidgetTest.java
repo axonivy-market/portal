@@ -62,9 +62,9 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget.waitPageLoaded();
     assertNotNull(processWidget.getProcess(AGOOGLE_LINK));
     processWidget.startProcess(AGOOGLE_LINK);
-    webDriverWait().until((webDriver) -> newDashboardPage.countBrowserTab() > 1);
+    webDriverWait().until((_) -> newDashboardPage.countBrowserTab() > 1);
     newDashboardPage.switchLastBrowserTab();
-    webDriverWait().until((webDriver) -> newDashboardPage.getPageTitle().length() > 1);
+    webDriverWait().until((_) -> newDashboardPage.getPageTitle().length() > 1);
     assertEquals("Google", newDashboardPage.getPageTitle());
     resetLanguageOfCurrentUser();
   }

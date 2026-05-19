@@ -205,6 +205,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     }
   }
 
+  @SuppressWarnings("removal")
   protected void initSelectedColumns() {
     CaseColumnsConfigurationService service = CaseColumnsConfigurationService.getInstance();
     Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null);
@@ -223,6 +224,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     setDisableSelectionCheckboxes(isAutoHideColumns);
   }
   
+  @SuppressWarnings("removal")
   public void saveColumnsConfiguration() {
     // avoid duplicating
     for (String requiredColumn : portalRequiredColumns) {
@@ -246,6 +248,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     initSelectedColumns();
   }
 
+  @SuppressWarnings("removal")
   private CaseColumnsConfiguration createNewCaseColumnsConfigurationData() {
     CaseColumnsConfiguration caseColumnsConfiguration = new CaseColumnsConfiguration();
     caseColumnsConfiguration.setProcessModelId(Ivy.request().getProcessModelVersion().getId());

@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -13,7 +12,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 @JsonIgnoreProperties({"header", "styleClass", "fieldStyleClass", "style", "fieldStyle", "visible", "sortable",
     "sorted", "sortDescending", "dateFilterFrom", "dateFilterTo", "userDateFilterFrom", "userDateFilterTo",
     "filterList", "filterListOptions", "userFilterListOptions", "filterType" })
-public class FilterColumnModel extends AbstractColumn implements Serializable {
+public class FilterColumnModel extends AbstractColumn {
 
   private static final long serialVersionUID = -6624895834973797177L;
 
