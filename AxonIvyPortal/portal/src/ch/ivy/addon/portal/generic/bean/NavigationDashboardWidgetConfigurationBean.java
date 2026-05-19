@@ -1,7 +1,5 @@
 package ch.ivy.addon.portal.generic.bean;
 
-import java.io.Serializable;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -13,7 +11,7 @@ import com.axonivy.portal.util.ImageUploadUtils;
 
 @ViewScoped
 @ManagedBean
-public class NavigationDashboardWidgetConfigurationBean extends NavigationDashboardWidgetBean implements Serializable, IMultiLanguage {
+public class NavigationDashboardWidgetConfigurationBean extends NavigationDashboardWidgetBean implements IMultiLanguage {
 
   private static final long serialVersionUID = 1L;
 

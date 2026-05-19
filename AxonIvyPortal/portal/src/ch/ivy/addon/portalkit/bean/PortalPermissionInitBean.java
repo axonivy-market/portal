@@ -51,7 +51,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
 
   private void initPermissions() {
     recreateAndGrantPermissions();
-    if (EngineMode.isAnyOf(EngineMode.DEMO, EngineMode.DESIGNER_EMBEDDED) && isIvySecuritySystem()) {
+    if (EngineMode.is(EngineMode.DEMO) && isIvySecuritySystem()) {
       PortalSecurity.INSTANCE.assignPermissionsToDefaultUsers();
     }
   }

@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +14,7 @@ import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 
-public class StateColumnModel extends CaseColumnModel implements Serializable {
+public class StateColumnModel extends CaseColumnModel {
 
   private static final long serialVersionUID = 654113365187067735L;
   

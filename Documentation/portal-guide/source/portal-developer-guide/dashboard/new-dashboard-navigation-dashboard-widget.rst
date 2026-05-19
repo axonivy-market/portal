@@ -67,7 +67,7 @@ Below is a sample JSON definition of a navigation dashboard widget in the Portal
     "targetDashboardId": "default-task-list-dashboard",
     "description": "Dive into the task list",
     "visualType" : "IMAGE",
-    "icon": "fa-play",
+    "icon": "ti-player-play",
     "imageContentDarkMode": "<your-image-data-as-base64>",
     "imageLocationDarkMode": "/com/axonivy/portal/NavigationWidget/dd91ec84-c5aa-4202-aeea-4500fbd414ef",
     "imageTypeDarkMode": "png",
@@ -128,7 +128,7 @@ JSON Configuration Reference
    Visual style: ``"ICON"`` (icon display) or ``"IMAGE"`` (custom image)
 
 ``icon`` (string, optional)
-   Streamline icon class when ``visualType`` is ``"ICON"`` (e.g., ``"si-task-list-1"``)
+   Tabler icon class when ``visualType`` is ``"ICON"`` (e.g., ``"ti-list-check"``)
 
 **Image Properties**
 
@@ -156,4 +156,4 @@ Used when ``visualType`` is ``"IMAGE"``:
    When using ``visualType: "IMAGE"``, provide ``imageContent`` (base64 data). Portal automatically handles storage in Application CMS and manages ``imageLocation`` and ``imageType`` properties.
 
 .. tip::
-   For icon-based navigation, browse available Streamline icons in the `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_.
+   For icon-based navigation, browse available Tabler icons in the `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_.

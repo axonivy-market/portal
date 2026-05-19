@@ -301,6 +301,6 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   
   public void clickOnHomeLogo() {
     switchBackToParent();
-    $("span[class*='si si-house-chimney-2']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("span[class*='ti ti-home']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 }

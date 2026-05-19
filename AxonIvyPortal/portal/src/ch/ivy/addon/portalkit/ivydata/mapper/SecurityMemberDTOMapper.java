@@ -13,6 +13,7 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 
 public class SecurityMemberDTOMapper {
   
+  @SuppressWarnings("removal")
   public static SecurityMemberDTO mapFromUserDTO(UserDTO userDTO) {
     SecurityMemberDTO result = new SecurityMemberDTO();
     
@@ -28,6 +29,7 @@ public class SecurityMemberDTOMapper {
     return result;
   }
   
+  @SuppressWarnings("removal")
   public static SecurityMemberDTO mapFromRoleDTO(RoleDTO roleDTO) {
     SecurityMemberDTO result = new SecurityMemberDTO();
     

@@ -15,7 +15,7 @@
         <ui:param name="id" value="portal-view-expired-exception-dialog" />
         <ui:param name="widgetVar" value="portal-view-expired-exception-dialog" />
         <ui:param name="appendTo" value="@(body)" />
-        <ui:param name="iconClass" value="si si-road-sign-warning" />
+        <ui:param name="iconClass" value="ti ti-alert-triangle" />
         <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
         <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" />
         <ui:param name="dialogContent" value="#{ivy.session.isSessionUserUnknown()? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewExpired')}" />

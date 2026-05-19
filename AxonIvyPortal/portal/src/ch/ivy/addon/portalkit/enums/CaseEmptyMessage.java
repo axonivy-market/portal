@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.enums;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum CaseEmptyMessage {
-  EMPTY_MESSAGE("si-task-list-edit");
+  EMPTY_MESSAGE("ti-checklist");
 
   private String icon;
 

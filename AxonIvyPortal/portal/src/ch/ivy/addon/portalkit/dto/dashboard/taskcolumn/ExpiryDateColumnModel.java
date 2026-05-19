@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
-import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -18,7 +17,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
-public class ExpiryDateColumnModel extends TaskColumnModel implements Serializable {
+public class ExpiryDateColumnModel extends TaskColumnModel {
 
   private static final long serialVersionUID = -4315469062114036720L;
 

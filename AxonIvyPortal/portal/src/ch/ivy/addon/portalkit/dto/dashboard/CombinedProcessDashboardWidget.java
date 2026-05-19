@@ -52,6 +52,7 @@ public class CombinedProcessDashboardWidget extends SingleProcessDashboardWidget
   }
 
   @Override
+  @SuppressWarnings("removal")
   public void setProcess(DashboardProcess process) {
     super.setProcess(process);
     if (getProcess() != null) {

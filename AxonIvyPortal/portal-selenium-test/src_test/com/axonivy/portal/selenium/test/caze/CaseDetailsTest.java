@@ -329,7 +329,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.clickRelatedCaseActionButton(0);
     AdditionalCaseDetailsPage caseDetailsPage = detailsPage.openRelatedCaseBusinessDetail(0);
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until((webDriver) -> caseDetailsPage.countBrowserTab() > 1);
+        .until((_) -> caseDetailsPage.countBrowserTab() > 1);
     caseDetailsPage.switchLastBrowserTab();
     AdditionalCaseDetailsPage additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
     WaitHelper.assertTrueWithWait(() -> BUSINESS_DETAILS_TITLE.equals(additionalCaseDetailsPage.getPageTitle()));
@@ -416,7 +416,7 @@ public class CaseDetailsTest extends BaseTest {
     int relatedDoneTasks = detailsPage.countRelatedDoneTasks();
     detailsPage.showNoteHistory();
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until((webDriver) -> detailsPage.countBrowserTab() > 1);
+        .until((_) -> detailsPage.countBrowserTab() > 1);
     detailsPage.switchLastBrowserTab();
     NoteHistoryPage caseHistoryPage = new NoteHistoryPage();
     assertEquals(relatedDoneTasks, caseHistoryPage.countDoneTasks());
@@ -505,7 +505,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.clickRelatedCaseActionButton(0);
     CaseDetailsPage relatedCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until((webDriver) -> CASE_DETAILS_TITLE.equals(relatedCaseDetailsPage.getPageTitle()));
+        .until((_) -> CASE_DETAILS_TITLE.equals(relatedCaseDetailsPage.getPageTitle()));
 
     relatedCaseDetailsPage.addNote("The first note of sub-case");
     relatedCaseDetailsPage.waitForPageLoad();

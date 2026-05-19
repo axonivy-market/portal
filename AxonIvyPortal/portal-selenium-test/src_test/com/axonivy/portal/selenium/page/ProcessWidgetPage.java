@@ -110,8 +110,9 @@ public class ProcessWidgetPage extends TemplatePage {
 
     $("input[id$=':search-icon-name-field']").sendKeys(iconClass);
 
-    $("div[id='process-widget:add-external-link-form:external-link-icon:icons-selection-form:icons']")
-        .$("a[title='" + iconClass + "']").click();
+    $("div[id='process-widget:add-external-link-form:external-link-icon:icons-selection-form:tabler-icons']")
+      .$("a.icon-selection-dialog-selecting-icon[title='" + iconClass + "']").shouldBe(appear, DEFAULT_TIMEOUT)
+      .click();
     $("div[id$='process-widget:add-external-link-form:external-link-icon:select-icon-dialog']")
         .shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
 
@@ -308,8 +309,8 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForElementClickableThenClick($(By.cssSelector("a[id^='process-widget:edit-process-form:edit-process-icon']")));
     waitForElementDisplayed(
         By.cssSelector("[id$='process-widget:edit-process-form:edit-process-icon:select-icon-dialog']"), true);
-    waitForElementClickableThenClick($(By.cssSelector("[id$=':0:awesome-icon']")));
-
+    waitForElementClickableThenClick($(By.cssSelector(
+        "[id$=':icons-selection-form:tabler-icons'] a.icon-selection-dialog-selecting-icon")));
   }
 
   public void clickOnProcessEditMenu(int index) {
@@ -319,10 +320,10 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void addNewRolePermission(String rolePermission) {
     waitForElementDisplayed(By.cssSelector(
-        "span[id='process-widget:edit-process-form:role-permissions-editor-for-external-link_display'] a.si.si-graphic-tablet-drawing-pen"),
+        "span[id='process-widget:edit-process-form:role-permissions-editor-for-external-link_display'] a.ti.ti-pencil"),
         true);
     waitForElementClickableThenClick($(
-        "span[id='process-widget:edit-process-form:role-permissions-editor-for-external-link_display'] a.si.si-graphic-tablet-drawing-pen"));
+        "span[id='process-widget:edit-process-form:role-permissions-editor-for-external-link_display'] a.ti.ti-pencil"));
     WebElement rolePermissionInput = findDisplayedElementByCssSelector(
         "[id$='process-widget:edit-process-form:role-autocomplete-for-editing-external-link_input']");
     rolePermissionInput.sendKeys(rolePermission);

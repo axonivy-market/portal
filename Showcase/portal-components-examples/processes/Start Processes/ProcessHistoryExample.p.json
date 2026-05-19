@@ -235,7 +235,7 @@
           "code" : [
             "import ch.ivyteam.ivy.process.model.value.SignalCode;",
             "",
-            "SignalCode code = new SignalCode(\"ch:axonivy:portal:example:createbetacompany\");",
+            "SignalCode code = new SignalCode(\"com:axonivy:portal:portalcomponentsexamples:createBetaCompany\");",
             "ivy.wf.signals().send(code);"
           ]
         }
@@ -258,7 +258,7 @@
       "type" : "SignalStartEvent",
       "name" : "Signal create Beta Company",
       "config" : {
-        "signalCode" : "ch:axonivy:portal:example:createbetacompany"
+        "signalCode" : "com:axonivy:portal:portalcomponentsexamples:createBetaCompany"
       },
       "visual" : {
         "at" : { "x" : 128, "y" : 488 },

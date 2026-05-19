@@ -13,19 +13,17 @@ import static ch.ivyteam.ivy.workflow.TaskState.RESUMED;
 import static ch.ivyteam.ivy.workflow.TaskState.SUSPENDED;
 import static ch.ivyteam.ivy.workflow.TaskState.WAITING_FOR_INTERMEDIATE_EVENT;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.bo.ItemByCategoryStatistic;
 
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
+import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
 import ch.ivy.addon.portalkit.bo.TaskStateStatistic;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
@@ -37,7 +35,6 @@ import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.query.IPagedResult;
-import ch.ivyteam.ivy.scripting.objects.Record;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.exec.Sudo;
@@ -158,16 +155,9 @@ public class TaskService {
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithUserCanWorkOn(criteria);
-      finalQuery.aggregate().countRows().groupBy().expiryTimestamp().orderBy().expiryTimestamp();
-
-      Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
-      ExpiryStatistic expiryStatistic = null;
-      try {
-        expiryStatistic = createExpiryTimeStampToCountMap(recordSet);
-      } catch (ParseException e) {
-        Ivy.log().error(e);
-      }
-      result.setExpiryStatistic(expiryStatistic);
+      finalQuery.where().and().expiryTimestamp().isNotNull();
+      List<ITask> tasks = Ivy.wf().getTaskQueryExecutor().getResults(finalQuery);
+      result.setExpiryStatistic(createExpiryStatistic(tasks));
       return result;
     });
   }
@@ -208,44 +198,24 @@ public class TaskService {
     });
   }
 
-//  private TaskCategoryStatistic createTaskCategoryStatistic(Recordset recordSet) {
-//    TaskCategoryStatistic taskCategoryStatistic = new TaskCategoryStatistic();
-//    taskCategoryStatistic.setNumberOfTasksByCategory(new HashMap<>());
-//    if (recordSet != null) {
-//      recordSet.getRecords().forEach(record -> {
-//        long numberOfTasks = ((Number)(record.getField("COUNT"))).longValue();
-//        taskCategoryStatistic.getNumberOfTasksByCategory().put(record.getField("CATEGORY").toString(), numberOfTasks);
-//      });
-//    }
-//    return taskCategoryStatistic;
-//  }
-
-  private ExpiryStatistic createExpiryTimeStampToCountMap(Recordset recordSet) throws ParseException {
-      ExpiryStatistic expiryStatistic = new ExpiryStatistic();
-      Map<Date, Long> numberOfTasksByExpiryTime = new HashMap<>();
-      if (recordSet != null) {
-        for (Record record : recordSet.getRecords()) {
-          if (record.getField("EXPIRYTIMESTAMP") != null) {
-            // must use same format as IVY DB, can not change it to Ivy.cms().co("/patterns/dateTimePattern")
-            String pattern = "yyyy-MM-dd HH:mm:ss.SSS";
-
-            Date date = new Date();
-            try {
-              date = DateUtils.parseDate(record.getField("EXPIRYTIMESTAMP").toString(), pattern);
-            } catch(ParseException e) {
-              // Try to parse by MySQL specific date format
-              // Ticket: IVYPORTAL-14349
-              SimpleDateFormat mySqlDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-              date = mySqlDateFormat.parse(record.getField("EXPIRYTIMESTAMP").toString());
-            }
-            long numberOfTasks = ((Number)(record.getField("COUNT"))).longValue();
-            numberOfTasksByExpiryTime.put(date, numberOfTasks);
-          }
-        }
+  private ExpiryStatistic createExpiryStatistic(List<ITask> tasks) {
+    ExpiryStatistic expiryStatistic = new ExpiryStatistic();
+    long numberOfTasksExpiredToday = 0L;
+    long numberOfTasksExpiredThisWeek = 0L;
+    Date now = new Date();
+    for (ITask task : tasks) {
+      Date expiryDate = task.getExpiryTimestamp();
+      if (DateUtils.isSameDay(now, expiryDate)) {
+        numberOfTasksExpiredToday++;
+        numberOfTasksExpiredThisWeek++;
+      } else if (TimesUtils.isDateInCurrentWeek(expiryDate)) {
+        numberOfTasksExpiredThisWeek++;
       }
-      expiryStatistic.setNumberOfTasksByExpiryTime(numberOfTasksByExpiryTime);
-      return expiryStatistic;
     }
+    expiryStatistic.setNumberOfTasksExpiredToday(numberOfTasksExpiredToday);
+    expiryStatistic.setNumberOfTasksExpiredThisWeek(numberOfTasksExpiredThisWeek);
+    return expiryStatistic;
+  }
 
   private TaskQuery extendQueryWithUserHasPermissionToSee(
         TaskSearchCriteria criteria) {

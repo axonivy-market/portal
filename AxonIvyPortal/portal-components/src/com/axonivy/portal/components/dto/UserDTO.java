@@ -20,6 +20,7 @@ public class UserDTO {
   
   public UserDTO() {}
 
+  @SuppressWarnings("removal")
   public UserDTO(IUser user) {
     this.name = user.getName();
     this.memberName = user.getMemberName();

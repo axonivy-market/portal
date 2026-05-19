@@ -166,9 +166,20 @@ public class MenuView implements Serializable {
         || subMenuItem.getMenuKind() == MenuKind.THIRD_PARTY || subMenuItem.getMenuKind() == MenuKind.STATIC_PAGE;
   }
 
+  private static String buildIconClass(String icon) {
+    if (icon.startsWith("fa")) {
+      return "fa " + icon;
+    } else if (icon.startsWith("tif")) {
+      return "tif " + icon;
+    } else if (icon.startsWith("si")) {
+      return "si " + icon;
+    }
+    return "ti " + icon;
+  }
+
   private PortalMenuItem buildThirdPartyItem(Application application, int menuIndex) {
     String menuIcon = StringUtils.defaultString(application.getMenuIcon());
-    String iconClass = (menuIcon.startsWith("fa") ? "fa " : "si ") + menuIcon;
+    String iconClass = buildIconClass(menuIcon);
     return new PortalMenuBuilder(ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application),
         MenuKind.THIRD_PARTY, this.isWorkingOnATask).icon(iconClass).url(UrlUtils.buildUrl(application.getLink()))
         .workingTaskId(this.workingTaskId).cleanParam(true).menuIndex(menuIndex).build();
@@ -191,7 +202,7 @@ public class MenuView implements Serializable {
     } else if (subItemDashboards.size() == 1) {
       Dashboard dashboard = subItemDashboards.getFirst();
       String localizedTitle = getLocalizedTitle(dashboard, currentLanguage, dashboardTitle);
-      return buildSingleDashboardMenu(localizedTitle, dashboardId, dashboardLink, dashboard.getIcon());
+      return buildSingleDashboardMenu(localizedTitle, dashboardId, dashboardLink, dashboard.getIconClass());
     }
 
     return buildSingleDashboardMenu(dashboardTitle, "", dashboardLink, "");
@@ -247,9 +258,9 @@ public class MenuView implements Serializable {
 
   private String determineIconClass(Dashboard board) {
     if (StringUtils.isBlank(board.getIcon())) {
-      board.setIcon(board.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");
+      board.setIcon(board.getIsPublic() ? "ti-world-share" : "ti-lock-square-rounded");
     }
-    return (board.getIcon().startsWith("fa") ? "fa " : "si ") + board.getIcon();
+    return buildIconClass(board.getIcon());
   }
 
   private MenuElement createDashboardMenu(Dashboard board, String iconClass) {
@@ -283,7 +294,7 @@ public class MenuView implements Serializable {
   private MenuElement buildSingleDashboardMenu(String dashboardTitle, String dashboardId, String dashboardLink,
       String dashboardIcon) {
     var dashboardMenu = new PortalMenuBuilder(dashboardTitle, MenuKind.DASHBOARD, this.isWorkingOnATask)
-        .icon(StringUtils.isNoneEmpty(dashboardIcon) ? dashboardIcon : PortalMenuItem.DEFAULT_DASHBOARD_ICON)
+        .icon(StringUtils.isNoneEmpty(dashboardIcon) ? buildIconClass(dashboardIcon) : PortalMenuItem.DEFAULT_DASHBOARD_ICON)
         .url(dashboardLink).workingTaskId(this.workingTaskId).build();
 
     if (StringUtils.isBlank(dashboardId)) {
@@ -416,7 +427,7 @@ public class MenuView implements Serializable {
 
   private MenuItem buildPortalHomeMenuItem() {
     return DefaultMenuItem.builder()
-      .icon("si si-house-chimney-2 portal-icon")
+      .icon("ti ti-home portal-icon")
       .ariaLabel(Ivy.cm().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage"))
       .title(Ivy.cm().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage"))
       .onclick("navigateToPortalHome();")

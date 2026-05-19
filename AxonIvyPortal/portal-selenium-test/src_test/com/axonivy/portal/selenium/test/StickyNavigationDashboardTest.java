@@ -115,7 +115,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage.selectDashboard(1);
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"), DEFAULT_TIMEOUT);
     String name = "New private dashboard 3";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "New private dashboard 3 description";
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.createPrivateDashboardFromScratch(name, icon, description);
@@ -133,7 +133,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage.selectDashboard(1);
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"), DEFAULT_TIMEOUT);
     String name = "New public dashboard 3";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "New public dashboard 3 description";
     List<String> permissions = new ArrayList<>();
     permissions.add("Everybody");

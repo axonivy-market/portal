@@ -17,7 +17,6 @@ import ch.ivyteam.ivy.security.ISessionExtension;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.log.Logger;
 
-@SuppressWarnings("restriction")
 public final class PortalSessionExtension implements ISessionExtension {
   private static PortalSessionExtension instance;
   private IvyAsyncExecutor asyncExecutor;

@@ -24,7 +24,7 @@
   <h:panelGroup id="#{panelId}" styleClass="card-widget-panel navigation-dashboard-widget-panel relative" layout="block" pt:role="region" pt:aria-label="#{widget.name}">
      <h:panelGroup id="widget-header-actions" rendered="#{!isReadOnlyMode}" styleClass="js-navigation-dashboard-widget widget-header-actions" 
       layout="block">
-      <p:commandButton id="widget-action-button" icon="fa fa-ellipsis-h"
+      <p:commandButton id="widget-action-button" icon="ti ti-dots"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
         styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page process-action-button" type="button"/>
       <p:menu id="widget-action-menu" overlay="true"
@@ -35,13 +35,13 @@
           styleClass="ui-sm-hidden"
           global="false"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
-          icon="si si-graphic-tablet-drawing-pen"
+          icon="ti ti-pencil"
           oncomplete="PF('new-widget-configuration-dialog').show()"
           actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
           update="new-widget-configuration-dialog" />
         <p:menuitem id="clone-widget-#{index}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Clone')}"
-          icon="si si-copy-paste"
+          icon="ti ti-copy"
           actionListener="#{cloneWidgetBean.setCloneWidget(widget)}"
           process="@(this)"
           update="clone-widget-component:clone-to-dashboard-dialog"
@@ -49,7 +49,7 @@
           partialSubmit="true" />
         <p:menuitem id="delete-widget-#{index}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-          icon="si si-bin-1" styleClass="color-destroy" global="false"
+          icon="ti ti-trash" styleClass="color-destroy" global="false"
           oncomplete="PF('remove-widget-dialog').show()"
           actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
           update="remove-widget-dialog"
@@ -64,7 +64,7 @@
             <i class="#{iconSelectionBean.generateIconWithFontFamily(widget.icon)} text-7xl"/>
           </h:panelGroup>
           <h:panelGroup styleClass="navigation-widget-visual" layout="block" rendered="#{empty widget.icon}">
-            <i class="si si-navigation-right-circle text-7xl"/>
+            <i class="ti ti-circle-arrow-right text-7xl"/>
           </h:panelGroup>
         </h:panelGroup>
         

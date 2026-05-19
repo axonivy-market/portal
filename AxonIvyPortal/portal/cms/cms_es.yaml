@@ -17,11 +17,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       overlappingAbsence: La ausencia se superpone con otra ausencia.
       userNameRequired: '''Nombre de usuario'' no debe estar vacío.'
     SelectedSubtitutes: Sustitutos seleccionados
+    Substitutes: 'Sustitutos:'
     absences: Sustitución de permisos
     addAbsence: Agregar ausencia
+    addSubstitute: Agregar sustituto
     deputies: Sustitutos
     description: Establezca sus vacaciones, enfermedades u otras obligaciones externas que lleven a cualquier ausencia.
     editAbsence: Editar ausencia
+    editSubstitute: Editar sustituto
     from: Del
     noDeputy: Sin sustituto
     noPermissionToSeeThisArea: Usted no tiene el permiso necesario para ver esta zona.
@@ -29,8 +32,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     personalTaskDuringAbsenceDeputies: Sustituye las tareas asignadas personalmente durante la ausencia
     personalTaskPermanentDeputies: Sustitución permanente de las tareas asignadas personalmente
     selectDeputies: Seleccionar sustitutos
+    selectSubstitute: Seleccionar sustituto
     selectedDeputies: Sustitutos seleccionados
+    setAsPermanent: Establecer como permanente
     showAbsencesInThePast: Mostrar ausencias en el pasado
+    substituteName: Nombre del sustituto
+    substituteType: Tipo de sustituto
     substitutedUser: Usuario sustituido
     taskForRole: 'Tarea para el rol:'
     till: Hasta
@@ -49,8 +56,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     myAbsences: Mi ausencia
     myDeputies: Mis sustitutos
     nextAbsence: Siguiente ausencia
+    noSubstitutesDefined: No hay sustitutos definidos
+    notSubstitutingAnybody: Actualmente no es sustituto de nadie
+    requestAbsences: Solicitar ausencias
     selectedDeputyFor: El usuario seleccionado es el sustituto de
     selectedUser: Usuario seleccionado
+    substitutes: Sustitutos
   AccessibilityShortcuts:
     processName: Atajos de accesibilidad de widgets
   AllTasks:
@@ -279,8 +290,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideUploadDocumentForDoneCaseNote: Cambiar a "true" para impedir el upload de documentos después de que un caso esté terminado.
       hideYear: activar para ocultar el año, de lo contrario se mostrará.
       imageUploadSizeLimit: Establece el límite de tamaño para la carga de imágenes en megabytes (MB). El valor predeterminado es 6 MB.
-      sidebarMode: Controla el modo de la barra lateral. Hover se expande al pasar el ratón, Clic usa un botón de alternancia, Fijar la mantiene siempre expandida, Oculto elimina la barra lateral por completo.
       loggedInUserFormat: Opción para definir el formato visible del usuario conectado
+      maximumSelectedTasks: Define el número máximo de tareas que un usuario puede seleccionar simultáneamente dentro de un widget de tareas para operaciones masivas. Establezca este valor en un número entero positivo para imponer un límite específico, o déjelo en blanco para permitir una selección de
+        tareas ilimitada.
       refreshTaskListIntervalNote: Actualización de la lista de tareas en segundos
       showAvatar: Para activar/desactivar la visualización de los avatares de los usuarios/roles.
       showButtonIcon: Para encender o apagar el icono de la pantalla en el botón.
@@ -291,6 +303,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showQuickGlobalSearch: Para activar/desactivar la visualización de la búsqueda global rápida.
       showTaskDurationTime: Activar o desactivar la visibilidad de la duración de la tarea en detalles de tarea.
       showTooltipTechnicalName: Habilitar para mostrar el nombre técnico de los usuarios en los tooltips.
+      sidebarMode: Controla el modo de la barra lateral. Hover se expande al pasar el ratón, Clic usa un botón de alternancia, Fijar la mantiene siempre expandida, Oculto elimina la barra lateral por completo.
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
     key: Llave
     link: Enlazar
@@ -451,16 +464,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: Aktualizar
     Widget: Widget
     action: Acciones
-    actionMenuContext: "Abrir menú de acciones para el proceso {0}"
-    taskActionMenuContext: "Abrir menú de acciones para la tarea {0}"
+    actionMenuContext: Abrir menú de acciones para el proceso {0}
     active: Activado
-    collapseWidgetContext: "Contraer widget {0}"
-    expandWidgetContext: "Expandir widget {0}"
-    openWidgetFiltersContext: "Abrir filtros de {0}"
-    openWidgetFiltersWithCountContext: "Abrir filtros de {0}, {1} filtros activos"
-    openWidgetInfoContext: "Abrir información del widget {0}"
     add: Añadir
-    addContext: "Añadir {0}"
+    addContext: Añadir {0}
     addDocument: Agregar documento
     addLink: Añadir enlace
     addNote: Agregar nota
@@ -468,14 +475,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     allTypes: Todos los tipos
     allowPng: Solo se permiten los tipos png
     apply: Aplicar
-    applyContext: "Aplicar {0}"
+    applyContext: Aplicar {0}
     at: en
     author: Autor
     back: Regresar
     backToCaseMap: Volver al mapa de caso
     backgroundColor: Color de fondo
     cancel: Cancelar
-    cancelContext: "Cancelar {0}"
+    cancelContext: Cancelar {0}
     case: Caso
     caseCategory: Categoría de caso
     caseInformation: Informaciones del caso
@@ -483,8 +490,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: Categorias
     change: Cambiar
     close: Cerrar
-    closeContext: "Cerrar {0}"
+    closeContext: Cerrar {0}
     cockpit: Inicio
+    collapseWidgetContext: Contraer widget {0}
     colors: Colores
     comment: Comentario
     completedOn: Completado en
@@ -500,13 +508,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     dateRequired: La fecha no puede estar vacía.
     day: Dia
     dayUnit: Dia
-    days: Dias
+    days: día(s)
     default: Por defecto
     defaultNotificationMessage: Hmm… Parece que algo ha ido mal.
+    delegateTasks: Delegar tareas
     delete: Borrar
-    deleteContext: "Borrar {0}"
     deleteAbsenceHeaderText: ¿Borrar esta ausencia?
     deleteChartHeaderText: ¿Borrar este gráfico?
+    deleteContext: Borrar {0}
     deleteDocumentHeaderText: ¿Borrar este documento?
     deleteFilterHeaderText: ¿Borrar este filtro?
     deleteSettingHeaderText: ¿Borrar esta configuración?
@@ -528,6 +537,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: Error al actualizar el contenido web
     escalationTaskHeaderText: Ejecutar escalación
     escalationTaskMessage: Expiración ahora, por lo que la tarea expira. ¿Está seguro?
+    expandWidgetContext: Expandir widget {0}
     filter:
       from: desde
       moreOptions: Más opciones
@@ -584,9 +594,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     ok: OK
     okContext: OK {0}
     'on': en
+    openWidgetFiltersContext: Abrir filtros de {0}
+    openWidgetFiltersWithCountContext: Abrir filtros de {0}, {1} filtros activos
+    openWidgetInfoContext: Abrir información del widget {0}
     pin: Fijar
-    pinCaseContext: "Fijar caso {0}"
-    pinTaskContext: "Fijar tarea {0}"
+    pinCaseContext: Fijar caso {0}
+    pinTaskContext: Fijar tarea {0}
     pleaseAddDocument: Por favor agregue documentos usando el enlace superior
     pleaseAddNote: Por favor agregue notas usando el enlace superior
     previousStage: Etapa anterior
@@ -609,8 +622,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: ¿Restablecer a los gráficos por defecto?
     role: Rol
     save: Guardar
-    saveContext: "Guardar {0}"
     saveAll: Guardar todos
+    saveContext: Guardar {0}
     saveSuccessfully: Datos guardados exitosamente.
     search: Buscar
     second: segundo
@@ -634,6 +647,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     state: Estatus
     status: Estado
     switchToDesktopVersion: 'Cambiar al modo escritorio '
+    taskActionMenuContext: Abrir menú de acciones para la tarea {0}
     taskCanceledAndLeftSuccessfully: Ha cancelado y cerrado la tarea. Encontrará la tarea en su tablero o en su lista de tareas.
     taskFinishedSuccessfully: Ha finalizado la tarea con éxito.
     taskFromSubstitution: Usted ve esta tarea porque es el sustituto
@@ -643,13 +657,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: El proceso
     timeInformation: Informaciones de tiempo
     timestamp: Marca de tiempo
+    toggleBulkDelegation: Alternar delegación masiva
     type: Tipo
     typeAdmin: Todos los administradores
     typeAllUsers: Todos los usuarios
     typeOnlyMe: Solo yo
     unpin: Desfijar
-    unpinCaseContext: "Desfijar caso {0}"
-    unpinTaskContext: "Desfijar tarea {0}"
+    unpinCaseContext: Desfijar caso {0}
+    unpinTaskContext: Desfijar tarea {0}
     uploadHere: Cargue aquí
     uploadOneHere: Seleccionar
     user: '{0} usuario'
@@ -661,6 +676,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Estamos creando la Exportación, esto puede tardar unos minutos
     warning: Advertencia!
     welcomeToPortal: Bienvenido, por favor inicie su sesión
+    workingUser: Usuario trabajador
     wrongDateFormat: Por favor ingrese una fecha válida.
     year: Año
     years: Años
@@ -758,9 +774,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Público
       savedFilters: 'Filtros guardados:'
   dashboard:
+    CaseQueryType:
+      info: Configure qué tipos de casos se muestran en el widget de casos. Predeterminado muestra solo casos de negocio, Subcasos técnicos muestra solo subcasos técnicos, y Todos muestra tanto casos de negocio como subcasos técnicos.
+      label: Tipo de caso
     CloneWidget: Clonar el widget
     CustomWidgets: Widgets personalizados
-    dataSettings: Configuración de datos
     DashboardConfiguration:
       CreateFromScratch: Crear desde cero
       CreateFromScratchDescription: Cree su propio panel de control desde cero
@@ -770,10 +788,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: La configuración del panel de control no es compatible con los dispositivos móviles.
       EditPrivateDashboards: Editar tu cuadro de mando
       EditPublicDashboards: Editar dashboard públicos
+      ExportDashboard: Exportar el cuadro de mandos
       ExportReferencedDialogHeader: El panel hace referencia a otros paneles
       ExportReferencedDialogMessage: 'Los siguientes paneles son referenciados por widgets de navegación. Expórtelos e impórtelos también para que los widgets funcionen correctamente:'
       ExportReferencedDialogProceed: Exportar de todos modos
-      ExportDashboard: Exportar el cuadro de mandos
       PrivateDashboard: Dashboard - Configuración  personalizada
       PrivateDashboardConfiguration: Configuración de tableros privados
       PublicDashboard: Dashboard - Configuración pública
@@ -783,7 +801,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Seleccione la acción
       SomeThingWentWrong: Algo salió mal
       Title: Configuración Dashboard
-    displaySettings: Configuración de visualización
     DrillDownWidget:
       caseDrillDown: Widget de casos detallados para {0}
       taskDrillDown: Widget de tareas detalladas para {0}
@@ -806,9 +823,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: Búsqueda rápida
     QuickSearchInfo: Puede personalizar el alcance de la búsqueda rápida en la gestión de columnas de widgets. La búsqueda se realiza en función de "contiene", pero tenga en cuenta el rendimiento al agregar numerosas columnas.
     QuickSearchScope: 'Ámbito de búsqueda: {0}'
-    CaseQueryType:
-      info: Configure qué tipos de casos se muestran en el widget de casos. Predeterminado muestra solo casos de negocio, Subcasos técnicos muestra solo subcasos técnicos, y Todos muestra tanto casos de negocio como subcasos técnicos.
-      label: Tipo de caso
     RestoreDefaultDashboardMessage: Si continúa, perderá todos los widgets creados por usted. Se aplicará la configuración estándar de <span class="dashboard-template-name-message">{0}</span>.
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados
@@ -818,14 +832,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Widgets estándar
     StatisticWidget:
       EmptyChartDataMessage: No tenemos suficientes datos para crear un buen gráfico.
-      failToRenderChartMessage: Error al renderizar el gráfico. Inténtelo de nuevo con una configuración diferente.
-      firstConfigChartMessage: Aún no hay gráfico disponible. Configure sus ajustes para generar un gráfico.
       TooltipAverageKpiLabel: Promedio de {0}
       TooltipMaxKpiLabel: Máximo de {0}
       TooltipMinKpiLabel: Mínimo de {0}
       TooltipSumKpiLabel: Suma de {0}
       TooltipTotalCaseLabel: 'Total de casos: {0}'
       TooltipTotalTaskLabel: 'Total de tareas: {0}'
+      failToRenderChartMessage: Error al renderizar el gráfico. Inténtelo de nuevo con una configuración diferente.
+      firstConfigChartMessage: Aún no hay gráfico disponible. Configure sus ajustes para generar un gráfico.
     WelcomeWidgetIntroduction: Este widget muestra un texto y una imagen de bienvenida en el panel de control.
     WelcomeWidgetNotFoundMessage: No podemos encontrar la imagen del widget, por favor reconfigure su imagen.
     WidgetFilterName: Nombre del filtro del widget
@@ -851,6 +865,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       STANDARD: Columna estándar
     configuration:
       CustomWidgetExternalLinkWarning: Algunas webs no son compatibles con iframe por motivos de seguridad. Póngase en contacto con su administrador si la web externa no funciona correctamente.
+      CustomWidgetUrlInvalidScheme: La URL proporcionada no es válida
       CustomWidgetTitlePlaceholder: Déjalo en blanco para ocultar la cabecera del widget
       Parameters: Parámetros
       RestoreDefaultDashboardTemplateTooltip: No podemos encontrar la plantilla de su panel de control, por lo que no podemos restablecer la configuración estándar. Por favor, consulte con su administrador para obtener más detalles.
@@ -907,7 +922,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Editar tablero
       manageDashboard: Administrar tablero
       removeDashboardHeader: Borrar el tablero "{0}"
+    dataSettings: Configuración de datos
     deleteWidget: Eliminar el widget
+    displaySettings: Configuración de visualización
     downloadZipFileExplanation: Si el número de elementos a exportar supera el límite de filas de Excel, los datos se dividirán en varios archivos Excel y, a continuación, se comprimirán en un archivo ZIP para su descarga.
     editWidget: Editar widget
     existingField: El campo {0} ya existe
@@ -1261,7 +1278,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: Esta tarea no tiene manejo lógico de escalado, por lo tanto no se puede establecer el tiempo de expiración.
     technicalCase: Caso técnico
     workflowEventDialog: 'Eventos del Workflow de la tarea #{0}'
-    workingUser: Usuario trabajador
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: La fecha límite de la tarea se ha establecido con éxito.
@@ -1483,6 +1499,12 @@ Dialogs:
               CustomWidgetIFrameTitle: Marco de widgets personalizado
             IconSelection:
               IconLinkTooltip: Haga clic para cambiar el icono
+            MultipleTaskItemsDelegate:
+              DelegateMultipleTaskTitle: Delegar {0} tareas
+              ItemSelected: 1 elemento seleccionado
+              ItemsSelected: '{0} elementos seleccionados'
+              ItemsSelectedWithLimit: '{0} / {1} elementos seleccionados'
+              bulkDelegatePerformanceWarning: La delegación de varias tareas puede tardar algún tiempo. Por favor, sea paciente.
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: No puedes trabajar en la tarea porque ha sido destruida.
               CannotWorkOnTaskWarning: No puede procesar la tarea porque el usuario <strong>{0}</strong> está trabajando actualmente en ella.
@@ -1572,7 +1594,7 @@ Dialogs:
               FileInfomation: Informacion del archivo
               ImportPrivate: Importar panel privado
               ImportPublic: Importar panel público
-              NavigationWidgetMissingTarget: 'El widget de navegación "{0}" hace referencia a un panel que no fue importado y no existe en este portal. Es posible que el widget no funcione correctamente.'
+              NavigationWidgetMissingTarget: El widget de navegación "{0}" hace referencia a un panel que no fue importado y no existe en este portal. Es posible que el widget no funcione correctamente.
               chooseAJsonFile: Elija un archivo json
             DashboardSharing:
               ShareDashboard: Compartir panel
@@ -1617,6 +1639,7 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Añadir filtro
               ResetFilter: Restablecer filtro
+              ShowBulkDelegateToggle: Mostrar alternar 'Delegación masiva'
             filter:
               DashboardFilter:
                 HasCmsValuesEnabledTooltip: Este campo solo permite usar el operador Contiene
@@ -1715,6 +1738,13 @@ Enums:
     axonivy:
       portal:
         enums:
+          CaseQueryType:
+            ALL:
+              name: Casos de negocio + Subcasos
+            BUSINESS_CASE:
+              name: Casos de negocio (Predeterminado)
+            SUB_CASE:
+              name: Subcasos técnicos
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1742,7 +1772,7 @@ Enums:
               STATE:
                 name: Estado
               WORKER_NAME:
-                name: Nombre del trabajador
+                name: Usuario trabajador
               WORKING_TIME:
                 name: Tiempo de trabajo
             AggregationInterval:
@@ -1787,15 +1817,8 @@ Enums:
                   Menor que
 
               LESSOREQUAL:
-                name: |+
+                name: |
                   Menor o igual que
-          CaseQueryType:
-            ALL:
-              name: Casos de negocio + Subcasos
-            BUSINESS_CASE:
-              name: Casos de negocio (Predeterminado)
-            SUB_CASE:
-              name: Subcasos técnicos
 Labels:
   AI:
     Error:
@@ -1886,6 +1909,7 @@ Labels:
       RESPONSIBLE: Responsable
       START: Inicio
       STATE: Estado
+      WORKER: Usuario trabajador
     FilterOperator:
       AFTER: Es Después
       BEFORE: Es Antes

@@ -1,6 +1,5 @@
 package com.axonivy.portal.bean.dashboard.filter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +18,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 
 @ManagedBean
 @ViewScoped
-public class TaskWidgetUserFilterBean extends AbstractTaskWidgetFilterBean implements Serializable {
+public class TaskWidgetUserFilterBean extends AbstractTaskWidgetFilterBean {
 
   private static final long serialVersionUID = 2329063671455796253L;
 

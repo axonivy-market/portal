@@ -1,11 +1,9 @@
 package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 
-import java.io.Serializable;
-
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
-public class PinColumnModel extends CaseColumnModel implements Serializable {
+public class PinColumnModel extends CaseColumnModel {
 
   private static final long serialVersionUID = -2024416411665418820L;
 

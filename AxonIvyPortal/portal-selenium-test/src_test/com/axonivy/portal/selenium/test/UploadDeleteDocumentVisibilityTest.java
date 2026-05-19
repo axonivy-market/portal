@@ -48,7 +48,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
     NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.startTask(0);
-    NavigationHelper.navigateToTaskList();
+    redirectToNewDashBoard();
     updatePortalSetting(Variable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE.getKey(), "true");
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
 

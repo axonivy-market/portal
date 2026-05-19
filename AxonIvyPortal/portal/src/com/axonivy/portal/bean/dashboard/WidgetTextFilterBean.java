@@ -33,7 +33,7 @@ public class WidgetTextFilterBean implements Serializable {
     return operatorsForCustomFieldWithCms;
   }
 
-  public void onChangeOperator(@SuppressWarnings("unused") DashboardFilter filter) {
+  public void onChangeOperator(DashboardFilter filter) {
   }
 
   public boolean isShowTextListPanel(DashboardFilter filter) {

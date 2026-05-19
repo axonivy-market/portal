@@ -84,7 +84,7 @@
           "type" : "SignalStartEvent",
           "name" : "Signal create Task failed",
           "config" : {
-            "signalCode" : "ch:axonivy:portal:example:createtaskfailed"
+            "signalCode" : "com:axonivy:portal:portaldeveloperexamples:createTaskFailed"
           },
           "visual" : {
             "at" : { "x" : 184, "y" : 296 },
@@ -104,7 +104,7 @@
                 "",
                 "ivy.case.setCategoryPath(\"Technical Task\");",
                 "",
-                "SignalCode code = new SignalCode(\"ch:axonivy:portal:example:createtaskfailed\");",
+                "SignalCode code = new SignalCode(\"com:axonivy:portal:portaldeveloperexamples:createTaskFailed\");",
                 "ivy.wf.signals().send(code);"
               ]
             },
@@ -180,7 +180,7 @@
           "type" : "SignalStartEvent",
           "name" : "Signal create Technical task",
           "config" : {
-            "signalCode" : "ch:axonivy:portal:example:createtechnicaltask"
+            "signalCode" : "com:axonivy:portal:portaldeveloperexamples:createTechnicalTask"
           },
           "visual" : {
             "at" : { "x" : 320, "y" : 344 },
@@ -198,7 +198,7 @@
               "code" : [
                 "import ch.ivyteam.ivy.process.model.value.SignalCode;",
                 "",
-                "SignalCode code = new SignalCode(\"ch:axonivy:portal:example:createtechnicaltask\");",
+                "SignalCode code = new SignalCode(\"com:axonivy:portal:portaldeveloperexamples:createTechnicalTask\");",
                 "ivy.wf.signals().send(code);"
               ]
             }
@@ -783,7 +783,7 @@
             "",
             "ivy.case.setCategoryPath(\"Payment\");",
             "",
-            "SignalCode code = new SignalCode(\"ch:axonivy:portal:example:createnewpayment\");",
+            "SignalCode code = new SignalCode(\"com:axonivy:portal:portaldeveloperexamples:createNewPayment\");",
             "ivy.wf.signals().send(code);"
           ]
         },
@@ -832,7 +832,7 @@
       "type" : "SignalStartEvent",
       "name" : "Signal create New Payment",
       "config" : {
-        "signalCode" : "ch:axonivy:portal:example:createnewpayment"
+        "signalCode" : "com:axonivy:portal:portaldeveloperexamples:createNewPayment"
       },
       "visual" : {
         "at" : { "x" : 768, "y" : 688 },
