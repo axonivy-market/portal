@@ -1002,16 +1002,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
   }
 
   public List<Dashboard> initCloneableDashboards() {
-    List<Dashboard> availableDashboards = new ArrayList<>();
-    availableDashboards.addAll(DashboardUtils.getPublicDashboards());
-
-    String dashboardInUserProperty = readDashboardBySessionUser();
-    if (StringUtils.isNotBlank(dashboardInUserProperty)) {
-      List<Dashboard> myDashboards = DashboardUtils
-          .getVisibleDashboards(dashboardInUserProperty);
-      availableDashboards.addAll(myDashboards);
-    }
-    return availableDashboards;
+    return DashboardUtils.collectDashboards();
   }
 
   public String getRestoreDashboardMessage() {
