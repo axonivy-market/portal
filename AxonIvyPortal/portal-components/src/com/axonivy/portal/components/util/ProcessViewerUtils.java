@@ -1,12 +1,9 @@
 package com.axonivy.portal.components.util;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.function.Predicate;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
@@ -29,10 +26,8 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class ProcessViewerUtils {
 
-  private static List<IWebStartable> webStartables;
-
   public static ProcessViewerDTO initProcessViewer(Long taskId, Long caseId, String processLink) {
-    // change from primitive type boolean boolean isViewerAllowed = false
+    // change from primitive type boolean isViewerAllowed = false
     // reason: it makes bug when not found process will be considered as no permission
     Boolean isViewerAllowed = null;
     IWebStartable webStartable = null;
@@ -71,12 +66,14 @@ public class ProcessViewerUtils {
       if (webLink == null) {
         errorIcon = "si si-alert-circle";
         webStartable = findWebStartable(processLink);
-        isViewerAllowed = isViewerAllowed(webStartable);
-        if (isViewerAllowed) {
-          if (webStartable instanceof ICaseMapWebStartable) {
-            webLink = CaseMapViewer.of((ICaseMapWebStartable) webStartable).url().toWebLink();
-          } else {
-            webLink = ProcessViewer.of((IProcessWebStartable) webStartable).url().toWebLink();
+        if (webStartable != null) {
+          isViewerAllowed = isViewerAllowed(webStartable);
+          if (isViewerAllowed) {
+            if (webStartable instanceof ICaseMapWebStartable) {
+              webLink = CaseMapViewer.of((ICaseMapWebStartable) webStartable).url().toWebLink();
+            } else {
+              webLink = ProcessViewer.of((IProcessWebStartable) webStartable).url().toWebLink();
+            }
           }
         }
       }
@@ -128,10 +125,7 @@ public class ProcessViewerUtils {
   }
 
   private static List<IWebStartable> getWebStartables() {
-    if (CollectionUtils.isEmpty(webStartables)) {
-      webStartables = ProcessService.getInstance().findProcesses();
-    }
-    return Optional.ofNullable(webStartables).orElse(new ArrayList<>());
+      return ProcessService.getInstance().findProcesses();
   }
 
   public static ICaseMap findCaseMapByCase(ICase caze) {
