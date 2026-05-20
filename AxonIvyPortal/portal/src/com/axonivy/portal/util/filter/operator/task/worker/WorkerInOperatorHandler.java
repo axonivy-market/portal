@@ -52,7 +52,6 @@ public class WorkerInOperatorHandler {
       }
       filterQuery.and().workerId().isNotEqual(member.getSecurityMemberId());
     }
-    filterQuery.andOverall().state().isNotIn(WorkerOperatorUtils.EXCLUDE_STATES);
 
     return query;
   }
