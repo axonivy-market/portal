@@ -17,7 +17,9 @@ public class CustomMenuItemDefinition extends PortalMenuItemDefinition {
 
   private static final long serialVersionUID = 2389106209816728259L;
 
+  @JsonIgnore 
   private String processStartPath;
+  @JsonIgnore 
   private String application;
 
   @JsonIgnore

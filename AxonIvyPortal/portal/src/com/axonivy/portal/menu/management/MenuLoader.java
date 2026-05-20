@@ -95,6 +95,9 @@ public final class MenuLoader implements Serializable {
       if (StringUtils.isBlank(menu.getId())) {
         menu.setId(MenuId.compute(menu));
       }
+      if (StringUtils.isBlank(menu.getVersion())) {
+        menu.setVersion(AbstractJsonVersion.LATEST);
+      }
       result.add(convertToMenuDefinition(menu, source));
     }));
     return result;

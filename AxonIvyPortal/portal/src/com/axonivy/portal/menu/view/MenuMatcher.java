@@ -43,9 +43,20 @@ public class MenuMatcher {
   private static Predicate<PortalMenuItemDefinition> matchDashboardMenu(SubMenuItem subMenu) {
     return menu -> menu.getType() == MenuKind.MAIN_DASHBOARD
         && menu instanceof DashboardMenuItemDefinition dashboardMenu
-        && dashboardMenu.getDashboardId() != null
-        && subMenu.getLink() != null
-        && subMenu.getLink().contains(dashboardMenu.getDashboardId());
+        && dashboardLinkRefersTo(subMenu.getLink(), dashboardMenu.getDashboardId());
+  }
+
+  private static boolean dashboardLinkRefersTo(String link, String dashboardId) {
+    if (link == null || dashboardId == null) {
+      return false;
+    }
+    String marker = "dashboardId=" + dashboardId;
+    int start = link.indexOf(marker);
+    if (start < 0) {
+      return false;
+    }
+    int end = start + marker.length();
+    return end == link.length() || link.charAt(end) == '&' || link.charAt(end) == '#';
   }
 
   private static Predicate<PortalMenuItemDefinition> matchExternalLink(SubMenuItem subMenu) {

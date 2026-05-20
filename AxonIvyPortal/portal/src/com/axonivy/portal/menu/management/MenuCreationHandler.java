@@ -61,6 +61,7 @@ public final class MenuCreationHandler implements Serializable {
   private static void createStaticPageMenu(PortalMenuItemDefinition menu) {
     if (menu instanceof StaticPageMenuItemDefinition) {
       StaticPageMenuItemDefinition staticMenu = (StaticPageMenuItemDefinition) menu;
+      staticMenu.setIncludedIconFamily(true);
       CustomSubMenuItemService
           .saveConfiguration(StaticPageMenuItemDefinitionAdapter.getInstance().toSource(staticMenu));
     }

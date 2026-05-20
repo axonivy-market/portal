@@ -176,14 +176,27 @@ public class DashboardModificationBean extends DashboardBean {
     }
     try {
       applyMenuOrderForDisplayTypeChange(newDisplayType);
-    } catch (Exception e) {
-      // Dashboard was already saved with newDisplayType before this call. Roll it back
-      // so dashboard state and Portal.Menu don't diverge if the menu-order write failed.
+    } catch (Exception menuOrderFailure) {
+      // Dashboard was already saved with newDisplayType before this call. Try to roll it
+      // back so dashboard state and Portal.Menu don't diverge.
       Ivy.log().error("Menu order update failed for dashboard {0}; rolling back display type {1} -> {2}",
-          e, selectedDashboard.getId(), newDisplayType, previousDisplayType);
+          menuOrderFailure, selectedDashboard.getId(), newDisplayType, previousDisplayType);
       selectedDashboard.setDashboardDisplayType(previousDisplayType);
-      saveDashboards(new ArrayList<>(this.dashboards));
-      throw new RuntimeException("Failed to update menu order. Dashboard display type has been rolled back.", e);
+      try {
+        saveDashboards(new ArrayList<>(this.dashboards));
+        throw new RuntimeException(
+            "Failed to update menu order. Dashboard display type has been rolled back.", menuOrderFailure);
+      } catch (RuntimeException expected) {
+        // Re-throw the success-path rollback exception above.
+        throw expected;
+      } catch (Exception rollbackFailure) {
+        Ivy.log().error(
+            "Rollback failed for dashboard {0} after menu order failure; dashboard state is INCONSISTENT.",
+            rollbackFailure, selectedDashboard.getId());
+        throw new RuntimeException(
+            "Failed to update menu order AND failed to roll back the dashboard. Manual intervention required.",
+            menuOrderFailure);
+      }
     }
   }
 

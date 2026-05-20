@@ -17,6 +17,7 @@ import ch.ivyteam.ivy.workflow.IWorkflowSession;
 public class PortalMenuItemDefinitionService extends JsonConfigurationService<PortalMenuItemDefinition> {
 
   private static final String EMPTY_ARRAY = "[]";
+  private static final String NO_SESSION_CACHE_KEY = "no-session";
   private static PortalMenuItemDefinitionService instance;
 
   public static PortalMenuItemDefinitionService getInstance() {
@@ -66,13 +67,34 @@ public class PortalMenuItemDefinitionService extends JsonConfigurationService<Po
     return saved;
   }
 
+  @Override
+  public PortalMenuItemDefinition save(PortalMenuItemDefinition entity) {
+    PortalMenuItemDefinition saved = super.save(entity);
+    invalidateCache();
+    return saved;
+  }
+
+  @Override
+  public void delete(String id) {
+    super.delete(id);
+    invalidateCache();
+  }
+
   public static void invalidateCache() {
     IvyCacheService.getInstance().invalidateSessionEntry(IvyCacheIdentifier.PORTAL_MENU, getSessionUserId());
   }
 
+  /**
+   * Returns the cache key for the current Ivy session, or a stable fallback when
+   * called from a non-session context (background job, system thread). Without this
+   * guard, {@code findAll} / {@code invalidateCache} would NPE on {@code Ivy.session()}.
+   */
   private static String getSessionUserId() {
-    String key = SessionAttribute.SESSION_IDENTIFIER.name();
     IWorkflowSession session = Ivy.session();
+    if (session == null) {
+      return NO_SESSION_CACHE_KEY;
+    }
+    String key = SessionAttribute.SESSION_IDENTIFIER.name();
     if (session.getAttribute(key) == null) {
       session.setAttribute(key, UUID.randomUUID().toString());
     }

@@ -36,10 +36,15 @@ public abstract class PortalMenuItemDefinition extends AbstractConfiguration imp
   private static final long serialVersionUID = 3039118169604897617L;
   protected static final String DEFAULT_LINK = "#";
 
+  @JsonIgnore 
   private List<DisplayName> titles;
+  @JsonIgnore 
   private String icon;
+  @JsonIgnore 
   private String description;
+  @JsonIgnore 
   private List<String> permissions;
+  @JsonIgnore 
   private String url;
   private Integer index;
   private MenuSource source;
