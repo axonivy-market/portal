@@ -36,6 +36,7 @@ public class ProcessViewerUtils {
     String errorIcon = "";
     String errorMessage = null;
     if (taskId != 0 || caseId != 0 || StringUtils.isNotBlank(processLink)) {
+      List<IWebStartable> startables = getWebStartables();
       // init data using caseId
       ITask selectedTask = TaskUtils.findTaskById(taskId);
       isViewerAllowed = isViewerAllowed(selectedTask);
@@ -43,9 +44,9 @@ public class ProcessViewerUtils {
         webLink = ProcessViewer.of(selectedTask).url().toWebLink();
         ICaseMap caseMap = findCaseMapByCase(selectedTask.getCase());
         if (!Objects.isNull(caseMap)) {
-          webStartable = findWebStartable(caseMap);
+          webStartable = findWebStartableForCaseMap(startables, caseMap);
         } else {
-          webStartable = findWebStartable(selectedTask.getCase().getProcessStart().getLink().getRelative());
+          webStartable = findWebStartableForProcessLink(startables, selectedTask.getCase().getProcessStart().getLink().getRelative());
         }
       } else {
         ICase selectedCase = CaseUtils.findCase(caseId);
@@ -53,10 +54,10 @@ public class ProcessViewerUtils {
         if (isViewerAllowed) {
           ICaseMap caseMap = findCaseMapByCase(selectedCase);
           if (!Objects.isNull(caseMap)) {
-            webStartable = findWebStartable(caseMap);
+            webStartable = findWebStartableForCaseMap(startables, caseMap);
             webLink = CaseMapViewer.of(caseMap).url().toWebLink();
           } else {
-            webStartable = findWebStartable(selectedCase.getProcessStart().getLink().getRelative());
+            webStartable = findWebStartableForProcessLink(startables, selectedCase.getProcessStart().getLink().getRelative());
             webLink = ProcessViewer.of(selectedCase).url().toWebLink();
           }
         }
@@ -65,7 +66,7 @@ public class ProcessViewerUtils {
       // try to init data using processLink
       if (webLink == null) {
         errorIcon = "si si-alert-circle";
-        webStartable = findWebStartable(processLink);
+        webStartable = findWebStartableForProcessLink(startables, processLink);
         if (webStartable != null) {
           isViewerAllowed = isViewerAllowed(webStartable);
           if (isViewerAllowed) {
@@ -101,10 +102,18 @@ public class ProcessViewerUtils {
         .build();
   }
 
-  public static IWebStartable findWebStartable(ICaseMap caseMap) {
+  private static IWebStartable findWebStartableForCaseMap(List<IWebStartable> startables, ICaseMap caseMap) {
     if (caseMap != null) {
-      return getWebStartables().stream().filter(filterById(caseMap.getUuid().toString())).findFirst().orElse(null);
+      return startables.stream().filter(filterById(caseMap.getUuid().toString())).findFirst().orElse(null);
     }
+    return null;
+  }
+  
+  private static IWebStartable findWebStartableForProcessLink(List<IWebStartable> startables, String processLink) {
+    if (StringUtils.isNotBlank(processLink)) {
+      return startables.stream().filter(filterByRelativeLink(processLink)).findFirst().orElse(null);
+    }
+    
     return null;
   }
 
@@ -125,7 +134,7 @@ public class ProcessViewerUtils {
   }
 
   private static List<IWebStartable> getWebStartables() {
-      return ProcessService.getInstance().findProcesses();
+    return ProcessService.getInstance().findProcesses();
   }
 
   public static ICaseMap findCaseMapByCase(ICase caze) {
