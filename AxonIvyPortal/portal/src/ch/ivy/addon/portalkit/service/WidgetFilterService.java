@@ -117,6 +117,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       var availableWidgetFilters = findFiltersByWidgetId(widget.getId());
       userFilterCollection.setWidgetFilterSelections(availableWidgetFilters);
     }
+    removeDisabledFiltersFromCollection(widget, userFilterCollection);
     widget.setUserFilterCollection(userFilterCollection);
     widget.setQuickSearchKeyword(userFilterCollection.getQuickSearchKeyword());
     widget.updateQuickSearchKeyword();
@@ -304,6 +305,38 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
 
   private static String buildWidgetKey(String widgetId, DashboardWidgetType widgetType) {
     return String.format(WIDGET_FILTER_KEY_PATTERN, widgetType, widgetId);
+  }
+
+  private void removeDisabledFiltersFromCollection(DashboardWidget widget, UserFilterCollection userFilterCollection) {
+    List<ColumnModel> enabledColumns = getEnabledFilterableColumns(widget);
+
+    Optional.ofNullable(userFilterCollection.getLatestFilterOption())
+      .ifPresent(latestFilterOption -> removeDisabledUserFilters(latestFilterOption, widget.getType(), enabledColumns));
+
+    userFilterCollection.getSelectedWidgetFilters()
+      .stream().filter(Objects::nonNull)
+      .forEach(model -> removeDisabledUserFilters(model, widget.getType(), enabledColumns));
+  }
+
+  private List<ColumnModel> getEnabledFilterableColumns(DashboardWidget widget) {
+    switch (widget.getType()) {
+      case TASK:
+        return ((TaskDashboardWidget) widget).getFilterableColumns();
+      case CASE:
+        return ((CaseDashboardWidget) widget).getFilterableColumns();
+      default:
+        return new ArrayList<>();
+    }
+  }
+
+  private void removeDisabledUserFilters(WidgetFilterModel model, DashboardWidgetType widgetType, List<ColumnModel> enabledColumns) {
+    if (widgetType != DashboardWidgetType.TASK && widgetType != DashboardWidgetType.CASE) {
+      return;
+    }
+    model.setUserFilters(CollectionUtils.emptyIfNull(model.getUserFilters()).stream()
+        .filter(f -> StringUtils.isNotBlank(f.getField()))
+        .filter(f -> enabledColumns.stream().anyMatch(col -> Strings.CS.equals(col.getField(), f.getField())))
+        .collect(Collectors.toList()));
   }
 
   private String getLessValue(DashboardColumnFormat format, String selectedValueFrom, String value) {
