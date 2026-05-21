@@ -32,6 +32,7 @@ import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -116,7 +117,12 @@ public class ExternalLinkBean implements Serializable, IMultiLanguage {
   }
   
   public void startExternalLink(ExternalLink selectedExternalLink) throws IOException {
-    FacesContext.getCurrentInstance().getExternalContext().redirect(selectedExternalLink.getLink());
+    String link = selectedExternalLink == null ? null : selectedExternalLink.getLink();
+    if (!UrlUtils.isSafeIframeUrl(link)) {
+      Ivy.log().warn("Blocked external link redirect with unsafe URL: {0}", link);
+      return;
+    }
+    FacesContext.getCurrentInstance().getExternalContext().redirect(link);
   }
 
   public ExternalLink getExternalLink() {
