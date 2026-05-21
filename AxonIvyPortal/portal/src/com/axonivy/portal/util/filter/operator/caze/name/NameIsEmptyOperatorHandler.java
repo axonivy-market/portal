@@ -17,7 +17,7 @@ public class NameIsEmptyOperatorHandler {
 
   public CaseQuery buildIsEmptyQuery(@SuppressWarnings("unused") DashboardFilter filter) {
     CaseQuery subQuery = CaseQuery.create();
-    subQuery.where().name().isNull().or().name().isEqual("");  
+    subQuery.where().name().isNull().or().name().isEqual("");
     return subQuery;
   }
 

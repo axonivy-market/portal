@@ -18,13 +18,15 @@ public class CustomStringIsEmptyOperatorHandler {
 
   public TaskQuery buildIsEmptyQuery(DashboardFilter filter) {
     TaskQuery subQuery = TaskQuery.create();
-    subQuery.where().customField().stringField(filter.getField()).isNull().or().customField().stringField(filter.getField()).isEqual("");
+    String fieldName = filter.getField();
+    subQuery.where().customField().stringField(fieldName).isNull().or().customField().stringField(fieldName).isEqual("");
     return subQuery;
   }
 
   public TaskQuery buildNotEmptyQuery(DashboardFilter filter) {
     TaskQuery subQuery = TaskQuery.create();
-    subQuery.where().customField().stringField(filter.getField()).isNotNull().and().customField().stringField(filter.getField()).isNotEqual("");
+    String fieldName = filter.getField();
+    subQuery.where().customField().stringField(fieldName).isNotNull().and().customField().stringField(fieldName).isNotEqual("");
     return subQuery;
   }
 
