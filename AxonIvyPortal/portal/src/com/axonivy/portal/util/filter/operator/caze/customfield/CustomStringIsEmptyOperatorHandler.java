@@ -17,15 +17,13 @@ public class CustomStringIsEmptyOperatorHandler {
 
   public CaseQuery buildIsEmptyQuery(DashboardFilter filter) {
     CaseQuery subQuery = CaseQuery.create();
-    subQuery.where().customField().stringField(filter.getField()).isNull().or().customField()
-        .stringField(filter.getField()).isLike("");
+    subQuery.where().customField().stringField(filter.getField()).isNull().or().customField().stringField(filter.getField()).isEqual("");
     return subQuery;
   }
 
   public CaseQuery buildNotEmptyQuery(DashboardFilter filter) {
     CaseQuery subQuery = CaseQuery.create();
-    subQuery.where().customField().stringField(filter.getField()).isNotNull().and().customField()
-        .stringField(filter.getField()).isNotLike("");
+    subQuery.where().customField().stringField(filter.getField()).isNotNull().and().customField().stringField(filter.getField()).isNotEqual("");
     return subQuery;
   }
 }
