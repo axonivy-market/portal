@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-21 08:35+0000\n"
-"PO-Revision-Date: 2026-03-27 04:45+0000\n"
-"Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
+"PO-Revision-Date: 2026-05-22 03:11+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-le/doc/portal-doc-user-guide/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-le/doc/portal-doc-user-guide/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.6.dev0\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
@@ -1506,14 +1507,12 @@ msgstr ""
 "以外に使用するフィールドを定義する（これは検索のパフォーマンスに影響する可能性があります）。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-#, fuzzy
 msgid "Portal.Sidebar.Mode"
-msgstr "Portal.Theme.Mode"
+msgstr "ポータル。サイドバー。モード"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-#, fuzzy
 msgid "HOVER"
-msgstr "概要"
+msgstr "ハイバー"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1522,6 +1521,10 @@ msgid ""
 "it. STICK: sidebar is always expanded. HIDDEN: sidebar is completely "
 "hidden."
 msgstr ""
+"サイドバーモードを制御する。 HOVER(デフォルト): サイドバーはマウスホバーに拡"
+"大します。 CLICK: サイドバーは、アイコンのレールとトグルボタンとして保持し、"
+"それを拡張/縮小します。 STICK: サイドバーは常に拡張されます。 "
+"HIDDEN:サイドバーは完全に隠されています."
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.GlobalFooterInfo"
@@ -1656,9 +1659,8 @@ msgid "Enable to show users' technical name on tooltips."
 msgstr "ユーザーの技術名をツールチップに表示できるようにした。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-#, fuzzy
 msgid "Portal.Tasks.MaximumSelectedTasks"
-msgstr "Portal.Tasks.EnablePinnedTask"
+msgstr "Portal.Tasks.MaximumSelectedタスク"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1667,6 +1669,9 @@ msgid ""
 "integer to enforce a specific limit, or leave it empty to allow unlimited"
 " task selection."
 msgstr ""
+"ユーザが一括操作のためのタスクウィジェット内で同時に選択できるタスクの最大数"
+"を定義します。 この値を設定して、特定の制限を強制したり、無制限のタスク選択を"
+"可能にするために空にしておくことができます."
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:104
 msgid "HowTo: Show/Hide the Announcement"
@@ -5220,9 +5225,8 @@ msgid "For each task the following key information is shown in the list:"
 msgstr "タスクごとに以下の情報がリストに表示されます。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:51
-#, fuzzy
 msgid "Working user (This column is not displayed by default)"
-msgstr "アプリケーション（この列は自動的に表示されません）"
+msgstr "働くユーザー (このカラムはデフォルトでは表示されません)"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:53
 msgid "Application (This column is not displayed by default)"
@@ -6328,13 +6332,13 @@ msgstr ""
 "「ピン留めされた項目」のトグルを表示または非表示にします。有効にすると、ユーザーはウィジェットをフィルタリングして、ピン留めされたタスクのみを表示できます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:136
-#, fuzzy
 msgid ""
 "**Show Bulk Delegate toggle**: Show or hide the bulk delegate toggle. "
 "When enabled, users can select multiple tasks and delegate them in bulk."
 msgstr ""
-"**「ピン留めされた項目」のトグルを表示**: "
-"「ピン留めされた項目」のトグルを表示または非表示にします。有効にすると、ユーザーはウィジェットをフィルタリングして、ピン留めされたケースのみを表示できます。"
+"**バルクデリゲートトグルを表示**: 一括デリゲートトグルを表示または非表示にし"
+"ます。 有効にすると、複数のタスクを選択し、それらを一括で削除することができま"
+"す."
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:138
 #: ../../source/portal-user-guide/new-dashboard/index.rst:247
@@ -6437,11 +6441,12 @@ msgid "Quick search feature is supporting these fields:"
 msgstr "クイック検索は以下のフィールドで使用できます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:170
-#, fuzzy
 msgid ""
 "Standard fields: Id, name, description, category, responsible (display "
 "name), working user (display name), and application."
-msgstr "標準的なフィールド：ID、名前、説明、カテゴリー、責任者（表示名）、アプリケーション"
+msgstr ""
+"標準的な分野: id、名前、説明、カテゴリ、責任(表示名)、作業ユーザー(表示名)、"
+"およびアプリケーション."
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:171
 msgid "Task custom fields: fields that have type ``STRING`` or ``TEXT``."
@@ -6577,9 +6582,8 @@ msgid ""
 msgstr "列の全幅がウィジェットの幅よりも狭い場合、ポータルは自動的に列の幅をウィジェットの幅に合わせて調整します。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:213
-#, fuzzy
 msgid "**Bulk delegate**"
-msgstr "**タスクを委任する**"
+msgstr "**Bulk delegate **"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:215
 msgid ""
@@ -6587,16 +6591,17 @@ msgid ""
 "clicking the :guilabel:`Toggle bulk delegation` button in the widget "
 "header."
 msgstr ""
+"ビューモードでは、複数のタスクを選択し、ウィジェットヘッダーの :guilabel:` を"
+"一括デリゲーション` ボタンをクリックすることで、一度にそれらを削除することが"
+"できます."
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:217
-#, fuzzy
 msgid "|bulk-delegate-task|"
-msgstr "**タスクを委任する**"
+msgstr "|bulk-delegate-task|"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:589
-#, fuzzy
 msgid "Dashboard task widget bulk delegate feature"
-msgstr "ダッシュボードのタスクウィジェット：Excel へのエクスポート機能"
+msgstr "ダッシュボードタスクウィジェット一括デリゲート機能"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:222
 msgid "Case list widget"
@@ -7586,15 +7591,16 @@ msgid "Absences"
 msgstr "不在"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:74
-#, fuzzy
 msgid ""
 "The :guilabel:`Absences` menu entry provides an absence management page "
 "where you can manage your absences and define substitutes for tasks "
 "assigned to you or the roles you hold. The page is organized into two "
 "tabs: **Absences** and **Substitutes**."
 msgstr ""
-":guilabel:`不在` "
-"メニュー項目には、欠勤管理コンポーネントが用意されております。こちらではご自身の欠勤を入力し、ご自身に割り当てられたタスクや担当する役割に対する代理人を定義することが可能です。"
+":guilabel:`Absences`メニューエントリは、あなたの不在を管理し、あなたに割り当"
+"てられたタスクや保持するロールの代替を定義することができます不在の管理ページ"
+"を提供します。 ページは2つのタブに編成されます。 **Absences** および "
+"**Substitutes**."
 
 #: ../../source/portal-user-guide/portal-header/index.rst:76
 msgid "|portal-absences|"
@@ -7605,47 +7611,44 @@ msgid "Absences page"
 msgstr "不在ページ"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:79
-#, fuzzy
 msgid "Absences Tab"
-msgstr "不在ページ"
+msgstr "Absences タブ"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:81
 msgid ""
 "The Absences tab displays all current and upcoming absences in a table "
 "with the following columns:"
-msgstr ""
+msgstr "Absencesタブは、次の列でテーブル内のすべての電流と今後の欠如を表示します"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:83
-#, fuzzy
 msgid "**Period**: The start and end dates of the absence"
-msgstr "**有効期限**: タスクの期限日"
+msgstr "**Period**:不在の開始と終了日"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:84
-#, fuzzy
 msgid "**Duration**: The number of days"
-msgstr "**ダッシュボードのタイトル**: ダッシュボードの名称"
+msgstr "**Duration**: 日数"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:85
 msgid ""
 "**Substitutes**: User's subsitutes of these types: ``Permanent "
 "substitute`` and ``Substitutes during absence``"
 msgstr ""
+"**置換**: ユーザのこれらのタイプの小節: ``Permanent```` と ````` は欠如中の置"
+"換`"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:86
-#, fuzzy
 msgid "**Comment**: The comment about the absence"
-msgstr "**所有者**: このケースの現在の所有者"
+msgstr "**コメント**: 不在についてのコメント"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:87
-#, fuzzy
 msgid "**Actions**: Edit or delete options for each absence row"
-msgstr "**アクション**: 各ダッシュボードで利用可能な操作"
+msgstr "**行為**:各不在行のオプションの編集または削除"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:89
 msgid ""
 "Toggle :guilabel:`Display absences in the past` to also show historical "
 "absence records."
-msgstr ""
+msgstr ":guilabel:`過去の`に表示不在のレコードを表示させる."
 
 #: ../../source/portal-user-guide/portal-header/index.rst:92
 msgid ""
@@ -7680,12 +7683,16 @@ msgid ""
 ":guilabel:`Substitutes` field, select from the suggestion list, and click"
 " :guilabel:`Add`"
 msgstr ""
+"必要に応じて、個人タスクの置換を追加します。:guilabel:`の名称を`フィールドに"
+"入力し、提案リストから選択し、:guilabel:`Add`をクリックします"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:102
 msgid ""
 "To mark a substitute as permanent, open its action menu and select "
 ":guilabel:`Set as permanent`"
 msgstr ""
+"置換を永続的にマークするには、アクションメニューを開き、:guilabel:`を"
+"パーマ`として設定します"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:103
 msgid "Confirm your absence by clicking the :guilabel:`Save` button"
@@ -7700,13 +7707,12 @@ msgid "Absences page: Add new absence dialog"
 msgstr "不在ページ：新しい不在の追加ダイアログ"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:108
-#, fuzzy
 msgid "Substitutes Tab"
-msgstr "**置換対象の種類：**"
+msgstr "置換タブ"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:110
 msgid "|substitute-tab|"
-msgstr ""
+msgstr "|substitute-tab|"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:278
 msgid "Absences page: Set deputy section"
@@ -7714,7 +7720,7 @@ msgstr "不在ページ：代行者の設定セクション"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:112
 msgid "The Substitutes tab shows two sections"
-msgstr ""
+msgstr "置換タブには2つのセクションが表示されます"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:114
 msgid ""
@@ -7722,12 +7728,17 @@ msgid ""
 "and role. For each entry you can edit the assigned substitutes using the "
 "|edit-icon| action."
 msgstr ""
+"**私の置換**は、アプリケーションとロールによって構成されたすべての置換を"
+"リストします。 各エントリでは、|edit-icon| アクションを使用して、割り当てられ"
+"た置換を編集できます."
 
 #: ../../source/portal-user-guide/portal-header/index.rst:116
 msgid ""
 "**I am substitute for** shows users for whom you are acting as a "
 "substitute, along with their active and upcoming absences."
 msgstr ""
+"**私は代用しています** あなたが代わりに行動しているユーザーを示しています, 彼"
+"らのアクティブと今後の不在と一緒に."
 
 #: ../../source/portal-user-guide/portal-header/index.rst:118
 msgid "**Substitute Types:**"
@@ -7744,80 +7755,72 @@ msgid ""
 msgstr "**個人用タスク向け**: 以下の2つのカテゴリから複数の代替手段を選択できます："
 
 #: ../../source/portal-user-guide/portal-header/index.rst:123
-#, fuzzy
 msgid ""
 "**Permanent substitute**: Covers all personally assigned tasks at all "
 "times"
-msgstr "個人に割り当てられたタスクの恒久的な代替手段"
+msgstr "**永久的な代わり**: すべての個人的に割り当てられたタスクを常にカバー"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:124
-#, fuzzy
 msgid ""
 "**Substitutes during absence**: Covers personally assigned tasks only "
 "during an active absence"
-msgstr "不在時の個人割り当てタスクの代行"
+msgstr "**不在時の代理**: 活動的な欠如時にのみ個人的に割り当てられたタスクをカバー"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:127
 msgid "A substitute can only belong to one type."
 msgstr "代替品は、いずれか一つのタイプにのみ属することができます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:128
-#, fuzzy
 msgid ""
 "You can also select substitutes for absence directly in the "
 ":guilabel:`Add absence` dialog."
-msgstr "置換語を選択し、:guilabel:`追加` ボタンをクリックしてください。"
+msgstr "また、:guilabel:`に不在`ダイアログで直接不在の代替を選択することもできます."
 
 #: ../../source/portal-user-guide/portal-header/index.rst:131
-#, fuzzy
 msgid "HowTo: Add Substitute"
-msgstr "ハウツー：置換の設定"
+msgstr "HowTo: 置換体を追加する"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:133
-#, fuzzy
 msgid ""
 "Click the :guilabel:`Add substitute` button on the "
 ":guilabel:`Substitutes` tab"
-msgstr ":guilabel:`欠席の追加` ボタンをクリックしてください。"
+msgstr ":guilabel:`Add replace` ボタンをクリックします。 :guilabel:`置換` タブ"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:134
-#, fuzzy
 msgid "The :guilabel:`Add substitute` dialog opens"
-msgstr ":guilabel:`欠席の追加` ダイアログが開きます。"
+msgstr ":guilabel:`置換`ダイアログが開きます"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:135
-#, fuzzy
 msgid "Select the :guilabel:`Substitute type` from the dropdown"
-msgstr ":guilabel:`モバイルアプリ` ユーザーメニュー項目を選択します。"
+msgstr "ドロップダウンから:guilabel:`置換タイプ`を選択します"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:136
 msgid ""
 "Type the substitute's name in the :guilabel:`Substitute name` field, "
 "select from the suggestion list, and click :guilabel:`Add`"
 msgstr ""
+":guilabel:` 置換名` フィールドに置換名を入力し、提案リストから選択し"
+"、:guilabel:`Add`をクリックします"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:137
 msgid "Repeat for additional substitutes if needed"
-msgstr ""
+msgstr "必要に応じて追加の置換を繰り返します"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:138
-#, fuzzy
 msgid "Confirm with the :guilabel:`Save` button"
-msgstr "置換内容の確認には、:guilabel:`保存` ボタンをご利用ください。"
+msgstr ":guilabel:`Save`ボタンで確認"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:140
-#, fuzzy
 msgid "|how-to-add-deputy-dialog|"
-msgstr "|how-to-add-task-note|"
+msgstr "|how-to-add-deputy-dialog|"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:276
-#, fuzzy
 msgid "Absences page: Add deputy dialog"
-msgstr "不在ページ：新しい不在の追加ダイアログ"
+msgstr "Absences ページ: 重複ダイアログを追加する"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:143
 msgid "Add absence and substitute for other users"
-msgstr ""
+msgstr "他のユーザーに不在と代替を追加"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:145
 msgid ""
@@ -7826,40 +7829,43 @@ msgid ""
 "<UserCreateSubstitute>`), they can perform actions on behalf of other "
 "users. To do so:"
 msgstr ""
+"ユーザーが必要な権限(例::ref:`UserCreateAbsence <UserCreateAbsence>`)また"
+"は:ref:`UserCreateSubstitute <UserCreateSubstitute>`)を持っている場合、他の"
+"ユーザに代わってアクションを実行できます。 そのために:"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:147
 msgid ""
 "Click the :guilabel:`Selected user` option at the top of the absence "
 "management page"
 msgstr ""
+":guilabel:` 選択された user` をクリックし、不在な管理画面の上部にある"
+"オプション"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:148
 msgid ""
 "Search for and select the user you want to manage absences or substitutes"
 " for"
-msgstr ""
+msgstr "不在や代替品を管理したいユーザーを検索して選択する"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:149
 msgid ""
 "The absence and substitute tables will update to show the selected user's"
 " data"
-msgstr ""
+msgstr "不要なテーブルは、選択したユーザーのデータを表示するように更新されます"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:150
 msgid ""
 "You can then add, edit, or delete absences and substitutes for the "
 "selected user"
-msgstr ""
+msgstr "次に、選択したユーザーの不在と置換を追加、編集、または削除することができます"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:152
-#, fuzzy
 msgid "|select-user|"
-msgstr "|select-admin-settings|"
+msgstr "|select-user|"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:280
-#, fuzzy
 msgid "Absences page: Select absence user option"
-msgstr "不在ページ：代行者の設定セクション"
+msgstr "Absences ページ: 不在ユーザオプションを選択"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:155
 msgid "Change Password"
@@ -10290,4 +10296,3 @@ msgstr "統計設定例"
 
 #~ msgid "|how-to-set-absence-substitutes|"
 #~ msgstr "|how-to-set-absence-substitutes|"
-
