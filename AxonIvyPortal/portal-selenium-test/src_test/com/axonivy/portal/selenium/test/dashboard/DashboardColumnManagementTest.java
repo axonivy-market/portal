@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
@@ -190,5 +191,38 @@ public class DashboardColumnManagementTest extends BaseTest {
 
     taskEditWidget.selectCustomType();
     taskEditWidget.getCustomField(addedCustomField2).shouldBe(Condition.exist);
+  }
+
+  @Test
+  public void testRemoveDisabledTaskFilterFromSessionAfterAdminUpdate() {
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+
+    // Persist state filter to user session
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("State", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
+    taskWidget.applyFilter();
+
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+
+    // Disable state field as filterable in widget configuration
+    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
+    taskEditWidget.openColumnManagementDialog();
+    assertThat(taskEditWidget.isFilterClicked(STATE_FIELD)).isTrue();
+    taskEditWidget.clickOnFilterCheckBoxByField(STATE_FIELD);
+    taskEditWidget.saveColumn();
+    taskEditWidget.save();
+
+    // Reload dashboard to trigger loading filters from session
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
+    taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    taskWidget.openFilterWidget();
+
+    assertThat(taskWidget.countFilterSelect().size()).isZero();
   }
 }
