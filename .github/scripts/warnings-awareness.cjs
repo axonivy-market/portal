@@ -113,7 +113,7 @@ module.exports.checkCompilerWarnings = async ({ github, context, core }) => {
 
 module.exports.checkSuppressWarnings = async ({ github, context, core }) => {
   const { workspace, defaultBranch } = await resolveRunContext(github, context);
-  exec(`git fetch origin ${defaultBranch} --depth=1`, workspace);
+  exec(`git fetch origin ${defaultBranch} --depth=100`, workspace);
 
   const mergeBase = exec(`git merge-base HEAD origin/${defaultBranch}`, workspace);
   const current = execCount(`git grep "@SuppressWarnings" HEAD -- "*.java" | wc -l || true`, workspace);
