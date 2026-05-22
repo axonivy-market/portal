@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-21 08:35+0000\n"
 "PO-Revision-Date: 2026-05-22 03:11+0000\n"
-"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
+"Last-Translator: Tung Le <tung.le@axonactive.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-developer-guide/ja/>\n"
 "Language: ja\n"
@@ -3997,12 +3997,15 @@ msgid "Model the side step process"
 msgstr "サイドステップのプロセスをモデル化してください。"
 
 #: ../../source/portal-developer-guide/customization/side-step.rst:45
-#, fuzzy
 msgid ""
 "Create a process that performs the additional work (for example “Ask for "
 "more details”) and define a signal that starts this process (e.g. "
 "``com:axonivy:portal:portaldeveloperexamples:sidestep:askMoreDetails`` )."
-msgstr "追加の作業（例：「詳細を確認する」）を実行するプロセスを作成し、このプロセスを開始するシグナルを定義してください（例：``、com:axonivy:portal:developerexample:sideStep:askMoreDetails``）。"
+msgstr ""
+"追加作業を実行するプロセスを作成します。 (例えば、 “Ask for more Details”) そ"
+"して、このプロセスを開始する信号を定義します (例えば "
+"``com:axonivy:portal:portal:portaldeveloperexamples:sidestep:askMoreDetails` )"
+"."
 
 #: ../../source/portal-developer-guide/customization/side-step.rst:48
 msgid "|signal-process|"
@@ -5091,9 +5094,8 @@ msgid "Dashboard tab icon"
 msgstr "ダッシュボードタブアイコン"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:141
-#, fuzzy
 msgid "Supports Tabler Icons (e.g., ``\"ti-player-play\"``, ``\"ti-dashboard\"``)"
-msgstr "FontAwesomeをサポートします（例：``\"fa-play\"``、``\"fa-dashboard\"``）。"
+msgstr "Tabler Icons(例、 ``\"ti-player-play\"`` 、 ``\"ti-dashboard\"`` )をサポート"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:143
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:119
@@ -5303,9 +5305,8 @@ msgid "Icon displayed next to menu label"
 msgstr "メニューラベルの横に表示されるアイコン"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:271
-#, fuzzy
 msgid "**Tabler Icons**: ``ti ti-icon-name`` (e.g., ``\"ti ti-layout-list\"``)"
-msgstr "**Streamline アイコン**:``si si-icon-name`` (例:``\"si si-layout-bullets\"``)"
+msgstr "**表のアイコン**: ``ti ti-icon-name`` (例: ``\"ti ti-layout-list\"`` )"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:274
 msgid ""
@@ -6198,13 +6199,13 @@ msgid ""
 msgstr "これがアクションボタンであることをポータルに伝えるには、 ``IsCustomAction: true`` が必須です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:351
-#, fuzzy
 msgid ""
 "For the ``Icon``, please refer to the Tabler icon showcase available in "
 "`HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_."
 msgstr ""
-"``Icon`` については、Axon Ivy Market の Html Dialog Demos で利用可能な Streamline "
-"アイコンを参照してください。"
+"``Icon`` の場合、 `HTML Dialog Demo <https://market.axonivy.com/html-dialog-"
+"demo>`_ で利用可能な Tabler アイコンのショーケースを参照してください。 お問い"
+"合わせ."
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:353
 msgid "On the process start of the main process, assign a custom field to it."
@@ -7271,13 +7272,12 @@ msgid "``icon`` (string, optional)"
 msgstr "``icon`` (string 、任意)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:131
-#, fuzzy
 msgid ""
 "Tabler icon class when ``visualType`` is ``\"ICON\"`` (e.g., ``\"ti-list-"
 "check\"``)"
 msgstr ""
-"``visualType`` が ``\"ICON\"`` の場合、アイコンクラスを簡略化してください（例：``\"si-task-"
-"list-1\"``）。"
+"``visualType`` が ``\"ICON\"`` の場合の Tabler アイコンクラス（例： ``\"ti-"
+"list-check\"`` ）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:133
 msgid "**Image Properties**"
@@ -7352,13 +7352,13 @@ msgstr ""
 "および ``imageType`` プロパティを管理します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:159
-#, fuzzy
 msgid ""
 "For icon-based navigation, browse available Tabler icons in the `HTML "
 "Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_."
 msgstr ""
-"アイコンベースのナビゲーションについては、`HTML ダイアログ デモ <https://market.axonivy.com/html-"
-"dialog-demo>`_ で利用可能な Streamline アイコンをご覧ください。"
+"アイコンベースのナビゲーションでは、`HTML Dialog Demo <https://"
+"market.axonivy.com/html-dialog-demo>`_ で利用可能な Tabler アイコンを参照 お"
+"問い合わせ."
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:4
 msgid "Configure Notifications Widget"
@@ -8194,18 +8194,16 @@ msgid "``isTopMenu`` (boolean, default: ``false``)"
 msgstr "``isTopMenu`` (boolean、デフォルト: ``` `false``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:170
-#, fuzzy
 msgid "``showBulkDelegateToggle`` (boolean, default: ``true``)"
-msgstr "``showFullscreenMode`` (boolean、デフォルト: ``` `true``)"
+msgstr "``showBulkDelegateToggle`` (boolean、デフォルト: ``true`` )"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:171
 msgid "Show/hide bulk delegate toggle for multi-select task delegation"
 msgstr "複数の選択タスクの委任のためのショー/非表示のバルクdelegate toggle"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:173
-#, fuzzy
 msgid "``showPinnedToggle`` (boolean, default: ``true``)"
-msgstr "``showWidgetInfo`` (boolean、デフォルト: ``` `true``)"
+msgstr "``showPinnedToggle`` (boolean、デフォルト: ```true`` )"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:174
 msgid "Show/hide pinned toggle for pinning tasks to top"
@@ -8351,21 +8349,20 @@ msgid "``to``: string value. E.g.: \"05/05/2024\""
 msgstr "``to``：文字列値。例：\"2024/05/05\""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:331
-#, fuzzy
 msgid "``activator`` and ``worker``"
-msgstr "``activator``"
+msgstr "``activator`` および ``worker``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:361
-#, fuzzy
 msgid ""
 "These columns only accept a list of role names or usernames as filter "
 "conditions for the task's responsible username or working username. The "
 "available filter operators are ``in``, ``not_in`` and ``current_user``. "
 "The ``current_user`` operator does not require value field."
 msgstr ""
-"この列は、タスク責任者のユーザー名のフィルター条件としてロール名またはユーザー名のリストのみ受け入れます。利用可能なフィルターの演算子は "
-"``in``、 ``not_in``、 ``current_user`` です。``current_user`` "
-"演算子には値フィールドは必要ありません。"
+"これらの列は、タスクの担当ユーザー名または作業ユーザー名のフィルタ条件として"
+"、ロール名またはユーザー名のリストのみを受け付けます。利用可能なフィルタ演算"
+"子は、 ``in`` 、 ``not_in`` 、および ``current_user`` です。 "
+"``current_user`` 演算子は、value フィールドを必要としません。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:388
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:417
@@ -8587,9 +8584,8 @@ msgid "``icon`` (string, required)"
 msgstr "``icon`` (string 、必須)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:98
-#, fuzzy
 msgid "Tabler icon class for template display (e.g., ``\"ti-settings-cog\"``)"
-msgstr "テンプレート表示用のアイコンクラスを簡略化してください（例：``\"si-cog-double-2\"``）。"
+msgstr "テンプレート表示用の Tabler アイコンクラス（例： ``\"ti-settings-cog\"`` ）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:100
 msgid "``dashboard`` (object, required)"
@@ -8645,13 +8641,13 @@ msgid ""
 msgstr "詳細な仕様については、:ref:`ダッシュボード設定 <customization-new-dashboard>` をご参照ください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:126
-#, fuzzy
 msgid ""
 "**Icon Selection:** Portal supports Tabler icons. Find available icons in"
 " the `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_."
 msgstr ""
-"**アイコンの選択：** PortalはStreamlineアイコンをサポートしております。利用可能なアイコンは、`HTMLダイアログデモ "
-"<https://market.axonivy.com/html-dialog-demo>`_ でご確認いただけます。"
+"**アイコンの選択:** PortalはTablerアイコンに対応しています。利用可能な"
+"アイコンについては、 `HTML Dialog Demo <https://market.axonivy.com/html-"
+"dialog-demo>`_ をご覧ください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:129
 msgid ""
@@ -9885,9 +9881,8 @@ msgid "``taskIcon`` (string)"
 msgstr "``taskIcon`` (string )"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:114
-#, fuzzy
 msgid "Icon using Tabler Icons (e.g., ``\"ti ti-bulb\"``)."
-msgstr "StreamlineまたはFont Awesomeを使用したアイコン（例：``\"si si-bulb\"``）。"
+msgstr "Tabler Icons を使用したアイコン（例：``\"ti ti-bulb\"``）。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:116
 msgid "``isHideTaskName`` (boolean, default: false)"
@@ -10173,13 +10168,12 @@ msgid ""
 msgstr "**処理手順**: ユーザーエクスペリエンス向上のため、明確で説明的なステップ名をご提供ください"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:373
-#, fuzzy
 msgid ""
 "**Task Icons**: Use consistent icon styles (Tabler Icons) across your "
 "application"
 msgstr ""
-"**タスクアイコン**: アプリケーション全体で一貫したアイコンスタイル（Streamline または Font "
-"Awesome）を使用してください。"
+"**タスクアイコン**: アプリケーション全体で一貫したアイコンスタイル（Tabler "
+"Icons）を使用してください"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:374
 msgid ""
@@ -11430,16 +11424,16 @@ msgid ""
 msgstr "カスタマイズダイアログを開く呼び出し可能プロセスは将来削除されます。新しいプロジェクトでは使用ないでください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:434
-#, fuzzy
 msgid ""
 "We remove ivy-icon.css and replace current classes with new classes from "
 "Tabler icons, which can be found in the `HTML Dialog Demo "
 "<https://market.axonivy.com/html-dialog-demo>`_. So that you need to "
 "update your files that are using classes in ivy-icon.css."
 msgstr ""
-"ivy-icon.css を削除し、現在のクラスを `HTML Dialog Demo <https://market.axonivy.com"
-"/html-dialog-demo>`_ にある新しいクラスに置き換えました。そのため、ivy-icon.css "
-"のクラスを使用しているファイルを更新する必要があります。"
+"ivy-icon.css を削除し、現在のクラスを Tabler アイコンの新しいクラスに置き換え"
+"ます。新しいクラスは、HTML Dialog Demo <https://market.axonivy.com/html-"
+"dialog-demo>`_ で確認できます。そのため、ivy-icon.css のクラスを使用している"
+"ファイルは更新する必要があります。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:436
 msgid ""
