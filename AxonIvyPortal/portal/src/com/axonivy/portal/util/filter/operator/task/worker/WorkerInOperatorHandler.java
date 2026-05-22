@@ -24,6 +24,7 @@ public class WorkerInOperatorHandler {
       return null;
     }
 
+    boolean hasValidMember = false;
     TaskQuery query = TaskQuery.create();
     IFilterQuery filterQuery = query.where();
     for (String worker : filter.getValues()) {
@@ -31,10 +32,12 @@ public class WorkerInOperatorHandler {
       if (member == null) {
         continue;
       }
+      hasValidMember = true;
       filterQuery.or().workerId().isEqual(member.getSecurityMemberId());
     }
-    filterQuery.andOverall().state().isNotIn(WorkerOperatorUtils.EXCLUDE_STATES);
-
+    if (hasValidMember) {
+      filterQuery.andOverall().state().isNotIn(WorkerOperatorUtils.EXCLUDE_STATES);
+    }
     return query;
   }
 
