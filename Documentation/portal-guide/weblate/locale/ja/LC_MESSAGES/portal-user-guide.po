@@ -6583,7 +6583,7 @@ msgstr "列の全幅がウィジェットの幅よりも狭い場合、ポータ
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:213
 msgid "**Bulk delegate**"
-msgstr "**Bulk delegate **"
+msgstr "**一括デリゲート**"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:215
 msgid ""
@@ -7597,10 +7597,10 @@ msgid ""
 "assigned to you or the roles you hold. The page is organized into two "
 "tabs: **Absences** and **Substitutes**."
 msgstr ""
-":guilabel:`Absences`メニューエントリは、あなたの不在を管理し、あなたに割り当"
-"てられたタスクや保持するロールの代替を定義することができます不在の管理ページ"
-"を提供します。 ページは2つのタブに編成されます。 **Absences** および "
-"**Substitutes**."
+":guilabel:`Absences` メニューエントリは、あなたの不在を管理し、あなたに割り当"
+"てられたタスクや保持するロールの代替を定義することができる不在の管理ページ"
+"を提供します。ページは2つのタブに編成されます: **Absences** および "
+"**Substitutes** 。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:76
 msgid "|portal-absences|"
@@ -7648,7 +7648,9 @@ msgstr "**行為**:各不在行のオプションの編集または削除"
 msgid ""
 "Toggle :guilabel:`Display absences in the past` to also show historical "
 "absence records."
-msgstr ":guilabel:`過去の`に表示不在のレコードを表示させる."
+msgstr ""
+":guilabel:`Display absences in the past` を切り替えて、過去の不在レコードも表"
+"示します。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:92
 msgid ""
@@ -7683,16 +7685,16 @@ msgid ""
 ":guilabel:`Substitutes` field, select from the suggestion list, and click"
 " :guilabel:`Add`"
 msgstr ""
-"必要に応じて、個人タスクの置換を追加します。:guilabel:`の名称を`フィールドに"
-"入力し、提案リストから選択し、:guilabel:`Add`をクリックします"
+"必要に応じて、個人タスクの代替を追加します: :guilabel:`Substitutes` フィール"
+"ドに名前を入力し、提案リストから選択し、 :guilabel:`Add` をクリックします"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:102
 msgid ""
 "To mark a substitute as permanent, open its action menu and select "
 ":guilabel:`Set as permanent`"
 msgstr ""
-"置換を永続的にマークするには、アクションメニューを開き、:guilabel:`を"
-"パーマ`として設定します"
+"代替を永続的にマークするには、アクションメニューを開き、 :guilabel:`Set as "
+"permanent` を選択します"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:103
 msgid "Confirm your absence by clicking the :guilabel:`Save` button"
@@ -7728,9 +7730,9 @@ msgid ""
 "and role. For each entry you can edit the assigned substitutes using the "
 "|edit-icon| action."
 msgstr ""
-"**私の置換**は、アプリケーションとロールによって構成されたすべての置換を"
-"リストします。 各エントリでは、|edit-icon| アクションを使用して、割り当てられ"
-"た置換を編集できます."
+"**My substitutes** は、アプリケーションとロールによって構成されたすべての代替"
+"をリストします。各エントリでは、 |edit-icon| アクションを使用して、割り当てら"
+"れた代替を編集できます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:116
 msgid ""
@@ -7774,7 +7776,9 @@ msgstr "代替品は、いずれか一つのタイプにのみ属することが
 msgid ""
 "You can also select substitutes for absence directly in the "
 ":guilabel:`Add absence` dialog."
-msgstr "また、:guilabel:`に不在`ダイアログで直接不在の代替を選択することもできます."
+msgstr ""
+"また、 :guilabel:`Add absence` ダイアログで直接不在の代替を選択することもでき"
+"ます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:131
 msgid "HowTo: Add Substitute"
@@ -7788,19 +7792,19 @@ msgstr ":guilabel:`Add replace` ボタンをクリックします。 :guilabel:`
 
 #: ../../source/portal-user-guide/portal-header/index.rst:134
 msgid "The :guilabel:`Add substitute` dialog opens"
-msgstr ":guilabel:`置換`ダイアログが開きます"
+msgstr ":guilabel:`Add substitute` ダイアログが開きます"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:135
 msgid "Select the :guilabel:`Substitute type` from the dropdown"
-msgstr "ドロップダウンから:guilabel:`置換タイプ`を選択します"
+msgstr "ドロップダウンから :guilabel:`Substitute type` を選択します"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:136
 msgid ""
 "Type the substitute's name in the :guilabel:`Substitute name` field, "
 "select from the suggestion list, and click :guilabel:`Add`"
 msgstr ""
-":guilabel:` 置換名` フィールドに置換名を入力し、提案リストから選択し"
-"、:guilabel:`Add`をクリックします"
+":guilabel:`Substitute name` フィールドに代替者の名前を入力し、提案リストから"
+"選択し、 :guilabel:`Add` をクリックします"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:137
 msgid "Repeat for additional substitutes if needed"
@@ -7808,7 +7812,7 @@ msgstr "必要に応じて追加の置換を繰り返します"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:138
 msgid "Confirm with the :guilabel:`Save` button"
-msgstr ":guilabel:`Save`ボタンで確認"
+msgstr ":guilabel:`Save` ボタンで確認"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:140
 msgid "|how-to-add-deputy-dialog|"
@@ -7829,9 +7833,9 @@ msgid ""
 "<UserCreateSubstitute>`), they can perform actions on behalf of other "
 "users. To do so:"
 msgstr ""
-"ユーザーが必要な権限(例::ref:`UserCreateAbsence <UserCreateAbsence>`)また"
-"は:ref:`UserCreateSubstitute <UserCreateSubstitute>`)を持っている場合、他の"
-"ユーザに代わってアクションを実行できます。 そのために:"
+"ユーザーが必要な権限(例: :ref:`UserCreateAbsence <UserCreateAbsence>` また"
+"は :ref:`UserCreateSubstitute <UserCreateSubstitute>`)を持っている場合、他の"
+"ユーザに代わってアクションを実行できます。そのために:"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:147
 msgid ""

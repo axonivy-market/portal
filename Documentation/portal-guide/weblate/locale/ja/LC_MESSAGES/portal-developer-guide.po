@@ -4004,8 +4004,7 @@ msgid ""
 msgstr ""
 "追加作業を実行するプロセスを作成します。 (例えば、 “Ask for more Details”) そ"
 "して、このプロセスを開始する信号を定義します (例えば "
-"``com:axonivy:portal:portal:portaldeveloperexamples:sidestep:askMoreDetails` )"
-"."
+"``com:axonivy:portal:portaldeveloperexamples:sidestep:askMoreDetails`` )。"
 
 #: ../../source/portal-developer-guide/customization/side-step.rst:48
 msgid "|signal-process|"
@@ -10531,9 +10530,9 @@ msgid ""
 "``STICK`` to achieve the same effect as "
 "``Portal.KeepSidebarExpanded=true``."
 msgstr ""
-"2。 グローバル変数 ``Portal.KeepSidebarExpand`` を削除しました。 ``Portal を"
-"使う。 代わりにSidebar.Mode`。 ``Portal.Sidebar.Mode`` を ``STICK`` に設定し"
-"て ``Portal.KeepSidebarExpanded=true` と同じ効果を達成します."
+"2. グローバル変数 ``Portal.KeepSidebarExpanded`` を削除しました。代わりに "
+"``Portal.Sidebar.Mode`` を使ってください。 ``Portal.Sidebar.Mode`` を "
+"``STICK`` に設定して ``Portal.KeepSidebarExpanded=true`` と同じ効果を達成します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:168
 msgid "Migrate 13.1 To 13.2"
