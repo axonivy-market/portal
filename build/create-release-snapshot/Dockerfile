@@ -1,4 +1,4 @@
-FROM maven:3.9.12-eclipse-temurin-25
+FROM maven:3.9.14-eclipse-temurin-25
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     passwd adduser openssh-client curl gnupg \
