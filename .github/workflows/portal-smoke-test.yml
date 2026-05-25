@@ -1,0 +1,139 @@
+name: Portal Smoke Test
+run-name: 🔆 Portal Smoke Test against ${{ inputs.engineUrl }}
+
+# Standalone smoke-test workflow. Builds the demo-portal helper deployment
+# zip (optional) and runs a curated subset of Portal Selenium tests against
+# an externally provisioned engine that already has Portal + demo-portal
+# deployed. See doc/customer-smoke-tests.md for the full handover guide.
+
+permissions: read-all
+
+on:
+  workflow_dispatch:
+    inputs:
+      engineUrl:
+        description: 'Engine root URL (e.g. http://my-engine:8080/)'
+        type: string
+        required: true
+      engineApp:
+        description: 'Deployed helper application name'
+        type: string
+        default: 'demo-portal'
+        required: true
+      testPattern:
+        description: 'Surefire -Dtest value (comma-separated test classes or wildcards)'
+        type: string
+        default: 'LoginTest,TopbarTest,MenuTest,UserHomepageTest,DashboardTaskWidgetTest,DashboardCaseWidgetTest,GlobalSearchTest,QuickSearchTest'
+        required: true
+      browser:
+        description: 'Browser driver'
+        type: choice
+        options: [FIREFOX, CHROME]
+        default: 'FIREFOX'
+        required: true
+      seleniumRemote:
+        description: 'Optional Selenium Grid URL (leave blank for local browser)'
+        type: string
+        default: ''
+        required: false
+      buildHelperZip:
+        description: 'Build the demo-portal helper deployment zip as a job artefact (the customer still has to deploy it to their engine themselves)'
+        type: boolean
+        default: false
+        required: false
+      engineDownloadURL:
+        description: 'Only used when buildHelperZip=true: engine zip to compile against'
+        type: string
+        default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
+        required: false
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5.1
+        with:
+          maven-version: 3.9.8
+
+      - name: Install Firefox
+        if: ${{ inputs.browser == 'FIREFOX' && inputs.seleniumRemote == '' }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y firefox
+
+      - name: Build demo-portal helper deployment zip
+        if: ${{ inputs.buildHelperZip == true }}
+        run: |
+          ENGINE_DIR="$GITHUB_WORKSPACE/ivy/engine"
+          mkdir -p "$ENGINE_DIR"
+          cd "$ENGINE_DIR"
+          wget -q "${{ inputs.engineDownloadURL }}" -O axonivy-engine.zip
+          unzip -q -o axonivy-engine.zip -d .
+          rm axonivy-engine.zip
+          cd "$GITHUB_WORKSPACE"
+          for module in \
+            AxonIvyPortal/portal-components \
+            AxonIvyPortal/portal \
+            AxonIvyPortal/PortalKitTestHelper \
+            Showcase/portal-user-examples \
+            Showcase/InternalSupport \
+            Showcase/portal-components-examples ; do
+            mvn -B -ntp clean install -f "$module/pom.xml" -Divy.engine.directory="$ENGINE_DIR"
+          done
+          mvn -B -ntp clean package \
+            -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml \
+            -Divy.engine.directory="$ENGINE_DIR"
+
+      - name: Upload helper deployment zip
+        if: ${{ inputs.buildHelperZip == true }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: demo-portal-helper-zip
+          retention-days: 14
+          path: AxonIvyPortal/portal-selenium-test/target/portal-selenium-test-deployment-*.zip
+
+      - name: Run smoke tests
+        id: smoke
+        continue-on-error: true
+        env:
+          ENGINE_URL: ${{ inputs.engineUrl }}
+          ENGINE_APP: ${{ inputs.engineApp }}
+          TEST_PATTERN: ${{ inputs.testPattern }}
+          BROWSER: ${{ inputs.browser }}
+          SELENIDE_REMOTE: ${{ inputs.seleniumRemote }}
+        run: |
+          chmod +x AxonIvyPortal/portal-selenium-test/run-smoke.sh
+          ./AxonIvyPortal/portal-selenium-test/run-smoke.sh
+
+      - name: Archive test reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: smoke-test-reports
+          retention-days: 10
+          path: |
+            AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
+            AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
+
+      - name: Publish JUnit report
+        if: always()
+        uses: dorny/test-reporter@v3.0.0
+        with:
+          name: Portal smoke tests
+          path: 'AxonIvyPortal/portal-selenium-test/target/surefire-reports/TEST-*.xml'
+          reporter: java-junit
+          only-summary: 'false'
+
+      - name: Fail the job if smoke tests failed
+        if: steps.smoke.outcome == 'failure'
+        run: exit 1

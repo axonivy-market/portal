@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--
+  Smoke-test POM. Identical to customized_pom.xml except it does NOT start or
+  stop a test engine — it expects an already-running engine at
+  -Dtest.engine.url. Use this to run a subset of Portal Selenium tests against
+  an externally provisioned engine that already has Portal + the demo-portal
+  helper application deployed.
+
+  See doc/customer-smoke-tests.md for the full handover guide.
+-->
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.axonivy.ivy.api</groupId>
+    <artifactId>ivy-project-parent</artifactId>
+    <version>14.0.0-SNAPSHOT</version>
+    <relativePath />
+  </parent>
+  <groupId>com.axonivy.portal</groupId>
+  <artifactId>portal-selenium-test</artifactId>
+  <version>14.0.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>com.axonivy.portal</groupId>
+      <artifactId>portal</artifactId>
+      <version>14.0.0-SNAPSHOT</version>
+      <type>iar</type>
+    </dependency>
+    <dependency>
+      <groupId>com.axonivy.ivy.api.test</groupId>
+      <artifactId>ivy-web-test-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.codeborne</groupId>
+      <artifactId>selenide-proxy</artifactId>
+      <version>7.7.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.axonivy.ivy.api</groupId>
+      <artifactId>ivy-api</artifactId>
+    </dependency>
+  </dependencies>
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+    <repository>
+      <snapshots>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+      <id>maven.axonivy.com</id>
+      <url>https://maven.axonivy.com</url>
+    </repository>
+  </repositories>
+  <build>
+    <testSourceDirectory>${basedir}/src_test/</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <testFailureIgnore>true</testFailureIgnore>
+          <rerunFailingTestsCount>2</rerunFailingTestsCount>
+          <argLine>
+            -Dtest.engine.url=${test.engine.url}
+            -Dtest.engine.app=${test.engine.app}
+          </argLine>
+        </configuration>
+        <executions>
+          <execution>
+            <id>selenium.web.tests</id>
+            <phase>test</phase>
+            <goals>
+              <goal>test</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,95 @@
+// Standalone smoke-test pipeline for customers running Jenkins.
+// Runs a curated subset of Portal Selenium tests against an externally
+// provisioned engine that already has Portal + the demo-portal helper
+// application deployed. See doc/customer-smoke-tests.md for the full
+// handover guide.
+
+pipeline {
+  // 'any' works for single-agent or default setups.
+  // If your Jenkins has dedicated Linux build nodes, replace with:
+  //   agent { label 'your-linux-agent-label' }
+  agent any
+
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '5'))
+    timeout(time: 60, unit: 'MINUTES')
+  }
+
+  parameters {
+    string(name: 'ENGINE_URL',
+           defaultValue: 'http://localhost:8080/',
+           description: 'Engine root URL (must already be running with Portal + demo-portal deployed)')
+    string(name: 'ENGINE_APP',
+           defaultValue: 'demo-portal',
+           description: 'Deployed helper application name')
+    string(name: 'TEST_PATTERN',
+           defaultValue: 'LoginTest,TopbarTest,MenuTest,UserHomepageTest,DashboardTaskWidgetTest,DashboardCaseWidgetTest,GlobalSearchTest,QuickSearchTest',
+           description: 'Surefire -Dtest value (comma-separated)')
+    choice(name: 'BROWSER',
+           choices: ['FIREFOX', 'CHROME'],
+           description: 'Browser driver')
+    string(name: 'SELENIUM_REMOTE',
+           defaultValue: '',
+           description: 'Optional Selenium Grid URL (leave blank for local browser)')
+    booleanParam(name: 'BUILD_HELPER_ZIP',
+                 defaultValue: false,
+                 description: 'Build the demo-portal helper deployment zip as a build artefact (still needs to be deployed to the engine manually)')
+    string(name: 'ENGINE_DOWNLOAD_URL',
+           defaultValue: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip',
+           description: 'Only used when BUILD_HELPER_ZIP=true: engine zip used to compile against')
+  }
+
+  environment {
+    MAVEN_OPTS = '-Xmx2g'
+  }
+
+  stages {
+    stage('Build helper deployment zip') {
+      when { expression { return params.BUILD_HELPER_ZIP } }
+      steps {
+        sh '''#!/bin/bash
+          set -euo pipefail
+          ENGINE_DIR="${WORKSPACE}/ivy/engine"
+          mkdir -p "$ENGINE_DIR"
+          cd "$ENGINE_DIR"
+          wget -q "${ENGINE_DOWNLOAD_URL}" -O axonivy-engine.zip
+          unzip -q -o axonivy-engine.zip -d .
+          rm axonivy-engine.zip
+          cd "${WORKSPACE}"
+          for module in \\
+            AxonIvyPortal/portal-components \\
+            AxonIvyPortal/portal \\
+            AxonIvyPortal/PortalKitTestHelper \\
+            Showcase/portal-user-examples \\
+            Showcase/InternalSupport \\
+            Showcase/portal-components-examples ; do
+            mvn -B -ntp clean install -f "$module/pom.xml" -Divy.engine.directory="$ENGINE_DIR"
+          done
+          mvn -B -ntp clean package \\
+            -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml \\
+            -Divy.engine.directory="$ENGINE_DIR"
+        '''
+        archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/portal-selenium-test-deployment-*.zip', allowEmptyArchive: false
+      }
+    }
+
+    stage('Smoke tests') {
+      steps {
+        sh '''#!/bin/bash
+          chmod +x AxonIvyPortal/portal-selenium-test/run-smoke.sh
+          export ENGINE_URL ENGINE_APP TEST_PATTERN BROWSER
+          export SELENIDE_REMOTE="${SELENIUM_REMOTE}"
+          ./AxonIvyPortal/portal-selenium-test/run-smoke.sh
+        '''
+      }
+    }
+  }
+
+  post {
+    always {
+      archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/selenide/reports/**/*.*, AxonIvyPortal/portal-selenium-test/target/surefire-reports/*.*',
+                       allowEmptyArchive: true
+      junit allowEmptyResults: true, testResults: 'AxonIvyPortal/portal-selenium-test/target/surefire-reports/TEST-*.xml'
+    }
+  }
+}
