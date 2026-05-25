@@ -1,15 +1,18 @@
 name: Portal Smoke Test
 run-name: 🔆 Portal Smoke Test ${{ inputs.engineUrl == '' && '(auto-provisioned engine)' || format('against {0}', inputs.engineUrl) }}
 
-# Smoke-test workflow with two modes:
-#   1. Default — leave engineUrl blank. The workflow downloads the nightly Ivy
-#      engine, builds the Portal helper modules, deploys them as demo-portal,
-#      starts the engine via the Ivy build plugin, then runs the curated
-#      smoke-test subset against it. Self-contained, no external setup needed.
-#   2. External — provide engineUrl. The workflow skips auto-provisioning and
-#      runs run-smoke.sh against the engine you specify (which must already
-#      have Portal + the demo-portal helper app deployed).
+# Smoke-test workflow. Runs the LoginTest + TopbarTest pair — enough to
+# confirm Portal is alive on a fresh deployment. Two modes:
+#   1. Default — leave engineUrl blank. Downloads the nightly Ivy engine,
+#      builds PortalKitTestHelper and its dependencies, copies the three
+#      iars into demo-applications/demo-portal/, starts the engine via the
+#      Ivy build plugin, runs the smoke tests. Self-contained.
+#   2. External — provide engineUrl. Skips auto-provisioning and runs
+#      run-smoke.sh against the engine you specify (which must already have
+#      Portal + the PortalKitTestHelper iar deployed under app demo-portal).
 # See doc/customer-smoke-tests.md for the full handover guide.
+# Broader test coverage isn't supported here — refer to Portal's full CI
+# build artefacts.
 
 permissions:
   contents: read
@@ -29,18 +32,13 @@ on:
         type: string
         required: false
         default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
-      testPatternToRun:
-        description: 'Comma-separated test classes. Default = Tier 1 (LoginTest,TopbarTest). Tier 2 adds: MenuTest,UserHomepageTest. Tier 3 adds: DashboardTaskWidgetTest,DashboardCaseWidgetTest,GlobalSearchTest,QuickSearchTest. See doc/customer-smoke-tests.md § 3.'
-        type: string
-        required: false
-        default: 'LoginTest,TopbarTest'
 
 jobs:
   smoke:
     runs-on: ubuntu-latest
     env:
       ENGINE_APP: 'demo-portal'
-      TEST_PATTERN: ${{ inputs.testPatternToRun }}
+      TEST_PATTERN: 'LoginTest,TopbarTest'
       BROWSER: 'FIREFOX'
     steps:
       - name: Checkout code
@@ -83,28 +81,25 @@ jobs:
           unzip -q -o axonivy-engine.zip -d .
           rm axonivy-engine.zip
 
-      - name: Build Portal helper modules
+      - name: Build PortalKitTestHelper and its dependencies
         if: ${{ inputs.engineUrl == '' }}
         run: |
           for module in \
             AxonIvyPortal/portal-components \
             AxonIvyPortal/portal \
-            AxonIvyPortal/PortalKitTestHelper \
-            Showcase/portal-user-examples \
-            Showcase/portal-developer-examples \
-            Showcase/InternalSupport \
-            Showcase/portal-components-examples ; do
+            AxonIvyPortal/PortalKitTestHelper ; do
             mvn -B -ntp clean install -DskipTests -f "$module/pom.xml" -Divy.engine.directory="$ENGINE_DIR"
           done
 
-      - name: Build deployment zip and stage to engine
+      - name: Stage helper iars to engine
         if: ${{ inputs.engineUrl == '' }}
         run: |
-          mvn -B -ntp clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory="$ENGINE_DIR"
           DEPLOYMENT="$ENGINE_DIR/system/demo-applications/demo-portal"
           mkdir -p "$DEPLOYMENT"
           rm -rf "$DEPLOYMENT"/*
-          cp AxonIvyPortal/portal-selenium-test/target/portal-selenium-test-deployment-*.zip "$DEPLOYMENT/"
+          cp AxonIvyPortal/portal-components/target/portal-components-*.iar      "$DEPLOYMENT/"
+          cp AxonIvyPortal/portal/target/portal-*.iar                            "$DEPLOYMENT/"
+          cp AxonIvyPortal/PortalKitTestHelper/target/portalKitTestHelper-*.iar  "$DEPLOYMENT/"
 
       - name: Run smoke tests (auto-provisioned engine)
         if: ${{ inputs.engineUrl == '' }}

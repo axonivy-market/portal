@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 # Portal smoke-test runner.
 #
-# Runs a curated subset of Axon Ivy Portal Selenium tests against an
-# already-running engine. The engine must have Portal installed and the
-# demo-portal helper application deployed (see doc/customer-smoke-tests.md).
+# Runs LoginTest + TopbarTest against an already-running engine. The engine
+# must have Portal installed and the PortalKitTestHelper iar deployed under
+# app name demo-portal (see doc/customer-smoke-tests.md).
 #
 # Configurable via environment variables:
 #   ENGINE_URL       Target engine root URL.        Default: http://localhost:8080/
 #   ENGINE_APP       Deployed helper app name.      Default: demo-portal
-#   TEST_PATTERN     Surefire -Dtest value.         Default: Tier 1 (LoginTest,TopbarTest)
-#                                                   See doc/customer-smoke-tests.md § 5 for Tiers 2 & 3.
+#   TEST_PATTERN     Surefire -Dtest value.         Default: LoginTest,TopbarTest
 #   BROWSER          Selenide -DbrowserType value.  Default: FIREFOX
 #   SELENIDE_REMOTE  Selenium Grid URL (optional).  Default: empty (local browser)
 #   MAVEN            Maven executable.              Default: mvn

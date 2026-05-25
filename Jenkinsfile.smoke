@@ -1,8 +1,11 @@
 // Standalone smoke-test pipeline for customers running Jenkins.
-// Runs a curated subset of Portal Selenium tests against an externally
-// provisioned engine that already has Portal + the demo-portal helper
-// application deployed. See doc/customer-smoke-tests.md for the full
-// handover guide.
+// Runs the LoginTest + TopbarTest pair against an externally provisioned
+// engine that already has Portal + the PortalKitTestHelper iar deployed
+// under app name demo-portal. See doc/customer-smoke-tests.md for the
+// full handover guide.
+//
+// Broader test coverage isn't supported here — refer to Portal's full
+// CI build artefacts.
 
 pipeline {
   // 'any' works for single-agent or default setups.
@@ -18,34 +21,32 @@ pipeline {
   parameters {
     string(name: 'ENGINE_URL',
            defaultValue: 'http://localhost:8080/',
-           description: 'Engine root URL (must already be running with Portal + demo-portal deployed)')
+           description: 'Engine root URL (must already be running with Portal + the PortalKitTestHelper iar deployed under app demo-portal)')
     string(name: 'ENGINE_APP',
            defaultValue: 'demo-portal',
            description: 'Deployed helper application name')
-    string(name: 'TEST_PATTERN',
-           defaultValue: 'LoginTest,TopbarTest',
-           description: 'Surefire -Dtest value (comma-separated). Default = Tier 1 (only needs PortalKitTestHelper deployed). See doc/customer-smoke-tests.md § 5 for Tier 2 & 3 patterns.')
     choice(name: 'BROWSER',
            choices: ['FIREFOX', 'CHROME'],
            description: 'Browser driver')
     string(name: 'SELENIUM_REMOTE',
            defaultValue: '',
            description: 'Optional Selenium Grid URL (leave blank for local browser)')
-    booleanParam(name: 'BUILD_HELPER_ZIP',
+    booleanParam(name: 'BUILD_HELPER_IARS',
                  defaultValue: false,
-                 description: 'Build the demo-portal helper deployment zip as a build artefact (still needs to be deployed to the engine manually)')
+                 description: 'Build portal-components, portal, and PortalKitTestHelper as iars and archive them as job artefacts (still needs to be deployed to the engine manually)')
     string(name: 'ENGINE_DOWNLOAD_URL',
            defaultValue: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip',
-           description: 'Only used when BUILD_HELPER_ZIP=true: engine zip used to compile against')
+           description: 'Only used when BUILD_HELPER_IARS=true: engine zip used to compile against')
   }
 
   environment {
     MAVEN_OPTS = '-Xmx2g'
+    TEST_PATTERN = 'LoginTest,TopbarTest'
   }
 
   stages {
-    stage('Build helper deployment zip') {
-      when { expression { return params.BUILD_HELPER_ZIP } }
+    stage('Build helper iars') {
+      when { expression { return params.BUILD_HELPER_IARS } }
       steps {
         sh '''#!/bin/bash
           set -euo pipefail
@@ -59,17 +60,12 @@ pipeline {
           for module in \\
             AxonIvyPortal/portal-components \\
             AxonIvyPortal/portal \\
-            AxonIvyPortal/PortalKitTestHelper \\
-            Showcase/portal-user-examples \\
-            Showcase/InternalSupport \\
-            Showcase/portal-components-examples ; do
-            mvn -B -ntp clean install -f "$module/pom.xml" -Divy.engine.directory="$ENGINE_DIR"
+            AxonIvyPortal/PortalKitTestHelper ; do
+            mvn -B -ntp clean install -DskipTests -f "$module/pom.xml" -Divy.engine.directory="$ENGINE_DIR"
           done
-          mvn -B -ntp clean package \\
-            -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml \\
-            -Divy.engine.directory="$ENGINE_DIR"
         '''
-        archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/portal-selenium-test-deployment-*.zip', allowEmptyArchive: false
+        archiveArtifacts artifacts: 'AxonIvyPortal/portal-components/target/portal-components-*.iar, AxonIvyPortal/portal/target/portal-*.iar, AxonIvyPortal/PortalKitTestHelper/target/portalKitTestHelper-*.iar',
+                         allowEmptyArchive: false
       }
     }
 
