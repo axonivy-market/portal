@@ -28,6 +28,11 @@ MAVEN="${MAVEN:-mvn}"
 
 ENGINE_URL="${ENGINE_URL%/}/"
 
+if [[ ! "$ENGINE_URL" =~ ^https?:// ]]; then
+  echo "ERROR: ENGINE_URL must start with http:// or https:// (got: $ENGINE_URL)" >&2
+  exit 1
+fi
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 SMOKE_POM="$SCRIPT_DIR/smoke_pom.xml"

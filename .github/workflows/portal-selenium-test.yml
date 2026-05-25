@@ -74,6 +74,7 @@ jobs:
           path: 'AxonIvyPortal/portal-selenium-test/target/surefire-reports/TEST-*.xml'
           reporter: java-junit
           only-summary: 'false'
+          fail-on-empty: 'false'
 
       - name: Fail the job if smoke tests failed
         if: steps.smoke.outcome == 'failure'
