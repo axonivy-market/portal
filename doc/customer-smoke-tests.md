@@ -23,16 +23,22 @@ you adopt it, please read these caveats:
    project (`/PortalKitTestHelper/.../login.ivp`) and cleans test data via
    the same project. Without the helper iar deployed, both tests fail at
    setup.
-2. **Tests assume a fixed set of test users** (`admin/admin`, `demo/demo`,
-   `david/david`, `emma/emma`, `huang/huang`, `peter/peter`, `gm1/gm1`, …)
-   defined in
-   [`TestAccount.java`](../AxonIvyPortal/portal-selenium-test/src_test/com/axonivy/portal/selenium/common/TestAccount.java).
-   These users are provisioned automatically by the helper application's
-   `config/users.yaml` when you deploy it (see § 3) — you do **not** need to
-   create them manually in your security system.
-3. **The application name is hardcoded to `demo-portal`** in
-   [`customized_pom.xml`](../AxonIvyPortal/portal-selenium-test/customized_pom.xml)
-   (`-Dtest.engine.app=demo-portal`).
+2. **The two smoke tests authenticate as `admin` and `demo`.** Both users
+   are provisioned automatically by the portal iar's
+   [`config/users.yaml`](../AxonIvyPortal/portal/config/users.yaml) when
+   you deploy it (see § 3) — you do **not** need to create them manually
+   in your security system. The wider
+   [`TestAccount.java`](../AxonIvyPortal/portal-selenium-test/src_test/com/axonivy/portal/selenium/common/TestAccount.java)
+   enum lists more accounts (`david`, `emma`, `huang`, `peter`, `gm1`, …)
+   used by the broader test suite, but those live in
+   `portal-developer-examples` — which the smoke kit deliberately does
+   not deploy (see § 8).
+3. **The application name defaults to `demo-portal`.** Override it via
+   `-Dtest.engine.app=<your-name>` on the Maven CLI or
+   `ENGINE_APP=<your-name>` for
+   [`run-smoke.sh`](../AxonIvyPortal/portal-selenium-test/run-smoke.sh) /
+   [`Jenkinsfile.smoke`](../Jenkinsfile.smoke). The instructions below
+   assume `demo-portal`.
 4. **Mixing the helper app into a production engine is not recommended.**
    It exposes process starts that grant permissions and clean data. Use a
    dedicated, non-production engine instance for smoke testing.
@@ -167,7 +173,7 @@ Optional flags:
   credentials (see
   [`TestAccount.java`](../AxonIvyPortal/portal-selenium-test/src_test/com/axonivy/portal/selenium/common/TestAccount.java)
   for the full list of overridable system properties). Only useful if you
-  customized the helper app's `users.xml`.
+  customized the portal iar's `users.yaml`.
 - `-Dsurefire.rerunFailingTestsCount=2` — retry transient browser failures
   (matches our CI).
 
@@ -195,11 +201,13 @@ hood, so the result is identical.
 | [`.github/workflows/portal-selenium-test.yml`](../.github/workflows/portal-selenium-test.yml)    | GitHub-hosted customers — trigger via `workflow_dispatch`. Leave the engine URL blank to **auto-provision** a nightly engine on the runner (no external setup), or paste your own engine URL to test against an existing engine. |
 | [`Jenkinsfile.smoke`](../Jenkinsfile.smoke)                                                | Jenkins-hosted customers — parameterised pipeline you can copy into your own job |
 
-All three accept the same parameters (`ENGINE_URL`, `ENGINE_APP`, `BROWSER`,
-`SELENIDE_REMOTE`). The Jenkinsfile also offers an optional
-`BUILD_HELPER_IARS` step that builds the three iars from § 3 and archives
-them as job artefacts — you still have to drop them onto your engine (§ 3)
-yourself.
+The shell script and Jenkinsfile accept `ENGINE_URL`, `ENGINE_APP`,
+`BROWSER`, and `SELENIDE_REMOTE` as parameters. The GitHub workflow exposes
+only `engineUrl` (and `engineDownloadURL` for the auto-provision mode); the
+other parameters are inlined — fork the workflow and edit it if you need
+to change them. The Jenkinsfile also offers an optional `BUILD_HELPER_IARS`
+step that builds the three iars from § 3 and archives them as job
+artefacts — you still have to drop them onto your engine (§ 3) yourself.
 
 These files are starting points. Modify, extend, or replace them as needed
 — we don't provide ongoing support.
