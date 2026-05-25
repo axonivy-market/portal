@@ -29,15 +29,18 @@ on:
         type: string
         required: false
         default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
+      testPatternToRun:
+        description: 'Comma-separated test classes. Default = Tier 1 (LoginTest,TopbarTest). Tier 2 adds: MenuTest,UserHomepageTest. Tier 3 adds: DashboardTaskWidgetTest,DashboardCaseWidgetTest,GlobalSearchTest,QuickSearchTest. See doc/customer-smoke-tests.md § 3.'
+        type: string
+        required: false
+        default: 'LoginTest,TopbarTest'
 
 jobs:
   smoke:
     runs-on: ubuntu-latest
     env:
       ENGINE_APP: 'demo-portal'
-      # Tier 1 default — only needs PortalKitTestHelper deployed on the engine.
-      # For Tier 2 / Tier 3 coverage, edit this list. See doc/customer-smoke-tests.md § 5.
-      TEST_PATTERN: 'LoginTest,TopbarTest'
+      TEST_PATTERN: ${{ inputs.testPatternToRun }}
       BROWSER: 'FIREFOX'
     steps:
       - name: Checkout code
