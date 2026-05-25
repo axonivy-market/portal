@@ -36,9 +36,8 @@ you adopt it, please read these caveats:
 3. **The application name defaults to `demo-portal`.** Override it via
    `-Dtest.engine.app=<your-name>` on the Maven CLI or
    `ENGINE_APP=<your-name>` for
-   [`run-smoke.sh`](../AxonIvyPortal/portal-selenium-test/run-smoke.sh) /
-   [`Jenkinsfile.smoke`](../Jenkinsfile.smoke). The instructions below
-   assume `demo-portal`.
+   [`run-smoke.sh`](../AxonIvyPortal/portal-selenium-test/run-smoke.sh).
+   The instructions below assume `demo-portal`.
 4. **Mixing the helper app into a production engine is not recommended.**
    It exposes process starts that grant permissions and clean data. Use a
    dedicated, non-production engine instance for smoke testing.
@@ -191,23 +190,24 @@ After the run:
 
 ## 6. Pick your runner
 
-Three ready-to-use entry points ship in this repo. Pick whichever fits your
-CI setup. All three end up calling the same Maven invocation under the
-hood, so the result is identical.
+Two ready-to-use entry points ship in this repo. Both end up calling the
+same Maven invocation under the hood, so the result is identical.
 
 | Runner                                                                                     | Best for                                              |
 |--------------------------------------------------------------------------------------------|-------------------------------------------------------|
 | [`AxonIvyPortal/portal-selenium-test/run-smoke.sh`](../AxonIvyPortal/portal-selenium-test/run-smoke.sh) | Local one-off runs, scripted environments, ad-hoc verification |
 | [`.github/workflows/portal-selenium-test.yml`](../.github/workflows/portal-selenium-test.yml)    | GitHub-hosted customers — trigger via `workflow_dispatch`. Leave the engine URL blank to **auto-provision** a nightly engine on the runner (no external setup), or paste your own engine URL to test against an existing engine. |
-| [`Jenkinsfile.smoke`](../Jenkinsfile.smoke)                                                | Jenkins-hosted customers — parameterised pipeline you can copy into your own job |
 
-The shell script and Jenkinsfile accept `ENGINE_URL`, `ENGINE_APP`,
-`BROWSER`, and `SELENIDE_REMOTE` as parameters. The GitHub workflow exposes
-only `engineUrl` (and `engineDownloadURL` for the auto-provision mode); the
-other parameters are inlined — fork the workflow and edit it if you need
-to change them. The Jenkinsfile also offers an optional `BUILD_HELPER_IARS`
-step that builds the three iars from § 3 and archives them as job
-artefacts — you still have to drop them onto your engine (§ 3) yourself.
+The shell script accepts `ENGINE_URL`, `ENGINE_APP`, `BROWSER`, and
+`SELENIDE_REMOTE` as environment variables. The GitHub workflow exposes
+only `engineUrl` (and `engineDownloadURL` for the auto-provision mode);
+the other parameters are inlined — fork the workflow and edit it if you
+need to change them.
+
+Running on a different CI (Jenkins, GitLab CI, Azure Pipelines, …)? The
+GitHub workflow is the easiest reference — its "external engine" branch
+is a handful of lines that just invoke `run-smoke.sh` with the engine
+URL. Translate that pattern into your own pipeline DSL.
 
 These files are starting points. Modify, extend, or replace them as needed
 — we don't provide ongoing support.
