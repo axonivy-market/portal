@@ -25,9 +25,6 @@ pipeline {
     string(name: 'ENGINE_APP',
            defaultValue: 'demo-portal',
            description: 'Deployed helper application name')
-    choice(name: 'BROWSER',
-           choices: ['FIREFOX', 'CHROME'],
-           description: 'Browser driver')
     string(name: 'SELENIUM_REMOTE',
            defaultValue: '',
            description: 'Optional Selenium Grid URL (leave blank for local browser)')
@@ -42,6 +39,7 @@ pipeline {
   environment {
     MAVEN_OPTS = '-Xmx2g'
     TEST_PATTERN = 'LoginTest,TopbarTest'
+    BROWSER = 'FIREFOX'
   }
 
   stages {

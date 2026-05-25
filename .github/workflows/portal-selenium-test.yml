@@ -39,7 +39,6 @@ jobs:
     env:
       ENGINE_APP: 'demo-portal'
       TEST_PATTERN: 'LoginTest,TopbarTest'
-      BROWSER: 'FIREFOX'
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -109,7 +108,7 @@ jobs:
           mvn -B -ntp clean test \
             -f AxonIvyPortal/portal-selenium-test/customized_pom.xml \
             -Dtest="${TEST_PATTERN}" \
-            -DbrowserType="${BROWSER}" \
+            -DbrowserType=FIREFOX \
             -Dcapabilities.unhandledPromptBehavior=accept \
             -DtrimStackTrace=false \
             -Divy.engine.directory="$ENGINE_DIR" \
