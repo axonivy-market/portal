@@ -90,15 +90,25 @@ jobs:
             mvn -B -ntp clean install -DskipTests -f "$module/pom.xml" -Divy.engine.directory="$ENGINE_DIR"
           done
 
-      - name: Stage helper iars to engine
+      - name: Inject helper iars into engine's demo-portal
         if: ${{ inputs.engineUrl == '' }}
         run: |
           DEPLOYMENT="$ENGINE_DIR/system/demo-applications/demo-portal"
-          mkdir -p "$DEPLOYMENT"
-          rm -rf "$DEPLOYMENT"/*
-          cp AxonIvyPortal/portal-components/target/portal-components-*.iar      "$DEPLOYMENT/"
-          cp AxonIvyPortal/portal/target/portal-*.iar                            "$DEPLOYMENT/"
-          cp AxonIvyPortal/PortalKitTestHelper/target/portalKitTestHelper-*.iar  "$DEPLOYMENT/"
+          ZIP_FILE=$(ls "$DEPLOYMENT"/*.zip 2>/dev/null | head -n 1)
+          if [ -z "$ZIP_FILE" ]; then
+            echo "::error::No demo-portal ZIP found in $DEPLOYMENT — the nightly engine may have changed its packaging."
+            exit 1
+          fi
+          echo "Injecting helper IARs into $ZIP_FILE"
+          STAGING=$(mktemp -d)
+          cp AxonIvyPortal/portal-components/target/portal-components-*.iar      "$STAGING/"
+          cp AxonIvyPortal/portal/target/portal-*.iar                            "$STAGING/"
+          cp AxonIvyPortal/PortalKitTestHelper/target/portalKitTestHelper-*.iar  "$STAGING/"
+          cd "$STAGING"
+          for iar in *.iar; do
+            zip -u "$ZIP_FILE" "$iar"
+          done
+          rm -rf "$STAGING"
 
       - name: Run smoke tests (auto-provisioned engine)
         if: ${{ inputs.engineUrl == '' }}
