@@ -287,7 +287,7 @@ the result is identical. All three default to **Tier 1** — override
 | Runner                                                                                     | Best for                                              |
 |--------------------------------------------------------------------------------------------|-------------------------------------------------------|
 | [`AxonIvyPortal/portal-selenium-test/run-smoke.sh`](../AxonIvyPortal/portal-selenium-test/run-smoke.sh) | Local one-off runs, scripted environments, ad-hoc verification |
-| [`.github/workflows/portal-selenium-test.yml`](../.github/workflows/portal-selenium-test.yml)    | GitHub-hosted customers — trigger via `workflow_dispatch` with the engine URL as input |
+| [`.github/workflows/portal-selenium-test.yml`](../.github/workflows/portal-selenium-test.yml)    | GitHub-hosted customers — trigger via `workflow_dispatch`. Leave the engine URL blank to **auto-provision** a nightly engine on the runner (no external setup), or paste your own engine URL to test against an existing engine. |
 | [`Jenkinsfile.smoke`](../Jenkinsfile.smoke)                                                | Jenkins-hosted customers — parameterised pipeline you can copy into your own job |
 
 All three accept the same parameters (`ENGINE_URL`, `ENGINE_APP`,

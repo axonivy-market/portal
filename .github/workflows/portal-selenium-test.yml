@@ -1,10 +1,15 @@
 name: Portal Smoke Test
-run-name: 🔆 Portal Smoke Test against ${{ inputs.engineUrl }}
+run-name: 🔆 Portal Smoke Test ${{ inputs.engineUrl == '' && '(auto-provisioned engine)' || format('against {0}', inputs.engineUrl) }}
 
-# Standalone smoke-test workflow. Runs a curated subset of Portal Selenium
-# tests against an externally provisioned engine that already has Portal +
-# demo-portal deployed. See doc/customer-smoke-tests.md for the full guide.
-# To customise tests, browser, or app name edit the hardcoded values below.
+# Smoke-test workflow with two modes:
+#   1. Default — leave engineUrl blank. The workflow downloads the nightly Ivy
+#      engine, builds the Portal helper modules, deploys them as demo-portal,
+#      starts the engine via the Ivy build plugin, then runs the curated
+#      smoke-test subset against it. Self-contained, no external setup needed.
+#   2. External — provide engineUrl. The workflow skips auto-provisioning and
+#      runs run-smoke.sh against the engine you specify (which must already
+#      have Portal + the demo-portal helper app deployed).
+# See doc/customer-smoke-tests.md for the full handover guide.
 
 permissions:
   contents: read
@@ -15,10 +20,15 @@ on:
   workflow_dispatch:
     inputs:
       engineUrl:
-        description: 'Engine root URL (default: http://localhost:8080/)'
+        description: 'Engine root URL (leave blank to auto-provision an engine on the runner)'
         type: string
         required: false
-        default: 'http://localhost:8080/'
+        default: ''
+      engineDownloadURL:
+        description: 'Ivy engine zip URL (only used when engineUrl is blank)'
+        type: string
+        required: false
+        default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
 
 jobs:
   smoke:
@@ -29,7 +39,6 @@ jobs:
       # For Tier 2 / Tier 3 coverage, edit this list. See doc/customer-smoke-tests.md § 5.
       TEST_PATTERN: 'LoginTest,TopbarTest'
       BROWSER: 'FIREFOX'
-      SELENIDE_REMOTE: ''
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -50,8 +59,64 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y firefox
 
-      - name: Run smoke tests
-        id: smoke
+      # ---- Auto-provision branch (engineUrl blank) ---------------------------
+      - name: Set up engine directory
+        if: ${{ inputs.engineUrl == '' }}
+        run: |
+          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/nightly"
+          mkdir -p "$ENGINE_DIR"
+          echo "ENGINE_DIR=$ENGINE_DIR" >> "$GITHUB_ENV"
+
+      - name: Download Ivy engine
+        if: ${{ inputs.engineUrl == '' }}
+        run: |
+          cd "$ENGINE_DIR"
+          wget -q "${{ inputs.engineDownloadURL }}" -O axonivy-engine.zip
+          unzip -q -o axonivy-engine.zip -d .
+          rm axonivy-engine.zip
+
+      - name: Build Portal helper modules
+        if: ${{ inputs.engineUrl == '' }}
+        run: |
+          for module in \
+            AxonIvyPortal/portal-components \
+            AxonIvyPortal/portal \
+            AxonIvyPortal/PortalKitTestHelper \
+            Showcase/portal-user-examples \
+            Showcase/portal-developer-examples \
+            Showcase/InternalSupport \
+            Showcase/portal-components-examples ; do
+            mvn -B -ntp clean install -DskipTests -f "$module/pom.xml" -Divy.engine.directory="$ENGINE_DIR"
+          done
+
+      - name: Build deployment zip and stage to engine
+        if: ${{ inputs.engineUrl == '' }}
+        run: |
+          mvn -B -ntp clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory="$ENGINE_DIR"
+          DEPLOYMENT="$ENGINE_DIR/system/demo-applications/demo-portal"
+          mkdir -p "$DEPLOYMENT"
+          rm -rf "$DEPLOYMENT"/*
+          cp AxonIvyPortal/portal-selenium-test/target/portal-selenium-test-deployment-*.zip "$DEPLOYMENT/"
+
+      - name: Run smoke tests (auto-provisioned engine)
+        if: ${{ inputs.engineUrl == '' }}
+        id: smoke-auto
+        continue-on-error: true
+        run: |
+          mvn -B -ntp clean test \
+            -f AxonIvyPortal/portal-selenium-test/customized_pom.xml \
+            -Dtest="${TEST_PATTERN}" \
+            -DbrowserType="${BROWSER}" \
+            -Dcapabilities.unhandledPromptBehavior=accept \
+            -DtrimStackTrace=false \
+            -Divy.engine.directory="$ENGINE_DIR" \
+            -Divy.deploy.timeout.seconds=120 \
+            -Divy.engine.start.timeout.seconds=180
+
+      # ---- External-engine branch (engineUrl provided) -----------------------
+      - name: Run smoke tests (external engine)
+        if: ${{ inputs.engineUrl != '' }}
+        id: smoke-ext
         continue-on-error: true
         env:
           ENGINE_URL: ${{ inputs.engineUrl }}
@@ -59,6 +124,7 @@ jobs:
           chmod +x AxonIvyPortal/portal-selenium-test/run-smoke.sh
           ./AxonIvyPortal/portal-selenium-test/run-smoke.sh
 
+      # ---- Common reporting --------------------------------------------------
       - name: Archive test reports
         if: always()
         uses: actions/upload-artifact@v7
@@ -68,6 +134,7 @@ jobs:
           path: |
             AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
             AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
+            AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
 
       - name: Publish JUnit report
         if: always()
@@ -80,5 +147,5 @@ jobs:
           fail-on-empty: 'false'
 
       - name: Fail the job if smoke tests failed
-        if: steps.smoke.outcome == 'failure'
+        if: ${{ steps.smoke-auto.outcome == 'failure' || steps.smoke-ext.outcome == 'failure' }}
         run: exit 1
