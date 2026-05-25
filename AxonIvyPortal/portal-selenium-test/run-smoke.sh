@@ -8,7 +8,8 @@
 # Configurable via environment variables:
 #   ENGINE_URL       Target engine root URL.        Default: http://localhost:8080/
 #   ENGINE_APP       Deployed helper app name.      Default: demo-portal
-#   TEST_PATTERN     Surefire -Dtest value.         Default: the 8 recommended smoke tests
+#   TEST_PATTERN     Surefire -Dtest value.         Default: Tier 1 (LoginTest,TopbarTest)
+#                                                   See doc/customer-smoke-tests.md § 5 for Tiers 2 & 3.
 #   BROWSER          Selenide -DbrowserType value.  Default: FIREFOX
 #   SELENIDE_REMOTE  Selenium Grid URL (optional).  Default: empty (local browser)
 #   MAVEN            Maven executable.              Default: mvn
@@ -21,7 +22,7 @@ set -euo pipefail
 
 ENGINE_URL="${ENGINE_URL:-http://localhost:8080/}"
 ENGINE_APP="${ENGINE_APP:-demo-portal}"
-TEST_PATTERN="${TEST_PATTERN:-LoginTest,TopbarTest,MenuTest,UserHomepageTest,DashboardTaskWidgetTest,DashboardCaseWidgetTest,GlobalSearchTest,QuickSearchTest}"
+TEST_PATTERN="${TEST_PATTERN:-LoginTest,TopbarTest}"
 BROWSER="${BROWSER:-FIREFOX}"
 SELENIDE_REMOTE="${SELENIDE_REMOTE:-}"
 MAVEN="${MAVEN:-mvn}"

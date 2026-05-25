@@ -23,8 +23,8 @@ pipeline {
            defaultValue: 'demo-portal',
            description: 'Deployed helper application name')
     string(name: 'TEST_PATTERN',
-           defaultValue: 'LoginTest,TopbarTest,MenuTest,UserHomepageTest,DashboardTaskWidgetTest,DashboardCaseWidgetTest,GlobalSearchTest,QuickSearchTest',
-           description: 'Surefire -Dtest value (comma-separated)')
+           defaultValue: 'LoginTest,TopbarTest',
+           description: 'Surefire -Dtest value (comma-separated). Default = Tier 1 (only needs PortalKitTestHelper deployed). See doc/customer-smoke-tests.md § 5 for Tier 2 & 3 patterns.')
     choice(name: 'BROWSER',
            choices: ['FIREFOX', 'CHROME'],
            description: 'Browser driver')

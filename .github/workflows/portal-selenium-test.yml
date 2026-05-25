@@ -25,7 +25,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ENGINE_APP: 'demo-portal'
-      TEST_PATTERN: 'LoginTest,TopbarTest,MenuTest,UserHomepageTest,DashboardTaskWidgetTest,DashboardCaseWidgetTest,GlobalSearchTest,QuickSearchTest'
+      # Tier 1 default — only needs PortalKitTestHelper deployed on the engine.
+      # For Tier 2 / Tier 3 coverage, edit this list. See doc/customer-smoke-tests.md § 5.
+      TEST_PATTERN: 'LoginTest,TopbarTest'
       BROWSER: 'FIREFOX'
       SELENIDE_REMOTE: ''
     steps:
