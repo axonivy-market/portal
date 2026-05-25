@@ -316,10 +316,6 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
 
     Optional.ofNullable(userFilterCollection.getLatestFilterOption())
       .ifPresent(latestFilterOption -> removeDisabledUserFilters(latestFilterOption, widget.getType(), enabledColumns));
-
-    userFilterCollection.getSelectedWidgetFilters()
-      .stream().filter(Objects::nonNull)
-      .forEach(model -> removeDisabledUserFilters(model, widget.getType(), enabledColumns));
   }
 
   private List<ColumnModel> getEnabledFilterableColumns(DashboardWidget widget) {
