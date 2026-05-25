@@ -194,6 +194,7 @@
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             actionListener="#{taskWidgetConfigurationFilterBean.updateWidgetFilterBeforeApply(widget)}"
             styleClass="Fright preview-button u-hidden-sm-down" icon="ti ti-check"
+            process="predefined-filter"
             update="predefined-filter configuration-filter-messages-panel"
             oncomplete="closeFilterPanelWithValidation(); if (args &amp;&amp; !args.validationFailed) { updateComponentOnPreviewCmd(); }" />
           <p:commandButton id="reset-filter" icon="ti ti-refresh"
