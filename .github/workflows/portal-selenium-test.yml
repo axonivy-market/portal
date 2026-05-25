@@ -15,9 +15,10 @@ on:
   workflow_dispatch:
     inputs:
       engineUrl:
-        description: 'Engine root URL (e.g. http://my-engine:8080/)'
+        description: 'Engine root URL (default: http://localhost:8080/)'
         type: string
-        required: true
+        required: false
+        default: 'http://localhost:8080/'
 
 jobs:
   smoke:
