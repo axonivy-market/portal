@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -144,12 +143,9 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   }
 
   private void updateFiltersForTaskWidget(TaskDashboardWidget taskWidget) {
-    if (CollectionUtils.isEmpty(taskWidget.getColumns())) {
-      return;
-    }
-    Set<String> enabledFilterFields = taskWidget.getColumns().stream().filter(Objects::nonNull)
-        .filter(column -> BooleanUtils.isTrue(column.getEnableFilter())).map(TaskColumnModel::getField)
-        .collect(Collectors.toSet());
+    Set<String> enabledFilterFields = Optional.ofNullable(taskWidget.getFilterableColumns()).orElse(Collections.emptyList())
+      .stream().map(ColumnModel::getField)
+      .collect(Collectors.toSet());
 
     List<DashboardFilter> filterToKeep = taskWidget.getFilters().stream()
         .filter(filter -> enabledFilterFields.contains(filter.getField()))
@@ -165,11 +161,8 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   }
 
   private void updateFiltersForCaseWidget(CaseDashboardWidget caseWidget) {
-    if (CollectionUtils.isEmpty(caseWidget.getColumns())) {
-      return;
-    }
-    Set<String> enabledFilterFields = caseWidget.getColumns().stream().filter(Objects::nonNull)
-        .filter(column -> BooleanUtils.isTrue(column.getEnableFilter())).map(CaseColumnModel::getField)
+    Set<String> enabledFilterFields = Optional.ofNullable(caseWidget.getFilterableColumns()).orElse(Collections.emptyList())
+        .stream().map(ColumnModel::getField)
         .collect(Collectors.toSet());
 
     List<DashboardFilter> filterToKeep = caseWidget.getFilters().stream()
