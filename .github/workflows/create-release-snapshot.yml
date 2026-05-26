@@ -70,7 +70,7 @@ jobs:
   verify-selenium-test:
     name: Verify Selenium Test
     runs-on: ubuntu-latest
-    if: ${{ !inputs.skipVerification }}
+    if: ${{ !inputs.skipVerification && github.event_name != 'push' }}
     needs: get-latest-sha
     steps:
       - name: Verify Selenium Test passed for latest SHA
@@ -109,7 +109,7 @@ jobs:
   verify-screenshot:
     name: Verify Screenshot
     runs-on: ubuntu-latest
-    if: ${{ !inputs.skipVerification }}
+    if: ${{ !inputs.skipVerification && github.event_name != 'push' }}
     needs: get-latest-sha
     steps:
       - name: Verify Screenshot workflow passed for latest SHA
@@ -148,7 +148,7 @@ jobs:
   verify-documentation:
     name: Verify Documentation
     runs-on: ubuntu-latest
-    if: ${{ !inputs.skipVerification }}
+    if: ${{ !inputs.skipVerification && github.event_name != 'push' }}
     needs: get-latest-sha
     steps:
       - name: Verify Documentation workflow passed for latest SHA
@@ -285,7 +285,7 @@ jobs:
         env:
           MAVEN_USERNAME: ${{ secrets.NEXUS_AXONIVY_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.NEXUS_AXONIVY_PASSWORD }}
-          DEPLOY_TO_REPO: ${{ inputs.deployToRepo != false }}
+          DEPLOY_TO_REPO: ${{ github.event_name != 'push' && inputs.deployToRepo != false }}
         run: |
           # Format: "module/path:canDeploy"
           MODULES=(
