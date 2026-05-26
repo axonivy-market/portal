@@ -203,7 +203,7 @@ jobs:
           gh workflow run portal-documentation.yml \
             --repo "${{ github.repository }}" \
             --ref "${{ env.PORTAL_BRANCH }}" \
-            --field deploySnapshot="${{ inputs.deployToRepo != false }}"
+            --field deploySnapshot="${{ github.event_name != 'push' && inputs.deployToRepo != false }}"
 
       - name: Wait for documentation workflow to complete
         env:
@@ -213,6 +213,7 @@ jobs:
           sleep 15
 
           RUN_ID=$(gh run list \
+            --repo "${{ github.repository }}" \
             --workflow=portal-documentation.yml \
             --branch="${{ env.PORTAL_BRANCH }}" \
             --limit=1 \
@@ -226,7 +227,7 @@ jobs:
 
           echo "Documentation workflow run ID: $RUN_ID"
           echo "Waiting for completion (this may take several minutes)..."
-          gh run watch "$RUN_ID" --exit-status
+          gh run watch "$RUN_ID" --repo "${{ github.repository }}" --exit-status
 
   # ---------------------------------------------------------------------------
   # Build and deploy all Portal modules.
