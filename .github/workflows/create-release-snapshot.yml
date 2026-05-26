@@ -4,6 +4,9 @@ run-name: 📦 Create Release Snapshot (${{ inputs.portalBranch || 'master' }})
 on:
   schedule:
     - cron: '0 0 * * *'
+  push:
+    branches:
+      - feature/IVYPORTAL-20480-Build-Pipelines-ready-to-serve-LTS14  # TODO: remove before merge to master
   workflow_dispatch:
     inputs:
       portalBranch:
