@@ -10,7 +10,6 @@
 #   ENGINE_APP       Deployed helper app name.      Default: demo-portal
 #   TEST_PATTERN     Surefire -Dtest value.         Default: LoginTest,TopbarTest
 #   BROWSER          Selenide -DbrowserType value.  Default: FIREFOX
-#   SELENIDE_REMOTE  Selenium Grid URL (optional).  Default: empty (local browser)
 #   MAVEN            Maven executable.              Default: mvn
 #
 # Exit code is the Maven exit code. Reports land under:
@@ -23,7 +22,6 @@ ENGINE_URL="${ENGINE_URL:-http://localhost:8080/}"
 ENGINE_APP="${ENGINE_APP:-demo-portal}"
 TEST_PATTERN="${TEST_PATTERN:-LoginTest,TopbarTest}"
 BROWSER="${BROWSER:-FIREFOX}"
-SELENIDE_REMOTE="${SELENIDE_REMOTE:-}"
 MAVEN="${MAVEN:-mvn}"
 
 ENGINE_URL="${ENGINE_URL%/}/"
@@ -69,10 +67,6 @@ MVN_ARGS=(
   -DtrimStackTrace=false
   -Dsurefire.rerunFailingTestsCount=2
 )
-
-if [[ -n "$SELENIDE_REMOTE" ]]; then
-  MVN_ARGS+=("-Dselenide.remote=$SELENIDE_REMOTE")
-fi
 
 echo "==> $MAVEN ${MVN_ARGS[*]}"
 set +e

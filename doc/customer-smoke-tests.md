@@ -169,8 +169,6 @@ mvn clean test \
 
 Optional flags:
 
-- `-Dselenide.remote=http://<selenium-grid>:4444/wd/hub` — drive the browser
-  from a Selenium Grid / Docker container instead of the local machine.
 - `-DadminUserName=... -DadminUserPassword=...` — override the default test
   credentials (see
   [`TestAccount.java`](../AxonIvyPortal/portal-selenium-test/src_test/com/axonivy/portal/selenium/common/TestAccount.java)
@@ -193,24 +191,23 @@ After the run:
 
 ## 6. Pick your runner
 
-Two ready-to-use entry points ship in this repo. Both end up calling the
-same Maven invocation under the hood, so the result is identical.
+Two ready-to-use entry points ship in this repo. They serve different
+scenarios:
 
 | Runner                                                                                     | Best for                                              |
 |--------------------------------------------------------------------------------------------|-------------------------------------------------------|
-| [`AxonIvyPortal/portal-selenium-test/run-smoke.sh`](../AxonIvyPortal/portal-selenium-test/run-smoke.sh) | Local one-off runs, scripted environments, ad-hoc verification |
-| [`.github/workflows/portal-selenium-test.yml`](../.github/workflows/portal-selenium-test.yml)    | GitHub-hosted customers — trigger via `workflow_dispatch`. Leave the engine URL blank to **auto-provision** a nightly engine on the runner (no external setup), or paste your own engine URL to test against an existing engine. |
+| [`AxonIvyPortal/portal-selenium-test/run-smoke.sh`](../AxonIvyPortal/portal-selenium-test/run-smoke.sh) | Anyone who already has an engine — run from a laptop, a server, or your own CI (Jenkins, GitLab CI, Azure Pipelines…). The script does the engine + helper-app sanity checks, then invokes Maven against [`smoke_pom.xml`](../AxonIvyPortal/portal-selenium-test/smoke_pom.xml). |
+| [`.github/workflows/portal-selenium-test.yml`](../.github/workflows/portal-selenium-test.yml)    | "Click the button and see if Portal is alive on a fresh engine" — trigger via `workflow_dispatch` on GitHub. The workflow downloads a nightly Ivy engine onto the runner, builds + injects the helper iars, starts the engine, and runs the smoke tests. Self-contained; no infrastructure of your own needed. |
 
-The shell script accepts `ENGINE_URL`, `ENGINE_APP`, `BROWSER`, and
-`SELENIDE_REMOTE` as environment variables. The GitHub workflow exposes
-only `engineUrl` (and `engineDownloadURL` for the auto-provision mode);
-the other parameters are inlined — fork the workflow and edit it if you
-need to change them.
+The shell script accepts `ENGINE_URL`, `ENGINE_APP`, and `BROWSER` as
+environment variables. The GitHub workflow exposes only
+`engineDownloadURL`; the other parameters are inlined — fork the workflow
+and edit it if you need to change them.
 
-Running on a different CI (Jenkins, GitLab CI, Azure Pipelines, …)? The
-GitHub workflow is the easiest reference — its "external engine" branch
-is a handful of lines that just invoke `run-smoke.sh` with the engine
-URL. Translate that pattern into your own pipeline DSL.
+The workflow deliberately doesn't accept a customer engine URL — pointing
+GitHub-hosted runners at a customer engine usually isn't practical
+(firewalls, private networks, VPNs). If you have your own engine, run
+`run-smoke.sh` from somewhere that can reach it.
 
 These files are starting points. Modify, extend, or replace them as needed
 — we don't provide ongoing support.
