@@ -203,7 +203,7 @@ jobs:
           gh workflow run portal-documentation.yml \
             --repo "${{ github.repository }}" \
             --ref "${{ env.PORTAL_BRANCH }}" \
-            --field deploySnapshot="${{ github.event_name != 'push' && inputs.deployToRepo != false }}"
+            --field deploySnapshot="${{ inputs.deployToRepo == true }}"
 
       - name: Wait for documentation workflow to complete
         env:
@@ -287,7 +287,7 @@ jobs:
         env:
           MAVEN_USERNAME: ${{ secrets.NEXUS_AXONIVY_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.NEXUS_AXONIVY_PASSWORD }}
-          DEPLOY_TO_REPO: ${{ github.event_name != 'push' && inputs.deployToRepo != false }}
+          DEPLOY_TO_REPO: ${{ inputs.deployToRepo == true }}
         run: |
           # Format: "module/path:canDeploy"
           MODULES=(
