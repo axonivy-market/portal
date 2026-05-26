@@ -54,11 +54,11 @@ jobs:
         with:
           maven-version: 3.9.8
 
-      # Don't reinstall Firefox — the ubuntu-24.04 runner pre-installs the
-      # MozillaTeam-PPA Firefox (a real binary). Running `apt-get install firefox`
-      # would upgrade it to the snap transitional package, and the snap wrapper
-      # at /usr/bin/firefox is not an executable geckodriver can launch
-      # ("binary is not a Firefox executable").
+      # Don't reinstall Firefox — the GitHub-hosted Ubuntu runner already
+      # ships a real Firefox binary (currently from the MozillaTeam PPA).
+      # Running `apt-get install firefox` can replace it with the snap
+      # transitional package, whose wrapper at /usr/bin/firefox is not an
+      # executable geckodriver can launch ("binary is not a Firefox executable").
       - name: Verify Firefox is available
         run: |
           firefox --version

@@ -16,13 +16,16 @@ The Portal test suite under
 is our **internal regression suite**, not a black-box smoke harness. Before
 you adopt it, please read these caveats:
 
-1. **A helper application must be deployed on the target engine.** Both
-   smoke tests extend
+1. **A helper application must be deployed on the target engine.**
+   `TopbarTest` extends
    [`BaseTest`](../AxonIvyPortal/portal-selenium-test/src_test/com/axonivy/portal/selenium/common/BaseTest.java),
-   which logs users in by calling a process inside our `PortalKitTestHelper`
-   project (`/PortalKitTestHelper/.../login.ivp`) and cleans test data via
-   the same project. Without the helper iar deployed, both tests fail at
-   setup.
+   which uses `PortalKitTestHelper` endpoints
+   (`/PortalKitTestHelper/.../login.ivp`, `cleanData.ivp`,
+   `updatePortalSetting.ivp`) to log in as `demo`, clean test data, and
+   toggle portal settings — without the helper iar deployed, `TopbarTest`
+   fails at setup. `LoginTest` exercises Portal's real login UI and
+   doesn't strictly need the helper, but the smoke kit ships both tests
+   as a pair, so deploy all three iars per § 3.
 2. **The two smoke tests authenticate as `admin` and `demo`.** Both users
    are provisioned automatically by the portal iar's
    [`config/users.yaml`](../AxonIvyPortal/portal/config/users.yaml) when

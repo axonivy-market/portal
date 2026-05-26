@@ -51,8 +51,8 @@ fi
 LOGIN_PROBE="${ENGINE_URL}${ENGINE_APP}/pro/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=admin&password=admin"
 echo "==> Checking helper app is deployed (probing $LOGIN_PROBE)"
 probe_status="$(curl -fsS -o /dev/null -w '%{http_code}' --connect-timeout 5 --max-time 30 -L "$LOGIN_PROBE" || true)"
-if [[ "$probe_status" == "404" || -z "$probe_status" ]]; then
-  echo "ERROR: helper login URL returned $probe_status — the demo-portal helper application does not appear to be deployed."
+if [[ ! "$probe_status" =~ ^[23][0-9][0-9]$ ]]; then
+  echo "ERROR: helper login URL returned '${probe_status:-no response}' — the demo-portal helper application does not appear to be deployed or the engine is not healthy."
   echo "       See doc/customer-smoke-tests.md section 3 for how to build and deploy it."
   exit 3
 fi
