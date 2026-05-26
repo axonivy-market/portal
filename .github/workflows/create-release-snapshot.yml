@@ -201,6 +201,7 @@ jobs:
         run: |
           echo "Triggering portal-documentation.yml on branch ${{ env.PORTAL_BRANCH }}..."
           gh workflow run portal-documentation.yml \
+            --repo "${{ github.repository }}" \
             --ref "${{ env.PORTAL_BRANCH }}" \
             --field deploySnapshot="${{ inputs.deployToRepo != false }}"
 
