@@ -230,14 +230,10 @@ public class ChatAssigneeBean implements Serializable {
     String escapedName = SanitizeAPI.escapeForJavascript(groupChatName);
     String function = "$('#toggle-chat-panel-command').click();"
         + "var targetGroupChatName = \"" + escapedName + "\";"
-        + "var attempts = 0;"
         + "var checkExist = setInterval(function() {"
-        + "  attempts++;"
         + "  var target = $('#chat-form\\\\:group-chat-container .js-group-card-name').filter(function() { return $(this).attr('title') === targetGroupChatName; });"
         + "  if (target.length) {"
         + "    target.click();"
-        + "    clearInterval(checkExist);"
-        + "  } else if (attempts >= 50) {"
         + "    clearInterval(checkExist);"
         + "  }"
         + "}, 100);";
