@@ -5,7 +5,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 msgid ""
-msgstr "Project-Id-Version: Portal Guide ${revision}\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05-27 09:50+0000\nPO-Revision-Date: 2026-05-27 15:28+0000\nLast-Translator: Tung Le <ltthome@gmail.com>\nLanguage-Team: Japanese <https://hosted.weblate.org/projects/tung-translation-1/portal-user-guide/ja/>\nLanguage: ja\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 2026.6.dev0\nGenerated-By: Babel 2.18.0\n"
+msgstr "Project-Id-Version: Portal Guide ${revision}\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05-27 09:50+0000\nPO-Revision-Date: 2026-05-27 17:13+0000\nLast-Translator: Tung Le <ltthome@gmail.com>\nLanguage-Team: Japanese <https://hosted.weblate.org/projects/tung-translation-1/portal-user-guide/ja/>\nLanguage: ja\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 2026.6.dev0\nGenerated-By: Babel 2.18.0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
 msgid "Accessibility"
@@ -16,10 +16,8 @@ msgid "To enable/disable keyboard shortcuts, go to **My Profile** > **Accessibil
 msgstr "有効/無効なキーボードショートカットを有効にするには、 **My Profile** > **Accessibility settings** に移動します。 詳細は :ref:`accessibility-settings` をご覧ください。 無効にすると、下記のショートカットは動作しません。 補助技術をお持ちの方は、最適なナビゲーションにショートカットを有効にしておくことをお勧めします."
 
 #: ../../source/portal-user-guide/accessibility/index.rst:12
-#| msgid "Keyboard Shortcut Quick Reference"
-#, fuzzy
 msgid "Keyboard Shortcut Quick References"
-msgstr "キーボードショートカット クイックリファレンス"
+msgstr "キーボードショートカットクイックリファレンス"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:18
 msgid "Shortcut"
@@ -1617,15 +1615,11 @@ msgstr "AIアシスタント"
 
 #: ../../source/portal-user-guide/ai-assistant/index.rst:6
 msgid "The Portal is fully integrated with the ``AI Assistant``, an application capable of managing and utilizing AI-powered virtual assistants. The ``AI Assistant`` can help you get more knowledge about the Portal by using its AI function ``Portal Support``."
-msgstr ""
-"ポータルには、AI アシスタントを管理、利用できるアプリケーション ``AI アシスタント`` が完全統合されています。\n"
-"``AI アシスタント`` は、 ``ポータルサポート`` AI 機能を利用して、ユーザーがポータルについてより多くの知識を得られるよう手助けします。"
+msgstr "ポータルには、AI アシスタントを管理、利用できるアプリケーション ``AI アシスタント`` が完全統合されています。\n``AI アシスタント`` は、 ``ポータルサポート`` AI 機能を利用して、ユーザーがポータルについてより多くの知識を得られるよう手助けします。"
 
 #: ../../source/portal-user-guide/ai-assistant/index.rst:9
 msgid "To use AI Assistant, simply deploy the ``ai-assistant`` project in the same application as Portal. Once deployed, you can access the AI Assistant by clicking on the AI icon in the top bar of Portal."
-msgstr ""
-"AI アシスタントを使用するには、 ``ai-assistant`` プロジェクトをポータルと同じアプリケーションに展開します。\n"
-"展開後は、ポータルのトップバーにある AI アイコンをクリックして、AI アシスタントにアクセスできます。"
+msgstr "AI アシスタントを使用するには、 ``ai-assistant`` プロジェクトをポータルと同じアプリケーションに展開します。\n展開後は、ポータルのトップバーにある AI アイコンをクリックして、AI アシスタントにアクセスできます。"
 
 #: ../../source/portal-user-guide/ai-assistant/index.rst:12
 msgid "|ai-assistant-menu-item|"
@@ -4868,9 +4862,7 @@ msgstr "一般設定"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:13
 msgid "**General settings** allows you to configure some settings according to your requirements. This area allows you to select the homepage you want to display."
-msgstr ""
-"**一般設定** では、要件に応じて設定を行うことができます。\n"
-"この領域では、表示したいホームページを選択できます。"
+msgstr "**一般設定** では、要件に応じて設定を行うことができます。\nこの領域では、表示したいホームページを選択できます。"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:19
 msgid "Process list configuration"
@@ -4878,9 +4870,7 @@ msgstr "プロセスリストの設定"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:21
 msgid "This section has available options which help you to configure your Process list. These are options you can modify:"
-msgstr ""
-"このセクションには、プロセスリストの設定に利用可能なオプションが表示されます。\n"
-"以下のオプションを変更できます。"
+msgstr "このセクションには、プロセスリストの設定に利用可能なオプションが表示されます。\n以下のオプションを変更できます。"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:24
 msgid "**Default view mode**"
@@ -4948,10 +4938,7 @@ msgstr "言語設定"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:68
 msgid "**Language** allows you to specify your preferred application language. This setting will affect all Axon Ivy Portal pages, notification mails, and – if supported – your company's application pages as well. The following languages are currently supported in the Axon Ivy Portal:"
-msgstr ""
-"**言語** では、アプリケーションの言語を指定できます。\n"
-"この設定は、Axon Ivy Portal のすべてのページ、通知メール、サポートされている場合は会社のア\n"
-"プリケーションページに影響を及ぼします。Axon Ivy Portal では現在、以下の言語がサポートされています。 ポータル："
+msgstr "**言語** では、アプリケーションの言語を指定できます。\nこの設定は、Axon Ivy Portal のすべてのページ、通知メール、サポートされている場合は会社のア\nプリケーションページに影響を及ぼします。Axon Ivy Portal では現在、以下の言語がサポートされています。 ポータル："
 
 #: ../../source/portal-user-guide/my-profile/index.rst:74
 msgid "English"
@@ -4975,9 +4962,7 @@ msgstr "日本語"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:80
 msgid "**Formatting language** is used to format values, for example the decimal separator is displayed differently in different regions of the world."
-msgstr ""
-"**書式設定言語** を使用して、値の形式を設定します。例えば、小数点は世界中の異なる地域\n"
-"で異なる形式で表示されます。"
+msgstr "**書式設定言語** を使用して、値の形式を設定します。例えば、小数点は世界中の異なる地域\nで異なる形式で表示されます。"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:83
 msgid "Your application needs to support the same language as the one selected in this menu. Otherwise the application specific content will be shown in the standard language of the application. E.g. if your application only supports English, but you select Spanish as the Portal language, your application specific dialogs will still be shown in English."
@@ -4993,9 +4978,7 @@ msgstr "**通知チャネル** では、Axon Ivy Engine の通知チャネルの
 
 #: ../../source/portal-user-guide/my-profile/index.rst:104
 msgid "The table :guilabel:`Notification Channels` displays all the available events that can either be subscribed or unsubscribed."
-msgstr ""
-":guilabel:`通知チャネル` テーブルには、登録または登録解除できるすべてのイベントが表示\n"
-"されます。"
+msgstr ":guilabel:`通知チャネル` テーブルには、登録または登録解除できるすべてのイベントが表示\nされます。"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:107
 msgid "|notification-channels|"
@@ -5007,9 +4990,7 @@ msgstr "通知チャンネルの設定"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:109
 msgid "The checkbox in each event column allow you to specify three state of event: subscribed by default, subscribe, unsubscribe. These checkboxes can be disabled by the administrator to prevent users from modifying them."
-msgstr ""
-"各イベントの列のチェックボックスで、登録済み（初期値）、登録、登録解除の 3 つのイベ\n"
-"ントの状態を指定できます。"
+msgstr "各イベントの列のチェックボックスで、登録済み（初期値）、登録、登録解除の 3 つのイベ\nントの状態を指定できます。"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:114
 msgid "As an administrator, you can configure the permission :ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` to allow or prevent users from modifying notification channel preferences."
