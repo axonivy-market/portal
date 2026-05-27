@@ -27,11 +27,5 @@
                 <module>Showcase/portal-demo-app</module>
             </modules>
         </profile>
-        <profile>
-            <id>test</id>
-            <modules>
-                <module>AxonIvyPortal/portal-selenium-test</module>
-            </modules>
-        </profile>
     </profiles>
 </project>

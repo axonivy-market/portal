@@ -66,7 +66,7 @@ pipeline {
           bat 'AxonIvyPortal/portal-selenium-test/resources/copy-decorate-js-css.bat'
 
           echo '====================Build Portal modules===================='
-          bat "mvn clean install -Divy.engine.directory=%engineDir%"
+          bat "mvn clean install -f pom.xml -Divy.engine.directory=%engineDir%"
 
           echo '====================Build and deploy test package===================='
           bat "mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=%engineDir%"
