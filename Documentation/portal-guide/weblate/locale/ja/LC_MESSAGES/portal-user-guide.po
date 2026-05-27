@@ -5,7 +5,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 msgid ""
-msgstr "Project-Id-Version: Portal Guide ${revision}\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05-27 09:50+0000\nPO-Revision-Date: 2026-05-27 09:44+0000\nLast-Translator: Tung Le <ltthome@gmail.com>\nLanguage-Team: Japanese <https://hosted.weblate.org/projects/tung-translation-1/portal-user-guide/ja/>\nLanguage: ja\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 2026.6.dev0\nGenerated-By: Babel 2.18.0\n"
+msgstr "Project-Id-Version: Portal Guide ${revision}\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05-27 15:46+0000\nPO-Revision-Date: 2026-05-27 09:44+0000\nLast-Translator: Tung Le <ltthome@gmail.com>\nLanguage-Team: Japanese <https://hosted.weblate.org/projects/tung-translation-1/portal-user-guide/ja/>\nLanguage: ja\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 2026.6.dev0\nGenerated-By: Babel 2.18.0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
 msgid "Accessibility"
@@ -17,8 +17,9 @@ msgid "To enable/disable keyboard shortcuts, go to **My Profile** > **Accessibil
 msgstr "キーボードショートカットの有効化/無効化は、キーボードショートカットの有効化/無効化は、 **マイプロフィール** > **アクセシビリティ設定** から行えます。詳細は :ref:`accessibility-settings` をご参照ください。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:12
+#| msgid "Keyboard Shortcut Quick Reference"
 #, fuzzy
-msgid "Keyboard Shortcut Quick Reference"
+msgid "Keyboard Shortcut Quick References"
 msgstr "キーボードショートカット クイックリファレンス"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:18

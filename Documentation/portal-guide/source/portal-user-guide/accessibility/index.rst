@@ -8,7 +8,7 @@ Accessibility
    See :ref:`accessibility-settings` for details. If disabled, the shortcuts listed below will not work.
    For users with assistive technologies, we recommend keeping shortcuts enabled for optimal navigation.
 
-Keyboard Shortcut Quick Reference
+Keyboard Shortcut Quick References
 ===================================
 
 .. table::
