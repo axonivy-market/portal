@@ -5,9 +5,10 @@ Accessibility
 
 .. important::
    To enable/disable keyboard shortcuts, go to **My Profile** > **Accessibility settings**.
-   See :ref:`accessibility-settings` for details.
+   See :ref:`accessibility-settings` for details. If disabled, the shortcuts listed below will not work.
+   For users with assistive technologies, we recommend keeping shortcuts enabled for optimal navigation.
 
-Keyboard Shortcuts Quick Reference
+Keyboard Shortcut Quick Reference
 ===================================
 
 .. table::

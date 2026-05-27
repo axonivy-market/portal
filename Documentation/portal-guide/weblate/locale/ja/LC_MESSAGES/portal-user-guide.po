@@ -5,26 +5,27 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 msgid ""
-msgstr "Project-Id-Version: Portal Guide ${revision}\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05-27 08:46+0000\nPO-Revision-Date: 2026-05-27 09:44+0000\nLast-Translator: Tung Le <ltthome@gmail.com>\nLanguage-Team: Japanese <https://hosted.weblate.org/projects/tung-translation-1/portal-user-guide/ja/>\nLanguage: ja\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 2026.6.dev0\nGenerated-By: Babel 2.18.0\n"
+msgstr "Project-Id-Version: Portal Guide ${revision}\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05-27 09:50+0000\nPO-Revision-Date: 2026-05-27 09:44+0000\nLast-Translator: Tung Le <ltthome@gmail.com>\nLanguage-Team: Japanese <https://hosted.weblate.org/projects/tung-translation-1/portal-user-guide/ja/>\nLanguage: ja\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 2026.6.dev0\nGenerated-By: Babel 2.18.0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
 msgid "Accessibility"
 msgstr "アクセシビリティ"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:7
-msgid "To enable/disable keyboard shortcuts, go to **My Profile** > **Accessibility settings**. See :ref:`accessibility-settings` for details."
+#, fuzzy
+msgid "To enable/disable keyboard shortcuts, go to **My Profile** > **Accessibility settings**. See :ref:`accessibility-settings` for details. If disabled, the shortcuts listed below will not work. For users with assistive technologies, we recommend keeping shortcuts enabled for optimal navigation."
 msgstr "キーボードショートカットの有効化/無効化は、キーボードショートカットの有効化/無効化は、 **マイプロフィール** > **アクセシビリティ設定** から行えます。詳細は :ref:`accessibility-settings` をご参照ください。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:11
+#: ../../source/portal-user-guide/accessibility/index.rst:12
 #, fuzzy
 msgid "Keyboard Shortcut Quick Reference"
 msgstr "キーボードショートカット クイックリファレンス"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:17
+#: ../../source/portal-user-guide/accessibility/index.rst:18
 msgid "Shortcut"
 msgstr "ショートカット"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:17
+#: ../../source/portal-user-guide/accessibility/index.rst:18
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:259
 #: ../../source/portal-user-guide/full-case-list/index.rst:367
 #: ../../source/portal-user-guide/full-process-list/index.rst:200
@@ -34,520 +35,520 @@ msgstr "ショートカット"
 msgid "Action"
 msgstr "アクション"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:19
+#: ../../source/portal-user-guide/accessibility/index.rst:20
 msgid "**Navigation**"
 msgstr "**ナビゲーション**"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:21
+#: ../../source/portal-user-guide/accessibility/index.rst:22
 msgid "Alt + 1"
 msgstr "Alt + 1"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:21
+#: ../../source/portal-user-guide/accessibility/index.rst:22
 msgid "Jump to Dashboard"
 msgstr "ダッシュボードへ移動"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:23
+#: ../../source/portal-user-guide/accessibility/index.rst:24
 msgid "Alt + 2"
 msgstr "Alt + 2"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:23
+#: ../../source/portal-user-guide/accessibility/index.rst:24
 msgid "Jump to Process section"
 msgstr "プロセスセクションへ移動"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:25
+#: ../../source/portal-user-guide/accessibility/index.rst:26
 msgid "Alt + 3"
 msgstr "Alt + 3"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:25
+#: ../../source/portal-user-guide/accessibility/index.rst:26
 msgid "Jump to Task section"
 msgstr "タスクセクションへ移動"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:27
+#: ../../source/portal-user-guide/accessibility/index.rst:28
 msgid "Alt + 4"
 msgstr "Alt + 4"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:27
+#: ../../source/portal-user-guide/accessibility/index.rst:28
 msgid "Jump to Case section"
 msgstr "ケースセクションへ移動"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:29
+#: ../../source/portal-user-guide/accessibility/index.rst:30
 msgid "Alt + 5"
 msgstr "Alt + 5"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:29
+#: ../../source/portal-user-guide/accessibility/index.rst:30
 msgid "Jump to Search section"
 msgstr "検索セクションへ移動"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:31
+#: ../../source/portal-user-guide/accessibility/index.rst:32
 msgid "Alt + 6"
 msgstr "Alt + 6"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:31
+#: ../../source/portal-user-guide/accessibility/index.rst:32
 msgid "Jump to User Settings"
 msgstr "ユーザー設定へ移動"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:33
+#: ../../source/portal-user-guide/accessibility/index.rst:34
 msgid "Alt + 7"
 msgstr "Alt + 7"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:33
+#: ../../source/portal-user-guide/accessibility/index.rst:34
 msgid "Toggle main menu visibility"
 msgstr "メインメニューの表示/非表示を切り替える"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:35
+#: ../../source/portal-user-guide/accessibility/index.rst:36
 #: ../../source/portal-user-guide/admin-settings/index.rst:21
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:23
 msgid "Tab"
 msgstr "タブ"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:35
+#: ../../source/portal-user-guide/accessibility/index.rst:36
 msgid "Cycle through dashboard items (when on Dashboard)"
 msgstr "ダッシュボード表示時に、ダッシュボード項目を順番に切り替えます。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:37
+#: ../../source/portal-user-guide/accessibility/index.rst:38
 msgid "**Widget Focus**"
 msgstr "**ウィジェットのフォーカス**"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:39
+#: ../../source/portal-user-guide/accessibility/index.rst:40
 msgid "Alt + W"
 msgstr "Alt + W"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:39
+#: ../../source/portal-user-guide/accessibility/index.rst:40
 msgid "Focus on Task widget (press repeatedly to cycle)"
 msgstr "タスクウィジェットに焦点を合わせてください（繰り返し押すと切り替わります）"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:41
+#: ../../source/portal-user-guide/accessibility/index.rst:42
 msgid "Alt + Q"
 msgstr "Alt + Q"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:41
+#: ../../source/portal-user-guide/accessibility/index.rst:42
 msgid "Focus on Case widget (press repeatedly to cycle)"
 msgstr "ケースウィジェットに焦点を当ててください（繰り返し押すと切り替わります）"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:43
+#: ../../source/portal-user-guide/accessibility/index.rst:44
 msgid "Alt + A"
 msgstr "Alt + A"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:43
+#: ../../source/portal-user-guide/accessibility/index.rst:44
 msgid "Focus on Process widget (press repeatedly to cycle)"
 msgstr "プロセスウィジェットに焦点を当ててください（繰り返し押すと切り替わります）"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:45
+#: ../../source/portal-user-guide/accessibility/index.rst:46
 msgid "**Action Menu**"
 msgstr "**アクションメニュー**"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:47
+#: ../../source/portal-user-guide/accessibility/index.rst:48
 msgid "Enter"
 msgstr "Enter"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:47
+#: ../../source/portal-user-guide/accessibility/index.rst:48
 msgid "Open context menu (when focused on task/case)"
 msgstr "コンテキストメニューを開く（タスク/ケースにフォーカスが当たっている場合）"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:49
+#: ../../source/portal-user-guide/accessibility/index.rst:50
 msgid "Esc"
 msgstr "Esc"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:49
+#: ../../source/portal-user-guide/accessibility/index.rst:50
 msgid "Close context menu"
 msgstr "コンテキストメニューを閉じる"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:53
+#: ../../source/portal-user-guide/accessibility/index.rst:54
 msgid "**Browser compatibility**: Chrome, Firefox, and Edge."
 msgstr "**ブラウザ互換性**: Chrome、Firefox、および Edge。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:55
+#: ../../source/portal-user-guide/accessibility/index.rst:56
 msgid "**Keyboard layouts**: European, Asian, and American keyboards."
 msgstr "**キーボードレイアウト**: ヨーロッパ、アジア、およびアメリカのキーボード。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:57
+#: ../../source/portal-user-guide/accessibility/index.rst:58
 msgid "**macOS users**: Replace ``Alt`` with ``Option`` key."
 msgstr "**macOS をご利用のお客様は**: ``Alt`` キーを ``Option`` キーに変更してください。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:60
+#: ../../source/portal-user-guide/accessibility/index.rst:61
 msgid "Why is Accessibility Important?"
 msgstr "アクセシビリティーが重要な理由"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:62
+#: ../../source/portal-user-guide/accessibility/index.rst:63
 msgid "In today's digital landscape, ensuring that front-end UIs are accessible to all users is not just a nice-to-have — it's essential. At Axon Ivy, we recognize the importance of making our portal available to everyone, regardless of their abilities or disabilities. With this in mind, we've put significant thought into enhancing the accessibility features within the Axon Ivy Portal. This is only the beginning, and we are committed to continually improving these features. To ensure the highest quality, we have used tools such as the Microsoft Lighthouse Accessibility Checker and adhered to the guidelines of the **WCAG 2.1 Level AA** standard to evaluate and refine our UI."
 msgstr "現代のデジタル環境において、フロントエンドUIを全てのユーザーが利用できるようにすることは、単なる「あれば良い」機能ではなく、必須の要件です。Axon Ivyでは、能力や障がいの有無に関わらず、あらゆる方々にポータルをご利用いただける重要性を認識しております。 この考えに基づき、Axon Ivyポータル内のアクセシビリティ機能強化に注力してまいりました。これは始まりに過ぎず、今後もこれらの機能を継続的に改善してまいります。最高品質を確保するため、Microsoft Lighthouseアクセシビリティチェッカーなどのツールを活用し、**のWCAG 2.1レベルAA** 基準に準拠してUIの評価と改良を行っております。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:65
+#: ../../source/portal-user-guide/accessibility/index.rst:66
 msgid "Accessibility Approach in the Axon Ivy Portal"
 msgstr "Axon Ivy Portal におけるアクセシビリティーへの取り組み"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:67
+#: ../../source/portal-user-guide/accessibility/index.rst:68
 msgid "We have taken a comprehensive approach to accessibility, addressing the most crucial aspects to create a more inclusive experience. Below are the key areas where we have evaluated and implemented improvements."
 msgstr "私たちは包括的にアクセシビリティーに取り組んでおり、最も重要なインクルーシブなエクスペリエンスの実現に向けて力を注いでいます。以下は、私たちが評価、改善した主な領域です。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:70
+#: ../../source/portal-user-guide/accessibility/index.rst:71
 msgid "Contrast"
 msgstr "コントラスト"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:72
+#: ../../source/portal-user-guide/accessibility/index.rst:73
 msgid "The contrast between text, buttons, and background elements is vital for users with visual impairments. We have optimized the UI for both Dark Mode and Light Mode in line with the **WCAG 2.1 Level AA** contrast ratios. This ensures that all components — buttons, widgets, and backgrounds — meet the necessary contrast thresholds to enhance visibility and readability."
 msgstr "視覚障害のあるユーザーにとって、テキスト、ボタン、背景要素のコントラストは非常に重要です。当UIは、**WCAG 2.1 レベルAA** のコントラスト比に基づき、ダークモードとライトモードの両方に最適化されています。これにより、ボタン、ウィジェット、背景など全てのコンポーネントが、視認性と可読性を高めるために必要なコントラスト閾値を満たすことが保証されます。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:75
+#: ../../source/portal-user-guide/accessibility/index.rst:76
 msgid "Zoom Capabilities"
 msgstr "ズーム機能"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:77
+#: ../../source/portal-user-guide/accessibility/index.rst:78
 msgid "We have revamped the zoom functionalities for both desktop and mobile versions of the portal. Users can now easily zoom in and out while maintaining the clarity and usability of the UI, ensuring accessibility for users who require larger text and images to interact comfortably with the portal."
 msgstr "ポータルのデスクトップ版とモバイル版の両方で、ズーム機能を改良しました。UI の見やすさと使いやすさはそのままに、簡単に拡大縮小できるため、テキストや画像を拡大する必要があるユーザーも快適にポータルを操作できます。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:80
+#: ../../source/portal-user-guide/accessibility/index.rst:81
 msgid "Keyboard Navigation"
 msgstr "キーボードナビゲーション"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:82
+#: ../../source/portal-user-guide/accessibility/index.rst:83
 msgid "We have introduced keyboard shortcuts to streamline the user experience, enabling users to quickly navigate between main sections and interact with widgets without needing a mouse."
 msgstr "ユーザーエクスペリエンスを効率化するため、キーボードショートカットを導入いたしました。これにより、マウスを使用せずに主要セクション間の移動やウィジェット操作を迅速に行うことが可能となります。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:85
+#: ../../source/portal-user-guide/accessibility/index.rst:86
 msgid "Main Navigation Shortcuts"
 msgstr "メインナビゲーションのショートカット"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:87
+#: ../../source/portal-user-guide/accessibility/index.rst:88
 msgid "Use these shortcuts to jump directly to major portal sections:"
 msgstr "主要なポータルセクションへ直接移動するには、以下のショートカットをご利用ください："
 
-#: ../../source/portal-user-guide/accessibility/index.rst:89
+#: ../../source/portal-user-guide/accessibility/index.rst:90
 msgid "**Alt + 1**: Jump to the Dashboard"
 msgstr "**Alt + 1**: ダッシュボードへ移動"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:90
+#: ../../source/portal-user-guide/accessibility/index.rst:91
 msgid "**Alt + 2**: Jump to the Process section"
 msgstr "**Alt + 2**: 「プロセス」セクションへ移動"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:91
+#: ../../source/portal-user-guide/accessibility/index.rst:92
 msgid "**Alt + 3**: Jump to the Task section"
 msgstr "**Alt + 3**: タスクセクションへ移動"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:92
+#: ../../source/portal-user-guide/accessibility/index.rst:93
 msgid "**Alt + 4**: Jump to the Case section"
 msgstr "**Alt + 4**: 「事例」セクションへ移動"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:93
+#: ../../source/portal-user-guide/accessibility/index.rst:94
 msgid "**Alt + 5**: Jump to the Search section"
 msgstr "**Alt + 5**: 検索セクションへ移動"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:94
+#: ../../source/portal-user-guide/accessibility/index.rst:95
 msgid "**Alt + 6**: Jump to User Settings"
 msgstr "**Alt + 6**: ユーザー設定へ移動"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:95
+#: ../../source/portal-user-guide/accessibility/index.rst:96
 msgid "**Alt + 7**: Toggle the visibility of the main menu"
 msgstr "**Alt + 7**: メインメニューの表示/非表示を切り替えます"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:97
+#: ../../source/portal-user-guide/accessibility/index.rst:98
 msgid "When multiple dashboards are available in the navigation bar, use the **Tab key** to cycle through them. Press **Enter** to open the highlighted dashboard."
 msgstr "ナビゲーションバーに複数のダッシュボードが表示されている場合、**タブキー** で切り替えます。**Enter** を押すと、ハイライトされたダッシュボードが開きます。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:100
+#: ../../source/portal-user-guide/accessibility/index.rst:101
 msgid "Widget Navigation"
 msgstr "ウィジェットのナビゲーション"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:102
+#: ../../source/portal-user-guide/accessibility/index.rst:103
 msgid "Navigate within list widgets using these shortcuts:"
 msgstr "リストウィジェット内では以下のショートカットをご利用ください："
 
-#: ../../source/portal-user-guide/accessibility/index.rst:104
+#: ../../source/portal-user-guide/accessibility/index.rst:105
 msgid "**Alt + W**: Task Widget — Focus on first task; press repeatedly to cycle through tasks"
 msgstr "**Alt + W**: タスクウィジェット — 最初のタスクにフォーカスします。繰り返し押すとタスクを切り替えます。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:105
+#: ../../source/portal-user-guide/accessibility/index.rst:106
 msgid "**Alt + Q**: Case Widget — Focus on first case; press repeatedly to cycle through cases"
 msgstr "**Alt + Q**: Case Widget — 最初のケースにフォーカスします。繰り返し押すとケースを切り替えます。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:106
+#: ../../source/portal-user-guide/accessibility/index.rst:107
 msgid "**Alt + A**: Process Widget — Focus on first process; press repeatedly to cycle through processes"
 msgstr "**Alt + A**: プロセスウィジェット — 最初のプロセスにフォーカスします。繰り返し押すとプロセス間を移動します。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:109
+#: ../../source/portal-user-guide/accessibility/index.rst:110
 msgid "When you reach the last visible item, the portal automatically scrolls down. After the very last item, focus returns to the first item."
 msgstr "最後の表示項目に到達すると、ポータルは自動的に下にスクロールします。最後の項目を過ぎると、フォーカスは最初の項目に戻ります。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:112
+#: ../../source/portal-user-guide/accessibility/index.rst:113
 msgid "**Multiple widgets**: If two Task or Case widgets are on screen, focus cycles through both sequentially."
 msgstr "**複数のウィジェット**: 画面上に2つのタスクまたはケースウィジェットが表示されている場合、フォーカスは両方を順番に切り替えます。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:115
+#: ../../source/portal-user-guide/accessibility/index.rst:116
 msgid "Accessing Context Menus"
 msgstr "コンテキストメニューへのアクセス"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:117
+#: ../../source/portal-user-guide/accessibility/index.rst:118
 msgid "Once focused on a task or case:"
 msgstr "特定のタスクやケースに集中する際には："
 
-#: ../../source/portal-user-guide/accessibility/index.rst:119
+#: ../../source/portal-user-guide/accessibility/index.rst:120
 msgid "Press **Tab** to move focus to the actions column"
 msgstr "**Tab** キーを押すと、アクション列にフォーカスが移動します。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:120
+#: ../../source/portal-user-guide/accessibility/index.rst:121
 msgid "Press **Enter** to open the context menu"
 msgstr "コンテキストメニューを開くには、**Enter** キーを押してください。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:121
+#: ../../source/portal-user-guide/accessibility/index.rst:122
 msgid "Use the widget shortcut (Alt + W / Alt + Q) to navigate through menu items"
 msgstr "メニュー項目間を移動するには、ウィジェットショートカット（Alt + W / Alt + Q）をご利用ください。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:122
-#: ../../source/portal-user-guide/accessibility/index.rst:132
-#: ../../source/portal-user-guide/accessibility/index.rst:144
+#: ../../source/portal-user-guide/accessibility/index.rst:123
+#: ../../source/portal-user-guide/accessibility/index.rst:133
+#: ../../source/portal-user-guide/accessibility/index.rst:145
 msgid "Press **Esc** to close the menu"
 msgstr "メニューを閉じるには、**Esc** キーを押してください。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:124
+#: ../../source/portal-user-guide/accessibility/index.rst:125
 msgid "Example: Task Navigation"
 msgstr "例：タスクナビゲーション"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:127
+#: ../../source/portal-user-guide/accessibility/index.rst:128
 msgid "To work with a specific task:"
 msgstr "特定のタスクを処理するには："
 
-#: ../../source/portal-user-guide/accessibility/index.rst:129
+#: ../../source/portal-user-guide/accessibility/index.rst:130
 msgid "Press **Alt + W** repeatedly until you reach the desired task"
 msgstr "目的のタスクに到達するまで、**Alt + W** を繰り返し押してください。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:130
+#: ../../source/portal-user-guide/accessibility/index.rst:131
 msgid "Press **Tab** then **Enter** to open its context menu"
 msgstr "**Tab** キーを押してから **Enter** キーを押してコンテキストメニューを開きます。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:131
+#: ../../source/portal-user-guide/accessibility/index.rst:132
 msgid "Press **Alt + W** repeatedly to navigate menu options"
 msgstr "メニューオプションを移動するには、**Alt + W** を繰り返し押してください。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:134
+#: ../../source/portal-user-guide/accessibility/index.rst:135
 msgid "|task-actions-popup|"
 msgstr "|task-actions-popup|"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:249
+#: ../../source/portal-user-guide/accessibility/index.rst:250
 msgid "task-actions-popup"
 msgstr "task-actions-popup"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:136
+#: ../../source/portal-user-guide/accessibility/index.rst:137
 msgid "Example: Case Navigation"
 msgstr "例：ケースナビゲーション"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:139
+#: ../../source/portal-user-guide/accessibility/index.rst:140
 msgid "To work with a specific case:"
 msgstr "特定のケースに対応するには："
 
-#: ../../source/portal-user-guide/accessibility/index.rst:141
+#: ../../source/portal-user-guide/accessibility/index.rst:142
 msgid "Press **Alt + Q** repeatedly until you reach the desired case"
 msgstr "**Alt + Q** を繰り返し押して、ご希望の大文字小文字に調整してください。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:142
+#: ../../source/portal-user-guide/accessibility/index.rst:143
 msgid "Press **Enter** to open its context menu"
 msgstr "**Enter** キーを押してコンテキストメニューを開く"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:143
+#: ../../source/portal-user-guide/accessibility/index.rst:144
 msgid "Press **Alt + Q** repeatedly to navigate menu options"
 msgstr "メニューオプションを移動するには、**Alt + Q** を繰り返し押してください。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:146
+#: ../../source/portal-user-guide/accessibility/index.rst:147
 msgid "|case-actions-popup|"
 msgstr "|case-actions-popup|"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:250
+#: ../../source/portal-user-guide/accessibility/index.rst:251
 msgid "case-actions-popup"
 msgstr "case-actions-popup"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:148
+#: ../../source/portal-user-guide/accessibility/index.rst:149
 msgid "You can also navigate to special dialogs like the reset task confirmation:"
 msgstr "また、リセットタスク確認などの特別なダイアログへ移動することも可能です："
 
-#: ../../source/portal-user-guide/accessibility/index.rst:150
+#: ../../source/portal-user-guide/accessibility/index.rst:151
 msgid "|reset-task-dialog|"
 msgstr "|reset-task-dialog|"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:248
+#: ../../source/portal-user-guide/accessibility/index.rst:249
 msgid "reset-task-dialog"
 msgstr "reset-task-dialog"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:153
+#: ../../source/portal-user-guide/accessibility/index.rst:154
 msgid "Extended Descriptive Elements in the Task and Case List"
 msgstr "タスク、ケースリストの拡張記述要素"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:155
+#: ../../source/portal-user-guide/accessibility/index.rst:156
 msgid "To improve navigation and accessibility in the portal, we have not only implemented shortcuts for quick access to processes, tasks, and cases, but also added more descriptive elements to the widgets. These enhancements provide a clearer and more detailed display of key information, ensuring optimal support for screen readers."
 msgstr "ポータルのナビゲーションとアクセシビリティーを向上するため、プロセス、タスク、ケースに素早くアクセスするためのショートカットを実装しただけでなく、さらに詳しく説明する記述要素をウィジェットに追加しました。これらの拡張により、重要な情報をより明確に詳しく表示し、スクリーンリーダーの最適なサポートを実現します。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:158
+#: ../../source/portal-user-guide/accessibility/index.rst:159
 msgid "Screen Reader Support"
 msgstr "スクリーンリーダー対応"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:161
+#: ../../source/portal-user-guide/accessibility/index.rst:162
 msgid "**Activating Microsoft Narrator**: Press **Ctrl + Windows key + Enter**"
 msgstr "**Microsoft Narrator の起動方法**: **Ctrl + Windows キー + Enter** を押します"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:163
+#: ../../source/portal-user-guide/accessibility/index.rst:164
 msgid "We rely on Microsoft Narrator to support screen readers, ensuring that users with visual impairments can easily navigate through the portal and understand the information provided."
 msgstr "視覚に障害のあるユーザーがポータルを容易に操作し、提供される情報を理解できるよう、スクリーンリーダーのサポートにはMicrosoft Narratorを採用しております。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:166
+#: ../../source/portal-user-guide/accessibility/index.rst:167
 msgid "The portal automatically sets the page language based on your user preferences, allowing the screen reader to read content in your preferred language."
 msgstr "ポータルは、ユーザー設定に基づいてページの言語を自動的に設定します。これにより、スクリーンリーダーがお好みの言語でコンテンツを読み上げることが可能となります。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:170
+#: ../../source/portal-user-guide/accessibility/index.rst:171
 msgid "Descriptive Elements in the Task Widget"
 msgstr "タスクウィジェットの記述要素"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:172
+#: ../../source/portal-user-guide/accessibility/index.rst:173
 msgid "When you focus on a task element using a keyboard shortcut, the screen reader announces:"
 msgstr "キーボードショートカットでタスク要素にフォーカスを当てた際、スクリーンリーダーは以下の内容を音声で通知します："
 
-#: ../../source/portal-user-guide/accessibility/index.rst:174
+#: ../../source/portal-user-guide/accessibility/index.rst:175
 msgid "\"Task Start - Task Name: `<task name>` - Priority: `<priority>` - Status: `<status>` - Expiry Date: `<expiry date>`\""
 msgstr "\"タスク開始 - タスク名: `<task name>` - 優先度: `<priority>` - ステータス: `<status>` - 期限: `<expiry date>`\""
 
-#: ../../source/portal-user-guide/accessibility/index.rst:176
-#: ../../source/portal-user-guide/accessibility/index.rst:190
+#: ../../source/portal-user-guide/accessibility/index.rst:177
+#: ../../source/portal-user-guide/accessibility/index.rst:191
 msgid "Information read includes:"
 msgstr "読み取る情報には以下が含まれます："
 
-#: ../../source/portal-user-guide/accessibility/index.rst:178
+#: ../../source/portal-user-guide/accessibility/index.rst:179
 msgid "**Task Name**: The name or title of the task"
 msgstr "**タスク名**: タスクの名称またはタイトル"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:179
+#: ../../source/portal-user-guide/accessibility/index.rst:180
 msgid "**Priority**: The priority level (e.g., High, Medium, Low)"
 msgstr "**優先度**：優先度レベル（例：高、中、低）"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:180
+#: ../../source/portal-user-guide/accessibility/index.rst:181
 msgid "**Status**: The current status (e.g., In Progress, Completed, Open)"
 msgstr "**ステータス**: 現在のステータス（例：進行中、完了、公開中）"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:181
+#: ../../source/portal-user-guide/accessibility/index.rst:182
 msgid "**Expiry Date**: The due date of the task"
 msgstr "**有効期限**: タスクの期限日"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:184
+#: ../../source/portal-user-guide/accessibility/index.rst:185
 msgid "Descriptive Elements in the Case Widget"
 msgstr "ケースウィジェットの記述要素"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:186
+#: ../../source/portal-user-guide/accessibility/index.rst:187
 msgid "When you focus on a case element using a shortcut, the screen reader announces:"
 msgstr "ショートカットを使用してケース要素にフォーカスを合わせると、スクリーンリーダーは次のように読み上げます："
 
-#: ../../source/portal-user-guide/accessibility/index.rst:188
+#: ../../source/portal-user-guide/accessibility/index.rst:189
 msgid "\"Case Name: `<case name>` - State: `<state>` - Created On: `<creation date>` - Finished On: `<finish date>` - Owners: `<first owner name>`\""
 msgstr "\"ケース名: `<ケース名>` - 状態: `<状態>` - 作成日: `<作成日>` - 完了日: `<完了日>` - 担当者: `<最初の担当者名>`\""
 
-#: ../../source/portal-user-guide/accessibility/index.rst:192
+#: ../../source/portal-user-guide/accessibility/index.rst:193
 msgid "**Case Name**: The name or title of the case"
 msgstr "**ケース名**: ケースの名称またはタイトル"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:193
+#: ../../source/portal-user-guide/accessibility/index.rst:194
 msgid "**State**: The current state (e.g., Open, Done, Deleted)"
 msgstr "**ステータス**: 現在の状態（例：Open、Done、Deleted）"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:194
+#: ../../source/portal-user-guide/accessibility/index.rst:195
 msgid "**Created On**: The creation date of the case"
 msgstr "**作成日時**：ケースの作成日時"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:195
+#: ../../source/portal-user-guide/accessibility/index.rst:196
 msgid "**Finished On**: The completion date of the case"
 msgstr "**完了日**: ケースの完了日"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:196
+#: ../../source/portal-user-guide/accessibility/index.rst:197
 msgid "**Owners**: The current owners of the case"
 msgstr "**所有者**: このケースの現在の所有者"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:199
+#: ../../source/portal-user-guide/accessibility/index.rst:200
 msgid "If the selected task or case is not in the \"Completed\" state, all relevant details are read aloud to inform you of the current status."
 msgstr "選択されたタスクまたはケースが「完了」状態にない場合、関連する詳細情報をすべて音声で読み上げ、現在のステータスをお知らせします。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:203
+#: ../../source/portal-user-guide/accessibility/index.rst:204
 msgid "Text Alternatives for Buttons"
 msgstr "ボタンの代替テキスト"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:205
+#: ../../source/portal-user-guide/accessibility/index.rst:206
 msgid "We have implemented ARIA (Accessible Rich Internet Applications) attributes across many elements, including buttons, to ensure they are easily identifiable by screen readers. This allows users who rely on assistive technologies to interact with the portal more effectively."
 msgstr "スクリーンリーダーが容易に識別できるように、ボタンを含む多くの要素に ARIA（Accessible Rich Internet Applications）属性を実装しました。支援技術を利用するユーザーは、より効果的にポータルを操作できます。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:208
+#: ../../source/portal-user-guide/accessibility/index.rst:209
 msgid "Accessibility Dashboard Templates"
 msgstr "アクセシビリティーダッシュボードのテンプレート"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:210
+#: ../../source/portal-user-guide/accessibility/index.rst:211
 msgid "To further enhance usability, we have created an **Accessibility Dashboard** that simplifies navigation for users with disabilities. This dashboard features a dedicated Shortcuts Widget that displays available shortcuts. When the dashboard opens, this widget is automatically focused and read aloud by the screen reader."
 msgstr "利便性をさらに高めるため、障害のあるユーザーのナビゲーションを簡素化する **アクセシビリティダッシュボード** を作成いたしました。このダッシュボードには、利用可能なショートカットを表示する専用ショートカットウィジェットが搭載されています。ダッシュボードが開くと、このウィジェットが自動的にフォーカスされ、スクリーンリーダーによって読み上げられます。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:213
+#: ../../source/portal-user-guide/accessibility/index.rst:214
 msgid "Each time you access the Accessibility Dashboard, the shortcuts are announced automatically, providing an instant reference."
 msgstr "アクセシビリティダッシュボードにアクセスされるたびに、ショートカットが自動的に読み上げられますので、即座に参照いただけます。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:217
+#: ../../source/portal-user-guide/accessibility/index.rst:218
 msgid "Integrating the Accessibility Dashboard"
 msgstr "アクセシビリティーダッシュボードの統合"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:219
+#: ../../source/portal-user-guide/accessibility/index.rst:220
 msgid "You can easily integrate this feature by selecting the **\"Accessibility Dashboard\"** template when creating a dashboard."
 msgstr "ダッシュボードの作成時に **アクセシビリティーダッシュボード** テンプレートを選択して、簡単にこの機能を組み込むことができます。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:221
+#: ../../source/portal-user-guide/accessibility/index.rst:222
 msgid "|accessibility-dashboard-creation|"
 msgstr "|accessibility-dashboard-creation|"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:251
+#: ../../source/portal-user-guide/accessibility/index.rst:252
 msgid "accessibility-dashboard-creation"
 msgstr "accessibility-dashboard-creation"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:223
+#: ../../source/portal-user-guide/accessibility/index.rst:224
 msgid "The dashboard contains the following pre-configured widgets:"
 msgstr "ダッシュボードには、以下の事前設定済みウィジェットが含まれています："
 
-#: ../../source/portal-user-guide/accessibility/index.rst:225
+#: ../../source/portal-user-guide/accessibility/index.rst:226
 msgid "**Shortcuts Widget**: Displays and announces available shortcuts via screen reader"
 msgstr "**ショートカットウィジェット**: スクリーンリーダーを通じて利用可能なショートカットを表示および音声で通知します"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:226
+#: ../../source/portal-user-guide/accessibility/index.rst:227
 msgid "**Process List Widget**: Shows ongoing processes"
 msgstr "**プロセス一覧ウィジェット**: 実行中のプロセスを表示します"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:227
+#: ../../source/portal-user-guide/accessibility/index.rst:228
 msgid "**Task List Widget**: Shows your tasks"
 msgstr "**タスクリストウィジェット**: タスクを表示します"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:228
+#: ../../source/portal-user-guide/accessibility/index.rst:229
 msgid "**Case List Widget**: Manages cases"
 msgstr "**ケース一覧ウィジェット**: ケースを管理します"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:231
+#: ../../source/portal-user-guide/accessibility/index.rst:232
 msgid "These widgets are optimized for use with accessibility features and screen readers."
 msgstr "これらのウィジェットは、アクセシビリティ機能やスクリーンリーダーとの併用を最適化しております。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:234
+#: ../../source/portal-user-guide/accessibility/index.rst:235
 msgid "Adding the Shortcut Widget to any Dashboard"
 msgstr "ショートカットウィジェットのダッシュボードへの追加"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:236
+#: ../../source/portal-user-guide/accessibility/index.rst:237
 msgid "The **Shortcut Widget** can also be integrated into any other dashboard."
 msgstr "**ショートカットウィジェット** は、他のダッシュボードにも統合可能です。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:238
+#: ../../source/portal-user-guide/accessibility/index.rst:239
 msgid "Follow these steps:"
 msgstr "以下の手順に従ってください："
 
-#: ../../source/portal-user-guide/accessibility/index.rst:240
+#: ../../source/portal-user-guide/accessibility/index.rst:241
 msgid "Create a custom dashboard widget"
 msgstr "カスタムダッシュボードウィジェットを作成します。"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:241
+#: ../../source/portal-user-guide/accessibility/index.rst:242
 msgid "Select the widget type: **\"Custom Dashboard Widget\"**"
 msgstr "ウィジェットの種類を選択してください：**\"カスタムダッシュボードウィジェット\"**"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:242
+#: ../../source/portal-user-guide/accessibility/index.rst:243
 msgid "Choose the **Accessibility Shortcut Widget**"
 msgstr "**アクセシビリティショートカットウィジェット** を選択してください"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:243
+#: ../../source/portal-user-guide/accessibility/index.rst:244
 msgid "Add it to the screen"
 msgstr "画面に追加してください"
 
-#: ../../source/portal-user-guide/accessibility/index.rst:246
+#: ../../source/portal-user-guide/accessibility/index.rst:247
 msgid "Add the Shortcuts Widget to your main dashboard for quick reference without switching views."
 msgstr "メインダッシュボードにショートカットウィジェットを追加すると、ビューを切り替えずに素早く参照できます。"
 
@@ -8062,3 +8063,4 @@ msgstr "統計設定例"
 
 #~ msgid "|how-to-set-absence-substitutes|"
 #~ msgstr "|how-to-set-absence-substitutes|"
+
