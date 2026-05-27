@@ -5,16 +5,15 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 msgid ""
-msgstr "Project-Id-Version: Portal Guide ${revision}\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05-27 15:46+0000\nPO-Revision-Date: 2026-05-27 09:44+0000\nLast-Translator: Tung Le <ltthome@gmail.com>\nLanguage-Team: Japanese <https://hosted.weblate.org/projects/tung-translation-1/portal-user-guide/ja/>\nLanguage: ja\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 2026.6.dev0\nGenerated-By: Babel 2.18.0\n"
+msgstr "Project-Id-Version: Portal Guide ${revision}\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05-27 15:46+0000\nPO-Revision-Date: 2026-05-27 15:28+0000\nLast-Translator: Tung Le <ltthome@gmail.com>\nLanguage-Team: Japanese <https://hosted.weblate.org/projects/tung-translation-1/portal-user-guide/ja/>\nLanguage: ja\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 2026.6.dev0\nGenerated-By: Babel 2.18.0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
 msgid "Accessibility"
 msgstr "アクセシビリティ"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:7
-#, fuzzy
 msgid "To enable/disable keyboard shortcuts, go to **My Profile** > **Accessibility settings**. See :ref:`accessibility-settings` for details. If disabled, the shortcuts listed below will not work. For users with assistive technologies, we recommend keeping shortcuts enabled for optimal navigation."
-msgstr "キーボードショートカットの有効化/無効化は、キーボードショートカットの有効化/無効化は、 **マイプロフィール** > **アクセシビリティ設定** から行えます。詳細は :ref:`accessibility-settings` をご参照ください。"
+msgstr "有効/無効なキーボードショートカットを有効にするには、 **My Profile** > **Accessibility settings** に移動します。 詳細は :ref:`accessibility-settings` をご覧ください。 無効にすると、下記のショートカットは動作しません。 補助技術をお持ちの方は、最適なナビゲーションにショートカットを有効にしておくことをお勧めします."
 
 #: ../../source/portal-user-guide/accessibility/index.rst:12
 #| msgid "Keyboard Shortcut Quick Reference"
@@ -8064,4 +8063,3 @@ msgstr "統計設定例"
 
 #~ msgid "|how-to-set-absence-substitutes|"
 #~ msgstr "|how-to-set-absence-substitutes|"
-
