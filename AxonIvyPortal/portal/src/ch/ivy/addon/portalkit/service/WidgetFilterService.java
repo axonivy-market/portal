@@ -318,7 +318,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       .ifPresent(latestFilterOption -> removeDisabledUserFilters(latestFilterOption, widget.getType(), enabledColumns));
   }
 
-  private List<ColumnModel> getEnabledFilterableColumns(DashboardWidget widget) {
+  private static List<ColumnModel> getEnabledFilterableColumns(DashboardWidget widget) {
     switch (widget.getType()) {
       case TASK:
         return ((TaskDashboardWidget) widget).getFilterableColumns();
@@ -327,6 +327,16 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       default:
         return new ArrayList<>();
     }
+  }
+
+  public static void removeDisabledFilters(TaskDashboardWidget widget) {
+    List<String> enabledColumns = getEnabledFilterableColumns(widget).stream().map(ColumnModel::getField).toList();
+    widget.getUserFilters().removeIf(userFilter -> !enabledColumns.contains(userFilter.getField()));
+  }
+
+  public static void removeDisabledFilters(CaseDashboardWidget widget) {
+    List<String> enabledColumns = getEnabledFilterableColumns(widget).stream().map(ColumnModel::getField).toList();
+    widget.getUserFilters().removeIf(userFilter -> !enabledColumns.contains(userFilter.getField()));
   }
 
   private void removeDisabledUserFilters(WidgetFilterModel model, DashboardWidgetType widgetType, List<ColumnModel> enabledColumns) {
