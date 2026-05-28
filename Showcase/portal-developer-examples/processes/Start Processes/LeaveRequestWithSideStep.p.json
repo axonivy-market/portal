@@ -17,7 +17,7 @@
             "After approver reviews the request, they can add additional information through a side step before final approval."
           ],
           "customFields" : [
-            { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" }
+            { "name" : "cssIcon", "value" : "ti ti-speakerphone" }
           ]
         },
         "permission" : {
@@ -277,7 +277,7 @@
             "After approver reviews the request, they can add additional information through a side step before final approval."
           ],
           "customFields" : [
-            { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" }
+            { "name" : "cssIcon", "value" : "ti ti-speakerphone" }
           ]
         },
         "permission" : {

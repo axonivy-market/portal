@@ -15,7 +15,7 @@
           "description" : "Loading photo for default process image by selection",
           "category" : "Example",
           "customFields" : [
-            { "name" : "cssIcon", "value" : "si si-house-1" },
+            { "name" : "cssIcon", "value" : "ti ti-home" },
             { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/process/INNOVATION\")%>" }
           ]
         },

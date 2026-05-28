@@ -54,6 +54,14 @@ public class LanguageSettingTest extends BaseTest {
     assertEquals("Processes", mainMenuPage.getProcessMenuItemText());
   }
 
+  @Test
+  public void testFormattingLanguageNotEmptyByDefault() {
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
+    userProfilePage.clickFormattingLanguageDropdownButton();
+    assertTrue(userProfilePage.getFormattingLanguageItemCount() > 0);
+  }
+
   private void createTestData() {
     redirectToRelativeLink(createTestingTasksUrl);
   }

@@ -18,7 +18,7 @@
     <div class="ui-g-12 widget-height-100 u-padding-0 welcome-text-container">
       <h:form id="welcome-widget-action-group-form" styleClass="welcome-widget-action-group-form" rendered="#{!cc.attrs.isReadOnlyMode}">
         <h:panelGroup layout="block" rendered="#{!hideActionButton}">
-          <p:commandButton id="welcome-widget-action-button" icon="si si-navigation-menu-horizontal"
+          <p:commandButton id="welcome-widget-action-button" icon="ti ti-dots"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
             styleClass="rounded-button ui-button-outlined icon-more-menu-button" type="button"/>
 
@@ -27,14 +27,14 @@
             my="right top" at="right bottom">
             <p:menuitem id="edit-welcome-widget"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
-              icon="si si-graphic-tablet-drawing-pen"
+              icon="ti ti-pencil"
               actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
               update="new-widget-configuration-dialog"
               process="@this" partialSubmit="true" global="false"
               oncomplete="PF('new-widget-configuration-dialog').show()" />
             <p:menuitem id="clone-welcome-widget"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Clone')}"
-              icon="si si-copy-paste"
+              icon="ti ti-copy"
               actionListener="#{cloneWidgetBean.setCloneWidget(widget)}"
               process="@(this)"
               update="clone-widget-component:clone-to-dashboard-dialog"
@@ -42,7 +42,7 @@
               partialSubmit="true" global="false" />
             <p:menuitem id="delete-welcome-widget"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-              icon="si si-bin-1" styleClass="color-destroy"
+              icon="ti ti-trash" styleClass="color-destroy"
               oncomplete="PF('remove-widget-dialog').show()"
               actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
               update="remove-widget-dialog"
@@ -69,7 +69,7 @@
           name="#{widget.imageContentObject.uri()}"/>
         <h:panelGroup id="not-found-welcome-image" styleClass="empty-message-container w-full" layout="block"
             rendered="#{!widget.imageContentObject.exists()}">
-          <i class="si si-alert-circle empty-message-icon"/>
+          <i class="ti ti-alert-circle empty-message-icon"/>
           <br/>
           <h:outputText styleClass="empty-message-text" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetNotFoundMessage')}" />
         </h:panelGroup>

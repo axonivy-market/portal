@@ -44,7 +44,7 @@ public class PortalMenuItem extends DefaultMenuItem {
   public static final String MENU_ITEM_ID_FORMAT = "%s_%s";
 
   public final static String BREADCRUMB_DESTINATION = "destination";
-  public final static String DEFAULT_DASHBOARD_ICON = "si si-layout-dashboard";
+  public final static String DEFAULT_DASHBOARD_ICON = "ti ti-layout-dashboard";
 
   private MenuKind menuKind;
 

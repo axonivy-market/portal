@@ -81,7 +81,7 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public void clickOnHomeLogo() {
-    $("span[class*='si si-house-chimney-2']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("span[class*='ti ti-home']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
   public void setGlobalFooterInfo() {

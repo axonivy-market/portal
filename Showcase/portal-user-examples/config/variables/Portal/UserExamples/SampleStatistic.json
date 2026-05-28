@@ -13,7 +13,7 @@
     ],
     "chartTarget": "case",
     "chartType": "pie",
-    "icon": "si-pie-line-graph",
+    "icon": "ti-chart-pie",
     "names": [
       {
         "locale": "en",
@@ -87,7 +87,7 @@
     ],
     "chartTarget": "case",
     "chartType": "line",
-    "icon": "si-pie-line-graph",
+    "icon": "ti-chart-line",
     "names": [
       {
         "locale": "en",
@@ -206,7 +206,7 @@
     ],
     "chartTarget": "case",
     "chartType": "bar",
-    "icon": "si-pie-line-graph",
+    "icon": "ti-chart-bar",
     "names": [
       {
         "locale": "en",
@@ -324,7 +324,7 @@
     ],
     "chartTarget": "case",
     "chartType": "bar",
-    "icon": "si-pie-line-graph",
+    "icon": "ti-chart-bar",
     "names": [
       {
         "locale": "en",
@@ -440,7 +440,7 @@
     ],
     "chartTarget": "case",
     "chartType": "bar",
-    "icon": "si-pie-line-graph",
+    "icon": "ti-chart-bar",
     "names": [
       {
         "locale": "en",
@@ -558,7 +558,7 @@
     ],
     "chartTarget": "case",
     "chartType": "bar",
-    "icon": "si-pie-line-graph",
+    "icon": "ti-chart-bar",
     "names": [
       {
         "locale": "en",
@@ -676,7 +676,7 @@
     ],
     "chartTarget": "case",
     "chartType": "bar",
-    "icon": "si-pie-line-graph",
+    "icon": "ti-chart-bar",
     "names": [
       {
         "locale": "en",
@@ -794,7 +794,7 @@
     ],
     "chartTarget": "case",
     "chartType": "bar",
-    "icon": "si-pie-line-graph",
+    "icon": "ti-chart-bar",
     "names": [
       {
         "locale": "en",
@@ -911,7 +911,7 @@
     ],
     "chartTarget": "case",
     "chartType": "pie",
-    "icon": "si-pie-line-graph",
+    "icon": "ti-chart-pie",
     "names": [
       {
         "locale": "en",

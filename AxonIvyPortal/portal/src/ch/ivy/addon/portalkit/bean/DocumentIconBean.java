@@ -30,21 +30,19 @@ public class DocumentIconBean implements Serializable {
    */
 
   private static final String FILE_NAME_REGEX = "[\\/:*?\"<>|]";
-  private static final String PREFIX = "si si-office-file-";
-  private static final String SUFFIX = "-1";
 
   // Known extensions
-  private static final String WORD = "doc";
-  private static final String EXCEL = "xls";
-  private static final String PDF = "pdf";
-  private static final String POWER_POINT = "ppt";
-  private static final String TEXT = "txt";
-  private static final String CSV = "si si-file-csv";
-  private static final String ARCHIVE = "si si-file-zip";
-  private static final String XML = "si si-file-xml";
-  private static final String IMAGE = "si si-image-file-landscape";
-  private static final String EMAIL = "si si-email-action-unread";
-  private static final String DEFAULT = "si si-common-file-empty";
+  private static final String WORD = "ti ti-file-type-doc";
+  private static final String EXCEL = "ti ti-file-type-xls";
+  private static final String PDF = "ti ti-file-type-pdf";
+  private static final String POWER_POINT = "ti ti-file-type-ppt";
+  private static final String TEXT = "ti ti-file-type-txt";
+  private static final String CSV = "ti ti-file-type-csv";
+  private static final String ARCHIVE = "ti ti-file-type-zip";
+  private static final String XML = "ti ti-file-type-xml";
+  private static final String IMAGE = "ti ti-photo";
+  private static final String EMAIL = "ti ti-mail";
+  private static final String DEFAULT = "ti ti-file";
 
   /**
    * Base on extension of document, getIconCssClass method detects a corresponding ivy icon.
@@ -57,15 +55,15 @@ public class DocumentIconBean implements Serializable {
     if (StringUtils.isNotEmpty(documentName)) {
       String fileExtension = getExtensionByFileName(documentName);
       if (ALLOWED_WORD_FORMAT.contains(fileExtension)) {
-        iconClass = WORD;
+        return WORD;
       } else if (ALLOWED_EXCEL_FORMAT.contains(fileExtension)) {
-        iconClass = EXCEL;
+        return EXCEL;
       } else if (ALLOWED_PDF_FORMAT.contains(fileExtension)) {
-        iconClass = PDF;
+        return PDF;
       } else if (POWER_POINT_FORMAT.contains(fileExtension)) {
-        iconClass = POWER_POINT;
+        return POWER_POINT;
       } else if (TEXT_FORMAT.contains(fileExtension)) {
-        iconClass = TEXT;
+        return TEXT;
       } else if (ARCHIVE_FORMAT.contains(fileExtension)) {
         return ARCHIVE;
       } else if (XML_FORMAT.contains(fileExtension)) {
@@ -79,7 +77,6 @@ public class DocumentIconBean implements Serializable {
       } else {
         return DEFAULT;
       }
-      return PREFIX + iconClass + SUFFIX;
     }
     return iconClass;
   }

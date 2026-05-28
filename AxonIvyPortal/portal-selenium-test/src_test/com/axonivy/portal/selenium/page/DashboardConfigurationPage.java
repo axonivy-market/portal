@@ -288,20 +288,22 @@ public class DashboardConfigurationPage extends TemplatePage {
     SelenideElement selectIconDialog = $$(selectIconDialogSelector).filter(Condition.visible).get(0);
     selectIconDialog.shouldBe(appear, DEFAULT_TIMEOUT);
     String iconId = "a[id$=':awesome-icon'] span." + icon;
-    if (icon.startsWith("si")) {
-      iconId = "div[id$=':icons-selection-form:icons'] a.icon-selection-dialog-selecting-icon i." + icon;
+    if (icon.startsWith("ti")) {
+      iconId = "div[id$=':icons-selection-form:tabler-icons'] a.icon-selection-dialog-selecting-icon i." + icon;
+    } else if (icon.startsWith("tif")) {
+      iconId = "div[id$=':icons-selection-form:tabler-filled-icons'] a.icon-selection-dialog-selecting-icon i." + icon;
     }
     selectIconDialog.$(iconId).shouldBe(getClickableCondition()).click();
     selectIconDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public NewDashboardPage backToHomePage() {
-    $("span[class*='si si-house-chimney-2']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("span[class*='ti ti-home']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     return new NewDashboardPage();
   }
 
   public NewDashboardPage backToHomePageBottom() {
-    $("span[class*='si si-house-chimney-2']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("span[class*='ti ti-home']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     return new NewDashboardPage();
   }
 
@@ -384,8 +386,8 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public void reorderPrivateDashboard(String fromDashboardName, String toDashboardName) {
-    var toRow = findPrivateDashboardRowByName(toDashboardName).$("i.si-navigation-menu");
-    var fromRow = findPrivateDashboardRowByName(fromDashboardName).$("i.si-navigation-menu");
+    var toRow = findPrivateDashboardRowByName(toDashboardName).$("i.ti-menu-2");
+    var fromRow = findPrivateDashboardRowByName(fromDashboardName).$("i.ti-menu-2");
     dragAndDropTo(toRow, fromRow);
   }
 
@@ -401,8 +403,8 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public void reorderPublicDashboard(String fromDashboardName, String toDashboardName) {
-    var toRow = findPublicDashboardRowByName(toDashboardName).$("i.si-navigation-menu");
-    var fromRow = findPublicDashboardRowByName(fromDashboardName).$("i.si-navigation-menu");
+    var toRow = findPublicDashboardRowByName(toDashboardName).$("i.ti-menu-2");
+    var fromRow = findPublicDashboardRowByName(fromDashboardName).$("i.ti-menu-2");
     dragAndDropTo(toRow, fromRow);
   }
 

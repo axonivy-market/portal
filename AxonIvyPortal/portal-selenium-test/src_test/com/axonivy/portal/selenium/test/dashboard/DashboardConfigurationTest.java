@@ -136,7 +136,7 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testAddPublicDashboardFromScratch() {
     String name = "New public dashboard";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "New public dashboard description";
     List<String> permissions = Arrays.asList("Cost Object (CostObject)");
     LinkNavigator.redirectToPortalDashboardConfiguration();
@@ -155,7 +155,7 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testAddPrivateDashboardFromScratch() {
     String name = "New private dashboard";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "New private dashboard description";
 
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -173,7 +173,7 @@ public class DashboardConfigurationTest extends BaseTest {
   public void testAddPublicDashboardUseTemplate() {
     createPublicDashboardUseTemplate();
     String name = "New public dashboard";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "New public dashboard description";
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
@@ -188,7 +188,7 @@ public class DashboardConfigurationTest extends BaseTest {
   public void testAddPrivateDashboardUseTemplate() {
     createPrivateDashboardUseTemplate();
     String name = "New private dashboard";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "New private dashboard description";
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
@@ -202,7 +202,7 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testAddPublicDashboardTwoTaskListDashboard() {
     String name = "New public dashboard two task list";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "New public dashboard description";
     List<String> permissions = new ArrayList<>();
     permissions.add("Cost Object (CostObject)");
@@ -222,7 +222,7 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testAddPrivateDashboardTwoTaskListDashboard() {
     String name = "New private dashboard two task list";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "New private dashboard description";
 
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -403,7 +403,7 @@ public class DashboardConfigurationTest extends BaseTest {
 
   private void createPrivateDashboardUseTemplate() {
     String name = "New private dashboard";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "New private dashboard description";
 
     DashboardConfigurationPage configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
@@ -413,7 +413,7 @@ public class DashboardConfigurationTest extends BaseTest {
 
   private void createPublicDashboardUseTemplate() {
     String name = "New public dashboard";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "New public dashboard description";
     List<String> permissions = new ArrayList<>();
     permissions.add("Cost Object (CostObject)");
@@ -485,7 +485,7 @@ public class DashboardConfigurationTest extends BaseTest {
 
     String name = "New import private dashboard";
     String newGermanName = "German dashboard";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "New import private dashboard description";
     configurationPage.saveImportDashboard(name, newGermanName, description, icon);
   }
@@ -509,7 +509,7 @@ public class DashboardConfigurationTest extends BaseTest {
 
     String name = "Imported Duplicate Dashboard";
     String newGermanName = "German Duplicate Dashboard";
-    String icon = "fa-warning";
+    String icon = "ti-alert-triangle";
     String description = "Dashboard imported from JSON with duplicate locales";
 
     configurationPage.saveImportDashboard(name, newGermanName, description, icon);
@@ -546,7 +546,7 @@ public class DashboardConfigurationTest extends BaseTest {
 
     String name = "New import public dashboard";
     String newGermanName = "German public dashboard";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "New import public dashboard description";
 
     configurationPage.saveImportDashboard(name, newGermanName, description, icon);
@@ -555,7 +555,7 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testAddNewAccessibilityDashboard() {
     String name = "Accessibility shortcuts dashboard";
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
     String description = "Accessibility shortcuts dashboard description";
     List<String> permissions = Arrays.asList("Cost Object (CostObject)");
     LinkNavigator.redirectToPortalDashboardConfiguration();
@@ -574,7 +574,7 @@ public class DashboardConfigurationTest extends BaseTest {
   
   private void testAddDashboardUsingTemplate(String name, int templateIndex, String description,
       List<String> permissions, boolean isPublicDashboard, DashboardDisplayType type, int numberOfWidgets) {
-    String icon = "fa-coffee";
+    String icon = "ti-coffee";
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();

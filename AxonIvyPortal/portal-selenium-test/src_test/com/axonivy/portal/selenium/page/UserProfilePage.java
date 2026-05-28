@@ -68,6 +68,15 @@ public class UserProfilePage extends TemplatePage {
     formattingLanguage.sendKeys(newLanguage);
   }
 
+  public void clickFormattingLanguageDropdownButton() {
+    $("[id$='my-profile-form:format-language-selection_button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public int getFormattingLanguageItemCount() {
+    $("[id$='my-profile-form:format-language-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $$("[id$='my-profile-form:format-language-selection_panel'] li.ui-autocomplete-item").size();
+  }
+
   public String getLanguageSettingTitle() {
     return findElementByCssSelector("h5[id$='language-setting-title']").getText();
   }
