@@ -1478,6 +1478,10 @@ body.in-dialog .ui-widget-overlay {
   font-size: var(--default-font-size);
 }
 
+.notification-options-menu {
+  width: auto !important;
+}
+
 .notifications-indicator {
   width: 1rem;
   justify-content: center;
