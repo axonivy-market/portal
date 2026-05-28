@@ -16,7 +16,8 @@ public class WorkerCurrentUserOperatorHandler {
   public TaskQuery buildQuery() {
     TaskQuery query = TaskQuery.create();
     query.where().workerId()
-        .isEqual(Ivy.session().getSessionUser().getSecurityMemberId());
+        .isEqual(Ivy.session().getSessionUser().getSecurityMemberId())
+        .and().state().isNotIn(WorkerOperatorUtils.EXCLUDE_STATES);
     return query;
   }
 }
