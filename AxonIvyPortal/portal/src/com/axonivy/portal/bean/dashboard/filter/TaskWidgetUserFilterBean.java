@@ -16,6 +16,7 @@ import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.service.WidgetFilterService;
 
 @ManagedBean
 @ViewScoped
@@ -37,6 +38,9 @@ public class TaskWidgetUserFilterBean extends AbstractTaskWidgetFilterBean imple
     if (CollectionUtils.isEmpty(Optional.ofNullable(this.widget).map(TaskDashboardWidget::getUserFilters).get())) {
       return;
     }
+
+    // Remove user filters which are not in filterable columns anymore
+    WidgetFilterService.removeDisabledFilters(this.widget);
 
     for (DashboardFilter filter : this.widget.getUserFilters()) {
       if (Optional.ofNullable(filter).map(DashboardFilter::getFilterType)

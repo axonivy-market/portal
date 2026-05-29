@@ -44,6 +44,7 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -144,41 +145,21 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   }
 
   private void updateFiltersForTaskWidget(TaskDashboardWidget taskWidget) {
-    if (CollectionUtils.isEmpty(taskWidget.getColumns())) {
-      return;
-    }
-    Set<String> disabledFilterFields = taskWidget.getColumns().stream().filter(Objects::nonNull)
-        .filter(column -> BooleanUtils.isFalse(column.getEnableFilter())).map(TaskColumnModel::getField)
-        .collect(Collectors.toSet());
+    Set<String> disabledFilterFields = WidgetFilterService.getNonFilterableColumns(taskWidget).stream()
+      .map(ColumnModel::getField)
+      .collect(Collectors.toSet());
 
-    List<DashboardFilter> filters = new ArrayList<>(
-        Optional.ofNullable(taskWidget.getFilters()).orElse(Collections.emptyList()));
-    filters.removeIf(filter -> filter != null && disabledFilterFields.contains(filter.getField()));
-    taskWidget.setFilters(filters);
-
-    List<DashboardFilter> userFilters = new ArrayList<>(
-        Optional.ofNullable(taskWidget.getUserFilters()).orElse(Collections.emptyList()));
-    userFilters.removeIf(filter -> filter != null && disabledFilterFields.contains(filter.getField()));
-    taskWidget.setUserFilters(userFilters);
+    taskWidget.getFilters().removeIf(filter -> disabledFilterFields.contains(filter.getField()));
+    taskWidget.getUserFilters().removeIf(filter -> disabledFilterFields.contains(filter.getField()));
   }
 
   private void updateFiltersForCaseWidget(CaseDashboardWidget caseWidget) {
-    if (CollectionUtils.isEmpty(caseWidget.getColumns())) {
-      return;
-    }
-    Set<String> disabledFilterFields = caseWidget.getColumns().stream().filter(Objects::nonNull)
-        .filter(column -> BooleanUtils.isFalse(column.getEnableFilter())).map(CaseColumnModel::getField)
-        .collect(Collectors.toSet());
+    Set<String> disabledFilterFields = WidgetFilterService.getNonFilterableColumns(caseWidget).stream()
+      .map(ColumnModel::getField)
+      .collect(Collectors.toSet());
 
-    List<DashboardFilter> filters = new ArrayList<>(
-        Optional.ofNullable(caseWidget.getFilters()).orElse(Collections.emptyList()));
-    filters.removeIf(filter -> filter != null && disabledFilterFields.contains(filter.getField()));
-    caseWidget.setFilters(filters);
-
-    List<DashboardFilter> userFilters = new ArrayList<>(
-        Optional.ofNullable(caseWidget.getUserFilters()).orElse(Collections.emptyList()));
-    userFilters.removeIf(filter -> filter != null && disabledFilterFields.contains(filter.getField()));
-    caseWidget.setUserFilters(userFilters);
+    caseWidget.getFilters().removeIf(filter -> disabledFilterFields.contains(filter.getField()));
+    caseWidget.getUserFilters().removeIf(filter -> disabledFilterFields.contains(filter.getField()));
   }
   
   public void remove(ColumnModel col) {

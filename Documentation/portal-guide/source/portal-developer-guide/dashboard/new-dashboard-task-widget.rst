@@ -59,6 +59,7 @@ Below is a sample JSON definition of a task widget in the Portal dashboard:
          },
          {
             "field": "name",
+            "enableFilter": false,
             "quickSearch": "true"
          },
          {
@@ -191,6 +192,9 @@ Each column object in the ``columns`` array:
 
 ``quickSearch`` (string, default: ``"false"``)
    Include in quick search: ``"true"`` or ``"false"``
+
+``enableFilter`` (boolean, default: ``true``)
+   Allow filtering on this column in complex filter.
 
 ``headers`` (array, optional)
    Multilingual column headers: ``[{"locale": "en", "value": "Header"}]``
