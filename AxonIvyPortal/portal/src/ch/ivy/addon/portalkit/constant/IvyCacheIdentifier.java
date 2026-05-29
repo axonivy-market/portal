@@ -10,7 +10,7 @@ public final class IvyCacheIdentifier {
   public static final String LOGOUT_PAGE_CACHE_ENTRY_NAME = "LOGOUT_PAGE_ID";
   public static final String STATISTIC_COLOR = "STATISTIC_COLOR"; 
   public static final String ROLES_IN_SECURITY_CONTEXT = "ROLES_IN_SECURITY_CONTEXT";
-  public static final String PORTAL_MENU = "PORTAL_MENU";
+  public static final String PORTAL_MENU_ORDER = "PORTAL_MENU_ORDER";
   public static final String PORTAL_CUSTOM_MENU = "PORTAL_CUSTOM_MENU";
   public static final String PORTAL_DASHBOARDS = "PORTAL_DASHBOARDS";
   public static final String PORTAL_DASHBOARDS_MENU_ITEM = "PORTAL_DASHBOARDS_MENU_ITEM";
@@ -29,7 +29,7 @@ public final class IvyCacheIdentifier {
   public static final List<String> getAllPortalCacheIdentifiers() {
     return Arrays.asList(PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME,
         LOGOUT_PAGE_CACHE_GROUP_NAME, LOGOUT_PAGE_CACHE_ENTRY_NAME,
-        STATISTIC_COLOR, ROLES_IN_SECURITY_CONTEXT, PORTAL_MENU,
+        STATISTIC_COLOR, ROLES_IN_SECURITY_CONTEXT, PORTAL_MENU_ORDER,
         PORTAL_CUSTOM_MENU, PORTAL_DASHBOARDS, PORTAL_DASHBOARDS_MENU_ITEM,
         PORTAL_CONTENT_LOCALES, PORTAL_FORMATTING_LOCALES, PORTAL_USER_LOCALE);
   }

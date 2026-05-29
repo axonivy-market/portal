@@ -513,10 +513,13 @@ public class MenuDetailsBean extends AbstractMenuBean implements Serializable, I
     menu.setVersion(AbstractJsonVersion.LATEST);
 
     switch (menu.getType()) {
-      case DASHBOARD -> {
-      DashboardMenuItemDefinition dashboardMenu = (DashboardMenuItemDefinition) menu;
+      case MAIN_DASHBOARD -> {
+        DashboardMenuItemDefinition dashboardMenu = (DashboardMenuItemDefinition) menu;
         dashboardMenu.setDashboard(selectedDashboard);
         dashboardMenu.setDashboardId(selectedDashboard.getId());
+        // Mark the icon as already carrying its family prefix so the adapter doesn't
+        // double-prefix it before saving to the source dashboard.
+        dashboardMenu.setIncludedIconFamily(true);
         return dashboardMenu;
       }
       case CUSTOM -> {

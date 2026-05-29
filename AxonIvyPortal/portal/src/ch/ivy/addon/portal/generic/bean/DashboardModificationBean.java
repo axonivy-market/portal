@@ -31,11 +31,9 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
-import com.axonivy.portal.dto.menu.DashboardMenuItemDefinition;
-import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
-import com.axonivy.portal.menu.management.adapter.DashboardMenuItemDefinitionAdapter;
+import com.axonivy.portal.dto.menu.MenuOrderEntry;
 import com.axonivy.portal.menu.management.enums.MenuSource;
-import com.axonivy.portal.service.PortalMenuItemDefinitionService;
+import com.axonivy.portal.service.MenuOrderService;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
@@ -165,65 +163,12 @@ public class DashboardModificationBean extends DashboardBean {
     
     saveDashboards(new ArrayList<>(this.dashboards));
     updateSessionAttributeWhenDisplayTypeIsHidden();
-    updateMenuOrderOnDashboardTypeChange();
+    if (previousDisplayType != this.selectedDashboard.getDashboardDisplayType()) {
+      // Order manifest is self-healing — invalidate the cache so the next load
+      // reconciles the new (or no-longer-top-menu) dashboard.
+      MenuOrderService.invalidateCache();
+    }
     collectDashboardsForManagement();
-  }
-
-  private void updateMenuOrderOnDashboardTypeChange() {
-    DashboardDisplayType newDisplayType = this.selectedDashboard.getDashboardDisplayType();
-    if (previousDisplayType == newDisplayType) {
-      return;
-    }
-    try {
-      applyMenuOrderForDisplayTypeChange(newDisplayType);
-    } catch (Exception menuOrderFailure) {
-      // Dashboard was already saved with newDisplayType before this call. Try to roll it
-      // back so dashboard state and Portal.Menu don't diverge.
-      Ivy.log().error("Menu order update failed for dashboard {0}; rolling back display type {1} -> {2}",
-          menuOrderFailure, selectedDashboard.getId(), newDisplayType, previousDisplayType);
-      selectedDashboard.setDashboardDisplayType(previousDisplayType);
-      try {
-        saveDashboards(new ArrayList<>(this.dashboards));
-        throw new RuntimeException(
-            "Failed to update menu order. Dashboard display type has been rolled back.", menuOrderFailure);
-      } catch (RuntimeException expected) {
-        // Re-throw the success-path rollback exception above.
-        throw expected;
-      } catch (Exception rollbackFailure) {
-        Ivy.log().error(
-            "Rollback failed for dashboard {0} after menu order failure; dashboard state is INCONSISTENT.",
-            rollbackFailure, selectedDashboard.getId());
-        throw new RuntimeException(
-            "Failed to update menu order AND failed to roll back the dashboard. Manual intervention required.",
-            menuOrderFailure);
-      }
-    }
-  }
-
-  private void applyMenuOrderForDisplayTypeChange(DashboardDisplayType newDisplayType) {
-    PortalMenuItemDefinitionService menuService = PortalMenuItemDefinitionService.getInstance();
-    if (DashboardDisplayType.TOP_MENU.equals(newDisplayType)) {
-      // add to top menu: add to menu order at the bottom
-      DashboardMenuItemDefinition menuDef = DashboardMenuItemDefinitionAdapter.getInstance()
-          .toMenuDefinition(selectedDashboard, MenuSource.DASHBOARD);
-      List<PortalMenuItemDefinition> currentOrder = menuService.findAll();
-      int maxIndex = currentOrder.stream()
-          .map(PortalMenuItemDefinition::getIndex)
-          .filter(idx -> idx != null)
-          .max(Integer::compareTo)
-          .orElse(-1);
-      menuDef.setIndex(maxIndex + 1);
-      currentOrder.add(menuDef);
-      menuService.saveAllPublicConfig(currentOrder);
-    } else if (DashboardDisplayType.TOP_MENU.equals(previousDisplayType)) {
-      // remove from top menu: remove from menu order
-      List<PortalMenuItemDefinition> currentOrder = menuService.findAll();
-      String dashboardId = selectedDashboard.getId();
-      if (dashboardId != null) {
-        currentOrder.removeIf(m -> dashboardId.equals(m.getId()));
-      }
-      menuService.saveAllPublicConfig(currentOrder);
-    }
   }
   
   private void updateSessionAttributeWhenDisplayTypeIsHidden() {
@@ -588,18 +533,19 @@ public class DashboardModificationBean extends DashboardBean {
   }
 
   private List<Dashboard> sortByMenuOrder(List<Dashboard> dashboards) {
-    List<PortalMenuItemDefinition> menuOrder = PortalMenuItemDefinitionService.getInstance().findAll();
-    if (CollectionUtils.isEmpty(menuOrder)) {
+    List<MenuOrderEntry> manifest = MenuOrderService.getInstance().findAll();
+    if (CollectionUtils.isEmpty(manifest)) {
       return dashboards;
     }
-    Map<String, Integer> idToIndex = new HashMap<>();
-    for (PortalMenuItemDefinition menuDef : menuOrder) {
-      if (menuDef.getId() != null && menuDef.getIndex() != null) {
-        idToIndex.put(menuDef.getId(), menuDef.getIndex());
+    Map<String, Integer> dashboardIdToIndex = new HashMap<>();
+    for (int i = 0; i < manifest.size(); i++) {
+      MenuOrderEntry entry = manifest.get(i);
+      if (entry.getSource() == MenuSource.DASHBOARD && entry.getId() != null) {
+        dashboardIdToIndex.put(entry.getId(), i);
       }
     }
     dashboards.sort(Comparator.comparingInt(
-        d -> idToIndex.getOrDefault(d.getId(), Integer.MAX_VALUE)));
+        d -> dashboardIdToIndex.getOrDefault(d.getId(), Integer.MAX_VALUE)));
     return dashboards;
   }
 }

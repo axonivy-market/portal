@@ -9,70 +9,43 @@ import org.apache.commons.lang3.Strings;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.menu.management.enums.MenuSource;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import ch.addon.portal.generic.menu.PortalMenuItem;
-import ch.addon.portal.generic.menu.PortalMenuItem.PortalMenuBuilder;
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
-import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes({ @Type(value = StandardMenuItemDefinition.class, name = "standard"),
-    @Type(value = DashboardMenuItemDefinition.class, name = "main_dashboard"),
-    @Type(value = ExternalLinkMenuItemDefinition.class, name = "external_link"),
-    @Type(value = CustomMenuItemDefinition.class, name = "custom"),
-    @Type(value = StaticPageMenuItemDefinition.class, name = "static_page") })
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+/**
+ * View-side DTO for menu items shown in the admin table and sidebar. Built on the
+ * fly from a source (Dashboard, CustomSubMenuItem, Application) — never persisted.
+ * Ordering lives in {@link MenuOrderEntry}; this class only carries display data.
+ */
 public abstract class PortalMenuItemDefinition extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = 3039118169604897617L;
   protected static final String DEFAULT_LINK = "#";
 
-  @JsonIgnore 
   private List<DisplayName> titles;
-  @JsonIgnore 
   private String icon;
-  @JsonIgnore 
   private String description;
-  @JsonIgnore 
   private List<String> permissions;
-  @JsonIgnore 
   private String url;
   private Integer index;
   private MenuSource source;
-
-  @JsonIgnore
   private String displayTitle;
-
-  @JsonIgnore
   private String onClick;
+  private Long workingtaskId;
+  private List<SecurityMemberDTO> permissionDTOs;
+  private boolean isIncludedIconFamily;
+  private String displayedPermission;
 
-  @JsonIgnore
   protected String getCurrentLanguage() {
     return UserUtils.getUserLanguage();
   }
 
-  @JsonIgnore
-  private Long workingtaskId;
-
   public abstract MenuKind getType();
-
-  @JsonIgnore
-  private List<SecurityMemberDTO> permissionDTOs;
-
-  @JsonIgnore
-  private boolean isIncludedIconFamily;
-
-  @JsonIgnore
-  private String displayedPermission;
 
   public List<DisplayName> getTitles() {
     return titles;
@@ -106,34 +79,14 @@ public abstract class PortalMenuItemDefinition extends AbstractConfiguration imp
     this.permissions = permissions;
   }
 
-  @JsonIgnore
   public List<SecurityMemberDTO> getPermissionDTOs() {
     return permissionDTOs;
   }
 
-  @JsonIgnore
   public void setPermissionDTOs(List<SecurityMemberDTO> permissionDTOs) {
     this.permissionDTOs = permissionDTOs;
   }
 
-  public PortalMenuItem convertToPortalMenuItem() {
-    if (!hasPermission()) {
-      return null;
-    }
-    String displayTitle = titles.stream()
-        .filter(t -> t.getLocale().toLanguageTag().contentEquals(LanguageService.getInstance().getUserLanguage()))
-        .findFirst().orElseGet(() -> titles.get(0)).getValue();
-
-    if (workingtaskId == null) {
-      return new PortalMenuBuilder(displayTitle, getType(), false).icon(getIconClass()).url(url).build();
-    }
-
-    return new PortalMenuBuilder(displayTitle, getType(), true).icon(getIconClass()).url(url)
-        .workingTaskId(workingtaskId).build();
-
-  }
-
-  @JsonIgnore
   public String getIconClass() {
     if (StringUtils.isBlank(this.icon)) {
       return PortalMenuItem.DEFAULT_DASHBOARD_ICON;
@@ -141,15 +94,13 @@ public abstract class PortalMenuItemDefinition extends AbstractConfiguration imp
     return (this.icon.startsWith("fa") ? "fa " : "si ") + this.icon;
   }
 
-  @JsonIgnore
   protected boolean hasPermission() {
     if (permissions == null) {
       return false;
     }
-    return !permissions.stream().noneMatch(p -> isSessionUserHasPermisson(p));
+    return permissions.stream().anyMatch(this::isSessionUserHasPermisson);
   }
 
-  @JsonIgnore
   private boolean isSessionUserHasPermisson(String permission) {
     return Strings.CS.startsWith(permission, "#")
         ? Strings.CS.equals(Ivy.session().getSessionUser().getMemberName(), permission)
@@ -170,6 +121,10 @@ public abstract class PortalMenuItemDefinition extends AbstractConfiguration imp
 
   public void setWorkingtaskId(Long workingtaskId) {
     this.workingtaskId = workingtaskId;
+  }
+
+  public String getOnClick() {
+    return onClick;
   }
 
   protected void setOnClick(String onClick) {
@@ -218,26 +173,14 @@ public abstract class PortalMenuItemDefinition extends AbstractConfiguration imp
 
   @Override
   public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-    return result;
+    return getId() == null ? 0 : getId().hashCode();
   }
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
     PortalMenuItemDefinition other = (PortalMenuItemDefinition) obj;
-    if (getId() == null) {
-      if (other.getId() != null)
-        return false;
-    } else if (!getId().equals(other.getId()))
-      return false;
-    return true;
+    return getId() == null ? other.getId() == null : getId().equals(other.getId());
   }
 }

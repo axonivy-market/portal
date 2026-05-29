@@ -9,6 +9,7 @@ import com.axonivy.portal.dto.menu.ExternalLinkMenuItemDefinition;
 import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
 import com.axonivy.portal.dto.menu.StaticPageMenuItemDefinition;
 import com.axonivy.portal.menu.management.adapter.CustomMenuItemDefinitionAdapter;
+import com.axonivy.portal.menu.management.adapter.DashboardMenuItemDefinitionAdapter;
 import com.axonivy.portal.menu.management.adapter.ExternalLinkMenuItemDefinitionAdapter;
 import com.axonivy.portal.menu.management.adapter.StaticPageMenuItemDefinitionAdapter;
 import com.axonivy.portal.service.CustomSubMenuItemService;
@@ -22,19 +23,30 @@ public final class MenuCreationHandler implements Serializable {
   private static final long serialVersionUID = -4923237321282831103L;
 
   public static void createMenu(PortalMenuItemDefinition menu) {
-    menu.setId(DashboardUtils.generateId());
     switch (menu.getType()) {
       case MAIN_DASHBOARD -> createDashboardMenu(menu);
-      case CUSTOM -> createCustomMenu(menu);
-      case EXTERNAL_LINK -> createExternalLinkMenu(menu);
-      case STATIC_PAGE -> createStaticPageMenu(menu);
+      case CUSTOM -> {
+        menu.setId(DashboardUtils.generateId());
+        createCustomMenu(menu);
+      }
+      case EXTERNAL_LINK -> {
+        menu.setId(DashboardUtils.generateId());
+        createExternalLinkMenu(menu);
+      }
+      case STATIC_PAGE -> {
+        menu.setId(DashboardUtils.generateId());
+        createStaticPageMenu(menu);
+      }
       default -> {}
     }
   }
 
   private static void createDashboardMenu(PortalMenuItemDefinition menu) {
     DashboardMenuItemDefinition dashboardMenu = (DashboardMenuItemDefinition) menu;
-    Dashboard dashboard = DashboardService.getInstance().findById(dashboardMenu.getDashboard().getId());
+    Dashboard dashboard = DashboardMenuItemDefinitionAdapter.getInstance().toSource(dashboardMenu);
+    if (dashboard == null) {
+      return;
+    }
     dashboard.setDashboardDisplayType(DashboardDisplayType.TOP_MENU);
     DashboardService.getInstance().saveAllPublicConfig(Arrays.asList(dashboard));
     DashboardUtils.updateDashboardCache();
