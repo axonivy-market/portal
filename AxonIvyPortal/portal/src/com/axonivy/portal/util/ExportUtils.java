@@ -32,7 +32,7 @@ public class ExportUtils {
         }
       }
     }
-    if (columns.get(0).getField().equals(FIRST_COLUMN_OF_TASK_DASHBOARD_WIDGET)) {
+    if (!columns.isEmpty() && columns.get(0).getField().equals(FIRST_COLUMN_OF_TASK_DASHBOARD_WIDGET)) {
       visibleColumns.remove(FIRST_COLUMN_OF_TASK_DASHBOARD_WIDGET);
     }
     return visibleColumns;

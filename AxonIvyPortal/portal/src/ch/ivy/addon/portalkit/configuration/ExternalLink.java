@@ -87,7 +87,8 @@ public class ExternalLink extends AbstractConfiguration {
   @JsonIgnore
   @SuppressWarnings("removal")
   public boolean isAbleToEdit() {
-    return (this.creatorId == null || PermissionUtils.isSessionUserHasAdminRole()) ? true : this.creatorId == Ivy.session().getSessionUser().getId();
+    return PermissionUtils.isSessionUserHasAdminRole() || 
+      (this.creatorId != null && this.creatorId.equals(Ivy.session().getSessionUser().getId()));
   }
 
   public String getDescription() {
