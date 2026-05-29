@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.util;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.regex.Pattern;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,9 @@ import ch.ivyteam.ivy.request.IHttpResponse;
 
 public class RequestUtils {
 
+  private static final Pattern MOBILE_DEVICE_PATTERN = Pattern
+      .compile(".*Android.*|.*webOS.*|.*iPhone.*|.*iPad.*|.*iPod.*|.*BlackBerry.*|.*IEMobile.*|.*Opera Mini.*");
+
   public static void redirect(String uri) throws java.io.IOException {
     IHttpResponse httpResponse = (IHttpResponse) Ivy.response();
     httpResponse.sendRedirect(uri);
@@ -21,7 +25,7 @@ public class RequestUtils {
   public static boolean isMobileDevice() {
     HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     String userAgent = request.getHeader("user-agent");
-    return userAgent.matches(".*Android.*|.*webOS.*|.*iPhone.*|.*iPad.*|.*iPod.*|.*BlackBerry.*|.*IEMobile.*|.*Opera Mini.*");
+    return MOBILE_DEVICE_PATTERN.matcher(userAgent).matches();
   }
 
   public static String getFullURL(HttpServletRequest request) {
