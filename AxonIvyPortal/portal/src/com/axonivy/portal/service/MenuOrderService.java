@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
+import com.axonivy.portal.dto.menu.MenuOrderEntry;
 
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -14,74 +14,63 @@ import ch.ivy.addon.portalkit.service.JsonConfigurationService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
-public class PortalMenuItemDefinitionService extends JsonConfigurationService<PortalMenuItemDefinition> {
+/**
+ * Persistence + session cache for the {@code Portal.Menu.Order} manifest.
+ * Public-only — the order is a portal-wide setting, not per-user.
+ */
+public class MenuOrderService extends JsonConfigurationService<MenuOrderEntry> {
 
-  private static final String EMPTY_ARRAY = "[]";
   private static final String NO_SESSION_CACHE_KEY = "no-session";
-  private static PortalMenuItemDefinitionService instance;
+  private static MenuOrderService instance;
 
-  public static PortalMenuItemDefinitionService getInstance() {
+  public static MenuOrderService getInstance() {
     if (instance == null) {
-      instance = new PortalMenuItemDefinitionService();
+      instance = new MenuOrderService();
     }
     return instance;
   }
 
   @Override
-  public Class<PortalMenuItemDefinition> getType() {
-    return PortalMenuItemDefinition.class;
+  public Class<MenuOrderEntry> getType() {
+    return MenuOrderEntry.class;
   }
 
   @Override
   public String getConfigKey() {
-    return PortalVariable.MENU.key;
+    return PortalVariable.MENU_ORDER.key;
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public List<PortalMenuItemDefinition> findAll() {
+  public List<MenuOrderEntry> findAll() {
     String sessionUserId = getSessionUserId();
     IvyCacheService cacheService = IvyCacheService.getInstance();
-    List<PortalMenuItemDefinition> cached = null;
+    List<MenuOrderEntry> cached = null;
     try {
-      cached = (List<PortalMenuItemDefinition>) cacheService
-          .getSessionCacheValue(IvyCacheIdentifier.PORTAL_MENU, sessionUserId).orElse(null);
+      cached = (List<MenuOrderEntry>) cacheService
+          .getSessionCacheValue(IvyCacheIdentifier.PORTAL_MENU_ORDER, sessionUserId).orElse(null);
     } catch (ClassCastException e) {
-      cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_MENU, sessionUserId);
+      cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_MENU_ORDER, sessionUserId);
     }
 
     if (cached == null) {
       synchronized (sessionUserId.intern()) {
-        cached = super.findAll();
-        cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_MENU, sessionUserId, cached);
+        cached = getPublicConfig();
+        cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_MENU_ORDER, sessionUserId, cached);
       }
     }
     return new ArrayList<>(cached);
   }
 
   @Override
-  public List<PortalMenuItemDefinition> saveAllPublicConfig(List<PortalMenuItemDefinition> entities) {
-    Ivy.var().set(getConfigKey(), EMPTY_ARRAY);
-    List<PortalMenuItemDefinition> saved = super.saveAllPublicConfig(entities);
+  public List<MenuOrderEntry> saveAllPublicConfig(List<MenuOrderEntry> entities) {
+    savePublicConfig(entities);
     invalidateCache();
-    return saved;
-  }
-
-  @Override
-  public PortalMenuItemDefinition save(PortalMenuItemDefinition entity) {
-    PortalMenuItemDefinition saved = super.save(entity);
-    invalidateCache();
-    return saved;
-  }
-
-  @Override
-  public void delete(String id) {
-    super.delete(id);
-    invalidateCache();
+    return entities;
   }
 
   public static void invalidateCache() {
-    IvyCacheService.getInstance().invalidateSessionEntry(IvyCacheIdentifier.PORTAL_MENU, getSessionUserId());
+    IvyCacheService.getInstance().invalidateSessionEntry(IvyCacheIdentifier.PORTAL_MENU_ORDER, getSessionUserId());
   }
 
   /**

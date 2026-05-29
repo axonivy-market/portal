@@ -3,7 +3,6 @@ package com.axonivy.portal.bean.menu;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -15,15 +14,14 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.ReorderEvent;
+
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
 import com.axonivy.portal.enums.SidebarMode;
 import com.axonivy.portal.menu.management.MenuLoader;
-import com.axonivy.portal.menu.management.MenuOrderManager;
 import com.axonivy.portal.menu.management.MenuRemovalHandler;
 import com.axonivy.portal.menu.management.enums.MenuSource;
-import com.axonivy.portal.service.PortalMenuItemDefinitionService;
 
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -44,11 +42,7 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
   @PostConstruct
   public void init() {
     menuDefinitions = MenuLoader.loadMenuDefinitions();
-    menuDefinitions.forEach(menu -> initDisplayPermissions(menu));
-    boolean needsSave = MenuOrderManager.initOrder(menuDefinitions);
-    if (needsSave) {
-      PortalMenuItemDefinitionService.getInstance().saveAllPublicConfig(menuDefinitions);
-    }
+    menuDefinitions.forEach(this::initDisplayPermissions);
     String storedMode = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.SIDEBAR_MODE);
     sidebarMode = StringUtils.isNotBlank(storedMode) ? SidebarMode.valueOf(storedMode) : SidebarMode.HOVER;
   }
@@ -66,8 +60,7 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
 
     if (CollectionUtils.isNotEmpty(permissions)) {
       Collection<SecurityMemberDTO> distinctPermissionDTOs = permissions.stream()
-          .collect(Collectors.toMap(SecurityMemberDTO::getMemberName, responsible -> responsible,
-              (responsible1, responsible2) -> responsible1))
+          .collect(Collectors.toMap(SecurityMemberDTO::getMemberName, p -> p, (a, b) -> a))
           .values();
 
       displayedPermission = distinctPermissionDTOs.stream().map(SecurityMemberDTO::getDisplayName)
@@ -78,26 +71,30 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
   }
 
   public void onRowReorder(ReorderEvent event) {
-    MenuOrderManager.reorderMenu(menuDefinitions, event.getFromIndex(), event.getToIndex());
-    MenuOrderManager.correctMenuIndex(menuDefinitions);
-    PortalMenuItemDefinitionService.getInstance().saveAllPublicConfig(menuDefinitions);
+    // PrimeFaces dataTable auto-reorders the backing list before the listener fires when
+    // the value is a plain List. We just need to refresh indices and persist — doing our
+    // own remove/add here would double-shuffle and corrupt the order.
+    if (menuDefinitions == null) {
+      return;
+    }
+    for (int i = 0; i < menuDefinitions.size(); i++) {
+      menuDefinitions.get(i).setIndex(i);
+    }
+    MenuLoader.persistManifest(menuDefinitions);
   }
 
   public boolean hasAction(PortalMenuItemDefinition menuDefinition) {
     return !MenuKind.STANDARD.equals(menuDefinition.getType());
   }
-  
+
   public int getLastIndex() {
-    return menuDefinitions.stream().map(PortalMenuItemDefinition::getIndex).sorted(Comparator.reverseOrder())
-        .findFirst().orElse(1);
+    return menuDefinitions.isEmpty() ? 0 : menuDefinitions.size() - 1;
   }
 
   public void removeMenu() {
     MenuRemovalHandler.removeMenu(getSelectedMenuDefinition());
+    // Loader auto-prunes the stale manifest entry on the next load.
     init();
-    // Explicit save prunes the stale MENU entry for the deleted item.
-    // init() only re-saves when it finds items without a saved entry, which is not the case here.
-    PortalMenuItemDefinitionService.getInstance().saveAllPublicConfig(menuDefinitions);
   }
 
   public List<PortalMenuItemDefinition> getMenuDefinitions() {
@@ -107,7 +104,7 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
   public void setMenuDefinitions(List<PortalMenuItemDefinition> menuDefinitions) {
     this.menuDefinitions = menuDefinitions;
   }
-  
+
   public PortalMenuItemDefinition getSelectedMenuDefinition() {
     return selectedMenuDefinition;
   }
@@ -144,27 +141,16 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
     if (type == null) {
       return "menu-type-standard";
     }
-
-    switch (type) {
-      case STANDARD:
-        return "menu-type-standard";
-      case DASHBOARD:
-        return "menu-type-dashboard";
-      case MAIN_DASHBOARD:
-        return "menu-type-main-dashboard";
-      case PROCESS:
-        return "menu-type-process";
-      case CUSTOM:
-        return "menu-type-custom";
-      case EXTERNAL_LINK:
-        return "menu-type-external";
-      case THIRD_PARTY:
-        return "menu-type-third-party";
-      case STATIC_PAGE:
-        return "menu-type-static";
-      default:
-        return "menu-type-standard";
-    }
+    return switch (type) {
+      case STANDARD -> "menu-type-standard";
+      case DASHBOARD -> "menu-type-dashboard";
+      case MAIN_DASHBOARD -> "menu-type-main-dashboard";
+      case PROCESS -> "menu-type-process";
+      case CUSTOM -> "menu-type-custom";
+      case EXTERNAL_LINK -> "menu-type-external";
+      case THIRD_PARTY -> "menu-type-third-party";
+      case STATIC_PAGE -> "menu-type-static";
+    };
   }
 
   public boolean isSidebarDisabled() {
@@ -174,11 +160,8 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
   public void setSidebarDisabled(boolean disabled) {
     if (disabled) {
       sidebarMode = SidebarMode.HIDDEN;
-    } else {
-      // restore to HOVER if coming back from HIDDEN
-      if (SidebarMode.HIDDEN.equals(sidebarMode)) {
-        sidebarMode = SidebarMode.HOVER;
-      }
+    } else if (SidebarMode.HIDDEN.equals(sidebarMode)) {
+      sidebarMode = SidebarMode.HOVER;
     }
   }
 
