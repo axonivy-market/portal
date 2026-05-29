@@ -49,6 +49,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
     NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.startTask(0);
+    taskWidget.waitForGrowlMessageDisappear();
     redirectToNewDashBoard();
 
     casePage = NavigationHelper.navigateToCaseList();
