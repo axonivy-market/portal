@@ -59,7 +59,7 @@
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false" styleClass="description-column u-truncate-text"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}" >
-          <h:outputText id="case-description" escape="false" value="#{caseDescription}" title="#{caseDescription}"/>
+          <h:outputText id="case-description" value="#{caseDescription}" title="#{caseDescription}"/>
           <p:tooltip for="case-description" value="#{caseDescription}" trackMouse="true" hideEvent="mouseleave click"/>
         </p:column>
         

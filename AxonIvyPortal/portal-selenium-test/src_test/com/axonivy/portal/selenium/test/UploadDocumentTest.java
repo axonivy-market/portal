@@ -1,6 +1,5 @@
 package com.axonivy.portal.selenium.test;
 
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -96,21 +95,21 @@ public class UploadDocumentTest extends BaseTest {
     casePage = menuPage.openCaseList();
     caseDetailsPage = casePage.openDetailsCase("Leave Request");
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(pdfFile));
-    isCorrectIconExtension(pdfFile, "ti ti-file-type-pdf");
+    isCorrectIconExtension(pdfFile, "ti-file-type-pdf");
     // can preview this document
     assertTrue(caseDetailsPage.getFirstItemPreviewDocumentVisible());
 
     casePage = menuPage.openCaseList();
     caseDetailsPage = casePage.openDetailsCase("Leave Request");
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(wordFile));
-    isCorrectIconExtension(wordFile, "ti ti-file-type-doc");
+    isCorrectIconExtension(wordFile, "ti-file-type-doc");
     // can not preview
     assertFalse(caseDetailsPage.getFirstItemPreviewDocumentVisible());
 
     casePage = menuPage.openCaseList();
     caseDetailsPage = casePage.openDetailsCase("Leave Request");
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(unsupportFile));
-    isCorrectIconExtension(unsupportFile, "ti ti-file");
+    isCorrectIconExtension(unsupportFile, "ti-file");
     // can not preview
     assertFalse(caseDetailsPage.getFirstItemPreviewDocumentVisible());
   }
@@ -122,9 +121,9 @@ public class UploadDocumentTest extends BaseTest {
     documentItems.asFixedIterable().forEach(doc -> {
       String uploadedFileName = doc.$(".js-document-name").shouldBe(Condition.appear, DEFAULT_TIMEOUT).getText();
       if (uploadedFileName.equalsIgnoreCase(fileName)) {
-        SelenideElement docSymbol =
-            doc.$(By.cssSelector("." + caseDetailDocumentClass)).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-        docSymbol.is(Condition.cssClass(iconClass.concat(StringUtils.SPACE.concat(caseDetailDocumentClass))));
+        SelenideElement docSymbol = doc.$(By.cssSelector("." + caseDetailDocumentClass))
+            .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+        docSymbol.shouldHave(Condition.cssClass(iconClass), DEFAULT_TIMEOUT);
       }
     });
     return true;
