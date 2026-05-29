@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -308,40 +309,40 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
   }
 
   private void removeDisabledFiltersFromCollection(DashboardWidget widget, UserFilterCollection userFilterCollection) {
-    List<ColumnModel> enabledColumns = getEnabledFilterableColumns(widget);
+    List<ColumnModel> nonFilterableColumns = getNonFilterableColumns(widget);
 
     Optional.ofNullable(userFilterCollection.getLatestFilterOption())
-      .ifPresent(latestFilterOption -> removeDisabledUserFilters(latestFilterOption, widget.getType(), enabledColumns));
+      .ifPresent(latestFilterOption -> removeDisabledUserFilters(latestFilterOption, widget.getType(), nonFilterableColumns));
   }
 
-  private static List<ColumnModel> getEnabledFilterableColumns(DashboardWidget widget) {
+  public static List<ColumnModel> getNonFilterableColumns(DashboardWidget widget) {
     switch (widget.getType()) {
       case TASK:
-        return ((TaskDashboardWidget) widget).getFilterableColumns();
+        return ((TaskDashboardWidget) widget).getColumns().stream().filter(column -> BooleanUtils.isFalse(column.getEnableFilter())).collect(Collectors.toList());
       case CASE:
-        return ((CaseDashboardWidget) widget).getFilterableColumns();
+        return ((CaseDashboardWidget) widget).getColumns().stream().filter(column -> BooleanUtils.isFalse(column.getEnableFilter())).collect(Collectors.toList());
       default:
         return new ArrayList<>();
     }
   }
 
   public static void removeDisabledFilters(TaskDashboardWidget widget) {
-    List<String> enabledColumns = getEnabledFilterableColumns(widget).stream().map(ColumnModel::getField).toList();
-    widget.getUserFilters().removeIf(userFilter -> !enabledColumns.contains(userFilter.getField()));
+    List<String> nonFilterableColumns = getNonFilterableColumns(widget).stream().map(ColumnModel::getField).toList();
+    widget.getUserFilters().removeIf(userFilter -> nonFilterableColumns.contains(userFilter.getField()));
   }
 
   public static void removeDisabledFilters(CaseDashboardWidget widget) {
-    List<String> enabledColumns = getEnabledFilterableColumns(widget).stream().map(ColumnModel::getField).toList();
-    widget.getUserFilters().removeIf(userFilter -> !enabledColumns.contains(userFilter.getField()));
+    List<String> nonFilterableColumns = getNonFilterableColumns(widget).stream().map(ColumnModel::getField).toList();
+    widget.getUserFilters().removeIf(userFilter -> nonFilterableColumns.contains(userFilter.getField()));
   }
 
-  private void removeDisabledUserFilters(WidgetFilterModel model, DashboardWidgetType widgetType, List<ColumnModel> enabledColumns) {
+  private void removeDisabledUserFilters(WidgetFilterModel model, DashboardWidgetType widgetType, List<ColumnModel> nonFilterableColumns) {
     if (widgetType != DashboardWidgetType.TASK && widgetType != DashboardWidgetType.CASE) {
       return;
     }
     model.setUserFilters(CollectionUtils.emptyIfNull(model.getUserFilters()).stream()
         .filter(f -> StringUtils.isNotBlank(f.getField()))
-        .filter(f -> enabledColumns.stream().anyMatch(col -> Strings.CS.equals(col.getField(), f.getField())))
+        .filter(f -> nonFilterableColumns.stream().noneMatch(col -> Strings.CS.equals(col.getField(), f.getField())))
         .collect(Collectors.toList()));
   }
 
