@@ -316,7 +316,7 @@ msgstr "previewIcon"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "ti-eye"
-msgstr "ティアイ"
+msgstr "ti-eye"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Icon class for the preview link."
@@ -372,7 +372,7 @@ msgstr "downloadIcon"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "ti-download"
-msgstr "ti ダウンロード"
+msgstr "ti-download"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Icon class will be displayed in download link."
@@ -404,7 +404,7 @@ msgstr "deleteIcon"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "ti-trash"
-msgstr "ティ・トラッシュ"
+msgstr "ti-trash"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Icon class will be displayed in delete link."
@@ -1937,7 +1937,7 @@ msgid ""
 "The attribute ``labelPanelStyleClass`` has been removed since 14.0. If "
 "you used this attribute, please remove it from your code."
 msgstr ""
-"属性 ``` `labelPanelStyleClass`` はバージョン 14.0 "
+"属性 ``labelPanelStyleClass`` はバージョン 14.0 "
 "以降で削除されました。この属性を使用していた場合は、コードから削除してください。"
 
 #: ../../source/portal-components/role-selection/index.rst:108
@@ -2035,7 +2035,7 @@ msgstr "ISecurityMember"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "Security member in the ivy security system."
-msgstr "蔦のセキュリティシステムのセキュリティメンバー。"
+msgstr "ivy セキュリティシステムのセキュリティメンバー。"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "isShowAvatar"
@@ -2300,7 +2300,7 @@ msgstr "\\--process-history-item-background-color"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "rgba(var(\\--white, #000000), 0.2)"
-msgstr "rgba(var(＃000000), 0.2)"
+msgstr "rgba(var(\\--white, #000000), 0.2)"
 
 #: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "Background color of item."
@@ -2625,7 +2625,7 @@ msgid ""
 "Since 14.0, the attribute ``labelPanelStyleClass`` has been removed. If "
 "you used this attribute, please remove it from your code."
 msgstr ""
-"バージョン 14.0 以降、属性 ``` `labelPanelStyleClass`` "
+"バージョン 14.0 以降、属性 ``labelPanelStyleClass`` "
 "は削除されました。この属性を使用していた場合は、コードから削除してください。"
 
 #: ../../source/portal-components/user-selection/index.rst:108

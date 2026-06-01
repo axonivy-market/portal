@@ -1508,11 +1508,11 @@ msgstr ""
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Sidebar.Mode"
-msgstr "ポータル。サイドバー。モード"
+msgstr "Portal.Sidebar.Mode"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "HOVER"
-msgstr "ハイバー"
+msgstr "HOVER"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -1660,7 +1660,7 @@ msgstr "ユーザーの技術名をツールチップに表示できるように
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Tasks.MaximumSelectedTasks"
-msgstr "Portal.Tasks.MaximumSelectedタスク"
+msgstr "Portal.Tasks.MaximumSelectedTasks"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid ""
@@ -4646,7 +4646,7 @@ msgstr "ハウツー：カスタムフィールドダイアログの表示方法
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:352
 msgid "Click on :guilabel:`Custom Fields`"
-msgstr ":guilabel:`アクション` をクリックします"
+msgstr ":guilabel:`カスタムフィールド` をクリックします"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:354
 msgid "Portal opens the custom fields dialog of the case"
@@ -5226,7 +5226,7 @@ msgstr "タスクごとに以下の情報がリストに表示されます。"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:51
 msgid "Working user (This column is not displayed by default)"
-msgstr "働くユーザー (このカラムはデフォルトでは表示されません)"
+msgstr "作業ユーザー (このカラムはデフォルトでは表示されません)"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:53
 msgid "Application (This column is not displayed by default)"
@@ -6336,9 +6336,8 @@ msgid ""
 "**Show Bulk Delegate toggle**: Show or hide the bulk delegate toggle. "
 "When enabled, users can select multiple tasks and delegate them in bulk."
 msgstr ""
-"**バルクデリゲートトグルを表示**: 一括デリゲートトグルを表示または非表示にし"
-"ます。 有効にすると、複数のタスクを選択し、それらを一括で削除することができま"
-"す."
+"**一括委任トグルを表示**: 一括委任トグルを表示または非表示にし"
+"ます。 有効にすると、複数のタスクを選択し、それらを一括で委任することができます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:138
 #: ../../source/portal-user-guide/new-dashboard/index.rst:247
@@ -6591,9 +6590,9 @@ msgid ""
 "clicking the :guilabel:`Toggle bulk delegation` button in the widget "
 "header."
 msgstr ""
-"ビューモードでは、複数のタスクを選択し、ウィジェットヘッダーの :guilabel:` を"
-"一括デリゲーション` ボタンをクリックすることで、一度にそれらを削除することが"
-"できます."
+"ビューモードでは、複数のタスクを選択し、ウィジェットヘッダーの "
+":guilabel:`一括デリゲーションの切り替え` ボタンをクリックすることで、一度にそれらを"
+"デリゲートできます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:217
 msgid "|bulk-delegate-task|"
@@ -7633,8 +7632,8 @@ msgid ""
 "**Substitutes**: User's subsitutes of these types: ``Permanent "
 "substitute`` and ``Substitutes during absence``"
 msgstr ""
-"**置換**: ユーザのこれらのタイプの小節: ``Permanent```` と ````` は欠如中の置"
-"換`"
+"**代理人**: ユーザーのこれらのタイプの代理人: ``Permanent "
+"substitute`` と ``Substitutes during absence``"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:86
 msgid "**Comment**: The comment about the absence"
@@ -7642,7 +7641,7 @@ msgstr "**コメント**: 不在についてのコメント"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:87
 msgid "**Actions**: Edit or delete options for each absence row"
-msgstr "**行為**:各不在行のオプションの編集または削除"
+msgstr "**操作**: 各不在行の編集または削除オプション"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:89
 msgid ""
@@ -7782,7 +7781,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/portal-header/index.rst:131
 msgid "HowTo: Add Substitute"
-msgstr "HowTo: 置換体を追加する"
+msgstr "HowTo: 代理人を追加する"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:133
 msgid ""
@@ -7820,7 +7819,7 @@ msgstr "|how-to-add-deputy-dialog|"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:276
 msgid "Absences page: Add deputy dialog"
-msgstr "Absences ページ: 重複ダイアログを追加する"
+msgstr "Absences ページ: 代理人追加ダイアログ"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:143
 msgid "Add absence and substitute for other users"
@@ -7842,8 +7841,7 @@ msgid ""
 "Click the :guilabel:`Selected user` option at the top of the absence "
 "management page"
 msgstr ""
-":guilabel:` 選択された user` をクリックし、不在な管理画面の上部にある"
-"オプション"
+"不在管理ページの上部にある :guilabel:`Selected user` オプションをクリックします"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:148
 msgid ""
@@ -7855,7 +7853,7 @@ msgstr "不在や代替品を管理したいユーザーを検索して選択す
 msgid ""
 "The absence and substitute tables will update to show the selected user's"
 " data"
-msgstr "不要なテーブルは、選択したユーザーのデータを表示するように更新されます"
+msgstr "不在と代理人のテーブルは、選択したユーザーのデータを表示するように更新されます"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:150
 msgid ""
