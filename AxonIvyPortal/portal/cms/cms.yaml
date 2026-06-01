@@ -194,7 +194,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableGroupChat: Set this property to true to enable group chat function
       enablePrivateChat: Set this property to true to enable private chat function
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
-      enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
+      enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word, SVG.
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
       hideCaseDocument: Set to true, the document section in case detail page will be hidden, otherwise it will be shown.
       hideChangePasswordButtonNote: Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.

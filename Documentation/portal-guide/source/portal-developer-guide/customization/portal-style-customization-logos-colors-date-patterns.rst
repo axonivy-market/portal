@@ -32,6 +32,12 @@ render SVG graphics.
 On the other hand, PNG logos may blur when expanded, and they result in large
 file sizes if supplied in high resolution to prevent the blurring.
 
+.. note::
+   SVG is an XML format that can embed scripts. Portal renders logos as static
+   images (HTML ``<img>``), so any script embedded in an uploaded SVG does not
+   execute, and uploaded SVGs are additionally scanned for script-like content.
+   As defense in depth, only use SVG files from trusted sources.
+
 We recommend using images with a transparent background, if your Corporate
 Identity does not define a mandatory background color. 
 

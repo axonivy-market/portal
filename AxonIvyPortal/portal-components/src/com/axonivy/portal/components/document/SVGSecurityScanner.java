@@ -34,6 +34,17 @@ public class SVGSecurityScanner implements DocumentDetector {
 
   private static final Set<String> HREF_ATTRS = Set.of("href", "xlink:href");
 
+  // SMIL animation elements can dynamically (re)assign attributes at runtime - e.g. set the
+  // parent's xlink:href to a javascript: URL, or define an on* handler - while hiding the target
+  // attribute behind attributeName=. They are rejected when they animate a dangerous attribute.
+  private static final Set<String> SMIL_ANIMATION_ELEMENTS =
+      Set.of("set", "animate", "animatetransform", "animatemotion");
+
+  // Percent-encoded ASCII control/whitespace bytes (e.g. %09 TAB, %0A LF, %7F DEL) that browsers
+  // strip from URL schemes; removed during canonicalization so encoded scheme splits are detected.
+  private static final Pattern ENCODED_CONTROL_CHAR =
+      Pattern.compile("%(0[0-9a-f]|1[0-9a-f]|7f)", Pattern.CASE_INSENSITIVE);
+
   public static boolean isSafe(String svgContent) {
     try {
       Document doc = Jsoup.parse(svgContent, "", org.jsoup.parser.Parser.xmlParser());
@@ -42,30 +53,35 @@ public class SVGSecurityScanner implements DocumentDetector {
         return false;
       }
       for (Element el : doc.getAllElements()) {
+        if (SMIL_ANIMATION_ELEMENTS.contains(el.tagName().toLowerCase(Locale.ROOT))) {
+          String animatedAttr = el.attributes().getIgnoreCase("attributeName").toLowerCase(Locale.ROOT).trim();
+          if (isDangerousAttributeName(animatedAttr)) {
+            return false;
+          }
+        }
+
         for (Attribute attr : el.attributes()) {
           String key = attr.getKey().toLowerCase(Locale.ROOT);
           String val = attr.getValue();
-          String valLower = val.toLowerCase(Locale.ROOT).trim();
 
           if (key.startsWith("on")) {
             return false;
           }
 
           if (HREF_ATTRS.contains(key) || key.endsWith(":href")) { // covers namespaced forms
-            if (DANGEROUS_SCHEME.matcher(valLower).find()) {
+            if (hasDangerousScheme(val)) {
               return false;
             }
           }
 
           if ("style".equals(key)) {
+            String valLower = val.toLowerCase(Locale.ROOT).trim();
             if (CSS_EXPRESSION.matcher(valLower).find()) {
               return false;
             }
             Matcher m = CSS_URL.matcher(valLower);
             while (m.find()) {
-              String url = m.group(2).trim();
-              String urlLower = url.toLowerCase(Locale.ROOT);
-              if (DANGEROUS_SCHEME.matcher(urlLower).find()) {
+              if (hasDangerousScheme(m.group(2))) {
                 return false;
               }
             }
@@ -74,16 +90,13 @@ public class SVGSecurityScanner implements DocumentDetector {
       }
 
       for (Element style : doc.select("style")) {
-        String css = style.data();
-        String cssLower = css.toLowerCase(Locale.ROOT);
+        String cssLower = style.data().toLowerCase(Locale.ROOT);
         if (CSS_EXPRESSION.matcher(cssLower).find()) {
           return false;
         }
         Matcher m = CSS_URL.matcher(cssLower);
         while (m.find()) {
-          String url = m.group(2).trim();
-          String urlLower = url.toLowerCase(Locale.ROOT);
-          if (DANGEROUS_SCHEME.matcher(urlLower).find()) {
+          if (hasDangerousScheme(m.group(2))) {
             return false;
           }
         }
@@ -94,6 +107,41 @@ public class SVGSecurityScanner implements DocumentDetector {
       Ivy.log().error("SVG security check failed", e);
       return false;
     }
+  }
+
+  private static boolean isDangerousAttributeName(String attributeName) {
+    return attributeName.startsWith("on") || HREF_ATTRS.contains(attributeName)
+        || attributeName.endsWith(":href");
+  }
+
+  /**
+   * Returns true if the value resolves to a dangerous URL scheme (javascript:, vbscript:, data:).
+   * The value is canonicalized first so that schemes obfuscated with control characters or their
+   * percent-encoded forms - e.g. "java&#9;script:" (TAB), "java&#10;script:" (LF), "java%09script:"
+   * - are detected the same way a browser would after stripping those characters.
+   */
+  private static boolean hasDangerousScheme(String value) {
+    if (value == null) {
+      return false;
+    }
+    return DANGEROUS_SCHEME.matcher(canonicalizeScheme(value)).find();
+  }
+
+  private static String canonicalizeScheme(String value) {
+    String lower = value.toLowerCase(Locale.ROOT);
+    // Drop percent-encoded ASCII control/whitespace bytes (browsers ignore them inside schemes).
+    lower = ENCODED_CONTROL_CHAR.matcher(lower).replaceAll("");
+    // Drop raw ASCII whitespace and control characters - including TAB/LF/CR that jsoup already
+    // decoded from numeric character references such as &#9; / &#10; - so a scheme split across
+    // those characters collapses back to its canonical form before the dangerous-scheme check.
+    StringBuilder canonical = new StringBuilder(lower.length());
+    for (int i = 0; i < lower.length(); i++) {
+      char c = lower.charAt(i);
+      if (c > 0x20 && c != 0x7f) {
+        canonical.append(c);
+      }
+    }
+    return canonical.toString();
   }
 
   @Override
