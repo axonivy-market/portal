@@ -2035,7 +2035,7 @@ msgstr "ISecurityMember"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "Security member in the ivy security system."
-msgstr "ivy セキュリティシステムのセキュリティメンバー。"
+msgstr "Ivy セキュリティシステムのセキュリティメンバー。"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "isShowAvatar"

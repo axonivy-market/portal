@@ -3286,7 +3286,7 @@ msgstr ""
 " ``navigateToUrl()`` と ``resetTaskAndNavigateToUrl()`` は内部で値を URL デコードし、 "
 "``SanitizeAPI.escapeForJavascript()`` を介して JavaScript コンテキスト用にエスケープします。"
 "ただし、オープンリダイレクトやプロトコルインジェクション攻撃を防止するため、アプリケーション境界で URL を"
-"検証し（例えばスキームが ``http`` または ``https`` であることを確認）てください。"
+"検証し（例えばスキームが ``http`` または ``https`` であることを確認）してください。"
 
 #: ../../source/portal-developer-guide/customization/navigate-back.rst:37
 msgid "Reset Task and Navigate"

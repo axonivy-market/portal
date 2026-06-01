@@ -4646,7 +4646,7 @@ msgstr "ハウツー：カスタムフィールドダイアログの表示方法
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:352
 msgid "Click on :guilabel:`Custom Fields`"
-msgstr ":guilabel:`カスタムフィールド` をクリックします"
+msgstr ":guilabel:`カスタムフィールド` をクリックします。"
 
 #: ../../source/portal-user-guide/full-case-list/index.rst:354
 msgid "Portal opens the custom fields dialog of the case"
@@ -7841,7 +7841,7 @@ msgid ""
 "Click the :guilabel:`Selected user` option at the top of the absence "
 "management page"
 msgstr ""
-"不在管理ページの上部にある :guilabel:`Selected user` オプションをクリックします"
+"不在管理ページの上部にある :guilabel:`Selected user` オプションをクリックします。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:148
 msgid ""
@@ -7853,7 +7853,7 @@ msgstr "不在や代替品を管理したいユーザーを検索して選択す
 msgid ""
 "The absence and substitute tables will update to show the selected user's"
 " data"
-msgstr "不在と代理人のテーブルは、選択したユーザーのデータを表示するように更新されます"
+msgstr "不在と代理人のテーブルは、選択したユーザーのデータを表示するように更新されます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:150
 msgid ""
