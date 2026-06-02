@@ -273,7 +273,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enablePinTask: このプロパティをtrueに設定すると、タスクをピンする機能が有効になります。
       enablePrivateChat: 個人用チャット機能を有効にするには、このプロパティーを true に設定してください。
       enableProcessViewer: タスク／ケースアクションでプロセスビューアーオプションを有効にするには、このプロパティをtrueに設定してください。
-      enableScriptCheckingForUploadedDocumentNote: アップロードされたドキュメントのスクリプトチェックを有効にするには、true に設定してください。現在、この機能は PDF、Excel、Word、SVG のチェックをサポートしています。
+      enableScriptCheckingForUploadedDocumentNote: アップロードされたドキュメントのスクリプトチェックを有効にするには、true に設定してください。現在、この機能は PDF、Excel、Word のチェックをサポートしています。
       enableTranslationService: このプロパティをtrueに設定すると、翻訳サービスのサポートが有効になります。
       enableVirusScannerForUploadedDocumentNote: アップロードされたドキュメントへのウイルススキャナーを有効にするには true に設定してください。現在、この機能は API VIRUSTOTAL を使用しています。
       hideCaseCreator: |-

@@ -272,7 +272,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enablePinTask: Set this property to true to enable the ability to pin tasks.
       enablePrivateChat: Set this property to true to enable private chat function
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
-      enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word, SVG.
+      enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
       enableTranslationService: Set this property to true to enable translation service support
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
       hideCaseCreator: |-
