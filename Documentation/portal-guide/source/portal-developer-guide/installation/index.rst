@@ -164,6 +164,20 @@ Please access the :ref:`Dashboard Configuration <dashboard-configuration>` page 
 2. The global variable ``Portal.KeepSidebarExpanded`` has been removed. Use ``Portal.Sidebar.Mode`` instead.
 Set ``Portal.Sidebar.Mode`` to ``STICK`` to achieve the same effect as ``Portal.KeepSidebarExpanded=true``.
 
+3. The new **Menu Management** feature lets admins customize the order of items in the Portal sidebar.
+
+   Set an explicit ``id`` on each ``CustomSubMenuItem`` returned from your ``portalLoadSubMenuItems`` sub-process so admin-customized ordering survives code changes (renaming the application, changing the link, or changing the menu kind).
+
+   Example:
+
+   .. code-block:: java
+
+      CustomSubMenuItem item = new CustomSubMenuItem();
+      item.setId("my-project.tasks-shortcut");  // stable across refactors
+      item.setLabel("My Tasks");
+      item.setLink("/my-project/Tasks.ivp");
+      item.setMenuKind(MenuKind.CUSTOM);
+
 Migrate 13.1 To 13.2
 --------------------
 

@@ -111,8 +111,9 @@
           <p:inputText id="external-link" value="#{menuDetailsBean.externalLink}"
             required="#{param['skipValidator'] == null}"
             requiredMessage="#{ivy.cms.co('/Labels/Enums/MenuKind/EXTERNAL_LINK')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+            validator="#{menuDetailsBean.validateExternalLinkUrl}"
             disabled="#{!contentState.enableExternalLinkInput}" autocomplete="off">
-            <p:ajax event="blur" process="@this" update="@this" global="false" immediate="true" />
+            <p:ajax event="blur" process="@this" update="@this menu-configuration-messages" global="false" immediate="true" />
           </p:inputText>
         </div>
         <div class="col-12 mb-3 p-0 flex align-items-center">
@@ -220,18 +221,20 @@
             value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
             ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
             actionListener="#{menuDetailsBean.createMenu}"
+            action="#{menuManagementBean.init}"
             process="menu-configuration-form"
-            update="menu-configuration-form"
-            oncomplete="if (args &amp;&amp; !args.validationFailed) {location.reload();}" />
+            update="menu-configuration-form menu-table-container"
+            oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('menu-configuration-dialog').hide();}" />
           <p:commandButton id="update-button" styleClass="w-full"
             rendered="#{!menuDetailsBean.isCreate()}" partialSubmit="true"
             disabled="#{isReadOnly}"
             value="#{ivy.cms.co('/Labels/Save')}"
             ariaLabel="#{ivy.cms.co('/Labels/Save')}"
             actionListener="#{menuDetailsBean.updateMenu}"
+            action="#{menuManagementBean.init}"
             process="menu-configuration-form"
-            update="menu-configuration-form"
-            oncomplete="if (args &amp;&amp; !args.validationFailed) {location.reload();}" />
+            update="menu-configuration-form menu-table-container"
+            oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('menu-configuration-dialog').hide();}" />
         </h:form>
       </h:panelGroup>
   </f:facet>

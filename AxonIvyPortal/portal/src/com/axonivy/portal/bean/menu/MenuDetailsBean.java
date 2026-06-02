@@ -3,6 +3,7 @@ package com.axonivy.portal.bean.menu;
 import static com.axonivy.portal.menu.management.enums.MenuSource.DASHBOARD;
 
 import java.io.Serializable;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -11,8 +12,12 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -470,6 +475,25 @@ public class MenuDetailsBean extends AbstractMenuBean implements Serializable, I
     selectedMenuDefinition.getPermissionDTOs().remove(selectedItem);
   }
 
+  private static final Set<String> ALLOWED_URL_SCHEMES = Set.of("http", "https");
+
+  public void validateExternalLinkUrl(FacesContext context, UIComponent component, Object value) {
+    String url = (String) value;
+    if (StringUtils.isBlank(url)) {
+      return;
+    }
+    try {
+      String scheme = URI.create(url).getScheme();
+      if (scheme != null && !ALLOWED_URL_SCHEMES.contains(scheme.toLowerCase())) {
+        throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
+            Ivy.cms().co("/Dialogs/com/axonivy/portal/page/MenuManagement/InvalidUrlScheme"), null));
+      }
+    } catch (IllegalArgumentException e) {
+      throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/Dialogs/com/axonivy/portal/page/MenuManagement/InvalidUrl"), null));
+    }
+  }
+
   public void createMenu() {
     MenuCreationHandler.createMenu(mapFields(selectedMenuDefinition));
     selectedMenuDefinition = null;
@@ -489,10 +513,13 @@ public class MenuDetailsBean extends AbstractMenuBean implements Serializable, I
     menu.setVersion(AbstractJsonVersion.LATEST);
 
     switch (menu.getType()) {
-      case DASHBOARD -> {
-      DashboardMenuItemDefinition dashboardMenu = (DashboardMenuItemDefinition) menu;
+      case MAIN_DASHBOARD -> {
+        DashboardMenuItemDefinition dashboardMenu = (DashboardMenuItemDefinition) menu;
         dashboardMenu.setDashboard(selectedDashboard);
         dashboardMenu.setDashboardId(selectedDashboard.getId());
+        // Mark the icon as already carrying its family prefix so the adapter doesn't
+        // double-prefix it before saving to the source dashboard.
+        dashboardMenu.setIncludedIconFamily(true);
         return dashboardMenu;
       }
       case CUSTOM -> {

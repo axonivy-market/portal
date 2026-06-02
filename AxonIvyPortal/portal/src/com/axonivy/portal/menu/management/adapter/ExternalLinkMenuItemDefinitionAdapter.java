@@ -25,7 +25,6 @@ public class ExternalLinkMenuItemDefinitionAdapter
     ExternalLinkMenuItemDefinition menu = new ExternalLinkMenuItemDefinition();
     menu.setSource(type);
     menu.setId(source.getId());
-    menu.setDisplayTitle(source.getLabel());
     menu.setUrl(source.getLink());
     menu.setIndex(source.getIndex());
     menu.setVersion(source.getVersion());
