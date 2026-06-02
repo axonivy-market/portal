@@ -1,5 +1,7 @@
 package com.axonivy.portal.components.util;
 
+import java.util.regex.Pattern;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.safety.Safelist;
@@ -7,6 +9,7 @@ import org.jsoup.safety.Safelist;
 public class HtmlUtils {
 
   private static String HTML_PROTOCOL = "http:";
+  private static final Pattern ICON_PATTERN = Pattern.compile("^(fa|si|ti|tif)\\s+(fa|si|ti|tif)-[a-zA-Z0-9\\-]+$");
 
   public static String parseTextFromHtml(String text) {
     String sanitizedText = sanitize(text);
@@ -28,12 +31,9 @@ public class HtmlUtils {
       return "";
     }
 
-    final String ICON_REGEX = "^(fa|si|ti|tif)\\s+(fa|si|ti|tif)-[a-zA-Z0-9\\-]+$";
-
-    // Trim spaces
     String sanitizedIcon = input.trim();
 
-    if (!sanitizedIcon.matches(ICON_REGEX)) {
+    if (!ICON_PATTERN.matcher(sanitizedIcon).matches()) {
       return ""; // Default fallback to a harmless icon
     }
     return sanitizedIcon;

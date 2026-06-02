@@ -164,19 +164,11 @@ Please access the :ref:`Dashboard Configuration <dashboard-configuration>` page 
 2. The global variable ``Portal.KeepSidebarExpanded`` has been removed. Use ``Portal.Sidebar.Mode`` instead.
 Set ``Portal.Sidebar.Mode`` to ``STICK`` to achieve the same effect as ``Portal.KeepSidebarExpanded=true``.
 
-3. The new **Menu Management** feature lets admins customize the order of items in the Portal sidebar.
-
-   Set an explicit ``id`` on each ``CustomSubMenuItem`` returned from your ``portalLoadSubMenuItems`` sub-process so admin-customized ordering survives code changes (renaming the application, changing the link, or changing the menu kind).
-
-   Example:
-
-   .. code-block:: java
-
-      CustomSubMenuItem item = new CustomSubMenuItem();
-      item.setId("my-project.tasks-shortcut");  // stable across refactors
-      item.setLabel("My Tasks");
-      item.setLink("/my-project/Tasks.ivp");
-      item.setMenuKind(MenuKind.CUSTOM);
+3. In complex filters, the list of selectable fields now depends on the widget's Column Management configuration.
+Only fields that are added in Column Management and enabled in the **Filter** column are available in
+:ref:`Complex Filter <complex-filter>`. To make a field available, add it and enable filtering in
+:ref:`Task list column management <task-widget-column-management>` or
+:ref:`Case list column management <case-widget-column-management>`.
 
 Migrate 13.1 To 13.2
 --------------------
