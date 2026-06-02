@@ -25,8 +25,6 @@ Define Your Own Process Image
    .. tip::
       - Prefer SVG for crisp scaling. PNG/JPG are supported; keep file size small.
       - Recommended visual box: square aspect ratio (e.g., 64x64 or 128x128) for consistent card rendering.
-      - SVG can embed scripts; use SVG files from trusted sources only. Portal renders process
-        images as static ``<img>`` elements, so embedded scripts do not execute.
 
 #. Define a custom field ``processImage`` in :guilabel:`Custom Fields` of the process start.
    The value of this custom field is the CMS object which you created above.
