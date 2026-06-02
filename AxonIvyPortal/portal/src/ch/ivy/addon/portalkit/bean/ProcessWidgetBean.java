@@ -13,6 +13,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -67,6 +68,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   private static final long serialVersionUID = -5889375917550618261L;
   private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";
+  // https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+  private static final Pattern PUNCTUATION_PATTERN = Pattern.compile("\\p{Punct}");
 
   private Process deletedProcess;
   private Process editedProcess;
@@ -125,14 +128,11 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   private void groupProcessesByAlphabetIndex(List<Process> processes) {
     processesByAlphabet = new HashMap<>();
-    // Follow Oracle document about regex for punctual character
-    // https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
-    String punctualRegex = "\\p{Punct}";
 
     for (Process process : processes) {
       String firstLetter = extractProcessFirstLetter(process.getName());
       if (StringUtils.isNotEmpty(firstLetter)) {
-        if (firstLetter.matches(punctualRegex)) {
+        if (PUNCTUATION_PATTERN.matcher(firstLetter).matches()) {
           addOrUpdateProcessesByKey(process, SPECIAL_CHARACTER_KEY);
         } else {
           addOrUpdateProcessesByKey(process, firstLetter);
