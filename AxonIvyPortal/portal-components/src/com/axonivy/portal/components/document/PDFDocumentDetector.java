@@ -50,8 +50,8 @@ public class PDFDocumentDetector implements DocumentDetector {
     COSDictionary catalog = document.getDocumentCatalog().getCOSObject();
     COSDictionary names = catalog.getCOSDictionary(COSName.NAMES);
     boolean hasJavaScriptNameTree = names != null && names.getCOSDictionary(COSName.JAVA_SCRIPT) != null;
-    boolean hasCatalogAdditionalActions = catalog.getCOSDictionary(COSName.AA) != null;
-    return hasJavaScriptNameTree || hasCatalogAdditionalActions;
+    boolean hasCatalogJavaScriptActions = hasJavaScriptInAdditionalActions(catalog);
+    return hasJavaScriptNameTree || hasCatalogJavaScriptActions;
   }
 
   private boolean hasPageOrAnnotationJavaScript(PDDocument document) throws IOException {
