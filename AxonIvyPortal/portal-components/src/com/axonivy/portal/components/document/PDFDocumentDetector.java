@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.pdfbox.Loader;
+import org.apache.pdfbox.cos.COSArray;
 import org.apache.pdfbox.cos.COSBase;
 import org.apache.pdfbox.cos.COSDictionary;
 import org.apache.pdfbox.cos.COSName;
@@ -30,7 +31,7 @@ public class PDFDocumentDetector implements DocumentDetector {
           && !containsAcroForm(document)
           && !containsOpenAction(document);
     } catch (InvalidPasswordException e) {
-      Ivy.log().error("This file is encrypted and cannot be scanned for security threats before uploading.");
+      Ivy.log().error("This file is encrypted and cannot be scanned for security threats before uploading.", e);
       BpmError.create("portal:file:encrypted").throwError();
     } catch (Exception e) {
       Ivy.log().error("PDF security check failed", e);
@@ -104,7 +105,12 @@ public class PDFDocumentDetector implements DocumentDetector {
       return false;
     }
     COSDictionary treeNode = embeddedFilesTree.getCOSObject();
-    return treeNode.containsKey(COSName.NAMES) || treeNode.containsKey(COSName.KIDS);
+    return hasNonEmptyArray(treeNode, COSName.NAMES) || hasNonEmptyArray(treeNode, COSName.KIDS);
+  }
+
+  private boolean hasNonEmptyArray(COSDictionary dictionary, COSName key) {
+    COSBase value = dictionary.getDictionaryObject(key);
+    return value instanceof COSArray && ((COSArray) value).size() > 0;
   }
 
   private boolean containsAcroForm(PDDocument document) {
@@ -114,6 +120,7 @@ public class PDFDocumentDetector implements DocumentDetector {
 
   private boolean containsOpenAction(PDDocument document) {
     COSDictionary catalog = document.getDocumentCatalog().getCOSObject();
-    return catalog.getDictionaryObject(COSName.OPEN_ACTION) != null;
+    COSBase openAction = catalog.getDictionaryObject(COSName.OPEN_ACTION);
+    return openAction instanceof COSDictionary;
   }
 }
