@@ -476,7 +476,7 @@ Standard Column:
       This column only accepts a list of task business state names as its filter
       condition. The available filter operator is ``in``. 
 
-      Refer to :doc-url:`Task Business States </public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` for
+      Refer to :doc-url:`Task Business States </public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` for
       available task business states.
 
 
