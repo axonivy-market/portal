@@ -17,12 +17,12 @@ import ch.ivyteam.ivy.environment.Ivy;
 @FacesValidator("emailValidator")
 public class EmailValidator implements Validator {
   public static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-  private Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+  private static final Pattern EMAIL_VALIDATION_PATTERN = Pattern.compile(EMAIL_PATTERN);
 
   @Override
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
     String strValue = value == null ? null : value.toString();
-    Matcher matcher = pattern.matcher(strValue);
+    Matcher matcher = EMAIL_VALIDATION_PATTERN.matcher(strValue);
     if (!matcher.matches()) {
       FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/emailSetting/invalidEmailFormat"), null);
