@@ -8,6 +8,10 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+
     <modules>
         <module>AxonIvyPortal/portal</module>
         <module>AxonIvyPortal/portal-components</module>

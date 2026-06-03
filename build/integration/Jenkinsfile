@@ -117,7 +117,11 @@ def downloadPortalRelease() {
 }
 
 def installPortalToLocalRepo() {
-  findFiles(glob: "${env.releaseDir}/*/*/target/*.iar").each { iar ->
+  def iars = findFiles(glob: "${env.releaseDir}/*/*/target/*.iar")
+  if (iars.length == 0) {
+    error("No *.iar artifacts found under ${env.releaseDir}; aborting to avoid using stale artifacts in the local Maven repo.")
+  }
+  iars.each { iar ->
     def moduleDir = iar.path.substring(0, iar.path.lastIndexOf('/target/'))
     maven cmd: "install:install-file -ntp -Dfile=${iar.path} -DpomFile=${moduleDir}/pom.xml"
   }
