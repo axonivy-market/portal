@@ -9,8 +9,8 @@ import com.axonivy.portal.components.enums.GlobalVariable;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class DateTimeGlobalSettingService {
-  private final String SPACE_CHARACTER = " ";
-  private final String COMMA_CHARACTER = ",";
+  private static final String SPACE_CHARACTER = " ";
+  private static final String COMMA_CHARACTER = ",";
   private static final Pattern YEAR_PATTERN = Pattern.compile("\\W?[Yy]+\\W?");
   private static final Pattern YEAR_SYMBOL_PATTERN = Pattern.compile("y+");
   private GlobalSettingService globalSettingService;
