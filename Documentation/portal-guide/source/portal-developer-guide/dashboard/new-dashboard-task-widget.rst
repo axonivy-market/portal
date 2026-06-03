@@ -186,6 +186,8 @@ Each column object in the ``columns`` array:
    - ``expiryTimestamp`` - Expiry date and time
    - ``application`` - Application name
    - ``actions`` - Action buttons (details, reset, delegate, reserve, destroy, etc.)
+   - ``businessCaseId`` - Business Case ID (hidden by default; not sortable, not available in quick search)
+   - ``technicalCaseId`` - Technical Case ID (hidden by default; not sortable, not available in quick search)
 
 ``visible`` (string, default: ``"true"``)
    Column visibility: ``"true"`` or ``"false"``
@@ -543,6 +545,43 @@ Standard Column:
                }
             ]
          }
+
+   - ``businessCaseId`` and ``technicalCaseId``
+
+      .. code-block:: javascript
+
+         {
+            ...
+
+            "columns": [
+               {
+                  "field": "businessCaseId"
+               }
+            ],
+            "filters": [
+               {
+                  "field": "businessCaseId",
+                  "values": [ "1001" ],
+                  "operator": "contains",
+                  "type": "standard"
+               },
+               {
+                  "field": "technicalCaseId",
+                  "values": [ "2001" ],
+                  "operator": "contains",
+                  "type": "standard"
+               }
+            ]
+         }
+
+      ..
+
+      These columns display the Business Case ID and Technical Case ID of the task's associated case,
+      respectively. Each value is matched against the numeric case ID by exact equality, even though the
+      operator is ``contains``. The only available filter operator is ``contains``.
+
+      .. note::
+         These columns do not support sorting or quick search.
 
 Custom Field Column :
 

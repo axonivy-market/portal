@@ -527,6 +527,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     visible: Visible
     warning: Warning!
     welcomeToPortal: Welcome, please login
+    businessCaseId: Business Case ID
+    technicalCaseId: Technical Case ID
     workingUser: Working user
     wrongDateFormat: Please enter valid date.
     year: year
@@ -1175,9 +1177,11 @@ Labels:
   EnterValues: Enter values
   Enums:
     DashboardStandardTaskColumn:
+      BUSINESS_CASE_ID: Business Case ID
       EXPIRY: Expiry
       PRIORITY: Priority
       RESPONSIBLE: Responsible
+      TECHNICAL_CASE_ID: Technical Case ID
   Expand: Expand
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
