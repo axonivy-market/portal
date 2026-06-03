@@ -37,7 +37,7 @@ public class TechnicalCaseIdColumnModel extends TaskColumnModel implements Seria
 
   @Override
   public Boolean getDefaultSortable() {
-    return false;
+    return true;
   }
 
   @Override

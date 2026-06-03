@@ -37,7 +37,7 @@ public class BusinessCaseIdColumnModel extends TaskColumnModel implements Serial
 
   @Override
   public Boolean getDefaultSortable() {
-    return false;
+    return true;
   }
 
   @Override
