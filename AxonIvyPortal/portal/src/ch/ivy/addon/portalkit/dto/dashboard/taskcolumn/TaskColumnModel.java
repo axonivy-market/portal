@@ -29,7 +29,7 @@ public class TaskColumnModel extends ColumnModel {
 
   private Object getCustomFieldValue(ICustomFields customFields) {
     if (isNumber()) {
-      return customFields.numberField(field).getOrNull();
+      return displayNumberWithPattern(customFields);
     } else if (isDate()) {
       return customFields.timestampField(field).getOrNull();
     } else if (isText()) {
