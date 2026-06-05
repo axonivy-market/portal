@@ -180,6 +180,16 @@ public class DashboardFilter implements Serializable {
   }
 
   @JsonIgnore
+  public boolean isBusinessCaseId() {
+    return DashboardStandardTaskColumn.BUSINESS_CASE_ID.getField().equals(this.field);
+  }
+
+  @JsonIgnore
+  public boolean isTechnicalCaseId() {
+    return DashboardStandardTaskColumn.TECHNICAL_CASE_ID.getField().equals(this.field);
+  }
+
+  @JsonIgnore
   public boolean isTextField() {
     return (this.filterFormat == FilterFormat.TEXT || this.filterFormat == FilterFormat.STRING) && !isCategory()
         && !isId() && !isApplication() && !isDefaultField() && !isResponsible() && !isCreator();

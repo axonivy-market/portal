@@ -59,6 +59,8 @@ public class TaskColumnModel extends ColumnModel {
       case CATEGORY -> new CategoryColumnModel();
       case APPLICATION -> new ApplicationColumnModel();
       case WORKER -> new WorkerColumnModel();
+      case BUSINESS_CASE_ID -> new BusinessCaseIdColumnModel();
+      case TECHNICAL_CASE_ID -> new TechnicalCaseIdColumnModel();
       case ACTIONS -> new ActionsColumnModel();
     }).orElse(new TaskColumnModel());
   }

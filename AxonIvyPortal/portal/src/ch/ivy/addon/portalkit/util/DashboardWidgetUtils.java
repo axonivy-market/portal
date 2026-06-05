@@ -139,6 +139,10 @@ public class DashboardWidgetUtils {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ApplicationColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.WORKER, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.WorkerColumnModel.class;
+      } else if (equals(DashboardStandardTaskColumn.BUSINESS_CASE_ID, field)) {
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.BusinessCaseIdColumnModel.class;
+      } else if (equals(DashboardStandardTaskColumn.TECHNICAL_CASE_ID, field)) {
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TechnicalCaseIdColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.ACTIONS, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ActionsColumnModel.class;
       }
