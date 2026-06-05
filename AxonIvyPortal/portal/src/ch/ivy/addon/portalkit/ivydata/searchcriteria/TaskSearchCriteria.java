@@ -302,16 +302,6 @@ public class TaskSearchCriteria {
       }
     }
 
-    private void appendSortByCategoryIfSet(@SuppressWarnings("unused") TaskSearchCriteria criteria) {
-//      if (TaskSortField.CATEGORY.toString().equalsIgnoreCase(criteria.getSortField())) {
-//        if (criteria.isSortDescending()) {
-//          query.orderBy().category().descending();
-//        } else {
-//          query.orderBy().category();
-//        }
-//      }
-    }
-    
   }
   
   /** Check if current user can see task in advance state such as
