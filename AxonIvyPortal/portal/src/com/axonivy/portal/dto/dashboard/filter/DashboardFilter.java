@@ -91,12 +91,12 @@ public class DashboardFilter extends BaseFilter {
 
   @JsonIgnore
   public boolean isBusinessCaseId() {
-    return DashboardStandardTaskColumn.BUSINESS_CASE_ID.getField().equals(this.field);
+    return DashboardStandardTaskColumn.BUSINESS_CASE_ID.getField().equals(getField());
   }
 
   @JsonIgnore
   public boolean isTechnicalCaseId() {
-    return DashboardStandardTaskColumn.TECHNICAL_CASE_ID.getField().equals(this.field);
+    return DashboardStandardTaskColumn.TECHNICAL_CASE_ID.getField().equals(getField());
   }
 
   @JsonIgnore
