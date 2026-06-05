@@ -50,6 +50,6 @@ public class BusinessCaseIdColumnModel extends TaskColumnModel implements Serial
 
   @Override
   public boolean canQuickSearch() {
-    return false;
+    return true;
   }
 }

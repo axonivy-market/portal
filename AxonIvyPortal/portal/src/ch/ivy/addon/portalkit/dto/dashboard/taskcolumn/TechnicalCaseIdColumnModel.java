@@ -50,6 +50,6 @@ public class TechnicalCaseIdColumnModel extends TaskColumnModel implements Seria
 
   @Override
   public boolean canQuickSearch() {
-    return false;
+    return true;
   }
 }
