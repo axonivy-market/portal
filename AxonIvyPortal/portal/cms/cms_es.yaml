@@ -677,6 +677,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Estamos creando la Exportación, esto puede tardar unos minutos
     warning: Advertencia!
     welcomeToPortal: Bienvenido, por favor inicie su sesión
+    businessCaseId: ID de caso de negocio
+    technicalCaseId: ID de caso técnico
     workingUser: Usuario trabajador
     wrongDateFormat: Por favor ingrese una fecha válida.
     year: Año
@@ -1888,6 +1890,7 @@ Labels:
     DashboardStandardTaskColumn:
       ACTIONS: Acciones
       APPLICATION: Aplicación
+      BUSINESS_CASE_ID: ID de caso de negocio
       CATEGORY: Categoría
       COMPLETED: Fecha de finalización
       CREATED: Fecha de creación
@@ -1900,6 +1903,7 @@ Labels:
       RESPONSIBLE: Responsable
       START: Inicio
       STATE: Estado
+      TECHNICAL_CASE_ID: ID de caso técnico
       WORKER: Usuario trabajador
     FilterOperator:
       AFTER: Es Después

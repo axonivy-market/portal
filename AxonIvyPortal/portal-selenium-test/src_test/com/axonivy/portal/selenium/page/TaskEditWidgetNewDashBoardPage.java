@@ -384,11 +384,20 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public void addCustomColumns(String... fieldNameList) {
     openColumnManagementDialog();
     selectCustomType();
-    
+
     for(String fieldName : fieldNameList) {
       addCustomFields(fieldName);
     }
     $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+  }
+
+  public void addStandardField(String fieldKey) {
+    selectStandardType();
+    getStandardField(fieldKey).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getFieldDisplayName().shouldNot(Condition.empty, DEFAULT_TIMEOUT);
+    getColumnManagementDialog().$("button[id$='field-add-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
+    getAddedFieldRemoveLink(fieldKey).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
   
   public void closeFilter() {

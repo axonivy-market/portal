@@ -22,6 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.enums.SearchScopeTaskField;
 
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -196,6 +197,8 @@ public class TaskSearchCriteria {
       appendSortByExpiryDateIfSet(criteria);
       appendSortByCompletedDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
+      appendSortByBusinessCaseIdIfSet(criteria);
+      appendSortByTechnicalCaseIdIfSet(criteria);
       appendSortByCategoryIfSet(criteria);
       return this;
     }
@@ -279,7 +282,27 @@ public class TaskSearchCriteria {
       }
     }
     
-    private void appendSortByCategoryIfSet(TaskSearchCriteria criteria) {
+    private void appendSortByBusinessCaseIdIfSet(TaskSearchCriteria criteria) {
+      if (DashboardStandardTaskColumn.BUSINESS_CASE_ID.getField().equalsIgnoreCase(criteria.getSortField())) {
+        if (criteria.isSortDescending()) {
+          query.orderBy().businessCaseId().descending();
+        } else {
+          query.orderBy().businessCaseId();
+        }
+      }
+    }
+
+    private void appendSortByTechnicalCaseIdIfSet(TaskSearchCriteria criteria) {
+      if (DashboardStandardTaskColumn.TECHNICAL_CASE_ID.getField().equalsIgnoreCase(criteria.getSortField())) {
+        if (criteria.isSortDescending()) {
+          query.orderBy().caseId().descending();
+        } else {
+          query.orderBy().caseId();
+        }
+      }
+    }
+
+    private void appendSortByCategoryIfSet(@SuppressWarnings("unused") TaskSearchCriteria criteria) {
 //      if (TaskSortField.CATEGORY.toString().equalsIgnoreCase(criteria.getSortField())) {
 //        if (criteria.isSortDescending()) {
 //          query.orderBy().category().descending();
