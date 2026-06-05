@@ -794,7 +794,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       Visibility: Visibility
       EditPublicDashboards: Edit public dashboards
       ExportDashboard: Export dashboard
-      ExportDashboard: Export dashboard
       ExportReferencedDialogHeader: Dashboard references other dashboards
       ExportReferencedDialogMessage: 'The following dashboards are referenced by navigation widgets. Export and import them too for the widgets to work correctly:'
       ExportReferencedDialogProceed: Export anyway
@@ -868,8 +867,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       TooltipSumKpiLabel: Sum of {0}
       TooltipTotalCaseLabel: 'Total cases: {0}'
       TooltipTotalTaskLabel: 'Total tasks: {0}'
-      failToRenderChartMessage: Error while rendering chart. Please retry with different settings.
-      firstConfigChartMessage: No chart available yet. Please configure your settings to generate a chart.
       failToRenderChartMessage: Error while rendering chart. Please retry with different settings.
       firstConfigChartMessage: No chart available yet. Please configure your settings to generate a chart.
     WelcomeWidgetIntroduction: This widget displays a welcome text and image on dashboard.
@@ -955,7 +952,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
-    dataSettings: Data Settings
     dataSettings: Data Settings
     deleteWidget: Delete widget
     displaySettings: Display Settings
@@ -1628,7 +1624,6 @@ Dialogs:
               ImportPrivate: Import Private Dashboard
               ImportPublic: Import Public Dashboard
               NavigationWidgetMissingTarget: Navigation widget "{0}" references a dashboard that was not imported and does not exist in this portal. The widget may not work correctly.
-              NavigationWidgetMissingTarget: Navigation widget "{0}" references a dashboard that was not imported and does not exist in this portal. The widget may not work correctly.
               chooseAJsonFile: Choose a json file
             DashboardSharing:
               ShareDashboard: Share Dashboard
@@ -1765,13 +1760,6 @@ Enums:
     axonivy:
       portal:
         enums:
-          CaseQueryType:
-            ALL:
-              name: Business Cases + Sub Cases
-            BUSINESS_CASE:
-              name: Business Cases (Default)
-            SUB_CASE:
-              name: Sub Cases
           CaseQueryType:
             ALL:
               name: Business Cases + Sub Cases

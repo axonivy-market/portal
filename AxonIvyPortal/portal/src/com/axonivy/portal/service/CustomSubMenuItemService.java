@@ -95,7 +95,7 @@ public class CustomSubMenuItemService {
 
       String hashId = MenuId.compute(customMenu);
       result.setId(StringUtils.isNotBlank(customMenu.getId()) ? customMenu.getId() : hashId);
-      result.setName(HomepageUtils.generateHomepageId(result.getMenuKind(), hashId));
+      result.setName(HomepageUtils.generateHomepageId(result.getMenuKind(), result.getId()));
 
       return result;
     };

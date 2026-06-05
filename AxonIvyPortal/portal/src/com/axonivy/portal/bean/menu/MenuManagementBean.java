@@ -17,6 +17,8 @@ import org.primefaces.event.ReorderEvent;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.enums.MenuKind;
+import com.axonivy.portal.dto.menu.CustomMenuItemDefinition;
+import com.axonivy.portal.dto.menu.DashboardMenuItemDefinition;
 import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
 import com.axonivy.portal.enums.SidebarMode;
 import com.axonivy.portal.menu.management.MenuLoader;
@@ -130,6 +132,15 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
     }
     if (StringUtils.isNotBlank(menu.getUrl())) {
       return menu.getUrl();
+    }
+    if (menu instanceof CustomMenuItemDefinition custom
+        && StringUtils.isNotBlank(custom.getProcessStartPath())) {
+      return custom.getProcessStartPath();
+    }
+    if (menu instanceof DashboardMenuItemDefinition dashboard
+        && dashboard.getDashboard() != null
+        && StringUtils.isNotBlank(dashboard.getDashboard().getId())) {
+      return dashboard.getDashboard().getId();
     }
     return StringUtils.defaultIfBlank(menu.getDescription(), "-");
   }

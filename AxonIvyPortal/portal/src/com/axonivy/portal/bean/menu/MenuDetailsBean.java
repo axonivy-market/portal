@@ -484,7 +484,7 @@ public class MenuDetailsBean extends AbstractMenuBean implements Serializable, I
     }
     try {
       String scheme = URI.create(url).getScheme();
-      if (scheme != null && !ALLOWED_URL_SCHEMES.contains(scheme.toLowerCase())) {
+      if (scheme == null || !ALLOWED_URL_SCHEMES.contains(scheme.toLowerCase())) {
         throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
             Ivy.cms().co("/Dialogs/com/axonivy/portal/page/MenuManagement/InvalidUrlScheme"), null));
       }
