@@ -546,6 +546,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       worker: 'Editor '
       wrongFromDateFormat: Por favor, introduzca una fecha válida "desde". El formato es {0}
       wrongToDateFormat: Por favor, introduzca una fecha válida "hasta". El formato es {0}
+    filterLabel: Filtro
     finish: Terminar
     general: General
     generalInformation: Información general

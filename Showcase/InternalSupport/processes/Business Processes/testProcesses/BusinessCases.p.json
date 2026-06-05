@@ -80,7 +80,7 @@
           "code" : [
             "import ch.ivyteam.ivy.process.model.value.SignalCode;",
             "",
-            "SignalCode code = new SignalCode(\"com:axonivy:portal:internalsupport:updateCheckInTime\");",
+            "SignalCode code = SignalCode.of(\"com:axonivy:portal:internalsupport:updateCheckInTime\");",
             "ivy.wf.signals().send(code);"
           ]
         }
@@ -281,7 +281,7 @@
           "code" : [
             "import ch.ivyteam.ivy.process.model.value.SignalCode;",
             "",
-            "SignalCode code = new SignalCode(\"com:axonivy:portal:internalsupport:pizzaDelivery\");",
+            "SignalCode code = SignalCode.of(\"com:axonivy:portal:internalsupport:pizzaDelivery\");",
             "ivy.wf.signals().send(code);"
           ]
         }
@@ -363,7 +363,7 @@
           "code" : [
             "import ch.ivyteam.ivy.process.model.value.SignalCode;",
             "",
-            "SignalCode code = new SignalCode(\"com:axonivy:portal:internalsupport:informSale\");",
+            "SignalCode code = SignalCode.of(\"com:axonivy:portal:internalsupport:informSale\");",
             "ivy.wf.signals().send(code);"
           ]
         }
