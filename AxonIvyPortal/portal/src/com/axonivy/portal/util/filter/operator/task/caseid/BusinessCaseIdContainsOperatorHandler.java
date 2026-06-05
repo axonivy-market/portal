@@ -1,13 +1,14 @@
 package com.axonivy.portal.util.filter.operator.task.caseid;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class BusinessCaseIdContainsOperatorHandler {
+
+  private static final String LIKE_FORMAT = "%%%s%%";
 
   private static BusinessCaseIdContainsOperatorHandler instance;
 
@@ -23,15 +24,11 @@ public class BusinessCaseIdContainsOperatorHandler {
       return null;
     }
     TaskQuery query = TaskQuery.create();
-    for (String value : filter.getValues()) {
-      if (!NumberUtils.isParsable(value)) {
-        continue;
-      }
-      long id = Long.parseLong(value.trim());
+    filter.getValues().forEach(text -> {
       TaskQuery subQuery = TaskQuery.create();
-      subQuery.where().businessCaseId().isEqual(id);
+      subQuery.where().businessCaseId().isLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
       query.where().or(subQuery);
-    }
+    });
     return query;
   }
 }
