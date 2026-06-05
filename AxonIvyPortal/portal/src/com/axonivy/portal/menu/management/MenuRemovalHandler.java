@@ -44,6 +44,9 @@ public final class MenuRemovalHandler implements Serializable {
   private static void removeDashboardMenu(PortalMenuItemDefinition menu) {
     DashboardMenuItemDefinition dashboardMenu = (DashboardMenuItemDefinition) menu;
     Dashboard dashboardToSave = DashboardService.getInstance().findById(dashboardMenu.getDashboard().getId());
+    if (dashboardToSave == null) {
+      return;
+    }
     dashboardToSave.setDashboardDisplayType(DashboardDisplayType.SUB_MENU);
     DashboardService.getInstance().saveAllPublicConfig(Arrays.asList(dashboardToSave));
     DashboardUtils.updateDashboardCache();

@@ -6,6 +6,9 @@ import java.util.Optional;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+
+import com.axonivy.portal.bean.menu.MenuManagementBean;
 
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -88,6 +91,11 @@ public class DashboardConfigurationBean implements Serializable {
   public void accessToMenuManagement() {
     resetAllIndicators();
     this.isMenuManagement = true;
+    FacesContext ctx = FacesContext.getCurrentInstance();
+    MenuManagementBean menuBean = ctx.getApplication().evaluateExpressionGet(ctx, "#{menuManagementBean}", MenuManagementBean.class);
+    if (menuBean != null) {
+      menuBean.init();
+    }
   }
 
   public boolean isMobileDevice() {

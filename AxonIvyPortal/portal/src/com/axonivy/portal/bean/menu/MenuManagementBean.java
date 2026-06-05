@@ -44,7 +44,18 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
     menuDefinitions = MenuLoader.loadMenuDefinitions();
     menuDefinitions.forEach(this::initDisplayPermissions);
     String storedMode = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.SIDEBAR_MODE);
-    sidebarMode = StringUtils.isNotBlank(storedMode) ? SidebarMode.valueOf(storedMode) : SidebarMode.HOVER;
+    sidebarMode = parseSidebarMode(storedMode);
+  }
+
+  private static SidebarMode parseSidebarMode(String storedMode) {
+    if (StringUtils.isBlank(storedMode)) {
+      return SidebarMode.HOVER;
+    }
+    try {
+      return SidebarMode.valueOf(storedMode);
+    } catch (IllegalArgumentException e) {
+      return SidebarMode.HOVER;
+    }
   }
 
   public void initDisplayPermissions(PortalMenuItemDefinition menu) {

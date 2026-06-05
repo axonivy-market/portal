@@ -163,11 +163,6 @@ public class DashboardModificationBean extends DashboardBean {
     
     saveDashboards(new ArrayList<>(this.dashboards));
     updateSessionAttributeWhenDisplayTypeIsHidden();
-    if (previousDisplayType != this.selectedDashboard.getDashboardDisplayType()) {
-      // Order manifest is self-healing — invalidate the cache so the next load
-      // reconciles the new (or no-longer-top-menu) dashboard.
-      MenuOrderService.invalidateCache();
-    }
     collectDashboardsForManagement();
   }
   
