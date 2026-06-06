@@ -35,7 +35,9 @@ public class AbsenceService{
             ivyAbsencesByUser.put(user.getName(), getAbsences(user)));
       } else {
         IUser user = UserUtils.findUserByUsername(username);
-        ivyAbsencesByUser.put(username, getAbsences(user));
+        if (user != null) {
+          ivyAbsencesByUser.put(username, getAbsences(user));
+        }
       }
       return ivyAbsencesByUser;
     });
