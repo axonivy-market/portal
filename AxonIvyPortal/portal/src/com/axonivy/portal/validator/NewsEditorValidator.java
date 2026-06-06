@@ -26,14 +26,12 @@ public class NewsEditorValidator implements Validator {
     }
     String content = (String) value;
     content = HtmlParser.extractTextFromHtml(content);
-    if (StringUtils.isNoneBlank(content)) {
-      if (content.length() > MAX_NEWS_CONTENT_LENGTH) {
-        var message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
-            Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsContentMaxLengthMessage"),
-            "");
-        FacesContext.getCurrentInstance().addMessage(null, message);
-        FacesContext.getCurrentInstance().validationFailed();
-      }
+    if (StringUtils.isNoneBlank(content) && content.length() > MAX_NEWS_CONTENT_LENGTH) {
+      var message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsContentMaxLengthMessage"),
+          "");
+      FacesContext.getCurrentInstance().addMessage(null, message);
+      FacesContext.getCurrentInstance().validationFailed();
     }
   }
 }
