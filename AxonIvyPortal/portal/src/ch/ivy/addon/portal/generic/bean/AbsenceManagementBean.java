@@ -485,16 +485,19 @@ public class AbsenceManagementBean implements Serializable {
   }
 
   public void saveSubstitutes() {
-    if (selectedDeputyRole != null) {
-      if (createDeputyMode) {
-        for (ISecurityMember member : selectedDeputies) {
-          if (!selectedDeputyRole.getDeputies().contains(member)) {
-            selectedDeputyRole.getDeputies().add(member);
-          }
+    if (selectedDeputyRole == null) {
+      persistAllSubstitutes();
+      return;
+    }
+    if (createDeputyMode) {
+      var existing = selectedDeputyRole.getDeputies();
+      for (ISecurityMember member : selectedDeputies) {
+        if (!existing.contains(member)) {
+          existing.add(member);
         }
-      } else {
-        selectedDeputyRole.setDeputies(selectedDeputies);
       }
+    } else {
+      selectedDeputyRole.setDeputies(selectedDeputies);
     }
     persistAllSubstitutes();
   }
