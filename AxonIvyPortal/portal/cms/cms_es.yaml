@@ -22,7 +22,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deputies: Sustitutos
     description: Establezca sus vacaciones, enfermedades u otras obligaciones externas que lleven a cualquier ausencia.
     editAbsence: Editar ausencia
-    from: Del
+    from: Remite
     noDeputy: Sin sustituto
     noPermissionToSeeThisArea: Usted no tiene el permiso necesario para ver esta zona.
     period: Periodo
@@ -32,14 +32,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectedDeputies: Sustitutos seleccionados
     showAbsencesInThePast: Mostrar ausencias en el pasado
     substitutedUser: Usuario sustituido
-    taskForRole: 'Tarea para el rol:'
+    taskForRole: 'Tarea para el rol: '
     till: Hasta
   AbsenceManagement:
     Messages:
-      addNewAbsence: Se ha creado una nueva ausencia para  {0}
-      removedAbsences: Ausencia removida para {0}
-      saveAbsenceSetting: Configuración para ausencias guardada con éxito.
-      updateAbsence: Ausencia actualizada con éxito
+      addNewAbsence: Se ha añadido una ausencia nueva a {0}
+      removedAbsences: Ausencia retirada para {0}
+      saveAbsenceSetting: Ajustes para ausencias guardados correctamente.
+      updateAbsence: Ausencia actualizada correctamente
     absenceAndDeputy: Ausencias y sustituciones
     allAbsences: Ausencias de todos los usuarios
     applicationAndRole: Aplicación y rol
@@ -62,7 +62,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     BasicDocumentType:
       CONTRACT: Contrato
       DOCUMENTATION: Documentación
-      EMAIL: Email
+      EMAIL: Correo-e
       INFORMATION: Información
       OTHERS: Otros
     BehaviourWhenClickingOnLineInCaseList:
@@ -81,25 +81,25 @@ ch.ivy.addon.portalkit.ui.jsf:
       NEW: Nuevo widget
       NEWS: Noticias
       NOTIFICATION: Notificaciones
-      PROCESS: Widget de procesos
+      PROCESS: Widget del proceso
       PROCESS_VIEWER: Widget del visor de procesos
       STATISTIC: Widget de estadísticas
       TASK: Widget de tareas
       WELCOME: Widget de bienvenida
     DelegationAppendOption:
       NONE: Ninguno
-      PARENT_NAME: Nombre de rol principal
+      PARENT_NAME: Nombre de antecesor
     GlobalVariable:
       Option:
         DISPLAY_NAME: Nombre de pantalla
-        DISPLAY_NAME_USERNAME: 'Nombre de pantalla (usuario) '
-        'FALSE': 'False'
-        'TRUE': 'True'
+        DISPLAY_NAME_USERNAME: 'Nombre de pantalla (usuario)'
+        'FALSE': 'Falso'
+        'TRUE': 'Cierto'
         USERNAME: Usuario
         USERNAME_DISPLAY_NAME: Usuario (nombre de pantalla)
     ProcessMode:
       COMPACT: Compacto
-      GRID: Carta
+      GRID: Cuadrícula
       IMAGE: Imagen
     ProcessSorting:
       BY_ALPHABETICALLY: Alfabéticamente
@@ -107,31 +107,31 @@ ch.ivy.addon.portalkit.ui.jsf:
       BY_INDEX: Índice de clasificación
       BY_SMART_ORDER: Más usado
     ProcessType:
-      EXTERNAL_LINK: Link externo
-      IVY_PROCESS: Proceso de negocio
+      EXTERNAL_LINK: Enlace Externo
+      IVY_PROCESS: Proceso de Negocio
     ProcessWidgetMode:
       COMBINED_MODE: Modo combinado
       COMPACT_MODE: Modo compacto
       FULL_MODE: Modo completo
       IMAGE_MODE: Modo de imagen
     ReleaseState:
-      DEPRECATED: Depreciado
+      DEPRECATED: Obsoleto
       RELEASED: Publicado
     SortDirection:
       ASC: Orden ascendente
       DESC: Orden descendente
     WeekDay:
-      FRIDAY: Vier.
-      MONDAY: Lun.
-      SATURDAY: Sáb.
-      SUNDAY: Dom.
-      THURSDAY: Juev.
-      TUESDAY: Mart.
-      WEDNESDAY: Miérc.
+      FRIDAY: VIE
+      MONDAY: LUN
+      SATURDAY: SAB
+      SUNDAY: DOM
+      THURSDAY: JUE
+      TUESDAY: MAR
+      WEDNESDAY: MIE
     WelcomeImageFit:
       CONTAIN: Contiene
-      COVER: Cubrir
-      FILL: Rellenar
+      COVER: Cubre
+      FILL: Rellena
       NONE: Ninguno
     WelcomeTextPosition:
       BOTTOM_LEFT: Esquina inferior izquierda
@@ -140,13 +140,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       TOP_LEFT: Esquina superior izquierda
       TOP_RIGHT: Esquina superior derecha
     WelcomeTextSize:
-      HEADING_1: Rúbrica 1
-      HEADING_2: Rúbrica 2
-      HEADING_3: Rúbrica 3
+      HEADING_1: Cabecera 1
+      HEADING_2: Cabecera 2
+      HEADING_3: Cabecera 3
       NORMAL_TEXT: Texto normal
   MyProfile:
     Accessibility: Accesibilidad
-    CaseList: Case List
+    CaseList: Caso de Listado
     DateFormat: Formato de la fecha
     FormattingLanguage: Lenguaje de formato
     General: Generales
@@ -168,11 +168,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     unpinAllPinnedCases: 'Todos los casos fijados han sido eliminados para el usuario: {0}.'
     unpinAllPinnedTasks: Todas las tareas fijadas han sido eliminadas para el usuario {0}.
   PortalManagement:
-    AdminSetting: Configuración de administrador
+    AdminSetting: Ajustes de admin
   ProcessViewer:
-    Breadcrumb: Visualización del proceso {0}
-    ProcessViewerText: Visualizador de procesos
-    Title: Visualizador de procesos
+    Breadcrumb: Visor de procesos del proceso {0}
+    ProcessViewerText: Visor de procesos
+    Title: Visor de procesos
   SideStep:
     NewSideStepMessage: Se ha creado una nueva tarea de paso lateral
     SideStepProcess: Iniciar proceso paralelo
@@ -182,21 +182,21 @@ ch.ivy.addon.portalkit.ui.jsf:
     addLanguages: Agregar idiomas
     addNewApplication: Crear nueva aplicación de terceros
     announcement:
-      announcement: Aviso
-      announcementsDisabled: Los avisos están deactivados
-      announcementsEnabled: Los avisos están activados
-      defaultLanguageRequiredMessage: 'Texto requerido en el idioma estándard de la aplicación '
+      announcement: Anuncio
+      announcementsDisabled: Los anuncios están deshabilitados.
+      announcementsEnabled: Los anuncios están habilitados.
+      defaultLanguageRequiredMessage: 'Se requiere el anuncio para idioma de la aplicación por defecto.'
       disabled: Deshabilitado
       enable: Activar anuncio
       information: En esta área puede anunciar una información general (ej. mantenimiento, cambios en la aplicación, etc.). Este mensaje será visible para todos los usuarios.
       saveChanges: Guardar cambios
-      tabTitle: Avisos
-    appDisplayName: Nombre para mostrar
-    appDisplayNameRequiredMsg: Por favor ingrese el nombre para mostrar de la aplicación.
+      tabTitle: Anuncios
+    appDisplayName: Nombre de pantalla
+    appDisplayNameRequiredMsg: Ingrese el nombre para exhibir en la aplicación.
     appNameCharactersLimit: Solo los caracteres [\p{Alnum}_-]+ están permitidos para el nombre de la aplicación.
     appNameRequiredMsg: Por favor introduzca el nombre de la aplicación.
     applicationHint: Use arrastrar y soltar para reordenar.
-    applicationLinkRequiredMsg: Por favor, introduzca el enlace al portal
+    applicationLinkRequiredMsg: Introduzca el enlace al portal.
     applicationList:
       addNewApplication: Añadir nueva aplicación
       applicationSelectionHeader: Seleccionar aplicación
@@ -225,17 +225,16 @@ ch.ivy.addon.portalkit.ui.jsf:
       GooglePlayURL: Establece la URL para descargar la aplicación móvil Axon Ivy en Google Play.
       RoleDirectChildrenLimit: 'El número establecido controla la cantidad de roles hijos directos que se muestra en la pestaña de gestión de roles. Número válido: 10, 50, 100'
       RoleParentLimit: 'El número establecido controla la cantidad de roles padre que se muestra al filtrar los roles en la pestaña Gestión de roles. Número válido: 5, 10, 20'
-      SearchScopeCaseFields: Definición de los campos que la búsqueda global utilizará para encontrar casos coincidentes además del Id de caso (esto puede influir en el rendimiento de la búsqueda)
-      SearchScopeTaskFields: Definir los campos que la búsqueda global utilizará para encontrar tareas coincidentes junto al Id de tarea (esto puede influir en el rendimiento de la búsqueda).
-      SessionCacheTimeout: Tiempo de espera de la caché de sesión para el portal. Define el tiempo de expiración de la caché de sesión (en segundos) para el portal. Este valor puede establecerse entre 300 (5 minutos) y 86.400 (24 horas).
+      SearchScopeCaseFields: Definir los campos que la búsqueda global utilizará para encontrar casos coincidentes además del Id de caso (esto puede influir en el rendimiento de la búsqueda)
+      SearchScopeTaskFields: Definir los campos que la búsqueda global utilizará para encontrar tareas coincidentes junto al Id de tarea (esto puede influir en el rendimiento de la búsqueda)
+      SessionCacheTimeout: Define la duración del tiempo de espera de la caché de sesión (en segundos) para el Portal. Este valor se puede configurar entre 300 (5 minutos) y 86.400 (24 horas).
       ShowLoginPageFooter: Para activar/desactivar la visualización del pie de página en la página de acceso.
       ShowQRCode: Para activar/desactivar la visualización del código QR.
       allowKeyboardShortcutsConfiguration: Establezca en true para permitir que el usuario interactúe con el botón de atajos de teclado.
       behaviourWhenClickingOnLineInCaseList: Alternar entre acceder a los detalles del caso o los detalles del negocio al hacer clic en un caso en el widget de casos del panel de control, en la búsqueda global, en los casos relacionados y en el widget de procesos en modo combinado.
       behaviourWhenClickingOnLineInTaskList: Para cambiar los comportamientos (ejecutar la tarea o acceder a los detalles de la tarea) al hacer clic en una línea de la lista de tareas, el widget de tareas del tablero y las tareas relacionadas en la página de detalles del caso.
       chatMaxConnection: 'El número establecido controla la cantidad de pestañas permitidas con el chat activo. Si se abren más pestañas, el chat se desactivará en las pestañas inactivas. Valores permitidos entre 1-5 '
-      chatResponseTimeout: Tiempo de respuesta del chat en segundos, el valor por defecto es 0 y significa que no hay tiempo de espera. Si los mensajes de chat pasan por el proxy inverso Nginx, el tiempo de espera de la respuesta del chat debe ser menor que el tiempo de espera de Nginx, por ejemplo, menos
-        de 60 segundos.
+      chatResponseTimeout: Tiempo de respuesta del chat en segundos, el valor por defecto es 0 y significa que no hay tiempo de espera. Si los mensajes de chat pasan por el proxy inverso Nginx, el tiempo de espera de la respuesta del chat debe ser menor que el tiempo de espera de Nginx, por ejemplo, menos de 60 segundos.
       checkSystemNotesByDefault: Si el valor es verdadero y las notas del sistema están visibles, la casilla aparecerá marcada.
       checkSystemTasksByDefault: Si el valor es verdadero y las tareas del sistema son visibles, la casilla aparecerá marcada.
       dateFilterWithTime: Cambiar a "True" para activar filtros de fecha con tiempo. Esta configuración afectará la lista de tareas, de casos y estadísticas.
@@ -247,13 +246,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       defaultSortDirectionOfTaskList: Dirección de clasificación por defecto de la lista de tareas
       defaultSortFieldOfCaseList: Campo de ordenación por defecto de la lista de casos
       defaultSortFieldOfTaskList: Campo de ordenación por defecto de la lista de tareas
-      delegationAppendOption: Esta configuración determina qué información adicional se incluye al formatear los nombres de los roles.
+      delegationAppendOption: Este ajuste determina cual información adicional está incluida al formatear nombres de rol.
       disableCaseCount: Cambiar a "true" para desactivar la función contar casos en la lista de casos
       disableTaskCount: Cambiar a "true" para desactivar la función contar tareas en la lista de tareas
-      displayAllUsersOfTaskActivator: Esta configuración se utiliza para la componente SecurityMemberDisplayName. Si el SecurityMember es un rol, cambie esta configuración a "true" para ver todos los usuarios de este rol. Si se configura "true", se muestra la información del icono junto al nombre del
-        rol.
-      displayMessageAfterFinishOrLeaveTask: Se mostrará un mensaje después de finalizar una tarea
-      documentUploadSizeLimit: Establece el límite de tamaño para la carga de documentos en megabytes (MB). El valor predeterminado es 20 MB.
+      displayAllUsersOfTaskActivator: Esta configuración se utiliza para la componente SecurityMemberDisplayName. Si el SecurityMember es un rol, cambie esta configuración a "true" para ver todos los usuarios de este rol. Si se configura "true", se muestra la información del icono junto al nombre del rol.
+      displayMessageAfterFinishOrLeaveTask: Se exhibirá un mensaje de comentario tras que el usuario finalice o abandone una tarea.
+      documentUploadSizeLimit: Establece el límite de tamaño para la subida de documentos en megabytes (MB). El valor predeterminado es 20MB.
       embedInFrame: Cambiar a "true" para abrir un proceso o tarea en modo iFrame
       enableCaseOwner: Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. También hace disponible el filtro "Filtrar tareas por propietario actual del caso" en el widget de tareas, que está oculto de forma predeterminada.
       enableDeepLTranslation: Establezca esta propiedad en true para activar la traducción de DeepL
@@ -263,27 +261,27 @@ ch.ivy.addon.portalkit.ui.jsf:
       enablePinTask: Establece esta propiedad en true para habilitar la función de fijar tareas.
       enablePrivateChat: Cambie esta propiedad a "true" para activar el chat privado
       enableProcessViewer: Defina esta propiedad como true para habilitar la opción de visor de procesos en las acciones de Tarea/Caso
-      enableScriptCheckingForUploadedDocumentNote: 'Cambiar a "True" para activar el control de anexos permitidos. De momento se pueden controlar archivos en PDF, word y excel. '
+      enableScriptCheckingForUploadedDocumentNote: 'Establezca a "True" para habilitar comprobante de guion para subida de documento. De momento esta función admite comprobantes de PDF, Word y Excel.'
       enableVirusScannerForUploadedDocumentNote: Cambiar a "true" para habilitar el escáner de virus para el documento cargado. Actualmente esta función utiliza la API VIRUSTOTAL.
       hideCaseCreator: |-
         Establecer a true para ocultar el creador de casos en la lista de casos, widget de casos y detalles de casos.
         Este ajuste afecta a todas las consultas de casos, por ejemplo, para la lista de casos, la búsqueda global o la estadística.
-      hideCaseDocument: Cambiar a "true" para ocultar el área de documentos en detalle de casos
+      hideCaseDocument: Ponga a "true" y la sección del documento en caso de página detallada será ocultada, en otro caso será mostrado.
       hideChangePasswordButtonNote: Establezca esta variable a true para ocultar la opción "Cambiar contraseña" en el menú superior y la opción "Contraseña olvidada" en la página de inicio de sesión. Si se establece en false, estas opciones se mostrarán.
       hideLogoutButtonNote: Cambiar a "true" para ocultar la opción de logout.
       hideRelatedCaseInfoFromHistory: Si es verdadero, el historial de casos no muestra la información de los casos relacionados en la tabla de historial.
       hideSystemNotesFromHistory: Si esto es cierto, no se muestran notas del sistema para los usuarios en las notas de tarea/tarea.
       hideSystemNotesFromHistoryAdministrator: Si esto es cierto, no se muestran notas de sistema para los administradores en las notas de tarea/tarea.
-      hideSystemTasksFromHistory: Cambiar a "true" para ocultar notas técnicas del historial de tareas del caso para usuarios
-      hideSystemTasksFromHistoryAdministrator: Cambiar a "true" para ocultar notas técnicas del historial de tareas del caso para administradores
-      hideTaskDocument: Cambiar a "true" para ocultar el área de documentos en detalle de tarea
+      hideSystemTasksFromHistory: Si es cierto, la nota del caso no exhibirá ninguna de las tareas del sistema para usuarios no administrativos.
+      hideSystemTasksFromHistoryAdministrator: Si es cierto, la nota del caso no exhibe ninguna de las tareas del sistema para administrador.
+      hideTaskDocument: Establezca a cierto, "true", la sección del documento en la página detallada de tarea estará oculta, en otro caso será mostrada.
       hideTimeNote: Cambiar a "true" para ocultar horas y minutos de la fecha.
       hideUploadDocumentForDoneCaseNote: Cambiar a "true" para impedir el upload de documentos después de que un caso esté terminado.
       hideYear: activar para ocultar el año, de lo contrario se mostrará.
-      imageUploadSizeLimit: Establece el límite de tamaño para la carga de imágenes en megabytes (MB). El valor predeterminado es 6 MB.
+      imageUploadSizeLimit: Establece el límite de tamaño para la carga de imágenes en megabytes (MB). El valor predeterminado es 6MB.
       sidebarMode: Controla el modo de la barra lateral. Hover se expande al pasar el ratón, Clic usa un botón de alternancia, Fijar la mantiene siempre expandida, Oculto elimina la barra lateral por completo.
       loggedInUserFormat: Opción para definir el formato visible del usuario conectado
-      refreshTaskListIntervalNote: Actualización de la lista de tareas en segundos
+      refreshTaskListIntervalNote: Recarga el listado de tarea en segundos.
       showAvatar: Para activar/desactivar la visualización de los avatares de los usuarios/roles.
       showButtonIcon: Para encender o apagar el icono de la pantalla en el botón.
       showCaseDurationTime: Activar o desactivar la visibilidad de la duración del caso en detalles de caso.
@@ -292,7 +290,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Cambiar a falso para desactivar el enlace "Más información" en la página de Procesos (modo cuadrícula) y Detalles del caso.
       showQuickGlobalSearch: Para activar/desactivar la visualización de la búsqueda global rápida.
       showTaskDurationTime: Activar o desactivar la visibilidad de la duración de la tarea en detalles de tarea.
-      showTooltipTechnicalName: Habilitar para mostrar el nombre técnico de los usuarios en los tooltips.
+      showTooltipTechnicalName: Habilita para mostrar nombre técnico de los usuarios en consejos.
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
     key: Llave
     link: Enlazar
@@ -307,15 +305,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     note: Nota
     password: Contraseña
     passwordHint: Contraseña del administrador del sistema
-    passwordRequiredMsg: Por favor, introduzca la contraseña
+    passwordRequiredMsg: Por favor, introduzca la contraseña.
     pleaseSelect: Por favor seleccione...
     portalLink: Enlace del portal
     refreshUserErrorMsg: '{0} error/es encontrado/s. Ver mensaje detallado: <BR/> {1}'
     refreshUserPermissionSuccessful: '{0} usuarios actualizados con éxito.'
     refreshUserPermissions: Sincronizar la configuración
     requireToInputServer: Seleccione un servidor para la aplicación.
-    resetAllSettingsConfirmation: 'Seguro que quiere reestablecer todos los valores iniciales? '
-    resetSettingConfirmation: 'Seguro que quiere reestablecer el valor inicial? '
+    resetAllSettingsConfirmation: '¿Seguro que desea restablecer a los valores por defecto para todos los ajustes?'
+    resetSettingConfirmation: '¿Seguro que desea restaurar a valor por defecto para este ajuste?'
     restoreAllToDefault: Restaurar todos los valores predeterminados
     restoreDefault: Restablecer valores por defecto
     settingApplicationName: Definir el nombre de la aplicación
@@ -343,7 +341,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadFile: Descargar archivo
     duration: Duración
     history: Historia
-    noCaseName: ' <Caso sin nombre>'
+    noCaseName: '<Caso sin nombre>'
     noDescription: Sin descripción
     noRunningCase: Ningún caso en proceso
     noRunningTask: Ninguna tarea en proceso
@@ -360,10 +358,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     showMoreTasks: Mostrar más detalles
     showMoreTechnicalCases: Mostrar todos los casos técnicos
     showProcessOverview: Resumen del proceso
-    sideSteps: Sidesteps
+    sideSteps: Pasos laterales
     taskIsDestroyed: La tarea es destruida
     taskIsDone: La tarea está hecha
-    taskIsFailed: 'Tarea fallida '
+    taskIsFailed: 'Tarea incorrecta'
     taskIsWaiting: Tarea en espera
     taskStateAndResponsible: 'Estado: {0}, responsable: {1}'
     taskStateIsCreated: El estado de la tarea es Creado (no persistido todavía)
@@ -376,11 +374,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       CREATION_TIME: Creado
       CREATOR: Creador
       FINISHED_TIME: Terminado
-      ID: ID del caso
+      ID: Id de caso
       NAME: Nombre / Descripción
       OWNER: Responsables del proceso
       PIN: Fijar
-      STATE: 'Estatus '
+      STATE: 'Estado'
     deletionNoteContent: El caso fue destruido por {0}
     destroyCaseMessage: 'Esta operación no se puede deshacer. ¿Está seguro de que quiere destruir el caso <b>{0} (ID: {1})</b> y todas sus tareas?'
     destroyfail: El caso no ha sido destruido con éxito.
@@ -389,14 +387,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     error: Error
     exportedCasesFileName: AXONIVY_Dataset_Cases_{0}.{1}
     headerTitle:
-      relatedStatisticHeader: 'Casos relacionados de la tabla de estadísticas:'
+      relatedStatisticHeader: 'Casos relacionados de diagrama de estadísticas: '
       technicalCaseOfBusinessCaseAlternativeTitle: Caso {0}
       technicalCasesOfBusinessCaseTitle: 'Casos técnicos del caso de negocio #{0} {1}'
     relatedCaseHeader: 'Caso # {0} {1}'
     relatedCases: Casos relacionados
     title: Título
-    unknownCase: Caso desconocido
-    unknownId: Id desconocido
+    unknownCase: Caso Desconocido
+    unknownId: ID Desconocido
   caseState:
     CREATED: Creado
     CREATED_UPPERCASE: Creado
@@ -421,7 +419,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     joinProcessChat: Entrar al chat de grupo
     joinedProcessChat: Ha entrado al chat de grupo - {0}
     noAssignees: Por favor selecione los usuarios para crear este chat de grupo
-    noGroupChat: No hay chats de grupo
+    noGroupChat: No hay charlas en grupo.
     noUsers: No hay usuarios
     participants: Participantes
     personalChatHeader: Chat general
@@ -486,7 +484,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     change: Cambiar
     close: Cerrar
     closeContext: "Cerrar {0}"
-    cockpit: Inicio
+    cockpit: Cabina
     colors: Colores
     comment: Comentario
     completedOn: Completado en
@@ -498,17 +496,17 @@ ch.ivy.addon.portalkit.ui.jsf:
     creationDate: Fecha de creación
     dashboard: Tablero de mandos
     data: Datos
-    dateFromBiggerThanTo: Hasta' debe ser después de 'Desde'
+    dateFromBiggerThanTo: "'Destino' debe estar tras el 'Remite'."
     dateRequired: La fecha no puede estar vacía.
     day: Dia
     dayUnit: Dia
-    days: Dias
+    days: días
     default: Por defecto
     defaultNotificationMessage: Hmm… Parece que algo ha ido mal.
     delete: Borrar
     deleteContext: "Borrar {0}"
     deleteAbsenceHeaderText: ¿Borrar esta ausencia?
-    deleteChartHeaderText: ¿Borrar este gráfico?
+    deleteChartHeaderText: ¿Borrar este diagrama?
     deleteDocumentHeaderText: ¿Borrar este documento?
     deleteFilterHeaderText: ¿Borrar este filtro?
     deleteSettingHeaderText: ¿Borrar esta configuración?
@@ -524,7 +522,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     dragAndDropFile: 'Arrastre y suelte un archivo o '
     dragAndDropImage: 'Arrastre y suelte una imagen o '
     edit: Editar
-    errorAjaxMessage: Error general
+    errorAjaxMessage: Hay una excepción general.
     errorFileUploadSize: El tamaño deberá ser inferior a {0}
     errorNotification: Notificación de error
     errorXhr: Error al actualizar el contenido web
@@ -535,7 +533,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       moreOptions: Más opciones
       restoreDefaultFilterHeader: Reestablecer valor predeterminado
       to: hasta
-      worker: 'Editor '
+      worker: 'Editor'
       wrongFromDateFormat: Por favor, introduzca una fecha válida "desde". El formato es {0}
       wrongToDateFormat: Por favor, introduzca una fecha válida "hasta". El formato es {0}
     filterLabel: Filtro
@@ -546,7 +544,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     goToDetail: Ir a detalles
     growlMessage:
       PROCESS_VIEWER: Has cerrado el visor de procesos.
-      TASK_FINISHED: Ha finalizado la tarea con éxito.
+      TASK_FINISHED: Ha finalizado la tarea correctamente
       TASK_LEFT: Ha cancelado y cerrado la tarea. Encontrará la tarea en su tablero o en su lista de tareas.
     hasPrecondition: Este proceso tiene una precondición
     height: altura
@@ -579,7 +577,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noNoteAvailable: No hay notas disponibles
     noNotesFound: No se encuentran notas
     noProcessDescription: Ejecute este proceso haciendo clic en el botón siguiente
-    noRecordsFound: No se encuentran registros
+    noRecordsFound: No se han encontrado registros.
     notAvailable: N/A
     note: Nota
     numberFromBiggerThanTo: Para" debe ser mayor que "De".
@@ -590,8 +588,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     pin: Fijar
     pinCaseContext: "Fijar caso {0}"
     pinTaskContext: "Fijar tarea {0}"
-    pleaseAddDocument: Por favor agregue documentos usando el enlace superior
-    pleaseAddNote: Por favor agregue notas usando el enlace superior
+    pleaseAddDocument: Agregue una documentación con el enlace de arriba.
+    pleaseAddNote: Agregue una nota con el enlace de arriba.
     previousStage: Etapa anterior
     private: Privado
     process: Proceso
@@ -609,7 +607,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     resetToDefaultMessage: Esta operación no se puede deshacer. ¿Estás seguro de que quieres restablecer la configuración por defecto?
     resetToStandardFilterHeaderText: '¿Resetear al filtro estándar? '
     restore: Restablecer
-    restoreToDefaultChartHeaderText: ¿Restablecer a los gráficos por defecto?
+    restoreToDefaultChartHeaderText: ¿Restablecer a los diagramas por defecto?
     role: Rol
     save: Guardar
     saveContext: "Guardar {0}"
@@ -631,14 +629,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     showRelatedCaseInfo: Casos relacionados
     showSystemNotes: Notas del sistema
     showSystemTasks: Tareas del sistema
-    sorting: Sorting
+    sorting: Ordenación
     start: Iniciar
     startProcess: Iniciar el proceso
     state: Estatus
-    status: Estado
-    switchToDesktopVersion: 'Cambiar al modo escritorio '
+    status: Status
+    switchToDesktopVersion: 'Conmutar a la versión de escritorio'
     taskCanceledAndLeftSuccessfully: Ha cancelado y cerrado la tarea. Encontrará la tarea en su tablero o en su lista de tareas.
-    taskFinishedSuccessfully: Ha finalizado la tarea con éxito.
+    taskFinishedSuccessfully: Ha finalizado la tarea correctamente
     taskFromSubstitution: Usted ve esta tarea porque es el sustituto
     taskName: Nombre de tarea
     tasks: Tareas
@@ -655,7 +653,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     unpinCaseContext: "Desfijar caso {0}"
     unpinTaskContext: "Desfijar tarea {0}"
     uploadHere: Cargue aquí
-    uploadOneHere: Seleccionar
+    uploadOneHere: Subir uno aquí
     user: '{0} usuario'
     users: Usuarios
     via: vía
@@ -717,14 +715,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       filterByUsername: Filtrar por nombre de usuario
       filterToSee: Filtrar para ver más
       loadMore: Cargar más
-      noUser: No hay usuarios
+      noUser: No hay usuarios.
       roleMemberItemFormat: <li class="tooltip-body-item">{0}</li>
       roleMemberLineFormat: <p class="tooltip-body-item">{0}</p>
       roleMembersTooltipFormat: |-
         <p class="tooltip-header">{0}</p>
         <ul style="margin: auto; {1}">{2}</ul>
       tooltipHelper: Click para ver todos los usuarios que tienen este rol de forma directa o indirecta
-      userOfRoleTitle: 'Usuarios del rol {0} '
+      userOfRoleTitle: 'Usuarios del grupo {0}'
     passwordValidation:
       criteria: Criterios
       enablePasswordValidation: Activar la validación de contraseñas
@@ -760,7 +758,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       filterExistedValidationError: El filtro ya existe
       filterName: Nombre del filtro
       filterVisibility: Visibilidad del filtro
-      noTask: Sin tareas
+      noTask: No hay tareas.
       privateFilter: Mis filtros
       publicFilter: Público
       savedFilters: 'Filtros guardados:'
@@ -777,7 +775,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EditPrivateDashboards: Editar tu cuadro de mando
       EditPublicDashboards: Editar dashboard públicos
       ExportDashboard: Exportar el cuadro de mandos
-      PrivateDashboard: Dashboard - Configuración  personalizada
+      PrivateDashboard: Paneles de control privados
       PrivateDashboardConfiguration: Configuración de tableros privados
       PublicDashboard: Dashboard - Configuración pública
       PublicDashboardConfiguration: Configuración de tableros públicos
@@ -818,9 +816,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     displaySettings: Configuración de visualización
     StandardWidgets: Widgets estándar
     StatisticWidget:
-      EmptyChartDataMessage: No tenemos suficientes datos para crear un buen gráfico.
+      EmptyChartDataMessage: ¡No hemos hecho suficientes datos para crear un diagrama bonito!
     WelcomeWidgetIntroduction: Este widget muestra un texto y una imagen de bienvenida en el panel de control.
-    WelcomeWidgetNotFoundMessage: No podemos encontrar la imagen del widget, por favor reconfigure su imagen.
+    WelcomeWidgetNotFoundMessage: No podemos encontrar la imagen del widget; ¡por favor reconfigure su imagen!
     WidgetFilterName: Nombre del filtro del widget
     WidgetFilters: Filtros de widgets
     YourWelcomeWidget: Su widget de bienvenida
@@ -846,10 +844,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       CustomWidgetUrlInvalidScheme: La URL proporcionada no es válida
       CustomWidgetTitlePlaceholder: Déjalo en blanco para ocultar la cabecera del widget
       Parameters: Parámetros
-      RestoreDefaultDashboardTemplateTooltip: No podemos encontrar la plantilla de su panel de control, por lo que no podemos restablecer la configuración estándar. Por favor, consulte con su administrador para obtener más detalles.
+      RestoreDefaultDashboardTemplateTooltip: No podemos encontrar la plantilla de su panel de control, por tanto no podemos restablecerlo a la configuración estándar. Por favor, ¡consulte con su administrador para obtener más detalles!
       SelectTheTemplate: Seleccione la plantilla
       SelectYourTemplate: Seleccione su plantilla
-      WelcomeConfigurationDescription: Puede configurar su widget en esta área de configuración. Defina el texto y la imagen de bienvenida que se utilizarán.
+      WelcomeConfigurationDescription: Puede configurar su widget en esta área de configuración. Defina el texto de bienvenida y la imagen a ser utilizadas.
       WelcomeWidget:
         AdvancedSettings: Configuración avanzada
         ChooseAFit: Elija un ajuste
@@ -864,7 +862,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         ImageLightMode: Imagen para el modo claro
         ImageStyleClass: Clase de estilo de imagen
         PreviewDarkMode: Vista previa para el modo oscuro
-        PreviewLightMode: 'Vista previa para el modo claro '
+        PreviewLightMode: 'Vista previa para el modo claro'
         PreviewTooltip: Esta vista previa no puede mostrar todos los ajustes, pero sólo debería dar una idea de cómo se verá el widget final, el tamaño de la imagen, la orientación y algunos ajustes CSS no se verán aquí.
         ShowGreeting: Mostrar saludo
         TextColorDarkMode: Color para el modo oscuro
@@ -886,7 +884,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       tableConfiguration: Configuración de la tabla
       tableConfigurationDesc: Puede gestionar las columnas y establecer la ordenación estándar haciendo clic en la columna.
       yourWidget: Su Widget
-    createWidget: Añadir widget
+    createWidget: Añade un widget
     createdFrom: Creado desde
     createdTo: Creado para
     customFieldType: Tipo de campo personalizado
@@ -928,7 +926,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberPattern: Patrón de números
     preview: Vista previa
     processList: Lista de procesos
-    processListIntroduction: Este widget muestra los inicios de procesos disponibles. Tiene la posibilidad de elegir diferentes formatos
+    processListIntroduction: Este widget exhibe los inicios del proceso disponibles. Tiene la posibilidad de elegir diferentes formatos.
     processViewerIntroduction: Este widget proporciona una representación visual del flujo del proceso.
     processWidgetInfo:
       noProcess: No hay procesos.
@@ -947,8 +945,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     select: Seleccione
     selectEditAction: Con qué acción quiere proceder?
     showFullWidget: Mostrar el widget completo
-    statisticChartIntroduction: Este widget muestra los gráficos estadísticos disponibles.
-    statisticChartWidget: Gráfico estadístico
+    statisticChartIntroduction: Este widget muestra los diagramas estadísticos disponibles.
+    statisticChartWidget: Diagrama estadístico
     statisticWidgets: Widgets estadísticos
     switchToViewMode: Modo de visualización
     tasWidgetkInfo:
@@ -996,21 +994,21 @@ ch.ivy.addon.portalkit.ui.jsf:
     previewErrorMessage: No se puede obtener la vista previa de este archivo
     size: Tamaño de archivo
     type: Tipo
-    upload: Cargar archivo nuevo
+    upload: Subir archivo nuevo
     uploadDocumentNote: '{0} ha subido {1}'
-    uploadFailed: Se produjo un error al cargar este archivo. Por favor, pregunte a su administrador por este problema.
+    uploadFailed: Se produjo un error al subir este archivo. Por favor, pregunte a su administrador por esta incidencia.
     uploadFileExists: El archivo {0} ya existe
-    uploadSucceed: El archivo ha sido añadido con éxito
+    uploadSucceed: El archivo ha sido añadido correctamente
     uploadSucceedWithWarning: El archivo se ha cargado correctamente, pero no se ha podido completar el análisis del script porque el archivo está cifrado o protegido con contraseña.
   emailSetting:
     dailySummary: Recibir un resumen diario
-    eMail: Email
-    furtherEmailFromApp: Recibir otros emails de la aplicación
-    invalidEmailFormat: Formato de Email inválido
-    mailNotificationOnTaskAssign: Recibir notificación cuando se asigne una tarea
-    noSettingMsg: No hay una aplicación para configurar el correo electrónico.
+    eMail: Correo-e
+    furtherEmailFromApp: Recibir más correos-e de la aplicación
+    invalidEmailFormat: Formato de correo-e no válido
+    mailNotificationOnTaskAssign: Recibir notificación por correo-e cuando se asigne una tarea
+    noSettingMsg: No hay una aplicación para el ajuste del correo-e.
   errorPage:
-    '404': 404 Pagina no encontrada
+    '404': 404 Pagina No Encontrada
     404Message: Lo sentimos, pero el recurso que está buscando no existe.
     '500': Error 500
     500Message: Lo sentimos, hubo un problema al servir la página solicitada.
@@ -1019,49 +1017,49 @@ ch.ivy.addon.portalkit.ui.jsf:
   exceptionDialog:
     copied: Copiado
     copyError: Error al copiar
-    errorId: ID del error
+    errorId: Id de error
     errorType: Tipo de error
     message: Mensaje
     pmv: PMV
-    processElementId: ID del elemento del proceso
-    stackTrace: Conjunto de trazas
+    processElementId: Id de elemento del proceso
+    stackTrace: Traza de pila
   forgotPassword:
-    EmailAddress: Dirección de E-Mail
+    EmailAddress: Dirección de Correo-e
     empty: Vacío
     forgotPassword: Olvidé mi contraseña
     forgotPasswordError: Ha habido un error mientras se procesaba su solicitud. Por favor inténtelo más tarde.
     goToForgotPassword: Ir a la página de olvido de contraseña
-    goToLogin: Volver a la página de inicio
+    goToLogin: Vuelva a la página de inicio de sesión
     good: Bien
-    invalidResetUrl: La dirección URL no es válida
-    invalidToken: Token inválido
-    newPassword: Nueva contraseña
-    passwordConfirmation: Confirmar contraseña
-    passwordReset: Restablecer contraseña
-    passwordResetEmailCantSend: 'Ha habido un problema para enviarle un E-Mail. Por favor inténtelo más tarde. '
-    passwordResetEmailContent: <html>Hola {0},<br/><br/>por favor haga click en este link para restablecer su contraseña <a href="{1}">Restablecer contraseña</a><br/><br/>Saludos</html>
+    invalidResetUrl: La URL solicitada no es válida
+    invalidToken: Vale no válido
+    newPassword: Contraseña nueva
+    passwordConfirmation: Confirmar Contraseña
+    passwordReset: Restablecer Contraseña
+    passwordResetEmailCantSend: 'Se produjo una excepción mientras enviada un correo-e a ti. Por favor inténtelo más tarde.'
+    passwordResetEmailContent: '<html>Hola {0},<br/><br/>Por favor pulse en este enlace para restablecer su contraseña: <a href="{1}">Restablecer Contraseña</a><br/><br/>Un Saludo</html>'
     passwordResetEmailSent: Si esta dirección de correo electrónico está registrada, le hemos enviado un enlace para recuperar la contraseña.
-    passwordResetEmailSubject: E-Mail para restablecer su contraseña
-    passwordResetSuccess: Su contraseña ha sido cambiada con éxito.
-    requiredFieldMessage: '{0} es necesario'
-    setANewPassword: Defina una nueva contraseña
+    passwordResetEmailSubject: Correo-e para restablecer su contraseña
+    passwordResetSuccess: Su contraseña ha sido cambiada correctamente
+    requiredFieldMessage: '{0} es requerido'
+    setANewPassword: Defina una contraseña nueva
     strong: Fuerte
-    userNotFound: Si esta dirección de correo electrónico está registrada, le hemos enviado un enlace para recuperar la contraseña.
-    usersHaveSameEmail: Hay varios usuarios usando el mismo E-Mail. Por favor contacte con su administrador.
+    userNotFound: Si esta dirección de correo electrónico está registrada, le hemos enviado un enlace para recuperarla.
+    usersHaveSameEmail: Hay varios usuarios usando el mismo Correo-e. Por favor contacte con su administrador.
     weak: Débil
   iconselection:
-    iconSelectionDialogHeader: Seleccionar ícono
+    iconSelectionDialogHeader: Seleccionar icono
     seachIconByNamePlaceHolder: Buscar símbolo por nombre
   languageSetting:
     Language: Idioma
   login:
-    AxonIvyPortal: Axon Ivy Portal
-    Copyright: Copyright Ⓒ Axon Ivy Portal
+    AxonIvyPortal: Portal Axon Ivy
+    Copyright: Ⓒ Axon Ivy Portal
     LoginWith: Inicie sesión con
     PasswordRequiredMessage: La contraseña es necesaria
     UsernameRequiredMessage: El nombre de usuario es obligatorio
     login: Iniciar sesión
-    loginErrorMessage: No está conectado o su usuario no existe en el sistema. Por favor, contacte con el administrador del sistema
+    loginErrorMessage: No ha iniciado sesión o su nombre de usuario no es conocido por esta aplicación. Por favor, consulte a su administrador del sistema.
     loginFailed: error de inicio de sesion
     username: Nombre de usuario
   logoutSetting:
@@ -1094,13 +1092,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     newNoteHeader: Agregar nueva nota
     wroteAt: escribió en
   notifications:
-    errorNotificationMessage: |
-      No pudimos mostrar los detalles de la nueva tarea. Por favor, contacte con su administrador para obtener ayuda
+    errorNotificationMessage: |-
+      No pudimos exhibir los detalles de la tarea nueva. Por favor, contacte con su administrador para asistencia
     linkToFullScreen: Enlace a la pantalla completa
     linkToNotificationSettings: Ajustes de notificación
     markAllAsRead: Marcar todo como leído
     markAsRead: Marcar como leído
-    noNotificationText: Notificaciones
+    noNotificationText: Sin Notificaciones
     notificationOptions: Opciones de notificación
     notificationTitle: Notificaciones
     notificationsBadgeLabel: Abrir panel de notificaciones, {0} sin leer
@@ -1155,13 +1153,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     editProcesses: Editar procesos
     externalLink: Enlace externo
     externalLinkVisibility: Visibilidad
-    goTo: 'Ir a:'
+    goTo: 'Ir a: '
     icon: Icono
     image: Imagen
     isRequiredMessage: tiene que ser configurado
     linkDescription: Descripción del enlace
-    noProcess: Ningún proceso encontrado
-    noProcesses: Ningunos procesos encontrados
+    noProcess: No hay ningún proceso.
+    noProcesses: No hay procesos.
     private: Privado
     processFilterPlaceHolder: Nombre, Descripción, Categoría
     processName: Nombre del proceso
@@ -1239,11 +1237,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     processingTime: Tiempo de procesado
     setDelayTimestamp: '{0} ({1}) Ha modificado el tiempo de demora para la tarea #{2} a {3}'
     setExpiryActivatorAndTimeNotes: '{0} y asignar {1} como el usuario de la tarea escalada'
-    supportFileTypes: 'Tipos de archivos admitidos para cargar: {0}'
+    supportFileTypes: ' Tipos de archivos admitidos para cargar: {0}'
     taskCategory: Categoría de tarea
     taskExpiryDisable: Esta tarea no tiene manejo lógico de escalado, por lo tanto no se puede establecer el tiempo de expiración.
     technicalCase: Caso técnico
     workflowEventDialog: 'Eventos del Workflow de la tarea #{0}'
+    customFieldsDialog: Campos Personales de tarea nº {0}
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: La fecha límite de la tarea se ha establecido con éxito.
@@ -1260,9 +1259,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     openRequest: Abrir
     openTaskTooltip: Abrir tarea
     park: Estacionar
-    parkTaskSuccessfully: La tarea ha sido pospuesta con éxito
+    parkTaskSuccessfully: La tarea ha sido pospuesta correctamente.
     reserveTaskTooltip: Reservar tarea
-    resetTaskSuccessfully: La tarea se ha reactivado con éxito
+    resetTaskSuccessfully: La tarea se ha reactivada correctamente.
     resetTaskTooltip: Reiniciar tarea
     setDeadline: Definir fecha limite
     setPriority: Definir prioridad
@@ -1284,7 +1283,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPLETED_ON: Completado en
       CREATION_TIME: Creado
       EXPIRY_TIME: Expiración
-      ID: ID de tarea
+      ID: Id de tarea
       NAME: Nombre / Descripción
       PIN: Fijar
       PRIORITY: Prioridad
@@ -1293,9 +1292,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Filtro por defecto
-    destroyTaskMessage: 'Esta operación no se puede revocar. ¿Está seguro de que quiere destruir la tarea <b>{0} (ID: {1})</b>?'
+    destroyTaskMessage: 'Esta operación no se puede deshacer. ¿Está seguro que desea destruir la tarea <b>{0} (ID: {1})</b>?'
     headerTitle:
-      relatedStatisticHeader: 'Tareas Relacionadas de la gráfica estadística:'
+      relatedStatisticHeader: 'Tareas relacionadas del diagrama de estadística: '
       relatedTasksHeader: Tareas relacionadas del caso
     lastEdit: Modificado por ultima vez
     manageColumns: Administrar columnas
@@ -1317,8 +1316,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Prioridad (baja - alta)
     triggerEscalationNote: 'Escalación ha sido ejecutada por {0} ({1}) para la tarea #{2}'
     type: Tipo
-    unknownId: ID desconocida
-    unknownTask: Tarea desconocida
+    unknownId: ID desconocido
+    unknownTask: Tarea Desconocida
   taskPriority:
     EXCEPTION: Excepción
     EXCEPTION_LOWERCASE: Excepción
@@ -1364,20 +1363,18 @@ ch.ivy.addon.portalkit.ui.jsf:
     WAITING_FOR_INTERMEDIATE_EVENT: Esperando el evento
     WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: Esperando el evento
   taskView:
-    GlobalSearchText: Las tareas contienen la palabra clave "{0}" en ID de tarea{1}.
+    GlobalSearchText: Las tareas contienen la palabra clave "{0}" en Id{1} de tarea.
     filterTextPlaceHolderMobile: Nombre o descripción
     filterTextPlaceholder: Nombre, descripción o ID
-    restoreDefaultFilterMessage: Si procede, se aplicará el filtro por defecto
+    restoreDefaultFilterMessage: Si procede, será aplicado el filtro estándar.
     saveFilter: Guardar filtro
     showFullTaskList: Mostrar lista de tareas completa
     sort: Ordenar
   taskWarning:
     createdTaskLeave: '<div>Va a salir de esta página. Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
     createdTaskLogout: '<div>Va a salir de esta página.<br/> Por favor selecione una de las siguientes opciones:</div><UL><LI> Cerrar sesión: No guardará sus cambios y se cerrará la sesión.<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
-    resetParkTaskBeforeLeave: '<div>Va a salir de esta página.<br/>Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Reservar: No guardará sus cambios y esta tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando
-      en esta tarea.</UL>'
-    resetParkTaskBeforeLogout: '<div>Va a salir de esta página.</br> Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: no guardará sus cambios y volverá a la página anterior.<LI>Reservar: No guardará sus cambios, volverá a la página anterior pero la tarea quedara reservada para usted.<LI>Cancelar:
-      Continue trabajando en esta tarea.</UL>'
+    resetParkTaskBeforeLeave: '<div>Va a salir de esta página.<br/>Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Reservar: No guardará sus cambios y esta tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
+    resetParkTaskBeforeLogout: '<div>Va a salir de esta página.</br> Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: no guardará sus cambios y volverá a la página anterior.<LI>Reservar: No guardará sus cambios, volverá a la página anterior pero la tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
     taskNotFound: La tarea no existe o no los tiene derechos suficientes para ver esta tarea.
   userProfile:
     myProfileTitle: Mi perfil
@@ -1392,7 +1389,7 @@ Dialogs:
   Tasks:
     TaskDetail:
       DataDescription: Datos y Descripción
-      restoreToDefaultSettings: 'Restablecer la configuración por defecto '
+      restoreToDefaultSettings: 'Restablece a los ajustes por defecto'
       switchToEditMode: Editar
       switchToViewMode: Guardar
   agileBPM:
@@ -1404,9 +1401,9 @@ Dialogs:
       TaskActor: Trabajador de la Tarea
       TaskSubject: Nombre de la Tarea
       WFCategory: Categoría
-      WFSubject: Tema
+      WFSubject: Asunto
     task_Form:
-      AppendATaskAfter: Agrega una tarea en la secuencia después de mi tarea
+      AppendATaskAfter: Agrega una tarea en la secuencia siguiendo mi tarea.
       ErrorEmployeeNotExist: El empleado seleccionado no existe
       InsertATaskBefore: Inserta una tarea antes de la mía. Mi tarea se pospondrá.
       MyTaskIsDoneAnd: Mi tarea se ha completado y una nueva se ha anexado
@@ -1453,7 +1450,7 @@ Dialogs:
                 destroyCase: Borrar caso
               CaseOwner: Responsables del proceso
               Finished: Terminado
-              GlobalSearchText: Los casos contienen la palabra clave "{0}" en ID del caso{1}.
+              GlobalSearchText: Los casos contienen la palabra clave "{0}" en Id{1} del caso.
               ShowBusinessDetails: Detalles del negocio
               caseNameNotAvailable: '[Nombre del caso no disponible]'
               defaultEmptyMessage: No hay casos
@@ -1474,10 +1471,10 @@ Dialogs:
       portal:
         component:
           ChatDashboard:
-            AddTool: Añadir herramienta
+            AddTool: Añada herramienta
             Tools: Herramientas
-            WelcomeHeaderText: Bienvenido al portal Axon Ivy
-            WelcomeText: Estamos encantados de contar con usted. El Portal Axon Ivy es su puerta de entrada a una experiencia fluida y eficiente. Tanto si es un nuevo usuario que explora las funciones como si vuelve a visitarnos, estamos aquí para ayudarle en todo momento.
+            WelcomeHeaderText: ¡Bienvenido al portal Axon Ivy!
+            WelcomeText: Estamos encantados de contar contigo. El Portal Axon Ivy es su puerta de entrada a una experiencia fluida y eficaz. Tanto si es un nuevo usuario que explora las funciones como si es un visitante recurrente, estamos aquí para ayudarle en cada paso del camino.
           ShareLinkDialog:
             CopyLink: Copiar enlace
             Link: Enlace
@@ -1485,7 +1482,7 @@ Dialogs:
           ToolList:
             Attributes: Atributos
             Collection: Colección
-            NoAvailableTools: No existen herramientas
+            NoAvailableTools: No hay herramientas disponibles
         dashboard:
           component:
             AccessibilityShortcuts:
@@ -1531,17 +1528,15 @@ Dialogs:
                         <span class="shortcut-key">Alt + 4</span>Enfocar en la pestaña de Casos
                     </div>
                 </div>
-              title: 'Atajos de accesibilidad. Alt + 1: Enfocar en la pestaña del Panel de Control. Alt + 2: Enfocar en la pestaña de Procesos. Alt + 3: Enfocar en la pestaña de Tareas. Alt + 4: Enfocar en la pestaña de Casos. Alt + 5: Enfocar en la búsqueda. Alt + 6: Enfocar en la pestaña del Panel de
-                Control. Alt + 7: Alterna la visibilidad del menú principal. Alt + A: Enfocar en el primer proceso. Alt + W: Enfocar en la primera tarea. Alt + Q: Enfocar en el primer caso. Tab: Tabbing secuencial a través de elementos. Esc: Cerrar widgets expandidos/Cerrar menús contextuales. Enter:
-                Confirmar selección'
+              title: 'Atajos de accesibilidad. Alt + 1: Enfocar en la pestaña del Panel de Control. Alt + 2: Enfocar en la pestaña de Procesos. Alt + 3: Enfocar en la pestaña de Tareas. Alt + 4: Enfocar en la pestaña de Casos. Alt + 5: Enfocar en la búsqueda. Alt + 6: Enfocar en los ajustes del Usuario. Alt + 7: Alterna la visibilidad del menú principal. Alt + A: Enfocar en el primer Proceso. Alt + W: Enfocar en la primera tarea. Alt + Q: Enfocar en el primer caso. Tab: Tabulación secuencial a través de elementos. Esc: Cierra los widget expandidos. Entrar: Confirmar selección.'
             CaseWidgetConfiguration:
               AddFilter: Añadir filtro
             ClientStatisticWidget:
               IdNotFound: Grafico con ID {0} no encontrado
               NoPermissionChartMessage: No tiene permiso para ver este gráfico.
             CloneWidgetDialog:
-              Header: Clone widget "{0}"
-              TargetDashboard: Target dashboard
+              Header: Clonar widget "{0}"
+              TargetDashboard: Panel destino
             CloneWidgetFromDashboardDialog:
               header: Clonar widget desde
             DashboardImportDetails:
@@ -1584,10 +1579,10 @@ Dialogs:
             filter:
               DashboardFilter:
                 HasCmsValuesEnabledTooltip: Este campo solo permite usar el operador Contiene
-                SelectFilterField: |
-                  Seleccionar campo de filtro
+                SelectFilterField: |-
+                  Selección del Campo de Filtro
               DateFilter:
-                SelectPeriod: Seleccionar período
+                SelectPeriod: Seleccionar periodo
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: Detalles del caso marco
@@ -1602,7 +1597,7 @@ Dialogs:
       emptyFileMessage: El archivo no puede estar vacío
       fileLimitMessage: ¡El máximo numero de archivos ha sido subido!
       fileUploadElementPosition: Solo pueden subirse archivos en el encabezado on el pie de página
-      invalidFileMessage: Tipo de archivo no permitido
+      invalidFileMessage: ¡Este tipo de archivo no está aceptado!
       invalidSizeMessage: ¡El archivo es muy grande!
       maximumFileUploadElement: Ya existe un elemento de subir documentos
   general:
@@ -1611,13 +1606,13 @@ Dialogs:
 Labels:
   AI:
     Error:
-      CannotFindUser: Lo sentimos, no se ha encontrado ningún usuario que coincida con su solicitud. Inténtelo de nuevo.
+      CannotFindUser: Lo sentimos, no se ha encontrado ningún usuario que coincida con su solicitud. Por favor, inténtelo de nuevo.
       CannotStartTask: No se puede iniciar la tarea tiene ID {0}
       InvalidTaskPriority: 'Prioridad de tarea no válida. Las prioridades de tarea válidas son: baja, normal, alta o excepción.'
       InvalidTaskState: 'Estado de tarea no válido. Los estados de tarea válidos son: abierta, realizada, en curso o error.'
-      NoMatchingCase: No se ha encontrado ninguna tarea que se ajuste a su solicitud
+      NoMatchingCase: No se encuentra ninguna tarea que se ajuste a su solicitud
       NoMatchingProcesses: Sin procesos de concordancia.
-      NoMatchingTask: No se ha encontrado ninguna tarea que se ajuste a su solicitud
+      NoMatchingTask: No se encuentra ninguna tarea que se coincida con su solicitud
     FindCaseAIResult: 'ID: {0}, Nombre: {1}, Descripción: {2}, Estado: {3}'
     FindProcessAIResult: '   - ID: {0}, Nombre: {1}, Descripción: {2}'
     FindTaskAIResult: 'ID: {0}, Nombre: {1}, Descripción: {2}, Estado: {3}, Prioridad {4}'
@@ -1663,10 +1658,10 @@ Labels:
         question: ¿Cuáles son las principales características del portal Axon Ivy?
       INTERACT:
         header: Interactúe en
-        question: Enuméreme todas las tareas que debe realizar en la semana en curso
+        question: Enuméreme todas las tareas que necesiten completarse a lo largo de la semana actual
       TUTORIAL:
         header: Tutorial
-        question: ¿Dónde puedo encontrar la documentación o los tutoriales de Axon Ivy Portal?
+        question: ¿Dónde puedo encontrar la documentación o los tutoriales del Portal Axon Ivy?
     CaseQueryType:
       ALL: Casos de negocio + Subcasos
       BUSINESS_CASE: Casos de negocio (Predeterminado)
@@ -1675,7 +1670,7 @@ Labels:
       ACTIONS: Acciones
       APPLICATION: Aplicación
       CATEGORY: Categoría
-      CREATED: Fecha de creación
+      CREATED: Fecha de Creación
       CREATOR: Creador
       DESCRIPTION: Descripción
       FINISHED: Fecha de finalización
@@ -1689,8 +1684,8 @@ Labels:
       APPLICATION: Aplicación
       BUSINESS_CASE_ID: ID de caso de negocio
       CATEGORY: Categoría
-      COMPLETED: Fecha de finalización
-      CREATED: Fecha de creación
+      COMPLETED: Fecha Completada
+      CREATED: Fecha Creada
       DESCRIPTION: Descripción
       EXPIRY: Expiración
       ID: Id
@@ -1719,7 +1714,7 @@ Labels:
       IS: Es
       IS_NOT: No es
       LAST: En los últimos
-      LESS: Less
+      LESS: Menos
       LESS_OR_EQUAL: Menor o igual
       NEXT: En los próximos
       NOT_BETWEEN: No entre
@@ -1757,17 +1752,17 @@ Labels:
     SidebarMode:
       CLICK: Clic
       HIDDEN: Oculto
-      HOVER: Hover
+      HOVER: Flotante
       STICK: Fijar
     ThemeMode:
       DARK: Oscuro
       LIGHT: Luz
   Expand: Expandir
   InsertTask-Explain: Insertar la tarea. Mi tarea será pospuesta.
-  InsertTheTask: Insertar la tarea.
+  InsertTheTask: Inserta la tarea
   Login:
     CompanyName: Axon Ivy Portal
-    Copyright: Copyright Ⓒ Axon Ivy Portal
+    Copyright: Ⓒ Axon Ivy Portal
   Permissions: Permiso
   PinnedCases: Casos fijados
   PinnedTasks: Tareas fijadas
@@ -1776,7 +1771,7 @@ Labels:
   SelectProcess: Seleccione un proceso
   SelectValues: Seleccionar valores
   Share: Compartir
-  StepType: Step type
+  StepType: Tipo de paso
   Submit: Presentar
   Task: Tarea
   TaskItemDetail: Detalles de la tarea
@@ -1832,7 +1827,8 @@ Texts:
   ToDo-Explain: |+
     <P>
 
-    Confirme que la <B> TAREA </B>está <B>Terminada</B> o rechácela.
+    Confirme que la<B> PENDIENTE </B>está <B>Hecha</B> o rechácela.
 
     </P>
 
+...
