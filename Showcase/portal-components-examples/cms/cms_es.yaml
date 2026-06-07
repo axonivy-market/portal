@@ -7,23 +7,23 @@ Enums:
   LeaveType:
     ANNUAL_LEAVE: Ausencia anual
     MATERNITY_LEAVE: Ausencia maternal
-    SICK_LEAVE: Ausencia por enfermedad
+    SICK_LEAVE: Baja por enfermedad
 Labels:
   LeaveRequest:
     LeaveSteps:
       approval: Aprobar
       approvalResult: Resultado del aprobado
-      creation: Crear ausencia
-    approvalResultTaskIntro: Más abajo encontrará un resumen de su solicitud.
-    approvalTaskIntro: 'Hay una solicitud para una ausencia. Detalles más abajo:'
-    approver: Aprovador
-    approverComment: Comentario del aprovador
-    from: Desde
-    leaveType: Tipo de ausencia
+      creation: Crear solicitud de baja
+    approvalResultTaskIntro: A continuación está el sumario de su solicitud de baja y resumen para recursos humanos.
+    approvalTaskIntro: 'Hay una solicitud de baja que requiere su aprobación, los detalles a continuación:'
+    approver: Recursos humanos
+    approverComment: Comentario del recursos humanos
+    from: Comienzo
+    leaveType: Tipo de baja
     requester: Solicitante
     requesterComment: Comentario del solicitante
-    submitLeaveRequest: Presentar solicitud para ausencia
-    to: Hasta
+    submitLeaveRequest: Presentar solicitud de baja
+    to: Finalización
 Processes:
   CreateInvestment:
     Tasks:
@@ -44,9 +44,9 @@ Processes:
     description: Solicitud de inversión para la página de detalles comerciales personalizados con ejemplo de API pública
     name: Crear inversión con API pública
   LeaveRequest:
-    approvalTask: Su ausencia ha sido aprovada
-    approvalTaskName: Aprovar solicitud para ausencia del {0}
-    createLeaveRequest: 'Crear ausencia para: {0}'
-    createNewLeaveRequest: 'Tarea de sistema: Crear nueva solicitud para ausencia'
+    approvalTask: Su solicitud de ausencia ha sido aprobada
+    approvalTaskName: Aprobar solicitud de ausencia de {0}
+    createLeaveRequest: 'Crear solicitud de ausencia para: {0}'
+    createNewLeaveRequest: 'Tarea de sistema: Crear inicio de nueva solicitud de ausencia'
     leaveRequest: Solicitud para ausencia
-    rejectedTask: Su solicitud para ausencia ha sido denegada
+    rejectedTask: Su solicitud para ausencia ha sido rechazada
