@@ -19,7 +19,7 @@ Dialogs:
             RequiredFieldMessage: este campo es obligatorio
             Save: Guardar
             SaveContext: "Guardar {0}"
-            SideStepPrefix: 'Tarea de paso lateral para:'
+            SideStepPrefix: 'Tarea de paso lateral para: '
             Task:
               Activator: Responsable
             Type: Tipo
@@ -35,11 +35,11 @@ Dialogs:
             EmptyFileMessage: El archivo no puede estar vacío
             ErrorFileUploadSize: El tamaño deberá ser inferior a {0}
             FileContainScript: ¡Este archivo no puede cargarse porque contiene algunos scripts!
-            FileContainVirus: 'Carga fallida, ¡se ha detectado un virus/infección! '
+            FileContainVirus: 'Carga fallida, ¡se ha detectado un virus/infección!'
             FileFunction: Funciones
             FileLimitMessage: ¡El máximo numero de archivos ha sido subido!
             FilenameEmpty: El nombre del archivo no puede estar vacío.
-            InvalidFileMessage: Tipo de archivo no permitido
+            InvalidFileMessage: ¡Este tipo de archivo no está aceptado!
             Name: Nombre de archivo
             NoFile: ¡No se encuentran archivos!
             Preview: Vista previa
@@ -68,10 +68,10 @@ Dialogs:
             CaseColumn:
               CreationTime: Creado
               Creator: Creador
-              Id: ID del caso
+              Id: Id de Caso
               Name: Nombre
               ProcessName: Nombre del proceso
-              State: 'Estatus '
+              State: 'Estado'
             CaseNameNotAvailable: '[Nombre del caso no disponible]'
             CaseState:
               CREATED: Creado
@@ -90,7 +90,7 @@ Dialogs:
             NoPermissionToView: No tiene los permisos necesarios para ver este proceso.
             ProcessCanNotBeLoaded: No se puede cargar el proceso.
             ProcessDetails: Detalles del proceso
-            ProcessId: ID del proceso
+            ProcessId: Id de Proceso
             ProcessInfo: Información del proceso
             ProcessInfoIconTooltip: Haga clic para ver los detalles del inicio del proceso
             ProcessIsHidden: El proceso actual está oculto!
@@ -106,9 +106,9 @@ Dialogs:
 Labels:
   AI:
     Error:
-      CanceledFlow: You have canceled the flow. If you have any requests, please let me know.
-      ErrorWhenProceedRequest: An error has occurred while trying to process your request. Please try again later.
-      SomethingWentWrong: Something went wrong when proceed your request. Please try again later.
+      CanceledFlow: Ha cancelado el flujo. Si tiene cualquier solicitud, déjeme conocerla.
+      ErrorWhenProceedRequest: Ha sucedido un error mientras intentaba procesar su solicitud. Inténtelo de nuevo más tarde.
+      SomethingWentWrong: Algo ha ido mal cuando procesó su solicitud. Inténtelo de nuevo más tarde.
   Close: Cerrar
   CloseContext: "Cerrar {0}"
   DisabledUserPrefix: (inactivo)
