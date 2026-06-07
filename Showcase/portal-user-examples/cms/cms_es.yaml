@@ -62,9 +62,9 @@ Enums:
   LeaveType:
     ANNUAL_LEAVE: Ausencia anual
     MATERNITY_LEAVE: Ausencia maternal
-    SICK_LEAVE: Ausencia por enfermedad
+    SICK_LEAVE: Baja por enfermedad
 Labels:
-  AxonIvyPortal: Axon Ivy Portal
+  AxonIvyPortal: Portal Axon Ivy
   BackToCaseMap: Volver al mapa de caso
   BackToHomePage: Volver a la página de inicio
   Cancel: Cancelar
@@ -72,7 +72,7 @@ Labels:
   CaseMap:
     Credit:
       address: Dirección
-      amount: 'Cantidad '
+      amount: 'Cantidad (SFr.)'
       amountOfOtherCredits: Cantidad de otros créditos pendientes
       approvalAmount: Cantidad
       approvalReason: Razón
@@ -81,18 +81,18 @@ Labels:
       country: País
       credit: Crédito
       creditRequest: Solicitud de crédito
-      date: Date
+      date: Fecha
       decision: Decisión
-      externalCreditComment: Comentario sobre crédito externo
+      externalCreditComment: Comentario del crédito externo
       female: Femenino
       firstName: Nombre
-      gender: Sexo
+      gender: Género
       internalCreditComment: Comentario sobre crédito interno
       lastName: Apellido
       male: Masculino
       otherCredits: Otros créditos
       person: Persona
-      rejectedReason: Motivo de rechazo
+      rejectedReason: Motivo de Rechazo
       request: Solicitud
       salary: Salario anual
       submitRequest: Presentar solicitud
@@ -100,8 +100,8 @@ Labels:
       verifierSubmit: Solicitud del verificador
   Close: Cerrar
   ConfirmationHeader: ¿Está seguro?
-  Copyright: Copyright Ⓒ Axon Ivy Portal
-  ErrorAjaxMessage: Error general
+  Copyright: Ⓒ Axon Ivy Portal
+  ErrorAjaxMessage: Hay una excepción general.
   ErrorXhr: Error al actualizar el contenido web
   ForgotPassword: Olvidé mi contraseña
   GoToDetail: Ir a detalles
@@ -110,47 +110,47 @@ Labels:
     LeaveSteps:
       approval: Aprobar
       approvalResult: Resultado del aprobado
-      creation: Crear ausencia
-    approvalResultTaskIntro: Más abajo encontrará un resumen de su solicitud.
-    approvalTaskIntro: 'Hay una solicitud para una ausencia. Detalles más abajo:'
-    approver: Aprovador
-    approverComment: Comentario del aprovador
-    from: Desde
-    leaveType: Tipo de ausencia
+      creation: Crear solicitud de baja
+    approvalResultTaskIntro: A continuación está el sumario de su solicitud de baja y resumen para recursos humanos.
+    approvalTaskIntro: 'Hay una solicitud de baja que requiere su aprobación, los detalles a continuación:'
+    approver: Recursos humanos
+    approverComment: Comentario del recursos humanos
+    from: Comienzo
+    leaveType: Tipo de baja
     requester: Solicitante
     requesterComment: Comentario del solicitante
-    submitLeaveRequest: Presentar solicitud para ausencia
-    to: Hasta
+    submitLeaveRequest: Presentar solicitud de baja
+    to: Finalización
   Loading: Cargando
   Login: Iniciar sesión
-  LoginErrorMessage: No está conectado o su usuario no existe en el sistema. Por favor, contacte con el administrador del sistema
-  LoginFailed: error de inicio de sesion
+  LoginErrorMessage: No ha iniciado sesión o esta aplicación no conoce su nombre de usuario. Por favor, consulte con el administrador del sistema.
+  LoginFailed: Inicio de sesión incorrecto
   LoginLogo: Logo de inicio de sesión
   LoginWith: Inicie sesión con
-  More: Mas
+  More: Más
   MoreInformation: Más información
   NextStage: Siguiente etapa
   Password: Contraseña
   PasswordRequiredMessage: La contraseña es necesaria
   PreviousStage: Etapa anterior
-  RequiredFieldMessage: este campo es obligatorio
-  Start: Abrir
+  RequiredFieldMessage: Este campo es requerido
+  Start: Inicio
   TheCaseMap: El mapa de caso
   TheProcess: El proceso
   Username: Nombre de usuario
   UsernameRequiredMessage: UsernameRequiredMessage
   Warning: Advertencia
   WelcomeToPortal: Bienvenido, por favor inicie su sesión
-  dateFromBiggerThanTo: Hasta' debe ser después de 'Desde'
+  dateFromBiggerThanTo: "'Destino' debe ser posterior al 'Remite'."
 Processes:
   CaseMap:
     ApprovalLevel12:
-      description1: Aprobar la solicitud de préstamo
+      description1: 'Aprobar la solicitud de préstamo '
       description2: "<P>\nTome una decisión:\n</P>\n<P>\n- Aprobar \n</P>\n<P>\n- Rechazar\n</P>\n"
-      description3: 'En este ejemplo se necesitan 2 niveles de aprobado. '
+      description3: 'En este ejemplo, son necesarios 2 niveles de aprobados'
     CheckCompanyRegisterDescription:
       description1: El proceso simula un control automatizado del registro de la empresa
-      description2: El proceso continuará con el siguiente paso.
+      description2: El proceso continúa con el siguiente paso
     CollectPersonDataDescription:
       description1: El proceso simula una conexión a una base de datos y carga los datos de "John Doe"
       description2: Puede comprobar y editar estos datos
@@ -162,7 +162,7 @@ Processes:
       description1: Simula una prueba de solvencia externa
     InternalSolvencyCheckDescription:
       description1: Obtener los datos del proceso para realizar un control de solvencia (fuera del sistema)
-      description2: "<P>\nPuede iniciar una verificación de crédito externa haciendo clic en este icono: \n<i class=\"fa fa-align-justify\" ></i>\n</P>\n\n"
+      description2: "<P>\nPuede iniciar el paso lateral “Servicio de solvencia externa” pulsando en este icono:\n<i class=\"fa fa-align-justify\" ></i>\n</P>\n\n"
     Stage:
       approval: Aprobación
       creditRating: Calificación crediticia
@@ -171,15 +171,15 @@ Processes:
       description1: Puede verificar fácilmente los datos del paso 1
       description2: Añada un comentario como resultado de la verificación
     abortRequest: Cancelar solicitud
-    approveLevel1: 'Aprovado nivel 1 '
+    approveLevel1: 'Aprobar Nivel 1'
     approveLevel2: Aprovado nivel 2
-    availableSideStep: "<P>\n<Los pasos laterales son: </B>\n</P>\n<P>\n- Pasos opcionales \n</P>\n<P>\n- Sólo una parte del proceso principal si es necesario \n</P>"
+    availableSideStep: "<P>\n<B>Los pasos laterales son: </B>\n</P>\n<P>\n- Pasos opcionales \n</P>\n<P>\n- Sólo una parte del proceso principal si es necesario \n</P>\n"
     checkCompanyRegister: Verifique el registro de la empresa
     collectPersonalData: Coleccionar datos personales
     createContract: Crear contrato
     description: Esta es una breve descripción de lo que se puede esperar de este ejemplo de "Préstamo", implementado con un Mapa de Caso. Por favor, haga clic en el botón de abajo para más información.
     externalSolvencyCheck: Comprovación de solvencia externa
-    internalSolvencyCheck: Comprovación de solvencia interna
+    internalSolvencyCheck: 'Comprobación de solvencia interna '
     name: Solicitud de préstamo (Mapa de caso)
     resumeRequest: Reanudar solicitud
     sideStep: Pasos laterales disponibles
@@ -206,29 +206,27 @@ Processes:
     Creation:
       description1: Seleccione diferentes tipos de ausencias
       description2: Utilice un selector de fechas para seleccionar las fechas de ausencia
-      description3: Seleccione un usuario para aprobar su ausencia
+      description3: Seleccione un usuario para recursos humanos de su baja
       name: Creación
     Summary:
       description1: Solicitante obtendrá un resumen
       description2: Tomar nota del resultado
       name: Resumen
-    approvalTask: Su ausencia ha sido aprovada
-    approvalTaskName: Aprovar solicitud para ausencia del {0}
-    createLeaveRequest: 'Crear ausencia para: {0}'
-    createNewLeaveRequest: 'Tarea de sistema: Crear nueva solicitud para ausencia'
+    approvalTask: Su solicitud de ausencia ha sido aprobada
+    approvalTaskName: Aprobar solicitud de ausencia de {0}
+    createLeaveRequest: 'Crear solicitud de ausencia para: {0}'
+    createNewLeaveRequest: 'Tarea de sistema: Crear inicio de nueva solicitud de ausencia'
     description: |-
-      Este proceso permite a los empleados enviar sus solicitudes de vacaciones, que posteriormente se enviarán al responsable de aprobarlas.
-      Una vez que el responsable haya completado su tarea, el resultado de la aprobación se enviará de vuelta al solicitante.
+      Este proceso permite a los empleados enviar sus solicitudes de vacaciones, que posteriormente se enviarán al responsable de aprobarlas. Una vez que el responsable haya completado su tarea, el resultado de la aprobación se enviará de vuelta al solicitante.
     leaveRequest: Solicitud para ausencia
     name: Solicitud para ausencia
-    rejectedTask: Su solicitud para ausencia ha sido denegada
+    rejectedTask: Su solicitud para ausencia ha sido rechazada
   MarketingCampaign:
     name: Coordinación de la campaña de marketing
   Procurement:
     CreateDataProcess: Datos de compras para el panel de estadísticas de muestras
     InitConfig: Iniciar panel de control de muestra (ACTUALIZAR PANEL DE CONTROL DEL PORTAL Y VARIABLES ESTADÍSTICAS)
-    description: Ejecute este proceso (varias veces) para generar datos para la estadística de KPI de muestra que se muestra a continuación. La información de adquisición, como el importe del gasto, el departamento, el artículo, el mes del año, los días hasta la decisión, la decisión y la reelaboración,
-      se aleatoriza y se asigna a campos personalizados del caso.
+    description: Ejecute este proceso (varias veces) para generar datos para la estadística de KPI de muestra que se muestra a continuación. La información de adquisición, como el importe del gasto, el departamento, el artículo, el mes del año, los días hasta la decisión, la decisión y la reelaboración, se aleatoriza y se asigna a campos personalizados del caso.
     name: Adquisición
   UserExampleGuide:
     DashboardCustomNoteWidget:
