@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.common;
 import static com.codeborne.selenide.Selenide.open;
 
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
+import com.axonivy.portal.selenium.page.PortalConfigurationPage;
 
 public class LinkNavigator {
   private static String portalDashboardConfigurationUrl = "portal/1549F58C18A6C562/PortalDashboardConfiguration.ivp";
@@ -22,6 +23,11 @@ public class LinkNavigator {
   public static DashboardConfigurationPage navigateToPortalDashboardConfiguration() {
     redirectToRelativeLink(String.format(portalDashboardConfigurationUrl));
     return new DashboardConfigurationPage();
+  }
+
+  public static PortalConfigurationPage navigateToPortalConfiguration() {
+    redirectToRelativeLink(portalDashboardConfigurationUrl);
+    return new PortalConfigurationPage();
   }
 
 }

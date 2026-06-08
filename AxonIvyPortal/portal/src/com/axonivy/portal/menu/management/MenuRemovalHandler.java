@@ -4,9 +4,9 @@ import static com.axonivy.portal.menu.management.enums.MenuSource.CUSTOM_MENU_CO
 
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
-import java.util.function.Predicate;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.axonivy.portal.components.util.Locales;
@@ -19,8 +19,6 @@ import com.axonivy.portal.menu.management.adapter.CustomMenuItemDefinitionAdapte
 import com.axonivy.portal.menu.management.adapter.ExternalLinkMenuItemDefinitionAdapter;
 import com.axonivy.portal.menu.management.adapter.StaticPageMenuItemDefinitionAdapter;
 import com.axonivy.portal.service.CustomSubMenuItemService;
-import com.axonivy.portal.service.PortalMenuItemDefinitionService;
-
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
@@ -41,14 +39,14 @@ public final class MenuRemovalHandler implements Serializable {
       case STATIC_PAGE -> removeStaticPageMenu(menu);
       default -> {}
     }
-    PortalMenuItemDefinitionService.getInstance().delete(menu.getId());
   }
 
   private static void removeDashboardMenu(PortalMenuItemDefinition menu) {
     DashboardMenuItemDefinition dashboardMenu = (DashboardMenuItemDefinition) menu;
     Dashboard dashboardToSave = DashboardService.getInstance().findById(dashboardMenu.getDashboard().getId());
-    // Don't remove dashboard from the variable, just set the display type to sub
-    // menu
+    if (dashboardToSave == null) {
+      return;
+    }
     dashboardToSave.setDashboardDisplayType(DashboardDisplayType.SUB_MENU);
     DashboardService.getInstance().saveAllPublicConfig(Arrays.asList(dashboardToSave));
     DashboardUtils.updateDashboardCache();
@@ -77,14 +75,25 @@ public final class MenuRemovalHandler implements Serializable {
   }
 
   private static void removeThirdPartyApp(PortalMenuItemDefinition menu) {
-    List<Application> apps = RegisteredApplicationService.getInstance().findAll();
+    RegisteredApplicationService service = RegisteredApplicationService.getInstance();
+    if (StringUtils.isNotBlank(menu.getId())) {
+      service.delete(menu.getId());
+      return;
+    }
     String locale = Locales.getCurrentLocale().toLanguageTag();
-    Predicate<Application> matchesMenuTitle = app -> {
-      Map<String, String> displayNames = DisplayNameConvertor.parseJson(app.getDisplayName()).getDisplayNameAsMap();
-      return menu.getDisplayTitle().equals(displayNames.get(locale));
-    };
-    apps.stream().filter(matchesMenuTitle).findFirst()
-        .ifPresent(app -> RegisteredApplicationService.getInstance().delete(app.getId()));
+    String menuTitle = menu.getDisplayTitle();
+    if (StringUtils.isBlank(menuTitle)) {
+      return;
+    }
+    service.findAll().stream()
+        .filter(app -> menuTitle.equals(displayNameInLocale(app, locale)))
+        .findFirst()
+        .ifPresent(app -> service.delete(app.getId()));
+  }
+
+  private static String displayNameInLocale(Application app, String locale) {
+    Map<String, String> displayNames = DisplayNameConvertor.parseJson(app.getDisplayName()).getDisplayNameAsMap();
+    return displayNames.get(locale);
   }
 
   private static void removeStaticPageMenu(PortalMenuItemDefinition menu) {

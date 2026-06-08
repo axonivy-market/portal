@@ -17,6 +17,7 @@ import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.enums.PortalCustomSignature;
+import com.axonivy.portal.menu.MenuId;
 
 import ch.addon.portal.generic.menu.SubMenuItem;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
@@ -92,9 +93,9 @@ public class CustomSubMenuItemService {
             : MenuKind.CUSTOM);
       }
 
-      String menuId = SubMenuItem.generateId(result.getMenuKind(), result.getLink());
-      result.setId(menuId);
-      result.setName(HomepageUtils.generateHomepageId(result.getMenuKind(), menuId));
+      String hashId = MenuId.compute(customMenu);
+      result.setId(StringUtils.isNotBlank(customMenu.getId()) ? customMenu.getId() : hashId);
+      result.setName(HomepageUtils.generateHomepageId(result.getMenuKind(), result.getId()));
 
       return result;
     };

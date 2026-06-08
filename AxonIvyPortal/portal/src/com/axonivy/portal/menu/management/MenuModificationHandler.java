@@ -19,8 +19,6 @@ import com.axonivy.portal.menu.management.adapter.ExternalLinkMenuItemDefinition
 import com.axonivy.portal.menu.management.adapter.StaticPageMenuItemDefinitionAdapter;
 import com.axonivy.portal.menu.management.adapter.ThirdPartyAppMenuItemDefinitionAdapter;
 import com.axonivy.portal.service.CustomSubMenuItemService;
-import com.axonivy.portal.service.PortalMenuItemDefinitionService;
-
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.service.DashboardService;
@@ -39,8 +37,6 @@ public final class MenuModificationHandler implements Serializable {
       case STATIC_PAGE -> updateStaticPageMenu(menu);
       default -> {}
     }
-
-    PortalMenuItemDefinitionService.getInstance().save(menu);
   }
 
   private static void updateDashboardMenu(PortalMenuItemDefinition menu) {
