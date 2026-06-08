@@ -133,7 +133,7 @@ How to configure widgets in task details
    -  ``x``, ``y``, ``w`` and ``h`` must be **integers**.
    -  ``x + w`` must **not be larger** than **12**.
    -  For data of custom widget, if you input ``processPath``, don't input ``url``. You can only use one of them.
-   -  We support all task business states for filter type ``states``. Please refer to :doc-url:`Task Business States </public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` to check for available task business states.
+   -  We support all task business states for filter type ``states``. Please refer to :doc-url:`Task Business States </public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` to check for available task business states.
 
 
 Show Custom Panels (Widgets)

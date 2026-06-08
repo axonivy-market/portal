@@ -61,10 +61,7 @@ pipeline {
                 utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
                 echo '====================Build PortalKitTestHelper and InternalSupport===================='
-                def extraModules = ['AxonIvyPortal/PortalKitTestHelper', 'Showcase/InternalSupport']
-                for (module in extraModules) {
-                  maven cmd: "clean install -ntp -f ${module}/pom.xml -Divy.engine.directory=${env.engineDir} -Divy.compiler.engine.start.timeout=120"
-                }
+                maven cmd: "clean install -ntp -pl AxonIvyPortal/PortalKitTestHelper,Showcase/InternalSupport -Divy.engine.directory=${env.engineDir} -Divy.compiler.engine.start.timeout=120"
 
                 echo '====================Update portal-demo-app with helper modules===================='
                 sh '''
@@ -120,10 +117,12 @@ def downloadPortalRelease() {
 }
 
 def installPortalToLocalRepo() {
-  def modules = ['AxonIvyPortal/portal', 'AxonIvyPortal/portal-components', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples']
-  for (module in modules) {
-    def iarFile = findFiles(glob: "${env.releaseDir}/${module}/target/*.iar")[0].path
-    def pomFile = "${env.releaseDir}/${module}/pom.xml"
-    maven cmd: "install:install-file -ntp -Dfile=${iarFile} -DpomFile=${pomFile}"
+  def iars = findFiles(glob: "${env.releaseDir}/*/*/target/*.iar")
+  if (iars.length == 0) {
+    error("No *.iar artifacts found under ${env.releaseDir}; aborting to avoid using stale artifacts in the local Maven repo.")
+  }
+  iars.each { iar ->
+    def moduleDir = iar.path.substring(0, iar.path.lastIndexOf('/target/'))
+    maven cmd: "install:install-file -ntp -Dfile=${iar.path} -DpomFile=${moduleDir}/pom.xml"
   }
 }

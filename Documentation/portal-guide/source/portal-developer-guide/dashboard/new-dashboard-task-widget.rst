@@ -61,6 +61,7 @@ Below is a sample JSON definition of a task widget in the Portal dashboard:
          },
          {
             "field": "name",
+            "enableFilter": false,
             "quickSearch": "true"
          },
          {
@@ -196,6 +197,9 @@ Each column object in the ``columns`` array:
 
 ``quickSearch`` (string, default: ``"false"``)
    Include in quick search: ``"true"`` or ``"false"``
+
+``enableFilter`` (boolean, default: ``true``)
+   Allow filtering on this column in complex filter.
 
 ``headers`` (array, optional)
    Multilingual column headers: ``[{"locale": "en", "value": "Header"}]``
@@ -472,7 +476,7 @@ Standard Column:
       This column only accepts a list of task business state names as its filter
       condition. The available filter operator is ``in``. 
 
-      Refer to :doc-url:`Task Business States </public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` for
+      Refer to :doc-url:`Task Business States </public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` for
       available task business states.
 
 
