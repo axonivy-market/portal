@@ -199,7 +199,6 @@ public class TaskSearchCriteria {
       appendSortByStateIfSet(criteria);
       appendSortByBusinessCaseIdIfSet(criteria);
       appendSortByTechnicalCaseIdIfSet(criteria);
-      appendSortByCategoryIfSet(criteria);
       return this;
     }
 
