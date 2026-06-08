@@ -45,9 +45,4 @@ public class ActionsColumnModel extends CaseColumnModel {
     }
     return caze.getCategory().getName();
   }
-
-  @Override
-  public boolean canFilter() {
-    return false;
-  }
 }

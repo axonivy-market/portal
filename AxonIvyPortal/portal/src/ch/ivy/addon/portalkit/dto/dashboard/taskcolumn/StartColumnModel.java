@@ -34,9 +34,4 @@ public class StartColumnModel extends TaskColumnModel {
   public String getDefaultStyleClass() {
     return "dashboard-tasks__start text-center widget-column ui-sm-hidden";
   }
-
-  @Override
-  public boolean canFilter() {
-    return false;
-  }
 }

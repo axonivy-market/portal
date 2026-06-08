@@ -191,8 +191,8 @@ public class DashboardWidgetUtils {
     List<ColumnModel> filterableColumns = new ArrayList<>();
     if (CollectionUtils.isNotEmpty(taskColumns)) {
       filterableColumns = taskColumns.stream().filter(Objects::nonNull)
-          .filter(col -> BooleanUtils.isTrue(col.getEnableFilter()))
-          .filter(col -> !Strings.CI.equals(col.getField(), DashboardStandardTaskColumn.START.name()))
+          .filter(col -> !Strings.CI.equals(col.getField(), DashboardStandardTaskColumn.START.name())
+              && !Strings.CI.equals(col.getField(), DashboardStandardTaskColumn.ID.toString()))
           .collect(Collectors.toList());
     }
 
@@ -250,7 +250,6 @@ public class DashboardWidgetUtils {
     List<ColumnModel> filterableColumns = new ArrayList<>();
     if (CollectionUtils.isNotEmpty(caseColumns)) {
       filterableColumns = caseColumns.stream().filter(Objects::nonNull)
-          .filter(col -> BooleanUtils.isTrue(col.getEnableFilter()))
           .filter(col -> !Strings.CI.equals(col.getField(), DashboardStandardCaseColumn.ACTIONS.name()))
           .collect(Collectors.toList());
     }
@@ -334,9 +333,6 @@ public class DashboardWidgetUtils {
     }
     if (BooleanUtils.isTrue(column.getVisible())) {
       column.setVisible(null);
-    }
-    if (BooleanUtils.isTrue(column.getEnableFilter())) {
-      column.setEnableFilter(null);
     }
     if (BooleanUtils.isTrue(column.getSortable())) {
       column.setSortable(null);

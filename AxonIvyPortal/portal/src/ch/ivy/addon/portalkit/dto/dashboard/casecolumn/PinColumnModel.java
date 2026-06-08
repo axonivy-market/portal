@@ -37,9 +37,4 @@ public class PinColumnModel extends CaseColumnModel {
     return "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/PIN";
   }
 
-  @Override
-  public boolean canFilter() {
-    return false;
-  }
-
 }

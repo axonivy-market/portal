@@ -16,7 +16,7 @@ import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class ExternalLinkTest extends BaseTest {
 
   private static final String TEST_PROCESS = "Search page";
@@ -24,7 +24,7 @@ public class ExternalLinkTest extends BaseTest {
 
   public ExternalLinkTest() {
     super.setup();
-  }
+  } 
 
   @Test
   public void createExternalLink() {

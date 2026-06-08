@@ -14,7 +14,6 @@ import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
-import ch.ivy.addon.portalkit.service.WidgetFilterService;
 
 @ManagedBean
 @ViewScoped
@@ -37,9 +36,6 @@ public class CaseWidgetUserFilterBean extends AbstractCaseWidgetFilterBean {
         .map(CaseDashboardWidget::getUserFilters).get())) {
       return;
     }
-
-    // Remove user filters which are not in filterable columns anymore
-    WidgetFilterService.removeDisabledFilters(this.widget);
 
     for (DashboardFilter filter : this.widget.getUserFilters()) {
       FilterField filterField = FilterFieldFactory.findBy(this.widget.getId(), Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));

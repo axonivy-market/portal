@@ -37,9 +37,4 @@ public class PinColumnModel extends TaskColumnModel {
     return "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PIN";
   }
 
-  @Override
-  public boolean canFilter() {
-    return false;
-  }
-
 }

@@ -41,9 +41,4 @@ public class ActionsColumnModel extends TaskColumnModel {
   public String getDefaultStyleClass() {
     return "dashboard-tasks__actions text-center widget-column";
   }
-
-  @Override
-  public boolean canFilter() {
-    return false;
-  }
 }
