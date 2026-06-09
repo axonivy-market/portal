@@ -115,4 +115,9 @@ public class OwnerColumnModel extends CaseColumnModel {
     return false;
   }
 
+  @Override
+  public boolean canFilter() {
+    return false;
+  }
+
 }

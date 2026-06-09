@@ -546,6 +546,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       worker: Éditeur
       wrongFromDateFormat: Veuillez entrer une date valide "du". Le format est {0}
       wrongToDateFormat: Veuillez entrer une date valide "au". Le format est {0}
+    filterLabel: Filtre
     finish: Terminer
     general: Général
     generalInformation: Informations générales
