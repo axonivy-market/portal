@@ -191,8 +191,14 @@ public class NotificationBean implements Serializable {
     FacesContext context = FacesContext.getCurrentInstance();
     String redirectType = context.getExternalContext().getRequestParameterMap().get("redirectType");
     String taskId = context.getExternalContext().getRequestParameterMap().get("taskId");
-    ITask task = TaskUtils.findTaskById(Long.valueOf(taskId));
-    
+    // Resolve the task with an involvement-scoped lookup so a user can only leave/reserve
+    // a task they are actually involved in. Returns null when the caller has no involvement
+    // (or the id does not exist), which we reject below instead of acting under Sudo.
+    ITask task = TaskUtils.findTaskUserHasPermissionToSee(Long.valueOf(taskId));
+    if (task == null) {
+      return;
+    }
+
     executeCustomizedLogicIfExists(task, portalCustomSignature);
     taskHandler.accept(task);
 
