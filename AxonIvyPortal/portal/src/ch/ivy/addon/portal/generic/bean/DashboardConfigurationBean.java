@@ -89,12 +89,17 @@ public class DashboardConfigurationBean implements Serializable {
   }
 
   public void accessToMenuManagement() {
+    // Re-check server-side: the tab link is hidden for non-admins but the action
+    // can be posted directly by anyone who can open the configuration page.
+    if (!PermissionUtils.isSessionUserHasAdminRole()) {
+      return;
+    }
     resetAllIndicators();
     this.isMenuManagement = true;
     FacesContext ctx = FacesContext.getCurrentInstance();
     MenuManagementBean menuBean = ctx.getApplication().evaluateExpressionGet(ctx, "#{menuManagementBean}", MenuManagementBean.class);
     if (menuBean != null) {
-      menuBean.init();
+      menuBean.loadMenus();
     }
   }
 

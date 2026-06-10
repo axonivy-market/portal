@@ -835,8 +835,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: 公開用ダッシュボードを並び替える
       SelectAction: アクションを選択してください
       SomeThingWentWrong: 問題が発生しました
-      SubMenuDashboards: サブメニュー項目
-      SubMenuDashboardsDescription: これらのダッシュボードはサイドバーのダッシュボードアイコンの下に表示されます。
       Title: ポータル設定
     DrillDownWidget:
       caseDrillDown: 「{0}」用ドリルダウンケースウィジェット
@@ -1698,6 +1696,7 @@ Dialogs:
             MenuType: TODO Menu type
             InvalidUrl: 'URLが無効です。'
             InvalidUrlScheme: 'httpまたはhttpsのURLのみ許可されています。'
+            InvalidStaticPagePath: 'パスはアプリケーションからの相対パスである必要があります（絶対URLは許可されていません）。'
             NoAvailableSubDashboard: メインダッシュボードとして追加できるサブメニューダッシュボードがありません。
             OpenInNewTab: TODO Open in new tab
             StaticPagePath: TODO Static Page Path

@@ -836,8 +836,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Reordenar dashboard públicos
       SelectAction: Seleccione la acción
       SomeThingWentWrong: Algo salió mal
-      SubMenuDashboards: Elementos del submenú
-      SubMenuDashboardsDescription: Estos paneles aparecen bajo el icono del panel en la barra lateral.
       Title: Configuración del portal
     DrillDownWidget:
       caseDrillDown: Widget de casos detallados para {0}
@@ -1704,6 +1702,7 @@ Dialogs:
             MenuType: Tipo de menú
             InvalidUrl: 'La URL no es válida.'
             InvalidUrlScheme: 'Solo se permiten URLs con http y https.'
+            InvalidStaticPagePath: 'La ruta debe ser relativa a la aplicación (no se permiten URLs absolutas).'
             NoAvailableSubDashboard: No hay ningún panel del submenú disponible para añadir como panel de control principal.
             OpenInNewTab: Abrir en una nueva pestaña
             StaticPagePath: Ruta de página estática
@@ -2040,7 +2039,6 @@ Labels:
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
-  MenuConfiguration: Configuración del menú
   Name: Nombre
   Permissions: Permiso
   PinnedCases: Casos fijados

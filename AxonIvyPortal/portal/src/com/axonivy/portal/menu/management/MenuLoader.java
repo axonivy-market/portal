@@ -35,15 +35,18 @@ import com.axonivy.portal.service.CustomSubMenuItemService;
 import com.axonivy.portal.service.MenuOrderService;
 
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
-import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 
 /**
  * Builds the ordered list of menu items by iterating {@code Portal.Menu.Order} and
  * looking up display data from each source. Items present at a source but absent
  * from the manifest are auto-appended; manifest entries whose source has been
- * removed are auto-pruned. Drift triggers a manifest re-save so the persisted
- * order stays consistent with reality.
+ * removed are auto-pruned. Drift is reconciled in memory only — this loader runs on
+ * the sidebar render path for every user, so it must never write the global variable
+ * (concurrent renders would race and per-user sources like private third-party apps
+ * would ping-pong the shared order). The manifest is persisted exclusively by
+ * explicit admin actions via {@link #persistManifest(List)}.
  */
 public final class MenuLoader implements Serializable {
 
@@ -54,14 +57,11 @@ public final class MenuLoader implements Serializable {
   public static List<PortalMenuItemDefinition> loadMenuDefinitions() {
     Map<String, PortalMenuItemDefinition> bySourceRef = collectAllSourceItems();
     List<MenuOrderEntry> manifest = MenuOrderService.getInstance().findAll();
-    boolean manifestWasEmpty = manifest.isEmpty();
     List<PortalMenuItemDefinition> ordered = new ArrayList<>(bySourceRef.size());
-    boolean manifestChanged = false;
 
     for (MenuOrderEntry entry : manifest) {
       PortalMenuItemDefinition def = bySourceRef.remove(refKey(entry.getSource(), entry.getId()));
       if (def == null) {
-        manifestChanged = true;
         continue;
       }
       def.setIndex(ordered.size());
@@ -71,12 +71,8 @@ public final class MenuLoader implements Serializable {
     for (PortalMenuItemDefinition def : bySourceRef.values()) {
       def.setIndex(ordered.size());
       ordered.add(def);
-      manifestChanged = true;
     }
 
-    if (manifestChanged && !manifestWasEmpty) {
-      persistManifest(ordered);
-    }
     return ordered;
   }
 
@@ -124,7 +120,9 @@ public final class MenuLoader implements Serializable {
   }
 
   private static List<PortalMenuItemDefinition> buildDashboardItems() {
-    return Optional.ofNullable(DashboardService.getInstance().loadTopMenuDashboards())
+    // Session-cached public dashboards (invalidated by the menu handlers on write) —
+    // re-parsing the Portal.Dashboard variable here would run on every page load.
+    return Optional.ofNullable(DashboardUtils.collectMainDashboards())
         .orElse(List.of()).stream()
         .map(MenuLoader::adaptDashboard)
         .collect(Collectors.toList());
@@ -173,7 +171,9 @@ public final class MenuLoader implements Serializable {
   }
 
   private static List<PortalMenuItemDefinition> buildThirdPartyItems() {
-    return RegisteredApplicationService.getInstance().findAll().stream()
+    // Public config only (as the sidebar always did): per-user private apps must not
+    // leak into the shared menu order that admin actions persist.
+    return RegisteredApplicationService.getInstance().getPublicConfig().stream()
         .map(app -> ThirdPartyAppMenuItemDefinitionAdapter.getInstance()
             .toMenuDefinition(app, THIRD_PARTY_APP_CONFIGURATION))
         .collect(Collectors.toList());

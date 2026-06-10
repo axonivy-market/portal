@@ -21,6 +21,7 @@ import org.primefaces.model.menu.MenuItem;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.service.CustomSubMenuItemService;
+import com.axonivy.portal.util.MenuUtils;
 
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -173,16 +174,7 @@ public class PortalMenuNavigator {
     item.setId(dashboard.getId());
 
     // Set icon with the appropriate prefix
-    String iconValue = dashboard.getIcon();
-    if (iconValue.startsWith("fa")) {
-      item.icon = "fa " + iconValue;
-    } else if (iconValue.startsWith("tif")) {
-      item.icon = "tif " + iconValue;
-    } else if (iconValue.startsWith("si")) {
-      item.icon = "si " + iconValue;
-    } else {
-      item.icon = "ti " + iconValue;
-    }
+    item.icon = MenuUtils.buildIconClass(dashboard.getIcon());
 
     // Set the name of the submenu item based on the current language or use default title
     item.label = dashboard.getTitles().stream()

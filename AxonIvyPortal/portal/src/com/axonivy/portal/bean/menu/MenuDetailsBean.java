@@ -37,11 +37,13 @@ import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
 import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
 import com.axonivy.portal.dto.menu.StaticPageMenuItemDefinition;
 import com.axonivy.portal.menu.management.MenuCreationHandler;
+import com.axonivy.portal.menu.management.MenuLoader;
 import com.axonivy.portal.menu.management.MenuModificationHandler;
 import com.axonivy.portal.menu.management.adapter.DashboardMenuItemDefinitionAdapter;
 import com.axonivy.portal.menu.management.enums.ContentState;
 import com.axonivy.portal.menu.management.enums.MenuDetailsMode;
 import com.axonivy.portal.menu.management.enums.MenuSource;
+import com.axonivy.portal.util.MenuUtils;
 
 import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
 import ch.ivy.addon.portalkit.bo.Process;
@@ -266,7 +268,10 @@ public class MenuDetailsBean extends AbstractMenuBean implements Serializable, I
       case CUSTOM -> {
         CustomMenuItemDefinition customMenu = (CustomMenuItemDefinition) selectedMenuDefinition;
         loadProcesses();
-        selectedProcess = customMenu.getProcessStart();
+        // Resolved lazily here instead of in the adapter to keep the sidebar
+        // render path free of process-registry scans.
+        selectedProcess = resolveProcessByStartLink(customMenu.getProcessStartPath());
+        customMenu.setProcessStart(selectedProcess);
         contentState = customMenu.getSource() == MenuSource.CALLABLE ? ContentState.CUSTOM_MENU_CALLABLE_EDIT
             : ContentState.CUSTOM_MENU_VARIABLE_EDIT;
       }
@@ -374,6 +379,17 @@ public class MenuDetailsBean extends AbstractMenuBean implements Serializable, I
     }
   }
 
+  private DashboardProcess resolveProcessByStartLink(String startLink) {
+    if (StringUtils.isBlank(startLink) || CollectionUtils.isEmpty(processStarts)) {
+      return null;
+    }
+    return processStarts.stream()
+        .filter(DashboardProcess.class::isInstance)
+        .map(DashboardProcess.class::cast)
+        .filter(process -> startLink.equals(process.getStartLink()))
+        .findFirst().orElse(null);
+  }
+
   private void onSelectMenuKindStaticPage() {
     selectedMenuDefinition = new StaticPageMenuItemDefinition();
     staticPagePath = null;
@@ -476,8 +492,6 @@ public class MenuDetailsBean extends AbstractMenuBean implements Serializable, I
     selectedMenuDefinition.getPermissionDTOs().remove(selectedItem);
   }
 
-  private static final Set<String> ALLOWED_URL_SCHEMES = Set.of("http", "https");
-
   public void validateExternalLinkUrl(FacesContext context, UIComponent component, Object value) {
     String url = (String) value;
     if (StringUtils.isBlank(url)) {
@@ -485,7 +499,7 @@ public class MenuDetailsBean extends AbstractMenuBean implements Serializable, I
     }
     try {
       String scheme = URI.create(url).getScheme();
-      if (scheme == null || !ALLOWED_URL_SCHEMES.contains(scheme.toLowerCase())) {
+      if (scheme == null || !MenuUtils.SAFE_URL_SCHEMES.contains(scheme.toLowerCase())) {
         throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
             Ivy.cms().co("/Dialogs/com/axonivy/portal/page/MenuManagement/InvalidUrlScheme"), null));
       }
@@ -495,13 +509,29 @@ public class MenuDetailsBean extends AbstractMenuBean implements Serializable, I
     }
   }
 
+  public void validateStaticPagePath(FacesContext context, UIComponent component, Object value) {
+    String path = (String) value;
+    if (StringUtils.isBlank(path)) {
+      return;
+    }
+    if (!MenuUtils.isSafeRelativePath(path)) {
+      throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/Dialogs/com/axonivy/portal/page/MenuManagement/InvalidStaticPagePath"), null));
+    }
+  }
+
   public void createMenu() {
+    verifySidebarManagementPermission();
     MenuCreationHandler.createMenu(mapFields(selectedMenuDefinition));
+    // The loader never writes the order manifest on the read path, so persist the
+    // appended item here — an explicit admin action — to keep the stored order converged.
+    MenuLoader.persistManifest(MenuLoader.loadMenuDefinitions());
     selectedMenuDefinition = null;
     clearSelections();
   }
 
   public void updateMenu() {
+    verifySidebarManagementPermission();
     MenuModificationHandler.updateMenu((mapFields(selectedMenuDefinition)));
     selectedMenuDefinition = null;
     clearSelections();

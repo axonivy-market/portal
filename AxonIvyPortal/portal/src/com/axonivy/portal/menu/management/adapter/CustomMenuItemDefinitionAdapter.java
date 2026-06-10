@@ -5,14 +5,11 @@ import java.util.Optional;
 
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.axonivy.portal.components.enums.MenuKind;
-import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.menu.CustomMenuItemDefinition;
 import com.axonivy.portal.menu.management.enums.MenuSource;
 import com.axonivy.portal.service.CustomSubMenuItemService;
 
-import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivyteam.ivy.security.ISecurityConstants;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class CustomMenuItemDefinitionAdapter
     implements IMenuItemDefinitionAdapter<CustomMenuItemDefinition, CustomSubMenuItem> {
@@ -41,12 +38,10 @@ public class CustomMenuItemDefinitionAdapter
     menu.setPermissions(new ArrayList<>());
     menu.getPermissions().add(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
 
-    // Load process start
-    Optional<IWebStartable> found = ProcessService.getInstance().findAllProcesses().stream()
-        .filter(process -> process.getLink().getRelative().equals(source.getLink())).findFirst();
-    if (found.isPresent()) {
-      menu.setProcessStart(new DashboardProcess(found.get()));
-    }
+    // The process start is intentionally NOT resolved here: this adapter runs on the
+    // sidebar render path for every user and resolving would scan all startables per
+    // item. The sidebar only needs processStartPath; the admin edit dialog resolves
+    // the process lazily (MenuDetailsBean.onEditMenu).
     return menu;
   }
 

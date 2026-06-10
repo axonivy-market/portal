@@ -259,7 +259,9 @@
         listenerOnBackAction="#{dashboardConfigurationBean.backToConfigurationTab()}" componentToUpdateOnBackAction="dashboard-configuration-content"
         isPublicDashboard="#{dashboardConfigurationBean.publicDashboard}" />
 
-      <!-- Menu Management Dialogs -->
+      <!-- Menu Management Dialogs: kept inside the admin-rendered region so their
+           actions are not processable by non-admin users via direct postbacks -->
+      <h:panelGroup rendered="#{dashboardConfigurationBean.canManageSidebarNavigation}">
       <ui:include src="MenuDetailsDialog.xhtml" />
 
       <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
@@ -284,6 +286,7 @@
           </div>
         </ui:define>
       </ui:decorate>
+      </h:panelGroup>
     </ui:define>
   </ui:composition>
 </h:body>

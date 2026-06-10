@@ -1178,6 +1178,7 @@ Dialogs:
             MenuType: Menu type
             InvalidUrl: 'The URL is not valid.'
             InvalidUrlScheme: 'Only http and https URLs are allowed.'
+            InvalidStaticPagePath: 'The path must be relative to the application (absolute URLs are not allowed).'
             OpenInNewTab: Open in new tab
           StatisticConfiguration:
             Aggregate: Aggregate
@@ -1242,7 +1243,6 @@ Labels:
   Icon: Icon
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
-  MenuConfiguration: Menu Configuration
   Name: Name
   Preview: Preview
   Save: Save

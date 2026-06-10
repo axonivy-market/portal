@@ -1696,6 +1696,7 @@ Dialogs:
             MenuType: Menu type
             InvalidUrl: 'The URL is not valid.'
             InvalidUrlScheme: 'Only http and https URLs are allowed.'
+            InvalidStaticPagePath: 'The path must be relative to the application (absolute URLs are not allowed).'
             NoAvailableSubDashboard: No submenu dashboard is available to be added as a main dashboard.
             OpenInNewTab: Open in new tab
             StaticPagePath: Static Page Path
@@ -2021,7 +2022,6 @@ Labels:
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
-  MenuConfiguration: Menu Configuration
   Name: Name
   Permissions: Permissions
   PinnedCases: Pinned Cases

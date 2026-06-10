@@ -474,33 +474,6 @@ public class ThirdPartyApplicationBean implements Serializable, IMultiLanguage {
     this.selectedApplicationPermissions.remove(selectedItem.getName());
   }
 
-  public void onApplicationReorder(List<Application> reorderedApplications, Application selectedApp) {
-    if (reorderedApplications == null || reorderedApplications.isEmpty()) {
-      return;
-    }
-
-    try {
-      RegisteredApplicationService applicationService = RegisteredApplicationService.getInstance();
-
-      for (int i = 0; i < reorderedApplications.size(); i++) {
-        reorderedApplications.get(i).setMenuOrdinal(i);
-        applicationService.save(reorderedApplications.get(i));
-      }
-
-      // Update the local application list
-      this.applicationList = reorderedApplications;
-
-      FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO,
-          "Application order has been updated successfully.", null);
-      FacesContext.getCurrentInstance().addMessage(null, message);
-
-    } catch (Exception e) {
-      FacesMessage errorMessage = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
-          "Error updating application order: " + e.getMessage(), null);
-      FacesContext.getCurrentInstance().addMessage(null, errorMessage);
-    }
-  }
-
   public List<String> getLanguageList() {
     if (this.languages == null) {
       initApplicationLanguages();

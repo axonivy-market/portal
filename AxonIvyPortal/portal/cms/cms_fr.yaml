@@ -836,8 +836,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Réorganiser les tableaux de bord publics
       SelectAction: Sélectionnez l'action
       SomeThingWentWrong: Quelque chose n'a pas fonctionné
-      SubMenuDashboards: Éléments du sous-menu
-      SubMenuDashboardsDescription: Ces tableaux de bord apparaissent sous l'icône Dashboard dans la barre latérale.
       Title: Configuration du portail
     DrillDownWidget:
       caseDrillDown: Widget de cas détaillé pour {0}
@@ -1701,6 +1699,7 @@ Dialogs:
             MenuType: Type de menu
             InvalidUrl: "L'URL n'est pas valide."
             InvalidUrlScheme: 'Seules les URLs http et https sont autorisées.'
+            InvalidStaticPagePath: "Le chemin doit être relatif à l'application (les URLs absolues ne sont pas autorisées)."
             NoAvailableSubDashboard: "Aucun tableau de bord du sous-menu n'est disponible pour être ajouté comme tableau de bord principal."
             OpenInNewTab: Ouvrir dans un nouvel onglet
             StaticPagePath: Chemin de page statique
@@ -2036,7 +2035,6 @@ Labels:
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
-  MenuConfiguration: Configuration du menu
   Name: Nom
   Permissions: Permissions
   PinnedCases: Cas épinglés

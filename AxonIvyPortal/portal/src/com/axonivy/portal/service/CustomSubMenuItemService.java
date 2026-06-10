@@ -115,35 +115,6 @@ public class CustomSubMenuItemService {
     return entity;
   }
 
-  public static CustomSubMenuItem migrate(CustomSubMenuItem menu) {
-    boolean shouldMigrate = false;
-    if (menu != null && StringUtils.isBlank(menu.getId())) {
-      menu.setId(DashboardUtils.generateId());
-    }
-
-    if (shouldMigrate) {
-      return saveConfigurationUseLabel(menu);
-    }
-    return menu;
-  }
-
-  /**
-   * Method for old configurations which don't have ID, so compare both link and
-   * label
-   * 
-   * @param entity
-   * @return
-   */
-  public static CustomSubMenuItem saveConfigurationUseLabel(CustomSubMenuItem entity) {
-    List<CustomSubMenuItem> existedEntities = loadFromConfiguration();
-    existedEntities
-        .removeIf(e -> Optional.ofNullable(e).map(CustomSubMenuItem::getLabel).orElse("").equals(e.getLabel())
-            && Optional.ofNullable(e).map(CustomSubMenuItem::getLink).orElse("").equals(entity.getLink()));
-    existedEntities.add(entity);
-    Ivy.var().set(PortalVariable.CUSTOM_MENU_ITEMS.key, BusinessEntityConverter.entityToJsonValue(existedEntities));
-    return entity;
-  }
-
   public static void removeConfiguration(CustomSubMenuItem entity) {
     List<CustomSubMenuItem> existedEntities = loadFromConfiguration();
     existedEntities.remove(entity);

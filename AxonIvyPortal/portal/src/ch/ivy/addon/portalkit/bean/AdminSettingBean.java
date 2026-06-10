@@ -10,7 +10,6 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.PrimeFaces;
 import org.primefaces.component.tabview.TabView;
-import org.primefaces.event.ReorderEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.TabChangeEvent;
 import org.primefaces.event.UnselectEvent;
@@ -213,10 +212,6 @@ public class AdminSettingBean implements Serializable {
     return getThirdPartyApplicationBean().isFocus(title);
   }
 
-  public void onApplicationReorderDelegate(List<Application> applications, Application selectedApp) {
-    getThirdPartyApplicationBean().onApplicationReorder(applications, selectedApp);
-  }
-
   private void initApplicationTab() {
 
     getThirdPartyApplicationBean().loadApplications();
@@ -229,23 +224,6 @@ public class AdminSettingBean implements Serializable {
   private void initAdminSettingsTab() {
     PrimeFacesUtils.executeScript("PF('settingTable').filter()");
     invokeAdminSettingsComponentLogic("#{logic.initAdminSettings}", new Object[] {});
-  }
-  public void onApplicationReorder(ReorderEvent reorderEvent) {
-    int fromIndex = reorderEvent.getFromIndex();
-    int toIndex = reorderEvent.getToIndex();
-    
-    List<Application> applicationList = getThirdPartyApplicationBean().getApplicationList();
-    
-    if (applicationList != null && !applicationList.isEmpty()) {
-      Application selectedApp = applicationList.remove(fromIndex);
-      applicationList.add(toIndex, selectedApp);
-
-      for (int i = 0; i < applicationList.size(); i++) {
-        applicationList.get(i).setMenuOrdinal(i);
-      }
-
-      getThirdPartyApplicationBean().onApplicationReorder(applicationList, selectedApp);
-    }
   }
 
   private void invokeAdminSettingsComponentLogic(String methodName, Object[] param) {

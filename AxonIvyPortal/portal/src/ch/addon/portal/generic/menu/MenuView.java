@@ -182,34 +182,43 @@ public class MenuView implements Serializable {
 
   private MenuItem buildExternalLinkItem(ExternalLinkMenuItemDefinition def) {
     String target = BooleanUtils.isTrue(def.getOpenInNewTab()) ? "_blank" : "_self";
-    return new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.EXTERNAL_LINK, isWorkingOnATask)
+    PortalMenuItem item = new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.EXTERNAL_LINK, isWorkingOnATask)
         .icon(buildIconClass(def.getIcon()))
-        .url(StringUtils.defaultIfBlank(def.getUrl(), DEFAULT_LINK))
+        .url(StringUtils.defaultIfBlank(MenuUtils.safeExternalUrl(def.getUrl()), DEFAULT_LINK))
         .target(target)
         .cleanParam(true)
         .workingTaskId(workingTaskId)
         .build();
+    item.setRel(EXTERNAL_LINK_REL);
+    return item;
   }
 
   private MenuItem buildStaticPageItem(StaticPageMenuItemDefinition def) {
+    String url = MenuUtils.isSafeRelativePath(def.getUrl())
+        ? PortalNavigatorAPI.buildPortalStaticPageUrl(def.getUrl())
+        : DEFAULT_LINK;
     return new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.STATIC_PAGE, isWorkingOnATask)
         .icon(buildIconClass(def.getIcon()))
-        .url(PortalNavigatorAPI.buildPortalStaticPageUrl(def.getUrl()))
+        .url(url)
         .cleanParam(true)
         .workingTaskId(workingTaskId)
         .build();
   }
 
   private MenuItem buildThirdPartyItem(ExternalLinkMenuItemDefinition def) {
-    return new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.THIRD_PARTY, isWorkingOnATask)
+    PortalMenuItem item = new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.THIRD_PARTY, isWorkingOnATask)
         .icon(buildIconClass(def.getIcon()))
         .url(UrlUtils.buildUrl(def.getUrl()))
         .workingTaskId(workingTaskId)
         .cleanParam(true)
         .build();
+    item.setRel(EXTERNAL_LINK_REL);
+    return item;
   }
 
   private static final String DEFAULT_LINK = "#";
+  // Reverse-tabnabbing protection for links opened in a new tab
+  private static final String EXTERNAL_LINK_REL = "noopener noreferrer";
 
   private void initTaskParams(ITask workingTask, boolean isWorkingOnATask) {
     this.workingTaskId = isNull(workingTask) ? Ivy.wfTask().getId() : workingTask.getId();

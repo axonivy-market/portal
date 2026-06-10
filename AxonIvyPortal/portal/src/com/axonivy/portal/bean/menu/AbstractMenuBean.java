@@ -21,12 +21,26 @@ import com.axonivy.portal.util.MenuUtils;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public abstract class AbstractMenuBean implements Serializable {
 
   private static final long serialVersionUID = 6836359211082018597L;
+
+  /**
+   * Menu items are a portal-wide configuration but the configuration page itself is
+   * reachable with dashboard-write-own permission only. The admin-only rendering of the
+   * Sidebar tab is not enough: JSF actions can be posted directly, so every state-changing
+   * action must re-check the admin role server-side before writing.
+   */
+  protected void verifySidebarManagementPermission() {
+    if (!PermissionUtils.isSessionUserHasAdminRole()) {
+      throw new PortalException("Sidebar menu management requires the portal admin role");
+    }
+  }
 
   public String getDisplayTitle(PortalMenuItemDefinition menu) {
     return MenuUtils.getDisplayTitle(menu);

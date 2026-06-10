@@ -141,8 +141,9 @@
           <p:inputText id="static-page-path" value="#{menuDetailsBean.staticPagePath}"
             required="#{param['skipValidator'] == null}"
             requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/StaticPagePath')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+            validator="#{menuDetailsBean.validateStaticPagePath}"
             disabled="#{!contentState.enableStaticPageInput}" autocomplete="off">
-            <p:ajax event="blur" process="@this" update="@this" global="false" immediate="true" />
+            <p:ajax event="blur" process="@this" update="@this menu-configuration-messages" global="false" immediate="true" />
           </p:inputText>
         </div>
       </h:panelGroup>

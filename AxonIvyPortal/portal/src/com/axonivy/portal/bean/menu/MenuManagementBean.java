@@ -42,10 +42,18 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
 
   @PostConstruct
   public void init() {
-    menuDefinitions = MenuLoader.loadMenuDefinitions();
-    menuDefinitions.forEach(this::initDisplayPermissions);
     String storedMode = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.SIDEBAR_MODE);
     sidebarMode = parseSidebarMode(storedMode);
+  }
+
+  /**
+   * Loads (or reloads) the menu items. Deferred from {@code @PostConstruct} so that merely
+   * rendering the configuration page on another tab doesn't pay the full menu load; the
+   * table getter lazy-loads on first access and tab entry triggers an explicit refresh.
+   */
+  public void loadMenus() {
+    menuDefinitions = MenuLoader.loadMenuDefinitions();
+    menuDefinitions.forEach(this::initDisplayPermissions);
   }
 
   private static SidebarMode parseSidebarMode(String storedMode) {
@@ -89,6 +97,7 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
     if (menuDefinitions == null) {
       return;
     }
+    verifySidebarManagementPermission();
     for (int i = 0; i < menuDefinitions.size(); i++) {
       menuDefinitions.get(i).setIndex(i);
     }
@@ -102,16 +111,23 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
   }
 
   public int getLastIndex() {
-    return menuDefinitions.isEmpty() ? 0 : menuDefinitions.size() - 1;
+    List<PortalMenuItemDefinition> menus = getMenuDefinitions();
+    return menus.isEmpty() ? 0 : menus.size() - 1;
   }
 
   public void removeMenu() {
+    verifySidebarManagementPermission();
     MenuRemovalHandler.removeMenu(getSelectedMenuDefinition());
-    // Loader auto-prunes the stale manifest entry on the next load.
-    init();
+    // The loader prunes the stale manifest entry in memory only, so re-persist here —
+    // an explicit admin action — to keep the stored order converged.
+    loadMenus();
+    MenuLoader.persistManifest(menuDefinitions);
   }
 
   public List<PortalMenuItemDefinition> getMenuDefinitions() {
+    if (menuDefinitions == null) {
+      loadMenus();
+    }
     return menuDefinitions;
   }
 
@@ -204,6 +220,7 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
   }
 
   public void saveSidebarMode() {
+    verifySidebarManagementPermission();
     GlobalSetting setting = GlobalSettingService.getInstance()
         .findGlobalSettingByGlobalVariable(GlobalVariable.SIDEBAR_MODE);
     setting.setValue(sidebarMode != null ? sidebarMode.name() : SidebarMode.HOVER.name());

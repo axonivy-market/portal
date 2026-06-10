@@ -5,8 +5,6 @@ import static com.axonivy.portal.menu.management.enums.MenuSource.CUSTOM_MENU_CO
 import java.io.Serializable;
 import java.util.Arrays;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.axonivy.portal.dto.menu.CustomMenuItemDefinition;
 import com.axonivy.portal.dto.menu.DashboardMenuItemDefinition;
@@ -85,48 +83,4 @@ public final class MenuModificationHandler implements Serializable {
     }
   }
 
-  public static void migrate(PortalMenuItemDefinition menu) {
-    if (StringUtils.isBlank(menu.getId())) {
-      menu.setId(DashboardUtils.generateId());
-    }
-    switch (menu.getType()) {
-      case CUSTOM -> migrateCustomMenu(menu);
-      case EXTERNAL_LINK -> migrateExternalLink(menu);
-      case STATIC_PAGE -> migrateStaticPageMenu(menu);
-      default -> {}
-    }
-  }
-
-  private static void migrateCustomMenu(PortalMenuItemDefinition menu) {
-    if (menu instanceof CustomMenuItemDefinition) {
-      CustomMenuItemDefinition customMenu = (CustomMenuItemDefinition) menu;
-      if (customMenu.getSource() == CUSTOM_MENU_CONFIGURATION) {
-        CustomSubMenuItem menuItem = CustomMenuItemDefinitionAdapter.getInstance().toSource(customMenu);
-        CustomSubMenuItemService.saveConfigurationUseLabel(menuItem);
-      }
-    }
-  }
-
-  private static void migrateExternalLink(PortalMenuItemDefinition menu) {
-    if (menu instanceof ExternalLinkMenuItemDefinition) {
-      ExternalLinkMenuItemDefinition external = (ExternalLinkMenuItemDefinition) menu;
-      switch (menu.getSource()) {
-        case CUSTOM_MENU_CONFIGURATION -> {
-          CustomSubMenuItem menuItem = ExternalLinkMenuItemDefinitionAdapter.getInstance().toSource(external);
-          CustomSubMenuItemService.saveConfigurationUseLabel(menuItem);
-        }
-        default -> {}
-      }
-    }
-  }
-
-  private static void migrateStaticPageMenu(PortalMenuItemDefinition menu) {
-    if (menu instanceof StaticPageMenuItemDefinition) {
-      StaticPageMenuItemDefinition staticPageMenu = (StaticPageMenuItemDefinition) menu;
-      if (staticPageMenu.getSource() == CUSTOM_MENU_CONFIGURATION) {
-        CustomSubMenuItem menuItem = StaticPageMenuItemDefinitionAdapter.getInstance().toSource(staticPageMenu);
-        CustomSubMenuItemService.saveConfigurationUseLabel(menuItem);
-      }
-    }
-  }
 }
