@@ -179,17 +179,55 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
     var configurationPage = new DashboardConfigurationPage();
     var modificationPage = configurationPage.openEditPublicDashboardsPage();
     newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    
+
     newDashboardDetailsEditPage.addWidget();
     TaskEditWidgetNewDashBoardPage taskWidget = newDashboardDetailsEditPage.addNewTaskWidget();
     taskWidget.waitPreviewTableLoaded();
-    
+
     taskWidget.openFilter();
     taskWidget.addFilter("Working user", FilterOperator.CURRENT_USER);
     taskWidget.addFilter("Working user", FilterOperator.IN);
     taskWidget.inputValueOnLatestFilter(FilterValueType.WORKER_TYPE, "admin");
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
+  }
+
+  @Test
+  public void testFilterBusinessCaseId() {
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+
+    newDashboardDetailsEditPage.addWidget();
+    TaskEditWidgetNewDashBoardPage taskWidget = newDashboardDetailsEditPage.addNewTaskWidget();
+    taskWidget.waitPreviewTableLoaded();
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
+
+    taskWidget.openFilter();
+    taskWidget.addFilter("Business Case ID", FilterOperator.CONTAINS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "0000000000");
+    taskWidget.applyFilter();
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(0));
+  }
+
+  @Test
+  public void testFilterTechnicalCaseId() {
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+
+    newDashboardDetailsEditPage.addWidget();
+    TaskEditWidgetNewDashBoardPage taskWidget = newDashboardDetailsEditPage.addNewTaskWidget();
+    taskWidget.waitPreviewTableLoaded();
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
+
+    taskWidget.openFilter();
+    taskWidget.addFilter("Technical Case ID", FilterOperator.CONTAINS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "0000000000");
+    taskWidget.applyFilter();
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(0));
   }
 
   

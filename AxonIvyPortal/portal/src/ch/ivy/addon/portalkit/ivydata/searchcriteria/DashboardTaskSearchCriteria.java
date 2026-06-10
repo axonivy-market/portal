@@ -229,6 +229,8 @@ public class DashboardTaskSearchCriteria {
       appendSortByExpiryDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
       appendSortByPriorityIfSet(criteria);
+      appendSortByBusinessCaseIdIfSet(criteria);
+      appendSortByTechnicalCaseIdIfSet(criteria);
       appendSortByCustomFieldIfSet(criteria);
       appendSortByWorkerIfSet(criteria);
       if (order != null && isSortDescending()) {
@@ -294,6 +296,20 @@ public class DashboardTaskSearchCriteria {
     private void appendSortByWorkerIfSet(DashboardTaskSearchCriteria criteria) {
       if (DashboardStandardTaskColumn.WORKER.getField().equalsIgnoreCase(criteria.getSortField())) {
         order = query.orderBy().workerUserDisplayName();
+        sortStandardColumn = true;
+      }
+    }
+
+    private void appendSortByBusinessCaseIdIfSet(DashboardTaskSearchCriteria criteria) {
+      if (DashboardStandardTaskColumn.BUSINESS_CASE_ID.getField().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().businessCaseId();
+        sortStandardColumn = true;
+      }
+    }
+
+    private void appendSortByTechnicalCaseIdIfSet(DashboardTaskSearchCriteria criteria) {
+      if (DashboardStandardTaskColumn.TECHNICAL_CASE_ID.getField().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().caseId();
         sortStandardColumn = true;
       }
     }

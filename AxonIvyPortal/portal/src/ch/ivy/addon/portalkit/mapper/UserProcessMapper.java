@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.mapper;
 
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -13,6 +14,8 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class UserProcessMapper {
+
+  private static final Pattern HTML_TAG_PATTERN = Pattern.compile("\\<.*?>");
 
   private UserProcessMapper() {}
 
@@ -61,6 +64,6 @@ public class UserProcessMapper {
   }
 
   private static String stripHtmlTags(String text) {
-    return text.replaceAll("\\<.*?>", "");
+    return HTML_TAG_PATTERN.matcher(text).replaceAll("");
   }
 }
