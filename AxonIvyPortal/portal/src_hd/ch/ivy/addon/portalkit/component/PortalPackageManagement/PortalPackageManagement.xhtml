@@ -67,7 +67,7 @@
           </tr>
           <tr>
             <td class="p-3"><i class="ti ti-file-type-json text-color-secondary mr-2" /><span class="font-medium">Portal_MenuOrder.json</span></td>
-            <td class="p-3 text-color-secondary"></td>
+            <td class="p-3 text-color-secondary">Custom ordering of the main navigation menu items in the Portal sidebar</td>
           </tr>
         </tbody>
       </table>
@@ -143,7 +143,8 @@
       <!-- Drop zone -->
       <p:outputPanel id="importDropZone" styleClass="ui-dashboard-upload-file-panel">
         <span class="ui-dashboard-upload-file-label">
-          <i class="ti ti-file-upload" style="font-size:2rem" />
+          <div><i class="ti ti-file-upload" style="font-size:2rem" /></div>
+          
           <span class="mt-2 font-medium">Drag and drop a <span class="font-bold">.zip</span> file here</span>
           <span class="text-color-secondary text-sm mt-1">or
             <p:link value="browse files" onclick="PF('importFileWidget').show(); return false;" styleClass="ml-1" />
@@ -157,7 +158,7 @@
         <ui:fragment rendered="#{not portalPackageBean.fileSelected}">
           <div class="flex align-items-center gap-2 p-3 border-1 surface-border border-round text-color-secondary text-sm surface-ground">
             <i class="ti ti-info-circle" />
-            <span>Package contents will be listed here after you select a file.</span>
+            <span>Valid items will be listed here after you select a file.</span>
           </div>
         </ui:fragment>
 
@@ -174,7 +175,7 @@
           <div class="border-1 surface-border border-round overflow-hidden mb-2">
             <div class="flex align-items-center gap-2 px-3 py-2 surface-ground border-bottom-1 surface-border">
               <i class="ti ti-circle-check text-green-500" />
-              <span class="font-medium text-sm">Will be imported (#{portalPackageBean.validPreviewFiles.size()} file(s))</span>
+              <span class="font-medium text-sm">Valid (#{portalPackageBean.validPreviewFiles.size()} file(s))</span>
             </div>
             <p:dataList value="#{portalPackageBean.validPreviewFiles}" var="file"
               styleClass="list-none p-0 m-0" type="none">
@@ -214,18 +215,14 @@
 
       <!-- Footer actions -->
       <p:outputPanel id="dialogActions" layout="block"
-        styleClass="portal-package-actions flex flex-column gap-2 border-top-1 surface-border pt-3">
+        styleClass="portal-package-actions text-align-center gap-2 border-top-1 surface-border pt-3">
         <p:commandButton value="Import" ariaLabel="Import"
-          icon="si si-upload-top"
           styleClass="w-full"
           actionListener="#{portalPackageBean.confirmImport}"
           oncomplete="PF('importDialog').hide();"
           update="portalPackageMessages @(.portal-package-preview) @(.portal-package-actions)"
           process="@form"
           disabled="#{empty portalPackageBean.validPreviewFiles}" />
-        <p:commandLink value="Cancel" ariaLabel="Cancel"
-          onclick="PF('importDialog').hide(); return false;"
-          styleClass="pt-1 flex justify-content-center" />
       </p:outputPanel>
 
     </div>
