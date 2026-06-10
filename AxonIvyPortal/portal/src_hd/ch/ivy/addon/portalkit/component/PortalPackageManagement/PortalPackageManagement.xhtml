@@ -1,0 +1,238 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:p="http://primefaces.org/ui">
+
+<cc:interface componentType="IvyComponent">
+</cc:interface>
+
+<cc:implementation>
+
+<h:form id="portalPackageForm">
+  <p:messages id="portalPackageMessages" closable="true" />
+
+  <!-- GENERAL INFO -->
+  <h:panelGroup layout="block" styleClass="mb-5 pl-3">
+    <p class="m-0 text-color-secondary">
+      Manage Portal configuration files as a portable zip package.
+      Use <span class="font-medium">Export</span> to download all current JSON configuration files bundled into a single zip archive,
+      or use <span class="font-medium">Import</span> to upload a zip package and apply its configurations — replacing the existing ones.
+    </p>
+  </h:panelGroup>
+
+  <!-- EXPORT SECTION -->
+  <h:panelGroup layout="block" styleClass="mb-5 grid pl-3">
+    <div class="col-12">
+      <h4>Export</h4>
+      <p class="text-color-secondary">
+        Export the current Portal JSON files as a zip package. The following files will be included:
+      </p>
+    </div>
+
+    <div class="col-12">
+      <table class="w-full border-collapse mb-3 border-1 surface-border border-round">
+        <thead>
+          <tr>
+            <th class="text-left p-3 border-bottom-1 surface-border font-medium" style="width:40%">File Name</th>
+            <th class="text-left p-3 border-bottom-1 surface-border font-medium">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-bottom-1 surface-border">
+            <td class="p-3"><i class="ti ti-file-type-json text-color-secondary mr-2" /><span class="font-medium">Portal_Dashboard.json</span></td>
+            <td class="p-3 text-color-secondary">Dashboard widget layouts and configurations for all Portal dashboards</td>
+          </tr>
+          <tr class="border-bottom-1 surface-border">
+            <td class="p-3"><i class="ti ti-file-type-json text-color-secondary mr-2" /><span class="font-medium">Portal_CustomStatistic.json</span></td>
+            <td class="p-3 text-color-secondary">Custom statistic chart definitions displayed on Portal dashboards</td>
+          </tr>
+          <tr class="border-bottom-1 surface-border">
+            <td class="p-3"><i class="ti ti-file-type-json text-color-secondary mr-2" /><span class="font-medium">Portal_UserMenu.json</span></td>
+            <td class="p-3 text-color-secondary">User menu items and shortcuts shown in the top navigation bar</td>
+          </tr>
+          <tr class="border-bottom-1 surface-border">
+            <td class="p-3"><i class="ti ti-file-type-json text-color-secondary mr-2" /><span class="font-medium">Portal_CaseDetails.json</span></td>
+            <td class="p-3 text-color-secondary">Case detail page layouts including visible fields and widget arrangements</td>
+          </tr>
+          <tr class="border-bottom-1 surface-border">
+            <td class="p-3"><i class="ti ti-file-type-json text-color-secondary mr-2" /><span class="font-medium">Portal_ThirdPartyApplications.json</span></td>
+            <td class="p-3 text-color-secondary">Third-party application links integrated into the Portal menu</td>
+          </tr>
+          <tr class="border-bottom-1 surface-border">
+            <td class="p-3"><i class="ti ti-file-type-json text-color-secondary mr-2" /><span class="font-medium">Portal_CustomMenuItems.json</span></td>
+            <td class="p-3 text-color-secondary">Custom ordering of items in the left-side navigation menu</td>
+          </tr>
+          <tr>
+            <td class="p-3"><i class="ti ti-file-type-json text-color-secondary mr-2" /><span class="font-medium">Portal_ExternalLinks.json</span></td>
+            <td class="p-3 text-color-secondary">External URL links displayed in the Portal navigation</td>
+          </tr>
+          <tr>
+            <td class="p-3"><i class="ti ti-file-type-json text-color-secondary mr-2" /><span class="font-medium">Portal_MenuOrder.json</span></td>
+            <td class="p-3 text-color-secondary"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-12">
+      <span class="text-color-secondary text-sm">
+        <i class="ti ti-info-circle mr-1" />
+        Only non-empty files are included in the package.
+      </span>
+    </div>
+
+    <div class="col-12">
+      <p:commandButton id="export-btn"
+        value="Export"
+        ariaLabel="Export"
+        styleClass="primary-color-light-button w-full"
+        ajax="false">
+        <p:fileDownload value="#{portalPackageBean.exportPackage()}" />
+      </p:commandButton>
+    </div>
+  </h:panelGroup>
+
+  <p:separator styleClass="mb-5" />
+
+  <!-- IMPORT SECTION -->
+  <h:panelGroup layout="block" styleClass="mb-5 grid pl-3">
+    <div class="col-12">
+      <h4>Import</h4>
+      <p class="text-color-secondary">
+        Upload a zip file which includes the required JSON files. File names must follow the pattern above.
+      </p>
+    </div>
+
+    <div class="col-12">
+      <p:commandButton id="import-btn"
+        value="Import"
+        ariaLabel="Import"
+        icon="si si-upload-top"
+        styleClass="primary-color-light-button w-full"
+        onclick="PF('importDialog').show(); return false;"
+        type="button" />
+    </div>
+  </h:panelGroup>
+
+  <!-- IMPORT DIALOG -->
+  <p:dialog id="importDialog"
+    header="Import Portal Package"
+    widgetVar="importDialog"
+    appendTo="@(body)"
+    modal="true"
+    responsive="true"
+    closeOnEscape="true"
+    resizable="false"
+    width="640px"
+    styleClass="portal-dialog dialog-responsive">
+
+    <!-- Hidden file upload — drop zone below acts as the trigger -->
+    <p:fileUpload id="importFileUpload"
+      listener="#{portalPackageBean.handleFileSelect}"
+      mode="advanced"
+      auto="true"
+      accept=".zip"
+      fileLimit="1"
+      widgetVar="importFileWidget"
+      style="display:none"
+      update="portalPackageMessages @(.portal-package-preview) @(.portal-package-actions)"
+      dragDropSupport="true"
+      dropZone="importDropZone" />
+
+    <div class="flex flex-column gap-4">
+
+      <!-- Drop zone -->
+      <p:outputPanel id="importDropZone" styleClass="ui-dashboard-upload-file-panel">
+        <span class="ui-dashboard-upload-file-label">
+          <i class="ti ti-file-upload" style="font-size:2rem" />
+          <span class="mt-2 font-medium">Drag and drop a <span class="font-bold">.zip</span> file here</span>
+          <span class="text-color-secondary text-sm mt-1">or
+            <p:link value="browse files" onclick="PF('importFileWidget').show(); return false;" styleClass="ml-1" />
+          </span>
+        </span>
+      </p:outputPanel>
+
+      <!-- Preview panel — updated after file select -->
+      <p:outputPanel id="previewPanel" layout="block" styleClass="portal-package-preview">
+        <!-- No file selected yet -->
+        <ui:fragment rendered="#{not portalPackageBean.fileSelected}">
+          <div class="flex align-items-center gap-2 p-3 border-1 surface-border border-round text-color-secondary text-sm surface-ground">
+            <i class="ti ti-info-circle" />
+            <span>Package contents will be listed here after you select a file.</span>
+          </div>
+        </ui:fragment>
+
+        <!-- File selected but no valid Portal files found -->
+        <ui:fragment rendered="#{portalPackageBean.fileSelected and empty portalPackageBean.validPreviewFiles}">
+          <div class="flex align-items-start gap-2 p-3 border-round border-1" style="background:var(--red-50,#fef2f2);border-color:var(--red-300,#fca5a5)">
+            <i class="ti ti-circle-x mt-1" style="color:var(--red-600,#dc2626);flex-shrink:0" />
+            <span class="text-sm" style="color:var(--red-800,#991b1b)">No recognized Portal configuration files found. Please upload a valid Portal_Package.zip.</span>
+          </div>
+        </ui:fragment>
+
+        <!-- Valid files found -->
+        <ui:fragment rendered="#{not empty portalPackageBean.validPreviewFiles}">
+          <div class="border-1 surface-border border-round overflow-hidden mb-2">
+            <div class="flex align-items-center gap-2 px-3 py-2 surface-ground border-bottom-1 surface-border">
+              <i class="ti ti-circle-check text-green-500" />
+              <span class="font-medium text-sm">Will be imported (#{portalPackageBean.validPreviewFiles.size()} file(s))</span>
+            </div>
+            <p:dataList value="#{portalPackageBean.validPreviewFiles}" var="file"
+              styleClass="list-none p-0 m-0" type="none">
+              <div class="flex align-items-center gap-2 px-3 py-2 border-bottom-1 surface-border">
+                <i class="ti ti-file-type-json text-color-secondary" />
+                <span class="text-sm">#{file}</span>
+              </div>
+            </p:dataList>
+          </div>
+        </ui:fragment>
+
+        <!-- Unrecognized files warning -->
+        <ui:fragment rendered="#{not empty portalPackageBean.invalidPreviewFiles}">
+          <div class="border-1 border-round overflow-hidden mb-2" style="border-color:var(--yellow-300,#fcd34d)">
+            <div class="flex align-items-center gap-2 px-3 py-2 border-bottom-1" style="background:var(--yellow-50,#fffbeb);border-color:var(--yellow-300,#fcd34d)">
+              <i class="ti ti-alert-triangle" style="color:var(--yellow-600,#d97706)" />
+              <span class="font-medium text-sm" style="color:var(--yellow-800,#92400e)">Unrecognized files — will be skipped (#{portalPackageBean.invalidPreviewFiles.size()} file(s))</span>
+            </div>
+            <p:dataList value="#{portalPackageBean.invalidPreviewFiles}" var="file"
+              styleClass="list-none p-0 m-0" type="none">
+              <div class="flex align-items-center gap-2 px-3 py-2 border-bottom-1 surface-border">
+                <i class="ti ti-file-type-json text-color-secondary" />
+                <span class="text-sm">#{file}</span>
+              </div>
+            </p:dataList>
+          </div>
+        </ui:fragment>
+
+        <!-- Replace warning — shown only when there are valid files -->
+        <ui:fragment rendered="#{not empty portalPackageBean.validPreviewFiles}">
+          <div class="flex align-items-start gap-2 mt-1 p-3 border-round border-1" style="background:var(--yellow-50,#fffbeb);border-color:var(--yellow-300,#fcd34d)">
+            <i class="ti ti-alert-triangle mt-1" style="color:var(--yellow-600,#d97706);flex-shrink:0" />
+            <span class="text-sm" style="color:var(--yellow-800,#92400e)">Existing data for each imported type will be <strong>replaced</strong>. This action cannot be undone.</span>
+          </div>
+        </ui:fragment>
+      </p:outputPanel>
+
+      <!-- Footer actions -->
+      <p:outputPanel id="dialogActions" layout="block"
+        styleClass="portal-package-actions flex flex-column gap-2 border-top-1 surface-border pt-3">
+        <p:commandButton value="Import" ariaLabel="Import"
+          icon="si si-upload-top"
+          styleClass="w-full"
+          actionListener="#{portalPackageBean.confirmImport}"
+          oncomplete="PF('importDialog').hide();"
+          update="portalPackageMessages @(.portal-package-preview) @(.portal-package-actions)"
+          process="@form"
+          disabled="#{empty portalPackageBean.validPreviewFiles}" />
+        <p:commandLink value="Cancel" ariaLabel="Cancel"
+          onclick="PF('importDialog').hide(); return false;"
+          styleClass="pt-1 flex justify-content-center" />
+      </p:outputPanel>
+
+    </div>
+
+  </p:dialog>
+
+</h:form>
+
+</cc:implementation>
+</html>

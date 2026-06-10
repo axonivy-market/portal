@@ -21,12 +21,14 @@ public class DashboardConfigurationBean implements Serializable {
   private boolean canEditPrivateDashboard;
   private boolean canEditPublicDashboard;
   private boolean canManageSidebarNavigation;
+  private boolean canManagePackages;
   private boolean isPublicDashboard;
   private boolean isSelectingAction = true;
   private boolean isSelectingTemplate;
   private boolean isEditingDashboard;
   private boolean isReorderingDashboard;
   private boolean isMenuManagement;
+  private boolean isPackageManagement;
 
   @PostConstruct
   public void initConfigurationBean() {
@@ -45,6 +47,7 @@ public class DashboardConfigurationBean implements Serializable {
       canEditPrivateDashboard = PermissionUtils.hasDashboardWriteOwnPermission();
       canEditPublicDashboard = PermissionUtils.hasDashboardWritePublicPermission();
       canManageSidebarNavigation = PermissionUtils.isSessionUserHasAdminRole();
+      canManagePackages = PermissionUtils.isSessionUserHasAdminRole();
     }
   }
 
@@ -54,6 +57,7 @@ public class DashboardConfigurationBean implements Serializable {
     isEditingDashboard = false;
     isReorderingDashboard = false;
     isMenuManagement = false;
+    isPackageManagement = false;
   }
 
   public void switchDashboardType(boolean isPublicDashboard) {
@@ -88,6 +92,11 @@ public class DashboardConfigurationBean implements Serializable {
   public void accessToMenuManagement() {
     resetAllIndicators();
     this.isMenuManagement = true;
+  }
+
+  public void accessToPackageManagement() {
+    resetAllIndicators();
+    this.isPackageManagement = true;
   }
 
   public boolean isMobileDevice() {
@@ -164,5 +173,17 @@ public class DashboardConfigurationBean implements Serializable {
 
   public void setMenuManagement(boolean isMenuManagement) {
     this.isMenuManagement = isMenuManagement;
+  }
+
+  public boolean isCanManagePackages() {
+    return canManagePackages;
+  }
+
+  public boolean isPackageManagement() {
+    return isPackageManagement;
+  }
+
+  public void setPackageManagement(boolean isPackageManagement) {
+    this.isPackageManagement = isPackageManagement;
   }
 }

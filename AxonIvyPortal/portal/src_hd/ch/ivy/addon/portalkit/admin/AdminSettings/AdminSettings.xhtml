@@ -218,6 +218,11 @@
       title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/passwordValidation/titlePage')}">
       <ic:ch.ivy.addon.portalkit.component.PasswordValidation id="password-validation-component"/>
     </p:tab>
+    <!-- PORTAL PACKAGE  -->
+    <p:tab id="portal-package-tab"
+      title="Portal Package Management">
+      <ic:ch.ivy.addon.portalkit.component.PortalPackageManagement id="portal-package-component"/>
+    </p:tab>
     </p:tabView>
   <!-- APPLICATION DIALOG-->
   <p:dialog header="#{thirdPartyApplicationBean.dialogTitle}" id="appDialog" onShow="$('body').css({overflow:'hidden'})"

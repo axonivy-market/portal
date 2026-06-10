@@ -31,31 +31,33 @@
                       type="button"
                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/information')}" />
                     <p:tooltip for="dashboard-info-button" position="left" styleClass="dashboard-info-tooltip" escape="false"
-                      value="#{dashboardConfigurationBean.menuManagement
-                        ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/MenuManagementTabInfoPanel')
-                        : (isPublicDashboard
-                          ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/DashboardTabInfoPanel')
-                          : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PrivateDashboardTabInfoPanel'))}" />
+                      value="#{dashboardConfigurationBean.packageManagement
+                        ? 'Export or import Portal configuration files as a zip package.'
+                        : (dashboardConfigurationBean.menuManagement
+                          ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/MenuManagementTabInfoPanel')
+                          : (isPublicDashboard
+                            ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/DashboardTabInfoPanel')
+                            : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PrivateDashboardTabInfoPanel')))}" />
                   </h:form>
                 </div>
               </div>
 
               <h:panelGroup id="dashboard-configuration-type" styleClass="ui-g-12" layout="block">
                 <ul id="dashboard-type-list" class="dashboard-type-list">
-                  <li class="#{not dashboardConfigurationBean.menuManagement and not isPublicDashboard ? 'active' : ''}" jsf:rendered="#{dashboardConfigurationBean.canEditPrivateDashboard}">
+                  <li class="#{not dashboardConfigurationBean.menuManagement and not dashboardConfigurationBean.packageManagement and not isPublicDashboard ? 'active' : ''}" jsf:rendered="#{dashboardConfigurationBean.canEditPrivateDashboard}">
                     <i class="si si-single-neutral-shield u-mar-right-5"/>
                     <p:commandLink id="private-dashboard-type" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PrivateDashboard')}"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PrivateDashboard')}"
                       actionListener="#{dashboardConfigurationBean.accessToEditDashboard(false)}"
-                      update="dashboard-configuration-type dashboard-configuration-content sidebar-navigation-content dashboard-info-button-form" process="@this"
+                      update="dashboard-configuration-type dashboard-configuration-content sidebar-navigation-content package-management-content dashboard-info-button-form" process="@this"
                       partialSubmit="true"/>
                   </li>
-                  <li class="#{not dashboardConfigurationBean.menuManagement and isPublicDashboard ? 'active' : ''}" jsf:rendered="#{dashboardConfigurationBean.canEditPublicDashboard}">
+                  <li class="#{not dashboardConfigurationBean.menuManagement and not dashboardConfigurationBean.packageManagement and isPublicDashboard ? 'active' : ''}" jsf:rendered="#{dashboardConfigurationBean.canEditPublicDashboard}">
                     <i class="si si-network-share u-mar-right-5"/>
                     <p:commandLink id="public-dashboard-type" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Dashboard')}"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Dashboard')}"
                       actionListener="#{dashboardConfigurationBean.accessToEditDashboard(true)}"
-                      update="dashboard-configuration-type dashboard-configuration-content sidebar-navigation-content dashboard-info-button-form" process="@this"
+                      update="dashboard-configuration-type dashboard-configuration-content sidebar-navigation-content package-management-content dashboard-info-button-form" process="@this"
                       partialSubmit="true"/>
                   </li>
                   <li class="#{dashboardConfigurationBean.menuManagement ? 'active' : ''}" jsf:rendered="#{dashboardConfigurationBean.canManageSidebarNavigation}">
@@ -63,7 +65,15 @@
                     <p:commandLink id="sidebar-navigation-type" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SidebarNavigation')}"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SidebarNavigation')}"
                       actionListener="#{dashboardConfigurationBean.accessToMenuManagement()}"
-                      update="dashboard-configuration-type dashboard-configuration-content sidebar-navigation-content dashboard-info-button-form" process="@this"
+                      update="dashboard-configuration-type dashboard-configuration-content sidebar-navigation-content package-management-content dashboard-info-button-form" process="@this"
+                      partialSubmit="true"/>
+                  </li>
+                  <li class="#{dashboardConfigurationBean.packageManagement ? 'active' : ''}" jsf:rendered="#{dashboardConfigurationBean.canManagePackages}">
+                    <i class="si si-archive u-mar-right-5"/>
+                    <p:commandLink id="package-management-type" ariaLabel="Package Management"
+                      value="Package Management"
+                      actionListener="#{dashboardConfigurationBean.accessToPackageManagement()}"
+                      update="dashboard-configuration-type dashboard-configuration-content sidebar-navigation-content package-management-content dashboard-info-button-form" process="@this"
                       partialSubmit="true"/>
                   </li>
                 </ul>
@@ -72,7 +82,7 @@
 
             <h:panelGroup id="dashboard-configuration-content" layout="block">
               <h:panelGroup layout="block"
-                rendered="#{!dashboardConfigurationBean.mobileDevice and !dashboardConfigurationBean.menuManagement}"
+                rendered="#{!dashboardConfigurationBean.mobileDevice and !dashboardConfigurationBean.menuManagement and !dashboardConfigurationBean.packageManagement}"
                 styleClass="ui-g-12 dashboard-configuration__content u-no-padding-top #{isPublicDashboard ? 'js-public-dashboard-configuration':'js-private-dashboard-configuration'}">
                 
                 <h:panelGroup>
@@ -92,6 +102,15 @@
                     componentToUpdateOnBackAction="dashboard-configuration-content"
                     isPublicDashboard="#{isPublicDashboard}" />
                 </ui:fragment>
+              </h:panelGroup>
+            </h:panelGroup>
+
+            <!-- Package Management Content -->
+            <h:panelGroup id="package-management-content" layout="block" styleClass="w-full">
+              <h:panelGroup layout="block"
+                rendered="#{!dashboardConfigurationBean.mobileDevice and dashboardConfigurationBean.packageManagement and dashboardConfigurationBean.canManagePackages}"
+                styleClass="w-full dashboard-configuration__content u-no-padding-top">
+                <ic:ch.ivy.addon.portalkit.component.PortalPackageManagement id="portal-package-management-component" />
               </h:panelGroup>
             </h:panelGroup>
 
