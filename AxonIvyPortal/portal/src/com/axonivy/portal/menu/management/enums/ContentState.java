@@ -140,7 +140,7 @@ public enum ContentState {
       true,  // enableStaticPageInput
       true,  // enableIconSelection
       true,  // enableTitleInput
-      true,  // enablePermissionSelection
+      false, // enablePermissionSelection - static pages don't persist permissions
       false  // enableMultiLanguage
   ), STATIC_PAGE_EDIT(
       false, // showDashboardSelection
@@ -154,7 +154,7 @@ public enum ContentState {
       true,  // enableStaticPageInput
       true,  // enableIconSelection
       true,  // enableTitleInput
-      true,  // enablePermissionSelection
+      false, // enablePermissionSelection - static pages don't persist permissions
       false  // enableMultiLanguage
   );
 

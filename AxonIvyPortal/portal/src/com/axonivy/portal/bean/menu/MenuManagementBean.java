@@ -18,7 +18,6 @@ import org.primefaces.event.ReorderEvent;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.dto.menu.CustomMenuItemDefinition;
-import com.axonivy.portal.dto.menu.DashboardMenuItemDefinition;
 import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
 import com.axonivy.portal.enums.SidebarMode;
 import com.axonivy.portal.menu.management.MenuLoader;
@@ -97,7 +96,9 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
   }
 
   public boolean hasAction(PortalMenuItemDefinition menuDefinition) {
-    return !MenuKind.STANDARD.equals(menuDefinition.getType());
+    // Callable-sourced items are defined by their process and can be neither edited nor deleted.
+    return !MenuKind.STANDARD.equals(menuDefinition.getType())
+        && !MenuSource.CALLABLE.equals(menuDefinition.getSource());
   }
 
   public int getLastIndex() {
@@ -130,19 +131,22 @@ public class MenuManagementBean extends AbstractMenuBean implements Serializable
     if (menu == null) {
       return "-";
     }
-    if (StringUtils.isNotBlank(menu.getUrl())) {
+    if (StringUtils.isNotBlank(menu.getUrl()) && !"#".equals(menu.getUrl())) {
       return menu.getUrl();
     }
     if (menu instanceof CustomMenuItemDefinition custom
         && StringUtils.isNotBlank(custom.getProcessStartPath())) {
       return custom.getProcessStartPath();
     }
-    if (menu instanceof DashboardMenuItemDefinition dashboard
-        && dashboard.getDashboard() != null
-        && StringUtils.isNotBlank(dashboard.getDashboard().getId())) {
-      return dashboard.getDashboard().getId();
+    return "-";
+  }
+
+  public String getMenuSourceLabel(PortalMenuItemDefinition menu) {
+    MenuSource source = Optional.ofNullable(menu).map(PortalMenuItemDefinition::getSource).orElse(null);
+    if (source == null) {
+      return "-";
     }
-    return StringUtils.defaultIfBlank(menu.getDescription(), "-");
+    return Ivy.cms().co("/Labels/Enums/MenuSource/" + source.name());
   }
 
   public MenuKind resolveMenuKind(PortalMenuItemDefinition menu) {

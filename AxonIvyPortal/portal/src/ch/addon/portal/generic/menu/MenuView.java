@@ -43,6 +43,7 @@ import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
 import com.axonivy.portal.dto.menu.StaticPageMenuItemDefinition;
 import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
 import com.axonivy.portal.menu.management.MenuLoader;
+import com.axonivy.portal.util.MenuUtils;
 import com.axonivy.portal.menu.management.enums.MenuSource;
 
 import ch.addon.portal.generic.menu.PortalMenuItem.PortalMenuBuilder;
@@ -216,17 +217,7 @@ public class MenuView implements Serializable {
   }
 
   private static String buildIconClass(String icon) {
-    if (StringUtils.isBlank(icon)) {
-      return PortalMenuItem.DEFAULT_DASHBOARD_ICON;
-    }
-    // Icon already prefixed with family — caller passed full class string.
-    if (icon.contains(" ")) {
-      return icon;
-    }
-    if (icon.startsWith("fa-")) return "fa " + icon;
-    if (icon.startsWith("tif-")) return "tif " + icon;
-    if (icon.startsWith("si-")) return "si " + icon;
-    return "ti " + icon;
+    return MenuUtils.buildIconClass(icon);
   }
 
   // --- Default-dashboard dropdown -------------------------------------------------

@@ -37,7 +37,7 @@
             <f:selectItems value="#{menuDetailsBean.menuKinds}" var="menuKind"
               itemValue="#{menuKind}" itemLabel="#{menuDetailsBean.getMenuKindLabel(menuKind)}" />
               <p:ajax event="change" process="@(this)" global="false" update="@(form) menu-configuration-messages"
-                listener="#{menuDetailsBean.onSelectMenuKind}"
+                listener="#{menuDetailsBean.onSelectMenuKind}" resetValues="true"
                 oncomplete="PF('menu-configuration-dialog').initPosition();" />
               <f:param name="skipValidator" value="true" />
           </p:selectOneMenu>
@@ -52,7 +52,12 @@
           <p:outputLabel value="#{ivy.cms.co('/Labels/Enums/MenuKind/MAIN_DASHBOARD')}" styleClass="font-semibold"
             for="dashboard-selection" />
         </div>
-        <div class="col-12 mb-3 ui-fluid p-0">
+        <h:panelGroup id="no-available-dashboard-message" layout="block" styleClass="col-12 mb-3 p-0"
+          rendered="#{empty menuDetailsBean.visibleDashboards}">
+          <span>#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/NoAvailableSubDashboard')}</span>
+        </h:panelGroup>
+        <h:panelGroup layout="block" styleClass="col-12 mb-3 ui-fluid p-0"
+          rendered="#{not empty menuDetailsBean.visibleDashboards}">
           <p:selectOneMenu id="dashboard-selection" value="#{menuDetailsBean.selectedDashboard}"
             converter="pojoConverter" disabled="#{!contentState.enableDashboardSelection}"
             required="#{param['skipValidator'] == null}"
@@ -64,7 +69,7 @@
               listener="#{menuDetailsBean.onSelectDashboard}"
               oncomplete="PF('menu-configuration-dialog').initPosition();" />
           </p:selectOneMenu>
-        </div>
+        </h:panelGroup>
       </h:panelGroup>
 
       <!-- Process selection -->
@@ -217,7 +222,8 @@
         <h:form styleClass="w-full">
           <p:commandButton id="create-button" styleClass="w-full"
             rendered="#{menuDetailsBean.isCreate()}" partialSubmit="true"
-            disabled="#{menuDetailsBean.selectedMenuDefinition eq null}"
+            disabled="#{menuDetailsBean.selectedMenuDefinition eq null
+              or (contentState.showDashboardSelection and empty menuDetailsBean.visibleDashboards)}"
             value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
             ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
             actionListener="#{menuDetailsBean.createMenu}"

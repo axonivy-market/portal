@@ -813,8 +813,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       MenuDashboardsDescription: Ces tableaux de bord apparaissent comme éléments principaux dans la barre latérale. Gérez leur ordre dans l'onglet Navigation de la barre latérale.
       PrivateDashboardTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Créez et gérez des tableaux de bord visibles uniquement par vous. Ils apparaissent groupés sous l''icône Tableau de bord dans la barre latérale et n''affectent jamais les autres utilisateurs.</p><p><b>Réorganiser</b></p><p>Faites glisser une ligne pour changer l''ordre d''apparition dans le sous-menu. L''ordre est enregistré dans vos paramètres personnels.</p><p><b>Actions par tableau de bord</b></p><p>Modifier permet de mettre à jour le titre, la description, l''icône ou les titres multilingues. Configurer ouvre le tableau de bord pour ajouter ou réorganiser des widgets. Si vous disposez de la permission d''export, vous pouvez télécharger un tableau de bord au format JSON.</p>'
       DashboardTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Créez, modifiez et supprimez des tableaux de bord publics. Définissez qui peut les voir grâce aux autorisations. Il s''agit de la bibliothèque centrale de tous les tableaux de bord partagés.</p><p><b>Visibilité &amp; emplacement</b></p><p>Les tableaux de bord sont répartis en trois sections selon leur emplacement dans la barre latérale. Pour déplacer un tableau de bord, ouvrez Modifier et changez son Type d''affichage. Seule la section Sous-menu supporte le glisser-déposer pour la réorganisation.</p><p><b>Actions par tableau de bord</b></p><p>Modifier met à jour nom, description, icône, autorisations et type d''affichage. Configurer ouvre le tableau de bord pour ajouter ou organiser des widgets. Exporter télécharge un fichier JSON — si le tableau de bord en référence d''autres, une confirmation est demandée. Partager génère un lien direct. Supprimer le retire définitivement.</p>'
-      MenuManagementTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Configurez tout ce qui est visible dans la barre latérale : les éléments, leur ordre et le comportement global de la barre latérale.</p><p><b>Ajouter de nouveaux éléments</b></p><p>Utilisez Ajouter un élément pour créer une nouvelle entrée. Vous pouvez choisir : Tableau de bord principal (lien vers un tableau de bord), Lien externe (toute URL, avec option ouverture dans un nouvel onglet) ou Page statique. Chaque élément dispose d''un titre multilingue, d''une icône et d''autorisations configurables. Le type d''élément ne peut pas être modifié après création.</p><p><b>Gérer les éléments existants</b></p><p>Modifier met à jour le titre, l''icône, le lien et les autorisations des éléments personnalisés. Supprimer les retire. Les éléments intégrés (type Standard) ne peuvent être ni modifiés ni supprimés. Faites glisser les lignes pour réorganiser tous les éléments.</p><p><b>Paramètres de la barre latérale</b></p><p>Désactiver la barre latérale la masque entièrement pour tous les utilisateurs. Comportement contrôle comment elle s''ouvre : Survol (au survol de la souris), Clic (nécessite un clic) ou Ancré (toujours visible).</p>'
-      SidebarNavigation: Navigation de la barre latérale
+      MenuManagementTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Configurez tout ce qui est visible dans la barre latérale : les éléments, leur ordre et le comportement global de la barre latérale.</p><p><b>Ajouter de nouveaux éléments</b></p><p>Utilisez Ajouter un élément pour créer une nouvelle entrée. Vous pouvez choisir : Tableau de bord principal (lien vers un tableau de bord), Personnalisé (démarre un processus Ivy), Lien externe (toute URL, avec option ouverture dans un nouvel onglet) ou Page statique. Chaque élément dispose d''un titre multilingue, d''une icône et d''autorisations configurables. Le type d''élément ne peut pas être modifié après création.</p><p><b>Comprendre le tableau</b></p><p>Cible indique où mène un élément (URL ou chemin de processus). Autorisations indique qui peut le voir. Type est la nature de l''entrée et Source indique où il est défini : Intégré, Configuration, Configuration du tableau de bord, Processus appelable ou Application tierce.</p><p><b>Gérer les éléments existants</b></p><p>Modifier met à jour le titre, l''icône, le lien et les autorisations des éléments personnalisés. Supprimer les retire. Les éléments intégrés (source : Intégré) ne peuvent être ni modifiés ni supprimés, et les éléments générés par un processus appelable ne peuvent être modifiés que par un développeur. Faites glisser les lignes pour réorganiser tous les éléments.</p><p><b>Paramètres de la barre latérale</b></p><p>Désactiver la barre latérale la masque entièrement pour tous les utilisateurs. Comportement contrôle comment elle s''ouvre : Survol (au survol de la souris), Clic (nécessite un clic) ou Ancré (toujours visible).</p>'
+      SidebarNavigation: Gestion de la barre latérale
       SidebarSettings: Paramètres de la barre latérale
       SidebarMode: Mode de la barre latérale
       DisableSidebar: Désactiver la barre latérale
@@ -823,7 +823,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       Reload: Recharger
       AddItem: Ajouter un élément
       Label: Libellé
-      LinksTo: Lien vers
+      Source: Source
+      Target: Cible
       Dashboard: Tableau de bord
       MenuManagement: Gestion des menus
       MenuManagementTabInfo: 'Gérez les éléments de navigation de la barre latérale. Vous pouvez:<ul><li>Ajouter de nouveaux éléments de menu (tableaux de bord, liens externes, processus Ivy)</li><li>Réorganiser les éléments par glisser-déposer</li><li>Modifier ou supprimer des éléments de menu existants</li></ul>'
@@ -986,6 +987,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     navigate: Naviguer
     noCategory: Il n'y a pas de catégories
     noDashboard: Il n'y a pas de tableaux de bord. Ajoutez au moins un tableau de bord, puis ajoutez des widgets.
+    noDashboardAvailable: "Aucun tableau de bord n'est actuellement disponible."
     noPermission: Vous n'avez pas les permissions pour voir les tableaux de bord.
     noWidget: Il n'y a pas de widgets fournis pour ce tableau de bord.
     numberPattern: Modèle de numéro
@@ -1691,6 +1693,7 @@ Dialogs:
           MenuManagement:
             AddNewMenu: Ajouter un nouveau menu
             CallableMenuMessage: Ce menu est généré automatiquement par un processus appelable et ne peut pas être modifié.
+            CallableSourceHint: Cet élément est généré par un processus appelable. Contactez votre développeur pour le modifier.
             HelpText: Personnalisez le menu dans cette section en fonction de vos besoins ou préférences.
             MenuDetails: Détails du menu
             MenuIcon: Icône du menu
@@ -1698,6 +1701,7 @@ Dialogs:
             MenuType: Type de menu
             InvalidUrl: "L'URL n'est pas valide."
             InvalidUrlScheme: 'Seules les URLs http et https sont autorisées.'
+            NoAvailableSubDashboard: "Aucun tableau de bord du sous-menu n'est disponible pour être ajouté comme tableau de bord principal."
             OpenInNewTab: Ouvrir dans un nouvel onglet
             StaticPagePath: Chemin de page statique
           StatisticConfiguration:
@@ -2002,6 +2006,12 @@ Labels:
       STANDARD: Standard
       STATIC_PAGE: Page statique
       THIRD_PARTY: Tiers
+    MenuSource:
+      CALLABLE: Processus appelable
+      CUSTOM_MENU_CONFIGURATION: Configuration
+      DASHBOARD: Configuration du tableau de bord
+      STANDARD: Intégré
+      THIRD_PARTY_APP_CONFIGURATION: Application tierce
     SearchScopeCaseField:
       CUSTOM: Champs de chaînes personnalisées
       DESCRIPTION: Description du texte

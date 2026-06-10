@@ -3,14 +3,13 @@ package com.axonivy.portal.dto.menu;
 import java.io.Serializable;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.menu.management.enums.MenuSource;
+import com.axonivy.portal.util.MenuUtils;
 
-import ch.addon.portal.generic.menu.PortalMenuItem;
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -88,10 +87,7 @@ public abstract class PortalMenuItemDefinition extends AbstractConfiguration imp
   }
 
   public String getIconClass() {
-    if (StringUtils.isBlank(this.icon)) {
-      return PortalMenuItem.DEFAULT_DASHBOARD_ICON;
-    }
-    return (this.icon.startsWith("fa") ? "fa " : "si ") + this.icon;
+    return MenuUtils.buildIconClass(this.icon);
   }
 
   protected boolean hasPermission() {

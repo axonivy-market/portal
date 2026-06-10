@@ -134,7 +134,7 @@ public class MenuManagementTest extends BaseTest {
     page.selectMenuManagementTab();
     SelenideElement newRow = page.findMenuRowByTitle(menuTitle);
     newRow.shouldBe(appear, DEFAULT_TIMEOUT);
-    newRow.$("td:nth-child(3)").shouldHave(text(TYPE_EXTERNAL_LINK));
+    newRow.$("td:nth-child(4)").shouldHave(text(TYPE_EXTERNAL_LINK));
   }
 
   @Test
@@ -315,8 +315,10 @@ public class MenuManagementTest extends BaseTest {
     SelenideElement header = page.getMenuTableHeaderRow();
     header.shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th").filter(text("Label")).first().shouldBe(appear, DEFAULT_TIMEOUT);
-    header.$$("th").filter(text("Links to")).first().shouldBe(appear, DEFAULT_TIMEOUT);
+    header.$$("th").filter(text("Target")).first().shouldBe(appear, DEFAULT_TIMEOUT);
+    header.$$("th").filter(text("Permissions")).first().shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th").filter(text("Type")).first().shouldBe(appear, DEFAULT_TIMEOUT);
+    header.$$("th").filter(text("Source")).first().shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th").filter(text("Action")).first().shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th.settings-table-reorder").first().shouldBe(appear, DEFAULT_TIMEOUT);
   }
