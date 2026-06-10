@@ -21,6 +21,7 @@ import javax.faces.validator.ValidatorException;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
@@ -362,7 +363,7 @@ public class MenuDetailsBean extends AbstractMenuBean implements Serializable, I
     if (StringUtils.isBlank(query)) {
       return processStarts;
     }
-    return processStarts.stream().filter(process -> process.getName().equals(query)).collect(Collectors.toList());
+    return processStarts.stream().filter(process -> Strings.CS.contains(process.getName().toLowerCase(), query.toLowerCase())).collect(Collectors.toList());
   }
 
   private void loadProcesses() {
