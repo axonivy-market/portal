@@ -1,12 +1,12 @@
 package com.axonivy.portal.enums;
 
 public enum StandardMenuItemDefinitionType {
-  TASK("/ch.ivy.addon.portalkit.ui.jsf/common/tasks", "navigateToTaskList();", "si si-task-list-edit"),
+  TASK("/ch.ivy.addon.portalkit.ui.jsf/common/tasks", "navigateToTaskList();", "ti ti-checklist"),
   PROCESS("/ch.ivy.addon.portalkit.ui.jsf/common/processes", "navigateToProcessList();",
-      "si si-hierarchy-6 si-rotate-270"),
-  CASE("/ch.ivy.addon.portalkit.ui.jsf/caseList/cases", "navigateToCaseList();", "si si-layout-bullets"),
+      "ti ti-sitemap ti-rotate-270"),
+  CASE("/ch.ivy.addon.portalkit.ui.jsf/caseList/cases", "navigateToCaseList();", "ti ti-file-pencil"),
   DASHBOARD("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard", "navigateToDefaultDashboard();",
-      "si si-layout-dashboard");
+      "ti ti-layout-dashboard");
 
   private String cmsUri;
   private String onClick;

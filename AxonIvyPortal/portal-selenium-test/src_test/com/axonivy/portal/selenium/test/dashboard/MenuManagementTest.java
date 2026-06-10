@@ -340,7 +340,7 @@ public class MenuManagementTest extends BaseTest {
 
     SelenideElement submenuTable = page.getSubmenuDashboardTable();
     submenuTable.shouldBe(appear, DEFAULT_TIMEOUT);
-    submenuTable.$("i.si-navigation-menu").shouldBe(appear, DEFAULT_TIMEOUT);
+    submenuTable.$("i.ti-menu-2").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -350,7 +350,7 @@ public class MenuManagementTest extends BaseTest {
 
     SelenideElement topMenuTable = page.getTopMenuDashboardTable();
     topMenuTable.shouldBe(appear, DEFAULT_TIMEOUT);
-    assertTrue(topMenuTable.$$("i.si-navigation-menu").filter(visible).isEmpty());
+    assertTrue(topMenuTable.$$("i.ti-menu-2").filter(visible).isEmpty());
   }
 
   @Test

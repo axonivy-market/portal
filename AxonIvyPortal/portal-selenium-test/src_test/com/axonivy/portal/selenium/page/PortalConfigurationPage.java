@@ -261,8 +261,8 @@ public class PortalConfigurationPage extends TemplatePage {
   }
 
   public void reorderMenu(String fromMenuTitle, String toMenuTitle) {
-    SelenideElement fromHandle = findMenuRowByTitle(fromMenuTitle).$("i.si-navigation-menu");
-    SelenideElement toHandle = findMenuRowByTitle(toMenuTitle).$("i.si-navigation-menu");
+    SelenideElement fromHandle = findMenuRowByTitle(fromMenuTitle).$("i.ti-menu-2");
+    SelenideElement toHandle = findMenuRowByTitle(toMenuTitle).$("i.ti-menu-2");
     Actions builder = new Actions(WebDriverRunner.getWebDriver());
     Action dragAndDrop = builder.clickAndHold(fromHandle).pause(500)
         .moveToElement(toHandle, 50, 20).pause(500).release(toHandle)

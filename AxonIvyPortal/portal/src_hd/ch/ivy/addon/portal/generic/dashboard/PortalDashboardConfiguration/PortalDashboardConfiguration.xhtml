@@ -26,7 +26,7 @@
                     <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Description')}</span>
                   </div>
                   <h:form id="dashboard-info-button-form">
-                    <p:commandButton id="dashboard-info-button" icon="si si-information-circle"
+                    <p:commandButton id="dashboard-info-button" icon="ti ti-info-circle"
                       styleClass="rounded-button ui-button-flat"
                       type="button"
                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/information')}" />
@@ -47,7 +47,7 @@
               <h:panelGroup id="dashboard-configuration-type" styleClass="ui-g-12" layout="block">
                 <ul id="dashboard-type-list" class="dashboard-type-list">
                   <li class="#{not dashboardConfigurationBean.menuManagement and not isPublicDashboard ? 'active' : ''}" jsf:rendered="#{dashboardConfigurationBean.canEditPrivateDashboard}">
-                    <i class="si si-single-neutral-shield u-mar-right-5"/>
+                    <i class="ti ti-lock-square-rounded u-mar-right-5"/>
                     <p:commandLink id="private-dashboard-type" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PrivateDashboard')}"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PrivateDashboard')}"
                       actionListener="#{dashboardConfigurationBean.accessToEditDashboard(false)}"
@@ -55,7 +55,7 @@
                       partialSubmit="true"/>
                   </li>
                   <li class="#{not dashboardConfigurationBean.menuManagement and isPublicDashboard ? 'active' : ''}" jsf:rendered="#{dashboardConfigurationBean.canEditPublicDashboard}">
-                    <i class="si si-network-share u-mar-right-5"/>
+                    <i class="ti ti-world-share u-mar-right-5"/>
                     <p:commandLink id="public-dashboard-type" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Dashboard')}"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Dashboard')}"
                       actionListener="#{dashboardConfigurationBean.accessToEditDashboard(true)}"
@@ -163,7 +163,7 @@
                 <p:dataTable value="#{menuManagementBean.menuDefinitions}" var="menu" id="menu-table"
                   styleClass="menu-management-table"
                   emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-                  draggableRows="true" rowDragSelector="i.si-navigation-menu">
+                  draggableRows="true" rowDragSelector="i.ti-menu-2">
                   <p:ajax event="rowReorder" global="false" update="menu-table" listener="#{menuManagementBean.onRowReorder}"/>
 
                   <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Label')}">
@@ -201,7 +201,7 @@
                   <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Source')}" width="170">
                     <h:panelGroup id="menu-source-group" layout="block" styleClass="flex align-items-center gap-2">
                       <h:outputText value="#{menuManagementBean.getMenuSourceLabel(menu)}" />
-                      <h:outputText id="callable-info-icon" styleClass="si si-information-circle menu-source-info-icon"
+                      <h:outputText id="callable-info-icon" styleClass="ti ti-info-circle menu-source-info-icon"
                         rendered="#{menu.source eq 'CALLABLE'}" />
                       <p:tooltip for="callable-info-icon" rendered="#{menu.source eq 'CALLABLE'}"
                         value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/CallableSourceHint')}"
@@ -212,7 +212,7 @@
                   <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
                     width="100" styleClass="text-center">
                     <div class="w-full flex justify-content-center">
-                      <p:commandButton id="menu-action-button" icon="fa fa-ellipsis-h"
+                      <p:commandButton id="menu-action-button" icon="ti ti-dots"
                         rendered="#{menuManagementBean.hasAction(menu)}"
                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
                         styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page" type="button" />
@@ -220,7 +220,7 @@
                           my="right top" at="right bottom">
                           <p:menuitem id="menu-edit" process="@this"
                             actionListener="#{menuDetailsBean.onEditMenu(menu)}"
-                            icon="si si-graphic-tablet-drawing-pen" styleClass="dashboard-configuration-action-menu-icon"
+                            icon="ti ti-pencil" styleClass="dashboard-configuration-action-menu-icon"
                             update="menu-configuration-dialog" global="false"
                             oncomplete="PF('menu-configuration-dialog').show()"
                             target="_blank" resetValues="true"
@@ -228,7 +228,7 @@
                             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" />
                           <p:menuitem id="menu-delete" process="@this" styleClass="rounded-button ui-button-outlined ui-button-danger color-destroy"
                             rendered="#{menu.type ne 'STANDARD'}"
-                            icon="si si-bin-1" actionListener="#{menuManagementBean.setSelectedMenuDefinition(menu)}" global="false"
+                            icon="ti ti-trash" actionListener="#{menuManagementBean.setSelectedMenuDefinition(menu)}" global="false"
                             update="remove-menu-dialog" oncomplete="PF('remove-menu-dialog').show()"
                             title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
@@ -238,7 +238,7 @@
 
                   <p:column styleClass="settings-table-reorder w-3rem">
                     <h:panelGroup styleClass="ui-button-outlined action-column-icon-button u-mar-right-5">
-                      <i id="reorder-button-#{menu.id}" class="si si-navigation-menu dashboard-icon-drag-drop" />
+                      <i id="reorder-button-#{menu.id}" class="ti ti-menu-2 dashboard-icon-drag-drop" />
                     </h:panelGroup>
                   </p:column>
                 </p:dataTable>
@@ -265,7 +265,7 @@
       <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
         <ui:param name="id" value="remove-menu-dialog" />
         <ui:param name="widgetVar" value="remove-menu-dialog" />
-        <ui:param name="iconClass" value="si si-delete-1" />
+        <ui:param name="iconClass" value="ti ti-trash" />
         <ui:param name="appendTo" value="@(body)" />
         <ui:param name="closeable" value="true" />
         <ui:param name="closeOnEscape" value="true" />

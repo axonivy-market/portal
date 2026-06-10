@@ -169,7 +169,7 @@
           required="#{param['skipValidator'] == null}" styleClass="manage-dashboard__input">
           <p:ajax event="blur" process="@this" update="@this" global="false" immediate="true" />
         </p:inputText>
-        <p:commandButton id="add-language-button" icon="si si-chat-translate"
+        <p:commandButton id="add-language-button" icon="ti ti-language"
           actionListener="#{menuDetailsBean.updateSelectedMenuTitlesByLocale()}"
           process="menu-titles"
           disabled="#{!contentState.enableTitleInput or !contentState.enableMultiLanguage}"
@@ -203,7 +203,7 @@
             <pc:securityMemberNameAndAvatar
               displayName="#{menuDetailsBean.formatName(responsible)}" securityMember="#{responsible}">
               <f:facet name="alternativeAvatar">
-                <h:outputText rendered="#{not avatarBean.isShowAvatar()}" styleClass="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                <h:outputText rendered="#{not avatarBean.isShowAvatar()}" styleClass="ti #{responsible.isUser() ? 'ti-user' : 'ti-users'} u-mar-right-5" />
               </f:facet>
             </pc:securityMemberNameAndAvatar>
           </p:column>

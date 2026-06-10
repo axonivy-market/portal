@@ -41,25 +41,25 @@
           width="#{dashboardModificationBean.hasExportDashboardPermission() ? '120' : '210'}" styleClass="text-center">
           <div class="dashboard-configuration-action-group">
             <h:panelGroup layout="block">
-              <p:commandButton id="top-dashboard-action-button" icon="fa fa-ellipsis-h"
+              <p:commandButton id="top-dashboard-action-button" icon="ti ti-dots"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
                 styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page ui-focused" type="button" />
               <p:menu id="top-dashboard-action-menu" styleClass="w-auto" overlay="true" trigger="top-dashboard-action-button"
                 my="right top" at="right bottom">
                 <p:menuitem id="top-edit" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(topDashboard)}"
-                  icon="si si-graphic-tablet-drawing-pen" styleClass="dashboard-configuration-action-menu-icon"
+                  icon="ti ti-pencil" styleClass="dashboard-configuration-action-menu-icon"
                   update="#{cc.clientId}:configuration-dashboard-detail-component:dashboard-detail-form" global="false"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" oncomplete="PF('configuration-dashboard-detail-dialog').show()"
                   target="_blank" resetValues="true" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" />
                 <p:menuitem id="top-configure-dashboard" process="@this"
-                  actionListener="#{dashboardModificationBean.navigateToDashboardDetailsPage(topDashboard.id)}" icon="si si-cog" update="@this"
+                  actionListener="#{dashboardModificationBean.navigateToDashboardDetailsPage(topDashboard.id)}" icon="ti ti-settings-cog" update="@this"
                   styleClass="dashboard-configuration-action-menu-icon" oncomplete="resetPortalLeftMenuState()"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}" />
                 <p:menuitem id="top-export-dashboard"
                   styleClass="dashboard-configuration-action-menu-icon"
                   title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
-                  icon="si si-download-bottom"
+                  icon="ti ti-download"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
                   rendered="#{dashboardModificationBean.hasExportDashboardPermission()}"
                   actionListener="#{dashboardModificationBean.prepareExportInfo(topDashboard)}"
@@ -69,11 +69,11 @@
                 <p:menuitem id="top-share-dashboard" rendered="#{dashboardModificationBean.isShowShareButtonOnConfig(isPublicDashboard)}"
                   styleClass="rounded-button ui-button-outlined" actionListener="#{dashboardModificationBean.initShareDashboardLink(topDashboard)}"
                   oncomplete="PF('share-dashboard-dialog').show()"
-                  title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/Share')}" icon="si si-share"
+                  title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/Share')}" icon="ti ti-share"
                   update="#{cc.clientId}:share-dashboard-component:share-dashboard-dialog"
                   value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/Share')}" global="false" />
                 <p:menuitem id="top-delete-dashboard" process="@this" styleClass="rounded-button ui-button-outlined ui-button-danger color-destroy"
-                  icon="si si-bin-1" actionListener="#{dashboardModificationBean.onSelectedDeleteDashboard(topDashboard)}" global="false"
+                  icon="ti ti-trash" actionListener="#{dashboardModificationBean.onSelectedDeleteDashboard(topDashboard)}" global="false"
                   update="dashboard-modification-component:remove-dashboard-dialog" oncomplete="PF('remove-dashboard-dialog').show()"
                   title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
@@ -90,7 +90,7 @@
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SubMenuDashboardsDescription')}</span>
     </h:panelGroup>
 
-    <p:dataTable id="dashboard-table" lazy="false" draggableRows="true" rowDragSelector="i.si-navigation-menu"
+    <p:dataTable id="dashboard-table" lazy="false" draggableRows="true" rowDragSelector="i.ti-menu-2"
       value="#{dashboardModificationBean.dashboards}" var="dashboard"
       styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
@@ -192,25 +192,25 @@
           width="#{dashboardModificationBean.hasExportDashboardPermission() ? '120' : '210'}" styleClass="text-center">
           <div class="dashboard-configuration-action-group">
             <h:panelGroup layout="block">
-              <p:commandButton id="hidden-dashboard-action-button" icon="fa fa-ellipsis-h"
+              <p:commandButton id="hidden-dashboard-action-button" icon="ti ti-dots"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
                 styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page ui-focused" type="button" />
               <p:menu id="hidden-dashboard-action-menu" styleClass="w-auto" overlay="true" trigger="hidden-dashboard-action-button"
                 my="right top" at="right bottom">
                 <p:menuitem id="hidden-edit" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(hiddenDashboard)}"
-                  icon="si si-graphic-tablet-drawing-pen" styleClass="dashboard-configuration-action-menu-icon"
+                  icon="ti ti-pencil" styleClass="dashboard-configuration-action-menu-icon"
                   update="#{cc.clientId}:configuration-dashboard-detail-component:dashboard-detail-form" global="false"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" oncomplete="PF('configuration-dashboard-detail-dialog').show()"
                   target="_blank" resetValues="true" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" />
                 <p:menuitem id="hidden-configure-dashboard" process="@this"
-                  actionListener="#{dashboardModificationBean.navigateToDashboardDetailsPage(hiddenDashboard.id)}" icon="si si-cog" update="@this"
+                  actionListener="#{dashboardModificationBean.navigateToDashboardDetailsPage(hiddenDashboard.id)}" icon="ti ti-settings-cog" update="@this"
                   styleClass="dashboard-configuration-action-menu-icon" oncomplete="resetPortalLeftMenuState()"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}" />
                 <p:menuitem id="hidden-export-dashboard"
                   styleClass="dashboard-configuration-action-menu-icon"
                   title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
-                  icon="si si-download-bottom"
+                  icon="ti ti-download"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
                   rendered="#{dashboardModificationBean.hasExportDashboardPermission()}"
                   actionListener="#{dashboardModificationBean.prepareExportInfo(hiddenDashboard)}"
@@ -220,11 +220,11 @@
                 <p:menuitem id="hidden-share-dashboard" rendered="#{dashboardModificationBean.isShowShareButtonOnConfig(isPublicDashboard)}"
                   styleClass="rounded-button ui-button-outlined" actionListener="#{dashboardModificationBean.initShareDashboardLink(hiddenDashboard)}"
                   oncomplete="PF('share-dashboard-dialog').show()"
-                  title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/Share')}" icon="si si-share"
+                  title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/Share')}" icon="ti ti-share"
                   update="#{cc.clientId}:share-dashboard-component:share-dashboard-dialog"
                   value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/Share')}" global="false" />
                 <p:menuitem id="hidden-delete-dashboard" process="@this" styleClass="rounded-button ui-button-outlined ui-button-danger color-destroy"
-                  icon="si si-bin-1" actionListener="#{dashboardModificationBean.onSelectedDeleteDashboard(hiddenDashboard)}" global="false"
+                  icon="ti ti-trash" actionListener="#{dashboardModificationBean.onSelectedDeleteDashboard(hiddenDashboard)}" global="false"
                   update="dashboard-modification-component:remove-dashboard-dialog" oncomplete="PF('remove-dashboard-dialog').show()"
                   title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
