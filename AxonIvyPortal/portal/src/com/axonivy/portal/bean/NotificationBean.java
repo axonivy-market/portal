@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.lang3.math.NumberUtils;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.service.IvyAdapterService;
@@ -191,8 +192,18 @@ public class NotificationBean implements Serializable {
     FacesContext context = FacesContext.getCurrentInstance();
     String redirectType = context.getExternalContext().getRequestParameterMap().get("redirectType");
     String taskId = context.getExternalContext().getRequestParameterMap().get("taskId");
-    ITask task = TaskUtils.findTaskById(Long.valueOf(taskId));
-    
+    // taskId is request-supplied: reject a missing/non-numeric value before parsing so it
+    // cannot trigger a parse error. Then resolve with an involvement-scoped lookup so a user
+    // can only leave/reserve a task they are actually involved in; it returns null when the
+    // caller has no involvement (or the id does not exist), which we reject below.
+    if (!NumberUtils.isDigits(taskId)) {
+      return;
+    }
+    ITask task = TaskUtils.findTaskUserHasPermissionToSee(NumberUtils.toLong(taskId));
+    if (task == null) {
+      return;
+    }
+
     executeCustomizedLogicIfExists(task, portalCustomSignature);
     taskHandler.accept(task);
 
