@@ -45,6 +45,7 @@
       
         <c:set var="case" value="#{caseId ne null ? caseWidgetBean.findCase(caseId) : currentTask.getCase().getBusinessCase()}" />
         <c:set var="isSideStepDisabled" value="#{!abstractTaskTemplateBean.checkSideStepsEnabled(case)}" scope="request" />
+        <c:set var="isCaseViewable" value="#{!caseWidgetBean.isHiddenCase(case) and caseWidgetBean.isCaseFound(case)}" scope="request" />
         <ui:insert name="breadCrumb" />
         <p:inputText id="application-name-for-title" value="#{masterDataBean.applicationName}" type="hidden"/>
         <h:panelGroup id="header-container" layout="block" styleClass="task-header-container js-task-header-container #{processChainDirection eq 'VERTICAL' ? '' : 'task-template-title-horizontal-container'}">
@@ -161,13 +162,13 @@
           onShow="PF('caseInfoPoll').start();">
           <f:facet name="header">
             <h:panelGroup styleClass="case-infor-title u-truncate-text">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}#{(!caseWidgetBean.isHiddenCase(case) and caseWidgetBean.isCaseFound(case)) ? ': '.concat(case.names().current()) : ''}" />
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}#{isCaseViewable ? ': '.concat(case.names().current()) : ''}" />
             </h:panelGroup>
           </f:facet>
           <ui:insert name="caseDetails">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseFound')}"
-              rendered="#{caseWidgetBean.isHiddenCase(case) or !caseWidgetBean.isCaseFound(case)}" styleClass="no-case-found" />
-            <h:panelGroup id="case-details-panel" layout="block" rendered="#{!caseWidgetBean.isHiddenCase(case) and caseWidgetBean.isCaseFound(case)}"
+              rendered="#{!isCaseViewable}" styleClass="no-case-found" />
+            <h:panelGroup id="case-details-panel" layout="block" rendered="#{isCaseViewable}"
               styleClass="case-default-widget-container case-details case-details-panel">
               <div class="ui-g js-iframe-container">
                 <div class="ui-g-12 u-padding-0">
