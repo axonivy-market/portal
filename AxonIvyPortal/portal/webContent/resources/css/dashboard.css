@@ -2136,6 +2136,11 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
   cursor: pointer;
 }
 
+.dashboard-tasks__selection-column {
+  text-align: center;
+  width: 40px;
+}
+
 /* Menu type tag colors - light mode */
 .menu-type-standard {
   background-color: #f3f3f3 !important;
@@ -2242,16 +2247,20 @@ body.dark .menu-type-static {
   font-weight: 600 !important;
 }
 
-/* Info guide overlay for Portal Configuration page.
-   Uses the theme's overlay surface, so it is white in light mode and dark in dark mode. */
-.dashboard-info-overlay {
-  max-width: 400px;
+/* Info guide for the Portal Configuration page header.
+   Same pattern as the Admin settings page: plain icon, info shown as hover tooltip. */
+.dashboard-configuration-info-circle {
+  margin: auto 0;
 }
 
-.dashboard-info-overlay .ui-overlaypanel-content {
-  max-height: 60vh;
-  overflow-y: auto;
-  padding: 1rem 1rem !important;
+.dashboard-configuration-info-circle .dashboard-configuration-info {
+  color: var(--ivy-primary-color);
+  font-size: large;
+}
+
+.dashboard-info-tooltip {
+  max-width: 450px;
+  word-wrap: break-word;
 }
 
 /* Sidebar settings card in Sidebar navigation tab */

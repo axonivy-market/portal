@@ -60,6 +60,9 @@ public final class MenuLoader implements Serializable {
     List<PortalMenuItemDefinition> ordered = new ArrayList<>(bySourceRef.size());
 
     for (MenuOrderEntry entry : manifest) {
+      if (entry.getSource() == null) {
+        continue;
+      }
       PortalMenuItemDefinition def = bySourceRef.remove(refKey(entry.getSource(), entry.getId()));
       if (def == null) {
         continue;

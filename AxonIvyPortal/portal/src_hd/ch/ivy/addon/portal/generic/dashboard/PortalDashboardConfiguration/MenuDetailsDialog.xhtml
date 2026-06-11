@@ -228,7 +228,7 @@
             value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
             ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
             actionListener="#{menuDetailsBean.createMenu}"
-            action="#{menuManagementBean.init}"
+            action="#{menuManagementBean.loadMenus}"
             process="menu-configuration-form"
             update="menu-configuration-form menu-table-container"
             oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('menu-configuration-dialog').hide();}" />
@@ -238,7 +238,7 @@
             value="#{ivy.cms.co('/Labels/Save')}"
             ariaLabel="#{ivy.cms.co('/Labels/Save')}"
             actionListener="#{menuDetailsBean.updateMenu}"
-            action="#{menuManagementBean.init}"
+            action="#{menuManagementBean.loadMenus}"
             process="menu-configuration-form"
             update="menu-configuration-form menu-table-container"
             oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('menu-configuration-dialog').hide();}" />

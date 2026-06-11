@@ -26,10 +26,11 @@ public class MenuUtils {
     if (StringUtils.isBlank(url)) {
       return null;
     }
+    String trimmed = url.trim();
     try {
-      String scheme = URI.create(url.trim()).getScheme();
+      String scheme = URI.create(trimmed).getScheme();
       if (scheme == null || SAFE_URL_SCHEMES.contains(scheme.toLowerCase())) {
-        return url;
+        return trimmed;
       }
     } catch (IllegalArgumentException ex) {
       // fall through - treat unparsable URLs as unsafe

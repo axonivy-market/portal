@@ -25,22 +25,19 @@
                     <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}</h2>
                     <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Description')}</span>
                   </div>
-                  <h:form id="dashboard-info-button-form">
-                    <p:commandButton id="dashboard-info-button" icon="ti ti-info-circle"
-                      styleClass="rounded-button ui-button-flat"
-                      type="button"
-                      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/information')}" />
-                    <p:overlayPanel id="dashboard-info-panel" for="dashboard-info-button"
-                      styleClass="dashboard-info-overlay" dismissable="true"
-                      my="right top" at="right bottom">
-                      <h:outputText escape="false"
-                        value="#{dashboardConfigurationBean.menuManagement
-                          ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/MenuManagementTabInfoPanel')
-                          : (isPublicDashboard
-                            ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/DashboardTabInfoPanel')
-                            : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PrivateDashboardTabInfoPanel'))}" />
-                    </p:overlayPanel>
-                  </h:form>
+                  <!-- Same info pattern as the Admin settings page: plain icon with a hover tooltip -->
+                  <h:panelGroup id="dashboard-info-button-form" layout="block"
+                    styleClass="dashboard-configuration-info-circle">
+                    <h:outputText id="dashboard-info-icon"
+                      styleClass="dashboard-configuration-info ti ti-info-circle" />
+                    <p:tooltip for="dashboard-info-icon" escape="false" position="bottom"
+                      styleClass="dashboard-info-tooltip" hideEvent="mouseleave click"
+                      value="#{dashboardConfigurationBean.menuManagement
+                        ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/MenuManagementTabInfoPanel')
+                        : (isPublicDashboard
+                          ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/DashboardTabInfoPanel')
+                          : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PrivateDashboardTabInfoPanel'))}" />
+                  </h:panelGroup>
                 </div>
               </div>
 

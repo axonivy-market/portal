@@ -87,8 +87,8 @@ public class PortalConfigurationPage extends TemplatePage {
   }
 
   public String getMenuTypeByTitle(String menuTitle) {
-    // Table columns: 1-Title, 2-LinksTo, 3-Type, 4-Actions, 5-Reorder
-    return findMenuRowByTitle(menuTitle).$("td:nth-child(3)").getText();
+    // Table columns: 1-Label, 2-Target, 3-Permissions, 4-Type, 5-Source, 6-Action, 7-Reorder
+    return findMenuRowByTitle(menuTitle).$("td:nth-child(4)").getText();
   }
 
   public SelenideElement clickAddNewMenu() {
@@ -257,7 +257,7 @@ public class PortalConfigurationPage extends TemplatePage {
   }
 
   public SelenideElement getInfoPanelButton() {
-    return $("[id$='dashboard-info-button']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("[id$='dashboard-info-icon']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void reorderMenu(String fromMenuTitle, String toMenuTitle) {

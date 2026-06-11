@@ -23,7 +23,6 @@ import ch.addon.portal.generic.menu.SubMenuItem;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
-import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCallStartEvent;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
@@ -108,8 +107,8 @@ public class CustomSubMenuItemService {
 
   public static CustomSubMenuItem saveConfiguration(CustomSubMenuItem entity) {
     List<CustomSubMenuItem> existedEntities = loadFromConfiguration();
-    existedEntities
-        .removeIf(e -> Optional.ofNullable(e).map(CustomSubMenuItem::getId).orElse("").equals(entity.getId()));
+    String entityKey = identityKey(entity);
+    existedEntities.removeIf(e -> Objects.nonNull(e) && entityKey.equals(identityKey(e)));
     existedEntities.add(entity);
     Ivy.var().set(PortalVariable.CUSTOM_MENU_ITEMS.key, BusinessEntityConverter.entityToJsonValue(existedEntities));
     return entity;
@@ -117,7 +116,18 @@ public class CustomSubMenuItemService {
 
   public static void removeConfiguration(CustomSubMenuItem entity) {
     List<CustomSubMenuItem> existedEntities = loadFromConfiguration();
-    existedEntities.remove(entity);
+    String entityKey = identityKey(entity);
+    existedEntities.removeIf(e -> Objects.nonNull(e) && entityKey.equals(identityKey(e)));
     Ivy.var().set(PortalVariable.CUSTOM_MENU_ITEMS.key, BusinessEntityConverter.entityToJsonValue(existedEntities));
+  }
+
+  /**
+   * Stable identity for matching persisted entries. Legacy {@code Portal.CustomMenuItems}
+   * entries predate the {@code id} field and deserialize with {@code id == null}, so we
+   * fall back to the deterministic {@link MenuId#compute(CustomSubMenuItem)} hash to keep
+   * edits/deletes from leaving duplicates or undeletable items.
+   */
+  private static String identityKey(CustomSubMenuItem item) {
+    return StringUtils.isNotBlank(item.getId()) ? item.getId() : MenuId.compute(item);
   }
 }
