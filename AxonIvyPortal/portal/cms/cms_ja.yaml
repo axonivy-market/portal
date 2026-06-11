@@ -197,7 +197,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskDocumentsPageTitle: タスクドキュメント
   adminSettings:
     addLanguages: 言語の追加
-    addNewApplication: 新規サードパーティーアプリの追加
     announcement:
       announcement: 通知
       announcementsDisabled: 通知は無効になっています。
@@ -208,27 +207,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       information: この領域に、一般的な情報 (ダウンタイム、変更など) を通知するできます。このメッセージは、すべてのポータル ユーザーが見ることができます。
       saveChanges: 変更内容を保存
       tabTitle: 通知
-    appDisplayName: 表示名
-    appDisplayNameRequiredMsg: アプリケーションの表示名を入力してください。
-    appNameCharactersLimit: アプリケーション名に使えるのは [\p{Alnum}_-]+ だけです。
-    appNameRequiredMsg: アプリケーション名を入力してください。
-    applicationHint: 並び替えにドラッグ＆ドロップを使用する。
-    applicationLinkRequiredMsg: ポータルのリンクを入力してください。
-    applicationList:
-      addNewApplication: 新しいアプリケーションの追加
-      applicationSelectionHeader: アプリケーションの選択
-      menuIcon: メニューアイコン
-    applications: アプリケーション
     applicationtype:
       thirdPartyApplication: サードパーティーのアプリケーション
     currentValue: 現在の値
     defaultValue: デフォルト値
-    deleteAppConfirmation: アプリケーション「<b>{0}</b>」を削除してもよろしいですか？
     dialogclosinginformation:
       dialogHeader: ポータル設定終了
       informMessage: ポータル設定を変更した場合、新しい構成を有効にするには現在のページの更新が必要です。
-    duplicatePortalAppMsg: このアプリケーションは既に存在しています。別のアプリケーションを選択してください。
-    editApplication: アプリケーション編集
     editSetting: 設定の編集
     embedInFrame: 処理／タスクをIFrameモードで開始
     emptySupportedLanguages: 追加の言語はサポートされていません
@@ -309,7 +294,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       sidebarMode: サイドバーのモードを制御します。ホバーはマウスオーバーで展開、クリックはトグルボタンで切り替え、固定は常に展開、非表示はサイドバーを完全に非表示にします。
       uploadDocumentWhiteListExtensionNote: すべての拡張子を許可する場合は、空欄にしてください。一部の拡張子のみを許可する場合は、対象の拡張子をカンマで区切って入力してください。（例：pdf, txt, doc, docx）
     key: キー
-    link: リンク
     loading: 読み込み中
     loginLogoSizeTooltip: 推奨サイズ<BR/>正方形ロゴ：80 x 80 ピクセル<BR/>長方形ロゴ：191 x 50 ピクセル
     logoSizeRecommendation:
@@ -521,7 +505,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteContext: '{0}を削除'
     deleteDocumentHeaderText: このドキュメントを削除しますか?
     deleteFilterHeaderText: このフィルターを削除しますか?
-    deleteSettingHeaderText: この設定を削除しますか?
     description: 説明
     design: デザイン
     destroy: 破棄

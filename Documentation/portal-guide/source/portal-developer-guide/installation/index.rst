@@ -184,6 +184,19 @@ Only fields that are added in Column Management and enabled in the **Filter** co
 :ref:`Task list column management <task-widget-column-management>` or
 :ref:`Case list column management <case-widget-column-management>`.
 
+5. The **Applications** tab has been removed from :ref:`Admin Settings <admin-settings>`,
+as third-party applications duplicate the **External Link** sidebar items of the new
+Menu Management feature.
+
+   No data migration is needed: existing third-party applications configured in the
+   ``Portal.ThirdPartyApplications`` variable still appear in the sidebar and can be
+   edited, reordered, and deleted in :guilabel:`Portal Configuration` →
+   :guilabel:`Sidebar management`. Creating *new* third-party applications is no longer
+   possible — create an **External Link** sidebar item instead.
+
+   The ``Portal.ThirdPartyApplications`` variable is deprecated and will be removed in a
+   future version.
+
 Migrate 13.1 To 13.2
 --------------------
 

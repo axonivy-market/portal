@@ -196,7 +196,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskDocumentsPageTitle: Aufgaben-Dokumente
   adminSettings:
     addLanguages: Sprachen hinzufügen
-    addNewApplication: Neue Drittanwendung hinzufügen
     announcement:
       announcement: Ankündigungen
       announcementsDisabled: Ankündigungen sind deaktiviert.
@@ -207,27 +206,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       information: Sie können eine allgemeine Ankündigung in diesem Bereich machen (z.B. Wartungsankündigung). Diese Nachricht kann von allen Benutzern gesehen werden.
       saveChanges: Änderungen speichern
       tabTitle: Ankündigungen
-    appDisplayName: Anzeigename
-    appDisplayNameRequiredMsg: Geben Sie einen Anzeigename an.
-    appNameCharactersLimit: 'Zulässige Zeichen für den Applikationsnamen: [\p{Alnum}_-]+'
-    appNameRequiredMsg: Bitte, geben Sie den Anwendungsnamen an.
-    applicationHint: Die Reihenfolge kann mit Drag & Drop geändert werden.
-    applicationLinkRequiredMsg: Geben Sie den Portal Link an.
-    applicationList:
-      addNewApplication: Neue Anwendung hinzufügen
-      applicationSelectionHeader: Anwendung auswählen
-      menuIcon: Menü Symbol
-    applications: Anwendungen
     applicationtype:
       thirdPartyApplication: 3rd Party Anwendung
     currentValue: Aktueller Wert
     defaultValue: Standard Wert
-    deleteAppConfirmation: Sind Sie sicher, dass Sie diese <b>{0}</b> Anwendung entfernen möchten?
     dialogclosinginformation:
       dialogHeader: Einstellungen abgeschlossen
       informMessage: Änderungen an den Portaleinstellungen erfordern eine Aktualisierung der aktuellen Seite, damit die neue Konfiguration wirksam wird.
-    duplicatePortalAppMsg: Diese Anwendung existiert bereits. Bitte wählen Sie eine andere Anwendung.
-    editApplication: Anwendungseinstellungen ändern
     editSetting: Einstellungen ändern
     embedInFrame: Prozess/Task in Iframes Modus starten
     emptySupportedLanguages: Es werden keine weiteren Sprachen unterstützt
@@ -310,7 +295,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       sidebarMode: Steuert den Modus der Seitenleiste. Hover öffnet beim Darüberfahren, Klick verwendet eine Umschalttaste, Fixiert hält sie immer geöffnet, Versteckt entfernt die Seitenleiste vollständig.
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
     key: Schlüssel
-    link: Link
     loading: WIRD GELADEN
     loginLogoSizeTooltip: 'Empfohlene Größe<BR/>Quadratisches Logo: 80x80 px<BR/>Rechteckiges Logo: 191x50 px'
     logoSizeRecommendation:
@@ -522,7 +506,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteContext: '{0} löschen'
     deleteDocumentHeaderText: 'Dieses Dokument löschen? '
     deleteFilterHeaderText: Diesen Filter löschen?
-    deleteSettingHeaderText: Diese Einstellung löschen?
     description: Beschreibung
     design: Design
     destroy: Löschen

@@ -197,7 +197,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskDocumentsPageTitle: Task Documents
   adminSettings:
     addLanguages: Add languages
-    addNewApplication: Add new third party application
     announcement:
       announcement: Announcement
       announcementsDisabled: Announcements are disabled.
@@ -208,27 +207,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       information: You can announce a general information (e.g. Downtime, Changes, etc.) in this area. This message can be seen by all portal users.
       saveChanges: Save changes
       tabTitle: Announcements
-    appDisplayName: Display name
-    appDisplayNameRequiredMsg: Please enter application display name.
-    appNameCharactersLimit: Only [\p{Alnum}_-]+ characters allowed for application name.
-    appNameRequiredMsg: Please input application name.
-    applicationHint: Use drag & drop to reorder.
-    applicationLinkRequiredMsg: Please enter portal link.
-    applicationList:
-      addNewApplication: Add new application
-      applicationSelectionHeader: Select application
-      menuIcon: Menu icon
-    applications: Applications
     applicationtype:
       thirdPartyApplication: Third Party Application
     currentValue: Current value
     defaultValue: Default value
-    deleteAppConfirmation: Are you sure to delete the <b>{0}</b> application?
     dialogclosinginformation:
       dialogHeader: Portal configuration closed
       informMessage: Modifications in portal settings require a refresh of the current page for the new configuration to take effect.
-    duplicatePortalAppMsg: This application already exists, please choose another application.
-    editApplication: Edit application
     editSetting: Edit setting
     embedInFrame: Start a process/task in IFrame mode
     emptySupportedLanguages: No additional languages are supported
@@ -308,7 +293,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       sidebarMode: Controls how the sidebar navigation behaves. Hover expands on hover, Click uses a toggle button, Stick keeps it always expanded, Hidden removes the sidebar completely.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
     key: Key
-    link: Link
     loading: LOADING
     loginLogoSizeTooltip: 'Recommended size<BR/>Square logo: 80x80 px<BR/>Rectangle logo: 191x50 px'
     logoSizeRecommendation:
@@ -520,7 +504,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteContext: Delete {0}
     deleteDocumentHeaderText: Delete this document?
     deleteFilterHeaderText: Delete this filter?
-    deleteSettingHeaderText: Delete this setting?
     description: Description
     design: Design
     destroy: Destroy

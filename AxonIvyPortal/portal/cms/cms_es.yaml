@@ -196,7 +196,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskDocumentsPageTitle: Documentos de la tarea
   adminSettings:
     addLanguages: Agregar idiomas
-    addNewApplication: Crear nueva aplicación de terceros
     announcement:
       announcement: Aviso
       announcementsDisabled: Los avisos están deactivados
@@ -207,27 +206,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       information: En esta área puede anunciar una información general (ej. mantenimiento, cambios en la aplicación, etc.). Este mensaje será visible para todos los usuarios.
       saveChanges: Guardar cambios
       tabTitle: Avisos
-    appDisplayName: Nombre para mostrar
-    appDisplayNameRequiredMsg: Por favor ingrese el nombre para mostrar de la aplicación.
-    appNameCharactersLimit: Solo los caracteres [\p{Alnum}_-]+ están permitidos para el nombre de la aplicación.
-    appNameRequiredMsg: Por favor introduzca el nombre de la aplicación.
-    applicationHint: Use arrastrar y soltar para reordenar.
-    applicationLinkRequiredMsg: Por favor, introduzca el enlace al portal
-    applicationList:
-      addNewApplication: Añadir nueva aplicación
-      applicationSelectionHeader: Seleccionar aplicación
-      menuIcon: Icono de menú
-    applications: Aplicaciones
     applicationtype:
       thirdPartyApplication: Aplicación de terceros
     currentValue: Valor actual
     defaultValue: Valor estándard
-    deleteAppConfirmation: ¿Seguro que quiere eliminar esta <b>{0}</b> aplicación?
     dialogclosinginformation:
       dialogHeader: Configuración del portal cerrada
       informMessage: Las modificaciones en la configuración del portal requieren una actualización de la página actual para que la nueva configuración surta efecto.
-    duplicatePortalAppMsg: Esta aplicación ya existe, por favor elija otra.
-    editApplication: Editar aplicación
     editSetting: Editar la configuración
     embedInFrame: Empezar un proceso o tarea en modo iFrames
     emptySupportedLanguages: No se admiten idiomas adicionales
@@ -310,7 +295,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       sidebarMode: Controla el modo de la barra lateral. Hover se expande al pasar el ratón, Clic usa un botón de alternancia, Fijar la mantiene siempre expandida, Oculto elimina la barra lateral por completo.
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
     key: Llave
-    link: Enlazar
     loading: CARGANDO
     loginLogoSizeTooltip: 'Tamaño recomendado<BR/>Logo cuadrado: 80x80 px<BR/>Logo rectangular: 191x50 px'
     logoSizeRecommendation:
@@ -522,7 +506,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteContext: Borrar {0}
     deleteDocumentHeaderText: ¿Borrar este documento?
     deleteFilterHeaderText: ¿Borrar este filtro?
-    deleteSettingHeaderText: ¿Borrar esta configuración?
     description: Descripción
     design: Diseño
     destroy: Destruir

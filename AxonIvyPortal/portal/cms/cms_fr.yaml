@@ -196,7 +196,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskDocumentsPageTitle: Documents de tâches
   adminSettings:
     addLanguages: Ajouter une langue
-    addNewApplication: Ajouter une nouvelle application de tiers
     announcement:
       announcement: Annonce
       announcementsDisabled: Les annonces sont désactivées.
@@ -207,27 +206,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       information: Vous pouvez annoncer une information générale (par exemple, temps d'arrêt, modifications, etc.) dans cette zone. Ce message peut être vu par tous les utilisateurs du portail.
       saveChanges: Enregistrer les modifications
       tabTitle: Annonces
-    appDisplayName: Nom d'affichage
-    appDisplayNameRequiredMsg: Veuillez entrer le nom d'affichage de l'application
-    appNameCharactersLimit: 'Seuls les caractères suivants sont autorisés pour le nom de l''application : [\p{Alnum}_-]+'
-    appNameRequiredMsg: Veuillez rentrer le nom de l'application
-    applicationHint: L'ordre peut être modifié par glisser/déposer
-    applicationLinkRequiredMsg: Veuillez rentrer le lien vers le Portail
-    applicationList:
-      addNewApplication: Ajouter une nouvelle application
-      applicationSelectionHeader: Sélectionner une application
-      menuIcon: Icône de menu
-    applications: Applications
     applicationtype:
       thirdPartyApplication: Application tierce
     currentValue: Valeur actuelle
     defaultValue: Valeur par défaut
-    deleteAppConfirmation: Etes-vous sûr de vouloir supprimer cette <b>{0}</b> application?
     dialogclosinginformation:
       dialogHeader: La configuration du portail est terminée
       informMessage: Les modifications des paramètres du portail nécessitent un rafraîchissement de la page actuelle pour que la nouvelle configuration prenne effet.
-    duplicatePortalAppMsg: Cette demande existe déjà, veuillez choisir une autre demande.
-    editApplication: Editer les paramètres de l'application
     editSetting: Editer les paramètres
     embedInFrame: Démarrer un processus/une tâche en mode IFrame
     emptySupportedLanguages: Il n'y a pas langue supplémentaire supportée
@@ -310,7 +295,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       sidebarMode: Contrôle le mode de la barre latérale. Survol s'ouvre au survol, Clic utilise un bouton bascule, Fixe la garde toujours ouverte, Masqué supprime complètement la barre latérale.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
     key: Clé
-    link: Lien
     loading: CHARGEMENT
     loginLogoSizeTooltip: 'Taille recommandée<BR/>Logo carré: 80x80 px<BR/>Logo rectangle: 191x50 p'
     logoSizeRecommendation:
@@ -522,7 +506,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteContext: Supprimer {0}
     deleteDocumentHeaderText: Supprimer ce document ?
     deleteFilterHeaderText: Supprimer ce filtre ?
-    deleteSettingHeaderText: Supprimer ce paramètre ?
     description: Description
     design: Design
     destroy: Supprimer
