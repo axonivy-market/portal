@@ -967,7 +967,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     navigate: ナビゲート
     noCategory: カテゴリーがありません
     noDashboard: ダッシュボードがありません。少なくとも 1 つのダッシュボードを追加してから、ウィジェットを追加してください。
-    noDashboardAvailable: 現在利用可能なダッシュボードはありません。
+    noDashboardAvailable: 利用可能なサブメニューダッシュボードはありません。
     noPermission: ダッシュボードを表示する権限がありません。
     noWidget: このダッシュボードにはウィジェットが用意されていません
     numberPattern: 番号パターン
@@ -1669,20 +1669,20 @@ Dialogs:
             TaskIFrameTitle: タスクフレーム
         page:
           MenuManagement:
-            AddNewMenu: TODO Add new menu
-            CallableMenuMessage: TODO This menu is generated programmatically by a callable process and cannot be edited.
+            AddNewMenu: 新しいメニューの追加
+            CallableMenuMessage: このメニューは呼び出し可能プロセスによってプログラム的に生成されているため、編集できません。
             CallableSourceHint: この項目は呼び出し可能プロセスによって生成されています。変更するには開発者にお問い合わせください。
-            HelpText: TODO Customize the menu in this section to match your specific needs or preferences.
-            MenuDetails: TODO Menu Details
-            MenuIcon: TODO Menu icon
-            MenuTitle: TODO Menu title
-            MenuType: TODO Menu type
+            HelpText: このセクションでは、ニーズや好みに合わせてメニューをカスタマイズできます。
+            MenuDetails: メニューの詳細
+            MenuIcon: メニューアイコン
+            MenuTitle: メニュータイトル
+            MenuType: メニュータイプ
             InvalidUrl: 'URLが無効です。'
             InvalidUrlScheme: 'httpまたはhttpsのURLのみ許可されています。'
             InvalidStaticPagePath: 'パスはアプリケーションからの相対パスである必要があります（絶対URLは許可されていません）。'
             NoAvailableSubDashboard: メインダッシュボードとして追加できるサブメニューダッシュボードがありません。
-            OpenInNewTab: TODO Open in new tab
-            StaticPagePath: TODO Static Page Path
+            OpenInNewTab: 新しいタブで開く
+            StaticPagePath: 静的ページのパス
           StatisticConfiguration:
             AddFilter: フィルターを追加
             Advanced: 上級

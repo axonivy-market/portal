@@ -85,6 +85,12 @@ public class MenuUtils {
 
     String currentLocaleLang = Locales.getCurrentLocale().toLanguageTag();
     return menu.getTitles().stream().filter(title -> currentLocaleLang.equals(title.getLocale().toLanguageTag()))
-        .map(DisplayName::getValue).findFirst().orElse(StringUtils.EMPTY);
+        .map(DisplayName::getValue).filter(StringUtils::isNotBlank).findFirst()
+        // Items may carry no translation for the current locale (e.g. dashboards or
+        // third-party apps configured in one language only) — fall back to any
+        // non-blank title instead of rendering a blank menu label.
+        .orElseGet(() -> menu.getTitles().stream()
+            .map(DisplayName::getValue).filter(StringUtils::isNotBlank).findFirst()
+            .orElse(StringUtils.EMPTY));
   }
 }

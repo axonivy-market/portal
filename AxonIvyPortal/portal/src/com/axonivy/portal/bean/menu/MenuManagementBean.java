@@ -1,6 +1,5 @@
 package com.axonivy.portal.bean.menu;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -31,9 +30,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
-public class MenuManagementBean extends AbstractMenuBean implements Serializable {
-
-  private static final long serialVersionUID = -8511047442254110702L;
+public class MenuManagementBean extends AbstractMenuBean {
 
   private List<PortalMenuItemDefinition> menuDefinitions;
   private PortalMenuItemDefinition selectedMenuDefinition;

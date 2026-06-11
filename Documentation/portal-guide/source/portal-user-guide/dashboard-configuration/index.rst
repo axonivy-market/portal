@@ -28,7 +28,7 @@ The Portal Configuration page has three tabs:
    | **Public Dashboards**   | :ref:`🔑DashboardWritePublic                      | Manage shared dashboards visible           |
    |                         | <DashboardWritePublic>`                           | to users with specific permissions         |
    +-------------------------+---------------------------------------------------+--------------------------------------------+
-   | **Sidebar Navigation**  | ``AXONIVY_PORTAL_ADMIN`` role                     | Configure sidebar menu items and           |
+   | **Sidebar management**  | ``AXONIVY_PORTAL_ADMIN`` role                     | Configure sidebar menu items and           |
    |                         |                                                   | sidebar behaviour (admin only)             |
    +-------------------------+---------------------------------------------------+--------------------------------------------+
 
@@ -270,13 +270,13 @@ You can rearrange dashboards within the **Submenu** section by dragging and drop
 .. note::
    Drag-and-drop reordering is only available within the **Submenu** section. Dashboards in the **Top Menu** and **Hidden** sections cannot be reordered by drag and drop.
 
-Sidebar Navigation configuration
+Sidebar management configuration
 ==================================
 
 .. important::
-   **Admin Access Required**: The :guilabel:`Sidebar Navigation` tab is only accessible to users with the ``AXONIVY_PORTAL_ADMIN`` role.
+   **Admin Access Required**: The :guilabel:`Sidebar management` tab is only accessible to users with the ``AXONIVY_PORTAL_ADMIN`` role.
 
-The tab :guilabel:`Sidebar Navigation` allows portal administrators to manage the sidebar menu items and configure sidebar behaviour for all users.
+The tab :guilabel:`Sidebar management` allows portal administrators to manage the sidebar menu items and configure sidebar behaviour for all users.
 
 |sidebar-navigation-configuration|
 

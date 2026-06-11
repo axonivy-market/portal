@@ -21,7 +21,7 @@ public class DashboardMenuItemDefinitionAdapter
   @Override
   public DashboardMenuItemDefinition toMenuDefinition(Dashboard source, MenuSource type) {
     DashboardMenuItemDefinition menu = new DashboardMenuItemDefinition();
-    menu.setSource(MenuSource.DASHBOARD);
+    menu.setSource(type);
     menu.setId(source.getId());
     menu.setVersion(source.getVersion());
     menu.setDashboard(source);

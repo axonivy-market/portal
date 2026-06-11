@@ -28,7 +28,7 @@ public class ThirdPartyAppMenuItemDefinitionAdapter
   @Override
   public ExternalLinkMenuItemDefinition toMenuDefinition(Application source, MenuSource type) {
     ExternalLinkMenuItemDefinition menu = new ExternalLinkMenuItemDefinition();
-    menu.setSource(MenuSource.THIRD_PARTY_APP_CONFIGURATION);
+    menu.setSource(type);
     menu.setId(source.getId());
     menu.setPermissions(source.getPermissions());
     menu.setUrl(source.getLink());

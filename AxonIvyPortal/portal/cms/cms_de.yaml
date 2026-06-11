@@ -970,7 +970,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     navigate: Navigieren Sie
     noCategory: Es gibt keine Kategorien
     noDashboard: Keine Dashboards vorhanden. Fügen Sie mindestens ein Dashboard und anschließend Widgets hinzu.
-    noDashboardAvailable: Es ist derzeit kein Dashboard verfügbar.
+    noDashboardAvailable: Keine Untermenü-Dashboards verfügbar.
     noPermission: Sie haben keine Berechtigung, Dashboards zu sehen.
     noWidget: Es sind aktuell keine Widgets auf diesem Dashboard vorhanden
     numberPattern: Zahlen-Muster

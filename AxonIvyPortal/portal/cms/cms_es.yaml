@@ -968,7 +968,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     navigate: Navegue por
     noCategory: No hay categorías
     noDashboard: No hay tableros. Añadir al menos un tablero y widgets.
-    noDashboardAvailable: Actualmente no hay ningún panel de control disponible.
+    noDashboardAvailable: No hay paneles de control del submenú disponibles.
     noPermission: No tienes permisos para ver los dashboards.
     noWidget: No hay widgets para este tablero
     numberPattern: Patrón de números

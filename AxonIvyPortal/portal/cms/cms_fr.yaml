@@ -968,7 +968,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     navigate: Naviguer
     noCategory: Il n'y a pas de catégories
     noDashboard: Il n'y a pas de tableaux de bord. Ajoutez au moins un tableau de bord, puis ajoutez des widgets.
-    noDashboardAvailable: "Aucun tableau de bord n'est actuellement disponible."
+    noDashboardAvailable: "Aucun tableau de bord du sous-menu n'est disponible."
     noPermission: Vous n'avez pas les permissions pour voir les tableaux de bord.
     noWidget: Il n'y a pas de widgets fournis pour ce tableau de bord.
     numberPattern: Modèle de numéro

@@ -74,7 +74,6 @@ public class DashboardModificationBean extends DashboardBean {
   private Dashboard dashboardToExport;
   private List<String> referencedDashboardTitles = new ArrayList<>();
   private List<Dashboard> hiddenDashboards = new ArrayList<>();
-  private DashboardDisplayType previousDisplayType;
   private List<Dashboard> topMenuDashboards = new ArrayList<>();
 
   public void initConfigration(boolean isPublicDashboard) {
@@ -105,7 +104,6 @@ public class DashboardModificationBean extends DashboardBean {
   public void openDashboardDetailDialog(Dashboard dashboard) {
     this.selectedDashboardPermissions = new ArrayList<>();
     this.selectedDashboard = dashboard;
-    this.previousDisplayType = dashboard.getDashboardDisplayType();
     if (StringUtils.isBlank(this.selectedDashboard.getIcon())) {
       this.selectedDashboard
           .setIcon(this.isPublicDashboard ? PUBLIC_DASHBOARD_DEFAULT_ICON
