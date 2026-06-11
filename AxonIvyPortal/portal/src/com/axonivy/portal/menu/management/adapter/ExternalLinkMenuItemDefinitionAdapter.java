@@ -3,6 +3,8 @@ package com.axonivy.portal.menu.management.adapter;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import org.apache.commons.lang3.BooleanUtils;
+
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.dto.menu.ExternalLinkMenuItemDefinition;
@@ -26,6 +28,7 @@ public class ExternalLinkMenuItemDefinitionAdapter
     menu.setSource(type);
     menu.setId(source.getId());
     menu.setUrl(source.getLink());
+    menu.setOpenInNewTab(BooleanUtils.isNotFalse(source.getOpenInNewTab()));
     menu.setIndex(source.getIndex());
     menu.setVersion(source.getVersion());
     menu.setIncludedIconFamily(hasIconFamily(source.getIcon()));
@@ -54,6 +57,7 @@ public class ExternalLinkMenuItemDefinitionAdapter
     }
 
     source.setLink(menu.getUrl());
+    source.setOpenInNewTab(menu.getOpenInNewTab());
     source.setIndex(menu.getIndex());
     source.setIcon(menu.isIncludedIconFamily() ? addIconFamily(menu.getIcon()) : menu.getIcon());
     source.setLabel(menu.getDisplayTitle());

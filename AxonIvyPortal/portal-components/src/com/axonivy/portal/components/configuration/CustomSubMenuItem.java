@@ -14,7 +14,9 @@ public class CustomSubMenuItem {
   private Integer index;
 
   @JsonProperty("isExternal")
-  private Boolean isExternalLink; 
+  private Boolean isExternalLink;
+
+  private Boolean openInNewTab;
 
   private String version;
 
@@ -64,6 +66,14 @@ public class CustomSubMenuItem {
 
   public void setIsExternalLink(Boolean isExternalLink) {
     this.isExternalLink = isExternalLink;
+  }
+
+  public Boolean getOpenInNewTab() {
+    return openInNewTab;
+  }
+
+  public void setOpenInNewTab(Boolean openInNewTab) {
+    this.openInNewTab = openInNewTab;
   }
 
   public String getVersion() {
