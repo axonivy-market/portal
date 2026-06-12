@@ -62,11 +62,10 @@
       "config" : {
         "output" : {
           "code" : [
-            "in.currentCase = ivy.wf.findCase(in.uuid);",
-            "in.readOnly = !in.currentCase.isBusinessCase();"
+            "in.currentCase = ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().findCaseByUUID(in.uuid);",
+            "in.readOnly = in.currentCase == null || !in.currentCase.isBusinessCase();"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 304, "y" : 64 },

@@ -8,6 +8,7 @@
     <ui:define name="pageContent">
       <f:event listener="#{caseDetailsBean.preRender(data.currentCase, data.showBackButton)}" type="preRenderView" />
       <ic:ch.ivy.addon.portal.component.CaseInformation id="case-item-details"
+        rendered="#{not empty data.currentCase}"
         isWorkingOnTask="true"
         inFrame="true"
         showItemDetailsHeader="#{data.showBackButton}"

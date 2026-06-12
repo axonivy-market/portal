@@ -85,6 +85,9 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     this.init();
     this.selectedCase = selectedCase;
     this.showBackButton = showBackButton;
+    if (selectedCase == null) {
+      return;
+    }
     this.isTaskStartedInDetails = BooleanUtils.toBooleanDefaultIfNull((Boolean) Ivy.session().getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()), false);
     this.caseDetailsUrl = PortalNavigatorAPI.buildUrlToPortalCaseDetailsPageByUUID(selectedCase.uuid());
     if (isFirstTime) {
