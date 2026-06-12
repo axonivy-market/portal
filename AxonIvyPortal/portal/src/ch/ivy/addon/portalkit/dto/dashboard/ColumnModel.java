@@ -58,24 +58,22 @@ public class ColumnModel extends AbstractColumn implements Serializable {
   }
   
   /**
-   * This is fix for input Japanese yen throw exception with pattern: \u00A5###,###.###
-   * Reason: The pattern is being stored as the literal 6-character escape sequence \u00A5 (backslash + u + 0 + 0 + A + 5) instead of the actual yen character ¥. 
-   * This happens when someone types \u00A5 in a text input field — the UI form doesn't interpret Unicode escapes, it stores them verbatim.
-   * When new DecimalFormat(pattern) receives this 16-character string, it parses it character by character looking for the start of the number pattern (the first 0 or #)
-   * @param pattern
-   * @return resolved pattern
+   * Resolves literal Unicode escape sequences (e.g. "\\u00A5") into their corresponding characters (e.g. "¥").
+   * This is needed when a user types the escape sequence into a text input, because the UI stores it verbatim.
    */
+  private static final java.util.regex.Pattern UNICODE_ESCAPE_PATTERN =
+      java.util.regex.Pattern.compile("\\\\u([0-9A-Fa-f]{4})");
+
   private String resolveUnicodeEscapes(String pattern) {
     StringBuffer sb = new StringBuffer();
-    java.util.regex.Matcher m = java.util.regex.Pattern
-        .compile("\\\\u([0-9A-Fa-f]{4})")
-        .matcher(pattern);
+    java.util.regex.Matcher m = UNICODE_ESCAPE_PATTERN.matcher(pattern);
     while (m.find()) {
-        m.appendReplacement(sb, String.valueOf((char) Integer.parseInt(m.group(1), 16)));
+      String replacement = String.valueOf((char) Integer.parseInt(m.group(1), 16));
+      m.appendReplacement(sb, java.util.regex.Matcher.quoteReplacement(replacement));
     }
     m.appendTail(sb);
     return sb.toString();
-}
+  }
   protected Object displayNumberWithPattern(ICustomFields customFields) {
     Number value = customFields.numberField(field).getOrNull();
     if (value == null) {
