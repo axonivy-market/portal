@@ -36,13 +36,7 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
 
-    ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(),
-        ScreenshotUtils.SETTINGS_FOLDER + "applications", new ScreenshotMargin(5, 20));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAddApplicationDialog(),
-        ScreenshotUtils.SETTINGS_FOLDER + "add-application", new ScreenshotMargin(20));
-    adminSettingsPage.closeAddApplicationDialog();
 
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 1000));
     adminSettingsPage.openSettingTab();

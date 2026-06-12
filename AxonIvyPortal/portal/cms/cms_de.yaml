@@ -86,6 +86,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: Externe URL
       PROCESS: Axon Ivy Prozess
+    DashboardDisplayType:
+      HIDDEN: Versteckt
+      SUB_MENU: Untermenü
+      TOP_MENU: Seitenleiste
     DashboardWidgetType:
       CASE: Vorgangs-Widget
       CUSTOM: Benutzerdefiniertes Widget
@@ -192,7 +196,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskDocumentsPageTitle: Aufgaben-Dokumente
   adminSettings:
     addLanguages: Sprachen hinzufügen
-    addNewApplication: Neue Drittanwendung hinzufügen
     announcement:
       announcement: Ankündigungen
       announcementsDisabled: Ankündigungen sind deaktiviert.
@@ -203,27 +206,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       information: Sie können eine allgemeine Ankündigung in diesem Bereich machen (z.B. Wartungsankündigung). Diese Nachricht kann von allen Benutzern gesehen werden.
       saveChanges: Änderungen speichern
       tabTitle: Ankündigungen
-    appDisplayName: Anzeigename
-    appDisplayNameRequiredMsg: Geben Sie einen Anzeigename an.
-    appNameCharactersLimit: 'Zulässige Zeichen für den Applikationsnamen: [\p{Alnum}_-]+'
-    appNameRequiredMsg: Bitte, geben Sie den Anwendungsnamen an.
-    applicationHint: Die Reihenfolge kann mit Drag & Drop geändert werden.
-    applicationLinkRequiredMsg: Geben Sie den Portal Link an.
-    applicationList:
-      addNewApplication: Neue Anwendung hinzufügen
-      applicationSelectionHeader: Anwendung auswählen
-      menuIcon: Menü Symbol
-    applications: Anwendungen
     applicationtype:
       thirdPartyApplication: 3rd Party Anwendung
     currentValue: Aktueller Wert
     defaultValue: Standard Wert
-    deleteAppConfirmation: Sind Sie sicher, dass Sie diese <b>{0}</b> Anwendung entfernen möchten?
     dialogclosinginformation:
       dialogHeader: Einstellungen abgeschlossen
       informMessage: Änderungen an den Portaleinstellungen erfordern eine Aktualisierung der aktuellen Seite, damit die neue Konfiguration wirksam wird.
-    duplicatePortalAppMsg: Diese Anwendung existiert bereits. Bitte wählen Sie eine andere Anwendung.
-    editApplication: Anwendungseinstellungen ändern
     editSetting: Einstellungen ändern
     embedInFrame: Prozess/Task in Iframes Modus starten
     emptySupportedLanguages: Es werden keine weiteren Sprachen unterstützt
@@ -306,7 +295,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       sidebarMode: Steuert den Modus der Seitenleiste. Hover öffnet beim Darüberfahren, Klick verwendet eine Umschalttaste, Fixiert hält sie immer geöffnet, Versteckt entfernt die Seitenleiste vollständig.
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
     key: Schlüssel
-    link: Link
     loading: WIRD GELADEN
     loginLogoSizeTooltip: 'Empfohlene Größe<BR/>Quadratisches Logo: 80x80 px<BR/>Rechteckiges Logo: 191x50 px'
     logoSizeRecommendation:
@@ -518,7 +506,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteContext: '{0} löschen'
     deleteDocumentHeaderText: 'Dieses Dokument löschen? '
     deleteFilterHeaderText: Diesen Filter löschen?
-    deleteSettingHeaderText: Diese Einstellung löschen?
     description: Beschreibung
     design: Design
     destroy: Löschen
@@ -789,14 +776,43 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
       CreateNewPrivateDashboard: Neues privates Dashboard erstellen
       CreateNewPublicDashboard: Neues öffentliches Dashboard erstellen
-      Description: In diesem Bereich können Sie die Dashboards nach Ihren Wünschen konfigurieren.
+      Description: In diesem Bereich können Sie die Dashboards nach Ihren Wünschen konfigurieren und die Reihenfolge der Navigationselemente ändern.
       DoNotSupportMobile: Die Dashboard-Konfiguration wird für mobile Geräte nicht unterstützt.
       EditPrivateDashboards: Private Dashboards bearbeiten
+      PrivateTabInfo: 'Erstellen und verwalten Sie Ihre persönlichen Dashboards.<ul><li>Diese Dashboards sind nur für Sie sichtbar</li><li>Sie erscheinen unter dem Dashboard-Symbol in der Seitenleiste</li></ul>'
+      PublicTabInfo: 'Verwalten Sie Dashboards für alle Benutzer. Steuern Sie die Sichtbarkeit:<ul><li><b>Seitenleiste</b> — erscheint als Haupteintrag im Seitenleistenmenü</li><li><b>Untermenü</b> — erscheint unter dem Dashboard-Symbol</li><li><b>Ausgeblendet</b> — für Benutzer nicht sichtbar</li></ul>'
+      Visibility: Sichtbarkeit
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
       ExportDashboard: Dashboard exportieren
       ExportReferencedDialogHeader: Dashboard referenziert andere Dashboards
       ExportReferencedDialogMessage: 'Die folgenden Dashboards werden von Navigations-Widgets referenziert. Exportieren und importieren Sie sie ebenfalls, damit die Widgets korrekt funktionieren:'
       ExportReferencedDialogProceed: Trotzdem exportieren
+      Hidden: Ausgeblendet
+      HiddenDashboards: Ausgeblendete Einträge
+      HiddenDashboardsDescription: Nicht in der Seitenleiste angezeigt. Kann dennoch als direktes Linkziel verwendet werden – z.B. als Einstiegsseite in einem Prozessablauf.
+      SubMenuDashboards: Untermenü-Dashboards
+      SubMenuDashboardsDescription: Erscheinen gruppiert unter dem Dashboard-Symbol in der Seitenleiste.
+      SidebarTopLevelDashboards: Seitenleisten-Haupteinträge
+      SidebarTopLevelDashboardsDescription: Erscheinen als Haupteinträge in der Seitenleiste.
+      MenuDashboards: Seitenleisten-Einträge
+      MenuDashboardsDescription: Diese Dashboards erscheinen als Haupteinträge in der Seitenleiste. Verwalten Sie die Reihenfolge im Tab Seitenleisten-Navigation.
+      PrivateDashboardTabInfoPanel: '<p><b>Was kann ich hier tun?</b></p><p>Erstellen und verwalten Sie Dashboards, die nur für Sie sichtbar sind. Sie erscheinen gruppiert unter dem Dashboard-Symbol in der Seitenleiste und beeinflussen andere Benutzer nicht.</p><p><b>Reihenfolge ändern</b></p><p>Ziehen Sie eine Zeile, um die Reihenfolge Ihrer Dashboards im Untermenü zu ändern. Die Reihenfolge wird in Ihren persönlichen Einstellungen gespeichert.</p><p><b>Aktionen pro Dashboard</b></p><p>Mit Bearbeiten können Sie Titel, Beschreibung, Symbol oder mehrsprachige Titel anpassen. Mit Konfigurieren öffnen Sie das Dashboard und fügen Widgets hinzu oder ordnen sie neu an. Mit der entsprechenden Berechtigung können Sie ein Dashboard auch als JSON-Datei exportieren.</p>'
+      DashboardTabInfoPanel: '<p><b>Was kann ich hier tun?</b></p><p>Öffentliche Dashboards erstellen, bearbeiten und löschen. Legen Sie fest, wer sie sehen kann. Dies ist die zentrale Bibliothek aller geteilten Dashboards.</p><p><b>Sichtbarkeit &amp; Platzierung</b></p><p>Dashboards sind in drei Bereiche unterteilt: Seitenleisten-Haupteintrag, Untermenü oder Ausgeblendet. Um ein Dashboard zu verschieben, öffnen Sie Bearbeiten und ändern Sie den Anzeigetyp. Nur der Untermenü-Bereich unterstützt Drag-and-Drop-Reihenfolge.</p><p><b>Aktionen pro Dashboard</b></p><p>Bearbeiten aktualisiert Name, Beschreibung, Symbol, Berechtigungen und Anzeigetyp. Konfigurieren öffnet das Dashboard zum Hinzufügen oder Anordnen von Widgets. Exportieren lädt eine JSON-Datei herunter — bei referenzierten Dashboards erscheint eine Rückfrage. Teilen erstellt einen Direktlink. Löschen entfernt das Dashboard dauerhaft.</p>'
+      MenuManagementTabInfoPanel: '<p><b>Was kann ich hier tun?</b></p><p>Konfigurieren Sie alles, was in der Seitenleiste erscheint: Einträge, Reihenfolge und das globale Seitenleisten-Verhalten.</p><p><b>Neue Einträge hinzufügen</b></p><p>Erstellen Sie mit Eintrag hinzufügen einen neuen Seitenleisteneintrag. Zur Auswahl stehen: Haupt-Dashboard (verlinkt zu einem Dashboard), Benutzerdefiniert (startet einen Ivy-Prozess), Externer Link (beliebige URL, optional in neuem Tab) oder Statische Seite. Jeder Eintrag hat einen mehrsprachigen Titel, ein Symbol und konfigurierbare Berechtigungen. Der Eintragstyp kann nach der Erstellung nicht mehr geändert werden.</p><p><b>Die Tabelle verstehen</b></p><p>Ziel zeigt, wohin ein Eintrag navigiert (URL oder Prozesspfad). Berechtigungen zeigt, wer ihn sehen kann. Typ ist die Art des Eintrags, und Quelle zeigt, wo er definiert ist: Integriert, Konfiguration, Dashboard-Konfiguration, Aufrufbarer Prozess oder Drittanbieter-Anwendung.</p><p><b>Bestehende Einträge verwalten</b></p><p>Bearbeiten aktualisiert Titel, Symbol, Link und Berechtigungen benutzerdefinierter Einträge. Löschen entfernt sie. Standard-Einträge (Quelle: Integriert) können weder bearbeitet noch gelöscht werden, und Einträge aus einem aufrufbaren Prozess können nur von einem Entwickler geändert werden. Zeilen per Drag-and-Drop neu anordnen.</p><p><b>Seitenleisten-Einstellungen</b></p><p>Seitenleiste deaktivieren blendet die Seitenleiste für alle Benutzer aus. Seitenleisten-Verhalten steuert, wie sie sich öffnet: Hover (beim Überfahren), Klick (erfordert Klick) oder Stick (immer sichtbar).</p>'
+      SidebarNavigation: Seitenleisten-Verwaltung
+      SidebarSettings: Seitenleisten-Einstellungen
+      SidebarMode: Seitenleisten-Modus
+      DisableSidebar: Seitenleiste deaktivieren
+      SidebarBehaviour: Seitenleisten-Verhalten
+      SidebarSettingsReloadWarning: 'Seitenleisten-Einstellungen gespeichert. Laden Sie die Seite neu, um die Änderungen zu übernehmen.'
+      Reload: Neu laden
+      AddItem: Eintrag hinzufügen
+      Label: Bezeichnung
+      Source: Quelle
+      Target: Ziel
+      Dashboard: Dashboard
+      MenuManagement: Menüverwaltung
+      MenuManagementTabInfo: 'Verwalten Sie die Navigationselemente der Seitenleiste. Sie können:<ul><li>Neue Menüeinträge hinzufügen (Dashboards, externe Links, Ivy-Prozesse)</li><li>Einträge per Drag-and-Drop neu anordnen</li><li>Bestehende Menüeinträge bearbeiten oder entfernen</li></ul>'
       PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
       PublicDashboard: Öffentliche Dashboards
@@ -805,7 +821,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Öffentliche Dashboards neu anordnen
       SelectAction: Wählen Sie die Aktion
       SomeThingWentWrong: Etwas ist schief gelaufen
-      Title: Dashboard-Konfiguration
+      Title: Portal-Konfiguration
     DrillDownWidget:
       caseDrillDown: Drilldown-Fall-Widget für {0}
       taskDrillDown: Drilldown-Aufgaben-Widget für {0}
@@ -924,6 +940,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardPermission: Dashboard Berechtigung
       dashboardTitle: Dashboard Titel
       deleteDashboardMessage: Sind Sie sicher, dass Sie das Dashboard "{0}" löschen wollen?
+      deleteMenuItemMessage: Sind Sie sicher, dass Sie den Menüeintrag "{0}" löschen wollen?
       editDashboard: Dashboard editieren
       manageDashboard: Dashboard verwalten
       removeDashboardHeader: Dashboard "{0}" entfernen
@@ -953,6 +970,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     navigate: Navigieren Sie
     noCategory: Es gibt keine Kategorien
     noDashboard: Keine Dashboards vorhanden. Fügen Sie mindestens ein Dashboard und anschließend Widgets hinzu.
+    noDashboardAvailable: Keine Untermenü-Dashboards verfügbar.
     noPermission: Sie haben keine Berechtigung, Dashboards zu sehen.
     noWidget: Es sind aktuell keine Widgets auf diesem Dashboard vorhanden
     numberPattern: Zahlen-Muster
@@ -1657,6 +1675,21 @@ Dialogs:
           IFrameTaskTemplate:
             TaskIFrameTitle: Aufgabenrahmen
         page:
+          MenuManagement:
+            AddNewMenu: Füge ein neues Menü hinzu
+            CallableMenuMessage: Dieses Menü wird programmgesteuert durch einen aufrufbaren Prozess generiert und kann nicht bearbeitet werden.
+            CallableSourceHint: 'Dieser Eintrag wird durch einen aufrufbaren Prozess generiert. Wende dich an deinen Entwickler, um ihn zu ändern.'
+            HelpText: Passe das Menü in diesem Bereich an deine Bedürfnisse oder Vorlieben an.
+            MenuDetails: Menüdetails
+            MenuIcon: Menü-Symbol
+            MenuTitle: Menütitel
+            MenuType: Menütyp
+            InvalidUrl: 'Die URL ist ungültig.'
+            InvalidUrlScheme: 'Nur http- und https-URLs sind erlaubt.'
+            InvalidStaticPagePath: 'Der Pfad muss relativ zur Anwendung sein (absolute URLs sind nicht erlaubt).'
+            NoAvailableSubDashboard: 'Es ist kein Untermenü-Dashboard verfügbar, das als Haupt-Dashboard hinzugefügt werden kann.'
+            OpenInNewTab: In neuem Tab öffnen
+            StaticPagePath: Statischer Seitenpfad
           StatisticConfiguration:
             AddFilter: Filter hinzufügen
             Advanced: Fortgeschrittene
@@ -1949,6 +1982,21 @@ Labels:
       CASES: Vorgänge
       PROCESSES: Prozesse
       TASKS: Aufgaben
+    MenuKind:
+      CUSTOM: Benutzerdefiniert
+      DASHBOARD: Dashboard
+      EXTERNAL_LINK: Externer Link
+      MAIN_DASHBOARD: Haupt-Dashboard
+      PROCESS: Prozess
+      STANDARD: Standard
+      STATIC_PAGE: Statische Seite
+      THIRD_PARTY: Drittanbieter
+    MenuSource:
+      CALLABLE: Aufrufbarer Prozess
+      CUSTOM_MENU_CONFIGURATION: Konfiguration
+      DASHBOARD: Dashboard-Konfiguration
+      STANDARD: Integriert
+      THIRD_PARTY_APP_CONFIGURATION: Drittanbieter-Anwendung
     SearchScopeCaseField:
       CUSTOM: Benutzerdefinierte Stringfelder
       DESCRIPTION: Beschreibung

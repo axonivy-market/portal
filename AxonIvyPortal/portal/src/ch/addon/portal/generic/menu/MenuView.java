@@ -34,19 +34,29 @@ import org.primefaces.model.menu.MenuModel;
 
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
+import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
+import com.axonivy.portal.dto.menu.CustomMenuItemDefinition;
+import com.axonivy.portal.dto.menu.DashboardMenuItemDefinition;
+import com.axonivy.portal.dto.menu.ExternalLinkMenuItemDefinition;
+import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
+import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
+import com.axonivy.portal.dto.menu.StaticPageMenuItemDefinition;
+import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
+import com.axonivy.portal.menu.management.MenuLoader;
+import com.axonivy.portal.util.MenuUtils;
+import com.axonivy.portal.menu.management.enums.MenuSource;
 
 import ch.addon.portal.generic.menu.PortalMenuItem.PortalMenuBuilder;
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
-import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.service.MainMenuEntryService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -59,14 +69,16 @@ import ch.ivyteam.ivy.workflow.IWorkflowSession;
 public class MenuView implements Serializable {
   private static final long serialVersionUID = 3188259472933435953L;
 
-  private final static String DASHBOARD = "/ch.ivy.addon.portalkit.ui.jsf/common/dashboard";
-  public final static String SELECTED_MENU_ID = "selectedMenuId";
-  public final static String PREV_SELECTED_MENU_ID = "prevSelectedMenuId";
-  public final static String IS_WORKING_ON_TASK = "isWorkingOnATask";
-  public final static String IS_OPEN_NEW_TAB = "isOpenOnNewTab";
-  public final static String CLICK_ON_MENU_ITEM_PATTERN = "fireEventClickOnMenuItem('%s', '%s')";
+  private static final String DASHBOARD = "/ch.ivy.addon.portalkit.ui.jsf/common/dashboard";
+  public static final String SELECTED_MENU_ID = "selectedMenuId";
+  public static final String PREV_SELECTED_MENU_ID = "prevSelectedMenuId";
+  public static final String IS_WORKING_ON_TASK = "isWorkingOnATask";
+  public static final String IS_OPEN_NEW_TAB = "isOpenOnNewTab";
+  public static final String CLICK_ON_MENU_ITEM_PATTERN = "fireEventClickOnMenuItem('%s', '%s')";
+
   private static String defaultPortalStartUrl;
   private static String defaultDashboardUrl;
+
   private DefaultMenuModel mainMenuModel;
   private MenuModel breadcrumbModel;
 
@@ -89,71 +101,138 @@ public class MenuView implements Serializable {
   public void buildPortalLeftMenu(ITask workingTask, boolean isWorkingOnATask) {
     initTaskParams(workingTask, isWorkingOnATask);
     mainMenuModel = new DefaultMenuModel();
-    mainMenuModel.getElements().add(buildDashboardItem()); // menuIndex = 0
 
-    List<SubMenuItem> subMenuItems = PortalMenuNavigator.callSubMenuItemsProcess();
-    int menuIndex = 1;
-    for (SubMenuItem subMenu : subMenuItems) {
-      DefaultMenuItem item = buildSubMenuItem(subMenu, menuIndex);
-      mainMenuModel.getElements().add(item);
-      menuIndex++;
+    for (PortalMenuItemDefinition def : MenuLoader.loadMenuDefinitions()) {
+      MenuElement element = buildMenuElement(def);
+      if (element != null) {
+        mainMenuModel.getElements().add(element);
+      }
     }
 
-    List<Application> thirdPartyApps = PortalMenuNavigator.getThirdPartyApps();
-    for (Application app : thirdPartyApps) {
-      DefaultMenuItem item = buildThirdPartyItem(app, menuIndex);
-      mainMenuModel.getElements().add(item);
-      menuIndex++;
-    }
     mainMenuModel.generateUniqueIds();
   }
+
+  private MenuElement buildMenuElement(PortalMenuItemDefinition def) {
+    if (def instanceof StandardMenuItemDefinition std) {
+      return std.getStandardType() == StandardMenuItemDefinitionType.DASHBOARD
+          ? buildDashboardItem()
+          : buildStandardSimpleItem(std);
+    }
+    List<String> permissions = def.getPermissions();
+    if (permissions != null && !permissions.isEmpty() && !hasAnyPermission(permissions)) {
+      return null;
+    }
+    if (def instanceof DashboardMenuItemDefinition dashboardDef) {
+      return buildTopMenuDashboardItem(dashboardDef);
+    }
+    if (def instanceof CustomMenuItemDefinition customDef) {
+      return buildCustomMenuItem(customDef);
+    }
+    if (def instanceof ExternalLinkMenuItemDefinition externalDef) {
+      return externalDef.getSource() == MenuSource.THIRD_PARTY_APP_CONFIGURATION
+          ? buildThirdPartyItem(externalDef)
+          : buildExternalLinkItem(externalDef);
+    }
+    if (def instanceof StaticPageMenuItemDefinition staticDef) {
+      return buildStaticPageItem(staticDef);
+    }
+    return null;
+  }
+
+  private boolean hasAnyPermission(List<String> permissions) {
+    return permissions.stream().anyMatch(p ->
+        Strings.CS.startsWith(p, "#")
+            ? Strings.CS.equals(Ivy.session().getSessionUser().getMemberName(), p)
+            : PermissionUtils.doesSessionUserHaveRole(p));
+  }
+
+  private MenuItem buildStandardSimpleItem(StandardMenuItemDefinition std) {
+    StandardMenuItemDefinitionType type = std.getStandardType();
+    MenuKind kind = type == StandardMenuItemDefinitionType.PROCESS ? MenuKind.PROCESS : MenuKind.STANDARD;
+    return new PortalMenuBuilder(Ivy.cms().co(type.getCmsUri()), kind, isWorkingOnATask)
+        .icon(buildIconClass(std.getIcon()))
+        .onClick(type.getOnClick())
+        .url("#")
+        .workingTaskId(workingTaskId)
+        .build();
+  }
+
+  private MenuItem buildTopMenuDashboardItem(DashboardMenuItemDefinition def) {
+    String url = DEFAULT_LINK;
+    if (def.getDashboard() != null && def.getDashboard().getId() != null) {
+      url = UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(def.getDashboard().getId());
+    }
+    return new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.MAIN_DASHBOARD, isWorkingOnATask)
+        .icon(buildIconClass(def.getIcon()))
+        .url(url)
+        .workingTaskId(workingTaskId)
+        .build();
+  }
+
+  private MenuItem buildCustomMenuItem(CustomMenuItemDefinition def) {
+    String url = Optional.ofNullable(def.getProcessStart())
+        .map(p -> p.getStartLink())
+        .orElse(def.getProcessStartPath());
+    return new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.CUSTOM, isWorkingOnATask)
+        .icon(buildIconClass(def.getIcon()))
+        .url(StringUtils.defaultIfBlank(url, DEFAULT_LINK))
+        .workingTaskId(workingTaskId)
+        .build();
+  }
+
+  private MenuItem buildExternalLinkItem(ExternalLinkMenuItemDefinition def) {
+    String target = BooleanUtils.isTrue(def.getOpenInNewTab()) ? "_blank" : "_self";
+    PortalMenuItem item = new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.EXTERNAL_LINK, isWorkingOnATask)
+        .icon(buildIconClass(def.getIcon()))
+        .url(StringUtils.defaultIfBlank(MenuUtils.safeExternalUrl(def.getUrl()), DEFAULT_LINK))
+        .target(target)
+        .cleanParam(true)
+        .workingTaskId(workingTaskId)
+        .build();
+    item.setRel(EXTERNAL_LINK_REL);
+    return item;
+  }
+
+  private MenuItem buildStaticPageItem(StaticPageMenuItemDefinition def) {
+    String url = MenuUtils.isSafeRelativePath(def.getUrl())
+        ? PortalNavigatorAPI.buildPortalStaticPageUrl(def.getUrl())
+        : DEFAULT_LINK;
+    return new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.STATIC_PAGE, isWorkingOnATask)
+        .icon(buildIconClass(def.getIcon()))
+        .url(url)
+        .cleanParam(true)
+        .workingTaskId(workingTaskId)
+        .build();
+  }
+
+  private MenuItem buildThirdPartyItem(ExternalLinkMenuItemDefinition def) {
+    PortalMenuItem item = new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.THIRD_PARTY, isWorkingOnATask)
+        .icon(buildIconClass(def.getIcon()))
+        .url(UrlUtils.buildUrl(def.getUrl()))
+        .workingTaskId(workingTaskId)
+        .cleanParam(true)
+        .build();
+    item.setRel(EXTERNAL_LINK_REL);
+    return item;
+  }
+
+  private static final String DEFAULT_LINK = "#";
+  // Reverse-tabnabbing protection for links opened in a new tab
+  private static final String EXTERNAL_LINK_REL = "noopener noreferrer";
 
   private void initTaskParams(ITask workingTask, boolean isWorkingOnATask) {
     this.workingTaskId = isNull(workingTask) ? Ivy.wfTask().getId() : workingTask.getId();
     this.isWorkingOnATask = isWorkingOnATask;
   }
 
-  private DefaultMenuItem buildSubMenuItem(SubMenuItem subMenuItem, int menuIndex) {
-    boolean isExternalLink = isExternalLink(subMenuItem);
-    return new PortalMenuBuilder(subMenuItem.getLabel(), subMenuItem.getMenuKind(), isWorkingOnATask)
-        .url(subMenuItem.buildLink())
-        .icon(subMenuItem.getIcon())
-        .cleanParam(isExternalLink)
-        .menuIndex(menuIndex)
-        .build();
-  }
-
-  private boolean isExternalLink(SubMenuItem subMenuItem) {
-    return subMenuItem.getMenuKind() == MenuKind.EXTERNAL_LINK
-        || subMenuItem.getMenuKind() == MenuKind.THIRD_PARTY || subMenuItem.getMenuKind() == MenuKind.STATIC_PAGE;
-  }
-
   private static String buildIconClass(String icon) {
-    if (icon.startsWith("fa")) {
-      return "fa " + icon;
-    } else if (icon.startsWith("tif")) {
-      return "tif " + icon;
-    } else if (icon.startsWith("si")) {
-      return "si " + icon;
-    }
-    return "ti " + icon;
+    return MenuUtils.buildIconClass(icon);
   }
 
-  private DefaultMenuItem buildThirdPartyItem(Application application, int menuIndex) {
-    String menuIcon = StringUtils.defaultString(application.getMenuIcon());
-    String iconClass = buildIconClass(menuIcon);
-    return new PortalMenuBuilder(ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application), MenuKind.THIRD_PARTY, this.isWorkingOnATask)
-        .icon(iconClass)
-        .url(UrlUtils.buildUrl(application.getLink()))
-        .workingTaskId(this.workingTaskId)
-        .cleanParam(true)
-        .menuIndex(menuIndex)
-        .build();
-  }
+  // --- Default-dashboard dropdown -------------------------------------------------
 
   private MenuElement buildDashboardItem() {
     var dashboardTitle = translate(DASHBOARD);
-    var dashboardId = "";
     String dashboardLink = determineDashboardLink();
     String currentLanguage = UserUtils.getUserLanguage();
 
@@ -161,14 +240,14 @@ public class MenuView implements Serializable {
     String mainMenuDisplayName = mainMenuEntryService.getNameInCurrentLocale();
     String mainMenuIcon = mainMenuEntryService.getMenuIcon();
 
-    List<Dashboard> subItemDashboards = getSubItemDashboards();
+    List<Dashboard> subItemDashboards = DashboardUtils.getDashboardsWithoutMenuItem();
     if (subItemDashboards.size() > 1) {
       return buildDashboardGroupMenu(subItemDashboards, dashboardTitle, mainMenuDisplayName, mainMenuIcon,
           currentLanguage, dashboardLink);
     } else if (subItemDashboards.size() == 1) {
       Dashboard dashboard = subItemDashboards.getFirst();
       String localizedTitle = getLocalizedTitle(dashboard, currentLanguage, dashboardTitle);
-      return buildSingleDashboardMenu(localizedTitle, dashboardId, dashboardLink, dashboard.getIconClass());
+      return buildSingleDashboardMenu(localizedTitle, "", dashboardLink, dashboard.getIconClass());
     }
 
     return buildSingleDashboardMenu(dashboardTitle, "", dashboardLink, "");
@@ -176,17 +255,9 @@ public class MenuView implements Serializable {
 
   private String determineDashboardLink() {
     String defaultHomepageConfig = HomepageUtils.getHomepageName();
-    HomepageType configHomepageType = HomepageType.getType(defaultHomepageConfig);
-
-    if (HomepageType.DASHBOARD != configHomepageType) {
-      return getDefaultDashboardUrl();
-    }
-
-    return getDefaultPortalStartUrl();
-  }
-
-  private List<Dashboard> getSubItemDashboards() {
-    return DashboardUtils.getDashboardsWithoutMenuItem();
+    return HomepageType.DASHBOARD == HomepageType.getType(defaultHomepageConfig)
+        ? getDefaultPortalStartUrl()
+        : getDefaultDashboardUrl();
   }
 
   private MenuElement buildDashboardGroupMenu(List<Dashboard> subItemDashboards, String defaultTitle,
@@ -214,9 +285,11 @@ public class MenuView implements Serializable {
 
   private DefaultSubMenu createDashboardGroupMenu(String defaultTitle, String mainMenuDisplayName, String mainMenuIcon, String dashboardLink) {
     // Encode URL as base64 in CSS class for JavaScript href patching (IVYPORTAL-19031)
-    String urlClass = String.format("js-parent-dashboard-url-%s", Base64.getUrlEncoder().encodeToString(StringUtils.defaultIfEmpty(dashboardLink, EMPTY).getBytes()));
+    String urlClass = String.format("js-parent-dashboard-url-%s",
+        Base64.getUrlEncoder().encodeToString(StringUtils.defaultIfEmpty(dashboardLink, EMPTY).getBytes()));
 
-    return DefaultSubMenu.builder().label(StringUtils.isBlank(mainMenuDisplayName) ? defaultTitle : mainMenuDisplayName)
+    return DefaultSubMenu.builder()
+        .label(StringUtils.isBlank(mainMenuDisplayName) ? defaultTitle : mainMenuDisplayName)
         .icon(StringUtils.isBlank(mainMenuIcon) ? PortalMenuItem.DEFAULT_DASHBOARD_ICON : mainMenuIcon)
         .id(String.format(PARENT_DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name()))
         .styleClass(String.format("%s %s", DASHBOARD_MENU_JS_CLASS, urlClass)).build();
@@ -248,8 +321,8 @@ public class MenuView implements Serializable {
 
   private void setMenuExpansion(DefaultSubMenu dashboardGroupMenu) {
     String activeDashboardId = (String) session().getAttribute(SELECTED_MENU_ID);
-    boolean isMainDashboardMenu =
-        StringUtils.isNotEmpty(activeDashboardId) && activeDashboardId.endsWith(DashboardUtils.MAIN_DASHBOARD_MENU_POSTFIX);
+    boolean isMainDashboardMenu = StringUtils.isNotEmpty(activeDashboardId)
+        && activeDashboardId.endsWith(DashboardUtils.MAIN_DASHBOARD_MENU_POSTFIX);
 
     if (Strings.CS.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)
         && !isMainDashboardMenu) {
@@ -271,6 +344,8 @@ public class MenuView implements Serializable {
     return dashboardMenu;
   }
 
+  // --- Breadcrumb (unchanged) -----------------------------------------------------
+
   public String getDashboardLink() {
     return PortalNavigator.getDashboardLink();
   }
@@ -287,30 +362,40 @@ public class MenuView implements Serializable {
     this.breadcrumbModel = breadcrumbModel;
   }
 
+  private static final Map<BreadCrumbKind, String> SIMPLE_BREADCRUMB_CMS_KEYS = Map.of(
+      BreadCrumbKind.USER_PROFILE,            "/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle",
+      BreadCrumbKind.ABSENCES_MANAGEMENT,     "/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/absenceAndDeputy",
+      BreadCrumbKind.DASHBOARD_CONFIGURATION, "/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title",
+      BreadCrumbKind.EDIT_DASHBOARD_DETAILS,  "/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/editDashboard",
+      BreadCrumbKind.PORTAL_MANAGEMENT,       "/ch.ivy.addon.portalkit.ui.jsf/PortalManagement/AdminSetting",
+      BreadCrumbKind.NOTIFICATION,            "/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle",
+      BreadCrumbKind.STATISTIC_CONFIGURATION, "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/StatisticConfiguration");
+
   public void loadBreadcrumb(String viewName, ITask userTask, ICase userCase) {
     breadcrumbModel = new DefaultMenuModel();
     if (StringUtils.isBlank(viewName)) {
       return;
     }
-    BreadCrumbKind breadCrumbKind = BreadCrumbKind.valueOf(viewName);
-    switch (breadCrumbKind) {
+    BreadCrumbKind kind = BreadCrumbKind.valueOf(viewName);
+    String simpleCmsKey = SIMPLE_BREADCRUMB_CMS_KEYS.get(kind);
+    if (simpleCmsKey != null) {
+      buildSimpleBreadcrumb(simpleCmsKey);
+      return;
+    }
+    switch (kind) {
       case TECHNICAL_CASE -> buildBreadCrumbForTechnicalCaseList(userCase);
       case RELATED_TASK -> buildBreadCrumbForRelatedTask(userCase);
       case PROCESS -> buildBreadCrumbForProcess();
       case TASK_DETAIL -> buildBreadCrumbForTaskDetails(userTask);
       case CASE_DETAIL -> buildBreadCrumbForCaseDetails(userCase);
-      case USER_PROFILE -> buildBreadCrumbForUserProfile();
-      case ABSENCES_MANAGEMENT -> buildBreadCrumbForAbsences();
-      case DASHBOARD_CONFIGURATION -> buildBreadCrumbForDashboardConfiguration();
-      case EDIT_DASHBOARD_DETAILS -> buildBreadCrumbForEditDashboardDetail();
       case PROCESS_VIEWER -> buildBreadCrumbForProcessViewer(userTask, userCase);
-      case PORTAL_MANAGEMENT -> {
-        setPortalHomeMenuToBreadcrumbModel();
-        breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/PortalManagement/AdminSetting"));}
-      case NOTIFICATION -> buildBreadCrumbForNotification();
-      case STATISTIC_CONFIGURATION -> buildBreadCrumbForStatisticConfiguration();
       default -> {}
     }
+  }
+
+  private void buildSimpleBreadcrumb(String cmsKey) {
+    setPortalHomeMenuToBreadcrumbModel();
+    breadcrumbModel.getElements().add(buildGenericMenuItem(cmsKey));
   }
 
   private void buildBreadCrumbForProcessViewer(ITask userTask, ICase userCase) {
@@ -326,16 +411,6 @@ public class MenuView implements Serializable {
       menuItem.setValue(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/Breadcrumb", Arrays.asList(userCase.getProcessStart().getName())));
     }
     breadcrumbModel.getElements().add(menuItem);
-  }
-
-  private void buildBreadCrumbForUserProfile() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle"));
-  }
-
-  private void buildBreadCrumbForAbsences() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/absenceAndDeputy"));
   }
 
   private void buildBreadCrumbForTechnicalCaseList(ICase userCase) {
@@ -377,18 +452,6 @@ public class MenuView implements Serializable {
     setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements().add(buildCaseListMenuItem());
     breadcrumbModel.getElements().add(buildCaseDetailsMenuItem(userCase));
-  }
-
-  private void buildBreadCrumbForDashboardConfiguration() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements()
-        .add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title"));
-  }
-
-  private void buildBreadCrumbForEditDashboardDetail() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements()
-        .add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/editDashboard"));
   }
 
   private MenuItem buildPortalHomeMenuItem() {
@@ -497,16 +560,5 @@ public class MenuView implements Serializable {
 
   private IWorkflowSession session() {
     return Ivy.session();
-  }
-
-  private void buildBreadCrumbForNotification() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle"));
-  }
-
-  private void buildBreadCrumbForStatisticConfiguration() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements()
-        .add(buildGenericMenuItem("/Dialogs/com/axonivy/portal/page/StatisticConfiguration/StatisticConfiguration"));
   }
 }

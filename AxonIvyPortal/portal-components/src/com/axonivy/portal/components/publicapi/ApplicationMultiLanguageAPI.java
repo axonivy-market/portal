@@ -20,7 +20,7 @@ public final class ApplicationMultiLanguageAPI {
    * @return value at CMS uri
    */
   public static String getCmsValueByUserLocale(String cmsURI) {
-    Locale currentUserLocale = new Locales().getCurrentLocale();
+    Locale currentUserLocale = Locales.getCurrentLocale();
     return Ivy.cms().coLocale(cmsURI, currentUserLocale);
   }
 }
