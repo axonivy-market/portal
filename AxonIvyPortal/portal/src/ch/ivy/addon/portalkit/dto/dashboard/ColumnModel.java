@@ -78,14 +78,19 @@ public class ColumnModel extends AbstractColumn implements Serializable {
 }
   protected Object displayNumberWithPattern(ICustomFields customFields) {
     Number value = customFields.numberField(field).getOrNull();
-    if (StringUtils.isNotEmpty(pattern)) {
-      try {
-          String resolvedPattern = resolveUnicodeEscapes(pattern);
-          return new DecimalFormat(resolvedPattern).format(value);
-      } catch (IllegalArgumentException e) {
-          return value; // fall back to raw number
-      }
+    if (value == null) {
+      return null;
     }
-    return value;
+
+    java.util.Locale locale = Ivy.session().getFormattingLocale();
+    try {
+      if (StringUtils.isNotBlank(pattern)) {
+        String resolvedPattern = resolveUnicodeEscapes(pattern);
+        return new DecimalFormat(resolvedPattern, new java.text.DecimalFormatSymbols(locale)).format(value);
+      }
+      return java.text.NumberFormat.getNumberInstance(locale).format(value);
+    } catch (IllegalArgumentException e) {
+      return value; // fall back to raw number
+    }
   }
 }
