@@ -1,0 +1,20 @@
+# general
+Thumbs.db
+.DS_Store
+*~
+*.log
+
+# java
+*.class
+hs_err_pid*
+
+# maven
+target/
+lib/mvn-deps/
+
+# ivy
+classes/
+src_generated/dataclass/
+src_generated/wsprocess/
+src_generated/repo/
+logs/
