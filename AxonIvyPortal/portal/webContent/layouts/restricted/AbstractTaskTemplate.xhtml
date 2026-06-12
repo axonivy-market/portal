@@ -164,7 +164,8 @@
           onShow="PF('caseInfoPoll').start();">
           <f:facet name="header">
             <h:panelGroup styleClass="case-infor-title u-truncate-text">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}#{isCaseViewable ? ': '.concat(case.names().current()) : ''}" />
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}" />
+              <h:outputText rendered="#{isCaseViewable and not empty case.names().current()}" value=": #{case.names().current()}" />
             </h:panelGroup>
           </f:facet>
           <ui:insert name="caseDetails">
