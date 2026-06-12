@@ -327,7 +327,12 @@ public class ChatService {
   @Path("/group/participants/{caseId}")
   @Produces(MediaType.APPLICATION_JSON)
   public Map<String, Set<String>> getParticipantsForGroupChat(@PathParam("caseId") String caseId) {
-    return ChatGroupUtils.getParticipantsFromGroup(Long.parseLong(caseId));
+    List<GroupChat> availableGroups = usernameToGroupChats.get(sessionUserName());
+    if (CollectionUtils.isNotEmpty(availableGroups)
+        && availableGroups.stream().anyMatch(group -> group.getCaseId() == Long.parseLong(caseId))) {
+      return ChatGroupUtils.getParticipantsFromGroup(Long.parseLong(caseId));
+    }
+    return Map.of();
   }
 
   public void handleUserOnline(String username) {
