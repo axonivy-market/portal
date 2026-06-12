@@ -28,21 +28,14 @@ public class AbsenceService{
   }
   
   public Map<String, Set<IvyAbsence>> findAbsences(String username) {
-    return Sudo.get(() -> { 
+    return Sudo.get(() -> {
       Map<String, Set<IvyAbsence>> ivyAbsencesByUser = new HashMap<>();
       if (StringUtils.isBlank(username)) {
-          ServiceUtilities.findAllUsers().forEach(user -> {
-          if (ivyAbsencesByUser.containsKey(user.getName())) {
-            ivyAbsencesByUser.get(user.getName()).addAll(getAbsences(user));
-          } else {
-            ivyAbsencesByUser.put(user.getName(), getAbsences(user));
-          }
-        });
+        ServiceUtilities.findAllUsers().forEach(user ->
+            ivyAbsencesByUser.put(user.getName(), getAbsences(user)));
       } else {
         IUser user = UserUtils.findUserByUsername(username);
-        if (ivyAbsencesByUser.containsKey(user.getName())) {
-          ivyAbsencesByUser.get(username).addAll(getAbsences(user));
-        } else {
+        if (user != null) {
           ivyAbsencesByUser.put(username, getAbsences(user));
         }
       }

@@ -145,31 +145,33 @@ public class DashboardImportBean extends DashboardModificationBean {
 
   @Override
   public void createDashboard() {
-    if (CollectionUtils.isNotEmpty(importedDashboards)) {
-      for (Dashboard dashboard : importedDashboards) {
-        selectedDashboard = dashboard;
-        if (CollectionUtils.isNotEmpty(this.selectedDashboard.getWidgets())) {
-          for (DashboardWidget widget : this.selectedDashboard.getWidgets()) {
-            if (widget instanceof WelcomeDashboardWidget) {
-              WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
-              WelcomeWidgetUtils.writeWelcomeWidgetImage(welcomeWidget);
-            } else if (widget instanceof NavigationDashboardWidget) {
-              NavigationDashboardWidget navWid = (NavigationDashboardWidget) widget;
-              NavigationWidgetUtils.writeNavigateWidgetImage(navWid);
-            }
-          }
-        }
-        createDashboards();
-      }
-      fixExistingNavigationWidgetReferences();
-      if (importedDashboards.size() > 1) {
-        if (this.isPublicDashboard) {
-          navigateToPublicDashBoardListPage();
-        } else {
-          navigateToPrivateDashboardPage();
-        }
-      } else {
-        navigateToDashboardDetailsPage(importedDashboards.get(0).getId());
+    if (CollectionUtils.isEmpty(importedDashboards)) {
+      return;
+    }
+    for (Dashboard dashboard : importedDashboards) {
+      selectedDashboard = dashboard;
+      writeWidgetImagesFor(selectedDashboard);
+      createDashboards();
+    }
+    fixExistingNavigationWidgetReferences();
+    if (importedDashboards.size() == 1) {
+      navigateToDashboardDetailsPage(importedDashboards.get(0).getId());
+    } else if (this.isPublicDashboard) {
+      navigateToPublicDashBoardListPage();
+    } else {
+      navigateToPrivateDashboardPage();
+    }
+  }
+
+  private void writeWidgetImagesFor(Dashboard dashboard) {
+    if (CollectionUtils.isEmpty(dashboard.getWidgets())) {
+      return;
+    }
+    for (DashboardWidget widget : dashboard.getWidgets()) {
+      if (widget instanceof WelcomeDashboardWidget) {
+        WelcomeWidgetUtils.writeWelcomeWidgetImage((WelcomeDashboardWidget) widget);
+      } else if (widget instanceof NavigationDashboardWidget) {
+        NavigationWidgetUtils.writeNavigateWidgetImage((NavigationDashboardWidget) widget);
       }
     }
   }

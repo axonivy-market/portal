@@ -243,21 +243,20 @@ public class TaskSearchCriteria {
     }
 
     private void appendSortByExpiryDateIfSet(TaskSearchCriteria criteria) {
-      if (TaskSortField.EXPIRY_TIME.toString().equalsIgnoreCase(criteria.getSortField())) {
-        if (criteria.isQuickGlobalSearch()) {
-          if (criteria.isSortDescending()) {
-            query.orderBy().expiryTimestamp().descendingNullLast();
-          } else {
-            query.orderBy().expiryTimestamp().ascendingNullFirst();
-          }
-        } else {
-          if (criteria.isSortDescending()) {
-            query.orderBy().expiryTimestamp().descendingNullFirst();
-          } else {
-            query.orderBy().expiryTimestamp().ascendingNullLast();
-          }
-        }
-
+      if (!TaskSortField.EXPIRY_TIME.toString().equalsIgnoreCase(criteria.getSortField())) {
+        return;
+      }
+      var order = query.orderBy().expiryTimestamp();
+      boolean descending = criteria.isSortDescending();
+      boolean quick = criteria.isQuickGlobalSearch();
+      if (descending && quick) {
+        order.descendingNullLast();
+      } else if (descending) {
+        order.descendingNullFirst();
+      } else if (quick) {
+        order.ascendingNullFirst();
+      } else {
+        order.ascendingNullLast();
       }
     }
     
