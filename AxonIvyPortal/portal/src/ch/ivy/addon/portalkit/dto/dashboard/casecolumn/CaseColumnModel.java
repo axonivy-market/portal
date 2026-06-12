@@ -31,8 +31,6 @@ public class CaseColumnModel extends ColumnModel {
     }
   }
 
-  
-  
   public static CaseColumnModel constructColumn(DashboardColumnType fieldType, String field) {
     CaseColumnModel column = new CaseColumnModel();
     if (fieldType == DashboardColumnType.STANDARD) {
