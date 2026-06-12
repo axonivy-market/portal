@@ -4,6 +4,7 @@ import static ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix.CMS;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.util.regex.Pattern;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -61,8 +62,8 @@ public class ColumnModel extends AbstractColumn implements Serializable {
    * Resolves literal Unicode escape sequences (e.g. "\\u00A5") into their corresponding characters (e.g. "¥").
    * This is needed when a user types the escape sequence into a text input, because the UI stores it verbatim.
    */
-  private static final java.util.regex.Pattern UNICODE_ESCAPE_PATTERN =
-      java.util.regex.Pattern.compile("\\\\u([0-9A-Fa-f]{4})");
+  private static final Pattern UNICODE_ESCAPE_PATTERN =
+      Pattern.compile("\\\\u([0-9A-Fa-f]{4})");
 
   private String resolveUnicodeEscapes(String pattern) {
     StringBuffer sb = new StringBuffer();
