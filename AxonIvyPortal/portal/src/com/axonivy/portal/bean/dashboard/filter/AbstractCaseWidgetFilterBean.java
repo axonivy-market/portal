@@ -16,12 +16,17 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.service.filter.operatorpolicy.OperatorPolicyFacade;
+import com.axonivy.portal.service.filter.operatorpolicy.model.GlobalOperatorPolicy;
+import com.axonivy.portal.service.filter.operatorpolicy.model.OperatorPolicy;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreator;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomNumber;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
@@ -36,6 +41,9 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
   protected CaseDashboardWidget widget;
   protected List<FilterField> filterFields;
   protected Map<String, CaseColumnModel> mapHeaders;
+  private final OperatorPolicyFacade operatorPolicyFacade = new OperatorPolicyFacade();
+  private GlobalOperatorPolicy globalPolicy;
+  private OperatorPolicy widgetPolicy;
 
   public void preRender(CaseDashboardWidget widget) {
     this.widget = widget;
@@ -43,11 +51,14 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
     this.mapHeaders = widget.getColumns().stream().collect(Collectors.toMap(CaseColumnModel::getField, Function.identity()));
     initFilterFields();
     initFilters();
+    this.globalPolicy = operatorPolicyFacade.readGlobalPolicy();
+    this.widgetPolicy = operatorPolicyFacade.buildWidgetOperatorPolicy(widget.getFilterableColumns());
   }
 
   private void initFilterFields() {
-    Set<String> enabledFilterFieldNames = this.widget.getFilterableColumns().stream()
-      .map(ColumnModel::getField).collect(Collectors.toSet());
+    List<ColumnModel> effectiveColumns = WidgetFilterService.getEnabledFilterableColumns(this.widget);
+    Set<String> enabledFilterFieldNames = effectiveColumns.stream()
+        .map(ColumnModel::getField).collect(Collectors.toSet());
 
     this.filterFields = new ArrayList<>();
     this.filterFields.add(FilterFieldFactory.getDefaultFilterField());
@@ -62,7 +73,7 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
 
     updateFilterLabels();
     // Add custom fields which are selected by user.
-    this.widget.getFilterableColumns().stream().filter(col -> col.getType() == DashboardColumnType.CUSTOM)
+    effectiveColumns.stream().filter(col -> col.getType() == DashboardColumnType.CUSTOM)
         .map(col -> FilterFieldFactory.findCustomFieldBy(col.getField())).filter(Objects::nonNull)
         .forEach(this.filterFields::add);
 
@@ -110,6 +121,13 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
 
   public List<FilterField> getFilterFields() {
     return filterFields;
+  }
+
+  public List<FilterOperator> resolveEffectiveOperatorsByPolicy(DashboardFilter filter) {
+    if (widget == null) {
+      return List.of();
+    }
+    return operatorPolicyFacade.resolveEffectiveOperatorsByPolicy(filter, globalPolicy, widgetPolicy);
   }
 
   public void onSelectFilter(DashboardFilter filter) {

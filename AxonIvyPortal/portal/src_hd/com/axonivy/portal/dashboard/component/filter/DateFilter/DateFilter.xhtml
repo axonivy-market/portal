@@ -12,7 +12,7 @@
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="messageId" />
   <cc:attribute name="widgetType" required="true"/>
-  <cc:attribute name="operators" />
+  <cc:attribute name="operators" required="true" />
 </cc:interface>
 
 <cc:implementation>
@@ -27,7 +27,7 @@
     styleClass="ui-fluid">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}"
         pt:aria-label="#{ivy.cms.co('/Labels/SelectOperator')}">
-        <f:selectItems value="#{operators ne null ? operators : widgetDateFilterBean.operators}" var="operator"
+        <f:selectItems value="#{operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetDateFilterBean.onChangeOperator(filter)}"
             update="#{cc.attrs.componentToUpdate}" />

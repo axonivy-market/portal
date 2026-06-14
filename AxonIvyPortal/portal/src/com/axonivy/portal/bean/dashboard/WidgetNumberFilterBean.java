@@ -12,11 +12,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.service.filter.operatorpolicy.OperatorPolicyFacade;
 
 @ManagedBean
 @ViewScoped
@@ -24,18 +26,19 @@ public class WidgetNumberFilterBean implements Serializable {
 
   private static final long serialVersionUID = 6088715427600445713L;
 
-  private static List<FilterOperator> operators = FilterOperator.NUMBER_OPERATORS.stream().toList();
   private static List<FilterOperator> SINGLE_FILTER_OPERATORS = Arrays.asList(EQUAL, NOT_EQUAL, LESS, LESS_OR_EQUAL,
       GREATER, GREATER_OR_EQUAL);
-  private static List<FilterOperator> statisticOperators = FilterOperator.STATISTIC_NUMBER_OPERATORS.stream().toList();
-  
+  private final OperatorPolicyFacade operatorPolicyFacade = new OperatorPolicyFacade();
+  private List<FilterOperator> cachedStatisticOperators;
 
-  public List<FilterOperator> getOperators() {
-    return operators;
+  @PostConstruct
+  public void initOperators() {
+    cachedStatisticOperators = operatorPolicyFacade.keepGloballyEnabledOperators(
+        FilterOperator.STATISTIC_NUMBER_OPERATORS.stream().toList());
   }
   
   public List<FilterOperator> getStatisticOperators() {
-    return statisticOperators;
+    return cachedStatisticOperators;
   }
 
   public boolean renderSingleNumberFilter(DashboardFilter filter) {

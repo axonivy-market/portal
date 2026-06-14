@@ -3,6 +3,7 @@ package com.axonivy.portal.bean.dashboard;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -10,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.service.filter.operatorpolicy.OperatorPolicyFacade;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -22,8 +24,14 @@ public class WidgetStateFilterBean implements Serializable {
 
   private static final long serialVersionUID = -8191354257458990196L;
 
-  private static List<FilterOperator> stateOperators = FilterOperator.STATE_OPERATORS.stream().toList();
-  private static List<FilterOperator> statisticOperators = FilterOperator.STATISTIC_TEXT_OPERATORS.stream().toList();
+  private final OperatorPolicyFacade operatorPolicyFacade = new OperatorPolicyFacade();
+  private List<FilterOperator> cachedStatisticOperators;
+
+  @PostConstruct
+  public void initOperators() {
+    cachedStatisticOperators = operatorPolicyFacade.keepGloballyEnabledOperators(
+        FilterOperator.STATISTIC_TEXT_OPERATORS.stream().toList());
+  }
 
   private List<String> states;
   private String statesString;
@@ -45,12 +53,8 @@ public class WidgetStateFilterBean implements Serializable {
     return StringUtils.isBlank(displayState) ? state : displayState;
   }
 
-  public List<FilterOperator> getStateOperators() {
-    return stateOperators;
-  }
-
   public List<FilterOperator> getStatisticOperators() {
-    return statisticOperators;
+    return cachedStatisticOperators;
   }
 
   public List<String> getStates() {
