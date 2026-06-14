@@ -232,6 +232,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AppleStoreURL: Apple Store で Axon Ivy モバイル アプリをダウンロードするための URL を設定します。
       ApplicationName: ページタイトルに表示されるアプリケーション名。
       BaseQRCodeUrl: 表示するQRコードのベースURLを設定します。
+      DashboardFilterOperatorPolicy: 未選択の演算子はグローバルで無効になります。
       DefaultThemeMode: アプリケーションのテーマモードの初期値
       EnableDocumentPreview: ドキュメントのプレビューを有効にするには true に設定してください。（プレビュー可能なファイルの種類：pdf、png、txt、log）
       EnableSwitchThemeModeButton: テーマ切り替えボタンを有効にするには true に設定してください。
@@ -811,6 +812,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: このウィジェットは外部Webページを表示できます。
     Filter:
       FilterOptionHeader: フィルターオプション
+      FilterOptionHeaderTooltip: 一部のフィルターフィールドや演算子は管理者によって無効化されている場合があります。無効なフィールドまたは演算子を使用しているフィルターは自動的に削除されます。詳細については管理者にお問い合わせください。
       FilterPanelHeader: フィルターパネル
       ManageWidgetFilterHeader: ウィジェットフィルター管理
       NotFound: フィルターが見つかりません
@@ -953,6 +955,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     noPermission: ダッシュボードを表示する権限がありません。
     noWidget: このダッシュボードにはウィジェットが用意されていません
     numberPattern: 番号パターン
+    operators: オペレーター
+    operatorPolicyTooltip: オペレーターが管理者によってグローバルに無効化されている場合、ここで有効化することはできません。すべてのオペレーターがグローバルに無効化されている場合、フィールドのフィルターを有効化することはできません。
     preview: プレビュー
     processList: プロセスリスト
     processListIntroduction: このウィジェットには、利用可能なプロセス開始が表示されます。さまざまな形式を選択できます。

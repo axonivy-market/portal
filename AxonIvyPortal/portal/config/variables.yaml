@@ -62,6 +62,9 @@ Variables:
       # You can customize the name and icon of the main menu entry for Portal dashboards via this JSON file.
       # [file: json]
       MainMenuEntry: ""
+    # Configure enabled operators for complex filters as comma-separated enum names.
+    ComplexFilter:
+      Operators: ""
     Processes:
       # The standard setting of view mode in the process list.
       # [enum: COMPACT, IMAGE, GRID]
