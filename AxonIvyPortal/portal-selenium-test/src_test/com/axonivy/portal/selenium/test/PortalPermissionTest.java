@@ -24,7 +24,7 @@ import com.axonivy.portal.selenium.page.UserProfilePage;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
 @IvyWebTest
-public class PortalPermissionTest  {
+public class PortalPermissionTest extends BaseTest {
 
   protected NewDashboardPage newDashboardPage;
   private String grantSpecificPortalPermissionLink = "portalKitTestHelper/14DE09882B540AD5/grantSpecificPortalPermission.ivp?portalPermission=%s";
@@ -63,7 +63,7 @@ public class PortalPermissionTest  {
   }
 
   @Test
-  public void testShowHideSystemTaskByPermission() {
+  public void testShowHideSystemTaskBypermissions() {
     // TEST SHOW SYSTEM TASK
     login(TestAccount.ADMIN_USER);
     permissions().grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);

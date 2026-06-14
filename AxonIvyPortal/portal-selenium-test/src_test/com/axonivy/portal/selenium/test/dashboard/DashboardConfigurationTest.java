@@ -481,7 +481,7 @@ public class DashboardConfigurationTest extends BaseTest {
 
     configurationPage.uploadFile("Dashboard_Dashboard_Export.json");
     configurationPage.getDashboardImportSaveButton().shouldBe(Condition.enabled, DEFAULT_TIMEOUT);
-    configurationPage.getDashboardImportPermission().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    configurationPage.getDashboardImportpermissions().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
 
     String name = "New import private dashboard";
     String newGermanName = "German dashboard";
@@ -542,7 +542,7 @@ public class DashboardConfigurationTest extends BaseTest {
 
     configurationPage.uploadFile("Dashboard_Dashboard_Export.json");
     configurationPage.getDashboardImportSaveButton().shouldBe(Condition.enabled, DEFAULT_TIMEOUT);
-    configurationPage.getDashboardImportPermission().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    configurationPage.getDashboardImportpermissions().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
     String name = "New import public dashboard";
     String newGermanName = "German public dashboard";

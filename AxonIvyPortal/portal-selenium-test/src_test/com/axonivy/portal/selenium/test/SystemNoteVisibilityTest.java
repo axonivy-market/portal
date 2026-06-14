@@ -41,13 +41,13 @@ public class SystemNoteVisibilityTest extends BaseTest {
   
   @AfterEach
   public void teardown() {
-    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    permissions().denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
   }
 
   @Test
   public void testSystemNoteVisibilityInCaseForAdmin() {
     login(TestAccount.ADMIN_USER);
-    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    permissions().grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
 
     CaseDetailsPage caseDetailsPage = openCaseDetails();
     String caseId = caseDetailsPage.getCaseUuid();
@@ -75,7 +75,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
   @Test
   public void testSystemNoteVisibilityInTaskForAdmin() {
     login(TestAccount.ADMIN_USER);
-    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    permissions().grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
 
     TaskDetailsPage taskDetailsPage = openTaskDetails();
@@ -87,7 +87,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
 
-    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    permissions().denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
     taskDetailsPage = openTaskDetails();
     taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
@@ -109,7 +109,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
 
-    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    permissions().grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
     updatePortalSetting(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "false");
     taskDetailsPage = openTaskDetails();
     taskNoteHistoryPage.clickOnCheckboxShowSystemNotes();

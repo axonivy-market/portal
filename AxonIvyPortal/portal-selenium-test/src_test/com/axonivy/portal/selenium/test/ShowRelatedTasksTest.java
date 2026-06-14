@@ -30,7 +30,7 @@ public class ShowRelatedTasksTest extends BaseTest {
     redirectToRelativeLink("portalKitTestHelper/153CACC26D0D4C3D/createRelatedTasksTestUser.ivp");
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.TEST_RELATED_TASKS_USER);
-    denyReadAllPermissionFromCurrentUser();
+    permissions().denyReadAllPermissionFromCurrentUser();
   }
 
   private void openCaseDetail() {
@@ -41,8 +41,8 @@ public class ShowRelatedTasksTest extends BaseTest {
   }
 
   @Test
-  public void testRelatedTasksWithTaskReadAllPermission() {
-    grantTaskReadAllPermissionsToCurrentUser();
+  public void testRelatedTasksWithTaskReadAllpermissions() {
+    permissions().grantTaskReadAllPermissionsToCurrentUser();
     openCaseDetail();
     int numberOfTasks = detailsPage.countRelatedTasks().size();
     assertTrue(numberOfTasks == 4);
@@ -50,8 +50,8 @@ public class ShowRelatedTasksTest extends BaseTest {
   }
 
   @Test
-  public void testRelatedTasksWithTaskReadOwnCaseTasksPermission() {
-    grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
+  public void testRelatedTasksWithTaskReadOwnCaseTaskspermissions() {
+    permissions().grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
     int numberOfTasks = detailsPage.countRelatedTasks().size();
     assertTrue(numberOfTasks == 4);
@@ -59,8 +59,8 @@ public class ShowRelatedTasksTest extends BaseTest {
   }
 
   @Test
-  public void testRelatedTasksWithNoPermission() {
-    denyReadAllPermissionFromCurrentUser();
+  public void testRelatedTasksWithNopermissions() {
+    permissions().denyReadAllPermissionFromCurrentUser();
     openCaseDetail();
     int numberOfTasks = detailsPage.countRelatedTasks().size();
     assertTrue(numberOfTasks == 2);
@@ -70,7 +70,7 @@ public class ShowRelatedTasksTest extends BaseTest {
   @Test
   public void testRelatedTasksWhenClickingRelatedTask() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
-    grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
+    permissions().grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
     detailsPage.waitPageLoaded();
     WaitHelper.waitForNavigation(() -> detailsPage.openTasksOfCasePage("Sick Leave Request"));
@@ -80,7 +80,7 @@ public class ShowRelatedTasksTest extends BaseTest {
 
   @Test
   public void testRelatedTasksWhenClickingDoneTask() {
-    grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
+    permissions().grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
     resizeBrowserTo2kResolution();
     detailsPage.addNote("test");
