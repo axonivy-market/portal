@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -25,7 +26,10 @@ import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.service.IvyTranslationService;
+import com.axonivy.portal.service.filter.operatorpolicy.OperatorPolicyFacade;
+import com.axonivy.portal.service.filter.operatorpolicy.model.OperatorPolicy;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
@@ -56,6 +60,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
 
   private static final long serialVersionUID = -4406460802168467529L;
   private static final String NO_CATEGORY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/noCategory";
+  private static final String HAS_CMS_VALUES_ATTRIBUTE = "HasCmsValues";
 
   private DashboardWidget widget;
   private List<ColumnModel> columnsBeforeSave;
@@ -75,6 +80,8 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   private boolean isConfiguredLanguage;
   private String warningText;
   private String translatedText;
+  private final OperatorPolicyFacade operatorPolicyFacade = new OperatorPolicyFacade();
+  private Set<FilterOperator> cachedGloballyEnabledOperators;
 
   public void init() {
     this.fieldTypes = Arrays.asList(DashboardColumnType.STANDARD, DashboardColumnType.CUSTOM);
@@ -99,6 +106,9 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
       CaseDashboardWidget caseDashboardWidget = (CaseDashboardWidget) this.widget;
       this.columnsBeforeSave = new ArrayList<>(caseDashboardWidget.getColumns());
     }
+    applyOperatorPolicyToColumns(this.columnsBeforeSave);
+    cachedGloballyEnabledOperators = operatorPolicyFacade.keepGloballyEnabledOperators(
+        Arrays.asList(FilterOperator.values())).stream().collect(Collectors.toSet());
   }
 
   private void resetValues() {
@@ -146,16 +156,18 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     Set<String> enabledFilterFields = Optional.ofNullable(taskWidget.getFilterableColumns()).orElse(Collections.emptyList())
       .stream().map(ColumnModel::getField)
       .collect(Collectors.toSet());
-
+    OperatorPolicy widgetPolicy = operatorPolicyFacade.buildWidgetOperatorPolicy(taskWidget.getFilterableColumns());
     List<DashboardFilter> filterToKeep = taskWidget.getFilters().stream()
         .filter(filter -> enabledFilterFields.contains(filter.getField()))
         .collect(Collectors.toList());
+    filterToKeep = operatorPolicyFacade.keepFiltersAllowedByPolicy(filterToKeep, widgetPolicy);
 
     taskWidget.setFilters(filterToKeep);
 
     List<DashboardFilter> userFilterToKeep = taskWidget.getUserFilters().stream()
         .filter(filter -> enabledFilterFields.contains(filter.getField()))
         .collect(Collectors.toList());
+    userFilterToKeep = operatorPolicyFacade.keepFiltersAllowedByPolicy(userFilterToKeep, widgetPolicy);
 
     taskWidget.setUserFilters(userFilterToKeep);
   }
@@ -164,16 +176,18 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     Set<String> enabledFilterFields = Optional.ofNullable(caseWidget.getFilterableColumns()).orElse(Collections.emptyList())
         .stream().map(ColumnModel::getField)
         .collect(Collectors.toSet());
-
+    OperatorPolicy widgetPolicy = operatorPolicyFacade.buildWidgetOperatorPolicy(caseWidget.getFilterableColumns());
     List<DashboardFilter> filterToKeep = caseWidget.getFilters().stream()
         .filter(filter -> enabledFilterFields.contains(filter.getField()))
         .collect(Collectors.toList());
+    filterToKeep = operatorPolicyFacade.keepFiltersAllowedByPolicy(filterToKeep, widgetPolicy);
 
     caseWidget.setFilters(filterToKeep);
 
     List<DashboardFilter> userFilterToKeep = caseWidget.getUserFilters().stream()
         .filter(filter -> enabledFilterFields.contains(filter.getField()))
         .collect(Collectors.toList());
+    userFilterToKeep = operatorPolicyFacade.keepFiltersAllowedByPolicy(userFilterToKeep, widgetPolicy);
 
     caseWidget.setUserFilters(userFilterToKeep);
   }
@@ -234,11 +248,15 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
       columnModel.setType(selectedFieldType);
       columnModel.setFormat(DashboardColumnFormat.valueOf(selectedFieldType.name()));
       columnModel.setPattern(numberFieldPattern);
+      columnModel.setHasCmsValues(findCustomFieldMeta()
+          .map(meta -> Boolean.valueOf(meta.attribute(HAS_CMS_VALUES_ATTRIBUTE)))
+          .orElse(false));
     }
     if (this.selectedFieldType == DashboardColumnType.CUSTOM_CASE
         || this.selectedFieldType == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
       columnModel.setSortable(null);
     }
+    applyOperatorPolicyToColumn(columnModel);
     this.columnsBeforeSave.add(columnModel);
     this.fields.remove(columnModel.getField());
     FacesMessage msg = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO,
@@ -455,7 +473,93 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   }
 
   public void handleFilter(ColumnModel column) {
-    column.setEnableFilter(BooleanUtils.isFalse(column.getEnableFilter()));
+    if (column == null || !column.canFilter()) {
+      return;
+    }
+
+    boolean enableFilter = BooleanUtils.isFalse(column.getEnableFilter());
+    column.setEnableFilter(enableFilter);
+
+    if (enableFilter && CollectionUtils.isEmpty(column.getAllowedOperators())) {
+      column.setAllowedOperators(new ArrayList<>(getGloballyEffectiveOperators(column)));
+    }
+  }
+
+  public boolean isFilterToggleDisabled(ColumnModel column) {
+    if (column == null || !column.canFilter()) {
+      return true;
+    }
+    return getGloballyEffectiveOperators(column).isEmpty();
+  }
+
+  public List<FilterOperator> getAvailableOperators(ColumnModel column) {
+    return operatorPolicyFacade.getAvailableOperators(column);
+  }
+
+  public boolean isOperatorGloballyEnabled(FilterOperator operator) {
+    return cachedGloballyEnabledOperators != null && cachedGloballyEnabledOperators.contains(operator);
+  }
+
+  public void onOperatorSelectionChange(ColumnModel column) {
+    if (column == null || !column.canFilter()) {
+      return;
+    }
+
+    if (CollectionUtils.isEmpty(column.getAllowedOperators())) {
+      column.setEnableFilter(false);
+    }
+  }
+
+  public String operatorCounting(ColumnModel column) {
+    List<FilterOperator> availableOperators = getAvailableOperators(column);
+    int total = CollectionUtils.size(availableOperators);
+    int selected = CollectionUtils.size(column.getAllowedOperators());
+    return selected + "/" + total;
+  }
+
+  private void applyOperatorPolicyToColumns(List<ColumnModel> columns) {
+    if (CollectionUtils.isEmpty(columns)) {
+      return;
+    }
+
+    columns.stream().filter(Objects::nonNull).filter(ColumnModel::canFilter).forEach(this::applyOperatorPolicyToColumn);
+  }
+
+  private void applyOperatorPolicyToColumn(ColumnModel column) {
+    if (column == null || !column.canFilter()) {
+      return;
+    }
+
+    List<FilterOperator> enabledAvailableOperators = getGloballyEffectiveOperators(column);
+    if (enabledAvailableOperators.isEmpty()) {
+      column.setAllowedOperators(new ArrayList<>());
+      column.setEnableFilter(false);
+      return;
+    }
+
+    if (column.getAllowedOperators() == null) {
+      column.setAllowedOperators(new ArrayList<>(enabledAvailableOperators));
+      return;
+    }
+
+    List<FilterOperator> selectedOperators = sanitizeSelectedOperators(column.getAllowedOperators(), enabledAvailableOperators);
+    column.setAllowedOperators(selectedOperators);
+    if (selectedOperators.isEmpty()) {
+      column.setEnableFilter(false);
+    }
+  }
+
+  private List<FilterOperator> sanitizeSelectedOperators(List<FilterOperator> selectedOperators, List<FilterOperator> enabledAvailableOperators) {
+    if (CollectionUtils.isEmpty(selectedOperators)) {
+      return new ArrayList<>();
+    }
+
+    return selectedOperators.stream().filter(enabledAvailableOperators::contains)
+        .collect(Collectors.toCollection(ArrayList::new));
+  }
+
+  private List<FilterOperator> getGloballyEffectiveOperators(ColumnModel column) {
+    return operatorPolicyFacade.keepGloballyEnabledOperators(getAvailableOperators(column));
   }
   
   public List<DisplayName> getFieldDisplayNames() {
