@@ -24,7 +24,7 @@ import com.axonivy.portal.selenium.page.UserProfilePage;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
 @IvyWebTest
-public class PortalPermissionTest extends BaseTest {
+public class PortalPermissionTest  {
 
   protected NewDashboardPage newDashboardPage;
   private String grantSpecificPortalPermissionLink = "portalKitTestHelper/14DE09882B540AD5/grantSpecificPortalPermission.ivp?portalPermission=%s";
@@ -38,13 +38,12 @@ public class PortalPermissionTest extends BaseTest {
     newDashboardPage = new NewDashboardPage();
   }
   
-  @Override
   @AfterEach
   public void tearDown() {
     grantTaskActionsPermissions();
     grantAccessFullListPermissions();
     grantShowHideNotePermissions();
-    grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
+    permissions().grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
     grantCasePermissions();
   }
 
@@ -67,7 +66,7 @@ public class PortalPermissionTest extends BaseTest {
   public void testShowHideSystemTaskByPermission() {
     // TEST SHOW SYSTEM TASK
     login(TestAccount.ADMIN_USER);
-    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
+    permissions().grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     redirectToRelativeLink(createSystemTaskUrl);
 
     // Navigate full task list to check system task
@@ -90,7 +89,7 @@ public class PortalPermissionTest extends BaseTest {
     assertTrue(countTask == 3);
 
     // TEST HIDE SYSTEM TASK
-    denySpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
+    permissions().denySpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.waitPageLoaded();
     taskWidget = new TopMenuTaskWidgetPage();
@@ -135,7 +134,7 @@ public class PortalPermissionTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     createTestingTasks();
     denyShowHideNotePermissions();
-    denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser();
+    permissions().denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser();
     newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetNewDashBoardPage caseWidgetPage = mainMenuPage.openCaseList();
@@ -151,7 +150,7 @@ public class PortalPermissionTest extends BaseTest {
     assertTrue(taskDetailsPage.isAddDocumentLinkDisplayed(false));
 
     grantShowHideNotePermissions();
-    grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
+    permissions().grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
     mainMenuPage.openCaseList();
     caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
     assertTrue(caseDetailsPage.isAddNoteButtonDisplayed(true));
