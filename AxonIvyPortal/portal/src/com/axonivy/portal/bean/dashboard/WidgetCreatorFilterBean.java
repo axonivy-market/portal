@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -17,6 +18,7 @@ import org.primefaces.event.UnselectEvent;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.service.filter.operatorpolicy.service.GlobalOperatorPolicyService;
 
 @ManagedBean
 @ViewScoped
@@ -25,9 +27,15 @@ public class WidgetCreatorFilterBean implements Serializable {
   private static final long serialVersionUID = -2641889624945089060L;
   public static final String FILTER = "filter";
 
-  private static List<FilterOperator> operators = FilterOperator.CREATOR_OPERATORS.stream().toList();
-  private static List<FilterOperator> statisticOperators = FilterOperator.STATISTIC_CREATOR_OPERATORS.stream().toList();
-  
+  private final GlobalOperatorPolicyService globalOperatorPolicyService = new GlobalOperatorPolicyService();
+  private List<FilterOperator> statisticOperators;
+
+  @PostConstruct
+  public void initOperators() {
+    statisticOperators = globalOperatorPolicyService.keepGloballyEnabledOperators(
+        FilterOperator.STATISTIC_CREATOR_OPERATORS.stream().toList());
+  }
+
   private List<SecurityMemberDTO> selectedCreators;
 
   public void init(BaseFilter filter) {
@@ -37,10 +45,6 @@ public class WidgetCreatorFilterBean implements Serializable {
     }
   }
 
-  public List<FilterOperator> getOperators() {
-    return operators;
-  }
-  
   public List<FilterOperator> getStatisticOperators() {
     return statisticOperators;
   }

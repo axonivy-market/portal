@@ -16,6 +16,8 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.service.filter.operatorpolicy.service.OperatorPolicyService;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreator;
@@ -27,6 +29,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 
 public abstract class AbstractCaseWidgetFilterBean implements Serializable {
@@ -36,6 +39,7 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
   protected CaseDashboardWidget widget;
   protected List<FilterField> filterFields;
   protected Map<String, CaseColumnModel> mapHeaders;
+  private OperatorPolicyService operatorPolicyService;
 
   public void preRender(CaseDashboardWidget widget) {
     this.widget = widget;
@@ -43,11 +47,13 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
     this.mapHeaders = widget.getColumns().stream().collect(Collectors.toMap(CaseColumnModel::getField, Function.identity()));
     initFilterFields();
     initFilters();
+    this.operatorPolicyService = new OperatorPolicyService(this.widget.getFilterableColumns());
   }
 
   private void initFilterFields() {
-    Set<String> enabledFilterFieldNames = this.widget.getFilterableColumns().stream()
-      .map(ColumnModel::getField).collect(Collectors.toSet());
+    List<ColumnModel> effectiveColumns = WidgetFilterService.getEnabledFilterableColumns(this.widget);
+    Set<String> enabledFilterFieldNames = effectiveColumns.stream()
+        .map(ColumnModel::getField).collect(Collectors.toSet());
 
     this.filterFields = new ArrayList<>();
     this.filterFields.add(FilterFieldFactory.getDefaultFilterField());
@@ -62,7 +68,7 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
 
     updateFilterLabels();
     // Add custom fields which are selected by user.
-    this.widget.getFilterableColumns().stream().filter(col -> col.getType() == DashboardColumnType.CUSTOM)
+    effectiveColumns.stream().filter(col -> col.getType() == DashboardColumnType.CUSTOM)
         .map(col -> FilterFieldFactory.findCustomFieldBy(col.getField())).filter(Objects::nonNull)
         .forEach(this.filterFields::add);
 
@@ -112,6 +118,13 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
     return filterFields;
   }
 
+  public List<FilterOperator> resolveEffectiveOperatorsByPolicy(DashboardFilter filter) {
+    if (widget == null) {
+      return List.of();
+    }
+    return operatorPolicyService.resolveEffectiveOperators(filter);
+  }
+
   public void onSelectFilter(DashboardFilter filter) {
     String field = Optional.ofNullable(filter).map(DashboardFilter::getFilterField).map(FilterField::getName)
         .orElse(StringUtils.EMPTY);
@@ -124,6 +137,8 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
 
     filter.setLabel(filterField.getLabel());
     filterField.addNewFilter(filter);
+    // Override the operator with the first enabled operator according to the global and widget policy if the default one is not allowed
+    filter.setOperator(operatorPolicyService.findFirstEnabledOp(filter, filter.getOperator()).get());
     initCustomFieldNumberPattern(filter, field, filterField);
   }
 
