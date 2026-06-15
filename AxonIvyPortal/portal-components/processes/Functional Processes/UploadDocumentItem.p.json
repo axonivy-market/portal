@@ -10,7 +10,7 @@
       "type" : "CallSubStart",
       "name" : [
         "uploadDocumentItem(ICase,UploadedFile,",
-        "Boolean,Boolean,String)"
+        "Boolean,Boolean,String,String)"
       ],
       "config" : {
         "signature" : "uploadDocumentItem",
@@ -20,14 +20,16 @@
             { "name" : "uploadedFile", "type" : "org.primefaces.model.file.UploadedFile", "desc" : "" },
             { "name" : "enableScriptCheckingForUploadedDocument", "type" : "Boolean", "desc" : "" },
             { "name" : "enableVirusScannerForUploadedDocument", "type" : "Boolean", "desc" : "" },
-            { "name" : "allowedUploadFileTypes", "type" : "String", "desc" : "" }
+            { "name" : "allowedUploadFileTypes", "type" : "String", "desc" : "" },
+            { "name" : "uploadSubFolder", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.allowedUploadFileTypes" : "param.allowedUploadFileTypes",
             "out.businessCase" : "param.businessCase",
             "out.enableScriptCheckingForUploadedDocument" : "param.enableScriptCheckingForUploadedDocument",
             "out.enableVirusScannerForUploadedDocument" : "param.enableVirusScannerForUploadedDocument",
-            "out.uploadedFile" : "param.uploadedFile"
+            "out.uploadedFile" : "param.uploadedFile",
+            "out.uploadSubFolder" : "param.uploadSubFolder"
           }
         },
         "result" : {
@@ -155,7 +157,7 @@
                 "out.message = \"\";",
                 "out.status = UploadDocumentCheckStatus.OK;",
                 "String fileName = in.uploadedFile.getFileName();",
-                "out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputStream());",
+                "out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputStream(), in.uploadSubFolder);",
                 "",
                 "if (out.#uploadedDocument != null) {  ",
                 "  String note = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), fileName));",
