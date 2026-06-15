@@ -66,5 +66,7 @@
     "type" : "Boolean"
   }, {
     "name" : "renameDocumentMessage"
+  }, {
+    "name" : "uploadSubFolder"
   } ]
 }
