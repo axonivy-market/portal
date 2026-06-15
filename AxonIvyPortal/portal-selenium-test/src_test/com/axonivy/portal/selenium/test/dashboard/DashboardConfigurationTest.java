@@ -391,6 +391,7 @@ public class DashboardConfigurationTest extends BaseTest {
     } else {
       modificationPage = configurationPage.openEditPrivateDashboardsPage();
     }
+    modificationPage.waitForDashboardTableToLoad();
     SelenideElement dashboard = modificationPage.getDashboardRowByName(name);
     dashboard.shouldBe(Condition.appear);
     modificationPage.getDashboardCellByNameAndPosition(name, 1).shouldHave(Condition.exactText(name));
