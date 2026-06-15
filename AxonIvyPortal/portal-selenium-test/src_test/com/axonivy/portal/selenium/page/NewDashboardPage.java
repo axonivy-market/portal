@@ -261,7 +261,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void resizeCombinedModeProcess() {
-    SelenideElement gridStackItem = getStartButton().closest(".grid-stack-item");
+    SelenideElement gridStackItem = $("button[id$=':start-button']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).closest(".grid-stack-item");
     updateElementAttribute(gridStackItem, "gs-w", "12");
     updateElementAttribute(gridStackItem, "gs-h", "5");
     updateElementAttribute(gridStackItem, "gs-x", "0");
