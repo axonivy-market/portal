@@ -74,18 +74,7 @@ jobs:
 
       - name: Build Portal Modules
         run: |
-          modules=(
-            "AxonIvyPortal/portal-components"
-            "AxonIvyPortal/portal"
-            "AxonIvyPortal/PortalKitTestHelper"
-            "Showcase/portal-user-examples"
-            "Showcase/portal-developer-examples"
-            "Showcase/InternalSupport"
-            "Showcase/portal-components-examples"
-          )
-          for module in "${modules[@]}"; do
-            mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
-          done
+          mvn clean install -f pom.xml -Divy.engine.directory=$ENGINE_DIR
           mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml
 
       - name: Deploy Portal Modules
