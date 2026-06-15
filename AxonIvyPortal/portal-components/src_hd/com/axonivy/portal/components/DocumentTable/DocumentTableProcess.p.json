@@ -446,7 +446,7 @@
     }, {
       "id" : "f42",
       "type" : "HtmlDialogMethodStart",
-      "name" : "renderComponent(String,Boolean,DocumentType,Boolean,Boolean,String,Long)",
+      "name" : "renderComponent(String,Boolean,DocumentType,Boolean,Boolean,String,Long,String)",
       "config" : {
         "signature" : "renderComponent",
         "input" : {
@@ -457,7 +457,8 @@
             { "name" : "enableScriptCheckingForUploadedDocument", "type" : "Boolean", "desc" : "" },
             { "name" : "enableVirusScannerForUploadedDocument", "type" : "Boolean", "desc" : "" },
             { "name" : "allowedUploadFileTypes", "type" : "String", "desc" : "" },
-            { "name" : "sizeLimit", "type" : "Long", "desc" : "" }
+            { "name" : "sizeLimit", "type" : "Long", "desc" : "" },
+            { "name" : "uploadSubFolder", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.allowedUploadFileTypes" : "param.allowedUploadFileTypes",
@@ -466,7 +467,8 @@
             "out.messageComponentId" : "param.messageComponentId",
             "out.sizeLimit" : "param.sizeLimit",
             "out.typeColumnRendered" : "param.typeColumnRendered",
-            "out.typeSelection" : "param.selectedType"
+            "out.typeSelection" : "param.selectedType",
+            "out.uploadSubFolder" : "param.uploadSubFolder"
           }
         },
         "guid" : "16B4E86E9AEE3309"
