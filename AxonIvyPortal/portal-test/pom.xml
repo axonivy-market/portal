@@ -23,10 +23,20 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>6.0.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
       <version>${project.version}</version>
       <type>iar</type>
+    </dependency>
+    <dependency>
+      <groupId>com.axonivy.ivy.api</groupId>
+      <artifactId>ivy-poi-api</artifactId>
     </dependency>
   </dependencies>
   <repositories>
