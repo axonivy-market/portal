@@ -1,33 +1,36 @@
 package com.axonivy.portal.selenium.test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
-import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.NavigationExtension;
 import com.axonivy.portal.selenium.common.ProxyExtension;
 import com.axonivy.portal.selenium.common.RecordLoginStatusCode;
 import com.axonivy.portal.selenium.common.SystemProperties;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.WebTestExtension;
 import com.axonivy.portal.selenium.page.ForgotPasswordPage;
 import com.axonivy.portal.selenium.page.LoginPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.Selenide;
 
 @IvyWebTest
-@ExtendWith({ ProxyExtension.class })
-public class LoginTest extends BaseTest {
+@ExtendWith({ ProxyExtension.class, WebTestExtension.class, NavigationExtension.class })
+public class LoginTest {
+  
   private LoginPage loginPage;
   private static final RecordLoginStatusCode LoginStatus = new RecordLoginStatusCode();
 
   @BeforeEach
-  @Override
-  public void setup() {
-    redirectToNewDashBoard();
+  public void setup(NavigationExtension navigation) {
+    navigation.goToDashboard();
     Selenide.webdriver().driver().getProxy().addResponseFilter(LoginStatus.LOGIN, LoginStatus);
     if (!SystemProperties.isInServerMode()) {
-      launchBrowserAndLogoutInDesigner();
+      navigation.logoutInDesigner();
     }
   }
 
