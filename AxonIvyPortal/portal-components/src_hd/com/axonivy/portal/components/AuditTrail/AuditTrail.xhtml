@@ -1,0 +1,78 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="taskId" type="java.lang.Long" shortDescription="ID of the current task. Required: true." />
+  <cc:attribute name="case"></cc:attribute>
+  <cc:attribute name="containerStyleClass" type="java.lang.String" default=""
+    shortDescription="Additional CSS class for the outer container. Required: false." />
+</cc:interface>
+
+<cc:implementation>
+  <f:event listener="#{auditTrailBean.prepareData(cc.attrs.taskId, cc.attrs.case)}" type="preRenderComponent" />
+  <h:panelGroup id="audit-trail-content" layout="block">
+    <h:outputText value="No previous tasks found." rendered="#{empty auditTrailBean.previousTasks}"
+      styleClass="audit-trail-empty-message" />
+
+    <p:tabView value="#{auditTrailBean.previousTasks}" var="task"
+      rendered="#{not empty auditTrailBean.previousTasks}" styleClass="audit-trail-tab-view">
+      <p:tab title="#{task.names().current()}" ariaLabel="#{task.names().current()}">
+
+        <div class="audit-trail-card">
+          <div class="audit-trail-fields">
+            <div class="audit-trail-field-row">
+              <span class="audit-trail-field-label">Responsible</span>
+              <span class="audit-trail-field-value">#{task.workerUser != null ? task.workerUser.displayName : '—'}</span>
+            </div>
+            <div class="audit-trail-field-row">
+              <span class="audit-trail-field-label">Task ID</span>
+              <span class="audit-trail-field-value">#{task.id}</span>
+            </div>
+            <div class="audit-trail-field-row">
+              <span class="audit-trail-field-label">Priority</span>
+              <span class="audit-trail-field-value">#{task.priority}</span>
+            </div>
+            <div class="audit-trail-field-row">
+              <span class="audit-trail-field-label">State</span>
+              <span class="audit-trail-field-value">#{task.businessState}</span>
+            </div>
+            <div class="audit-trail-field-row">
+              <span class="audit-trail-field-label">Description</span>
+              <span class="audit-trail-field-value">#{task.description}</span>
+            </div>
+            <div class="audit-trail-field-row">
+              <span class="audit-trail-field-label">Start Time</span>
+              <span class="audit-trail-field-value">
+                <h:outputText value="#{task.startTimestamp}">
+                  <f:convertDateTime type="both" dateStyle="medium" timeStyle="short" />
+                </h:outputText>
+              </span>
+            </div>
+            <div class="audit-trail-field-row">
+              <span class="audit-trail-field-label">Expiry Time</span>
+              <span class="audit-trail-field-value">
+                <h:outputText value="#{task.expiryTimestamp}">
+                  <f:convertDateTime type="both" dateStyle="medium" timeStyle="short" />
+                </h:outputText>
+              </span>
+            </div>
+            <div class="audit-trail-field-row">
+              <span class="audit-trail-field-label">End Time</span>
+              <span class="audit-trail-field-value">
+                <h:outputText value="#{task.endTimestamp}">
+                  <f:convertDateTime type="both" dateStyle="medium" timeStyle="short" />
+                </h:outputText>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </p:tab>
+    </p:tabView>
+  </h:panelGroup>
+</cc:implementation>
+
+</html>
