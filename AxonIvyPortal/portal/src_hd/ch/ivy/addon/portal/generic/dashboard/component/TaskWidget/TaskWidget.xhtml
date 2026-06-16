@@ -134,7 +134,9 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.format eq 'NUMBER'}">
-            <h:outputText value="#{column.display(task)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
+            <h:outputText value="#{column.display(task)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}">
+              <f:convertNumber pattern="#{column.pattern}" />
+            </h:outputText>
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'category'}">

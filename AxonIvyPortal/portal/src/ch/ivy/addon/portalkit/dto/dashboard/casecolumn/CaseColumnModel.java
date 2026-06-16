@@ -22,7 +22,7 @@ public class CaseColumnModel extends ColumnModel {
   public Object display(ICase caze) {
     ICustomFields customFields = caze.customFields();
     if (isNumber()) {
-      return displayNumberWithPattern(customFields);
+      return customFields.numberField(field).getOrNull();
     } else if (isDate()) {
       return customFields.timestampField(field).getOrNull();
     } else if (isText()) {
