@@ -74,7 +74,7 @@ class TestNewsService {
   }
   
   @Test
-  void testDeleteNewsById_withUnknownId() {
+  void deleteNewsById_withUnknownId() {
     service.deleteNewsById("no-id");
     assertThat(service.findAll()).isEmpty();
   }
@@ -90,7 +90,7 @@ class TestNewsService {
   }
 
   @Test
-  void findAll_shouldReturnNewsListSortedByCreatedDateDescending() {
+  void findAll_shouldReturnNewsList_sortedByCreatedDate_descending() {
     List<News> newsList = new ArrayList<>();
     var pastNews = new News("icon", "junit.rocks",
         """
