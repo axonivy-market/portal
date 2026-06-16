@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 
-import ch.ivyteam.ivy.application.loader.ClassLoaderService;
+import ch.ivyteam.ivy.application.classloader.ClassLoaderService;
 import ch.ivyteam.ivy.persistence.IPersistentTransaction;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.request.async.IvyAsyncExecutor;
