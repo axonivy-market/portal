@@ -54,10 +54,11 @@
       "type" : "SubProcessCall",
       "name" : "GetDocumentList",
       "config" : {
-        "processCall" : "Functional Processes/GetDocumentItems:getDocumentItems(ch.ivyteam.ivy.workflow.ICase)",
+        "processCall" : "Functional Processes/GetDocumentItems:getDocumentItems(ch.ivyteam.ivy.workflow.ICase,String)",
         "call" : {
           "map" : {
-            "param.businessCase" : "in.ivyCase"
+            "param.businessCase" : "in.ivyCase",
+            "param.uploadSubFolder" : "in.uploadSubFolder"
           }
         },
         "output" : {
@@ -92,7 +93,11 @@
           ],
           "map" : {
             "out.event" : "param.event"
-          }
+          },
+          "code" : [
+            "out.uploadSubFolder = param.event.getComponent().getAttributes().get(\"uploadSubFolder\") as String; ",
+            "ivy.log.error(\"sub folder is {0}\", out.uploadSubFolder);"
+          ]
         },
         "guid" : "16B1C99C07E95EDC"
       },
@@ -157,14 +162,15 @@
       "type" : "SubProcessCall",
       "name" : "UploadDocument",
       "config" : {
-        "processCall" : "Functional Processes/UploadDocumentItem:uploadDocumentItem(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)",
+        "processCall" : "Functional Processes/UploadDocumentItem:uploadDocumentItem(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile,Boolean,Boolean,String,String)",
         "call" : {
           "map" : {
             "param.businessCase" : "in.ivyCase",
             "param.uploadedFile" : "in.event.getFile()",
             "param.enableScriptCheckingForUploadedDocument" : "in.enableScriptCheckingForUploadedDocument",
             "param.enableVirusScannerForUploadedDocument" : "in.enableVirusScannerForUploadedDocument",
-            "param.allowedUploadFileTypes" : "in.allowedUploadFileTypes"
+            "param.allowedUploadFileTypes" : "in.allowedUploadFileTypes",
+            "param.uploadSubFolder" : "in.uploadSubFolder"
           }
         },
         "output" : {
@@ -721,10 +727,11 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
-        "processCall" : "Functional Processes/GetDocumentItems:getDocumentItems(ch.ivyteam.ivy.workflow.ICase)",
+        "processCall" : "Functional Processes/GetDocumentItems:getDocumentItems(ch.ivyteam.ivy.workflow.ICase,String)",
         "call" : {
           "map" : {
-            "param.businessCase" : "in.ivyCase"
+            "param.businessCase" : "in.ivyCase",
+            "param.uploadSubFolder" : "in.uploadSubFolder"
           }
         },
         "output" : {

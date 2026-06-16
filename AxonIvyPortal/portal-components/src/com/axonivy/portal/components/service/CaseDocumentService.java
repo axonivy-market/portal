@@ -64,6 +64,10 @@ public class CaseDocumentService {
     return new ArrayList<>(getAllDocumentsOf(iCase));
   }
 
+  public List<IDocument> getAll(String uploadSubFolder) {
+    return new ArrayList<>(getAllDocumentsOf(iCase, uploadSubFolder));
+  }
+
   /**
    * @param document
    * @return streamed content
@@ -156,6 +160,14 @@ public class CaseDocumentService {
     }
   }
 
+  private List<IDocument> getAllDocumentsOf(ICase iCase, String uploadSubFolder) {
+    try {
+      return Sudo.call(() -> iCase.documents().getAllBelow(new Path(uploadSubFolder)));
+    } catch (Exception e) {
+      throw new PortalException(e);
+    }
+  }
+
    private static List<String> getAllowedUploadFileType(String allowedFileTypes) {
     if (StringUtils.EMPTY.equals(allowedFileTypes)) {
       return new ArrayList<>();
@@ -175,13 +187,5 @@ public class CaseDocumentService {
 
   public static Path getPathAfterRename(Path oldPath, String newName) {
     return getParentPath(oldPath).append(newName);
-  }
-
-  private List<IDocument> getAllDocumentsOfSubFolder(ICase iCase, String uploadSubFolder) {
-    try {
-      return Sudo.call(() -> iCase.documents().getAllBelow(new Path(uploadSubFolder)));
-    } catch (Exception e) {
-      throw new PortalException(e);
-    }
   }
 }

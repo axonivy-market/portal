@@ -93,7 +93,7 @@
   <ui:param name="messageComponentId" value="#{cc.clientId.concat(':document-messages')}" />
   <ui:param name="typeSelectionItems" value="#{not empty cc.attrs.typeSelectionItems ? cc.attrs.typeSelectionItems : documentUploadBean.documentTypes}" />
   <ui:param name="selectedType" value="#{not empty cc.attrs.selectedType ? cc.attrs.selectedType : typeSelectionItems[0]}" />
-  <f:event type="preRenderComponent" listener="#{logic.renderComponent(messageComponentId, cc.attrs.typeColumnRendered, selectedType, cc.attrs.enableScriptCheckingForUploadedDocument, cc.attrs.enableVirusScannerForUploadedDocument, cc.attrs.allowedUploadFileTypes, cc.attrs.sizeLimit, cc.attrs.uploadSubFolder)}" />
+  <f:event type="preRenderComponent" listener="#{logic.renderComponent(messageComponentId, cc.attrs.typeColumnRendered, selectedType, cc.attrs.enableScriptCheckingForUploadedDocument, cc.attrs.enableVirusScannerForUploadedDocument, cc.attrs.allowedUploadFileTypes, cc.attrs.sizeLimit, empty cc.attrs.uploadSubFolder ? 'displaySubFolder' : cc.attrs.uploadSubFolder)}" />
 
   <div id="#{cc.clientId}" class="document-table-component">
 
@@ -200,6 +200,7 @@
           invalidSizeMessage="#{documentUploadBean.getFileUploadInvalidSizeMessage(documentUploadBean.fileUploadSizeLimit)}"
           onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}" sizeLimit="#{documentUploadBean.fileUploadSizeLimit}"
           styleClass="document-upload-in-dialog" value="#{data.uploadedFile}">
+          <f:attribute name="uploadSubFolder" value="#{cc.attrs.uploadSubFolder}" />
         </p:fileUpload>
         <p:outputPanel id="document-upload-dropzone" styleClass="document-upload-dropzone">
           <div class="document-upload-dropzone-content">

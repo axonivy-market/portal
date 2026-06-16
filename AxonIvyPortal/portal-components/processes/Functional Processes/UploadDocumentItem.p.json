@@ -368,6 +368,7 @@
             "params.put(\"enableScriptCheckingForUploadedDocument\", in.enableScriptCheckingForUploadedDocument);",
             "params.put(\"enableVirusScannerForUploadedDocument\", in.enableVirusScannerForUploadedDocument);",
             "params.put(\"allowedUploadFileTypes\", in.allowedUploadFileTypes);",
+            "params.put(\"uploadSubFolder\", in.uploadSubFolder);",
             "",
             "Map result = IvyAdapterService.startSubProcessesInSecurityContext(CustomSignature.UPLOAD_DOCUMENT_ITEM.getSignature(), params, new CustomProcessPredicate());",
             "in.hasCustomProcess = !result.isEmpty();",

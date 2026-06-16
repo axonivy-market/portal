@@ -8,15 +8,17 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "getDocumentItems(ICase)",
+      "name" : "getDocumentItems(ICase,String)",
       "config" : {
         "signature" : "getDocumentItems",
         "input" : {
           "params" : [
-            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "uploadSubFolder", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.businessCase" : "param.businessCase"
+            "out.businessCase" : "param.businessCase",
+            "out.uploadSubFolder" : "param.uploadSubFolder"
           }
         },
         "result" : {
@@ -59,7 +61,14 @@
             "import com.axonivy.portal.components.service.CaseDocumentService;",
             "",
             "if(in.#businessCase is initialized) {",
-            "  List<IDocument> iDocuments = CaseDocumentService.newInstance(in.businessCase).getAll();",
+            "  List<IDocument> iDocuments = null;",
+            "  if(in.#uploadSubFolder is initialized) {",
+            "    ivy.log.error(\"get all with uploadsubfolder\");",
+            "    iDocuments = CaseDocumentService.newInstance(in.businessCase).getAll(in.uploadSubFolder);",
+            "  } else {",
+            "    ivy.log.error(\"get all with NO uploadsubfolder\");",
+            "    iDocuments = CaseDocumentService.newInstance(in.businessCase).getAll();",
+            "  }",
             "  IvyDocumentTransformer transformer = new IvyDocumentTransformer();",
             "  in.documents = transformer.transform(iDocuments);",
             "for (IvyDocument ivyDocument : in.documents) {",

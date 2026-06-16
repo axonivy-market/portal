@@ -50,5 +50,8 @@
   }, {
     "name" : "isRenamingSuccess",
     "type" : "Boolean"
+  }, {
+    "name" : "uploadSubFolder",
+    "modifiers" : [ ]
   } ]
 }
