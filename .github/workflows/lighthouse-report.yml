@@ -1,5 +1,5 @@
 name: Lighthouse Audit
-run-name: 🗼Lighthouse Audit
+run-name: ♿ A11y Report
 permissions:
   actions: write
   checks: write
@@ -25,7 +25,6 @@ on:
 
 env:
   ENGINE_DIR: ${{ github.workspace }}/ivy/engine/nightly
-  WAIT_TIME: 60
 
 jobs:
   a11y-audit:
@@ -75,72 +74,44 @@ jobs:
       # -----------------------------------------------------------------------
       - name: Build Portal Modules
         run: |
-          mvn clean install -f pom.xml -Divy.engine.directory="$ENGINE_DIR"
-          mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml
-
-      - name: Deploy Portal Modules to Engine
-        run: |
-          DEPLOYMENT="$ENGINE_DIR/system/demo-applications/portal"
-          mkdir -p "$DEPLOYMENT"
-          rm -rf "${DEPLOYMENT:?}"/*
-          cp AxonIvyPortal/portal-selenium-test/target/*.zip "$DEPLOYMENT"
-
-      # -----------------------------------------------------------------------
-      # Start Axon Ivy Engine
-      # -----------------------------------------------------------------------
-      - name: Start Axon Ivy Engine
-        run: |
-          cd "$ENGINE_DIR/bin"
-          chmod +x ./AxonIvyEngine
-          nohup ./AxonIvyEngine > engine.log 2>&1 &
-          echo $! > engine.pid
-          for ((i=1; i<=$WAIT_TIME; i++)); do
-            if curl -sf "http://localhost:8080/portal/pro/portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp?embedInFrame=" > /dev/null; then
-              echo "Engine ready after ${i}s"
-              exit 0
-            fi
-            sleep 1
+          modules=(
+            "AxonIvyPortal/portal-components"
+            "AxonIvyPortal/portal"
+            "AxonIvyPortal/PortalKitTestHelper"
+            "Showcase/portal-user-examples"
+            "Showcase/portal-developer-examples"
+            "Showcase/InternalSupport"
+            "Showcase/portal-components-examples"
+          )
+          for module in "${modules[@]}"; do
+            mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
           done
-          echo "Engine did not start in time"
-          cat engine.log
-          exit 1
-        env:
-          IVY_JAVA_HOME: ${{ env.JAVA_HOME }}
-          JAVA_HOME: ${{ env.JAVA_HOME }}
-          PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${{ env.JAVA_HOME }}/bin:$PATH
 
-      # -----------------------------------------------------------------------
-      # Browser (Firefox — same as portal-selenium-test)
-      # -----------------------------------------------------------------------
-      - name: Install Firefox
+      - name: Build and Deploy Test Package
         run: |
-          sudo apt-get update
-          sudo apt-get install -y firefox xvfb x11-xserver-utils
-
-      - name: Start Virtual Display
-        run: |
-          Xvfb :99 -screen 0 1920x1080x24 -ac &
-          sleep 2
-          echo "DISPLAY=:99" >> $GITHUB_ENV
+          mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=$ENGINE_DIR
+          DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
+          mkdir -p $DEPLOYMENT
+          rm -rf $DEPLOYMENT/*
+          cp AxonIvyPortal/portal-selenium-test/target/*.zip $DEPLOYMENT
 
       # -----------------------------------------------------------------------
-      # Run A11y tests via Maven
+      # Run A11y tests via Maven (Ivy plugin manages engine + browser)
       # -----------------------------------------------------------------------
       - name: Run A11y Tests
         id: a11y
         continue-on-error: true
         run: |
-          mvn test \
-            -f AxonIvyPortal/portal-selenium-test/pom.xml \
+          mvn clean test \
+            -f AxonIvyPortal/portal-selenium-test/customized_pom.xml \
+            -Divy.engine.download.url="${{ github.event.inputs.engineDownloadURL }}" \
             -Dtest="com.axonivy.portal.selenium.a11y.**" \
-            -Divy.engine.directory="$ENGINE_DIR" \
-            -Dtest.engine.url="http://localhost:8080" \
-            -Dselenide.browser=firefox \
-            -Dselenide.headless=true \
-            -Dselenide.browserSize="1920x1080" \
-            -B
-        env:
-          DISPLAY: ${{ env.DISPLAY }}
+            -DbrowserType=FIREFOX \
+            -Dcapabilities.unhandledPromptBehavior=accept \
+            -DtrimStackTrace=false \
+            -Divy.engine.directory=$ENGINE_DIR \
+            -Divy.deploy.timeout.seconds=60 \
+            -Divy.engine.start.timeout.seconds=150
 
       # -----------------------------------------------------------------------
       # Upload Surefire / screenshot artifacts
