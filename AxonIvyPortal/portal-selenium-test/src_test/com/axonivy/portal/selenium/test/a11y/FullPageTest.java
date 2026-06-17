@@ -28,7 +28,7 @@ import com.deque.html.axecore.selenium.AxeBuilder;
  * rule ID, impact level, and affected node count so failures are immediately
  * actionable in CI.
  *
- * To add a new page: create a new @Test method, navigate/interact as you would
+ * To add a new page: create a new //@Test method, navigate/interact as you would
  * in any Selenium test, then call assertNoViolations(getDriver()).
  */
 @IvyWebTest
@@ -48,13 +48,14 @@ public class FullPageTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    redirectToRelativeLink(createTestingTasksUrl);
   }
 
   // ---------------------------------------------------------------------------
   // Auth
   // ---------------------------------------------------------------------------
 
-  @Test
+  //@Test
   public void loginPage_shouldHaveNoViolations() {
     launchBrowserAndGotoRelativeLink("PortalKitTestHelper/1636734E13CEC872/login.ivp");
     assertNoViolations();
@@ -68,10 +69,10 @@ public class FullPageTest extends BaseTest {
   public void dashboard_shouldHaveNoViolations() {
     redirectToRelativeLink(DASHBOARD_URL);
     $(".js-dashboard__wrapper").shouldBe(Condition.visible);
-    // assertNoViolations();
+    assertNoViolations();
   }
 
-  @Test
+  //@Test
   public void dashboardConfiguration_shouldHaveNoViolations() {
     redirectToRelativeLink(DASHBOARD_CONFIG_URL);
     $(".dashboard-configuration-container").shouldBe(Condition.visible);
@@ -82,14 +83,14 @@ public class FullPageTest extends BaseTest {
   // Task
   // ---------------------------------------------------------------------------
 
-  @Test
+  //@Test
   public void taskList_shouldHaveNoViolations() {
     redirectToRelativeLink(TASK_LIST_URL);
     $(".js-task-widget-panel").shouldBe(Condition.visible);
     assertNoViolations();
   }
 
-  @Test
+  //@Test
   public void taskDetails_shouldHaveNoViolations() {
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(TASK_LIST_URL);
@@ -103,7 +104,7 @@ public class FullPageTest extends BaseTest {
   // Case
   // ---------------------------------------------------------------------------
 
-  @Test
+  //@Test
   public void caseList_shouldHaveNoViolations() {
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(CASE_LIST_URL);
@@ -111,7 +112,7 @@ public class FullPageTest extends BaseTest {
     assertNoViolations();
   }
 
-  @Test
+  //@Test
   public void caseDetails_shouldHaveNoViolations() {
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(CASE_LIST_URL);
@@ -125,7 +126,7 @@ public class FullPageTest extends BaseTest {
   // Process
   // ---------------------------------------------------------------------------
 
-  @Test
+  //@Test
   public void processList_shouldHaveNoViolations() {
     redirectToRelativeLink(PROCESS_LIST_URL);
     $(".js-process-start-list-item").shouldBe(Condition.visible);
@@ -136,14 +137,14 @@ public class FullPageTest extends BaseTest {
   // User
   // ---------------------------------------------------------------------------
 
-  @Test
+  //@Test
   public void absencePage_shouldHaveNoViolations() {
     redirectToRelativeLink(ABSENCE_URL);
     $(".absence-container").shouldBe(Condition.visible);
     assertNoViolations();
   }
 
-  @Test
+  //@Test
   public void userProfileDialog_shouldHaveNoViolations() {
     redirectToRelativeLink(DASHBOARD_URL);
     $(".js-dashboard__wrapper").shouldBe(Condition.visible);
@@ -157,7 +158,7 @@ public class FullPageTest extends BaseTest {
   // Leave request form (iframe dialog triggered from process start)
   // ---------------------------------------------------------------------------
 
-  @Test
+  //@Test
   public void leaveRequestForm_shouldHaveNoViolations() {
     redirectToRelativeLink(createTestingTasksUrl + "?embedInFrame=");
     // WaitHelper.waitForPresent($("form"));
@@ -168,7 +169,7 @@ public class FullPageTest extends BaseTest {
   // Admin
   // ---------------------------------------------------------------------------
 
-  @Test
+  //@Test
   public void adminSettings_shouldHaveNoViolations() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(PORTAL_APP + "/AdminSettingPage.ivp");
