@@ -1,0 +1,198 @@
+name: A11y Report
+run-name: ♿ A11y Report
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  issues: write
+  packages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
+  discussions: write
+  pages: write
+on:
+  workflow_dispatch:
+    inputs:
+      engineDownloadURL:
+        description: |
+          URL to download Axon Ivy Engine. Defaults to nightly build.
+        type: string
+        required: false
+        default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
+
+env:
+  ENGINE_DIR: ${{ github.workspace }}/ivy/engine/nightly
+  WAIT_TIME: 60
+
+jobs:
+  a11y-audit:
+    runs-on: ubuntu-latest
+    name: A11y Audit - ${{ github.head_ref || github.ref_name }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+
+      # -----------------------------------------------------------------------
+      # Java + Maven
+      # -----------------------------------------------------------------------
+      - name: Set Up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5.1
+        with:
+          maven-version: 3.9.8
+
+      - name: Export Environment Variables
+        run: |
+          echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+          echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+          echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
+
+      # -----------------------------------------------------------------------
+      # Engine setup
+      # -----------------------------------------------------------------------
+      - name: Prepare Engine Directory
+        run: |
+          mkdir -p "$ENGINE_DIR"
+          sudo chown -R "$USER:$USER" "$ENGINE_DIR"
+
+      - name: Download Engine
+        run: |
+          cd "$ENGINE_DIR"
+          wget "${{ github.event.inputs.engineDownloadURL }}" -O axonivy-engine.zip
+          unzip -o axonivy-engine.zip -d .
+          rm axonivy-engine.zip
+
+      # -----------------------------------------------------------------------
+      # Build and deploy Portal artifacts
+      # -----------------------------------------------------------------------
+      - name: Build Portal Modules
+        run: |
+          mvn clean install -f pom.xml -Divy.engine.directory="$ENGINE_DIR"
+          mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml
+
+      - name: Deploy Portal Modules to Engine
+        run: |
+          DEPLOYMENT="$ENGINE_DIR/system/demo-applications/portal"
+          mkdir -p "$DEPLOYMENT"
+          rm -rf "${DEPLOYMENT:?}"/*
+          cp AxonIvyPortal/portal-selenium-test/target/*.zip "$DEPLOYMENT"
+
+      # -----------------------------------------------------------------------
+      # Start Axon Ivy Engine
+      # -----------------------------------------------------------------------
+      - name: Start Axon Ivy Engine
+        run: |
+          cd "$ENGINE_DIR/bin"
+          chmod +x ./AxonIvyEngine
+          nohup ./AxonIvyEngine > engine.log 2>&1 &
+          echo $! > engine.pid
+          for ((i=1; i<=$WAIT_TIME; i++)); do
+            if curl -sf "http://localhost:8080/portal/pro/portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp?embedInFrame=" > /dev/null; then
+              echo "Engine ready after ${i}s"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "Engine did not start in time"
+          cat engine.log
+          exit 1
+        env:
+          IVY_JAVA_HOME: ${{ env.JAVA_HOME }}
+          JAVA_HOME: ${{ env.JAVA_HOME }}
+          PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${{ env.JAVA_HOME }}/bin:$PATH
+
+      # -----------------------------------------------------------------------
+      # Browser (Firefox — same as portal-selenium-test)
+      # -----------------------------------------------------------------------
+      - name: Install Firefox
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y firefox xvfb x11-xserver-utils
+
+      - name: Start Virtual Display
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -ac &
+          sleep 2
+          echo "DISPLAY=:99" >> $GITHUB_ENV
+
+      # -----------------------------------------------------------------------
+      # Run A11y tests via Maven
+      # -----------------------------------------------------------------------
+      - name: Run A11y Tests
+        id: a11y
+        continue-on-error: true
+        run: |
+          mvn test \
+            -f AxonIvyPortal/portal-selenium-test/pom.xml \
+            -Dtest="com.axonivy.portal.selenium.test.a11y.**" \
+            -Divy.engine.directory="$ENGINE_DIR" \
+            -Dtest.engine.url="http://localhost:8080" \
+            -Dselenide.browser=firefox \
+            -Dselenide.headless=true \
+            -Dselenide.browserSize="1920x1080" \
+            -B
+        env:
+          DISPLAY: ${{ env.DISPLAY }}
+
+      # -----------------------------------------------------------------------
+      # Upload Surefire / screenshot artifacts
+      # -----------------------------------------------------------------------
+      - name: Upload Test Reports
+        if: always()
+        id: upload-artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: a11y-report
+          path: |
+            AxonIvyPortal/portal-selenium-test/target/surefire-reports/
+            AxonIvyPortal/portal-selenium-test/target/screenshots/
+
+      # -----------------------------------------------------------------------
+      # GitHub Actions Job Summary
+      # -----------------------------------------------------------------------
+      - name: Write Job Summary
+        if: always()
+        run: |
+          SUREFIRE_DIR="AxonIvyPortal/portal-selenium-test/target/surefire-reports"
+          TESTS=0; FAILURES=0; ERRORS=0; SKIPPED=0
+          if [ -d "$SUREFIRE_DIR" ]; then
+            for f in "$SUREFIRE_DIR"/TEST-*.xml; do
+              [ -f "$f" ] || continue
+              TESTS=$((TESTS   + $(grep -oP 'tests="\K[0-9]+'   "$f" | head -1)))
+              FAILURES=$((FAILURES + $(grep -oP 'failures="\K[0-9]+' "$f" | head -1)))
+              ERRORS=$((ERRORS   + $(grep -oP 'errors="\K[0-9]+'   "$f" | head -1)))
+              SKIPPED=$((SKIPPED  + $(grep -oP 'skipped="\K[0-9]+'  "$f" | head -1)))
+            done
+          fi
+          PASSED=$((TESTS - FAILURES - ERRORS - SKIPPED))
+          STATUS="${{ steps.a11y.outcome }}"
+          ICON="✅"
+          [ "$STATUS" = "failure" ] && ICON="❌"
+          echo "## ♿ A11y Audit Results (WCAG 2.1 AA) ${ICON}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| Tests run | ${TESTS} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Passed | ${PASSED} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Failed | ${FAILURES} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Errors | ${ERRORS} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Skipped | ${SKIPPED} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "> Full Surefire XML and screenshots in the [artifact](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${{ steps.upload-artifact.outputs.artifact-id }})." >> $GITHUB_STEP_SUMMARY
+
+      # -----------------------------------------------------------------------
+      # Fail the job if tests failed
+      # -----------------------------------------------------------------------
+      - name: Fail if violations found
+        if: steps.a11y.outcome == 'failure'
+        run: |
+          echo "A11y tests found violations. See Surefire reports in the artifact."
+          exit 1
