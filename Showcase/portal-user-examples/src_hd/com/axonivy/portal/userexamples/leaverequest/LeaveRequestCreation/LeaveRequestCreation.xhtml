@@ -8,7 +8,7 @@
 
     <ui:define name="content">
       <h:outputStylesheet library="css" name="portal-user-examples.css" />
-
+      
       <h:form id="leave-request">
 
         <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
@@ -83,7 +83,7 @@
           <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3"></div>
         </h:panelGroup>
       </h:form>
-      <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="0" />
+      <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="0" isHideCaseInfo="true"/>
 
     </ui:define>
   </ui:composition>

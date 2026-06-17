@@ -44,5 +44,50 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 160 }
       }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getCaseNotes(ICase)",
+      "config" : {
+        "signature" : "getCaseNotes",
+        "input" : {
+          "params" : [
+            { "name" : "caze", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+          ],
+          "map" : {
+            "out.caze" : "param.caze"
+          }
+        },
+        "guid" : "19ED45C47FD8D171"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.service.AuditTrailService;",
+            "in.caseNotes = AuditTrailService.getInstance().getSortedCaseNotes(in.caze);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 280 }
+      }
     } ]
 }

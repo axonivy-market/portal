@@ -5,73 +5,58 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="taskId" type="java.lang.Long" shortDescription="ID of the current task. Required: true." />
-  <cc:attribute name="case"></cc:attribute>
+  <cc:attribute name="case" shortDescription="The case whose notes are displayed. Required: true." />
+  <cc:attribute name="customHeader" type="java.lang.String" default="Activity History"
+    shortDescription="Optional header text displayed above the notes table. Required: false." />
   <cc:attribute name="containerStyleClass" type="java.lang.String" default=""
     shortDescription="Additional CSS class for the outer container. Required: false." />
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{auditTrailBean.prepareData(cc.attrs.taskId, cc.attrs.case)}" type="preRenderComponent" />
-  <h:panelGroup id="audit-trail-content" layout="block">
-    <h:outputText value="No previous tasks found." rendered="#{empty auditTrailBean.previousTasks}"
-      styleClass="audit-trail-empty-message" />
+  <f:event listener="#{logic.getCaseNotes(cc.attrs.case)}" type="preRenderComponent" />
+  <h:panelGroup id="audit-trail-content" layout="block" styleClass="audit-trail-container #{cc.attrs.containerStyleClass}">
 
-    <p:tabView value="#{auditTrailBean.previousTasks}" var="task"
-      rendered="#{not empty auditTrailBean.previousTasks}" styleClass="audit-trail-tab-view">
-      <p:tab title="#{task.names().current()}" ariaLabel="#{task.names().current()}">
+    <div class="case-detail-section-title ui-g">
+      <div class="u-truncate-text u-padding-0 audit-trail-section-title" role="heading" aria-level="2">
+        <i class="ti ti-clock-check" />
+        <span>#{cc.attrs.customHeader}</span>
+      </div>
+    </div>
 
-        <div class="audit-trail-card">
-          <div class="audit-trail-fields">
-            <div class="audit-trail-field-row">
-              <span class="audit-trail-field-label">Responsible</span>
-              <span class="audit-trail-field-value">#{task.workerUser != null ? task.workerUser.displayName : '—'}</span>
-            </div>
-            <div class="audit-trail-field-row">
-              <span class="audit-trail-field-label">Task ID</span>
-              <span class="audit-trail-field-value">#{task.id}</span>
-            </div>
-            <div class="audit-trail-field-row">
-              <span class="audit-trail-field-label">Priority</span>
-              <span class="audit-trail-field-value">#{task.priority}</span>
-            </div>
-            <div class="audit-trail-field-row">
-              <span class="audit-trail-field-label">State</span>
-              <span class="audit-trail-field-value">#{task.businessState}</span>
-            </div>
-            <div class="audit-trail-field-row">
-              <span class="audit-trail-field-label">Description</span>
-              <span class="audit-trail-field-value">#{task.description}</span>
-            </div>
-            <div class="audit-trail-field-row">
-              <span class="audit-trail-field-label">Start Time</span>
-              <span class="audit-trail-field-value">
-                <h:outputText value="#{task.startTimestamp}">
-                  <f:convertDateTime type="both" dateStyle="medium" timeStyle="short" />
-                </h:outputText>
-              </span>
-            </div>
-            <div class="audit-trail-field-row">
-              <span class="audit-trail-field-label">Expiry Time</span>
-              <span class="audit-trail-field-value">
-                <h:outputText value="#{task.expiryTimestamp}">
-                  <f:convertDateTime type="both" dateStyle="medium" timeStyle="short" />
-                </h:outputText>
-              </span>
-            </div>
-            <div class="audit-trail-field-row">
-              <span class="audit-trail-field-label">End Time</span>
-              <span class="audit-trail-field-value">
-                <h:outputText value="#{task.endTimestamp}">
-                  <f:convertDateTime type="both" dateStyle="medium" timeStyle="short" />
-                </h:outputText>
-              </span>
-            </div>
-          </div>
-        </div>
+    <p:dataTable id="audit-trail-table" value="#{data.caseNotes}" var="note"
+        styleClass="audit-trail-table"
+        paginator="true" rows="5" paginatorAlwaysVisible="false" paginatorPosition="bottom" pageLinks="3"
+        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+        emptyMessage=""
+        rendered="#{not empty data.caseNotes}"
+        sortBy="#{note.createdAt}">
 
-      </p:tab>
-    </p:tabView>
+      <p:column headerText="Note" styleClass="u-truncate-text audit-trail-col-content"
+          sortBy="#{note.content}">
+        <span class="audit-trail-note-content">#{note.content}</span>
+      </p:column>
+
+      <p:column headerText="Author" styleClass="case-document-author js-column-priority-2" width="200px"
+          sortBy="#{note.authorName}">
+        <i class="si si-single-neutral-actions audit-trail-note-author-icon" />
+        <span>#{note.authorName}</span>
+      </p:column>
+
+      <p:column headerText="Date" styleClass="case-history-date js-column-priority-3" width="150px"
+          sortBy="#{note.createdAt}">
+        <h:outputText value="#{note.createdAt}">
+          <f:convertDateTime type="both" dateStyle="medium" timeStyle="short" />
+        </h:outputText>
+      </p:column>
+
+    </p:dataTable>
+
+    <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{empty data.caseNotes}">
+      <i class="ti ti-info-circle" />
+      <h:outputText styleClass="no-item-header" value="No notes available." />
+      <h:outputText styleClass="no-item-detail" value="Notes added to this case will appear here." />
+    </h:panelGroup>
+
   </h:panelGroup>
 </cc:implementation>
 

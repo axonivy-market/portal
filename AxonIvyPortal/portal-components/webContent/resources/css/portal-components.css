@@ -51,65 +51,30 @@
   --avatar-background-color: var(--ivy-primary-color-grey-light, hsl(180, 1%, 85%));
 }
 
-.audit-trail-dialog .ui-dialog-content {
-  width: 50vw;
-  height: 100px;
-  padding: 0;
+.audit-trail-container {
+  width: 100%;
 }
 
-.audit-trail-tab-view .ui-tabs-panels {
-  padding: 0;
-  border: none;
-}
-
-.audit-trail-card-title {
-  font-size: 1rem;
+.audit-trail-section-title {
   font-weight: 600;
-  color: var(--text-color, #333);
-  margin-bottom: 0.35rem;
-}
-
-.audit-trail-card-worker {
+  font-size: 1rem;
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  color: var(--text-color-secondary, #6c757d);
-  font-size: 1rem;
-  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
 }
 
-.audit-trail-fields {
-  display: table;
+.audit-trail-table {
   width: 100%;
-  border-collapse: collapse;
 }
 
-.audit-trail-field-row {
-  display: table-row;
-}
-
-.audit-trail-field-label,
-.audit-trail-field-value {
-  display: table-cell;
-  padding: 0.3rem 0;
-  vertical-align: top;
+.audit-trail-note-author-icon {
   font-size: 1rem;
-}
-
-.audit-trail-field-label {
-  width: 20%;
   color: var(--text-color-secondary, #6c757d);
-  padding-right: 1rem;
-  white-space: nowrap;
+  margin-right: 0.25rem;
+  vertical-align: middle;
 }
 
-.audit-trail-field-value {
-  color: var(--text-color, #333);
-}
-
-.audit-trail-empty-message {
-  display: block;
-  padding: 2rem;
-  text-align: center;
-  color: var(--text-color-secondary, #6c757d);
+.audit-trail-note-content {
+  white-space: pre-wrap;
 }

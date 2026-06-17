@@ -7,7 +7,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -18,7 +17,6 @@ public class AuditTrailBean implements Serializable {
     private List<ITask> previousTasks = new ArrayList<>();
 
     public void prepareData(Long taskId, ICase currentCase) {
-        Ivy.log().info("current case id" + currentCase.getId());
         List<ITask> allTasks = currentCase.tasks().all();
         setPreviousTasks(getTasksBeforeCurrent(allTasks, taskId));
     }
