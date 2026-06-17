@@ -276,6 +276,9 @@ public class CaseDetailsTest extends BaseTest {
     assertTrue(detailsPage.isRelatedTaskDestroyEnabled(SICK_LEAVE_REQUEST_TASK));
     detailsPage.destroyTask(SICK_LEAVE_REQUEST_TASK);
     detailsPage.confimRelatedTaskDestruction();
+    detailsPage.waitPageLoaded();
+    refreshPage();
+    detailsPage.waitRelatedTasks();
     WaitHelper.assertTrueWithWait(() -> detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.DESTROYED));
   }
 
