@@ -14,6 +14,7 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
+import com.axonivy.portal.service.filter.operatorpolicy.GlobalOperatorPolicyService;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomTimestamp;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldExpiryDate;
@@ -215,7 +216,7 @@ public class DashboardFilter implements Serializable {
   }
 
   public void setOperator(FilterOperator operator) {
-    this.operator = operator;
+    this.operator = GlobalOperatorPolicyService.getInstance().getFirstEnabledOperator(this.field, operator);
   }
 
   public FilterPeriodType getPeriodType() {

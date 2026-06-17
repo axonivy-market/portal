@@ -15,6 +15,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.math.NumberUtils;
 
+import com.axonivy.portal.service.filter.operatorpolicy.GlobalOperatorPolicyService;
+
 import ch.ivy.addon.portalkit.bean.WidgetFilterHelperBean;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
@@ -94,7 +96,9 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
     }
 
     filter.setUserFilters(widget.getUserFilters().stream().filter(Objects::nonNull)
-        .filter(userFilter -> StringUtils.isNotBlank(userFilter.getField())).collect(Collectors.toList()));
+        .filter(userFilter -> StringUtils.isNotBlank(userFilter.getField()))
+        .filter(GlobalOperatorPolicyService.getInstance()::isFilterAllowedByGlobalPolicy)
+        .collect(Collectors.toList()));
   }
   
   public void prepareSaveTaskFilter(WidgetFilterModel filter, TaskDashboardWidget widget) {
@@ -103,11 +107,14 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
     }
 
     filter.setUserFilters(widget.getUserFilters().stream().filter(Objects::nonNull)
-        .filter(userFilter -> StringUtils.isNotBlank(userFilter.getField())).collect(Collectors.toList()));
+        .filter(userFilter -> StringUtils.isNotBlank(userFilter.getField()))
+        .filter(GlobalOperatorPolicyService.getInstance()::isFilterAllowedByGlobalPolicy)
+        .collect(Collectors.toList()));
   }
 
 
   public void applyUserFilterFromSession(DashboardWidget widget) {
+    removeDisabledPredefinedFilters(widget);
     var selectedFilterObject = Ivy.session().getAttribute(buildWidgetKey(widget.getId(), widget.getType()));
     var userFilterCollection = BusinessEntityConverter.jsonValueToEntity(String.valueOf(selectedFilterObject), UserFilterCollection.class);
     if (userFilterCollection == null) {
@@ -328,12 +335,30 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
 
   public static void removeDisabledFilters(TaskDashboardWidget widget) {
     List<String> nonFilterableColumns = getNonFilterableColumns(widget).stream().map(ColumnModel::getField).toList();
-    widget.getUserFilters().removeIf(userFilter -> nonFilterableColumns.contains(userFilter.getField()));
+    widget.setUserFilters(CollectionUtils.emptyIfNull(widget.getUserFilters()).stream()
+        .filter(Objects::nonNull)
+        .filter(userFilter -> StringUtils.isNotBlank(userFilter.getField()))
+        .filter(userFilter -> !nonFilterableColumns.contains(userFilter.getField()))
+        .filter(GlobalOperatorPolicyService.getInstance()::isFilterAllowedByGlobalPolicy)
+        .collect(Collectors.toList()));
   }
 
   public static void removeDisabledFilters(CaseDashboardWidget widget) {
     List<String> nonFilterableColumns = getNonFilterableColumns(widget).stream().map(ColumnModel::getField).toList();
-    widget.getUserFilters().removeIf(userFilter -> nonFilterableColumns.contains(userFilter.getField()));
+    widget.setUserFilters(CollectionUtils.emptyIfNull(widget.getUserFilters()).stream()
+        .filter(Objects::nonNull)
+        .filter(userFilter -> StringUtils.isNotBlank(userFilter.getField()))
+        .filter(userFilter -> !nonFilterableColumns.contains(userFilter.getField()))
+        .filter(GlobalOperatorPolicyService.getInstance()::isFilterAllowedByGlobalPolicy)
+        .collect(Collectors.toList()));
+  }
+
+  public static void removeDisabledPredefinedFilters(DashboardWidget widget) {
+    if (widget instanceof TaskDashboardWidget taskWidget) {
+      taskWidget.setFilters(GlobalOperatorPolicyService.getInstance().keepGloballyEnabledFilters(taskWidget.getFilters()));
+    } else if (widget instanceof CaseDashboardWidget caseWidget) {
+      caseWidget.setFilters(GlobalOperatorPolicyService.getInstance().keepGloballyEnabledFilters(caseWidget.getFilters()));
+    }
   }
 
   private void removeDisabledUserFilters(WidgetFilterModel model, DashboardWidgetType widgetType, List<ColumnModel> nonFilterableColumns) {
@@ -341,8 +366,10 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       return;
     }
     model.setUserFilters(CollectionUtils.emptyIfNull(model.getUserFilters()).stream()
+        .filter(Objects::nonNull)
         .filter(f -> StringUtils.isNotBlank(f.getField()))
         .filter(f -> nonFilterableColumns.stream().noneMatch(col -> Strings.CS.equals(col.getField(), f.getField())))
+        .filter(GlobalOperatorPolicyService.getInstance()::isFilterAllowedByGlobalPolicy)
         .collect(Collectors.toList()));
   }
 
