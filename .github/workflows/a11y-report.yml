@@ -132,7 +132,7 @@ jobs:
         run: |
           mvn test \
             -f AxonIvyPortal/portal-selenium-test/pom.xml \
-            -Dtest="com.axonivy.portal.selenium.test.a11y.**" \
+            -Dtest="com.axonivy.portal.selenium.a11y.**" \
             -Divy.engine.directory="$ENGINE_DIR" \
             -Dtest.engine.url="http://localhost:8080" \
             -Dselenide.browser=firefox \
