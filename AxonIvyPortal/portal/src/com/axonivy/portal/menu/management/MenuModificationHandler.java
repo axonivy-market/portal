@@ -30,7 +30,7 @@ public final class MenuModificationHandler implements Serializable {
   public static void updateMenu(PortalMenuItemDefinition menu) {
     switch (menu.getType()) {
       case MAIN_DASHBOARD -> updateDashboardMenu(menu);
-      case CUSTOM -> updateCustomMenu(menu);
+      case PROCESS -> updateCustomMenu(menu);
       case EXTERNAL_LINK -> updateExternalLink(menu);
       case STATIC_PAGE -> updateStaticPageMenu(menu);
       default -> {}

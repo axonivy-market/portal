@@ -234,7 +234,7 @@ public class MenuDetailsBean extends AbstractMenuBean implements IMultiLanguage 
     clearSelections();
     mode = MenuDetailsMode.CREATE;
     setSelectedMenuDefinition(new CustomMenuItemDefinition());
-    selectedMenuKind = MenuKind.CUSTOM;
+    selectedMenuKind = MenuKind.PROCESS;
     contentState = ContentState.CUSTOM_MENU_VARIABLE_CREATE;
     selectedMenuDefinition.setPermissions(new ArrayList<>());
     selectedMenuDefinition.getPermissions().add(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
@@ -262,7 +262,7 @@ public class MenuDetailsBean extends AbstractMenuBean implements IMultiLanguage 
         selectedDashboard = dashboardMenu.getDashboard();
         contentState = ContentState.DASHBOARD_EDIT;
       }
-      case CUSTOM -> {
+      case PROCESS -> {
         CustomMenuItemDefinition customMenu = (CustomMenuItemDefinition) selectedMenuDefinition;
         loadProcesses();
         // Resolved lazily here instead of in the adapter to keep the sidebar
@@ -341,7 +341,7 @@ public class MenuDetailsBean extends AbstractMenuBean implements IMultiLanguage 
     switch (selectedMenuKind) {
       case MAIN_DASHBOARD -> onSelectMenuKindDashboard();
       case EXTERNAL_LINK -> onSelectMenuKindExternalLink();
-      case CUSTOM -> onSelectMenuKindCustom();
+      case PROCESS -> onSelectMenuKindCustom();
       case STATIC_PAGE -> onSelectMenuKindStaticPage();
       default -> {}
     }
@@ -550,7 +550,7 @@ public class MenuDetailsBean extends AbstractMenuBean implements IMultiLanguage 
         dashboardMenu.setIncludedIconFamily(true);
         return dashboardMenu;
       }
-      case CUSTOM -> {
+      case PROCESS -> {
         CustomMenuItemDefinition customMenu = (CustomMenuItemDefinition) menu;
         customMenu.setProcessStart(selectedProcess);
         return customMenu;

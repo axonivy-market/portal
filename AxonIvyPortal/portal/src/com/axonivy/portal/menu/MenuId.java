@@ -32,7 +32,7 @@ public final class MenuId {
     if (menu.getMenuKind() != null) {
       return menu.getMenuKind();
     }
-    return Boolean.TRUE.equals(menu.getIsExternalLink()) ? MenuKind.EXTERNAL_LINK : MenuKind.CUSTOM;
+    return Boolean.TRUE.equals(menu.getIsExternalLink()) ? MenuKind.EXTERNAL_LINK : MenuKind.PROCESS;
   }
 
   private static String resolveLink(CustomSubMenuItem menu) {

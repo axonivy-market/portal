@@ -184,8 +184,8 @@ public class MenuManagementBean extends AbstractMenuBean {
       case STANDARD -> "menu-type-standard";
       case DASHBOARD -> "menu-type-dashboard";
       case MAIN_DASHBOARD -> "menu-type-main-dashboard";
-      case PROCESS -> "menu-type-process";
-      case CUSTOM -> "menu-type-custom";
+      case PROCESS_LIST -> "menu-type-process";
+      case PROCESS -> "menu-type-custom";
       case EXTERNAL_LINK -> "menu-type-external";
       case THIRD_PARTY -> "menu-type-third-party";
       case STATIC_PAGE -> "menu-type-static";

@@ -152,7 +152,7 @@ public class PortalMenuItem extends DefaultMenuItem {
     String menuFormat = "%s";
     switch (menuKind) {
       case DASHBOARD -> menuFormat = MENU_ID_FORMAT;
-      case PROCESS, CUSTOM -> menuFormat = SUB_MENU_ID_FORMAT;
+      case PROCESS_LIST, PROCESS -> menuFormat = SUB_MENU_ID_FORMAT;
       case MAIN_DASHBOARD -> menuFormat = MAIN_DASHBOARD_MENU_ID_FORMAT;
       case EXTERNAL_LINK -> menuFormat = EXTERNAL_MENU_ID_FORMAT;
       case THIRD_PARTY -> menuFormat = THIRD_PARTY_MENU_ID_FORMAT;

@@ -25,7 +25,7 @@ public final class MenuCreationHandler implements Serializable {
   public static void createMenu(PortalMenuItemDefinition menu) {
     switch (menu.getType()) {
       case MAIN_DASHBOARD -> createDashboardMenu(menu);
-      case CUSTOM -> {
+      case PROCESS -> {
         menu.setId(DashboardUtils.generateId());
         createCustomMenu(menu);
       }

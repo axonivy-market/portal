@@ -89,7 +89,7 @@ public class CustomSubMenuItemService {
       } else {
         result.setMenuKind(Optional.ofNullable(customMenu).map(CustomSubMenuItem::getIsExternalLink).orElse(false)
             ? MenuKind.EXTERNAL_LINK
-            : MenuKind.CUSTOM);
+            : MenuKind.PROCESS);
       }
 
       String hashId = MenuId.compute(customMenu);

@@ -191,7 +191,7 @@ Menu Management feature.
    No data migration is needed: existing third-party applications configured in the
    ``Portal.ThirdPartyApplications`` variable still appear in the sidebar and can be
    edited, reordered, and deleted in :guilabel:`Portal Configuration` →
-   :guilabel:`Sidebar management`. Creating *new* third-party applications is no longer
+   :guilabel:`Sidebar`. Creating *new* third-party applications is no longer
    possible — create an **External Link** sidebar item instead.
 
    The ``Portal.ThirdPartyApplications`` variable is deprecated and will be removed in a

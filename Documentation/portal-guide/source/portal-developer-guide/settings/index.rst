@@ -456,7 +456,7 @@ Third Party Applications Linked Into Portal
    Third-party applications duplicate the **External Link** sidebar items of the Menu
    Management feature and will be removed in a future version. Existing entries still
    appear in the sidebar and can be edited or deleted in :guilabel:`Portal Configuration`
-   → :guilabel:`Sidebar management`. For new entries, create an **External Link** sidebar
+   → :guilabel:`Sidebar`. For new entries, create an **External Link** sidebar
    item there instead.
 
 You can define your custom menu item in the following JSON file. It will be included in

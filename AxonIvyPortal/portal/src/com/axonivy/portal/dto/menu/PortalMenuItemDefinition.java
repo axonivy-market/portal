@@ -16,11 +16,6 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
-/**
- * View-side DTO for menu items shown in the admin table and sidebar. Built on the
- * fly from a source (Dashboard, CustomSubMenuItem, Application) — never persisted.
- * Ordering lives in {@link MenuOrderEntry}; this class only carries display data.
- */
 public abstract class PortalMenuItemDefinition extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = 3039118169604897617L;

@@ -34,7 +34,7 @@ public final class MenuRemovalHandler implements Serializable {
   public static void removeMenu(PortalMenuItemDefinition menu) {
     switch (menu.getType()) {
       case MAIN_DASHBOARD -> removeDashboardMenu(menu);
-      case CUSTOM -> removeCustomMenu(menu);
+      case PROCESS -> removeCustomMenu(menu);
       case EXTERNAL_LINK -> removeExternalLink(menu);
       case STATIC_PAGE -> removeStaticPageMenu(menu);
       default -> {}

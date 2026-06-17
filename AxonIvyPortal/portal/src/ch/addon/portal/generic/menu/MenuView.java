@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -35,6 +37,7 @@ import org.primefaces.model.menu.MenuModel;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
+import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.menu.CustomMenuItemDefinition;
 import com.axonivy.portal.dto.menu.DashboardMenuItemDefinition;
 import com.axonivy.portal.dto.menu.ExternalLinkMenuItemDefinition;
@@ -102,8 +105,14 @@ public class MenuView implements Serializable {
     initTaskParams(workingTask, isWorkingOnATask);
     mainMenuModel = new DefaultMenuModel();
 
-    for (PortalMenuItemDefinition def : MenuLoader.loadMenuDefinitions()) {
-      MenuElement element = buildMenuElement(def);
+    List<PortalMenuItemDefinition> definitions = MenuLoader.loadMenuDefinitions();
+    Set<String> startableProcessLinks =
+        definitions.stream().anyMatch(CustomMenuItemDefinition.class::isInstance)
+            ? collectStartableProcessLinks()
+            : Set.of();
+
+    for (PortalMenuItemDefinition def : definitions) {
+      MenuElement element = buildMenuElement(def, startableProcessLinks);
       if (element != null) {
         mainMenuModel.getElements().add(element);
       }
@@ -112,7 +121,7 @@ public class MenuView implements Serializable {
     mainMenuModel.generateUniqueIds();
   }
 
-  private MenuElement buildMenuElement(PortalMenuItemDefinition def) {
+  private MenuElement buildMenuElement(PortalMenuItemDefinition def, Set<String> startableProcessLinks) {
     if (def instanceof StandardMenuItemDefinition std) {
       return std.getStandardType() == StandardMenuItemDefinitionType.DASHBOARD
           ? buildDashboardItem()
@@ -126,7 +135,9 @@ public class MenuView implements Serializable {
       return buildTopMenuDashboardItem(dashboardDef);
     }
     if (def instanceof CustomMenuItemDefinition customDef) {
-      return buildCustomMenuItem(customDef);
+      return canStartCustomProcess(customDef, startableProcessLinks)
+          ? buildCustomMenuItem(customDef)
+          : null;
     }
     if (def instanceof ExternalLinkMenuItemDefinition externalDef) {
       return externalDef.getSource() == MenuSource.THIRD_PARTY_APP_CONFIGURATION
@@ -146,9 +157,32 @@ public class MenuView implements Serializable {
             : PermissionUtils.doesSessionUserHaveRole(p));
   }
 
+  private Set<String> collectStartableProcessLinks() {
+    return Optional.ofNullable(ProcessService.getInstance().findProcesses()).orElse(List.of()).stream()
+        .map(startable -> stripQuery(startable.getLink().getRelative()))
+        .filter(StringUtils::isNotBlank)
+        .collect(Collectors.toSet());
+  }
+
+  private boolean canStartCustomProcess(CustomMenuItemDefinition def, Set<String> startableProcessLinks) {
+    String startLink = stripQuery(def.getProcessStartPath());
+    if (StringUtils.isBlank(startLink)) {
+      return true;
+    }
+    return startableProcessLinks.contains(startLink);
+  }
+
+  private static String stripQuery(String link) {
+    if (StringUtils.isBlank(link)) {
+      return link;
+    }
+    int queryIndex = link.indexOf('?');
+    return queryIndex >= 0 ? link.substring(0, queryIndex) : link;
+  }
+
   private MenuItem buildStandardSimpleItem(StandardMenuItemDefinition std) {
     StandardMenuItemDefinitionType type = std.getStandardType();
-    MenuKind kind = type == StandardMenuItemDefinitionType.PROCESS ? MenuKind.PROCESS : MenuKind.STANDARD;
+    MenuKind kind = type == StandardMenuItemDefinitionType.PROCESS ? MenuKind.PROCESS_LIST : MenuKind.STANDARD;
     return new PortalMenuBuilder(Ivy.cms().co(type.getCmsUri()), kind, isWorkingOnATask)
         .icon(buildIconClass(std.getIcon()))
         .onClick(type.getOnClick())
@@ -173,7 +207,7 @@ public class MenuView implements Serializable {
     String url = Optional.ofNullable(def.getProcessStart())
         .map(p -> p.getStartLink())
         .orElse(def.getProcessStartPath());
-    return new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.CUSTOM, isWorkingOnATask)
+    return new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.PROCESS, isWorkingOnATask)
         .icon(buildIconClass(def.getIcon()))
         .url(StringUtils.defaultIfBlank(url, DEFAULT_LINK))
         .workingTaskId(workingTaskId)
@@ -344,7 +378,7 @@ public class MenuView implements Serializable {
     return dashboardMenu;
   }
 
-  // --- Breadcrumb (unchanged) -----------------------------------------------------
+  // --- Breadcrumb -----------------------------------------------------
 
   public String getDashboardLink() {
     return PortalNavigator.getDashboardLink();

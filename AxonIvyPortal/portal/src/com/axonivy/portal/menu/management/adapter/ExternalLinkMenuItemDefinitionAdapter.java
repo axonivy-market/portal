@@ -1,17 +1,13 @@
 package com.axonivy.portal.menu.management.adapter;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 import org.apache.commons.lang3.BooleanUtils;
 
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
-import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.dto.menu.ExternalLinkMenuItemDefinition;
 import com.axonivy.portal.menu.management.enums.MenuSource;
 import com.axonivy.portal.service.CustomSubMenuItemService;
-
-import ch.ivyteam.ivy.security.ISecurityConstants;
 
 public class ExternalLinkMenuItemDefinitionAdapter
     implements IMenuItemDefinitionAdapter<ExternalLinkMenuItemDefinition, CustomSubMenuItem> {
@@ -35,10 +31,6 @@ public class ExternalLinkMenuItemDefinitionAdapter
     menu.setIcon(removeIconFamily(source.getIcon()));
     menu.setDisplayTitle(source.getLabel());
     menu.setTitles(initAndSetValue(menu.getDisplayTitle()));
-
-    // By default, custom menu is visible to Everybody
-    menu.setPermissions(new ArrayList<>());
-    menu.getPermissions().add(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
     return menu;
   }
 
@@ -52,7 +44,9 @@ public class ExternalLinkMenuItemDefinitionAdapter
       source = new CustomSubMenuItem();
       source.setId(menu.getId());
       source.setVersion(menu.getVersion());
-      source.setMenuKind(MenuKind.EXTERNAL_LINK);
+      // Keep the legacy Portal.CustomMenuItems shape: an external link is identified by
+      // isExternal=true with no menuKind. Writing a redundant menuKind would reshape
+      // the stored JSON (only static pages persist menuKind as a discriminator).
       source.setIsExternalLink(true);
     }
 

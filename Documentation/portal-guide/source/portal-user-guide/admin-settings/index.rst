@@ -32,7 +32,7 @@ Available Tabs
 .. note::
    The **Applications** tab for third-party applications has been removed. Existing
    third-party applications still appear in the sidebar and can be edited or deleted in
-   :guilabel:`Portal Configuration` → :guilabel:`Sidebar management`. To add a new link
+   :guilabel:`Portal Configuration` → :guilabel:`Sidebar`. To add a new link
    to the sidebar, create an **External Link** item there instead.
 
 Accessing Admin Settings

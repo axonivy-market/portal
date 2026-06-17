@@ -14,7 +14,7 @@ public class CustomMenuItemDefinition extends PortalMenuItemDefinition {
 
   @Override
   public MenuKind getType() {
-    return MenuKind.CUSTOM;
+    return MenuKind.PROCESS;
   }
 
   public String getProcessStartPath() {

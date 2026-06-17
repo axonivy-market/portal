@@ -97,7 +97,7 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static String getSubMenuItemUrlOfCurrentApplication(MenuKind menuKind) {
     String subMenuUrl = switch (menuKind) {
-      case PROCESS -> PORTAL_PROCESS;
+      case PROCESS_LIST -> PORTAL_PROCESS;
       case MAIN_DASHBOARD -> PORTAL_DASHBOARD_PAGE;
       default -> StringUtils.EMPTY;
     };

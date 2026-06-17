@@ -54,12 +54,12 @@ public class PortalMenuNavigator {
     switch (selectedMenuKind) {
       case DASHBOARD:
       case MAIN_DASHBOARD:
-      case CUSTOM:
+      case PROCESS:
       case EXTERNAL_LINK:
       case STATIC_PAGE:
         redirectToSelectedMenuUrl(params);
         break;
-      case PROCESS:
+      case PROCESS_LIST:
         PortalNavigator.navigateToPortalProcess();
         break;
       default:

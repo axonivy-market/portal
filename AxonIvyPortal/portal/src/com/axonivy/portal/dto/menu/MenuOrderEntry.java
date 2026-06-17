@@ -4,27 +4,31 @@ import java.io.Serializable;
 
 import com.axonivy.portal.menu.management.enums.MenuSource;
 
-import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
-
 /**
- * Lean entry persisted in {@code Portal.Menu.Order}. Carries only the source-side
- * reference ({@code id}) and which source it lives in. Display data (title, icon,
- * permissions, url) is looked up from the source on demand by the loader.
- *
- * Order is the entry's position in the list — no index field.
+ * A single entry in the {@code Portal.Menu.Order} manifest: which item, from which
+ * source. Ordering is positional (the index within {@link MenuOrder#getMenus()}); the
+ * version lives on the {@link MenuOrder} wrapper, so an entry is just id + source.
  */
-public class MenuOrderEntry extends AbstractConfiguration implements Serializable {
+public class MenuOrderEntry implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
+  private String id;
   private MenuSource source;
 
   public MenuOrderEntry() {}
 
-  public MenuOrderEntry(String id, MenuSource source, String version) {
-    setId(id);
-    setVersion(version);
+  public MenuOrderEntry(String id, MenuSource source) {
+    this.id = id;
     this.source = source;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
   }
 
   public MenuSource getSource() {

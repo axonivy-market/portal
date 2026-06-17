@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum MenuKind {
-  DASHBOARD, PROCESS, CUSTOM, EXTERNAL_LINK, THIRD_PARTY, MAIN_DASHBOARD, STATIC_PAGE, STANDARD;
+  DASHBOARD, PROCESS_LIST, PROCESS, EXTERNAL_LINK, THIRD_PARTY, MAIN_DASHBOARD, STATIC_PAGE, STANDARD;
 
   @JsonValue
   @Override
@@ -41,5 +41,5 @@ public enum MenuKind {
   }
 
   public static final Set<MenuKind> CREATABLE_MENU_KINDS = Collections
-      .unmodifiableSet(EnumSet.of(EXTERNAL_LINK, CUSTOM, MAIN_DASHBOARD, STATIC_PAGE));
+      .unmodifiableSet(EnumSet.of(EXTERNAL_LINK, PROCESS, MAIN_DASHBOARD, STATIC_PAGE));
 }

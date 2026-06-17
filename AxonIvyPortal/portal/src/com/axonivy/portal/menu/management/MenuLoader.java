@@ -81,9 +81,9 @@ public final class MenuLoader implements Serializable {
 
   public static void persistManifest(List<PortalMenuItemDefinition> ordered) {
     List<MenuOrderEntry> manifest = ordered.stream()
-        .map(def -> new MenuOrderEntry(def.getId(), def.getSource(), AbstractJsonVersion.LATEST))
+        .map(def -> new MenuOrderEntry(def.getId(), def.getSource()))
         .collect(Collectors.toList());
-    MenuOrderService.getInstance().saveAllPublicConfig(manifest);
+    MenuOrderService.getInstance().save(manifest);
   }
 
   private static Map<String, PortalMenuItemDefinition> collectAllSourceItems() {
