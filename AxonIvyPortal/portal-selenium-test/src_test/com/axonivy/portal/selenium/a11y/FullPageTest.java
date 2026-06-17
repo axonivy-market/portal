@@ -1,4 +1,4 @@
-package com.axonivy.portal.selenium.test.a11y;
+package com.axonivy.portal.selenium.a11y;
 
 import static com.codeborne.selenide.Selenide.$;
 import static org.assertj.core.api.Assertions.assertThat;
