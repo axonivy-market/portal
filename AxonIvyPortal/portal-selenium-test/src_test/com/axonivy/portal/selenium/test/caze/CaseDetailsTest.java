@@ -38,6 +38,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 @IvyWebTest
@@ -272,14 +273,16 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testRelatedTaskDestroyTask() {
     createTestingTask();
+    Ivy.log().warn("Tasks visible before action: {0}", detailsPage.getRelatedTaskNames());
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     assertTrue(detailsPage.isRelatedTaskDestroyEnabled(SICK_LEAVE_REQUEST_TASK));
     detailsPage.destroyTask(SICK_LEAVE_REQUEST_TASK);
     detailsPage.confimRelatedTaskDestruction();
-    detailsPage.waitPageLoaded();
-    refreshPage();
-    detailsPage.waitRelatedTasks();
-    WaitHelper.assertTrueWithWait(() -> detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.DESTROYED));
+    Ivy.log().warn("Tasks visible after destroy: {0}", detailsPage.getRelatedTaskNames());
+    WaitHelper.assertTrueWithWait(() -> {
+      Ivy.log().warn("Polling task states: {0}", detailsPage.getRelatedTaskNames());
+      return detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.DESTROYED);
+    });
   }
 
   @Test

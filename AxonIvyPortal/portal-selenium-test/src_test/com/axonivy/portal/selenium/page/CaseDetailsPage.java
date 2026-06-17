@@ -30,6 +30,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 public class CaseDetailsPage extends TemplatePage {
@@ -729,6 +730,12 @@ public class CaseDetailsPage extends TemplatePage {
     int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName))
         .findFirst().getAsInt();
     return taskIndex;
+  }
+
+  public java.util.List<String> getRelatedTaskNames() {
+    return $$(".task-name-value").asFixedIterable().stream()
+        .map(SelenideElement::getText)
+        .collect(java.util.stream.Collectors.toList());
   }
 
   public void reserveTask(String taskName) {
