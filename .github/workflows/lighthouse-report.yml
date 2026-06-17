@@ -15,25 +15,29 @@ permissions:
   pages: write
 on:
   workflow_dispatch:
+    inputs:
+      engineDownloadURL:
+        description: |
+          URL to download Axon Ivy Engine. Defaults to nightly build.
+        type: string
+        required: false
+        default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
 
 env:
-  ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
-  ENGINE_URL: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip
+  ENGINE_DIR: ${{ github.workspace }}/ivy/engine/nightly
   WAIT_TIME: 60
-  SERVER_URL: http://localhost:8080
-  REPORT_PATH: $GITHUB_WORKSPACE/lighthouse-report
-  REPORT_DIR: $GITHUB_WORKSPACE/lighthouse-reports
 
 jobs:
-  LightHouseAudit:
+  a11y-audit:
     runs-on: ubuntu-latest
-    name: Lighthouse Audit - ${{ github.head_ref || github.ref_name }}
-    env:
-      BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+    name: A11y Audit - ${{ github.head_ref || github.ref_name }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v5
 
+      # -----------------------------------------------------------------------
+      # Java + Maven
+      # -----------------------------------------------------------------------
       - name: Set Up Java
         uses: actions/setup-java@v5
         with:
@@ -50,53 +54,54 @@ jobs:
           echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
-          
-      - name: Set Up and Verify Directories
+
+      # -----------------------------------------------------------------------
+      # Engine setup
+      # -----------------------------------------------------------------------
+      - name: Prepare Engine Directory
         run: |
-          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/nightly"
-          mkdir -p $ENGINE_DIR
-          sudo chown -R $USER:$USER $ENGINE_DIR
-          echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
+          mkdir -p "$ENGINE_DIR"
+          sudo chown -R "$USER:$USER" "$ENGINE_DIR"
 
       - name: Download Engine
         run: |
-          cd $ENGINE_DIR
-          wget $ENGINE_URL -O axonivy-engine.zip
+          cd "$ENGINE_DIR"
+          wget "${{ github.event.inputs.engineDownloadURL }}" -O axonivy-engine.zip
           unzip -o axonivy-engine.zip -d .
           rm axonivy-engine.zip
 
-      - name: Verify Engine Directory
-        run: |
-          if [ ! -d "$ENGINE_DIR" ]; then
-            echo "Engine directory does not exist"
-            exit 1
-          fi
-
+      # -----------------------------------------------------------------------
+      # Build and deploy Portal artifacts
+      # -----------------------------------------------------------------------
       - name: Build Portal Modules
         run: |
-          mvn clean install -f pom.xml -Divy.engine.directory=$ENGINE_DIR
+          mvn clean install -f pom.xml -Divy.engine.directory="$ENGINE_DIR"
           mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml
 
-      - name: Deploy Portal Modules
+      - name: Deploy Portal Modules to Engine
         run: |
-          DEPLOYMENT=$ENGINE_DIR/system/demo-applications/portal
-          mkdir -p $DEPLOYMENT
-          rm -rf $DEPLOYMENT/*
-          cp AxonIvyPortal/portal-selenium-test/target/*.zip $DEPLOYMENT
-          ls -l $DEPLOYMENT
+          DEPLOYMENT="$ENGINE_DIR/system/demo-applications/portal"
+          mkdir -p "$DEPLOYMENT"
+          rm -rf "${DEPLOYMENT:?}"/*
+          cp AxonIvyPortal/portal-selenium-test/target/*.zip "$DEPLOYMENT"
 
+      # -----------------------------------------------------------------------
+      # Start Axon Ivy Engine
+      # -----------------------------------------------------------------------
       - name: Start Axon Ivy Engine
         run: |
-          cd "${ENGINE_DIR}/bin"
+          cd "$ENGINE_DIR/bin"
           chmod +x ./AxonIvyEngine
           nohup ./AxonIvyEngine > engine.log 2>&1 &
           echo $! > engine.pid
-          for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
-            if curl -s -f http://localhost:8080/portal/pro/portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp?embedInFrame= > /dev/null; then
+          for ((i=1; i<=$WAIT_TIME; i++)); do
+            if curl -sf "http://localhost:8080/portal/pro/portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp?embedInFrame=" > /dev/null; then
+              echo "Engine ready after ${i}s"
               exit 0
             fi
             sleep 1
           done
+          echo "Engine did not start in time"
           cat engine.log
           exit 1
         env:
@@ -104,85 +109,90 @@ jobs:
           JAVA_HOME: ${{ env.JAVA_HOME }}
           PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${{ env.JAVA_HOME }}/bin:$PATH
 
-      - name: Wait for Server Health Check
-        run: |
-          for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
-            if curl -s -f http://localhost:8080/ > /dev/null; then
-              exit 0
-            fi
-            sleep 1
-          done
-          cat engine.log
-          exit 1
-          
-      - name: Install Chrome Dependencies
-        run: |
-          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable xvfb x11-xserver-utils
-
-      - name: Install Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: '22'
-
-      - name: Install Dependencies
+      # -----------------------------------------------------------------------
+      # Browser (Firefox — same as portal-selenium-test)
+      # -----------------------------------------------------------------------
+      - name: Install Firefox
         run: |
           sudo apt-get update
-          sudo apt-get install -y x11-utils
-          npm init -y
-          npm install lighthouse puppeteer @actions/core
+          sudo apt-get install -y firefox xvfb x11-xserver-utils
 
-      - name: Create Report Directory
-        run: |
-          mkdir -p lighthouse-reports
-          echo "REPORT_DIR=$(pwd)/lighthouse-reports" >> $GITHUB_ENV
-          echo "REPORT_PATH=$(pwd)/lighthouse-reports/report.html" >> $GITHUB_ENV
-
-      - name: Set Up Virtual Display
+      - name: Start Virtual Display
         run: |
           Xvfb :99 -screen 0 1920x1080x24 -ac &
-          sleep 3
-          export DISPLAY=:99
+          sleep 2
+          echo "DISPLAY=:99" >> $GITHUB_ENV
 
-      - name: Run Puppeteer Script
+      # -----------------------------------------------------------------------
+      # Run A11y tests via Maven
+      # -----------------------------------------------------------------------
+      - name: Run A11y Tests
+        id: a11y
+        continue-on-error: true
         run: |
-          cd AxonIvyPortal/portal-selenium-test/lighthouse
-          npm install
-          node puppeteer-script.mjs
+          mvn test \
+            -f AxonIvyPortal/portal-selenium-test/pom.xml \
+            -Dtest="com.axonivy.portal.selenium.a11y.**" \
+            -Divy.engine.directory="$ENGINE_DIR" \
+            -Dtest.engine.url="http://localhost:8080" \
+            -Dselenide.browser=firefox \
+            -Dselenide.headless=true \
+            -Dselenide.browserSize="1920x1080" \
+            -B
+        env:
+          DISPLAY: ${{ env.DISPLAY }}
 
-      - name: Upload Report
+      # -----------------------------------------------------------------------
+      # Upload Surefire / screenshot artifacts
+      # -----------------------------------------------------------------------
+      - name: Upload Test Reports
+        if: always()
         id: upload-artifact
         uses: actions/upload-artifact@v7
         with:
-          name: lighthouse-report
+          name: a11y-report
           path: |
-            AxonIvyPortal/portal-selenium-test/lighthouse/lighthouse-report.html
-            AxonIvyPortal/portal-selenium-test/lighthouse/lighthouse-reports/report.json
+            AxonIvyPortal/portal-selenium-test/target/surefire-reports/
+            AxonIvyPortal/portal-selenium-test/target/screenshots/
 
-      - name: Generate HTML Summary
+      # -----------------------------------------------------------------------
+      # GitHub Actions Job Summary
+      # -----------------------------------------------------------------------
+      - name: Write Job Summary
+        if: always()
         run: |
-          cd AxonIvyPortal/portal-selenium-test/lighthouse
-          HTML_REPORT=""
-          if [ -f "lighthouse-report.html" ]; then
-            HTML_REPORT="lighthouse-report.html"
-          elif [ -f "lighthouse-reports/lighthouse-report.html" ]; then
-            HTML_REPORT="lighthouse-reports/lighthouse-report.html"
+          SUREFIRE_DIR="AxonIvyPortal/portal-selenium-test/target/surefire-reports"
+          TESTS=0; FAILURES=0; ERRORS=0; SKIPPED=0
+          if [ -d "$SUREFIRE_DIR" ]; then
+            for f in "$SUREFIRE_DIR"/TEST-*.xml; do
+              [ -f "$f" ] || continue
+              TESTS=$((TESTS   + $(grep -oP 'tests="\K[0-9]+'   "$f" | head -1)))
+              FAILURES=$((FAILURES + $(grep -oP 'failures="\K[0-9]+' "$f" | head -1)))
+              ERRORS=$((ERRORS   + $(grep -oP 'errors="\K[0-9]+'   "$f" | head -1)))
+              SKIPPED=$((SKIPPED  + $(grep -oP 'skipped="\K[0-9]+'  "$f" | head -1)))
+            done
           fi
-          if [ -n "$HTML_REPORT" ]; then
-            node -e "
-              const core = require('@actions/core');
-              const summary = core.summary.addHeading('🚦 Audit Results');
-              summary.addRaw('The Lighthouse HTML report is available below:');
-              summary.addSeparator().addLink('📋 Download Full Report', 
-                'https://github.com/' + process.env.GITHUB_REPOSITORY + 
-                '/actions/runs/' + process.env.GITHUB_RUN_ID + '/artifacts/' + '${{ steps.upload-artifact.outputs.artifact-id }}');
-              summary.write();
-            "
-          else
-            exit 1
-          fi
-        env:
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_RUN_ID: ${{ github.run_id }}
+          PASSED=$((TESTS - FAILURES - ERRORS - SKIPPED))
+          STATUS="${{ steps.a11y.outcome }}"
+          ICON="✅"
+          [ "$STATUS" = "failure" ] && ICON="❌"
+          echo "## ♿ A11y Audit Results (WCAG 2.1 AA) ${ICON}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| Tests run | ${TESTS} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Passed | ${PASSED} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Failed | ${FAILURES} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Errors | ${ERRORS} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Skipped | ${SKIPPED} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "> Full Surefire XML and screenshots in the [artifact](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${{ steps.upload-artifact.outputs.artifact-id }})." >> $GITHUB_STEP_SUMMARY
+
+      # -----------------------------------------------------------------------
+      # Fail the job if tests failed
+      # -----------------------------------------------------------------------
+      - name: Fail if violations found
+        if: steps.a11y.outcome == 'failure'
+        run: |
+          echo "A11y tests found violations. See Surefire reports in the artifact."
+          exit 1
