@@ -46,7 +46,8 @@
           "code" : [
             "import com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequest;",
             "in.request = new EquipmentRequest();",
-            "in.request.requesterUsername = ivy.session.getSessionUserName();"
+            "in.requesterUsername = ivy.session.getSessionUserName();",
+            "in.request.requesterUsername = in.requesterUsername;"
           ]
         }
       },
@@ -65,9 +66,7 @@
         "task" : {
           "name" : "Submit equipment request",
           "responsible" : {
-            "roles" : [
-              "SELF"
-            ]
+            "roles" : [ "SELF" ]
           },
           "skipTasklist" : true
         },
@@ -78,7 +77,8 @@
             "out.request.reason" : "result.reason",
             "out.request.justification" : "result.justification",
             "out.request.urgency" : "result.urgency",
-            "out.request.managerUsername" : "result.managerUsername"
+            "out.request.managerUsername" : "result.managerUsername",
+            "out.managerUsername" : "result.managerUsername"
           }
         }
       },
@@ -96,10 +96,10 @@
       "config" : {
         "dialog" : "com.axonivy.portal.components.examples.equipmentrequest.ManagerApproval:start()",
         "task" : {
-          "name" : "<%=\"Approve equipment request from \" + ivy.security.users().find(in.request.requesterUsername).getDisplayName()%>",
+          "name" : "<%=ivy.security.users().find(in.requesterUsername).getDisplayName() + \" - Equipment request approval\"%>",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
-            "script" : "in.request.managerUsername"
+            "script" : "in.managerUsername"
           }
         },
         "output" : {
@@ -123,21 +123,16 @@
       "name" : "Approved?",
       "config" : {
         "conditions" : {
-          "f16" : "in.request.isApproved"
+          "f16" : "in.request.isApproved",
+          "f17" : ""
         }
       },
       "visual" : {
         "at" : { "x" : 808, "y" : 192 }
       },
       "connect" : [
-        { "id" : "f16", "to" : "f5", "label" : {
-            "name" : "Yes"
-          } },
-        { "id" : "f17", "to" : "f9", "label" : {
-            "name" : "No",
-            "segment" : 0.4,
-            "offset" : { "x" : 16 }
-          } }
+        { "id" : "f16", "to" : "f5", "label" : { "name" : "Yes" } },
+        { "id" : "f17", "to" : "f9", "label" : { "name" : "No", "segment" : 0.4, "offset" : { "x" : 16 } } }
       ]
     }, {
       "id" : "f5",
@@ -146,11 +141,9 @@
       "config" : {
         "dialog" : "com.axonivy.portal.components.examples.equipmentrequest.ITFulfillment:start()",
         "task" : {
-          "name" : "<%=\"Fulfill equipment request for \" + ivy.security.users().find(in.request.requesterUsername).getDisplayName()%>",
+          "name" : "<%=ivy.security.users().find(in.requesterUsername).getDisplayName() + \" - Equipment request fulfillment\"%>",
           "responsible" : {
-            "roles" : [
-              "IT"
-            ]
+            "roles" : [ "IT" ]
           }
         },
         "output" : {
@@ -177,7 +170,7 @@
           "name" : "Equipment request fulfilled",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
-            "script" : "in.request.requesterUsername"
+            "script" : "in.requesterUsername"
           }
         }
       },
@@ -204,7 +197,7 @@
           "name" : "Update equipment request",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
-            "script" : "in.request.requesterUsername"
+            "script" : "in.requesterUsername"
           }
         },
         "output" : {
@@ -214,7 +207,8 @@
             "out.request.reason" : "result.reason",
             "out.request.justification" : "result.justification",
             "out.request.urgency" : "result.urgency",
-            "out.request.managerUsername" : "result.managerUsername"
+            "out.request.managerUsername" : "result.managerUsername",
+            "out.managerUsername" : "result.managerUsername"
           }
         }
       },

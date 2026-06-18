@@ -4,7 +4,10 @@
   "namespace" : "com.axonivy.portal.components.examples",
   "fields" : [ {
     "name" : "request",
-    "type" : "com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequest",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequest"
+  }, {
+    "name" : "requesterUsername"
+  }, {
+    "name" : "managerUsername"
   } ]
 }
