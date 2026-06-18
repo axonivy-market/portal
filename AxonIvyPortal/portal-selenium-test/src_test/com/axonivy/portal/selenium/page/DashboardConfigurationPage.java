@@ -300,9 +300,17 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
   
   public void selectDashboardDisplayType(DashboardDisplayType type, SelenideElement createDashboardDialog) {
-    String label = DashboardDisplayType.getDisplayLabel(type);
+    String label = displayTypeLabel(type);
     createDashboardDialog.$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     $("ul[id$='dashboard-display-menu_items']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li").filter(Condition.text(label)).first().click();
+  }
+
+  private static String displayTypeLabel(DashboardDisplayType type) {
+    return switch (type) {
+      case SUB_MENU -> "Submenu";
+      case TOP_MENU -> "Sidebar";
+      case HIDDEN -> "Hidden";
+    };
   }
 
   private void selectDashboardIcon(String icon) {

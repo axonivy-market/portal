@@ -77,7 +77,7 @@ public class MenuManagementBean extends AbstractMenuBean {
 
     if (CollectionUtils.isNotEmpty(permissions)) {
       Collection<SecurityMemberDTO> distinctPermissionDTOs = permissions.stream()
-          .collect(Collectors.toMap(SecurityMemberDTO::getMemberName, p -> p, (a, b) -> a))
+          .collect(Collectors.toMap(SecurityMemberDTO::getMemberName, p -> p, (a, _) -> a))
           .values();
 
       displayedPermission = distinctPermissionDTOs.stream().map(SecurityMemberDTO::getDisplayName)

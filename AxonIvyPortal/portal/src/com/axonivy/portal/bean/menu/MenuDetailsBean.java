@@ -54,7 +54,6 @@ import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -236,8 +235,8 @@ public class MenuDetailsBean extends AbstractMenuBean implements IMultiLanguage 
     setSelectedMenuDefinition(new CustomMenuItemDefinition());
     selectedMenuKind = MenuKind.PROCESS;
     contentState = ContentState.CUSTOM_MENU_VARIABLE_CREATE;
+
     selectedMenuDefinition.setPermissions(new ArrayList<>());
-    selectedMenuDefinition.getPermissions().add(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
     initMenuPermissionDtos(selectedMenuDefinition);
     this.lastIndex = lastIndex;
   }
