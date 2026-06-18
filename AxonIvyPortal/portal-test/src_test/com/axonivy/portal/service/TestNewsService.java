@@ -22,13 +22,13 @@ class TestNewsService {
   }
   
   @Test
-  void insert(){
+  void insert() {
     assertThat(service.findAll())
       .isEmpty();
 
     var testNews = new News("icon", "junit.rocks", 
       """
-      Focused CI test are the key 🔑️ to success:
+      Focused CI tests are the key 🔑️ to success:
       - Fast feedback loop
       - Easy to maintain
       - Enables TDD
@@ -39,7 +39,7 @@ class TestNewsService {
       - Increases code quality
       - Facilitates collaboration among team members
       - ... and much more!
-      """, null);
+      """, java.util.Locale.ENGLISH);
     service.saveOrUpdate(List.of(testNews));
 
     assertThat(service.findAll())
