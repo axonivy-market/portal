@@ -16,6 +16,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 import com.deque.html.axecore.results.Results;
@@ -34,7 +35,7 @@ import com.deque.html.axecore.selenium.AxeReporter;
  * To add a new page: create a new //@Test method, navigate/interact as you would
  * in any Selenium test, then call assertNoViolations(getDriver()).
  */
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class FullPageTest extends BaseTest {
 
   private static final List<String> WCAG_TAGS = Arrays.asList("wcag2a", "wcag2aa", "wcag21aa", "best-practice");
@@ -150,12 +151,13 @@ public class FullPageTest extends BaseTest {
     assertNoViolations();
   }
 
-  //@Test
+  @Test
   public void userProfileDialog_shouldHaveNoViolations() {
-    redirectToRelativeLink(DASHBOARD_URL);
-    $(".js-dashboard__wrapper").shouldBe(Condition.visible);
-    $(".js-user-avatar-button").shouldBe(Condition.visible).click();
-    $(".user-profile-menu").shouldBe(Condition.visible);
+    login(TestAccount.ADMIN_USER);
+    showNewDashboard();
+    NewDashboardPage homePage = new NewDashboardPage();
+
+    UserProfilePage userProfilePage = homePage.openMyProfilePage();
     // Audit the open user menu
     assertNoViolations();
   }
