@@ -20,13 +20,11 @@ public class UserDTO {
   
   public UserDTO() {}
 
-  @SuppressWarnings("removal")
   public UserDTO(IUser user) {
     this.name = user.getName();
     this.memberName = user.getMemberName();
     this.displayName = user.getDisplayName();
     this.email = user.getEMailAddress();
-    this.id = user.getId();
     this.isEnabled = user.isEnabled();
     this.securityMemberId = user.getSecurityMemberId();
   }
@@ -35,7 +33,6 @@ public class UserDTO {
     this.name = user.getName();
     this.memberName = user.getMemberName();
     this.displayName = user.getDisplayName();
-    this.id = user.getId();
     this.isEnabled = user.isEnabled();
     this.securityMemberId = user.getSecurityMemberId();
   }
@@ -68,24 +65,6 @@ public class UserDTO {
 
   public void setEmail(String email) {
     this.email = email;
-  }
-
-  /**
-   * @deprecated use {@link #getSecurityMemberId()}
-   * @return userId
-   */
-  @Deprecated(forRemoval = true, since = "11.2.0")
-  public long getId() {
-    return id;
-  }
-
-  /**
-   * {@link Deprecated} use {@link #setSecurityMemberId(String)}
-   * @param id
-   */
-  @Deprecated(forRemoval = true, since = "11.2.0")
-  public void setId(long id) {
-    this.id = id;
   }
 
   public String getMemberName() {

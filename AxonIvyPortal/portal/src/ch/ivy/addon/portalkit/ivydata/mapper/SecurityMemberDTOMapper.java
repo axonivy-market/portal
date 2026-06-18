@@ -13,11 +13,9 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 
 public class SecurityMemberDTOMapper {
   
-  @SuppressWarnings("removal")
   public static SecurityMemberDTO mapFromUserDTO(UserDTO userDTO) {
     SecurityMemberDTO result = new SecurityMemberDTO();
     
-    result.setId(userDTO.getId());
     result.setSecurityMemberId(userDTO.getSecurityMemberId());
     result.setDisplayName(userDTO.getDisplayName());
     result.setMemberName(userDTO.getMemberName());
