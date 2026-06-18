@@ -177,7 +177,12 @@
               <h1 class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noDashboard')}</h1>
             </h:panelGroup>
             <h:panelGroup rendered="#{managedBean.selectedDashboard == null and not managedBean.isEditMode}">
-              <h1 class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noPermission')}</h1>
+              <h1 class="ui-g-12">
+                <h:outputText rendered="#{managedBean.noDashboardAvailable}"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noDashboardAvailable')}" />
+                <h:outputText rendered="#{not managedBean.noDashboardAvailable}"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noPermission')}" />
+              </h1>
             </h:panelGroup>
             <h:panelGroup
               rendered="#{managedBean.selectedDashboard != null and empty managedBean.selectedDashboard.widgets}">

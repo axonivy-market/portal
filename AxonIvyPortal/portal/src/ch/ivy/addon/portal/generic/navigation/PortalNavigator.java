@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.generic.navigation.BaseNavigator;
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
 
-import com.axonivy.portal.components.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.AiProcessService;
 import ch.ivy.addon.portalkit.util.RequestUtils;
@@ -42,7 +42,6 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION = "Start Processes/PortalStart/PortalDashboardConfiguration.ivp";
   private static final String PORTAL_PROCESS_INFO = "Start Processes/PortalStart/ProcessInformation.ivp";
   private static final String PORTAL_DASHBOARD_DETAILS = "Start Processes/PortalStart/DashboardDetails.ivp";
-
   public static final String PORTAL_DASHBOARD_START = "/DefaultDashboardPage.ivp";
   public static final String PORTAL_PROCESS_START = "/DefaultProcessStartListPage.ivp";
   public static final String PORTAL_USER_PROFILE_START =  "/UserProfile.ivp";
@@ -98,7 +97,7 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static String getSubMenuItemUrlOfCurrentApplication(MenuKind menuKind) {
     String subMenuUrl = switch (menuKind) {
-      case PROCESS -> PORTAL_PROCESS;
+      case PROCESS_LIST -> PORTAL_PROCESS;
       case MAIN_DASHBOARD -> PORTAL_DASHBOARD_PAGE;
       default -> StringUtils.EMPTY;
     };

@@ -16,7 +16,7 @@ public class ApplicationMultiLanguage {
   private ApplicationMultiLanguage() {}
 
   public static String getDisplayNameInCurrentLocale(Application application) throws JSONException {
-    Locale currentUserLocale = new Locales().getCurrentLocale();
+    Locale currentUserLocale = Locales.getCurrentLocale();
     DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(application.getDisplayName(), currentUserLocale);
     if (null != displayNameAdaptor.getDisplayNameAsString()) {
       return displayNameAdaptor.getDisplayNameAsString();
