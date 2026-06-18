@@ -19,6 +19,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.deque.html.axecore.results.Results;
 import com.deque.html.axecore.results.Rule;
 import com.deque.html.axecore.selenium.AxeBuilder;
+import com.deque.html.axecore.selenium.AxeReporter;
 
 /**
  * Accessibility audit tests using axe-core (WCAG 2.1 AA).
@@ -190,6 +191,9 @@ public class FullPageTest extends BaseTest {
     Results results = new AxeBuilder()
         .withTags(WCAG_TAGS)
         .analyze(driver);
+
+    String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
+    AxeReporter.writeResultsToJsonFile("target/axe-results-" + methodName + ".json", results);
 
     List<Rule> violations = results.getViolations();
     if (!violations.isEmpty()) {

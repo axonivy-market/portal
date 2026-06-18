@@ -130,6 +130,7 @@ jobs:
         id: a11y
         continue-on-error: true
         run: |
+          mkdir -p AxonIvyPortal/portal-selenium-test/target/axe-reports/ || true
           mvn test \
             -f AxonIvyPortal/portal-selenium-test/pom.xml \
             -Dtest="com.axonivy.portal.selenium.a11y.**" \
@@ -141,6 +142,41 @@ jobs:
             -B
         env:
           DISPLAY: ${{ env.DISPLAY }}
+
+      - name: Generate Pretty HTML Report
+        if: always()
+        run: |
+          npm install axe-html-reporter
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+          const { createHtmlReport } = require('axe-html-reporter');
+
+          const targetDir = 'AxonIvyPortal/portal-selenium-test/target/';
+          const files = fs.readdirSync(targetDir).filter(f => f.startsWith('axe-results-') && f.endsWith('.json'));
+          
+          if (files.length === 0) {
+            console.log('No axe-results JSON files found.');
+            process.exit(0);
+          }
+
+          // Combine results for a single report or generate multiple
+          // createHtmlReport natively supports multiple files by just calling it multiple times or we can put them in axe-reports
+          
+          for (const file of files) {
+            const raw = fs.readFileSync(path.join(targetDir, file), 'utf8');
+            const data = JSON.parse(raw);
+            createHtmlReport({
+              results: data,
+              options: {
+                projectKey: file.replace('axe-results-', '').replace(/\.json$/, ''),
+                outputDir: path.join(targetDir, 'axe-reports'),
+                reportFileName: file.replace(/\.json$/, '.html')
+              }
+            });
+            console.log('Generated HTML report for: ' + file);
+          }
+          "
 
       # -----------------------------------------------------------------------
       # Upload Surefire / screenshot artifacts
@@ -154,6 +190,7 @@ jobs:
           path: |
             AxonIvyPortal/portal-selenium-test/target/surefire-reports/
             AxonIvyPortal/portal-selenium-test/target/screenshots/
+            AxonIvyPortal/portal-selenium-test/target/axe-reports/
 
       # -----------------------------------------------------------------------
       # GitHub Actions Job Summary
@@ -186,7 +223,7 @@ jobs:
           echo "| Errors | ${ERRORS} |" >> $GITHUB_STEP_SUMMARY
           echo "| Skipped | ${SKIPPED} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "> Full Surefire XML and screenshots in the [artifact](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${{ steps.upload-artifact.outputs.artifact-id }})." >> $GITHUB_STEP_SUMMARY
+          echo "> Full Surefire XML, generated Axe HTML reports, and screenshots are available in the [artifact](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${{ steps.upload-artifact.outputs.artifact-id }})." >> $GITHUB_STEP_SUMMARY
 
       # -----------------------------------------------------------------------
       # Fail the job if tests failed
