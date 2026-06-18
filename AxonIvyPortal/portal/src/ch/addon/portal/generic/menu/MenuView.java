@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
@@ -48,6 +49,10 @@ import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
 import com.axonivy.portal.menu.management.MenuLoader;
 import com.axonivy.portal.util.MenuUtils;
 import com.axonivy.portal.menu.management.enums.MenuSource;
+
+import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.service.IvyCacheService;
 
 import ch.addon.portal.generic.menu.PortalMenuItem.PortalMenuBuilder;
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
@@ -158,10 +163,28 @@ public class MenuView implements Serializable {
   }
 
   private Set<String> collectStartableProcessLinks() {
-    return Optional.ofNullable(ProcessService.getInstance().findProcesses()).orElse(List.of()).stream()
+    IvyCacheService cacheService = IvyCacheService.getInstance();
+    String sessionUserId = getSessionUserId();
+    Optional<Object> cached =
+        cacheService.getSessionCacheValue(IvyCacheIdentifier.PORTAL_STARTABLE_PROCESS_LINKS, sessionUserId);
+    if (cached.isPresent() && cached.get() instanceof Set<?> cachedLinks) {
+      return cachedLinks.stream().map(String.class::cast).collect(Collectors.toSet());
+    }
+    Set<String> startableLinks = Optional.ofNullable(ProcessService.getInstance().findProcesses()).orElse(List.of())
+        .stream()
         .map(startable -> stripQuery(startable.getLink().getRelative()))
         .filter(StringUtils::isNotBlank)
         .collect(Collectors.toSet());
+    cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_STARTABLE_PROCESS_LINKS, sessionUserId, startableLinks);
+    return startableLinks;
+  }
+
+  private static String getSessionUserId() {
+    String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.name();
+    if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
+      Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
+    }
+    return (String) Ivy.session().getAttribute(sessionIdAttribute);
   }
 
   private boolean canStartCustomProcess(CustomMenuItemDefinition def, Set<String> startableProcessLinks) {
