@@ -21,7 +21,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class SampleDashboardScreenshotTest extends ScreenshotBaseTest {
   
   private final String SAMPLE_STATISTIC_DASHBOARD_MENU = "KPI Procurement Overview";

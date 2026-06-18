@@ -14,26 +14,26 @@ import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardCloneWidgetScreenshotTest extends ScreenshotBaseTest {
 
-    private NewDashboardPage newDashboardPage;
+  private NewDashboardPage newDashboardPage;
 
-    @Override
-    @BeforeEach
-    public void setup() {
-        super.setup();
-        updatePortalSetting(Variable.ENABLE_GROUP_CHAT.getKey(), "true");
-        redirectToRelativeLink(createTestingTasksUrl);
-        redirectToRelativeLink(createTestingTasksUrl);
-        login(TestAccount.ADMIN_USER);
+  @Override
+  @BeforeEach
+  public void setup() {
+    super.setup();
+    updatePortalSetting(Variable.ENABLE_GROUP_CHAT.getKey(), "true");
+    redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
 
-        redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
-        redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
+    redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
+    redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
 
-        redirectToNewDashBoard();
-        newDashboardPage = new NewDashboardPage();
-    }
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
+  }
 
   @Test
   public void screenshotCloneWidget() throws IOException {
@@ -46,15 +46,15 @@ public class DashboardCloneWidgetScreenshotTest extends ScreenshotBaseTest {
     NewDashboardDetailsEditPage detailsEditPage = new NewDashboardDetailsEditPage();
 
     detailsEditPage.openWelcomeWidgetActionMenu("welcome_1");
-    // ScreenshotUtils.executeDecorateJs("highlightWelcomeWidgetCloneMenu()");
+    ScreenshotUtils.executeDecorateJs("highlightWelcomeWidgetCloneMenu()");
     ScreenshotUtils.captureElementScreenshot(
         detailsEditPage.getWelcomeWidgetActionMenu("welcome_1")
             .getWrappedElement(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER
             + "clone-widget-menu-option");
 
-    // ScreenshotUtils.executeDecorateJs(
-        // String.format("highlightCloneButtonByIndex(%d)", 7));
+    ScreenshotUtils.executeDecorateJs(
+        String.format("highlightCloneButtonByIndex(%d)", 7));
     detailsEditPage.getCloneButtonByIndex(7);
 
     newDashboardPage = new NewDashboardPage();
@@ -75,7 +75,7 @@ public class DashboardCloneWidgetScreenshotTest extends ScreenshotBaseTest {
 
     detailsEditPage.closeCloneWidgetDialog();
 
-    // ScreenshotUtils.executeDecorateJs("highlightCloneFromButton()");
+    ScreenshotUtils.executeDecorateJs("highlightCloneFromButton()");
     ScreenshotUtils
         .captureHalfTopPageScreenShot(ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "clone-widget-from-button");
 
