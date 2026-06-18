@@ -738,6 +738,11 @@ public class CaseDetailsPage extends TemplatePage {
         .collect(java.util.stream.Collectors.toList());
   }
 
+  public boolean isTaskInList(String taskName) {
+    return $$(".task-name-value").asFixedIterable().stream()
+        .anyMatch(e -> e.getText().equals(taskName));
+  }
+
   public void reserveTask(String taskName) {
     Integer index = getTaskRowIndex(taskName);
     String reserveCommandButton =
@@ -1127,6 +1132,10 @@ public class CaseDetailsPage extends TemplatePage {
   public void clickShowOnlyOpenTasks() {
     $("div[id$=':show-only-open-tasks'] .ui-chkbox-box")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public boolean isShowOnlyOpenTasksChecked() {
+    return $("div[id$=':show-only-open-tasks'] .ui-chkbox-box").getAttribute("aria-checked").equals("true");
   }
   
   public void clickShowCaseOwners() {

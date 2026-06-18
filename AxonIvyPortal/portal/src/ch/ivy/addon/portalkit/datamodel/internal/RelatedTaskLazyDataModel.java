@@ -60,8 +60,12 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
     criteria.setSortDescending(false);
     this.getCriteria().setKeyword(StringUtils.EMPTY);
     this.setQueryByBusinessCaseId(true);
+    boolean isReadAll = PermissionUtils.checkReadAllTasksPermission();
+    boolean isOwnCaseTasks = PermissionUtils.checkTaskReadOwnCaseTasksPermission();
     boolean isOwner = isCaseOwnerUser(iCase);
-    this.setAdminQuery(PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner);
+    this.setAdminQuery(isReadAll || isOwnCaseTasks || isOwner);
+    Ivy.log().info("RelatedTaskLazyDataModel.updateCriteria: TASK_READ_ALL={0}, ownCaseTasks={1}, isOwner={2}, isAdminQuery={3}, includedStates={4}",
+        isReadAll, isOwnCaseTasks, isOwner, criteria.isAdminQuery(), criteria.getIncludedStates());
 
     if (HiddenTasksCasesConfig.isHiddenTasksCasesExcluded()) {
       criteria.setCustomTaskQuery(TaskQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull());
@@ -78,6 +82,8 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
 
   @Override
   public List<ITask> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
+    Ivy.log().info("RelatedTaskLazyDataModel.load: isOnlyShowOpenTask={0}, first={1}, iCase={2}",
+        isOnlyShowOpenTask(), first, iCase != null ? iCase.getId() : "null");
     if (isOnlyShowOpenTask()) {
       criteria.setIncludedStates(
           new ArrayList<>(TaskState.WORKING_OR_SUSPENDED_STATES));
@@ -95,6 +101,8 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
     setRowCount(getTaskCount(criteria));
 
     List<ITask> foundTasks = findTasks(criteria, first, pageSize);
+    Ivy.log().info("RelatedTaskLazyDataModel.load: returned {0} tasks, includedStates={1}",
+        foundTasks.size(), criteria.getIncludedStates());
     data.addAll(foundTasks);
     return foundTasks;
   }
@@ -116,8 +124,20 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
   }
 
   private UIComponent findRelatedTaskComponent() {
-    List<UIComponent> children = FacesContext.getCurrentInstance().getViewRoot().findComponent("case-item-details:case-details-container:widgets:case-details-related-running-tasks-card").getChildren();
-    return children.stream().filter(child -> child.getId().equals(taskWidgetComponentId)).findFirst().orElse(null);
+    UIComponent panel = FacesContext.getCurrentInstance().getViewRoot()
+        .findComponent("case-item-details:case-details-container:widgets:case-details-related-running-tasks-card");
+    if (panel == null) {
+      Ivy.log().warn("RelatedTaskLazyDataModel.findRelatedTaskComponent: panel 'case-details-related-running-tasks-card' NOT FOUND in component tree");
+      return null;
+    }
+    Ivy.log().info("RelatedTaskLazyDataModel.findRelatedTaskComponent: panel found, clientId={0}", panel.getClientId());
+    List<UIComponent> children = panel.getChildren();
+    UIComponent result = children.stream().filter(child -> child.getId().equals(taskWidgetComponentId)).findFirst().orElse(null);
+    if (result == null) {
+      Ivy.log().warn("RelatedTaskLazyDataModel.findRelatedTaskComponent: '{0}' NOT FOUND in panel children: [{1}]",
+          taskWidgetComponentId, children.stream().map(UIComponent::getId).collect(java.util.stream.Collectors.joining(", ")));
+    }
+    return result;
   }
 
   @Override

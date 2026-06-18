@@ -43,7 +43,7 @@ import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 @IvyWebTest
 public class CaseDetailsTest extends BaseTest {
-  private static final Logger LOGGER = Logger.getLogger(CaseDetailsTest.class.getName());
+  private static final Logger LOG = Logger.getLogger(CaseDetailsTest.class.getName());
   private static final String BUSINESS_DETAILS_TITLE = "Business Details - Portal - Axon Ivy";
   private static final String ORDER_PIZZA = "Order Pizza";
   private static final String TAKE_ORDER = "Take Order";
@@ -274,14 +274,15 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testRelatedTaskDestroyTask() {
     createTestingTask();
-    LOGGER.warning("Tasks visible before action: " + detailsPage.getRelatedTaskNames());
+    LOG.info("[testRelatedTaskDestroyTask] showOnlyOpenTasks checked before destroy: " + detailsPage.isShowOnlyOpenTasksChecked());
+    LOG.info("[testRelatedTaskDestroyTask] Tasks before destroy: " + detailsPage.getRelatedTaskNames());
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     assertTrue(detailsPage.isRelatedTaskDestroyEnabled(SICK_LEAVE_REQUEST_TASK));
     detailsPage.destroyTask(SICK_LEAVE_REQUEST_TASK);
     detailsPage.confimRelatedTaskDestruction();
-    WaitHelper.waitPageNoAjaxAndAnimation();
-    LOGGER.warning("Tasks visible after destroy: " + detailsPage.getRelatedTaskNames());
-    assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.DESTROYED));
+    LOG.info("[testRelatedTaskDestroyTask] showOnlyOpenTasks checked after destroy: " + detailsPage.isShowOnlyOpenTasksChecked());
+    LOG.info("[testRelatedTaskDestroyTask] Tasks after destroy: " + detailsPage.getRelatedTaskNames());
+    WaitHelper.assertTrueWithWait(() -> detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.DESTROYED));
   }
 
   @Test
