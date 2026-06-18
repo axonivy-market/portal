@@ -113,3 +113,139 @@
   text-align: center;
   color: var(--text-color-secondary, #6c757d);
 }
+
+.audit-trail-note-item {
+  padding: 0.75rem 0;
+}
+
+.audit-trail-note-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.audit-trail-note-author-icon {
+  color: var(--text-color-secondary, #6c757d);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.audit-trail-note-author {
+  font-weight: 600;
+  color: var(--text-color, #333);
+  font-size: 1rem;
+}
+
+.audit-trail-note-date {
+  margin-left: auto;
+  font-size: 1rem;
+  color: var(--text-color-secondary, #6c757d);
+  white-space: nowrap;
+}
+
+.audit-trail-note-content {
+  font-size: 1rem;
+  color: var(--text-color, #333);
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.audit-trail-note-divider {
+  border: none;
+  border-top: 1px solid var(--surface-border, #dee2e6);
+  margin: 0;
+}
+
+.audit-trail-task-item {
+  padding: 0.75rem 0;
+}
+
+.audit-trail-task-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.audit-trail-task-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.audit-trail-task-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-color, #333);
+  word-break: break-word;
+}
+
+.audit-trail-task-responsible {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-color-secondary, #6c757d);
+  font-size: 1rem;
+}
+
+.audit-trail-task-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.audit-trail-task-state {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--state-border-radius, 10px);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background-color: var(--state-open-color, #C9C9C9);
+  color: var(--text-color, #333);
+}
+
+.audit-trail-state-done {
+  background-color: var(--state-done-background, #D4EBA2);
+}
+
+.audit-trail-state-failed,
+.audit-trail-state-destroyed {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.audit-trail-task-date {
+  font-size: 1rem;
+  color: var(--text-color-secondary, #6c757d);
+  white-space: nowrap;
+}
+
+.audit-trail-toggle-icon {
+  font-size: 1rem;
+  color: var(--text-color-secondary, #6c757d);
+  transition: transform 0.2s ease;
+  transform: rotate(180deg);
+}
+
+.audit-trail-toggle-icon--open {
+  transform: rotate(0deg);
+}
+
+.audit-trail-task-notes-container {
+  padding: 0.75rem 0 0 0;
+}
+
+.audit-trail-task-divider {
+  border: none;
+  border-top: 1px solid var(--surface-border, #dee2e6);
+  margin: 0;
+}

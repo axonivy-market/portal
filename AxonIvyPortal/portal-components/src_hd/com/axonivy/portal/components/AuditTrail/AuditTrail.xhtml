@@ -12,67 +12,106 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{auditTrailBean.prepareData(cc.attrs.taskId, cc.attrs.case)}" type="preRenderComponent" />
+  <f:event listener="#{auditTrailBean.init(cc.attrs.taskId, cc.attrs.case)}" type="preRenderComponent" />
   <h:panelGroup id="audit-trail-content" layout="block">
-    <h:outputText value="No previous tasks found." rendered="#{empty auditTrailBean.previousTasks}"
-      styleClass="audit-trail-empty-message" />
+    <p:tabView styleClass="audit-trail-tab-view">
+      <p:ajax event="tabChange" listener="#{auditTrailBean.onTabChange}" update="audit-trail-tasks-panel" />
 
-    <p:tabView value="#{auditTrailBean.previousTasks}" var="task"
-      rendered="#{not empty auditTrailBean.previousTasks}" styleClass="audit-trail-tab-view">
-      <p:tab title="#{task.names().current()}" ariaLabel="#{task.names().current()}">
-
-        <div class="audit-trail-card">
-          <div class="audit-trail-fields">
-            <div class="audit-trail-field-row">
-              <span class="audit-trail-field-label">Responsible</span>
-              <span class="audit-trail-field-value">#{task.workerUser != null ? task.workerUser.displayName : '—'}</span>
-            </div>
-            <div class="audit-trail-field-row">
-              <span class="audit-trail-field-label">Task ID</span>
-              <span class="audit-trail-field-value">#{task.id}</span>
-            </div>
-            <div class="audit-trail-field-row">
-              <span class="audit-trail-field-label">Priority</span>
-              <span class="audit-trail-field-value">#{task.priority}</span>
-            </div>
-            <div class="audit-trail-field-row">
-              <span class="audit-trail-field-label">State</span>
-              <span class="audit-trail-field-value">#{task.businessState}</span>
-            </div>
-            <div class="audit-trail-field-row">
-              <span class="audit-trail-field-label">Description</span>
-              <span class="audit-trail-field-value">#{task.description}</span>
-            </div>
-            <div class="audit-trail-field-row">
-              <span class="audit-trail-field-label">Start Time</span>
-              <span class="audit-trail-field-value">
-                <h:outputText value="#{task.startTimestamp}">
+      <p:tab title="Case Notes" ariaLabel="Case Notes">
+        <h:outputText value="No case notes found." styleClass="audit-trail-empty-message"
+          rendered="#{cc.attrs.case == null or empty cc.attrs.case.notes().all()}" />
+        <h:panelGroup layout="block" styleClass="audit-trail-notes"
+          rendered="#{cc.attrs.case != null and not empty cc.attrs.case.notes().all()}">
+          <ui:repeat value="#{cc.attrs.case.notes().all()}" var="caseNote" varStatus="status">
+            <div class="audit-trail-note-item">
+              <div class="audit-trail-note-header">
+                <i class="si si-single-neutral-actions audit-trail-note-author-icon" />
+                <span class="audit-trail-note-author">#{caseNote.authorName()}</span>
+                <h:outputText styleClass="audit-trail-note-date" value="#{caseNote.createdAt()}">
                   <f:convertDateTime type="both" dateStyle="medium" timeStyle="short" />
                 </h:outputText>
-              </span>
+              </div>
+              <div class="audit-trail-note-body">
+                <span class="audit-trail-note-content">#{caseNote.content()}</span>
+              </div>
             </div>
-            <div class="audit-trail-field-row">
-              <span class="audit-trail-field-label">Expiry Time</span>
-              <span class="audit-trail-field-value">
-                <h:outputText value="#{task.expiryTimestamp}">
-                  <f:convertDateTime type="both" dateStyle="medium" timeStyle="short" />
-                </h:outputText>
-              </span>
-            </div>
-            <div class="audit-trail-field-row">
-              <span class="audit-trail-field-label">End Time</span>
-              <span class="audit-trail-field-value">
-                <h:outputText value="#{task.endTimestamp}">
-                  <f:convertDateTime type="both" dateStyle="medium" timeStyle="short" />
-                </h:outputText>
-              </span>
-            </div>
-          </div>
-        </div>
-
+            <h:panelGroup rendered="#{not status.last}">
+              <hr class="audit-trail-note-divider" />
+            </h:panelGroup>
+          </ui:repeat>
+        </h:panelGroup>
       </p:tab>
+
+      <p:tab title="Tasks" ariaLabel="Tasks">
+        <h:panelGroup id="audit-trail-tasks-panel" layout="block">
+          <h:outputText value="No previous tasks found." styleClass="audit-trail-empty-message"
+            rendered="#{empty auditTrailBean.previousTasks}" />
+          <h:panelGroup layout="block" rendered="#{not empty auditTrailBean.previousTasks}">
+            <ui:repeat value="#{auditTrailBean.previousTasks}" var="task" varStatus="taskStatus">
+              <div class="audit-trail-task-item">
+                <div class="audit-trail-task-header" onclick="auditTrailToggle(this)">
+                  <div class="audit-trail-task-left">
+                    <span class="audit-trail-task-name">#{task.names().current()}</span>
+                    <div class="audit-trail-task-responsible">
+                      <i class="si si-single-neutral-actions audit-trail-note-author-icon" />
+                      <span>#{task.workerUser != null ? task.workerUser.displayName : '—'}</span>
+                    </div>
+                  </div>
+                  <div class="audit-trail-task-right">
+                    <span class="audit-trail-task-state audit-trail-state-#{task.businessState.toString().toLowerCase()}">
+                      #{task.businessState}
+                    </span>
+                    <h:outputText styleClass="audit-trail-task-date" value="#{task.endTimestamp}">
+                      <f:convertDateTime type="both" dateStyle="medium" timeStyle="short" />
+                    </h:outputText>
+                    <i class="si si-arrow-button-up-2 audit-trail-toggle-icon" />
+                  </div>
+                </div>
+                <div class="audit-trail-task-notes-container" style="display:none">
+                  <h:outputText value="No notes available." styleClass="audit-trail-empty-message"
+                    rendered="#{empty task.notes().all()}" />
+                  <h:panelGroup layout="block" styleClass="audit-trail-notes"
+                    rendered="#{not empty task.notes().all()}">
+                    <ui:repeat value="#{task.notes().all()}" var="note" varStatus="noteStatus">
+                      <div class="audit-trail-note-item">
+                        <div class="audit-trail-note-header">
+                          <i class="si si-single-neutral-actions audit-trail-note-author-icon" />
+                          <span class="audit-trail-note-author">#{note.authorName()}</span>
+                          <h:outputText styleClass="audit-trail-note-date" value="#{note.createdAt()}">
+                            <f:convertDateTime type="both" dateStyle="medium" timeStyle="short" />
+                          </h:outputText>
+                        </div>
+                        <div class="audit-trail-note-body">
+                          <span class="audit-trail-note-content">#{note.content()}</span>
+                        </div>
+                      </div>
+                      <h:panelGroup rendered="#{not noteStatus.last}">
+                        <hr class="audit-trail-note-divider" />
+                      </h:panelGroup>
+                    </ui:repeat>
+                  </h:panelGroup>
+                </div>
+              </div>
+              <h:panelGroup rendered="#{not taskStatus.last}">
+                <hr class="audit-trail-task-divider" />
+              </h:panelGroup>
+            </ui:repeat>
+          </h:panelGroup>
+        </h:panelGroup>
+      </p:tab>
+
     </p:tabView>
   </h:panelGroup>
+
+  <script type="text/javascript">
+    function auditTrailToggle(header) {
+      var notes = header.nextElementSibling;
+      var icon = header.querySelector('.audit-trail-toggle-icon');
+      var isOpen = notes.style.display !== 'none';
+      notes.style.display = isOpen ? 'none' : 'block';
+      icon.classList.toggle('audit-trail-toggle-icon--open', !isOpen);
+    }
+  </script>
 </cc:implementation>
 
 </html>
