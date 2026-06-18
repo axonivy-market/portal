@@ -4,6 +4,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,6 +15,7 @@ import org.openqa.selenium.WebDriver;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 import com.deque.html.axecore.results.Results;
@@ -32,7 +34,7 @@ import com.deque.html.axecore.selenium.AxeReporter;
  * To add a new page: create a new //@Test method, navigate/interact as you would
  * in any Selenium test, then call assertNoViolations(getDriver()).
  */
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class FullPageTest extends BaseTest {
 
   private static final List<String> WCAG_TAGS = Arrays.asList("wcag2a", "wcag2aa", "wcag21aa", "best-practice");
@@ -69,6 +71,9 @@ public class FullPageTest extends BaseTest {
   @Test
   public void dashboard_shouldHaveNoViolations() {
     redirectToRelativeLink(DASHBOARD_URL);
+    var homePage = new NewDashboardPage();
+    homePage.waitForCaseWidgetLoaded();
+    homePage.waitForTaskWidgetLoaded();
     $(".js-dashboard__wrapper").shouldBe(Condition.visible);
     assertNoViolations();
   }
@@ -188,12 +193,17 @@ public class FullPageTest extends BaseTest {
    */
   private void assertNoViolations() {
     WebDriver driver = WebDriverRunner.getWebDriver();
+    
     Results results = new AxeBuilder()
         .withTags(WCAG_TAGS)
         .analyze(driver);
 
+    // Strip passed and inapplicable results to prevent bloated JSON sizes
+    results.setPasses(Collections.emptyList());
+    results.setInapplicable(Collections.emptyList());
+
     String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
-    AxeReporter.writeResultsToJsonFile("target/axe-results-" + methodName + ".json", results);
+    AxeReporter.writeResultsToJsonFile("target/axe-results-" + methodName, results);
 
     List<Rule> violations = results.getViolations();
     if (!violations.isEmpty()) {
