@@ -1,0 +1,17 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "simpleName" : "ITFulfillmentData",
+  "namespace" : "com.axonivy.portal.components.examples.equipmentrequest.ITFulfillment",
+  "fields" : [ {
+    "name" : "requestData",
+    "type" : "com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequest"
+  }, {
+    "name" : "requester",
+    "type" : "com.axonivy.portal.components.dto.UserDTO"
+  }, {
+    "name" : "itMessage"
+  }, {
+    "name" : "steps",
+    "type" : "java.util.List<String>"
+  } ]
+}

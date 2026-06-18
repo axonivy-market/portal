@@ -1,0 +1,10 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "simpleName" : "EquipmentRequestData",
+  "namespace" : "com.axonivy.portal.components.examples",
+  "fields" : [ {
+    "name" : "request",
+    "type" : "com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequest",
+    "modifiers" : [ ]
+  } ]
+}

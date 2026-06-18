@@ -1,0 +1,133 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
+  "id" : "2BBE1234ABCD5678",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequestForm.EquipmentRequestFormData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "signature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "itemType", "type" : "com.axonivy.portal.components.examples.enums.EquipmentItemType", "desc" : "" },
+            { "name" : "reason", "type" : "String", "desc" : "" },
+            { "name" : "justification", "type" : "String", "desc" : "" },
+            { "name" : "urgency", "type" : "com.axonivy.portal.components.examples.enums.EquipmentUrgency", "desc" : "" },
+            { "name" : "managerUsername", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.itemType" : "in.requestData.itemType",
+            "result.reason" : "in.requestData.reason",
+            "result.justification" : "in.requestData.justification",
+            "result.urgency" : "in.requestData.urgency",
+            "result.managerUsername" : "in.requestData.managerUsername"
+          }
+        },
+        "guid" : "2BBE1234ABCD5679"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "2BBE1234ABCD567A"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "load data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.UserUtils;",
+            "import com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequest;",
+            "import com.axonivy.portal.components.examples.enums.EquipmentItemType;",
+            "import com.axonivy.portal.components.examples.enums.EquipmentUrgency;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "",
+            "in.requestData = ivy.repo.get(EquipmentRequest.class) as EquipmentRequest;",
+            "if (StringUtils.isEmpty(in.requestData.requesterUsername)) {",
+            "  in.requestData.requesterUsername = ivy.session.getSessionUserName();",
+            "  ivy.repo.save(in.requestData);",
+            "}",
+            "in.itemTypes = EquipmentItemType.class.getEnumConstants();",
+            "in.urgencies = EquipmentUrgency.class.getEnumConstants();",
+            "in.managers = UserUtils.findUsers(\"\", 0, -1, [], []);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f16" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "save data",
+      "config" : {
+        "output" : {
+          "code" : "ivy.repo.save(in.requestData);"
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f16",
+      "type" : "Script",
+      "name" : "init steps",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.ArrayList;",
+            "in.steps = new ArrayList();",
+            "in.steps.add(\"Submit Request\");",
+            "in.steps.add(\"Manager Approval\");",
+            "in.steps.add(\"IT Fulfillment\");",
+            "in.steps.add(\"Result\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 464, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f1" }
+      ]
+    } ]
+}

@@ -1,0 +1,28 @@
+/* Equipment Request example styles */
+.equipment-request-rejection-banner {
+  background-color: var(--state-destroyed-background, #fff3cd);
+  border: 1px solid var(--state-destroyed-color, #ffc107);
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+}
+
+.equipment-request-rejection-icon {
+  color: var(--state-destroyed-color, #e65c00);
+  font-size: 1.1rem;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.equipment-request-rejection-title {
+  font-weight: 600;
+  color: var(--state-destroyed-color, #e65c00);
+  vertical-align: middle;
+}
+
+.equipment-request-rejection-reason {
+  display: block;
+  margin-top: 6px;
+  color: var(--text-color, #333);
+  font-style: italic;
+}

@@ -4,6 +4,16 @@ Dialog:
     finish: Beenden
     reject: Ablehnen
 Enums:
+  EquipmentItemType:
+    HEADSET: Headset
+    KEYBOARD: Tastatur
+    LAPTOP: Laptop
+    MONITOR: Monitor
+    MOUSE: Maus
+    OTHER: Sonstiges
+  EquipmentUrgency:
+    NORMAL: Normal
+    URGENT: Dringend
   LeaveType:
     ANNUAL_LEAVE: Jahresurlaub
     MATERNITY_LEAVE: Mutterschaftsurlaub

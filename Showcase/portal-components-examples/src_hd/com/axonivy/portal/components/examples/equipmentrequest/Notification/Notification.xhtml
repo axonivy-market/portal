@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui">
+<h:body>
+  <ui:composition template="/layouts/frame-10.xhtml">
+    <ui:define name="title">Request Fulfilled</ui:define>
+
+    <ui:define name="content">
+      <h:outputStylesheet library="css" name="equipment-request-examples.css" />
+
+      <h:form id="equipment-request">
+        <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
+          <div class="ui-g-12"></div>
+          <p:panel styleClass="card ui-g-12">
+            <h4>Your equipment request has been fulfilled.</h4>
+            <h:panelGroup styleClass="ui-g" layout="block">
+              <h:panelGrid columns="1" columnClasses="ui-g-12" styleClass="ui-g-12">
+
+                <h:panelGroup class="MarTop10">
+                  <p:outputLabel for="requester" value="Requester" />
+                  <p:inputText id="requester" disabled="true" value="#{data.requester.displayName}" styleClass="MarTop10" />
+                </h:panelGroup>
+
+                <h:panelGroup class="MarTop20">
+                  <p:outputLabel for="item-type" value="Item Type" />
+                  <p:inputText id="item-type" disabled="true" value="#{data.requestData.itemType.getLabel()}" styleClass="MarTop10" />
+                </h:panelGroup>
+
+                <h:panelGroup class="MarTop20">
+                  <p:outputLabel for="urgency" value="Urgency" />
+                  <p:inputText id="urgency" disabled="true" value="#{data.requestData.urgency.getLabel()}" styleClass="MarTop10" />
+                </h:panelGroup>
+
+                <h:panelGroup class="MarTop20">
+                  <p:outputLabel for="reason" value="Reason" />
+                  <p:inputTextarea id="reason" disabled="true" value="#{data.requestData.reason}" rows="3" styleClass="MarTop10" />
+                </h:panelGroup>
+
+                <h:panelGroup class="MarTop20" rendered="#{not empty data.requestData.itMessage}">
+                  <p:outputLabel for="it-message" value="Message from IT" />
+                  <p:inputTextarea id="it-message" disabled="true" value="#{data.requestData.itMessage}" rows="3" styleClass="MarTop10" />
+                </h:panelGroup>
+
+              </h:panelGrid>
+            </h:panelGroup>
+          </p:panel>
+        </h:panelGroup>
+
+        <p:commandButton value="Finish" icon="ti ti-check"
+          styleClass="Fright MarTop10" partialSubmit="true" id="finish-btn"
+          actionListener="#{logic.close}" process=":equipment-request" update=":equipment-request"
+          style="width: auto" />
+      </h:form>
+      <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="3" />
+
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

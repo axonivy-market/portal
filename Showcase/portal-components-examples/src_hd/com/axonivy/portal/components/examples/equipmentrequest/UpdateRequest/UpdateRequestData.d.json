@@ -1,0 +1,21 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "simpleName" : "UpdateRequestData",
+  "namespace" : "com.axonivy.portal.components.examples.equipmentrequest.UpdateRequest",
+  "fields" : [ {
+    "name" : "requestData",
+    "type" : "com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequest"
+  }, {
+    "name" : "itemTypes",
+    "type" : "java.util.List<com.axonivy.portal.components.examples.enums.EquipmentItemType>"
+  }, {
+    "name" : "urgencies",
+    "type" : "java.util.List<com.axonivy.portal.components.examples.enums.EquipmentUrgency>"
+  }, {
+    "name" : "managers",
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
+  }, {
+    "name" : "steps",
+    "type" : "java.util.List<String>"
+  } ]
+}

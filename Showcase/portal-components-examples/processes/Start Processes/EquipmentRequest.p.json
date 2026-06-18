@@ -1,0 +1,272 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
+  "id" : "2AAECC1234567890",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.EquipmentRequestData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "signature" : "start",
+        "request" : {
+          "name" : "Equipment Request",
+          "description" : "This process allows employees to submit equipment requests. The request is routed to a manager for approval, then to IT for fulfillment.",
+          "customFields" : [
+            { "name" : "cssIcon", "value" : "\"ti ti-device-laptop\"" }
+          ]
+        },
+        "permission" : {
+          "anonymous" : false,
+          "error" : ">> Ignore Exception"
+        },
+        "task" : {
+          "name" : "Submit equipment request"
+        },
+        "case" : {
+          "name" : "Equipment Request",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "Script",
+      "name" : "Initialize Request",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequest;",
+            "in.request = new EquipmentRequest();",
+            "in.request.requesterUsername = ivy.session.getSessionUserName();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f2" }
+      ]
+    }, {
+      "id" : "f2",
+      "type" : "UserTask",
+      "name" : "EquipmentRequestForm",
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequestForm:start()",
+        "task" : {
+          "name" : "Submit equipment request",
+          "responsible" : {
+            "roles" : [
+              "SELF"
+            ]
+          },
+          "skipTasklist" : true
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.request.itemType" : "result.itemType",
+            "out.request.reason" : "result.reason",
+            "out.request.justification" : "result.justification",
+            "out.request.urgency" : "result.urgency",
+            "out.request.managerUsername" : "result.managerUsername"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 400, "y" : 192 },
+        "size" : { "width" : 144 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f3",
+      "type" : "UserTask",
+      "name" : "ManagerApproval",
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.equipmentrequest.ManagerApproval:start()",
+        "task" : {
+          "name" : "<%=\"Approve equipment request from \" + ivy.security.users().find(in.request.requesterUsername).getDisplayName()%>",
+          "responsible" : {
+            "type" : "USER_FROM_ATTRIBUTE",
+            "script" : "in.request.managerUsername"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.request.isApproved" : "result.isApproved",
+            "out.request.rejectionReason" : "result.rejectionReason"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 192 },
+        "size" : { "width" : 144 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "Alternative",
+      "name" : "Approved?",
+      "config" : {
+        "conditions" : {
+          "f16" : "in.request.isApproved"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 808, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f5", "label" : {
+            "name" : "Yes"
+          } },
+        { "id" : "f17", "to" : "f9", "label" : {
+            "name" : "No",
+            "segment" : 0.4,
+            "offset" : { "x" : 16 }
+          } }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "UserTask",
+      "name" : "ITFulfillment",
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.equipmentrequest.ITFulfillment:start()",
+        "task" : {
+          "name" : "<%=\"Fulfill equipment request for \" + ivy.security.users().find(in.request.requesterUsername).getDisplayName()%>",
+          "responsible" : {
+            "roles" : [
+              "IT"
+            ]
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.request.itMessage" : "result.itMessage"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1008, "y" : 192 },
+        "size" : { "width" : 144 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "UserTask",
+      "name" : "Notification",
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.equipmentrequest.Notification:start()",
+        "task" : {
+          "name" : "Equipment request fulfilled",
+          "responsible" : {
+            "type" : "USER_FROM_ATTRIBUTE",
+            "script" : "in.request.requesterUsername"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1216, "y" : 192 },
+        "size" : { "width" : 144 }
+      },
+      "connect" : [
+        { "id" : "f19", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1424, "y" : 192 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "UserTask",
+      "name" : "UpdateRequest",
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.equipmentrequest.UpdateRequest:start()",
+        "task" : {
+          "name" : "Update equipment request",
+          "responsible" : {
+            "type" : "USER_FROM_ATTRIBUTE",
+            "script" : "in.request.requesterUsername"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.request.itemType" : "result.itemType",
+            "out.request.reason" : "result.reason",
+            "out.request.justification" : "result.justification",
+            "out.request.urgency" : "result.urgency",
+            "out.request.managerUsername" : "result.managerUsername"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 384 },
+        "size" : { "width" : 144 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f3", "via" : [ { "x" : 448, "y" : 384 }, { "x" : 448, "y" : 192 } ] }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This process allows employees to request equipment (laptop, monitor, etc.).",
+        "Manager approves or rejects. If rejected, the requester can update and resubmit.",
+        "Once approved, IT fulfills the request and notifies the requester."
+      ],
+      "visual" : {
+        "at" : { "x" : 400, "y" : 528 },
+        "size" : { "width" : 784, "height" : 44 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f0" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "User is taken directly to this task (skipTaskList).",
+        "Fills in item type, reason, justification, urgency and selects a manager."
+      ],
+      "visual" : {
+        "at" : { "x" : 400, "y" : 64 },
+        "size" : { "width" : 528, "height" : 44 }
+      },
+      "connect" : [
+        { "id" : "f22", "to" : "f2" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "If manager rejects, the requester sees the rejection reason",
+        "and can update the request before resubmitting to the manager."
+      ],
+      "visual" : {
+        "at" : { "x" : 448, "y" : 448 },
+        "size" : { "width" : 528, "height" : 44 }
+      },
+      "connect" : [
+        { "id" : "f23", "to" : "f9" }
+      ]
+    } ]
+}
