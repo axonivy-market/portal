@@ -365,7 +365,7 @@ public class AbsencePage extends TemplatePage {
     if (!growlMessage.exists()) {
       return;
     }
-    SelenideElement growlItem = $(growlMessage.findElement(By.className("ui-growl-item-container")));
+    SelenideElement growlItem = growlMessage.$(By.className("ui-growl-item-container"));
     if (growlItem.exists() && growlItem.isDisplayed()) {
       growlItem.shouldBe(disappear, DEFAULT_TIMEOUT);
     }
