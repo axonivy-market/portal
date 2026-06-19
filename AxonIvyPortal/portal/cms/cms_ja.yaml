@@ -86,10 +86,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: 外部 URL
       PROCESS: Axon Ivy プロセス
-    DashboardDisplayType:
-      HIDDEN: 非表示
-      SUB_MENU: サブメニュー
-      TOP_MENU: サイドバー
     DashboardWidgetType:
       CASE: ケースウィジェット
       CLIENT_STATISTIC: 統計ウィジェット
@@ -197,6 +193,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskDocumentsPageTitle: タスクドキュメント
   adminSettings:
     addLanguages: 言語の追加
+    addNewApplication: 新規サードパーティーアプリの追加
     announcement:
       announcement: 通知
       announcementsDisabled: 通知は無効になっています。
@@ -207,13 +204,27 @@ ch.ivy.addon.portalkit.ui.jsf:
       information: この領域に、一般的な情報 (ダウンタイム、変更など) を通知するできます。このメッセージは、すべてのポータル ユーザーが見ることができます。
       saveChanges: 変更内容を保存
       tabTitle: 通知
+    appDisplayName: 表示名
+    appDisplayNameRequiredMsg: アプリケーションの表示名を入力してください。
+    appNameCharactersLimit: アプリケーション名に使えるのは [\p{Alnum}_-]+ だけです。
+    appNameRequiredMsg: アプリケーション名を入力してください。
+    applicationHint: 並び替えにドラッグ＆ドロップを使用する。
+    applicationLinkRequiredMsg: ポータルのリンクを入力してください。
+    applicationList:
+      addNewApplication: 新しいアプリケーションの追加
+      applicationSelectionHeader: アプリケーションの選択
+      menuIcon: メニューアイコン
+    applications: アプリケーション
     applicationtype:
       thirdPartyApplication: サードパーティーのアプリケーション
     currentValue: 現在の値
     defaultValue: デフォルト値
+    deleteAppConfirmation: アプリケーション「<b>{0}</b>」を削除してもよろしいですか？
     dialogclosinginformation:
       dialogHeader: ポータル設定終了
       informMessage: ポータル設定を変更した場合、新しい構成を有効にするには現在のページの更新が必要です。
+    duplicatePortalAppMsg: このアプリケーションは既に存在しています。別のアプリケーションを選択してください。
+    editApplication: アプリケーション編集
     editSetting: 設定の編集
     embedInFrame: 処理／タスクをIFrameモードで開始
     emptySupportedLanguages: 追加の言語はサポートされていません
@@ -294,6 +305,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       sidebarMode: サイドバーのモードを制御します。ホバーはマウスオーバーで展開、クリックはトグルボタンで切り替え、固定は常に展開、非表示はサイドバーを完全に非表示にします。
       uploadDocumentWhiteListExtensionNote: すべての拡張子を許可する場合は、空欄にしてください。一部の拡張子のみを許可する場合は、対象の拡張子をカンマで区切って入力してください。（例：pdf, txt, doc, docx）
     key: キー
+    link: リンク
     loading: 読み込み中
     loginLogoSizeTooltip: 推奨サイズ<BR/>正方形ロゴ：80 x 80 ピクセル<BR/>長方形ロゴ：191 x 50 ピクセル
     logoSizeRecommendation:
@@ -505,6 +517,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteContext: '{0}を削除'
     deleteDocumentHeaderText: このドキュメントを削除しますか?
     deleteFilterHeaderText: このフィルターを削除しますか?
+    deleteSettingHeaderText: この設定を削除しますか?
     description: 説明
     design: デザイン
     destroy: 破棄
@@ -773,43 +786,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateFromScratchDescription: 最初から独自のダッシュボードを作成する
       CreateNewPrivateDashboard: 新しい個人用ダッシュボードを作成する
       CreateNewPublicDashboard: 新しい公開用ダッシュボードを作成する
-      Description: この領域では、要件に応じてダッシュボードを構成し、ナビゲーション要素の順序を変更できます。
+      Description: この領域では、要件に応じてダッシュボードを構成できます。
       DoNotSupportMobile: ダッシュボードの設定は、モバイルデバイスではサポートされていません。
       EditPrivateDashboards: 個人用ダッシュボードを編集する
       EditPublicDashboards: 公開用ダッシュボードを編集する
-      PrivateTabInfo: '個人用ダッシュボードを作成・管理します。<ul><li>あなただけに表示されます</li><li>サイドバーのダッシュボードアイコンの下に表示されます</li></ul>'
-      PublicTabInfo: 'すべてのユーザー向けのダッシュボードを管理します。表示設定:<ul><li><b>サイドバー</b> — サイドバーメニューのトップレベル項目として表示</li><li><b>サブメニュー</b> — ダッシュボードアイコンの下に表示</li><li><b>非表示</b> — ユーザーに表示されません</li></ul>'
-      Visibility: 表示設定
       ExportDashboard: ダッシュボードをエクスポート
       ExportReferencedDialogHeader: ダッシュボードが他のダッシュボードを参照しています
       ExportReferencedDialogMessage: '以下のダッシュボードはナビゲーションウィジェットから参照されています。ウィジェットが正しく機能するように、それらもエクスポートおよびインポートしてください:'
       ExportReferencedDialogProceed: このままエクスポート
-      Hidden: 非表示
-      HiddenDashboards: 非表示項目
-      HiddenDashboardsDescription: サイドバーには表示されません。直接リンク先として引き続き使用できます（例：プロセスフロー内のランディングページ）。
-      SubMenuDashboards: サブメニューダッシュボード
-      SubMenuDashboardsDescription: サイドバーのダッシュボードアイコンの下にグループ表示されます。
-      SidebarTopLevelDashboards: サイドバートップレベルダッシュボード
-      SidebarTopLevelDashboardsDescription: サイドバーのトップレベル項目として表示されます。
-      MenuDashboards: サイドバー項目
-      MenuDashboardsDescription: これらのダッシュボードはサイドバーのトップレベル項目として表示されます。サイドバーナビゲーションタブで順序を管理できます。
-      PrivateDashboardTabInfoPanel: '<p><b>ここでできること</b></p><p>自分だけに表示されるダッシュボードを作成・管理できます。サイドバーのダッシュボードアイコンの下にグループ表示され、他のユーザーには影響しません。</p><p><b>並べ替え</b></p><p>行をドラッグしてサブメニューでの表示順を変更できます。順序は個人設定に保存されます。</p><p><b>各ダッシュボードの操作</b></p><p>編集でタイトル・説明・アイコン・多言語タイトルを更新できます。設定でダッシュボードを開いてウィジェットを追加・配置できます。エクスポート権限がある場合はJSONファイルとしてダウンロードも可能です。</p>'
-      DashboardTabInfoPanel: '<p><b>ここでできること</b></p><p>公開ダッシュボードの作成、編集、削除ができます。権限を設定して各ダッシュボードの閲覧者を制御できます。これはすべての共有ダッシュボードの中央ライブラリです。</p><p><b>表示位置の設定</b></p><p>ダッシュボードはサイドバーでの表示場所に応じて3つのセクションに分類されます。セクション間を移動するには、編集を開いて表示タイプを変更してください。ドラッグ＆ドロップによる並べ替えはサブメニューセクションのみ対応しています。</p><p><b>各ダッシュボードの操作</b></p><p>編集は名前・説明・アイコン・権限・表示タイプを更新します。設定はダッシュボードを開いてウィジェットを追加・配置します。エクスポートはJSONファイルをダウンロードします（他のダッシュボードを参照している場合は確認が表示されます）。共有は直接リンクを生成します。削除は永続的に削除します。</p>'
-      MenuManagementTabInfoPanel: '<p><b>ここでできること</b></p><p>サイドバーに表示されるすべてのもの（項目・順序・サイドバーの動作）をグローバルに設定できます。</p><p><b>新しい項目の追加</b></p><p>項目を追加ボタンで新しいサイドバーエントリを作成できます。タイプはメインダッシュボード（ダッシュボードへのリンク）、プロセス（Ivyプロセスを開始）、外部リンク（任意のURL、新しいタブで開くオプション付き）、静的ページから選択できます。各項目には多言語対応タイトル、アイコン、権限を設定できます。タイプは作成後に変更できません。</p><p><b>テーブルの見方</b></p><p>リンク先は項目の移動先（URLまたはプロセスパス）を示します。権限は誰に表示されるかを示します。タイプはエントリの種類、ソースは定義元（組み込み、設定、ダッシュボード設定、呼び出し可能プロセス、サードパーティアプリケーション）を示します。</p><p><b>既存の項目の管理</b></p><p>編集でカスタム項目のタイトル・アイコン・リンク・権限を更新できます。削除で項目を削除できます。標準タイプの組み込み項目は編集・削除できません。呼び出し可能プロセスによって生成された項目は開発者のみが変更できます。行をドラッグしてすべてのサイドバー項目を並べ替えできます。</p><p><b>サイドバーの設定</b></p><p>サイドバーを無効にするで全ユーザーのサイドバーを完全に非表示にできます。サイドバーの動作で開き方を制御できます：ホバー（マウスオーバーで開く）、クリック（クリックが必要）、固定（常に表示）。</p>'
-      SidebarNavigation: サイドバー
-      SidebarSettings: サイドバー設定
-      SidebarMode: サイドバーモード
-      DisableSidebar: サイドバーを無効にする
-      SidebarBehaviour: サイドバーの動作
-      SidebarSettingsReloadWarning: 'サイドバーの設定が保存されました。変更を反映するにはページをリロードしてください。'
-      Reload: リロード
-      AddItem: 項目を追加
-      Label: ラベル
-      Source: ソース
-      Target: リンク先
-      Dashboard: ダッシュボード
-      MenuManagement: メニュー管理
-      MenuManagementTabInfo: 'サイドバーのナビゲーション項目を管理します。以下の操作が可能です:<ul><li>新しいメニュー項目の追加（ダッシュボード、外部リンク、Ivyプロセス）</li><li>ドラッグ＆ドロップで項目を並べ替え</li><li>既存のメニュー項目を編集・削除</li></ul>'
       PrivateDashboard: 個人用ダッシュボード
       PrivateDashboardConfiguration: 個人用ダッシュボードの設定
       PublicDashboard: 公開用ダッシュボード
@@ -818,7 +802,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: 公開用ダッシュボードを並び替える
       SelectAction: アクションを選択してください
       SomeThingWentWrong: 問題が発生しました
-      Title: ポータル設定
+      Title: ダッシュボードの設定
     DrillDownWidget:
       caseDrillDown: 「{0}」用ドリルダウンケースウィジェット
       taskDrillDown: 「{0}」用ドリルダウンタスクウィジェット
@@ -937,7 +921,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardPermission: ダッシュボードの権限
       dashboardTitle: ダッシュボードのタイトル
       deleteDashboardMessage: 「{0}」のダッシュボードを削除してもよろしいですか？
-      deleteMenuItemMessage: 「{0}」のメニュー項目を削除してもよろしいですか？
       editDashboard: ダッシュボードの編集
       manageDashboard: ダッシュボードの管理
       removeDashboardHeader: 「{0}」のダッシュボードを削除
@@ -967,7 +950,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     navigate: ナビゲート
     noCategory: カテゴリーがありません
     noDashboard: ダッシュボードがありません。少なくとも 1 つのダッシュボードを追加してから、ウィジェットを追加してください。
-    noDashboardAvailable: 利用可能なサブメニューダッシュボードはありません。
     noPermission: ダッシュボードを表示する権限がありません。
     noWidget: このダッシュボードにはウィジェットが用意されていません
     numberPattern: 番号パターン
@@ -1668,22 +1650,6 @@ Dialogs:
           IFrameTaskTemplate:
             TaskIFrameTitle: タスクフレーム
         page:
-          MenuManagement:
-            AddNewMenu: 新しいメニューの追加
-            CallableMenuMessage: このメニューは呼び出し可能プロセスによってプログラム的に生成されているため、編集できません。
-            CallableSourceHint: この項目は呼び出し可能プロセスによって生成されています。変更するには開発者にお問い合わせください。
-            ProcessPermissionHint: 表示はプロセスの開始権限に従います。
-            HelpText: このセクションでは、ニーズや好みに合わせてメニューをカスタマイズできます。
-            MenuDetails: メニューの詳細
-            MenuIcon: メニューアイコン
-            MenuTitle: メニュータイトル
-            MenuType: メニュータイプ
-            InvalidUrl: 'URLが無効です。'
-            InvalidUrlScheme: 'httpまたはhttpsのURLのみ許可されています。'
-            InvalidStaticPagePath: 'パスはアプリケーションからの相対パスである必要があります（絶対URLは許可されていません）。'
-            NoAvailableSubDashboard: メインダッシュボードとして追加できるサブメニューダッシュボードがありません。
-            OpenInNewTab: 新しいタブで開く
-            StaticPagePath: 静的ページのパス
           StatisticConfiguration:
             AddFilter: フィルターを追加
             Advanced: 上級
@@ -1964,21 +1930,6 @@ Labels:
       CASES: ケース
       PROCESSES: プロセス
       TASKS: タスク
-    MenuKind:
-      PROCESS: プロセス
-      DASHBOARD: ダッシュボード
-      EXTERNAL_LINK: 外部リンク
-      MAIN_DASHBOARD: メインダッシュボード
-      PROCESS_LIST: プロセス一覧
-      STANDARD: 標準
-      STATIC_PAGE: 静的ページ
-      THIRD_PARTY: サードパーティ
-    MenuSource:
-      CALLABLE: 呼び出し可能プロセス
-      CUSTOM_MENU_CONFIGURATION: 設定
-      DASHBOARD: ダッシュボード設定
-      STANDARD: 組み込み
-      THIRD_PARTY_APP_CONFIGURATION: サードパーティアプリケーション
     SearchScopeCaseField:
       CUSTOM: カスタム文字列フィールド
       DESCRIPTION: 説明

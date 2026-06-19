@@ -7,8 +7,8 @@ Admin Settings
    **Admin Access Required**: Only users with the role ``AXONIVY_PORTAL_ADMIN`` can access Admin Settings 
    from the user menu. Without this role, the menu item will not be visible.
 
-Admin Settings provide centralized control over Portal configuration,
-announcements, roles, and security policies. The interface is organized into tabs for different
+Admin Settings provide centralized control over Portal configuration, third-party integrations, 
+announcements, roles, and security policies. The interface is organized into tabs for different 
 administrative functions.
 
 Available Tabs
@@ -20,6 +20,8 @@ Available Tabs
    +------------------------+------------------------------------------------------------------+
    | Tab                    | Purpose                                                          |
    +========================+==================================================================+
+   | **Applications**       | Add and manage third-party applications in the Portal menu       |
+   +------------------------+------------------------------------------------------------------+
    | **Settings**           | Configure Portal behavior and feature toggles                    |
    +------------------------+------------------------------------------------------------------+
    | **Announcements**      | Create and display system-wide announcements to users            |
@@ -29,18 +31,35 @@ Available Tabs
    | **Password Validation**| Configure password policies and validation rules                 |
    +------------------------+------------------------------------------------------------------+
 
-.. note::
-   The **Applications** tab for third-party applications has been removed. Existing
-   third-party applications still appear in the sidebar and can be edited or deleted in
-   :guilabel:`Portal Configuration` → :guilabel:`Sidebar`. To add a new link
-   to the sidebar, create an **External Link** item there instead.
-
 Accessing Admin Settings
 =========================
 
 Select the :guilabel:`Admin settings` user menu item.
 
    |select-admin-settings|
+
+.. _add-third-party-application:
+
+HowTo: Add a Third Party Application
+------------------------------------
+
+#. Select the :guilabel:`Applications` tab.
+
+   |applications|
+
+#. Click on :guilabel:`New` to add a new third party application. Dialog :guilabel:`Add new third party application` is displayed.
+
+   |add-application|
+
+#. To change its menu icon, click on :guilabel:`Change`.
+
+#. Enter :guilabel:`Display name` to specify its display name in an additional language, click on :guilabel:`Add languages`.
+
+#. Enter its URL in :guilabel:`Link`, e.g. http://www.google.com.
+
+#. Select :guilabel:`Permissions` to specify the permissions required for the application to be visible.
+
+#. Click on :guilabel:`Save`.
 
 .. _update-portal-settings:
 
@@ -183,6 +202,10 @@ Steps to Configure Password Validation
 
 .. include:: ../includes/_common-icon.rst
 
+.. |applications| image:: ../../screenshots/settings/applications.png
+   :alt: Admin setting: applications
+.. |add-application| image:: ../../screenshots/settings/add-application.png
+   :alt: Admin setting: Add application dialog
 .. |announcement| image:: ../../screenshots/settings/announcement.png
    :alt: Admin setting: Announcement
 .. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png

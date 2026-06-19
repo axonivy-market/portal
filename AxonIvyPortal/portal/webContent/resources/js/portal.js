@@ -187,7 +187,7 @@ function searchIconByName(element) {
 
 var MainMenu = {
   urlToMenu : [["PortalHome.xhtml", "DASHBOARD"],
-      ["Processes.xhtml", "PROCESS_LIST"],
+      ["Processes.xhtml", "PROCESS"],
       ["PortalTasks.xhtml", "TASK"],
       ["TaskWidget.xhtml", "TASK"],
       ["PortalCases.xhtml", "CASE"],

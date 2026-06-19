@@ -118,13 +118,6 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     buildStatisticApiUri();
   }
 
-  public boolean isNoDashboardAvailable() {
-    // Dashboards are accessible but none is left for this page (e.g. all of them
-    // were converted to main-dashboard menu entries) — not a permission problem.
-    return CollectionUtils.isNotEmpty(dashboards)
-        && CollectionUtils.isEmpty(DashboardUtils.getDashboardsWithoutMenuItem());
-  }
-
   private Dashboard retrieveDrillDownDashboard() {
     Object drillDownDashboard = Ivy.session().getAttribute(SessionAttribute.DRILL_DOWN_DASHBOARD.name());
     return drillDownDashboard instanceof Dashboard ? (Dashboard) drillDownDashboard : null;

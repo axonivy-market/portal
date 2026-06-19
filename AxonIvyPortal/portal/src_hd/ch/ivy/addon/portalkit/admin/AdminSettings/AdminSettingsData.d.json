@@ -3,9 +3,35 @@
   "simpleName" : "AdminSettingsData",
   "namespace" : "ch.ivy.addon.portalkit.admin.AdminSettings",
   "fields" : [ {
+    "name" : "application",
+    "type" : "ch.ivy.addon.portalkit.configuration.Application",
+    "modifiers" : [ ]
+  }, {
+    "name" : "applicationList",
+    "type" : "List<ch.ivy.addon.portalkit.configuration.Application>",
+    "modifiers" : [ ]
+  }, {
     "name" : "confirmMsg"
   }, {
     "name" : "dialogTitle"
+  }, {
+    "name" : "displayNameInCurrentLanguage",
+    "comment" : "Display application name in current portal language",
+    "modifiers" : [ ]
+  }, {
+    "name" : "duplicateApp",
+    "type" : "Boolean"
+  }, {
+    "name" : "isAddMode",
+    "type" : "Boolean"
+  }, {
+    "name" : "languages",
+    "type" : "List<String>",
+    "modifiers" : [ ]
+  }, {
+    "name" : "selectedApp",
+    "type" : "ch.ivy.addon.portalkit.configuration.Application",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedSetting",
     "type" : "ch.ivy.addon.portalkit.configuration.GlobalSetting",
@@ -13,6 +39,10 @@
   }, {
     "name" : "settingList",
     "type" : "List<ch.ivy.addon.portalkit.configuration.GlobalSetting>",
+    "modifiers" : [ ]
+  }, {
+    "name" : "supportedLanguages",
+    "type" : "List<ch.ivy.addon.portalkit.dto.DisplayName>",
     "modifiers" : [ ]
   }, {
     "name" : "resetAllSettings",

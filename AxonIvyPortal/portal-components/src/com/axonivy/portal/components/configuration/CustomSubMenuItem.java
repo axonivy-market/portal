@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CustomSubMenuItem {
-  private String id;
   private MenuKind menuKind;
   private String link;
   private String icon;
@@ -14,9 +13,7 @@ public class CustomSubMenuItem {
   private Integer index;
 
   @JsonProperty("isExternal")
-  private Boolean isExternalLink;
-
-  private Boolean openInNewTab;
+  private Boolean isExternalLink; 
 
   private String version;
 
@@ -68,14 +65,6 @@ public class CustomSubMenuItem {
     this.isExternalLink = isExternalLink;
   }
 
-  public Boolean getOpenInNewTab() {
-    return openInNewTab;
-  }
-
-  public void setOpenInNewTab(Boolean openInNewTab) {
-    this.openInNewTab = openInNewTab;
-  }
-
   public String getVersion() {
     return version;
   }
@@ -84,27 +73,4 @@ public class CustomSubMenuItem {
     this.version = version;
   }
 
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o)
-      return true;
-    if (o == null || getClass() != o.getClass())
-      return false;
-
-    CustomSubMenuItem that = (CustomSubMenuItem) o;
-    return id != null && id.equals(that.id);
-  }
-
-  @Override
-  public int hashCode() {
-    return id != null ? id.hashCode() : 0;
-  }
 }

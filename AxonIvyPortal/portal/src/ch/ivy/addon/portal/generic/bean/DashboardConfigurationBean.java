@@ -6,9 +6,6 @@ import java.util.Optional;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-
-import com.axonivy.portal.bean.menu.MenuManagementBean;
 
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -23,13 +20,11 @@ public class DashboardConfigurationBean implements Serializable {
   private boolean isMobileDevice;
   private boolean canEditPrivateDashboard;
   private boolean canEditPublicDashboard;
-  private boolean canManageSidebarNavigation;
   private boolean isPublicDashboard;
   private boolean isSelectingAction = true;
   private boolean isSelectingTemplate;
   private boolean isEditingDashboard;
   private boolean isReorderingDashboard;
-  private boolean isMenuManagement;
 
   @PostConstruct
   public void initConfigurationBean() {
@@ -47,7 +42,6 @@ public class DashboardConfigurationBean implements Serializable {
     if (!isMobileDevice) {
       canEditPrivateDashboard = PermissionUtils.hasDashboardWriteOwnPermission();
       canEditPublicDashboard = PermissionUtils.hasDashboardWritePublicPermission();
-      canManageSidebarNavigation = PermissionUtils.isSessionUserHasAdminRole();
     }
   }
 
@@ -56,7 +50,6 @@ public class DashboardConfigurationBean implements Serializable {
     isSelectingTemplate = false;
     isEditingDashboard = false;
     isReorderingDashboard = false;
-    isMenuManagement = false;
   }
 
   public void switchDashboardType(boolean isPublicDashboard) {
@@ -88,21 +81,6 @@ public class DashboardConfigurationBean implements Serializable {
     this.isPublicDashboard = isPublicDashboard;
   }
 
-  public void accessToMenuManagement() {
-    // Re-check server-side: the tab link is hidden for non-admins but the action
-    // can be posted directly by anyone who can open the configuration page.
-    if (!PermissionUtils.isSessionUserHasAdminRole()) {
-      return;
-    }
-    resetAllIndicators();
-    this.isMenuManagement = true;
-    FacesContext ctx = FacesContext.getCurrentInstance();
-    MenuManagementBean menuBean = ctx.getApplication().evaluateExpressionGet(ctx, "#{menuManagementBean}", MenuManagementBean.class);
-    if (menuBean != null) {
-      menuBean.loadMenus();
-    }
-  }
-
   public boolean isMobileDevice() {
     return isMobileDevice;
   }
@@ -125,10 +103,6 @@ public class DashboardConfigurationBean implements Serializable {
 
   public void setCanEditPublicDashboard(boolean canEditPublicDashboard) {
     this.canEditPublicDashboard = canEditPublicDashboard;
-  }
-
-  public boolean isCanManageSidebarNavigation() {
-    return canManageSidebarNavigation;
   }
 
   public boolean isPublicDashboard() {
@@ -169,13 +143,5 @@ public class DashboardConfigurationBean implements Serializable {
 
   public void setReorderingDashboard(boolean isReorderingDashboard) {
     this.isReorderingDashboard = isReorderingDashboard;
-  }
-
-  public boolean isMenuManagement() {
-    return isMenuManagement;
-  }
-
-  public void setMenuManagement(boolean isMenuManagement) {
-    this.isMenuManagement = isMenuManagement;
   }
 }
