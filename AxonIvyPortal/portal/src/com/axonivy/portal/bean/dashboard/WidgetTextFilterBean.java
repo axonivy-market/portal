@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
@@ -15,7 +15,7 @@ import com.axonivy.portal.util.filter.field.task.custom.caze.TaskFilterCaseField
 
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class WidgetTextFilterBean implements Serializable {
 

@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.jsf;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import javax.faces.context.FacesContext;
+import jakarta.faces.context.FacesContext;
 
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.security.exec.Sudo;

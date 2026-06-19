@@ -17,9 +17,9 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.ws.rs.core.MediaType;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.ws.rs.core.MediaType;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -61,7 +61,7 @@ import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
-@ManagedBean
+@Named
 public class DashboardModificationBean extends DashboardBean {
 
   private static final long serialVersionUID = 1L;

@@ -7,9 +7,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -29,7 +29,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 
-@ManagedBean(name = "caseBean")
+@Named("caseBean")
 @ViewScoped
 public class CaseBean implements Serializable {
   private static final long serialVersionUID = 1L;

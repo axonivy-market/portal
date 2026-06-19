@@ -42,10 +42,10 @@
           "map" : { },
           "code" : [
             "import java.util.Arrays;",
-            "import javax.faces.context.FacesContext;",
-            "import javax.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
             "if (param.currentStep < 0 || param.currentStep >= param.stepsSize && !(param.currentStep == 0 && param.stepsSize ==0)) {",
-            "  FacesMessage error = new javax.faces.application.FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/ProcessChain/currentStepIsNotDefined\", Arrays.asList(param.currentStep)), ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/ProcessChain/currentStepIsNotDefined\", Arrays.asList(param.currentStep)));",
+            "  FacesMessage error = new jakarta.faces.application.FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/ProcessChain/currentStepIsNotDefined\", Arrays.asList(param.currentStep)), ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/ProcessChain/currentStepIsNotDefined\", Arrays.asList(param.currentStep)));",
             "  FacesContext.getCurrentInstance().addMessage(\"portal-global-growl-message\", error);",
             "  FacesContext.getCurrentInstance().validationFailed();",
             "}"

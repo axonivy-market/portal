@@ -3,8 +3,8 @@ package com.axonivy.portal.components.bean;
 import java.io.Serializable;
 import java.util.Arrays;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.SessionScoped;
 
 import org.apache.commons.io.FileUtils;
 
@@ -18,7 +18,7 @@ import com.axonivy.portal.components.util.DocumentUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
-@ManagedBean
+@Named
 @SessionScoped
 public class DocumentUploadBean implements Serializable {
 

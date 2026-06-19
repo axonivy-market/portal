@@ -2,11 +2,11 @@ package com.axonivy.portal.components.bean;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
+import jakarta.inject.Named;
 
 import com.axonivy.portal.components.enums.ProcessType;
 
-@ManagedBean
+@Named
 public class ProcessViewerBean implements Serializable {
 
   private static final long serialVersionUID = 3619473738758338192L;

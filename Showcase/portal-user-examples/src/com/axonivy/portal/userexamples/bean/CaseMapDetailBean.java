@@ -5,16 +5,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.userexamples.dto.CaseMapDetail;
 
-@ManagedBean(name = "caseMapDetailBean")
+@Named("caseMapExampleDetailBean")
 @ViewScoped
 public class CaseMapDetailBean implements Serializable {
   private static final long serialVersionUID = 1L;

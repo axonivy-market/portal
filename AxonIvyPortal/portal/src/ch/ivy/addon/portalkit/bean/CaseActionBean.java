@@ -5,9 +5,9 @@ import static ch.ivy.addon.portalkit.enums.PortalPermission.SHOW_CASE_DETAILS;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.RequestScoped;
 
 import com.axonivy.portal.util.BusinessDetailsUtils;
 
@@ -24,7 +24,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.workflow.ICase;
 
-@ManagedBean
+@Named
 @RequestScoped
 public class CaseActionBean implements Serializable {
 

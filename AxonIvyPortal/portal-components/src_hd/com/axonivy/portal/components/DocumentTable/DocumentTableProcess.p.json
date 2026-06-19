@@ -132,8 +132,8 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.message, null));"
           ]
@@ -193,8 +193,8 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, FacesMessageUtils.sanitizedMessage(in.message, \"\"));"
           ]
@@ -285,8 +285,8 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, FacesMessageUtils.sanitizedMessage(in.message, \"\"));"
           ]
@@ -680,7 +680,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "String successMsg = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocumentSuccess\");",
             "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(successMsg, \"\" ));"
@@ -701,8 +701,8 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.renameDocumentMessage, null));"
           ]

@@ -1,14 +1,15 @@
 package com.axonivy.portal.userexamples.bean;
 
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
-@ManagedBean
+@Named
 @ViewScoped
-public class NoteBean {
+public class NoteBean implements Serializable {
 
   private String decodedData;
 

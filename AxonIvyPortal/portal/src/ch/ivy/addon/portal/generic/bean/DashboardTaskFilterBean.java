@@ -2,13 +2,14 @@ package ch.ivy.addon.portal.generic.bean;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -24,9 +25,9 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
-@ManagedBean
+@Named
 @ViewScoped
-public class DashboardTaskFilterBean {
+public class DashboardTaskFilterBean implements Serializable {
   private List<TaskBusinessState> states;
   private List<WorkflowPriority> priorities;
   private UserDTO selectedUser;

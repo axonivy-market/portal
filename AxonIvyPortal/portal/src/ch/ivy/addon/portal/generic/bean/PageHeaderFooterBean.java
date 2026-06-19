@@ -3,14 +3,14 @@ package ch.ivy.addon.portal.generic.bean;
 import java.io.Serializable;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.RequestScoped;
 
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.enums.PortalCustomSignature;
 
-@ManagedBean
+@Named
 @RequestScoped
 public class PageHeaderFooterBean implements Serializable {
 

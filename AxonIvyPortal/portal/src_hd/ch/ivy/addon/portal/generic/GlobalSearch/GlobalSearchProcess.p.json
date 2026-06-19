@@ -309,7 +309,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.context.FacesContext;",
             "String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(\"id\").toString();",
             "String type = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(\"type\").toString();",
             "if (type == \"TASK\") {",
@@ -334,7 +334,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.context.FacesContext;",
             "String activeTabIndex = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(\"activeTabIndex\").toString();",
             "out.activeTabIndex = activeTabIndex;"
           ]

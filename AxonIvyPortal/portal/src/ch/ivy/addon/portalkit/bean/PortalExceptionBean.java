@@ -3,8 +3,8 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.SessionScoped;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.application.exceptionhandler.ExceptionInfo;
@@ -14,7 +14,7 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.bpm.error.BpmError;
 import ch.ivyteam.util.IvyRuntimeException;
 
-@ManagedBean
+@Named
 @SessionScoped
 public class PortalExceptionBean implements Serializable {
 

@@ -8,7 +8,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.faces.bean.ManagedBean;
+import jakarta.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.SortMeta;
@@ -32,7 +32,7 @@ import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
  * @author bolt
  *
  */
-@ManagedBean(name = "taskBean")
+@Named("taskBean")
 public class TaskBean implements Serializable {
   private static final long serialVersionUID = 1L;
 

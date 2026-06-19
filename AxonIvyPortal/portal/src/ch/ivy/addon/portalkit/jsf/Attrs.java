@@ -1,10 +1,10 @@
 package ch.ivy.addon.portalkit.jsf;
 
-import javax.faces.context.FacesContext;
+import jakarta.faces.context.FacesContext;
 
 /**
  * <p>
- * Small utility to set/get {@code cc.attrs} in HtmlDialog logic or {@code @ManagedBean}.
+ * Small utility to set/get {@code cc.attrs} in HtmlDialog logic or {@code @Named}.
  * </p>
  * 
  * <p>

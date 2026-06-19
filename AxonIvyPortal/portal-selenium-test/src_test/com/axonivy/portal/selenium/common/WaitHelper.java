@@ -26,7 +26,7 @@ public final class WaitHelper {
   public static final Duration SHORT_TIMEOUT = Duration.ofSeconds(15);
 
   public static void waitForNavigation(Runnable navigationAcion) {
-    String viewState = $("input[name='javax.faces.ViewState'][id$='javax.faces.ViewState:1']").getAttribute("value");
+    String viewState = $("input[name='jakarta.faces.ViewState'][id$='jakarta.faces.ViewState:1']").getAttribute("value");
     navigationAcion.run();
     $$("input[value='" + viewState + "']").shouldHave(CollectionCondition.sizeLessThanOrEqual(0), DEFAULT_TIMEOUT);
   }

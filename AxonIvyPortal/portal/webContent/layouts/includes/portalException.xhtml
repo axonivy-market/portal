@@ -7,7 +7,7 @@
     <c:set var="isPortalInTeams" value="#{masterDataBean.portalInTeams}" />
     <ui:fragment rendered="#{!isPortalInTeams}">
       <!-- Exception Handler for ViewExpiredExceptions -->
-      <p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException"
+      <p:ajaxExceptionHandler type="jakarta.faces.application.ViewExpiredException"
         onexception="PortalSessionWarning.showTimeoutDialog();" />
 
       <!-- Error Dialog shown if a view or session has expired -->
@@ -29,7 +29,7 @@
     </ui:fragment>
     <ui:fragment rendered="#{isPortalInTeams}">
       <!-- Exception Handler for ViewExpiredExceptions -->
-      <p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException"
+      <p:ajaxExceptionHandler type="jakarta.faces.application.ViewExpiredException"
         update="ms-teams-view-expired-exception-dialog"
         onexception="PF('ms-teams-view-expired-exception-dialog').show();" />
 

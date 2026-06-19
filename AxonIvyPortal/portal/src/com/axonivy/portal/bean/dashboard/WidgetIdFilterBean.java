@@ -3,13 +3,13 @@ package com.axonivy.portal.bean.dashboard;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class WidgetIdFilterBean implements Serializable {
 

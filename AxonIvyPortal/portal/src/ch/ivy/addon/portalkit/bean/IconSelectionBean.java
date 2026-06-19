@@ -2,13 +2,13 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class IconSelectionBean implements Serializable {
   

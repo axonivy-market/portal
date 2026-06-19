@@ -3,13 +3,13 @@ package com.axonivy.portal.validator.filter;
 import java.util.Date;
 import java.util.Optional;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.FacesValidator;
-import javax.faces.validator.Validator;
-import javax.faces.validator.ValidatorException;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.FacesValidator;
+import jakarta.faces.validator.Validator;
+import jakarta.faces.validator.ValidatorException;
 
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
@@ -18,7 +18,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @FacesValidator(value = "dashboardDateFilterValidator")
-public class DashboardDateFilterValidator implements Validator {
+public class DashboardDateFilterValidator implements Validator<Object> {
 
   private static final String MESSAGE_PREFIX_PATTERN = "%s(%d)";
   private static final String EXPIRY_TIMESTAMP = "expiryTimestamp";

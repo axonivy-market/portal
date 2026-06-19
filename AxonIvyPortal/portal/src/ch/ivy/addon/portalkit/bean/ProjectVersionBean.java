@@ -6,8 +6,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import ch.ivy.addon.portalkit.ivydata.service.impl.CustomerProjectService;
 import ch.ivyteam.ivy.application.IApplication;
@@ -15,7 +15,7 @@ import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.environment.Ivy;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class ProjectVersionBean implements Serializable {
 

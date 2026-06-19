@@ -5,10 +5,10 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.Optional;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -18,7 +18,7 @@ import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class CompactProcessWidgetBean implements Serializable {
 

@@ -2,8 +2,8 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.RequestScoped;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
@@ -14,7 +14,7 @@ import ch.ivyteam.ivy.workflow.IWorkflowSession;
  * Handle permission to see functionality belonging to Portal Administrator
  *
  */
-@ManagedBean
+@Named
 @RequestScoped
 public class PermissionBean implements Serializable {
   private static final long serialVersionUID = 1L;

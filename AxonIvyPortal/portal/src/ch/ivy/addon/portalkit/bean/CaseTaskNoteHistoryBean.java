@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.bean.ManagedBean;
+import jakarta.inject.Named;
 
 import org.primefaces.model.SortMeta;
 import org.primefaces.model.StreamedContent;
@@ -22,7 +22,7 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.note.Note;
 
-@ManagedBean(name = "caseTaskNoteHistoryBean")
+@Named("caseTaskNoteHistoryBean")
 public class CaseTaskNoteHistoryBean implements Serializable {
   private static final long serialVersionUID = 1L;
   

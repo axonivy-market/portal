@@ -3,10 +3,10 @@ package ch.ivy.addon.portal.generic.bean;
 import java.io.Serializable;
 import java.util.Optional;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.faces.context.FacesContext;
 
 import com.axonivy.portal.bean.menu.MenuManagementBean;
 
@@ -14,7 +14,7 @@ import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class DashboardConfigurationBean implements Serializable {
 

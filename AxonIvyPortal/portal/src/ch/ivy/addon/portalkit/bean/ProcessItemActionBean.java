@@ -1,7 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -16,7 +16,7 @@ import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
-@ManagedBean
+@Named
 public class ProcessItemActionBean extends ProcessWidgetBean {
 
   private static final long serialVersionUID = -4320413177325851923L;

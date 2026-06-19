@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.event.SelectEvent;
@@ -18,7 +18,7 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class WidgetResponsibleFilterBean implements Serializable {
 

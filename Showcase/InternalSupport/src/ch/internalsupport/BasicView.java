@@ -2,9 +2,9 @@ package ch.internalsupport;
 
 import java.io.Serializable;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.RequestScoped;
 
 import org.primefaces.model.diagram.Connection;
 import org.primefaces.model.diagram.DefaultDiagramModel;
@@ -13,7 +13,7 @@ import org.primefaces.model.diagram.Element;
 import org.primefaces.model.diagram.endpoint.DotEndPoint;
 import org.primefaces.model.diagram.endpoint.EndPointAnchor;
 
-@ManagedBean(name = "diagramBasicView")
+@Named("diagramBasicView")
 @RequestScoped
 public class BasicView implements Serializable {
 
