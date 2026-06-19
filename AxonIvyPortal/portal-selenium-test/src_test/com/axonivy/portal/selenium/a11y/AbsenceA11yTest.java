@@ -8,7 +8,7 @@ import com.axonivy.portal.selenium.page.AbsencePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 @ExtendWith({ A11yExtension.class })
 public class AbsenceA11yTest {
 
@@ -17,6 +17,7 @@ public class AbsenceA11yTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForGrowlMessageDisappear();
     newDashboardPage.openAbsencePage();
+    A11yHelpers.assertA11y_noViolations();
   }
 
   @Test
@@ -25,6 +26,7 @@ public class AbsenceA11yTest {
     newDashboardPage.waitForGrowlMessageDisappear();
     AbsencePage absencePage = newDashboardPage.openAbsencePage();
     absencePage.openNewAbsenceDialog();
+    A11yHelpers.assertA11y_noViolations();
   }
 
 @Test
@@ -33,5 +35,6 @@ public class AbsenceA11yTest {
     newDashboardPage.waitForGrowlMessageDisappear();
     AbsencePage adminAbsencePage = newDashboardPage.openAbsencePage();
     adminAbsencePage.openSubstitutesTab();
+    A11yHelpers.assertA11y_noViolations();
   }
 }
