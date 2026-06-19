@@ -9,9 +9,6 @@
     "name" : "itemTypes",
     "type" : "java.util.List<com.axonivy.portal.components.examples.enums.EquipmentItemType>"
   }, {
-    "name" : "urgencies",
-    "type" : "java.util.List<com.axonivy.portal.components.examples.enums.EquipmentUrgency>"
-  }, {
     "name" : "managers",
     "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
   }, {

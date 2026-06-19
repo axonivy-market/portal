@@ -45,9 +45,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequest;",
-            "in.request = new EquipmentRequest();",
-            "in.requesterUsername = ivy.session.getSessionUserName();",
-            "in.request.requesterUsername = in.requesterUsername;"
+            "in.requesterUsername = ivy.session.getSessionUserName();"
           ]
         }
       },
@@ -66,19 +64,18 @@
         "task" : {
           "name" : "Submit equipment request",
           "responsible" : {
-            "roles" : [ "SELF" ]
+            "roles" : [
+              "SELF"
+            ]
           },
           "skipTasklist" : true
         },
         "output" : {
           "map" : {
             "out" : "in",
-            "out.request.itemType" : "result.itemType",
-            "out.request.reason" : "result.reason",
-            "out.request.justification" : "result.justification",
-            "out.request.urgency" : "result.urgency",
-            "out.request.managerUsername" : "result.managerUsername",
-            "out.managerUsername" : "result.managerUsername"
+            "out.managerUsername" : "result.managerUsername",
+            "out.rejectionReason" : "result.reason",
+            "out.requesterUsername" : "in.requesterUsername"
           }
         }
       },
@@ -96,7 +93,7 @@
       "config" : {
         "dialog" : "com.axonivy.portal.components.examples.equipmentrequest.ManagerApproval:start()",
         "task" : {
-          "name" : "<%=ivy.security.users().find(in.requesterUsername).getDisplayName() + \" - Equipment request approval\"%>",
+          "name" : "Equipment request approval",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
             "script" : "in.managerUsername"
@@ -105,9 +102,10 @@
         "output" : {
           "map" : {
             "out" : "in",
-            "out.request.isApproved" : "result.isApproved",
-            "out.request.rejectionReason" : "result.rejectionReason"
-          }
+            "out.isApproved" : "result.isApproved",
+            "out.requesterUsername" : "ivy.session.getSessionUserName();"
+          },
+          "code" : "ivy.log.info(\"Test:\" + out.requesterUsername);"
         }
       },
       "visual" : {
@@ -123,42 +121,19 @@
       "name" : "Approved?",
       "config" : {
         "conditions" : {
-          "f16" : "in.request.isApproved",
-          "f17" : ""
+          "f17" : "!in.isApproved"
         }
       },
       "visual" : {
         "at" : { "x" : 808, "y" : 192 }
       },
       "connect" : [
-        { "id" : "f16", "to" : "f5", "label" : { "name" : "Yes" } },
-        { "id" : "f17", "to" : "f9", "label" : { "name" : "No", "segment" : 0.4, "offset" : { "x" : 16 } } }
-      ]
-    }, {
-      "id" : "f5",
-      "type" : "UserTask",
-      "name" : "ITFulfillment",
-      "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.equipmentrequest.ITFulfillment:start()",
-        "task" : {
-          "name" : "<%=ivy.security.users().find(in.requesterUsername).getDisplayName() + \" - Equipment request fulfillment\"%>",
-          "responsible" : {
-            "roles" : [ "IT" ]
-          }
-        },
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.request.itMessage" : "result.itMessage"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1008, "y" : 192 },
-        "size" : { "width" : 144 }
-      },
-      "connect" : [
-        { "id" : "f18", "to" : "f6" }
+        { "id" : "f17", "to" : "f9", "label" : {
+            "name" : "No",
+            "segment" : 0.4,
+            "offset" : { "x" : 16 }
+          } },
+        { "id" : "f24", "to" : "f6" }
       ]
     }, {
       "id" : "f6",
@@ -167,7 +142,7 @@
       "config" : {
         "dialog" : "com.axonivy.portal.components.examples.equipmentrequest.Notification:start()",
         "task" : {
-          "name" : "Equipment request fulfilled",
+          "name" : "Equipment request approved",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
             "script" : "in.requesterUsername"
@@ -175,7 +150,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1216, "y" : 192 },
+        "at" : { "x" : 976, "y" : 192 },
         "size" : { "width" : 144 }
       },
       "connect" : [
@@ -185,7 +160,7 @@
       "id" : "f7",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1424, "y" : 192 }
+        "at" : { "x" : 1184, "y" : 192 }
       }
     }, {
       "id" : "f9",
@@ -198,17 +173,14 @@
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
             "script" : "in.requesterUsername"
-          }
+          },
+          "code" : "ivy.log.info(in.requesterUsername.toString());"
         },
         "output" : {
           "map" : {
             "out" : "in",
-            "out.request.itemType" : "result.itemType",
-            "out.request.reason" : "result.reason",
-            "out.request.justification" : "result.justification",
-            "out.request.urgency" : "result.urgency",
-            "out.request.managerUsername" : "result.managerUsername",
-            "out.managerUsername" : "result.managerUsername"
+            "out.managerUsername" : "result.managerUsername",
+            "out.requesterUsername" : "ivy.session.getSessionUserName();"
           }
         }
       },
@@ -217,7 +189,7 @@
         "size" : { "width" : 144 }
       },
       "connect" : [
-        { "id" : "f20", "to" : "f3", "via" : [ { "x" : 448, "y" : 384 }, { "x" : 448, "y" : 192 } ] }
+        { "id" : "f20", "to" : "f3" }
       ]
     }, {
       "id" : "f10",
@@ -256,7 +228,7 @@
         "and can update the request before resubmitting to the manager."
       ],
       "visual" : {
-        "at" : { "x" : 448, "y" : 448 },
+        "at" : { "x" : 1000, "y" : 384 },
         "size" : { "width" : 528, "height" : 44 }
       },
       "connect" : [

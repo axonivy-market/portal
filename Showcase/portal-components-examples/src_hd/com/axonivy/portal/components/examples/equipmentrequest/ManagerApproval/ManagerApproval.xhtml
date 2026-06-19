@@ -4,74 +4,98 @@
 <h:body>
   <ui:composition template="/layouts/frame-10.xhtml">
     <ui:define name="title">Manager Approval</ui:define>
-
     <ui:define name="content">
       <h:outputStylesheet library="css" name="equipment-request-examples.css" />
 
       <h:form id="equipment-request">
-        <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
-          <div class="ui-g-12"></div>
-          <p:panel styleClass="card ui-g-12 ui-md-12">
-            <h4>A new equipment request needs your approval:</h4>
-            <h:panelGroup styleClass="ui-g" layout="block">
-              <p:messages styleClass="ui-g-12" />
-              <h:panelGrid columns="1" columnClasses="ui-g-12" styleClass="ui-g-12">
+        <!-- Page header -->
+        <div class="flex align-items-center gap-3 mb-5">
+          <div class="flex align-items-center justify-content-center border-circle"
+            style="width:3rem;height:3rem;background:var(--orange-100)">
+            <i class="si si-task-checklist-check" style="font-size:1.3rem;color:var(--orange-600)" />
+          </div>
+          <div>
+            <div class="text-2xl font-bold">Approval Required</div>
+            <div class="text-color-secondary text-sm mt-1">
+              Review the request below and approve or reject it.
+            </div>
+          </div>
+        </div>
 
-                <h:panelGroup class="MarTop10">
-                  <p:outputLabel for="requester" value="Requester" />
-                  <p:inputText id="requester" disabled="true" value="#{data.requester.displayName}" styleClass="MarTop10" />
-                </h:panelGroup>
+        <!-- Request summary card -->
+        <p:panel styleClass="card mb-4">
+          <div class="flex align-items-center gap-2 mb-3 pb-2 border-bottom-1 surface-border">
+            <i class="ti ti-clipboard-list text-color-secondary" />
+            <span class="font-semibold text-lg">Request Details</span>
+          </div>
 
-                <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="item-type" value="Item Type" />
-                  <p:inputText id="item-type" disabled="true" value="#{data.requestData.itemType.getLabel()}" styleClass="MarTop10" />
-                </h:panelGroup>
+          <div class="flex align-items-center gap-3 py-3 border-bottom-1 surface-border">
+            <span class="equipment-request-summary-label">
+              <i class="ti ti-user" />Requester
+            </span>
+            <span class="font-medium">#{data.requester.displayName}</span>
+          </div>
+          <div class="flex align-items-center gap-3 py-3 border-bottom-1 surface-border">
+            <span class="equipment-request-summary-label">
+              <i class="ti ti-device-laptop" />Item Type
+            </span>
+            <span class="font-medium">#{data.requestData.itemType.getLabel()}</span>
+          </div>
+          <div class="flex align-items-start gap-3 py-3">
+            <span class="equipment-request-summary-label">
+              <i class="ti ti-file-description" />Reason
+            </span>
+            <span class="flex-1">#{data.requestData.reason}</span>
+          </div>
+        </p:panel>
 
-                <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="urgency" value="Urgency" />
-                  <p:inputText id="urgency" disabled="true" value="#{data.requestData.urgency.getLabel()}" styleClass="MarTop10" />
-                </h:panelGroup>
+        <!-- Actions -->
+        <div class="flex flex-row-reverse gap-2">
+          <p:commandButton value="Approve" ariaLabel="Approve"
+            icon="ti ti-check" styleClass="primary-color-light-button"
+            partialSubmit="true" actionListener="#{logic.approved}"
+            process=":equipment-request" update=":equipment-request" />
+          <p:commandButton value="Reject" ariaLabel="Reject"
+            icon="ti ti-x" type="button" styleClass="ui-button-outlined-danger"
+            onclick="PF('rejectionDialog').show()" />
+        </div>
 
-                <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="reason" value="Reason" />
-                  <p:inputTextarea id="reason" disabled="true" value="#{data.requestData.reason}" rows="3" styleClass="MarTop10" />
-                </h:panelGroup>
-
-                <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="justification" value="Justification" />
-                  <p:inputTextarea id="justification" disabled="true" value="#{data.requestData.justification}" rows="3" styleClass="MarTop10" />
-                </h:panelGroup>
-
-              </h:panelGrid>
-            </h:panelGroup>
-          </p:panel>
-        </h:panelGroup>
-
-        <p:commandButton value="Approve" icon="ti ti-check"
-          styleClass="Fright MarTop10" partialSubmit="true" id="approve-btn"
-          actionListener="#{logic.approved}" process=":equipment-request" update=":equipment-request"
-          style="width: auto" />
-        <p:spacer width="5px" styleClass="Fright MarTop10" />
-        <p:commandButton value="Reject" icon="ti ti-x" type="button"
-          styleClass="secondary-btn Fright MarTop10" style="width: auto"
-          onclick="PF('rejectionReasonDialog').show()" />
-
-        <p:dialog id="rejection-dialog" widgetVar="rejectionReasonDialog" modal="true"
-          header="Rejection Reason" width="480">
-          <h:panelGrid columns="1" styleClass="ui-g-12">
-            <p:outputLabel for="rejection-reason" value="Rejection Reason" />
-            <p:inputTextarea id="rejection-reason" value="#{data.rejectionReason}" required="true" rows="4"
-              styleClass="MarTop10" style="width:100%"
-              requiredMessage="Rejection reason is required" />
-            <p:commandButton value="Confirm Rejection" icon="ti ti-check"
-              styleClass="MarTop10" actionListener="#{logic.rejected}"
-              process=":equipment-request" update=":equipment-request" style="width: auto" />
-          </h:panelGrid>
+        <!-- Rejection reason dialog -->
+        <p:dialog header="Rejection Reason" widgetVar="rejectionDialog"
+          appendTo="@(body)" modal="true" responsive="true"
+          closeOnEscape="true" resizable="false" width="480"
+          styleClass="portal-dialog dialog-responsive">
+          <div class="flex align-items-center gap-3 mb-4">
+            <div class="flex align-items-center justify-content-center border-circle flex-shrink-0"
+              style="width:2.5rem;height:2.5rem;background:var(--red-100)">
+              <i class="ti ti-alert-triangle" style="font-size:1.2rem;color:var(--red-600)" />
+            </div>
+            <span class="text-color-secondary">
+              Please provide a reason so the requester can update their request.
+            </span>
+          </div>
+          <div class="field">
+            <p:outputLabel for="rejection-reason" value="Rejection Reason" styleClass="font-medium" />
+            <p:inputTextarea id="rejection-reason" value="#{data.rejectionReason}" required="true"
+              rows="4" styleClass="w-full mt-1" placeholder="Explain why this request cannot be approved..."
+              requiredMessage="Please provide a rejection reason" />
+          </div>
+          <f:facet name="footer">
+            <div class="flex flex-column gap-2 w-full">
+              <p:commandButton value="Confirm Rejection" ariaLabel="Confirm Rejection"
+                icon="ti ti-x" styleClass="w-full"
+                actionListener="#{logic.rejected}"
+                process=":equipment-request" update=":equipment-request" />
+              <p:commandLink value="Cancel" ariaLabel="Cancel"
+                onclick="PF('rejectionDialog').hide(); return false;"
+                styleClass="pt-2 flex justify-content-center" />
+            </div>
+          </f:facet>
         </p:dialog>
-
       </h:form>
-      <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="1" />
 
+      <ic:com.axonivy.portal.components.IFrameTaskConfig
+        processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="1" />
     </ui:define>
   </ui:composition>
 </h:body>

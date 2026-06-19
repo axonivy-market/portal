@@ -3,56 +3,62 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui">
 <h:body>
   <ui:composition template="/layouts/frame-10.xhtml">
-    <ui:define name="title">Request Fulfilled</ui:define>
-
+    <ui:define name="title">Request Approved</ui:define>
     <ui:define name="content">
       <h:outputStylesheet library="css" name="equipment-request-examples.css" />
 
       <h:form id="equipment-request">
-        <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
-          <div class="ui-g-12"></div>
-          <p:panel styleClass="card ui-g-12">
-            <h4>Your equipment request has been fulfilled.</h4>
-            <h:panelGroup styleClass="ui-g" layout="block">
-              <h:panelGrid columns="1" columnClasses="ui-g-12" styleClass="ui-g-12">
+        <!-- Success hero -->
+        <div class="flex flex-column align-items-center text-center p-5 mb-5 border-round-xl equipment-request-success-hero">
+          <div class="flex align-items-center justify-content-center border-circle mb-3"
+            style="width:4rem;height:4rem;background:var(--green-100)">
+            <i class="ti ti-circle-check" style="font-size:2rem;color:var(--green-600)" />
+          </div>
+          <div class="text-2xl font-bold mb-1">Your Request Has Been Approved!</div>
+          <div class="text-color-secondary">
+            Your equipment request was reviewed and approved by your manager.
+          </div>
+        </div>
 
-                <h:panelGroup class="MarTop10">
-                  <p:outputLabel for="requester" value="Requester" />
-                  <p:inputText id="requester" disabled="true" value="#{data.requester.displayName}" styleClass="MarTop10" />
-                </h:panelGroup>
+        <!-- Request summary -->
+        <p:panel styleClass="card mb-4">
+          <div class="flex align-items-center gap-2 mb-3 pb-2 border-bottom-1 surface-border">
+            <i class="ti ti-clipboard-check text-color-secondary" />
+            <span class="font-semibold text-lg">Request Summary</span>
+          </div>
 
-                <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="item-type" value="Item Type" />
-                  <p:inputText id="item-type" disabled="true" value="#{data.requestData.itemType.getLabel()}" styleClass="MarTop10" />
-                </h:panelGroup>
+          <div class="flex align-items-center gap-3 py-3 border-bottom-1 surface-border">
+            <span class="equipment-request-summary-label">
+              <i class="ti ti-user" />Requester
+            </span>
+            <span class="font-medium">#{data.requester.displayName}</span>
+          </div>
+          <div class="flex align-items-center gap-3 py-3 border-bottom-1 surface-border">
+            <span class="equipment-request-summary-label">
+              <i class="ti ti-device-laptop" />Item Type
+            </span>
+            <span class="font-medium">#{data.requestData.itemType.getLabel()}</span>
+          </div>
+          <div class="flex align-items-start gap-3 py-3">
+            <span class="equipment-request-summary-label">
+              <i class="ti ti-file-description" />Reason
+            </span>
+            <span class="flex-1">#{data.requestData.reason}</span>
+          </div>
+        </p:panel>
 
-                <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="urgency" value="Urgency" />
-                  <p:inputText id="urgency" disabled="true" value="#{data.requestData.urgency.getLabel()}" styleClass="MarTop10" />
-                </h:panelGroup>
-
-                <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="reason" value="Reason" />
-                  <p:inputTextarea id="reason" disabled="true" value="#{data.requestData.reason}" rows="3" styleClass="MarTop10" />
-                </h:panelGroup>
-
-                <h:panelGroup class="MarTop20" rendered="#{not empty data.requestData.itMessage}">
-                  <p:outputLabel for="it-message" value="Message from IT" />
-                  <p:inputTextarea id="it-message" disabled="true" value="#{data.requestData.itMessage}" rows="3" styleClass="MarTop10" />
-                </h:panelGroup>
-
-              </h:panelGrid>
-            </h:panelGroup>
-          </p:panel>
-        </h:panelGroup>
-
-        <p:commandButton value="Finish" icon="ti ti-check"
-          styleClass="Fright MarTop10" partialSubmit="true" id="finish-btn"
-          actionListener="#{logic.close}" process=":equipment-request" update=":equipment-request"
-          style="width: auto" />
+        <!-- Action -->
+        <div class="flex flex-row-reverse">
+          <p:commandButton value="Finish" ariaLabel="Finish"
+            icon="ti ti-check" iconPos="right"
+            styleClass="primary-color-light-button"
+            partialSubmit="true" actionListener="#{logic.close}"
+            process=":equipment-request" update=":equipment-request" />
+        </div>
       </h:form>
-      <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="3" />
 
+      <ic:com.axonivy.portal.components.IFrameTaskConfig
+        processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="2" />
     </ui:define>
   </ui:composition>
 </h:body>

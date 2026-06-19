@@ -249,3 +249,47 @@
   border-top: 1px solid var(--surface-border, #dee2e6);
   margin: 0;
 }
+
+/* History table redesign */
+.audit-trail-history-header {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--surface-border, #dee2e6);
+  margin-bottom: 1rem;
+}
+
+.audit-trail-history-icon {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+}
+
+.audit-trail-action-btn {
+  font-size: 0.875rem;
+}
+
+.audit-trail-history-table .ui-datatable-header {
+  background: transparent;
+  border: none;
+}
+
+.audit-trail-author-avatar {
+  width: 2rem;
+  height: 2rem;
+  background: var(--primary-100, #e0e7ff);
+  color: var(--primary-color);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.audit-trail-case-badge {
+  color: var(--text-color-secondary);
+  font-size: 0.875rem;
+}
+
+.audit-trail-content-col {
+  max-width: 40%;
+}
+
+.audit-trail-note-content {
+  white-space: pre-line;
+  word-break: break-word;
+}

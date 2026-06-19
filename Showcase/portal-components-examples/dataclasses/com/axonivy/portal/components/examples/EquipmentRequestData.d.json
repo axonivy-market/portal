@@ -3,11 +3,23 @@
   "simpleName" : "EquipmentRequestData",
   "namespace" : "com.axonivy.portal.components.examples",
   "fields" : [ {
-    "name" : "request",
-    "type" : "com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequest"
+    "name" : "requesterUsername",
+    "modifiers" : [ ]
   }, {
-    "name" : "requesterUsername"
+    "name" : "itemType",
+    "modifiers" : [ ]
   }, {
-    "name" : "managerUsername"
+    "name" : "reason",
+    "modifiers" : [ ]
+  }, {
+    "name" : "managerUsername",
+    "modifiers" : [ ]
+  }, {
+    "name" : "rejectionReason",
+    "modifiers" : [ ]
+  }, {
+    "name" : "isApproved",
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

@@ -2,15 +2,5 @@
   "$schema": "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName": "AuditTrailData",
   "namespace": "com.axonivy.portal.components.AuditTrail",
-  "fields": [
-    {
-      "name": "taskId",
-      "type": "Long"
-    },
-    {
-      "name": "previousTasks",
-      "type": "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
-      "modifiers": []
-    }
-  ]
+  "fields": []
 }

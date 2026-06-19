@@ -4,69 +4,101 @@
 <h:body>
   <ui:composition template="/layouts/frame-10.xhtml">
     <ui:define name="title">IT Fulfillment</ui:define>
-
     <ui:define name="content">
       <h:outputStylesheet library="css" name="equipment-request-examples.css" />
 
       <h:form id="equipment-request">
-        <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
-          <div class="ui-g-12"></div>
-          <p:panel styleClass="card ui-g-12 ui-md-12">
-            <h4>Please fulfill the following equipment request:</h4>
-            <h:panelGroup styleClass="ui-g" layout="block">
-              <p:messages styleClass="ui-g-12" />
-              <h:panelGrid columns="1" columnClasses="ui-g-12" styleClass="ui-g-12">
+        <!-- Page header -->
+        <div class="flex align-items-center gap-3 mb-5">
+          <div class="flex align-items-center justify-content-center border-circle"
+            style="width:3rem;height:3rem;background:var(--blue-100)">
+            <i class="si si-shipment-box" style="font-size:1.3rem;color:var(--blue-600)" />
+          </div>
+          <div>
+            <div class="text-2xl font-bold">Fulfill Equipment Request</div>
+            <div class="text-color-secondary text-sm mt-1">
+              This request has been approved. Fulfill it and optionally leave a message for the requester.
+            </div>
+          </div>
+        </div>
 
-                <h:panelGroup class="MarTop10">
-                  <p:outputLabel for="requester" value="Requester" />
-                  <p:inputText id="requester" disabled="true" value="#{data.requester.displayName}" styleClass="MarTop10" />
-                </h:panelGroup>
+        <!-- Request summary card -->
+        <p:panel styleClass="card mb-4">
+          <div class="flex align-items-center gap-2 mb-3 pb-2 border-bottom-1 surface-border">
+            <i class="ti ti-clipboard-list text-color-secondary" />
+            <span class="font-semibold text-lg">Request Details</span>
+          </div>
 
-                <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="item-type" value="Item Type" />
-                  <p:inputText id="item-type" disabled="true" value="#{data.requestData.itemType.getLabel()}" styleClass="MarTop10" />
-                </h:panelGroup>
+          <div class="flex align-items-center gap-3 py-3 border-bottom-1 surface-border">
+            <span class="equipment-request-summary-label">
+              <i class="ti ti-user" />Requester
+            </span>
+            <span class="font-medium">#{data.requester.displayName}</span>
+          </div>
+          <div class="flex align-items-center gap-3 py-3 border-bottom-1 surface-border">
+            <span class="equipment-request-summary-label">
+              <i class="ti ti-device-laptop" />Item Type
+            </span>
+            <span class="font-medium">#{data.requestData.itemType.getLabel()}</span>
+          </div>
+          <div class="flex align-items-center gap-3 py-3 border-bottom-1 surface-border">
+            <span class="equipment-request-summary-label">
+              <i class="ti ti-flame" />Urgency
+            </span>
+            <span class="equipment-request-urgency-#{data.requestData.urgency.toString().toLowerCase()} font-medium">
+              #{data.requestData.urgency.getLabel()}
+            </span>
+          </div>
+          <div class="flex align-items-start gap-3 py-3">
+            <span class="equipment-request-summary-label">
+              <i class="ti ti-file-description" />Reason
+            </span>
+            <span class="flex-1">#{data.requestData.reason}</span>
+          </div>
+        </p:panel>
 
-                <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="urgency" value="Urgency" />
-                  <p:inputText id="urgency" disabled="true" value="#{data.requestData.urgency.getLabel()}" styleClass="MarTop10" />
-                </h:panelGroup>
+        <!-- Actions -->
+        <div class="flex flex-row-reverse">
+          <p:commandButton value="Approve &amp; Fulfill" ariaLabel="Approve and Fulfill"
+            icon="ti ti-package-export" type="button"
+            onclick="PF('itMessageDialog').show()" />
+        </div>
 
-                <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="reason" value="Reason" />
-                  <p:inputTextarea id="reason" disabled="true" value="#{data.requestData.reason}" rows="3" styleClass="MarTop10" />
-                </h:panelGroup>
-
-                <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="justification" value="Justification" />
-                  <p:inputTextarea id="justification" disabled="true" value="#{data.requestData.justification}" rows="3" styleClass="MarTop10" />
-                </h:panelGroup>
-
-              </h:panelGrid>
-            </h:panelGroup>
-          </p:panel>
-        </h:panelGroup>
-
-        <p:commandButton value="Approve" icon="ti ti-check"
-          styleClass="Fright MarTop10" type="button" style="width: auto"
-          onclick="PF('itMessageDialog').show()" />
-
-        <p:dialog id="it-message-dialog" widgetVar="itMessageDialog" modal="true"
-          header="Approve and Add Message" width="480">
-          <h:panelGrid columns="1" styleClass="ui-g-12">
-            <p:outputLabel for="it-message" value="Message to Requester (optional)" />
+        <!-- IT message dialog -->
+        <p:dialog header="Approve and Add Message" widgetVar="itMessageDialog"
+          appendTo="@(body)" modal="true" responsive="true"
+          closeOnEscape="true" resizable="false" width="480"
+          styleClass="portal-dialog dialog-responsive">
+          <div class="flex align-items-center gap-3 mb-4">
+            <div class="flex align-items-center justify-content-center border-circle flex-shrink-0"
+              style="width:2.5rem;height:2.5rem;background:var(--green-100)">
+              <i class="ti ti-message-2-check" style="font-size:1.2rem;color:var(--green-600)" />
+            </div>
+            <span class="text-color-secondary">
+              Optionally leave a message for the requester (e.g. delivery details, setup instructions).
+            </span>
+          </div>
+          <div class="field">
+            <p:outputLabel for="it-message" value="Message to Requester" styleClass="font-medium" />
             <p:inputTextarea id="it-message" value="#{data.itMessage}" rows="4"
-              styleClass="MarTop10" style="width:100%"
-              placeholder="Optional message to the requester..." />
-            <p:commandButton value="Confirm" icon="ti ti-check"
-              styleClass="MarTop10" actionListener="#{logic.approved}"
-              process=":equipment-request" update=":equipment-request" style="width: auto" />
-          </h:panelGrid>
+              styleClass="w-full mt-1" placeholder="Optional — e.g. 'Your laptop will be ready by Tuesday.'" />
+          </div>
+          <f:facet name="footer">
+            <div class="flex flex-column gap-2 w-full">
+              <p:commandButton value="Confirm Fulfillment" ariaLabel="Confirm Fulfillment"
+                icon="ti ti-check" styleClass="w-full primary-color-light-button"
+                actionListener="#{logic.approved}"
+                process=":equipment-request" update=":equipment-request" />
+              <p:commandLink value="Cancel" ariaLabel="Cancel"
+                onclick="PF('itMessageDialog').hide(); return false;"
+                styleClass="pt-2 flex justify-content-center" />
+            </div>
+          </f:facet>
         </p:dialog>
-
       </h:form>
-      <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="2" />
 
+      <ic:com.axonivy.portal.components.IFrameTaskConfig
+        processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="2" />
     </ui:define>
   </ui:composition>
 </h:body>

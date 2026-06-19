@@ -3,81 +3,80 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui">
 <h:body>
   <ui:composition template="/layouts/frame-10.xhtml">
-    <ui:define name="title">Submit Request</ui:define>
-
+    <ui:define name="title">Equipment Request</ui:define>
     <ui:define name="content">
       <h:outputStylesheet library="css" name="equipment-request-examples.css" />
 
       <h:form id="equipment-request">
-        <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
-          <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3"></div>
-          <p:panel styleClass="card ui-g-12 ui-md-12 ui-lg-10 ui-xl-6">
-            <h:panelGroup styleClass="ui-g" layout="block">
-              <p:messages id="equipment-request-msg" styleClass="ui-g-12" />
-              <h:panelGrid columns="1" columnClasses="ui-g-12" styleClass="ui-g-12">
+        <!-- Page header -->
+        <div class="flex align-items-center gap-3 mb-5">
+          <div class="flex align-items-center justify-content-center border-circle"
+            style="width:3rem;height:3rem;background:var(--primary-color)">
+            <i class="ti ti-device-laptop" style="font-size:1.4rem;color:#fff" />
+          </div>
+          <div>
+            <div class="text-2xl font-bold">Equipment Request</div>
+            <div class="text-color-secondary text-sm mt-1">
+              Submit a request for equipment and select your approving manager.
+            </div>
+          </div>
+        </div>
 
-                <h:panelGroup class="MarTop10">
-                  <p:outputLabel for="requester" value="Requester" />
-                  <p:inputText id="requester" disabled="true" value="#{ivy.session.getSessionUser().getDisplayName()}"
-                    styleClass="MarTop10" />
-                </h:panelGroup>
+        <!-- Requester banner -->
+        <div class="flex align-items-center gap-2 p-3 border-round-lg mb-4 surface-100">
+          <i class="ti ti-user-circle text-color-secondary" style="font-size:1.1rem" />
+          <span class="text-color-secondary text-sm">Requesting as</span>
+          <span class="font-semibold">#{ivy.session.getSessionUser().getDisplayName()}</span>
+        </div>
 
-                <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="item-type" value="Item Type" />
-                  <p:selectOneMenu id="item-type" value="#{data.requestData.itemType}"
-                    required="true" styleClass="MarTop10"
-                    requiredMessage="Item Type is required">
-                    <f:selectItem itemLabel="" itemValue="#{null}" noSelectionOption="true" />
-                    <f:selectItems value="#{data.itemTypes}" var="type" itemLabel="#{type.getLabel()}" itemValue="#{type}" />
-                  </p:selectOneMenu>
-                </h:panelGroup>
+        <!-- Form card -->
+        <p:panel styleClass="card">
+          <p:messages id="msg" styleClass="mb-4" closable="true" />
 
-                <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="reason" value="Reason" />
-                  <p:inputTextarea id="reason" value="#{data.requestData.reason}" required="true" rows="3"
-                    styleClass="MarTop10" requiredMessage="Reason is required" />
-                </h:panelGroup>
+          <div class="grid">
+            <div class="col-12">
+              <div class="field">
+                <p:outputLabel for="item-type" value="Item Type" styleClass="font-medium" />
+                <p:selectOneMenu id="item-type" value="#{data.requestData.itemType}"
+                  required="true" styleClass="w-full mt-1"
+                  requiredMessage="Item Type is required">
+                  <f:selectItem itemLabel="Select an item..." itemValue="#{null}" noSelectionOption="true" />
+                  <f:selectItems value="#{data.itemTypes}" var="type" itemLabel="#{type.getLabel()}" itemValue="#{type}" />
+                </p:selectOneMenu>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="field">
+                <p:outputLabel for="reason" value="Reason" styleClass="font-medium" />
+                <p:inputTextarea id="reason" value="#{data.requestData.reason}" required="true"
+                  rows="3" styleClass="w-full mt-1" placeholder="Why do you need this equipment?"
+                  requiredMessage="Reason is required" />
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="field">
+                <p:outputLabel for="manager" value="Approving Manager" styleClass="font-medium" />
+                <p:selectOneMenu id="manager" value="#{data.requestData.managerUsername}"
+                  required="true" styleClass="w-full mt-1"
+                  requiredMessage="Please select a manager">
+                  <f:selectItem itemLabel="Select a manager..." itemValue="#{null}" noSelectionOption="true" />
+                  <f:selectItems value="#{data.managers}" var="m" itemLabel="#{m.getDisplayName()}" itemValue="#{m.name}" />
+                </p:selectOneMenu>
+              </div>
+            </div>
+          </div>
 
-                <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="justification" value="Justification" />
-                  <p:inputTextarea id="justification" value="#{data.requestData.justification}" required="true" rows="3"
-                    styleClass="MarTop10" requiredMessage="Justification is required" />
-                </h:panelGroup>
-
-                <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="urgency" value="Urgency" />
-                  <p:selectOneMenu id="urgency" value="#{data.requestData.urgency}"
-                    required="true" styleClass="MarTop10"
-                    requiredMessage="Urgency is required">
-                    <f:selectItem itemLabel="" itemValue="#{null}" noSelectionOption="true" />
-                    <f:selectItems value="#{data.urgencies}" var="u" itemLabel="#{u.getLabel()}" itemValue="#{u}" />
-                  </p:selectOneMenu>
-                </h:panelGroup>
-
-                <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="manager" value="Manager" />
-                  <p:selectOneMenu id="manager" value="#{data.requestData.managerUsername}"
-                    required="true" styleClass="MarTop10"
-                    requiredMessage="Manager is required">
-                    <f:selectItem itemLabel="" itemValue="#{null}" noSelectionOption="true" />
-                    <f:selectItems value="#{data.managers}" var="m" itemLabel="#{m.getDisplayName()}" itemValue="#{m.name}" />
-                  </p:selectOneMenu>
-                </h:panelGroup>
-
-                <h:panelGroup layout="block" styleClass="MarTop5 Fright" id="command-group">
-                  <p:commandButton value="Submit Request" icon="ti ti-check"
-                    partialSubmit="true" id="submit-btn" actionListener="#{logic.close}"
-                    process=":equipment-request" update=":equipment-request" />
-                </h:panelGroup>
-
-              </h:panelGrid>
-            </h:panelGroup>
-          </p:panel>
-          <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3"></div>
-        </h:panelGroup>
+          <div class="flex flex-row-reverse mt-3">
+            <p:commandButton value="Submit Request" ariaLabel="Submit Request"
+              icon="ti ti-send" iconPos="right"
+              partialSubmit="true" actionListener="#{logic.close}"
+              process=":equipment-request" update=":equipment-request:msg" />
+          </div>
+        </p:panel>
       </h:form>
-      <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="0" />
 
+      <ic:com.axonivy.portal.components.IFrameTaskConfig
+        processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="0" />
     </ui:define>
   </ui:composition>
 </h:body>

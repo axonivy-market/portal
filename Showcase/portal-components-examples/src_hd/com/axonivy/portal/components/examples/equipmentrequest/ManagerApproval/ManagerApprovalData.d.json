@@ -13,5 +13,8 @@
   }, {
     "name" : "steps",
     "type" : "java.util.List<String>"
+  }, {
+    "name" : "isApproved",
+    "type" : "Boolean"
   } ]
 }

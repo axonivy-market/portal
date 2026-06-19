@@ -1,16 +1,16 @@
 /* Equipment Request example styles */
+
+/* Rejection banner */
 .equipment-request-rejection-banner {
   background-color: var(--state-destroyed-background, #fff3cd);
   border: 1px solid var(--state-destroyed-color, #ffc107);
-  border-radius: 4px;
-  padding: 12px 16px;
-  margin-bottom: 12px;
+  border-radius: 6px;
+  padding: 14px 16px;
 }
 
 .equipment-request-rejection-icon {
   color: var(--state-destroyed-color, #e65c00);
   font-size: 1.1rem;
-  margin-right: 6px;
   vertical-align: middle;
 }
 
@@ -25,4 +25,21 @@
   margin-top: 6px;
   color: var(--text-color, #333);
   font-style: italic;
+}
+
+/* Summary label column in read-only views */
+.equipment-request-summary-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 9rem;
+  flex-shrink: 0;
+  color: var(--text-color-secondary, #6c757d);
+  font-size: 0.875rem;
+}
+
+/* Success hero on Notification page */
+.equipment-request-success-hero {
+  background-color: var(--green-50, #f4fdf6);
+  border: 1px solid var(--green-200, #b7e2c0);
 }

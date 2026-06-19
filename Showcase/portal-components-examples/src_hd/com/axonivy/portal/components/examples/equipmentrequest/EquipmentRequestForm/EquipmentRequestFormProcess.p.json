@@ -15,15 +15,12 @@
           "params" : [
             { "name" : "itemType", "type" : "com.axonivy.portal.components.examples.enums.EquipmentItemType", "desc" : "" },
             { "name" : "reason", "type" : "String", "desc" : "" },
-            { "name" : "justification", "type" : "String", "desc" : "" },
             { "name" : "urgency", "type" : "com.axonivy.portal.components.examples.enums.EquipmentUrgency", "desc" : "" },
             { "name" : "managerUsername", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "result.itemType" : "in.requestData.itemType",
             "result.reason" : "in.requestData.reason",
-            "result.justification" : "in.requestData.justification",
-            "result.urgency" : "in.requestData.urgency",
             "result.managerUsername" : "in.requestData.managerUsername"
           }
         },
@@ -79,7 +76,6 @@
             "  ivy.repo.save(in.requestData);",
             "}",
             "in.itemTypes = EquipmentItemType.class.getEnumConstants();",
-            "in.urgencies = EquipmentUrgency.class.getEnumConstants();",
             "in.managers = UserUtils.findUsers(\"\", 0, -1, [], []);"
           ]
         },
@@ -118,7 +114,6 @@
             "in.steps = new ArrayList();",
             "in.steps.add(\"Submit Request\");",
             "in.steps.add(\"Manager Approval\");",
-            "in.steps.add(\"IT Fulfillment\");",
             "in.steps.add(\"Result\");"
           ]
         }

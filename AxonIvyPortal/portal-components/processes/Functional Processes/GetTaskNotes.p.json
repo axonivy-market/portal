@@ -1,0 +1,141 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
+  "id" : "1A2B3C4D5E6F7890",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.components.GetTaskNotesData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "getTaskNotes(Long)",
+      "config" : {
+        "signature" : "getTaskNotes",
+        "input" : {
+          "params" : [
+            { "name" : "taskId", "type" : "Long", "desc" : "" }
+          ],
+          "map" : {
+            "out.taskId" : "param.taskId"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "notes", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.notes" : "in.notes"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 160 },
+        "labelOffset" : { "x" : 6, "y" : 44 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 920, "y" : 160 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "get task notes",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "",
+            "ITask task = ivy.wf.findTask(in.taskId);",
+            "if (task != null && !task.notes().all().isEmpty()) {",
+            "  StringBuilder sb = new StringBuilder();",
+            "  for (var note : task.notes().all()) {",
+            "    if (sb.length() > 0) {",
+            "      sb.append(\"\\n\");",
+            "    }",
+            "    sb.append(note.content());",
+            "  }",
+            "  in.notes = sb.toString();",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 768, "y" : 160 },
+        "size" : { "width" : 128 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f9" : "in.hasCustomProcess",
+          "f8" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f3", "label" : { "name" : "No" } },
+        { "id" : "f9", "to" : "f1", "via" : [ { "x" : 608, "y" : 216 }, { "x" : 920, "y" : 216 } ], "label" : { "name" : "Yes" } }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Call customized sub process",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.predicate.CustomProcessPredicate;",
+            "import com.axonivy.portal.components.enums.CustomSignature;",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"taskId\", in.taskId);",
+            "",
+            "Map result = IvyAdapterService.startSubProcessesInSecurityContext(CustomSignature.GET_TASK_NOTES.getSignature(), params, new CustomProcessPredicate());",
+            "in.hasCustomProcess = !result.isEmpty();",
+            "",
+            "if (in.hasCustomProcess) {",
+            "  Object notesObj = result.get(\"notes\");",
+            "  in.notes = notesObj != null ? notesObj.toString() : \"\";",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 472, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This sub process can be customized to get notes for a task.",
+        "The custom process signature must be: \"portalGetTaskNotes(Long)\"",
+        "",
+        "Input: Long taskId",
+        "Output: String notes (concatenated note text, or any custom string)"
+      ],
+      "visual" : {
+        "at" : { "x" : 320, "y" : 280 },
+        "size" : { "width" : 624, "height" : 100 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f0" }
+      ]
+    } ]
+}

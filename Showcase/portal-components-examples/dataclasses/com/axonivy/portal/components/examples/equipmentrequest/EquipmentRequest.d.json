@@ -7,25 +7,16 @@
     "name" : "requesterUsername"
   }, {
     "name" : "itemType",
-    "type" : "com.axonivy.portal.components.examples.enums.EquipmentItemType"
+    "type" : "com.axonivy.portal.components.examples.enums.EquipmentItemType",
+    "modifiers" : [ ]
   }, {
     "name" : "reason"
-  }, {
-    "name" : "justification"
-  }, {
-    "name" : "urgency",
-    "type" : "com.axonivy.portal.components.examples.enums.EquipmentUrgency"
   }, {
     "name" : "managerUsername"
   }, {
     "name" : "rejectionReason"
   }, {
-    "name" : "itMessage"
-  }, {
     "name" : "isApproved",
-    "type" : "Boolean"
-  }, {
-    "name" : "isFulfilled",
     "type" : "Boolean"
   } ]
 }

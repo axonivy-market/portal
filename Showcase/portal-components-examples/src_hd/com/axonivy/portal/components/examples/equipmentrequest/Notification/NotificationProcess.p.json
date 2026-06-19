@@ -64,7 +64,6 @@
             "in.steps = new ArrayList();",
             "in.steps.add(\"Submit Request\");",
             "in.steps.add(\"Manager Approval\");",
-            "in.steps.add(\"IT Fulfillment\");",
             "in.steps.add(\"Result\");"
           ]
         }
