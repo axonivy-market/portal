@@ -273,14 +273,13 @@ public class CaseDetailsTest extends BaseTest {
 
   @Test
   public void testRelatedTaskDestroyTask() {
+	grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     createTestingTask();
-    LOG.info("[testRelatedTaskDestroyTask] showOnlyOpenTasks checked before destroy: " + detailsPage.isShowOnlyOpenTasksChecked());
     LOG.info("[testRelatedTaskDestroyTask] Tasks before destroy: " + detailsPage.getRelatedTaskNames());
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     assertTrue(detailsPage.isRelatedTaskDestroyEnabled(SICK_LEAVE_REQUEST_TASK));
     detailsPage.destroyTask(SICK_LEAVE_REQUEST_TASK);
     detailsPage.confimRelatedTaskDestruction();
-    LOG.info("[testRelatedTaskDestroyTask] showOnlyOpenTasks checked after destroy: " + detailsPage.isShowOnlyOpenTasksChecked());
     LOG.info("[testRelatedTaskDestroyTask] Tasks after destroy: " + detailsPage.getRelatedTaskNames());
     WaitHelper.assertTrueWithWait(() -> detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.DESTROYED));
   }

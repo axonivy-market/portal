@@ -1133,10 +1133,6 @@ public class CaseDetailsPage extends TemplatePage {
     $("div[id$=':show-only-open-tasks'] .ui-chkbox-box")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
-
-  public boolean isShowOnlyOpenTasksChecked() {
-    return $("div[id$=':show-only-open-tasks'] .ui-chkbox-box").getAttribute("aria-checked").equals("true");
-  }
   
   public void clickShowCaseOwners() {
     $("a[id$=':show-case-owner-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
