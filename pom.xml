@@ -17,7 +17,6 @@
         <module>AxonIvyPortal/portal-components</module>
         <module>AxonIvyPortal/PortalKitTestHelper</module>
         <module>AxonIvyPortal/portal-test</module>
-        <module>AxonIvyPortal/portal-selenium-test</module>
         <module>Showcase/InternalSupport</module>
         <module>Showcase/portal-components-examples</module>
         <module>Showcase/portal-developer-examples</module>
