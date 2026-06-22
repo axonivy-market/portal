@@ -4,7 +4,7 @@
     "type": "module",
     "dependencies": {
         "lighthouse": "^13.0.0",
-        "puppeteer": "^24.0.0",
+        "puppeteer": "^25.0.0",
         "@actions/core": "^3.0.0"
     }
 }
