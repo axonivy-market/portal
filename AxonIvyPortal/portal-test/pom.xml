@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.axonivy.ivy.api</groupId>
     <artifactId>ivy-project-parent</artifactId>
-    <version>14.0.0-SNAPSHOT</version>
+    <version>14.0.0-jakarta-SNAPSHOT</version>
     <relativePath></relativePath>
   </parent>
   <groupId>com.axonivy.portal</groupId>
