@@ -87,6 +87,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: External URL
       PROCESS: Axon Ivy process
+    DashboardDisplayType:
+      HIDDEN: Hidden
+      SUB_MENU: Submenu
+      TOP_MENU: Sidebar
     DashboardWidgetType:
       CASE: Case widget
       CUSTOM: Custom widget
@@ -193,7 +197,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskDocumentsPageTitle: Task Documents
   adminSettings:
     addLanguages: Add languages
-    addNewApplication: Add new third party application
     announcement:
       announcement: Announcement
       announcementsDisabled: Announcements are disabled.
@@ -204,27 +207,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       information: You can announce a general information (e.g. Downtime, Changes, etc.) in this area. This message can be seen by all portal users.
       saveChanges: Save changes
       tabTitle: Announcements
-    appDisplayName: Display name
-    appDisplayNameRequiredMsg: Please enter application display name.
-    appNameCharactersLimit: Only [\p{Alnum}_-]+ characters allowed for application name.
-    appNameRequiredMsg: Please input application name.
-    applicationHint: Use drag & drop to reorder.
-    applicationLinkRequiredMsg: Please enter portal link.
-    applicationList:
-      addNewApplication: Add new application
-      applicationSelectionHeader: Select application
-      menuIcon: Menu icon
-    applications: Applications
     applicationtype:
       thirdPartyApplication: Third Party Application
     currentValue: Current value
     defaultValue: Default value
-    deleteAppConfirmation: Are you sure to delete the <b>{0}</b> application?
     dialogclosinginformation:
       dialogHeader: Portal configuration closed
       informMessage: Modifications in portal settings require a refresh of the current page for the new configuration to take effect.
-    duplicatePortalAppMsg: This application already exists, please choose another application.
-    editApplication: Edit application
     editSetting: Edit setting
     embedInFrame: Start a process/task in IFrame mode
     emptySupportedLanguages: No additional languages are supported
@@ -304,7 +293,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       sidebarMode: Controls how the sidebar navigation behaves. Hover expands on hover, Click uses a toggle button, Stick keeps it always expanded, Hidden removes the sidebar completely.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
     key: Key
-    link: Link
     loading: LOADING
     loginLogoSizeTooltip: 'Recommended size<BR/>Square logo: 80x80 px<BR/>Rectangle logo: 191x50 px'
     logoSizeRecommendation:
@@ -516,7 +504,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteContext: Delete {0}
     deleteDocumentHeaderText: Delete this document?
     deleteFilterHeaderText: Delete this filter?
-    deleteSettingHeaderText: Delete this setting?
     description: Description
     design: Design
     destroy: Destroy
@@ -785,23 +772,52 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateFromScratchDescription: Create your own dashboard from scratch
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Create new public dashboard
-      Description: In this area, you can configure the dashboards according to your requirements.
+      Description: In this area, you can configure the dashboards according to your requirements and modify the order of the navigation elements.
       DoNotSupportMobile: Dashboard configuration is not supported for mobile devices.
       EditPrivateDashboards: Edit your private dashboards
+      PrivateTabInfo: 'Create and manage your personal dashboards.<ul><li>These dashboards are only visible to you</li><li>They appear under the Dashboard icon in the sidebar</li></ul>'
+      PublicTabInfo: 'Manage dashboards for all users. Control where each dashboard appears:<ul><li><b>Sidebar</b> — appears as a top-level item in the sidebar menu</li><li><b>Submenu</b> — appears under the Dashboard icon</li><li><b>Hidden</b> — not visible to users</li></ul>'
+      Visibility: Visibility
       EditPublicDashboards: Edit public dashboards
       ExportDashboard: Export dashboard
       ExportReferencedDialogHeader: Dashboard references other dashboards
       ExportReferencedDialogMessage: 'The following dashboards are referenced by navigation widgets. Export and import them too for the widgets to work correctly:'
       ExportReferencedDialogProceed: Export anyway
+      Hidden: Hidden
+      HiddenDashboards: Hidden items
+      HiddenDashboardsDescription: Not shown in the sidebar. Can still be used as a direct link target — e.g. as a landing page inside a process flow
+      SubMenuDashboards: Submenu dashboards
+      SubMenuDashboardsDescription: Appear grouped under the Dashboard icon in the sidebar.
+      PrivateDashboardTabInfoPanel: '<p><b>What can I do here?</b></p><p>Create and manage dashboards that only you can see. They appear grouped under the Dashboard icon in the sidebar and never affect other users.</p><p><b>Reordering</b></p><p>Drag any row to change the order your dashboards appear in the submenu. The order is saved to your personal settings.</p><p><b>Actions per dashboard</b></p><p>Use Edit to update the title, description, icon, or set multi-language titles. Use Configure to open the dashboard and add or rearrange widgets. If you have the export permission, you can also download a dashboard as a JSON file for backup or reuse.</p>'
+      DashboardTabInfoPanel: '<p><b>What can I do here?</b></p><p>Create, edit and delete public dashboards. Set who can see each one using permissions. This is the central library for all shared dashboards.</p><p><b>Visibility &amp; placement</b></p><p>Dashboards are split into three sections based on where they appear in the sidebar. To move a dashboard between sections, open Edit and change its Display Type. Only the Submenu section supports drag-and-drop reordering.</p><p><b>Actions per dashboard</b></p><p>Edit updates name, description, icon, permissions, and display type. Configure opens the dashboard to add or arrange widgets. Export downloads a JSON file — if the dashboard references others, you will be prompted to include them. Share generates a direct link. Delete removes the dashboard permanently.</p>'
+      MenuManagementTabInfoPanel: '<p><b>What can I do here?</b></p><p>Configure everything visible in the sidebar: items, their order, and global sidebar behaviour.</p><p><b>Adding new items</b></p><p>Use Add Item to create a new sidebar entry. You can choose between Main Dashboard (links to a dashboard), Process (starts an Ivy process), External Link (any URL, with optional open in new tab), or Static Page. Each item has a title with multi-language support, an icon, and configurable permissions. The item type cannot be changed after creation.</p><p><b>Understanding the table</b></p><p>Target shows where an item navigates to (a URL or process path). Permissions shows who can see it. Type is the kind of entry, and Source tells where it is defined: Built-in, Configuration, Dashboard configuration, Callable process, or Third-party application.</p><p><b>Managing existing items</b></p><p>Edit updates the title, icon, link, and permissions of any custom item. Delete removes it. Built-in items (source: Built-in) cannot be edited or deleted, and items generated by a callable process can only be changed by a developer. Drag any row to reorder all sidebar items.</p><p><b>Sidebar settings</b></p><p>Disable sidebar hides the sidebar entirely for all users. Sidebar behaviour controls how it opens: Hover (opens on mouse over), Click (requires a click), or Stick (always visible).</p>'
+      SidebarTopLevelDashboards: Sidebar top-level dashboards
+      SidebarTopLevelDashboardsDescription: Appear as top-level items in the sidebar.
+      MenuDashboards: Sidebar items
+      MenuDashboardsDescription: These dashboards appear as top-level items in the sidebar. Manage their order in the Menu management tab.
+      SidebarNavigation: Sidebar
+      SidebarSettings: Sidebar settings
+      SidebarMode: Sidebar mode
+      DisableSidebar: Disable sidebar
+      SidebarBehaviour: Sidebar behaviour
+      SidebarSettingsReloadWarning: 'Sidebar settings saved. Reload the page to apply the changes.'
+      Reload: Reload
+      AddItem: Add item
+      Label: Label
+      Source: Source
+      Target: Target
+      MenuManagement: Menu management
+      MenuManagementTabInfo: 'Manage the top-level sidebar navigation items. You can:<ul><li>Add new menu entries (dashboards, external links, Ivy processes)</li><li>Reorder items by drag and drop</li><li>Edit or remove existing menu entries</li></ul>'
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
+      Dashboard: Dashboard
       PublicDashboard: Public dashboards
       PublicDashboardConfiguration: Public dashboard configuration
       ReorderPrivateDashboards: Reorder your dashboards
       ReorderPublicDashboards: Reorder public dashboards
       SelectAction: Select the action
       SomeThingWentWrong: Something went wrong
-      Title: Dashboard configuration
+      Title: Portal configuration
     DrillDownWidget:
       caseDrillDown: Drill-down case widget for {0}
       taskDrillDown: Drill-down task widget for {0}
@@ -920,6 +936,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardPermission: Dashboard permission
       dashboardTitle: Dashboard title
       deleteDashboardMessage: Are you sure you want to delete the "{0}" dashboard?
+      deleteMenuItemMessage: Are you sure you want to delete the "{0}" menu item?
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
@@ -949,6 +966,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     navigate: Navigate
     noCategory: There are no categories
     noDashboard: There are no dashboards. Add at least one dashboard, then add widgets.
+    noDashboardAvailable: No submenu dashboards available.
     noPermission: You don't have permissions to see dashboards.
     noWidget: There are no widgets provided for this dashboard
     numberPattern: Number Pattern
@@ -1650,6 +1668,22 @@ Dialogs:
           IFrameTaskTemplate:
             TaskIFrameTitle: Task frame
         page:
+          MenuManagement:
+            AddNewMenu: Add new menu
+            CallableMenuMessage: This menu is generated programmatically by a callable process and cannot be edited.
+            CallableSourceHint: This item is generated by a callable process. Contact your developer to change it.
+            ProcessPermissionHint: Visibility follows the process's start permissions.
+            HelpText: Customize the menu in this section to match your specific needs or preferences.
+            MenuDetails: Menu Details
+            MenuIcon: Menu icon
+            MenuTitle: Menu title
+            MenuType: Menu type
+            InvalidUrl: 'The URL is not valid.'
+            InvalidUrlScheme: 'Only http and https URLs are allowed.'
+            InvalidStaticPagePath: 'The path must be relative to the application (absolute URLs are not allowed).'
+            NoAvailableSubDashboard: No submenu dashboard is available to be added as a main dashboard.
+            OpenInNewTab: Open in new tab
+            StaticPagePath: Static Page Path
           StatisticConfiguration:
             AddFilter: Add filter
             Advanced: Advanced
@@ -1933,6 +1967,21 @@ Labels:
       CASES: Cases
       PROCESSES: Processes
       TASKS: Tasks
+    MenuKind:
+      PROCESS: Process
+      DASHBOARD: Dashboard
+      EXTERNAL_LINK: External Link
+      MAIN_DASHBOARD: Main Dashboard
+      PROCESS_LIST: Process list
+      STANDARD: Standard
+      STATIC_PAGE: Static Page
+      THIRD_PARTY: Third Party Application
+    MenuSource:
+      CALLABLE: Callable process
+      CUSTOM_MENU_CONFIGURATION: Configuration
+      DASHBOARD: Dashboard configuration
+      STANDARD: Built-in
+      THIRD_PARTY_APP_CONFIGURATION: Third-party application
     SearchScopeCaseField:
       CUSTOM: Custom string fields
       DESCRIPTION: Description

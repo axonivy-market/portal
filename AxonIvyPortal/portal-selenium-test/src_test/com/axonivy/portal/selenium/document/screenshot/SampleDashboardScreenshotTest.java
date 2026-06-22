@@ -51,7 +51,7 @@ public class SampleDashboardScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage dashboardPage = new NewDashboardPage();
     DashboardConfigurationPage dashboardConfigurationPage = dashboardPage.openDashboardConfigurationPage();
     dashboardConfigurationPage.openEditPublicDashboardsPage();
-    dashboardConfigurationPage.clickButtonOnDashboardConfigurationActionMenu("Configuration", 2);
+    dashboardConfigurationPage.clickButtonOnDashboardConfigurationActionMenu("Configuration", 0);
     NewDashboardDetailsEditPage dashboardConfigPage = new NewDashboardDetailsEditPage();
     dashboardConfigPage.addWidget();
     dashboardConfigPage.filterStatisticWidgets();
