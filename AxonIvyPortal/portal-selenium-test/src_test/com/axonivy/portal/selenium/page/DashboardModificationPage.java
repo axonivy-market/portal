@@ -42,7 +42,7 @@ public class DashboardModificationPage extends TemplatePage {
   }
 
   public SelenideElement getDashboardRowByName(String dashboardName) {
-    for (SelenideElement dashboardRow : getDashboardRows()) {
+    for (SelenideElement dashboardRow : getDashboardRows().asDynamicIterable()) {
       if (dashboardRow.$("td:nth-child(1)").getText().contentEquals(dashboardName)) {
         return dashboardRow;
       }

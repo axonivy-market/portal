@@ -29,7 +29,7 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 @IvyWebTest
 public class MenuHighlightTest extends BaseTest {
 
-  private static final String MAIN_MENU_PROCESS = ".*main-menu_process_1";
+  private static final String MAIN_MENU_PROCESS = ".*main-menu_process_list_0";
   private static final String DASHBOARD_PARENT_DASHBOARD_PATTERN = ".*DASHBOARD-parent-dashboard";
   private static final String DEFAULT_CASE_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN =
       ".*default-case-list-dashboard-main-dashboard";

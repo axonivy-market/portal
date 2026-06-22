@@ -123,6 +123,13 @@ public class MenuView implements Serializable {
       }
     }
 
+    for (PortalMenuItemDefinition def : MenuLoader.loadPrivateThirdPartyDefinitions()) {
+      MenuElement element = buildMenuElement(def, startableProcessLinks);
+      if (element != null) {
+        mainMenuModel.getElements().add(element);
+      }
+    }
+
     mainMenuModel.generateUniqueIds();
   }
 

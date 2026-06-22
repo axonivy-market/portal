@@ -176,7 +176,7 @@ public class PortalConfigurationPage extends TemplatePage {
   }
 
   public void submitUpdateMenu() {
-    $("[id$='create-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("[id$='update-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("[id$='menu-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
     $("[id$='menu-table-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
