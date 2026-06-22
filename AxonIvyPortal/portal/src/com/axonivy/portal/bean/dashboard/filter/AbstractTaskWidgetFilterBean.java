@@ -129,6 +129,7 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
 
     filter.setLabel(filterField.getLabel());
     filter.getFilterField().addNewFilter(filter);
+    filter.setOperator(GlobalOperatorPolicyService.getInstance().getFirstEnabledOperator(filter.getField(), filter.getOperator()));
     initCustomFieldNumberPattern(filter, field, filter.getFilterField());
   }
 

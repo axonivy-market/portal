@@ -130,6 +130,7 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
 
     filter.setLabel(filterField.getLabel());
     filterField.addNewFilter(filter);
+    filter.setOperator(GlobalOperatorPolicyService.getInstance().getFirstEnabledOperator(filter.getField(), filter.getOperator()));
     initCustomFieldNumberPattern(filter, field, filterField);
   }
 
