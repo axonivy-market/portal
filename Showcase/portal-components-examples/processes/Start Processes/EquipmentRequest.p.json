@@ -21,9 +21,6 @@
           "anonymous" : false,
           "error" : ">> Ignore Exception"
         },
-        "task" : {
-          "name" : "Submit equipment request"
-        },
         "case" : {
           "name" : "Equipment Request",
           "customFields" : [
@@ -62,7 +59,7 @@
       "config" : {
         "dialog" : "com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequestForm:start()",
         "task" : {
-          "name" : "Submit equipment request",
+          "name" : "Submit equipment request 1",
           "responsible" : {
             "roles" : [
               "SELF"
@@ -103,9 +100,9 @@
           "map" : {
             "out" : "in",
             "out.isApproved" : "result.isApproved",
+            "out.rejectionReason" : "result.rejectionReason",
             "out.requesterUsername" : "ivy.session.getSessionUserName();"
-          },
-          "code" : "ivy.log.info(\"Test:\" + out.requesterUsername);"
+          }
         }
       },
       "visual" : {

@@ -21,14 +21,17 @@
             </div>
           </div>
         </div>
-
+        <div class="pb-3">
+          <ic:com.axonivy.portal.components.AuditTrail taskId="#{ivy.wf.getCurrentTask().getId()}"
+            case="#{ivy.wf.getCurrentCase()}" additionalEntry="Rejection reason: #{data.requestData.rejectionReason}" />
+        </div>
         <!-- Rejection reason banner -->
         <div class="equipment-request-rejection-banner mb-5">
           <div class="flex align-items-center gap-2 mb-2">
             <i class="si si-alert-circle equipment-request-rejection-icon" style="font-size:1.1rem" />
-            <span class="font-semibold equipment-request-rejection-title">Rejected by Manager</span>
+            <span class="font-semibold equipment-request-rejection-title">Rejected by #{data.requestData.managerUsername}</span>
           </div>
-          <p class="m-0 equipment-request-rejection-reason">#{data.requestData.rejectionReason}</p>
+          <p class="m-0 equipment-request-rejection-reason">Rejection reason: #{data.requestData.rejectionReason}</p>
         </div>
 
         <!-- Form card -->
@@ -39,40 +42,38 @@
             <div class="col-12">
               <div class="field">
                 <p:outputLabel for="item-type" value="Item Type" styleClass="font-medium" />
-                <p:selectOneMenu id="item-type" value="#{data.requestData.itemType}"
-                  required="true" styleClass="w-full mt-1"
-                  requiredMessage="Item Type is required">
+                <p:selectOneMenu id="item-type" value="#{data.requestData.itemType}" disabled="true" required="true"
+                  styleClass="w-full mt-1" requiredMessage="Item Type is required">
                   <f:selectItem itemLabel="Select an item..." itemValue="#{null}" noSelectionOption="true" />
-                  <f:selectItems value="#{data.itemTypes}" var="type" itemLabel="#{type.getLabel()}" itemValue="#{type}" />
+                  <f:selectItems value="#{data.itemTypes}" var="type" itemLabel="#{type.getLabel()}"
+                    itemValue="#{type}" />
                 </p:selectOneMenu>
               </div>
             </div>
             <div class="col-12">
               <div class="field">
                 <p:outputLabel for="reason" value="Reason" styleClass="font-medium" />
-                <p:inputTextarea id="reason" value="#{data.requestData.reason}" required="true"
-                  rows="3" styleClass="w-full mt-1"
-                  requiredMessage="Reason is required" />
+                <p:inputTextarea id="reason" value="#{data.requestData.reason}" required="true" rows="3"
+                  styleClass="w-full mt-1" requiredMessage="Reason is required" />
               </div>
             </div>
             <div class="col-12">
               <div class="field">
                 <p:outputLabel for="manager" value="Approving Manager" styleClass="font-medium" />
-                <p:selectOneMenu id="manager" value="#{data.requestData.managerUsername}"
-                  required="true" styleClass="w-full mt-1"
-                  requiredMessage="Please select a manager">
+                <p:selectOneMenu id="manager" value="#{data.requestData.managerUsername}" disabled="true"
+                  required="true" styleClass="w-full mt-1" requiredMessage="Please select a manager">
                   <f:selectItem itemLabel="Select a manager..." itemValue="#{null}" noSelectionOption="true" />
-                  <f:selectItems value="#{data.managers}" var="m" itemLabel="#{m.getDisplayName()}" itemValue="#{m.name}" />
+                  <f:selectItems value="#{data.managers}" var="m" itemLabel="#{m.getDisplayName()}"
+                    itemValue="#{m.name}" />
                 </p:selectOneMenu>
               </div>
             </div>
           </div>
 
           <div class="flex flex-row-reverse mt-3">
-            <p:commandButton value="Resubmit Request" ariaLabel="Resubmit Request"
-              icon="ti ti-send" iconPos="right"
-              partialSubmit="true" actionListener="#{logic.close}"
-              process=":equipment-request" update=":equipment-request:msg" />
+            <p:commandButton value="Resubmit Request" ariaLabel="Resubmit Request" icon="ti ti-send" iconPos="right"
+              partialSubmit="true" actionListener="#{logic.close}" process=":equipment-request"
+              update=":equipment-request:msg" />
           </div>
         </p:panel>
       </h:form>
@@ -82,4 +83,5 @@
     </ui:define>
   </ui:composition>
 </h:body>
+
 </html>

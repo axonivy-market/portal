@@ -6,7 +6,6 @@
     <ui:define name="title">Manager Approval</ui:define>
     <ui:define name="content">
       <h:outputStylesheet library="css" name="equipment-request-examples.css" />
-
       <h:form id="equipment-request">
         <!-- Page header -->
         <div class="flex align-items-center gap-3 mb-5">
@@ -21,8 +20,11 @@
             </div>
           </div>
         </div>
-
+        <h:panelGroup>
+          <ic:com.axonivy.portal.components.AuditTrail taskId="#{ivy.wf.getCurrentTask().id}" case="#{ivy.wf.getCurrentCase()}"/>
+        </h:panelGroup>
         <!-- Request summary card -->
+        <p:spacer width="20px" />
         <p:panel styleClass="card mb-4">
           <div class="flex align-items-center gap-2 mb-3 pb-2 border-bottom-1 surface-border">
             <i class="ti ti-clipboard-list text-color-secondary" />
@@ -62,7 +64,7 @@
 
         <!-- Rejection reason dialog -->
         <p:dialog header="Rejection Reason" widgetVar="rejectionDialog"
-          appendTo="@(body)" modal="true" responsive="true"
+          modal="true" responsive="true"
           closeOnEscape="true" resizable="false" width="480"
           styleClass="portal-dialog dialog-responsive">
           <div class="flex align-items-center gap-3 mb-4">
@@ -76,16 +78,16 @@
           </div>
           <div class="field">
             <p:outputLabel for="rejection-reason" value="Rejection Reason" styleClass="font-medium" />
-            <p:inputTextarea id="rejection-reason" value="#{data.rejectionReason}" required="true"
+            <p:inputTextarea id="rejection-reason" value="#{data.requestData.rejectionReason}" required="true"
               rows="4" styleClass="w-full mt-1" placeholder="Explain why this request cannot be approved..."
               requiredMessage="Please provide a rejection reason" />
           </div>
           <f:facet name="footer">
             <div class="flex flex-column gap-2 w-full">
               <p:commandButton value="Confirm Rejection" ariaLabel="Confirm Rejection"
-                icon="ti ti-x" styleClass="w-full"
+                styleClass="w-full"
                 actionListener="#{logic.rejected}"
-                process=":equipment-request" update=":equipment-request" />
+                process=":equipment-request :equipment-request:rejection-reason" update=":equipment-request" />
               <p:commandLink value="Cancel" ariaLabel="Cancel"
                 onclick="PF('rejectionDialog').hide(); return false;"
                 styleClass="pt-2 flex justify-content-center" />

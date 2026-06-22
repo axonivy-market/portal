@@ -1,0 +1,17 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "simpleName" : "AuditTrailGetAdditionalInformationData",
+  "namespace" : "com.axonivy.portal",
+  "fields" : [ {
+    "name" : "taskId",
+    "modifiers" : [ ]
+  }, {
+    "name" : "contentMap",
+    "type" : "java.util.Map<String,String>",
+    "modifiers" : [ ]
+  }, {
+    "name" : "hasCustomProcess",
+    "type" : "Boolean",
+    "modifiers" : [ ]
+  } ]
+}

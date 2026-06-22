@@ -89,9 +89,9 @@
         "output" : {
           "map" : {
             "out" : "in",
-            "out.requestData.isApproved" : "false",
-            "out.requestData.rejectionReason" : "in.rejectionReason"
-          }
+            "out.requestData" : "in.requestData"
+          },
+          "code" : "ivy.task.customFields().stringField(\"rejectionReason\").set(in.requestData.rejectionReason);"
         }
       },
       "visual" : {
@@ -106,7 +106,12 @@
       "name" : "save data",
       "config" : {
         "output" : {
-          "code" : "ivy.repo.save(in.requestData);"
+          "map" : {
+            "out" : "in",
+            "out.isApproved" : "in.isApproved",
+            "out.requestData" : "in.requestData"
+          },
+          "code" : "ivy.repo.save(out.requestData);"
         },
         "sudo" : true
       },

@@ -16,5 +16,7 @@
   }, {
     "name" : "isApproved",
     "type" : "Boolean"
+  }, {
+    "name" : "rejectedReason"
   } ]
 }

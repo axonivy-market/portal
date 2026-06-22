@@ -107,7 +107,7 @@
   
           <h:panelGroup id="horizontal-task-template-tasks-command" styleClass="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection ne 'VERTICAL'}">
           <p:commandButton id="horizontal-audit-trail-info" type="button" styleClass="rounded-button ui-button-outlined"
-              title="Audit trail infor" icon="ti ti-folder-search"
+              title="Audit trail infor" icon="ti ti-history"
               onclick="PF('auditTrailDialog').show();" rendered="#{!isHideCaseInfo}"
               global="false" />
           <p:spacer width="10" />
@@ -329,13 +329,12 @@
           <p:remoteCommand name="resetDataSideStep" actionListener="#{sideStepProcessBean.resetData()}" update="side-step-process-dialog" resetValues="true"/>
         </p:dialog>
         <!-- END DIALOG TO CONFIGURE SIDE STEP PROCESSES -->
-        <p:dialog id="audit-trail-dialog" widgetVar="auditTrailDialog"
-          styleClass="audit-trail-dialog"
-          header="History"
+        <!-- <p:dialog id="audit-trail-dialog" widgetVar="auditTrailDialog"
+          styleClass="audit-trail-dialog" style="height: 50vh;"
           appendTo="@(body)" modal="true" responsive="true" closeOnEscape="true"
           dynamic="true">
           <ic:com.axonivy.portal.components.AuditTrail taskId="#{currentTask.id}" case="#{case}"/>
-        </p:dialog>
+        </p:dialog> -->
 
         <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
           <ui:param name="id" value="sidestep-task-reset-confirmation-dialog" />

@@ -1,11 +1,11 @@
 :root {
 
-/* CSS variables for process chain component */
+  /* CSS variables for process chain component */
   --process-chain-process-step-font-size: 12px;
-  --process-chain-body-background-color: rgba(0,0,0,0);
+  --process-chain-body-background-color: rgba(0, 0, 0, 0);
   --process-chain-menu-color: var(--primary-color, hsl(195, 100%, 29%));
   --process-chain-link-color: #D9DADA;
-  
+
   --process-chain-circle-step-number-color: var(--primary-text-color, hsl(0, 0%, 100%));
   --process-chain-circle-step-container-border: var(--primary-color, hsl(195, 100%, 29%));
 
@@ -17,13 +17,13 @@
   --process-chain-circle-horizontal-waiting-step-number-container-background-color: var(--process-chain-body-background-color);
 
   --process-chain-line-waiting-step-background-color: #D9DADA;
-  
+
   --process-chain-current-circle-horizontal-step-title-font-weight: bold;
   --process-chain-current-circle-vertical-step-title-font-weight: bold;
   --process-chain-current-line-horizontal-step-title-font-weight: bold;
   --process-chain-current-line-vertical-step-title-font-weight: bold;
 
-/* CSS variables for process history component */
+  /* CSS variables for process history component */
   --process-history-default-font-size: 14px;
   --process-history-header-border-bottom-color: #D9DADA;
   --process-history-unsortable-header-font-size: 1rem;
@@ -42,12 +42,12 @@
   --state-done-background: #D4EBA2;
   --state-open-color: #C9C9C9;
 
-/* CSS variables for process viewer component */
+  /* CSS variables for process viewer component */
   --process-viewer-data-has-error-message-font-weight: normal;
   --process-viewer-data-has-error-message-font-size: 1rem;
   --process-details-column-title-font-size: 0.85rem;
 
-/* CSS variables for avatar component */
+  /* CSS variables for avatar component */
   --avatar-background-color: var(--ivy-primary-color-grey-light, hsl(180, 1%, 85%));
 }
 
@@ -159,7 +159,11 @@
 }
 
 .audit-trail-task-item {
-  padding: 0.75rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--surface-border, #dee2e6);
+  border-radius: var(--border-radius, 6px);
+  background-color: var(--surface-card, #fff);
+  margin-bottom: 0.5rem;
 }
 
 .audit-trail-task-header {
@@ -250,6 +254,21 @@
   margin: 0;
 }
 
+.audit-trail-previous-tasks-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.audit-trail-task-index {
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--green-500, #22c55e);
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+
 /* History table redesign */
 .audit-trail-history-header {
   padding: 0.5rem 0;
@@ -289,7 +308,90 @@
   max-width: 40%;
 }
 
+.audit-trail-content-col {
+  max-width: 40%;
+}
+
 .audit-trail-note-content {
   white-space: pre-line;
   word-break: break-word;
+}
+
+/* Previous task history: master-detail layout */
+.audit-trail-task-master-detail {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.audit-trail-task-list {
+  flex: 0 0 35%;
+  max-width: 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  border-right: 1px solid var(--surface-border, #dee2e6);
+  padding-right: 1rem;
+}
+
+.audit-trail-task-list-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--surface-border, #dee2e6);
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text-color, #333);
+}
+
+.audit-trail-task-list-item:hover {
+  background: var(--surface-hover, #f1f3f5);
+}
+
+.audit-trail-task-list-item--selected {
+  border-color: var(--primary-color);
+  background: var(--primary-100, #e0e7ff);
+}
+
+.audit-trail-task-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.audit-trail-task-detail {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-y: auto;
+}
+
+.audit-trail-previous-tasks-list {
+  .audit-trail-state-DONE {
+    background-color: var(--state-done-background, #D4EBA2);
+  }
+
+  .audit-trail-state-FAILED,
+  .audit-trail-state-DESTROYED {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+}
+
+
+@media screen and (max-width: 640px) {
+  .audit-trail-task-master-detail {
+    flex-direction: column;
+  }
+
+  .audit-trail-task-list {
+    flex-basis: auto;
+    max-width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--surface-border, #dee2e6);
+    padding-right: 0;
+    padding-bottom: 1rem;
+  }
 }

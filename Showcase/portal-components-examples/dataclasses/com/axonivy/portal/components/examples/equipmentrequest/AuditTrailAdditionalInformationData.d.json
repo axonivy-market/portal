@@ -1,0 +1,20 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "simpleName" : "AuditTrailAdditionalInformationData",
+  "namespace" : "com.axonivy.portal.components.examples.equipmentrequest",
+  "fields" : [ {
+    "name" : "businessCaseId",
+    "type" : "java.lang.Long",
+    "modifiers" : [ ]
+  }, {
+    "name" : "taskId",
+    "type" : "Long",
+    "modifiers" : [ ]
+  }, {
+    "name" : "content",
+    "modifiers" : [ ]
+  }, {
+    "name" : "status",
+    "modifiers" : [ ]
+  } ]
+}
