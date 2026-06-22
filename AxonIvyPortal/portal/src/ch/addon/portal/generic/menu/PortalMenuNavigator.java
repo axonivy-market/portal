@@ -21,7 +21,6 @@ import org.primefaces.model.menu.MenuItem;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.service.CustomSubMenuItemService;
-import com.axonivy.portal.util.MenuUtils;
 
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -54,12 +53,12 @@ public class PortalMenuNavigator {
     switch (selectedMenuKind) {
       case DASHBOARD:
       case MAIN_DASHBOARD:
-      case PROCESS:
+      case CUSTOM:
       case EXTERNAL_LINK:
       case STATIC_PAGE:
         redirectToSelectedMenuUrl(params);
         break;
-      case PROCESS_LIST:
+      case PROCESS:
         PortalNavigator.navigateToPortalProcess();
         break;
       default:
@@ -170,11 +169,17 @@ public class PortalMenuNavigator {
       dashboard.setIcon(dashboard.getIsPublic() ? "ti-world-share" : "ti-lock-square-rounded");
     }
 
-    // Set id
-    item.setId(dashboard.getId());
-
     // Set icon with the appropriate prefix
-    item.icon = MenuUtils.buildIconClass(dashboard.getIcon());
+    String iconValue = dashboard.getIcon();
+    if (iconValue.startsWith("fa")) {
+      item.icon = "fa " + iconValue;
+    } else if (iconValue.startsWith("tif")) {
+      item.icon = "tif " + iconValue;
+    } else if (iconValue.startsWith("si")) {
+      item.icon = "si " + iconValue;
+    } else {
+      item.icon = "ti " + iconValue;
+    }
 
     // Set the name of the submenu item based on the current language or use default title
     item.label = dashboard.getTitles().stream()

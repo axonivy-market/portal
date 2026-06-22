@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -9,10 +10,16 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.PrimeFaces;
 import org.primefaces.component.tabview.TabView;
+import org.primefaces.event.ReorderEvent;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.event.TabChangeEvent;
+import org.primefaces.event.UnselectEvent;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
+import ch.ivy.addon.portalkit.configuration.Application;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.Attrs;
@@ -26,6 +33,7 @@ public class AdminSettingBean implements Serializable {
   private static final long serialVersionUID = 1506137118077215366L;
 
   public static final String PORTAL_MESSAGE_INFO = "portal-management-messages-information";
+  public static final String APPLICATION_TAB_ID = "application-tab";
   public static final String ADMIN_SETTING_TAB_ID = "setting-tab";
   public static final String ANNOUNCEMENT_SETTING_TAB_ID = "announcement-tab";
   public static final String ROLE_MANAGEMENT_TAB_ID = "role-management-tab";
@@ -33,6 +41,7 @@ public class AdminSettingBean implements Serializable {
   private boolean isShowRoleManagementTab;
   private boolean isTabChangeEventTriggered;
   private boolean isShowPasswordValidationTab;
+  private ThirdPartyApplicationBean thirdPartyApplicationBean;
 
   public void initAdminTabViewConfig() {
     if (isTabChangeEventTriggered) {
@@ -41,15 +50,16 @@ public class AdminSettingBean implements Serializable {
     }
     isShowRoleManagementTab = canSeeRoleManagement();
     isShowPasswordValidationTab = canSeePasswordValidation();
-    // Settings is the first tab, so its data must be loaded on the initial render
-    // (onTabChange only fires when the user switches to another tab and back).
-    invokeAdminSettingsComponentLogic("#{logic.initAdminSettings}", new Object[] {});
+    initApplicationTab();
   }
 
   public void onTabChange(TabChangeEvent<Object> tabChangeEvent) {
     if (tabChangeEvent.getComponent() instanceof TabView) {
       var tabId = tabChangeEvent.getTab().getId();
       switch (tabId) {
+        case APPLICATION_TAB_ID:
+          initApplicationTab();
+          break;
         case ADMIN_SETTING_TAB_ID:
           initAdminSettingsTab();
           break;
@@ -67,6 +77,151 @@ public class AdminSettingBean implements Serializable {
     isTabChangeEventTriggered = true;
   }
 
+  private ThirdPartyApplicationBean getThirdPartyApplicationBean() {
+    if (thirdPartyApplicationBean == null) {
+      thirdPartyApplicationBean = new ThirdPartyApplicationBean();
+    }
+    return thirdPartyApplicationBean;
+  }
+
+  public void setThirdPartyApplicationBean(ThirdPartyApplicationBean thirdPartyApplicationBean) {
+    this.thirdPartyApplicationBean = thirdPartyApplicationBean;
+  }
+
+  // Delegation methods for third-party application management
+  public void addNewApplication() {
+    getThirdPartyApplicationBean().addNewApplication();
+  }
+
+  public void editApplication(Application application) {
+    getThirdPartyApplicationBean().editApplication(application);
+  }
+
+  public void saveApplication() {
+    getThirdPartyApplicationBean().saveApplication();
+  }
+
+  public void deleteApplication(Application application) {
+    getThirdPartyApplicationBean().deleteApplication(application);
+  }
+
+  public List<Application> getApplicationList() {
+    return getThirdPartyApplicationBean().getApplicationList();
+  }
+
+  public void setApplicationList(List<Application> applicationList) {
+    getThirdPartyApplicationBean().setApplicationList(applicationList);
+  }
+
+  public Application getSelectedApp() {
+    return getThirdPartyApplicationBean().getSelectedApp();
+  }
+
+  public void setSelectedApp(Application selectedApp) {
+    getThirdPartyApplicationBean().setSelectedApp(selectedApp);
+  }
+
+  public String getDialogTitle() {
+    return getThirdPartyApplicationBean().getDialogTitle();
+  }
+
+  public void setDialogTitle(String dialogTitle) {
+    getThirdPartyApplicationBean().setDialogTitle(dialogTitle);
+  }
+
+  public boolean isAddMode() {
+    return getThirdPartyApplicationBean().isAddMode();
+  }
+
+  public void setAddMode(boolean isAddMode) {
+    getThirdPartyApplicationBean().setAddMode(isAddMode);
+  }
+
+  public String getAppNameInCurrentLocale(Application application) {
+    return getThirdPartyApplicationBean().getAppNameInCurrentLocale(application);
+  }
+
+  public List<String> getSelectedApplicationPermissions() {
+    return getThirdPartyApplicationBean().getSelectedApplicationPermissions();
+  }
+
+  public void setSelectedApplicationPermissions(List<String> selectedApplicationPermissions) {
+    getThirdPartyApplicationBean().setSelectedApplicationPermissions(selectedApplicationPermissions);
+  }
+
+  public String getDisplayNameInCurrentLanguage() {
+    return getThirdPartyApplicationBean().getDisplayNameInCurrentLanguage();
+  }
+
+  public void setDisplayNameInCurrentLanguage(String displayNameInCurrentLanguage) {
+    getThirdPartyApplicationBean().setDisplayNameInCurrentLanguage(displayNameInCurrentLanguage);
+  }
+
+  public List<DisplayName> getSupportedLanguages() {
+    return getThirdPartyApplicationBean().getSupportedLanguages();
+  }
+
+  public List<String> getLanguages() {
+    return getThirdPartyApplicationBean().getLanguages();
+  }
+
+  public void updateDisplayNameByLocale() {
+    getThirdPartyApplicationBean().updateDisplayNameByLocale();
+  }
+
+  public List<DisplayName> getTitles() {
+    return getThirdPartyApplicationBean().getTitles();
+  }
+
+  public void updateCurrentLanguage() {
+    getThirdPartyApplicationBean().updateCurrentLanguage();
+  }
+
+  public String getTranslatedText() {
+    return getThirdPartyApplicationBean().getTranslatedText();
+  }
+
+  public void setTranslatedText(String translatedText) {
+    getThirdPartyApplicationBean().setTranslatedText(translatedText);
+  }
+
+  public String getWarningText() {
+    return getThirdPartyApplicationBean().getWarningText();
+  }
+
+  public void setWarningText(String warningText) {
+    getThirdPartyApplicationBean().setWarningText(warningText);
+  }
+
+  public void translate(DisplayName title) {
+    getThirdPartyApplicationBean().translate(title);
+  }
+
+  public void applyTranslatedText(DisplayName displayName) {
+    getThirdPartyApplicationBean().applyTranslatedText(displayName);
+  }
+
+  public boolean isRequiredField(DisplayName displayName) {
+    return getThirdPartyApplicationBean().isRequiredField(displayName);
+  }
+
+  public boolean isShowTranslation(DisplayName title) {
+    return getThirdPartyApplicationBean().isShowTranslation(title);
+  }
+
+  public boolean isFocus(DisplayName title) {
+    return getThirdPartyApplicationBean().isFocus(title);
+  }
+
+  public void onApplicationReorderDelegate(List<Application> applications, Application selectedApp) {
+    getThirdPartyApplicationBean().onApplicationReorder(applications, selectedApp);
+  }
+
+  private void initApplicationTab() {
+
+    getThirdPartyApplicationBean().loadApplications();
+  }
+
   private void initAnnouncementTab() {
     invokeAdminSettingsComponentLogic("#{logic.initAnnouncementSettings}", new Object[] {});
   }
@@ -74,6 +229,23 @@ public class AdminSettingBean implements Serializable {
   private void initAdminSettingsTab() {
     PrimeFacesUtils.executeScript("PF('settingTable').filter()");
     invokeAdminSettingsComponentLogic("#{logic.initAdminSettings}", new Object[] {});
+  }
+  public void onApplicationReorder(ReorderEvent reorderEvent) {
+    int fromIndex = reorderEvent.getFromIndex();
+    int toIndex = reorderEvent.getToIndex();
+    
+    List<Application> applicationList = getThirdPartyApplicationBean().getApplicationList();
+    
+    if (applicationList != null && !applicationList.isEmpty()) {
+      Application selectedApp = applicationList.remove(fromIndex);
+      applicationList.add(toIndex, selectedApp);
+
+      for (int i = 0; i < applicationList.size(); i++) {
+        applicationList.get(i).setMenuOrdinal(i);
+      }
+
+      getThirdPartyApplicationBean().onApplicationReorder(applicationList, selectedApp);
+    }
   }
 
   private void invokeAdminSettingsComponentLogic(String methodName, Object[] param) {
@@ -118,5 +290,17 @@ public class AdminSettingBean implements Serializable {
 
   public void setShowPasswordValidationTab(boolean isShowPasswordValidationTab) {
     this.isShowPasswordValidationTab = isShowPasswordValidationTab;
+  }
+
+  public List<SecurityMemberDTO> completeApplicationPermissions(String query) {
+    return getThirdPartyApplicationBean().completeApplicationPermissions(query);
+  }
+
+  public void onSelectPermissionForApplication(SelectEvent<Object> event) {
+    getThirdPartyApplicationBean().onSelectPermissionForApplication(event);
+  }
+
+  public void onUnSelectPermissionForApplication(UnselectEvent<Object> event) {
+    getThirdPartyApplicationBean().onUnSelectPermissionForApplication(event);
   }
 }

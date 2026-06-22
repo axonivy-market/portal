@@ -41,7 +41,7 @@ public class DashboardCloneWidgetScreenshotTest extends ScreenshotBaseTest {
         .openDashboardConfigurationPage();
     configurationPage.openEditPublicDashboardsPage();
     configurationPage
-        .clickButtonOnDashboardConfigurationActionMenu("Configuration", 0);
+        .clickButtonOnDashboardConfigurationActionMenu("Configuration", 2);
 
     NewDashboardDetailsEditPage detailsEditPage = new NewDashboardDetailsEditPage();
 

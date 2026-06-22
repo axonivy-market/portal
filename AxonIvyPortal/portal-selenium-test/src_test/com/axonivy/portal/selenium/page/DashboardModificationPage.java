@@ -89,18 +89,10 @@ public class DashboardModificationPage extends TemplatePage {
   }
   
   public void selectDashboardDisplayType(DashboardDisplayType type) {
-    String label = displayTypeLabel(type);
+    String label = DashboardDisplayType.getDisplayLabel(type);
     $("div.create-public-dashboard-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
     .$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     $("ul[id$='dashboard-display-menu_items']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li").filter(Condition.text(label)).first().click();
-  }
-
-  private static String displayTypeLabel(DashboardDisplayType type) {
-    return switch (type) {
-      case SUB_MENU -> "Submenu";
-      case TOP_MENU -> "Sidebar";
-      case HIDDEN -> "Hidden";
-    };
   }
   
   public void saveEditDashboard() {
