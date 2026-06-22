@@ -197,6 +197,20 @@ Filter Operators
    - | Valid for creator. Do not specify a value.
      | Results include only records where the data in the column has been created by current user.
 
+Restricting Filter Fields And Operators
+---------------------------------------
+
+Administrators can configure which operators are available globally via the
+``Portal.ComplexFilter.Operators`` setting in `Admin Settings > Settings`.
+
+- All operators are enabled by default.
+- Any operator unchecked here is disabled globally, which mean it will not be available in all fields using that operator and in all widgets.
+
+.. note::
+
+   When field and operator settings change after filters have already been saved or applied, Portal
+   automatically removes affected filters.
+
 .. include:: ../includes/_common-icon.rst
 
 .. |case-task-widget-filter-combine| image:: ../../screenshots/new-dashboard/case-task-widget-filter-combine.png
