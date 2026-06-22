@@ -197,6 +197,8 @@ Filter Operators
    - | Valid for creator. Do not specify a value.
      | Results include only records where the data in the column has been created by current user.
 
+.. include:: filter-management.rst
+
 .. include:: ../includes/_common-icon.rst
 
 .. |case-task-widget-filter-combine| image:: ../../screenshots/new-dashboard/case-task-widget-filter-combine.png
