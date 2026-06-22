@@ -11,9 +11,9 @@ on:
         required: true
       engineDownloadURL:
         description: |
-          url to download engine, default is the nightly build.
+          url to download engine, default is the sprint build.
         type: string
-        default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
+        default: 'https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip'
         required: true
 
 env:
@@ -29,7 +29,7 @@ jobs:
           fetch-depth: 20  # Fetch more commits for history
 
       - name: Show commits since last successful build
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const branch = context.ref.replace('refs/heads/', ''); // Extract the branch name from the GitHub context (removes 'refs/heads/' prefix)
@@ -199,7 +199,7 @@ jobs:
             }
 
       - name: Show PRs merged since last successful build
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const branch = context.ref.replace('refs/heads/', '');
@@ -327,7 +327,7 @@ jobs:
             
         - name: Set up and verify directories
           run: |
-            ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/nightly"
+            ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/sprint"
             mkdir -p $ENGINE_DIR
             sudo chown -R $USER:$USER $ENGINE_DIR
             echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
@@ -398,7 +398,7 @@ jobs:
 
         - name: Parse and show failed tests
           if: always()
-          uses: actions/github-script@v8
+          uses: actions/github-script@v9
           with:
             script: |
               const fs = require('fs');                         // File system operations (read files, check existence)
