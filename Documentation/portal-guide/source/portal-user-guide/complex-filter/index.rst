@@ -204,7 +204,7 @@ Administrators can configure which operators are available globally via the
 ``Portal.ComplexFilter.Operators`` setting in `Admin Settings > Settings`.
 
 - All operators are enabled by default.
-- Any operator unchecked here is disabled globally, which mean it will not be available in all fields using that operator and in all widgets.
+- Any operator unchecked here is disabled globally, which means it will not be available in any field using that operator.
 
 .. note::
 
