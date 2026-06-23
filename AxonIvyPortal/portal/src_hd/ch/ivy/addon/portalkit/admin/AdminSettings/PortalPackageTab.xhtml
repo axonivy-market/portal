@@ -1,0 +1,133 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
+
+  <p:messages id="portalPackageMessages" closable="true" />
+
+  <!-- EXPORT SECTION -->
+  <h:panelGroup layout="block" styleClass="mb-5 grid">
+    <div class="col-12">
+      <h4>Export</h4>
+      <p class="text-color-secondary">
+        Export the current Portal configuration as a zip package. The following files will be included:
+      </p>
+    </div>
+
+    <!-- File list -->
+    <div class="col-12">
+      <ul class="list-none p-0 m-0 mb-3">
+        <li class="flex align-items-center gap-2 py-2 border-bottom-1 surface-border">
+          <i class="ti ti-file-type-json text-color-secondary" />
+          <span class="font-medium">Portal_Dashboard.json</span>
+        </li>
+        <li class="flex align-items-center gap-2 py-2 border-bottom-1 surface-border">
+          <i class="ti ti-file-type-json text-color-secondary" />
+          <span class="font-medium">Portal_CustomStatistic.json</span>
+        </li>
+        <li class="flex align-items-center gap-2 py-2 border-bottom-1 surface-border">
+          <i class="ti ti-file-type-json text-color-secondary" />
+          <span class="font-medium">Portal_UserMenu.json</span>
+        </li>
+        <li class="flex align-items-center gap-2 py-2 border-bottom-1 surface-border">
+          <i class="ti ti-file-type-json text-color-secondary" />
+          <span class="font-medium">Portal_CaseDetails.json</span>
+        </li>
+        <li class="flex align-items-center gap-2 py-2">
+          <i class="ti ti-file-type-json text-color-secondary" />
+          <span class="font-medium">Portal_ThirdPartyApplications.json</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-12">
+      <span class="text-color-secondary text-sm">
+        <i class="ti ti-info-circle mr-1" />
+        Only non-empty configurations are included in the package.
+      </span>
+    </div>
+
+    <div class="col-12">
+      <h:form>
+        <p:commandButton id="export-btn"
+          value="Export"
+          ariaLabel="Export"
+          icon="si si-download-bottom"
+          styleClass="primary-color-light-button w-full"
+          ajax="false">
+          <p:fileDownload value="#{portalPackageBean.exportPackage()}" />
+        </p:commandButton>
+      </h:form>
+    </div>
+  </h:panelGroup>
+
+  <p:separator styleClass="mb-5" />
+
+  <!-- IMPORT SECTION -->
+  <h:panelGroup layout="block" styleClass="mb-5 grid">
+    <div class="col-12">
+      <h4>Import</h4>
+      <p class="text-color-secondary">
+        Upload a Portal_Package.zip file. Existing data for each type will be replaced.
+      </p>
+    </div>
+
+    <div class="col-12">
+      <p:commandButton id="import-btn"
+        value="Import"
+        ariaLabel="Import"
+        icon="si si-upload-top"
+        styleClass="primary-color-light-button w-full"
+        onclick="PF('importDialog').show(); return false;"
+        ajax="false" />
+    </div>
+  </h:panelGroup>
+
+  <!-- IMPORT DIALOG -->
+  <p:dialog header="Import Portal Package"
+    widgetVar="importDialog"
+    appendTo="@(body)"
+    modal="true"
+    responsive="true"
+    closeOnEscape="true"
+    resizable="false"
+    width="520px"
+    styleClass="portal-dialog dialog-responsive">
+
+    <div class="grid">
+      <div class="col-12">
+        <p class="text-color-secondary mt-0">
+          Select a <span class="font-medium">Portal_Package.zip</span> file to upload.
+          All configurations included in the package will replace the existing ones.
+        </p>
+      </div>
+
+      <div class="col-12">
+        <div class="ui-dashboard-upload-file-panel">
+          <span class="ui-dashboard-upload-file-label">
+            <i class="ti ti-file-upload" />
+            <span>Drag and drop a .zip file here or <a href="#" onclick="return false;">browse</a></span>
+          </span>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <span class="text-color-secondary text-sm">
+          <i class="ti ti-alert-triangle mr-1" />
+          Existing data for each imported type will be replaced. This action cannot be undone.
+        </span>
+      </div>
+    </div>
+
+    <f:facet name="footer">
+      <div class="flex flex-column gap-2 w-full">
+        <p:commandButton value="Import" ariaLabel="Import"
+          styleClass="w-full"
+          onclick="PF('importDialog').hide(); return false;" />
+        <p:commandLink value="Cancel" ariaLabel="Cancel"
+          onclick="PF('importDialog').hide(); return false;"
+          styleClass="pt-2 flex justify-content-center" />
+      </div>
+    </f:facet>
+  </p:dialog>
+
+</ui:composition>

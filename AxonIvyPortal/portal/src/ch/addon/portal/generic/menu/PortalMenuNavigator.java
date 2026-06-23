@@ -169,6 +169,9 @@ public class PortalMenuNavigator {
       dashboard.setIcon(dashboard.getIsPublic() ? "ti-world-share" : "ti-lock-square-rounded");
     }
 
+    // Set id
+    item.setId(dashboard.getId());
+
     // Set icon with the appropriate prefix
     String iconValue = dashboard.getIcon();
     if (iconValue.startsWith("fa")) {

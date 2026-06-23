@@ -20,11 +20,15 @@ public class DashboardConfigurationBean implements Serializable {
   private boolean isMobileDevice;
   private boolean canEditPrivateDashboard;
   private boolean canEditPublicDashboard;
+  private boolean canManageSidebarNavigation;
+  private boolean canManagePackages;
   private boolean isPublicDashboard;
   private boolean isSelectingAction = true;
   private boolean isSelectingTemplate;
   private boolean isEditingDashboard;
   private boolean isReorderingDashboard;
+  private boolean isMenuManagement;
+  private boolean isPackageManagement;
 
   @PostConstruct
   public void initConfigurationBean() {
@@ -42,6 +46,8 @@ public class DashboardConfigurationBean implements Serializable {
     if (!isMobileDevice) {
       canEditPrivateDashboard = PermissionUtils.hasDashboardWriteOwnPermission();
       canEditPublicDashboard = PermissionUtils.hasDashboardWritePublicPermission();
+      canManageSidebarNavigation = PermissionUtils.isSessionUserHasAdminRole();
+      canManagePackages = PermissionUtils.isSessionUserHasAdminRole();
     }
   }
 
@@ -50,6 +56,8 @@ public class DashboardConfigurationBean implements Serializable {
     isSelectingTemplate = false;
     isEditingDashboard = false;
     isReorderingDashboard = false;
+    isMenuManagement = false;
+    isPackageManagement = false;
   }
 
   public void switchDashboardType(boolean isPublicDashboard) {
@@ -81,6 +89,16 @@ public class DashboardConfigurationBean implements Serializable {
     this.isPublicDashboard = isPublicDashboard;
   }
 
+  public void accessToMenuManagement() {
+    resetAllIndicators();
+    this.isMenuManagement = true;
+  }
+
+  public void accessToPackageManagement() {
+    resetAllIndicators();
+    this.isPackageManagement = true;
+  }
+
   public boolean isMobileDevice() {
     return isMobileDevice;
   }
@@ -103,6 +121,10 @@ public class DashboardConfigurationBean implements Serializable {
 
   public void setCanEditPublicDashboard(boolean canEditPublicDashboard) {
     this.canEditPublicDashboard = canEditPublicDashboard;
+  }
+
+  public boolean isCanManageSidebarNavigation() {
+    return canManageSidebarNavigation;
   }
 
   public boolean isPublicDashboard() {
@@ -143,5 +165,25 @@ public class DashboardConfigurationBean implements Serializable {
 
   public void setReorderingDashboard(boolean isReorderingDashboard) {
     this.isReorderingDashboard = isReorderingDashboard;
+  }
+
+  public boolean isMenuManagement() {
+    return isMenuManagement;
+  }
+
+  public void setMenuManagement(boolean isMenuManagement) {
+    this.isMenuManagement = isMenuManagement;
+  }
+
+  public boolean isCanManagePackages() {
+    return canManagePackages;
+  }
+
+  public boolean isPackageManagement() {
+    return isPackageManagement;
+  }
+
+  public void setPackageManagement(boolean isPackageManagement) {
+    this.isPackageManagement = isPackageManagement;
   }
 }
