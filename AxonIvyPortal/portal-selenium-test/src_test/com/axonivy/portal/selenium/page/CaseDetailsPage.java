@@ -890,18 +890,36 @@ public class CaseDetailsPage extends TemplatePage {
     return findElementByCssSelector(destroyCommandButton).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
+  // #1. Reads the state badge of a related task row. getTaskRowIndex() throws NoSuchElementException when
+  //     the row is absent; we deliberately do NOT swallow it here, so a missing row surfaces instead of
+  //     being reported as a wrong state. Check presence before calling this (see isRelatedTaskDestroyed).
   public boolean isTaskState(String taskName, TaskBusinessState taskState) {
-    try {
-      Integer index = getTaskRowIndex(taskName);
-      WebElement element = $$("td.related-task-state-column span.task-state").get(index);
-      if (element != null) {
-        String stateClass = element.getDomAttribute(CLASS);
-        return stateClass.contains(taskState.toString().toLowerCase() + "-task-state");
-      }
-    } catch (java.util.NoSuchElementException e) {
-      return false;
+    Integer index = getTaskRowIndex(taskName);
+    WebElement element = $$("td.related-task-state-column span.task-state").get(index);
+    if (element != null) {
+      String stateClass = element.getDomAttribute(CLASS);
+      return stateClass.contains(taskState.toString().toLowerCase() + "-task-state");
     }
     return false;
+  }
+
+  // #2. True while a related task with the given name is still listed in the related-tasks table.
+  public boolean isRelatedTaskPresent(String taskName) {
+    return $$(".task-name-value").texts().contains(taskName);
+  }
+
+  // #3. True once a related task has been destroyed. After destroy the UI shows one of two valid states,
+  //     depending on whether the lazy list does a fresh STANDARD_STATES-filtered reload:
+  //       (a) the row drops out of the list (DESTROYED is not a STANDARD_STATE), or
+  //       (b) the row stays, re-rendered from already-loaded data, with a DESTROYED badge.
+  //     Accept both. Presence is checked first so isTaskState() only runs when the row exists; if the row
+  //     vanishes mid-check (a reload lands in between), that NoSuchElementException also means "gone" = destroyed.
+  public boolean isRelatedTaskDestroyed(String taskName) {
+    try {
+      return !isRelatedTaskPresent(taskName) || isTaskState(taskName, TaskBusinessState.DESTROYED);
+    } catch (java.util.NoSuchElementException rowVanished) {
+      return true;
+    }
   }
 
   public String getEventTypeInWorkflowEvents() {

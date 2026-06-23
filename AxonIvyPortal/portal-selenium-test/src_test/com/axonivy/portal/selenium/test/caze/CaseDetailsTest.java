@@ -271,12 +271,21 @@ public class CaseDetailsTest extends BaseTest {
 
   @Test
   public void testRelatedTaskDestroyTask() {
+    // #1. Open the testing case and wait for its related tasks to load (Sick Leave Request is OPEN here).
     createTestingTask();
+    // #2. Open the action menu of the Sick Leave Request related task.
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
+    // #3. The destroy action must be enabled for this task before we trigger it.
     assertTrue(detailsPage.isRelatedTaskDestroyEnabled(SICK_LEAVE_REQUEST_TASK));
+    // #4. Trigger destroy and confirm it in the confirmation dialog.
     detailsPage.destroyTask(SICK_LEAVE_REQUEST_TASK);
     detailsPage.confimRelatedTaskDestruction();
-    WaitHelper.assertTrueWithWait(() -> detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.DESTROYED));
+    // #5. Destroy succeeded once the task is no longer an OPEN related task. There are TWO valid UI outcomes,
+    //     both observed across runs, depending on whether the lazy list does a fresh reload after destroy:
+    //       (a) full-suite/under load -> the list reloads, STANDARD_STATES filters out DESTROYED, row disappears;
+    //       (b) isolated run -> the list re-renders already-loaded data, so the row stays with a DESTROYED badge.
+    //     Accept either so the test is stable in both contexts (polling for only one of them is the flaky bug).
+    WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedTaskDestroyed(SICK_LEAVE_REQUEST_TASK));
   }
 
   @Test
