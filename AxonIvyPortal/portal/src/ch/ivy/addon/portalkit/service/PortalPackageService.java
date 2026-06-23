@@ -40,6 +40,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.NavigationWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class PortalPackageService {
@@ -296,7 +297,9 @@ public class PortalPackageService {
       try {
         String json = "Portal_ExternalLinks.json".equals(e.getKey())
             ? restoreExternalLinkImages(e.getValue())
-            : e.getValue();
+            : "Portal_Dashboard.json".equals(e.getKey())
+                ? restoreDashboardImages(e.getValue())
+                : e.getValue();
         Ivy.var().set(variableKey, json);
         results.add(ImportEntryResult.success(e.getKey()));
       } catch (Exception ex) {
@@ -317,6 +320,17 @@ public class PortalPackageService {
       }
     });
     return BusinessEntityConverter.entityToJsonValue(links);
+  }
+
+  private String restoreDashboardImages(String json) {
+    List<Dashboard> dashboards = BusinessEntityConverter.jsonValueToEntities(json, Dashboard.class);
+    dashboards.forEach(dashboard ->
+        Optional.ofNullable(dashboard.getWidgets()).orElse(Collections.emptyList()).forEach(widget -> {
+          if (widget instanceof NavigationDashboardWidget) {
+            NavigationWidgetUtils.writeNavigateWidgetImage((NavigationDashboardWidget) widget);
+          }
+        }));
+    return BusinessEntityConverter.entityToJsonValue(dashboards);
   }
 
   private Map<String, byte[]> readZipEntries(byte[] zipBytes) throws IOException {
