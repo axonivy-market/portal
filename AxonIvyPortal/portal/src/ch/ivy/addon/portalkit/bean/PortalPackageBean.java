@@ -27,49 +27,13 @@ public class PortalPackageBean implements Serializable {
   private PackagePreview preview;
   private byte[] pendingZipBytes;
   private List<ImportEntryResult> importResults;
-  private List<PortalPackageService.ExportableFile> exportableFiles;
-
-  public void prepareExportDialog() {
-    try {
-      exportableFiles = service.getExportableFiles();
-    } catch (Exception e) {
-      Ivy.log().error("Failed to load exportable files", e);
-      exportableFiles = List.of();
-    }
-  }
 
   public StreamedContent exportPackage() {
     try {
-      List<String> selected = exportableFiles == null ? List.of()
-          : exportableFiles.stream()
-              .filter(PortalPackageService.ExportableFile::isSelected)
-              .map(PortalPackageService.ExportableFile::getFilename)
-              .collect(java.util.stream.Collectors.toList());
-      return service.exportPackage(selected);
+      return service.exportPackage();
     } catch (Exception e) {
       Ivy.log().error("Failed to export Portal package", e);
       return null;
-    }
-  }
-
-  public boolean isAnyExportFileSelected() {
-    return exportableFiles != null
-        && exportableFiles.stream().anyMatch(PortalPackageService.ExportableFile::isSelected);
-  }
-
-  public List<PortalPackageService.ExportableFile> getExportableFiles() {
-    return exportableFiles;
-  }
-
-  public void selectAllExportFiles() {
-    if (exportableFiles != null) {
-      exportableFiles.forEach(f -> f.setSelected(true));
-    }
-  }
-
-  public void unselectAllExportFiles() {
-    if (exportableFiles != null) {
-      exportableFiles.forEach(f -> f.setSelected(false));
     }
   }
 
