@@ -35,6 +35,7 @@ public class AuditTrailBean implements Serializable {
     private List<AuditTrailDTO> additionalContentFromPreviousTasks = new ArrayList<>();
     private String noteText;
     private String additionalEntry;
+    private String additionalInformationAuditTrail;
 
     public void init(Long taskId, ICase currentCase, String additionalEntry) {
         this.taskId = taskId;
@@ -42,9 +43,6 @@ public class AuditTrailBean implements Serializable {
         this.additionalEntry = additionalEntry;
         initAuditTrailDTOs();
         loadPreviousTasks();
-        if (currentCase != null) {
-            collectAdditionalInformation(String.valueOf(currentCase.getId()));
-        }
     }
 
     private void initAuditTrailDTOs() {
@@ -93,6 +91,24 @@ public class AuditTrailBean implements Serializable {
         return additionalEntry;
     }
 
+    public String getAdditionalInformationAuditTrail() {
+        return additionalInformationAuditTrail;
+    }
+
+    public void setAdditionalInformationAuditTrail(String additionalInformationAuditTrail) {
+        this.additionalInformationAuditTrail = additionalInformationAuditTrail;
+    }
+
+    public void addAdditionalInformation() {
+        ITask currentTask = findCurrentTask();
+        Ivy.log().info("note" + this.additionalInformationAuditTrail);
+        if (currentTask == null || additionalInformationAuditTrail == null || additionalInformationAuditTrail.trim().isEmpty()) {
+            return;
+        }
+        currentTask.notes().add().content(this.additionalInformationAuditTrail).execute();
+        additionalInformationAuditTrail = null;
+    }
+
     private void loadPreviousTasks() {
         ITask currentTask = findCurrentTask();
         List<ITask> tasks = new ArrayList<>();
@@ -129,10 +145,21 @@ public class AuditTrailBean implements Serializable {
         for (ITask previous : task.getStartSwitchEvent().getEndedTasks()) {
             if (previous != null && visited.add(previous.getId()) && !isSystemTask(previous) && !previous.responsibles().all().isEmpty()) {
                 result.add(previous);
-                Ivy.log().info(previous.getWorkerUser().getMemberName());
                 collectPreviousTasks(previous, result, visited);
             }
         }
+    }
+
+    public ITask getPreviousTask() {
+        return previousTasks.getLast();
+    }
+
+    public List<AuditTrailDTO> getNotesFromPreviousTask() {
+        if (previousTasks.isEmpty()) {
+            return new ArrayList<>();
+        }
+        Ivy.log().info(previousTasks.getLast().notes().all());
+        return getTaskNotes(previousTasks.getLast());
     }
 
     public void collectAdditionalInformation(String caseId) {

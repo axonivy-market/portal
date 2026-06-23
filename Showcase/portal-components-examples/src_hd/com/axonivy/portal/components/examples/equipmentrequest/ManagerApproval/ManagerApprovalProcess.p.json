@@ -36,22 +36,6 @@
         "at" : { "x" : 608, "y" : 64 }
       }
     }, {
-      "id" : "f3",
-      "type" : "HtmlDialogEventStart",
-      "name" : "approved",
-      "config" : {
-        "guid" : "2CCF1234ABCD567A",
-        "output" : {
-          "code" : "out.requestData.isApproved = true;"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 160 }
-      },
-      "connect" : [
-        { "id" : "f11", "to" : "f10" }
-      ]
-    }, {
       "id" : "f4",
       "type" : "HtmlDialogExit",
       "visual" : {
@@ -79,26 +63,6 @@
       },
       "connect" : [
         { "id" : "f2", "to" : "f16" }
-      ]
-    }, {
-      "id" : "f8",
-      "type" : "HtmlDialogEventStart",
-      "name" : "rejected",
-      "config" : {
-        "guid" : "2CCF1234ABCD567B",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.requestData" : "in.requestData"
-          },
-          "code" : "ivy.task.customFields().stringField(\"rejectionReason\").set(in.requestData.rejectionReason);"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 256 }
-      },
-      "connect" : [
-        { "id" : "f12", "to" : "f10", "via" : [ { "x" : 224, "y" : 256 } ] }
       ]
     }, {
       "id" : "f10",
@@ -141,6 +105,42 @@
       },
       "connect" : [
         { "id" : "f9", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "approve()",
+      "config" : {
+        "signature" : "approve",
+        "input" : {
+          "map" : { },
+          "code" : "out.requestData.isApproved = true;"
+        },
+        "guid" : "19EF285E071A09B0"
+      },
+      "visual" : {
+        "at" : { "x" : 152, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "reject()",
+      "config" : {
+        "signature" : "reject",
+        "input" : {
+          "map" : { },
+          "code" : "out.requestData.isApproved = false;"
+        },
+        "guid" : "19EF2864B17265FD"
+      },
+      "visual" : {
+        "at" : { "x" : 152, "y" : 296 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f10" }
       ]
     } ]
 }

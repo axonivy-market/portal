@@ -55,7 +55,7 @@
         <div class="flex flex-row-reverse gap-2">
           <p:commandButton value="Approve" ariaLabel="Approve"
             icon="ti ti-check" styleClass="primary-color-light-button"
-            partialSubmit="true" actionListener="#{logic.approved}"
+            partialSubmit="true" actionListener="#{logic.approve}"
             process=":equipment-request" update=":equipment-request" />
           <p:commandButton value="Reject" ariaLabel="Reject"
             icon="ti ti-x" type="button" styleClass="ui-button-outlined-danger"
@@ -86,7 +86,7 @@
             <div class="flex flex-column gap-2 w-full">
               <p:commandButton value="Confirm Rejection" ariaLabel="Confirm Rejection"
                 styleClass="w-full"
-                actionListener="#{logic.rejected}"
+                actionListener="#{logic.reject}"
                 process=":equipment-request :equipment-request:rejection-reason" update=":equipment-request" />
               <p:commandLink value="Cancel" ariaLabel="Cancel"
                 onclick="PF('rejectionDialog').hide(); return false;"
