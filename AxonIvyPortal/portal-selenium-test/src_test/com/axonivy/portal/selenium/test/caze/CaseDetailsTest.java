@@ -271,11 +271,21 @@ public class CaseDetailsTest extends BaseTest {
 
   @Test
   public void testRelatedTaskDestroyTask() {
+    // #1. Open the testing case; Sick Leave Request is an OPEN related task here.
     createTestingTask();
+    // #2. Open the action menu of the Sick Leave Request related task.
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
+    // #3. The destroy action must be enabled for this task before we trigger it.
     assertTrue(detailsPage.isRelatedTaskDestroyEnabled(SICK_LEAVE_REQUEST_TASK));
+    // #4. Trigger destroy and confirm it in the confirmation dialog.
     detailsPage.destroyTask(SICK_LEAVE_REQUEST_TASK);
     detailsPage.confimRelatedTaskDestruction();
+    // #5. Re-sync the related-tasks list with the server: toggle "Show only open tasks" ON, then OFF again.
+    //     Each toggle re-queries the server (RelatedTaskLazyDataModel.load()), so the list reflects the real
+    //     task state instead of a stale client-side render left by the post-destroy AJAX.
+    detailsPage.clickShowOnlyOpenTasks();
+    detailsPage.clickShowOnlyOpenTasks();
+    // #6. With the list synced, assert Sick Leave Request shows the DESTROYED state.
     assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.DESTROYED));
   }
 
