@@ -549,6 +549,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       worker: エディター
       wrongFromDateFormat: 有効な「開始」日を入力してください。日付形式は {0} です
       wrongToDateFormat: 有効な「終了」日を入力してください。日付形式は {0} です
+    filterLabel: フィルター
     finish: 終了
     general: 一般
     generalInformation: 一般情報
@@ -679,6 +680,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: エクスポートの準備中、数分かかる場合があります
     warning: 警告
     welcomeToPortal: ようこそ、ログインしてください
+    businessCaseId: ビジネスケースID
+    technicalCaseId: テクニカルケースID
     workingUser: 作業中ユーザー
     wrongDateFormat: 有効な日付を入力してください。
     year: 年
@@ -1911,6 +1914,7 @@ Labels:
     DashboardStandardTaskColumn:
       ACTIONS: アクション
       APPLICATION: アプリケーション
+      BUSINESS_CASE_ID: ビジネスケースID
       CATEGORY: カテゴリー
       COMPLETED: 完了日
       CREATED: 作成日
@@ -1923,6 +1927,7 @@ Labels:
       RESPONSIBLE: 責任者
       START: 開始
       STATE: 状態
+      TECHNICAL_CASE_ID: テクニカルケースID
       WORKER: 作業中ユーザー
     FilterOperator:
       AFTER: 指定の値の後にある

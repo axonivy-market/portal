@@ -57,6 +57,7 @@ public abstract class AbstractColumn implements Serializable {
   protected String style;
   protected String fieldStyle;
   protected Boolean visible;
+  protected Boolean enableFilter;
   protected Boolean quickSearch;
   protected Boolean sortable;
   protected DashboardColumnFormat format;
@@ -92,6 +93,9 @@ public abstract class AbstractColumn implements Serializable {
   public void initDefaultValue() {
     if (isNull(this.visible)) {
       this.visible = true;
+    }
+    if (isNull(this.enableFilter)) {
+      this.enableFilter = true;
     }
     if (isNull(this.sortable)) {
       this.sortable = getDefaultSortable();
@@ -248,6 +252,14 @@ public abstract class AbstractColumn implements Serializable {
 
   public void setVisible(Boolean visible) {
     this.visible = visible;
+  }
+
+  public Boolean getEnableFilter() {
+    return enableFilter;
+  }
+
+  public void setEnableFilter(Boolean enableFilter) {
+    this.enableFilter = enableFilter;
   }
 
   public Boolean getSortable() {

@@ -52,7 +52,7 @@
       </h:panelGroup>
 
       <p:dataTable id="dashboard-cases" widgetVar="#{cc.attrs.caseWidgetVar}-#{caseWidget.id}" value="#{caseWidget.dataModel}" var="caseItem"
-        lazy="true" scrollRows="25" partialUpdate="false"
+        lazy="true" scrollRows="25"
         liveScroll="true" scrollable="true" sortBy="#{isResizing ? null : caseWidget.sortBy}"
         showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
@@ -121,9 +121,7 @@
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.format eq 'NUMBER'}">
-            <h:outputText value="#{column.display(caseItem)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}">
-              <f:convertNumber pattern="#{column.pattern}" />
-            </h:outputText>
+            <h:outputText value="#{column.display(caseItem)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'category'}">

@@ -548,6 +548,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       worker: Editor
       wrongFromDateFormat: Please enter a valid 'from' date. Date format is {0}
       wrongToDateFormat: Please enter a valid 'to' date. Date format is {0}
+    filterLabel: Filter
     finish: Finish
     general: General
     generalInformation: General information
@@ -678,6 +679,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: We are creating the Export, this can take a few minutes
     warning: Warning!
     welcomeToPortal: Welcome, please login
+    businessCaseId: Business Case ID
+    technicalCaseId: Technical Case ID
     workingUser: Working user
     wrongDateFormat: Please enter valid date.
     year: year
@@ -1926,6 +1929,7 @@ Labels:
     DashboardStandardTaskColumn:
       ACTIONS: Actions
       APPLICATION: Application
+      BUSINESS_CASE_ID: Business Case ID
       CATEGORY: Category
       COMPLETED: Completed Date
       CREATED: Created Date
@@ -1938,6 +1942,7 @@ Labels:
       RESPONSIBLE: Responsible
       START: Start
       STATE: State
+      TECHNICAL_CASE_ID: Technical Case ID
       WORKER: Working user
     FilterOperator:
       AFTER: Is After

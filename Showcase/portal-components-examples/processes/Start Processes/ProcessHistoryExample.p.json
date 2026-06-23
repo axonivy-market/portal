@@ -235,7 +235,7 @@
           "code" : [
             "import ch.ivyteam.ivy.process.model.value.SignalCode;",
             "",
-            "SignalCode code = new SignalCode(\"com:axonivy:portal:portalcomponentsexamples:createBetaCompany\");",
+            "SignalCode code = SignalCode.of(\"com:axonivy:portal:portalcomponentsexamples:createBetaCompany\");",
             "ivy.wf.signals().send(code);"
           ]
         }

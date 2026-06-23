@@ -550,6 +550,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       worker: Éditeur
       wrongFromDateFormat: Veuillez entrer une date valide "du". Le format est {0}
       wrongToDateFormat: Veuillez entrer une date valide "au". Le format est {0}
+    filterLabel: Filtre
     finish: Terminer
     general: Général
     generalInformation: Informations générales
@@ -680,6 +681,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Nous créons l'export, cela peut prendre quelques minutes
     warning: Attention!
     welcomeToPortal: Bienvenue, veuillez vous connecter
+    businessCaseId: ID du cas métier
+    technicalCaseId: ID du cas technique
     workingUser: Gestionnaire
     wrongDateFormat: Veuillez entrer une date valide
     year: an
@@ -1930,6 +1933,7 @@ Labels:
     DashboardStandardTaskColumn:
       ACTIONS: Actions
       APPLICATION: Application
+      BUSINESS_CASE_ID: ID du cas métier
       CATEGORY: Catégorie
       COMPLETED: Date de fin
       CREATED: Date de création
@@ -1942,6 +1946,7 @@ Labels:
       RESPONSIBLE: Responsable
       START: Démarrage
       STATE: État
+      TECHNICAL_CASE_ID: ID du cas technique
       WORKER: Gestionnaire
     FilterOperator:
       AFTER: Est après

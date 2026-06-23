@@ -114,6 +114,18 @@
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
       </h:panelGroup>
+
+      <h:panelGroup layout="block" rendered="#{filter.isBusinessCaseId()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.IdFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" rendered="#{filter.isTechnicalCaseId()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.IdFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+      </h:panelGroup>
   
       <div class="remove-filter-panel">
         <p:commandButton id="remove-filter" icon="ti ti-minus" rendered="#{!readOnly}"

@@ -550,6 +550,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       worker: Bearbeiter
       wrongFromDateFormat: Bitte geben Sie ein gültiges Datum "von" an. Das Format ist {0}
       wrongToDateFormat: Bitte geben Sie ein gültiges Datum "bis" an. Das Format ist {0}
+    filterLabel: Filter
     finish: Beenden
     general: Allgemein
     generalInformation: Allgemeine Informationen
@@ -642,7 +643,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     sessionExpriedInTeams: Ihre Session ist abgelaufen. Die Anwendung wird neu gestartet.
     setting: Einstellungen
     showDetail: Details anzeigen
-    showRelatedCaseInfo: Zugehöriger Fall
+    showRelatedCaseInfo: Zugehöriger Vorgang
     showSystemNotes: Systemhinweise
     showSystemTasks: Systemaufgaben
     sorting: Sortierung
@@ -680,6 +681,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
     warning: Warnung!
     welcomeToPortal: Willkommen, bitte melden Sie sich an
+    businessCaseId: Business-Fall-ID
+    technicalCaseId: Technische Fall-ID
     workingUser: Bearbeiter
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
     year: Jahr
@@ -1933,6 +1936,7 @@ Labels:
     DashboardStandardTaskColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
+      BUSINESS_CASE_ID: Business-Fall-ID
       CATEGORY: Kategorie
       COMPLETED: Abgeschlossenes Datum
       CREATED: Erstellt am
@@ -1945,6 +1949,7 @@ Labels:
       RESPONSIBLE: Verantwortlich
       START: Start
       STATE: Status
+      TECHNICAL_CASE_ID: Technische Fall-ID
       WORKER: Bearbeiter
     FilterOperator:
       AFTER: Ist nach

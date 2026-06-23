@@ -64,9 +64,9 @@
         type="button" onclick="openFilterPanel(event);"/>
     </div>
 
-    <p:overlayPanel id="widget-configuration-panel" for="widget-configuration-button"
-      styleClass="widget-configuration-overlaypanel" widgetVar="widgetConfigurationPanel" appendTo="@body"
-      my="right top" at="right bottom">
+    <p:overlayPanel id="widget-configuration-panel" for="widget-configuration-button" 
+      styleClass="widget-configuration-overlaypanel" widgetVar="widgetConfigurationPanel"
+      appendTo="@(body)" my="right top" at="right bottom">
       <h4 class="widget-configuration-section-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/displaySettings')}</h4>
       <h:panelGroup id="quick-search-group" layout="block"
         rendered="#{managedBean.canEnableQuickSearch()}"
@@ -194,6 +194,7 @@
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             actionListener="#{taskWidgetConfigurationFilterBean.updateWidgetFilterBeforeApply(widget)}"
             styleClass="Fright preview-button u-hidden-sm-down" icon="ti ti-check"
+            process="predefined-filter widget-title"
             update="predefined-filter configuration-filter-messages-panel"
             oncomplete="closeFilterPanelWithValidation(); if (args &amp;&amp; !args.validationFailed) { updateComponentOnPreviewCmd(); }" />
           <p:commandButton id="reset-filter" icon="ti ti-refresh"

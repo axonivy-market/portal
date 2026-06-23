@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -39,7 +40,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
   protected static final String DEFAULT_TEXT_COLOR = "ffffff";
   protected static final String DEFAULT_IMAGE_CMS_URI = "/images/WelcomeWidget/DefaultImage";
   protected static final String DEFAULT_IMAGE_DARK_CMS_URI = DEFAULT_IMAGE_CMS_URI + "Dark";
-  protected static final String REGEX_REPLACE_SPECIAL_CHARACTER = "[^\\p{Alpha}\\p{Digit}_]+";
+  protected static final Pattern REGEX_REPLACE_SPECIAL_CHARACTER = Pattern.compile("[^\\p{Alpha}\\p{Digit}_]+");
 
 
   protected WelcomeDashboardWidget widget;
@@ -76,7 +77,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
       widget.setImageContentObjectDarkMode(renderImageDarkMode());
     }
     if (StringUtils.isNotBlank(widget.getId())) {
-      String idWithoutSpecialChar = widget.getId().replaceAll(REGEX_REPLACE_SPECIAL_CHARACTER, "_");
+      String idWithoutSpecialChar = REGEX_REPLACE_SPECIAL_CHARACTER.matcher(widget.getId()).replaceAll("_");
       widget.setInternalId(idWithoutSpecialChar);
     }
   }

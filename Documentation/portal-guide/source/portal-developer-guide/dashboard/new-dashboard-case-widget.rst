@@ -55,6 +55,7 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
          {
             "field": "name",
             "visible": "true",
+            "enableFilter": false,
             "quickSearch": "true"
          },
          {
@@ -221,6 +222,10 @@ Each column object in the ``columns`` array:
      - string
      - ``"false"``
      - Include in quick search: ``"true"`` or ``"false"``
+   * - ``enableFilter``
+     - boolean
+     - ``true``
+     - Allow filtering on this column in complex filter.
    * - ``headers``
      - array
      - *(none)*
