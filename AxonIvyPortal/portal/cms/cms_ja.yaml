@@ -927,8 +927,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     noPermission: ダッシュボードを表示する権限がありません。
     noWidget: このダッシュボードにはウィジェットが用意されていません
     numberPattern: 番号パターン
-    operators: オペレーター
-    operatorPolicyTooltip: オペレーターが管理者によってグローバルに無効化されている場合、ここで有効化することはできません。すべてのオペレーターがグローバルに無効化されている場合、フィールドのフィルターを有効化することはできません。
     preview: プレビュー
     processList: プロセスリスト
     processListIntroduction: このウィジェットには、利用可能なプロセス開始が表示されます。さまざまな形式を選択できます。

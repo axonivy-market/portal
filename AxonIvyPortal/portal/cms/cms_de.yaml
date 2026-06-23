@@ -928,8 +928,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     noPermission: Sie haben keine Berechtigung, Dashboards zu sehen.
     noWidget: Es sind aktuell keine Widgets auf diesem Dashboard vorhanden
     numberPattern: Zahlen-Muster
-    operators: Operatoren
-    operatorPolicyTooltip: Wenn Operatoren vom Administrator global deaktiviert sind, können sie hier nicht aktiviert werden. Der Filter eines Felds kann nicht aktiviert werden, wenn alle Operatoren global deaktiviert sind.
     preview: Vorschau
     processList: Prozessliste
     processListIntroduction: Dieses Widget zeigt verfügbare Prozessstarts an. Sie haben die Möglichkeit, unterschiedliche Formate zu wählen

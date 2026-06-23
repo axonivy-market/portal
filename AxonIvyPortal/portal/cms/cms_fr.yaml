@@ -928,8 +928,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     noPermission: Vous n'avez pas les permissions pour voir les tableaux de bord.
     noWidget: Il n'y a pas de widgets fournis pour ce tableau de bord.
     numberPattern: Modèle de numéro
-    operators: Opérateurs
-    operatorPolicyTooltip: Si les opérateurs sont désactivés globalement par l'administrateur, ils ne peuvent pas être activés ici. Le filtre d'un champ ne peut pas être activé lorsque tous les opérateurs sont désactivés globalement.
     preview: Aperçu
     processList: Liste des processus
     processListIntroduction: Ce widget montre les démarrages de processus disponibles. Vous avez la possibilité de choisir différents formats

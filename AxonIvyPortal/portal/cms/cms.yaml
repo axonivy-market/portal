@@ -669,8 +669,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     noPermission: You don't have permissions to see dashboards.
     noWidget: There are no widgets provided for this dashboard
     numberPattern: Number Pattern
-    operators: Operators
-    operatorPolicyTooltip: If operators are disabled globally by admin, they can't be enabled here. A field filter can't be enabled when all operators are globally disabled.
     preview: Preview
     processList: Process List
     processListIntroduction: This widget displays available process starts. You have the possibility to choose different formats.
