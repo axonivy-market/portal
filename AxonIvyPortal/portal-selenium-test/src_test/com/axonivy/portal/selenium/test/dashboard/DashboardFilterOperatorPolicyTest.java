@@ -3,6 +3,9 @@ package com.axonivy.portal.selenium.test.dashboard;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,7 +43,10 @@ public class DashboardFilterOperatorPolicyTest extends BaseTest {
 
   @AfterEach
   public void resetGlobalOperatorPolicy() {
-    updateGlobalVariable(FILTER_OPERATOR_POLICY_KEY, "TODAY,YESTERDAY,IS,IS_NOT,BEFORE,AFTER,BETWEEN,NOT_BETWEEN,CURRENT,LAST,NEXT,EMPTY,NOT_EMPTY,CONTAINS,NOT_CONTAINS,IN,NOT_IN,START_WITH,NOT_START_WITH,END_WITH,NOT_END_WITH,CURRENT_USER_CAN_WORK_ON,CURRENT_USER,NO_CATEGORY,EQUAL,NOT_EQUAL,LESS,LESS_OR_EQUAL,GREATER,GREATER_OR_EQUAL");
+    String allOperators = Arrays.stream(FilterOperator.values())
+      .map(FilterOperator::name)
+      .collect(Collectors.joining(","));
+    updateGlobalVariable(FILTER_OPERATOR_POLICY_KEY, allOperators); 
   }
 
   @Test
