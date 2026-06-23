@@ -21,10 +21,10 @@ on:
           URL to download Axon Ivy Engine. Defaults to nightly build.
         type: string
         required: false
-        default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
+        default: 'https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip'
 
 env:
-  ENGINE_DIR: ${{ github.workspace }}/ivy/engine/nightly
+  ENGINE_DIR: ${{ github.workspace }}/ivy/engine/sprint
 
 jobs:
   a11y-audit:
