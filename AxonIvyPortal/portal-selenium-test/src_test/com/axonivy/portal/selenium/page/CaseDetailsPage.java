@@ -1116,6 +1116,7 @@ public class CaseDetailsPage extends TemplatePage {
   public void clickShowOnlyOpenTasks() {
     $("div[id$=':show-only-open-tasks'] .ui-chkbox-box")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAjaxAndAnimation();
   }
   
   public void clickShowCaseOwners() {
