@@ -891,15 +891,11 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isTaskState(String taskName, TaskBusinessState taskState) {
-    try {
-      Integer index = getTaskRowIndex(taskName);
-      WebElement element = $$("td.related-task-state-column span.task-state").get(index);
-      if (element != null) {
-        String stateClass = element.getDomAttribute(CLASS);
-        return stateClass.contains(taskState.toString().toLowerCase() + "-task-state");
-      }
-    } catch (java.util.NoSuchElementException e) {
-      return false;
+    Integer index = getTaskRowIndex(taskName);
+    WebElement element = $$("td.related-task-state-column span.task-state").get(index);
+    if (element != null) {
+      String stateClass = element.getDomAttribute(CLASS);
+      return stateClass.contains(taskState.toString().toLowerCase() + "-task-state");
     }
     return false;
   }
