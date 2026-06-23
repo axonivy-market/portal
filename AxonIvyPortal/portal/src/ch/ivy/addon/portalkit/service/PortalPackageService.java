@@ -24,6 +24,8 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import com.axonivy.portal.bo.Statistic;
+import com.axonivy.portal.dto.menu.MenuOrderEntry;
+import com.axonivy.portal.service.MenuOrderService;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
@@ -47,6 +49,7 @@ public class PortalPackageService {
 
   private static final Map<String, String> FILE_TO_VARIABLE;
   private static final Map<String, Class<?>> FILE_TO_TYPE;
+  private static final Map<String, String> FILE_DESCRIPTIONS;
   static {
     FILE_TO_VARIABLE = new LinkedHashMap<>();
     FILE_TO_VARIABLE.put("Portal_Dashboard.json", PortalVariable.DASHBOARD.key);
@@ -56,6 +59,7 @@ public class PortalPackageService {
     FILE_TO_VARIABLE.put("Portal_ThirdPartyApplications.json", PortalVariable.THIRD_PARTY_APP.key);
     FILE_TO_VARIABLE.put("Portal_CustomMenuItems.json", PortalVariable.CUSTOM_MENU_ITEMS.key);
     FILE_TO_VARIABLE.put("Portal_ExternalLinks.json", PortalVariable.EXTERNAL_LINK.key);
+    FILE_TO_VARIABLE.put("Portal_MenuOrder.json", PortalVariable.MENU_ORDER.key);
 
     FILE_TO_TYPE = new LinkedHashMap<>();
     FILE_TO_TYPE.put("Portal_Dashboard.json", Dashboard.class);
@@ -65,6 +69,36 @@ public class PortalPackageService {
     FILE_TO_TYPE.put("Portal_ThirdPartyApplications.json", Application.class);
     FILE_TO_TYPE.put("Portal_CustomMenuItems.json", CustomSubMenuItem.class);
     FILE_TO_TYPE.put("Portal_ExternalLinks.json", ExternalLink.class);
+    FILE_TO_TYPE.put("Portal_MenuOrder.json", MenuOrderEntry.class);
+
+    FILE_DESCRIPTIONS = new LinkedHashMap<>();
+    FILE_DESCRIPTIONS.put("Portal_Dashboard.json", "Dashboard widget layouts and configurations for all Portal dashboards");
+    FILE_DESCRIPTIONS.put("Portal_CustomStatistic.json", "Custom statistic chart definitions displayed on Portal dashboards");
+    FILE_DESCRIPTIONS.put("Portal_UserMenu.json", "User menu items and shortcuts shown in the top navigation bar");
+    FILE_DESCRIPTIONS.put("Portal_CaseDetails.json", "Case detail page layouts including visible fields and widget arrangements");
+    FILE_DESCRIPTIONS.put("Portal_ThirdPartyApplications.json", "Third-party application links integrated into the Portal menu");
+    FILE_DESCRIPTIONS.put("Portal_CustomMenuItems.json", "Custom ordering of items in the left-side navigation menu");
+    FILE_DESCRIPTIONS.put("Portal_ExternalLinks.json", "External URL links displayed in the Portal navigation");
+    FILE_DESCRIPTIONS.put("Portal_MenuOrder.json", "Custom ordering of the main navigation menu items in the Portal sidebar");
+  }
+
+  public static class ExportableFile implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private final String filename;
+    private final String description;
+    private boolean selected;
+
+    public ExportableFile(String filename, String description, boolean selected) {
+      this.filename = filename;
+      this.description = description;
+      this.selected = selected;
+    }
+
+    public String getFilename() { return filename; }
+    public String getDescription() { return description; }
+    public boolean isSelected() { return selected; }
+    public void setSelected(boolean selected) { this.selected = selected; }
   }
 
   public static class PackagePreview {
@@ -110,6 +144,55 @@ public class PortalPackageService {
   }
 
   // ── EXPORT ────────────────────────────────────────────────────────────────
+
+  public List<ExportableFile> getExportableFiles() {
+    List<ExportableFile> result = new ArrayList<>();
+    if (!DashboardService.getInstance().getPublicConfig().isEmpty()) {
+      result.add(new ExportableFile("Portal_Dashboard.json", FILE_DESCRIPTIONS.get("Portal_Dashboard.json"), true));
+    }
+    for (String filename : List.of(
+        "Portal_CustomStatistic.json",
+        "Portal_UserMenu.json",
+        "Portal_CaseDetails.json",
+        "Portal_ThirdPartyApplications.json",
+        "Portal_CustomMenuItems.json")) {
+      String json = Ivy.var().get(FILE_TO_VARIABLE.get(filename));
+      if (StringUtils.isNotBlank(json) && !"[]".equals(json.trim())) {
+        result.add(new ExportableFile(filename, FILE_DESCRIPTIONS.get(filename), true));
+      }
+    }
+    if (!ExternalLinkService.getInstance().getPublicConfig().isEmpty()) {
+      result.add(new ExportableFile("Portal_ExternalLinks.json", FILE_DESCRIPTIONS.get("Portal_ExternalLinks.json"), true));
+    }
+    if (!MenuOrderService.getInstance().getPublicConfig().isEmpty()) {
+      result.add(new ExportableFile("Portal_MenuOrder.json", FILE_DESCRIPTIONS.get("Portal_MenuOrder.json"), true));
+    }
+    return result;
+  }
+
+  public StreamedContent exportPackage(List<String> selectedFilenames) throws IOException {
+    Set<String> selected = new LinkedHashSet<>(selectedFilenames);
+    try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ZipOutputStream zos = new ZipOutputStream(baos)) {
+
+      if (selected.contains("Portal_Dashboard.json"))              writeDashboards(zos);
+      if (selected.contains("Portal_CustomStatistic.json"))        writeRawVariable(zos, PortalVariable.CUSTOM_STATISTIC.key, "Portal_CustomStatistic.json");
+      if (selected.contains("Portal_UserMenu.json"))               writeRawVariable(zos, PortalVariable.USER_MENU.key, "Portal_UserMenu.json");
+      if (selected.contains("Portal_CaseDetails.json"))            writeRawVariable(zos, PortalVariable.CASE_DETAIL.key, "Portal_CaseDetails.json");
+      if (selected.contains("Portal_ThirdPartyApplications.json")) writeRawVariable(zos, PortalVariable.THIRD_PARTY_APP.key, "Portal_ThirdPartyApplications.json");
+      if (selected.contains("Portal_CustomMenuItems.json"))        writeRawVariable(zos, PortalVariable.CUSTOM_MENU_ITEMS.key, "Portal_CustomMenuItems.json");
+      if (selected.contains("Portal_ExternalLinks.json"))          writeExternalLinks(zos);
+      if (selected.contains("Portal_MenuOrder.json"))             writeRawVariable(zos, PortalVariable.MENU_ORDER.key, "Portal_MenuOrder.json");
+
+      zos.finish();
+      byte[] zipBytes = baos.toByteArray();
+      return DefaultStreamedContent.builder()
+          .stream(() -> new ByteArrayInputStream(zipBytes))
+          .contentType("application/zip")
+          .name(PACKAGE_NAME)
+          .build();
+    }
+  }
 
   public StreamedContent exportPackage() throws IOException {
     try (ByteArrayOutputStream baos = new ByteArrayOutputStream();

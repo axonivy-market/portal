@@ -24,7 +24,8 @@
     <div class="col-12">
       <h4>Export</h4>
       <p class="text-color-secondary">
-        Export the current Portal JSON files as a zip package. The following files will be included:
+        Export Portal configuration files as a zip package.
+        Only files with existing data are available for selection.
       </p>
     </div>
 
@@ -81,9 +82,10 @@
         value="Export"
         ariaLabel="Export"
         styleClass="primary-color-light-button w-full"
-        ajax="false">
-        <p:fileDownload value="#{portalPackageBean.exportPackage()}" />
-      </p:commandButton>
+        actionListener="#{portalPackageBean.prepareExportDialog}"
+        oncomplete="PF('exportDialog').show()"
+        update="@(.portal-package-export-content)"
+        process="@this" />
     </div>
   </h:panelGroup>
 
@@ -187,7 +189,7 @@
         <ui:fragment rendered="#{not empty portalPackageBean.invalidPreviewFiles}">
           <div class="border-1 border-round overflow-hidden mb-2" style="border-color:var(--yellow-300,#fcd34d)">
             <div class="flex align-items-center gap-2 px-3 py-2 border-bottom-1" style="background:var(--yellow-50,#fffbeb);border-color:var(--yellow-300,#fcd34d)">
-              <i class="ti ti-alert-triangle" style="color:var(--yellow-600,#d97706)" />
+              <i class="ti ti-alert-triangle pb-2" style="color:var(--yellow-600,#d97706)" />
               <span class="font-medium text-sm" style="color:var(--yellow-800,#92400e)">Unrecognized files — will be skipped (#{portalPackageBean.invalidPreviewFiles.size()} file(s))</span>
             </div>
             <p:dataList value="#{portalPackageBean.invalidPreviewFiles}" var="file"
@@ -226,6 +228,82 @@
   </p:dialog>
 
 </h:form>
+
+<!-- EXPORT DIALOG — own form so ajax="false" submit captures checkboxes outside the main form DOM -->
+<p:dialog id="exportDialog"
+  header="Export Portal Package"
+  widgetVar="exportDialog"
+  appendTo="@(body)"
+  modal="true"
+  responsive="true"
+  closeOnEscape="true"
+  resizable="false"
+  width="560px"
+  styleClass="portal-dialog dialog-responsive">
+
+  <h:form id="exportDialogForm">
+    <p:outputPanel id="exportDialogContent" layout="block" styleClass="portal-package-export-content">
+      <div class="flex flex-column gap-4">
+
+        <!-- No exportable files -->
+        <ui:fragment rendered="#{empty portalPackageBean.exportableFiles}">
+          <div class="flex align-items-center gap-2 p-3 border-1 surface-border border-round text-color-secondary text-sm surface-ground">
+            <i class="ti ti-info-circle" />
+            <span>No configuration files with existing data found. Nothing to export.</span>
+          </div>
+        </ui:fragment>
+
+        <!-- File checklist -->
+        <ui:fragment rendered="#{not empty portalPackageBean.exportableFiles}">
+          <div class="flex align-items-center justify-content-between">
+            <p class="m-0 text-color-secondary text-sm">
+              Select the configuration files to include in the exported package.
+            </p>
+            <div class="flex gap-2">
+              <p:commandLink value="Select all" ariaLabel="Select all"
+                actionListener="#{portalPackageBean.selectAllExportFiles}"
+                update="exportFileList @(.portal-package-confirm-export)"
+                process="@this" />
+              <p:commandLink value="Unselect all" ariaLabel="Unselect all"
+                actionListener="#{portalPackageBean.unselectAllExportFiles}"
+                update="exportFileList @(.portal-package-confirm-export)"
+                process="@this" />
+            </div>
+          </div>
+          <p:outputPanel id="exportFileList" layout="block" styleClass="border-1 surface-border border-round overflow-hidden">
+            <ui:repeat value="#{portalPackageBean.exportableFiles}" var="exportFile" varStatus="status">
+              <div class="flex align-items-center gap-3 px-3 py-2 border-bottom-1 surface-border">
+                <p:selectBooleanCheckbox id="exportFileCb_#{status.index}" value="#{exportFile.selected}">
+                  <p:ajax process="@form" update="@(.portal-package-confirm-export)" />
+                </p:selectBooleanCheckbox>
+                <i class="ti ti-file-type-json text-color-secondary" />
+                <div class="flex flex-column">
+                  <span class="font-medium text-sm">#{exportFile.filename}</span>
+                  <span class="text-color-secondary text-xs">#{exportFile.description}</span>
+                </div>
+              </div>
+            </ui:repeat>
+          </p:outputPanel>
+        </ui:fragment>
+
+        <!-- Footer actions -->
+
+        <div class="border-top-1 surface-border pt-3">
+          <p:commandButton id="confirm-export-btn"
+            value="Export"
+            ariaLabel="Export"
+            styleClass="w-full portal-package-confirm-export"
+            ajax="false"
+            disabled="#{not portalPackageBean.anyExportFileSelected}">
+            <p:fileDownload value="#{portalPackageBean.exportPackage()}" />
+          </p:commandButton>
+        </div>
+
+      </div>
+    </p:outputPanel>
+  </h:form>
+
+</p:dialog>
 
 </cc:implementation>
 </html>
