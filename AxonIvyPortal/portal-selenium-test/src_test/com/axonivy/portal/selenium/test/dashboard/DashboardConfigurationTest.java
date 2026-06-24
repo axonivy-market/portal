@@ -249,7 +249,7 @@ public class DashboardConfigurationTest extends BaseTest {
     SelenideElement dashboard = modificationPage.getDashboardRowByName(EDITED_PRIVATE_DASHBOARD_1);
     dashboard.shouldBe(Condition.appear);
     dashboard.$("td:nth-child(1)").shouldHave(Condition.exactText(EDITED_PRIVATE_DASHBOARD_1));
-    dashboard.$("td:nth-child(2)").shouldHave(Condition.exactText(DASHBOARD_1_DESCRIPTION));
+    dashboard.$("td:nth-child(3)").shouldHave(Condition.exactText(DASHBOARD_1_DESCRIPTION));
   }
 
   @Test
@@ -395,11 +395,7 @@ public class DashboardConfigurationTest extends BaseTest {
     SelenideElement dashboard = modificationPage.getDashboardRowByName(name);
     dashboard.shouldBe(Condition.appear);
     modificationPage.getDashboardCellByNameAndPosition(name, 1).shouldHave(Condition.exactText(name));
-    if (isPublicDashboard) {
-      modificationPage.getDashboardCellByNameAndPosition(name, 3).shouldHave(Condition.exactText(description));
-    } else {
-      modificationPage.getDashboardCellByNameAndPosition(name, 2).shouldHave(Condition.exactText(description));
-    }
+    modificationPage.getDashboardCellByNameAndPosition(name, 3).shouldHave(Condition.exactText(description));
   }
 
   private void createPrivateDashboardUseTemplate() {

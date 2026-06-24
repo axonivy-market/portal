@@ -49,8 +49,8 @@ public class MenuTest extends BaseTest {
 
     MainMenuPage mainMenuPage = new MainMenuPage();
     String expected =
-        "Dashboard,Processes,Tasks,Cases,Google,Testing link google,Testing example,A link,B link,Static page";
-    assertTrue(mainMenuPage.getMenuItemsAsString().equals(expected));
+        "Dashboard,Processes,Tasks,Cases,Google,Testing link google,A link,B link,Static page";
+    assertEquals(expected, mainMenuPage.getMenuItemsAsString());
   }
 
   @Test
@@ -111,15 +111,14 @@ public class MenuTest extends BaseTest {
   }
 
   @Test
-  public void testNavigateToThirdPartyApp() {
+  public void testNavigateToExternalLink() {
     createThirdPartyApp();
     login(TestAccount.DEMO_USER);
-    // to refresh cache
     login(TestAccount.ADMIN_USER);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    mainMenuPage.clickThirdPartyApp();
-    mainMenuPage.assertThirdPartyApp("https://www.google.com/");
+    mainMenuPage.clickThirdPartyMenuItem();
+    mainMenuPage.assertNavigateToExternalLink("https://www.google.com/");
   }
   
   @Test

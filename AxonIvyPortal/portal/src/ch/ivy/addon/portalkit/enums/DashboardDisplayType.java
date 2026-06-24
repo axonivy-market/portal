@@ -5,7 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonValue;
+
+import ch.ivyteam.ivy.environment.Ivy;
 
 public enum DashboardDisplayType {
     SUB_MENU, TOP_MENU, HIDDEN;
@@ -26,15 +30,7 @@ public enum DashboardDisplayType {
     }
     
     public static String getDisplayLabel(DashboardDisplayType type) {
-      switch(type) {
-          case TOP_MENU:
-              return "Top Menu";
-          case SUB_MENU:
-              return "Sub Menu";
-          case HIDDEN:
-              return "Hidden";
-          default:
-              return type.name();
-      }
+      String label = Ivy.cms().co(String.format("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardDisplayType/%s", type.name()));
+      return StringUtils.isBlank(label) ? type.name() : label;
   }
 }

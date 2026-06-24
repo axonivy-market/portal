@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
+import com.axonivy.portal.components.util.SecurityMemberDisplayNameUtils;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
@@ -48,16 +49,7 @@ public class DashboardTaskFilterBean {
   }
 
   public String formatName(SecurityMemberDTO responsible) {
-    String responsibleName = EMPTY;
-    if (responsible != null) {
-      if (StringUtils.isBlank(responsible.getDisplayName())) {
-        responsibleName = responsible.getName();
-      } else {
-        responsibleName = String.format("%s (%s)", responsible.getDisplayName(), responsible.getName());
-      }
-      return responsible.isEnabled()? responsibleName : String.format("%s %s", Ivy.cms().co("/Labels/disabledUserPrefix"), responsibleName);
-    }
-    return responsibleName;
+    return SecurityMemberDisplayNameUtils.generateDisplayNameForSecurityMemberDTO(responsible);
   }
   
   public List<SecurityMemberDTO> completeResponsibles(String query) {

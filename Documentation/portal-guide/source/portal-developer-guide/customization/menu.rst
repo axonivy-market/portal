@@ -154,6 +154,9 @@ The basic JSON structure of a custom menu item
 
     ``isExternal``: set to ``true`` to mark this custom menu item as an external link.
 
+    ``openInNewTab``: for external links, set to ``false`` to open the link in the same tab.
+    When omitted, external links open in a new tab.
+
     ``version``: version of the menu.
 
 .. _customization-menu-hide-default-menu-item:
