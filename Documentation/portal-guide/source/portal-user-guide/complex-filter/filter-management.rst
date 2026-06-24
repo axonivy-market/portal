@@ -22,7 +22,7 @@ Administrators can configure which operators are available globally via the
 Widget-level configuration (Column Management)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Widget owners can further restrict which fields and operators are available per filterable column in
+It is possible to further restrict which fields and operators are available per filterable column in
 the Column Management dialog.
 See :ref:`Task list column management <task-widget-column-management>` and :ref:`Case list column management <case-widget-column-management>`
 for how to open this dialog.
@@ -40,8 +40,6 @@ for how to open this dialog.
 
    When field and operator settings change after filters have already been saved or applied, Portal
    automatically removes affected filters.
-
-.. include:: ../includes/_common-icon.rst
 
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
    :alt: Dashboard task widget's table configuration
