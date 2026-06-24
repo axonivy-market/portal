@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -898,6 +899,21 @@ public class CaseDetailsPage extends TemplatePage {
       return stateClass.contains(taskState.toString().toLowerCase() + "-task-state");
     }
     return false;
+  }
+
+  public void waitForRelatedTaskState(String taskName, TaskBusinessState taskState) {
+    WaitHelper.assertTrueWithWait(() -> {
+      ElementsCollection taskNames = $$(".task-name-value");
+      OptionalInt optIndex = IntStream.range(0, taskNames.size())
+          .filter(i -> taskNames.get(i).getText().equals(taskName))
+          .findFirst();
+      if (optIndex.isEmpty()) {
+        return false;
+      }
+      WebElement stateEl = $$("td.related-task-state-column span.task-state").get(optIndex.getAsInt());
+      return stateEl != null
+          && stateEl.getDomAttribute(CLASS).contains(taskState.toString().toLowerCase() + "-task-state");
+    });
   }
 
   public String getEventTypeInWorkflowEvents() {
