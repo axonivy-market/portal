@@ -285,8 +285,9 @@ public class CaseDetailsTest extends BaseTest {
     //     task state instead of a stale client-side render left by the post-destroy AJAX.
     detailsPage.clickShowOnlyOpenTasks();
     detailsPage.clickShowOnlyOpenTasks();
-    // #6. With the list synced, assert Sick Leave Request shows the DESTROYED state.
-    assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.DESTROYED));
+    // #6. Poll until Sick Leave Request appears in the DOM and shows the DESTROYED state.
+    //     The task may still be absent from the first DOM render after toggle-off; assertTrueWithWait retries.
+    detailsPage.waitForRelatedTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.DESTROYED);
   }
 
   @Test
