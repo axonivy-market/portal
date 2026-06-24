@@ -86,6 +86,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: URL externe
       PROCESS: Processus Axon Ivy
+    DashboardDisplayType:
+      HIDDEN: Masqué
+      SUB_MENU: Sous-menu
+      TOP_MENU: Barre latérale
     DashboardWidgetType:
       CASE: Widget de cas
       CUSTOM: Widget personnalisé
@@ -192,7 +196,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskDocumentsPageTitle: Documents de tâches
   adminSettings:
     addLanguages: Ajouter une langue
-    addNewApplication: Ajouter une nouvelle application de tiers
     announcement:
       announcement: Annonce
       announcementsDisabled: Les annonces sont désactivées.
@@ -203,27 +206,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       information: Vous pouvez annoncer une information générale (par exemple, temps d'arrêt, modifications, etc.) dans cette zone. Ce message peut être vu par tous les utilisateurs du portail.
       saveChanges: Enregistrer les modifications
       tabTitle: Annonces
-    appDisplayName: Nom d'affichage
-    appDisplayNameRequiredMsg: Veuillez entrer le nom d'affichage de l'application
-    appNameCharactersLimit: 'Seuls les caractères suivants sont autorisés pour le nom de l''application : [\p{Alnum}_-]+'
-    appNameRequiredMsg: Veuillez rentrer le nom de l'application
-    applicationHint: L'ordre peut être modifié par glisser/déposer
-    applicationLinkRequiredMsg: Veuillez rentrer le lien vers le Portail
-    applicationList:
-      addNewApplication: Ajouter une nouvelle application
-      applicationSelectionHeader: Sélectionner une application
-      menuIcon: Icône de menu
-    applications: Applications
     applicationtype:
       thirdPartyApplication: Application tierce
     currentValue: Valeur actuelle
     defaultValue: Valeur par défaut
-    deleteAppConfirmation: Etes-vous sûr de vouloir supprimer cette <b>{0}</b> application?
     dialogclosinginformation:
       dialogHeader: La configuration du portail est terminée
       informMessage: Les modifications des paramètres du portail nécessitent un rafraîchissement de la page actuelle pour que la nouvelle configuration prenne effet.
-    duplicatePortalAppMsg: Cette demande existe déjà, veuillez choisir une autre demande.
-    editApplication: Editer les paramètres de l'application
     editSetting: Editer les paramètres
     embedInFrame: Démarrer un processus/une tâche en mode IFrame
     emptySupportedLanguages: Il n'y a pas langue supplémentaire supportée
@@ -306,7 +295,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       sidebarMode: Contrôle le mode de la barre latérale. Survol s'ouvre au survol, Clic utilise un bouton bascule, Fixe la garde toujours ouverte, Masqué supprime complètement la barre latérale.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
     key: Clé
-    link: Lien
     loading: CHARGEMENT
     loginLogoSizeTooltip: 'Taille recommandée<BR/>Logo carré: 80x80 px<BR/>Logo rectangle: 191x50 p'
     logoSizeRecommendation:
@@ -518,7 +506,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteContext: Supprimer {0}
     deleteDocumentHeaderText: Supprimer ce document ?
     deleteFilterHeaderText: Supprimer ce filtre ?
-    deleteSettingHeaderText: Supprimer ce paramètre ?
     description: Description
     design: Design
     destroy: Supprimer
@@ -787,14 +774,43 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateFromScratchDescription: Créez votre propre tableau de bord à partir de zéro
       CreateNewPrivateDashboard: Créer un nouveau tableau de bord privé
       CreateNewPublicDashboard: Créer un nouveau tableau de bord public
-      Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins.
+      Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins et modifier l'ordre des éléments de navigation.
       DoNotSupportMobile: La configuration du tableau de bord n'est pas prise en charge pour les appareils mobiles.
       EditPrivateDashboards: Modifier vos tableaux de bord privés
+      PrivateTabInfo: 'Créez et gérez vos tableaux de bord personnels.<ul><li>Ils ne sont visibles que par vous</li><li>Ils apparaissent sous l''icône Dashboard dans la barre latérale</li></ul>'
+      PublicTabInfo: 'Gérez les tableaux de bord pour tous les utilisateurs. Définissez la visibilité:<ul><li><b>Barre latérale</b> — apparaît comme élément principal dans le menu latéral</li><li><b>Sous-menu</b> — apparaît sous l''icône Dashboard</li><li><b>Masqué</b> — non visible pour les utilisateurs</li></ul>'
+      Visibility: Visibilité
       EditPublicDashboards: Modifier les tableaux de bord publics
       ExportDashboard: Exporter le tableau de bord
       ExportReferencedDialogHeader: Le tableau de bord référence d'autres tableaux de bord
       ExportReferencedDialogMessage: 'Les tableaux de bord suivants sont référencés par des widgets de navigation. Exportez-les et importez-les également pour que les widgets fonctionnent correctement :'
       ExportReferencedDialogProceed: Exporter quand même
+      Hidden: Masqué
+      HiddenDashboards: Éléments masqués
+      HiddenDashboardsDescription: Non affiché dans la barre latérale. Peut toujours être utilisé comme cible de lien direct.
+      SubMenuDashboards: Tableaux de bord du sous-menu
+      SubMenuDashboardsDescription: Apparaissent groupés sous l'icône Tableau de bord dans la barre latérale.
+      SidebarTopLevelDashboards: Tableaux de bord principaux de la barre latérale
+      SidebarTopLevelDashboardsDescription: Apparaissent comme éléments principaux dans la barre latérale.
+      MenuDashboards: Éléments de la barre latérale
+      MenuDashboardsDescription: Ces tableaux de bord apparaissent comme éléments principaux dans la barre latérale. Gérez leur ordre dans l'onglet Navigation de la barre latérale.
+      PrivateDashboardTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Créez et gérez des tableaux de bord visibles uniquement par vous. Ils apparaissent groupés sous l''icône Tableau de bord dans la barre latérale et n''affectent jamais les autres utilisateurs.</p><p><b>Réorganiser</b></p><p>Faites glisser une ligne pour changer l''ordre d''apparition dans le sous-menu. L''ordre est enregistré dans vos paramètres personnels.</p><p><b>Actions par tableau de bord</b></p><p>Modifier permet de mettre à jour le titre, la description, l''icône ou les titres multilingues. Configurer ouvre le tableau de bord pour ajouter ou réorganiser des widgets. Si vous disposez de la permission d''export, vous pouvez télécharger un tableau de bord au format JSON.</p>'
+      DashboardTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Créez, modifiez et supprimez des tableaux de bord publics. Définissez qui peut les voir grâce aux autorisations. Il s''agit de la bibliothèque centrale de tous les tableaux de bord partagés.</p><p><b>Visibilité &amp; emplacement</b></p><p>Les tableaux de bord sont répartis en trois sections selon leur emplacement dans la barre latérale. Pour déplacer un tableau de bord, ouvrez Modifier et changez son Type d''affichage. Seule la section Sous-menu supporte le glisser-déposer pour la réorganisation.</p><p><b>Actions par tableau de bord</b></p><p>Modifier met à jour nom, description, icône, autorisations et type d''affichage. Configurer ouvre le tableau de bord pour ajouter ou organiser des widgets. Exporter télécharge un fichier JSON — si le tableau de bord en référence d''autres, une confirmation est demandée. Partager génère un lien direct. Supprimer le retire définitivement.</p>'
+      MenuManagementTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Configurez tout ce qui est visible dans la barre latérale : les éléments, leur ordre et le comportement global de la barre latérale.</p><p><b>Ajouter de nouveaux éléments</b></p><p>Utilisez Ajouter un élément pour créer une nouvelle entrée. Vous pouvez choisir : Tableau de bord principal (lien vers un tableau de bord), Processus (démarre un processus Ivy), Lien externe (toute URL, avec option ouverture dans un nouvel onglet) ou Page statique. Chaque élément dispose d''un titre multilingue, d''une icône et d''autorisations configurables. Le type d''élément ne peut pas être modifié après création.</p><p><b>Comprendre le tableau</b></p><p>Cible indique où mène un élément (URL ou chemin de processus). Autorisations indique qui peut le voir. Type est la nature de l''entrée et Source indique où il est défini : Intégré, Configuration, Configuration du tableau de bord, Processus appelable ou Application tierce.</p><p><b>Gérer les éléments existants</b></p><p>Modifier met à jour le titre, l''icône, le lien et les autorisations des éléments personnalisés. Supprimer les retire. Les éléments intégrés (source : Intégré) ne peuvent être ni modifiés ni supprimés, et les éléments générés par un processus appelable ne peuvent être modifiés que par un développeur. Faites glisser les lignes pour réorganiser tous les éléments.</p><p><b>Paramètres de la barre latérale</b></p><p>Désactiver la barre latérale la masque entièrement pour tous les utilisateurs. Comportement contrôle comment elle s''ouvre : Survol (au survol de la souris), Clic (nécessite un clic) ou Ancré (toujours visible).</p>'
+      SidebarNavigation: Barre latérale
+      SidebarSettings: Paramètres de la barre latérale
+      SidebarMode: Mode de la barre latérale
+      DisableSidebar: Désactiver la barre latérale
+      SidebarBehaviour: Comportement de la barre latérale
+      SidebarSettingsReloadWarning: 'Paramètres de la barre latérale enregistrés. Rechargez la page pour appliquer les modifications.'
+      Reload: Recharger
+      AddItem: Ajouter un élément
+      Label: Libellé
+      Source: Source
+      Target: Cible
+      Dashboard: Tableau de bord
+      MenuManagement: Gestion des menus
+      MenuManagementTabInfo: 'Gérez les éléments de navigation de la barre latérale. Vous pouvez:<ul><li>Ajouter de nouveaux éléments de menu (tableaux de bord, liens externes, processus Ivy)</li><li>Réorganiser les éléments par glisser-déposer</li><li>Modifier ou supprimer des éléments de menu existants</li></ul>'
       PrivateDashboard: Tableaux de bord privés
       PrivateDashboardConfiguration: Configuration des tableaux de bord privés
       PublicDashboard: Tableaux de bord publics
@@ -803,7 +819,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Réorganiser les tableaux de bord publics
       SelectAction: Sélectionnez l'action
       SomeThingWentWrong: Quelque chose n'a pas fonctionné
-      Title: Configuration du tableau de bord
+      Title: Configuration du portail
     DrillDownWidget:
       caseDrillDown: Widget de cas détaillé pour {0}
       taskDrillDown: Widget de tâche détaillé pour {0}
@@ -922,6 +938,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardPermission: Autorisation du tableau de bord
       dashboardTitle: Titre du tableau de bord
       deleteDashboardMessage: Êtes-vous sûr de vouloir supprimer le "{0}" tableau de bord?
+      deleteMenuItemMessage: Êtes-vous sûr de vouloir supprimer l'élément de menu "{0}" ?
       editDashboard: Modifier le tableau de bord
       manageDashboard: Gérer le tableau de bord
       removeDashboardHeader: Supprimez le tableau de bord "{0}".
@@ -951,6 +968,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     navigate: Naviguer
     noCategory: Il n'y a pas de catégories
     noDashboard: Il n'y a pas de tableaux de bord. Ajoutez au moins un tableau de bord, puis ajoutez des widgets.
+    noDashboardAvailable: "Aucun tableau de bord du sous-menu n'est disponible."
     noPermission: Vous n'avez pas les permissions pour voir les tableaux de bord.
     noWidget: Il n'y a pas de widgets fournis pour ce tableau de bord.
     numberPattern: Modèle de numéro
@@ -1653,6 +1671,22 @@ Dialogs:
           IFrameTaskTemplate:
             TaskIFrameTitle: Cadre de travail
         page:
+          MenuManagement:
+            AddNewMenu: Ajouter un nouveau menu
+            CallableMenuMessage: Ce menu est généré automatiquement par un processus appelable et ne peut pas être modifié.
+            CallableSourceHint: Cet élément est généré par un processus appelable. Contactez votre développeur pour le modifier.
+            ProcessPermissionHint: La visibilité dépend des autorisations de démarrage du processus.
+            HelpText: Personnalisez le menu dans cette section en fonction de vos besoins ou préférences.
+            MenuDetails: Détails du menu
+            MenuIcon: Icône du menu
+            MenuTitle: Titre du menu
+            MenuType: Type de menu
+            InvalidUrl: "L'URL n'est pas valide."
+            InvalidUrlScheme: 'Seules les URLs http et https sont autorisées.'
+            InvalidStaticPagePath: "Le chemin doit être relatif à l'application (les URLs absolues ne sont pas autorisées)."
+            NoAvailableSubDashboard: "Aucun tableau de bord du sous-menu n'est disponible pour être ajouté comme tableau de bord principal."
+            OpenInNewTab: Ouvrir dans un nouvel onglet
+            StaticPagePath: Chemin de page statique
           StatisticConfiguration:
             AddFilter: Ajouter un filtre
             Advanced: Avancé
@@ -1946,6 +1980,21 @@ Labels:
       CASES: Cas
       PROCESSES: Processus
       TASKS: Tâches
+    MenuKind:
+      PROCESS: Processus
+      DASHBOARD: Tableau de bord
+      EXTERNAL_LINK: Lien externe
+      MAIN_DASHBOARD: Tableau de bord principal
+      PROCESS_LIST: Liste des processus
+      STANDARD: Standard
+      STATIC_PAGE: Page statique
+      THIRD_PARTY: Tiers
+    MenuSource:
+      CALLABLE: Processus appelable
+      CUSTOM_MENU_CONFIGURATION: Configuration
+      DASHBOARD: Configuration du tableau de bord
+      STANDARD: Intégré
+      THIRD_PARTY_APP_CONFIGURATION: Application tierce
     SearchScopeCaseField:
       CUSTOM: Champs de chaînes personnalisées
       DESCRIPTION: Description du texte
