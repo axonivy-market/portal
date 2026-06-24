@@ -9,8 +9,11 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 
+import javax.annotation.PostConstruct;
+
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.service.filter.operatorpolicy.GlobalOperatorPolicyService;
 
 import ch.ivy.addon.portalkit.util.ListUtilities;
 import ch.ivyteam.ivy.application.IApplication;
@@ -23,9 +26,14 @@ public class WidgetApplicationFilterBean implements Serializable {
 
   private static final long serialVersionUID = 4458514225804204212L;
 
-  private static List<FilterOperator> operators = FilterOperator.APPLICATION_OPERATORS.stream().toList();
+  private List<FilterOperator> resolvedOperators;
   private List<String> applications;
   private String applicationString;
+
+  @PostConstruct
+  public void initOperators() {
+    resolvedOperators = GlobalOperatorPolicyService.getInstance().keepGloballyEnabledOperators(FilterOperator.APPLICATION_OPERATORS.stream().toList());
+  }
 
   public void init(DashboardFilter filter) {
     this.applications = ListUtilities.transformList(IApplicationRepository.of(ISecurityContext.current()).all(),
@@ -36,7 +44,7 @@ public class WidgetApplicationFilterBean implements Serializable {
   }
 
   public List<FilterOperator> getOperators() {
-    return operators;
+    return resolvedOperators;
   }
 
   public List<String> getApplications() {

@@ -497,7 +497,7 @@ public abstract class AbstractColumn implements Serializable {
   
   @JsonIgnore
   public boolean getHasCmsValues() {
-    return hasCmsValues;
+    return Boolean.TRUE.equals(hasCmsValues);
   }
   
   public void setHasCmsValues(Boolean hasCmsValues) {

@@ -11,8 +11,11 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.model.CheckboxTreeNode;
 
+import javax.annotation.PostConstruct;
+
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.service.filter.operatorpolicy.GlobalOperatorPolicyService;
 
 import ch.ivy.addon.portalkit.bo.CategoryNode;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
@@ -27,11 +30,16 @@ public class WidgetCategoryFilterBean implements Serializable {
 
   private static final long serialVersionUID = 5886200209828694569L;
 
-  private static List<FilterOperator> operators = FilterOperator.CATEGORY_OPERATORS.stream().toList();
+  private List<FilterOperator> resolvedOperators;
 
   private CheckboxTreeNode<CategoryNode> categoryTree;
   private CheckboxTreeNode<CategoryNode>[] selectedCategoryNodes;
   private String selectedCategoriesString;
+
+  @PostConstruct
+  public void initOperators() {
+    resolvedOperators = GlobalOperatorPolicyService.getInstance().keepGloballyEnabledOperators(FilterOperator.CATEGORY_OPERATORS.stream().toList());
+  }
 
   public void init(DashboardFilter filter, DashboardWidget widget) {
     loadCategories(filter, widget);
@@ -43,7 +51,7 @@ public class WidgetCategoryFilterBean implements Serializable {
   }
 
   public List<FilterOperator> getOperators() {
-    return operators;
+    return resolvedOperators;
   }
 
   public void onChangeOperator(DashboardFilter filter) {

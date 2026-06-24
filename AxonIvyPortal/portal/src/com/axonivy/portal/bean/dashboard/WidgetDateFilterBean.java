@@ -8,9 +8,12 @@ import java.util.Optional;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import javax.annotation.PostConstruct;
+
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
+import com.axonivy.portal.service.filter.operatorpolicy.GlobalOperatorPolicyService;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 
@@ -26,8 +29,8 @@ public class WidgetDateFilterBean implements Serializable {
 
   private static final long serialVersionUID = 4356531402161360729L;
 
-  private static List<FilterOperator> operators = FilterOperator.DATE_OPERATORS.stream().toList();
-  private static List<FilterOperator> createdDateOperators = FilterOperator.CREATED_DATE_OPERATORS.stream().toList();
+  private List<FilterOperator> resolvedOperators;
+  private List<FilterOperator> resolvedCreatedDateOperators;
 
   private static FilterPeriodType[] filterPeriodTypes = FilterPeriodType.values();
   private static List<FilterPeriodType> currentFilterPeriodTypes = FilterPeriodType.PERIOD_TYPES_FOR_CURRENT_OPERATOR
@@ -35,8 +38,14 @@ public class WidgetDateFilterBean implements Serializable {
 
   private static SimpleDateFormat formatter = new SimpleDateFormat(DashboardFilter.DATE_FORMAT);
 
+  @PostConstruct
+  public void initOperators() {
+    resolvedOperators = GlobalOperatorPolicyService.getInstance().keepGloballyEnabledOperators(FilterOperator.DATE_OPERATORS.stream().toList());
+    resolvedCreatedDateOperators = GlobalOperatorPolicyService.getInstance().keepGloballyEnabledOperators(FilterOperator.CREATED_DATE_OPERATORS.stream().toList());
+  }
+
   public List<FilterOperator> getOperators() {
-    return operators;
+    return resolvedOperators;
   }
 
   public FilterPeriodType[] getFilterPeriodTypes() {
@@ -92,6 +101,6 @@ public class WidgetDateFilterBean implements Serializable {
   }
 
   public List<FilterOperator> getCreatedDateOperators() {
-    return createdDateOperators;
+    return resolvedCreatedDateOperators;
   }
 }

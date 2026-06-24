@@ -14,9 +14,12 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
+import javax.annotation.PostConstruct;
+
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.service.filter.operatorpolicy.GlobalOperatorPolicyService;
 
 @ManagedBean
 @ViewScoped
@@ -25,9 +28,14 @@ public class WidgetResponsibleFilterBean implements Serializable {
   private static final long serialVersionUID = -2641889624945089060L;
   public static final String FILTER = "filter";
 
-  private static List<FilterOperator> operators = FilterOperator.RESPONSIBLE_OPERATORS.stream().toList();
+  private List<FilterOperator> resolvedOperators;
 
   private List<SecurityMemberDTO> selectedResponsibles;
+
+  @PostConstruct
+  public void initOperators() {
+    resolvedOperators = GlobalOperatorPolicyService.getInstance().keepGloballyEnabledOperators(FilterOperator.RESPONSIBLE_OPERATORS.stream().toList());
+  }
 
   public void init(DashboardFilter filter) {
     selectedResponsibles = new ArrayList<>();
@@ -37,7 +45,7 @@ public class WidgetResponsibleFilterBean implements Serializable {
   }
 
   public List<FilterOperator> getOperators() {
-    return operators;
+    return resolvedOperators;
   }
 
   public void onChangeOperator(DashboardFilter filter) {

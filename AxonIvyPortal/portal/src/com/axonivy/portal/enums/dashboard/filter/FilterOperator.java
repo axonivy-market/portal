@@ -2,6 +2,7 @@ package com.axonivy.portal.enums.dashboard.filter;
 
 import java.util.Collections;
 import java.util.EnumSet;
+import java.util.Optional;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -39,6 +40,14 @@ public enum FilterOperator {
   LESS_OR_EQUAL,
   GREATER,
   GREATER_OR_EQUAL;
+
+  public static Optional<FilterOperator> fromString(String name) {
+    try {
+      return Optional.of(valueOf(name.trim().toUpperCase()));
+    } catch (IllegalArgumentException ex) {
+      return Optional.empty();
+    }
+  }
 
   public String getLabel() {
     return Ivy.cms().co(String.format("/Labels/Enums/FilterOperator/%s", this.name()));
