@@ -13,6 +13,7 @@ import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
+import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 
 public class BaselineOperatorService {
@@ -35,6 +36,7 @@ public class BaselineOperatorService {
     map.put(DashboardStandardTaskColumn.NAME.getField(), FilterOperator.TEXT_OPERATORS);
     map.put(DashboardStandardTaskColumn.DESCRIPTION.getField(), FilterOperator.TEXT_OPERATORS);
     map.put(DashboardStandardTaskColumn.EXPIRY.getField(), FilterOperator.DATE_OPERATORS);
+    map.put(DashboardStandardCaseColumn.CREATOR.getField(), FilterOperator.CREATOR_OPERATORS);
     FIELD_OPERATORS_MAP = Collections.unmodifiableMap(map);
   }
 

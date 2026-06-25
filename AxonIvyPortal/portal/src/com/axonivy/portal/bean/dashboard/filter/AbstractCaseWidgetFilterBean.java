@@ -79,6 +79,8 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
       return;
     }
 
+    this.widget.setFilters(GlobalOperatorPolicyService.getInstance().keepGloballyEnabledFilters(this.widget.getFilters()));
+
     // If the filter available in the filter list, initialize it
     for (DashboardFilter filter : this.widget.getFilters()) {
       if (isFilterAvailable(filter)) {
