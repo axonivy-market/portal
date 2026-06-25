@@ -33,6 +33,7 @@ import ch.ivyteam.ivy.workflow.document.Path;
 public class CaseDocumentService {
 
   private static final Pattern FORBIDDEN_PATTERN = Pattern.compile("[\\\\/:*?\"<>|]");
+  private static final Pattern FILE_TYPE_SEPARATOR_PATTERN = Pattern.compile("\\s*,[,\\s]*");
 
   private ICase iCase;
 
@@ -63,7 +64,7 @@ public class CaseDocumentService {
    */
   public StreamedContent download(IvyDocument document) {
     return DefaultStreamedContent.builder()
-        .stream(() -> documentsOf(iCase).get(Long.valueOf(document.getId())).read().asStream())
+        .stream(() -> documentsOf(iCase).get(document.getUuid()).read().asStream())
         .contentType(document.getContentType())
         .name(document.getName())
         .build();
@@ -153,7 +154,7 @@ public class CaseDocumentService {
     if (StringUtils.EMPTY.equals(allowedFileTypes)) {
       return new ArrayList<>();
     } else {
-      String[] supportedFileTypeArr = allowedFileTypes.toLowerCase().split("\\s*,[,\\s]*");
+      String[] supportedFileTypeArr = FILE_TYPE_SEPARATOR_PATTERN.split(allowedFileTypes.toLowerCase());
       return Arrays.asList(supportedFileTypeArr);
     }
    }

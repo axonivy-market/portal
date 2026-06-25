@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.jsf;
 
-import javax.el.ELContext;
-import javax.el.ValueExpression;
 import javax.faces.context.FacesContext;
 
 /**
@@ -23,32 +21,16 @@ import javax.faces.context.FacesContext;
  */
 public class Attrs {
 
-  
-
-  private final FacesContext facesContext;
-
   private Attrs(FacesContext facesContext) {
     if (facesContext == null) {
       throw new IllegalArgumentException("FacesContext must not be null to use Attrs");
     }
-    this.facesContext = facesContext;
   }
   
   public static Attrs currentContext() {
     return new Attrs(FacesContext.getCurrentInstance());
   }
   
-  // This method is defined but not in used yet.
-  // Set it `public` and remove the `@SuppressWarning` if you want to publish it.
-  @SuppressWarnings("unused")
-  private void set(String attribute, Object value) {
-    ELContext elContext = facesContext.getELContext();
-    ValueExpression valueExpression =
-        facesContext.getApplication().getExpressionFactory()
-            .createValueExpression(elContext, "#{cc.attrs." + attribute + "}", Object.class);
-    valueExpression.setValue(elContext, value);
-  }
-
   public <T> T get(String attribute) {
     String attributeExpression = String.format("#{cc.attrs.%s}", attribute);
     return getAttribute(attributeExpression);

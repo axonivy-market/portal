@@ -1,7 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,10 +32,11 @@ import ch.ivyteam.ivy.dialog.execution.api.DialogInstance;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.TaskState;
 
 @ManagedBean(name = "iFrameTaskTemplateBean")
 @ViewScoped
-public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements Serializable {
+public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean {
 
   private static final long serialVersionUID = 1L;
 
@@ -56,7 +56,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private static final String VIEW_NAME = "viewName";
   private static final String TASK_NAME = "taskName";
   public static final String PORTAL_GROWL_MESSGE_PARAM = "portalGrowlMessage";
-  private static final String DEFAULT_TASK_ICON = "si si-task-list-edit";
+  private static final String DEFAULT_TASK_ICON = "ti ti-checklist";
   private static final String TASK_ICON = "taskIcon";
   private static final String TASK_URL = "taskUrl";
 
@@ -164,13 +164,28 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     String taskUuid = value instanceof String ? (String) value : null;
     if (taskUuid != null) {
       ITask task = TaskService.newInstance().findTaskByUUID(taskUuid);
-      if (TaskUtils.canReset(task)) {
+      if (canResetInIFrame(task)) {
         TaskUtils.resetTask(task);
       }
       SecurityServiceUtils.removeSessionAttribute(sessionAttributeKey);
     }
 
     navigateToUrl();
+  }
+
+  /**
+   * Checks if the task can be reset within the IFrame context.
+   * In addition to the standard canReset check, this also allows resetting a CREATED task.
+   * This handles the edge case where a first task (CREATED + persist) cannot be reset by a normal user
+   * via the standard canReset check because canResume returns false for CREATED first tasks.
+   * It is safe because the session attribute RESET_TASK_UUID is only set from within the task's own
+   * IFrame process (PortalNavigatorInFrameAPI), confirming the user was legitimately working on the task.
+   */
+  private boolean canResetInIFrame(ITask task) {
+    if (task == null) {
+      return false;
+    }
+    return TaskUtils.canReset(task) || task.getState() == TaskState.CREATED;
   }
 
   public void getDataFromIFrame() throws Exception {

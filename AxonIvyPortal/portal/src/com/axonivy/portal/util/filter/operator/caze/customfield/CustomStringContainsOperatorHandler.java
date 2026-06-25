@@ -29,7 +29,7 @@ public class CustomStringContainsOperatorHandler {
     if (CollectionUtils.isEmpty(filter.getValues())) {
       return null;
     }
-    CaseQuery query = CaseQuery.create(); // TODO filterfield correct? business and/or technical cases?
+    CaseQuery query = CaseQuery.create();
 
     filter.getValues().forEach(text -> {
       CaseQuery subQuery = CaseQuery.create();

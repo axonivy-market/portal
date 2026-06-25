@@ -48,7 +48,6 @@ import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.service.DateTimeGlobalSettingService;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.RoleUtils;
-import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.statistic.AggregationField;
@@ -84,7 +83,6 @@ import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
@@ -405,7 +403,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     if (CollectionUtils.isNotEmpty(responsibles)) {
       Collection<SecurityMemberDTO> distinctPermissionDTOs =
           responsibles.stream().collect(Collectors.toMap(SecurityMemberDTO::getMemberName, responsible -> responsible,
-              (responsible1, responsible2) -> responsible1)).values();
+              (responsible1, _) -> responsible1)).values();
       responsibles.clear();
       responsibles.addAll(distinctPermissionDTOs);
       permissions = responsibles.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());

@@ -7,6 +7,9 @@ const EMPTY_CHART_MESSAGE =  'emptyChartDataMessage';
 const MANIPULATE_BY = 'manipulateValueBy';
 const TOOLTIP_TOTAL_LABEL = 'tooltipTotalLabel';
 const TOOLTIP_KPI_LABEL = 'tooltipKpiLabel';
+const EXPAND_LABEL_TEMPLATE = 'expandLabelTemplate';
+const COLLAPSE_LABEL_TEMPLATE = 'collapseLabelTemplate';
+const INFO_LABEL_TEMPLATE = 'infoLabelTemplate';
 const CHART_TEXT_COLOR = '#808080';
 const CHART_GRID_COLOR = 'rgba(192, 192, 192, 0.5)';
 const MIN_REFRESH_INTERVAL = 60;
@@ -323,11 +326,13 @@ const generateChart = (chart, data) => {
 }
 
 function renderNotFoundData(chart, errorMessage) {
-  let noChartDataHtml =
-    `<div class="process-dashboard-widget__empty-process empty-message-container">` +
-    `    <span class="empty-message-text">${errorMessage}</span>` +
-    `</div>`;
-  $(chart).html(noChartDataHtml);
+  const container = document.createElement('div');
+  container.className = 'process-dashboard-widget__empty-process empty-message-container';
+  const span = document.createElement('span');
+  span.className = 'empty-message-text';
+  span.textContent = errorMessage == null ? '' : String(errorMessage);
+  container.appendChild(span);
+  $(chart).empty().append(container);
 }
 
 // Method to render empty preview chart
@@ -338,13 +343,16 @@ function renderFailToRenderChart(chart, additionalConfig) {
       failToRenderChartMessage = item.failToRenderChartMessage;
     }
   });
-  // HTML element for the empty chart
-  let failToRenderChartHtml =
-    '<div class="empty-message-container">' +
-    '    <i class="si si-analytics-pie-2 empty-message-icon"></i>' +
-    '    <p class="empty-message-text">' + failToRenderChartMessage + '</p>' +
-    '</div>';
-  $(chart).html(failToRenderChartHtml);
+  const container = document.createElement('div');
+  container.className = 'empty-message-container';
+  const icon = document.createElement('i');
+  icon.className = 'ti ti-chart-pie empty-message-icon';
+  const message = document.createElement('p');
+  message.className = 'empty-message-text';
+  message.textContent = failToRenderChartMessage == null ? '' : String(failToRenderChartMessage);
+  container.appendChild(icon);
+  container.appendChild(message);
+  $(chart).empty().append(container);
 }
 
 function initConfig(defaultLocale, defaultContentLocale, datePatternConfig) {
@@ -522,26 +530,31 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
         emptyChartDataMessage = item.emptyChartDataMessage;
       }
     });
-    // HTML element for the empty chart
-    let emptyChartHtml =
-      '<div class="empty-message-container">' +
-      '    <i class="si si-analytics-pie-2 empty-message-icon"></i>' +
-      '    <p class="empty-message-text">' + emptyChartDataMessage + '</p>' +
-      '</div>';
-    $(chart).html(emptyChartHtml);
+    const container = document.createElement('div');
+    container.className = 'empty-message-container';
+    const icon = document.createElement('i');
+    icon.className = 'ti ti-chart-pie empty-message-icon';
+    const message = document.createElement('p');
+    message.className = 'empty-message-text';
+    message.textContent = emptyChartDataMessage == null ? '' : String(emptyChartDataMessage);
+    container.appendChild(icon);
+    container.appendChild(message);
+    $(chart).empty().append(container);
   }
 
   // Method to render no permission error to see chart
   renderNoPermissionStatistics(chart, noPermissionChartMessage) {
-
-    // HTML element for the empty chart with no permission message
-    let noPermissionChartHtml =
-      '<div class="process-dashboard-widget__empty-process empty-message-container">' +
-      '    <i class="si si-lock-1 empty-message-icon"></i>' +
-      '    <br><span class="empty-message-text">' + noPermissionChartMessage + '</span>' +
-      '</div>';
-
-    $(chart).html(noPermissionChartHtml);
+    const container = document.createElement('div');
+    container.className = 'process-dashboard-widget__empty-process empty-message-container';
+    const icon = document.createElement('i');
+    icon.className = 'ti ti-lock empty-message-icon';
+    const message = document.createElement('span');
+    message.className = 'empty-message-text';
+    message.textContent = noPermissionChartMessage == null ? '' : String(noPermissionChartMessage);
+    container.appendChild(icon);
+    container.appendChild(document.createElement('br'));
+    container.appendChild(message);
+    $(chart).empty().append(container);
   }
 }
 
@@ -552,8 +565,34 @@ class ClientCanvasChart extends ClientChart {
   }
 
   // Method to render canvas
-  renderChartCanvas(chartId) {
-    return '<canvas id="' + chartId + '" />';
+  renderChartCanvas(chartId, ariaLabel) {
+    let canvas = $('<canvas></canvas>');
+    canvas.attr('id', chartId);
+    canvas.attr('role', 'img');
+    canvas.attr('tabindex', '0');
+    canvas.attr('aria-label', ariaLabel || '');
+    return canvas;
+  };
+
+  // Method to build accessible description from chart data
+  buildChartAriaLabel(labels, values) {
+    let description = this.widgetName || '';
+    if (labels && values && labels.length > 0) {
+      let items = labels.map((label, i) => this.formatAriaLabel(label) + ': ' + values[i]);
+      if (description) {
+        description += ', ';
+      }
+      description += items.join(', ');
+    }
+    return description;
+  };
+
+  // Method to format label for aria description
+  formatAriaLabel(label) {
+    if (typeof label === 'string' && !isNaN(Date.parse(label)) && label.includes('T')) {
+      return formatDateFollowLocale(new Date(label));
+    }
+    return label;
   };
 
   // Method to format chart label
@@ -577,15 +616,30 @@ class ClientCanvasChart extends ClientChart {
 
   // Method to init the dashboard statistic widget title
   initWidgetTitle() {
-    $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title')
-      .text(getFormatedTitle(this.data.chartConfig.names));
-
-    // Add aria-label
+    let widgetName = getFormatedTitle(this.data.chartConfig.names);
+    this.widgetName = widgetName;
     let cardPanel = $(this.chart).parents('.card-widget-panel');
+
+    $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title')
+      .text(widgetName);
+
     if (cardPanel.length > 0) {
-      cardPanel.get(0).ariaLabel = getFormatedTitle(this.data.chartConfig.names)
+      cardPanel.get(0).ariaLabel = widgetName;
     }
 
+    let additionalConfigs = this.data.chartConfig.additionalConfigs;
+    let expandTemplate = getAdditionalConfigValue(additionalConfigs, EXPAND_LABEL_TEMPLATE);
+    let collapseTemplate = getAdditionalConfigValue(additionalConfigs, COLLAPSE_LABEL_TEMPLATE);
+    let infoTemplate = getAdditionalConfigValue(additionalConfigs, INFO_LABEL_TEMPLATE);
+    if (expandTemplate) {
+      cardPanel.find('.expand-link').attr('aria-label', expandTemplate.replace('{0}', widgetName));
+    }
+    if (collapseTemplate) {
+      cardPanel.find('.collapse-link').attr('aria-label', collapseTemplate.replace('{0}', widgetName));
+    }
+    if (infoTemplate) {
+      cardPanel.find('.widget__info-sidebar-link').attr('aria-label', infoTemplate.replace('{0}', widgetName));
+    }
   }
 
   updateClientChart() {
@@ -607,16 +661,24 @@ class ClientCanvasChart extends ClientChart {
     }
 
     // Update client chart config by new data
-    this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
+    let labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
+    let values = result.map(bucket => bucket.count);
+    this.clientChartConfig.data.labels = labels;
     if (this.clientChartConfig.data.datasets[0]) {
-      this.clientChartConfig.data.datasets[0].data = result.map(bucket => bucket.count)
+      this.clientChartConfig.data.datasets[0].data = values;
       this.clientChartConfig.data.datasets[0].label = config.name;
     }
+
+    // Update canvas aria-label with new data
+    let canvasElem = $(chart).find('canvas').get(0);
+    if (canvasElem) {
+      canvasElem.setAttribute('aria-label', this.buildChartAriaLabel(labels, values));
+    }
+
     this.clientChartConfig.update("none");
   }
 }
 
-// Class for pie charts
 class ClientPieChart extends ClientCanvasChart {
   render() {
     this.initWidgetTitle();
@@ -630,18 +692,20 @@ class ClientPieChart extends ClientCanvasChart {
     if (shouldRenderEmptyChart(this.data)) {
       return this.renderEmptyChart(chart, config.additionalConfigs);
     } else {
-      let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
-      $(chart).html(html);
-      let canvasObject = $(chart).find('canvas');
+      let labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
+      let values = data.map(bucket => bucket.count);
+      let ariaLabel = this.buildChartAriaLabel(labels, values);
+      let canvas = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID), ariaLabel);
+      $(chart).empty().append(canvas);
       let backgroundColors = this.calculateConditionalColors(config, result, config.pieChartConfig.backgroundColors);
-      this.clientChartConfig = new Chart(canvasObject, {
+      this.clientChartConfig = new Chart(canvas, {
         type: config.chartType,
         label: config.name,
         data: {
-          labels: result.map(bucket => this.formatChartLabel(bucket.displayKey)),
+          labels: labels,
           datasets: [{
             label: config.name,
-            data: data.map(bucket => bucket.count),
+            data: values,
             counting: result.map(bucket => bucket.count),
             chartTarget: config.chartTarget,
             aggregation: config.statisticAggregation,
@@ -710,17 +774,19 @@ class ClientCartesianChart extends ClientCanvasChart {
       }
 
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : undefined;
-      let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
+      let labels = data.map(bucket => this.formatChartLabel(bucket.displayKey));
+      let values = data.map(bucket => bucket.count);
+      let ariaLabel = this.buildChartAriaLabel(labels, values);
+      let canvas = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID), ariaLabel);
       let backgroundColors = this.calculateConditionalColors(config, data, config.chartType == 'bar' ? config.barChartConfig.backgroundColors : config.lineChartConfig.backgroundColors);
-      $(chart).html(html);
-      let canvasObject = $(chart).find('canvas');
-      this.clientChartConfig = new Chart(canvasObject, {
+      $(chart).empty().append(canvas);
+      this.clientChartConfig = new Chart(canvas, {
         type: config.chartType,
         data: {
-          labels: data.map(bucket => this.formatChartLabel(bucket.displayKey)),
+          labels: labels,
           datasets: [{
             label: config.name,
-            data: data.map(bucket => bucket.count),
+            data: values,
             counting: result.map(bucket => bucket.count),
             chartTarget: config.chartTarget,
             aggregation: config.statisticAggregation,
@@ -806,6 +872,7 @@ class ClientBarChart extends ClientCartesianChart {
   }
 
   updateClientChart() {
+    this.initWidgetTitle();
     let result = this.data.result.aggs?.[0]?.buckets ?? [];
     let config = this.data.chartConfig;
     let chart = this.chart;
@@ -825,12 +892,20 @@ class ClientBarChart extends ClientCartesianChart {
         }
       }
       let data = result;
-      this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
+      let labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
+      let values = data.map(bucket => bucket.count);
+      this.clientChartConfig.data.labels = labels;
       this.clientChartConfig.data.datasets = [{
         label: config.name,
-        data: data.map(bucket => bucket.count),
+        data: values,
         backgroundColor: config.backgroundColors ? config.backgroundColors : chartColors
       }]
+
+      // Update canvas aria-label with new data
+      let canvasElem = $(chart).find('canvas').get(0);
+      if (canvasElem) {
+        canvasElem.setAttribute('aria-label', this.buildChartAriaLabel(labels, values));
+      }
     }
 
     // If there is no chart from the beginning, init chart config
@@ -928,7 +1003,10 @@ class ClientNumberChart extends ClientChart {
 
     $(this.chart).parents('.statistic-chart-widget__chart').addClass('client-number-chart');
     let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
-    $(this.chart).html(multipleKPI);
+    let chartContainer = $(this.chart);
+    chartContainer.attr('tabindex', '0');
+    chartContainer.attr('aria-label', this.buildNumberChartAriaLabel(getFormatedTitle(config.names), result));
+    chartContainer.html(multipleKPI);
     
     if (this.canDrillDown()) {
       $(this.chart).find('.chart-content-card-clickable').each((index, element) => {
@@ -940,17 +1018,30 @@ class ClientNumberChart extends ClientChart {
   }
 
   initWidgetHeaderName(chart, widgetName) {
-    let widgetHeader = $(chart).parents(".card-widget-panel")
-      .find(".widget__header")
-      .find(".widget__header-title").get(0);
+    let cardPanel = $(chart).parents(".card-widget-panel");
+
+    let widgetHeader = cardPanel.find(".widget__header .widget__header-title").get(0);
     if (widgetHeader) {
       widgetHeader.textContent = widgetName;
     }
 
-    // Add aria-label
-    let widgetPanel = $(chart).parents(".card-widget-panel").get(0);
+    let widgetPanel = cardPanel.get(0);
     if (widgetPanel) {
       widgetPanel.ariaLabel = widgetName;
+    }
+
+    let additionalConfigs = this.data.chartConfig.additionalConfigs;
+    let expandTemplate = getAdditionalConfigValue(additionalConfigs, EXPAND_LABEL_TEMPLATE);
+    let collapseTemplate = getAdditionalConfigValue(additionalConfigs, COLLAPSE_LABEL_TEMPLATE);
+    let infoTemplate = getAdditionalConfigValue(additionalConfigs, INFO_LABEL_TEMPLATE);
+    if (expandTemplate) {
+      cardPanel.find('.expand-link').attr('aria-label', expandTemplate.replace('{0}', widgetName));
+    }
+    if (collapseTemplate) {
+      cardPanel.find('.collapse-link').attr('aria-label', collapseTemplate.replace('{0}', widgetName));
+    }
+    if (infoTemplate) {
+      cardPanel.find('.widget__info-sidebar-link').attr('aria-label', infoTemplate.replace('{0}', widgetName));
     }
   }
 
@@ -972,28 +1063,33 @@ class ClientNumberChart extends ClientChart {
   }
 
   generateItemHtml(label, number, suffixSymbol, index, counting) {
-    let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
     const isClickable = this.canDrillDown() ? 'chart-content-card-clickable' : '';
-    let html =
-      `<div class="text-center chart-content-card ${isClickable}" data-index="${index}">` +
-      '    <div class="chart-number-container">' +
-      '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
-      '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
-      '    </div>' + this.generateCountingHTML(counting) +
-      '    <div class="chart-label-container">' +
-      '        <span class="card-name chart-name-font-size chart-number-animation">' + label + '</span>' +
-      '    </div>' +
-      '</div>';
-    return index > 0 ? border + html : html;
-  };
 
-  generateCountingHTML(counting) {
+    let container = $('<div class="text-center chart-content-card" role="group" aria-hidden="true"></div>');
+    container.addClass(isClickable);
+    container.attr('data-index', index);
+
+    let numberContainer = $('<div class="chart-number-container"></div>');
+    $('<span class="card-number chart-number-font-size chart-number-animation"></span>').text(number).appendTo(numberContainer);
+    $('<i class="card-number chart-number-font-size chart-number-animation" aria-hidden="true"></i>').addClass(suffixSymbol).appendTo(numberContainer);
+    numberContainer.appendTo(container);
+
     if (counting) {
-      return '<div class="chart-number-animation chart-number-counting" style="padding-top: 10px;">' + counting + '</div>';
+      $('<div class="chart-number-animation chart-number-counting" style="padding-top: 10px;"></div>').text(counting).appendTo(container);
     }
-    return '';
-  }
+
+    let labelContainer = $('<div class="chart-label-container"></div>');
+    $('<span class="card-name chart-name-font-size chart-number-animation"></span>').text(label).appendTo(labelContainer);
+    labelContainer.appendTo(container);
+
+    let wrapper = $('<div></div>');
+    if (index > 0) {
+      $('<div class="chart-border"></div>').appendTo(wrapper);
+    }
+    container.appendTo(wrapper);
+    return wrapper.html();
+  };
 
   // Method to format chart label.
   formatChartLabel(label) {
@@ -1033,6 +1129,23 @@ class ClientNumberChart extends ClientChart {
     // Remove duplicated states if any. ['OPEN','DONE', 'OPEN'] => ['OPEN','DONE']
     // result = result.filter(item => item !== "" && item !== null);
     return result.filter((item, index) => result.indexOf(item) == index);
+  }
+
+  buildNumberChartAriaLabel(name, result) {
+    let description = name || '';
+    if (result && result.length > 0) {
+      let hideLabel = this.data.chartConfig.numberChartConfig?.hideLabel === true;
+      let items = result.map(item => {
+        let label = hideLabel ? '' : this.formatChartLabel(item.displayKey);
+        let value = item.aggs.length > 0 ? this.formatNumberValue(item.aggs[0].value) : item.count;
+        return label ? label + ': ' + value : '' + value;
+      });
+      if (description) {
+        description += ', ';
+      }
+      description += items.join(', ');
+    }
+    return description;
   }
 
   updateClientChart() {

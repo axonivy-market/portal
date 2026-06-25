@@ -21,7 +21,7 @@ import com.codeborne.selenide.SelenideElement;
 
 public class MainMenuPage extends TemplatePage {
 
-  private static String PROCESS_MENU_ITEM_CSS_SELECTOR = ".layout-menu li[role='menuitem'] a.PROCESS";
+  private static String PROCESS_MENU_ITEM_CSS_SELECTOR = ".layout-menu li[role='menuitem'] a.PROCESS_LIST";
 
   @Override
   protected String getLoadedLocator() {
@@ -112,7 +112,12 @@ public class MainMenuPage extends TemplatePage {
     return findElementByCssSelector(PROCESS_MENU_ITEM_CSS_SELECTOR).getText();
   }
 
-  public void clickThirdPartyApp() {
+  public void clickExternalLinkMenuItem() {
+    waitForElementDisplayed(By.cssSelector("li[class*='external-menu-item'] > a > span"), true);
+    waitForElementClickableThenClick("li[class*='external-menu-item'] > a");
+  }
+
+  public void clickThirdPartyMenuItem() {
     waitForElementDisplayed(By.cssSelector("li[class*='thirdparty-menu-item'] > a > span"), true);
     waitForElementClickableThenClick("li[class*='thirdparty-menu-item'] > a");
   }
@@ -121,7 +126,7 @@ public class MainMenuPage extends TemplatePage {
     $("[title='" + name + "']").click();
   }
 
-  public void assertThirdPartyApp(String url) {
+  public void assertNavigateToExternalLink(String url) {
     WebDriver driver = getDriver();
     WaitHelper.assertTrueWithWait(() -> driver.getWindowHandles().size() > 1);
     ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
@@ -186,7 +191,27 @@ public class MainMenuPage extends TemplatePage {
   
   public void isSidebarAlwaysExpand() {
     $(".js-layout-wrapper").shouldHave(Condition.cssClass("layout-static"));
-    $("#left-menu").$(".PROCESS").should(appear);
+    $("#left-menu").$(".PROCESS_LIST").should(appear);
     $("#left-menu").$(".sidebar-pin").should(disappear);
   }
+
+  public void isSidebarClickModeCollapsed() {
+    $(".js-layout-wrapper.sidebar-click-mode").should(Condition.exist, DEFAULT_TIMEOUT);
+    $(".js-sidebar-toggle-btn").shouldHave(Condition.attribute("aria-expanded", "false"), DEFAULT_TIMEOUT);
+    $(".js-sidebar-toggle-icon").shouldHave(Condition.cssClass("ti-layout-sidebar-left-expand"), DEFAULT_TIMEOUT);
+    $(".js-layout-wrapper").shouldNotHave(Condition.cssClass("layout-static"));
+  }
+
+  public void isSidebarClickModeExpanded() {
+    $(".js-layout-wrapper.sidebar-click-mode").should(Condition.exist, DEFAULT_TIMEOUT);
+    $(".js-sidebar-toggle-btn").shouldHave(Condition.attribute("aria-expanded", "true"), DEFAULT_TIMEOUT);
+    $(".js-sidebar-toggle-icon").shouldHave(Condition.cssClass("ti-layout-sidebar-left-collapse"), DEFAULT_TIMEOUT);
+    $(".js-layout-wrapper").shouldHave(Condition.cssClass("layout-static"));
+  }
+
+  public void clickSidebarToggleButton() {
+    $(".menu-wrapper.js-left-sidebar").shouldBe(Condition.exist, DEFAULT_TIMEOUT).hover();
+    $(".js-sidebar-toggle-btn").shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
+  }
+
 }

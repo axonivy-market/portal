@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 public class JsonWidgetSearch {
   private final JsonNode dashboard;
 
-  private Predicate<JsonNode> filter = e -> true;
+  private Predicate<JsonNode> filter = _ -> true;
 
   public JsonWidgetSearch(JsonNode dashboard) {
     this.dashboard = dashboard;

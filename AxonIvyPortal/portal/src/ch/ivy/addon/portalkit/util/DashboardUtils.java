@@ -120,7 +120,7 @@ public class DashboardUtils {
     }
 
     List<Dashboard> mappingDashboards = convertDashboardsToLatestVersion(dashboardJSON);
-    mappingDashboards.forEach(dashboard -> initDefaultPermission());
+    mappingDashboards.forEach(_ -> initDefaultPermission());
     return mappingDashboards;
   }
 

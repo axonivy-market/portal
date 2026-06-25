@@ -1,5 +1,5 @@
 {
-    "installers": [   
+    "installers": [
         {
             "id": "maven-import",
             "data": {
@@ -7,6 +7,12 @@
                     {
                         "groupId": "com.axonivy.portal",
                         "artifactId": "portal",
+                        "version": "${version}",
+                        "type": "iar"
+                    },
+                    {
+                        "groupId": "com.axonivy.portal",
+                        "artifactId": "portal-components",
                         "version": "${version}",
                         "type": "iar"
                     },

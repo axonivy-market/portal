@@ -58,7 +58,7 @@ public interface HasCmsName {
   }
 
   default String getBasePath() {
-    return ENUMS_CMS_BASE + SLASH + getClass().getCanonicalName().replaceAll("[.]", SLASH);
+    return ENUMS_CMS_BASE + SLASH + getClass().getCanonicalName().replace(".", SLASH);
   }
 
   default String getCmsURI() {

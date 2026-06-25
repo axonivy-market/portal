@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -46,10 +47,15 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
   }
 
   private void initFilterFields() {
+    Set<String> enabledFilterFieldNames = this.widget.getFilterableColumns().stream()
+      .map(ColumnModel::getField)
+      .collect(Collectors.toSet());
+
     this.filterFields = new ArrayList<>();
     this.filterFields.add(TaskFilterFieldFactory.getDefaultFilterField());
-    this.filterFields
-        .addAll(TaskFilterFieldFactory.getStandardFilterableFields(this.widget.getId()));
+    this.filterFields.addAll(TaskFilterFieldFactory.getStandardFilterableFields(this.widget.getId()).stream()
+      .filter(field -> enabledFilterFieldNames.contains(field.getName()))
+      .collect(Collectors.toList()));
 
     updateFilterLabels();
     // Add custom fields which are selected by user.
@@ -97,7 +103,7 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
    */
   private boolean isFilterAvailable(DashboardFilter filter) {
     return Optional.ofNullable(filter).map(DashboardFilter::getField).isPresent() && filterFields.stream()
-        .filter(field -> filter.getField().contentEquals(filter.getField())).findFirst().isPresent();
+        .filter(field -> filter.getField().contentEquals(field.getName())).findFirst().isPresent();
   }
 
   public List<FilterField> getFilterFields() {
@@ -132,7 +138,7 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
 
   public abstract void addNewFilter(TaskDashboardWidget widget);
 
-  public List<SecurityMemberDTO> completeCreators(String query) {
+  public List<SecurityMemberDTO> completeUsers(String query) {
     return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE).stream()
         .filter(SecurityMemberDTO::isUser).collect(Collectors.toList());
   }

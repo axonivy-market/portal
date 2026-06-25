@@ -46,7 +46,7 @@
             "import org.apache.commons.lang3.StringUtils;",
             "",
             "CustomSubMenuItem google = new CustomSubMenuItem();",
-            "google.setIcon(\"si si-information-circle\");",
+            "google.setIcon(\"ti ti-info-circle\");",
             "google.setLabel(ApplicationMultiLanguageAPI.getCmsValueByUserLocale(\"/Processes/google\"));",
             "google.setLink(\"www.google.com\");",
             "google.setIsExternalLink(true);",

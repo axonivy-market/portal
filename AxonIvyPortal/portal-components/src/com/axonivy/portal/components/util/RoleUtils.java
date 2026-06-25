@@ -1,8 +1,9 @@
 package com.axonivy.portal.components.util;
 
-import static java.util.Comparator.comparingLong;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toCollection;
+
+import java.util.Comparator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -151,7 +152,7 @@ public final class RoleUtils {
   }
 
   /**
-   * Distinct a list of RoleDTO by id then sort by display name.
+   * Distinct a list of RoleDTO by security member ID then sort by display name.
    * 
    * @param roleList original list of roles
    * @return distinct and sorted list of roles
@@ -162,7 +163,7 @@ public final class RoleUtils {
     }
 
     List<RoleDTO> result = roleList.stream()
-        .collect(collectingAndThen(toCollection(() -> new TreeSet<>(comparingLong(RoleDTO::getId))), ArrayList::new));
+        .collect(collectingAndThen(toCollection(() -> new TreeSet<>(Comparator.comparing(RoleDTO::getSecurityMemberId))), ArrayList::new));
 
     result.sort((r1, r2) -> r1.getDisplayName().compareTo(r2.getDisplayName()));
     return result;

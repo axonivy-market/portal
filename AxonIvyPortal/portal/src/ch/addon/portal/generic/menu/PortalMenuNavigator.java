@@ -21,6 +21,7 @@ import org.primefaces.model.menu.MenuItem;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.service.CustomSubMenuItemService;
+import com.axonivy.portal.util.MenuUtils;
 
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -53,12 +54,12 @@ public class PortalMenuNavigator {
     switch (selectedMenuKind) {
       case DASHBOARD:
       case MAIN_DASHBOARD:
-      case CUSTOM:
+      case PROCESS:
       case EXTERNAL_LINK:
       case STATIC_PAGE:
         redirectToSelectedMenuUrl(params);
         break;
-      case PROCESS:
+      case PROCESS_LIST:
         PortalNavigator.navigateToPortalProcess();
         break;
       default:
@@ -166,11 +167,14 @@ public class PortalMenuNavigator {
 
     // Set default icon if it's blank
     if (StringUtils.isBlank(dashboard.getIcon())) {
-      dashboard.setIcon(dashboard.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");
+      dashboard.setIcon(dashboard.getIsPublic() ? "ti-world-share" : "ti-lock-square-rounded");
     }
 
+    // Set id
+    item.setId(dashboard.getId());
+
     // Set icon with the appropriate prefix
-    item.icon = (dashboard.getIcon().startsWith("fa") ? "fa " : "si ") + dashboard.getIcon();
+    item.icon = MenuUtils.buildIconClass(dashboard.getIcon());
 
     // Set the name of the submenu item based on the current language or use default title
     item.label = dashboard.getTitles().stream()

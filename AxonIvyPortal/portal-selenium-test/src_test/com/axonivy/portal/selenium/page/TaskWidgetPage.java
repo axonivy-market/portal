@@ -663,7 +663,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void waitUntilTaskCountDifferentThanZero() {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until((driver) -> getTaskCount().intValue() != 0);
+        .until((_) -> getTaskCount().intValue() != 0);
 
   }
 

@@ -14,8 +14,8 @@ pipeline {
 
   parameters {
     string(name: 'testPatternToRun', defaultValue: 'com.axonivy.portal.selenium.test.**.*Test', description: 'Test pattern to run')
-    string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip', description: '''Where to download engine? e.g.
-      -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip for nightly master
+    string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip', description: '''Where to download engine? e.g.
+      -Divy.engine.download.url=https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip for sprint master
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
       -Divy.engine.download.url=file:///home/build/engine/AxonIvyEngineX.X.X.X_Linux_x64.zip for downloaded engine
       -Divy.engine.list.url=https://jenkins.ivyteam.io/job/core_product/job/release%252F9.4/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Linux_x64 for last successful build 9.4
@@ -47,10 +47,7 @@ pipeline {
                 utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
                 echo '====================Build Portal modules===================='
-                def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
-                for (module in modules) {
-                  maven cmd: "clean install -ntp -f ${module}/pom.xml -Divy.engine.directory=${env.engineDir}"
-                }
+                maven cmd: "clean install -ntp -f pom.xml -Divy.engine.directory=${env.engineDir}"
 
                 echo '====================Build and deploy test package===================='
                 maven cmd: "clean package -ntp -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=${env.engineDir}"

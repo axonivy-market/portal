@@ -26,6 +26,13 @@ If your project has a navigation button that does not finish a task (e.g., Cance
 -  **Previous page**: Use ``PortalNavigatorInFrameAPI.navigateToPortalEndPage()``
 -  **A specific URL**: Use ``PortalNavigatorInFrameAPI.navigateToUrl(String url)``
 
+.. warning::
+   Never pass unsanitized, user-controlled input directly as the ``url`` parameter.
+   Both ``navigateToUrl()`` and ``resetTaskAndNavigateToUrl()`` internally URL-decode
+   the value and escape it for JavaScript context via ``SanitizeAPI.escapeForJavascript()``.
+   However, you should still validate the URL at the application boundary (e.g., check that
+   the scheme is ``http`` or ``https``) to prevent open-redirect or protocol-injection attacks.
+
 Reset Task and Navigate
 -----------------------
 

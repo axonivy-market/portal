@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -24,6 +25,8 @@ import ch.ivyteam.ivy.workflow.document.IDocumentService;
 import ch.ivyteam.ivy.workflow.document.Path;
 
 public class CaseDocumentService {
+
+  private static final Pattern FILE_TYPE_SEPARATOR_PATTERN = Pattern.compile("\\s*,[,\\s]*");
 
   private ICase iCase;
 
@@ -55,7 +58,7 @@ public class CaseDocumentService {
   public StreamedContent download(IvyDocument document) {
     return DefaultStreamedContent
         .builder()
-        .stream(() -> documentsOf(iCase).get(Long.valueOf(document.getId())).read().asStream())
+        .stream(() -> documentsOf(iCase).get(document.getUuid()).read().asStream())
         .contentType(document.getContentType())
         .name(document.getName())
         .build();
@@ -100,7 +103,7 @@ public class CaseDocumentService {
     if (StringUtils.isBlank(documentSetting.getValue())) {
       return new ArrayList<>();
     } else {
-      String[] supportedFileTypeArr = documentSetting.getValue().toLowerCase().split("\\s*,[,\\s]*");
+      String[] supportedFileTypeArr = FILE_TYPE_SEPARATOR_PATTERN.split(documentSetting.getValue().toLowerCase());
       return Arrays.asList(supportedFileTypeArr);
     }
   }

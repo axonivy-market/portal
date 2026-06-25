@@ -71,7 +71,7 @@ public class BaseTest {
   protected String businessCaseUrl = "internalSupport/15B1EA24CCF377E8/updateCheckInTime.ivp";
   protected String hideCaseUrl = "portal-developer-examples/16583F0F73864543/createHiddenTechnicalCase.ivp";
   protected String createSystemTaskUrl = "portal-developer-examples/16583F0F73864543/createSystemTask.ivp";
-  protected String createTestingCaseMapUrl = "internalSupport/764871e4-cf70-401f-83fb-9e99fa897fc4.icm";
+  protected String createTestingCaseMapUrl = "internalSupport/764871e4-cf70-401f-83fb-9e99fa897fc4.m.json";
   protected String createTestingCaseUrlForCustomizationAdditionalCaseDetails =
       "portal-components-examples/176465FBFE257CF3/createInvestmentRequest.ivp";
   protected String createTestingCaseUrlForDefaultAdditionalCaseDetails =

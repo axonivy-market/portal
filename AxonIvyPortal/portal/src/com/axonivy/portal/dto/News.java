@@ -23,7 +23,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class News extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = 3593599946007221868L;
-  public static final String DEFAULT_NEWS_ICON = "si si-advertising-megaphone-2";
+  public static final String DEFAULT_NEWS_ICON = "ti ti-speakerphone";
 
   private String icon;
   private String name;

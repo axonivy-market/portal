@@ -21,7 +21,7 @@
               actionListener="#{dashboardTemplateSelectionBean.createDashboardFromScratch(isPublicDashboard)}"
               update="#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog" resetValues="true" global="false">
               <div class="dashboard-action__icon">
-                <span class="si si-common-file-add dashboard-action-container-icon" />
+                <span class="ti ti-file-plus dashboard-action-container-icon" />
               </div>
               <div class="dashboard-action__text">
                 <p:outputLabel styleClass="dashboard-action-container-label"
@@ -36,7 +36,7 @@
               actionListener="#{dashboardImportBean.importDashboard(isPublicDashboard)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/import')}"
               update="#{cc.clientId}:dashboard-import-component:dashboard-import-dialog" resetValues="true" global="false">
               <div class="dashboard-action__icon">
-                <span class="si si-file-code-upload-1 dashboard-action-container-icon"></span>
+                <span class="ti ti-file-upload dashboard-action-container-icon"></span>
               </div>
               <div class="dashboard-action__text">
                 <p:outputLabel styleClass="dashboard-action-container-label"
@@ -53,7 +53,7 @@
                 oncomplete="PF('dashboard-creation-details-dialog').show()"
                 update="#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog" resetValues="true" global="false">
                 <div class="dashboard-action__icon">
-                  <span class="si #{template.icon} dashboard-action-container-icon" />
+                  <span class="ti #{template.icon} dashboard-action-container-icon" />
                 </div>
                 <div class="dashboard-action__text">
                   <p:outputLabel styleClass="dashboard-action-container-label" value="#{template.title}" />

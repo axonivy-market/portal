@@ -62,6 +62,7 @@ Portal.Theme.EnableSwitchThemeModeButton,TRUE,"If false, the Switch Theme Mode b
 Portal.Theme.Mode,LIGHT,The default theme mode of the application.
 Portal.SearchScope.ByCaseFields,"NAME, DESCRIPTION, CUSTOM",Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search).
 Portal.SearchScope.ByTaskFields,"NAME, DESCRIPTION",Defining the fields that the global search will use to find matching tasks beside task Id (this can influence the performance of the search).
+Portal.Sidebar.Mode,HOVER,"Controls sidebar mode. HOVER (default): sidebar expands on mouse hover. CLICK: sidebar stays as icon rail and a toggle button expands/collapses it. STICK: sidebar is always expanded. HIDDEN: sidebar is completely hidden."
 Portal.GlobalFooterInfo,,Defining the global environment footer info.
 Portal.TranslationService.Enable,FALSE,Set this property to true to enable the new translation service support.
 Portal.ShowQuickGlobalSearch,TRUE,For switch on/off the display of the quick global search.
@@ -75,3 +76,4 @@ Portal.Upload.ImageUploadSizeLimit,6,Set the size limit for uploading images in 
 Portal.DelegationAppendOption,None,Defines the fields that can be appended to the role group display name.
 Portal.SessionCacheTimeout,86400,"Defines the session cache timeout duration (in seconds) for the Portal. This value can be set between 300 (5 minutes) and 86,400 (24 hours). To keep the session cache active until the user's session ends, set this variable to -1."
 Portal.ShowTooltipTechnicalName,FALSE,"Enable to show users' technical name on tooltips."
+Portal.Tasks.MaximumSelectedTasks,,"Defines the maximum number of tasks a user can select simultaneously within a task widget for bulk operations. Set this value to a positive integer to enforce a specific limit, or leave it empty to allow unlimited task selection."

@@ -17,8 +17,7 @@ import com.axonivy.portal.selenium.page.UserProfilePage;
 @IvyWebTest
 public class DateTimeDisplayTest extends BaseTest {
 
-  private static final String DATE_TIME_REGEX_PATTERN = "\\d{1,2} [a-zA-Z]+ \\d{4} \\d{2}:\\d{2}"; // Matched date: 6
-                                                                                                   // July 2022 10:00
+  private static final Pattern DATE_TIME_PATTERN = Pattern.compile("\\d{1,2} [a-zA-Z]+ \\d{4} \\d{2}:\\d{2}");
   private NewDashboardPage newDashboardPage;
 
   @Override
@@ -40,7 +39,7 @@ public class DateTimeDisplayTest extends BaseTest {
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     TaskDetailsPage taskDetailsPage = taskWidget.openTaskDetailsPageByAction(0);
     String createdDateLiteral = taskDetailsPage.getCreatedOnDateText();
-    boolean matches = Pattern.matches(DATE_TIME_REGEX_PATTERN, createdDateLiteral);
+    boolean matches = DATE_TIME_PATTERN.matcher(createdDateLiteral).matches();
 
     assertTrue(matches);
   }

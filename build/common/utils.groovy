@@ -84,7 +84,18 @@ def killUnnecessaryProcessesToRunTest() {
 
 def extractEngine(String engineDir, String engineDownloadURL) {
   echo '====================Extract engine===================='
-  maven cmd: "clean compile -ntp -f AxonIvyPortal/portal-components/pom.xml -Divy.engine.directory=${engineDir} ${engineDownloadURL}"
+  def launcherCount = sh(script: "ls ${engineDir}/plugins/org.eclipse.equinox.launcher*.jar 2>/dev/null | wc -l", returnStdout: true).trim().toInteger()
+  if (launcherCount > 0) {
+    echo "Engine already extracted at ${engineDir}, skipping download."
+    return
+  }
+  def engineDownloadUrl = engineDownloadURL.replace('-Divy.engine.download.url=', '').split(' ')[0]
+  sh """
+    mkdir -p ${engineDir}
+    curl -sL '${engineDownloadUrl}' -o /tmp/engine.zip
+    unzip -o /tmp/engine.zip -d ${engineDir}
+    rm /tmp/engine.zip
+  """
 }
 
 def cleanDisk() {

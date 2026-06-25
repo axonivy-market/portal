@@ -42,7 +42,7 @@
           <div class="ui-g-12 text-right u-no-padding-top">
             <p:commandLink ajax="false" styleClass="note-history-export-button MarTop10"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
-              <i class="#{visibilityBean.generateButtonIcon('si si-office-file-xls-1')}" />
+              <i class="#{visibilityBean.generateButtonIcon('ti ti-file-type-xls')}" />
               <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}</span>
               <p:fileDownload value="#{caseTaskNoteHistoryBean.getStreamedContentOfCaseNoteHistory(data.filteredHistories, data.ivyCase, data.exportedFileName)}" />
             </p:commandLink>

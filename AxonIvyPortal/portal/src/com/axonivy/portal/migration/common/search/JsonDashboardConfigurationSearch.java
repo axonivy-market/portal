@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 public class JsonDashboardConfigurationSearch {
   private final JsonNode configuration;
 
-  private Predicate<JsonNode> filter = e -> true;
+  private Predicate<JsonNode> filter = _ -> true;
 
   public JsonDashboardConfigurationSearch(JsonNode configuration) {
     this.configuration = configuration;

@@ -17,11 +17,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       overlappingAbsence: L'absence entre en collision avec une autre absence.
       userNameRequired: Le nom d'utilisateur doit être indiqué.
     SelectedSubtitutes: Remplaçants sélectionnés
+    Substitutes: 'Remplaçants:'
     absences: Absences
     addAbsence: Ajouter une absence
+    addSubstitute: Ajouter un substitut
     deputies: Remplaçant
     description: Veuillez inscrire vos vacances, maladies ou autres obligations extérieures conduisant à une absence.
     editAbsence: Editer les absences
+    editSubstitute: Modifier le substitut
     from: Du
     noDeputy: Aucun remplaçant
     noPermissionToSeeThisArea: Vous n'avez pas l'autorisation requise pour visiter cette zone.
@@ -29,8 +32,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     personalTaskDuringAbsenceDeputies: Remplacer les tâches assignées personnellement pendant l'absence
     personalTaskPermanentDeputies: Remplacement permanent des tâches confiées personnellement
     selectDeputies: Choisir des substituts
+    selectSubstitute: Sélectionner un substitut
     selectedDeputies: Substituts sélectionnés
+    setAsPermanent: Définir comme permanent
     showAbsencesInThePast: Afficher les absences du passé
+    substituteName: Nom du substitut
+    substituteType: Type de substitut
     substitutedUser: Utilisateur remplacé
     taskForRole: 'Tâche pour le rôle:'
     till: Jusqu'à
@@ -49,8 +56,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     myAbsences: Mon absence
     myDeputies: Mes substituts
     nextAbsence: Absence à venir
+    noSubstitutesDefined: Aucun remplaçant défini
+    notSubstitutingAnybody: Ne remplace actuellement personne
+    requestAbsences: Demander des absences
     selectedDeputyFor: L'utilisateur sélectionné est un remplaçant de
     selectedUser: Utilisateur sélectionné
+    substitutes: Remplaçants
   AccessibilityShortcuts:
     processName: Raccourcis d'accessibilité Widgets
   AllTasks:
@@ -75,6 +86,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: URL externe
       PROCESS: Processus Axon Ivy
+    DashboardDisplayType:
+      HIDDEN: Masqué
+      SUB_MENU: Sous-menu
+      TOP_MENU: Barre latérale
     DashboardWidgetType:
       CASE: Widget de cas
       CUSTOM: Widget personnalisé
@@ -181,7 +196,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskDocumentsPageTitle: Documents de tâches
   adminSettings:
     addLanguages: Ajouter une langue
-    addNewApplication: Ajouter une nouvelle application de tiers
     announcement:
       announcement: Annonce
       announcementsDisabled: Les annonces sont désactivées.
@@ -192,27 +206,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       information: Vous pouvez annoncer une information générale (par exemple, temps d'arrêt, modifications, etc.) dans cette zone. Ce message peut être vu par tous les utilisateurs du portail.
       saveChanges: Enregistrer les modifications
       tabTitle: Annonces
-    appDisplayName: Nom d'affichage
-    appDisplayNameRequiredMsg: Veuillez entrer le nom d'affichage de l'application
-    appNameCharactersLimit: 'Seuls les caractères suivants sont autorisés pour le nom de l''application : [\p{Alnum}_-]+'
-    appNameRequiredMsg: Veuillez rentrer le nom de l'application
-    applicationHint: L'ordre peut être modifié par glisser/déposer
-    applicationLinkRequiredMsg: Veuillez rentrer le lien vers le Portail
-    applicationList:
-      addNewApplication: Ajouter une nouvelle application
-      applicationSelectionHeader: Sélectionner une application
-      menuIcon: Icône de menu
-    applications: Applications
     applicationtype:
       thirdPartyApplication: Application tierce
     currentValue: Valeur actuelle
     defaultValue: Valeur par défaut
-    deleteAppConfirmation: Etes-vous sûr de vouloir supprimer cette <b>{0}</b> application?
     dialogclosinginformation:
       dialogHeader: La configuration du portail est terminée
       informMessage: Les modifications des paramètres du portail nécessitent un rafraîchissement de la page actuelle pour que la nouvelle configuration prenne effet.
-    duplicatePortalAppMsg: Cette demande existe déjà, veuillez choisir une autre demande.
-    editApplication: Editer les paramètres de l'application
     editSetting: Editer les paramètres
     embedInFrame: Démarrer un processus/une tâche en mode IFrame
     emptySupportedLanguages: Il n'y a pas langue supplémentaire supportée
@@ -279,8 +279,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideUploadDocumentForDoneCaseNote: Définissez la valeur true pour refuser le téléchargement (également supprimer) du document une fois la requête terminée.
       hideYear: Définissez la valeur true, l'année sera cachée, sinon elle sera montrée.
       imageUploadSizeLimit: Définissez la limite de taille pour le téléchargement d’images en mégaoctets (Mo). La valeur par défaut est de 6 Mo.
-      keepSidebarExpanded: Toujours garder la barre latérale (menu de gauche) développée
       loggedInUserFormat: L'option pour afficher le format de l'utilisateur connecté
+      maximumSelectedTasks: Définit le nombre maximum de tâches qu'un utilisateur peut sélectionner simultanément dans un widget de tâches pour des opérations en masse. Définissez cette valeur sur un entier positif pour imposer une limite spécifique, ou laissez-la vide pour autoriser une sélection de
+        tâches illimitée.
       refreshTaskListIntervalNote: Intervalle d'actualisation de la liste des tâches en secondes.
       showAvatar: Pour activer/désactiver l'affichage des avatars des utilisateurs/rôles.
       showButtonIcon: Pour activer/désactiver l'icône d'affichage dans le bouton.
@@ -291,9 +292,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       showQuickGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale rapide.
       showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
       showTooltipTechnicalName: Activer l'affichage du nom technique des utilisateurs dans les infobulles.
+      sidebarMode: Contrôle le mode de la barre latérale. Survol s'ouvre au survol, Clic utilise un bouton bascule, Fixe la garde toujours ouverte, Masqué supprime complètement la barre latérale.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
     key: Clé
-    link: Lien
     loading: CHARGEMENT
     loginLogoSizeTooltip: 'Taille recommandée<BR/>Logo carré: 80x80 px<BR/>Logo rectangle: 191x50 p'
     logoSizeRecommendation:
@@ -451,8 +452,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: Mettre à jour
     Widget: Widget
     action: Actions
+    actionMenuContext: Ouvrir le menu d'actions pour le processus {0}
     active: Activé
     add: Ajouter
+    addContext: Ajouter {0}
     addDocument: Ajouter un document
     addLink: Ajouter un lien
     addNote: Ajouter une note
@@ -460,12 +463,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     allTypes: Tous les types
     allowPng: Seulement les types .png autorisés
     apply: Utiliser
+    applyContext: Utiliser {0}
     at: le
     author: Auteur
     back: Retour
     backToCaseMap: Retour à la carte des cas
     backgroundColor: Couleur de fond
     cancel: Annuler
+    cancelContext: Annuler {0}
     case: Dossier
     caseCategory: Catégorie des cas
     caseInformation: Information sur le cas
@@ -473,7 +478,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: Catégories
     change: Modifier
     close: Fermer
+    closeContext: Fermer {0}
     cockpit: Cockpit
+    collapseWidgetContext: Réduire le widget {0}
     colors: Couleur
     comment: Commentaire
     completedOn: Fini le
@@ -489,15 +496,16 @@ ch.ivy.addon.portalkit.ui.jsf:
     dateRequired: La date doit être remplie
     day: journée
     dayUnit: jour
-    days: journées
+    days: jour(s)
     default: Par défaut
     defaultNotificationMessage: Hmm... On dirait que quelque chose ne va pas.
+    delegateTasks: Déléguer les tâches
     delete: Supprimer
     deleteAbsenceHeaderText: Supprimer cette absence ?
     deleteChartHeaderText: Supprimer ce tableau ?
+    deleteContext: Supprimer {0}
     deleteDocumentHeaderText: Supprimer ce document ?
     deleteFilterHeaderText: Supprimer ce filtre ?
-    deleteSettingHeaderText: Supprimer ce paramètre ?
     description: Description
     design: Design
     destroy: Supprimer
@@ -516,6 +524,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: N'a pas réussi à mettre à jour le contenu du site Web
     escalationTaskHeaderText: Escalader
     escalationTaskMessage: L'expiration est fixée à maintenant, donc la tâche expire. Etes-vous sûr?
+    expandWidgetContext: Agrandir le widget {0}
     filter:
       from: du
       moreOptions: Plus d'options
@@ -524,6 +533,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       worker: Éditeur
       wrongFromDateFormat: Veuillez entrer une date valide "du". Le format est {0}
       wrongToDateFormat: Veuillez entrer une date valide "au". Le format est {0}
+    filterLabel: Filtre
     finish: Terminer
     general: Général
     generalInformation: Informations générales
@@ -570,8 +580,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberFromBiggerThanTo: L'adresse de destination doit être plus grande que l'adresse de départ.
     numberOfSelectedFilter: filtres sélectionnés
     ok: OK
+    okContext: OK {0}
     'on': le
+    openWidgetFiltersContext: Ouvrir les filtres de {0}
+    openWidgetFiltersWithCountContext: Ouvrir les filtres de {0}, {1} filtres actifs
+    openWidgetInfoContext: Ouvrir les informations du widget {0}
     pin: Épingler
+    pinCaseContext: Épingler le cas {0}
+    pinTaskContext: Épingler la tâche {0}
     pleaseAddDocument: Veuillez ajouter un document avec le lien ci-dessus.
     pleaseAddNote: Veuillez ajouter une note avec le lien ci-dessus.
     previousStage: Étape précédente
@@ -595,6 +611,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     role: Rôle
     save: Enregistrer
     saveAll: Enregistrer tout
+    saveContext: Enregistrer {0}
     saveSuccessfully: Les données ont été correctement enregistrées
     search: Recherche
     second: seconde
@@ -618,6 +635,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     state: Etat
     status: Etat
     switchToDesktopVersion: Passer à la version de bureau
+    taskActionMenuContext: Ouvrir le menu d'actions pour la tâche {0}
     taskCanceledAndLeftSuccessfully: Vous avez annulé et quitté la tâche avec succès. Vous pouvez trouver la tâche dans le tableau de bord ou dans votre liste de tâches.
     taskFinishedSuccessfully: Vous avez terminé la tâche avec succès
     taskFromSubstitution: Vous voyez cette tâche parce que vous êtes le remplaçant
@@ -627,11 +645,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: Le processus
     timeInformation: Informations sur le temps
     timestamp: Horodatage
+    toggleBulkDelegation: Basculer la délégation en masse
     type: Type
     typeAdmin: Tous les administrateurs
     typeAllUsers: Tous les utilisateurs
     typeOnlyMe: Seulement pour moi
     unpin: Désépingler
+    unpinCaseContext: Désépingler le cas {0}
+    unpinTaskContext: Désépingler la tâche {0}
     uploadHere: Téléchargez ici
     uploadOneHere: Téléchargez-en un ici
     user: '{0} utilisateur'
@@ -643,6 +664,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Nous créons l'export, cela peut prendre quelques minutes
     warning: Attention!
     welcomeToPortal: Bienvenue, veuillez vous connecter
+    businessCaseId: ID du cas métier
+    technicalCaseId: ID du cas technique
+    workingUser: Gestionnaire
     wrongDateFormat: Veuillez entrer une date valide
     year: an
     years: ans
@@ -745,20 +769,48 @@ ch.ivy.addon.portalkit.ui.jsf:
       label: Type de cas
     CloneWidget: Cloner le widget
     CustomWidgets: Widgets personnalisés
-    dataSettings: Paramètres de données
     DashboardConfiguration:
       CreateFromScratch: Créer à partir de rien
       CreateFromScratchDescription: Créez votre propre tableau de bord à partir de zéro
       CreateNewPrivateDashboard: Créer un nouveau tableau de bord privé
       CreateNewPublicDashboard: Créer un nouveau tableau de bord public
-      Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins.
+      Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins et modifier l'ordre des éléments de navigation.
       DoNotSupportMobile: La configuration du tableau de bord n'est pas prise en charge pour les appareils mobiles.
       EditPrivateDashboards: Modifier vos tableaux de bord privés
+      PrivateTabInfo: 'Créez et gérez vos tableaux de bord personnels.<ul><li>Ils ne sont visibles que par vous</li><li>Ils apparaissent sous l''icône Dashboard dans la barre latérale</li></ul>'
+      PublicTabInfo: 'Gérez les tableaux de bord pour tous les utilisateurs. Définissez la visibilité:<ul><li><b>Barre latérale</b> — apparaît comme élément principal dans le menu latéral</li><li><b>Sous-menu</b> — apparaît sous l''icône Dashboard</li><li><b>Masqué</b> — non visible pour les utilisateurs</li></ul>'
+      Visibility: Visibilité
       EditPublicDashboards: Modifier les tableaux de bord publics
+      ExportDashboard: Exporter le tableau de bord
       ExportReferencedDialogHeader: Le tableau de bord référence d'autres tableaux de bord
       ExportReferencedDialogMessage: 'Les tableaux de bord suivants sont référencés par des widgets de navigation. Exportez-les et importez-les également pour que les widgets fonctionnent correctement :'
       ExportReferencedDialogProceed: Exporter quand même
-      ExportDashboard: Exporter le tableau de bord
+      Hidden: Masqué
+      HiddenDashboards: Éléments masqués
+      HiddenDashboardsDescription: Non affiché dans la barre latérale. Peut toujours être utilisé comme cible de lien direct.
+      SubMenuDashboards: Tableaux de bord du sous-menu
+      SubMenuDashboardsDescription: Apparaissent groupés sous l'icône Tableau de bord dans la barre latérale.
+      SidebarTopLevelDashboards: Tableaux de bord principaux de la barre latérale
+      SidebarTopLevelDashboardsDescription: Apparaissent comme éléments principaux dans la barre latérale.
+      MenuDashboards: Éléments de la barre latérale
+      MenuDashboardsDescription: Ces tableaux de bord apparaissent comme éléments principaux dans la barre latérale. Gérez leur ordre dans l'onglet Navigation de la barre latérale.
+      PrivateDashboardTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Créez et gérez des tableaux de bord visibles uniquement par vous. Ils apparaissent groupés sous l''icône Tableau de bord dans la barre latérale et n''affectent jamais les autres utilisateurs.</p><p><b>Réorganiser</b></p><p>Faites glisser une ligne pour changer l''ordre d''apparition dans le sous-menu. L''ordre est enregistré dans vos paramètres personnels.</p><p><b>Actions par tableau de bord</b></p><p>Modifier permet de mettre à jour le titre, la description, l''icône ou les titres multilingues. Configurer ouvre le tableau de bord pour ajouter ou réorganiser des widgets. Si vous disposez de la permission d''export, vous pouvez télécharger un tableau de bord au format JSON.</p>'
+      DashboardTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Créez, modifiez et supprimez des tableaux de bord publics. Définissez qui peut les voir grâce aux autorisations. Il s''agit de la bibliothèque centrale de tous les tableaux de bord partagés.</p><p><b>Visibilité &amp; emplacement</b></p><p>Les tableaux de bord sont répartis en trois sections selon leur emplacement dans la barre latérale. Pour déplacer un tableau de bord, ouvrez Modifier et changez son Type d''affichage. Seule la section Sous-menu supporte le glisser-déposer pour la réorganisation.</p><p><b>Actions par tableau de bord</b></p><p>Modifier met à jour nom, description, icône, autorisations et type d''affichage. Configurer ouvre le tableau de bord pour ajouter ou organiser des widgets. Exporter télécharge un fichier JSON — si le tableau de bord en référence d''autres, une confirmation est demandée. Partager génère un lien direct. Supprimer le retire définitivement.</p>'
+      MenuManagementTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Configurez tout ce qui est visible dans la barre latérale : les éléments, leur ordre et le comportement global de la barre latérale.</p><p><b>Ajouter de nouveaux éléments</b></p><p>Utilisez Ajouter un élément pour créer une nouvelle entrée. Vous pouvez choisir : Tableau de bord principal (lien vers un tableau de bord), Processus (démarre un processus Ivy), Lien externe (toute URL, avec option ouverture dans un nouvel onglet) ou Page statique. Chaque élément dispose d''un titre multilingue, d''une icône et d''autorisations configurables. Le type d''élément ne peut pas être modifié après création.</p><p><b>Comprendre le tableau</b></p><p>Cible indique où mène un élément (URL ou chemin de processus). Autorisations indique qui peut le voir. Type est la nature de l''entrée et Source indique où il est défini : Intégré, Configuration, Configuration du tableau de bord, Processus appelable ou Application tierce.</p><p><b>Gérer les éléments existants</b></p><p>Modifier met à jour le titre, l''icône, le lien et les autorisations des éléments personnalisés. Supprimer les retire. Les éléments intégrés (source : Intégré) ne peuvent être ni modifiés ni supprimés, et les éléments générés par un processus appelable ne peuvent être modifiés que par un développeur. Faites glisser les lignes pour réorganiser tous les éléments.</p><p><b>Paramètres de la barre latérale</b></p><p>Désactiver la barre latérale la masque entièrement pour tous les utilisateurs. Comportement contrôle comment elle s''ouvre : Survol (au survol de la souris), Clic (nécessite un clic) ou Ancré (toujours visible).</p>'
+      SidebarNavigation: Barre latérale
+      SidebarSettings: Paramètres de la barre latérale
+      SidebarMode: Mode de la barre latérale
+      DisableSidebar: Désactiver la barre latérale
+      SidebarBehaviour: Comportement de la barre latérale
+      SidebarSettingsReloadWarning: 'Paramètres de la barre latérale enregistrés. Rechargez la page pour appliquer les modifications.'
+      Reload: Recharger
+      AddItem: Ajouter un élément
+      Label: Libellé
+      Source: Source
+      Target: Cible
+      Dashboard: Tableau de bord
+      MenuManagement: Gestion des menus
+      MenuManagementTabInfo: 'Gérez les éléments de navigation de la barre latérale. Vous pouvez:<ul><li>Ajouter de nouveaux éléments de menu (tableaux de bord, liens externes, processus Ivy)</li><li>Réorganiser les éléments par glisser-déposer</li><li>Modifier ou supprimer des éléments de menu existants</li></ul>'
       PrivateDashboard: Tableaux de bord privés
       PrivateDashboardConfiguration: Configuration des tableaux de bord privés
       PublicDashboard: Tableaux de bord publics
@@ -767,8 +819,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Réorganiser les tableaux de bord publics
       SelectAction: Sélectionnez l'action
       SomeThingWentWrong: Quelque chose n'a pas fonctionné
-      Title: Configuration du tableau de bord
-    displaySettings: Paramètres d'affichage
+      Title: Configuration du portail
     DrillDownWidget:
       caseDrillDown: Widget de cas détaillé pour {0}
       taskDrillDown: Widget de tâche détaillé pour {0}
@@ -777,6 +828,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: Ce widget peut afficher une page web externe.
     Filter:
       FilterOptionHeader: Options de filtre
+      FilterPanelHeader: Panneau de filtre
       ManageWidgetFilterHeader: Gestion des filtres des widgets
       NotFound: Aucun filtre trouvé
       WidgetNameColumn: Nom du widget
@@ -799,14 +851,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Widgets standard
     StatisticWidget:
       EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau graphique !
-      failToRenderChartMessage: Erreur lors du rendu du graphique. Veuillez réessayer avec des paramètres différents.
-      firstConfigChartMessage: Aucun graphique disponible pour le moment. Veuillez configurer vos paramètres pour générer un graphique.
       TooltipAverageKpiLabel: Moyenne de {0}
       TooltipMaxKpiLabel: Maximum de {0}
       TooltipMinKpiLabel: Minimum de {0}
       TooltipSumKpiLabel: Somme de {0}
       TooltipTotalCaseLabel: 'Nombre total de cas : {0}'
       TooltipTotalTaskLabel: 'Nombre total de tâches : {0}'
+      failToRenderChartMessage: Erreur lors du rendu du graphique. Veuillez réessayer avec des paramètres différents.
+      firstConfigChartMessage: Aucun graphique disponible pour le moment. Veuillez configurer vos paramètres pour générer un graphique.
     WelcomeWidgetIntroduction: Ce widget affiche un texte et une image de bienvenue sur le tableau de bord.
     WelcomeWidgetNotFoundMessage: Nous ne pouvons pas trouver l'image du widget, veuillez reconfigurer votre image !
     WidgetFilterName: Nom du filtre du widget
@@ -832,6 +884,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       STANDARD: Colonne standard
     configuration:
       CustomWidgetExternalLinkWarning: Certains web sites ne sont pas compatibles avec les iframe pour des raisons de sécurité. Veuillez contacter votre administrateur si le web site externe ne fonctionne pas correctement.
+      CustomWidgetUrlInvalidScheme: L'URL fournie n'est pas valide
       CustomWidgetTitlePlaceholder: Laissez-le vide pour masquer l'en-tête du widget
       Parameters: Paramètres
       RestoreDefaultDashboardTemplateTooltip: Nous ne trouvons pas le modèle de votre tableau de bord, nous ne pouvons donc pas le réinitialiser à la configuration standard. Veuillez vérifier auprès de votre administrateur pour plus de détails!
@@ -885,10 +938,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardPermission: Autorisation du tableau de bord
       dashboardTitle: Titre du tableau de bord
       deleteDashboardMessage: Êtes-vous sûr de vouloir supprimer le "{0}" tableau de bord?
+      deleteMenuItemMessage: Êtes-vous sûr de vouloir supprimer l'élément de menu "{0}" ?
       editDashboard: Modifier le tableau de bord
       manageDashboard: Gérer le tableau de bord
       removeDashboardHeader: Supprimez le tableau de bord "{0}".
+    dataSettings: Paramètres de données
     deleteWidget: Supprimer le widget
+    displaySettings: Paramètres d'affichage
     downloadZipFileExplanation: Si le nombre d'éléments à exporter dépasse la limite des lignes Excel, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
     editWidget: Modifier le widget
     existingField: Le champ {0} a déjà été créé
@@ -912,6 +968,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     navigate: Naviguer
     noCategory: Il n'y a pas de catégories
     noDashboard: Il n'y a pas de tableaux de bord. Ajoutez au moins un tableau de bord, puis ajoutez des widgets.
+    noDashboardAvailable: "Aucun tableau de bord du sous-menu n'est disponible."
     noPermission: Vous n'avez pas les permissions pour voir les tableaux de bord.
     noWidget: Il n'y a pas de widgets fournis pour ce tableau de bord.
     numberPattern: Modèle de numéro
@@ -1095,11 +1152,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     markAllAsRead: Marquer tous comme lus
     markAsRead: Marquer comme lu
     noNotificationText: Pas de notification
+    notificationOptions: Options de notification
     notificationTitle: Notifications
+    notificationsBadgeLabel: Ouvrir le panneau de notifications, {0} non lues
     olderText: Plus ancien
     onlyUnread: Uniquement non lu
+    openNotificationSettings: Ouvrir les paramètres de notification
     openNotifications: Ouvrir les notifications
     todayText: Aujourd'hui
+    viewNotificationsFullScreen: Afficher les notifications en plein écran
     xDaysAgo: Il y a %s jours
     xHoursAgo: Il y a %s heures
     xMinutesAgo: Il y a %s minutes
@@ -1237,7 +1298,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: Cette tâche ne contient pas de logique d'escalade. Aucune période d'expiration ne peut donc être définie.
     technicalCase: Dossier technique
     workflowEventDialog: 'Événements du flux de travail de la tâche #{0}'
-    workingUser: Gestionnaire
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: La date limite de la tâche a été réglée avec succès.
@@ -1459,6 +1519,12 @@ Dialogs:
               CustomWidgetIFrameTitle: Cadre de widget personnalisé
             IconSelection:
               IconLinkTooltip: Cliquez pour changer d'icône
+            MultipleTaskItemsDelegate:
+              DelegateMultipleTaskTitle: Déléguer {0} tâches
+              ItemSelected: 1 élément sélectionné
+              ItemsSelected: '{0} éléments sélectionnés'
+              ItemsSelectedWithLimit: '{0} / {1} éléments sélectionnés'
+              bulkDelegatePerformanceWarning: La délégation de plusieurs tâches peut prendre un certain temps. Veuillez patienter.
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: Vous ne pouvez pas travailler sur la tâche parce qu'elle a été détruite.
               CannotWorkOnTaskWarning: Vous ne pouvez pas travailler sur cette tâche car l'utilisateur <strong>{0}</strong> y travaille déjà.
@@ -1547,7 +1613,7 @@ Dialogs:
               FileInfomation: Informations sur le fichier
               ImportPrivate: Importer un tableau de bord privé
               ImportPublic: Importer un tableau de bord public
-              NavigationWidgetMissingTarget: 'Le widget de navigation "{0}" fait référence à un tableau de bord qui n''a pas été importé et n''existe pas dans ce portail. Le widget peut ne pas fonctionner correctement.'
+              NavigationWidgetMissingTarget: Le widget de navigation "{0}" fait référence à un tableau de bord qui n'a pas été importé et n'existe pas dans ce portail. Le widget peut ne pas fonctionner correctement.
               chooseAJsonFile: Choisissez un fichier json
             DashboardSharing:
               ShareDashboard: Partager le tableau de bord
@@ -1592,6 +1658,7 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Ajouter un filtre
               ResetFilter: Réinitialiser le filtre
+              ShowBulkDelegateToggle: Afficher le bouton de bascule 'Délégation groupée'
             filter:
               DashboardFilter:
                 HasCmsValuesEnabledTooltip: Ce champ permet uniquement d'utiliser l'opérateur Contient
@@ -1604,6 +1671,22 @@ Dialogs:
           IFrameTaskTemplate:
             TaskIFrameTitle: Cadre de travail
         page:
+          MenuManagement:
+            AddNewMenu: Ajouter un nouveau menu
+            CallableMenuMessage: Ce menu est généré automatiquement par un processus appelable et ne peut pas être modifié.
+            CallableSourceHint: Cet élément est généré par un processus appelable. Contactez votre développeur pour le modifier.
+            ProcessPermissionHint: La visibilité dépend des autorisations de démarrage du processus.
+            HelpText: Personnalisez le menu dans cette section en fonction de vos besoins ou préférences.
+            MenuDetails: Détails du menu
+            MenuIcon: Icône du menu
+            MenuTitle: Titre du menu
+            MenuType: Type de menu
+            InvalidUrl: "L'URL n'est pas valide."
+            InvalidUrlScheme: 'Seules les URLs http et https sont autorisées.'
+            InvalidStaticPagePath: "Le chemin doit être relatif à l'application (les URLs absolues ne sont pas autorisées)."
+            NoAvailableSubDashboard: "Aucun tableau de bord du sous-menu n'est disponible pour être ajouté comme tableau de bord principal."
+            OpenInNewTab: Ouvrir dans un nouvel onglet
+            StaticPagePath: Chemin de page statique
           StatisticConfiguration:
             AddFilter: Ajouter un filtre
             Advanced: Avancé
@@ -1679,6 +1762,13 @@ Enums:
     axonivy:
       portal:
         enums:
+          CaseQueryType:
+            ALL:
+              name: Cas métier + Sous-cas
+            BUSINESS_CASE:
+              name: Cas métier (Par défaut)
+            SUB_CASE:
+              name: Sous-cas
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1706,7 +1796,7 @@ Enums:
               STATE:
                 name: État
               WORKER_NAME:
-                name: Nom de l'employé
+                name: Gestionnaire
               WORKING_TIME:
                 name: Temps de travail
             AggregationInterval:
@@ -1749,15 +1839,8 @@ Enums:
                   Inférieur à
 
               LESSOREQUAL:
-                name: |+
+                name: |
                   Inférieur ou égal à
-          CaseQueryType:
-            ALL:
-              name: Cas métier + Sous-cas
-            BUSINESS_CASE:
-              name: Cas métier (Par défaut)
-            SUB_CASE:
-              name: Sous-cas
 Labels:
   AI:
     Error:
@@ -1837,6 +1920,7 @@ Labels:
     DashboardStandardTaskColumn:
       ACTIONS: Actions
       APPLICATION: Application
+      BUSINESS_CASE_ID: ID du cas métier
       CATEGORY: Catégorie
       COMPLETED: Date de fin
       CREATED: Date de création
@@ -1849,6 +1933,8 @@ Labels:
       RESPONSIBLE: Responsable
       START: Démarrage
       STATE: État
+      TECHNICAL_CASE_ID: ID du cas technique
+      WORKER: Gestionnaire
     FilterOperator:
       AFTER: Est après
       BEFORE: Est avant
@@ -1894,6 +1980,21 @@ Labels:
       CASES: Cas
       PROCESSES: Processus
       TASKS: Tâches
+    MenuKind:
+      PROCESS: Processus
+      DASHBOARD: Tableau de bord
+      EXTERNAL_LINK: Lien externe
+      MAIN_DASHBOARD: Tableau de bord principal
+      PROCESS_LIST: Liste des processus
+      STANDARD: Standard
+      STATIC_PAGE: Page statique
+      THIRD_PARTY: Tiers
+    MenuSource:
+      CALLABLE: Processus appelable
+      CUSTOM_MENU_CONFIGURATION: Configuration
+      DASHBOARD: Configuration du tableau de bord
+      STANDARD: Intégré
+      THIRD_PARTY_APP_CONFIGURATION: Application tierce
     SearchScopeCaseField:
       CUSTOM: Champs de chaînes personnalisées
       DESCRIPTION: Description du texte
@@ -1901,6 +2002,11 @@ Labels:
     SearchScopeTaskField:
       DESCRIPTION: Description du texte
       NAME: Nom du texte
+    SidebarMode:
+      CLICK: Clic
+      HIDDEN: Masqué
+      HOVER: Survol
+      STICK: Fixe
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière

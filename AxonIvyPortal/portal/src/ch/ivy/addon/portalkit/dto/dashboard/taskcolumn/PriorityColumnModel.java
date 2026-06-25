@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +13,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
-public class PriorityColumnModel extends TaskColumnModel implements Serializable {
+public class PriorityColumnModel extends TaskColumnModel {
 
   private static final long serialVersionUID = -4315469062114036720L;
 

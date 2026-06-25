@@ -17,11 +17,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       overlappingAbsence: Die Abwesenheit überschneidet sich mit einer anderen Abwesenheit.
       userNameRequired: '''Benutzername'' darf nicht leer sein.'
     SelectedSubtitutes: Auswahl Stellvertreter:in
+    Substitutes: 'Stellvertreter:'
     absences: Abwesenheiten
     addAbsence: Abwesenheit erfassen
+    addSubstitute: Stellvertreter hinzufügen
     deputies: Stellvertreter
     description: Während meiner Abwesenheit werden Workflow Aufgaben automatisch den definierten Stellvertretern zugeteilt.
     editAbsence: Abwesenheiten bearbeiten
+    editSubstitute: Ersatz bearbeiten
     from: Von
     noDeputy: Kein Stellvertreter
     noPermissionToSeeThisArea: Fehlende Berechtigung für diesen Bereich.
@@ -29,8 +32,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     personalTaskDuringAbsenceDeputies: Vertretungen für persönlich zugewiesene Aufgaben während der Abwesenheit
     personalTaskPermanentDeputies: Ständige Stellvertreter für persönlich zugewiesene Aufgaben
     selectDeputies: Stellvertreter auswählen
+    selectSubstitute: Stellvertreter auswählen
     selectedDeputies: Ausgewählte Stellvertreter
+    setAsPermanent: Als dauerhaft festlegen
     showAbsencesInThePast: Vergangene Abwesenheiten anzeigen
+    substituteName: Stellvertretername
+    substituteType: Stellvertretertyp
     substitutedUser: Vertretener Benutzer
     taskForRole: 'Aufgabe für Rolle: '
     till: Bis
@@ -49,8 +56,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     myAbsences: Meine Abwesenheit
     myDeputies: Meine Stellvertreter
     nextAbsence: Bevorstehende Abwesenheit
+    noSubstitutesDefined: Keine Stellvertreter definiert
+    notSubstitutingAnybody: Derzeit kein Stellvertreter für andere
+    requestAbsences: Abwesenheiten beantragen
     selectedDeputyFor: Ausgewählter Benutzer ist Stellvertreter für
     selectedUser: Ausgewählter Benutzer
+    substitutes: Stellvertreter
   AccessibilityShortcuts:
     processName: Barrierefreiheit Tastenkombinationen Widgets
   AllTasks:
@@ -75,6 +86,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: Externe URL
       PROCESS: Axon Ivy Prozess
+    DashboardDisplayType:
+      HIDDEN: Versteckt
+      SUB_MENU: Untermenü
+      TOP_MENU: Seitenleiste
     DashboardWidgetType:
       CASE: Vorgangs-Widget
       CUSTOM: Benutzerdefiniertes Widget
@@ -181,7 +196,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskDocumentsPageTitle: Aufgaben-Dokumente
   adminSettings:
     addLanguages: Sprachen hinzufügen
-    addNewApplication: Neue Drittanwendung hinzufügen
     announcement:
       announcement: Ankündigungen
       announcementsDisabled: Ankündigungen sind deaktiviert.
@@ -192,27 +206,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       information: Sie können eine allgemeine Ankündigung in diesem Bereich machen (z.B. Wartungsankündigung). Diese Nachricht kann von allen Benutzern gesehen werden.
       saveChanges: Änderungen speichern
       tabTitle: Ankündigungen
-    appDisplayName: Anzeigename
-    appDisplayNameRequiredMsg: Geben Sie einen Anzeigename an.
-    appNameCharactersLimit: 'Zulässige Zeichen für den Applikationsnamen: [\p{Alnum}_-]+'
-    appNameRequiredMsg: Bitte, geben Sie den Anwendungsnamen an.
-    applicationHint: Die Reihenfolge kann mit Drag & Drop geändert werden.
-    applicationLinkRequiredMsg: Geben Sie den Portal Link an.
-    applicationList:
-      addNewApplication: Neue Anwendung hinzufügen
-      applicationSelectionHeader: Anwendung auswählen
-      menuIcon: Menü Symbol
-    applications: Anwendungen
     applicationtype:
       thirdPartyApplication: 3rd Party Anwendung
     currentValue: Aktueller Wert
     defaultValue: Standard Wert
-    deleteAppConfirmation: Sind Sie sicher, dass Sie diese <b>{0}</b> Anwendung entfernen möchten?
     dialogclosinginformation:
       dialogHeader: Einstellungen abgeschlossen
       informMessage: Änderungen an den Portaleinstellungen erfordern eine Aktualisierung der aktuellen Seite, damit die neue Konfiguration wirksam wird.
-    duplicatePortalAppMsg: Diese Anwendung existiert bereits. Bitte wählen Sie eine andere Anwendung.
-    editApplication: Anwendungseinstellungen ändern
     editSetting: Einstellungen ändern
     embedInFrame: Prozess/Task in Iframes Modus starten
     emptySupportedLanguages: Es werden keine weiteren Sprachen unterstützt
@@ -279,8 +279,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideUploadDocumentForDoneCaseNote: Auf "true" setzen, um das Hochladen und Löschen von Dokumenten bei einem abgeschlossenen Vorgang zu unterbinden.
       hideYear: Auf "true" um das Jahr auszublenden, andernfalls wird es angezeigt.
       imageUploadSizeLimit: Legen Sie das Größenlimit für das Hochladen von Bildern in Megabyte (MB) fest. Der Standardwert beträgt 6 MB.
-      keepSidebarExpanded: Seitenleiste (linkes Menü) immer ausgeklappt lassen
       loggedInUserFormat: Definiert das Format, um den eingeloggten Benutzer anzuzeigen
+      maximumSelectedTasks: Definiert die maximale Anzahl von Aufgaben, die ein Benutzer gleichzeitig innerhalb eines Aufgaben-Widgets für Massenoperationen auswählen kann. Setzen Sie diesen Wert auf eine positive Ganzzahl, um ein bestimmtes Limit zu erzwingen, oder lassen Sie ihn leer, um eine unbegrenzte
+        Aufgabenauswahl zu ermöglichen.
       refreshTaskListIntervalNote: Intervall in Sekunden um die Aufgabenliste neu zu laden.
       showAvatar: Zum Ein- und Ausschalten der Anzeige von Benutzer-/Rollenavataren.
       showButtonIcon: Zum Ein-/Ausschalten des Anzeigesymbols bei Butons im Portal
@@ -291,9 +292,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       showQuickGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Schnellsuche.
       showTaskDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Aufgabendetailseite.
       showTooltipTechnicalName: Ermöglicht die Anzeige des technischen Namens der Benutzer in den Tooltips.
+      sidebarMode: Steuert den Modus der Seitenleiste. Hover öffnet beim Darüberfahren, Klick verwendet eine Umschalttaste, Fixiert hält sie immer geöffnet, Versteckt entfernt die Seitenleiste vollständig.
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
     key: Schlüssel
-    link: Link
     loading: WIRD GELADEN
     loginLogoSizeTooltip: 'Empfohlene Größe<BR/>Quadratisches Logo: 80x80 px<BR/>Rechteckiges Logo: 191x50 px'
     logoSizeRecommendation:
@@ -451,8 +452,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     Update: Aktualisieren
     Widget: Widget
     action: Aktionen
+    actionMenuContext: Aktionsmenü für Prozess {0} öffnen
     active: Aktiviert
     add: Hinzufügen
+    addContext: '{0} hinzufügen'
     addDocument: Dokument hinzufügen
     addLink: Link hinzufügen
     addNote: Notiz hinzufügen
@@ -460,12 +463,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     allTypes: Alle Typen
     allowPng: Nur das png Format wird unterstützt
     apply: Anwenden
+    applyContext: '{0} anwenden'
     at: am
     author: Autor
     back: Zurück
     backToCaseMap: Zurück zur Case Map
     backgroundColor: Hintergrundfarbe
     cancel: Abbrechen
+    cancelContext: '{0} abbrechen'
     case: Vorgang
     caseCategory: Vorgangskategorie
     caseInformation: Vorgangsinformationen
@@ -473,7 +478,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: Kategorien
     change: Ändern
     close: Schließen
+    closeContext: '{0} schließen'
     cockpit: Cockpit
+    collapseWidgetContext: Widget {0} minimieren
     colors: Farben
     comment: Kommentar
     completedOn: Erledigt am
@@ -489,15 +496,16 @@ ch.ivy.addon.portalkit.ui.jsf:
     dateRequired: Datum darf nicht leer sein.
     day: Tag
     dayUnit: Tag
-    days: Tage
+    days: Tag(e)
     default: Standardeinstellung
     defaultNotificationMessage: Hmm... Hier ist wohl etwas schief gelaufen.
+    delegateTasks: Aufgaben delegieren
     delete: Löschen
     deleteAbsenceHeaderText: 'Diese Abwesenheit löschen? '
     deleteChartHeaderText: Dieses Diagramm löschen?
+    deleteContext: '{0} löschen'
     deleteDocumentHeaderText: 'Dieses Dokument löschen? '
     deleteFilterHeaderText: Diesen Filter löschen?
-    deleteSettingHeaderText: Diese Einstellung löschen?
     description: Beschreibung
     design: Design
     destroy: Löschen
@@ -516,6 +524,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: Fehler beim aktualisieren der Webseiteinhalte
     escalationTaskHeaderText: Eskalation auslösen
     escalationTaskMessage: Frist wird auf jetzt gesetzt, somit läuft die Bearbeitungsfrist ab. Sind Sie sicher?
+    expandWidgetContext: Widget {0} erweitern
     filter:
       from: von
       moreOptions: Mehr Optionen
@@ -524,6 +533,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       worker: Bearbeiter
       wrongFromDateFormat: Bitte geben Sie ein gültiges Datum "von" an. Das Format ist {0}
       wrongToDateFormat: Bitte geben Sie ein gültiges Datum "bis" an. Das Format ist {0}
+    filterLabel: Filter
     finish: Beenden
     general: Allgemein
     generalInformation: Allgemeine Informationen
@@ -570,8 +580,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberFromBiggerThanTo: Nach" muss größer sein als "Von".
     numberOfSelectedFilter: Ausgewählte Filter
     ok: OK
+    okContext: OK {0}
     'on': am
+    openWidgetFiltersContext: Filter für {0} öffnen
+    openWidgetFiltersWithCountContext: Filter für {0} öffnen, {1} aktive Filter
+    openWidgetInfoContext: Widget-Informationen zu {0} öffnen
     pin: Anheften
+    pinCaseContext: Vorgang {0} anheften
+    pinTaskContext: Aufgabe {0} anheften
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
     pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
     previousStage: Vorherige Stufe
@@ -595,6 +611,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     role: Rolle
     save: Speichern
     saveAll: Speichern
+    saveContext: '{0} speichern'
     saveSuccessfully: Daten erfolgreich gespeichert.
     search: Suche
     second: Sekunde
@@ -609,7 +626,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     sessionExpriedInTeams: Ihre Session ist abgelaufen. Die Anwendung wird neu gestartet.
     setting: Einstellungen
     showDetail: Details anzeigen
-    showRelatedCaseInfo: Zugehöriger Fall
+    showRelatedCaseInfo: Zugehöriger Vorgang
     showSystemNotes: Systemhinweise
     showSystemTasks: Systemaufgaben
     sorting: Sortierung
@@ -618,6 +635,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     state: Status
     status: Status
     switchToDesktopVersion: Zur Desktop-Version wechseln
+    taskActionMenuContext: Aktionsmenü für Aufgabe {0} öffnen
     taskCanceledAndLeftSuccessfully: Sie haben die Aufgabe abgebrochen. Sie finden die Aufgabe im Dashboard oder in Ihrer Aufgabenliste.
     taskFinishedSuccessfully: Sie haben die Aufgabe erfolgreich abgeschlossen
     taskFromSubstitution: Sie sehen diese Aufgabe, weil Sie der Stellvertreter sind
@@ -627,11 +645,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: Der Prozess
     timeInformation: Zeitangaben
     timestamp: Zeitstempel
+    toggleBulkDelegation: Massendelegierung umschalten
     type: Typ
     typeAdmin: Alle Administratoren
     typeAllUsers: Alle Benutzer
     typeOnlyMe: Nur für mich
     unpin: Anheftung aufheben
+    unpinCaseContext: Anheftung von Vorgang {0} aufheben
+    unpinTaskContext: Anheftung von Aufgabe {0} aufheben
     uploadHere: Hier hochladen
     uploadOneHere: Auswählen
     user: '{0} Benutzer'
@@ -643,6 +664,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
     warning: Warnung!
     welcomeToPortal: Willkommen, bitte melden Sie sich an
+    businessCaseId: Business-Fall-ID
+    technicalCaseId: Technische Fall-ID
+    workingUser: Bearbeiter
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
     year: Jahr
     years: Jahre
@@ -747,20 +771,48 @@ ch.ivy.addon.portalkit.ui.jsf:
       label: Vorgangstyp
     CloneWidget: Widget klonen
     CustomWidgets: Benutzerdefinierte Widgets
-    dataSettings: Dateneinstellungen
     DashboardConfiguration:
       CreateFromScratch: Von Grund auf neu erstellen
       CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
       CreateNewPrivateDashboard: Neues privates Dashboard erstellen
       CreateNewPublicDashboard: Neues öffentliches Dashboard erstellen
-      Description: In diesem Bereich können Sie die Dashboards nach Ihren Wünschen konfigurieren.
+      Description: In diesem Bereich können Sie die Dashboards nach Ihren Wünschen konfigurieren und die Reihenfolge der Navigationselemente ändern.
       DoNotSupportMobile: Die Dashboard-Konfiguration wird für mobile Geräte nicht unterstützt.
       EditPrivateDashboards: Private Dashboards bearbeiten
+      PrivateTabInfo: 'Erstellen und verwalten Sie Ihre persönlichen Dashboards.<ul><li>Diese Dashboards sind nur für Sie sichtbar</li><li>Sie erscheinen unter dem Dashboard-Symbol in der Seitenleiste</li></ul>'
+      PublicTabInfo: 'Verwalten Sie Dashboards für alle Benutzer. Steuern Sie die Sichtbarkeit:<ul><li><b>Seitenleiste</b> — erscheint als Haupteintrag im Seitenleistenmenü</li><li><b>Untermenü</b> — erscheint unter dem Dashboard-Symbol</li><li><b>Ausgeblendet</b> — für Benutzer nicht sichtbar</li></ul>'
+      Visibility: Sichtbarkeit
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
+      ExportDashboard: Dashboard exportieren
       ExportReferencedDialogHeader: Dashboard referenziert andere Dashboards
       ExportReferencedDialogMessage: 'Die folgenden Dashboards werden von Navigations-Widgets referenziert. Exportieren und importieren Sie sie ebenfalls, damit die Widgets korrekt funktionieren:'
       ExportReferencedDialogProceed: Trotzdem exportieren
-      ExportDashboard: Dashboard exportieren
+      Hidden: Ausgeblendet
+      HiddenDashboards: Ausgeblendete Einträge
+      HiddenDashboardsDescription: Nicht in der Seitenleiste angezeigt. Kann dennoch als direktes Linkziel verwendet werden – z.B. als Einstiegsseite in einem Prozessablauf.
+      SubMenuDashboards: Untermenü-Dashboards
+      SubMenuDashboardsDescription: Erscheinen gruppiert unter dem Dashboard-Symbol in der Seitenleiste.
+      SidebarTopLevelDashboards: Seitenleisten-Haupteinträge
+      SidebarTopLevelDashboardsDescription: Erscheinen als Haupteinträge in der Seitenleiste.
+      MenuDashboards: Seitenleisten-Einträge
+      MenuDashboardsDescription: Diese Dashboards erscheinen als Haupteinträge in der Seitenleiste. Verwalten Sie die Reihenfolge im Tab Seitenleisten-Navigation.
+      PrivateDashboardTabInfoPanel: '<p><b>Was kann ich hier tun?</b></p><p>Erstellen und verwalten Sie Dashboards, die nur für Sie sichtbar sind. Sie erscheinen gruppiert unter dem Dashboard-Symbol in der Seitenleiste und beeinflussen andere Benutzer nicht.</p><p><b>Reihenfolge ändern</b></p><p>Ziehen Sie eine Zeile, um die Reihenfolge Ihrer Dashboards im Untermenü zu ändern. Die Reihenfolge wird in Ihren persönlichen Einstellungen gespeichert.</p><p><b>Aktionen pro Dashboard</b></p><p>Mit Bearbeiten können Sie Titel, Beschreibung, Symbol oder mehrsprachige Titel anpassen. Mit Konfigurieren öffnen Sie das Dashboard und fügen Widgets hinzu oder ordnen sie neu an. Mit der entsprechenden Berechtigung können Sie ein Dashboard auch als JSON-Datei exportieren.</p>'
+      DashboardTabInfoPanel: '<p><b>Was kann ich hier tun?</b></p><p>Öffentliche Dashboards erstellen, bearbeiten und löschen. Legen Sie fest, wer sie sehen kann. Dies ist die zentrale Bibliothek aller geteilten Dashboards.</p><p><b>Sichtbarkeit &amp; Platzierung</b></p><p>Dashboards sind in drei Bereiche unterteilt: Seitenleisten-Haupteintrag, Untermenü oder Ausgeblendet. Um ein Dashboard zu verschieben, öffnen Sie Bearbeiten und ändern Sie den Anzeigetyp. Nur der Untermenü-Bereich unterstützt Drag-and-Drop-Reihenfolge.</p><p><b>Aktionen pro Dashboard</b></p><p>Bearbeiten aktualisiert Name, Beschreibung, Symbol, Berechtigungen und Anzeigetyp. Konfigurieren öffnet das Dashboard zum Hinzufügen oder Anordnen von Widgets. Exportieren lädt eine JSON-Datei herunter — bei referenzierten Dashboards erscheint eine Rückfrage. Teilen erstellt einen Direktlink. Löschen entfernt das Dashboard dauerhaft.</p>'
+      MenuManagementTabInfoPanel: '<p><b>Was kann ich hier tun?</b></p><p>Konfigurieren Sie alles, was in der Seitenleiste erscheint: Einträge, Reihenfolge und das globale Seitenleisten-Verhalten.</p><p><b>Neue Einträge hinzufügen</b></p><p>Erstellen Sie mit Eintrag hinzufügen einen neuen Seitenleisteneintrag. Zur Auswahl stehen: Haupt-Dashboard (verlinkt zu einem Dashboard), Prozess (startet einen Ivy-Prozess), Externer Link (beliebige URL, optional in neuem Tab) oder Statische Seite. Jeder Eintrag hat einen mehrsprachigen Titel, ein Symbol und konfigurierbare Berechtigungen. Der Eintragstyp kann nach der Erstellung nicht mehr geändert werden.</p><p><b>Die Tabelle verstehen</b></p><p>Ziel zeigt, wohin ein Eintrag navigiert (URL oder Prozesspfad). Berechtigungen zeigt, wer ihn sehen kann. Typ ist die Art des Eintrags, und Quelle zeigt, wo er definiert ist: Integriert, Konfiguration, Dashboard-Konfiguration, Aufrufbarer Prozess oder Drittanbieter-Anwendung.</p><p><b>Bestehende Einträge verwalten</b></p><p>Bearbeiten aktualisiert Titel, Symbol, Link und Berechtigungen benutzerdefinierter Einträge. Löschen entfernt sie. Standard-Einträge (Quelle: Integriert) können weder bearbeitet noch gelöscht werden, und Einträge aus einem aufrufbaren Prozess können nur von einem Entwickler geändert werden. Zeilen per Drag-and-Drop neu anordnen.</p><p><b>Seitenleisten-Einstellungen</b></p><p>Seitenleiste deaktivieren blendet die Seitenleiste für alle Benutzer aus. Seitenleisten-Verhalten steuert, wie sie sich öffnet: Hover (beim Überfahren), Klick (erfordert Klick) oder Stick (immer sichtbar).</p>'
+      SidebarNavigation: Seitenleiste
+      SidebarSettings: Seitenleisten-Einstellungen
+      SidebarMode: Seitenleisten-Modus
+      DisableSidebar: Seitenleiste deaktivieren
+      SidebarBehaviour: Seitenleisten-Verhalten
+      SidebarSettingsReloadWarning: 'Seitenleisten-Einstellungen gespeichert. Laden Sie die Seite neu, um die Änderungen zu übernehmen.'
+      Reload: Neu laden
+      AddItem: Eintrag hinzufügen
+      Label: Bezeichnung
+      Source: Quelle
+      Target: Ziel
+      Dashboard: Dashboard
+      MenuManagement: Menüverwaltung
+      MenuManagementTabInfo: 'Verwalten Sie die Navigationselemente der Seitenleiste. Sie können:<ul><li>Neue Menüeinträge hinzufügen (Dashboards, externe Links, Ivy-Prozesse)</li><li>Einträge per Drag-and-Drop neu anordnen</li><li>Bestehende Menüeinträge bearbeiten oder entfernen</li></ul>'
       PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
       PublicDashboard: Öffentliche Dashboards
@@ -769,8 +821,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Öffentliche Dashboards neu anordnen
       SelectAction: Wählen Sie die Aktion
       SomeThingWentWrong: Etwas ist schief gelaufen
-      Title: Dashboard-Konfiguration
-    displaySettings: Anzeigeeinstellungen
+      Title: Portal-Konfiguration
     DrillDownWidget:
       caseDrillDown: Drilldown-Fall-Widget für {0}
       taskDrillDown: Drilldown-Aufgaben-Widget für {0}
@@ -779,6 +830,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: Dieses Widget kann eine externe Webseite anzeigen.
     Filter:
       FilterOptionHeader: Filter-Optionen
+      FilterPanelHeader: Filterbereich
       ManageWidgetFilterHeader: Widget-Filter-Verwaltung
       NotFound: Kein Filter gefunden
       WidgetNameColumn: Widget-Name
@@ -801,14 +853,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Standard-Widgets
     StatisticWidget:
       EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
-      failToRenderChartMessage: Fehler beim Rendern des Diagramms. Bitte versuchen Sie es mit anderen Einstellungen erneut.
-      firstConfigChartMessage: Noch kein Diagramm verfügbar. Bitte konfigurieren Sie Ihre Einstellungen, um ein Diagramm zu generieren.
       TooltipAverageKpiLabel: Durchschnitt von {0}
       TooltipMaxKpiLabel: Maximum von {0}
       TooltipMinKpiLabel: Minimum von {0}
       TooltipSumKpiLabel: Summe von {0}
       TooltipTotalCaseLabel: 'Gesamtzahl der Vorgänge: {0}'
       TooltipTotalTaskLabel: 'Gesamtzahl der Aufgaben: {0}'
+      failToRenderChartMessage: Fehler beim Rendern des Diagramms. Bitte versuchen Sie es mit anderen Einstellungen erneut.
+      firstConfigChartMessage: Noch kein Diagramm verfügbar. Bitte konfigurieren Sie Ihre Einstellungen, um ein Diagramm zu generieren.
     WelcomeWidgetIntroduction: Dieses Widget zeigt einen Willkommenstext und ein Bild auf dem Dashboard an.
     WelcomeWidgetNotFoundMessage: Wir können das Bild des Widgets nicht finden, bitte konfigurieren Sie Ihr Bild neu!
     WidgetFilterName: Name des Widget-Filters
@@ -834,6 +886,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       STANDARD: Standard-Feld
     configuration:
       CustomWidgetExternalLinkWarning: Einige Websites sind aufgrund von Sicherheitsbedenken nicht mit iframe kompatibel. Bitte wenden Sie sich an Ihren Administrator, wenn die externe Website nicht ordnungsgemäß funktioniert.
+      CustomWidgetUrlInvalidScheme: Die angegebene URL ist ungültig
       CustomWidgetTitlePlaceholder: Lassen Sie es leer, um die Kopfzeile des Widgets auszublenden
       Parameters: Parameter
       RestoreDefaultDashboardTemplateTooltip: Wir können die Vorlage für Ihr Dashboard nicht finden und es daher nicht auf die Standardkonfiguration zurücksetzen. Bitte erkundigen Sie sich bei Ihrem Administrator nach weiteren Details!
@@ -887,10 +940,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardPermission: Dashboard Berechtigung
       dashboardTitle: Dashboard Titel
       deleteDashboardMessage: Sind Sie sicher, dass Sie das Dashboard "{0}" löschen wollen?
+      deleteMenuItemMessage: Sind Sie sicher, dass Sie den Menüeintrag "{0}" löschen wollen?
       editDashboard: Dashboard editieren
       manageDashboard: Dashboard verwalten
       removeDashboardHeader: Dashboard "{0}" entfernen
+    dataSettings: Dateneinstellungen
     deleteWidget: Widget löschen
+    displaySettings: Anzeigeeinstellungen
     downloadZipFileExplanation: Wenn die Anzahl der zu exportierenden Elemente die Anzahl der Excel-Zeilen übersteigt, werden die Daten in mehrere Excel-Dateien aufgeteilt und anschließend in einer ZIP-Datei zum Herunterladen komprimiert.
     editWidget: Widget bearbeiten
     existingField: Das Feld {0} ist bereits vorhanden
@@ -914,6 +970,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     navigate: Navigieren Sie
     noCategory: Es gibt keine Kategorien
     noDashboard: Keine Dashboards vorhanden. Fügen Sie mindestens ein Dashboard und anschließend Widgets hinzu.
+    noDashboardAvailable: Keine Untermenü-Dashboards verfügbar.
     noPermission: Sie haben keine Berechtigung, Dashboards zu sehen.
     noWidget: Es sind aktuell keine Widgets auf diesem Dashboard vorhanden
     numberPattern: Zahlen-Muster
@@ -1097,11 +1154,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     markAllAsRead: Alle als gelesen markieren
     markAsRead: Als gelesen markieren
     noNotificationText: Keine Benachrichtigungen
+    notificationOptions: Benachrichtigungsoptionen
     notificationTitle: Benachrichtigungen
+    notificationsBadgeLabel: Benachrichtigungsfeld öffnen, {0} ungelesen
     olderText: Ältere
     onlyUnread: Nur ungelesen
+    openNotificationSettings: Benachrichtigungseinstellungen öffnen
     openNotifications: Benachrichtigungen öffnen
     todayText: Heute
+    viewNotificationsFullScreen: Benachrichtigungen im Vollbild anzeigen
     xDaysAgo: vor %s Tagen
     xHoursAgo: vor %s Stunden
     xMinutesAgo: vor %s Minuten
@@ -1189,8 +1250,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     escalationActivatorDesc: Ändern Sie den Eskalations-Aktivator der Aufgabe auf einen bestimmten Benutzer oder eine Gruppe
     escalationActivatorHeader: Auswahl des Eskalations-Aktivators der Aufgabe
   taskBusinessState:
-    DELAYED: Überfällig
-    DELAYED_UPPERCASE: ÜBERFÄLLIG
+    DELAYED: Verzögert
+    DELAYED_UPPERCASE: VERZÖGERT
     DESTROYED: gelöscht
     DESTROYED_UPPERCASE: GELÖSCHTE
     DONE: Erledigt
@@ -1239,7 +1300,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: Es kann keine Ablaufzeit gesetzt werden, da diese Aufgabe keine Eskalationslogik enthält.
     technicalCase: Technischer Vorgang
     workflowEventDialog: 'Workflow Events für Aufgabe #{0}'
-    workingUser: Bearbeiter
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: Die Aufgabenfrist wurde erfolgreich gespeichert
@@ -1461,6 +1521,12 @@ Dialogs:
               CustomWidgetIFrameTitle: Benutzerdefinierter Widget-Rahmen
             IconSelection:
               IconLinkTooltip: Zum Ändern des Symbols anklicken
+            MultipleTaskItemsDelegate:
+              DelegateMultipleTaskTitle: '{0} Aufgaben delegieren'
+              ItemSelected: 1 Element ausgewählt
+              ItemsSelected: '{0} Elemente ausgewählt'
+              ItemsSelectedWithLimit: '{0} / {1} Elemente ausgewählt'
+              bulkDelegatePerformanceWarning: Das Delegieren mehrerer Aufgaben kann einige Zeit dauern. Bitte haben Sie Geduld.
             TaskItemDetails:
               CannotWorkOnDestroyedTaskWarning: Sie können nicht an der Aufgabe arbeiten, weil sie zerstört wurde.
               CannotWorkOnTaskWarning: Sie können die Aufgabe nicht bearbeiten, weil der Benutzer <strong>{0}</strong> gerade daran arbeitet.
@@ -1553,7 +1619,7 @@ Dialogs:
               FileInfomation: Dateiinformationen
               ImportPrivate: Privates Dashboard importieren
               ImportPublic: Öffentliches Dashboard importieren
-              NavigationWidgetMissingTarget: 'Navigations-Widget "{0}" verweist auf ein Dashboard, das nicht importiert wurde und in diesem Portal nicht vorhanden ist. Das Widget funktioniert möglicherweise nicht korrekt.'
+              NavigationWidgetMissingTarget: Navigations-Widget "{0}" verweist auf ein Dashboard, das nicht importiert wurde und in diesem Portal nicht vorhanden ist. Das Widget funktioniert möglicherweise nicht korrekt.
               chooseAJsonFile: Wählen Sie eine JSON-Datei
             DashboardSharing:
               ShareDashboard: Dashboard teilen
@@ -1596,6 +1662,7 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen
+              ShowBulkDelegateToggle: '''Sammelweiterleitung'' umschalten anzeigen'
             filter:
               DashboardFilter:
                 HasCmsValuesEnabledTooltip: Dieses Feld erlaubt nur die Verwendung des Operators „Enthält"
@@ -1608,6 +1675,22 @@ Dialogs:
           IFrameTaskTemplate:
             TaskIFrameTitle: Aufgabenrahmen
         page:
+          MenuManagement:
+            AddNewMenu: Füge ein neues Menü hinzu
+            CallableMenuMessage: Dieses Menü wird programmgesteuert durch einen aufrufbaren Prozess generiert und kann nicht bearbeitet werden.
+            CallableSourceHint: 'Dieser Eintrag wird durch einen aufrufbaren Prozess generiert. Wende dich an deinen Entwickler, um ihn zu ändern.'
+            ProcessPermissionHint: 'Die Sichtbarkeit richtet sich nach den Startberechtigungen des Prozesses.'
+            HelpText: Passe das Menü in diesem Bereich an deine Bedürfnisse oder Vorlieben an.
+            MenuDetails: Menüdetails
+            MenuIcon: Menü-Symbol
+            MenuTitle: Menütitel
+            MenuType: Menütyp
+            InvalidUrl: 'Die URL ist ungültig.'
+            InvalidUrlScheme: 'Nur http- und https-URLs sind erlaubt.'
+            InvalidStaticPagePath: 'Der Pfad muss relativ zur Anwendung sein (absolute URLs sind nicht erlaubt).'
+            NoAvailableSubDashboard: 'Es ist kein Untermenü-Dashboard verfügbar, das als Haupt-Dashboard hinzugefügt werden kann.'
+            OpenInNewTab: In neuem Tab öffnen
+            StaticPagePath: Statischer Seitenpfad
           StatisticConfiguration:
             AddFilter: Filter hinzufügen
             Advanced: Fortgeschrittene
@@ -1683,6 +1766,13 @@ Enums:
     axonivy:
       portal:
         enums:
+          CaseQueryType:
+            ALL:
+              name: Geschäftsvorgänge + Untervorgänge
+            BUSINESS_CASE:
+              name: Geschäftsvorgänge (Standard)
+            SUB_CASE:
+              name: Untervorgänge
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1710,7 +1800,7 @@ Enums:
               STATE:
                 name: Zustand
               WORKER_NAME:
-                name: Name des Arbeiters
+                name: Bearbeiter
               WORKING_TIME:
                 name: Arbeitszeiten
             AggregationInterval:
@@ -1755,13 +1845,6 @@ Enums:
               LESSOREQUAL:
                 name: |
                   Kleiner oder gleich
-          CaseQueryType:
-            ALL:
-              name: Geschäftsvorgänge + Untervorgänge
-            BUSINESS_CASE:
-              name: Geschäftsvorgänge (Standard)
-            SUB_CASE:
-              name: Untervorgänge
 Labels:
   AI:
     Error:
@@ -1840,6 +1923,7 @@ Labels:
     DashboardStandardTaskColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
+      BUSINESS_CASE_ID: Business-Fall-ID
       CATEGORY: Kategorie
       COMPLETED: Abgeschlossenes Datum
       CREATED: Erstellt am
@@ -1852,6 +1936,8 @@ Labels:
       RESPONSIBLE: Verantwortlich
       START: Start
       STATE: Status
+      TECHNICAL_CASE_ID: Technische Fall-ID
+      WORKER: Bearbeiter
     FilterOperator:
       AFTER: Ist nach
       BEFORE: Ist vor
@@ -1897,6 +1983,21 @@ Labels:
       CASES: Vorgänge
       PROCESSES: Prozesse
       TASKS: Aufgaben
+    MenuKind:
+      PROCESS: Prozess
+      DASHBOARD: Dashboard
+      EXTERNAL_LINK: Externer Link
+      MAIN_DASHBOARD: Haupt-Dashboard
+      PROCESS_LIST: Prozessliste
+      STANDARD: Standard
+      STATIC_PAGE: Statische Seite
+      THIRD_PARTY: Drittanbieter
+    MenuSource:
+      CALLABLE: Aufrufbarer Prozess
+      CUSTOM_MENU_CONFIGURATION: Konfiguration
+      DASHBOARD: Dashboard-Konfiguration
+      STANDARD: Integriert
+      THIRD_PARTY_APP_CONFIGURATION: Drittanbieter-Anwendung
     SearchScopeCaseField:
       CUSTOM: Benutzerdefinierte Stringfelder
       DESCRIPTION: Beschreibung
@@ -1904,6 +2005,11 @@ Labels:
     SearchScopeTaskField:
       DESCRIPTION: Beschreibung
       NAME: Name
+    SidebarMode:
+      CLICK: Klick
+      HIDDEN: Versteckt
+      HOVER: Hover
+      STICK: Fixiert
     ThemeMode:
       DARK: Dunkel
       LIGHT: Hell

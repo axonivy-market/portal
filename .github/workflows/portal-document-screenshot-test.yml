@@ -24,11 +24,11 @@ on:
       engineDownloadURL:
         description: 'url to download engine'
         type: string
-        default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
+        default: 'https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip'
         required: true
 
 env:
-  ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
+  ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/sprint
   ENGINE_URL: ${{ inputs.engineDownloadURL }}
   
 jobs:
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Set up Java
         uses: actions/setup-java@v5
@@ -45,7 +45,7 @@ jobs:
           java-version: '25'
 
       - name: Set up Maven
-        uses: stCarolas/setup-maven@v5
+        uses: stCarolas/setup-maven@v5.1
         with:
           maven-version: 3.9.8
       - name: Export environment variables
@@ -53,7 +53,7 @@ jobs:
           echo "Check out code from ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
           echo "Build screenshot for document. Use 2 inputs:" >> $GITHUB_STEP_SUMMARY
           echo "- engineDownloadURL: ${{ inputs.engineDownloadURL }}" >>  $GITHUB_STEP_SUMMARY
-          echo "Default value: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip" >> $GITHUB_STEP_SUMMARY
+          echo "Default value: https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip" >> $GITHUB_STEP_SUMMARY
           echo "- testPatternToRun: ${{ inputs.testPatternToRun }} " >> $GITHUB_STEP_SUMMARY
           echo "Default value: com.axonivy.portal.selenium.document.screenshot.*Test" >> $GITHUB_STEP_SUMMARY
 
@@ -63,7 +63,7 @@ jobs:
           
       - name: Set up and verify directories
         run: |
-          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/nightly"
+          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/sprint"
           mkdir -p $ENGINE_DIR
           sudo chown -R $USER:$USER $ENGINE_DIR
           echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
@@ -124,7 +124,7 @@ jobs:
           cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
           
       - name: Archive screenshot image
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: screenshots
           retention-days: 5
@@ -132,7 +132,7 @@ jobs:
             AxonIvyPortal/portal-selenium-test/target/*.zip
       
       - name: Archive test reports
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: screenshot-test-reports
           retention-days: 5
@@ -140,7 +140,7 @@ jobs:
             AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
       
       - name: Report
-        uses: dorny/test-reporter@v2.1.1
+        uses: dorny/test-reporter@v3.0.0
         with:
           artifact: screenshot-test-reports
           name: Screenshot Tests

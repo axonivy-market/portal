@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.dto.dashboard.process;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +18,7 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class TypeColumnModel extends ProcessColumnModel implements Serializable {
+public class TypeColumnModel extends ProcessColumnModel {
 
   private static final long serialVersionUID = -8859506518292689813L;
   @JsonIgnore

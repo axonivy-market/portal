@@ -60,7 +60,7 @@ public class IvyLanguage {
     if (StringUtils.isBlank(languageTag)) {
       String systemLanguage = loader.apply(LanguageManager.instance().configurator(ISecurityContext.current())).getDisplayName(contentLocale);
       if (replaceParentheses) {
-        systemLanguage = systemLanguage.replaceAll("\\(", "[").replaceAll("\\)","]");
+        systemLanguage = systemLanguage.replace("(", "[").replace(")", "]");
       }
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption", Arrays.asList(systemLanguage) );
     }

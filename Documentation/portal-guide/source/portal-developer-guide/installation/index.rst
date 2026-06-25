@@ -158,8 +158,44 @@ Migrate To 14.0
 ---------------
 
 1. Permissions **🔑AccessFullCaseList** and **🔑AccessFullTaskList** have been removed.
-Default Tasks and Cases dashboards now work like any other dashboards. If you want to restrict access to these dashboards, you can now configure their permissions using user roles. 
+Default Tasks and Cases dashboards now work like any other dashboards. If you want to restrict access to these dashboards, you can now configure their permissions using user roles.
 Please access the :ref:`Dashboard Configuration <dashboard-configuration>` page to change its default settings.
+
+2. The global variable ``Portal.KeepSidebarExpanded`` has been removed. Use ``Portal.Sidebar.Mode`` instead.
+Set ``Portal.Sidebar.Mode`` to ``STICK`` to achieve the same effect as ``Portal.KeepSidebarExpanded=true``.
+
+3. The new **Menu Management** feature lets admins customize the order of items in the Portal sidebar.
+
+   Set an explicit ``id`` on each ``CustomSubMenuItem`` returned from your ``portalLoadSubMenuItems`` sub-process so admin-customized ordering survives code changes (renaming the application, changing the link, or changing the menu kind).
+
+   Example:
+
+   .. code-block:: java
+
+      CustomSubMenuItem item = new CustomSubMenuItem();
+      item.setId("my-project.tasks-shortcut");  // stable across refactors
+      item.setLabel("My Tasks");
+      item.setLink("/my-project/Tasks.ivp");
+      item.setMenuKind(MenuKind.CUSTOM);
+
+4. In complex filters, the list of selectable fields now depends on the widget's Column Management configuration.
+Only fields that are added in Column Management and enabled in the **Filter** column are available in
+:ref:`Complex Filter <complex-filter>`. To make a field available, add it and enable filtering in
+:ref:`Task list column management <task-widget-column-management>` or
+:ref:`Case list column management <case-widget-column-management>`.
+
+5. The **Applications** tab has been removed from :ref:`Admin Settings <admin-settings>`,
+as third-party applications duplicate the **External Link** sidebar items of the new
+Menu Management feature.
+
+   No data migration is needed: existing third-party applications configured in the
+   ``Portal.ThirdPartyApplications`` variable still appear in the sidebar and can be
+   edited, reordered, and deleted in :guilabel:`Portal Configuration` →
+   :guilabel:`Sidebar`. Creating *new* third-party applications is no longer
+   possible — create an **External Link** sidebar item instead.
+
+   The ``Portal.ThirdPartyApplications`` variable is deprecated and will be removed in a
+   future version.
 
 Migrate 13.1 To 13.2
 --------------------
@@ -306,6 +342,8 @@ Migrate 8.x To 10.0
 You need to do all steps starting at ``Migrate 8.x To ...`` up to and including
 ``Migrate ... To 9.x``
 
+After migrating to version 10, reset the ``StandardProcess.DefaultPages`` value in your application configuration as needed.
+
 Migrate 9.3 To 9.4
 ------------------
 
@@ -426,7 +464,7 @@ Migrate 9.1 To 9.2
 
    .. important:: The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project
 
-#. We remove ivy-icon.css and replace current classes with new classes from Streamline icons, which can be found in the `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_. So that you need to update your files that are using classes in ivy-icon.css.
+#. We remove ivy-icon.css and replace current classes with new classes from Tabler icons, which can be found in the `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_. So that you need to update your files that are using classes in ivy-icon.css.
 
 #. If you have taskItemDetailCustomPanelTop, taskItemDetailCustomPanelBottom customization, follow :ref:`How to override TaskItemDetail <customization-task-item-details>` to add custom widgets.
 

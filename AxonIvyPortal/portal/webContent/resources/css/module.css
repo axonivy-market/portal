@@ -234,12 +234,6 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   display: inline;
 }
 
-.si.advanced-filter-icon {
-  display: flex;
-  height: 100%;
-  align-items: center;
-}
-
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
 .case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
 .task-widget .filter-add-panel .ui-overlaypanel-footer,
@@ -1372,6 +1366,15 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 }
 /********************************** END PROCESSES **********************************/
 /******************START DELEGATE DIALOG********************/
+.bulk-delegate-warning {
+  width: 100%;
+}
+
+.delegate-dialog-user-label {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .delegate-dialog-activator-panel {
   margin-top: 5px;
 }
@@ -2049,11 +2052,8 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   margin-top: 4%;
 }
 
-.no-item-panel .si {
-  display: block;
-  text-align: center;
-}
-
+.no-item-panel .ti,
+.no-item-panel .tif,
 .no-item-panel .si {
   display: block;
   text-align: center;
@@ -2692,13 +2692,13 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 /* Responsive User menu */
 @media screen and (max-width: 40em) {
-  .settings-table-action-buttons, .app-icon {
+  .settings-table-action-buttons {
     text-align: left !important;
   }
   .settings-table-action-buttons .action-column-icon-button:first-of-type {
     margin-left: 0;
   }
-  .dialog-closing-information, .app-dialog, .select-icon-dialog,
+  .dialog-closing-information, .select-icon-dialog,
   .setting-dialog, .project-info-dialog, .deputy-dialog,
   .add-absence-dialog {
     min-width: 96vw;
@@ -2712,7 +2712,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   .admin-ui-dialog {
     max-width: 90vw;
   }
-  .dialog-closing-information, .project-info-dialog, .app-dialog {
+  .dialog-closing-information, .project-info-dialog {
     min-width: 80vw;
   }
   .new-absence-date input {
@@ -2768,16 +2768,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin-bottom: 2rem;
 }
 
-.admin-setting-card .applications-setting-info {
-  color: var(--ivy-primary-color);
-  font-size: large;
-}
-
-.admin-setting-card .application-table {
-  margin-bottom: 2rem;
-  margin-top: 0.5rem;
-}
-
 .admin-ui-dialog {
   max-width: 80vw;
 }
@@ -2793,27 +2783,18 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
 }
 
-.application-table-type-column.td {
-  text-align: left !important;
-}
-
-.applications-setting-info-circle {
-  margin: auto 0;
-}
-
 .action-column-icon-button i {
   margin: 0 5px;
   color: var(--portal-button-color)
 }
 
-.application-tab-action-buttons, .application-selection-action-buttons,
 .announcement-tab-action-buttons,
 .create-role-container {
   text-align: right;
   margin: .5em 0;
 }
 
-.application-tab-action-buttons .new-app-btn, .create-role-container .create-role-btn {
+.create-role-container .create-role-btn {
   width: 100%;
   height: 3.25rem;
   display: inline-flex;
@@ -2828,20 +2809,13 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   padding-top: 5px;
 }
 
-.admin-settings-portal-link-label, .admin-settings-display-name-3rd-label,
-.admin-settings-application-icon {
+.admin-settings-display-name-3rd-label {
   font-weight: 500;
 }
 
 
-.application-name-language.ui-dialog .ui-dialog-titlebar,.app-dialog.ui-dialog .ui-dialog-titlebar,
 .role-details-dialog.ui-dialog .ui-dialog-titlebar, .setting-dialog.ui-dialog .ui-dialog-titlebar {
   padding-bottom: 1rem;
-}
-
-.app-icon {
-  text-align: left;
-  line-height: 2.5rem;
 }
 
 .logo-height-unit {
@@ -2887,19 +2861,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   border-radius: 6px;
   padding: 6px 10px;
   margin-bottom: 1rem;
-}
-
-.admin-application {
-  margin-top: 10px;
-}
-
-.application-name-language {
-  width: 400px;
-  height: 300px;
-}
-
-.application-name-language .ui-datatable tr {
-  margin: 10px !important;
 }
 
 .ui-dialog-footer button {
@@ -3240,10 +3201,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   display: none;
 }
 
-.substitution-table .ui-datatable-empty-message td {
-  padding-left: 0 !important;
-}
-
 .absences-management-container .substitute-table tbody.ui-datatable-data .substition-role-display-name,
 .substitute-table .task-responsible-link,
 .absences-management-container .substitution-table tbody.ui-datatable-data .substition-role-display-name {
@@ -3261,6 +3218,54 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .ui-button.primary-color-light-button:hover {
   background: hsla(var(--ivy-primary-light-color-h), var(--ivy-primary-light-color-s), 89%, 1); 
   color: var(--ivy-primary-color);
+}
+
+.add-absence-dialog .deputy-selection-scroll-wrapper {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.add-absence-dialog .deputy-type {
+  color: var(--ivy-primary-color);
+  border: 1px solid var(--ivy-primary-color);
+  border-radius: 1rem;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.absence-table .permanent-deputy {
+  color: var(--ivy-primary-color);
+  font-size: 0.5rem;
+}
+
+.absence-table .subsitute-column {
+  vertical-align: top;
+}
+
+.your-deputy, .your-deputy-for {
+  padding-top: 24px;
+}
+
+.deputy-avatar-stack {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+.deputy-avatar-stack .deputy-avatar-stack-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.deputy-avatar-stack .deputy-avatar-stack-item + .deputy-avatar-stack-item {
+  margin-left: -10px;
+}
+
+.deputy-avatar-stack .deputy-avatar-stack-item .ui-avatar,
+.deputy-avatar-stack .deputy-avatar-stack-item img {
+  border: 2px solid var(--surface-0, #fff);
+  box-sizing: content-box;
 }
 
 .add-absence-dialog .ui-dialog-titlebar {
@@ -3490,8 +3495,13 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   cursor: pointer;
 }
 
-.icon-selection-dialog-selecting-icon .fa, .icon-selection-dialog-selecting-icon .si, .icon-selection-array-selecting-icon .fa, .icon-selection-array-selecting-icon .si {
+.icon-selection-dialog-selecting-icon .fa, .icon-selection-dialog-selecting-icon .ti, .icon-selection-dialog-selecting-icon .tif, .icon-selection-dialog-selecting-icon .si, .icon-selection-array-selecting-icon .fa, .icon-selection-array-selecting-icon .ti, .icon-selection-array-selecting-icon .tif, .icon-selection-array-selecting-icon .si {
   margin: auto;
+  font-size: 1.4em;
+}
+
+.ti-lg {
+  font-size: 1.4em;
 }
 
 _:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
@@ -4164,11 +4174,12 @@ _:-ms-fullscreen, :root .content-link-history {
   margin-bottom: 6px;
 }
 
-.si-add-circle-task-description, .si-add-circle-case-description {
+.ti-circle-plus, .ti-circle-plus {
   position: relative;
   top: 18px;
   right: 1px;
   margin-left: 0px;
+  display: contents;
 }
 
 .moveable-area {
@@ -4639,6 +4650,8 @@ border-top: 0.14rem dashed;
   overflow-y:auto;
   height:100%;
 }
+.case-details-row-space span.ti,
+.case-details-row-space span.tif,
 .case-details-row-space span.si {
   vertical-align: text-top;
 }
@@ -5389,6 +5402,7 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   font-size: 20px;
   margin: 6px;
   text-align: center;
+  display: block;
 }
 
 .image-process-item .card-item.card {
@@ -5527,10 +5541,14 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   transition: 0.3s;
 }
 
-.dashboard-type-list li.active a,
-.dashboard-type-list li.active i {
+.dashboard-type-list li.active a {
   color: var(--primary-color);
   font-weight: 700;
+  opacity: 1;
+}
+
+.dashboard-type-list li.active i {
+  color: var(--primary-color);
   opacity: 1;
 }
 
@@ -5609,6 +5627,8 @@ a.dashboard-action-container label {
   font-weight: bold;
 }
 
+.dashboard-action-container span.ti,
+.dashboard-action-container span.tif,
 .dashboard-action-container span.si {
   font-size: 3rem;
 }
@@ -5839,6 +5859,7 @@ a.dashboard-action-container label {
   font-size: 2em;
   top: -20px;
   position: relative;
+  display: block;
 }
 
 .language-icon-padding-right {
