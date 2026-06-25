@@ -3,6 +3,7 @@ package com.axonivy.portal.document;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,5 +31,10 @@ class TestWordDocumentDetector {
     assertThat(detector.isSafe(new ByteArrayInputStream(garbage))).isTrue();
   }
 
-  //TODO:Testing "has macros → not safe" requires a real OLE2 (.doc/.docm) file with embedded VBA or ActiveX controls.
+  @Test
+  void docWithMacros_isNotSafe() throws Exception {
+    try (InputStream in = TestWordDocumentDetector.class.getResourceAsStream("bad.doc")) {
+      assertThat(detector.isSafe(in)).isFalse();
+    }
+  }
 }
