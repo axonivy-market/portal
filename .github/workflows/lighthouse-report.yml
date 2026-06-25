@@ -183,8 +183,8 @@ jobs:
           fi
           if [ -n "$HTML_REPORT" ]; then
             node --input-type=module -e "
-              import core from '@actions/core';
-              const summary = core.summary.addHeading('🚦 Audit Results');
+              import { summary as coreSummary } from '@actions/core';
+              const summary = coreSummary.addHeading('🚦 Audit Results');
               summary.addRaw('The Lighthouse HTML report is available below:');
               summary.addSeparator().addLink('📋 Download Full Report',
                 'https://github.com/' + process.env.GITHUB_REPOSITORY +
