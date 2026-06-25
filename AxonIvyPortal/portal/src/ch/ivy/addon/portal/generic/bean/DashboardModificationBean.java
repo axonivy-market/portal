@@ -1,11 +1,12 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.io.ByteArrayInputStream;
-import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Collections;
 import java.util.List;
@@ -30,6 +31,9 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
+import com.axonivy.portal.dto.menu.MenuOrderEntry;
+import com.axonivy.portal.menu.management.enums.MenuSource;
+import com.axonivy.portal.service.MenuOrderService;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
@@ -58,17 +62,19 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
 @ManagedBean
-public class DashboardModificationBean extends DashboardBean implements Serializable {
+public class DashboardModificationBean extends DashboardBean {
 
   private static final long serialVersionUID = 1L;
-  protected static final String PUBLIC_DASHBOARD_DEFAULT_ICON = "si-network-share";
-  protected static final String PRIVATE_DASHBOARD_DEFAULT_ICON = "si-single-neutral-shield";
+  protected static final String PUBLIC_DASHBOARD_DEFAULT_ICON = "ti-world-share";
+  protected static final String PRIVATE_DASHBOARD_DEFAULT_ICON = "ti-lock-square-rounded";
   private static final String JSON_FILE_SUFFIX = "_Dashboard_Export.json";
 
   protected boolean isPublicDashboard;
   protected List<String> selectedDashboardPermissions;
   private Dashboard dashboardToExport;
   private List<String> referencedDashboardTitles = new ArrayList<>();
+  private List<Dashboard> hiddenDashboards = new ArrayList<>();
+  private List<Dashboard> topMenuDashboards = new ArrayList<>();
 
   public void initConfigration(boolean isPublicDashboard) {
     this.isPublicDashboard = isPublicDashboard;
@@ -79,12 +85,20 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   protected void collectDashboardsForManagement() {
     this.dashboards = new ArrayList<>();
     String dashboardInUserProperty = readDashboardBySessionUser();
+    List<Dashboard> allDashboards;
     if (isPublicDashboard) {
-      this.dashboards = DashboardUtils.getPublicDashboards();
+      allDashboards = DashboardUtils.getPublicDashboards();
     } else if (StringUtils.isNoneEmpty(dashboardInUserProperty)) {
-      List<Dashboard> myDashboards = DashboardUtils.getPrivateDashboards();
-      this.dashboards.addAll(myDashboards);
+      allDashboards = DashboardUtils.getPrivateDashboards();
+    } else {
+      allDashboards = new ArrayList<>();
     }
+    Map<DashboardDisplayType, List<Dashboard>> groupedDashboardFollowingType = allDashboards.stream()
+        .collect(Collectors.groupingBy(dashboard ->
+            dashboard.getDashboardDisplayType() != null ? dashboard.getDashboardDisplayType() : DashboardDisplayType.SUB_MENU));
+    topMenuDashboards = sortByMenuOrder(groupedDashboardFollowingType.getOrDefault(DashboardDisplayType.TOP_MENU, new ArrayList<>()));
+    hiddenDashboards = groupedDashboardFollowingType.getOrDefault(DashboardDisplayType.HIDDEN, new ArrayList<>());
+    this.dashboards = groupedDashboardFollowingType.getOrDefault(DashboardDisplayType.SUB_MENU, new ArrayList<>());
   }
 
   public void openDashboardDetailDialog(Dashboard dashboard) {
@@ -131,7 +145,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     if (CollectionUtils.isNotEmpty(responsibles)) {
       Collection<SecurityMemberDTO> distinctPermissionDTOs = responsibles.stream()
           .collect(Collectors
-              .toMap(SecurityMemberDTO::getMemberName, responsible -> responsible, (responsible1, responsible2) -> responsible1)).values();
+              .toMap(SecurityMemberDTO::getMemberName, responsible -> responsible, (responsible1, _) -> responsible1)).values();
       responsibles.clear();
       responsibles.addAll(distinctPermissionDTOs);
       displayedPermission = responsibles.stream().map(SecurityMemberDTO::getDisplayName).collect(Collectors.joining(", "));
@@ -139,13 +153,15 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     }
     this.selectedDashboard.setDisplayedPermission(displayedPermission);
     this.selectedDashboard.setPermissions(permissions);
-    if (!this.dashboards.contains(selectedDashboard)) {
+    if (!this.dashboards.contains(selectedDashboard) && !topMenuDashboards.contains(selectedDashboard)
+        && !hiddenDashboards.contains(selectedDashboard)) {
       selectedDashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
       this.dashboards.add(selectedDashboard);
     }
     
     saveDashboards(new ArrayList<>(this.dashboards));
     updateSessionAttributeWhenDisplayTypeIsHidden();
+    collectDashboardsForManagement();
   }
   
   private void updateSessionAttributeWhenDisplayTypeIsHidden() {
@@ -157,9 +173,12 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   
   public void removeDashboard() {
     removeWidgetImagesOfDashboard(selectedDashboard);
-    
+
     this.dashboards.remove(selectedDashboard);
+    topMenuDashboards.remove(selectedDashboard);
+    hiddenDashboards.remove(selectedDashboard);
     saveDashboards(new ArrayList<>(this.dashboards));
+    collectDashboardsForManagement();
   }
 
   /**
@@ -199,7 +218,10 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   protected void saveDashboards(List<Dashboard> dashboards) {
-    String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
+    List<Dashboard> allDashboards = new ArrayList<>(topMenuDashboards);
+    allDashboards.addAll(dashboards);
+    allDashboards.addAll(hiddenDashboards);
+    String dashboardJson = BusinessEntityConverter.entityToJsonValue(allDashboards);
     if (isPublicDashboard) {
       Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardJson);
     } else {
@@ -309,7 +331,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     List<DisplayName> languages = this.selectedDashboard.getTitles();
     return languages.stream()
         .filter(o -> o.getLocale() != null)
-        .collect(Collectors.toMap(o -> o.getLocale().getLanguage(), o -> o, (existing, replacement) -> existing));
+        .collect(Collectors.toMap(o -> o.getLocale().getLanguage(), o -> o, (existing, _) -> existing));
   }
 
   private void initMultipleLanguagesForDashboardName(String currentTitle) {
@@ -401,7 +423,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     all.addAll(DashboardUtils.getPublicDashboards());
     all.addAll(DashboardUtils.getPrivateDashboards());
     return all.stream().filter(d -> d.getId() != null)
-        .collect(Collectors.toMap(Dashboard::getId, d -> d, (a, b) -> a));
+        .collect(Collectors.toMap(Dashboard::getId, d -> d, (a, _) -> a));
   }
 
   private void prepareDashboardForExport(Dashboard dashboard) {
@@ -484,11 +506,39 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   public void savePrivateArrangement() {
-    String dashboardJson = BusinessEntityConverter.entityToJsonValue(this.dashboards);
+    List<Dashboard> allDashboards = new ArrayList<>(topMenuDashboards);
+    allDashboards.addAll(this.dashboards);
+    allDashboards.addAll(hiddenDashboards);
+    String dashboardJson = BusinessEntityConverter.entityToJsonValue(allDashboards);
     Ivy.session().getSessionUser().setProperty(PortalVariable.DASHBOARD.key, dashboardJson);
   }
 
   private void updateDashboardCache() {
     DashboardUtils.updateDashboardCache();
+  }
+
+  public List<Dashboard> getTopMenuDashboards() {
+    return topMenuDashboards;
+  }
+
+  public List<Dashboard> getHiddenDashboards() {
+    return hiddenDashboards;
+  }
+
+  private List<Dashboard> sortByMenuOrder(List<Dashboard> dashboards) {
+    List<MenuOrderEntry> manifest = MenuOrderService.getInstance().findAll();
+    if (CollectionUtils.isEmpty(manifest)) {
+      return dashboards;
+    }
+    Map<String, Integer> dashboardIdToIndex = new HashMap<>();
+    for (int i = 0; i < manifest.size(); i++) {
+      MenuOrderEntry entry = manifest.get(i);
+      if (entry.getSource() == MenuSource.DASHBOARD && entry.getId() != null) {
+        dashboardIdToIndex.put(entry.getId(), i);
+      }
+    }
+    dashboards.sort(Comparator.comparingInt(
+        d -> dashboardIdToIndex.getOrDefault(d.getId(), Integer.MAX_VALUE)));
+    return dashboards;
   }
 }

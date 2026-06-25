@@ -102,6 +102,7 @@ public class IvyCacheService {
    * @param value
    */
   public void setApplicationCache(String groupName, String entryName, Object value) {
+    verifyIdentifier(groupName, entryName);
     applicationCache().setEntry(groupName, entryName,
         com.axonivy.portal.components.service.IvyCacheService.MAX_TIMEOUT,
         value);
@@ -114,11 +115,24 @@ public class IvyCacheService {
    * @return value
    */
   public Object getApplicationCache(String groupName, String entryName) {
+    verifyIdentifier(groupName, entryName);
     IDataCacheEntry entry = applicationCache().getEntry(groupName, entryName);
     if (entry != null && entry.isValid()) {
       return entry.getValue();
     }
     return null;
+  }
+
+  public void invalidateApplicationCacheEntry(String groupName, String entryName) {
+    verifyIdentifier(groupName, entryName);
+    IDataCache cache = applicationCache();
+    IDataCacheGroup group = cache.getGroup(groupName);
+    if (group != null) {
+      IDataCacheEntry entry = cache.getEntry(groupName, entryName);
+      if (entry != null) {
+        cache.invalidateEntry(group, entry);
+      }
+    }
   }
 
   public void invalidateApplicationCacheByGroupName(String groupName) {
@@ -133,7 +147,6 @@ public class IvyCacheService {
    * This method will invalidate global configuration cache store in application cache
    * @param cacheGroupName
    */
-  //TODO: after switch to application scope for all configuration, we don't need this method, just clear cache on current app
   public void invalidateApplicationCacheForAllAvailableApplications(String cacheGroupName) {
     try {
       Sudo.run(() -> {

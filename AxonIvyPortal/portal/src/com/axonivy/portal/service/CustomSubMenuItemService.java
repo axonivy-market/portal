@@ -17,6 +17,7 @@ import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.enums.PortalCustomSignature;
+import com.axonivy.portal.menu.MenuId;
 
 import ch.addon.portal.generic.menu.SubMenuItem;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
@@ -31,7 +32,7 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 public class CustomSubMenuItemService {
 
   public final static String SUB_MENU = "subMenuItems";
-  public final static String DEFAULT_ICON = "si si si-hierarchy-6 si-rotate-270";
+  public final static String DEFAULT_ICON = "ti ti-sitemap ti-rotate-270";
 
   public static List<SubMenuItem> findAll() {
     List<CustomSubMenuItem> customMenus = loadFromSubProcess();
@@ -45,7 +46,7 @@ public class CustomSubMenuItemService {
   }
 
   @SuppressWarnings("unchecked")
-  private static List<CustomSubMenuItem> loadFromSubProcess() {
+  public static List<CustomSubMenuItem> loadFromSubProcess() {
     return Sudo.get(() -> {
       var filter = SubProcessSearchFilter.create()
           .setSearchScope(SearchScope.SECURITY_CONTEXT)
@@ -88,19 +89,45 @@ public class CustomSubMenuItemService {
       } else {
         result.setMenuKind(Optional.ofNullable(customMenu).map(CustomSubMenuItem::getIsExternalLink).orElse(false)
             ? MenuKind.EXTERNAL_LINK
-            : MenuKind.CUSTOM);
+            : MenuKind.PROCESS);
       }
 
-      String menuId = SubMenuItem.generateId(result.getMenuKind(), result.getLink());
-      result.setId(menuId);
-      result.setName(HomepageUtils.generateHomepageId(result.getMenuKind(), menuId));
+      String hashId = MenuId.compute(customMenu);
+      result.setId(StringUtils.isNotBlank(customMenu.getId()) ? customMenu.getId() : hashId);
+      result.setName(HomepageUtils.generateHomepageId(result.getMenuKind(), result.getId()));
 
       return result;
     };
   }
 
-  private static List<CustomSubMenuItem> loadFromConfiguration() {
+  public static List<CustomSubMenuItem> loadFromConfiguration() {
     String menuJson = Ivy.var().get(PortalVariable.CUSTOM_MENU_ITEMS.key);
     return BusinessEntityConverter.jsonValueToEntities(menuJson, CustomSubMenuItem.class);
+  }
+
+  public static CustomSubMenuItem saveConfiguration(CustomSubMenuItem entity) {
+    List<CustomSubMenuItem> existedEntities = loadFromConfiguration();
+    String entityKey = identityKey(entity);
+    existedEntities.removeIf(e -> Objects.nonNull(e) && entityKey.equals(identityKey(e)));
+    existedEntities.add(entity);
+    Ivy.var().set(PortalVariable.CUSTOM_MENU_ITEMS.key, BusinessEntityConverter.entityToJsonValue(existedEntities));
+    return entity;
+  }
+
+  public static void removeConfiguration(CustomSubMenuItem entity) {
+    List<CustomSubMenuItem> existedEntities = loadFromConfiguration();
+    String entityKey = identityKey(entity);
+    existedEntities.removeIf(e -> Objects.nonNull(e) && entityKey.equals(identityKey(e)));
+    Ivy.var().set(PortalVariable.CUSTOM_MENU_ITEMS.key, BusinessEntityConverter.entityToJsonValue(existedEntities));
+  }
+
+  /**
+   * Stable identity for matching persisted entries. Legacy {@code Portal.CustomMenuItems}
+   * entries predate the {@code id} field and deserialize with {@code id == null}, so we
+   * fall back to the deterministic {@link MenuId#compute(CustomSubMenuItem)} hash to keep
+   * edits/deletes from leaving duplicates or undeletable items.
+   */
+  private static String identityKey(CustomSubMenuItem item) {
+    return StringUtils.isNotBlank(item.getId()) ? item.getId() : MenuId.compute(item);
   }
 }

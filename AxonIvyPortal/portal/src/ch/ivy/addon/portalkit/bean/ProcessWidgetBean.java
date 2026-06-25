@@ -1,8 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static org.apache.commons.lang3.StringUtils.EMPTY;
-
-import java.io.Serializable;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +10,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -32,6 +30,7 @@ import org.primefaces.event.UnselectEvent;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.ImageUploadResult;
 import com.axonivy.portal.components.util.RoleUtils;
+import com.axonivy.portal.components.util.SecurityMemberDisplayNameUtils;
 import com.axonivy.portal.service.GlobalSearchService;
 import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.util.ImageUploadUtils;
@@ -62,10 +61,12 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
 @ViewScoped
-public class ProcessWidgetBean extends AbstractProcessBean implements Serializable, IMultiLanguage {
+public class ProcessWidgetBean extends AbstractProcessBean implements IMultiLanguage {
 
   private static final long serialVersionUID = -5889375917550618261L;
   private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";
+  // https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+  private static final Pattern PUNCTUATION_PATTERN = Pattern.compile("\\p{Punct}");
 
   private Process deletedProcess;
   private Process editedProcess;
@@ -117,14 +118,11 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   private void groupProcessesByAlphabetIndex(List<Process> processes) {
     processesByAlphabet = new HashMap<>();
-    // Follow Oracle document about regex for punctual character
-    // https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
-    String punctualRegex = "\\p{Punct}";
 
     for (Process process : processes) {
       String firstLetter = extractProcessFirstLetter(process.getName());
       if (StringUtils.isNotEmpty(firstLetter)) {
-        if (firstLetter.matches(punctualRegex)) {
+        if (PUNCTUATION_PATTERN.matcher(firstLetter).matches()) {
           addOrUpdateProcessesByKey(process, SPECIAL_CHARACTER_KEY);
         } else {
           addOrUpdateProcessesByKey(process, firstLetter);
@@ -135,7 +133,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     List<Process> processesBySpecialCharacterGroup = processesByAlphabet.remove(SPECIAL_CHARACTER_KEY);
     Collator collator = Collator.getInstance(Locale.GERMAN);
     processesByAlphabet = processesByAlphabet.entrySet().stream().sorted(Map.Entry.comparingByKey(collator::compare))
-        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (_, e2) -> e2, LinkedHashMap::new));
     if (CollectionUtils.isNotEmpty(processesBySpecialCharacterGroup)) {
       processesByAlphabet.put(SPECIAL_CHARACTER_KEY, processesBySpecialCharacterGroup);
     }
@@ -174,17 +172,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public String formatName(SecurityMemberDTO responsible) {
-    String responsibleName = EMPTY;
-    if (responsible != null) {
-      if (StringUtils.isBlank(responsible.getDisplayName())) {
-        responsibleName = responsible.getName();
-      } else {
-        responsibleName = String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/TextWithRoundBracket"), responsible.getDisplayName(), responsible.getName());
-      }
-      return responsible.isEnabled() ? responsibleName
-          : String.format("%s %s", Ivy.cms().co("/Labels/disabledUserPrefix"), responsibleName);
-    }
-    return responsibleName;
+    return SecurityMemberDisplayNameUtils.generateDisplayNameForSecurityMemberDTO(responsible);
   }
 
   public List<SecurityMemberDTO> completePermissionsWhenCreatingExternalLink(String query) {
@@ -298,7 +286,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       return;
     }
     removeTempExternalLinkImage();
-    ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, ImageUploadUtils.EXTERNAL_LINK_IMAGE_DIRECTORY);    if (imageInfo.isInvalid()) {
+    ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, ImageUploadUtils.EXTERNAL_LINK_IMAGE_DIRECTORY);
+    if (imageInfo.isInvalid()) {
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
       FacesContext.getCurrentInstance().addMessage("edit-external-link-error-message", message);

@@ -81,7 +81,7 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public void clickOnHomeLogo() {
-    $("span[class*='si si-house-chimney-2']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("span[class*='ti ti-home']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
   public void setGlobalFooterInfo() {
@@ -144,25 +144,12 @@ public class AdminSettingsPage extends TemplatePage {
     return findElementById("admin-settings-container");
   }
 
-  public WebElement getAddApplicationDialog() {
-    waitForElementClickableThenClick($(By.id("admin-setting-component:adminTabView:add-application-btn")));
-    waitForElementDisplayed(By.id("admin-setting-component:appDialog"), true);
-    waitForFocusEffectComplete();
-    return findElementById("admin-setting-component:appDialog");
-  }
-
   public WebElement getEditSettingDialogOfFirstRow() {
     waitForElementClickableThenClick($(By.id("admin-setting-component:adminTabView:settingTable:0:settings-action-button")));
     $("a[id='admin-setting-component:adminTabView:settingTable:0:edit-application']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     waitForElementDisplayed(By.id("admin-setting-component:settingDialog"), true);
     waitForFocusEffectComplete();
     return findElementById("admin-setting-component:settingDialog");
-  }
-
-  public void closeAddApplicationDialog() {
-    $("[id='admin-setting-component:appDialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id='admin-setting-component:appDialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void closeEditSettingDialog() {

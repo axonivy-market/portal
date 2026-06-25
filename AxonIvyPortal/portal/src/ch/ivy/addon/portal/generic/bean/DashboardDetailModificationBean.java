@@ -16,7 +16,6 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -107,14 +106,14 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ViewScoped
 @ManagedBean
-public class DashboardDetailModificationBean extends DashboardBean implements Serializable, PropertyChangeListener {
+public class DashboardDetailModificationBean extends DashboardBean implements PropertyChangeListener {
 
   private static final long serialVersionUID = -5272278165636659596L;
   private static final String DEFAULT_COMPLEX_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:predefined-filter";
   private static final String DEFAULT_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:user-filter";
   private static final String DEFAULT_WIDGET_TITLE_ID = "widget-configuration-form:new-widget-configuration-component:widget-title-group";
   private static final String PROCESS_ICON_CUSTOM_FIELD = "cssIcon";
-  private static final String DEFAULT_PROCESS_ICON = "si si-hierarchy-6 si-rotate-270";
+  private static final String DEFAULT_PROCESS_ICON = "ti ti-sitemap ti-rotate-270";
   
   private List<WidgetSample> samples;
   private String newWidgetHeader;
@@ -202,32 +201,32 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   private WidgetSample taskSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskList"), TASK,
-        "si si-checklist-pen", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskListIntroduction"));
+        "ti ti-clipboard-check", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskListIntroduction"));
   }
 
   private WidgetSample caseSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseList"), CASE,
-        "si si-list-bullets", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseListIntroduction"));
+        "ti ti-file-pencil", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseListIntroduction"));
   }
 
   private WidgetSample processSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processList"), PROCESS,
-        "si si-layout-bullets", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processListIntroduction"));
+        "ti ti-folder-open", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processListIntroduction"));
   }
 
   private WidgetSample externalPageSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/ExternalPageWidget"), CUSTOM,
-        "si si-network-arrow", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/ExternalPageWidgetIntroduction"));
+        "ti ti-network", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/ExternalPageWidgetIntroduction"));
   }
 
   private WidgetSample processViewerSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText"), PROCESS_VIEWER,
-        "si si-hierarchy-6 si-rotate-270", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processViewerIntroduction"));
+        "ti ti-sitemap ti-rotate-270", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processViewerIntroduction"));
   }
 
   private WidgetSample welcomeWidgetSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/WELCOME"), WELCOME,
-        "si si-image-file-landscape", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetIntroduction"));
+        "ti ti-photo", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetIntroduction"));
   }
 
   private WidgetSample newsSample() {
@@ -238,11 +237,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   private WidgetSample notificationSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NOTIFICATION"),
-        NOTIFICATION, "si si-alarm-bell", translate("/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidgetConfiguration/NotificationWidgetDescription"));
+        NOTIFICATION, "ti ti-bell", translate("/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidgetConfiguration/NotificationWidgetDescription"));
   }
   
   private WidgetSample navigationDashboardWidget() {
-    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NAVIGATION_DASHBOARD"), DashboardWidgetType.NAVIGATION_DASHBOARD, "si si-navigation-right-circle", translate("/Dialogs/com/axonivy/portal/dashboard/component/NavigationDashboardWidgetConfiguration/NavigationDashboardWidgetDescription"));
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NAVIGATION_DASHBOARD"), DashboardWidgetType.NAVIGATION_DASHBOARD, "ti ti-circle-arrow-right", translate("/Dialogs/com/axonivy/portal/dashboard/component/NavigationDashboardWidgetConfiguration/NavigationDashboardWidgetDescription"));
   }
 
   public void restore() {
@@ -570,7 +569,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
   }
   
-  public void onReset(@SuppressWarnings("unused") DashboardWidget widget) {
+  public void onReset(DashboardWidget widget) {
     resetUserFilter();
   }
 
@@ -1003,16 +1002,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public List<Dashboard> initCloneableDashboards() {
-    List<Dashboard> availableDashboards = new ArrayList<>();
-    availableDashboards.addAll(DashboardUtils.getPublicDashboards());
-
-    String dashboardInUserProperty = readDashboardBySessionUser();
-    if (StringUtils.isNotBlank(dashboardInUserProperty)) {
-      List<Dashboard> myDashboards = DashboardUtils
-          .getVisibleDashboards(dashboardInUserProperty);
-      availableDashboards.addAll(myDashboards);
-    }
-    return availableDashboards;
+    return DashboardUtils.collectDashboards();
   }
 
   public String getRestoreDashboardMessage() {
@@ -1165,6 +1155,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
 
     return false;
+  }
+
+  public boolean displayBulkDelegateToggleOption(DashboardWidget widget) {
+    return widget instanceof TaskDashboardWidget;
   }
 
   public List<CaseQueryType> getAllCaseQueryTypes() {

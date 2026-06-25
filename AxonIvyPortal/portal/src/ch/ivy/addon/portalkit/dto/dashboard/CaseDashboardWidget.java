@@ -129,6 +129,7 @@ public class CaseDashboardWidget extends DashboardWidget {
 
   public void setColumns(List<CaseColumnModel> columns) {
     this.dataModel.getCriteria().setColumns(columns);
+    buildFilterableColumns(columns);
   }
 
   @JsonIgnore

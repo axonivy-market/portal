@@ -35,6 +35,7 @@ public abstract class AbstractProcessBean implements Serializable {
   protected static final String UNDERSCORE_BLANK = "_blank";
   protected static final String UNDERSCORE_SELF  = "_self";
   protected static final String DOT_ICM  = ".icm";
+  protected static final String DOT_M_JSON = ".m.json";
   private List<Process> portalProcesses;
 
   public synchronized void init() {
@@ -101,7 +102,7 @@ public abstract class AbstractProcessBean implements Serializable {
   }
 
   public boolean isCaseMap(Process process) {
-    return !Objects.isNull(process) && process.getStartLink().endsWith(DOT_ICM);
+    return !Objects.isNull(process) && (process.getStartLink().endsWith(DOT_ICM) || process.getStartLink().endsWith(DOT_M_JSON));
   }
 
   public String targetToStartProcess(Process process) {

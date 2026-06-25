@@ -1,11 +1,19 @@
 package com.axonivy.portal.components.document;
 
+import java.io.IOException;
 import java.io.InputStream;
 
-import com.itextpdf.text.pdf.PdfArray;
-import com.itextpdf.text.pdf.PdfDictionary;
-import com.itextpdf.text.pdf.PdfName;
-import com.itextpdf.text.pdf.PdfReader;
+import org.apache.pdfbox.Loader;
+import org.apache.pdfbox.cos.COSArray;
+import org.apache.pdfbox.cos.COSBase;
+import org.apache.pdfbox.cos.COSDictionary;
+import org.apache.pdfbox.cos.COSName;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDDocumentNameDictionary;
+import org.apache.pdfbox.pdmodel.PDEmbeddedFilesNameTreeNode;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
+import org.apache.pdfbox.pdmodel.interactive.annotation.PDAnnotation;
 
 import ch.ivyteam.ivy.bpm.error.BpmError;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -14,57 +22,105 @@ public class PDFDocumentDetector implements DocumentDetector {
 
   @Override
   public boolean isSafe(InputStream inputStream) {
-    boolean safeState = false;
-    PdfReader reader = null;
-    try {
-      if (inputStream != null) {
-        reader = new PdfReader(inputStream);
+    if (inputStream == null) {
+      return false;
+    }
+    try (PDDocument document = Loader.loadPDF(inputStream.readAllBytes())) {
+      return !containsJavaScript(document)
+          && !containsEmbeddedFiles(document)
+          && !containsAcroForm(document)
+          && !containsOpenAction(document);
+    } catch (InvalidPasswordException e) {
+      Ivy.log().error("This file is encrypted and cannot be scanned for security threats before uploading.", e);
+      BpmError.create("portal:file:encrypted").throwError();
+    } catch (Exception e) {
+      Ivy.log().error("PDF security check failed", e);
+    }
+    return false;
+  }
 
-        // Check 1: Detect JavaScript execution
-        String jsCode = reader.getJavaScript();
-        if (jsCode == null || jsCode.trim().isEmpty()) {
+  private boolean containsJavaScript(PDDocument document) throws IOException {
+    if (hasCatalogLevelJavaScript(document)) {
+      return true;
+    }
+    return hasPageOrAnnotationJavaScript(document);
+  }
 
-          // Check 2: Detect embedded files
-          PdfDictionary root = reader.getCatalog();
-          PdfDictionary names = root.getAsDict(PdfName.NAMES);
-          PdfArray namesArray = checkEmbeddedFilesInPDF(names);
+  private boolean hasCatalogLevelJavaScript(PDDocument document) {
+    COSDictionary catalog = document.getDocumentCatalog().getCOSObject();
+    COSDictionary names = catalog.getCOSDictionary(COSName.NAMES);
+    boolean hasJavaScriptNameTree = names != null && names.getCOSDictionary(COSName.JAVA_SCRIPT) != null;
+    boolean hasCatalogJavaScriptActions = hasJavaScriptInAdditionalActions(catalog);
+    return hasJavaScriptNameTree || hasCatalogJavaScriptActions;
+  }
 
-          // Check 3: Detect AcroForms (forms can trigger JavaScript)
-          PdfDictionary acroForm = root.getAsDict(PdfName.ACROFORM);
-          boolean hasAcroForm = (acroForm != null);
-
-          // Check 4: Detect OpenAction (auto-trigger scripts)
-          PdfDictionary openAction = root.getAsDict(PdfName.OPENACTION);
-          boolean hasOpenAction = (openAction != null);
-
-          // Safe if no JS, no embedded files, no AcroForms, and no OpenAction
-          safeState = (namesArray == null || namesArray.isEmpty()) && !hasAcroForm && !hasOpenAction;
+  private boolean hasPageOrAnnotationJavaScript(PDDocument document) throws IOException {
+    for (PDPage page : document.getPages()) {
+      if (hasJavaScriptInActions(page.getCOSObject())) {
+        return true;
+      }
+      for (PDAnnotation annotation : page.getAnnotations()) {
+        if (hasJavaScriptInActions(annotation.getCOSObject())) {
+          return true;
         }
       }
     }
-    catch (NoClassDefFoundError e) {
-      Ivy.log().error("This file is encrypted and cannot be scanned for security threats before uploading.");
-      BpmError.create("portal:file:encrypted").throwError();
-    }
-    catch (Exception e) {
-      Ivy.log().error("PDF security check failed", e);
-      safeState = false;
-    } finally {
-      if (reader != null) {
-        reader.close();
-      }
-    }
-    return safeState;
+    return false;
   }
 
-  private PdfArray checkEmbeddedFilesInPDF(PdfDictionary names) {
-    PdfArray namesArr = null;
-    if (names != null) {
-      PdfDictionary embeddedFiles = names.getAsDict(PdfName.EMBEDDEDFILES);
-      if (embeddedFiles != null) {
-        namesArr = embeddedFiles.getAsArray(PdfName.NAMES);
+  private boolean hasJavaScriptInActions(COSDictionary cosObject) {
+    if (hasJavaScriptInAdditionalActions(cosObject)) {
+      return true;
+    }
+    COSDictionary directAction = cosObject.getCOSDictionary(COSName.A);
+    return directAction != null && isJavaScriptAction(directAction);
+  }
+
+  private boolean hasJavaScriptInAdditionalActions(COSDictionary cosObject) {
+    COSDictionary additionalActions = cosObject.getCOSDictionary(COSName.AA);
+    if (additionalActions == null) {
+      return false;
+    }
+    for (COSName key : additionalActions.keySet()) {
+      COSBase actionEntry = additionalActions.getDictionaryObject(key);
+      if (actionEntry instanceof COSDictionary && isJavaScriptAction((COSDictionary) actionEntry)) {
+        return true;
       }
     }
-    return namesArr;
+    return false;
+  }
+
+  private boolean isJavaScriptAction(COSDictionary action) {
+    COSBase actionType = action.getDictionaryObject(COSName.S);
+    return COSName.JAVA_SCRIPT.equals(actionType);
+  }
+
+  private boolean containsEmbeddedFiles(PDDocument document) {
+    PDDocumentNameDictionary namesDictionary = document.getDocumentCatalog().getNames();
+    if (namesDictionary == null) {
+      return false;
+    }
+    PDEmbeddedFilesNameTreeNode embeddedFilesTree = namesDictionary.getEmbeddedFiles();
+    if (embeddedFilesTree == null) {
+      return false;
+    }
+    COSDictionary treeNode = embeddedFilesTree.getCOSObject();
+    return hasNonEmptyArray(treeNode, COSName.NAMES) || hasNonEmptyArray(treeNode, COSName.KIDS);
+  }
+
+  private boolean hasNonEmptyArray(COSDictionary dictionary, COSName key) {
+    COSBase value = dictionary.getDictionaryObject(key);
+    return value instanceof COSArray && ((COSArray) value).size() > 0;
+  }
+
+  private boolean containsAcroForm(PDDocument document) {
+    COSDictionary catalog = document.getDocumentCatalog().getCOSObject();
+    return catalog.getCOSDictionary(COSName.ACRO_FORM) != null;
+  }
+
+  private boolean containsOpenAction(PDDocument document) {
+    COSDictionary catalog = document.getDocumentCatalog().getCOSObject();
+    COSBase openAction = catalog.getDictionaryObject(COSName.OPEN_ACTION);
+    return openAction instanceof COSDictionary;
   }
 }

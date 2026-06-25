@@ -243,7 +243,7 @@ if (document) {
           $resultsContainer.html("");
           if (data) {
             data.results.forEach((rs, index) => {
-              document.getElementById("process-search-results").innerHTML += processComponent(rs);
+              document.getElementById("process-search-results").appendChild(processComponent(rs));
             });
             handleUISearchResults($resultsContainer, data);
           }
@@ -265,7 +265,7 @@ if (document) {
             $resultsContainer.html("");
             if (data) {
               data.results.forEach((rs, index) => {
-                document.getElementById("task-search-results").innerHTML += taskComponent(rs);
+                document.getElementById("task-search-results").appendChild(taskComponent(rs));
               });
             }
             resolve($resultsContainer);
@@ -290,7 +290,7 @@ if (document) {
           $resultsContainer.html("");
           if (data) {
             data.results.forEach((rs, index) => {
-              document.getElementById("case-search-results").innerHTML += caseComponent(rs);
+              document.getElementById("case-search-results").appendChild(caseComponent(rs));
             });
             handleUISearchResults($resultsContainer, data);
           }
@@ -337,20 +337,43 @@ if (document) {
 
 
   let processComponent = (process) => {
-    return '<a href="' + process.link + '" class="task-even-row full-mode task-start-list-item js-task-start-list-item search-process-list-item">' +
-      '   <div class="task-start-link js-task-start-link">' +
-      '     <div class="task-priority-item">' +
-      '       <span class="priority-cell search-item-result"  data-id="' + process.link + '">' +
-      '         <span class="priority-icon">' +
-      '           <i class="' + process.icon + '"></i>' +
-      '         </span>' +
-      '       </span>' +
-      '     </div>' +
-      '     <div class="task-start-info">' +
-      '       <span class="name-cell">' + process.name + '</span>' +
-      '     </div>' +
-      '    </div>' +
-      '</a>';
+    let a = document.createElement('a');
+    a.href = process.link;
+    a.className = 'task-even-row full-mode task-start-list-item js-task-start-list-item search-process-list-item';
+
+    let taskStartLink = document.createElement('div');
+    taskStartLink.className = 'task-start-link js-task-start-link';
+
+    let priorityItem = document.createElement('div');
+    priorityItem.className = 'task-priority-item';
+
+    let priorityCell = document.createElement('span');
+    priorityCell.className = 'priority-cell search-item-result';
+    priorityCell.dataset.id = process.link;
+
+    let priorityIcon = document.createElement('span');
+    priorityIcon.className = 'priority-icon';
+
+    let i = document.createElement('i');
+    i.className = process.icon;
+
+    priorityIcon.appendChild(i);
+    priorityCell.appendChild(priorityIcon);
+    priorityItem.appendChild(priorityCell);
+
+    let taskStartInfo = document.createElement('div');
+    taskStartInfo.className = 'task-start-info';
+
+    let nameCell = document.createElement('span');
+    nameCell.className = 'name-cell';
+    nameCell.textContent = process.name;
+
+    taskStartInfo.appendChild(nameCell);
+    taskStartLink.appendChild(priorityItem);
+    taskStartLink.appendChild(taskStartInfo);
+    a.appendChild(taskStartLink);
+
+    return a;
   }
 
   let taskComponent = (task) => {
@@ -358,50 +381,95 @@ if (document) {
     let iconClass;
     switch (priority) {
       case 'LOW':
-        iconClass = "priority si si-navigation-down-circle low-priority";
+        iconClass = "priority ti ti-circle-arrow-down low-priority";
         break;
       case 'NORMAL':
-        iconClass = "priority si si-navigation-right-circle-1 normal-priority";
+        iconClass = "priority ti ti-circle-arrow-right normal-priority";
         break;
       case 'HIGH':
-        iconClass = "priority si si-navigation-up-circle high-priority";
+        iconClass = "priority ti ti-circle-arrow-up high-priority";
         break;
       default:
-        iconClass = "priority si si-alert-circle exception-priority";
+        iconClass = "priority ti ti-alert-circle exception-priority";
         break;
     }
-    return '<a href="' + task.link + '" class="task-even-row full-mode task-start-list-item js-task-start-list-item search-task-list-item">' +
-      '  <div class="task-start-link js-task-start-link">' +
-      '     <div class="task-priority-item search-item-result" data-id="' + task.uuid + '">' +
-      '       <span class="priority-cell search-item">' +
-      '        <span class="priority-icon">' +
-      '          <i class="' + iconClass + '"></i>' +
-      '      </span>' +
-      '     </span>' +
-      '   </div>' +
-      '  <div class="task-start-info">' +
-      '    <span class="name-cell">' + task.name +
-      '    </span>' +
-      '  </div>' +
-      ' </div>' +
-      '</a>';
+
+    let a = document.createElement('a');
+    a.href = task.link;
+    a.className = 'task-even-row full-mode task-start-list-item js-task-start-list-item search-task-list-item';
+
+    let taskStartLink = document.createElement('div');
+    taskStartLink.className = 'task-start-link js-task-start-link';
+
+    let priorityItem = document.createElement('div');
+    priorityItem.className = 'task-priority-item search-item-result';
+    priorityItem.dataset.id = task.uuid;
+
+    let priorityCell = document.createElement('span');
+    priorityCell.className = 'priority-cell search-item';
+
+    let priorityIcon = document.createElement('span');
+    priorityIcon.className = 'priority-icon';
+
+    let i = document.createElement('i');
+    i.className = iconClass;
+
+    priorityIcon.appendChild(i);
+    priorityCell.appendChild(priorityIcon);
+    priorityItem.appendChild(priorityCell);
+
+    let taskStartInfo = document.createElement('div');
+    taskStartInfo.className = 'task-start-info';
+
+    let nameCell = document.createElement('span');
+    nameCell.className = 'name-cell';
+    nameCell.textContent = task.name;
+
+    taskStartInfo.appendChild(nameCell);
+    taskStartLink.appendChild(priorityItem);
+    taskStartLink.appendChild(taskStartInfo);
+    a.appendChild(taskStartLink);
+
+    return a;
   }
 
   let caseComponent = (caze) => {
-    return '<a href="' + caze.link + '" class="task-even-row full-mode task-start-list-item js-task-start-list-item search-case-list-item">' +
-      '     <div class="task-start-link js-task-start-link">' +
-      '       <div class="task-priority-item">' +
-      '         <span class="priority-cell search-item-result" data-id="' + caze.uuid + '">' +
-      '           <span class="priority-icon">' +
-      '             <i class="si si-layout-bullets"></i>' +
-      '           </span>' +
-      '         </span>' +
-      '       </div>' +
-      '       <div class="task-start-info">' +
-      '         <span class="name-cell">' + caze.name +
-      '         </span>' +
-      '       </div>' +
-      '     </div>' +
-      '</a>';
+    let a = document.createElement('a');
+    a.href = caze.link;
+    a.className = 'task-even-row full-mode task-start-list-item js-task-start-list-item search-case-list-item';
+
+    let taskStartLink = document.createElement('div');
+    taskStartLink.className = 'task-start-link js-task-start-link';
+
+    let priorityItem = document.createElement('div');
+    priorityItem.className = 'task-priority-item';
+
+    let priorityCell = document.createElement('span');
+    priorityCell.className = 'priority-cell search-item-result';
+    priorityCell.dataset.id = caze.uuid;
+
+    let priorityIcon = document.createElement('span');
+    priorityIcon.className = 'priority-icon';
+
+    let i = document.createElement('i');
+    i.className = 'si si-layout-bullets';
+
+    priorityIcon.appendChild(i);
+    priorityCell.appendChild(priorityIcon);
+    priorityItem.appendChild(priorityCell);
+
+    let taskStartInfo = document.createElement('div');
+    taskStartInfo.className = 'task-start-info';
+
+    let nameCell = document.createElement('span');
+    nameCell.className = 'name-cell';
+    nameCell.textContent = caze.name;
+
+    taskStartInfo.appendChild(nameCell);
+    taskStartLink.appendChild(priorityItem);
+    taskStartLink.appendChild(taskStartInfo);
+    a.appendChild(taskStartLink);
+
+    return a;
   }
 }

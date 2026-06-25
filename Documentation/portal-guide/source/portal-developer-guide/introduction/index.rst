@@ -336,7 +336,7 @@ Filter case by owner in case list and task analysis if case owner is enabled.
 
 
 .. |my-profile| image:: ../../screenshots/my-profile/my-profile.png
-.. |absence| image:: ../../screenshots/settings/absence.png
+.. |absence| image:: ../../screenshots/settings/absence-management-page.png
 .. |login-screen| image:: ../../screenshots/login/login-form.png
 .. |send-email-screen| image:: ../../screenshots/forgot-password/send-email-screen.png
 .. |task-key-information| image:: ../../screenshots/task/task-key-information.png

@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +20,7 @@ import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ITask;
 
-public class ResponsibleColumnModel extends TaskColumnModel implements Serializable {
+public class ResponsibleColumnModel extends TaskColumnModel {
 
   private static final long serialVersionUID = -4315469062114036720L;
 

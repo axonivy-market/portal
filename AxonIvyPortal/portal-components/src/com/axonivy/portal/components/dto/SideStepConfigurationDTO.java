@@ -9,12 +9,9 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.ITask;
-
 /**
  * DTO object contains information about side step configuration.
- * Use this class to configure side step then parse it to JSON and save to custom text field of {@link ITask} or {@link ICase}
+ * Use this class to configure side step then parse it to JSON and save to custom text field of {@link ch.ivyteam.ivy.workflow.ITask} or {@link ch.ivyteam.ivy.workflow.ICase}
  * <pre>
  * <b>processes</b>: list of side step processes for user to select (mandatory). 
  * <b>isParallelSideStep</b>: whether side step task runs parallel with original task (optional).

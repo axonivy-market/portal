@@ -18,7 +18,7 @@
     "locale" : "es",
     "value" : "Resumen de KPI de compras"
   } ],
-  "icon" : "si-analytics-board-graph-line",
+  "icon" : "ti-chart-line",
   "widgets" : [ {
     "type" : "client-statistic",
     "id" : "statistic_bfe0c1a34a45434fa2491289ac7b5c44",
@@ -369,7 +369,7 @@
     "locale" : "es",
     "value" : "Panel de guía del usuario"
   } ],
-  "icon" : "si si-bulb",
+  "icon" : "ti ti-bulb",
   "widgets" : [ {
     "type" : "welcome",
     "id" : "welcome_b1f1f7799bfc48008f49919385b30e0d",

@@ -57,6 +57,7 @@ public class ExternalLinkBean implements Serializable, IMultiLanguage {
     PrimeFaces.current().resetInputs(clientId + ":add-external-link-form");
   }
 
+  @SuppressWarnings("removal")
   public ExternalLink saveNewExternalLink() {
     IUser sessionUser = Ivy.session().getSessionUser();
     externalLink.setCreatorId(sessionUser.getId());

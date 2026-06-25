@@ -1,6 +1,5 @@
 package ch.ivy.addon.portal.generic.bean;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
@@ -15,7 +14,7 @@ import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 
 @ViewScoped
 @ManagedBean
-public class DashboardTemplateSelectionBean extends DashboardModificationBean implements Serializable {
+public class DashboardTemplateSelectionBean extends DashboardModificationBean {
 
   private static final long serialVersionUID = 6975567087140152855L;
 

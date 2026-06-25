@@ -1,6 +1,5 @@
 package com.axonivy.portal.dto.dashboard.filter;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -19,10 +18,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class DashboardFilter extends BaseFilter implements Serializable {
+public class DashboardFilter extends BaseFilter {
   private static final long serialVersionUID = -2098346832426240167L;
   @JsonIgnore
   public static final String APPLICATION = "application";
@@ -74,7 +74,12 @@ public class DashboardFilter extends BaseFilter implements Serializable {
     return getField() == DashboardStandardCaseColumn.CREATOR.getField();
   }
 
-  @JsonIgnore 
+  @JsonIgnore
+  public boolean isWorker() {
+    return DashboardStandardTaskColumn.WORKER.getField().equals(getField());
+  }
+
+  @JsonIgnore
   public boolean isApplication() {
     return APPLICATION.equals(getField());
   }
@@ -82,6 +87,16 @@ public class DashboardFilter extends BaseFilter implements Serializable {
   @JsonIgnore
   public boolean isId() {
     return ID.equals(getField());
+  }
+
+  @JsonIgnore
+  public boolean isBusinessCaseId() {
+    return DashboardStandardTaskColumn.BUSINESS_CASE_ID.getField().equals(getField());
+  }
+
+  @JsonIgnore
+  public boolean isTechnicalCaseId() {
+    return DashboardStandardTaskColumn.TECHNICAL_CASE_ID.getField().equals(getField());
   }
 
   @JsonIgnore

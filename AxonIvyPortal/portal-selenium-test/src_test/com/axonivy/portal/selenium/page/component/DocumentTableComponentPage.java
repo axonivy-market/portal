@@ -14,9 +14,12 @@ public class DocumentTableComponentPage extends TemplatePage {
   }
 
   public void uploadSampleDocument(String pathToFile) {
+    $("[id$=':open-upload-dialog-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("[id$=':document-upload-dialog']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    
     $("[id$=':document-upload_input']").sendKeys(pathToFile);
     getDocuments().get(0).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    $("span[class$='ui-messages-info-summary']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$=':document-upload-dialog'] span[class$='ui-messages-info-summary']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   private ElementsCollection getDocuments() {

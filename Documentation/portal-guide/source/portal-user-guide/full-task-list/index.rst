@@ -48,7 +48,13 @@ For each task the following key information is shown in the list:
 
 #. Category
 
+#. Working user (This column is not displayed by default)
+
 #. Application (This column is not displayed by default)
+
+#. Business Case ID (This column is not displayed by default)
+
+#. Technical Case ID (This column is not displayed by default)
 
 |task-key-information|
 

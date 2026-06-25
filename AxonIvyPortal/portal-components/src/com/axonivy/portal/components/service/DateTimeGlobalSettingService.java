@@ -2,15 +2,17 @@ package com.axonivy.portal.components.service;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.regex.Pattern;
 
 import com.axonivy.portal.components.enums.GlobalVariable;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class DateTimeGlobalSettingService {
-  private final String SPACE_CHARACTER = " ";
-  private final String COMMA_CHARACTER = ",";
-  private final String YEAR_PATTERN = "\\W?[Yy]+\\W?";
+  private static final String SPACE_CHARACTER = " ";
+  private static final String COMMA_CHARACTER = ",";
+  private static final Pattern YEAR_PATTERN = Pattern.compile("\\W?[Yy]+\\W?");
+  private static final Pattern YEAR_SYMBOL_PATTERN = Pattern.compile("y+");
   private GlobalSettingService globalSettingService;
   private static DateTimeGlobalSettingService instance;
 
@@ -51,7 +53,7 @@ public class DateTimeGlobalSettingService {
   }
 
   private String getDateWithoutYearPattern(String pattern) {
-    String expectedPattern = pattern.replaceAll(YEAR_PATTERN, "").trim();
+    String expectedPattern = YEAR_PATTERN.matcher(pattern).replaceAll("").trim();
     return expectedPattern.endsWith(COMMA_CHARACTER) ? expectedPattern.substring(0, expectedPattern.length() - 1)
         : expectedPattern;
   }
@@ -88,11 +90,11 @@ public class DateTimeGlobalSettingService {
   }
 
   private String getDefaultDatePattern(int dateFormat) {
-    return ((SimpleDateFormat) getDefaultDateFormatter(dateFormat)).toPattern().replaceAll("y+", "yyyy");
+    return YEAR_SYMBOL_PATTERN.matcher(((SimpleDateFormat) getDefaultDateFormatter(dateFormat)).toPattern()).replaceAll("yyyy");
   }
 
   private String getDefaultDateTimePattern(boolean isDateFilter, int dateFormat) {
-    String pattern = ((SimpleDateFormat) getDefaultDateFormatter(dateFormat)).toPattern().replaceAll("y+", "yyyy");
+    String pattern = YEAR_SYMBOL_PATTERN.matcher(((SimpleDateFormat) getDefaultDateFormatter(dateFormat)).toPattern()).replaceAll("yyyy");
 
     if (isDateFilter) {
       return isDateFilterWithTime() ? pattern + SPACE_CHARACTER + Ivy.cms().co("/patterns/timePattern") : pattern;

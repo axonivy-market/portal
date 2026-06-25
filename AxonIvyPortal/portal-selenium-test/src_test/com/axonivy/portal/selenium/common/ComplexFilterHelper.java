@@ -81,6 +81,9 @@ public class ComplexFilterHelper {
       case WITHIN:
         handleFilterWithin(filterElement, values);
         break;
+      case WORKER_TYPE:
+        handleFilterWorker(filterElement, values);
+        break;
       default:
         break;
     }
@@ -184,6 +187,19 @@ public class ComplexFilterHelper {
       filterElement.$("div[id$=':responsibles']").$("ul li.ui-helper-hidden").should(disappear);
     }
   }
+  
+  private static void handleFilterWorker(SelenideElement filterElement, Object... values) {
+    var workerInput = filterElement.$("div[id$=':workers-dropdown']").$("input").shouldBe(appear);
+    for (int i = 0; i < values.length; i++) {
+      workerInput.clear();
+      workerInput.sendKeys(String.valueOf(values[i]));
+      var selectPanel = $("span[id$=':workers-dropdown_panel'][style*='display: block']").shouldBe(appear);
+      selectPanel.$(".ui-avatar-text").shouldBe(appear);
+      selectPanel.shouldBe(getClickableCondition()).click();
+      selectPanel.shouldBe(disappear);
+      filterElement.$("div[id$=':workers-dropdown']").$("ul li.ui-helper-hidden").should(disappear);
+    }
+  }
 
   private static void handleFilterDate(SelenideElement filterElement, Object... values) {
     var dateInput = filterElement.$$(".date-picker-panel input")
@@ -193,11 +209,7 @@ public class ComplexFilterHelper {
       dateInput.get(i).shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[i]));
       WaitHelper.waitPageNoAnimation();
 
-      if ($("div[id='new-widget-configuration-dialog']").isDisplayed()) {
-        filterElement.$("span button").$("span[class*='ui-icon-calendar']").click();
-      } else {
-        dateInput.get(i).pressEscape();
-      }
+      filterElement.$("span button").$("span[class*='ui-icon-calendar']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     }
   }
 
@@ -218,14 +230,13 @@ public class ComplexFilterHelper {
         .shouldBe(Condition.editable);
     fromInput.clear();
     fromInput.sendKeys(String.valueOf(values[0]));
-    fromInput.pressEscape();
 
     var toInput = filterElement.$("div[id$=':between-dates-panel-to']").$("input[id$=':to-date_input']")
         .shouldBe(Condition.editable);
     toInput.clear();
     toInput.sendKeys(String.valueOf(values[1]));
     WaitHelper.waitPageNoAnimation();
-    toInput.pressEscape();
+    filterElement.$("div[id$=':between-dates-panel-to']").$("button").$("span[class*='ui-icon-calendar']").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 
   private static SelenideElement getValueOfCheckBox(String value) {

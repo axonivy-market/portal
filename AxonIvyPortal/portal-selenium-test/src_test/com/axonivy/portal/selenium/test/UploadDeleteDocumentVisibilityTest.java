@@ -9,6 +9,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -47,8 +48,8 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
-    taskWidget.startTask(0);
-    NavigationHelper.navigateToTaskList();
+    WaitHelper.waitForNavigation(() -> taskWidget.startTask(0));
+    redirectToNewDashBoard();
     updatePortalSetting(Variable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE.getKey(), "true");
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
 

@@ -14,7 +14,7 @@
           "name" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/name\")%>",
           "description" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/description\")%>",
           "customFields" : [
-            { "name" : "cssIcon", "value" : "si si-help-wheel" },
+            { "name" : "cssIcon", "value" : "ti ti-help-circle" },
             { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/process/HELPDESK2\")%>" }
           ]
         },
@@ -109,7 +109,7 @@
         "request" : {
           "name" : "Access Portal login page",
           "customFields" : [
-            { "name" : "cssIcon", "value" : "si si-login-3" }
+            { "name" : "cssIcon", "value" : "ti ti-login-2" }
           ]
         }
       },

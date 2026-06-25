@@ -16,8 +16,7 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.AiProcessService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.model.value.WebLink;
-import ch.ivyteam.ivy.workflow.IProcessStart;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
 @ViewScoped
@@ -27,7 +26,7 @@ public class ChatRendererBean implements Serializable {
   
   private Boolean isGroupChatRendered;
   private Boolean isPrivateChatRendered;
-  private IProcessStart assistantDashboardProcess;
+  private IWebStartable assistantDashboardProcess;
   
   public boolean getIsChatRendered() {
     return getIsGroupChatRendered() || getIsPrivateChatRendered();
@@ -67,7 +66,7 @@ public class ChatRendererBean implements Serializable {
           .findAssistantDashboardProcess();
     }
     return StringUtils.isNotBlank(Optional.ofNullable(assistantDashboardProcess)
-        .map(IProcessStart::getLinkEmbedded).map(WebLink::getRelative)
+        .map(ws -> ws.getLink().getRelative())
         .orElse(""));
   }
 

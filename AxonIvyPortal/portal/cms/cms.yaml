@@ -16,6 +16,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       userNameRequired: User name must not be empty.
     absences: Absences
     addAbsence: Add absence
+    addSubstitute: Add substitute
     deputies: Substitutes
     description: Set up your vacations, illnesses or other external obligations that leads to any absence.
     editAbsence: Edit absence
@@ -26,8 +27,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     personalTaskDuringAbsenceDeputies: Substitutes for personally assigned tasks during the absence
     personalTaskPermanentDeputies: Permanent substitutes for personally assigned tasks
     selectDeputies: Select substitutes
+    selectSubstitute: Select substitute
     selectedDeputies: Selected substitutes
     showAbsencesInThePast: Display absences in the past
+    substituteName: Substitute name
+    substituteType: Substitute type
     substitutedUser: Substituted user
     taskForRole: 'Task for role: '
     till: Until
@@ -45,8 +49,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     myAbsences: My absences
     myDeputies: My substitutes
     nextAbsence: Upcoming absence
+    noSubstitutesDefined: No substitutes defined
+    notSubstitutingAnybody: Currently not substituting anybody
+    requestAbsences: Request absences
     selectedDeputyFor: Selected user is substitute for
     selectedUser: Selected user
+    substitutes: Substitutes
   AllTasks:
     caseDescription: Case description
     taskDescription: Task description
@@ -69,6 +77,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: External URL
       PROCESS: Axon Ivy process
+    DashboardDisplayType:
+      HIDDEN: Hidden
+      SUB_MENU: Submenu
+      TOP_MENU: Sidebar
     DashboardWidgetType:
       CASE: Case widget
       CUSTOM: Custom widget
@@ -128,7 +140,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskDocumentsPageTitle: Task Documents
   adminSettings:
     addLanguages: Add languages
-    addNewApplication: Add new third party application
     announcement:
       announcement: Announcement
       announcementsDisabled: Announcements are disabled.
@@ -138,26 +149,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       enable: Enable
       information: You can announce a general information (e.g. Downtime, Changes, etc.) in this area. This message can be seen by all portal users.
       tabTitle: Announcements
-    appDisplayName: Display name
-    appDisplayNameRequiredMsg: Please enter application display name.
-    appNameCharactersLimit: Only [\p{Alnum}_-]+ characters allowed for application name.
-    appNameRequiredMsg: Please input application name.
-    applicationHint: Use drag & drop to reorder.
-    applicationLinkRequiredMsg: Please enter portal link.
-    applicationList:
-      applicationSelectionHeader: Select application
-      menuIcon: Menu icon
-    applications: Applications
     applicationtype:
       thirdPartyApplication: Third Party Application
     currentValue: Current value
     defaultValue: Default value
-    deleteAppConfirmation: Are you sure to delete this {0} application ?
     dialogclosinginformation:
       dialogHeader: Portal configuration closed
       informMessage: Modifications in portal settings require a refresh of the current page for the new configuration to take effect.
-    duplicatePortalAppMsg: This application already exists, please choose another application.
-    editApplication: Edit application
     editSetting: Edit setting
     embedInFrame: Start a process/task in IFrame mode
     emptySupportedLanguages: No additional languages are supported
@@ -209,7 +207,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
     key: Key
-    link: Link
     loading: LOADING
     loginLogoSizeTooltip: 'Recommended size<BR/>Square logo: 80x80 px<BR/>Rectangle logo: 191x50 px'
     logoSizeRecommendation:
@@ -342,19 +339,23 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskCaseInformation: Task and Case Information
     Update: Update
     action: Actions
+    actionMenuContext: Open actions menu for {0} process
     active: Active
     add: Add
+    addContext: Add {0}
     addDocument: Add document
     addNote: Add note
     allCategories: All Categories
     allowPng: Only png types allowed
     apply: Apply
+    applyContext: Apply {0}
     at: at
     author: Author
     back: Back
     backToCaseMap: Back to case map
     backgroundColor: Background color
     cancel: Cancel
+    cancelContext: Cancel {0}
     case: Case
     caseCategory: Case category
     caseInformation: Case Information
@@ -362,7 +363,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: Categories
     change: Change
     close: Close
+    closeContext: Close {0}
     cockpit: Cockpit
+    collapseWidgetContext: Collapse {0} widget
     colors: Colors
     comment: Comment
     completedOn: Completed on
@@ -378,15 +381,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     dateRequired: Date can not be empty.
     day: Day
     dayUnit: day
-    days: days
+    days: day(s)
     default: Default
     defaultNotificationMessage: Hmm... Looks like something went wrong.
     delete: Delete
     deleteAbsenceHeaderText: Delete this absence?
     deleteChartHeaderText: Delete this chart?
+    deleteContext: Delete {0}
     deleteDocumentHeaderText: Delete this document?
     deleteFilterHeaderText: Delete this filter?
-    deleteSettingHeaderText: Delete this setting?
     description: Description
     design: Design
     destroy: Destroy
@@ -400,6 +403,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorFileUploadSize: The file size must be lower than {0}
     errorNotification: Error notification
     errorXhr: Failed to update website content
+    expandWidgetContext: Expand {0} widget
     filter:
       from: from
       moreOptions: More options
@@ -408,6 +412,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       worker: Editor
       wrongFromDateFormat: Please enter a valid 'from' date. Date format is {0}
       wrongToDateFormat: Please enter a valid 'to' date. Date format is {0}
+    filterLabel: Filter
     finish: Finish
     general: General
     generalInformation: General information
@@ -449,7 +454,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     note: NOTE
     numberOfSelectedFilter: selected filters
     ok: OK
+    okContext: OK {0}
     'on': 'on'
+    openWidgetFiltersContext: Open {0} filters
+    openWidgetFiltersWithCountContext: Open {0} filters, {1} active filters
+    openWidgetInfoContext: Open {0} widget information
+    pinCaseContext: Pin case {0}
+    pinTaskContext: Pin task {0}
     pleaseAddDocument: Please add a document with the link above.
     pleaseAddNote: Please add a note with the link above.
     previousStage: Previous stage
@@ -472,6 +483,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     role: Role
     save: Save
     saveAll: Save all
+    saveContext: Save {0}
     saveSuccessfully: Data saved successfully.
     search: Search
     second: second
@@ -492,6 +504,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     state: State
     status: Status
     switchToDesktopVersion: Switch to desktop version
+    taskActionMenuContext: Open actions menu for {0} task
     taskCanceledAndLeftSuccessfully: You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.
     taskFinishedSuccessfully: You have finished the task successfully
     taskName: Task name
@@ -504,6 +517,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
+    unpinCaseContext: Unpin case {0}
+    unpinTaskContext: Unpin task {0}
     uploadOneHere: Upload one here
     user: '{0} user'
     users: Users
@@ -513,6 +528,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     visible: Visible
     warning: Warning!
     welcomeToPortal: Welcome, please login
+    businessCaseId: Business Case ID
+    technicalCaseId: Technical Case ID
+    workingUser: Working user
     wrongDateFormat: Please enter valid date.
     year: year
     years: years
@@ -568,10 +586,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       PublicDashboardConfiguration: Public dashboard configuration
       ReorderPrivateDashboards: Reorder your dashboards
       ReorderPublicDashboards: Reorder public dashboards
-      Title: Dashboard configuration
+      Title: Portal configuration
     EmptyFilterMessage: No widget filter found
     Filter:
       FilterOptionHeader: Filter options
+      FilterPanelHeader: Filter panel
       ManageWidgetFilterHeader: Widget filter management
       NotFound: No filter found
       WidgetNameColumn: Widget name
@@ -600,6 +619,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     columnManagement: Column management
     configuration:
       CustomWidgetExternalLinkWarning: Some websites are not compatible with iframe due to security concerns. Please contact your administrator if the external website is not working properly.
+      CustomWidgetUrlInvalidScheme: The provided URL is not valid
       Parameters: Parameters
       SelectYourTemplate: Select your template
       configuration: Configuration
@@ -625,6 +645,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
+      deleteMenuItemMessage: Are you sure you want to delete the "{0}" menu item?
     deleteWidget: Delete widget
     editWidget: Edit widget
     existingField: The {0} field has already been existing
@@ -643,6 +664,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     loading: Loading...
     noCategory: There are no categories
     noDashboard: There are no dashboards. Add at least one dashboard, then add widgets.
+    noDashboardAvailable: No submenu dashboards available.
     noPermission: You don't have permissions to see dashboards.
     noWidget: There are no widgets provided for this dashboard
     numberPattern: Number Pattern
@@ -669,6 +691,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     statisticChartIntroduction: This widget displays available statistic charts.
     statisticChartWidget: Statistic chart
     switchToViewMode: View Mode
+    taskList: Task List
+    taskListIntroduction: This widget displays relevant task information according to defined settings.
+    taskStart: Task start
+    taskWidgetConfiguration: Task Widget Configuration
     taskWidgetInfo:
       expireToday: Expire today
       expiryThisWeek: Expire this week
@@ -676,10 +702,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByCategory: Number of tasks by category
       numberOfTasksByState: Number of tasks by state
       predefinedFilters: Predefined filters
-    taskList: Task List
-    taskListIntroduction: This widget displays relevant task information according to defined settings.
-    taskStart: Task start
-    taskWidgetConfiguration: Task Widget Configuration
     widgetInfo: Widget information
     widgetTitle: Widget Title
     widgetType: Widget type
@@ -776,6 +798,11 @@ ch.ivy.addon.portalkit.ui.jsf:
   notes:
     newNoteHeader: Add new note
     wroteAt: wrote at
+  notifications:
+    notificationOptions: Notification options
+    notificationsBadgeLabel: Open notification panel, {0} unread
+    openNotificationSettings: Open notification settings
+    viewNotificationsFullScreen: View notifications in full screen
   passwordSetting:
     changePasswordWSError: An error occurred while changing your password. Please contact your administrator if this problem persists.
     confirmNewPassword: Confirm new password
@@ -892,7 +919,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: This task does not contain any escalation handling logic, therefore no expiry time can be set.
     technicalCase: Technical Case
     workflowEventDialog: 'Workflow Events of task #{0}'
-    workingUser: Working user
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: Task deadline has been set successfully.
@@ -1130,6 +1156,14 @@ Dialogs:
               DateFilter:
                 SelectPeriod: Select period
         page:
+          MenuManagement:
+            HelpText: Customize the menu in this section to match your specific needs or preferences.
+            MenuIcon: Menu icon
+            MenuType: Menu type
+            InvalidUrl: 'The URL is not valid.'
+            InvalidUrlScheme: 'Only http and https URLs are allowed.'
+            InvalidStaticPagePath: 'The path must be relative to the application (absolute URLs are not allowed).'
+            OpenInNewTab: Open in new tab
           StatisticConfiguration:
             Aggregate: Aggregate
             AggregationMethod: Aggregation method
@@ -1183,9 +1217,11 @@ Labels:
   EnterValues: Enter values
   Enums:
     DashboardStandardTaskColumn:
+      BUSINESS_CASE_ID: Business Case ID
       EXPIRY: Expiry
       PRIORITY: Priority
       RESPONSIBLE: Responsible
+      TECHNICAL_CASE_ID: Technical Case ID
   Expand: Expand
   Filters: Filters
   Icon: Icon

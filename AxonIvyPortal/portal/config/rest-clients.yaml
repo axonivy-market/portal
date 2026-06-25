@@ -1,10 +1,11 @@
-# yaml-language-server: $schema=https://json-schema.axonivy.com/14.0-dev/config/rest-clients.json
+# yaml-language-server: $schema=https://json-schema.axonivy.com/14.0-dev/config/rest-clients-1.json
 RestClients:
-  PortalAI (LangChain Server):
-    UUID: 43e90b1f-7c7d-4a12-be4a-f4ee87d23e0a
+  PortalAI-LangChain-Server:
+    Name: PortalAI (LangChain Server)
     Url: http://localhost:8018/
     Features:
       - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
     OpenAPI:
       SpecUrl: http://localhost:8018/openapi.json
       Namespace: localhost.client
+    LegacyUUID: 43e90b1f-7c7d-4a12-be4a-f4ee87d23e0a

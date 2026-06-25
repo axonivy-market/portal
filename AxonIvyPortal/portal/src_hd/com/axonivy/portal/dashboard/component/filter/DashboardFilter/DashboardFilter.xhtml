@@ -73,6 +73,13 @@
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"
           responsibleCompleteMethod="#{cc.attrs.managedBean.completeOwners}" />
       </h:panelGroup>
+      
+      <h:panelGroup layout="block" rendered="#{filter.isWorker()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.WorkerFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"
+          workerCompleteMethod="#{cc.attrs.managedBean.completeUsers}" />
+      </h:panelGroup>
 
       <h:panelGroup layout="block" rendered="#{filter.isCategory()}">
         <ic:com.axonivy.portal.dashboard.component.filter.CategoryFilter
@@ -107,9 +114,21 @@
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
       </h:panelGroup>
+
+      <h:panelGroup layout="block" rendered="#{filter.isBusinessCaseId()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.IdFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" rendered="#{filter.isTechnicalCaseId()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.IdFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+      </h:panelGroup>
   
       <div class="remove-filter-panel">
-        <p:commandButton id="remove-filter" icon="si si-subtract" rendered="#{!readOnly}"
+        <p:commandButton id="remove-filter" icon="ti ti-minus" rendered="#{!readOnly}"
           styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger dashboard-widget-filter__remove-filter"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
           actionListener="#{cc.attrs.managedBean.removeFilter(widget,filter)}"

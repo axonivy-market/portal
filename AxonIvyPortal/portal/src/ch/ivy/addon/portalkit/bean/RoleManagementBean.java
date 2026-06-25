@@ -204,7 +204,7 @@ public class RoleManagementBean implements Serializable {
           .stream()
           .filter(role -> role.getSecurityMemberId().equals(existedRole.getSecurityMemberId()))
           .findFirst()
-          .ifPresentOrElse((user) -> {
+          .ifPresentOrElse((_) -> {
             if (isRemove) {
               foundUser.removeRole(existedRole);
             }

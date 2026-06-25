@@ -30,10 +30,10 @@ public class DeputyRoleUtils {
       String personalTaskPermanentKey = DeputyRoleType.PERSONAL_TASK_PERMANENT.toString();
       String personalTaskDuringAbsenceKey = DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE.toString();
       for (IvySubstitute ivySubstitute : ivySubstitutes) {
-        IRole substitutionRole = ivySubstitute.getSubstitionRole();
+        IRole substitutionRole = ivySubstitute.getSubstitutionRole();
         DeputyRoleType deputyRoleType = null;
         if (substitutionRole != null) {
-          deputyRoleKey = String.valueOf(substitutionRole.getId());
+          deputyRoleKey = substitutionRole.getSecurityMemberId();
           deputyRoleType = DeputyRoleType.TASK_FOR_ROLE;
         } else if(SubstitutionType.PERMANENT.equals(ivySubstitute.getSubstitutionType())) {
           deputyRoleKey = personalTaskPermanentKey;
@@ -117,9 +117,17 @@ public class DeputyRoleUtils {
             .findFirst()
             .orElse(null);
   }
-  
+
   public static void main(String[] args) {
     System.out.println(null == null);
+  }
+
+  public static List<ISecurityMember> cloneDeputyList(List<ISecurityMember> deputies) {
+    List<ISecurityMember> newDeputies = new ArrayList<>();
+    for (ISecurityMember member : deputies) {
+      newDeputies.add(member);
+    }
+    return newDeputies;
   }
 
   public static boolean isSecurityMemberSelectedInDeputyRoleByType(List<DeputyRole> deputyRoles,
