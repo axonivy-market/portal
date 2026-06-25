@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -25,7 +24,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
-import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.service.DeepLTranslationService;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
