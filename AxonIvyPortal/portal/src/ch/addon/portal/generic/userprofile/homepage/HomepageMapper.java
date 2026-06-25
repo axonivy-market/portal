@@ -17,11 +17,11 @@ public class HomepageMapper {
     homepage.setName(menuItem.getName());
     homepage.setLabel(menuItem.getLabel());
     homepage.setLink(menuItem.buildLink());
-    if (menuItem.getMenuKind() == MenuKind.PROCESS) {
+    if (menuItem.getMenuKind() == MenuKind.PROCESS_LIST) {
       homepage.setType(HomepageType.PROCESS);
     } else if (menuItem.getMenuKind() == MenuKind.MAIN_DASHBOARD) {
       homepage.setType(HomepageType.MAIN_DASHBOARD);
-    } else if (menuItem.getMenuKind() == MenuKind.CUSTOM) {
+    } else if (menuItem.getMenuKind() == MenuKind.PROCESS) {
       homepage.setType(HomepageType.CUSTOM);
     } else {
       homepage.setType(HomepageType.DASHBOARD);

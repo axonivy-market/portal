@@ -188,6 +188,11 @@ Variables:
     # Additional menu items for the main menu of Portal. Could be an Ivy process or an external link.
     # [file: json]
     CustomMenuItems: ""
+    Menu:
+      # The order of items in the Portal sidebar, managed in Portal Configuration > Sidebar.
+      # Stored as a JSON object: {"version":"...","menus":[{"id":"...","source":"..."}]}.
+      # [file: json]
+      Order: ""
     # Global footer info that is displayed in bottom right corner can be set in the portal admin settings.
     GlobalFooterInfo: ""
     # Support the translation from English to the other languages or from German to the other languages (German, English, French, Spanish)

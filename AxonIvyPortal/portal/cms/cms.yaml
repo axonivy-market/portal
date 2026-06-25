@@ -77,6 +77,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: External URL
       PROCESS: Axon Ivy process
+    DashboardDisplayType:
+      HIDDEN: Hidden
+      SUB_MENU: Submenu
+      TOP_MENU: Sidebar
     DashboardWidgetType:
       CASE: Case widget
       CUSTOM: Custom widget
@@ -136,7 +140,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskDocumentsPageTitle: Task Documents
   adminSettings:
     addLanguages: Add languages
-    addNewApplication: Add new third party application
     announcement:
       announcement: Announcement
       announcementsDisabled: Announcements are disabled.
@@ -146,26 +149,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       enable: Enable
       information: You can announce a general information (e.g. Downtime, Changes, etc.) in this area. This message can be seen by all portal users.
       tabTitle: Announcements
-    appDisplayName: Display name
-    appDisplayNameRequiredMsg: Please enter application display name.
-    appNameCharactersLimit: Only [\p{Alnum}_-]+ characters allowed for application name.
-    appNameRequiredMsg: Please input application name.
-    applicationHint: Use drag & drop to reorder.
-    applicationLinkRequiredMsg: Please enter portal link.
-    applicationList:
-      applicationSelectionHeader: Select application
-      menuIcon: Menu icon
-    applications: Applications
     applicationtype:
       thirdPartyApplication: Third Party Application
     currentValue: Current value
     defaultValue: Default value
-    deleteAppConfirmation: Are you sure to delete this {0} application ?
     dialogclosinginformation:
       dialogHeader: Portal configuration closed
       informMessage: Modifications in portal settings require a refresh of the current page for the new configuration to take effect.
-    duplicatePortalAppMsg: This application already exists, please choose another application.
-    editApplication: Edit application
     editSetting: Edit setting
     embedInFrame: Start a process/task in IFrame mode
     emptySupportedLanguages: No additional languages are supported
@@ -217,7 +207,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
     key: Key
-    link: Link
     loading: LOADING
     loginLogoSizeTooltip: 'Recommended size<BR/>Square logo: 80x80 px<BR/>Rectangle logo: 191x50 px'
     logoSizeRecommendation:
@@ -401,7 +390,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteContext: Delete {0}
     deleteDocumentHeaderText: Delete this document?
     deleteFilterHeaderText: Delete this filter?
-    deleteSettingHeaderText: Delete this setting?
     description: Description
     design: Design
     destroy: Destroy
@@ -540,6 +528,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     visible: Visible
     warning: Warning!
     welcomeToPortal: Welcome, please login
+    businessCaseId: Business Case ID
+    technicalCaseId: Technical Case ID
     workingUser: Working user
     wrongDateFormat: Please enter valid date.
     year: year
@@ -596,7 +586,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PublicDashboardConfiguration: Public dashboard configuration
       ReorderPrivateDashboards: Reorder your dashboards
       ReorderPublicDashboards: Reorder public dashboards
-      Title: Dashboard configuration
+      Title: Portal configuration
     EmptyFilterMessage: No widget filter found
     Filter:
       FilterOptionHeader: Filter options
@@ -655,6 +645,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
+      deleteMenuItemMessage: Are you sure you want to delete the "{0}" menu item?
     deleteWidget: Delete widget
     editWidget: Edit widget
     existingField: The {0} field has already been existing
@@ -673,6 +664,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     loading: Loading...
     noCategory: There are no categories
     noDashboard: There are no dashboards. Add at least one dashboard, then add widgets.
+    noDashboardAvailable: No submenu dashboards available.
     noPermission: You don't have permissions to see dashboards.
     noWidget: There are no widgets provided for this dashboard
     numberPattern: Number Pattern
@@ -1164,6 +1156,14 @@ Dialogs:
               DateFilter:
                 SelectPeriod: Select period
         page:
+          MenuManagement:
+            HelpText: Customize the menu in this section to match your specific needs or preferences.
+            MenuIcon: Menu icon
+            MenuType: Menu type
+            InvalidUrl: 'The URL is not valid.'
+            InvalidUrlScheme: 'Only http and https URLs are allowed.'
+            InvalidStaticPagePath: 'The path must be relative to the application (absolute URLs are not allowed).'
+            OpenInNewTab: Open in new tab
           StatisticConfiguration:
             Aggregate: Aggregate
             AggregationMethod: Aggregation method
@@ -1217,9 +1217,11 @@ Labels:
   EnterValues: Enter values
   Enums:
     DashboardStandardTaskColumn:
+      BUSINESS_CASE_ID: Business Case ID
       EXPIRY: Expiry
       PRIORITY: Priority
       RESPONSIBLE: Responsible
+      TECHNICAL_CASE_ID: Technical Case ID
   Expand: Expand
   Filters: Filters
   Icon: Icon
