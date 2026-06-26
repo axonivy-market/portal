@@ -502,8 +502,10 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   }
 
   public String operatorCountingLabel(ColumnModel column) {
-    List<FilterOperator> availableOperators = getAvailableOperators(column);
-    int total = CollectionUtils.size(availableOperators);
+    if (column == null) {
+      return "0/0";
+    }
+    int total = CollectionUtils.size(getAvailableOperators(column));
     int selected = CollectionUtils.size(column.getAllowedOperators());
     return selected + "/" + total;
   }

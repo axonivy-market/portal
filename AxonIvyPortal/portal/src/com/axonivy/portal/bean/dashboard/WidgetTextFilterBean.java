@@ -41,7 +41,7 @@ public class WidgetTextFilterBean implements Serializable {
       return false;
     }
 
-    for (FilterOperator operator : getEnabledTextOperators()) {
+    for (FilterOperator operator : textOperators) {
       if (operator == FilterOperator.EMPTY || operator == FilterOperator.NOT_EMPTY) {
         continue;
       }
@@ -50,7 +50,7 @@ public class WidgetTextFilterBean implements Serializable {
       }
     }
     
-    for (FilterOperator operator : getStatisticOperators()) {
+    for (FilterOperator operator : statisticOperators) {
       if (operator == filter.getOperator()) {
         return true;
       }
@@ -68,9 +68,5 @@ public class WidgetTextFilterBean implements Serializable {
 
   public List<FilterOperator> getStatisticOperators() {
     return statisticOperators;
-  }
-
-  private List<FilterOperator> getEnabledTextOperators() {
-    return textOperators;
   }
 }

@@ -138,7 +138,7 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
     filter.setLabel(filterField.getLabel());
     filterField.addNewFilter(filter);
     // Override the operator with the first enabled operator according to the global and widget policy if the default one is not allowed
-    filter.setOperator(operatorPolicyService.findFirstEnabledOp(filter, filter.getOperator()).get());
+    operatorPolicyService.findFirstEnabledOp(filter, filter.getOperator()).ifPresent(filter::setOperator);
     initCustomFieldNumberPattern(filter, field, filterField);
   }
 
