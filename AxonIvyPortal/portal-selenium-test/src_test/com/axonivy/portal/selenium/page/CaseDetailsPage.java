@@ -821,10 +821,6 @@ public class CaseDetailsPage extends TemplatePage {
     return responsible.get().$(".name-after-avatar").shouldBe(Condition.exist, DEFAULT_TIMEOUT).getText();
   }
 
-  public void scrollToRelatedTask() {
-    $("[id$=':task-widget:related-tasks_data']").scrollIntoCenter();
-  }
-
   public void openTaskDelegateDialog(String taskName) {
     clickRelatedTaskActionButton(taskName);
     waitForElementDisplayed(By.cssSelector("a[id$='\\:task-delegate-command']"), true);
