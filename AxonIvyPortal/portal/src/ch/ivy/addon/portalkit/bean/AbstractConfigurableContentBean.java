@@ -20,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
+import com.axonivy.portal.components.service.impl.ProcessService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -153,12 +154,18 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
   
   protected void updateUrlForCustomWidget(List<? extends AbstractWidget> widgets) {
     // get URL for ivy process in custom widgets
+    var allProcesses = ProcessService.getInstance().findAllProcesses();
     for (AbstractWidget widget : widgets) {
       if (widget instanceof CustomWidget) {
         CustomWidget customWidget = (CustomWidget) widget;
-        if (StringUtils.isNotBlank(customWidget.getData().getProcessPath())) {
-          String url = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getProcessPath());
-          customWidget.getData().setUrl(url);
+        String processPath = customWidget.getData().getProcessPath();
+        if (StringUtils.isNotBlank(processPath)) {
+            String url = allProcesses.stream()
+                .filter(ws -> ws.getId().equals(processPath) || ws.getId().endsWith(processPath))
+                .map(ws -> ws.getLink().getRelative())
+                .findFirst()
+                .orElse(StringUtils.EMPTY);
+            customWidget.getData().setUrl(url);
         }
       }
     }
