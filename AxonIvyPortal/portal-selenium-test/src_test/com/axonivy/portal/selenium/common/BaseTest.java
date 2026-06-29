@@ -83,11 +83,7 @@ public class BaseTest {
   protected String cleanupDataLink = "portalKitTestHelper/1511A66AF619A768/cleanData.ivp";
   protected String complexPaymentUrl = "portal-developer-examples/162511D2577DBA88/complexPayment.ivp";
   protected String createAlphaCompanyUrl = "portal-components-examples/1818977D467E3129/createAlphaCompany.ivp";
-  protected String viewAlphaCompanyProcessHistoryUrl =
-      "portal-components-examples/1818977D467E3129/viewProcessHistoryOfAlphaCompany.ivp";
   protected String createBetaCompanyUrl = "portal-components-examples/1818977D467E3129/createBetaCompany.ivp";
-  protected String viewBetaCompanyProcessHistoryInDialogUrl =
-      "portal-components-examples/1818977D467E3129/viewProcessHistoryOfBetaCompany.ivp";
   protected String createNewPaymentUrl = "portal-developer-examples/162511D2577DBA88/createNewPayment.ivp";
   protected String documentTableComponentUrl =
       "portal-components-examples/1818938E7EBC9329/showCustomizedDocumentTableExample.ivp";
