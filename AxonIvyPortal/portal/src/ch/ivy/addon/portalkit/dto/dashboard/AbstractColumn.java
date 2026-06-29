@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.math.NumberUtils;
 
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -58,6 +59,8 @@ public abstract class AbstractColumn implements Serializable {
   protected String fieldStyle;
   protected Boolean visible;
   protected Boolean enableFilter;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  protected List<FilterOperator> allowedOperators;
   protected Boolean quickSearch;
   protected Boolean sortable;
   protected DashboardColumnFormat format;
@@ -260,6 +263,14 @@ public abstract class AbstractColumn implements Serializable {
 
   public void setEnableFilter(Boolean enableFilter) {
     this.enableFilter = enableFilter;
+  }
+
+  public List<FilterOperator> getAllowedOperators() {
+    return allowedOperators;
+  }
+
+  public void setAllowedOperators(List<FilterOperator> allowedOperators) {
+    this.allowedOperators = allowedOperators;
   }
 
   public Boolean getSortable() {
@@ -497,7 +508,7 @@ public abstract class AbstractColumn implements Serializable {
   
   @JsonIgnore
   public boolean getHasCmsValues() {
-    return hasCmsValues;
+    return Boolean.TRUE.equals(hasCmsValues);
   }
   
   public void setHasCmsValues(Boolean hasCmsValues) {

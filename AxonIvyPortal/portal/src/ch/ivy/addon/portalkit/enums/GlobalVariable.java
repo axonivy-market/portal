@@ -16,6 +16,7 @@ import com.axonivy.portal.enums.SearchScopeCaseField;
 import com.axonivy.portal.enums.SearchScopeTaskField;
 import com.axonivy.portal.enums.SidebarMode;
 import com.axonivy.portal.enums.ThemeMode;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
@@ -95,7 +96,9 @@ public enum GlobalVariable {
       "enablePinCase"),ALLOW_KEYBOARD_SHORTCUTS_CONFIGURATION(
           "Portal.Accessibility.AllowKeyboardShortcutsConfiguration", GlobalVariableType.SELECTION, Option.TRUE.toString(), "allowKeyboardShortcutsConfiguration"),
   SIDEBAR_MODE("Portal.Sidebar.Mode", GlobalVariableType.EXTERNAL_SELECTION, SidebarMode.HOVER.name(), "sidebarMode", getSidebarModes()),
-  MAXIMUM_SELECTED_TASKS("Portal.Tasks.MaximumSelectedTasks", GlobalVariableType.NUMBER, "20", "maximumSelectedTasks");
+  MAXIMUM_SELECTED_TASKS("Portal.Tasks.MaximumSelectedTasks", GlobalVariableType.NUMBER, "20", "maximumSelectedTasks"),
+  FILTER_OPERATOR_POLICY("Portal.ComplexFilter.Operators", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS,
+      getFilterOperatorOptions(), "DashboardFilterOperatorPolicy", getFilterOperatorOptions());
 
   private String key;
   private GlobalVariableType type;
@@ -302,6 +305,14 @@ public enum GlobalVariable {
     Map<String, Object> result = new HashMap<>();
     for (SidebarMode mode : SidebarMode.values()) {
       result.put(mode.name(), mode);
+    }
+    return result;
+  }
+
+  private static Map<String, Object> getFilterOperatorOptions() {
+    Map<String, Object> result = new LinkedHashMap<>();
+    for (FilterOperator operator : FilterOperator.values()) {
+      result.put(operator.name(), operator);
     }
     return result;
   }
