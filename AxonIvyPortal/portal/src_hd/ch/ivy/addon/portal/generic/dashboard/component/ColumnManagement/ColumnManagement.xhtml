@@ -10,13 +10,15 @@
 <cc:implementation>
   <f:event listener="#{columnManagementBean.preRender(cc.attrs.widget)}" type="preRenderComponent" />
   <p:dialog id="column-management-dialog" widgetVar="column-management-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/columnManagement')}"
-    appendTo="@(body)" fitViewport="true" width="750" closeOnEscape="true" draggable="false" dynamic="true"
+    appendTo="@(body)" fitViewport="true" width="870" closeOnEscape="true" draggable="false" dynamic="true"
     responsive="true" modal="true" styleClass="dialog-responsive">
     <h:form id="column-management-form">
+      <p:remoteCommand name="updateColumnTable" update="column-management-datatable" global="false" />
       <ui:include src="FieldAdd.xhtml" />
 
       <p:dataTable id="column-management-datatable" value="#{columnManagementBean.columnsBeforeSave}" var="column"
-        draggableRows="true" rowDragSelector="i.ti-arrows-vertical" lazy="false">
+        draggableRows="true" rowDragSelector="i.ti-arrows-vertical" lazy="false"
+        styleClass="column-management-datatable">
         <p:ajax event="rowReorder" global="false" />
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}" width="70" styleClass="text-center">
           <p:commandLink id="toggle-visibility" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget #{columnManagementBean.isEnableHideCaseCreator(column) ? 'ui-disable' : ''}" process="@this"
@@ -37,6 +39,7 @@
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filterLabel')}" width="50" styleClass="text-center">
           <p:commandLink id="toggle-filter" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget" process="@this"
             rendered="#{column.canFilter()}"
+            disabled="#{columnManagementBean.isFilterToggleDisabled(column)}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filterLabel')}"
             actionListener="#{columnManagementBean.handleFilter(column)}"
             global="false" update="column-management-datatable" partialSubmit="true" immediate="true">
@@ -44,6 +47,33 @@
               <span class="ui-chkbox-icon ui-icon ui-c #{column.enableFilter ? 'ui-icon-check':'ui-icon-blank'}"></span>
             </h:panelGroup>
           </p:commandLink>
+        </p:column>
+        <p:column width="120" styleClass="text-center">
+          <f:facet name="header">
+            <h:panelGroup styleClass="column-management-operator-header inline-flex align-items-center">
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/operators')}" />
+              <h:outputText id="operator-policy-info-icon" styleClass="ti ti-info-circle column-management-operator-info-icon" />
+            </h:panelGroup>
+            <p:tooltip for="operator-policy-info-icon"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/operatorPolicyTooltip')}"
+              hideEvent="mouseleave click" />
+          </f:facet>
+          <h:panelGroup rendered="#{column.canFilter()}">
+            <p:selectCheckboxMenu id="operator-selection" value="#{column.allowedOperators}" multiple="false" filter="false"
+              updateLabel="false" disabled="#{not column.enableFilter}"
+              panelStyleClass="task-configuration__selectcheckboxmenu-panel task-configuration__operator-selection-panel"
+              styleClass="task-configuration__selectcheckboxmenu task-configuration__operator-selection-menu js-operator-selection-#{column.field}"
+              label="#{columnManagementBean.operatorCountingLabel(column)}"
+              onHide="updateColumnTable()">
+              <f:selectItems value="#{columnManagementBean.getAvailableOperators(column)}" var="operator"
+                itemValue="#{operator}" itemLabel="#{operator.label}"
+                itemDisabled="#{not columnManagementBean.isOperatorGloballyEnabled(operator)}" />
+              <p:ajax event="change" listener="#{columnManagementBean.onOperatorSelectionChange(column)}"
+                process="@this" global="false" />
+              <p:ajax event="toggleSelect" listener="#{columnManagementBean.onOperatorSelectionChange(column)}"
+                process="@this" global="false" />
+            </p:selectCheckboxMenu>
+          </h:panelGroup>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" width="90" styleClass="text-center">
           <h:panelGroup layout="block" id="quick-search-checkbox-panel"

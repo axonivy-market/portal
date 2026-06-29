@@ -16,6 +16,8 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.service.filter.operatorpolicy.service.OperatorPolicyService;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomNumber;
@@ -28,6 +30,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 
 public abstract class AbstractTaskWidgetFilterBean implements Serializable {
@@ -37,17 +40,19 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
   protected TaskDashboardWidget widget;
   protected List<FilterField> filterFields;
   protected Map<String, TaskColumnModel> mapHeaders;
-
+  private OperatorPolicyService operatorPolicyService;
   public void preRender(TaskDashboardWidget widget) {
     this.widget = widget;
     this.widget.setInConfiguration(true);
     this.mapHeaders = widget.getColumns().stream().filter(item -> item.getType().equals(DashboardColumnType.STANDARD)).collect(Collectors.toMap(TaskColumnModel::getField, Function.identity()));
     initFilterFields();
     initFilters();
+    this.operatorPolicyService = new OperatorPolicyService(this.widget.getFilterableColumns());
   }
 
   private void initFilterFields() {
-    Set<String> enabledFilterFieldNames = this.widget.getFilterableColumns().stream()
+    List<ColumnModel> effectiveColumns = WidgetFilterService.getEnabledFilterableColumns(this.widget);
+    Set<String> enabledFilterFieldNames = effectiveColumns.stream()
       .map(ColumnModel::getField)
       .collect(Collectors.toSet());
 
@@ -59,7 +64,7 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
 
     updateFilterLabels();
     // Add custom fields which are selected by user.
-    this.widget.getFilterableColumns().stream().filter(column -> column.getType() != DashboardColumnType.STANDARD)
+    effectiveColumns.stream().filter(column -> column.getType() != DashboardColumnType.STANDARD)
         .map(column -> TaskFilterFieldFactory.findBy(this.widget.getId(),column.getField(), column.getType()))
         .filter(Objects::nonNull)
         .forEach(this.filterFields::add);
@@ -110,6 +115,13 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
     return filterFields;
   }
 
+  public List<FilterOperator> resolveEffectiveOperatorsByPolicy(DashboardFilter filter) {
+    if (widget == null) {
+      return List.of();
+    }
+    return operatorPolicyService.resolveEffectiveOperators(filter);
+  }
+
   public void onSelectFilter(DashboardFilter filter) {
     String field = Optional.ofNullable(filter).map(DashboardFilter::getFilterField).map(FilterField::getName)
         .orElse(StringUtils.EMPTY);
@@ -123,6 +135,8 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
     }
     filter.setLabel(filterField.getLabel());
     filter.getFilterField().addNewFilter(filter);
+    // Override the operator with the first enabled operator according to the global and widget policy if the default one is not allowed
+    operatorPolicyService.findFirstEnabledOp(filter, filter.getOperator()).ifPresent(filter::setOperator);
     initCustomFieldNumberPattern(filter, field, filter.getFilterField());
   }
 
