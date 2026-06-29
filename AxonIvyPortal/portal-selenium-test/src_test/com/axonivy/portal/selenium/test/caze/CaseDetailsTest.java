@@ -271,12 +271,15 @@ public class CaseDetailsTest extends BaseTest {
 
   @Test
   public void testRelatedTaskDestroyTask() {
+    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
+
     createTestingTask();
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     assertTrue(detailsPage.isRelatedTaskDestroyEnabled(SICK_LEAVE_REQUEST_TASK));
     detailsPage.destroyTask(SICK_LEAVE_REQUEST_TASK);
     detailsPage.confimRelatedTaskDestruction();
     WaitHelper.assertTrueWithWait(() -> detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.DESTROYED));
+    denySpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
   }
 
   @Test
