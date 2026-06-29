@@ -197,6 +197,10 @@ Menu Management feature.
    The ``Portal.ThirdPartyApplications`` variable is deprecated and will be removed in a
    future version.
 
+6. Operators can be restricted globally by admins and further narrowed per field in each widget via Column Management.
+Filters using disabled operators are automatically removed. 
+See :ref:`Restricting Filter Fields And Operators <restricting-filter-fields-and-operators>` for details.
+
 Migrate 13.1 To 13.2
 --------------------
 
