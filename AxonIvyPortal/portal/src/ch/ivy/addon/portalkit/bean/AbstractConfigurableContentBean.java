@@ -19,7 +19,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
-import com.axonivy.portal.components.publicapi.ProcessStartAPI;
+import com.axonivy.portal.components.service.impl.ProcessService;
+import com.axonivy.portal.components.util.ProcessStartUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -157,7 +158,8 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
       if (widget instanceof CustomWidget) {
         CustomWidget customWidget = (CustomWidget) widget;
         if (StringUtils.isNotBlank(customWidget.getData().getProcessPath())) {
-          String url = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getProcessPath());
+          String url = ProcessStartUtils.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getProcessPath(),
+              ProcessService.getInstance().findAllProcesses());
           customWidget.getData().setUrl(url);
         }
       }

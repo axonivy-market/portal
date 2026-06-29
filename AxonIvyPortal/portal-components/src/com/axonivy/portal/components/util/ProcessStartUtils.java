@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -21,6 +22,7 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class ProcessStartUtils {
 
@@ -58,6 +60,48 @@ public class ProcessStartUtils {
   private static IProcessStart findProcessStartByUserFriendlyRequestPathAndPmv(String requestPath,
       IProcessModelVersion processModelVersion) {
     return IWorkflowProcessModelVersion.of(processModelVersion).findStartElementByUserFriendlyRequestPath(requestPath);
+  }
+
+  /**
+   * Find startable link from friendly request path, only matching against the given list of allowed/startable
+   * processes.
+   *
+   * @param friendlyRequestPath friendly path e.g "Start
+   *                            Processes/UserExampleGuide/userExampleGuide.ivp"
+   * @param startableProcesses processes that the resolved link is allowed to match
+   * @return start link which session user can start or empty string
+   */
+  public static String findStartableLinkByUserFriendlyRequestPath(String friendlyRequestPath,
+      List<IWebStartable> startableProcesses) {
+    return Sudo.get(() -> {
+      List<IApplication> applicationsInSecurityContext = IApplicationRepository.of(ISecurityContext.current()).all();
+      for (IApplication app : applicationsInSecurityContext) {
+        IProcessStart processStart = findStartableProcessStartByUserFriendlyRequestPath(friendlyRequestPath, app,
+            startableProcesses);
+        if (processStart != null) {
+          return processStart.getLink().getRelative();
+        }
+      }
+      return StringUtils.EMPTY;
+    });
+  }
+
+  private static IProcessStart findStartableProcessStartByUserFriendlyRequestPath(String requestPath,
+      IApplication application, List<IWebStartable> startableProcesses) {
+    return filterActivePMVOfApp(application)
+        .map(pmv -> findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, pmv)).filter(Objects::nonNull)
+        .filter(processStart -> isStartableProcessStart(processStart.getLink().getRelative(), startableProcesses))
+        .findFirst().orElse(null);
+  }
+
+  private static boolean isStartableProcessStart(String processRelativeLink, List<IWebStartable> startableProcesses) {
+    return startableProcesses.stream().map(IWebStartable::getLink)
+        .filter(webLink -> webLink.getRelative().equals(processRelativeLink)).findFirst().isPresent();
+  }
+
+  private static Stream<IProcessModelVersion> filterActivePMVOfApp(IApplication application) {
+    return application.getProcessModelsSortedByName().stream().filter(pm -> isActive(pm))
+        .map(IProcessModel::getReleasedProcessModelVersion).filter(pmv -> isActive(pmv));
   }
 
   private static boolean isActive(IProcessModel processModel) {
