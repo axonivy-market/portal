@@ -9,17 +9,16 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-29 10:12+0000\n"
-"PO-Revision-Date: 2026-06-29 11:09+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"PO-Revision-Date: 2026-05-18 10:42+0000\n"
+"Last-Translator: Tung Le <tung.le@axonactive.com>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
-"portal-12/doc/portal-developer-guide/ja/>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
+"portal/portal-12/doc/portal-developer-guide/ja/>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
-"X-Generator: Weblate 2026.7.dev0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
 msgid "Architecture"
@@ -3720,14 +3719,14 @@ msgstr ""
 "``black`` に変更できます。高コントラストにより、ボタンなどのコンポーネントのテキストが読みやすくなります。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:118
+#, fuzzy
 msgid ""
 "If you are using IFrames and you want to customize the colors of the "
 "project specific UIs, then refer to this documentation :dev-"
 "url:`/doc/12.0/designer-guide/how-to/overrides.html`"
 msgstr ""
-"IFrame を使用しており、プロジェクト固有の UI の色をカスタマイズしたい場合は、"
-"こちらのドキュメントを参照してください:dev-url:`/doc/12.0/designer-guide/how-"
-"to/overrides.html`"
+"IFrameを使用しており、プロジェクト固有のUIの色をカスタマイズしたい場合は、こちらのドキュメントを参照してください。:dev-"
+"url:`/12.0/designer-guide/how-to/overrides.html`"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:122
 msgid ""
@@ -4479,16 +4478,16 @@ msgstr ""
 "つのみ使用できます。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:136
+#, fuzzy
 msgid ""
 "We support all task business states for filter type ``states``. Please "
 "refer to :dev-url:`Task Business States </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` to check for "
 "available task business states."
 msgstr ""
-"フィルタタイプ ``` `states`` については、すべてのタスクビジネス状態をサポート"
-"しています。利用可能なタスクビジネス状態については、:dev-url:`Task Business "
-"States </doc/12.0/public-api/ch/ivyteam/ivy/workflow/task/"
-"TaskBusinessState.html>` を参照してください。"
+"フィルタータイプ ``states`` ではすべてのタスクのビジネスの状態がサポートされます。:dev-url:`タスクのビジネスの状態 "
+"</doc/12.0/public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` "
+"を参照して、利用可能なタスクのビジネスの状態を確認してください。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:140
 msgid "Show Custom Panels (Widgets)"
@@ -5969,13 +5968,14 @@ msgid "Include in quick search: ``\"true\"`` or ``\"false\"``"
 msgstr "クイック検索に含める: ``` `\"true\"`` または ``` `\"false\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:224
+#, fuzzy
 msgid "``enableFilter``"
-msgstr "``enableFilter``"
+msgstr "``enableQuickSearch``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:227
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:199
 msgid "Allow filtering on this column in complex filter."
-msgstr "複合フィルターにおいて、この列でのフィルタリングを許可します。"
+msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:228
 msgid "``headers``"
@@ -7405,16 +7405,18 @@ msgid "``sorting``"
 msgstr "``sorting``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:191
+#, fuzzy
 msgid "``\"BY_ALPHABETICALLY\"``"
-msgstr "``\"BY_ALPHABETICALLY\"``"
+msgstr "``\"ALPHABETICALLY\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:192
+#, fuzzy
 msgid ""
 "Sort order: ``\"BY_ALPHABETICALLY\"`` or ``\"BY_INDEX\"`` (requires "
 "custom field)"
 msgstr ""
-"並べ替え順序：``\"BY_ALPHABETICALLY\"`` または``\"BY_INDEX\"``（"
-"カスタムフィールドが必要です）"
+"ソート順: ``` `\"ALPHABETICALLY\"`` または ``` `\"SORTING_INDEX\"`` "
+"(カスタムフィールドが必要)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:196
 msgid "Enable quick search textbox for process names"
@@ -7819,16 +7821,12 @@ msgid ""
 "``businessCaseId`` - Business Case ID (hidden by default; sortable; quick"
 " search supported)"
 msgstr ""
-"``businessCaseId`` - ビジネスケースID（デフォルトでは非表示、ソート可能、"
-"クイック検索対応）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:190
 msgid ""
 "``technicalCaseId`` - Technical Case ID (hidden by default; sortable; "
 "quick search supported)"
 msgstr ""
-"``technicalCaseId`` - 技術ケースID（デフォルトでは非表示、ソート可能、"
-"クイック検索対応）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:192
 msgid "``visible`` (string, default: ``\"true\"``)"
@@ -7839,8 +7837,9 @@ msgid "``quickSearch`` (string, default: ``\"false\"``)"
 msgstr "``quickSearch`` (文字列、デフォルト:``\"false\"``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:198
+#, fuzzy
 msgid "``enableFilter`` (boolean, default: ``true``)"
-msgstr "``enableFilter`` (ブール値、デフォルト:``true``)"
+msgstr "``enableQuickSearch`` (ブール値、デフォルト: ``` `false``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:201
 msgid "``headers`` (array, optional)"
@@ -7922,20 +7921,21 @@ msgid "``to``: string value. E.g.: \"05/05/2024\""
 msgstr "``to``：文字列値。例：\"2024/05/05\""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:331
+#, fuzzy
 msgid "``activator`` and ``worker``"
-msgstr "``activator`` および``worker``"
+msgstr "``activator``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:361
+#, fuzzy
 msgid ""
 "These columns only accept a list of role names or usernames as filter "
 "conditions for the task's responsible username or working username. The "
 "available filter operators are ``in``, ``not_in`` and ``current_user``. "
 "The ``current_user`` operator does not require value field."
 msgstr ""
-"これらの列では、タスクの担当ユーザー名または作業ユーザー名のフィルタ条件とし"
-"て、ロール名またはユーザー名のリストのみを受け付けます。使用可能なフィルタ演"
-"算子は、``、in``、``、not_in``、および``、current_user``です。``、"
-"current_user``演算子では、valueフィールドは不要です。"
+"この列は、タスク責任者のユーザー名のフィルター条件としてロール名またはユーザー名のリストのみ受け入れます。利用可能なフィルターの演算子は "
+"``in``、 ``not_in``、 ``current_user`` です。``current_user`` "
+"演算子には値フィールドは必要ありません。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:388
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:417
@@ -7974,14 +7974,14 @@ msgid ""
 msgstr "この列は、フィルター条件としてタスクのビジネスの状態名のリストのみ受け入れます。利用可能なフィルターの演算子は ``in`` です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:475
+#, fuzzy
 msgid ""
 "Refer to :dev-url:`Task Business States </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` for available "
 "task business states."
 msgstr ""
-"利用可能なタスクのビジネス状態については、:dev-url:`Task Business States </"
-"doc/12.0/public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` を"
-"参照してください。"
+"利用可能なタスクのビジネスの状態については、:dev-url:`タスクのビジネスの状態 </doc/12.0/public-"
+"api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:479
 msgid ""
@@ -8006,7 +8006,7 @@ msgstr "``application``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:549
 msgid "``businessCaseId`` and ``technicalCaseId``"
-msgstr "``businessCaseId`` および``technicalCaseId``"
+msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:579
 msgid ""
@@ -8016,19 +8016,12 @@ msgid ""
 "This is consistent with how the task ``id`` filter works. The only "
 "available filter operator is ``contains``."
 msgstr ""
-"これらの列には、それぞれタスクに関連付けられたケースのビジネスケースIDと"
-"テクニカルケースIDが表示されます。``contains`` 演算子は、数値IDの文字列表現に"
-"対して部分文字列の一致チェックを行います。これは、タスクの``id`` フィルターの"
-"動作と一貫しています。利用可能なフィルター演算子は、``contains`` のみです。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:585
 msgid ""
 "These columns support sorting and quick search (quick search is disabled "
 "by default; set ``quickSearch: \"true\"`` on the column to enable it)."
 msgstr ""
-"これらの列は、並べ替えとクイック検索に対応しています（クイック検索は"
-"デフォルトで無効になっています。有効にするには、列に対して ``` `quickSearch: "
-"\"true\"`` を設定してください）。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:587
 msgid "Custom Field Column :"
@@ -8530,12 +8523,13 @@ msgstr ""
 "Engineにデプロイするには、プロジェクトと構成アーティファクトを含む.iarアーカイブまたは.zipパッケージをデプロイします。推奨されるアーキテクチャでは、ポータルとビジネスアプリケーションを分離しつつ共通のセキュリティシステムを共有し、複数のアプリケーションにわたるタスクおよびケース管理の集中化を実現します。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:13
+#, fuzzy
 msgid ""
 "For comprehensive deployment information, refer to the :dev-url:`Axon Ivy"
 " deployment guidelines </doc/12.0/engine-guide/deployment/index.html>`."
 msgstr ""
-"包括的なデプロイ情報については、:dev-url:`のAxon Ivyデプロイガイドライン </"
-"doc/12.0/engine-guide/deployment/index.html>` を参照してください。"
+"包括的なデプロイメント情報については、:dev-url:`Axon Ivy deployment guidelines </12.0"
+"/engine-guide/deployment/index.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:16
 msgid "Deployment Architecture"
@@ -8628,6 +8622,7 @@ msgid "Production deployments (includes all configuration artifacts)"
 msgstr "本番環境へのデプロイ（すべての構成アーティファクトを含む）"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:71
+#, fuzzy
 msgid ""
 "Use .zip files for production deployments. They bundle :dev-url:`branding"
 " </doc/12.0/designer-guide/user-interface/branding/branding-"
@@ -8635,11 +8630,10 @@ msgid ""
 "url:`configuration </doc/12.0/engine-guide/deployment/prepare"
 "/application-configuration/index.html>` with your projects."
 msgstr ""
-"本番環境へのデプロイには .zip ファイルを使用してください。これには、:dev-"
-"url:`のブランディング </doc/12.0/designer-guide/user-interface/branding/"
-"branding-engine.html>` 、変数、データベース、および REST クライアント:dev-"
-"url:`の設定 </doc/12.0/engine-guide/deployment/prepare/application-"
-"configuration/index.html>` がプロジェクトにバンドルされています。"
+"本番環境へのデプロイには .zip ファイルを使用してください。これらはプロジェクトに :dev-url:`branding </12.0"
+"/designer-guide/user-interface/branding/branding-engine.html>` "
+"、変数、データベース、および REST クライアント :dev-url:`configuration </12.0/engine-"
+"guide/deployment/prepare/application-configuration/index.html>` をバンドルします。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:74
 msgid "Prepare Deployment Packages"
@@ -8841,16 +8835,16 @@ msgid "Portal configuration can be managed through multiple methods."
 msgstr "ポータル設定は複数の方法で管理できます。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:185
+#, fuzzy
 msgid ""
 "Configuration can be done through :dev-url:`deployment files </doc/12.0"
 "/engine-guide/deployment/prepare/application-configuration/index.html>` "
 "or the :dev-url:`Engine Cockpit UI </doc/12.0/engine-guide/reference"
 "/engine-cockpit>`."
 msgstr ""
-"設定は、:dev-url:`のデプロイメントファイル（ </doc/12.0/engine-guide/"
-"deployment/prepare/application-configuration/index.html>` ）または:dev-"
-"url:`Engine Cockpit UI（ </doc/12.0/engine-guide/reference/engine-cockpit>` "
-"）を通じて行うことができます。"
+"設定は :dev-url:`deployment files </12.0/engine-guide/deployment/prepare"
+"/application-configuration/index.html>` または :dev-url:`Engine Cockpit UI "
+"</12.0/engine-guide/reference/engine-cockpit>` を通じて行えます。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:188
 #: ../../source/portal-developer-guide/installation/index.rst:95
@@ -20231,3 +20225,4 @@ msgstr "Portal.UserMenu変数の変更は即時反映されます。更新内容
 #~ "関連タスクを表示するには: :bdg-ref-"
 #~ "warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` または"
 #~ " :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`"
+
