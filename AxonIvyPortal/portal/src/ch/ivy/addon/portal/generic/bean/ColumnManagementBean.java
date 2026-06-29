@@ -239,7 +239,9 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
         || this.selectedFieldType == DashboardColumnType.CUSTOM_CASE
         || this.selectedFieldType == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
       columnModel.setType(selectedFieldType);
-      columnModel.setFormat(DashboardColumnFormat.valueOf(selectedFieldType.name()));
+      var format = findCustomFieldMeta().filter(meta -> meta.name().equals(this.selectedField)).map(ICustomFieldMeta::type)
+        .map(type -> DashboardColumnFormat.valueOf(type.name()));
+      columnModel.setFormat(format.orElse(DashboardColumnFormat.valueOf(selectedFieldType.name())));
       columnModel.setPattern(numberFieldPattern);
       columnModel.setHasCmsValues(findCustomFieldMeta().map(meta -> Boolean.valueOf(meta.attribute(HAS_CMS_VALUES_ATTRIBUTE))).orElse(false));
     }
