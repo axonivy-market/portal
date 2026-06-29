@@ -52,16 +52,11 @@ For detailed configuration instructions and examples, see :ref:`Permission Setti
 Disabling Portal Access
 -----------------------
 
-.. warning::
-   **Do NOT remove all permissions to deny Portal access.**
-
-   Removing all three permission categories (``PersonalPermissions``, ``ManagementPermissions``, and ``PortalPermissions``) in the Engine Cockpit will cause the Portal to fail on login with a script error because it cannot retrieve user information from the Ivy Core API. This is **not** a supported way to deny Portal access.
-
 **How to properly deny Portal access:**
 
 To deny a user or role access to Portal, revoke only **PortalPermissions**. The ``PersonalPermissions`` and ``ManagementPermissions`` are essential for the Axon Ivy Engine to function correctly and must remain assigned.
 
-.. table:: Permission Removal Guide
+.. table:: Permission Revocation Guide
 
    +-------------------------------+------------------+-------------------------------------------------------------------+
    | Permission Category           | Can be revoked?  | Impact if revoked                                                 |
@@ -78,6 +73,11 @@ To deny a user or role access to Portal, revoke only **PortalPermissions**. The 
 
 .. tip::
    If you need to restrict Portal access for specific roles, go to Engine Cockpit > Security > Portal Permissions and revoke only the ``PortalPermissions`` for those roles. Keep ``PersonalPermissions`` and ``ManagementPermissions`` intact.
+
+.. warning::
+   **Do NOT revoke all permissions to deny Portal access.**
+
+   Revoking all three permission categories (``PersonalPermissions``, ``ManagementPermissions``, and ``PortalPermissions``) in the Engine Cockpit will cause the Portal to fail on login with a script error because it cannot retrieve user information from the Ivy Core API. This is **not** a supported way to deny Portal access.
 
 Overview
 --------
