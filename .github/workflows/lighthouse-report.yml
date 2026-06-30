@@ -149,7 +149,7 @@ jobs:
           name: a11y-report
           path: |
             AxonIvyPortal/portal-selenium-test/target/surefire-reports/
-            AxonIvyPortal/portal-selenium-test/target/reports/
+            AxonIvyPortal/portal-selenium-test/target/selenide/reports
             AxonIvyPortal/portal-selenium-test/target/axe-reports/
 
       # -----------------------------------------------------------------------
