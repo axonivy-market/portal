@@ -25,8 +25,6 @@ public class WidgetWorkerFilterBean implements Serializable {
   private static final long serialVersionUID = -2641889624945089060L;
   public static final String FILTER = "filter";
 
-  private static List<FilterOperator> operators = FilterOperator.WORKER_OPERATORS.stream().toList();
-
   private List<SecurityMemberDTO> selectedWorkers;
 
   public void init(DashboardFilter filter) {
@@ -34,10 +32,6 @@ public class WidgetWorkerFilterBean implements Serializable {
     if (CollectionUtils.isNotEmpty(filter.getValues())) {
       selectedWorkers.addAll(filter.findAllUsers());
     }
-  }
-
-  public List<FilterOperator> getOperators() {
-    return operators;
   }
 
   public void onChangeOperator(DashboardFilter filter) {

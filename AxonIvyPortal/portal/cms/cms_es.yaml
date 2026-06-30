@@ -86,6 +86,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardCustomWidgetType:
       EXTERNAL_URL: Link externo
       PROCESS: Proceso de Axon Ivy
+    DashboardDisplayType:
+      HIDDEN: Oculto
+      SUB_MENU: Submenú
+      TOP_MENU: Barra lateral
     DashboardWidgetType:
       CASE: Widget del caso
       CUSTOM: Widget personalizado
@@ -192,7 +196,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskDocumentsPageTitle: Documentos de la tarea
   adminSettings:
     addLanguages: Agregar idiomas
-    addNewApplication: Crear nueva aplicación de terceros
     announcement:
       announcement: Aviso
       announcementsDisabled: Los avisos están deactivados
@@ -203,27 +206,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       information: En esta área puede anunciar una información general (ej. mantenimiento, cambios en la aplicación, etc.). Este mensaje será visible para todos los usuarios.
       saveChanges: Guardar cambios
       tabTitle: Avisos
-    appDisplayName: Nombre para mostrar
-    appDisplayNameRequiredMsg: Por favor ingrese el nombre para mostrar de la aplicación.
-    appNameCharactersLimit: Solo los caracteres [\p{Alnum}_-]+ están permitidos para el nombre de la aplicación.
-    appNameRequiredMsg: Por favor introduzca el nombre de la aplicación.
-    applicationHint: Use arrastrar y soltar para reordenar.
-    applicationLinkRequiredMsg: Por favor, introduzca el enlace al portal
-    applicationList:
-      addNewApplication: Añadir nueva aplicación
-      applicationSelectionHeader: Seleccionar aplicación
-      menuIcon: Icono de menú
-    applications: Aplicaciones
     applicationtype:
       thirdPartyApplication: Aplicación de terceros
     currentValue: Valor actual
     defaultValue: Valor estándard
-    deleteAppConfirmation: ¿Seguro que quiere eliminar esta <b>{0}</b> aplicación?
     dialogclosinginformation:
       dialogHeader: Configuración del portal cerrada
       informMessage: Las modificaciones en la configuración del portal requieren una actualización de la página actual para que la nueva configuración surta efecto.
-    duplicatePortalAppMsg: Esta aplicación ya existe, por favor elija otra.
-    editApplication: Editar aplicación
     editSetting: Editar la configuración
     embedInFrame: Empezar un proceso o tarea en modo iFrames
     emptySupportedLanguages: No se admiten idiomas adicionales
@@ -231,6 +220,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AppleStoreURL: Establezca la URL para descargar la aplicación móvil Axon Ivy en Apple Store.
       ApplicationName: El nombre de la aplicación que se mostrará en el título de la página.
       BaseQRCodeUrl: Establezca la URL base para mostrar el código QR.
+      DashboardFilterOperatorPolicy: Los operadores no marcados se deshabilitan globalmente.
       DefaultThemeMode: El modo de tema por defecto de la aplicación
       EnableSwitchThemeModeButton: Establecer en true para habilitar el botón de cambio de tema.
       GlobalSearchScopeCategoriesNote: Definición de los tipos que buscará la búsqueda global
@@ -306,7 +296,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       sidebarMode: Controla el modo de la barra lateral. Hover se expande al pasar el ratón, Clic usa un botón de alternancia, Fijar la mantiene siempre expandida, Oculto elimina la barra lateral por completo.
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
     key: Llave
-    link: Enlazar
     loading: CARGANDO
     loginLogoSizeTooltip: 'Tamaño recomendado<BR/>Logo cuadrado: 80x80 px<BR/>Logo rectangular: 191x50 px'
     logoSizeRecommendation:
@@ -518,7 +507,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteContext: Borrar {0}
     deleteDocumentHeaderText: ¿Borrar este documento?
     deleteFilterHeaderText: ¿Borrar este filtro?
-    deleteSettingHeaderText: ¿Borrar esta configuración?
     description: Descripción
     design: Diseño
     destroy: Destruir
@@ -787,14 +775,43 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateFromScratchDescription: Cree su propio panel de control desde cero
       CreateNewPrivateDashboard: Crear un nuevo cuadro de mando personalizado
       CreateNewPublicDashboard: Crear un dashboard público
-      Description: En esta sección puedes configurar los cuadros de mando según tus necesidades.
+      Description: En esta sección puedes configurar los cuadros de mando según tus necesidades y modificar el orden de los elementos de navegación.
       DoNotSupportMobile: La configuración del panel de control no es compatible con los dispositivos móviles.
       EditPrivateDashboards: Editar tu cuadro de mando
+      PrivateTabInfo: 'Cree y gestione sus paneles personales.<ul><li>Estos paneles solo son visibles para usted</li><li>Aparecen bajo el icono del panel en la barra lateral</li></ul>'
+      PublicTabInfo: 'Gestione paneles para todos los usuarios. Controle la visibilidad:<ul><li><b>Barra lateral</b> — aparece como elemento principal en el menú lateral</li><li><b>Submenú</b> — aparece bajo el icono del panel</li><li><b>Oculto</b> — no visible para los usuarios</li></ul>'
+      Visibility: Visibilidad
       EditPublicDashboards: Editar dashboard públicos
       ExportDashboard: Exportar el cuadro de mandos
       ExportReferencedDialogHeader: El panel hace referencia a otros paneles
       ExportReferencedDialogMessage: 'Los siguientes paneles son referenciados por widgets de navegación. Expórtelos e impórtelos también para que los widgets funcionen correctamente:'
       ExportReferencedDialogProceed: Exportar de todos modos
+      Hidden: Oculto
+      HiddenDashboards: Elementos ocultos
+      HiddenDashboardsDescription: No se muestra en la barra lateral. Se puede seguir usando como destino de enlace directo.
+      SubMenuDashboards: Paneles del submenú
+      SubMenuDashboardsDescription: Aparecen agrupados bajo el icono de Panel en la barra lateral.
+      SidebarTopLevelDashboards: Paneles principales de la barra lateral
+      SidebarTopLevelDashboardsDescription: Aparecen como elementos principales en la barra lateral.
+      MenuDashboards: Elementos de la barra lateral
+      MenuDashboardsDescription: Estos paneles aparecen como elementos principales en la barra lateral. Gestione su orden en la pestaña Navegación de la barra lateral.
+      PrivateDashboardTabInfoPanel: '<p><b>¿Qué puedo hacer aquí?</b></p><p>Cree y gestione paneles visibles solo para usted. Aparecen agrupados bajo el icono de Panel en la barra lateral y nunca afectan a otros usuarios.</p><p><b>Reordenar</b></p><p>Arrastre cualquier fila para cambiar el orden en que sus paneles aparecen en el submenú. El orden se guarda en su configuración personal.</p><p><b>Acciones por panel</b></p><p>Use Editar para actualizar el título, descripción, icono o títulos en varios idiomas. Use Configurar para abrir el panel y añadir o reorganizar widgets. Si tiene el permiso de exportación, también puede descargar un panel como archivo JSON.</p>'
+      DashboardTabInfoPanel: '<p><b>¿Qué puedo hacer aquí?</b></p><p>Cree, edite y elimine paneles públicos. Defina quién puede verlos mediante permisos. Esta es la biblioteca central de todos los paneles compartidos.</p><p><b>Visibilidad &amp; ubicación</b></p><p>Los paneles se dividen en tres secciones según dónde aparecen en la barra lateral. Para mover un panel entre secciones, abra Editar y cambie su Tipo de visualización. Solo la sección Submenú admite reordenación por arrastre.</p><p><b>Acciones por panel</b></p><p>Editar actualiza nombre, descripción, icono, permisos y tipo de visualización. Configurar abre el panel para añadir o reorganizar widgets. Exportar descarga un archivo JSON — si el panel hace referencia a otros, se le pedirá confirmación. Compartir genera un enlace directo. Eliminar lo borra permanentemente.</p>'
+      MenuManagementTabInfoPanel: '<p><b>¿Qué puedo hacer aquí?</b></p><p>Configure todo lo visible en la barra lateral: elementos, su orden y el comportamiento global de la barra lateral.</p><p><b>Añadir nuevos elementos</b></p><p>Use Añadir elemento para crear una nueva entrada. Puede elegir entre: Panel principal (enlaza a un panel), Proceso (inicia un proceso de Ivy), Enlace externo (cualquier URL, con opción de abrir en nueva pestaña) o Página estática. Cada elemento tiene un título multiidioma, un icono y permisos configurables. El tipo de elemento no puede cambiarse tras la creación.</p><p><b>Entender la tabla</b></p><p>Destino muestra adónde navega un elemento (URL o ruta de proceso). Permisos muestra quién puede verlo. Tipo es la clase de entrada y Origen indica dónde está definido: Integrado, Configuración, Configuración del panel de control, Proceso invocable o Aplicación de terceros.</p><p><b>Gestionar elementos existentes</b></p><p>Editar actualiza el título, icono, enlace y permisos de elementos personalizados. Eliminar los borra. Los elementos integrados (origen: Integrado) no pueden editarse ni eliminarse, y los elementos generados por un proceso invocable solo pueden ser modificados por un desarrollador. Arrastre filas para reordenar todos los elementos.</p><p><b>Configuración de la barra lateral</b></p><p>Deshabilitar barra lateral la oculta completamente para todos los usuarios. Comportamiento controla cómo se abre: Hover (al pasar el ratón), Clic (requiere clic) o Fijo (siempre visible).</p>'
+      SidebarNavigation: Barra lateral
+      SidebarSettings: Configuración de la barra lateral
+      SidebarMode: Modo de barra lateral
+      DisableSidebar: Deshabilitar barra lateral
+      SidebarBehaviour: Comportamiento de la barra lateral
+      SidebarSettingsReloadWarning: 'Configuración de la barra lateral guardada. Recargue la página para aplicar los cambios.'
+      Reload: Recargar
+      AddItem: Agregar elemento
+      Label: Etiqueta
+      Source: Origen
+      Target: Destino
+      Dashboard: Panel de control
+      MenuManagement: Gestión de menús
+      MenuManagementTabInfo: 'Gestione los elementos de navegación de la barra lateral. Puede:<ul><li>Agregar nuevas entradas de menú (paneles, enlaces externos, procesos Ivy)</li><li>Reordenar elementos arrastrando y soltando</li><li>Editar o eliminar entradas de menú existentes</li></ul>'
       PrivateDashboard: Dashboard - Configuración  personalizada
       PrivateDashboardConfiguration: Configuración de tableros privados
       PublicDashboard: Dashboard - Configuración pública
@@ -803,7 +820,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Reordenar dashboard públicos
       SelectAction: Seleccione la acción
       SomeThingWentWrong: Algo salió mal
-      Title: Configuración Dashboard
+      Title: Configuración del portal
     DrillDownWidget:
       caseDrillDown: Widget de casos detallados para {0}
       taskDrillDown: Widget de tareas detalladas para {0}
@@ -812,6 +829,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: Este widget puede mostrar una página web externa.
     Filter:
       FilterOptionHeader: Opciones de filtro
+      FilterOptionHeaderTooltip: Algunos campos de filtro y operadores pueden estar deshabilitados por su administrador. Los filtros que utilicen campos u operadores deshabilitados se eliminarán automáticamente. Comuníquese con su administrador para obtener más información.
       FilterPanelHeader: Panel de filtro
       ManageWidgetFilterHeader: Gestión de filtros de widgets
       NotFound: No se ha encontrado ningún filtro
@@ -922,6 +940,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardPermission: Permiso de tablero
       dashboardTitle: Título del tablero
       deleteDashboardMessage: ¿Está seguro de que desea eliminar el "{0}" cuadro de mandos?
+      deleteMenuItemMessage: ¿Está seguro de que desea eliminar el elemento de menú "{0}"?
       editDashboard: Editar tablero
       manageDashboard: Administrar tablero
       removeDashboardHeader: Borrar el tablero "{0}"
@@ -951,9 +970,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     navigate: Navegue por
     noCategory: No hay categorías
     noDashboard: No hay tableros. Añadir al menos un tablero y widgets.
+    noDashboardAvailable: No hay paneles de control del submenú disponibles.
     noPermission: No tienes permisos para ver los dashboards.
     noWidget: No hay widgets para este tablero
     numberPattern: Patrón de números
+    operators: Operadores
+    operatorPolicyTooltip: Si los operadores están deshabilitados globalmente por el administrador, no pueden habilitarse aquí. El filtro de un campo no puede habilitarse cuando todos los operadores están deshabilitados globalmente.
     preview: Vista previa
     processList: Lista de procesos
     processListIntroduction: Este widget muestra los inicios de procesos disponibles. Tiene la posibilidad de elegir diferentes formatos
@@ -1656,6 +1678,22 @@ Dialogs:
           IFrameTaskTemplate:
             TaskIFrameTitle: Marco de tareas
         page:
+          MenuManagement:
+            AddNewMenu: Agrega un nuevo menú
+            CallableMenuMessage: Este menú se genera mediante un proceso invocable y no se puede editar.
+            CallableSourceHint: Este elemento se genera mediante un proceso invocable. Contacta a tu desarrollador para modificarlo.
+            ProcessPermissionHint: La visibilidad depende de los permisos de inicio del proceso.
+            HelpText: Personaliza el menú en esta sección según tus necesidades o preferencias.
+            MenuDetails: Detalles del menú
+            MenuIcon: Icono del menú
+            MenuTitle: Título del menú
+            MenuType: Tipo de menú
+            InvalidUrl: 'La URL no es válida.'
+            InvalidUrlScheme: 'Solo se permiten URLs con http y https.'
+            InvalidStaticPagePath: 'La ruta debe ser relativa a la aplicación (no se permiten URLs absolutas).'
+            NoAvailableSubDashboard: No hay ningún panel del submenú disponible para añadir como panel de control principal.
+            OpenInNewTab: Abrir en una nueva pestaña
+            StaticPagePath: Ruta de página estática
           StatisticConfiguration:
             AddFilter: Añadir filtro
             Advanced: Avanzado
@@ -1950,6 +1988,21 @@ Labels:
       CASES: Casos
       PROCESSES: Procesos
       TASKS: Tareas
+    MenuKind:
+      PROCESS: Proceso
+      DASHBOARD: Panel de control
+      EXTERNAL_LINK: Enlace externo
+      MAIN_DASHBOARD: Panel de control principal
+      PROCESS_LIST: Lista de procesos
+      STANDARD: Estándar
+      STATIC_PAGE: Página estática
+      THIRD_PARTY: Terceros
+    MenuSource:
+      CALLABLE: Proceso invocable
+      CUSTOM_MENU_CONFIGURATION: Configuración
+      DASHBOARD: Configuración del panel de control
+      STANDARD: Integrado
+      THIRD_PARTY_APP_CONFIGURATION: Aplicación de terceros
     SearchScopeCaseField:
       CUSTOM: Campos de cadena personalizados
       DESCRIPTION: Descripción

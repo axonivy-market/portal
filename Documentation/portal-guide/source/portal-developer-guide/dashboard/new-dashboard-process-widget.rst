@@ -160,7 +160,7 @@ Below is a standard JSON definition of a Process widget in compact mode:
             "designer/portal-developer-examples/Start Processes/Request/collectDataRequest.ivp"
          ],
          "categories": ["/Categories/Showcase/Customized", "/Categories/Showcase/PortalDialogExample"],
-         "sorting": "SORTING_INDEX",
+         "sorting": "BY_INDEX",
          "enableQuickSearch": true,
          "showFullscreenMode": true,
          "showWidgetInfo": true
@@ -188,8 +188,8 @@ Compact Mode Properties
      - :doc-url:`CMS URI </designer-guide/how-to/workflow/categories.html#workflow-categories>` of process categories. Shows all processes in these categories
    * - ``sorting``
      - string
-     - ``"ALPHABETICALLY"``
-     - Sort order: ``"ALPHABETICALLY"`` or ``"SORTING_INDEX"`` (requires custom field)
+     - ``"BY_ALPHABETICALLY"``
+     - Sort order: ``"BY_ALPHABETICALLY"`` or ``"BY_INDEX"`` (requires custom field)
    * - ``enableQuickSearch``
      - boolean
      - ``true``

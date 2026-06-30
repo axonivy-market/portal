@@ -3,6 +3,8 @@ package com.axonivy.portal.selenium.page;
 import static com.axonivy.portal.selenium.common.Variable.GLOBAL_FOOTER_INFO;
 import static com.codeborne.selenide.Selenide.$;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -35,6 +37,26 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
+    openGlobalVariableEditDialog(variableName);
+    waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
+    saveGlobalVariable(variableValue, isBooleanType);
+  }
+
+  public void updateGlobalMultiSelectionVariable(String variableName, List<String> selectedValues) {
+    openSettingTab();
+    openGlobalVariableEditDialog(variableName);
+    waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
+    saveMultiSelectionGlobalVariable(selectedValues);
+  }
+
+  public void updateGlobalMultiSelectionItem(String variableName, String itemValue, boolean shouldBeSelected) {
+    openSettingTab();
+    openGlobalVariableEditDialog(variableName);
+    waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
+    setMultiSelectionItemStateAndSave(itemValue, shouldBeSelected);
+  }
+
+  private void openGlobalVariableEditDialog(String variableName) {
     $("button[id$='admin-setting-component:adminTabView:restore-all-to-default-button']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
     waitForElementDisplayed(By.id("admin-setting-component:adminTabView:settingTable"), true);
@@ -49,8 +71,6 @@ public class AdminSettingsPage extends TemplatePage {
       String editButtonId = currentElementId.replace("settings-action-button", "edit-application");
       $("a[id='" + editButtonId + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
-    waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
-    saveGlobalVariable(variableValue, isBooleanType);
   }
 
   public void resetAllSettings() {
@@ -74,6 +94,63 @@ public class AdminSettingsPage extends TemplatePage {
           .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
     waitForElementClickableThenClick("[id='admin-setting-component:save-setting']");
+  }
+
+  private void saveMultiSelectionGlobalVariable(List<String> selectedValues) {
+    waitForElementClickableThenClick("[id='admin-setting-component:valueSetting_label']");
+    SelenideElement valueSettingPanel = $(By.id("admin-setting-component:valueSetting_panel"))
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    while (valueSettingPanel.$("li.ui-selectcheckboxmenu-item div.ui-chkbox-box.ui-state-active").exists()) {
+      valueSettingPanel.$("li.ui-selectcheckboxmenu-item div.ui-chkbox-box.ui-state-active")
+          .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    }
+
+    for (String selectedValue : selectedValues) {
+      SelenideElement valueCheckbox = findMultiSelectionValueCheckbox(valueSettingPanel, selectedValue);
+      if (!valueCheckbox.getAttribute("class").contains("ui-state-active")) {
+        valueCheckbox.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      }
+    }
+
+    closeMultiSelectionPanel(valueSettingPanel);
+    waitForElementClickableThenClick("[id='admin-setting-component:save-setting']");
+  }
+
+  private void setMultiSelectionItemStateAndSave(String itemValue, boolean shouldBeSelected) {
+    waitForElementClickableThenClick("[id='admin-setting-component:valueSetting_label']");
+    SelenideElement valueSettingPanel = $(By.id("admin-setting-component:valueSetting_panel"))
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    SelenideElement valueCheckbox = findMultiSelectionValueCheckbox(valueSettingPanel, itemValue);
+    boolean isSelected = valueCheckbox.getAttribute("class").contains("ui-state-active");
+    if (shouldBeSelected != isSelected) {
+      valueCheckbox.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    }
+
+    closeMultiSelectionPanel(valueSettingPanel);
+    waitForElementClickableThenClick("[id='admin-setting-component:save-setting']");
+  }
+
+  private void closeMultiSelectionPanel(SelenideElement valueSettingPanel) {
+    valueSettingPanel.$("a.ui-selectcheckboxmenu-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    valueSettingPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement findMultiSelectionValueCheckbox(SelenideElement valueSettingPanel, String optionKey) {
+    String normalizedOptionKey = normalizeForLabelComparison(optionKey);
+    for (SelenideElement option : valueSettingPanel.$$("li.ui-selectcheckboxmenu-item")) {
+      String optionLabel = option.$("label").shouldBe(Condition.appear, DEFAULT_TIMEOUT).getText();
+      if (normalizeForLabelComparison(optionLabel).equals(normalizedOptionKey)) {
+        return option.$("div.ui-chkbox-box").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+      }
+    }
+
+    throw new IllegalArgumentException("Cannot find multi-selection option: " + optionKey);
+  }
+
+  private String normalizeForLabelComparison(String value) {
+    return value.replaceAll("[^A-Za-z0-9]", "").toUpperCase();
   }
 
   public void closeConfirmationDialog() {
@@ -144,25 +221,12 @@ public class AdminSettingsPage extends TemplatePage {
     return findElementById("admin-settings-container");
   }
 
-  public WebElement getAddApplicationDialog() {
-    waitForElementClickableThenClick($(By.id("admin-setting-component:adminTabView:add-application-btn")));
-    waitForElementDisplayed(By.id("admin-setting-component:appDialog"), true);
-    waitForFocusEffectComplete();
-    return findElementById("admin-setting-component:appDialog");
-  }
-
   public WebElement getEditSettingDialogOfFirstRow() {
     waitForElementClickableThenClick($(By.id("admin-setting-component:adminTabView:settingTable:0:settings-action-button")));
     $("a[id='admin-setting-component:adminTabView:settingTable:0:edit-application']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     waitForElementDisplayed(By.id("admin-setting-component:settingDialog"), true);
     waitForFocusEffectComplete();
     return findElementById("admin-setting-component:settingDialog");
-  }
-
-  public void closeAddApplicationDialog() {
-    $("[id='admin-setting-component:appDialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id='admin-setting-component:appDialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void closeEditSettingDialog() {

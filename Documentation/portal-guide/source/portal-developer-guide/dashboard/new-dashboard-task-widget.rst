@@ -203,6 +203,15 @@ Each column object in the ``columns`` array:
 ``enableFilter`` (boolean, default: ``true``)
    Allow filtering on this column in complex filter.
 
+``allowedOperators`` (array, optional)
+   List of operators allowed for this column in the complex filter. For instance: `["contains", "is", "is_not"]`.
+
+.. note::
+   - ``allowedOperators`` takes precedence over ``enableFilter``. If ``allowedOperators``
+     is set to ``[]``, filtering is disabled regardless of the ``enableFilter`` value.
+   - The actual operators available at runtime may be further restricted in Portal. See
+     :ref:`Restricting Filter Fields And Operators <restricting-filter-fields-and-operators>`.
+
 ``headers`` (array, optional)
    Multilingual column headers: ``[{"locale": "en", "value": "Header"}]``
 

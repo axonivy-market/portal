@@ -62,6 +62,9 @@ Variables:
       # You can customize the name and icon of the main menu entry for Portal dashboards via this JSON file.
       # [file: json]
       MainMenuEntry: ""
+    # Configure enabled operators for complex filters as comma-separated enum names.
+    ComplexFilter:
+      Operators: TODAY,YESTERDAY,IS,IS_NOT,BEFORE,AFTER,BETWEEN,NOT_BETWEEN,CURRENT,LAST,NEXT,EMPTY,NOT_EMPTY,CONTAINS,NOT_CONTAINS,IN,NOT_IN,START_WITH,NOT_START_WITH,END_WITH,NOT_END_WITH,CURRENT_USER_CAN_WORK_ON,CURRENT_USER,NO_CATEGORY,EQUAL,NOT_EQUAL,LESS,LESS_OR_EQUAL,GREATER,GREATER_OR_EQUAL
     Processes:
       # The standard setting of view mode in the process list.
       # [enum: COMPACT, IMAGE, GRID]
@@ -188,6 +191,11 @@ Variables:
     # Additional menu items for the main menu of Portal. Could be an Ivy process or an external link.
     # [file: json]
     CustomMenuItems: ""
+    Menu:
+      # The order of items in the Portal sidebar, managed in Portal Configuration > Sidebar.
+      # Stored as a JSON object: {"version":"...","menus":[{"id":"...","source":"..."}]}.
+      # [file: json]
+      Order: ""
     # Global footer info that is displayed in bottom right corner can be set in the portal admin settings.
     GlobalFooterInfo: ""
     # Support the translation from English to the other languages or from German to the other languages (German, English, French, Spanish)

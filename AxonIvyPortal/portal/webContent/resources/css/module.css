@@ -2692,13 +2692,13 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 /* Responsive User menu */
 @media screen and (max-width: 40em) {
-  .settings-table-action-buttons, .app-icon {
+  .settings-table-action-buttons {
     text-align: left !important;
   }
   .settings-table-action-buttons .action-column-icon-button:first-of-type {
     margin-left: 0;
   }
-  .dialog-closing-information, .app-dialog, .select-icon-dialog,
+  .dialog-closing-information, .select-icon-dialog,
   .setting-dialog, .project-info-dialog, .deputy-dialog,
   .add-absence-dialog {
     min-width: 96vw;
@@ -2712,7 +2712,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   .admin-ui-dialog {
     max-width: 90vw;
   }
-  .dialog-closing-information, .project-info-dialog, .app-dialog {
+  .dialog-closing-information, .project-info-dialog {
     min-width: 80vw;
   }
   .new-absence-date input {
@@ -2768,16 +2768,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin-bottom: 2rem;
 }
 
-.admin-setting-card .applications-setting-info {
-  color: var(--ivy-primary-color);
-  font-size: large;
-}
-
-.admin-setting-card .application-table {
-  margin-bottom: 2rem;
-  margin-top: 0.5rem;
-}
-
 .admin-ui-dialog {
   max-width: 80vw;
 }
@@ -2793,27 +2783,18 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
 }
 
-.application-table-type-column.td {
-  text-align: left !important;
-}
-
-.applications-setting-info-circle {
-  margin: auto 0;
-}
-
 .action-column-icon-button i {
   margin: 0 5px;
   color: var(--portal-button-color)
 }
 
-.application-tab-action-buttons, .application-selection-action-buttons,
 .announcement-tab-action-buttons,
 .create-role-container {
   text-align: right;
   margin: .5em 0;
 }
 
-.application-tab-action-buttons .new-app-btn, .create-role-container .create-role-btn {
+.create-role-container .create-role-btn {
   width: 100%;
   height: 3.25rem;
   display: inline-flex;
@@ -2828,20 +2809,13 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   padding-top: 5px;
 }
 
-.admin-settings-portal-link-label, .admin-settings-display-name-3rd-label,
-.admin-settings-application-icon {
+.admin-settings-display-name-3rd-label {
   font-weight: 500;
 }
 
 
-.application-name-language.ui-dialog .ui-dialog-titlebar,.app-dialog.ui-dialog .ui-dialog-titlebar,
 .role-details-dialog.ui-dialog .ui-dialog-titlebar, .setting-dialog.ui-dialog .ui-dialog-titlebar {
   padding-bottom: 1rem;
-}
-
-.app-icon {
-  text-align: left;
-  line-height: 2.5rem;
 }
 
 .logo-height-unit {
@@ -2887,19 +2861,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   border-radius: 6px;
   padding: 6px 10px;
   margin-bottom: 1rem;
-}
-
-.admin-application {
-  margin-top: 10px;
-}
-
-.application-name-language {
-  width: 400px;
-  height: 300px;
-}
-
-.application-name-language .ui-datatable tr {
-  margin: 10px !important;
 }
 
 .ui-dialog-footer button {
@@ -3741,6 +3702,13 @@ _:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
   margin-top: -1rem;
   top: 50%;
   right: 1rem;
+}
+
+.admin-settings-container .ui-selectcheckboxmenu .ui-selectcheckboxmenu-label {
+  max-width: calc(100% - 2rem);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .application-input-with-button {
