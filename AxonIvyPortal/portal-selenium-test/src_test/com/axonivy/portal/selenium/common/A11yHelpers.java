@@ -1,4 +1,4 @@
-package com.axonivy.portal.selenium.a11y;
+package com.axonivy.portal.selenium.common;
 
 import java.util.Arrays;
 import java.util.Collections;

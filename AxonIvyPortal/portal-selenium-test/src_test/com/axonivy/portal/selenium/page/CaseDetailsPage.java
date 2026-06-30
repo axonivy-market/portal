@@ -29,10 +29,10 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
-import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ScrollIntoViewOptions.Behavior;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 import com.codeborne.selenide.ScrollIntoViewOptions.Inline;
+import com.codeborne.selenide.SelenideElement;
 
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
@@ -1159,6 +1159,10 @@ public class CaseDetailsPage extends TemplatePage {
         .map(SelenideElement::getText)
         .collect(Collectors.toList());
   }
-  
+
+  public void clickChangeDesc() {
+    $("a[id$=':general-information:description:edit-description-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
+  }
 }
 
