@@ -170,8 +170,7 @@
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
             "script" : "in.requesterUsername"
-          },
-          "code" : "ivy.log.info(in.requesterUsername.toString());"
+          }
         },
         "output" : {
           "map" : {

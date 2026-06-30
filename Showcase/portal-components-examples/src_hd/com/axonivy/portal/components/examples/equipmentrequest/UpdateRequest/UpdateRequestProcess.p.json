@@ -86,7 +86,14 @@
       "name" : "save data",
       "config" : {
         "output" : {
-          "code" : "ivy.repo.save(in.requestData);"
+          "code" : [
+            "import com.axonivy.portal.components.factory.AuditTrailDTOFactory;",
+            "import com.axonivy.portal.components.service.AuditTrailService;",
+            "List trail = AuditTrailService.getInstance().load(ivy.case);",
+            "trail.add(AuditTrailDTOFactory.build(ivy.task.getId(), ivy.session.getSessionUser().getDisplayName(), \"Request Updated\", in.requestData.reason));",
+            "AuditTrailService.getInstance().save(ivy.case, trail);",
+            "ivy.repo.save(in.requestData);"
+          ]
         },
         "sudo" : true
       },

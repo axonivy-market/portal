@@ -22,8 +22,7 @@
           </div>
         </div>
         <div class="pb-3">
-          <ic:com.axonivy.portal.components.AuditTrail taskId="#{ivy.wf.getCurrentTask().getId()}"
-            case="#{ivy.wf.getCurrentCase()}" additionalEntry="Rejection reason: #{data.requestData.rejectionReason}" />
+          <ic:com.axonivy.portal.components.AuditTrail caze="#{ivy.wf.getCurrentCase()}" />
         </div>
         <!-- Rejection reason banner -->
         <div class="equipment-request-rejection-banner mb-5">

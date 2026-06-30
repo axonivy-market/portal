@@ -1,29 +1,34 @@
 package com.axonivy.portal.components.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class AuditTrailDTO {
+public class AuditTrailDTO implements Serializable {
 
-  private String author;
+  private static final long serialVersionUID = 1L;
+
+  private Long taskId;
   private Date timestamp;
+  private String author;
+  private String action;
   private String content;
-  private String taskName;
-  private String taskState;
 
-  public AuditTrailDTO(String author, Date timestamp, String content, String taskName, String taskState) {
-    this.author = author;
+  public AuditTrailDTO() {}
+
+  public AuditTrailDTO(Long taskId, Date timestamp, String author, String action, String content) {
+    this.taskId = taskId;
     this.timestamp = timestamp;
-    this.content = content;
-    this.taskName = taskName;
-    this.taskState = taskState;
-  }
-
-  public String getAuthor() {
-    return author;
-  }
-
-  public void setAuthor(String author) {
     this.author = author;
+    this.action = action;
+    this.content = content;
+  }
+
+  public Long getTaskId() {
+    return taskId;
+  }
+
+  public void setTaskId(Long taskId) {
+    this.taskId = taskId;
   }
 
   public Date getTimestamp() {
@@ -34,27 +39,27 @@ public class AuditTrailDTO {
     this.timestamp = timestamp;
   }
 
+  public String getAuthor() {
+    return author;
+  }
+
+  public void setAuthor(String author) {
+    this.author = author;
+  }
+
+  public String getAction() {
+    return action;
+  }
+
+  public void setAction(String action) {
+    this.action = action;
+  }
+
   public String getContent() {
     return content;
   }
 
   public void setContent(String content) {
     this.content = content;
-  }
-
-  public String getTaskName() {
-    return taskName;
-  }
-
-  public void setTaskName(String taskName) {
-    this.taskName = taskName;
-  }
-
-  public String getTaskState() {
-    return taskState;
-  }
-
-  public void setTaskState(String taskState) {
-    this.taskState = taskState;
   }
 }

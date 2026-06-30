@@ -5,17 +5,14 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="taskId" type="java.lang.Long" shortDescription="ID of the current task. Required: true." />
-  <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase"></cc:attribute>
+  <cc:attribute name="caze" type="ch.ivyteam.ivy.workflow.ICase"
+    shortDescription="ID of the case whose audit trail to display. Required: true." />
   <cc:attribute name="containerStyleClass" type="java.lang.String" default=""
     shortDescription="Additional CSS class for the outer container. Required: false." />
-  <cc:attribute name="additionalEntry" type="java.lang.String" default=""
-    shortDescription="Additional information from the previous task to display in the Previous task history tab. Required: false." />
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{auditTrailBean.init(cc.attrs.taskId, cc.attrs.case, cc.attrs.additionalEntry)}"
-    type="preRenderComponent" />
+  <f:event listener="#{logic.getAuditTrailList(cc.attrs.caze)}" type="preRenderComponent" />
   <h:panelGroup id="audit-trail-content" layout="block"
     styleClass="audit-trail-container #{cc.attrs.containerStyleClass}">
 
@@ -23,102 +20,39 @@
     <div class="flex align-items-center justify-content-between mb-3 audit-trail-history-header">
       <div class="flex align-items-center gap-2">
         <i class="ti ti-clock audit-trail-history-icon" />
-        <span class="font-bold text-xl">Audit Trail table</span>
-        <p:commandLink onclick="PF('addInformationDialog').show(); return false;"
-          styleClass="audit-trail-add-info-link">
-          <i class="ti ti-plus mr-1" />Add information
-        </p:commandLink>
+        <span class="font-bold text-xl">Audit Trail</span>
       </div>
     </div>
 
     <!-- History Table -->
-    <p:tabView>
-      <p:tab title="Case">
-        <p:dataTable id="history-table" widgetVar="historyTable" var="entry" value="#{auditTrailBean.auditTrailDTOs}"
-          emptyMessage="No history found." reflow="true" lazy="false" styleClass="audit-trail-history-table w-full">
-          <p:column headerText="Content" styleClass="audit-trail-content-col w-4">
-            <h:outputText value="#{entry.content}" styleClass="audit-trail-note-content" />
-          </p:column>
+    <p:dataTable id="history-table" widgetVar="historyTable" var="entry" value="#{data.auditTrailDTOs}"
+      emptyMessage="No history found." reflow="true" lazy="false" styleClass="audit-trail-history-table w-full">
 
-          <p:column headerText="Case" styleClass="audit-trail-related-case-col w-2" rendered="#{cc.attrs.case != null}">
-            <span class="audit-trail-case-badge">
-              <h:outputText value="##{cc.attrs.case.id} #{cc.attrs.case.names().current()}" />
-            </span>
-          </p:column>
+      <p:column headerText="Action" styleClass="audit-trail-action-col w-2">
+        <h:outputText value="#{entry.action}" styleClass="font-semibold" />
+      </p:column>
 
-          <p:column headerText="Author" styleClass="audit-trail-author-col w-2">
-            <div class="flex align-items-center gap-2">
-              <div class="audit-trail-author-avatar flex align-items-center justify-content-center border-circle">
-                <i class="si si-single-neutral-actions" />
-              </div>
-              <span>#{entry.author}</span>
-            </div>
-          </p:column>
+      <p:column headerText="Content" styleClass="audit-trail-content-col w-4">
+        <h:outputText value="#{entry.content}" styleClass="audit-trail-note-content" />
+      </p:column>
 
-          <p:column headerText="Creation date" sortBy="#{entry.timestamp}"
-            styleClass="audit-trail-date-col u-hidden-sm-down w-2">
-            <h:outputText value="#{entry.timestamp}">
-              <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
-            </h:outputText>
-          </p:column>
-
-        </p:dataTable>
-      </p:tab>
-      <p:tab title="Previous task">
-        <div class="audit-trail-previous-tasks-list">
-          <h:panelGroup layout="block" rendered="#{empty auditTrailBean.previousTasks}">
-            <span>No additional information found.</span>
-          </h:panelGroup>
-          <h:panelGroup layout="block" rendered="#{not empty auditTrailBean.previousTasks}">
-            <div class="flex gap-4 mb-3 pl-2">
-              <span><strong>Task name:</strong> #{auditTrailBean.previousTask.name}</span>
-              <span><strong>Responsible:</strong> #{auditTrailBean.previousTask.workerUser.memberName}</span>
-              <span><strong>Ended time: </strong>
-                <h:outputText value="#{auditTrailBean.previousTask.endTimestamp}">
-                  <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
-                </h:outputText>
-              </span>
-              <span><strong>State:</strong> #{auditTrailBean.previousTask.state}</span>
-            </div>
-            <p:dataTable var="note" value="#{auditTrailBean.getNotesFromPreviousTask()}" emptyMessage="No notes found."
-              reflow="true" lazy="false" styleClass="audit-trail-history-table w-full">
-              <p:column headerText="Content" styleClass="audit-trail-content-col w-4">
-                <h:outputText value="#{note.content}" styleClass="audit-trail-note-content" />
-              </p:column>
-              <p:column headerText="Author" styleClass="audit-trail-author-col w-2">
-                <div class="flex align-items-center gap-2">
-                  <div class="audit-trail-author-avatar flex align-items-center justify-content-center border-circle">
-                    <i class="si si-single-neutral-actions" />
-                  </div>
-                  <span>#{note.author}</span>
-                </div>
-              </p:column>
-              <p:column headerText="Creation date" styleClass="audit-trail-date-col u-hidden-sm-down w-2">
-                <h:outputText value="#{note.timestamp}">
-                  <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
-                </h:outputText>
-              </p:column>
-            </p:dataTable>
-          </h:panelGroup>
+      <p:column headerText="Author" styleClass="audit-trail-author-col w-2">
+        <div class="flex align-items-center gap-2">
+          <div class="audit-trail-author-avatar flex align-items-center justify-content-center border-circle">
+            <i class="si si-single-neutral-actions" />
+          </div>
+          <span>#{entry.author}</span>
         </div>
-      </p:tab>
-    </p:tabView>
+      </p:column>
 
-    <p:dialog header="Add Information" widgetVar="addInformationDialog" modal="true" responsive="true"
-      styleClass="audit-trail-add-info-dialog w-5">
-      <h:outputText value="This information will appear in the next task" styleClass="pl-2 audit-trail-note-content" />
-      <h:panelGroup layout="block" styleClass="p-3">
-        <p:inputTextarea id="additionalInformationInput" value="#{auditTrailBean.additionalInformationAuditTrail}"
-          rows="4" styleClass="w-full" autoResize="false" />
-      </h:panelGroup>
-      <f:facet name="footer">
-        <p:commandButton value="Save" actionListener="#{auditTrailBean.addAdditionalInformation()}"
-          process="@form" update="audit-trail-content"
-          oncomplete="PF('addInformationDialog').hide()" />
-        <p:commandButton value="Cancel" onclick="PF('addInformationDialog').hide(); return false;"
-          styleClass="ui-button-secondary" />
-      </f:facet>
-    </p:dialog>
+      <p:column headerText="Timestamp" sortBy="#{entry.timestamp}"
+        styleClass="audit-trail-date-col u-hidden-sm-down w-2">
+        <h:outputText value="#{entry.timestamp}">
+          <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+        </h:outputText>
+      </p:column>
+
+    </p:dataTable>
   </h:panelGroup>
 </cc:implementation>
 

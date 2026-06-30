@@ -53,7 +53,8 @@
             "import com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequest;",
             "",
             "in.requestData = ivy.repo.get(EquipmentRequest.class) as EquipmentRequest;",
-            "in.requester = new UserDTO(ISecurityContext.current().users().find(in.requestData.requesterUsername));"
+            "in.requester = new UserDTO(ISecurityContext.current().users().find(in.requestData.requesterUsername));",
+            "in.caseId = ivy.case.getId();"
           ]
         },
         "sudo" : true
@@ -75,7 +76,11 @@
             "out.isApproved" : "in.isApproved",
             "out.requestData" : "in.requestData"
           },
-          "code" : "ivy.repo.save(out.requestData);"
+          "code" : [
+            "import com.axonivy.portal.components.factory.AuditTrailDTOFactory;",
+            "import com.axonivy.portal.components.dto.AuditTrailDTO;",
+            "ivy.repo.save(out.requestData);"
+          ]
         },
         "sudo" : true
       },
@@ -114,7 +119,14 @@
         "signature" : "approve",
         "input" : {
           "map" : { },
-          "code" : "out.requestData.isApproved = true;"
+          "code" : [
+            "import com.axonivy.portal.components.factory.AuditTrailDTOFactory;",
+            "import com.axonivy.portal.components.service.AuditTrailService;",
+            "out.requestData.isApproved = true;",
+            "List trail = AuditTrailService.getInstance().load(ivy.case);",
+            "trail.add(AuditTrailDTOFactory.build(ivy.task.getId(), ivy.session.getSessionUser().getDisplayName(), \"Approved\", null));",
+            "AuditTrailService.getInstance().save(ivy.case, trail);"
+          ]
         },
         "guid" : "19EF285E071A09B0"
       },
@@ -132,7 +144,14 @@
         "signature" : "reject",
         "input" : {
           "map" : { },
-          "code" : "out.requestData.isApproved = false;"
+          "code" : [
+            "import com.axonivy.portal.components.factory.AuditTrailDTOFactory;",
+            "import com.axonivy.portal.components.service.AuditTrailService;",
+            "out.requestData.isApproved = false;",
+            "List trail = AuditTrailService.getInstance().load(ivy.case);",
+            "trail.add(AuditTrailDTOFactory.build(ivy.task.getId(), ivy.session.getSessionUser().getDisplayName(), \"Rejected\", out.requestData.rejectionReason));",
+            "AuditTrailService.getInstance().save(ivy.case, trail);"
+          ]
         },
         "guid" : "19EF2864B17265FD"
       },

@@ -3,9 +3,6 @@
   "simpleName" : "ManagerApprovalData",
   "namespace" : "com.axonivy.portal.components.examples.equipmentrequest.ManagerApproval",
   "fields" : [ {
-    "name" : "requestData",
-    "type" : "com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequest"
-  }, {
     "name" : "requester",
     "type" : "com.axonivy.portal.components.dto.UserDTO"
   }, {
@@ -18,5 +15,11 @@
     "type" : "Boolean"
   }, {
     "name" : "rejectedReason"
+  }, {
+    "name" : "requestData",
+    "type" : "com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequest"
+  }, {
+    "name" : "caseId",
+    "type" : "java.lang.Long"
   } ]
 }

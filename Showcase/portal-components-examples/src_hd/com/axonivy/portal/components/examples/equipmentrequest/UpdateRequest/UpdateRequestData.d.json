@@ -14,5 +14,8 @@
   }, {
     "name" : "steps",
     "type" : "java.util.List<String>"
+  }, {
+    "name" : "caseId",
+    "type" : "Long"
   } ]
 }
