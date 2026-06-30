@@ -9,6 +9,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.A11yHelpers;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.ChangePasswordPage;
 import com.axonivy.portal.selenium.page.LoginPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -72,6 +73,7 @@ public class DashboardA11Test extends BaseTest{
   @Test
   public void taskWidget() {
     redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     NewDashboardPage dashboardPage = new NewDashboardPage();
     dashboardPage.waitForCaseWidgetLoaded();
