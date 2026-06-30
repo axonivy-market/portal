@@ -39,8 +39,8 @@ public class DashboardA11Test extends BaseTest{
 
   @Test
   public void dashboard() {
-    redirectToNewDashBoard();
     redirectToRelativeLink(createTestingTasksUrl);
+    redirectToNewDashBoard();
     var homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
     A11yHelpers.makeA11yReport();
