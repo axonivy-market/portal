@@ -7413,7 +7413,7 @@ msgid ""
 "Sort order: ``\"BY_ALPHABETICALLY\"`` or ``\"BY_INDEX\"`` (requires "
 "custom field)"
 msgstr ""
-"並べ替え順序：``\"BY_ALPHABETICALLY\"`` または``\"BY_INDEX\"``（"
+"並べ替え順序：``\"BY_ALPHABETICALLY\"`` または ``\"BY_INDEX\"``（"
 "カスタムフィールドが必要です）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:196
@@ -7934,8 +7934,8 @@ msgid ""
 msgstr ""
 "これらの列では、タスクの担当ユーザー名または作業ユーザー名のフィルタ条件とし"
 "て、ロール名またはユーザー名のリストのみを受け付けます。使用可能なフィルタ演"
-"算子は、``、in``、``、not_in``、および``、current_user``です。``、"
-"current_user``演算子では、valueフィールドは不要です。"
+"算子は ``in``、 ``not_in``、 ``current_user`` です。 ``current_user`` 演算子では、"
+"valueフィールドは不要です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:388
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:417
