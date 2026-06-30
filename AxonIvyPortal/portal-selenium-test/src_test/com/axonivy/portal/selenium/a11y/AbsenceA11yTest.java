@@ -9,7 +9,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.page.AbsencePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class AbsenceA11yTest extends BaseTest{
 
   @BeforeEach
