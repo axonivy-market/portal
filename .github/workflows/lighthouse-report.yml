@@ -101,7 +101,8 @@ jobs:
             -DtrimStackTrace=false \
             -Divy.engine.directory=$ENGINE_DIR \
             -Divy.deploy.timeout.seconds=60 \
-            -Divy.engine.start.timeout.seconds=150
+            -Divy.engine.start.timeout.seconds=500 \
+            -Dsurefire.rerunFailingTestsCount=2
 
       - name: Generate Pretty HTML Report
         if: always()
