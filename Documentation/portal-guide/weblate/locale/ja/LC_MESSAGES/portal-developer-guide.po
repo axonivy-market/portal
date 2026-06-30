@@ -7413,7 +7413,7 @@ msgid ""
 "Sort order: ``\"BY_ALPHABETICALLY\"`` or ``\"BY_INDEX\"`` (requires "
 "custom field)"
 msgstr ""
-"並べ替え順序：``\"BY_ALPHABETICALLY\"`` または ``\"BY_INDEX\"``（"
+"並べ替え順序： ``\"BY_ALPHABETICALLY\"`` または ``\"BY_INDEX\"``（"
 "カスタムフィールドが必要です）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:196
