@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.a11y;
 
 import static com.codeborne.selenide.Selenide.$;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -19,6 +20,11 @@ import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class DashboardA11Test extends BaseTest{
+
+  @BeforeEach
+  public void setup() {
+    super.setup();
+  }
 
   @Test
   public void loginPage() {

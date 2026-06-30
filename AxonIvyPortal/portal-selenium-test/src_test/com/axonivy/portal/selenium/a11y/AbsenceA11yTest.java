@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.a11y;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -8,8 +9,13 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.page.AbsencePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class AbsenceA11yTest extends BaseTest{
+
+  @BeforeEach
+  public void setup() {
+    super.setup();
+  }
 
   @Test
   public void absencePage() {
