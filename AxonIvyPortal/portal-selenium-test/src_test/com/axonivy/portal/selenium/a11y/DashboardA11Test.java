@@ -90,14 +90,6 @@ public class DashboardA11Test extends BaseTest{
     $("a[id$=':cancel-task-delegate-command']").shouldBe(Condition.visible).click();
     delegateDialog.shouldNotBe(Condition.visible);
 
-    // Check accessibility of TASK DESTROY DIALOG
-    taskWidget.clickOnTaskActionLink(0);
-    taskWidget.clickTaskAction(0, "Destroy");
-    var destroyDialog = taskWidget.getDestroyDialog().shouldBe(Condition.visible);
-    A11yHelpers.makeElementA11yReport(destroyDialog, "task-destroy-dialog");
-    destroyDialog.$("a[aria-label='Cancel']").shouldBe(Condition.visible).click();
-    destroyDialog.shouldNotBe(Condition.visible);
-
     // Check accessibility of TASK FILTER WIDGET
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Created", FilterOperator.YESTERDAY);

@@ -17,7 +17,7 @@ import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class TaskCaseDetailA11yTest extends BaseTest{
   private static final String EAT_PIZZA = "Eat Pizza";
   private static final String ORDER_PIZZA = "Order Pizza";
@@ -59,6 +59,9 @@ public class TaskCaseDetailA11yTest extends BaseTest{
 
     taskDetailsPage.openAfterEscalationDialog();
     A11yHelpers.makeElementA11yReport(taskDetailsPage.getAfterEscalationDialog(), "after-escalation-dialog");
+    taskDetailsPage.closeAfterEscalationDialog();
+
+    A11yHelpers.makeElementA11yReport(taskDetailsPage.openDestroyDialog(), "destroy-dialog");
   }
 
   @Test

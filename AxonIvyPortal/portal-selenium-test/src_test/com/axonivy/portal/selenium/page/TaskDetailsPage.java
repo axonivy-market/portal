@@ -448,4 +448,21 @@ public class TaskDetailsPage extends TemplatePage {
   public SelenideElement getAfterEscalationDialog() {
     return $(".task-escalation-activator-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+
+  public void closeAfterEscalationDialog() {
+    $("div[id$='task-escalation-activator-dialog'] .ui-dialog-titlebar-close").shouldBe(getClickableCondition()).click();
+    $("div[id$='task-escalation-activator-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement openDestroyDialog() {
+    openActionPanel();
+    clickOnDestroyTaskLink();
+    return $("div[id$='destroy-task-confirmation-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnDestroyTaskLink() {
+    $("a[id$=':task-destroy-command']").shouldBe(getClickableCondition()).click();
+  }
+
+  
 }
