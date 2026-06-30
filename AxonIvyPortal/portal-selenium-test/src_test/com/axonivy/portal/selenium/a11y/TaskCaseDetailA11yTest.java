@@ -17,7 +17,7 @@ import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class TaskCaseDetailA11yTest extends BaseTest{
   private static final String EAT_PIZZA = "Eat Pizza";
   private static final String ORDER_PIZZA = "Order Pizza";
