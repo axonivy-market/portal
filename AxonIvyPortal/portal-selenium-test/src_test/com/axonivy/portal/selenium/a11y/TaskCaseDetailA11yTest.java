@@ -62,6 +62,10 @@ public class TaskCaseDetailA11yTest extends BaseTest{
     taskDetailsPage.closeAfterEscalationDialog();
 
     A11yHelpers.makeElementA11yReport(taskDetailsPage.openDestroyDialog(), "destroy-dialog");
+    taskDetailsPage.closeDestroyDialog();
+
+    A11yHelpers.makeElementA11yReport(taskDetailsPage.openDelegateDialog(), "delegate-dialog");
+    // taskDetailsPage.closeDelegateDialog();
   }
 
   @Test

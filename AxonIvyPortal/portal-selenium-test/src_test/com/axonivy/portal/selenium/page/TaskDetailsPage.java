@@ -464,5 +464,19 @@ public class TaskDetailsPage extends TemplatePage {
     $("a[id$=':task-destroy-command']").shouldBe(getClickableCondition()).click();
   }
 
-  
+  public void closeDestroyDialog() {
+    $("div[id$='destroy-task-confirmation-dialog'] .ui-dialog-titlebar-close").shouldBe(getClickableCondition()).click();
+    $("div[id$='destroy-task-confirmation-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement openDelegateDialog() {
+    openActionPanel();
+    clickOnDelegateTaskLink();
+    return $("div[id$='task-delegate-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnDelegateTaskLink() {
+    $("a[id$=':task-delegate-command']").shouldBe(getClickableCondition()).click();
+  }
+
 }

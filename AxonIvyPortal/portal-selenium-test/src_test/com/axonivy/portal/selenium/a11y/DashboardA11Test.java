@@ -81,15 +81,6 @@ public class DashboardA11Test extends BaseTest{
     menu.openTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
 
-    // Check accessibility of TASK DELEGATE DIALOG
-    taskWidget.clickOnTaskActionLink(0);
-    taskWidget.clickTaskAction(0, "Delegate");
-    taskWidget.waitForTaskDelegateDialogContent();
-    var delegateDialog = taskWidget.getDelegateDialog();
-    A11yHelpers.makeElementA11yReport(delegateDialog, "task-delegate-dialog");
-    $("a[id$=':cancel-task-delegate-command']").shouldBe(Condition.visible).click();
-    delegateDialog.shouldNotBe(Condition.visible);
-
     // Check accessibility of TASK FILTER WIDGET
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Created", FilterOperator.YESTERDAY);
