@@ -4,6 +4,11 @@ permissions: read-all
 on:
   workflow_dispatch:
     inputs:
+      testPatternToRun:
+        description: 'Optional test pattern to run (e.g. TestMenuUtils). Leave empty to run all tests.'
+        type: string
+        default: ''
+        required: false
       engineDownloadURL:
         description: |
           url to download engine, default is the sprint build.
@@ -301,9 +306,14 @@ jobs:
       - name: Run portal-test tests
         id: run-test
         run: |
+          TEST_FILTER=""
+          if [ -n "${{ inputs.testPatternToRun }}" ]; then
+            TEST_FILTER="-Dtest=${{ inputs.testPatternToRun }}"
+          fi
           mvn clean install -ntp \
             -f AxonIvyPortal/portal-test/pom.xml \
-            -Divy.engine.directory=$ENGINE_DIR
+            -Divy.engine.directory=$ENGINE_DIR \
+            $TEST_FILTER
         continue-on-error: true
 
       - name: Log out on failures
@@ -323,6 +333,7 @@ jobs:
       - name: Show inputs
         run: |
           echo "## Inputs" >> $GITHUB_STEP_SUMMARY
+          echo "- Test pattern: ${{ inputs.testPatternToRun || '(all tests)' }}" >> $GITHUB_STEP_SUMMARY
           echo "- Engine download url: ${{inputs.engineDownloadURL}}" >> $GITHUB_STEP_SUMMARY
 
       - name: Parse and show failed tests
