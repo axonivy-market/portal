@@ -39,6 +39,8 @@ on:
     - cron: '25 17 * * *'
     # schedule for Selenium Test in master
     - cron: '30 17 * * *'
+    # schedule for Portal Test in master
+    - cron: '30 18 * * *'
     # schedule for Selenium Test in release/12.0
     - cron: '30 19 * * *'
 
@@ -197,4 +199,20 @@ jobs:
                 workflow_id: 'portal-selenium-test.yml',
                 ref: 'release/12.0'
               })
+
+  trigger-portal-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v9
+        name: Trigger build Portal Test for master
+        if: github.event.schedule == '30 18 * * *'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'portal-test.yml',
+              ref: 'master'
+            })
     
