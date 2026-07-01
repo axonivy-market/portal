@@ -1,5 +1,5 @@
 name: Portal Test
-run-name: 🧪 Portal Test
+run-name: 🧪 Portal Test - ${{ github.ref_name }}
 permissions: read-all
 on:
   workflow_dispatch:
