@@ -1,0 +1,63 @@
+pipeline {
+  agent {
+    label 'portal-slave-linux'
+  }
+
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
+  }
+
+  triggers {
+    pollSCM '0 3 * * *'
+    cron('0 9 * * *')
+  }
+
+  parameters {
+    string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip', description: '''Where to download engine? e.g.
+      -Divy.engine.download.url=https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip for sprint master
+      -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
+      -Divy.engine.download.url=file:///home/build/engine/AxonIvyEngineX.X.X.X_Linux_x64.zip for downloaded engine
+    ''')
+  }
+
+  environment {
+    engineDir = "${env.WORKSPACE}/AxonIvyPortal/portal-test/engine"
+    MAVEN_OPTS = "-Xmx3000m -XX:+HeapDumpOnOutOfMemoryError"
+  }
+
+  stages {
+    stage('build') {
+      steps {
+        script {
+          currentBuild.description = "On ${env.NODE_NAME}"
+          def utils = load 'build/common/utils.groovy'
+          docker.build('gui-test-portal', '-f build/Dockerfile .').inside("-v /var/tools/maven-cache:/home/build/") {
+            utils.extractEngine(env.engineDir, params.engineDownloadURL)
+
+            echo '====================Build dependency modules===================='
+            maven cmd: "clean install -ntp -pl AxonIvyPortal/portal-components,AxonIvyPortal/portal -am -Divy.engine.directory=${env.engineDir} -DskipTests"
+          }
+        }
+      }
+    }
+
+    stage('test') {
+      steps {
+        script {
+          def utils = load 'build/common/utils.groovy'
+          docker.build('gui-test-portal', '-f build/Dockerfile .').inside("-v /var/tools/maven-cache:/home/build/") {
+            echo '====================Run portal-test tests===================='
+            maven cmd: "clean install -ntp -f AxonIvyPortal/portal-test/pom.xml -Divy.engine.directory=${env.engineDir}"
+          }
+        }
+      }
+    }
+  }
+
+  post {
+    always {
+      archiveArtifacts artifacts: 'AxonIvyPortal/portal-test/target/surefire-reports/**', allowEmptyArchive: true
+      junit allowEmptyResults: true, testResults: 'AxonIvyPortal/portal-test/target/surefire-reports/TEST-*.xml'
+    }
+  }
+}

@@ -1,0 +1,518 @@
+name: Portal Test
+run-name: 🧪 Portal Test
+permissions: read-all
+on:
+  workflow_dispatch:
+    inputs:
+      engineDownloadURL:
+        description: |
+          url to download engine, default is the sprint build.
+        type: string
+        default: 'https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip'
+        required: true
+
+env:
+  ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine
+
+jobs:
+  show-branch-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 20
+
+      - name: Show commits since last successful build
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const branch = context.ref.replace('refs/heads/', '');
+            try {
+              const { data: workflowRuns } = await github.rest.actions.listWorkflowRuns({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'portal-test.yml',
+                branch: branch,
+                status: 'success',
+                per_page: 1
+              });
+
+              let lastSuccessfulSha = null;
+              let lastSuccessfulDate = null;
+
+              if (workflowRuns.workflow_runs && workflowRuns.workflow_runs.length > 0) {
+                const lastRun = workflowRuns.workflow_runs[0];
+                lastSuccessfulSha = lastRun.head_sha;
+                lastSuccessfulDate = lastRun.created_at;
+              }
+
+              let commits = [];
+              let comparisonInfo = '';
+
+              if (lastSuccessfulSha && lastSuccessfulSha !== context.sha) {
+                try {
+                  const { data: comparison } = await github.rest.repos.compareCommits({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    base: lastSuccessfulSha,
+                    head: context.sha
+                  });
+                  commits = comparison.commits || [];
+
+                  const lastSuccessfulDateFormatted = new Date(lastSuccessfulDate).toLocaleString('vi-VN', {
+                    timeZone: 'Asia/Ho_Chi_Minh',
+                    hour12: false
+                  });
+
+                  const lastRun = workflowRuns.workflow_runs[0];
+                  const buildUrl = `${lastRun.html_url}`;
+
+                  comparisonInfo = `📊 Comparing with last successful build: [#${lastRun.run_number}](${buildUrl}) - [${lastSuccessfulSha.substring(0, 7)}](https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${lastSuccessfulSha}) (${lastSuccessfulDateFormatted})`;
+                } catch (compareError) {
+                  const { data: recentCommits } = await github.rest.repos.listCommits({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    sha: context.sha,
+                    per_page: 10
+                  });
+                  commits = recentCommits;
+                  comparisonInfo = '⚠️ Could not compare with last build, showing recent commits';
+                }
+              } else if (lastSuccessfulSha === context.sha) {
+                comparisonInfo = '✅ This commit was the last successful build - no new changes';
+              } else {
+                const { data: recentCommits } = await github.rest.repos.listCommits({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  sha: context.sha,
+                  per_page: 10
+                });
+                commits = recentCommits;
+                comparisonInfo = '🆕 No previous successful build found - showing recent commits';
+              }
+
+              if (!commits || commits.length === 0) {
+                await core.summary
+                  .addHeading(`📝 Changes since last successful build on '${branch}'`)
+                  .addRaw(comparisonInfo)
+                  .addRaw('\n\n*No new commits found*')
+                  .write();
+                return;
+              }
+
+              const commitCount = commits.length;
+              const maxDisplay = commitCount;
+
+              await core.summary
+                .addHeading(`📝 Changes since last successful build on '${branch}' (${commitCount} commit${commitCount !== 1 ? 's' : ''})`)
+                .addRaw(comparisonInfo)
+                .addTable([
+                  [
+                    { data: 'Commit', header: true },
+                    { data: 'Message', header: true },
+                    { data: 'Author', header: true },
+                    { data: 'Date', header: true }
+                  ],
+                  ...commits.slice(0, maxDisplay).map(commit => {
+                    const fullMessage = commit.commit.message.trim();
+                    const lines = fullMessage.split('\n');
+                    const title = lines[0];
+
+                    let description = '';
+                    if (lines.length > 1) {
+                      const descLines = lines.slice(1).filter(line => line.trim() !== '');
+                      if (descLines.length > 0) {
+                        description = descLines.join(' ').trim();
+                        if (description.length > 200) {
+                          description = description.substring(0, 200) + '...';
+                        }
+                      }
+                    }
+
+                    const messageColumn = description ?
+                      `${title.replace(/\|/g, '\\|')}<br/>${description.replace(/\|/g, '\\|')}` :
+                      title.replace(/\|/g, '\\|');
+
+                    return [
+                      `[${commit.sha.substring(0, 7)}](${commit.html_url})`,
+                      messageColumn,
+                      `@${commit.author?.login || commit.commit.author.name}`,
+                      new Date(commit.commit.author.date).toLocaleString('vi-VN', {
+                        timeZone: 'Asia/Ho_Chi_Minh',
+                        hour12: false
+                      })
+                    ];
+                  })
+                ])
+                .write();
+
+            } catch (error) {
+              console.error('Error fetching commits since last build:', error);
+              await core.summary
+                .addHeading(`📝 Error fetching commits for branch '${branch}'`)
+                .addRaw(`Could not retrieve commit information: ${error.message}`)
+                .write();
+            }
+
+      - name: Show PRs merged since last successful build
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const branch = context.ref.replace('refs/heads/', '');
+
+            try {
+              const { data: workflowRuns } = await github.rest.actions.listWorkflowRuns({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'portal-test.yml',
+                branch: branch,
+                status: 'success',
+                per_page: 1
+              });
+
+              let lastSuccessfulDate = null;
+              let prComparisonInfo = '';
+
+              if (workflowRuns.workflow_runs && workflowRuns.workflow_runs.length > 0) {
+                const lastRun = workflowRuns.workflow_runs[0];
+                lastSuccessfulDate = new Date(lastRun.created_at);
+
+                const lastSuccessfulDateFormatted = lastSuccessfulDate.toLocaleString('vi-VN', {
+                  timeZone: 'Asia/Ho_Chi_Minh',
+                  hour12: false
+                });
+
+                const buildUrl = `${lastRun.html_url}`;
+                prComparisonInfo = `📊 PRs merged since last successful build: [#${lastRun.run_number}](${buildUrl}) (${lastSuccessfulDateFormatted})`;
+              } else {
+                prComparisonInfo = '🆕 No previous successful build found - showing recent merged PRs';
+              }
+
+              const { data: prs } = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                base: branch,
+                state: 'closed',
+                per_page: 50,
+                page: 1
+              });
+
+              let relevantPrs = [];
+
+              if (lastSuccessfulDate) {
+                relevantPrs = prs
+                  .filter(pr => pr.merged_at !== null && new Date(pr.merged_at) > lastSuccessfulDate)
+                  .sort((a, b) => new Date(b.merged_at) - new Date(a.merged_at));
+              } else {
+                relevantPrs = prs
+                  .filter(pr => pr.merged_at !== null)
+                  .sort((a, b) => new Date(b.merged_at) - new Date(a.merged_at))
+                  .slice(0, 10);
+              }
+
+              if (relevantPrs.length === 0) {
+                await core.summary
+                  .addHeading(`🔗 PRs merged since last successful build on '${branch}'`)
+                  .addRaw(prComparisonInfo)
+                  .addRaw('\n\n*No PRs merged since last successful build*')
+                  .write();
+                return;
+              }
+
+              const maxDisplay = relevantPrs.length;
+
+              await core.summary
+                .addHeading(`🔗 PRs merged since last successful build on '${branch}' (${relevantPrs.length} PR${relevantPrs.length !== 1 ? 's' : ''})`)
+                .addRaw(prComparisonInfo)
+                .addTable([
+                  [
+                    { data: 'PR Number', header: true },
+                    { data: 'Title', header: true },
+                    { data: 'Author', header: true },
+                    { data: 'Merged At', header: true }
+                  ],
+                  ...relevantPrs.slice(0, maxDisplay).map(pr => [
+                    `[#${pr.number}](${pr.html_url})`,
+                    pr.title.replace(/\|/g, '\\|'),
+                    `@${pr.user.login}`,
+                    new Date(pr.merged_at).toLocaleString('vi-VN', {
+                      timeZone: 'Asia/Ho_Chi_Minh',
+                      hour12: false
+                    })
+                  ])
+                ])
+                .write();
+
+            } catch (error) {
+              console.error('Error fetching PRs since last build:', error);
+              await core.summary
+                .addHeading(`🔗 Error fetching PRs for branch '${branch}'`)
+                .addRaw(`Could not retrieve PR information: ${error.message}`)
+                .write();
+            }
+
+  portal-test:
+    runs-on: ubuntu-latest
+    needs: show-branch-info
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5.1
+        with:
+          maven-version: 3.9.8
+
+      - name: Export environment variables
+        run: |
+          echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+          echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+          echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
+
+      - name: Set up and verify directories
+        run: |
+          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/sprint"
+          mkdir -p $ENGINE_DIR
+          sudo chown -R $USER:$USER $ENGINE_DIR
+          echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
+
+      - name: Download engine
+        run: |
+          cd $ENGINE_DIR
+          wget ${{ inputs.engineDownloadURL }} -O axonivy-engine.zip
+          unzip -o axonivy-engine.zip -d .
+          rm axonivy-engine.zip
+
+      - name: Build dependency modules
+        run: |
+          mvn clean install -ntp \
+            -pl AxonIvyPortal/portal-components,AxonIvyPortal/portal \
+            -am \
+            -Divy.engine.directory=$ENGINE_DIR \
+            -DskipTests
+
+      - name: Run portal-test tests
+        id: run-test
+        run: |
+          mvn clean install -ntp \
+            -f AxonIvyPortal/portal-test/pom.xml \
+            -Divy.engine.directory=$ENGINE_DIR
+        continue-on-error: true
+
+      - name: Log out on failures
+        if: steps.run-test.outcome == 'failure'
+        run: |
+          cat AxonIvyPortal/portal-test/target/testEngineOut.log || true
+
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: artifacts
+          retention-days: 10
+          path: |
+            AxonIvyPortal/portal-test/target/surefire-reports/*
+            AxonIvyPortal/portal-test/target/testEngineOut.log
+
+      - name: Show inputs
+        run: |
+          echo "## Inputs" >> $GITHUB_STEP_SUMMARY
+          echo "- Engine download url: ${{inputs.engineDownloadURL}}" >> $GITHUB_STEP_SUMMARY
+
+      - name: Parse and show failed tests
+        if: always()
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            try {
+              const reportsDir = 'AxonIvyPortal/portal-test/target/surefire-reports';
+              let testResultFiles = [];
+
+              if (fs.existsSync(reportsDir)) {
+                const files = fs.readdirSync(reportsDir);
+                testResultFiles = files
+                  .filter(file => file.startsWith('TEST-') && file.endsWith('.xml'))
+                  .map(file => path.join(reportsDir, file));
+              } else {
+                console.log(`Reports directory does not exist: ${reportsDir}`);
+              }
+
+              if (testResultFiles.length === 0) {
+                await core.summary
+                  .addHeading('🔍 Test Results')
+                  .addRaw('No test result files found.')
+                  .write();
+                return;
+              }
+
+              let totalFailures = 0;
+              let totalErrors = 0;
+              let failedTests = [];
+              let flakyTests = [];
+
+              function extractAttribute(xmlContent, tagName, attributeName) {
+                const regex = new RegExp(`<${tagName}[^>]*\\s${attributeName}=["']([^"']*)["']`, 'i');
+                const match = xmlContent.match(regex);
+                return match ? match[1] : null;
+              }
+
+              function extractTextContent(xmlContent, tagName) {
+                const regex = new RegExp(`<${tagName}[^>]*>([\\s\\S]*?)<\\/${tagName}>`, 'i');
+                const match = xmlContent.match(regex);
+                return match ? match[1].trim() : null;
+              }
+
+              for (const file of testResultFiles) {
+                try {
+                  const content = fs.readFileSync(file, 'utf8');
+
+                  const suiteName = extractAttribute(content, 'testsuite', 'name') || 'Unknown Suite';
+                  const suiteFailures = parseInt(extractAttribute(content, 'testsuite', 'failures') || '0');
+                  const suiteErrors = parseInt(extractAttribute(content, 'testsuite', 'errors') || '0');
+
+                  totalFailures += suiteFailures;
+                  totalErrors += suiteErrors;
+
+                  let testcaseMatches = [];
+                  const parts = content.split('<testcase');
+                  const closingTag = '</testcase>';
+                  for (let i = 1; i < parts.length; i++) {
+                    let testcaseContent = '<testcase' + parts[i];
+                    const selfClosingMatch = testcaseContent.match(/<testcase[^>]*\/>/);
+                    if (selfClosingMatch) {
+                      testcaseMatches.push(selfClosingMatch[0]);
+                      continue;
+                    }
+                    const closingIndex = testcaseContent.indexOf(closingTag);
+                    if (closingIndex !== -1) {
+                      testcaseMatches.push(testcaseContent.substring(0, closingIndex + closingTag.length));
+                    }
+                  }
+
+                  testcaseMatches.forEach(testcaseXml => {
+                    const className = extractAttribute(testcaseXml, 'testcase', 'classname') || 'UnknownClass';
+                    const testName = extractAttribute(testcaseXml, 'testcase', 'name') || 'UnknownTest';
+
+                    const isFailed = testcaseXml.includes('<failure') || testcaseXml.includes('<error');
+                    const isFlaky = testcaseXml.includes('<flakyFailure');
+
+                    if (isFailed) {
+                      let message = 'Test failed';
+                      const failureText = extractTextContent(testcaseXml, 'failure');
+                      const errorText = extractTextContent(testcaseXml, 'error');
+
+                      if (failureText) {
+                        message = failureText;
+                      } else if (errorText) {
+                        message = errorText;
+                      }
+
+                      if (message.length > 200) {
+                        message = message.substring(0, 200) + '...';
+                      }
+
+                      failedTests.push({ class: className, test: testName });
+                    }
+
+                    if (isFlaky) {
+                      flakyTests.push({ class: className, test: testName });
+                    }
+                  });
+
+                } catch (parseError) {
+                  console.error(`Error parsing ${file}:`, parseError.message);
+                }
+              }
+
+              let summaryText = `## 🧪 Test Results Summary\n\n`;
+
+              if (totalFailures === 0 && totalErrors === 0) {
+                summaryText += `🎉 **All tests passed!**`;
+              } else {
+                summaryText += `❌ **Failed Tests (${failedTests.length})**\n\n`;
+                summaryText += formatTestsByClass(failedTests);
+
+                if (flakyTests.length > 0) {
+                  summaryText += `\n⚠️ **Flaky Tests (${flakyTests.length})**\n\n`;
+                  summaryText += formatTestsByClass(flakyTests);
+                }
+
+                if (failedTests.length > 0) {
+                  summaryText += `\n📋 **Test Methods for Re-running Failed Tests**\n\n`;
+                  const mavenTestList = failedTests
+                    .map(test => {
+                      const simpleClassName = test.class.split('.').pop();
+                      return `${simpleClassName}#${test.test}`;
+                    })
+                    .join(',');
+                  summaryText += `\`\`\`\n${mavenTestList}\n\`\`\`\n`;
+                }
+
+                if (flakyTests.length > 0) {
+                  summaryText += `\n📋 **Test Methods for Re-running Flaky Tests**\n\n`;
+                  const flakyTestList = flakyTests
+                    .map(test => {
+                      const simpleClassName = test.class.split('.').pop();
+                      return `${simpleClassName}#${test.test}`;
+                    })
+                    .join(',');
+                  summaryText += `\`\`\`\n${flakyTestList}\n\`\`\`\n`;
+                }
+              }
+
+              function formatTestsByClass(tests) {
+                const grouped = {};
+                tests.forEach(test => {
+                  const key = test.class;
+                  if (!grouped[key]) {
+                    grouped[key] = [];
+                  }
+                  grouped[key].push(test);
+                });
+
+                const sorted = Object.entries(grouped).sort((a, b) => {
+                  const simpleA = a[0].split('.').pop();
+                  const simpleB = b[0].split('.').pop();
+                  return simpleA.localeCompare(simpleB);
+                });
+
+                let output = '```\n';
+                for (const [className, classTests] of sorted) {
+                  const simpleClassName = className.split('.').pop();
+                  output += `${simpleClassName}\n`;
+                  output += classTests.map(t => `- ${t.test}`).join('\n');
+                  output += '\n\n';
+                }
+                output += '```\n';
+                return output;
+              }
+
+              await core.summary
+                .addRaw(summaryText)
+                .write();
+
+            } catch (error) {
+              console.error('Error parsing test results:', error);
+              await core.summary
+                .addHeading('🔍 Test Results')
+                .addRaw(`Error parsing test results: ${error.message}`)
+                .write();
+            }
+
+      - name: Report
+        uses: dorny/test-reporter@v3.0.0
+        with:
+          artifact: artifacts
+          name: Portal unit tests
+          path: 'surefire-reports/*.xml'
+          reporter: java-junit
+          only-summary: 'false'
