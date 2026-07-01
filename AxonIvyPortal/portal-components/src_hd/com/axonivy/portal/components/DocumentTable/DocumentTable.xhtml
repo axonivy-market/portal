@@ -83,6 +83,8 @@
     shortDescription="Boolean value to specify virus scanner checking. The setting will detect Portal setting Portal.Document.EnableVirusScanner as its default value. If the Portal setting is not available, defaults to false. Type: Boolean. Required: false." />
   <cc:attribute name="allowedUploadFileTypes" type="String" default="#{documentUploadBean.getPortalAllowedUploadFileTypesSettingOrDefault('doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png')}"
     shortDescription="List of file extension that can be uploaded separated by comma. The setting will detect Portal setting Portal.Document.WhitelistExtension as its default value. If Portal setting is not available, default value is doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png. Type: String. Required: false."/>
+  <cc:attribute name="uploadSubFolder" default="displaySubFolder" type="String"
+    shortDescription="Define where to upload. Type: String. Required: false." />
 </cc:interface>
 
 <cc:implementation>
@@ -91,7 +93,7 @@
   <ui:param name="messageComponentId" value="#{cc.clientId.concat(':document-messages')}" />
   <ui:param name="typeSelectionItems" value="#{not empty cc.attrs.typeSelectionItems ? cc.attrs.typeSelectionItems : documentUploadBean.documentTypes}" />
   <ui:param name="selectedType" value="#{not empty cc.attrs.selectedType ? cc.attrs.selectedType : typeSelectionItems[0]}" />
-  <f:event type="preRenderComponent" listener="#{logic.renderComponent(messageComponentId, cc.attrs.typeColumnRendered, selectedType, cc.attrs.enableScriptCheckingForUploadedDocument, cc.attrs.enableVirusScannerForUploadedDocument, cc.attrs.allowedUploadFileTypes, cc.attrs.sizeLimit)}" />
+  <f:event type="preRenderComponent" listener="#{logic.renderComponent(messageComponentId, cc.attrs.typeColumnRendered, selectedType, cc.attrs.enableScriptCheckingForUploadedDocument, cc.attrs.enableVirusScannerForUploadedDocument, cc.attrs.allowedUploadFileTypes, cc.attrs.sizeLimit, empty cc.attrs.uploadSubFolder ? 'displaySubFolder' : cc.attrs.uploadSubFolder)}" />
 
   <div id="#{cc.clientId}" class="document-table-component">
 
@@ -198,6 +200,7 @@
           invalidSizeMessage="#{documentUploadBean.getFileUploadInvalidSizeMessage(documentUploadBean.fileUploadSizeLimit)}"
           onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}" sizeLimit="#{documentUploadBean.fileUploadSizeLimit}"
           styleClass="document-upload-in-dialog" value="#{data.uploadedFile}">
+          <f:attribute name="uploadSubFolder" value="#{cc.attrs.uploadSubFolder}" />
         </p:fileUpload>
         <p:outputPanel id="document-upload-dropzone" styleClass="document-upload-dropzone">
           <div class="document-upload-dropzone-content">

@@ -54,10 +54,11 @@
       "type" : "SubProcessCall",
       "name" : "GetDocumentList",
       "config" : {
-        "processCall" : "Functional Processes/GetDocumentItems:getDocumentItems(ch.ivyteam.ivy.workflow.ICase)",
+        "processCall" : "Functional Processes/GetDocumentItems:getDocumentItems(ch.ivyteam.ivy.workflow.ICase,String)",
         "call" : {
           "map" : {
-            "param.businessCase" : "in.ivyCase"
+            "param.businessCase" : "in.ivyCase",
+            "param.uploadSubFolder" : "in.uploadSubFolder"
           }
         },
         "output" : {
@@ -92,7 +93,11 @@
           ],
           "map" : {
             "out.event" : "param.event"
-          }
+          },
+          "code" : [
+            "out.uploadSubFolder = param.event.getComponent().getAttributes().get(\"uploadSubFolder\") as String; ",
+            "ivy.log.error(\"sub folder is {0}\", out.uploadSubFolder);"
+          ]
         },
         "guid" : "16B1C99C07E95EDC"
       },
@@ -157,14 +162,15 @@
       "type" : "SubProcessCall",
       "name" : "UploadDocument",
       "config" : {
-        "processCall" : "Functional Processes/UploadDocumentItem:uploadDocumentItem(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)",
+        "processCall" : "Functional Processes/UploadDocumentItem:uploadDocumentItem(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile,Boolean,Boolean,String,String)",
         "call" : {
           "map" : {
             "param.businessCase" : "in.ivyCase",
             "param.uploadedFile" : "in.event.getFile()",
             "param.enableScriptCheckingForUploadedDocument" : "in.enableScriptCheckingForUploadedDocument",
             "param.enableVirusScannerForUploadedDocument" : "in.enableVirusScannerForUploadedDocument",
-            "param.allowedUploadFileTypes" : "in.allowedUploadFileTypes"
+            "param.allowedUploadFileTypes" : "in.allowedUploadFileTypes",
+            "param.uploadSubFolder" : "in.uploadSubFolder"
           }
         },
         "output" : {
@@ -446,7 +452,7 @@
     }, {
       "id" : "f42",
       "type" : "HtmlDialogMethodStart",
-      "name" : "renderComponent(String,Boolean,DocumentType,Boolean,Boolean,String,Long)",
+      "name" : "renderComponent(String,Boolean,DocumentType,Boolean,Boolean,String,Long,String)",
       "config" : {
         "signature" : "renderComponent",
         "input" : {
@@ -457,7 +463,8 @@
             { "name" : "enableScriptCheckingForUploadedDocument", "type" : "Boolean", "desc" : "" },
             { "name" : "enableVirusScannerForUploadedDocument", "type" : "Boolean", "desc" : "" },
             { "name" : "allowedUploadFileTypes", "type" : "String", "desc" : "" },
-            { "name" : "sizeLimit", "type" : "Long", "desc" : "" }
+            { "name" : "sizeLimit", "type" : "Long", "desc" : "" },
+            { "name" : "uploadSubFolder", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.allowedUploadFileTypes" : "param.allowedUploadFileTypes",
@@ -466,7 +473,8 @@
             "out.messageComponentId" : "param.messageComponentId",
             "out.sizeLimit" : "param.sizeLimit",
             "out.typeColumnRendered" : "param.typeColumnRendered",
-            "out.typeSelection" : "param.selectedType"
+            "out.typeSelection" : "param.selectedType",
+            "out.uploadSubFolder" : "param.uploadSubFolder"
           }
         },
         "guid" : "16B4E86E9AEE3309"
@@ -719,10 +727,11 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
-        "processCall" : "Functional Processes/GetDocumentItems:getDocumentItems(ch.ivyteam.ivy.workflow.ICase)",
+        "processCall" : "Functional Processes/GetDocumentItems:getDocumentItems(ch.ivyteam.ivy.workflow.ICase,String)",
         "call" : {
           "map" : {
-            "param.businessCase" : "in.ivyCase"
+            "param.businessCase" : "in.ivyCase",
+            "param.uploadSubFolder" : "in.uploadSubFolder"
           }
         },
         "output" : {

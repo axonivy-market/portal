@@ -2,7 +2,7 @@ package com.axonivy.portal.components.enums;
 
 public enum CustomSignature {
   GET_DOCUMENT_ITEMS("portalGetDocumentItems(ch.ivyteam.ivy.workflow.ICase)"),
-  UPLOAD_DOCUMENT_ITEM("portalUploadDocumentItem(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)"),
+  UPLOAD_DOCUMENT_ITEM("portalUploadDocumentItem(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile,Boolean,Boolean,String,String)"),
   DOWNLOAD_DOCUMENT_ITEM("portalDownloadDocumentItem(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)"),
   DELETE_DOCUMENT_ITEM("portalDeleteDocumentItem(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)"),
   RENAME_DOCUMENT_ITEM("portalRenameDocumentItem(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)");

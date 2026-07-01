@@ -16,5 +16,8 @@
   }, {
     "name" : "hasCustomProcess",
     "type" : "Boolean"
+  }, {
+    "name" : "uploadSubFolder",
+    "modifiers" : [ ]
   } ]
 }

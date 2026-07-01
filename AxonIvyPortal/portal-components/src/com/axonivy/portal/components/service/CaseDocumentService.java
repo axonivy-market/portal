@@ -46,8 +46,14 @@ public class CaseDocumentService {
   }
 
   public IDocument upload(String filename, InputStream content) {
+    return upload(filename, content, null);
+  }
+
+  public IDocument upload(String filename, InputStream content, String uploadSubFolder) {
     try {
-      return documentsOf(iCase).add(filename).write().withContentFrom(content);
+      Ivy.log().error("UPLOAD SUB FOLDER IS {0}", uploadSubFolder);
+      String path = StringUtils.isNotBlank(uploadSubFolder) ? uploadSubFolder + "/" + filename : filename;
+      return documentsOf(iCase).add(path).write().withContentFrom(content);
     } catch (PersistencyException e) {
       Ivy.log().error("Error in uploading the document {0} ", e, filename);
       return null;
@@ -56,6 +62,10 @@ public class CaseDocumentService {
 
   public List<IDocument> getAll() {
     return new ArrayList<>(getAllDocumentsOf(iCase));
+  }
+
+  public List<IDocument> getAll(String uploadSubFolder) {
+    return new ArrayList<>(getAllDocumentsOf(iCase, uploadSubFolder));
   }
 
   /**
@@ -145,6 +155,14 @@ public class CaseDocumentService {
   private List<IDocument> getAllDocumentsOf(ICase iCase) {
     try {
       return Sudo.call(() -> iCase.documents().getAll());
+    } catch (Exception e) {
+      throw new PortalException(e);
+    }
+  }
+
+  private List<IDocument> getAllDocumentsOf(ICase iCase, String uploadSubFolder) {
+    try {
+      return Sudo.call(() -> iCase.documents().getAllBelow(new Path(uploadSubFolder)));
     } catch (Exception e) {
       throw new PortalException(e);
     }
