@@ -90,7 +90,7 @@
   
   <ui:param name="messageComponentId" value="#{cc.clientId.concat(':document-messages')}" />
   <ui:param name="typeSelectionItems" value="#{not empty cc.attrs.typeSelectionItems ? cc.attrs.typeSelectionItems : documentUploadBean.documentTypes}" />
-  <ui:param name="selectedType" value="#{not empty cc.attrs.selectedType ? cc.attrs.selectedType : typeSelectionItems[0]}" />
+  <ui:param name="selectedType" value="#{documentUploadBean.getSelectedTypeOrDefault(cc.attrs.selectedType, typeSelectionItems)}" />
   <f:event type="preRenderComponent" listener="#{logic.renderComponent(messageComponentId, cc.attrs.typeColumnRendered, selectedType, cc.attrs.enableScriptCheckingForUploadedDocument, cc.attrs.enableVirusScannerForUploadedDocument, cc.attrs.allowedUploadFileTypes, cc.attrs.sizeLimit)}" />
 
   <div id="#{cc.clientId}" class="document-table-component">

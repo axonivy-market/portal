@@ -40,6 +40,10 @@ public class DocumentUploadBean implements Serializable {
     return List.of(BasicDocumentType.values());
   }
 
+  public DocumentType getSelectedTypeOrDefault(DocumentType selectedType, List<DocumentType> typeSelectionItems) {
+    return selectedType != null ? selectedType : typeSelectionItems.get(0);
+  }
+
   public boolean getPortalScriptCheckingSettingOrDefault(boolean defaultIfEmpty) {
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT, defaultIfEmpty);
   }
