@@ -9,16 +9,17 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-01 10:22+0000\n"
-"PO-Revision-Date: 2026-05-22 03:11+0000\n"
-"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
+"PO-Revision-Date: 2026-07-01 10:33+0000\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-le/doc/portal-doc-user-guide/ja/>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-le/doc/portal-doc-user-guide/ja/>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
 msgid "Accessibility"
@@ -684,12 +685,14 @@ msgstr ""
 "の役割を持つユーザーのみとなります。この役割がない場合、メニュー項目は表示されません。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:10
-#, fuzzy
 msgid ""
 "Admin Settings provide centralized control over Portal configuration, "
 "announcements, roles, and security policies. The interface is organized "
 "into tabs for different administrative functions."
-msgstr "管理設定では、ポータルの構成、サードパーティ連携、お知らせ、役割、セキュリティポリシーを一元的に管理できます。インターフェースは、異なる管理機能ごとにタブで整理されています。"
+msgstr ""
+"「管理設定」では、ポータルの構成、お知らせ、ロール、セキュリティポリシーを一"
+"元的に管理できます。インターフェースは、さまざまな管理機能ごとにタブで構成さ"
+"れています。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:15
 msgid "Available Tabs"
@@ -743,6 +746,11 @@ msgid ""
 ":guilabel:`Sidebar`. To add a new link to the sidebar, create an "
 "**External Link** item there instead."
 msgstr ""
+"**の「アプリケーション」** にあるサードパーティ製アプリケーションのタブは削除"
+"されました。既存のサードパーティ製アプリケーションは引き続きサイドバーに表示"
+"され、「:guilabel:`」の「ポータル設定」` → 「:guilabel:`」の「サイドバー」` "
+"から編集または削除できます。サイドバーに新しいリンクを追加するには、代わりに"
+"「**」の「外部リンク」** 項目を作成してください。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:39
 msgid "Accessing Admin Settings"
@@ -2151,18 +2159,19 @@ msgstr "**ユーザー設定**: 設定を構成する → 参照 :ref:`my-profil
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:2
 msgid "Restricting Filter Fields And Operators"
-msgstr ""
+msgstr "フィルタフィールドと演算子の制限"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:4
 msgid ""
 "Portal provides a two-level system to control which filter operators are "
 "available to users in the complex filter panel."
 msgstr ""
+"Portal では、複雑なフィルターパネルでユーザーが利用できるフィルター演算子を制"
+"御するための 2 段階のシステムを提供しています。"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:8
-#, fuzzy
 msgid "Global configuration (Admin)"
-msgstr "ダッシュボード設定メニュー"
+msgstr "グローバル設定（管理者）"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:10
 msgid ""
@@ -2170,28 +2179,35 @@ msgid ""
 "the ``Portal.ComplexFilter.Operators`` setting in `Admin Settings > "
 "Settings`."
 msgstr ""
+"管理者は、`Admin Settings > Settings` 内の ``` "
+"`Portal.ComplexFilter.Operators`` 設定を通じて、グローバルに利用可能な演算子"
+"を設定できます。"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:13
 msgid "All operators are enabled by default."
-msgstr ""
+msgstr "すべての演算子はデフォルトで有効になっています。"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:14
 msgid "Any operator unchecked here is disabled globally."
-msgstr ""
+msgstr "ここでチェックされていない演算子は、グローバルに無効化されます。"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:15
 msgid "Globally disabled operators cannot be re-enabled at the widget level."
 msgstr ""
+"グローバルに無効化された演算子は、ウィジェットレベルで再有効化することはでき"
+"ません。"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:19
 msgid ""
 "**Example:** If the admin disables ``Contains``, no widget configuration "
 "or user filter can use ``Contains``."
 msgstr ""
+"**例:** 管理者が``Contains`` を無効にした場合、どのウィジェットの設定や"
+"ユーザーフィルターも``Contains`` を使用できなくなります。"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:23
 msgid "Widget-level configuration (Column Management)"
-msgstr ""
+msgstr "ウィジェットレベルの設定（列管理）"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:25
 msgid ""
@@ -2201,6 +2217,11 @@ msgid ""
 ":ref:`Case list column management <case-widget-column-management>` for "
 "how to open this dialog."
 msgstr ""
+"「列管理」ダイアログでは、フィルタリング可能な各列で利用可能なフィールドや演"
+"算子をさらに制限することができます。このダイアログの開き方については"
+"、:ref:`（タスクリストの列管理） <task-widget-column-management>` およ"
+"び:ref:`（ケースリストの列管理） <case-widget-column-management>` を参照して"
+"ください。"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:30
 #: ../../source/portal-user-guide/new-dashboard/index.rst:156
@@ -2217,30 +2238,41 @@ msgid ""
 "Directly uncheck `Filter` checkbox of a field to prevent user from using "
 "it."
 msgstr ""
+"フィールドの `Filter` チェックボックスのチェックを直接外すと、ユーザーがその"
+"フィールドを使用できなくなります。"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:33
 msgid ""
 "Operators disabled globally by the admin are greyed out and cannot be "
 "selected."
 msgstr ""
+"管理者によってグローバルに無効化された演算子はグレー表示され、選択できません"
+"。"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:34
 msgid ""
 "If all operators for a field are globally disabled, the `Filter` checkbox"
 " for that field is automatically disabled and cannot be turned on."
 msgstr ""
+"あるフィールドのすべての演算子がグローバルに無効化されている場合、その"
+"フィールドの `Filter` チェックボックスは自動的に無効化され、有効にすることは"
+"できません。"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:36
 msgid ""
 "This configuration can only narrow the global setting — it cannot re-"
 "enable a globally disabled operator."
 msgstr ""
+"この設定ではグローバル設定を絞り込むことしかできません。グローバルで無効化さ"
+"れた演算子を再度有効にすることはできません。"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:41
 msgid ""
 "When field and operator settings change after filters have already been "
 "saved or applied, Portal automatically removes affected filters."
 msgstr ""
+"フィルタがすでに保存または適用された後にフィールドや演算子の設定が変更された"
+"場合、Portal は影響を受けるフィルタを自動的に削除します。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:12
 msgid "Complex Filter"
@@ -2298,6 +2330,10 @@ msgid ""
 "list column management <task-widget-column-management>` and :ref:`Case "
 "list column management <case-widget-column-management>`)."
 msgstr ""
+"新しいフィルターを追加する際にドロップダウンから選択できるフィールドは、"
+"ウィジェットの「列管理」ダイアログで制御されます（:ref:`の「タスクリストの列"
+"管理」 <task-widget-column-management>` および:ref:`の「ケースリストの列管理"
+"」 <case-widget-column-management>` を参照）。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:33
 msgid ""
@@ -2866,12 +2902,10 @@ msgid ""
 msgstr "結果には、列のデータが現在のユーザーによって作成されたレコードのみ含まれます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:4
-#, fuzzy
 msgid "Portal Configuration"
-msgstr "タスクリスト設定"
+msgstr "ポータルの設定"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:7
-#, fuzzy
 msgid ""
 "**Access Requirements**: Only users with the :ref:`🔑DashboardWriteOwn "
 "<DashboardWriteOwn>` or :ref:`🔑DashboardWritePublic "
@@ -2880,30 +2914,30 @@ msgid ""
 " permissions allow you to add, edit, reorder, show, and hide private or "
 "public dashboards, and to configure sidebar navigation."
 msgstr ""
-"**アクセス要件**: :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` または "
-":ref:`🔑DashboardWritePublic <DashboardWritePublic>` "
-"の権限を持つユーザーのみが、:guilabel:`Dashboard Configuration` "
-"メニュー項目を表示およびアクセスできます。これらの権限により、非公開または公開ダッシュボードの追加、編集、並べ替え、表示、非表示が可能になります。"
+"**アクセス要件**: 「:ref:`」🔑DashboardWriteOwn <DashboardWriteOwn>` または"
+"「:ref:`」🔑DashboardWritePublic <DashboardWritePublic>` の権限、あるいは"
+"「``AXONIVY_PORTAL_ADMIN``」のロールを持つユーザーのみが、「:guilabel:`」"
+"メニュー項目` を表示およびアクセスできます。これらの権限により、非公開または"
+"公開のダッシュボードの追加、編集、順序変更、表示、非表示、および"
+"サイドバーナビゲーションの設定が可能になります。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:9
-#, fuzzy
 msgid ""
 "Portal Configuration provides centralized management of your personal and"
 " organization-wide dashboards, as well as the sidebar navigation menu. "
 "Access it through the :guilabel:`Portal Configuration` user menu item."
 msgstr ""
-"ダッシュボード設定では、個人および組織全体のダッシュボードを一元管理できます。:guilabel:`ダッシュボード設定` "
-"のユーザーメニュー項目からアクセスしてください。"
+"「ポータル設定」では、個人および組織全体のダッシュボード、ならびにサイドバー"
+"のナビゲーションメニューを一元的に管理できます。:guilabel:`の「ポータル設定"
+"」` ユーザーメニュー項目からアクセスしてください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:12
-#, fuzzy
 msgid "|portal-configuration|"
-msgstr "設定"
+msgstr "|portal-configuration|"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:401
-#, fuzzy
 msgid "Portal configuration menu"
-msgstr "ダッシュボード設定メニュー"
+msgstr "ポータル設定メニュー"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:15
 #: ../../source/portal-user-guide/full-case-list/index.rst:22
@@ -2913,9 +2947,8 @@ msgid "Overview"
 msgstr "概要"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:17
-#, fuzzy
 msgid "The Portal Configuration page has three tabs:"
-msgstr "ダッシュボード設定ページには、以下の2つのタブがございます："
+msgstr "「ポータル設定」ページには、3つのタブがあります："
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:23
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:384
@@ -2953,19 +2986,17 @@ msgid "Manage shared dashboards visible to users with specific permissions"
 msgstr "特定の権限を持つユーザーに表示される共有ダッシュボードを管理します。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:31
-#, fuzzy
 msgid "**Sidebar**"
-msgstr "**フィルター**"
+msgstr "**サイドバー**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:31
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:396
-#, fuzzy
 msgid "``AXONIVY_PORTAL_ADMIN`` role"
-msgstr "``AXONIVY_PORTAL_ADMIN``"
+msgstr "``AXONIVY_PORTAL_ADMIN`` ロール"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:31
 msgid "Configure sidebar menu items and sidebar behaviour (admin only)"
-msgstr ""
+msgstr "サイドバーのメニュー項目と動作の設定（管理者専用）"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:36
 msgid "Private dashboards configuration"
@@ -3278,28 +3309,34 @@ msgid "Public dashboards configuration"
 msgstr "公開用ダッシュボードの設定"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:141
-#, fuzzy
 msgid ""
 "The tab :guilabel:`Public dashboards` allows you to add, edit, and "
 "reorder public dashboards. Public dashboards are organized into three "
 "sections based on their **Display Type** setting:"
-msgstr ":guilabel:`公開用ダッシュボード` タブでは、公開ダッシュボードの追加、編集、並び替えが可能です。"
+msgstr ""
+"「:guilabel:`」タブの「Public dashboards」` では、公開ダッシュボードの追加、"
+"編集、順序変更を行うことができます。公開ダッシュボードは、「**」の「Display "
+"Type」** 設定に基づいて、3つのセクションに分類されます："
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:144
 msgid ""
 "**Top Menu** — dashboards appear as top-level items in the sidebar "
 "navigation"
 msgstr ""
+"**トップメニュー** — ダッシュボードはサイドバーナビゲーションの最上位項目とし"
+"て表示されます"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:145
 msgid ""
 "**Submenu** — dashboards are grouped under the Dashboard icon in the "
 "sidebar"
 msgstr ""
+"**サブメニュー「** 」 — ダッシュボードはサイドバーの「Dashboard」アイコンの下"
+"にグループ化されています"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:146
 msgid "**Hidden** — dashboards are not shown in the sidebar"
-msgstr ""
+msgstr "**非表示の** — ダッシュボードはサイドバーに表示されません"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:148
 msgid "|public-dashboard-configuration|"
@@ -3331,15 +3368,14 @@ msgid "The :guilabel:`Create new public dashboard` dialog is opened."
 msgstr ":guilabel:`新しい公開用ダッシュボードを作成` ダイアログが開きます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:161
-#, fuzzy
 msgid ""
 "Enter the mandatory title, permissions to see the public dashboard and "
 "the optional description for the public dashboard. Select a **Display "
 "Type** to control where the dashboard appears in the sidebar:"
 msgstr ""
-"公開ダッシュボードには、必須のタイトル、公開ダッシュボードの閲覧権限、および任意の説明を入力してください。 `トップメニュー項目` "
-"チェックボックスがオンの場合、ダッシュボードはナビゲーションバーの最上位項目として表示されます。オフの場合、 `ダッシュボード` "
-"メニュー項目のサブ項目として表示されます。"
+"必須項目のタイトル、パブリックダッシュボードの閲覧権限、および"
+"パブリックダッシュボードの説明（任意）を入力してください。サイドバー内の"
+"ダッシュボードの表示位置を制御するには、**の表示タイプ** を選択してください："
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:164
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:209
@@ -3347,6 +3383,8 @@ msgid ""
 "**Submenu** — the dashboard is grouped under the Dashboard icon in the "
 "sidebar"
 msgstr ""
+"**サブメニュー「** 」 — ダッシュボードはサイドバーの「Dashboard」アイコンの下"
+"にグループ化されています"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:165
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:210
@@ -3354,11 +3392,13 @@ msgid ""
 "**Top Menu** — the dashboard appears as a top-level item in the sidebar "
 "navigation"
 msgstr ""
+"**トップメニュー** — ダッシュボードはサイドバーナビゲーションの最上位項目とし"
+"て表示されます"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:166
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:211
 msgid "**Hidden** — the dashboard is not shown in the sidebar"
-msgstr ""
+msgstr "**非表示の** — ダッシュボードはサイドバーに表示されません"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:168
 msgid "Create the public dashboard by selecting |add-icon| Create dashboard."
@@ -3402,15 +3442,14 @@ msgid "The :guilabel:`Import Public Dashboard` dialog is opened."
 msgstr ":guilabel:`公開用ダッシュボードをインポート` ダイアログが開きます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:206
-#, fuzzy
 msgid ""
 "Edit the mandatory title, permissions to see the public dashboard and the"
 " optional description for the public dashboard. Select a **Display Type**"
 " to control where the dashboard appears in the sidebar:"
 msgstr ""
-"タイトルと公開用ダッシュボードを表示する権限（必須）、公開用ダッシュボードの説明（任意）を編集します。 `トップメニュー項目` "
-"チェックボックスがオンの場合、ダッシュボードはナビゲーションバーの最上位の項目として表示されます。オフの場合は、 `ダッシュボード` "
-"メニュー項目の下にサブ項目として表示されます。"
+"必須項目のタイトル、パブリックダッシュボードの閲覧権限、および"
+"パブリックダッシュボードの任意の説明文を編集してください。**の表示タイプ** を"
+"選択して、サイドバー内のダッシュボードの表示位置を制御してください："
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:217
 msgid ""
@@ -3431,12 +3470,15 @@ msgid "HowTo: edit public dashboards"
 msgstr "ハウツー：公開ダッシュボードの編集方法"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:224
-#, fuzzy
 msgid ""
 "The :guilabel:`Edit public dashboards` section shows you the public "
 "dashboards organized into three sections: **Top Menu**, **Submenu**, and "
 "**Hidden**. Each section displays a table with the following columns:"
-msgstr ":guilabel:`公開ダッシュボードの編集方法` セクションでは、公開ダッシュボードを以下の列で構成された表でご覧いただけます："
+msgstr ""
+"「:guilabel:`」の「Edit public dashboards` 」セクションでは、公開"
+"ダッシュボードが 3 つのセクションに分類されて表示されます。**「Top Menu** 」"
+"、**「Submenu** 」、および**「Hidden** 」です。各セクションには、以下の列を含"
+"む表が表示されます："
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:227
 msgid "**Dashboard permissions**: Roles/permissions that can access the dashboard"
@@ -3447,13 +3489,16 @@ msgid ""
 "**Display Type**: Where the dashboard appears in the sidebar (Top Menu, "
 "Submenu, or Hidden)"
 msgstr ""
+"**表示タイプ** ：ダッシュボードをサイドバーのどこに表示するか（トップメニュー"
+"、サブメニュー、または非表示）"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:235
-#, fuzzy
 msgid ""
 "|edit-icon| **Edit**: Modify dashboard name, permissions, description, "
 "and Display Type"
-msgstr "|edit-icon| **編集**: ダッシュボード名、権限、説明を変更してください。"
+msgstr ""
+"|edit-icon| **** を編集：ダッシュボード名、権限、説明、および表示タイプを変更"
+"する"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:237
 msgid ""
@@ -3492,12 +3537,17 @@ msgid ""
 "To move a dashboard between sections, open the Edit dialog and change the"
 " **Display Type** field."
 msgstr ""
+"ダッシュボードをセクション間で移動するには、[編集] ダイアログを開き、[**] の "
+"[表示タイプ]** フィールドを変更してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:247
 msgid ""
 "When exporting a dashboard that references other dashboards, you will be "
 "prompted to include the referenced dashboards in the export."
 msgstr ""
+"他のダッシュボードを参照しているダッシュボードをエクスポートする際、参照先の"
+"ダッシュボードをエクスポートに含めるかどうかを確認するメッセージが表示されま"
+"す。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:251
 msgid "HowTo: share public dashboards"
@@ -3537,11 +3587,12 @@ msgid "HowTo: reorder public dashboards"
 msgstr "ハウツー：公開ダッシュボードの並べ替え"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:266
-#, fuzzy
 msgid ""
 "You can rearrange dashboards within the **Submenu** section by dragging "
 "and dropping |reorder-dashboard-icon| icon."
-msgstr "|reorder-dashboard-icon| アイコンをドラッグ＆ドロップして、ダッシュボードを並べ替えることができます。"
+msgstr ""
+"**のサブメニュー「** 」セクション内では、|reorder-dashboard-icon| アイコンを"
+"ドラッグ＆ドロップすることで、ダッシュボードの配置を変更できます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:268
 msgid "|reorder-public-dashboards|"
@@ -3557,68 +3608,75 @@ msgid ""
 "section. Dashboards in the **Top Menu** and **Hidden** sections cannot be"
 " reordered by drag and drop."
 msgstr ""
+"ドラッグ＆ドロップによる順序変更は、「**」サブメニュー** 内のセクションでのみ"
+"利用可能です。「**」トップメニュー** および「**」非表示** セクション内の"
+"ダッシュボードは、ドラッグ＆ドロップによる順序変更を行うことはできません。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:274
-#, fuzzy
 msgid "Sidebar configuration"
-msgstr "ダッシュボード設定"
+msgstr "サイドバーの設定"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:277
 msgid ""
 "**Admin Access Required**: The :guilabel:`Sidebar` tab is only accessible"
 " to users with the ``AXONIVY_PORTAL_ADMIN`` role."
 msgstr ""
+"**管理者権限が必要**: 「:guilabel:`」のサイドバーにある「` 」タブにアクセスで"
+"きるのは、``AXONIVY_PORTAL_ADMIN`` ロールを持つユーザーのみです。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:279
 msgid ""
 "The tab :guilabel:`Sidebar` allows portal administrators to manage the "
 "sidebar menu items and configure sidebar behaviour for all users."
 msgstr ""
+"「:guilabel:`」タブの「` 」では、ポータル管理者がサイドバーのメニュー項目を管"
+"理し、すべてのユーザーに対するサイドバーの動作を設定できます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:281
-#, fuzzy
 msgid "|sidebar-navigation-configuration|"
-msgstr "|dashboard-configuration|"
+msgstr "|sidebar-navigation-configuration|"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:427
-#, fuzzy
 msgid "Sidebar navigation configuration tab"
-msgstr "ダッシュボードの通知ウィジェットの設定ダイアログ"
+msgstr "サイドバーナビゲーションの設定タブ"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:284
 msgid "Menu Items"
-msgstr ""
+msgstr "メニュー項目"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:286
-#, fuzzy
 msgid ""
 "The menu items table displays all sidebar navigation entries with the "
 "following columns:"
-msgstr "Absencesタブは、次の列でテーブル内のすべての電流と今後の欠如を表示します"
+msgstr ""
+"メニュー項目テーブルには、サイドバーのナビゲーション項目がすべて、以下の列で"
+"表示されます："
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:288
-#, fuzzy
 msgid "**Label**: The display title of the menu item"
-msgstr "**タスク名**: タスクの名称またはタイトル"
+msgstr "**ラベル「** 」：メニュー項目の表示タイトル"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:289
 msgid "**Links To**: The URL or dashboard the item links to"
-msgstr ""
+msgstr "**** へのリンク：その項目がリンクしている URL またはダッシュボード"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:290
 msgid ""
 "**Type**: The kind of item (Standard, External Link, Main Dashboard, "
 "Static Page, etc.)"
 msgstr ""
+"**タイプ** ：項目の種類（標準、外部リンク、メインダッシュボード、静的ページな"
+"ど）"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:291
-#, fuzzy
 msgid "**Actions**: Edit and Delete operations accessible via the overflow menu"
-msgstr "**操作**: 各不在行の編集または削除オプション"
+msgstr "**操作**: オーバーフローメニューからアクセス可能な編集および削除操作"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:292
 msgid "**Reorder**: Drag handle (|reorder-dashboard-icon|) to reorder items"
 msgstr ""
+"**** の順序を変更する：ハンドル（ ）をドラッグして項目の順序を変更してくださ"
+"い|reorder-dashboard-icon|"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:295
 msgid ""
@@ -3626,194 +3684,192 @@ msgid ""
 " and cannot be edited or deleted. The Actions menu is not available for "
 "these items."
 msgstr ""
+"**、Dashboard** 、**、Processes** などの組み込み項目は標準項目であり、編集や"
+"削除はできません。これらの項目では、[Actions] メニューは利用できません。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:298
-#, fuzzy
 msgid "HowTo: add a sidebar menu item"
-msgstr "ハウツー：欠席の追加"
+msgstr "ハウツー：サイドバーメニュー項目を追加する"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:300
-#, fuzzy
 msgid "Click :guilabel:`Add Item` to open the :guilabel:`Add Menu Item` dialog."
-msgstr "ダイアログを閉じるには、:guilabel:`閉じる` をクリックしてください。"
+msgstr ""
+":guilabel:`の「Add Item」` をクリックして、「:guilabel:`Add Menu Item」` "
+"ダイアログを開きます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:302
-#, fuzzy
 msgid "|add-menu-item-dialog|"
-msgstr "|how-to-add-deputy-dialog|"
+msgstr "|add-menu-item-dialog|"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:429
-#, fuzzy
 msgid "Add menu item dialog"
-msgstr "新しいウィジェットの追加ダイアログ"
+msgstr "メニュー項目の追加ダイアログ"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:304
-#, fuzzy
 msgid "Select the item type:"
-msgstr "追加したいウィジェットの種類をお選びください。"
+msgstr "項目タイプを選択してください："
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:306
 msgid "**Main Dashboard** — links to a portal dashboard"
-msgstr ""
+msgstr "**メインダッシュボード** — ポータルダッシュボードへのリンク"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:307
 msgid ""
 "**External Link** — links to any URL; can be configured to open in a new "
 "tab"
-msgstr ""
+msgstr "**外部リンク** — 任意の URL へのリンク。新しいタブで開くように設定可能です。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:308
 msgid "**Static Page** — links to a static portal page"
-msgstr ""
+msgstr "**静的ページ** — 静的ポータルページへのリンク"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:311
 msgid "The item type cannot be changed after the menu item has been created."
-msgstr ""
+msgstr "メニュー項目を作成した後、その項目タイプを変更することはできません。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:313
 msgid ""
 "Enter a title for the item. To provide translations, use the multi-"
 "language input (see :ref:`portal-multi-language`)."
 msgstr ""
+"項目のタイトルを入力してください。翻訳を提供するには、多言語入力機能を使用し"
+"てください（:ref:`portal-multi-language` を参照）。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:315
 msgid "Select an icon to represent the item in the sidebar."
-msgstr ""
+msgstr "サイドバーで項目を表すアイコンを選択してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:317
 msgid "Set permissions to control which users can see this menu item."
-msgstr ""
+msgstr "権限を設定して、このメニュー項目を表示できるユーザーを制御してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:319
-#, fuzzy
 msgid "Click :guilabel:`Save` to add the item to the sidebar."
-msgstr "設定を適用するには、:guilabel:`保存` をクリックしてください。"
+msgstr ":guilabel:`をクリックし、` を保存して、サイドバーに項目を追加してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:322
-#, fuzzy
 msgid "HowTo: edit a sidebar menu item"
-msgstr "プロセスの編集メニュー項目"
+msgstr "ハウツー：サイドバーメニュー項目の編集"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:324
 msgid ""
 "In the menu items table, click |actions-menu-icon| next to the item you "
 "want to edit."
 msgstr ""
+"メニュー項目一覧で、編集したい項目の横にある「|actions-menu-icon| 」を"
+"クリックしてください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:326
-#, fuzzy
 msgid "Select |edit-icon| **Edit**."
-msgstr "|import-icon| （インポート）を選択します。"
+msgstr "|edit-icon| **を選択し、** を編集してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:328
 msgid "Update the title, icon, link target, or permissions as needed."
-msgstr ""
+msgstr "必要に応じて、タイトル、アイコン、リンク先、または権限を更新してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:330
-#, fuzzy
 msgid "Click :guilabel:`Save` to apply the changes."
-msgstr "設定を適用するには、:guilabel:`保存` をクリックしてください。"
+msgstr ":guilabel:`をクリックし、` を保存して変更を適用してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:333
 msgid "HowTo: delete a sidebar menu item"
-msgstr ""
+msgstr "ハウツー：サイドバーメニュー項目を削除する"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:335
-#, fuzzy
 msgid ""
 "In the menu items table, click |actions-menu-icon| next to the item you "
 "want to remove."
-msgstr "削除したい添付ファイルの隣にある |delete-icon| ボタンをクリックします。"
+msgstr ""
+"メニュー項目のテーブルで、削除したい項目の横にある「|actions-menu-icon| 」を"
+"クリックしてください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:337
-#, fuzzy
 msgid "Select |trash-icon| **Delete**."
-msgstr "|import-icon| （インポート）を選択します。"
+msgstr "|trash-icon| **を選択し、** を削除してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:339
-#, fuzzy
 msgid "Confirm the deletion in the confirmation dialog."
-msgstr ":guilabel:`削除` ボタンをクリックして、削除を確定します。"
+msgstr "確認ダイアログで削除を確認してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:342
 msgid "Deletion is permanent. Standard (built-in) items cannot be deleted."
-msgstr ""
+msgstr "削除は取り消せません。標準（組み込み）の項目は削除できません。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:345
-#, fuzzy
 msgid "HowTo: reorder sidebar menu items"
-msgstr "ハウツー：プライベートダッシュボードの並べ替え"
+msgstr "ハウツー：サイドバーメニュー項目の順序を変更する"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:347
-#, fuzzy
 msgid ""
 "You can rearrange sidebar menu items by dragging and dropping |reorder-"
 "dashboard-icon| icon to the desired position."
-msgstr "|reorder-dashboard-icon| アイコンをドラッグ＆ドロップして、ダッシュボードを並べ替えることができます。"
+msgstr ""
+"サイドバーのメニュー項目は、|reorder-dashboard-icon| のアイコンを目的の位置に"
+"ドラッグ＆ドロップすることで並べ替えることができます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:350
-#, fuzzy
 msgid "Sidebar Settings"
-msgstr "ユーザー設定"
+msgstr "サイドバーの設定"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:352
 msgid ""
 "Below the menu items table, the **Sidebar Settings** card provides "
 "controls that affect the sidebar behaviour for all users."
 msgstr ""
+"メニュー項目の一覧の下にある「**サイドバー設定」** カードには、すべての"
+"ユーザーのサイドバーの動作に影響を与える設定項目が用意されています。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:354
-#, fuzzy
 msgid "|sidebar-settings-panel|"
-msgstr "|global-settings|"
+msgstr "|sidebar-settings-panel|"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:431
-#, fuzzy
 msgid "Sidebar settings panel"
-msgstr "ユーザー設定"
+msgstr "サイドバーの設定パネル"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:360
-#, fuzzy
 msgid "Setting"
-msgstr "**設定**"
+msgstr "設定"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:362
-#, fuzzy
 msgid "**Disable Sidebar**"
-msgstr "**イメージモード**"
+msgstr "**サイドバーを無効にする**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:362
 msgid "When enabled, hides the entire sidebar for all users."
-msgstr ""
+msgstr "有効にすると、すべてのユーザーに対してサイドバー全体が非表示になります。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:364
 msgid "**Sidebar Behaviour**"
-msgstr ""
+msgstr "**サイドバーの動作**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:364
 msgid ""
 "Controls how the sidebar opens. Only visible when the sidebar is not "
 "disabled. Options:"
 msgstr ""
+"サイドバーの表示方法を制御します。サイドバーが無効になっていない場合にのみ表"
+"示されます。オプション："
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:367
 msgid "**Hover** — sidebar opens on mouse-over"
-msgstr ""
+msgstr "**** にカーソルを合わせると、サイドバーが開きます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:368
 msgid "**Click** — sidebar requires a click to open"
-msgstr ""
+msgstr "**** をクリックしてください — サイドバーを開くにはクリックが必要です"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:369
-#, fuzzy
 msgid "**Stick** — sidebar is always visible (pinned)"
-msgstr "**2. サイドメニュー** (常に左側に表示されます)"
+msgstr "**** に従ってください — サイドバーは常に表示されたまま（固定）です"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:373
 msgid ""
 "When either Sidebar Setting is changed, the page automatically reloads to"
 " apply the change."
 msgstr ""
+"サイドバーの設定のいずれかが変更されると、変更を反映するためにページが自動的"
+"に再読み込みされます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:376
 #: ../../source/portal-user-guide/full-case-list/index.rst:359
@@ -3824,9 +3880,8 @@ msgid "Permission Reference"
 msgstr "権限リファレンス"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:378
-#, fuzzy
 msgid "Different Portal Configuration actions require specific permissions:"
-msgstr "異なるタスク操作には、特定の権限が必要となります："
+msgstr "ポータルの各種設定操作には、それぞれ特定の権限が必要です："
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:386
 msgid "**Import private dashboard**"
@@ -3869,9 +3924,8 @@ msgid ":ref:`🔑ShareDashboardLink <ShareDashboardLink>`"
 msgstr ":ref:`🔑ShareDashboardLink <ShareDashboardLink>`"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:396
-#, fuzzy
 msgid "**Manage sidebar navigation**"
-msgstr "**ナビゲーション**"
+msgstr "**サイドバーのナビゲーションを管理する**"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:4
 msgid "Demo Processes"
@@ -5626,14 +5680,12 @@ msgid "Application (This column is not displayed by default)"
 msgstr "アプリケーション（この列は自動的に表示されません）"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:55
-#, fuzzy
 msgid "Business Case ID (This column is not displayed by default)"
-msgstr "作業ユーザー (このカラムはデフォルトでは表示されません)"
+msgstr "ビジネスケースID（この列はデフォルトでは表示されません）"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:57
-#, fuzzy
 msgid "Technical Case ID (This column is not displayed by default)"
-msgstr "アプリケーション（この列は自動的に表示されません）"
+msgstr "技術ケースID（この列はデフォルトでは表示されません）"
 
 #: ../../source/portal-user-guide/full-task-list/index.rst:59
 msgid "|task-key-information|"
@@ -6815,6 +6867,8 @@ msgid ""
 "Use the Filter checkbox to include or exclude a field from the complex "
 "filter options"
 msgstr ""
+"「フィルター」チェックボックスを使用して、複雑なフィルターオプションから"
+"フィールドを含めるか除外するかを選択してください"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:165
 msgid "Enable the quick search by selecting the quick search checkbox"
@@ -6839,7 +6893,7 @@ msgstr "列を削除します。"
 #: ../../source/portal-user-guide/new-dashboard/index.rst:171
 #: ../../source/portal-user-guide/new-dashboard/index.rst:284
 msgid "Newly added fields are filter-enabled by default."
-msgstr ""
+msgstr "新しく追加されたフィールドは、デフォルトでフィルタ対応となっています。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:172
 #: ../../source/portal-user-guide/new-dashboard/index.rst:285
@@ -6847,6 +6901,8 @@ msgid ""
 "If existing filters use a field that you disable, these filter conditions"
 " are removed after saving."
 msgstr ""
+"既存のフィルターで、無効化したフィールドが使用されている場合、保存後にそれら"
+"のフィルター条件は削除されます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:176
 #: ../../source/portal-user-guide/new-dashboard/index.rst:289
@@ -10765,4 +10821,3 @@ msgstr "統計設定例"
 
 #~ msgid "Different dashboard actions require specific permissions:"
 #~ msgstr "ダッシュボードの操作内容によって、必要な権限が異なります："
-
