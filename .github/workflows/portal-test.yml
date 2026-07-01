@@ -2,8 +2,6 @@ name: Portal Test
 run-name: 🧪 Portal Test
 permissions: read-all
 on:
-  push:
-  pull_request:
   workflow_dispatch:
     inputs:
       testPatternToRun:
