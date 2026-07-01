@@ -5,54 +5,87 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="caze" type="ch.ivyteam.ivy.workflow.ICase"
-    shortDescription="ID of the case whose audit trail to display. Required: true." />
   <cc:attribute name="containerStyleClass" type="java.lang.String" default=""
     shortDescription="Additional CSS class for the outer container. Required: false." />
+  <cc:attribute name="headerStyleClass" type="java.lang.String" default=""
+    shortDescription="Additional CSS class for the header section. Required: false." />
+  <cc:attribute name="tableStyleClass" type="java.lang.String" default=""
+    shortDescription="Additional CSS class for the data table. Required: false." />
+  <cc:attribute name="showHeader" type="java.lang.Boolean" default="true"
+    shortDescription="Whether to display the header section. Required: false." />
+  <cc:attribute name="contentColumnHeader" type="java.lang.String" default="Content"
+    shortDescription="Header text for the content column. Required: false." />
+  <cc:attribute name="authorColumnHeader" type="java.lang.String" default="Author"
+    shortDescription="Header text for the author column. Required: false." />
+  <cc:attribute name="timestampColumnHeader" type="java.lang.String" default="Timestamp"
+    shortDescription="Header text for the timestamp column. Required: false." />
+  <cc:attribute name="customHeader" type="java.lang.String" default="Audit Trail"
+    shortDescription="Title text shown in the header section. Required: false." />
+  <cc:attribute name="showAddNote" type="java.lang.Boolean" default="false"
+    shortDescription="Whether to display the add-note action for appending information. Required: false." />
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.getAuditTrailList(cc.attrs.caze)}" type="preRenderComponent" />
+  <h:outputStylesheet library="css" name="audit-trail-component.css" />
+  <f:event listener="#{logic.getAuditTrailList()}" type="preRenderComponent" />
   <h:panelGroup id="audit-trail-content" layout="block"
     styleClass="audit-trail-container #{cc.attrs.containerStyleClass}">
 
-    <!-- History Header -->
-    <div class="flex align-items-center justify-content-between mb-3 audit-trail-history-header">
-      <div class="flex align-items-center gap-2">
+    <h:panelGroup layout="block" styleClass="audit-trail-history-header #{cc.attrs.headerStyleClass}"
+      rendered="#{cc.attrs.showHeader}">
+      <div class="audit-trail-header-title">
         <i class="ti ti-clock audit-trail-history-icon" />
-        <span class="font-bold text-xl">Audit Trail</span>
+        <span class="audit-trail-title">#{cc.attrs.customHeader}</span>
       </div>
-    </div>
+      <p:commandLink type="button" styleClass="audit-trail-add-link" rendered="#{cc.attrs.showAddNote}"
+        onclick="PF('addAuditInfoDialog').show()">
+        <i class="ti ti-plus" />
+        <span>Add your note</span>
+      </p:commandLink>
+    </h:panelGroup>
 
-    <!-- History Table -->
     <p:dataTable id="history-table" widgetVar="historyTable" var="entry" value="#{data.auditTrailDTOs}"
-      emptyMessage="No history found." reflow="true" lazy="false" styleClass="audit-trail-history-table w-full">
+      emptyMessage="No history found." reflow="true" lazy="false"
+      scrollable="true" scrollHeight="200"
+      styleClass="audit-trail-history-table #{cc.attrs.tableStyleClass}">
 
-      <p:column headerText="Action" styleClass="audit-trail-action-col w-2">
-        <h:outputText value="#{entry.action}" styleClass="font-semibold" />
-      </p:column>
-
-      <p:column headerText="Content" styleClass="audit-trail-content-col w-4">
+      <p:column headerText="#{cc.attrs.contentColumnHeader}" styleClass="audit-trail-content-col">
         <h:outputText value="#{entry.content}" styleClass="audit-trail-note-content" />
       </p:column>
 
-      <p:column headerText="Author" styleClass="audit-trail-author-col w-2">
-        <div class="flex align-items-center gap-2">
-          <div class="audit-trail-author-avatar flex align-items-center justify-content-center border-circle">
+      <p:column headerText="#{cc.attrs.authorColumnHeader}" styleClass="audit-trail-author-col">
+        <div class="audit-trail-author-cell">
+          <div class="audit-trail-author-avatar">
             <i class="si si-single-neutral-actions" />
           </div>
           <span>#{entry.author}</span>
         </div>
       </p:column>
 
-      <p:column headerText="Timestamp" sortBy="#{entry.timestamp}"
-        styleClass="audit-trail-date-col u-hidden-sm-down w-2">
+      <p:column headerText="#{cc.attrs.timestampColumnHeader}" sortBy="#{entry.timestamp}"
+        styleClass="audit-trail-date-col">
         <h:outputText value="#{entry.timestamp}">
           <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
         </h:outputText>
       </p:column>
 
     </p:dataTable>
+
+    <p:dialog header="Add note" widgetVar="addAuditInfoDialog" modal="true" responsive="true"
+      closeOnEscape="true" resizable="false" width="480" styleClass="audit-trail-add-dialog"
+      rendered="#{cc.attrs.showAddNote}">
+      <div class="field">
+        <p:inputTextarea id="add-info-input" value="#{data.additionalInformation}" rows="4"
+          styleClass="audit-trail-add-input" placeholder="Add your note here" />
+      </div>
+      <f:facet name="footer">
+        <p:commandButton value="Add" ariaLabel="Add" icon="ti ti-check"
+          actionListener="#{logic.addInformation}" process="@this add-info-input"
+          update="history-table add-info-input" oncomplete="PF('addAuditInfoDialog').hide()" />
+        <p:commandLink value="Cancel" ariaLabel="Cancel"
+          onclick="PF('addAuditInfoDialog').hide(); return false;" styleClass="audit-trail-add-cancel" />
+      </f:facet>
+    </p:dialog>
   </h:panelGroup>
 </cc:implementation>
 

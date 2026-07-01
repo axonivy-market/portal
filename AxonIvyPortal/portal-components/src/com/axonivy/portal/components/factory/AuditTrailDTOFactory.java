@@ -8,11 +8,12 @@ public class AuditTrailDTOFactory {
 
   private AuditTrailDTOFactory() {}
 
-  public static AuditTrailDTO build(Long taskId, String author, String action, String content) {
-    return new AuditTrailDTO(taskId, new Date(), author, action, content);
+  public static AuditTrailDTO build(String author, String content) {
+    return new AuditTrailDTO(new Date(), author, content);
   }
 
-  public static AuditTrailDTO build(Long taskId, String author, String action) {
-    return build(taskId, author, action, null);
+  public static AuditTrailDTO build(String author) {
+    return build(author, null);
   }
+  
 }

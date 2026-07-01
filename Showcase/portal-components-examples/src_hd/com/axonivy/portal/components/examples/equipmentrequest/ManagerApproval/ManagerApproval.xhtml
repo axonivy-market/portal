@@ -9,9 +9,8 @@
       <h:form id="equipment-request">
         <!-- Page header -->
         <div class="flex align-items-center gap-3 mb-5">
-          <div class="flex align-items-center justify-content-center border-circle"
-            style="width:3rem;height:3rem;background:var(--orange-100)">
-            <i class="si si-task-checklist-check" style="font-size:1.3rem;color:var(--orange-600)" />
+          <div class="equipment-request-page-icon equipment-request-page-icon--approval">
+            <i class="si si-task-checklist-check" />
           </div>
           <div>
             <div class="text-2xl font-bold">Approval Required</div>
@@ -20,17 +19,17 @@
             </div>
           </div>
         </div>
-        <h:panelGroup>
-          <ic:com.axonivy.portal.components.AuditTrail caze="#{ivy.wf.getCurrentCase()}" />
-        </h:panelGroup>
+
+        <!-- Audit trail -->
+        <div class="pb-3">
+          <ic:com.axonivy.portal.components.AuditTrail showHeader="true" showAddNote="true" customHeader="History"/>
+        </div>
         <!-- Request summary card -->
-        <p:spacer width="20px" />
         <p:panel styleClass="card mb-4">
           <div class="flex align-items-center gap-2 mb-3 pb-2 border-bottom-1 surface-border">
             <i class="ti ti-clipboard-list text-color-secondary" />
             <span class="font-semibold text-lg">Request Details</span>
           </div>
-
           <div class="flex align-items-center gap-3 py-3 border-bottom-1 surface-border">
             <span class="equipment-request-summary-label">
               <i class="ti ti-user" />Requester
@@ -52,25 +51,20 @@
         </p:panel>
 
         <!-- Actions -->
-        <div class="flex flex-row-reverse gap-2">
-          <p:commandButton value="Approve" ariaLabel="Approve"
-            icon="ti ti-check" styleClass="primary-color-light-button"
-            partialSubmit="true" actionListener="#{logic.approve}"
-            process=":equipment-request" update=":equipment-request" />
-          <p:commandButton value="Reject" ariaLabel="Reject"
-            icon="ti ti-x" type="button" styleClass="ui-button-outlined-danger"
-            onclick="PF('rejectionDialog').show()" />
+        <div class="flex flex-row-reverse gap-2 mb-5">
+          <p:commandButton value="Approve" ariaLabel="Approve" icon="ti ti-check"
+            styleClass="primary-color-light-button" partialSubmit="true" actionListener="#{logic.approve}"
+            process="@this" update=":equipment-request" />
+          <p:commandButton value="Reject" ariaLabel="Reject" icon="ti ti-x" type="button"
+            styleClass="ui-button-outlined-danger" onclick="PF('rejectionDialog').show()" />
         </div>
 
         <!-- Rejection reason dialog -->
-        <p:dialog header="Rejection Reason" widgetVar="rejectionDialog"
-          modal="true" responsive="true"
-          closeOnEscape="true" resizable="false" width="480"
-          styleClass="portal-dialog dialog-responsive">
+        <p:dialog header="Rejection Reason" widgetVar="rejectionDialog" modal="true" responsive="true"
+          closeOnEscape="true" resizable="false" width="480" styleClass="portal-dialog dialog-responsive">
           <div class="flex align-items-center gap-3 mb-4">
-            <div class="flex align-items-center justify-content-center border-circle flex-shrink-0"
-              style="width:2.5rem;height:2.5rem;background:var(--red-100)">
-              <i class="ti ti-alert-triangle" style="font-size:1.2rem;color:var(--red-600)" />
+            <div class="equipment-request-rejection-dialog-icon">
+              <i class="ti ti-alert-triangle" />
             </div>
             <span class="text-color-secondary">
               Please provide a reason so the requester can update their request.
@@ -78,18 +72,16 @@
           </div>
           <div class="field">
             <p:outputLabel for="rejection-reason" value="Rejection Reason" styleClass="font-medium" />
-            <p:inputTextarea id="rejection-reason" value="#{data.requestData.rejectionReason}" required="true"
-              rows="4" styleClass="w-full mt-1" placeholder="Explain why this request cannot be approved..."
+            <p:inputTextarea id="rejection-reason" value="#{data.requestData.rejectionReason}" required="true" rows="4"
+              styleClass="w-full mt-1" placeholder="Explain why this request cannot be approved..."
               requiredMessage="Please provide a rejection reason" />
           </div>
           <f:facet name="footer">
             <div class="flex flex-column gap-2 w-full">
-              <p:commandButton value="Confirm Rejection" ariaLabel="Confirm Rejection"
-                styleClass="w-full"
-                actionListener="#{logic.reject}"
-                process=":equipment-request :equipment-request:rejection-reason" update=":equipment-request" />
-              <p:commandLink value="Cancel" ariaLabel="Cancel"
-                onclick="PF('rejectionDialog').hide(); return false;"
+              <p:commandButton value="Confirm Rejection" ariaLabel="Confirm Rejection" styleClass="w-full"
+                actionListener="#{logic.reject}" process=":equipment-request :equipment-request:rejection-reason"
+                update=":equipment-request" />
+              <p:commandLink value="Cancel" ariaLabel="Cancel" onclick="PF('rejectionDialog').hide(); return false;"
                 styleClass="pt-2 flex justify-content-center" />
             </div>
           </f:facet>
@@ -101,4 +93,5 @@
     </ui:define>
   </ui:composition>
 </h:body>
+
 </html>

@@ -81,36 +81,7 @@
         "size" : { "width" : 144 }
       },
       "connect" : [
-        { "id" : "f14", "to" : "f3" }
-      ]
-    }, {
-      "id" : "f3",
-      "type" : "UserTask",
-      "name" : "ManagerApproval",
-      "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.equipmentrequest.ManagerApproval:start()",
-        "task" : {
-          "name" : "Equipment request approval",
-          "responsible" : {
-            "type" : "USER_FROM_ATTRIBUTE",
-            "script" : "in.managerUsername"
-          }
-        },
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.isApproved" : "result.isApproved",
-            "out.rejectionReason" : "result.rejectionReason",
-            "out.requesterUsername" : "ivy.session.getSessionUserName();"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 608, "y" : 192 },
-        "size" : { "width" : 144 }
-      },
-      "connect" : [
-        { "id" : "f15", "to" : "f4" }
+        { "id" : "f14", "to" : "f28" }
       ]
     }, {
       "id" : "f4",
@@ -185,7 +156,7 @@
         "size" : { "width" : 144 }
       },
       "connect" : [
-        { "id" : "f20", "to" : "f3" }
+        { "id" : "f20", "to" : "f28" }
       ]
     }, {
       "id" : "f10",
@@ -229,6 +200,35 @@
       },
       "connect" : [
         { "id" : "f23", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f28",
+      "type" : "UserTask",
+      "name" : "ManagerApproval",
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.equipmentrequest.ManagerApproval:start()",
+        "task" : {
+          "name" : "Equipment request approval",
+          "responsible" : {
+            "type" : "USER_FROM_ATTRIBUTE",
+            "script" : "in.managerUsername"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.isApproved" : "result.isApproved",
+            "out.rejectionReason" : "result.rejectionReason",
+            "out.requesterUsername" : "ivy.session.getSessionUserName();"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 192 },
+        "size" : { "width" : 144 }
+      },
+      "connect" : [
+        { "id" : "f29", "to" : "f4" }
       ]
     } ]
 }

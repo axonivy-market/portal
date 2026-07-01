@@ -54,7 +54,8 @@
             "",
             "in.requestData = ivy.repo.get(EquipmentRequest.class) as EquipmentRequest;",
             "in.requester = new UserDTO(ISecurityContext.current().users().find(in.requestData.requesterUsername));",
-            "in.caseId = ivy.case.getId();"
+            "in.caseId = ivy.case.getId();",
+            "in.caze = ivy.wf.getCurrentCase();"
           ]
         },
         "sudo" : true
@@ -77,7 +78,6 @@
             "out.requestData" : "in.requestData"
           },
           "code" : [
-            "import com.axonivy.portal.components.factory.AuditTrailDTOFactory;",
             "import com.axonivy.portal.components.dto.AuditTrailDTO;",
             "ivy.repo.save(out.requestData);"
           ]
@@ -120,12 +120,8 @@
         "input" : {
           "map" : { },
           "code" : [
-            "import com.axonivy.portal.components.factory.AuditTrailDTOFactory;",
             "import com.axonivy.portal.components.service.AuditTrailService;",
-            "out.requestData.isApproved = true;",
-            "List trail = AuditTrailService.getInstance().load(ivy.case);",
-            "trail.add(AuditTrailDTOFactory.build(ivy.task.getId(), ivy.session.getSessionUser().getDisplayName(), \"Approved\", null));",
-            "AuditTrailService.getInstance().save(ivy.case, trail);"
+            "out.requestData.isApproved = true;"
           ]
         },
         "guid" : "19EF285E071A09B0"
@@ -145,12 +141,8 @@
         "input" : {
           "map" : { },
           "code" : [
-            "import com.axonivy.portal.components.factory.AuditTrailDTOFactory;",
             "import com.axonivy.portal.components.service.AuditTrailService;",
-            "out.requestData.isApproved = false;",
-            "List trail = AuditTrailService.getInstance().load(ivy.case);",
-            "trail.add(AuditTrailDTOFactory.build(ivy.task.getId(), ivy.session.getSessionUser().getDisplayName(), \"Rejected\", out.requestData.rejectionReason));",
-            "AuditTrailService.getInstance().save(ivy.case, trail);"
+            "out.requestData.isApproved = false;"
           ]
         },
         "guid" : "19EF2864B17265FD"
@@ -159,7 +151,45 @@
         "at" : { "x" : 152, "y" : 296 }
       },
       "connect" : [
-        { "id" : "f20", "to" : "f10" }
+        { "id" : "f21", "to" : "f20" }
+      ]
+    }, {
+      "id" : "f20",
+      "type" : "Script",
+      "name" : "save",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.factory.AuditTrailDTOFactory;",
+            "import com.axonivy.portal.components.dto.AuditTrailDTO;",
+            "AuditTrailDTO trail = AuditTrailDTOFactory.build(ivy.session.getSessionUserName(),\"Rejected: \" + in.requestData.rejectionReason);",
+            "in.auditTrailDTOs.add(trail);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 296 }
+      },
+      "connect" : [
+        { "id" : "f23", "to" : "f22" }
+      ]
+    }, {
+      "id" : "f22",
+      "type" : "SubProcessCall",
+      "config" : {
+        "processCall" : "Functional Processes/AuditTrailSupporter:saveAuditTrailDTOList(List<com.axonivy.portal.components.dto.AuditTrailDTO>,ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.auditTrailDTOs" : "in.auditTrailDTOs",
+            "param.caze" : "in.caze"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 296 }
+      },
+      "connect" : [
+        { "id" : "f24", "to" : "f10" }
       ]
     } ]
 }

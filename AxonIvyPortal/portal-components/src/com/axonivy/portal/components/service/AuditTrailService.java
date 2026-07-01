@@ -28,9 +28,11 @@ public class AuditTrailService {
 
   public void save(ICase caze, List<AuditTrailDTO> entries) {
     try {
-      entries.sort((a, b) -> b.getTimestamp().compareTo(a.getTimestamp()));
+      List<AuditTrailDTO> merged = new ArrayList<>(load(caze));
+      merged.addAll(entries);
+      merged.sort((a, b) -> b.getTimestamp().compareTo(a.getTimestamp()));
       ObjectNode root = MAPPER.createObjectNode();
-      root.set(ENTRIES_KEY, MAPPER.valueToTree(entries));
+      root.set(ENTRIES_KEY, MAPPER.valueToTree(merged));
       caze.customFields().stringField(FIELD_NAME).set(MAPPER.writeValueAsString(root));
     } catch (Exception e) {
       Ivy.log().error("Failed to save audit trail for case " + caze.getId(), e);

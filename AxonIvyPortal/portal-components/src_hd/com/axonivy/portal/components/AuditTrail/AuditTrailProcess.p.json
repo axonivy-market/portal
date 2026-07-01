@@ -27,9 +27,17 @@
     }, {
       "id" : "f15",
       "type" : "HtmlDialogStart",
-      "name" : "start()",
+      "name" : "start(ICase)",
       "config" : {
         "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "caze", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+          ],
+          "map" : {
+            "out.caze" : "param.#caze is initialized ? param.caze : ivy.case"
+          }
+        },
         "guid" : "19EECB9B942997F9"
       },
       "visual" : {
@@ -47,16 +55,12 @@
     }, {
       "id" : "f18",
       "type" : "HtmlDialogMethodStart",
-      "name" : "getAuditTrailList(ICase)",
+      "name" : "getAuditTrailList()",
       "config" : {
         "signature" : "getAuditTrailList",
-        "input" : {
-          "params" : [
-            { "name" : "caze", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
-          ],
-          "map" : {
-            "out.caze" : "param.caze"
-          }
+        "result" : {
+          "map" : { },
+          "code" : "ivy.log.info(in.caze);"
         },
         "guid" : "19F1698FF4210092"
       },
@@ -64,32 +68,7 @@
         "at" : { "x" : 96, "y" : 344 }
       },
       "connect" : [
-        { "id" : "f20", "to" : "f19" }
-      ]
-    }, {
-      "id" : "f19",
-      "type" : "Script",
-      "config" : {
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.auditTrailDTOs" : "in.auditTrailDTOs",
-            "out.caze" : "in.caze"
-          },
-          "code" : [
-            "import com.axonivy.portal.components.dto.AuditTrailDTO;",
-            "import com.axonivy.portal.components.service.AuditTrailService;",
-            "import com.axonivy.portal.components.dto.AuditTrailDTO;",
-            "import ch.ivyteam.ivy.workflow.ICase;",
-            "out.auditTrailDTOs = AuditTrailService.getInstance().load(out.caze);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 288, "y" : 344 }
-      },
-      "connect" : [
-        { "id" : "f22", "to" : "f21" }
+        { "id" : "f29", "to" : "f28" }
       ]
     }, {
       "id" : "f21",
@@ -97,5 +76,121 @@
       "visual" : {
         "at" : { "x" : 480, "y" : 344 }
       }
+    }, {
+      "id" : "f23",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "setAuditTrailList(AuditTrailDTO>)",
+      "config" : {
+        "signature" : "setAuditTrailList",
+        "input" : {
+          "params" : [
+            { "name" : "auditTrailList", "type" : "List<com.axonivy.portal.components.dto.AuditTrailDTO>", "desc" : "" }
+          ],
+          "map" : {
+            "out.auditTrailDTOs" : "param.auditTrailList"
+          }
+        },
+        "guid" : "19F1793A4DD86A95"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 496 }
+      },
+      "connect" : [
+        { "id" : "f37", "to" : "f36" }
+      ]
+    }, {
+      "id" : "f26",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 496 }
+      }
+    }, {
+      "id" : "f28",
+      "type" : "SubProcessCall",
+      "config" : {
+        "processCall" : "Functional Processes/AuditTrailSupporter:getAuditTrailList(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.caze" : "in.caze"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.auditTrailDTOs" : "result.auditTrailDTOs"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 344 }
+      },
+      "connect" : [
+        { "id" : "f30", "to" : "f21" }
+      ]
+    }, {
+      "id" : "f31",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "addInformation()",
+      "config" : {
+        "signature" : "addInformation",
+        "guid" : "19F1698FF4210A01"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 648 }
+      },
+      "connect" : [
+        { "id" : "f34", "to" : "f32" }
+      ]
+    }, {
+      "id" : "f32",
+      "type" : "Script",
+      "name" : "add information",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.factory.AuditTrailDTOFactory;",
+            "import com.axonivy.portal.components.service.AuditTrailService;",
+            "import com.axonivy.portal.components.dto.AuditTrailDTO;",
+            "import java.util.Arrays;",
+            "",
+            "if (in.additionalInformation != null && !in.additionalInformation.trim().isEmpty()) {",
+            "  AuditTrailDTO entry = AuditTrailDTOFactory.build(ivy.session.getSessionUserName(), in.additionalInformation);",
+            "  AuditTrailService.getInstance().save(in.caze, Arrays.asList(entry));",
+            "  in.auditTrailDTOs = AuditTrailService.getInstance().load(in.caze);",
+            "  in.additionalInformation = null;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 648 }
+      },
+      "connect" : [
+        { "id" : "f35", "to" : "f33" }
+      ]
+    }, {
+      "id" : "f33",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 648 }
+      }
+    }, {
+      "id" : "f36",
+      "type" : "SubProcessCall",
+      "config" : {
+        "processCall" : "Functional Processes/AuditTrailSupporter:saveAuditTrailDTOList(List<com.axonivy.portal.components.dto.AuditTrailDTO>,ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.auditTrailDTOs" : "in.auditTrailDTOs",
+            "param.caze" : "in.caze"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 496 }
+      },
+      "connect" : [
+        { "id" : "f38", "to" : "f26" }
+      ]
     } ]
 }

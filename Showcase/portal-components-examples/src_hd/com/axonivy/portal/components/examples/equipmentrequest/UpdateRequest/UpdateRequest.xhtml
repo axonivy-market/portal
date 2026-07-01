@@ -10,9 +10,8 @@
       <h:form id="equipment-request">
         <!-- Page header -->
         <div class="flex align-items-center gap-3 mb-4">
-          <div class="flex align-items-center justify-content-center border-circle"
-            style="width:3rem;height:3rem;background:var(--primary-color)">
-            <i class="ti ti-refresh" style="font-size:1.4rem;color:#fff" />
+          <div class="equipment-request-page-icon equipment-request-page-icon--primary">
+            <i class="ti ti-refresh" />
           </div>
           <div>
             <div class="text-2xl font-bold">Update Your Request</div>
@@ -21,20 +20,14 @@
             </div>
           </div>
         </div>
+
+        <!-- Audit trail -->
         <div class="pb-3">
-          <ic:com.axonivy.portal.components.AuditTrail caze="#{ivy.wf.getCurrentCase()}" />
-        </div>
-        <!-- Rejection reason banner -->
-        <div class="equipment-request-rejection-banner mb-5">
-          <div class="flex align-items-center gap-2 mb-2">
-            <i class="si si-alert-circle equipment-request-rejection-icon" style="font-size:1.1rem" />
-            <span class="font-semibold equipment-request-rejection-title">Rejected by #{data.requestData.managerUsername}</span>
-          </div>
-          <p class="m-0 equipment-request-rejection-reason">Rejection reason: #{data.requestData.rejectionReason}</p>
+          <ic:com.axonivy.portal.components.AuditTrail customHeader="History" />
         </div>
 
         <!-- Form card -->
-        <p:panel styleClass="card">
+        <p:panel styleClass="card mb-5">
           <p:messages id="msg" styleClass="mb-4" closable="true" />
 
           <div class="grid">

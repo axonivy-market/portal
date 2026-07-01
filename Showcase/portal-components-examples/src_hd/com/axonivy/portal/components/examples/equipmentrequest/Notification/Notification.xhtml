@@ -48,13 +48,22 @@
         </p:panel>
 
         <!-- Action -->
-        <div class="flex flex-row-reverse">
+        <div class="flex flex-row-reverse gap-2">
           <p:commandButton value="Finish" ariaLabel="Finish"
             icon="ti ti-check" iconPos="right"
             styleClass="primary-color-light-button"
             partialSubmit="true" actionListener="#{logic.close}"
             process=":equipment-request" update=":equipment-request" />
+          <p:commandButton value="View History" ariaLabel="View History" type="button"
+            icon="ti ti-history" styleClass="ui-button-outlined"
+            onclick="PF('auditHistoryDialog').show()" />
         </div>
+
+        <!-- Audit trail history dialog -->
+        <p:dialog header="History" widgetVar="auditHistoryDialog" modal="true" responsive="true"
+          closeOnEscape="true" resizable="false" width="720" styleClass="portal-dialog dialog-responsive">
+          <ic:com.axonivy.portal.components.AuditTrail showHeader="false" />
+        </p:dialog>
       </h:form>
 
       <ic:com.axonivy.portal.components.IFrameTaskConfig

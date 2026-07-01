@@ -21,5 +21,11 @@
   }, {
     "name" : "caseId",
     "type" : "java.lang.Long"
+  }, {
+    "name" : "auditTrailDTOs",
+    "type" : "List<com.axonivy.portal.components.dto.AuditTrailDTO>"
+  }, {
+    "name" : "caze",
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   } ]
 }

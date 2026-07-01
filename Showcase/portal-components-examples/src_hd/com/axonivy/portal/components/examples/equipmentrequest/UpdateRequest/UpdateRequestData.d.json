@@ -17,5 +17,10 @@
   }, {
     "name" : "caseId",
     "type" : "Long"
+  }, {
+    "name" : "auditTrailDTOs",
+    "type" : "List<com.axonivy.portal.components.dto.AuditTrailDTO>"
+  }, {
+    "name" : "oldReason"
   } ]
 }

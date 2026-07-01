@@ -8,5 +8,7 @@
   }, {
     "name" : "auditTrailDTOs",
     "type" : "List<com.axonivy.portal.components.dto.AuditTrailDTO>"
+  }, {
+    "name" : "additionalInformation"
   } ]
 }
