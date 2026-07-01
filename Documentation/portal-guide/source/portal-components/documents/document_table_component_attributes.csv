@@ -11,6 +11,7 @@ renameRendered,TRUE,Boolean,"Boolean value to specify the rendering of the edit 
 messageRendered,TRUE,Boolean,"Boolean value to specify the rendering of the message, when set to false message will not be rendered."
 renderChooseUploadIcon,TRUE,Boolean,Defines if the button to upload document is displayed or not.
 lazy,FALSE,Boolean,Boolean value to specify whether the table should load data lazily and enable pagination.
+displaySubFolderList,null,String[],"Names of the sub-folders whose documents should be displayed. When set, only documents located directly in one of these sub-folders are shown; root-level documents and documents in other sub-folders are hidden. When not set (null or empty), all documents are shown."
 fileLimit,-1,Integer,Maximum number of files that can be uploaded.
 sizeLimit,null,Long,Maximum size of an individual file in bytes.
 uploadText,Upload,String,Label text displayed on the upload button.

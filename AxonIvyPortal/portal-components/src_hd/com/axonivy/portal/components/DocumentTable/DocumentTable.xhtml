@@ -27,7 +27,9 @@
     shortDescription="Defines if the button to upload document is displayed or not. Type: Boolean. Default value: true. Required: false." />
   <cc:attribute name="lazy" default="false" type="Boolean"
     shortDescription="Boolean value to specify whether the table should load data lazily and enable pagination. Type: Boolean. Default value: false. Required: false." />
-  
+  <cc:attribute name="displaySubFolderList" type="String[]"
+    shortDescription="Names of the sub-folders whose documents should be displayed. When set, only documents located directly in one of these sub-folders are shown; root-level documents and documents in other sub-folders are hidden. When not set (null or empty), all documents are shown. Type: String[]. Required: false." />
+
   <cc:attribute name="fileLimit" type="Integer" shortDescription="Maximum number of files that can be uploaded. Type: Integer. Default value: -1 (unlimited). Required: false." default="-1" />
   <cc:attribute name="sizeLimit" type="Long" shortDescription="Maximum size of an individual file in bytes. Type: Long. Required: false." />
   <cc:attribute name="uploadText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Upload')}" type="String"
@@ -105,7 +107,7 @@
       paginatorPosition="#{cc.attrs.lazy ? 'bottom' : ''}" paginatorAlwaysVisible="#{cc.attrs.lazy ? 'true' : ''}"
       paginatorTemplate="#{cc.attrs.lazy ? '{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}' : ''}"
       pageLinks="#{cc.attrs.lazy ? '5' : ''}" rowsPerPageTemplate="#{cc.attrs.lazy ? '5,10,20,50' : ''}">
-      <f:event type="preRenderComponent" listener="#{logic.renderTable()}" />
+      <f:event type="preRenderComponent" listener="#{logic.renderTable(cc.attrs.displaySubFolderList)}" />
 
       <p:column headerText="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Name')}"
         rendered="#{cc.attrs.nameColumnRendered}" styleClass="document-name-column">

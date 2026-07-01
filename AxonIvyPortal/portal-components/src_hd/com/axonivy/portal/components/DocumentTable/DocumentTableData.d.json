@@ -66,5 +66,8 @@
     "type" : "Boolean"
   }, {
     "name" : "renameDocumentMessage"
+  }, {
+    "name" : "displaySubFolderList",
+    "type" : "String[]"
   } ]
 }

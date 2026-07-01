@@ -37,9 +37,17 @@
     }, {
       "id" : "f5",
       "type" : "HtmlDialogMethodStart",
-      "name" : "renderTable()",
+      "name" : "renderTable(String[])",
       "config" : {
         "signature" : "renderTable",
+        "input" : {
+          "params" : [
+            { "name" : "displaySubFolderList", "type" : "String[]", "desc" : "" }
+          ],
+          "map" : {
+            "out.displaySubFolderList" : "param.displaySubFolderList"
+          }
+        },
         "guid" : "16B1C835D6DF8ED1"
       },
       "visual" : {
@@ -72,7 +80,7 @@
         "at" : { "x" : 224, "y" : 288 }
       },
       "connect" : [
-        { "id" : "f9", "to" : "f7" }
+        { "id" : "f9", "to" : "f80" }
       ]
     }, {
       "id" : "f7",
@@ -80,6 +88,37 @@
       "visual" : {
         "at" : { "x" : 352, "y" : 288 }
       }
+    }, {
+      "id" : "f80",
+      "type" : "Script",
+      "name" : "Filter documents by sub-folder",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.collections4.CollectionUtils;",
+            "import ch.ivyteam.ivy.workflow.document.Path;",
+            "import com.axonivy.portal.components.ivydata.bo.IvyDocument;",
+            "",
+            "if (CollectionUtils.isNotEmpty(in.displaySubFolderList)) {",
+            "  List<String> subFolders = Arrays.asList(in.displaySubFolderList);",
+            "  List<IvyDocument> filteredDocuments = new ArrayList<>();",
+            "  for (IvyDocument document : in.documents) {",
+            "    Path relativePath = new Path(document.getRelativePath());",
+            "    if (relativePath.segmentCount() > 1 && subFolders.contains(relativePath.getSegment(relativePath.segmentCount() - 2))) {",
+            "      filteredDocuments.add(document);",
+            "    }",
+            "  }",
+            "  in.documents = filteredDocuments;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 336 }
+      },
+      "connect" : [
+        { "id" : "f81", "to" : "f7" }
+      ]
     }, {
       "id" : "f10",
       "type" : "HtmlDialogMethodStart",
