@@ -38,12 +38,12 @@ public class RoleManagementTest extends BaseTest {
 
   @Test
   public void testVisibilityForRoleManagementTab() {
-    grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
+    permissions().grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
     accessToRoleManagement();
     assertTrue(roleManagementPage.isDisplayed(), "RoleManagement tab is not displayed");
 
     // Admin lacks RoleReadAll permission
-    denySpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
+    permissions().denySpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
     newDashboardPage = new NewDashboardPage();
     adminSettingsPage = newDashboardPage.openAdminSettings();
     assertFalse(adminSettingsPage.isRoleAssingmentTabViewPresent(), "RoleManagement tab is displayed");
@@ -51,7 +51,7 @@ public class RoleManagementTest extends BaseTest {
 
   @Test
   public void testVisibilityForCreatingRoleButton() {
-    grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
+    permissions().grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
     accessToRoleManagement();
     assertTrue(roleManagementPage.isCreateNewRoleButtonPresent(), "Create role button is not displayed");
     roleManagementPage.openRoleCreationDialog();
@@ -66,7 +66,7 @@ public class RoleManagementTest extends BaseTest {
 
   @Test
   public void testVisibilityForDeletingRoleAction() {
-    grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
+    permissions().grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleCreate"));
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleDelete"));
     var roleName = "NewRole" + UUID.randomUUID();
@@ -94,7 +94,7 @@ public class RoleManagementTest extends BaseTest {
 
   @Test
   public void testVisibilityForEditingRoleAction() {
-    grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
+    permissions().grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleCreate"));
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleDelete"));
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleMove"));
@@ -127,7 +127,7 @@ public class RoleManagementTest extends BaseTest {
 
   @Test
   public void testVisibilityForAssigningUsersAction() {
-    grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
+    permissions().grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleCreate"));
     var roleName = "NewRole" + UUID.randomUUID();
     RoleManagementPage roleManagementPage = accessToRoleManagementAndCreateNewRole(roleName);
@@ -144,7 +144,7 @@ public class RoleManagementTest extends BaseTest {
 
   @Test
   public void testAssigningUsersToExistedRole() {
-    grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
+    permissions().grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleCreate"));
     accessToRoleManagement();
     var roleName = "HR";
@@ -158,12 +158,12 @@ public class RoleManagementTest extends BaseTest {
     roleManagementPage.clickOnCloseAssignUsersButton();
     assertFalse(totalUsers.equalsIgnoreCase(roleManagementPage.getTotalUsersOfRoleInRoleTreeTable(roleName)),
         "Total users of role is the same");
-    denySpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
+    permissions().denySpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
   }
 
   @Test
   public void testFilteringRoles() {
-    grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
+    permissions().grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
     accessToRoleManagement();
     var roleName = "HR";
     roleManagementPage.filterRoleTreeTableByRoleName(roleName);
