@@ -74,8 +74,8 @@
 
   <cc:attribute name="selectedType" type="com.axonivy.portal.components.enums.DocumentType"
     shortDescription="Default document type to be selected. If not provided, the first item of typeSelectionItems will be used. Type: com.axonivy.portal.components.enums.DocumentType. Required: false."/>
-  <cc:attribute name="typeSelectionItems" type="com.axonivy.portal.components.enums.DocumentType[]"
-    shortDescription="Array of DocumentType objects for the type selection dropdown. Default is #{documentUploadBean.documentTypes} which returns BasicDocumentType enum values (DOCUMENTATION, CONTRACT, INFORMATION, EMAIL, OTHERS). Type: com.axonivy.portal.components.enums.DocumentType[]. Required: false."/>
+  <cc:attribute name="typeSelectionItems" type="java.util.List"
+    shortDescription="List of DocumentType objects for the type selection dropdown. Default is #{documentUploadBean.documentTypes} which returns BasicDocumentType enum values (DOCUMENTATION, CONTRACT, INFORMATION, EMAIL, OTHERS). Type: java.util.List&lt;com.axonivy.portal.components.enums.DocumentType&gt;. Required: false."/>
   
   <cc:attribute name="enableScriptCheckingForUploadedDocument" type="java.lang.Boolean" default="#{documentUploadBean.getPortalScriptCheckingSettingOrDefault(false)}"
     shortDescription="Boolean value to specify script checking. The setting will detect Portal setting Portal.Document.EnableScriptChecking as its default value. If the Portal setting is not available, defaults to false. Type: Boolean. Required: false." />
