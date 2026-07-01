@@ -9,16 +9,17 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-01 10:22+0000\n"
-"PO-Revision-Date: 2026-05-22 03:11+0000\n"
-"Last-Translator: Tung Le <tung.le@axonactive.com>\n"
+"PO-Revision-Date: 2026-07-01 10:33+0000\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-le/doc/portal-doc-developer-guide/ja/>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-le/doc/portal-doc-developer-guide/ja/>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
 msgid "Architecture"
@@ -3199,6 +3200,9 @@ msgid ""
 "``openInNewTab``: for external links, set to ``false`` to open the link "
 "in the same tab. When omitted, external links open in a new tab."
 msgstr ""
+"``openInNewTab``：外部リンクの場合、` に設定してください。`false`` に設定する"
+"と、同じタブでリンクが開きます。省略した場合は、外部リンクは新しいタブで開き"
+"ます。"
 
 #: ../../source/portal-developer-guide/customization/menu.rst:160
 msgid "``version``: version of the menu."
@@ -4490,16 +4494,16 @@ msgstr ""
 "つのみ使用できます。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:136
-#, fuzzy
 msgid ""
 "We support all task business states for filter type ``states``. Please "
 "refer to :doc-url:`Task Business States </public-"
 "api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` to check for "
 "available task business states."
 msgstr ""
-"フィルタータイプ ``states`` ではすべてのタスクのビジネスの状態がサポートされます。:doc-url:`タスクのビジネスの状態 "
-"</public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` "
-"を参照して、利用可能なタスクのビジネスの状態を確認してください。"
+"フィルタタイプ ``` `states`` については、すべてのタスクビジネス状態をサポート"
+"しています。利用可能なタスクビジネス状態については、:doc-url:`Task Business "
+"States </public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` を"
+"参照してください。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:140
 msgid "Show Custom Panels (Widgets)"
@@ -5896,9 +5900,8 @@ msgid "Enable quick search text box"
 msgstr "クイック検索テキストボックスを有効にしてください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:192
-#, fuzzy
 msgid "``allowedOperators``"
-msgstr "``operator``"
+msgstr "``allowedOperators``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:195
 msgid ""
@@ -5907,6 +5910,10 @@ msgid ""
 "disables filtering for this column entirely, equivalent to setting "
 "``enableFilter: false``."
 msgstr ""
+"complexフィルターにおいて、この列で使用が許可されている演算子のリストです。例"
+"：``[\"contains\", \"is\", \"is_not\"]``。空の配列``[]`` は、この列に対する"
+"フィルタリングを完全に無効にします。これは、``enableFilter: false`` を設定す"
+"ることと同等です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:198
 msgid "``caseQueryType``"
@@ -5943,6 +5950,9 @@ msgid ""
 "``allowedOperators`` is set to ``[]``, filtering is disabled regardless "
 "of the ``enableFilter`` value."
 msgstr ""
+"``allowedOperators`` は、`` およびenableFilter`` よりも優先されます。`` およ"
+"びallowedOperators`` が`` および[]`` に設定されている場合、`` および"
+"enableFilter`` の値にかかわらず、フィルタリングは無効になります。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:210
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:212
@@ -5951,6 +5961,9 @@ msgid ""
 "Portal. See :ref:`Restricting Filter Fields And Operators <restricting-"
 "filter-fields-and-operators>`."
 msgstr ""
+"Portal では、実行時に利用可能な演算子がさらに制限される場合があります"
+"。:ref:`「フィルタフィールドと演算子の制限」 <restricting-filter-fields-and-"
+"operators>` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:213
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:177
@@ -6002,14 +6015,13 @@ msgid "Include in quick search: ``\"true\"`` or ``\"false\"``"
 msgstr "クイック検索に含める項目： ``\"true\"`` または ``\"false\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:237
-#, fuzzy
 msgid "``enableFilter``"
-msgstr "``filters``"
+msgstr "``enableFilter``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:240
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:204
 msgid "Allow filtering on this column in complex filter."
-msgstr ""
+msgstr "複合フィルターにおいて、この列でのフィルタリングを許可します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:241
 msgid "``headers``"
@@ -7639,16 +7651,16 @@ msgid "``sorting``"
 msgstr "``sorting``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:191
-#, fuzzy
 msgid "``\"BY_ALPHABETICALLY\"``"
-msgstr "``\"ALPHABETICALLY\"``"
+msgstr "``\"BY_ALPHABETICALLY\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:192
-#, fuzzy
 msgid ""
 "Sort order: ``\"BY_ALPHABETICALLY\"`` or ``\"BY_INDEX\"`` (requires "
 "custom field)"
-msgstr "ソート順序：``\"ALPHABETICALLY\"``、または ``\"SORTING_INDEX\"`` （カスタムフィールドが必要です）"
+msgstr ""
+"並べ替え順序：``\"BY_ALPHABETICALLY\"`` または``\"BY_INDEX\"``（"
+"カスタムフィールドが必要です）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:196
 msgid "Enable quick search textbox for process names"
@@ -8317,32 +8329,36 @@ msgid ""
 "``businessCaseId`` - Business Case ID (hidden by default; sortable; quick"
 " search supported)"
 msgstr ""
+"``businessCaseId`` - ビジネスケースID（デフォルトでは非表示、ソート可能、"
+"クイック検索対応）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:198
 msgid ""
 "``technicalCaseId`` - Technical Case ID (hidden by default; sortable; "
 "quick search supported)"
 msgstr ""
+"``technicalCaseId`` - 技術ケースID（デフォルトでは非表示、ソート可能、"
+"クイック検索対応）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:200
 msgid "``quickSearch`` (string, default: ``\"false\"``)"
 msgstr "``quickSearch`` (string 、デフォルト:``\"false\"``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:203
-#, fuzzy
 msgid "``enableFilter`` (boolean, default: ``true``)"
-msgstr "``enableQuickSearch`` (boolean、デフォルト: ``false`` )"
+msgstr "``enableFilter`` (ブール値、デフォルト:``true``)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:206
-#, fuzzy
 msgid "``allowedOperators`` (array, optional)"
-msgstr "``headers`` (array、任意)"
+msgstr "``allowedOperators`` (配列、オプション)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:207
 msgid ""
 "List of operators allowed for this column in the complex filter. For "
 "instance: `[\"contains\", \"is\", \"is_not\"]`."
 msgstr ""
+"複合フィルターにおいて、この列で使用が許可されている演算子のリスト。例"
+"：`[\"contains\", \"is\", \"is_not\"]`。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:215
 msgid "``headers`` (array, optional)"
@@ -8475,14 +8491,14 @@ msgid ""
 msgstr "この列は、フィルター条件としてタスクのビジネスの状態名のリストのみ受け入れます。利用可能なフィルターの演算子は ``in`` です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:490
-#, fuzzy
 msgid ""
 "Refer to :doc-url:`Task Business States </public-"
 "api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` for available "
 "task business states."
 msgstr ""
-"利用可能なタスクのビジネスの状態については、:doc-url:`タスクのビジネスの状態 </public-"
-"api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` を参照してください。"
+"利用可能なタスクのビジネス状態については、:doc-url:`Task Business States </"
+"public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` を参照してく"
+"ださい。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:494
 msgid ""
@@ -8507,7 +8523,7 @@ msgstr "``application``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:564
 msgid "``businessCaseId`` and ``technicalCaseId``"
-msgstr ""
+msgstr "``businessCaseId`` および``technicalCaseId``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:594
 msgid ""
@@ -8517,12 +8533,19 @@ msgid ""
 "This is consistent with how the task ``id`` filter works. The only "
 "available filter operator is ``contains``."
 msgstr ""
+"これらの列には、それぞれタスクに関連付けられたケースのビジネスケースIDと"
+"テクニカルケースIDが表示されます。``contains`` 演算子は、数値IDの文字列表現に"
+"対して部分文字列の一致チェックを行います。これは、タスクの``id`` フィルターの"
+"動作と一貫しています。利用可能なフィルター演算子は、``contains`` のみです。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:600
 msgid ""
 "These columns support sorting and quick search (quick search is disabled "
 "by default; set ``quickSearch: \"true\"`` on the column to enable it)."
 msgstr ""
+"これらの列は、並べ替えとクイック検索に対応しています（クイック検索は"
+"デフォルトで無効になっています。有効にするには、列に対して ``` `quickSearch: "
+"\"true\"`` を設定してください）。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:602
 msgid "Custom Field Column :"
@@ -10631,6 +10654,8 @@ msgid ""
 "The new **Menu Management** feature lets admins customize the order of "
 "items in the Portal sidebar."
 msgstr ""
+"新しい「**」のメニュー管理機能（** ）により、管理者はポータルのサイドバーにあ"
+"る項目の順序をカスタマイズできるようになりました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:169
 msgid ""
@@ -10639,6 +10664,10 @@ msgid ""
 "survives code changes (renaming the application, changing the link, or "
 "changing the menu kind)."
 msgstr ""
+"``portalLoadSubMenuItems`` サブプロセスから返される各``CustomSubMenuItem`` に"
+"対して、``id`` を明示的に設定してください。これにより、コードの変更（"
+"アプリケーション名の変更、リンクの変更、メニュー種類の変更など）があっても、"
+"管理者がカスタマイズした順序が維持されます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:171
 #: ../../source/portal-developer-guide/usermenu/index.rst:94
@@ -10655,6 +10684,13 @@ msgid ""
 "column-management>` or :ref:`Case list column management <case-widget-"
 "column-management>`."
 msgstr ""
+"4. 複合フィルターにおいて、選択可能なフィールドの一覧は、ウィジェットの「列管"
+"理」設定に依存するようになりました。「列管理」に追加され、「**」フィルター** "
+"の列で有効化されているフィールドのみが、「:ref:`」複合フィルター <complex-"
+"filter>` で利用可能です。フィールドを利用可能にするには、「:ref:`」"
+"タスクリストの列管理 <task-widget-column-management>` または「:ref:`」"
+"ケースリストの列管理 <case-widget-column-management>` で、そのフィールドを追"
+"加し、フィルタリングを有効にしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:187
 msgid ""
@@ -10662,6 +10698,9 @@ msgid ""
 "<admin-settings>`, as third-party applications duplicate the **External "
 "Link** sidebar items of the new Menu Management feature."
 msgstr ""
+"5.:ref:`の管理設定 <admin-settings>` から、「**アプリケーション」** タブが削"
+"除されました。これは、サードパーティ製アプリケーションが、新しい「メニュー管"
+"理」機能のサイドバー項目**外部リンク** と重複しているためです。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:191
 msgid ""
@@ -10672,12 +10711,19 @@ msgid ""
 "applications is no longer possible — create an **External Link** sidebar "
 "item instead."
 msgstr ""
+"データの移行は必要ありません。``Portal.ThirdPartyApplications`` 変数で設定済"
+"みの既存のサードパーティ製アプリケーションは、引き続きサイドバーに表示され"
+"、:guilabel:`Portal Configuration` →:guilabel:`Sidebar` から編集、順序変更、"
+"削除が可能です。*new* サードパーティ製アプリケーションの作成はできなくなりま"
+"した。代わりに、**External Link** サイドバー項目を作成してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:197
 msgid ""
 "The ``Portal.ThirdPartyApplications`` variable is deprecated and will be "
 "removed in a future version."
 msgstr ""
+"``Portal.ThirdPartyApplications`` 変数は非推奨となっており、将来のバージョン"
+"で削除される予定です。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:200
 msgid ""
@@ -10686,6 +10732,11 @@ msgid ""
 "operators are automatically removed. See :ref:`Restricting Filter Fields "
 "And Operators <restricting-filter-fields-and-operators>` for details."
 msgstr ""
+"6. 演算子は、管理者によってグローバルに制限できるほか、「列管理」機能を通じて"
+"各ウィジェットのフィールドごとにさらに絞り込むことができます。無効化された演"
+"算子を使用するフィルターは自動的に削除されます。詳細については、:ref:`「"
+"フィルターフィールドと演算子の制限」 <restricting-filter-fields-and-"
+"operators>` を参照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:205
 msgid "Migrate 13.1 To 13.2"
@@ -13324,14 +13375,12 @@ msgid ""
 msgstr ":ref:`カスタマイズ <customization>` - カスタム権限ベースの機能を構築する"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:53
-#, fuzzy
 msgid "Disabling Portal Access"
-msgstr "ポータルページへのアクセス"
+msgstr "ポータルへのアクセスを無効にする"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:55
-#, fuzzy
 msgid "**How to properly deny Portal access:**"
-msgstr "**3. テストポータルへのアクセス**"
+msgstr "**ポータルへのアクセスを適切に拒否する方法：**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:57
 msgid ""
@@ -13340,68 +13389,71 @@ msgid ""
 "``ManagementPermissions`` are essential for the Axon Ivy Engine to "
 "function correctly and must remain assigned."
 msgstr ""
+"ユーザーまたはロールに対するポータルへのアクセス権を拒否するには"
+"、**PortalPermissions** のみを取り消してください。``PersonalPermissions`` お"
+"よび``ManagementPermissions`` は、Axon Ivy Engine が正しく機能するために不可"
+"欠であり、割り当てられたままにしておく必要があります。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:59
-#, fuzzy
 msgid "Permission Revocation Guide"
-msgstr "権限の設定"
+msgstr "権限取り消しガイド"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:62
-#, fuzzy
 msgid "Permission Category"
 msgstr "許可カテゴリ"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:62
 msgid "Can be revoked?"
-msgstr ""
+msgstr "取り消すことは可能ですか？"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:62
 msgid "Impact if revoked"
-msgstr ""
+msgstr "取り消された場合の影響"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:64
-#, fuzzy
 msgid "``PortalPermissions``"
-msgstr "ポータルの権限"
+msgstr "``PortalPermissions``"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:64
-#, fuzzy
 msgid "**Yes**"
-msgstr "**タイプ**"
+msgstr "**はい**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:64
 msgid ""
 "User loses access to Portal features. This is the correct way to deny "
 "Portal access."
 msgstr ""
+"ユーザーはポータル機能にアクセスできなくなります。これがポータルへのアクセス"
+"を拒否する正しい方法です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:67
-#, fuzzy
 msgid "``PersonalPermissions``"
-msgstr "``permissions``"
+msgstr "``PersonalPermissions``"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:67
 #: ../../source/portal-developer-guide/permissions/index.rst:70
-#, fuzzy
 msgid "**No**"
-msgstr "**5**"
+msgstr "**いいえ**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:67
 msgid ""
 "Causes login errors. Required by the Axon Ivy Engine for basic user "
 "session handling."
 msgstr ""
+"ログインエラーの原因となります。Axon Ivy Engine による基本的な"
+"ユーザーセッション処理に必須です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:70
-#, fuzzy
 msgid "``ManagementPermissions``"
-msgstr "``permissions``"
+msgstr "``ManagementPermissions``"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:70
 msgid ""
 "Causes login errors. Required by the Axon Ivy Engine for retrieving user "
 "and role information."
 msgstr ""
+"ログインエラーの原因となります。Axon Ivy Engine がユーザーおよびロール情報を"
+"取得するために必要です。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:75
 msgid ""
@@ -13410,11 +13462,16 @@ msgid ""
 "``PortalPermissions`` for those roles. Keep ``PersonalPermissions`` and "
 "``ManagementPermissions`` intact."
 msgstr ""
+"特定のロールに対してポータルへのアクセスを制限する必要がある場合は、[Engine "
+"Cockpit] > [Security] > [Portal Permissions] に移動し、それらのロールに対し"
+"て``PortalPermissions`` のみを取り消してください。``PersonalPermissions`` お"
+"よび``ManagementPermissions`` はそのままにしておいてください。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:78
-#, fuzzy
 msgid "**Do NOT revoke all permissions to deny Portal access.**"
-msgstr "ポータル機能のセキュリティロールと権限"
+msgstr ""
+"**ポータルへのアクセスを拒否するために、すべての権限を取り消さないでください"
+"。**"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:80
 msgid ""
@@ -13424,6 +13481,12 @@ msgid ""
 "because it cannot retrieve user information from the Ivy Core API. This "
 "is **not** a supported way to deny Portal access."
 msgstr ""
+"Engine Cockpit で 3 つの権限カテゴリすべて"
+"（``PersonalPermissions``、``ManagementPermissions``、およ"
+"び``PortalPermissions``）の権限を取り消すと、Ivy Core API からユーザー情報を"
+"取得できなくなるため、Portal のログイン時にスクリプトエラーが発生し、ログイン"
+"に失敗します。これは**であり、** のように Portal へのアクセスを拒否する"
+"サポートされている方法ではありません。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:85
 msgid ""
@@ -16340,6 +16403,11 @@ msgid ""
 " in :guilabel:`Portal Configuration` → :guilabel:`Sidebar`. For new "
 "entries, create an **External Link** sidebar item there instead."
 msgstr ""
+"サードパーティ製アプリケーションは、**外部リンク** の「メニュー管理」機能の"
+"サイドバー項目を複製しているため、将来のバージョンで削除される予定です。既存"
+"のエントリは引き続きサイドバーに表示され、:guilabel:`ポータル設定` "
+"→:guilabel:`サイドバー` で編集または削除できます。新しいエントリについては、"
+"代わりに**外部リンク** のサイドバー項目を作成してください。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:462
 msgid ""
@@ -16861,17 +16929,18 @@ msgstr "アプリケーションのビューディレクトリからの静的ペ
 
 #: ../../source/portal-developer-guide/static-page/index.rst:126
 #: ../../source/portal-developer-guide/static-page/index.rst:256
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "Format: ``<application>/faces/view/<process model>/{path-to-file in "
 "webContent/view}.xhtml``"
-msgstr "書式：``{pmv-name}/faces/view/{path-to-file}.xhtml``"
+msgstr ""
+"書式：``<application>/faces/view/<process model>/{path-to-file in webContent/"
+"view}.xhtml``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:127
 #: ../../source/portal-developer-guide/static-page/index.rst:257
-#, fuzzy
 msgid "Example: ``Portal/faces/view/portal-components-examples/static.xhtml``"
-msgstr "例：``portal-components-examples/faces/view/help/user-guide.xhtml``"
+msgstr "例：``Portal/faces/view/portal-components-examples/static.xhtml``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:129
 msgid "``label`` (string, required)"
@@ -17063,11 +17132,11 @@ msgid "**Input Format**: Relative path from application view directory"
 msgstr "**入力形式**: アプリケーションビューディレクトリからの相対パス"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:270
-#, fuzzy
 msgid ""
 "Example: ``Portal/faces/view/portal-components-examples/help/user-"
 "guide.xhtml``"
-msgstr "例：``portal-components-examples/faces/view/help/user-guide.xhtml``"
+msgstr ""
+"例：``Portal/faces/view/portal-components-examples/help/user-guide.xhtml``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:272
 msgid "**Conversion**: Portal uses ``StaticPageUtils.buildUrl()`` method"
@@ -17093,13 +17162,12 @@ msgid ""
 msgstr "テンプレート:``{baseUrl}?relativeUrl=/{applicationName}/faces/view/{PM}/{staticPage}``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:280
-#, fuzzy
 msgid ""
 "Example: ``https://server/ivy/pro/portal/?relativeUrl=/Portal/faces/view"
 "/portal-components-examples/help/user-guide.xhtml``"
 msgstr ""
-"例：``https://server/ivy/pro/portal/?relativeUrl=/portal-components-"
-"examples/faces/view/help/user-guide.xhtml``"
+"例：``https://server/ivy/pro/portal/?relativeUrl=/Portal/faces/view/portal-"
+"components-examples/help/user-guide.xhtml``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:286
 msgid "Examples"
@@ -21036,4 +21104,3 @@ msgstr "Portal.UserMenu変数の変更は即時反映されます。更新内容
 
 #~ msgid "Browse available icons in Portal UI or Streamline documentation"
 #~ msgstr "ポータルUIまたはStreamlineドキュメントで利用可能なアイコンをご参照ください。"
-
