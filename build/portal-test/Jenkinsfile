@@ -13,6 +13,7 @@ pipeline {
   }
 
   parameters {
+    string(name: 'testPatternToRun', defaultValue: '', description: 'Optional test pattern to run (e.g. TestMenuUtils). Leave empty to run all tests.')
     string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip', description: '''Where to download engine? e.g.
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip for sprint master
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
@@ -44,10 +45,10 @@ pipeline {
     stage('test') {
       steps {
         script {
-          def utils = load 'build/common/utils.groovy'
           docker.build('gui-test-portal', '-f build/Dockerfile .').inside("-v /var/tools/maven-cache:/home/build/") {
             echo '====================Run portal-test tests===================='
-            maven cmd: "clean install -ntp -f AxonIvyPortal/portal-test/pom.xml -Divy.engine.directory=${env.engineDir}"
+            def testFilter = params.testPatternToRun ? "-Dtest=${params.testPatternToRun}" : ''
+            maven cmd: "clean install -ntp -f AxonIvyPortal/portal-test/pom.xml -Divy.engine.directory=${env.engineDir} ${testFilter}"
           }
         }
       }
