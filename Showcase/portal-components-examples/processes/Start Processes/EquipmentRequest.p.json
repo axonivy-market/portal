@@ -138,6 +138,7 @@
         "dialog" : "com.axonivy.portal.components.examples.equipmentrequest.UpdateRequest:start()",
         "task" : {
           "name" : "Update equipment request",
+          "category" : "EquipmentRequest/UpdateRequest/updateRequest",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
             "script" : "in.requesterUsername"

@@ -42,4 +42,33 @@ public class AuditTrailDTO implements Serializable {
   public void setContent(String content) {
     this.content = content;
   }
+
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  public static class Builder {
+    private Date timestamp;
+    private String author;
+    private String content;
+
+    public Builder timestamp(Date timestamp) {
+      this.timestamp = timestamp;
+      return this;
+    }
+
+    public Builder author(String author) {
+      this.author = author;
+      return this;
+    }
+
+    public Builder content(String content) {
+      this.content = content;
+      return this;
+    }
+
+    public AuditTrailDTO build() {
+      return new AuditTrailDTO(timestamp, author, content);
+    }
+  }
 }

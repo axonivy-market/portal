@@ -1,0 +1,22 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "simpleName" : "EquipmentRequestSubprocessData",
+  "namespace" : "com.axonivy.portal",
+  "fields" : [ {
+    "name" : "executeReserveLogic",
+    "type" : "Boolean",
+    "modifiers" : [ ]
+  }, {
+    "name" : "workingTask",
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ ]
+  }, {
+    "name" : "auditTrailDataForTaskUpdateRequest",
+    "type" : "List<com.axonivy.portal.components.dto.AuditTrailDTO>",
+    "modifiers" : [ ]
+  }, {
+    "name" : "businessCase",
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ ]
+  } ]
+}

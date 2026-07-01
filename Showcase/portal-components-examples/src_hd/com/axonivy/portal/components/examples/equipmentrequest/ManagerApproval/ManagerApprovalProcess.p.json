@@ -156,7 +156,7 @@
     }, {
       "id" : "f20",
       "type" : "Script",
-      "name" : "save",
+      "name" : "init audit trail data",
       "config" : {
         "output" : {
           "code" : [
@@ -176,6 +176,7 @@
     }, {
       "id" : "f22",
       "type" : "SubProcessCall",
+      "name" : "save audit trail data",
       "config" : {
         "processCall" : "Functional Processes/AuditTrailSupporter:saveAuditTrailDTOList(List<com.axonivy.portal.components.dto.AuditTrailDTO>,ch.ivyteam.ivy.workflow.ICase)",
         "call" : {

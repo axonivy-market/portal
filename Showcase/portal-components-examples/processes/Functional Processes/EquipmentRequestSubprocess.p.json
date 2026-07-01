@@ -1,0 +1,172 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
+  "id" : "19F1BC98DE09B59E",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.EquipmentRequestSubprocessData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "portalExtendTaskReserve(ITask)",
+      "config" : {
+        "signature" : "portalExtendTaskReserve",
+        "input" : {
+          "params" : [
+            { "name" : "workingTask", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+          ],
+          "map" : {
+            "out.workingTask" : "param.workingTask"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 896, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.auditTrailDataForTaskUpdateRequest" : "in.auditTrailDataForTaskUpdateRequest"
+          },
+          "code" : [
+            "import java.util.ArrayList;",
+            "import com.axonivy.portal.components.factory.AuditTrailDTOFactory;",
+            "import com.axonivy.portal.components.dto.AuditTrailDTO;",
+            "String content = ivy.session.getSessionUserName() + \" reserved the task\";",
+            "in.workingTask.notes().add().content(content).execute();",
+            "ivy.log.info(in.workingTask.notes().all());"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 664, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : "Check the task is Update request",
+      "config" : {
+        "output" : {
+          "code" : [
+            "if (in.workingTask.getCategory().getName().equals(\"updateRequest\")) {",
+            "  in.executeReserveLogic = true;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f7", "color" : "default" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f8" : "in.executeReserveLogic"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f3", "color" : "default" },
+        { "id" : "f9", "to" : "f1", "via" : [ { "x" : 384, "y" : 192 }, { "x" : 896, "y" : 192 } ] }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "CallSubStart",
+      "name" : "portalGetAuditTrailDat(ICase)",
+      "config" : {
+        "signature" : "portalGetAuditTrailDat",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "auditTrailDTOs", "type" : "List<com.axonivy.portal.components.dto.AuditTrailDTO>", "desc" : "" }
+          ],
+          "map" : {
+            "result.auditTrailDTOs" : "in.auditTrailDataForTaskUpdateRequest"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 304 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f16" }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 624, "y" : 304 }
+      }
+    }, {
+      "id" : "f16",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.auditTrailDataForTaskUpdateRequest" : "in.auditTrailDataForTaskUpdateRequest"
+          },
+          "code" : [
+            "import com.axonivy.portal.components.factory.AuditTrailDTOFactory;",
+            "import com.axonivy.portal.components.dto.AuditTrailDTO;",
+            "import ch.ivyteam.ivy.workflow.note.Note;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import ch.ivyteam.ivy.workflow.category.Category;",
+            "import java.util.ArrayList;",
+            "",
+            "List<ITask> activeTasks = in.businessCase.tasks().allActive();",
+            "if (!activeTasks.isEmpty()) {",
+            "  ITask targetTask = activeTasks.get(0);",
+            "  Category taskCategory = targetTask.getCategory();",
+            "  String value = taskCategory.getName().isBlank() ? \"\" : taskCategory.getName();",
+            "  ivy.log.info(value.equals(\"updateRequest\"));",
+            "  in.auditTrailDataForTaskUpdateRequest = new ArrayList();",
+            "    if (value.equals(\"updateRequest\")) {",
+            "      for(Note note : targetTask.notes().all()) {",
+            "        AuditTrailDTO trail = AuditTrailDTOFactory.build(\"System note\", note.content());",
+            "        in.auditTrailDataForTaskUpdateRequest.add(trail);",
+            "      }",
+            "    }",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 304 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f14", "color" : "default" }
+      ]
+    } ]
+}

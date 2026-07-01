@@ -1,9 +1,12 @@
 package com.axonivy.portal.components.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.axonivy.portal.components.dto.AuditTrailDTO;
+import com.axonivy.portal.components.enums.CustomSignature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -55,5 +58,32 @@ public class AuditTrailService {
       Ivy.log().error("Failed to load audit trail for case " + caze.getId(), e);
       return new ArrayList<>();
     }
+  }
+
+  @SuppressWarnings("unchecked")
+  public List<AuditTrailDTO> getAuditTrailList(ICase businessCase) {
+    Map<String, Object> params = new HashMap<>();
+    params.put("businessCase", businessCase);
+    Map<String, Object> result = IvyAdapterService
+        .startSubProcessInSecurityContext(CustomSignature.GET_AUDIT_TRAIL_DATA.getSignature(), params);
+    if (result == null || result.isEmpty()) {
+      return new ArrayList<>();
+    }
+    List<AuditTrailDTO> list = (List<AuditTrailDTO>) result.get("auditTrailDTOs");
+    return list != null ? list : new ArrayList<>();
+  }
+
+  @SuppressWarnings("unchecked")
+  public List<AuditTrailDTO> saveAdditionalInformation(ICase businessCase, List<AuditTrailDTO> auditTrailDTOs) {
+    Map<String, Object> params = new HashMap<>();
+    params.put("businessCase", businessCase);
+    params.put("auditTrailDTOs", auditTrailDTOs);
+    Map<String, Object> result = IvyAdapterService
+        .startSubProcessInSecurityContext(CustomSignature.SAVE_ADDITIONAL_AUDIT_TRAIL_DATA.getSignature(), params);
+    if (result == null || result.isEmpty()) {
+      return new ArrayList<>();
+    }
+    List<AuditTrailDTO> list = (List<AuditTrailDTO>) result.get("auditTrailDTOs");
+    return list != null ? list : new ArrayList<>();
   }
 }

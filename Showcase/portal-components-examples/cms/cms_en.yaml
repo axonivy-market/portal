@@ -18,6 +18,9 @@ Enums:
     ANNUAL_LEAVE: Annual Leave
     MATERNITY_LEAVE: Maternity Leave
     SICK_LEAVE: Sick Leave
+EquipmentRequest:
+  UpdateRequest:
+    updateRequest: Update Request
 Labels:
   LeaveRequest:
     LeaveSteps:

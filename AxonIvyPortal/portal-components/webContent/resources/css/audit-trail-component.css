@@ -1,0 +1,113 @@
+.audit-trail-container {
+}
+
+.audit-trail-history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--surface-border, #dee2e6);
+  margin-bottom: 1rem;
+}
+
+.audit-trail-header-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.audit-trail-history-icon {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+}
+
+.audit-trail-title {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.audit-trail-add-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.audit-trail-add-input {
+  width: 100%;
+  resize: vertical;
+}
+
+.audit-trail-add-input.ui-inputfield {
+  width: 100%;
+}
+
+.audit-trail-add-dialog .field {
+  margin-bottom: 0;
+}
+
+.audit-trail-add-cancel {
+  margin-left: 0.5rem;
+}
+
+.audit-trail-history-table {
+  width: 100%;
+}
+
+/* Row height: compact, consistent cells so whole rows fit within the scroll area */
+.audit-trail-history-table tbody.ui-datatable-data > tr > td {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  vertical-align: middle;
+}
+
+.audit-trail-action-col {
+  width: 16.67%;
+}
+
+.audit-trail-action-text {
+  font-weight: 600;
+}
+
+.audit-trail-content-col {
+  width: 33.33%;
+  max-width: 40%;
+}
+
+.audit-trail-note-content {
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+.audit-trail-author-col {
+  width: 16.67%;
+}
+
+.audit-trail-author-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.audit-trail-author-avatar {
+  width: 2rem;
+  height: 2rem;
+  background: var(--primary-100, #e0e7ff);
+  color: var(--primary-color);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.audit-trail-date-col {
+  width: 16.67%;
+}
+
+@media (max-width: 767px) {
+  .audit-trail-date-col {
+    display: none !important;
+  }
+}

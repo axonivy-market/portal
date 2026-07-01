@@ -81,7 +81,7 @@
       <f:facet name="footer">
         <p:commandButton value="Add" ariaLabel="Add" icon="ti ti-check"
           actionListener="#{logic.addInformation}" process="@this add-info-input"
-          update="history-table add-info-input" oncomplete="PF('addAuditInfoDialog').hide()" />
+          update="add-info-input" oncomplete="PF('addAuditInfoDialog').hide()" />
         <p:commandLink value="Cancel" ariaLabel="Cancel"
           onclick="PF('addAuditInfoDialog').hide(); return false;" styleClass="audit-trail-add-cancel" />
       </f:facet>
