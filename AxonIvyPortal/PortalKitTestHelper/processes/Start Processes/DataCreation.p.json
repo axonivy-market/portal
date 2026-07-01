@@ -2345,5 +2345,67 @@
         "at" : { "x" : 656, "y" : 2704 },
         "labelOffset" : { "x" : 13, "y" : 33 }
       }
+    }, {
+      "id" : "f243",
+      "type" : "RequestStart",
+      "name" : "start",
+      "config" : {
+        "signature" : "start",
+        "request" : {
+          "name" : "My custom growl 1"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 72, "y" : 2800 }
+      },
+      "connect" : [
+        { "id" : "f245", "to" : "f244" }
+      ]
+    }, {
+      "id" : "f244",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "My custom growl 1"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 2800 }
+      },
+      "connect" : [
+        { "id" : "f247", "to" : "f246" }
+      ]
+    }, {
+      "id" : "f246",
+      "type" : "DialogCall",
+      "visual" : {
+        "at" : { "x" : 456, "y" : 2800 }
+      },
+      "connect" : [
+        { "id" : "f249", "to" : "f248" }
+      ]
+    }, {
+      "id" : "f248",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "ch.ivy.addon.portalkit.service.GrowlMessageService.getInstance().setCustomMessage(",
+            "  \"my custom growl 1\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 648, "y" : 2800 }
+      },
+      "connect" : [
+        { "id" : "f251", "to" : "f250" }
+      ]
+    }, {
+      "id" : "f250",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 840, "y" : 2800 }
+      }
     } ]
 }
