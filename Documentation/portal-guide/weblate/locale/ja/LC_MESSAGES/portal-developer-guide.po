@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-01 10:22+0000\n"
-"PO-Revision-Date: 2026-07-01 10:33+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"PO-Revision-Date: 2026-07-01 10:47+0000\n"
+"Last-Translator: Thinh Nguyen <nht.8299@gmail.com>\n"
 "Language: ja\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-le/doc/portal-doc-developer-guide/ja/>\n"
@@ -1066,8 +1066,8 @@ msgid ""
 "Add the following error page configuration to your ``web.xml`` file "
 "(located in the ``configuration`` folder):"
 msgstr ""
-"以下のエラーページ設定を、 ``configuration`` ディレクトリ内の  ``web.xml`` ファイル（ "
-"``configuration`` フォルダ内にあります）に追加してください："
+"以下のエラーページ設定を、 ``configuration`` ディレクトリ内の ``web.xml`` "
+"ファイル（ ``configuration`` フォルダ内にあります）に追加してください："
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:182
 msgid "**Step 3: Restart Engine**"
@@ -1436,9 +1436,11 @@ msgid ""
 "java.util.Map)`` or "
 "``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)``."
 msgstr ""
-"公開APIを使用してください：``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String)``,``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String,"
-" java.util.Map)`` "
-"または``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)``。"
+"公開API``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String)"
+"``、``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String, "
+"java.util.Map)``、また"
+"は``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create"
+"(BusinessDetailsDTO)`` を使用してください。"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:46
 msgid "See the Public API section for more details."
@@ -1781,7 +1783,7 @@ msgstr "``x``、 ``y``、 ``w``、 ``h`` は **整数** で指定してくださ
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:150
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:134
 msgid "``x + w`` must **not be larger** than **12**."
-msgstr "``x + w`` は **12 以下** でなければなりません。"
+msgstr "``x + w`` は**12** ** 12** を超えてはなりません。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:151
 msgid "We support all case business states in filter type ``states``."
@@ -7659,8 +7661,8 @@ msgid ""
 "Sort order: ``\"BY_ALPHABETICALLY\"`` or ``\"BY_INDEX\"`` (requires "
 "custom field)"
 msgstr ""
-"並べ替え順序：``\"BY_ALPHABETICALLY\"`` または``\"BY_INDEX\"``（"
-"カスタムフィールドが必要です）"
+"並び替え: ``\"BY_ALPHABETICALLY\"` または ```\"BY_INDEX\"`` "
+"(カスタムフィールドが必要です)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:196
 msgid "Enable quick search textbox for process names"
