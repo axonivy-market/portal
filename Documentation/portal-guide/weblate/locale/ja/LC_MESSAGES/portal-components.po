@@ -9,16 +9,17 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-01 10:22+0000\n"
-"PO-Revision-Date: 2026-05-22 03:11+0000\n"
-"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
+"PO-Revision-Date: 2026-07-01 10:33+0000\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-le/doc/portal-doc-components/ja/>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-le/doc/portal-doc-components/ja/>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 
 #: ../../source/portal-components/document-table/index.rst:4
 msgid "Document Table"
@@ -2139,13 +2140,12 @@ msgstr ""
 "ファイルを配置して、規定のスタイルをオーバーライドする必要があります。"
 
 #: ../../source/portal-components/style-customization/index.rst:33
-#, fuzzy
 msgid ""
 "Within this file you can override default css variables of components. "
 "For example, the \\--process-chain-item-background-color:"
 msgstr ""
-"このファイル内で、コンポーネントのデフォルトの css 変数をオーバーライドできます。例えば、\\--process-history-"
-"description-text-color の場合は以下のようになります。"
+"このファイル内では、コンポーネントのデフォルトの CSS 変数を上書きできます。例"
+"えば、\\--process-chain-item-background-color:"
 
 #: ../../source/portal-components/style-customization/index.rst:42
 msgid "List of css variables that you can override"
@@ -3075,4 +3075,3 @@ msgstr ""
 
 #~ msgid "Font size of of message label when there is no item."
 #~ msgstr "項目がない場合のメッセージラベルのフォントサイズ。"
-
