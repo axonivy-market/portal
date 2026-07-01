@@ -8,17 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-21 08:35+0000\n"
+"POT-Creation-Date: 2026-07-01 10:22+0000\n"
 "PO-Revision-Date: 2026-05-22 03:11+0000\n"
 "Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
-"portal-le/doc/portal-doc-components/ja/>\n"
 "Language: ja\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
+"portal/portal-le/doc/portal-doc-components/ja/>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.6.dev0\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../source/portal-components/document-table/index.rst:4
@@ -81,7 +80,6 @@ msgid "Type"
 msgstr "タイプ"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
@@ -1321,7 +1319,7 @@ msgstr ""
 "``com.axonivy.portal.components.ProcessChain`` に置き換えてください。"
 
 #: ../../source/portal-components/process-viewer/index.rst:4
-#: ../../source/portal-components/style-customization/index.rst:63
+#: ../../source/portal-components/style-customization/index.rst:54
 msgid "Process Viewer"
 msgstr "プロセスビューアー"
 
@@ -2141,9 +2139,10 @@ msgstr ""
 "ファイルを配置して、規定のスタイルをオーバーライドする必要があります。"
 
 #: ../../source/portal-components/style-customization/index.rst:33
+#, fuzzy
 msgid ""
 "Within this file you can override default css variables of components. "
-"For example, the \\--process-history-description-text-color:"
+"For example, the \\--process-chain-item-background-color:"
 msgstr ""
 "このファイル内で、コンポーネントのデフォルトの css 変数をオーバーライドできます。例えば、\\--process-history-"
 "description-text-color の場合は以下のようになります。"
@@ -2153,13 +2152,11 @@ msgid "List of css variables that you can override"
 msgstr "オーバーライドできる css 変数のリスト"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "Variable"
 msgstr "可変"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "Default value"
 msgstr "デフォルト値"
@@ -2205,7 +2202,6 @@ msgid "\\--process-chain-link-color"
 msgstr "\\--process-chain-link-color"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
 msgid "#D9DADA"
 msgstr "#D9DADA"
 
@@ -2250,143 +2246,6 @@ msgstr "\\--process-chain-current-line-vertical-step-title-font-weight"
 msgid "Font weight of line vertical process step title."
 msgstr "行の縦のプロセス・ステップ・タイトルのフォントの太さ。"
 
-#: ../../source/portal-components/style-customization/index.rst:54
-msgid "Process History"
-msgstr "プロセス履歴"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "\\--process-history-header-border-bottom-color"
-msgstr "\\--process-history-header-border-bottom-color"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "Color of bottom header’s border."
-msgstr "下部ヘッダーのボーダーの色。"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "\\--process-history-unsortable-header-font-size"
-msgstr "\\--process-history-unsortable-header-font-size"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "1.4rem"
-msgstr "1.4rem"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "Text size of cell header that is unsortable."
-msgstr "ソート不可能なセルヘッダのテキストサイズ。"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "\\--process-history-unsortable-header-text-color"
-msgstr "\\--process-history-unsortable-header-text-color"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "#9C9D9D"
-msgstr "#9C9D9D"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "Text color of cell header that is unsortable."
-msgstr "ソート不可能なセルヘッダのテキスト色。"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "\\--process-history-description-text-color"
-msgstr "\\--process-history-description-text-color"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "Text color of item description."
-msgstr "アイテム説明の文字色。"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "\\--process-history-item-background-color"
-msgstr "\\--process-history-item-background-color"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "rgba(var(\\--white, #000000), 0.2)"
-msgstr "rgba(var(\\--white, #000000), 0.2)"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "Background color of item."
-msgstr "アイテムの背景色。"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "\\--process-history-item-border-bottom-color"
-msgstr "\\--process-history-item-border-bottom-color"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "Color of bottom item’s border."
-msgstr "ボトムアイテムのボーダーの色。"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "\\--process-history-item-border-hover"
-msgstr "\\--process-history-item-border-hover"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "1px solid #90DDE9"
-msgstr "1px solid #90DDE9"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "Hover color of item’s border."
-msgstr "アイテムのボーダーのホバーカラー。"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "\\--process-history-item-background-hover"
-msgstr "\\--process-history-item-background-hover"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "rgba(144, 221, 233, 0.24)"
-msgstr "rgba(144, 221, 233, 0.24)"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "Hover background color of item."
-msgstr "アイテムのホバー背景色。"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "\\--process-history-state-in-progress-color"
-msgstr "\\--process-history-state-in-progress-color"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "rgba(7, 140, 255, 1)"
-msgstr "rgba(7, 140, 255, 1)"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "Color of in-progress state."
-msgstr "進行中の状態の色。"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "\\--process-history-state-done-or-resume-color"
-msgstr "\\--process-history-state-done-or-resume-color"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "#4EB41C"
-msgstr "#4EB41C"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "Color of done or resumed state."
-msgstr "完了または再開状態の色。"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "\\--process-history-empty-message-label-color"
-msgstr "\\--process-history-empty-message-label-color"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "hsl(64, 1%, 48%)"
-msgstr "hsl(64, 1%, 48%)"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "Text color of message label when there is no item."
-msgstr "項目がない場合のメッセージラベルの文字色。"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "\\--process-history-empty-message-label-font-size"
-msgstr "\\--process-history-empty-message-label-font-size"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-#: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
-msgid "1.2rem"
-msgstr "1.2rem"
-
-#: ../../source/portal-components/documents/css_variables/process_history.csv:1
-msgid "Font size of of message label when there is no item."
-msgstr "項目がない場合のメッセージラベルのフォントサイズ。"
-
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "\\--process-viewer-data-has-error-message-font-weight"
 msgstr "\\--process-viewer-data-has-error-message-font-weight"
@@ -2398,6 +2257,10 @@ msgstr "エラーメッセージのフォントの太さ。"
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "\\--process-viewer-data-has-error-message-font-size"
 msgstr "\\--process-viewer-data-has-error-message-font-size"
+
+#: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
+msgid "1.2rem"
+msgstr "1.2rem"
 
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "Error message font size."
@@ -3113,3 +2976,103 @@ msgstr ""
 
 #~ msgid "fa-download"
 #~ msgstr "fa-download"
+
+#~ msgid "Process History"
+#~ msgstr "プロセス履歴"
+
+#~ msgid "\\--process-history-header-border-bottom-color"
+#~ msgstr "\\--process-history-header-border-bottom-color"
+
+#~ msgid "Color of bottom header’s border."
+#~ msgstr "下部ヘッダーのボーダーの色。"
+
+#~ msgid "\\--process-history-unsortable-header-font-size"
+#~ msgstr "\\--process-history-unsortable-header-font-size"
+
+#~ msgid "1.4rem"
+#~ msgstr "1.4rem"
+
+#~ msgid "Text size of cell header that is unsortable."
+#~ msgstr "ソート不可能なセルヘッダのテキストサイズ。"
+
+#~ msgid "\\--process-history-unsortable-header-text-color"
+#~ msgstr "\\--process-history-unsortable-header-text-color"
+
+#~ msgid "#9C9D9D"
+#~ msgstr "#9C9D9D"
+
+#~ msgid "Text color of cell header that is unsortable."
+#~ msgstr "ソート不可能なセルヘッダのテキスト色。"
+
+#~ msgid "\\--process-history-description-text-color"
+#~ msgstr "\\--process-history-description-text-color"
+
+#~ msgid "Text color of item description."
+#~ msgstr "アイテム説明の文字色。"
+
+#~ msgid "\\--process-history-item-background-color"
+#~ msgstr "\\--process-history-item-background-color"
+
+#~ msgid "rgba(var(\\--white, #000000), 0.2)"
+#~ msgstr "rgba(var(\\--white, #000000), 0.2)"
+
+#~ msgid "Background color of item."
+#~ msgstr "アイテムの背景色。"
+
+#~ msgid "\\--process-history-item-border-bottom-color"
+#~ msgstr "\\--process-history-item-border-bottom-color"
+
+#~ msgid "Color of bottom item’s border."
+#~ msgstr "ボトムアイテムのボーダーの色。"
+
+#~ msgid "\\--process-history-item-border-hover"
+#~ msgstr "\\--process-history-item-border-hover"
+
+#~ msgid "1px solid #90DDE9"
+#~ msgstr "1px solid #90DDE9"
+
+#~ msgid "Hover color of item’s border."
+#~ msgstr "アイテムのボーダーのホバーカラー。"
+
+#~ msgid "\\--process-history-item-background-hover"
+#~ msgstr "\\--process-history-item-background-hover"
+
+#~ msgid "rgba(144, 221, 233, 0.24)"
+#~ msgstr "rgba(144, 221, 233, 0.24)"
+
+#~ msgid "Hover background color of item."
+#~ msgstr "アイテムのホバー背景色。"
+
+#~ msgid "\\--process-history-state-in-progress-color"
+#~ msgstr "\\--process-history-state-in-progress-color"
+
+#~ msgid "rgba(7, 140, 255, 1)"
+#~ msgstr "rgba(7, 140, 255, 1)"
+
+#~ msgid "Color of in-progress state."
+#~ msgstr "進行中の状態の色。"
+
+#~ msgid "\\--process-history-state-done-or-resume-color"
+#~ msgstr "\\--process-history-state-done-or-resume-color"
+
+#~ msgid "#4EB41C"
+#~ msgstr "#4EB41C"
+
+#~ msgid "Color of done or resumed state."
+#~ msgstr "完了または再開状態の色。"
+
+#~ msgid "\\--process-history-empty-message-label-color"
+#~ msgstr "\\--process-history-empty-message-label-color"
+
+#~ msgid "hsl(64, 1%, 48%)"
+#~ msgstr "hsl(64, 1%, 48%)"
+
+#~ msgid "Text color of message label when there is no item."
+#~ msgstr "項目がない場合のメッセージラベルの文字色。"
+
+#~ msgid "\\--process-history-empty-message-label-font-size"
+#~ msgstr "\\--process-history-empty-message-label-font-size"
+
+#~ msgid "Font size of of message label when there is no item."
+#~ msgstr "項目がない場合のメッセージラベルのフォントサイズ。"
+
