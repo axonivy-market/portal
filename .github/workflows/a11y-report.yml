@@ -21,11 +21,10 @@ on:
           URL to download Axon Ivy Engine. Defaults to nightly build.
         type: string
         required: false
-        default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
+        default: 'https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip'
 
 env:
-  ENGINE_DIR: ${{ github.workspace }}/ivy/engine/nightly
-  WAIT_TIME: 60
+  ENGINE_DIR: ${{ github.workspace }}/ivy/engine/sprint
 
 jobs:
   a11y-audit:
@@ -33,7 +32,7 @@ jobs:
     name: A11y Audit - ${{ github.head_ref || github.ref_name }}
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       # -----------------------------------------------------------------------
       # Java + Maven
@@ -75,108 +74,41 @@ jobs:
       # -----------------------------------------------------------------------
       - name: Build Portal Modules
         run: |
-          mvn clean install -f pom.xml -Divy.engine.directory="$ENGINE_DIR"
-          mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml
+          mvn clean install -f pom.xml -Divy.engine.directory=$ENGINE_DIR
 
-      - name: Deploy Portal Modules to Engine
+      - name: Build and Deploy Test Package
         run: |
-          DEPLOYMENT="$ENGINE_DIR/system/demo-applications/portal"
-          mkdir -p "$DEPLOYMENT"
-          rm -rf "${DEPLOYMENT:?}"/*
-          cp AxonIvyPortal/portal-selenium-test/target/*.zip "$DEPLOYMENT"
+          mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=$ENGINE_DIR
+          DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
+          mkdir -p $DEPLOYMENT
+          rm -rf $DEPLOYMENT/*
+          cp AxonIvyPortal/portal-selenium-test/target/*.zip $DEPLOYMENT
 
-      # -----------------------------------------------------------------------
-      # Start Axon Ivy Engine
-      # -----------------------------------------------------------------------
-      - name: Start Axon Ivy Engine
-        run: |
-          cd "$ENGINE_DIR/bin"
-          chmod +x ./AxonIvyEngine
-          nohup ./AxonIvyEngine > engine.log 2>&1 &
-          echo $! > engine.pid
-          for ((i=1; i<=$WAIT_TIME; i++)); do
-            if curl -sf "http://localhost:8080/portal/pro/portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp?embedInFrame=" > /dev/null; then
-              echo "Engine ready after ${i}s"
-              exit 0
-            fi
-            sleep 1
-          done
-          echo "Engine did not start in time"
-          cat engine.log
-          exit 1
-        env:
-          IVY_JAVA_HOME: ${{ env.JAVA_HOME }}
-          JAVA_HOME: ${{ env.JAVA_HOME }}
-          PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${{ env.JAVA_HOME }}/bin:$PATH
-
-      # -----------------------------------------------------------------------
-      # Browser (Firefox — same as portal-selenium-test)
-      # -----------------------------------------------------------------------
-      - name: Install Firefox
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y firefox xvfb x11-xserver-utils
-
-      - name: Start Virtual Display
-        run: |
-          Xvfb :99 -screen 0 1920x1080x24 -ac &
-          sleep 2
-          echo "DISPLAY=:99" >> $GITHUB_ENV
-
-      # -----------------------------------------------------------------------
-      # Run A11y tests via Maven
+        # -----------------------------------------------------------------------
+      # Run A11y tests via Maven (Ivy plugin manages engine + browser)
       # -----------------------------------------------------------------------
       - name: Run A11y Tests
         id: a11y
         continue-on-error: true
         run: |
           mkdir -p AxonIvyPortal/portal-selenium-test/target/axe-reports/ || true
-          mvn test \
-            -f AxonIvyPortal/portal-selenium-test/pom.xml \
+          mvn clean test \
+            -f AxonIvyPortal/portal-selenium-test/customized_pom.xml \
+            -Divy.engine.download.url="${{ github.event.inputs.engineDownloadURL }}" \
             -Dtest="com.axonivy.portal.selenium.a11y.**" \
-            -Divy.engine.directory="$ENGINE_DIR" \
-            -Dtest.engine.url="http://localhost:8080" \
-            -Dselenide.browser=firefox \
-            -Dselenide.headless=true \
-            -Dselenide.browserSize="1920x1080" \
-            -B
-        env:
-          DISPLAY: ${{ env.DISPLAY }}
+            -DbrowserType=FIREFOX \
+            -Dcapabilities.unhandledPromptBehavior=accept \
+            -DtrimStackTrace=false \
+            -Divy.engine.directory=$ENGINE_DIR \
+            -Divy.deploy.timeout.seconds=60 \
+            -Divy.engine.start.timeout.seconds=500 \
+            -Dsurefire.rerunFailingTestsCount=2
 
       - name: Generate Pretty HTML Report
         if: always()
         run: |
           npm install axe-html-reporter
-          node -e "
-          const fs = require('fs');
-          const path = require('path');
-          const { createHtmlReport } = require('axe-html-reporter');
-
-          const targetDir = 'AxonIvyPortal/portal-selenium-test/target/';
-          const files = fs.readdirSync(targetDir).filter(f => f.startsWith('axe-results-') && f.endsWith('.json'));
-          
-          if (files.length === 0) {
-            console.log('No axe-results JSON files found.');
-            process.exit(0);
-          }
-
-          // Combine results for a single report or generate multiple
-          // createHtmlReport natively supports multiple files by just calling it multiple times or we can put them in axe-reports
-          
-          for (const file of files) {
-            const raw = fs.readFileSync(path.join(targetDir, file), 'utf8');
-            const data = JSON.parse(raw);
-            createHtmlReport({
-              results: data,
-              options: {
-                projectKey: file.replace('axe-results-', '').replace(/\.json$/, ''),
-                outputDir: path.join(targetDir, 'axe-reports'),
-                reportFileName: file.replace(/\.json$/, '.html')
-              }
-            });
-            console.log('Generated HTML report for: ' + file);
-          }
-          "
+          node .github/scripts/generate-a11y-report.js
 
       # -----------------------------------------------------------------------
       # Upload Surefire / screenshot artifacts
@@ -189,7 +121,7 @@ jobs:
           name: a11y-report
           path: |
             AxonIvyPortal/portal-selenium-test/target/surefire-reports/
-            AxonIvyPortal/portal-selenium-test/target/screenshots/
+            AxonIvyPortal/portal-selenium-test/target/selenide/reports
             AxonIvyPortal/portal-selenium-test/target/axe-reports/
 
       # -----------------------------------------------------------------------
@@ -213,7 +145,7 @@ jobs:
           STATUS="${{ steps.a11y.outcome }}"
           ICON="✅"
           [ "$STATUS" = "failure" ] && ICON="❌"
-          echo "## ♿ A11y Audit Results (WCAG 2.1 AA) ${ICON}" >> $GITHUB_STEP_SUMMARY
+          echo "## 📊 Selenium Test Report ${ICON}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
           echo "|---|---|" >> $GITHUB_STEP_SUMMARY
