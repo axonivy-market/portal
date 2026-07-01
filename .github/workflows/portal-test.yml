@@ -277,9 +277,9 @@ jobs:
 
       - name: Export environment variables
         run: |
-          echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
-          echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
-          echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
+          echo "IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+          echo "JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+          echo "$JAVA_HOME/bin" >> $GITHUB_PATH
 
       - name: Set up and verify directories
         run: |
@@ -291,7 +291,7 @@ jobs:
       - name: Download engine
         run: |
           cd $ENGINE_DIR
-          wget ${{ inputs.engineDownloadURL }} -O axonivy-engine.zip
+          wget "${{ inputs.engineDownloadURL }}" -O axonivy-engine.zip
           unzip -o axonivy-engine.zip -d .
           rm axonivy-engine.zip
 
