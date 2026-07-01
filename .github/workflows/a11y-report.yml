@@ -1,4 +1,4 @@
-name: Lighthouse Audit
+name: A11y Report
 run-name: ♿ A11y Report
 permissions:
   actions: write

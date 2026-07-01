@@ -22,9 +22,9 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
-import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 
 public class TaskDetailsPage extends TemplatePage {
 
@@ -211,6 +211,11 @@ public class TaskDetailsPage extends TemplatePage {
     return noteDialog;
   }
 
+  public void closeAddNoteDialog() {
+    $("a[id$=':task-notes:task-add-new-note-form:cancel-add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id$=':task-notes:task-add-new-note-form:save-add-note-command']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
   public void waitUtilsTaskDetailsDisplayed() {
     $("[id$=':task-detail-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
@@ -234,6 +239,11 @@ public class TaskDetailsPage extends TemplatePage {
     uploadDialog.$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
     Sleeper.sleep(500); // Explicitly wait for better screenshots
     return uploadDialog;
+  }
+
+  public void closeAddAttachmentDialog() {
+    $("button[id$=':task-documents:document-upload-close-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$=':task-documents:document-upload-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void uploadDocument(String path) {
@@ -276,9 +286,14 @@ public class TaskDetailsPage extends TemplatePage {
     $("div[id$='events-table']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public WebElement getWorkflowEventsTable() {
+  public SelenideElement getWorkflowEventsTable() {
     $("th[id*='events-table:']").shouldBe(appear, DEFAULT_TIMEOUT);
     return $("div[id$='workflow-events-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void closeWorkflowEventDialog() {
+    $("div[id$='workflow-events-dialog'] .ui-dialog-titlebar-close").shouldBe(getClickableCondition()).click();
+    $("div[id$='workflow-events-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void clickOnShowMoreHistories() {
@@ -425,4 +440,43 @@ public class TaskDetailsPage extends TemplatePage {
         .map(SelenideElement::getText)
         .collect(Collectors.toList());
   }
+  
+  public void openAfterEscalationDialog() {
+    $(".task-expiry-activator-edit").shouldBe(getClickableCondition()).click();
+  }
+
+  public SelenideElement getAfterEscalationDialog() {
+    return $(".task-escalation-activator-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void closeAfterEscalationDialog() {
+    $("div[id$='task-escalation-activator-dialog'] .ui-dialog-titlebar-close").shouldBe(getClickableCondition()).click();
+    $("div[id$='task-escalation-activator-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement openDestroyDialog() {
+    openActionPanel();
+    clickOnDestroyTaskLink();
+    return $("div[id$='destroy-task-confirmation-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnDestroyTaskLink() {
+    $("a[id$=':task-destroy-command']").shouldBe(getClickableCondition()).click();
+  }
+
+  public void closeDestroyDialog() {
+    $("div[id$='destroy-task-confirmation-dialog'] .ui-dialog-titlebar-close").shouldBe(getClickableCondition()).click();
+    $("div[id$='destroy-task-confirmation-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement openDelegateDialog() {
+    openActionPanel();
+    clickOnDelegateTaskLink();
+    return $("div[id$='task-delegate-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnDelegateTaskLink() {
+    $("a[id$=':task-delegate-command']").shouldBe(getClickableCondition()).click();
+  }
+
 }

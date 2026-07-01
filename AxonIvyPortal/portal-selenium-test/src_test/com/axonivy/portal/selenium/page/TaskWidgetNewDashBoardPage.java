@@ -280,6 +280,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     getColumnOfTaskHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
+  public SelenideElement getSelectedTaskAction(int taskIndex) {
+    return $$(String.format("div.js-task-side-steps-panel-task_1-%d", taskIndex)).filter(appear).first();
+  }
+
   public boolean isTaskAdditionActionDisplay(String taskName) {
     return !$("div[id$=':side-steps-panel'] div.task-additional-actions-panel").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$(" a > span").filter(Condition.text(taskName)).isEmpty();
@@ -358,6 +362,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void destroy() {
     destroyTaskLink().shouldBe(getClickableCondition()).click();
     confirmDestroy();
+  }
+
+  public SelenideElement getDestroyDialog() {
+    return $("div[id$='destroy-task-confirmation-dialog']");
   }
 
   public SelenideElement stateOfFirstTask() {
@@ -602,7 +610,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("[id$=':widget-filter-content']").scrollIntoView(ScrollIntoViewOptions.instant().block(Block.end));
   }
   
-  public WebElement getFilterOverlayPanel(Integer index) {
+  public SelenideElement getFilterOverlayPanel(Integer index) {
     String widgetIndex = String.format("div[id$='filter-overlay-panel-%d']", index);
     return $(widgetIndex).shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -784,5 +792,13 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     int rowIndex = getAllTasksOfTaskWidget().asFixedIterable().stream()
         .map(WebElement::getText).collect(Collectors.toList()).indexOf(taskName);
     return getCellByRowAndColumnName(rowIndex, "Responsible");
+  }
+
+  public SelenideElement getDelegateDialog() {
+    return $("div.task-delegate-dialog");
+  }
+
+  public void closeSavedFilterDialog() {
+    $("a[id*='delete-saved-filter-form']").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 }

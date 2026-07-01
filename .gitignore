@@ -9,3 +9,9 @@ Showcase/InternalSupport/target/
 .vscode
 AxonIvyPortal/portal/bin/src_dataClasses/
 .copilot/**
+
+# Temporary dependency directories and files
+/axe-sources/
+/axe-sources.jar
+/util.jar
+/util-out/
