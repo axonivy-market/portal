@@ -335,6 +335,18 @@ public class BaseTest {
     public void denyShareLinkTaskDetailsPermission() {
       redirectToRelativeLink(denyShareLinkTaskDetailsPermission);
     }
+
+    public void grantTestProcessViewerPermission() {
+      redirectToRelativeLink(testProcessViewerPermissionUrl);
+    }
+
+    public void grantPortalPermission() {
+      redirectToRelativeLink(grantPortalPermission);
+    }
+
+    public void grantTestCaseListPermission() {
+      redirectToRelativeLink(testCaseListPermission);
+    }
   }
 
 

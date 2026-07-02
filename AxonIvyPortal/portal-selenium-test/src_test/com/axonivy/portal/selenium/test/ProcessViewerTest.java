@@ -48,7 +48,7 @@ public class ProcessViewerTest extends BaseTest {
 
   @Test
   public void testPermissionForProcessViewerComponent() {
-    redirectToRelativeLink(testProcessViewerPermissionUrl);
+    permissions().grantTestProcessViewerPermission();
     ProcessViewerPage processViewerPage = new ProcessViewerPage();
     assertTrue("You do not have the required permission to view this process."
         .equalsIgnoreCase(processViewerPage.getErrorMessage()));

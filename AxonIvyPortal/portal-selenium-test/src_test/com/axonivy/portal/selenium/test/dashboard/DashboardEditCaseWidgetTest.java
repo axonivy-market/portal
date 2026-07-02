@@ -47,7 +47,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
   @Test
   public void filterNameTest() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    redirectToRelativeLink("internalSupport/14B2FC03D2E87141/TestCaseListPermissions.ivp");
+    permissions().grantTestCaseListPermission();
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
@@ -167,8 +167,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createDataCreatedDate);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    redirectToRelativeLink(testCaseListPermission);
-    redirectToRelativeLink(testCaseListPermission);
+    permissions().grantTestCaseListPermission();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     ScreenshotUtils.resizeBrowser(new Dimension(1900, 1400));
     newDashboardDetailsEditPage.addWidget();
