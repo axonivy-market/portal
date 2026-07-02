@@ -96,7 +96,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testDestroyTaskWithpermissions() {
+  public void testDestroyTaskWithPermission() {
     createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
@@ -112,7 +112,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testDestroyTaskWithoutpermissions() {
+  public void testDestroyTaskWithoutPermission() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
     redirectToNewDashBoard();

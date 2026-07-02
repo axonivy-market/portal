@@ -1,6 +1,5 @@
 package com.axonivy.portal.selenium.common;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -10,9 +9,8 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 
 public class PortalWebTestExtension implements BeforeAllCallback, AfterEachCallback {
-  
-  @BeforeAll
-  public static void initConfig() {
+
+  private static void initConfig() {
     FirefoxOptions options = new FirefoxOptions();
     options.addPreference("dom.disable_beforeunload", true);
     

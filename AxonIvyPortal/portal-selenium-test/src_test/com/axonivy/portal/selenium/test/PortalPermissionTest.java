@@ -63,7 +63,7 @@ public class PortalPermissionTest extends BaseTest {
   }
 
   @Test
-  public void testShowHideSystemTaskBypermissions() {
+  public void testShowHideSystemTaskByPermission() {
     // TEST SHOW SYSTEM TASK
     login(TestAccount.ADMIN_USER);
     permissions().grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);

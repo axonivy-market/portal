@@ -41,7 +41,7 @@ public class ShowRelatedTasksTest extends BaseTest {
   }
 
   @Test
-  public void testRelatedTasksWithTaskReadAllpermissions() {
+  public void testRelatedTasksWithTaskReadAllPermission() {
     permissions().grantTaskReadAllPermissionsToCurrentUser();
     openCaseDetail();
     int numberOfTasks = detailsPage.countRelatedTasks().size();
@@ -50,7 +50,7 @@ public class ShowRelatedTasksTest extends BaseTest {
   }
 
   @Test
-  public void testRelatedTasksWithTaskReadOwnCaseTaskspermissions() {
+  public void testRelatedTasksWithTaskReadOwnCaseTasksPermission() {
     permissions().grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
     int numberOfTasks = detailsPage.countRelatedTasks().size();
@@ -59,7 +59,7 @@ public class ShowRelatedTasksTest extends BaseTest {
   }
 
   @Test
-  public void testRelatedTasksWithNopermissions() {
+  public void testRelatedTasksWithNoPermission() {
     permissions().denyReadAllPermissionFromCurrentUser();
     openCaseDetail();
     int numberOfTasks = detailsPage.countRelatedTasks().size();

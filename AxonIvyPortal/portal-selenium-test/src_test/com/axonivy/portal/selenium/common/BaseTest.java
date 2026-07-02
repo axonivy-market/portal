@@ -336,7 +336,7 @@ public class BaseTest {
       redirectToRelativeLink(denyShareLinkTaskDetailsPermission);
     }
 
-    public void grantTestProcessViewerPermission() {
+    public void testProcessViewerPermission() {
       redirectToRelativeLink(testProcessViewerPermissionUrl);
     }
 

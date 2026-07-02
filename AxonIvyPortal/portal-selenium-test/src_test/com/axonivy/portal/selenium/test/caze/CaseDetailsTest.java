@@ -648,7 +648,7 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testShowNotesWhenGrantNoteReadAllpermissions() {
+  public void testShowNotesWhenGrantNoteReadAllPermission() {
     redirectToRelativeLink(CREATE_NOTES);
     login(TestAccount.DEMO_USER);
     CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();

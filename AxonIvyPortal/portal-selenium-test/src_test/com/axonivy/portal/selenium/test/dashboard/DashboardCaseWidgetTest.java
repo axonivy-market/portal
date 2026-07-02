@@ -75,7 +75,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testDestroyCaseWithpermissions() {
+  public void testDestroyCaseWithPermission() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
@@ -102,7 +102,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testDestroyCaseWithoutpermissions() {
+  public void testDestroyCaseWithoutPermission() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
     redirectToNewDashBoard();
