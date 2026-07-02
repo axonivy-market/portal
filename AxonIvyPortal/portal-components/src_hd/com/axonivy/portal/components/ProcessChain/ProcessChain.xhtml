@@ -33,6 +33,7 @@
   <h:outputStylesheet library="css" name="portal-components.css" />
   <h:outputStylesheet library="css" name="process-chain-component.css" />
 
+  <!-- disable validator next-line: el-validator -->
   <f:event listener="#{logic.validate(cc.attrs.steps.size(), cc.attrs.actualStepIndex)}" type="preRenderComponent" />
   <!-- Process chain of axon express -->
   <c:set var="isShapeCircle" value="#{cc.attrs.shape eq 'CIRCLE'}" />
