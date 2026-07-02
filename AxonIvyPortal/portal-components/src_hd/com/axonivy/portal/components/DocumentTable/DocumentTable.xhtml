@@ -91,6 +91,7 @@
   <ui:param name="messageComponentId" value="#{cc.clientId.concat(':document-messages')}" />
   <ui:param name="typeSelectionItems" value="#{not empty cc.attrs.typeSelectionItems ? cc.attrs.typeSelectionItems : documentUploadBean.documentTypes}" />
   <ui:param name="selectedType" value="#{documentUploadBean.getSelectedTypeOrDefault(cc.attrs.selectedType, typeSelectionItems)}" />
+  <!-- disable validator next-line: el-validator -->
   <f:event type="preRenderComponent" listener="#{logic.renderComponent(messageComponentId, cc.attrs.typeColumnRendered, selectedType, cc.attrs.enableScriptCheckingForUploadedDocument, cc.attrs.enableVirusScannerForUploadedDocument, cc.attrs.allowedUploadFileTypes, cc.attrs.sizeLimit)}" />
 
   <div id="#{cc.clientId}" class="document-table-component">
@@ -102,9 +103,9 @@
       emptyMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/NoFile')}" styleClass="margin-top-5"
       widgetVar="fileTableVar" lazy="#{cc.attrs.lazy}"
       paginator="#{cc.attrs.lazy}" rows="#{cc.attrs.lazy ? 5 : 0}"
-      paginatorPosition="#{cc.attrs.lazy ? 'bottom' : ''}" paginatorAlwaysVisible="#{cc.attrs.lazy ? 'true' : ''}"
+      paginatorPosition="#{cc.attrs.lazy ? 'bottom' : ''}" paginatorAlwaysVisible="#{cc.attrs.lazy}"
       paginatorTemplate="#{cc.attrs.lazy ? '{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}' : ''}"
-      pageLinks="#{cc.attrs.lazy ? '5' : ''}" rowsPerPageTemplate="#{cc.attrs.lazy ? '5,10,20,50' : ''}">
+      pageLinks="#{cc.attrs.lazy ? 5 : 0}" rowsPerPageTemplate="#{cc.attrs.lazy ? '5,10,20,50' : ''}">
       <!-- disable validator next-line: el-validator -->
       <f:event type="preRenderComponent" listener="#{logic.renderTable()}" />
 
@@ -150,6 +151,7 @@
           immediate="true" ajax="false" process="@none"
           rendered="#{cc.attrs.downloadRendered}">
           <i class="ti #{cc.attrs.downloadIcon}" />
+          <!-- disable validator next-line: el-validator -->
           <p:fileDownload value="#{logic.download(document)}" />
           <p:tooltip for="document-download" trackMouse="true" hideEvent="mouseleave click" value="#{cc.attrs.downloadTitle}" />
         </p:commandLink>
