@@ -10,7 +10,7 @@
   <cc:attribute name="filterIndex" />
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="messageId" />
-  <cc:attribute name="operators" />
+  <cc:attribute name="operators" required="true" />
   <cc:attribute name="widgetType" required="true"/>
   
 </cc:interface>
@@ -19,7 +19,7 @@
   <ic:com.axonivy.portal.dashboard.component.filter.DateFilter componentToUpdate="#{cc.attrs.componentToUpdate}"
     widgetType="#{cc.attrs.widgetType}"
     filter="#{cc.attrs.filter}" filterIndex="#{cc.attrs.filterIndex}" messageId="#{cc.attrs.messageId}"
-    readOnly="#{cc.attrs.readOnly}" operators="#{widgetDateFilterBean.createdDateOperators}" />
+    readOnly="#{cc.attrs.readOnly}" operators="#{cc.attrs.operators}" />
 </cc:implementation>
 
 </html>

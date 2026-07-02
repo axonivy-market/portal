@@ -4,18 +4,27 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.service.filter.operatorpolicy.service.GlobalOperatorPolicyService;
 
 @ManagedBean
 @ViewScoped
 public class CanWorkOnFilterBean implements Serializable{
   private static final long serialVersionUID = 1L;
   
-  private static List<FilterOperator> operators = FilterOperator.STATISTIC_CAN_WORK_ON_OPERATORS.stream().toList();
+  private final GlobalOperatorPolicyService globalOperatorPolicyService = new GlobalOperatorPolicyService();
+  private List<FilterOperator> operators;
+
+  @PostConstruct
+  public void initOperators() {
+    operators = globalOperatorPolicyService.keepGloballyEnabledOperators(
+        FilterOperator.STATISTIC_CAN_WORK_ON_OPERATORS.stream().toList());
+  }
 
   public List<FilterOperator> getOperators() {
     return operators;

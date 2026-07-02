@@ -14,6 +14,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.math.NumberUtils;
 
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.service.filter.operatorpolicy.service.OperatorPolicyService;
+
 import ch.ivy.addon.portalkit.bean.WidgetFilterHelperBean;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
@@ -107,6 +110,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
 
 
   public void applyUserFilterFromSession(DashboardWidget widget) {
+    removeDisabledPredefinedFilters(widget);
     var selectedFilterObject = Ivy.session().getAttribute(buildWidgetKey(widget.getId(), widget.getType()));
     var userFilterCollection = BusinessEntityConverter.jsonValueToEntity(String.valueOf(selectedFilterObject), UserFilterCollection.class);
     if (userFilterCollection == null) {
@@ -318,35 +322,50 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       .ifPresent(latestFilterOption -> removeDisabledUserFilters(latestFilterOption, widget.getType(), enabledColumns));
   }
 
-  private static List<ColumnModel> getEnabledFilterableColumns(DashboardWidget widget) {
-    switch (widget.getType()) {
-      case TASK:
-        return ((TaskDashboardWidget) widget).getFilterableColumns();
-      case CASE:
-        return ((CaseDashboardWidget) widget).getFilterableColumns();
-      default:
-        return new ArrayList<>();
-    }
+  public static List<ColumnModel> getEnabledFilterableColumns(DashboardWidget widget) {
+    List<ColumnModel> columns = getFilterableColumns(widget);
+    return new OperatorPolicyService(columns).getColumnsWithGloballyEnabledOperators(columns);
   }
 
-  public static void removeDisabledFilters(TaskDashboardWidget widget) {
-    List<String> enabledColumns = getEnabledFilterableColumns(widget).stream().map(ColumnModel::getField).toList();
-    widget.getUserFilters().removeIf(userFilter -> !enabledColumns.contains(userFilter.getField()));
+  private static List<ColumnModel> getFilterableColumns(DashboardWidget widget) {
+    return switch (widget.getType()) {
+        case TASK -> ((TaskDashboardWidget) widget).getFilterableColumns();
+        case CASE -> ((CaseDashboardWidget) widget).getFilterableColumns();
+        default -> new ArrayList<>();
+    };
+  }
+
+  public static void pruneInvalidUserFilters(TaskDashboardWidget widget) {
+    widget.setUserFilters(retainFiltersValidByPolicy(widget, widget.getUserFilters()));
   }
 
   public static void removeDisabledFilters(CaseDashboardWidget widget) {
-    List<String> enabledColumns = getEnabledFilterableColumns(widget).stream().map(ColumnModel::getField).toList();
-    widget.getUserFilters().removeIf(userFilter -> !enabledColumns.contains(userFilter.getField()));
+    widget.setUserFilters(retainFiltersValidByPolicy(widget, widget.getUserFilters()));
+  }
+
+  public static void removeDisabledPredefinedFilters(DashboardWidget widget) {
+    switch (widget) {
+      case TaskDashboardWidget w -> w.setFilters(retainFiltersValidByPolicy(w, w.getFilters()));
+      case CaseDashboardWidget w -> w.setFilters(retainFiltersValidByPolicy(w, w.getFilters()));
+      default -> {}
+    }
+  }
+
+  private static List<DashboardFilter> retainFiltersValidByPolicy(DashboardWidget widget, List<DashboardFilter> userFilters) {
+    List<ColumnModel> columns = getFilterableColumns(widget);
+    return new OperatorPolicyService(columns).keepFiltersAllowedByPolicy(userFilters);
   }
 
   private void removeDisabledUserFilters(WidgetFilterModel model, DashboardWidgetType widgetType, List<ColumnModel> enabledColumns) {
     if (widgetType != DashboardWidgetType.TASK && widgetType != DashboardWidgetType.CASE) {
       return;
     }
-    model.setUserFilters(CollectionUtils.emptyIfNull(model.getUserFilters()).stream()
+    List<DashboardFilter> userFilters = CollectionUtils.emptyIfNull(model.getUserFilters()).stream()
         .filter(f -> StringUtils.isNotBlank(f.getField()))
         .filter(f -> enabledColumns.stream().anyMatch(col -> Strings.CS.equals(col.getField(), f.getField())))
-        .collect(Collectors.toList()));
+        .collect(Collectors.toList());
+    
+    model.setUserFilters(new OperatorPolicyService(enabledColumns).keepFiltersAllowedByPolicy(userFilters));
   }
 
   private String getLessValue(DashboardColumnFormat format, String selectedValueFrom, String value) {

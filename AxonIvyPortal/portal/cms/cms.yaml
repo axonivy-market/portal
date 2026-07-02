@@ -163,6 +163,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AppleStoreURL: Set URL to download Axon Ivy mobile app on Apple Store.
       BaseQRCodeUrl: Set Base URL for QR code to display.
       GooglePlayURL: Set URL to download Axon Ivy mobile app on Google Play.
+      DashboardFilterOperatorPolicy: Unchecked operators are disabled globally.
       behaviourWhenClickingOnLineInCaseList: Toggle between accessing case details or business details when clicking on a case in the case widget on the dashboard, global search, related cases, and process widget in combined mode.
       behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
@@ -590,6 +591,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     EmptyFilterMessage: No widget filter found
     Filter:
       FilterOptionHeader: Filter options
+      FilterOptionHeaderTooltip: Some filter fields and operators may be disabled by your administrator. Filters using disabled fields or operators will be automatically removed. Please contact your administrator for more information.
       FilterPanelHeader: Filter panel
       ManageWidgetFilterHeader: Widget filter management
       NotFound: No filter found
@@ -668,6 +670,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     noPermission: You don't have permissions to see dashboards.
     noWidget: There are no widgets provided for this dashboard
     numberPattern: Number Pattern
+    operators: Operators
+    operatorPolicyTooltip: If operators are disabled globally by admin, they can't be enabled here. A field filter can't be enabled when all operators are globally disabled.
     preview: Preview
     processList: Process List
     processListIntroduction: This widget displays available process starts. You have the possibility to choose different formats.
