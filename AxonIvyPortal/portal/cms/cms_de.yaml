@@ -766,6 +766,34 @@ ch.ivy.addon.portalkit.ui.jsf:
       privateFilter: Meine Filter
       publicFilter: Öffentlich
       savedFilters: 'Gespeicherte Filter:'
+    PortalPackageManagement:
+      GeneralInfo: 'Manage Portal configuration files as a portable zip package. Use Export to download all current JSON configuration files bundled into a single zip archive, or use Import to upload a zip package and apply its configurations — replacing the existing ones.'
+      ExportTitle: Export
+      ExportDescription: Export Portal configuration files as a zip package. Only files with existing data are available for selection.
+      ExportNote: Only non-empty files are included in the package.
+      ExportButton: Export
+      ImportTitle: Import
+      ImportDescription: Upload a zip file which includes the required JSON files. File names must follow the pattern above.
+      ImportButton: Import
+      ImportDialogHeader: Import Portal Package
+      DropZoneLabel: Drag and drop a .zip file here
+      DropZoneOr: or
+      BrowseFiles: browse files
+      PreviewNoFileMessage: Valid items will be listed here after you select a file.
+      PreviewNoValidFilesMessage: No recognized Portal configuration files found. Please upload a valid Portal_Package.zip.
+      PreviewValidFilesHeader: Valid ({0} file(s))
+      PreviewInvalidFilesHeader: 'Unrecognized files — will be skipped ({0} file(s))'
+      ReplaceWarning: Existing data for each imported type will be replaced. This action cannot be undone.
+      FileNameHeader: File Name
+      DescriptionHeader: Description
+      DashboardFileDescription: Dashboard widget layouts and configurations for all Portal dashboards
+      CustomStatisticFileDescription: Custom statistic chart definitions displayed on Portal dashboards
+      UserMenuFileDescription: Add custom items and links to the default user menu
+      CaseDetailsFileDescription: Configure, rearrange, and extend the case details page with built-in widgets or custom panels
+      ThirdPartyApplicationsFileDescription: Third-party application links integrated into the Portal menu
+      CustomMenuItemsFileDescription: Add custom items in the left-side navigation menu
+      ExternalLinksFileDescription: External link processes displayed in the Portal left-side navigation or Portal process list page
+      MenuOrderFileDescription: Custom ordering of the main navigation menu items in the Portal sidebar
   dashboard:
     CaseQueryType:
       info: Konfigurieren Sie, welche Vorgangstypen im Vorgangs-Widget angezeigt werden. Standard zeigt nur Geschäftsvorgänge, Technische Untervorgänge zeigt nur technische Untervorgänge, und Alle zeigt sowohl Geschäftsvorgänge als auch technische Untervorgänge.
@@ -823,6 +851,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Wählen Sie die Aktion
       SomeThingWentWrong: Etwas ist schief gelaufen
       Title: Portal-Konfiguration
+      PackageManagement: Package management
+      PackageManagementTabInfoPanel: '<p><b>What can I do here?</b></p><p>Export the current Portal configuration as a single zip package, or import a previously exported package to replace it.</p><p><b>Export</b></p><p>Downloads a <code>Portal_Package.zip</code> containing one JSON file per configuration type. Only types with existing data are included.</p><p><b>Import</b></p><p>Upload a zip package to preview which files it contains before applying. Recognized files replace the matching configuration; unrecognized files are skipped. This action cannot be undone.</p>'
     DrillDownWidget:
       caseDrillDown: Drilldown-Fall-Widget für {0}
       taskDrillDown: Drilldown-Aufgaben-Widget für {0}

@@ -24,12 +24,14 @@ public class DashboardConfigurationBean implements Serializable {
   private boolean canEditPrivateDashboard;
   private boolean canEditPublicDashboard;
   private boolean canManageSidebarNavigation;
+  private boolean canManagePackages;
   private boolean isPublicDashboard;
   private boolean isSelectingAction = true;
   private boolean isSelectingTemplate;
   private boolean isEditingDashboard;
   private boolean isReorderingDashboard;
   private boolean isMenuManagement;
+  private boolean isPackageManagement;
 
   @PostConstruct
   public void initConfigurationBean() {
@@ -48,6 +50,7 @@ public class DashboardConfigurationBean implements Serializable {
       canEditPrivateDashboard = PermissionUtils.hasDashboardWriteOwnPermission();
       canEditPublicDashboard = PermissionUtils.hasDashboardWritePublicPermission();
       canManageSidebarNavigation = PermissionUtils.isSessionUserHasAdminRole();
+      canManagePackages = PermissionUtils.isSessionUserHasAdminRole();
     }
   }
 
@@ -57,6 +60,7 @@ public class DashboardConfigurationBean implements Serializable {
     isEditingDashboard = false;
     isReorderingDashboard = false;
     isMenuManagement = false;
+    isPackageManagement = false;
   }
 
   public void switchDashboardType(boolean isPublicDashboard) {
@@ -103,6 +107,16 @@ public class DashboardConfigurationBean implements Serializable {
     }
   }
 
+  public void accessToPackageManagement() {
+    // Re-check server-side: the tab link is hidden for non-admins but the action
+    // can be posted directly by anyone who can open the configuration page.
+    if (!PermissionUtils.isSessionUserHasAdminRole()) {
+      return;
+    }
+    resetAllIndicators();
+    this.isPackageManagement = true;
+  }
+
   public boolean isMobileDevice() {
     return isMobileDevice;
   }
@@ -129,6 +143,10 @@ public class DashboardConfigurationBean implements Serializable {
 
   public boolean isCanManageSidebarNavigation() {
     return canManageSidebarNavigation;
+  }
+
+  public boolean isCanManagePackages() {
+    return canManagePackages;
   }
 
   public boolean isPublicDashboard() {
@@ -177,5 +195,13 @@ public class DashboardConfigurationBean implements Serializable {
 
   public void setMenuManagement(boolean isMenuManagement) {
     this.isMenuManagement = isMenuManagement;
+  }
+
+  public boolean isPackageManagement() {
+    return isPackageManagement;
+  }
+
+  public void setPackageManagement(boolean isPackageManagement) {
+    this.isPackageManagement = isPackageManagement;
   }
 }
