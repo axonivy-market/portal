@@ -263,6 +263,78 @@ public class BaseTest {
           "portalKitTestHelper/14DE09882B540AD5/denySpecificPortalPermission.ivp?portalPermission=%s";
       redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, portalPermission.getValue()));
     }
+
+    public void grantDashboardWriteOwnPermission() {
+      redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
+    }
+
+    public void denyDashboardWriteOwnPermission() {
+      redirectToRelativeLink(denyDashboardWriteOwnPermissionUrl);
+    }
+
+    public void grantDashboardWritePublicPermission() {
+      redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
+    }
+
+    public void denyDashboardWritePublicPermission() {
+      redirectToRelativeLink(denyDashboardWritePublicPermissionUrl);
+    }
+
+    public void grantDashboardExportOwnPermission() {
+      redirectToRelativeLink(grantDashboardExportOwnPermissionUrl);
+    }
+
+    public void denyDashboardExportOwnPermission() {
+      redirectToRelativeLink(denyDashboardExportOwnPermissionUrl);
+    }
+
+    public void grantDashboardExportPublicPermission() {
+      redirectToRelativeLink(grantDashboardExportPublicPermissionUrl);
+    }
+
+    public void denyDashboardExportPublicPermission() {
+      redirectToRelativeLink(denyDashboardExportPublicPermissionUrl);
+    }
+
+    public void grantDashboardImportOwnPermission() {
+      redirectToRelativeLink(grantDashboardImportOwnPermissionUrl);
+    }
+
+    public void denyDashboardImportOwnPermission() {
+      redirectToRelativeLink(denyDashboardImportOwnPermissionUrl);
+    }
+
+    public void grantDashboardImportPublicPermission() {
+      redirectToRelativeLink(grantDashboardImportPublicPermissionUrl);
+    }
+
+    public void denyDashboardImportPublicPermission() {
+      redirectToRelativeLink(denyDashboardImportPublicPermissionUrl);
+    }
+
+    public void grantDashboardShareLinkPermission() {
+      redirectToRelativeLink(grantDashboardShareLinkPermissionUrl);
+    }
+
+    public void denyDashboardShareLinkPermission() {
+      redirectToRelativeLink(denyDashboardShareLinkPermissionUrl);
+    }
+
+    public void grantShareLinkCaseDetailsPermission() {
+      redirectToRelativeLink(grantShareLinkCaseDetailsPermission);
+    }
+
+    public void denyShareLinkCaseDetailsPermission() {
+      redirectToRelativeLink(denyShareLinkCaseDetailsPermission);
+    }
+
+    public void grantShareLinkTaskDetailsPermission() {
+      redirectToRelativeLink(grantShareLinkTaskDetailsPermission);
+    }
+
+    public void denyShareLinkTaskDetailsPermission() {
+      redirectToRelativeLink(denyShareLinkTaskDetailsPermission);
+    }
   }
 
 

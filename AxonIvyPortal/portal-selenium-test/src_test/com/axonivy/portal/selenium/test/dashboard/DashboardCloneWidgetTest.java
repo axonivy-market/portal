@@ -111,7 +111,7 @@ public class DashboardCloneWidgetTest extends BaseTest {
 
   @Test
   public void cloneWidgetTargetsShouldRespectWritepermissions() {
-    redirectToRelativeLink(denyDashboardWritePublicPermissionUrl);
+    permissions().denyDashboardWritePublicPermission();
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage

@@ -97,7 +97,7 @@ public class TaskDetailsTest extends BaseTest {
   public void testShareTaskDetails() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(grantShareLinkTaskDetailsPermission);
+    permissions().grantShareLinkTaskDetailsPermission();
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();
@@ -107,7 +107,7 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage.getShareButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     taskDetailsPage.getShareDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
-    redirectToRelativeLink(denyShareLinkTaskDetailsPermission);
+    permissions().denyShareLinkTaskDetailsPermission();
     redirectToNewDashBoard();
     mainMenuPage.openTaskList();
     taskWidget = new TopMenuTaskWidgetPage();

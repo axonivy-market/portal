@@ -127,7 +127,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testShareCaseDetails() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(grantShareLinkCaseDetailsPermission);
+    permissions().grantShareLinkCaseDetailsPermission();
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openCaseList();
@@ -138,7 +138,7 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.getShareButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     caseDetailsPage.getShareDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
-    redirectToRelativeLink(denyShareLinkCaseDetailsPermission);
+    permissions().denyShareLinkCaseDetailsPermission();
     redirectToNewDashBoard();
     mainMenuPage.openCaseList();
     caseDetailsPage = caseWidgetPage.openDetailsCase(ORDER_PIZZA);
