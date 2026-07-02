@@ -103,6 +103,7 @@
     }, {
       "id" : "f28",
       "type" : "SubProcessCall",
+      "name" : "get data",
       "config" : {
         "processCall" : "Functional Processes/AuditTrailSupporter:getAuditTrailList(ch.ivyteam.ivy.workflow.ICase)",
         "call" : {
@@ -172,6 +173,7 @@
     }, {
       "id" : "f36",
       "type" : "SubProcessCall",
+      "name" : "save data",
       "config" : {
         "processCall" : "Functional Processes/AuditTrailSupporter:saveAuditTrailDTOList(List<com.axonivy.portal.components.dto.AuditTrailDTO>,ch.ivyteam.ivy.workflow.ICase)",
         "call" : {
@@ -190,6 +192,7 @@
     }, {
       "id" : "f39",
       "type" : "SubProcessCall",
+      "name" : "save data",
       "config" : {
         "processCall" : "Functional Processes/AuditTrailSupporter:saveAdditionalInformation(ch.ivyteam.ivy.workflow.ICase,List<com.axonivy.portal.components.dto.AuditTrailDTO>)",
         "call" : {

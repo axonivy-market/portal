@@ -65,7 +65,7 @@
       <p:column headerText="#{cc.attrs.timestampColumnHeader}" sortBy="#{entry.timestamp}"
         styleClass="audit-trail-date-col">
         <h:outputText value="#{entry.timestamp}">
-          <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+          <f:convertDateTime pattern="#{portalComponentUtilsBean.dateTimePattern}" />
         </h:outputText>
       </p:column>
 

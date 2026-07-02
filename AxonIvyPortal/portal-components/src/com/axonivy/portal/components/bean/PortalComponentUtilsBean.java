@@ -8,6 +8,7 @@ import javax.faces.bean.ViewScoped;
 
 import com.axonivy.portal.components.constant.PortalComponentConstants;
 import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;
+import com.axonivy.portal.components.service.DateTimeGlobalSettingService;
 
 /**
  * Contains utilities, use them in xhtml. This bean is mentioned Portal documentation, handle it like public API.
@@ -24,5 +25,9 @@ public class PortalComponentUtilsBean implements Serializable {
 
   public int getFilenameMaxLength() {
     return PortalComponentConstants.FILENAME_MAX_LENGTH;
+  }
+
+  public String getDateTimePattern() {
+    return DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern();
   }
 }

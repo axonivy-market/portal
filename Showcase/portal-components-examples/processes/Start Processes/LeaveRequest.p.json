@@ -16,6 +16,7 @@
             "This process allow employee to submit their leave request, then the request will be sent to selected approver.",
             "After approver finish his task, the approval result will be sent back to requester"
           ],
+          "category" : "LeaveRequest",
           "customFields" : [
             { "name" : "cssIcon", "value" : "ti ti-speakerphone" }
           ]
@@ -105,6 +106,7 @@
         "dialog" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequestApproval:start()",
         "task" : {
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/approvalTaskName\", [ivy.security.users().find(in.requester).getDisplayName()])%>",
+          "category" : "LeaveRequestApproval",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
             "script" : "in.approver"

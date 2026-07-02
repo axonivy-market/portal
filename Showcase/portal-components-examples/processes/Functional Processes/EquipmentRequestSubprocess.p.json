@@ -65,7 +65,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "if (in.workingTask.getCategory().getName().equals(\"updateRequest\")) {",
+            "if (in.workingTask.getCategory().getName().equals(\"LeaveRequestApproval\")) {",
             "  in.executeReserveLogic = true;",
             "}"
           ]
@@ -95,9 +95,9 @@
     }, {
       "id" : "f10",
       "type" : "CallSubStart",
-      "name" : "portalGetAuditTrailDat(ICase)",
+      "name" : "portalGetAuditTrailData(ICase)",
       "config" : {
-        "signature" : "portalGetAuditTrailDat",
+        "signature" : "portalGetAuditTrailData",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
@@ -149,9 +149,8 @@
             "  ITask targetTask = activeTasks.get(0);",
             "  Category taskCategory = targetTask.getCategory();",
             "  String value = taskCategory.getName().isBlank() ? \"\" : taskCategory.getName();",
-            "  ivy.log.info(value.equals(\"updateRequest\"));",
             "  in.auditTrailDataForTaskUpdateRequest = new ArrayList();",
-            "    if (value.equals(\"updateRequest\")) {",
+            "    if (value.equals(\"LeaveRequestApproval\")) {",
             "      for(Note note : targetTask.notes().all()) {",
             "        AuditTrailDTO trail = AuditTrailDTOFactory.build(\"System note\", note.content());",
             "        in.auditTrailDataForTaskUpdateRequest.add(trail);",

@@ -5,21 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.axonivy.portal.components.dto.AuditTrailBundle;
 import com.axonivy.portal.components.dto.AuditTrailDTO;
 import com.axonivy.portal.components.enums.CustomSignature;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.type.CollectionType;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 
 public class AuditTrailService {
 
-  private static final String FIELD_NAME = "PORTAL_AUDIT_TRAIL";
-  private static final String ENTRIES_KEY = "entries";
-  private static final ObjectMapper MAPPER = new ObjectMapper();
   private static AuditTrailService instance;
 
   public static AuditTrailService getInstance() {
@@ -31,12 +25,16 @@ public class AuditTrailService {
 
   public void save(ICase caze, List<AuditTrailDTO> entries) {
     try {
-      List<AuditTrailDTO> merged = new ArrayList<>(load(caze));
+      // IBusinessCase businessCase = caze.getBusinessCase();
+      AuditTrailBundle bundle = Ivy.repo().get(AuditTrailBundle.class);
+      if (bundle == null) {
+        bundle = new AuditTrailBundle();
+      }
+      List<AuditTrailDTO> merged = new ArrayList<>(bundle.getEntries());
       merged.addAll(entries);
       merged.sort((a, b) -> b.getTimestamp().compareTo(a.getTimestamp()));
-      ObjectNode root = MAPPER.createObjectNode();
-      root.set(ENTRIES_KEY, MAPPER.valueToTree(merged));
-      caze.customFields().stringField(FIELD_NAME).set(MAPPER.writeValueAsString(root));
+      bundle.setEntries(merged);
+      Ivy.repo().save(bundle);
     } catch (Exception e) {
       Ivy.log().error("Failed to save audit trail for case " + caze.getId(), e);
     }
@@ -44,16 +42,8 @@ public class AuditTrailService {
 
   public List<AuditTrailDTO> load(ICase caze) {
     try {
-      String json = caze.customFields().stringField(FIELD_NAME).get().orElse(null);
-      if (json == null || json.isEmpty()) {
-        return new ArrayList<>();
-      }
-      JsonNode entriesNode = MAPPER.readTree(json).path(ENTRIES_KEY);
-      if (entriesNode.isMissingNode() || entriesNode.isNull()) {
-        return new ArrayList<>();
-      }
-      CollectionType type = MAPPER.getTypeFactory().constructCollectionType(List.class, AuditTrailDTO.class);
-      return MAPPER.convertValue(entriesNode, type);
+      AuditTrailBundle bundle = Ivy.repo().get(AuditTrailBundle.class);
+      return bundle == null ? new ArrayList<>() : new ArrayList<>(bundle.getEntries());
     } catch (Exception e) {
       Ivy.log().error("Failed to load audit trail for case " + caze.getId(), e);
       return new ArrayList<>();

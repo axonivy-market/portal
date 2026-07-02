@@ -72,7 +72,14 @@
         <p:commandButton value="#{ivy.cms.co('/Dialog/Common/reject')}" icon="ti ti-trash" partialSubmit="true"
           id="rejected-btn" styleClass="secondary-btn Fright MarTop10" actionListener="#{logic.rejected}"
           process=":leave-request" update=":leave-request" style="width: auto" />
+        <p:commandButton value="Audit Trail" icon="ti ti-history" type="button"
+          styleClass="secondary-btn Fright MarTop10" style="width: auto" onclick="PF('auditTrailDialog').show()" />
       </h:form>
+
+      <p:dialog header="Audit Trail" widgetVar="auditTrailDialog" modal="true"
+        responsive="true" closeOnEscape="true" resizable="false" width="600" styleClass="portal-dialog dialog-responsive">
+        <ic:com.axonivy.portal.components.AuditTrail showHeader="false" showAddNote="true" />
+      </p:dialog>
       <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="1" />
 
     </ui:define>
