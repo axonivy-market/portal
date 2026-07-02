@@ -2224,8 +2224,8 @@ msgid ""
 msgstr ""
 "「列管理」ダイアログでは、フィルタリング可能な各列で利用可能なフィールドや演"
 "算子をさらに制限することができます。このダイアログの開き方については"
-"、:ref:`（タスクリストの列管理） <task-widget-column-management>` およ"
-"び:ref:`（ケースリストの列管理） <case-widget-column-management>` を参照して"
+"、 :ref:`（タスクリストの列管理） <task-widget-column-management>` およ"
+"び :ref:`（ケースリストの列管理） <case-widget-column-management>` を参照して"
 "ください。"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:30
@@ -2336,8 +2336,8 @@ msgid ""
 "list column management <case-widget-column-management>`)."
 msgstr ""
 "新しいフィルターを追加する際にドロップダウンから選択できるフィールドは、"
-"ウィジェットの「列管理」ダイアログで制御されます（:ref:`の「タスクリストの列"
-"管理」 <task-widget-column-management>` および:ref:`の「ケースリストの列管理"
+"ウィジェットの「列管理」ダイアログで制御されます（ :ref:`の「タスクリストの列"
+"管理」 <task-widget-column-management>` および :ref:`の「ケースリストの列管理"
 "」 <case-widget-column-management>` を参照）。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:33

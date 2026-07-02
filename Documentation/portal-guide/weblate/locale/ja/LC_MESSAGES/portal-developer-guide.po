@@ -10700,7 +10700,7 @@ msgid ""
 "<admin-settings>`, as third-party applications duplicate the **External "
 "Link** sidebar items of the new Menu Management feature."
 msgstr ""
-"5.:ref:`の管理設定 <admin-settings>` から、「**アプリケーション」** タブが削"
+"5. :ref:`の管理設定 <admin-settings>` から、「**アプリケーション」** タブが削"
 "除されました。これは、サードパーティ製アプリケーションが、新しい「メニュー管"
 "理」機能のサイドバー項目**外部リンク** と重複しているためです。"
 
