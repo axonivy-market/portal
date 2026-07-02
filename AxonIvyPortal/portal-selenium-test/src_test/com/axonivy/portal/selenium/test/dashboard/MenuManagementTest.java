@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
@@ -179,8 +180,7 @@ public class MenuManagementTest extends BaseTest {
     page.confirmRemoveMenu();
 
     page.selectMenuManagementTab();
-    page.getMenuTableRows().asFixedIterable()
-        .forEach(row -> row.$("td:first-child").shouldNotHave(Condition.text(menuTitle)));
+    page.getMenuTableRows().filterBy(Condition.text(menuTitle)).shouldHave(size(0));
   }
 
   @Test
