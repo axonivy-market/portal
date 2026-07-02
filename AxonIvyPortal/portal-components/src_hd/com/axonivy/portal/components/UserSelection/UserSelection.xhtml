@@ -21,6 +21,7 @@
   <cc:attribute name="isReadOnly" type="java.lang.Boolean" shortDescription="Prevents changing the selected user when enabled. Type: boolean. Default value: false. Required: false." />
   <cc:attribute name="hightlight" type="java.lang.Boolean" default="true" shortDescription="Automatically highlights the first suggested user. Type: boolean. Default value: true. Required: false." />
   <cc:attribute name="size" type="java.lang.Integer" shortDescription="Number of characters used to define the input width. Type: int. Required: false." />
+  <!-- disable validator next-line: el-validator -->
   <cc:attribute name="itemLabel" type="java.lang.String" default="#{user.getDisplayName()}"
     shortDescription="Text displayed for users in the dropdown and the selected value. Type: String. Default value: user's display name. Required: false." />
   <cc:attribute name="scrollHeight" type="java.lang.Integer" default="390" shortDescription="Maximum height of the autocomplete dropdown panel. Type: int. Default value: 390. Required: false." />
@@ -58,6 +59,7 @@
 <cc:implementation>
   <h:outputStylesheet library="css" name="user-selection-component.css" />
 
+  <!-- disable validator next-line: el-validator -->
   <c:set var="completeMethod" value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : userSelectionBean.completeUserMethod}" />
 
   <h:panelGroup id="#{cc.attrs.componentId}-autocomplete-panel" layout="block"
@@ -92,6 +94,7 @@
       inputStyleClass="#{cc.attrs.inputStyleClass}"
       emptyMessage="#{cc.attrs.emptyMessage}">
       <p:column rendered="#{!cc.attrs.hasCustomizedSelectionList}">
+        <!-- disable validator next-line: el-validator -->
         <pc:securityMemberNameAndAvatar securityMember="#{user}"
           displayName="#{portalComponentDisplayNameFormatBean.getDisplayNameForUserDTO(user)}" isStandAlone="false"
           isShowAvatar="#{cc.attrs.isShowAvatarInSelectionList}" displayNameRendered="#{cc.attrs.displayNameRenderedInSelectionList}"

@@ -35,6 +35,7 @@
           </p:commandLink>
           <p:tooltip for="process-viewer-info-link" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessInfoIconTooltip')}"
             trackMouse="true" hideEvent="mouseleave click"/>
+          <!-- disable validator next-line: el-validator -->
           <p:overlayPanel for="process-viewer-info-link" dynamic="true"
             styleClass="process-viewer-info-panel"
             onShow="#{logic.loadProcessDetails()}"
