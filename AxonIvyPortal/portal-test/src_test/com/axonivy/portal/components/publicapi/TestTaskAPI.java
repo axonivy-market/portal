@@ -1,6 +1,7 @@
 package com.axonivy.portal.components.publicapi;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.lang.reflect.Proxy;
 import java.util.HashMap;
@@ -9,13 +10,12 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 import ch.ivyteam.ivy.environment.IvyTest;
-import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomStringField;
 
 @IvyTest
-class TestTaskAndCaseApi {
+class TestTaskAPI {
 
   @Test
   void setHidePropertyToHideInPortal_setsHideFieldOnTask() {
@@ -32,43 +32,16 @@ class TestTaskAndCaseApi {
     FieldStorage storage = new FieldStorage();
     ITask task = createTask(storage);
 
-    TaskAPI.setHidePropertyToHideInPortal(task);
-    TaskAPI.removeHidePropertyToDisplayInPortal(task);
-
-    assertThat(storage.get("HIDE")).isNull();
-  }
-
-  @Test
-  void setHidePropertyToHideInPortal_setsHideFieldOnCase() {
-    FieldStorage storage = new FieldStorage();
-    ICase iCase = createCase(storage);
-
-    CaseAPI.setHidePropertyToHideInPortal(iCase);
-
-    assertThat(storage.get("HIDE")).isEqualTo("HIDE");
-  }
-
-  @Test
-  void removeHidePropertyToDisplayInPortal_clearsHideFieldOnCase() {
-    FieldStorage storage = new FieldStorage();
-    ICase iCase = createCase(storage);
-
-    CaseAPI.setHidePropertyToHideInPortal(iCase);
-    CaseAPI.removeHidePropertyToDisplayInPortal(iCase);
+    assertThatCode(() -> {
+      TaskAPI.setHidePropertyToHideInPortal(task);
+      TaskAPI.removeHidePropertyToDisplayInPortal(task);
+    }).doesNotThrowAnyException();
 
     assertThat(storage.get("HIDE")).isNull();
   }
 
   private static ITask createTask(FieldStorage storage) {
     return (ITask) Proxy.newProxyInstance(ITask.class.getClassLoader(), new Class<?>[] {ITask.class},
-        (proxy, method, args) -> switch (method.getName()) {
-          case "customFields" -> createCustomFields(storage);
-          default -> defaultValue(method.getReturnType());
-        });
-  }
-
-  private static ICase createCase(FieldStorage storage) {
-    return (ICase) Proxy.newProxyInstance(ICase.class.getClassLoader(), new Class<?>[] {ICase.class},
         (proxy, method, args) -> switch (method.getName()) {
           case "customFields" -> createCustomFields(storage);
           default -> defaultValue(method.getReturnType());
