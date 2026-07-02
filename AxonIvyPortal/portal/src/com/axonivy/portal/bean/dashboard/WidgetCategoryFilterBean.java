@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -14,6 +15,7 @@ import org.primefaces.model.CheckboxTreeNode;
 
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.service.filter.operatorpolicy.service.GlobalOperatorPolicyService;
 
 import ch.ivy.addon.portalkit.bo.CategoryNode;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -27,9 +29,14 @@ public class WidgetCategoryFilterBean implements Serializable {
 
   private static final long serialVersionUID = 5886200209828694569L;
 
-  private static List<FilterOperator> operators = FilterOperator.CATEGORY_OPERATORS.stream().toList();
-  private static List<FilterOperator> statisticOperators = FilterOperator.STATISTIC_TEXT_OPERATORS.stream().toList();
-  
+  private final GlobalOperatorPolicyService globalOperatorPolicyService = new GlobalOperatorPolicyService();
+  private List<FilterOperator> statisticOperators;
+
+  @PostConstruct
+  public void initOperators() {
+    statisticOperators = globalOperatorPolicyService.keepGloballyEnabledOperators(
+        FilterOperator.STATISTIC_TEXT_OPERATORS.stream().toList());
+  }
 
   private CheckboxTreeNode<CategoryNode> categoryTree;
   private CheckboxTreeNode<CategoryNode>[] selectedCategoryNodes;
@@ -42,10 +49,6 @@ public class WidgetCategoryFilterBean implements Serializable {
     if (CollectionUtils.isNotEmpty(filter.getValues())) {
       setSelectedCategoriesString(filter.getValues().stream().collect(Collectors.joining(", ")));
     }
-  }
-
-  public List<FilterOperator> getOperators() {
-    return operators;
   }
 
   public List<FilterOperator> getStatisticOperators() {

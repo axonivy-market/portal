@@ -99,7 +99,7 @@ Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable:
     [
         {
             "menuKind": "STATIC_PAGE",
-            "link": "portal-components-examples/faces/view/help/user-guide.xhtml",
+            "link": "Portal/faces/view/portal-components-examples/help/user-guide.xhtml",
             "label": "User Guide",
             "icon": "ti ti-book",
             "index": 0,
@@ -107,7 +107,7 @@ Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable:
         },
         {
             "menuKind": "STATIC_PAGE",
-            "link": "portal-components-examples/faces/view/documentation/api-reference.xhtml",
+            "link": "Portal/faces/view/portal-components-examples/static.xhtml",
             "label": "API Reference",
             "icon": "ti ti-file-text",
             "index": 1,
@@ -123,8 +123,8 @@ Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable:
     ``link`` (string, required)
         Relative path to your static page from the application view directory
         
-        - Format: ``{pmv-name}/faces/view/{path-to-file}.xhtml``
-        - Example: ``portal-components-examples/faces/view/help/user-guide.xhtml``
+        - Format: ``<application>/faces/view/<process model>/{path-to-file in webContent/view}.xhtml``
+        - Example: ``Portal/faces/view/portal-components-examples/static.xhtml``
 
     ``label`` (string, required)
         Display name shown in the main menu
@@ -165,7 +165,7 @@ For dynamic menu generation, add static pages programmatically using Java code i
     staticPage.setMenuKind(MenuKind.STATIC_PAGE);
     staticPage.setIcon("ti ti-book");
     staticPage.setLabel("User Guide");
-    staticPage.setLink("portal-components-examples/faces/view/help/user-guide.xhtml");
+    staticPage.setLink("Portal/faces/view/portal-components-examples/help/user-guide.xhtml");
     staticPage.setIndex(0);
 
     // Add to menu items collection
@@ -215,14 +215,14 @@ Add static pages to the user menu (accessed via user avatar in top-right corner)
                 }
             ],
             "permissions": ["Everybody"],
-            "url": "portal-components-examples/faces/view/help/user-guide.xhtml"
+            "url": "Portal/faces/view/portal-components-examples/help/user-guide.xhtml"
         },
         {
             "id": "apiReference",
             "menuKind": "STATIC_PAGE",
             "title": "API Reference",
             "permissions": ["Developer", "AXONIVY_PORTAL_ADMIN"],
-            "url": "portal-components-examples/faces/view/documentation/api-reference.xhtml"
+            "url": "Portal/faces/view/portal-components-examples/documentation/api-reference.xhtml"
         }
     ]
 
@@ -253,8 +253,8 @@ Add static pages to the user menu (accessed via user avatar in top-right corner)
     ``url`` (string, required)
         Relative path to your static page
         
-        - Format: ``{pmv-name}/faces/view/{path-to-file}.xhtml``
-        - Example: ``portal-components-examples/faces/view/help/user-guide.xhtml``
+        - Format: ``<application>/faces/view/<process model>/{path-to-file in webContent/view}.xhtml``
+        - Example: ``Portal/faces/view/portal-components-examples/static.xhtml``
 
 .. _static-page-url-conversion:
 
@@ -267,7 +267,7 @@ Portal automatically converts static page links to the proper format when displa
 
 #. **Input Format**: Relative path from application view directory
    
-   - Example: ``portal-components-examples/faces/view/help/user-guide.xhtml``
+   - Example: ``Portal/faces/view/portal-components-examples/help/user-guide.xhtml``
 
 #. **Conversion**: Portal uses ``StaticPageUtils.buildUrl()`` method
    
@@ -277,7 +277,7 @@ Portal automatically converts static page links to the proper format when displa
 #. **Output Format**: Full Portal URL with proper context
    
    - Template: ``{baseUrl}?relativeUrl=/{applicationName}/faces/view/{PM}/{staticPage}``
-   - Example: ``https://server/ivy/pro/portal/?relativeUrl=/portal-components-examples/faces/view/help/user-guide.xhtml``
+   - Example: ``https://server/ivy/pro/portal/?relativeUrl=/Portal/faces/view/portal-components-examples/help/user-guide.xhtml``
 
 
 .. _static-page-examples:

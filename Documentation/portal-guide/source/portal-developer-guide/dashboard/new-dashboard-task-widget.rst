@@ -194,12 +194,23 @@ Each column object in the ``columns`` array:
    - ``expiryTimestamp`` - Expiry date and time
    - ``application`` - Application name
    - ``actions`` - Action buttons (details, reset, delegate, reserve, destroy, etc.)
+   - ``businessCaseId`` - Business Case ID (hidden by default; sortable; quick search supported)
+   - ``technicalCaseId`` - Technical Case ID (hidden by default; sortable; quick search supported)
 
 ``quickSearch`` (string, default: ``"false"``)
    Include in quick search: ``"true"`` or ``"false"``
 
 ``enableFilter`` (boolean, default: ``true``)
    Allow filtering on this column in complex filter.
+
+``allowedOperators`` (array, optional)
+   List of operators allowed for this column in the complex filter. For instance: `["contains", "is", "is_not"]`.
+
+.. note::
+   - ``allowedOperators`` takes precedence over ``enableFilter``. If ``allowedOperators``
+     is set to ``[]``, filtering is disabled regardless of the ``enableFilter`` value.
+   - The actual operators available at runtime may be further restricted in Portal. See
+     :ref:`Restricting Filter Fields And Operators <restricting-filter-fields-and-operators>`.
 
 ``headers`` (array, optional)
    Multilingual column headers: ``[{"locale": "en", "value": "Header"}]``
@@ -549,6 +560,44 @@ Standard Column:
                }
             ]
          }
+
+   - ``businessCaseId`` and ``technicalCaseId``
+
+      .. code-block:: javascript
+
+         {
+            ...
+
+            "columns": [
+               {
+                  "field": "businessCaseId"
+               }
+            ],
+            "filters": [
+               {
+                  "field": "businessCaseId",
+                  "values": [ "1001" ],
+                  "operator": "contains",
+                  "type": "standard"
+               },
+               {
+                  "field": "technicalCaseId",
+                  "values": [ "2001" ],
+                  "operator": "contains",
+                  "type": "standard"
+               }
+            ]
+         }
+
+      ..
+
+      These columns display the Business Case ID and Technical Case ID of the task's associated case,
+      respectively. The ``contains`` operator performs a substring match against the string representation
+      of the numeric ID.
+      This is consistent with how the task ``id`` filter works. The only available filter operator is ``contains``.
+
+      .. note::
+         These columns support sorting and quick search (quick search is disabled by default; set ``quickSearch: "true"`` on the column to enable it).
 
 Custom Field Column :
 

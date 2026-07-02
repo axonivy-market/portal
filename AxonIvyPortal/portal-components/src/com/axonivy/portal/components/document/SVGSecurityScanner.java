@@ -93,7 +93,8 @@ public class SVGSecurityScanner implements DocumentDetector {
       }
 
       for (Element style : doc.select("style")) {
-        String cssLower = style.data().toLowerCase(Locale.ROOT);
+        String cssData = style.data();
+        String cssLower = (cssData.isEmpty() ? style.wholeOwnText() : cssData).toLowerCase(Locale.ROOT);
         if (CSS_EXPRESSION.matcher(cssLower).find()) {
           return false;
         }

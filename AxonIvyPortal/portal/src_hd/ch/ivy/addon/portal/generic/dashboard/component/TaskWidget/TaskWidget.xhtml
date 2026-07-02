@@ -134,9 +134,7 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.format eq 'NUMBER'}">
-            <h:outputText value="#{column.display(task)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}">
-              <f:convertNumber pattern="#{column.pattern}" />
-            </h:outputText>
+            <h:outputText value="#{column.display(task)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'category'}">
@@ -148,7 +146,17 @@
             <h:outputText id="task-application" value="#{column.display(task)}"/>
             <p:tooltip for="task-application" value="#{column.display(task)}" trackMouse="true" hideEvent="mouseleave click"/>
           </h:panelGroup>
-          
+
+          <h:panelGroup rendered="#{column.field eq 'businessCaseId'}">
+            <h:outputText id="task-business-case-id" value="#{column.display(task)}"/>
+            <p:tooltip for="task-business-case-id" value="#{column.display(task)}" trackMouse="true" hideEvent="mouseleave click"/>
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.field eq 'technicalCaseId'}">
+            <h:outputText id="task-technical-case-id" value="#{column.display(task)}"/>
+            <p:tooltip for="task-technical-case-id" value="#{column.display(task)}" trackMouse="true" hideEvent="mouseleave click"/>
+          </h:panelGroup>
+
           <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">
             <ui:include src="ActionsCell.xhtml">
               <ui:param name="destroyTaskDialogComponent" value="destroy-task-confirmation-dialog" />

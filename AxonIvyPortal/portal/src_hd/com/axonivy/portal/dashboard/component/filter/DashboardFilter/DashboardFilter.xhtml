@@ -19,6 +19,7 @@
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <c:set var="filter" value="#{cc.attrs.filter}" />
   <c:set var="readOnly" value="#{cc.attrs.readOnly}" />
+  <c:set var="effectiveOperators" value="#{cc.attrs.managedBean.resolveEffectiveOperatorsByPolicy(filter)}" />
 
   <div class="ui-g-12 dashboard-widget-filter__filter-wrapper">
     <h:panelGroup id="filter-selection-panel" layout="block" styleClass="dashboard-widget-filter__filter-panel filter-selection-panel">
@@ -39,31 +40,32 @@
       <h:panelGroup layout="block" rendered="#{filter.isCustomDateField() or filter.isFinishedDateField() or filter.isExpiryDateField()}">
         <ic:com.axonivy.portal.dashboard.component.filter.DateFilter filter="#{filter}" widgetType="#{widget.getType()}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"/>
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{effectiveOperators}"/>
       </h:panelGroup>
   
       <h:panelGroup layout="block" rendered="#{filter.isCreatedDateField()}">
         <ic:com.axonivy.portal.dashboard.component.filter.CreatedDateFilter filter="#{filter}" widgetType="#{widget.getType()}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"/>
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{effectiveOperators}"/>
       </h:panelGroup>
   
       <h:panelGroup layout="block" rendered="#{filter.isTextField()}">
         <ic:com.axonivy.portal.dashboard.component.filter.TextFilter filter="#{filter}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{effectiveOperators}" />
       </h:panelGroup>
   
       <h:panelGroup layout="block" rendered="#{filter.isNumberField()}">
         <ic:com.axonivy.portal.dashboard.component.filter.NumberFilter filter="#{filter}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{effectiveOperators}" />
       </h:panelGroup>
   
       <h:panelGroup layout="block" rendered="#{filter.isCreator()}">
         <ic:com.axonivy.portal.dashboard.component.filter.CreatorFilter filter="#{filter}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"
+          operators="#{effectiveOperators}"
           creatorCompleteMethod="#{cc.attrs.managedBean.completeCreators}" />
       </h:panelGroup>
 
@@ -71,6 +73,7 @@
         <ic:com.axonivy.portal.dashboard.component.filter.ResponsibleFilter filter="#{filter}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"
+          operators="#{effectiveOperators}"
           responsibleCompleteMethod="#{cc.attrs.managedBean.completeOwners}" />
       </h:panelGroup>
       
@@ -78,6 +81,7 @@
         <ic:com.axonivy.portal.dashboard.component.filter.WorkerFilter filter="#{filter}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"
+          operators="#{effectiveOperators}"
           workerCompleteMethod="#{cc.attrs.managedBean.completeUsers}" />
       </h:panelGroup>
 
@@ -86,33 +90,45 @@
           filter="#{filter}" widgetType="#{widget.getType()}"
           componentToUpdate="#{cc.attrs.componentToUpdate}"
           filterIndex="#{cc.attrs.filterIndex}" readOnly="#{readOnly}"
-          messageId="#{cc.attrs.messageId}" />
+          messageId="#{cc.attrs.messageId}" operators="#{effectiveOperators}" />
       </h:panelGroup>
   
       <h:panelGroup layout="block" rendered="#{filter.isApplication()}">
         <ic:com.axonivy.portal.dashboard.component.filter.ApplicationFilter filter="#{filter}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{effectiveOperators}" />
       </h:panelGroup>
   
       <h:panelGroup layout="block" rendered="#{filter.isState()}">
         <ic:com.axonivy.portal.dashboard.component.filter.StateFilter filter="#{filter}"
           widgetType="#{widget.getType()}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{effectiveOperators}" />
       </h:panelGroup>
 
       <h:panelGroup layout="block" rendered="#{filter.isPriority()}">
         <ic:com.axonivy.portal.dashboard.component.filter.PriorityFilter filter="#{filter}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{effectiveOperators}" />
       </h:panelGroup>
       
   
       <h:panelGroup layout="block" rendered="#{filter.isId()}">
         <ic:com.axonivy.portal.dashboard.component.filter.IdFilter filter="#{filter}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{effectiveOperators}" />
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" rendered="#{filter.isBusinessCaseId()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.IdFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{effectiveOperators}" />
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" rendered="#{filter.isTechnicalCaseId()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.IdFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{effectiveOperators}" />
       </h:panelGroup>
   
       <div class="remove-filter-panel">

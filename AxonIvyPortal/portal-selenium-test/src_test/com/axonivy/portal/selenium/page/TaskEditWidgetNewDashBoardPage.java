@@ -384,11 +384,20 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public void addCustomColumns(String... fieldNameList) {
     openColumnManagementDialog();
     selectCustomType();
-    
+
     for(String fieldName : fieldNameList) {
       addCustomFields(fieldName);
     }
     $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+  }
+
+  public void addStandardField(String fieldKey) {
+    selectStandardType();
+    getStandardField(fieldKey).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getFieldDisplayName().shouldNot(Condition.empty, DEFAULT_TIMEOUT);
+    getColumnManagementDialog().$("button[id$='field-add-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
+    getAddedFieldRemoveLink(fieldKey).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
   
   public void closeFilter() {
@@ -472,6 +481,115 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     }
     removeFilter(currentIndex);
     return isAvailable;
+  }
+
+  public String getOperatorSummaryByField(String fieldName) {
+    return getOperatorSummaryElementByField(fieldName).getText().trim();
+  }
+
+  private SelenideElement getOperatorSummaryElementByField(String fieldName) {
+    SelenideElement operatorSelection = getColumnRowByField(fieldName).$("div[id$='operator-selection']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    ElementsCollection summaryWithId = operatorSelection.$$("[id$='operator-selection_label']");
+    if (!summaryWithId.isEmpty()) {
+      return summaryWithId.first().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    }
+
+    return operatorSelection.$("label.ui-selectcheckboxmenu-label")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public boolean isFilterToggleDisabled(String fieldName) {
+    SelenideElement filterToggle = getColumnRowByField(fieldName).$("a[id$='toggle-filter']")
+      .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    String classAttribute = filterToggle.getDomAttribute("class");
+    String ariaDisabledAttribute = filterToggle.getDomAttribute("aria-disabled");
+
+    boolean disabledByCssClass = classAttribute.contains("ui-disable") || classAttribute.contains("ui-state-disabled");
+    boolean disabledByAria = "true".equalsIgnoreCase(ariaDisabledAttribute);
+
+    return disabledByCssClass || disabledByAria;
+  }
+
+  public void unselectAllOperatorsByField(String fieldName) {
+    openOperatorSelectionByField(fieldName);
+
+    SelenideElement operatorPanel = $("div.ui-selectcheckboxmenu-panel[style*='display: block']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+
+    // Click the header toggle-all checkbox to deselect all in one step
+    operatorPanel.$(".ui-widget-header .ui-chkbox .ui-chkbox-box")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    closeOperatorSelectionPanel();
+
+    // wait for Ajax rerender of the filter toggle before returning
+    waitUntilFilterUnchecked(fieldName);
+  }
+
+  public void waitUntilFilterUnchecked(String fieldName) {
+    getColumnRowByField(fieldName).$("a[id$='toggle-filter']").$("span span")
+        .shouldNotHave(Condition.cssClass("ui-icon-check"), DEFAULT_TIMEOUT);
+  }
+
+  public void unselectOperatorByField(String fieldName, String operatorLabel) {
+    openOperatorSelectionByField(fieldName);
+    var operatorItem = $("div.ui-selectcheckboxmenu-panel[style*='display: block']")
+        .$$("li.ui-selectcheckboxmenu-item").filter(text(operatorLabel)).first()
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    var operatorCheckBox = operatorItem.$("div.ui-chkbox-box").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    operatorCheckBox.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    closeOperatorSelectionPanel();
+  }
+
+  public boolean isOperatorDisabledByField(String fieldName, String operatorLabel) {
+    openOperatorSelectionByField(fieldName);
+    var operatorItem = $("div.ui-selectcheckboxmenu-panel[style*='display: block']")
+        .$$("li.ui-selectcheckboxmenu-item").filter(text(operatorLabel)).first()
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    boolean isDisabled = operatorItem.$("div.ui-chkbox-box").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .getAttribute("class").contains("ui-state-disabled");
+    closeOperatorSelectionPanel();
+    return isDisabled;
+  }
+
+  public boolean isOperatorSelectedByField(String fieldName, String operatorLabel) {
+    openOperatorSelectionByField(fieldName);
+    var operatorItem = $("div.ui-selectcheckboxmenu-panel[style*='display: block']")
+        .$$("li.ui-selectcheckboxmenu-item").filter(text(operatorLabel)).first()
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    boolean isSelected = operatorItem.$("div.ui-chkbox-box").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .getAttribute("class").contains("ui-state-active");
+    closeOperatorSelectionPanel();
+    return isSelected;
+  }
+
+  public void openOperatorSelectionByField(String fieldName) {
+    getColumnRowByField(fieldName).$("div[id$='operator-selection']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div.ui-selectcheckboxmenu-panel[style*='display: block']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void closeOperatorSelectionPanel() {
+    $(".ui-selectcheckboxmenu-panel[style*='display: block'] a.ui-selectcheckboxmenu-close")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void unselectFirstOperatorByField(String fieldName) {
+    String summaryBefore = getOperatorSummaryByField(fieldName);
+
+    openOperatorSelectionByField(fieldName);
+
+    $("div.ui-selectcheckboxmenu-panel[style*='display: block']")
+        .shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("li.ui-selectcheckboxmenu-item div.ui-chkbox-box.ui-state-active").first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    closeOperatorSelectionPanel();
+
+    // wait for Ajax rerender of the summary label before returning
+    getOperatorSummaryElementByField(fieldName).shouldNotHave(text(summaryBefore), DEFAULT_TIMEOUT);
   }
   
   public void clickOnQuickSearchByField(String fieldName) {

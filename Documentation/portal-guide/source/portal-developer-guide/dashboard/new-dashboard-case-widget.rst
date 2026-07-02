@@ -189,6 +189,12 @@ JSON Configuration Reference
      - boolean
      - ``false``
      - Enable quick search text box
+   * - ``allowedOperators``
+     - array
+     - *(none)*
+     - List of operators allowed for this column in the complex filter. For instance:
+       ``["contains", "is", "is_not"]``. An empty array ``[]`` disables filtering for
+       this column entirely, equivalent to setting ``enableFilter: false``.
    * - ``caseQueryType``
      - string
      - ``"BUSINESS_CASE"``
@@ -197,6 +203,12 @@ JSON Configuration Reference
      - boolean
      - ``false``
      - ``true`` = top-level nav item, ``false`` = under Dashboard menu
+
+.. note::
+   - ``allowedOperators`` takes precedence over ``enableFilter``. If ``allowedOperators``
+     is set to ``[]``, filtering is disabled regardless of the ``enableFilter`` value.
+   - The actual operators available at runtime may be further restricted in Portal. See
+     :ref:`Restricting Filter Fields And Operators <restricting-filter-fields-and-operators>`.
 
 **Columns Configuration**
 

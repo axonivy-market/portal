@@ -479,12 +479,25 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu {
   background-image: none;
 }
 
+body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu.task-configuration__operator-selection-menu {
+  float: none;
+  width: 65%;
+}
+
 body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
   top: 5px;
 }
 
 .task-configuration__selectcheckboxmenu-panel {
   width: 300px;
+}
+
+.task-configuration__operator-selection-panel {
+  width: 220px;
+}
+
+.task-configuration__operator-selection-panel .ui-selectcheckboxmenu-item:has(.ui-chkbox-box.ui-state-disabled) > label {
+  color: var(--action-step-disabled-text-color);
 }
 
 .task-configuration__column-picker.ui-picklist .ui-picklist-list {
@@ -786,6 +799,20 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 .column-management-datatable__reorder i {
   cursor: move;
   padding: 4px 10px;
+}
+
+.column-management-operator-header {
+  gap: 0.35rem;
+}
+
+.column-management-operator-info-icon {
+  color: var(--ivy-primary-color-grey-medium);
+  cursor: pointer;
+}
+
+.column-management-datatable.ui-datatable tbody.ui-datatable-data > tr > td {
+  height: 50px;
+  vertical-align: middle;
 }
 
 .dashboard-tasks__id,
@@ -2136,19 +2163,176 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
   cursor: pointer;
 }
 
-/* 1. Turn OFF the border for ALL columns completely */
-body .ui-datatable:not(.ui-datatable-gridlines) thead th:before,
-body .ui-treetable:not(.ui-treetable-gridlines) thead th:before {
-    display: none !important;
-}
-
-/* 2. Turn the border ON ONLY if a visible column has another visible column anywhere before it */
-body .ui-datatable:not(.ui-datatable-gridlines) thead th:not(.ui-helper-hidden) ~ th:not(.ui-helper-hidden):before,
-body .ui-treetable:not(.ui-treetable-gridlines) thead th:not(.ui-helper-hidden) ~ th:not(.ui-helper-hidden):before {
-    display: block !important;
-}
-
 .dashboard-tasks__selection-column {
   text-align: center;
   width: 40px;
+}
+
+/* Menu type tag colors - light mode */
+.menu-type-standard {
+  background-color: #f3f3f3 !important;
+  border: 1px solid #c0c0c0 !important;
+  color: var(--text-color) !important;
+  font-weight: 600 !important;
+}
+
+.menu-type-dashboard {
+  background-color: #e7f2f5 !important;
+  border: 1px solid #9ec8d4 !important;
+  color: var(--text-color) !important;
+  font-weight: 600 !important;
+}
+
+.menu-type-main-dashboard {
+  background-color: #daeef5 !important;
+  border: 1px solid #6ab0c0 !important;
+  color: var(--text-color) !important;
+  font-weight: 600 !important;
+}
+
+.menu-type-process {
+  background-color: #eee7fe !important;
+  border: 1px solid #b0a0e0 !important;
+  color: var(--text-color) !important;
+  font-weight: 600 !important;
+}
+
+.menu-type-custom {
+  background-color: #e8e0ff !important;
+  border: 1px solid #8870d0 !important;
+  color: var(--text-color) !important;
+  font-weight: 600 !important;
+}
+
+.menu-type-external {
+  background-color: #fff8dc !important;
+  border: 1px solid #d4c060 !important;
+  color: var(--text-color) !important;
+  font-weight: 600 !important;
+}
+
+.menu-type-third-party {
+  background-color: #fdecea !important;
+  border: 1px solid #e8a09a !important;
+  color: var(--text-color) !important;
+  font-weight: 600 !important;
+}
+
+.menu-type-static {
+  background-color: #e8f5f0 !important;
+  border: 1px solid #7dbfa8 !important;
+  color: var(--text-color) !important;
+  font-weight: 600 !important;
+}
+
+/* Menu type tag colors - dark mode */
+body.dark .menu-type-standard {
+  background-color: #3a3a3a !important;
+  border-color: #5a5a5a !important;
+  font-weight: 600 !important;
+}
+
+body.dark .menu-type-dashboard {
+  background-color: #1e3a40 !important;
+  border-color: #3a7080 !important;
+  font-weight: 600 !important;
+}
+
+body.dark .menu-type-main-dashboard {
+  background-color: #153038 !important;
+  border-color: #2a6070 !important;
+  font-weight: 600 !important;
+}
+
+body.dark .menu-type-process {
+  background-color: #2e2050 !important;
+  border-color: #6050a0 !important;
+  font-weight: 600 !important;
+}
+
+body.dark .menu-type-custom {
+  background-color: #241840 !important;
+  border-color: #5040a0 !important;
+  font-weight: 600 !important;
+}
+
+body.dark .menu-type-external {
+  background-color: #3a3010 !important;
+  border-color: #807030 !important;
+  font-weight: 600 !important;
+}
+
+body.dark .menu-type-third-party {
+  background-color: #3a1010 !important;
+  border-color: #804040 !important;
+  font-weight: 600 !important;
+}
+
+body.dark .menu-type-static {
+  background-color: #0d2b22 !important;
+  border-color: #2a6b50 !important;
+  font-weight: 600 !important;
+}
+
+/* Info guide for the Portal Configuration page header.
+   Same pattern as the Admin settings page: plain icon, info shown as hover tooltip. */
+.dashboard-configuration-info-circle {
+  margin: auto 0;
+}
+
+.dashboard-configuration-info-circle .dashboard-configuration-info {
+  color: var(--ivy-primary-color);
+  font-size: large;
+}
+
+.dashboard-info-tooltip {
+  max-width: 450px;
+  word-wrap: break-word;
+}
+
+/* Sidebar settings card in Sidebar navigation tab */
+.sidebar-settings-card {
+  background: var(--surface-ground);
+  border: 1px solid var(--surface-border);
+  box-sizing: border-box;
+  margin: 0.5em;
+}
+
+.sidebar-settings-card .sidebar-mode-select {
+  min-width: 14rem;
+}
+
+.sidebar-settings-card .sidebar-reload-warning {
+  padding: 0.5rem 0.75rem;
+}
+
+.sidebar-settings-card .sidebar-reload-warning .ui-button {
+  flex-shrink: 0;
+}
+
+.menu-source-info-icon {
+  color: var(--ivy-primary-color-grey-medium);
+  cursor: help;
+}
+
+.menu-management-table .ui-datatable-tablewrapper > table {
+  table-layout: fixed;
+}
+
+.menu-management-table .ui-datatable-data > tr > td {
+  vertical-align: middle;
+}
+
+.menu-table-label-icon {
+  display: inline-block;
+  width: 1.25rem;
+  margin-right: 0.5rem;
+  text-align: center;
+  vertical-align: middle;
+  color: var(--ivy-primary-color-grey-medium);
+}
+
+.add-menu-item-action {
+  margin: 0.5em;
+  padding: 0.5em 0;
 }
