@@ -7,6 +7,7 @@ import com.axonivy.portal.components.service.LanguageService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.language.LanguageConfigurator;
 import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.exec.Sudo;
 
 public final class Locales {
@@ -15,9 +16,12 @@ public final class Locales {
 
   public static Locale getCurrentLocale() {
     Locale currentLocale = Sudo.get(() -> {
-      Locale userLanguage = Ivy.session().getSessionUser().getLanguage();
-      if (userLanguage != null) {
-        return userLanguage;
+      IUser sessionUser = Ivy.session().getSessionUser();
+      if (sessionUser != null) {
+        Locale userLanguage = sessionUser.getLanguage();
+        if (userLanguage != null) {
+          return userLanguage;
+        }
       }
       return new LanguageConfigurator(ISecurityContext.current()).content();
     });
