@@ -137,12 +137,11 @@
           <p:tooltip for="document-preview" trackMouse="true" hideEvent="mouseleave click"
             value="#{cc.attrs.previewTitle}" />
         </p:commandLink>
-        <!-- disable validator next-line: el-validator -->
         <p:commandLink id="edit-filename" ariaLabel="#{cc.attrs.renameText}"
           rendered="#{cc.attrs.renameRendered}" styleClass="#{cc.attrs.renameStyleClass}" immediate="true"
-          actionListener="#{data.setSelectedDocument(document)}"
           update="#{cc.clientId}:document-renaming-dialog"
           oncomplete="PF('document-renaming-dialog').show()">
+          <f:setPropertyActionListener value="#{document}" target="#{data.selectedDocument}" />
           <i class="ti ti-pencil " />
           <p:tooltip for="edit-filename" trackMouse="true" hideEvent="mouseleave click" value="#{cc.attrs.renameText}" />
         </p:commandLink>
@@ -155,12 +154,12 @@
           <p:fileDownload value="#{logic.download(document)}" />
           <p:tooltip for="document-download" trackMouse="true" hideEvent="mouseleave click" value="#{cc.attrs.downloadTitle}" />
         </p:commandLink>
-        <!-- disable validator next-line: el-validator -->
         <p:commandLink id="document-delete" styleClass="#{cc.attrs.deleteStyleClass}"
           ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Delete')}"
-          actionListener="#{data.setSelectedDocument(document)}" rendered="#{cc.attrs.deleteRendered}"
+          rendered="#{cc.attrs.deleteRendered}"
           update="#{cc.attrs.updatedComponentAfterDeleted}" immediate="true"
           oncomplete="PF('document-delete-dialog').show()">
+          <f:setPropertyActionListener value="#{document}" target="#{data.selectedDocument}" />
           <i class="ti #{cc.attrs.deleteIcon}" />
           <p:tooltip for="document-delete" trackMouse="true" hideEvent="mouseleave click" value="#{cc.attrs.deleteTitle}" />
         </p:commandLink>
