@@ -21,6 +21,7 @@ on:
 
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine
+  ENGINE_DOWNLOAD_URL: ${{ inputs.engineDownloadURL || 'https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip' }}
 
 jobs:
   show-branch-info:
@@ -294,7 +295,7 @@ jobs:
       - name: Download engine
         run: |
           cd $ENGINE_DIR
-          wget "${{ inputs.engineDownloadURL }}" -O axonivy-engine.zip
+          wget "$ENGINE_DOWNLOAD_URL" -O axonivy-engine.zip
           unzip -o axonivy-engine.zip -d .
           rm axonivy-engine.zip
 
@@ -337,7 +338,7 @@ jobs:
         run: |
           echo "## Inputs" >> $GITHUB_STEP_SUMMARY
           echo "- Test pattern: ${{ inputs.testPatternToRun || '(all tests)' }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Engine download url: ${{inputs.engineDownloadURL}}" >> $GITHUB_STEP_SUMMARY
+          echo "- Engine download url: $ENGINE_DOWNLOAD_URL" >> $GITHUB_STEP_SUMMARY
 
       - name: Parse and show failed tests
         if: always()
