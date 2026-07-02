@@ -49,9 +49,14 @@
     "modifiers" : [ ]
   }, {
     "name" : "isRenamingSuccess",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "uploadSubFolder",
+    "modifiers" : [ ]
+  }, {
+    "name" : "displaySubFolderList",
+    "type" : "List<String>",
     "modifiers" : [ ]
   } ]
 }

@@ -83,14 +83,15 @@
     shortDescription="Boolean value to specify virus scanner checking. The setting will detect Portal setting Portal.Document.EnableVirusScanner as its default value. If the Portal setting is not available, defaults to false. Type: Boolean. Required: false." />
   <cc:attribute name="allowedUploadFileTypes" type="String" default="#{documentUploadBean.getPortalAllowedUploadFileTypesSettingOrDefault('doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png')}"
     shortDescription="List of file extension that can be uploaded separated by comma. The setting will detect Portal setting Portal.Document.WhitelistExtension as its default value. If Portal setting is not available, default value is doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png. Type: String. Required: false."/>
-  <cc:attribute name="uploadSubFolder" default="displaySubFolder" type="String"
-    shortDescription="Define where to upload. Type: String. Required: false." />
+  <cc:attribute name="uploadSubFolder" type="java.lang.String" default="" required="false" shortDescription="Define where to upload. Type: String. Required: false." />
+  <cc:attribute name="displaySubFolderList" type="java.lang.String" default="" required="false" shortDescription="List of subfolders " />
 </cc:interface>
 
 <cc:implementation>
   <h:outputStylesheet library="css" name="document-table-component.css" />
   
   <ui:param name="messageComponentId" value="#{cc.clientId.concat(':document-messages')}" />
+  <ui:param name="displaySubFolderList" value="#{cc.attrs.displaySubFolderList}" />
   <ui:param name="typeSelectionItems" value="#{not empty cc.attrs.typeSelectionItems ? cc.attrs.typeSelectionItems : documentUploadBean.documentTypes}" />
   <ui:param name="selectedType" value="#{not empty cc.attrs.selectedType ? cc.attrs.selectedType : typeSelectionItems[0]}" />
   <f:event type="preRenderComponent" listener="#{logic.renderComponent(messageComponentId, cc.attrs.typeColumnRendered, selectedType, cc.attrs.enableScriptCheckingForUploadedDocument, cc.attrs.enableVirusScannerForUploadedDocument, cc.attrs.allowedUploadFileTypes, cc.attrs.sizeLimit, empty cc.attrs.uploadSubFolder ? 'displaySubFolder' : cc.attrs.uploadSubFolder)}" />
@@ -107,7 +108,7 @@
       paginatorPosition="#{cc.attrs.lazy ? 'bottom' : ''}" paginatorAlwaysVisible="#{cc.attrs.lazy ? 'true' : ''}"
       paginatorTemplate="#{cc.attrs.lazy ? '{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}' : ''}"
       pageLinks="#{cc.attrs.lazy ? '5' : ''}" rowsPerPageTemplate="#{cc.attrs.lazy ? '5,10,20,50' : ''}">
-      <f:event type="preRenderComponent" listener="#{logic.renderTable()}" />
+      <f:event type="preRenderComponent" listener="#{logic.renderTable(displaySubFolderList)}" />
 
       <p:column headerText="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Name')}"
         rendered="#{cc.attrs.nameColumnRendered}" styleClass="document-name-column">

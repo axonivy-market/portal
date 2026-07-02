@@ -4,46 +4,38 @@
   "namespace" : "com.axonivy.portal.components.DocumentTable",
   "fields" : [ {
     "name" : "documents",
-    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>",
-    "modifiers" : [ ]
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
   }, {
     "name" : "event",
-    "type" : "org.primefaces.event.FileUploadEvent",
-    "modifiers" : [ ]
+    "type" : "org.primefaces.event.FileUploadEvent"
   }, {
     "name" : "fileLimit",
     "type" : "Integer"
   }, {
     "name" : "ivyCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   }, {
     "name" : "message"
   }, {
     "name" : "messageComponentId"
   }, {
     "name" : "selectedDocument",
-    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument"
   }, {
     "name" : "streamedContent",
-    "type" : "org.primefaces.model.StreamedContent",
-    "modifiers" : [ ]
+    "type" : "org.primefaces.model.StreamedContent"
   }, {
     "name" : "typeColumnRendered",
     "type" : "Boolean"
   }, {
     "name" : "typeSelection",
-    "type" : "com.axonivy.portal.components.enums.DocumentType",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.enums.DocumentType"
   }, {
     "name" : "uploadDocumentCheckStatus",
-    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus",
-    "modifiers" : [ ]
+    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus"
   }, {
     "name" : "uploadedDocument",
-    "type" : "ch.ivyteam.ivy.workflow.document.IDocument",
-    "modifiers" : [ ]
+    "type" : "ch.ivyteam.ivy.workflow.document.IDocument"
   }, {
     "name" : "enableVirusScannerForUploadedDocument",
     "type" : "Boolean"
@@ -68,5 +60,8 @@
     "name" : "renameDocumentMessage"
   }, {
     "name" : "uploadSubFolder"
+  }, {
+    "name" : "displaySubFolderList",
+    "type" : "List<String>"
   } ]
 }

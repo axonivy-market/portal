@@ -10,7 +10,7 @@
       "type" : "CallSubStart",
       "name" : [
         "uploadDocumentItem(ICase,UploadedFile,",
-        "Boolean,Boolean,String,String)"
+        "Boolean,Boolean,String)"
       ],
       "config" : {
         "signature" : "uploadDocumentItem",
@@ -20,16 +20,14 @@
             { "name" : "uploadedFile", "type" : "org.primefaces.model.file.UploadedFile", "desc" : "" },
             { "name" : "enableScriptCheckingForUploadedDocument", "type" : "Boolean", "desc" : "" },
             { "name" : "enableVirusScannerForUploadedDocument", "type" : "Boolean", "desc" : "" },
-            { "name" : "allowedUploadFileTypes", "type" : "String", "desc" : "" },
-            { "name" : "uploadSubFolder", "type" : "String", "desc" : "" }
+            { "name" : "allowedUploadFileTypes", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.allowedUploadFileTypes" : "param.allowedUploadFileTypes",
             "out.businessCase" : "param.businessCase",
             "out.enableScriptCheckingForUploadedDocument" : "param.enableScriptCheckingForUploadedDocument",
             "out.enableVirusScannerForUploadedDocument" : "param.enableVirusScannerForUploadedDocument",
-            "out.uploadedFile" : "param.uploadedFile",
-            "out.uploadSubFolder" : "param.uploadSubFolder"
+            "out.uploadedFile" : "param.uploadedFile"
           }
         },
         "result" : {
@@ -368,7 +366,7 @@
             "params.put(\"enableScriptCheckingForUploadedDocument\", in.enableScriptCheckingForUploadedDocument);",
             "params.put(\"enableVirusScannerForUploadedDocument\", in.enableVirusScannerForUploadedDocument);",
             "params.put(\"allowedUploadFileTypes\", in.allowedUploadFileTypes);",
-            "params.put(\"uploadSubFolder\", in.uploadSubFolder);",
+            "//params.put(\"uploadSubFolder\", in.uploadSubFolder);",
             "",
             "Map result = IvyAdapterService.startSubProcessesInSecurityContext(CustomSignature.UPLOAD_DOCUMENT_ITEM.getSignature(), params, new CustomProcessPredicate());",
             "in.hasCustomProcess = !result.isEmpty();",
@@ -406,6 +404,389 @@
         { "id" : "f11", "to" : "f1", "via" : [ { "x" : 792, "y" : 176 }, { "x" : 1144, "y" : 176 } ], "label" : {
             "name" : "Yes"
           } }
+      ]
+    }, {
+      "id" : "f13",
+      "type" : "Script",
+      "name" : [
+        "Call customized",
+        "sub process"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.predicate.CustomProcessPredicate;",
+            "import com.axonivy.portal.components.enums.CustomSignature;",
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
+            "import ch.ivyteam.ivy.workflow.document.IDocument;",
+            "import org.primefaces.model.StreamedContent;",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"businessCase\", in.businessCase);",
+            "params.put(\"uploadedFile\", in.uploadedFile);",
+            "params.put(\"enableScriptCheckingForUploadedDocument\", in.enableScriptCheckingForUploadedDocument);",
+            "params.put(\"enableVirusScannerForUploadedDocument\", in.enableVirusScannerForUploadedDocument);",
+            "params.put(\"allowedUploadFileTypes\", in.allowedUploadFileTypes);",
+            "params.put(\"uploadSubFolder\", in.uploadSubFolder);",
+            "",
+            "Map result = IvyAdapterService.startSubProcessesInSecurityContext(CustomSignature.UPLOAD_DOCUMENT_ITEM.getSignature(), params, new CustomProcessPredicate());",
+            "in.hasCustomProcess = !result.isEmpty();",
+            "",
+            "if (in.hasCustomProcess) {",
+            "  in.message = result.get(\"message\").toString();",
+            "  in.uploadedDocument = result.get(\"uploadedDocument\") as IDocument;",
+            "  in.status = UploadDocumentCheckStatus.valueOf(result.get(\"status\") as String);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 640, "y" : 480 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f15" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f17" : "in.hasCustomProcess",
+          "f16" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 792, "y" : 480 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "S11", "label" : {
+            "name" : "No"
+          } },
+        { "id" : "f17", "to" : "f20", "via" : [ { "x" : 792, "y" : 528 }, { "x" : 1144, "y" : 528 } ], "label" : {
+            "name" : "Yes"
+          } }
+      ]
+    }, {
+      "id" : "S11",
+      "type" : "EmbeddedProcess",
+      "name" : [
+        "Validate and",
+        "upload document"
+      ],
+      "elements" : [ {
+          "id" : "S11-f38",
+          "type" : "Script",
+          "name" : "Check exist",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
+                "import org.primefaces.model.file.UploadedFile;",
+                "import com.axonivy.portal.components.service.CaseDocumentService;",
+                "",
+                "String fileName = in.uploadedFile.getFileName();",
+                "boolean doesDocumentExist = CaseDocumentService.newInstance(in.businessCase).doesDocumentExist(fileName);",
+                "",
+                "if (doesDocumentExist) {",
+                "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadFileExists\", [fileName]);",
+                "  in.status = UploadDocumentCheckStatus.FAIL;",
+                "}"
+              ]
+            },
+            "sudo" : true
+          },
+          "visual" : {
+            "at" : { "x" : 728, "y" : 160 }
+          },
+          "connect" : [
+            { "id" : "S11-f91", "to" : "S11-f72" }
+          ]
+        }, {
+          "id" : "S11-f73",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 856, "y" : 256 }
+          },
+          "connect" : [
+            { "id" : "S11-f1", "to" : "S11-g1", "via" : [ { "x" : 1184, "y" : 256 } ] }
+          ]
+        }, {
+          "id" : "S11-f53",
+          "type" : "Alternative",
+          "name" : "Document check",
+          "config" : {
+            "conditions" : {
+              "S11-f87" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 600, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : -17 }
+          },
+          "connect" : [
+            { "id" : "S11-f87", "to" : "S11-f38", "label" : {
+                "name" : "OK",
+                "segment" : 0.33,
+                "offset" : { "y" : -8 }
+              } },
+            { "id" : "S11-f90", "to" : "S11-f74" }
+          ]
+        }, {
+          "id" : "S11-f71",
+          "type" : "Script",
+          "name" : [
+            "Upload document item",
+            "and create note"
+          ],
+          "config" : {
+            "output" : {
+              "code" : [
+                "import com.axonivy.portal.components.service.CaseDocumentService;",
+                "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
+                "import java.util.Arrays;",
+                "import org.primefaces.model.file.UploadedFile;",
+                "",
+                "out.message = \"\";",
+                "out.status = UploadDocumentCheckStatus.OK;",
+                "String fileName = in.uploadedFile.getFileName();",
+                "out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputStream(), in.uploadSubFolder);",
+                "",
+                "if (out.#uploadedDocument != null) {  ",
+                "  String note = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), fileName));",
+                "  in.businessCase.createNote(ivy.session, note);",
+                "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadSucceed\");",
+                "} else {",
+                "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadFailed\");",
+                "  out.status = UploadDocumentCheckStatus.FAIL;",
+                "}"
+              ]
+            },
+            "sudo" : true
+          },
+          "visual" : {
+            "at" : { "x" : 1024, "y" : 160 },
+            "size" : { "width" : 160 }
+          },
+          "connect" : [
+            { "id" : "S11-f2", "to" : "S11-g2" }
+          ]
+        }, {
+          "id" : "S11-f72",
+          "type" : "Alternative",
+          "name" : "Not exist?",
+          "config" : {
+            "conditions" : {
+              "S11-f15" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 856, "y" : 160 },
+            "labelOffset" : { "x" : 8, "y" : -14 }
+          },
+          "connect" : [
+            { "id" : "S11-f15", "to" : "S11-f71", "label" : {
+                "name" : "YES",
+                "segment" : 0.3,
+                "offset" : { "y" : -12 }
+              } },
+            { "id" : "S11-f88", "to" : "S11-f73" }
+          ]
+        }, {
+          "id" : "S11-f75",
+          "type" : "SubProcessCall",
+          "name" : "UploadDocumentItemChecker",
+          "config" : {
+            "processCall" : "Functional Processes/UploadDocumentItemChecker:call(org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)",
+            "call" : {
+              "map" : {
+                "param.uploadFile" : "in.uploadedFile",
+                "param.enableVirusScannerForUploadedDocument" : "in.enableVirusScannerForUploadedDocument",
+                "param.enableScriptCheckingForUploadedDocument" : "in.enableScriptCheckingForUploadedDocument",
+                "param.allowedUploadFileTypes" : "in.allowedUploadFileTypes"
+              }
+            },
+            "output" : {
+              "map" : {
+                "out" : "in",
+                "out.message" : "result.message",
+                "out.status" : "result.uploadDocumentCheckStatus"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 456, "y" : 160 },
+            "size" : { "width" : 176 }
+          },
+          "connect" : [
+            { "id" : "S11-f80", "to" : "S11-f53" }
+          ]
+        }, {
+          "id" : "S11-f36",
+          "type" : "Script",
+          "name" : "Validate",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import com.axonivy.portal.components.jsf.ManagedBeans;",
+                "import com.axonivy.portal.components.bean.DocumentUploadBean;",
+                "import com.axonivy.portal.components.masterdata.MasterData;",
+                "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
+                "import org.apache.commons.io.FileUtils;",
+                "import java.util.Arrays;",
+                "",
+                "in.message = \"\";",
+                "in.status = UploadDocumentCheckStatus.OK;",
+                "",
+                "if (in.uploadedFile == null) {",
+                "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/InvalidFileMessage\");",
+                "  in.status = UploadDocumentCheckStatus.FAIL;",
+                "} else if (in.uploadedFile.getSize() == 0) {",
+                "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/EmptyFileMessage\");",
+                "  in.status = UploadDocumentCheckStatus.FAIL;",
+                "} else {",
+                "  DocumentUploadBean documentUploadBean = ManagedBeans.get(\"documentUploadBean\") as DocumentUploadBean;",
+                "  Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();",
+                "",
+                "  if(documentUploadBean != null) {",
+                "    maxFileUploadSize = documentUploadBean.getFileUploadSizeLimit();",
+                "  }",
+                "  ",
+                "  if (in.uploadedFile.getSize() > maxFileUploadSize) {",
+                "    in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/ErrorFileUploadSize\", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));",
+                "  }",
+                "  ",
+                "  in.status = UploadDocumentCheckStatus.FAIL;",
+                "}"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 160 }
+          },
+          "connect" : [
+            { "id" : "S11-f79", "to" : "S11-f70" }
+          ]
+        }, {
+          "id" : "S11-f70",
+          "type" : "Alternative",
+          "name" : "valid file?",
+          "config" : {
+            "conditions" : {
+              "S11-f78" : "org.apache.commons.lang3.StringUtils.isBlank(in.message)"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 312, "y" : 160 },
+            "labelOffset" : { "x" : 3, "y" : -14 }
+          },
+          "connect" : [
+            { "id" : "S11-f78", "to" : "S11-f75", "label" : {
+                "name" : "YES",
+                "segment" : 0.26,
+                "offset" : { "x" : 1, "y" : -11 }
+              } },
+            { "id" : "S11-f83", "to" : "S11-f74", "via" : [ { "x" : 312, "y" : 256 } ], "label" : {
+                "name" : "NO",
+                "segment" : 1.12,
+                "offset" : { "x" : -1, "y" : -9 }
+              } }
+          ]
+        }, {
+          "id" : "S11-f74",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 600, "y" : 256 }
+          },
+          "connect" : [
+            { "id" : "S11-f92", "to" : "S11-f73" }
+          ]
+        }, {
+          "id" : "S11-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 }
+          },
+          "parentConnector" : "f16",
+          "connect" : [
+            { "id" : "S11-f0", "to" : "S11-f36" }
+          ]
+        }, {
+          "id" : "S11-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 1184, "y" : 160 }
+          },
+          "parentConnector" : "f18"
+        }, {
+          "id" : "S11-g2",
+          "type" : "EmbeddedEnd",
+          "name" : "out 2",
+          "visual" : {
+            "at" : { "x" : 1184, "y" : 160 }
+          },
+          "parentConnector" : "f19"
+        } ],
+      "visual" : {
+        "at" : { "x" : 992, "y" : 480 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f20" },
+        { "id" : "f19", "to" : "f20" }
+      ]
+    }, {
+      "id" : "f20",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 1144, "y" : 480 }
+      }
+    }, {
+      "id" : "f21",
+      "type" : "CallSubStart",
+      "name" : "uploadDocumentItemWithSubFolder(ICase,UploadedFile,Boolean,Boolean,String,String)",
+      "config" : {
+        "signature" : "uploadDocumentItemWithSubFolder",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "uploadedFile", "type" : "org.primefaces.model.file.UploadedFile", "desc" : "" },
+            { "name" : "enableScriptCheckingForUploadedDocument", "type" : "Boolean", "desc" : "" },
+            { "name" : "enableVirusScannerForUploadedDocument", "type" : "Boolean", "desc" : "" },
+            { "name" : "allowedUploadFileTypes", "type" : "String", "desc" : "" },
+            { "name" : "uploadSubFolder", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.allowedUploadFileTypes" : "param.allowedUploadFileTypes",
+            "out.businessCase" : "param.businessCase",
+            "out.enableScriptCheckingForUploadedDocument" : "param.enableScriptCheckingForUploadedDocument",
+            "out.enableVirusScannerForUploadedDocument" : "param.enableVirusScannerForUploadedDocument",
+            "out.uploadSubFolder" : "param.uploadSubFolder",
+            "out.uploadedFile" : "param.uploadedFile"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "uploadedDocument", "type" : "ch.ivyteam.ivy.workflow.document.IDocument", "desc" : "" },
+            { "name" : "message", "type" : "String", "desc" : "" },
+            { "name" : "status", "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus", "desc" : "" }
+          ],
+          "map" : {
+            "result.uploadedDocument" : "in.uploadedDocument",
+            "result.message" : "in.message",
+            "result.status" : "in.status"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 480 },
+        "labelOffset" : { "x" : -52, "y" : -26 }
+      },
+      "connect" : [
+        { "id" : "f22", "to" : "f13" }
       ]
     } ]
 }

@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.DefaultStreamedContent;
@@ -64,8 +65,20 @@ public class CaseDocumentService {
     return new ArrayList<>(getAllDocumentsOf(iCase));
   }
 
-  public List<IDocument> getAll(String uploadSubFolder) {
-    return new ArrayList<>(getAllDocumentsOf(iCase, uploadSubFolder));
+  public List<IDocument> getAll(List<String> displaySubFolderList) {
+    if (CollectionUtils.isEmpty(displaySubFolderList)) {
+      return getAll();
+    }
+    try {
+      List<IDocument> allDocuments = new ArrayList<>();
+      for (String uploadSubFolder : displaySubFolderList) {
+        Ivy.log().error("DISPLAY SUB FOLDER IS {0}", uploadSubFolder);
+        allDocuments.addAll(Sudo.call(() -> iCase.documents().getAllBelow(new Path(uploadSubFolder))));
+      }
+      return allDocuments;
+    } catch (Exception e) {
+      throw new PortalException(e);
+    }
   }
 
   /**
@@ -155,14 +168,6 @@ public class CaseDocumentService {
   private List<IDocument> getAllDocumentsOf(ICase iCase) {
     try {
       return Sudo.call(() -> iCase.documents().getAll());
-    } catch (Exception e) {
-      throw new PortalException(e);
-    }
-  }
-
-  private List<IDocument> getAllDocumentsOf(ICase iCase, String uploadSubFolder) {
-    try {
-      return Sudo.call(() -> iCase.documents().getAllBelow(new Path(uploadSubFolder)));
     } catch (Exception e) {
       throw new PortalException(e);
     }

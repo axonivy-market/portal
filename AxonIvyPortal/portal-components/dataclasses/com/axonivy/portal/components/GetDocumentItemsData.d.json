@@ -15,9 +15,11 @@
     "modifiers" : [ ]
   }, {
     "name" : "hasCustomProcess",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
-    "name" : "uploadSubFolder",
+    "name" : "displaySubFolderList",
+    "type" : "String[]",
     "modifiers" : [ ]
   } ]
 }
