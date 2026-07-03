@@ -461,11 +461,11 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void clickOnDestroyTaskLink() {
-    $("a[id$=':task-destroy-command']").shouldBe(getClickableCondition()).click();
+    $("a[id$=':task-destroy-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void closeDestroyDialog() {
-    $("div[id$='destroy-task-confirmation-dialog'] .ui-dialog-titlebar-close").shouldBe(getClickableCondition()).click();
+    $("div[id$='destroy-task-confirmation-dialog'] .ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$='destroy-task-confirmation-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
