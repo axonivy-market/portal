@@ -281,7 +281,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getSelectedTaskAction(int taskIndex) {
-    return $$(String.format("div.js-task-side-steps-panel-task_1-%d", taskIndex)).filter(appear).first();
+    return $$(String.format(
+        "div.js-task-side-steps-panel-task_1-%d, div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d",
+        taskIndex, taskIndex)).filter(appear).first().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public boolean isTaskAdditionActionDisplay(String taskName) {
