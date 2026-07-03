@@ -81,11 +81,12 @@
       <f:facet name="footer">
         <p:commandButton value="Add" ariaLabel="Add" icon="ti ti-check"
           actionListener="#{logic.addInformation}" process="@this add-info-input"
-          update="add-info-input" oncomplete="PF('addAuditInfoDialog').hide()" />
+          oncomplete="PF('addAuditInfoDialog').hide(); refreshAuditTrailTable();" />
         <p:commandLink value="Cancel" ariaLabel="Cancel"
           onclick="PF('addAuditInfoDialog').hide(); return false;" styleClass="audit-trail-add-cancel" />
       </f:facet>
     </p:dialog>
+    <p:remoteCommand id="refresh-audit-trail-table" name="refreshAuditTrailTable" action="#{logic.getAuditTrailList()}" update="history-table"></p:remoteCommand>
   </h:panelGroup>
 </cc:implementation>
 

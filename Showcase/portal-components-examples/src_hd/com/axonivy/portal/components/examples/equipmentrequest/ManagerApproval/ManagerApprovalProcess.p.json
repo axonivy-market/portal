@@ -155,42 +155,21 @@
       ]
     }, {
       "id" : "f20",
-      "type" : "Script",
-      "name" : "init audit trail data",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.factory.AuditTrailDTOFactory;",
-            "import com.axonivy.portal.components.dto.AuditTrailDTO;",
-            "AuditTrailDTO trail = AuditTrailDTOFactory.build(ivy.session.getSessionUserName(),\"Rejected: \" + in.requestData.rejectionReason);",
-            "in.auditTrailDTOs.add(trail);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 336, "y" : 296 }
-      },
-      "connect" : [
-        { "id" : "f23", "to" : "f22" }
-      ]
-    }, {
-      "id" : "f22",
       "type" : "SubProcessCall",
-      "name" : "save audit trail data",
+      "name" : "Save rejection reason for audit trail table",
       "config" : {
-        "processCall" : "Functional Processes/AuditTrailSupporter:saveAuditTrailDTOList(List<com.axonivy.portal.components.dto.AuditTrailDTO>,ch.ivyteam.ivy.workflow.ICase)",
+        "processCall" : "Functional Processes/AuditTrailSupporter:saveContent(String)",
         "call" : {
           "map" : {
-            "param.auditTrailDTOs" : "in.auditTrailDTOs",
-            "param.caze" : "in.caze"
+            "param.content" : "in.requestData.rejectionReason"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 544, "y" : 296 }
+        "at" : { "x" : 360, "y" : 296 }
       },
       "connect" : [
-        { "id" : "f24", "to" : "f10" }
+        { "id" : "f22", "to" : "f10" }
       ]
     } ]
 }

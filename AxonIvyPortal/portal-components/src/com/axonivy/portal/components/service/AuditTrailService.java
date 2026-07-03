@@ -8,6 +8,7 @@ import java.util.Map;
 import com.axonivy.portal.components.dto.AuditTrailBundle;
 import com.axonivy.portal.components.dto.AuditTrailDTO;
 import com.axonivy.portal.components.enums.CustomSignature;
+import com.axonivy.portal.components.factory.AuditTrailDTOFactory;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -37,6 +38,24 @@ public class AuditTrailService {
       Ivy.repo().save(bundle);
     } catch (Exception e) {
       Ivy.log().error("Failed to save audit trail for case " + caze.getId(), e);
+    }
+  }
+
+    public void save(String input) {
+    try {
+      String author = Ivy.session().getSessionUserName();
+      AuditTrailDTO newEntry = AuditTrailDTOFactory.build(author, input);
+      AuditTrailBundle bundle = Ivy.repo().get(AuditTrailBundle.class);
+      if (bundle == null) {
+        bundle = new AuditTrailBundle();
+      }
+      List<AuditTrailDTO> merged = new ArrayList<>(bundle.getEntries());
+      merged.add(newEntry);
+      merged.sort((a, b) -> b.getTimestamp().compareTo(a.getTimestamp()));
+      bundle.setEntries(merged);
+      Ivy.repo().save(bundle);
+    } catch (Exception e) {
+      Ivy.log().error("Failed to save audit trail ", e);
     }
   }
 

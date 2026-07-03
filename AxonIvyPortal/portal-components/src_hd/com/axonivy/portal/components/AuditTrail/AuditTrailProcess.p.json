@@ -136,7 +136,7 @@
         "at" : { "x" : 96, "y" : 648 }
       },
       "connect" : [
-        { "id" : "f40", "to" : "f32" }
+        { "id" : "f43", "to" : "f39" }
       ]
     }, {
       "id" : "f32",
@@ -159,16 +159,13 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 648 }
-      },
-      "connect" : [
-        { "id" : "f41", "to" : "f39" }
-      ]
+        "at" : { "x" : 296, "y" : 800 }
+      }
     }, {
       "id" : "f33",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 736, "y" : 648 }
+        "at" : { "x" : 536, "y" : 648 }
       }
     }, {
       "id" : "f36",
@@ -194,11 +191,10 @@
       "type" : "SubProcessCall",
       "name" : "save data",
       "config" : {
-        "processCall" : "Functional Processes/AuditTrailSupporter:saveAdditionalInformation(ch.ivyteam.ivy.workflow.ICase,List<com.axonivy.portal.components.dto.AuditTrailDTO>)",
+        "processCall" : "Functional Processes/AuditTrailSupporter:saveContent(String)",
         "call" : {
           "map" : {
-            "param.caze" : "in.caze",
-            "param.auditTrailDTOs" : "in.auditTrailDTOs"
+            "param.content" : "in.additionalInformation"
           }
         },
         "output" : {
@@ -206,7 +202,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 488, "y" : 648 }
+        "at" : { "x" : 288, "y" : 648 }
       },
       "connect" : [
         { "id" : "f42", "to" : "f33" }

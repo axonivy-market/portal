@@ -27,5 +27,7 @@
   }, {
     "name" : "caze",
     "type" : "ch.ivyteam.ivy.workflow.ICase"
+  }, {
+    "name" : "content"
   } ]
 }
