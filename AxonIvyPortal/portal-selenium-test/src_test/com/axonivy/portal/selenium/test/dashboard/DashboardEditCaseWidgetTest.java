@@ -169,8 +169,8 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToRelativeLink(testCaseListPermission);
     redirectToRelativeLink(testCaseListPermission);
-    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     ScreenshotUtils.resizeBrowser(new Dimension(1900, 1400));
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
     CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
     caseWidget.waitPreviewTableLoaded();

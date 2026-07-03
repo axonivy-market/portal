@@ -62,8 +62,8 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
 
-    redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
-    redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
+    permissions().grantDashboardWritePublicPermission();
+    permissions().grantDashboardWriteOwnPermission();
   }
 
   @Test

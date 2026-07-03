@@ -43,7 +43,7 @@ public class TaskTemplateTest extends BaseTest {
   public void testAddingANote() {
     createTestData();
     // Fix test failed due to lacking permissions
-    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    permissions().grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     TaskIFrameTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     assertEquals(0, taskTemplatePage.countNoteItems());
     taskTemplatePage.addNewNote("Sample note message");
