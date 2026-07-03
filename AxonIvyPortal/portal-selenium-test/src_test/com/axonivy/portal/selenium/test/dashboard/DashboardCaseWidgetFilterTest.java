@@ -205,7 +205,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
 
   @Test
   public void testFilterDateWithStandardFields() {
-    permissions().grantTestCaseListPermission();
+    redirectToRelativeLink(testCaseListPermission);
     redirectToNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
 
@@ -233,7 +233,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
   @Test
   public void testFilterAddComplexCustomFields() {
     login(TestAccount.ADMIN_USER);
-    permissions().grantTestCaseListPermission();
+    redirectToRelativeLink(testCaseListPermission);
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     addCustomFields(caseWidget, List.of("AccountNumber", "CustomerName", "ShipmentDate", "SupportData"));
 
@@ -253,7 +253,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
   @Test
   public void testSavedFilterItemsWithCustomFields() {
     login(TestAccount.ADMIN_USER);
-    permissions().grantTestCaseListPermission();
+    redirectToRelativeLink(testCaseListPermission);
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     addCustomFields(caseWidget, List.of("AccountNumber", "CustomerName"));
 
@@ -282,7 +282,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
 
   @Test
   public void testFilterNumberOnCustomFields() {
-    permissions().grantTestCaseListPermission();
+    redirectToRelativeLink(testCaseListPermission);
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     addCustomFields(caseWidget, List.of("AccountNumber", "InvoiceSubtotalAmount"));
 
@@ -298,7 +298,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
   @Test
   public void testFilterDateOnCustomFields() {
     login(TestAccount.ADMIN_USER);
-    permissions().grantTestCaseListPermission();
+    redirectToRelativeLink(testCaseListPermission);
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     addCustomFields(caseWidget, List.of("CreatedBillDate", "ShipmentDate"));
 

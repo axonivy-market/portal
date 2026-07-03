@@ -343,10 +343,6 @@ public class BaseTest {
     public void grantPortalPermission() {
       redirectToRelativeLink(grantPortalPermission);
     }
-
-    public void grantTestCaseListPermission() {
-      redirectToRelativeLink(testCaseListPermission);
-    }
   }
 
 

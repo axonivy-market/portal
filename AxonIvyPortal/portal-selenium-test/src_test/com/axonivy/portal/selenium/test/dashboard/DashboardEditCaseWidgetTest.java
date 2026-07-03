@@ -47,7 +47,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
   @Test
   public void filterNameTest() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    permissions().grantTestCaseListPermission();
+    redirectToRelativeLink("internalSupport/14B2FC03D2E87141/TestCaseListPermissions.ivp");
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
@@ -161,15 +161,15 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.countCases().shouldBe(CollectionCondition.size(0));
   }
 
-
-  @Test
+ @Test
   public void filterMixFieldTest() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createDataCreatedDate);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    permissions().grantTestCaseListPermission();
-    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    redirectToRelativeLink(testCaseListPermission);
+    redirectToRelativeLink(testCaseListPermission);
     ScreenshotUtils.resizeBrowser(new Dimension(1900, 1400));
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
     CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
     caseWidget.waitPreviewTableLoaded();

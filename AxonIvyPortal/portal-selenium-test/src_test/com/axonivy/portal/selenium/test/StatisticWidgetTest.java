@@ -451,7 +451,7 @@ public class StatisticWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    permissions().grantTestCaseListPermission();
+    redirectToRelativeLink(testCaseListPermission);
     redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
@@ -548,7 +548,7 @@ public class StatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestDataForCustomFieldsWithCMS);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
-    permissions().grantTestCaseListPermission();
+    redirectToRelativeLink(testCaseListPermission);
     redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
@@ -597,7 +597,7 @@ public class StatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestDataForCustomFieldsWithCMS);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
-    permissions().grantTestCaseListPermission();
+    redirectToRelativeLink(testCaseListPermission);
     redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 

@@ -147,7 +147,7 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
   public void screenshotChartDrillDownDashboard() throws IOException {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTestDataForCustomFieldsWithCMS);
-    permissions().grantTestCaseListPermission();
+    redirectToRelativeLink(testCaseListPermission);
     redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
