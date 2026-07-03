@@ -38,7 +38,7 @@
       <groupId>com.deque.html.axe-core</groupId>
       <artifactId>selenium</artifactId>
       <version>4.11.3</version>
-      <scope>compile</scope>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <repositories>

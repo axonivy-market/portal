@@ -16,6 +16,11 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
+      testPatternToRun:
+        description: 'Test pattern to run'
+        type: string
+        default: 'com.axonivy.portal.selenium.a11y.**'
+        required: true
       engineDownloadURL:
         description: |
           URL to download Axon Ivy Engine. Defaults to nightly build.
@@ -34,9 +39,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v7
 
-      # -----------------------------------------------------------------------
-      # Java + Maven
-      # -----------------------------------------------------------------------
       - name: Set Up Java
         uses: actions/setup-java@v5
         with:
@@ -54,9 +56,6 @@ jobs:
           echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
 
-      # -----------------------------------------------------------------------
-      # Engine setup
-      # -----------------------------------------------------------------------
       - name: Prepare Engine Directory
         run: |
           mkdir -p "$ENGINE_DIR"
@@ -69,9 +68,6 @@ jobs:
           unzip -o axonivy-engine.zip -d .
           rm axonivy-engine.zip
 
-      # -----------------------------------------------------------------------
-      # Build and deploy Portal artifacts
-      # -----------------------------------------------------------------------
       - name: Build Portal Modules
         run: |
           mvn clean install -f pom.xml -Divy.engine.directory=$ENGINE_DIR
@@ -84,9 +80,6 @@ jobs:
           rm -rf $DEPLOYMENT/*
           cp AxonIvyPortal/portal-selenium-test/target/*.zip $DEPLOYMENT
 
-        # -----------------------------------------------------------------------
-      # Run A11y tests via Maven (Ivy plugin manages engine + browser)
-      # -----------------------------------------------------------------------
       - name: Run A11y Tests
         id: a11y
         continue-on-error: true
@@ -95,7 +88,7 @@ jobs:
           mvn clean test \
             -f AxonIvyPortal/portal-selenium-test/customized_pom.xml \
             -Divy.engine.download.url="${{ github.event.inputs.engineDownloadURL }}" \
-            -Dtest="com.axonivy.portal.selenium.a11y.**" \
+            -Dtest="${{ github.event.inputs.testPatternToRun }}" \
             -DbrowserType=FIREFOX \
             -Dcapabilities.unhandledPromptBehavior=accept \
             -DtrimStackTrace=false \
@@ -110,9 +103,6 @@ jobs:
           npm install axe-html-reporter
           node .github/scripts/generate-a11y-report.js
 
-      # -----------------------------------------------------------------------
-      # Upload Surefire / screenshot artifacts
-      # -----------------------------------------------------------------------
       - name: Upload Test Reports
         if: always()
         id: upload-artifact
@@ -124,9 +114,6 @@ jobs:
             AxonIvyPortal/portal-selenium-test/target/selenide/reports
             AxonIvyPortal/portal-selenium-test/target/axe-reports/
 
-      # -----------------------------------------------------------------------
-      # GitHub Actions Job Summary
-      # -----------------------------------------------------------------------
       - name: Write Job Summary
         if: always()
         run: |
@@ -157,9 +144,6 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "> Full Surefire XML, generated Axe HTML reports, and screenshots are available in the [artifact](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${{ steps.upload-artifact.outputs.artifact-id }})." >> $GITHUB_STEP_SUMMARY
 
-      # -----------------------------------------------------------------------
-      # Fail the job if tests failed
-      # -----------------------------------------------------------------------
       - name: Fail if violations found
         if: steps.a11y.outcome == 'failure'
         run: |
