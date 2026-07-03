@@ -97,7 +97,7 @@ public class DashboardA11Test extends BaseTest{
 
     // Check accessibility of TASK WIDGET INFORMATION DIALOG
     taskWidget.clickOnButtonWidgetInformation();
-    var infoFooter = taskWidget.getWidgetInfomation(0).shouldBe(Condition.visible);
+    var infoFooter = taskWidget.getWidgetInformation(0).shouldBe(Condition.visible);
     A11yHelpers.makeElementA11yReport(infoFooter, "widget-information");
     taskWidget.closeWidgetInformationDialog();
   }
