@@ -476,7 +476,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void clickOnDelegateTaskLink() {
-    $("a[id$=':task-delegate-command']").shouldBe(getClickableCondition()).click();
+    $("a[id$=':task-delegate-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
 }
