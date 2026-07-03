@@ -450,7 +450,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void closeAfterEscalationDialog() {
-    $("div[id$='task-escalation-activator-dialog'] .ui-dialog-titlebar-close").shouldBe(getClickableCondition()).click();
+    $("div[id$='task-escalation-activator-dialog'] .ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$='task-escalation-activator-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
