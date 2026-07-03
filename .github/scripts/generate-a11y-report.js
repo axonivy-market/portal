@@ -3,6 +3,10 @@ const path = require('path');
 const { createHtmlReport } = require('axe-html-reporter');
 
 const targetDir = 'AxonIvyPortal/portal-selenium-test/target/';
+if (!fs.existsSync(targetDir)) {
+  console.log(`Target directory not found: ${targetDir}`);
+  process.exit(0);
+}
 const files = fs.readdirSync(targetDir).filter(f => f.startsWith('axe-results-') && f.endsWith('.json'));
 
 if (files.length === 0) {
