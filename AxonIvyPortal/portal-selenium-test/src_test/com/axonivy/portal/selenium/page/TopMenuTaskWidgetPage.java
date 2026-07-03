@@ -394,7 +394,7 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
-  public SelenideElement getWidgetInfomation(int index) {
+  public SelenideElement getWidgetInformation(int index) {
     return $(String.format("div[id$='info-overlay-panel-%d']", index)).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }
