@@ -7,8 +7,9 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.page.component.DocumentTableComponentPage;
+import static com.codeborne.selenide.Selenide.$;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DocumentTableComponentTest extends BaseTest {
 
   @Override
@@ -47,5 +48,17 @@ public class DocumentTableComponentTest extends BaseTest {
     documentTableComponentPage.clickPreviewButton();
     documentTableComponentPage.waitForPreviewDialog();
     assertTrue(documentTableComponentPage.isPreviewContentDisplayed());
+  }
+
+  @Test
+  public void testUploadDocumentToCustomFolder() {
+    String documentTableCustomUploadFolderUrl = "portal-components-examples/1818938E7EBC9329/showDocumentTableWithUploadSubfolder.ivp";
+    redirectToRelativeLink(documentTableCustomUploadFolderUrl);
+    DocumentTableComponentPage documentTableComponentPage = new DocumentTableComponentPage();
+    documentTableComponentPage.uploadSampleDocument(FileHelper.getAbsolutePathToTestFile("sample-file.txt"));
+    refreshPage();
+    documentTableComponentPage.waitForDocumentTableComponentPageLoaded();
+    // expect empty table because upload folder is different to display folder
+    assertTrue(documentTableComponentPage.isEmptyTable());
   }
 }

@@ -213,9 +213,7 @@
             "      doc.setCustomer(customer);",
             "    }",
             "  }",
-            "}",
-            "",
-            "  ivy.log.error(\"document size found is {0}\", in.documents.size());"
+            "}"
           ]
         },
         "sudo" : true

@@ -88,5 +88,47 @@
       "visual" : {
         "at" : { "x" : 576, "y" : 192 }
       }
+    }, {
+      "id" : "f10",
+      "type" : "RequestStart",
+      "name" : "showDocumentTableWithUploadSubfolder.ivp",
+      "config" : {
+        "signature" : "showDocumentTableWithUploadSubfolder",
+        "request" : {
+          "name" : "Show Document Table Example With Upload Subfolder"
+        },
+        "case" : {
+          "customFields" : [
+            { "name" : "custom", "type" : "STRING", "value" : "\"true\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 336 },
+        "labelOffset" : { "x" : 67, "y" : 41 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f12" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "DialogCall",
+      "name" : "CustomizedDocumentTableExample",
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.DocumentTableWithCustomUploadSubfolder:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 336 },
+        "size" : { "width" : 208 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f14" }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 568, "y" : 336 }
+      }
     } ]
 }
