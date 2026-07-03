@@ -15,7 +15,6 @@
 <cc:implementation>
   <h:outputStylesheet library="css" name="portal-components.css" />
 
-  <!-- disable validator next-line: el-validator -->
   <p:avatar id="#{cc.attrs.id}" rendered="#{cc.attrs.renderedAvatar}"
     gravatar="#{not empty cc.attrs.representName ? cc.attrs.representName : portalComponentAvatarBean.getEmailAddress(cc.attrs.securityMember, cc.attrs.useLowercaseEmail)}" gravatarConfig="d=blank"
     label="#{cc.attrs.showLabel ? (not empty cc.attrs.representName ? cc.attrs.representName : portalComponentAvatarBean.getNameInitials(cc.attrs.securityMember.getDisplayName())) : ''}" styleClass="gravatar" shape="circle" />

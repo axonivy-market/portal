@@ -5,12 +5,6 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <!-- role: com.axonivy.portal.components.dto.RoleDTO -->
-<!-- roleWithParentName: java.lang.String -->
-<!-- completeRoleMethod: javax.el.MethodExpression -->
-
-<!-- displayName: java.lang.String -->
-<!-- customMethod: String getDisplayName() -->
-
 <cc:interface componentType="IvyComponent">
   <!-- autoComplete attributes -->
   <cc:attribute name="componentId" type="java.lang.String" default="role-selection"
@@ -111,7 +105,7 @@
       emptyMessage="#{cc.attrs.emptyMessage}"
       inputStyleClass="#{cc.attrs.inputStyleClass}">
       <p:column rendered="#{!cc.attrs.hasCustomizedSelectionList}">
-        <pc:securityMemberNameAndAvatar displayName="#{cc.attrs.appendOption eq 'PARENT_NAME' ? role.roleWithParentName : role.displayName}" securityMember="#{role}" isStandAlone="false"
+        <pc:securityMemberNameAndAvatar securityMember="#{role}" displayName="#{cc.attrs.appendOption eq 'PARENT_NAME' ? role.roleWithParentName : role.displayName}" isStandAlone="false"
           isShowAvatar="#{cc.attrs.isShowAvatarInSelectionList}" displayNameRendered="#{cc.attrs.displayNameRenderedInSelectionList}"
           displayNameStyleClass="#{cc.attrs.displayNameInSelectionListStyleClass}" containerStyleClass="#{cc.attrs.selectionListContainerStyleClass}" />
       </p:column>
