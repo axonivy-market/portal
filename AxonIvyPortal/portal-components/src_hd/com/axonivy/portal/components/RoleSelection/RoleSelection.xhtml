@@ -4,6 +4,13 @@
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
+<!-- role: com.axonivy.portal.components.dto.RoleDTO -->
+<!-- roleWithParentName: java.lang.String -->
+<!-- completeRoleMethod: javax.el.MethodExpression -->
+
+<!-- displayName: java.lang.String -->
+<!-- customMethod: String getDisplayName() -->
+
 <cc:interface componentType="IvyComponent">
   <!-- autoComplete attributes -->
   <cc:attribute name="componentId" type="java.lang.String" default="role-selection"
@@ -26,7 +33,6 @@
   <cc:attribute name="isReadOnly" type="java.lang.Boolean" shortDescription="Prevents changing the selected role when enabled. Type: boolean. Default value: false. Required: false." />
   <cc:attribute name="hightlight" type="java.lang.Boolean" default="true" shortDescription="Automatically highlights the first suggested role. Type: boolean. Default value: true. Required: false." />
   <cc:attribute name="size" type="java.lang.Integer" shortDescription="Number of characters used to define the input width. Type: int. Required: false." />
-  <!-- disable validator next-line: el-validator -->
   <cc:attribute name="itemLabel" type="java.lang.String" default="#{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}"
     shortDescription="Text displayed for roles in the dropdown and the selected value. Type: String. Default value: #{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}. Required: false." />
   <cc:attribute name="scrollHeight" type="java.lang.Integer" default="390" shortDescription="Maximum height of the autocomplete dropdown panel. Type: int. Default value: 390. Required: false." />
@@ -43,6 +49,7 @@
   <cc:attribute name="hasCustomizedSelectionList" type="java.lang.Boolean" default="false" shortDescription="Displays a customized selection list when enabled. Type: boolean. Default value: false. Required: false." />
   <cc:attribute name="emptyMessage" type="java.lang.String" shortDescription="Message displayed when no results are available. Type: String. Default value: No results. Required: false."
     default="#{ivy.cms.co('/Labels/NoResults')}" />
+  <cc:attribute name="roleWithParentName" method-signature="java.lang.String roleWithParentName()" />
 
   <!-- Avatar in Selection list attributes  -->
   <cc:attribute name="isShowAvatarInSelectionList" type="java.lang.Boolean" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}"
@@ -70,7 +77,6 @@
 <cc:implementation>
   <h:outputStylesheet library="css" name="role-selection-component.css" />
 
-  <!-- disable validator next-line: el-validator -->
   <c:set var="completeMethod" value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : roleSelectionBean.completeRoleMethod}" />
 
   <h:panelGroup id="#{cc.attrs.componentId}-autocomplete-panel" layout="block"
@@ -105,7 +111,6 @@
       emptyMessage="#{cc.attrs.emptyMessage}"
       inputStyleClass="#{cc.attrs.inputStyleClass}">
       <p:column rendered="#{!cc.attrs.hasCustomizedSelectionList}">
-        <!-- disable validator next-line: el-validator -->
         <pc:securityMemberNameAndAvatar displayName="#{cc.attrs.appendOption eq 'PARENT_NAME' ? role.roleWithParentName : role.displayName}" securityMember="#{role}" isStandAlone="false"
           isShowAvatar="#{cc.attrs.isShowAvatarInSelectionList}" displayNameRendered="#{cc.attrs.displayNameRenderedInSelectionList}"
           displayNameStyleClass="#{cc.attrs.displayNameInSelectionListStyleClass}" containerStyleClass="#{cc.attrs.selectionListContainerStyleClass}" />
