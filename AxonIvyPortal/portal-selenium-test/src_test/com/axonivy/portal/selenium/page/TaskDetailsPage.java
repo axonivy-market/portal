@@ -292,7 +292,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void closeWorkflowEventDialog() {
-    $("div[id$='workflow-events-dialog'] .ui-dialog-titlebar-close").shouldBe(getClickableCondition()).click();
+    $("div[id$='workflow-events-dialog'] .ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$='workflow-events-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
