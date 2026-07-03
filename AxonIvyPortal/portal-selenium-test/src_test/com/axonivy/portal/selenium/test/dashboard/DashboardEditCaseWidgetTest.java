@@ -161,7 +161,8 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.countCases().shouldBe(CollectionCondition.size(0));
   }
 
- @Test
+
+  @Test
   public void filterMixFieldTest() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createDataCreatedDate);
