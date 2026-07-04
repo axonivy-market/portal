@@ -1,7 +1,6 @@
 package com.axonivy.portal.components.examples.bean;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
@@ -15,8 +14,8 @@ public class DocumentTableExampleBean implements Serializable {
 
   private static final long serialVersionUID = 393379085832602653L;
 
-  public List<DocumentType> getDocumentTypes() {
-    return List.of(ExtendedDocumentType.values());
+  public DocumentType[] getDocumentTypes() {
+    return ExtendedDocumentType.values();
   }
 
 }

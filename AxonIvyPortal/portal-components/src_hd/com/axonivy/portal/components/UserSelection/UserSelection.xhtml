@@ -27,8 +27,7 @@
   <cc:attribute name="inputStyleClass" type="java.lang.String" shortDescription="CSS style class applied to the autocomplete input field. Type: String. Required: false." />
   <cc:attribute name="autoCompleteStyleClass" type="java.lang.String" shortDescription="CSS style class applied to the autocomplete component. Type: String. Required: false." />
   <cc:attribute name="autoCompletePanelStyleClass" type="java.lang.String" shortDescription="CSS style class applied to the autocomplete dropdown panel. Type: String. Required: false." />
-  <cc:attribute name="completeMethod" method-signature="java.util.List completeMethod(java.lang.String)"
-    shortDescription="Custom method for loading users. Must accept a String query and return List&lt;UserDTO&gt;. Type: Method Expression. Defaul: completeUser. Required: false." />
+  <cc:attribute name="completeMethod" type="javax.el.MethodExpression" shortDescription="Custom method for loading users. Must accept a String query and return List&lt;UserDTO&gt;. Type: Method Expression. Defaul: completeUser. Required: false." />
   <cc:attribute name="cache" type="java.lang.Boolean" default="true" shortDescription="Caches autocomplete search results when enabled. Type: boolean. Default value: true. Required: false." />
   <cc:attribute name="moreText" type="java.lang.String" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/More')}..." shortDescription="Text displayed for the 'More' link when results exceed the limit. Type: String. Default value: More.... Required: false." />
   <cc:attribute name="queryDelay" type="java.lang.Integer" default="300" shortDescription="Delay in milliseconds before sending the search query. Type: int. Default value: 300. Required: false." />
@@ -57,7 +56,6 @@
 
 <cc:implementation>
   <h:outputStylesheet library="css" name="user-selection-component.css" />
-
   <c:set var="completeMethod" value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : userSelectionBean.completeUserMethod}" />
 
   <h:panelGroup id="#{cc.attrs.componentId}-autocomplete-panel" layout="block"

@@ -2,7 +2,6 @@ package com.axonivy.portal.components.bean;
 
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -36,12 +35,8 @@ public class DocumentUploadBean implements Serializable {
         Arrays.asList(FileUtils.byteCountToDisplaySize(fileUploadSizeLimit)));
   }
   
-  public List<DocumentType> getDocumentTypes() {
-    return List.of(BasicDocumentType.values());
-  }
-
-  public DocumentType getSelectedTypeOrDefault(DocumentType selectedType, List<DocumentType> typeSelectionItems) {
-    return selectedType != null ? selectedType : typeSelectionItems.get(0);
+  public DocumentType[] getDocumentTypes() {
+    return BasicDocumentType.values();
   }
 
   public boolean getPortalScriptCheckingSettingOrDefault(boolean defaultIfEmpty) {

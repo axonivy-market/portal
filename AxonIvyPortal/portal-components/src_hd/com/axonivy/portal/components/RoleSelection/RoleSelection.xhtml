@@ -33,8 +33,8 @@
   <cc:attribute name="inputStyleClass" type="java.lang.String" shortDescription="CSS style class applied to the role autocomplete input field. Type: String. Required: false." />
   <cc:attribute name="autoCompleteStyleClass" type="java.lang.String" shortDescription="CSS style class applied to the role autocomplete component. Type: String. Required: false." />
   <cc:attribute name="autoCompletePanelStyleClass" type="java.lang.String" shortDescription="CSS style class applied to the role autocomplete dropdown panel. Type: String. Required: false." />
-  <cc:attribute name="completeMethod" method-signature="java.util.List completeMethod(java.lang.String)" 
-    shortDescription="Custom method for loading roles. Must accept a String query and return List&lt;RoleDTO&gt;. Type: Method Expression. Default value: completeRole. Required: false."/>
+  <!-- TRY OUT -->
+  <cc:attribute name="completeMethod" type="javax.el.MethodExpression" shortDescription="Custom method for loading roles. Must accept a String query and return List&lt;RoleDTO&gt;. Type: Method Expression. Default value: completeRole. Required: false."/>
   <cc:attribute name="cache" type="java.lang.Boolean" default="true"
     shortDescription="Caches autocomplete search results when enabled. Type: boolean. Default value: true. Required: false." />
   <cc:attribute name="moreText" type="java.lang.String" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/More')}..." shortDescription="Text displayed for the 'More' link when results exceed the limit. Type: String. Default value: More.... Required: false." />
@@ -70,7 +70,6 @@
 
 <cc:implementation>
   <h:outputStylesheet library="css" name="role-selection-component.css" />
-
   <c:set var="completeMethod" value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : roleSelectionBean.completeRoleMethod}" />
 
   <h:panelGroup id="#{cc.attrs.componentId}-autocomplete-panel" layout="block"
@@ -105,6 +104,9 @@
       emptyMessage="#{cc.attrs.emptyMessage}"
       inputStyleClass="#{cc.attrs.inputStyleClass}">
       <p:column rendered="#{!cc.attrs.hasCustomizedSelectionList}">
+        <!-- TRY OUT -->
+        <!-- role.displayName: java.lang.String -->
+        <!-- role.roleWithParentName: java.lang.String -->
         <pc:securityMemberNameAndAvatar securityMember="#{role}" displayName="#{cc.attrs.appendOption eq 'PARENT_NAME' ? role.roleWithParentName : role.displayName}" isStandAlone="false"
           isShowAvatar="#{cc.attrs.isShowAvatarInSelectionList}" displayNameRendered="#{cc.attrs.displayNameRenderedInSelectionList}"
           displayNameStyleClass="#{cc.attrs.displayNameInSelectionListStyleClass}" containerStyleClass="#{cc.attrs.selectionListContainerStyleClass}" />

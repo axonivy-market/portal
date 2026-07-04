@@ -35,6 +35,8 @@
       rendered="#{cc.attrs.displayNameRendered and !userMenuBean.isMobileDevice()}"
       styleClass="u-truncate-text #{cc.attrs.isShowAvatar ? 'name-after-avatar' : ''} #{cc.attrs.displayNameStyleClass} #{(cc.attrs.securityMember == null and empty cc.attrs.representName) ? 'u-no-padding-left' : ''}">
     </h:outputText>
+
+    <!-- userMenuBean: ch.ivy.addon.portal.generic.bean.UserMenuBean -->
     <p:tooltip for="#{cc.attrs.displayNameId}"
       value="#{tooltipTechnicalDisplayName}"
       trackMouse="true"
