@@ -70,6 +70,8 @@
 
 <cc:implementation>
   <h:outputStylesheet library="css" name="role-selection-component.css" />
+  <!-- IVYPORTAL-20448: TRY OUT -->
+  <!-- completeMethod: javax.el.MethodExpression -->
   <c:set var="completeMethod" value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : roleSelectionBean.completeRoleMethod}" />
 
   <h:panelGroup id="#{cc.attrs.componentId}-autocomplete-panel" layout="block"
@@ -104,9 +106,9 @@
       emptyMessage="#{cc.attrs.emptyMessage}"
       inputStyleClass="#{cc.attrs.inputStyleClass}">
       <p:column rendered="#{!cc.attrs.hasCustomizedSelectionList}">
-        <!-- TRY OUT -->
-        <!-- role.displayName: java.lang.String -->
-        <!-- role.roleWithParentName: java.lang.String -->
+        <!-- IVYPORTAL-20448: try out customFunction: signature -->
+        <!-- displayName: String getDisplayName() -->
+        <!-- roleWithParentName: String roleWithParentName() -->
         <pc:securityMemberNameAndAvatar securityMember="#{role}" displayName="#{cc.attrs.appendOption eq 'PARENT_NAME' ? role.roleWithParentName : role.displayName}" isStandAlone="false"
           isShowAvatar="#{cc.attrs.isShowAvatarInSelectionList}" displayNameRendered="#{cc.attrs.displayNameRenderedInSelectionList}"
           displayNameStyleClass="#{cc.attrs.displayNameInSelectionListStyleClass}" containerStyleClass="#{cc.attrs.selectionListContainerStyleClass}" />
