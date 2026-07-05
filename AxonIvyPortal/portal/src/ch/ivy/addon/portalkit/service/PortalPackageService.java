@@ -71,9 +71,6 @@ public class PortalPackageService {
   private void prepareDashboardForExport(Dashboard dashboard) {
     dashboard.setOldId(null);
     dashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
-    if (!dashboard.getIsPublic()) {
-      dashboard.setPermissions(null);
-    }
     Optional.ofNullable(dashboard.getWidgets()).orElse(Collections.emptyList()).forEach(widget -> {
       if (widget instanceof WelcomeDashboardWidget welcomeWidget) {
         welcomeWidget.setImageType(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageType()));
