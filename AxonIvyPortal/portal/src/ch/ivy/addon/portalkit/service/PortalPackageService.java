@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -73,10 +72,7 @@ public class PortalPackageService {
     dashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
     Optional.ofNullable(dashboard.getWidgets()).orElse(Collections.emptyList()).forEach(widget -> {
       if (widget instanceof WelcomeDashboardWidget welcomeWidget) {
-        welcomeWidget.setImageType(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageType()));
-        welcomeWidget.setImageContent(encodeWelcomeWidgetImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType()));
-        welcomeWidget.setImageTypeDarkMode(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageTypeDarkMode()));
-        welcomeWidget.setImageContentDarkMode(encodeWelcomeWidgetImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode()));
+        WelcomeWidgetUtils.prepareWidgetForExport(welcomeWidget);
       } else if (widget instanceof NavigationDashboardWidget navWidget) {
         navWidget.setImageContent(ImageUploadUtils.imageToBase64(navWidget.getImageLocation(),
             navWidget.getImageType(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
@@ -85,18 +81,6 @@ public class PortalPackageService {
       }
       DashboardWidgetUtils.simplifyWidgetColumnData(widget);
     });
-  }
-
-  private String encodeWelcomeWidgetImage(String imageLocation, String imageType) {
-    if (StringUtils.isBlank(imageLocation)) {
-      return "";
-    }
-    var widgetImage = WelcomeWidgetUtils.getImageContentObject(imageLocation, imageType);
-    if (widgetImage != null && widgetImage.exists()) {
-      return new String(Base64.getEncoder().encode(
-          WelcomeWidgetUtils.readObjectValueOfDefaultLocale(widgetImage).read().bytes()));
-    }
-    return "";
   }
 
   private void writeExternalLinks(ZipOutputStream zos) throws IOException {

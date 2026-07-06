@@ -195,6 +195,25 @@ public class WelcomeWidgetUtils {
     }
   }
 
+  public static void prepareWidgetForExport(WelcomeDashboardWidget welcomeWidget) {
+    welcomeWidget.setImageType(getFileTypeOfImage(welcomeWidget.getImageType()));
+    welcomeWidget.setImageContent(encodeImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType()));
+    welcomeWidget.setImageTypeDarkMode(getFileTypeOfImage(welcomeWidget.getImageTypeDarkMode()));
+    welcomeWidget.setImageContentDarkMode(encodeImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode()));
+  }
+
+  public static String encodeImage(String imageLocation, String imageType) {
+    if (StringUtils.isBlank(imageLocation)) {
+      return "";
+    }
+    String result = "";
+    ContentObject widgetImage = getImageContentObject(imageLocation, imageType);
+    if (widgetImage != null && widgetImage.exists()) {
+      result = new String(Base64.getEncoder().encode(readObjectValueOfDefaultLocale(widgetImage).read().bytes()));
+    }
+    return result;
+  }
+
   public static void cloneImage(String extension, String oldImageLocation,
       WelcomeDashboardWidget newWidget, boolean isDarkMode) throws IOException {
     if (StringUtils.isBlank(extension)
