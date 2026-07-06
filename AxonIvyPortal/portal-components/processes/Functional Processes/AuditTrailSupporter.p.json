@@ -271,7 +271,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.service.AuditTrailService;",
-            "AuditTrailService.getInstance().save(in.content);"
+            "AuditTrailService.getInstance().save(in.caze, in.content);"
           ]
         }
       },

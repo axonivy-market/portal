@@ -41,8 +41,11 @@ public class AuditTrailService {
     }
   }
 
-    public void save(String input) {
+  public void save(ICase businessCase, String input) {
     try {
+      if (!businessCase.getBusinessCase().isPersistent()) {
+        return;
+      }
       String author = Ivy.session().getSessionUserName();
       AuditTrailDTO newEntry = AuditTrailDTOFactory.build(author, input);
       AuditTrailBundle bundle = Ivy.repo().get(AuditTrailBundle.class);
