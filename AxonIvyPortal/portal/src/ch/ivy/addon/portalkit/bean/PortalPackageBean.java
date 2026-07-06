@@ -127,6 +127,14 @@ public class PortalPackageBean implements Serializable {
     fileSelected = false;
   }
 
+  public void resetImportState() {
+    validPreviewFiles = null;
+    invalidPreviewFiles = null;
+    fileSelected = false;
+    uploadedZipBytes = null;
+    importResults = null;
+  }
+
   public boolean isHasAnySuccess() {
     return importResults != null
         && importResults.stream().anyMatch(r -> "SUCCESS".equals(r.getStatus()));

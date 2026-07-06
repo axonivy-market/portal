@@ -5869,6 +5869,51 @@ a.dashboard-action-container label {
   display: block;
 }
 
+/* Portal Package Management */
+.portal-package-filename-col {
+  width: 40%;
+}
+
+.portal-package-hidden-upload {
+  display: none;
+}
+
+.portal-package-upload-icon {
+  font-size: 2rem;
+}
+
+.portal-package-alert-danger-fill {
+  background-color: var(--portal-package-alert-danger-background-color);
+  border-color: var(--portal-package-alert-danger-border-color);
+}
+
+.portal-package-alert-danger-icon {
+  color: var(--portal-package-alert-danger-text-color);
+  flex-shrink: 0;
+}
+
+.portal-package-alert-danger-text {
+  color: var(--portal-package-alert-danger-text-color);
+}
+
+.portal-package-alert-warning {
+  border-color: var(--portal-package-alert-warning-border-color);
+}
+
+.portal-package-alert-warning-fill {
+  background-color: var(--portal-package-alert-warning-background-color);
+  border-color: var(--portal-package-alert-warning-border-color);
+}
+
+.portal-package-alert-warning-icon {
+  color: var(--portal-package-alert-warning-text-color);
+  flex-shrink: 0;
+}
+
+.portal-package-alert-warning-text {
+  color: var(--portal-package-alert-warning-text-color);
+}
+
 .language-icon-padding-right {
   padding-right: 0.4em;
 }

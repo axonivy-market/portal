@@ -30,7 +30,7 @@
       <table class="w-full border-collapse mb-3 border-1 surface-border border-round">
         <thead>
           <tr>
-            <th class="text-left p-3 border-bottom-1 surface-border font-medium" style="width:40%">
+            <th class="text-left p-3 border-bottom-1 surface-border font-medium portal-package-filename-col">
               #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/FileNameHeader')}</th>
             <th class="text-left p-3 border-bottom-1 surface-border font-medium">
               #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/DescriptionHeader')}</th>
@@ -125,7 +125,7 @@
     width="640px"
     styleClass="portal-dialog dialog-responsive">
 
-    <p:messages id="importDialogMessages" closable="true" />
+    <p:messages id="import-dialog-messages" closable="true" />
 
     <!-- Hidden file upload — drop zone below acts as the trigger -->
     <p:fileUpload id="importFileUpload"
@@ -133,11 +133,10 @@
       mode="advanced"
       auto="true"
       accept=".zip"
-      fileLimit="1"
       widgetVar="importFileWidget"
-      style="display:none"
-      update="importDialogMessages @(.portal-package-preview) @(.portal-package-actions)"
-      dragDropSupport="true"
+      styleClass="portal-package-hidden-upload"
+      update="import-dialog-messages @(.portal-package-preview) @(.portal-package-actions)"
+      dragDropSupport="true" oncomplete="PF('importFileWidget').clear();"
       dropZone="importDropZone" />
 
     <div class="flex flex-column gap-4">
@@ -145,7 +144,7 @@
       <!-- Drop zone -->
       <p:outputPanel id="importDropZone" styleClass="ui-dashboard-upload-file-panel">
         <span class="ui-dashboard-upload-file-label">
-          <div><i class="ti ti-file-upload" style="font-size:2rem" /></div>
+          <div><i class="ti ti-file-upload portal-package-upload-icon" /></div>
 
           <span class="mt-2 font-medium">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/DropZoneLabel')}</span>
           <span class="text-color-secondary text-sm mt-1">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/DropZoneOr')}
@@ -166,9 +165,9 @@
 
         <!-- File selected but no valid Portal files found -->
         <ui:fragment rendered="#{portalPackageBean.fileSelected and empty portalPackageBean.validPreviewFiles}">
-          <div class="flex align-items-start gap-2 p-3 border-round border-1" style="background:var(--red-50,#fef2f2);border-color:var(--red-300,#fca5a5)">
-            <i class="ti ti-circle-x mt-1" style="color:var(--red-600,#dc2626);flex-shrink:0" />
-            <span class="text-sm" style="color:var(--red-800,#991b1b)">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/PreviewNoValidFilesMessage')}</span>
+          <div class="flex align-items-start gap-2 p-3 border-round border-1 portal-package-alert-danger-fill">
+            <i class="ti ti-circle-x mt-1 portal-package-alert-danger-icon" />
+            <span class="text-sm portal-package-alert-danger-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/PreviewNoValidFilesMessage')}</span>
           </div>
         </ui:fragment>
 
@@ -191,10 +190,10 @@
 
         <!-- Unrecognized files warning -->
         <ui:fragment rendered="#{not empty portalPackageBean.invalidPreviewFiles}">
-          <div class="border-1 border-round overflow-hidden mb-2" style="border-color:var(--yellow-300,#fcd34d)">
-            <div class="flex align-items-center gap-2 px-3 py-2 border-bottom-1" style="background:var(--yellow-50,#fffbeb);border-color:var(--yellow-300,#fcd34d)">
-              <i class="ti ti-alert-triangle pb-2" style="color:var(--yellow-600,#d97706)" />
-              <span class="font-medium text-sm" style="color:var(--yellow-800,#92400e)">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/PreviewInvalidFilesHeader',[portalPackageBean.invalidPreviewFiles.size()])}</span>
+          <div class="border-1 border-round overflow-hidden mb-2 portal-package-alert-warning mt-3x``">
+            <div class="flex align-items-center gap-2 px-3 py-2 border-bottom-1 portal-package-alert-warning-fill">
+              <i class="ti ti-alert-triangle pb-2 portal-package-alert-warning-icon" />
+              <span class="font-medium text-sm portal-package-alert-warning-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/PreviewInvalidFilesHeader',[portalPackageBean.invalidPreviewFiles.size()])}</span>
             </div>
             <p:dataList value="#{portalPackageBean.invalidPreviewFiles}" var="file"
               styleClass="list-none p-0 m-0" type="none">
@@ -208,9 +207,9 @@
 
         <!-- Replace warning — shown only when there are valid files -->
         <ui:fragment rendered="#{not empty portalPackageBean.validPreviewFiles}">
-          <div class="flex align-items-start gap-2 mt-1 p-3 border-round border-1" style="background:var(--yellow-50,#fffbeb);border-color:var(--yellow-300,#fcd34d)">
-            <i class="ti ti-alert-triangle mt-1" style="color:var(--yellow-600,#d97706);flex-shrink:0" />
-            <span class="text-sm" style="color:var(--yellow-800,#92400e)">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ReplaceWarning')}</span>
+          <div class="flex align-items-center gap-2 p-3 border-1 surface-border border-round text-color-secondary text-sm surface-ground">
+            <i class="ti ti-info-circle" />
+              <span class="text-sm">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ReplaceWarning')}</span>
           </div>
         </ui:fragment>
       </p:outputPanel>
@@ -222,7 +221,7 @@
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportButton')}"
           styleClass="w-full"
           actionListener="#{portalPackageBean.confirmImport}"
-          update="importDialogMessages @(.portal-package-preview) @(.portal-package-actions)"
+          update="import-dialog-messages @(.portal-package-preview) @(.portal-package-actions)"
           process="@form"
           disabled="#{empty portalPackageBean.validPreviewFiles}" />
       </p:outputPanel>
