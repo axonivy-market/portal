@@ -16,7 +16,7 @@
   <cc:attribute name="buttonStyleClass" />
   <cc:attribute name="renderedAdditionalAction" shortDescription="Control display side steps" />
   <cc:attribute name="currentPortalPage" default="TASK_LIST" />
-  <cc:attribute name="showDetailOption" default="false" shortDescription="Display go to task detail option" />
+  <cc:attribute name="showDetailOption" type="java.lang.Boolean" default="false" shortDescription="Display go to task detail option" />
   <cc:attribute name="dataModel" shortDescription="Data model of task list" />
   <cc:attribute name="onDelegateComplete" />
   <cc:attribute name="onDestroyComplete" />
@@ -25,8 +25,8 @@
   <cc:attribute name="onCustomFieldsDialogComplete" />
   <cc:attribute name="showInTaskList" type="java.lang.Boolean" default="true" shortDescription="Indicator to display SideStep in TaskList"/>
   <cc:attribute name="ariaLabel" />
-  <cc:attribute name="inFrame" default="false"/>
-  <cc:attribute name="isPreviewMode" default="false"/>
+  <cc:attribute name="inFrame" type="java.lang.Boolean" default="false"/>
+  <cc:attribute name="isPreviewMode" type="java.lang.Boolean" default="false"/>
 </cc:interface>
 
 <cc:implementation>

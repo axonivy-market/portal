@@ -5,10 +5,10 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="widget" required="true" type="com.axonivy.portal.dto.dashboard.NewsDashboardWidget" />
-  <cc:attribute name="isReadOnlyMode" default="true" />
+  <cc:attribute name="isReadOnlyMode" type="java.lang.Boolean" default="true" />
   <cc:attribute name="index" default="0" />
-  <cc:attribute name="isPreviewMode" default="false" />
-  <cc:attribute name="isConfigurationMode" default="false" />
+  <cc:attribute name="isPreviewMode" type="java.lang.Boolean" default="false" />
+  <cc:attribute name="isConfigurationMode" type="java.lang.Boolean" default="false" />
 </cc:interface>
 
 <cc:implementation>
