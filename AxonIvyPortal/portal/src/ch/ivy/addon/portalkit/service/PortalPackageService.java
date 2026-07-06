@@ -4,11 +4,14 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 import org.apache.commons.lang3.StringUtils;
@@ -24,8 +27,10 @@ import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.PortalPackageFile;
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.NavigationWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class PortalPackageService {
@@ -118,6 +123,74 @@ public class PortalPackageService {
     zos.putNextEntry(new ZipEntry(name));
     zos.write(content.getBytes(StandardCharsets.UTF_8));
     zos.closeEntry();
+  }
+
+  // ── IMPORT ────────────────────────────────────────────────────────────────
+
+  public Map<String, Boolean> importPackage(byte[] zipBytes) {
+    Map<String, Boolean> results = new LinkedHashMap<>();
+    try (ZipInputStream zis = new ZipInputStream(new ByteArrayInputStream(zipBytes))) {
+      ZipEntry entry;
+      while ((entry = zis.getNextEntry()) != null) {
+        if (!entry.isDirectory()) {
+          String name = Paths.get(entry.getName()).getFileName().toString();
+          PortalPackageFile file = PortalPackageFile.fromFilename(name);
+          if (file != null) {
+            String json = new String(zis.readAllBytes(), StandardCharsets.UTF_8);
+            results.put(name, importEntry(file, json));
+          }
+        }
+        zis.closeEntry();
+      }
+    } catch (IOException e) {
+      Ivy.log().error("Failed to read uploaded Portal package", e);
+    }
+    return results;
+  }
+
+  private boolean importEntry(PortalPackageFile file, String json) {
+    try {
+      switch (file) {
+        case DASHBOARD -> importDashboards(json);
+        case EXTERNAL_LINK -> importExternalLinks(json);
+        default -> Ivy.var().set(file.getVariableKey(), json);
+      }
+      return true;
+    } catch (Exception e) {
+      Ivy.log().error("Failed to import Portal package file {0}", e, file.getFilename());
+      return false;
+    }
+  }
+
+  private void importDashboards(String json) {
+    List<Dashboard> dashboards = BusinessEntityConverter.jsonValueToEntities(json, Dashboard.class);
+    dashboards.forEach(this::writeDashboardWidgetImages);
+    Ivy.var().set(PortalVariable.DASHBOARD.key, BusinessEntityConverter.entityToJsonValue(dashboards));
+  }
+
+  private void writeDashboardWidgetImages(Dashboard dashboard) {
+    Optional.ofNullable(dashboard.getWidgets()).orElse(Collections.emptyList()).forEach(widget -> {
+      if (widget instanceof WelcomeDashboardWidget welcomeWidget) {
+        WelcomeWidgetUtils.writeWelcomeWidgetImage(welcomeWidget);
+      } else if (widget instanceof NavigationDashboardWidget navWidget) {
+        NavigationWidgetUtils.writeNavigateWidgetImage(navWidget);
+      }
+    });
+  }
+
+  private void importExternalLinks(String json) {
+    List<ExternalLink> links = BusinessEntityConverter.jsonValueToEntities(json, ExternalLink.class);
+    links.forEach(this::writeExternalLinkImage);
+    Ivy.var().set(PortalVariable.EXTERNAL_LINK.key, BusinessEntityConverter.entityToJsonValue(links));
+  }
+
+  private void writeExternalLinkImage(ExternalLink link) {
+    if (StringUtils.isNotBlank(link.getImageContent())) {
+      String location = ImageUploadUtils.imageBase64ToApplicationCMSFile(link.getImageContent(),
+          link.getImageType(), ImageUploadUtils.EXTERNAL_LINK_IMAGE_DIRECTORY);
+      link.setImageLocation(location);
+      link.setImageContent(null);
+    }
   }
 
   public Map<String, String> getFileDescriptions() {

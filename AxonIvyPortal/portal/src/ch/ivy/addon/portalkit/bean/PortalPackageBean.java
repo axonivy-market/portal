@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -46,6 +47,10 @@ public class PortalPackageBean implements Serializable {
       return new ImportEntryResult(filename, "SKIPPED");
     }
 
+    public static ImportEntryResult failed(String filename) {
+      return new ImportEntryResult(filename, "FAILED");
+    }
+
     public String getFilename() { return filename; }
     public String getStatus() { return status; }
   }
@@ -54,6 +59,7 @@ public class PortalPackageBean implements Serializable {
   private List<String> invalidPreviewFiles;
   private boolean fileSelected;
   private List<ImportEntryResult> importResults;
+  private byte[] uploadedZipBytes;
 
   public StreamedContent exportPackage() {
     try {
@@ -65,6 +71,7 @@ public class PortalPackageBean implements Serializable {
   }
 
   public void handleFileSelect(FileUploadEvent event) {
+    importResults = null;
     List<String> valid = new ArrayList<>();
     List<String> invalid = new ArrayList<>();
     try (ZipInputStream zis = new ZipInputStream(new ByteArrayInputStream(event.getFile().getContent()))) {
@@ -86,26 +93,37 @@ public class PortalPackageBean implements Serializable {
       validPreviewFiles = valid;
       invalidPreviewFiles = invalid;
       fileSelected = true;
+      uploadedZipBytes = event.getFile().getContent();
     } catch (Exception e) {
       Ivy.log().error("Failed to read uploaded package", e);
       validPreviewFiles = null;
       invalidPreviewFiles = null;
       fileSelected = false;
+      uploadedZipBytes = null;
       addErrorMessage("Invalid package", "The uploaded file could not be read. Please ensure it is a valid zip archive.");
     }
   }
 
   public void confirmImport() {
-    if (validPreviewFiles == null) {
+    if (validPreviewFiles == null || uploadedZipBytes == null) {
       return;
     }
+    Map<String, Boolean> importStatus = service.importPackage(uploadedZipBytes);
     List<ImportEntryResult> results = new ArrayList<>();
-    validPreviewFiles.forEach(name -> results.add(ImportEntryResult.success(name)));
+    validPreviewFiles.forEach(name -> results.add(
+        Boolean.TRUE.equals(importStatus.get(name)) ? ImportEntryResult.success(name) : ImportEntryResult.failed(name)));
     invalidPreviewFiles.forEach(name -> results.add(ImportEntryResult.skipped(name)));
     importResults = results;
-    Ivy.log().warn("PortalPackageService import logic is not implemented yet; no data was written.");
+    long successCount = results.stream().filter(r -> "SUCCESS".equals(r.getStatus())).count();
+    boolean importFullySuccessful = successCount == validPreviewFiles.size();
+    if (importFullySuccessful) {
+      addInfoMessage("Import complete", "All files were imported successfully.");
+    } else {
+      addErrorMessage("Import incomplete", "Some files could not be imported. Check the server log for details.");
+    }
     validPreviewFiles = null;
     invalidPreviewFiles = null;
+    uploadedZipBytes = null;
     fileSelected = false;
   }
 
@@ -133,5 +151,10 @@ public class PortalPackageBean implements Serializable {
   private void addErrorMessage(String summary, String detail) {
     FacesContext.getCurrentInstance().addMessage(null,
         new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, detail));
+  }
+
+  private void addInfoMessage(String summary, String detail) {
+    FacesContext.getCurrentInstance().addMessage(null,
+        new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail));
   }
 }

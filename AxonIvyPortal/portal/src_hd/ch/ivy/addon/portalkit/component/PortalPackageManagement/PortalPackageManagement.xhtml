@@ -125,6 +125,8 @@
     width="640px"
     styleClass="portal-dialog dialog-responsive">
 
+    <p:messages id="importDialogMessages" closable="true" />
+
     <!-- Hidden file upload — drop zone below acts as the trigger -->
     <p:fileUpload id="importFileUpload"
       listener="#{portalPackageBean.handleFileSelect}"
@@ -134,7 +136,7 @@
       fileLimit="1"
       widgetVar="importFileWidget"
       style="display:none"
-      update="portalPackageMessages @(.portal-package-preview) @(.portal-package-actions)"
+      update="importDialogMessages @(.portal-package-preview) @(.portal-package-actions)"
       dragDropSupport="true"
       dropZone="importDropZone" />
 
@@ -220,8 +222,7 @@
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportButton')}"
           styleClass="w-full"
           actionListener="#{portalPackageBean.confirmImport}"
-          oncomplete="PF('importDialog').hide();"
-          update="portalPackageMessages @(.portal-package-preview) @(.portal-package-actions)"
+          update="importDialogMessages @(.portal-package-preview) @(.portal-package-actions)"
           process="@form"
           disabled="#{empty portalPackageBean.validPreviewFiles}" />
       </p:outputPanel>
