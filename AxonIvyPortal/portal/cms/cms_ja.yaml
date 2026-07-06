@@ -779,7 +779,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PreviewNoFileMessage: Valid items will be listed here after you select a file.
       PreviewNoValidFilesMessage: No recognized Portal configuration files found. Please upload a valid Portal_Package.zip.
       PreviewValidFilesHeader: Valid ({0} file(s))
-      PreviewInvalidFilesHeader: 'Unrecognized files — will be skipped ({0} file(s))'
+      PreviewInvalidFilesHeader: Unrecognized files will be skipped ({0} file(s))
       ReplaceWarning: Existing data for each imported type will be replaced. This action cannot be undone.
       FileNameHeader: File Name
       DescriptionHeader: Description
