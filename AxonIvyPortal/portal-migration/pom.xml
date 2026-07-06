@@ -6,7 +6,7 @@
   <version>10.0.38-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
-    <ivy.engine.version>10.0.38</ivy.engine.version>
+    <ivy.engine.version>10.0.39</ivy.engine.version>
     <build.plugin.version>10.0.17</build.plugin.version>
   </properties>
   <build>
