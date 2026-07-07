@@ -765,36 +765,36 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Público
       savedFilters: 'Filtros guardados:'
     PortalPackageManagement:
-      GeneralInfo: 'Manage Portal configuration files as a portable zip package. Use Export to download all current JSON configuration files bundled into a single zip archive, or use Import to upload a zip package and apply its configurations — replacing the existing ones.'
-      ExportTitle: Export
-      ExportDescription: Export Portal configuration files as a zip package. Only files with existing data are available for selection.
-      ExportNote: Only non-empty files are included in the package.
-      ExportButton: Export
-      ImportTitle: Import
-      ImportDescription: Upload a zip file which includes the required JSON files. File names must follow the pattern above.
-      ImportButton: Import
-      ImportDialogHeader: Import Portal Package
-      DropZoneLabel: Drag and drop a .zip file here
-      DropZoneOr: or
-      BrowseFiles: browse files
-      PreviewNoFileMessage: Valid items will be listed here after you select a file.
-      PreviewNoValidFilesMessage: No recognized Portal configuration files found. Please upload a valid Portal_Package.zip.
-      PreviewValidFilesHeader: Valid ({0} file(s))
-      PreviewInvalidFilesHeader: Unrecognized files will be skipped ({0} file(s))
-      ReplaceWarning: Existing data for each imported type will be replaced. This action cannot be undone.
-      FileNameHeader: File Name
-      DescriptionHeader: Description
-      DashboardFileDescription: Dashboard widget layouts and configurations for all Portal dashboards
-      CustomStatisticFileDescription: Custom statistic chart definitions displayed on Portal dashboards
-      UserMenuFileDescription: Add custom items and links to the default user menu
-      CaseDetailsFileDescription: Configure, rearrange, and extend the case details page with built-in widgets or custom panels
-      ThirdPartyApplicationsFileDescription: Third-party application links integrated into the Portal menu
-      CustomMenuItemsFileDescription: Add custom items in the left-side navigation menu
-      ExternalLinksFileDescription: External link processes displayed in the Portal left-side navigation or Portal process list page
-      MenuOrderFileDescription: Custom ordering of the main navigation menu items in the Portal sidebar
-      InvalidPackageMessage: The uploaded file could not be read. Please ensure it is a valid zip archive.
-      ImportCompleteMessage: All files were imported successfully.
-      ImportIncompleteMessage: Some files could not be imported. Check the server log for details.
+      GeneralInfo: 'Gestione los archivos de configuración de Portal como un paquete ZIP portátil. Use Exportar para descargar todos los archivos de configuración JSON actuales agrupados en un único archivo ZIP, o use Importar para cargar un paquete ZIP y aplicar sus configuraciones, reemplazando las existentes.'
+      ExportTitle: Exportar
+      ExportDescription: Exporte los archivos de configuración de Portal como un paquete ZIP. Solo los archivos con datos existentes están disponibles para su selección.
+      ExportNote: Solo se incluyen en el paquete los archivos no vacíos.
+      ExportButton: Exportar
+      ImportTitle: Importar
+      ImportDescription: Cargue un archivo ZIP que incluya los archivos JSON requeridos. Los nombres de archivo deben seguir el patrón anterior.
+      ImportButton: Importar
+      ImportDialogHeader: Importar paquete de Portal
+      DropZoneLabel: Arrastre y suelte un archivo .zip aquí
+      DropZoneOr: o
+      BrowseFiles: buscar archivos
+      PreviewNoFileMessage: Los elementos válidos se mostrarán aquí después de seleccionar un archivo.
+      PreviewNoValidFilesMessage: No se encontraron archivos de configuración de Portal reconocidos. Cargue un Portal_Package.zip válido.
+      PreviewValidFilesHeader: Válido(s) ({0} archivo(s))
+      PreviewInvalidFilesHeader: Los archivos no reconocidos se omitirán ({0} archivo(s))
+      ReplaceWarning: Los datos existentes de cada tipo importado serán reemplazados. Esta acción no se puede deshacer.
+      FileNameHeader: Nombre del archivo
+      DescriptionHeader: Descripción
+      DashboardFileDescription: Diseños y configuraciones de widgets del panel para todos los paneles de Portal
+      CustomStatisticFileDescription: Definiciones de gráficos de estadísticas personalizadas mostradas en los paneles de Portal
+      UserMenuFileDescription: Agregue elementos y enlaces personalizados al menú de usuario predeterminado
+      CaseDetailsFileDescription: Configure, reorganice y amplíe la página de detalles del caso con widgets integrados o paneles personalizados
+      ThirdPartyApplicationsFileDescription: Enlaces a aplicaciones de terceros integrados en el menú de Portal
+      CustomMenuItemsFileDescription: Agregue elementos personalizados en el menú de navegación lateral izquierdo
+      ExternalLinksFileDescription: Procesos de enlaces externos mostrados en la navegación lateral izquierda de Portal o en la página de lista de procesos
+      MenuOrderFileDescription: Orden personalizado de los elementos del menú de navegación principal en la barra lateral de Portal
+      InvalidPackageMessage: No se pudo leer el archivo cargado. Asegúrese de que sea un archivo ZIP válido.
+      ImportCompleteMessage: Todos los archivos se importaron correctamente.
+      ImportIncompleteMessage: Algunos archivos no se pudieron importar. Consulte el registro del servidor para obtener más información.
   dashboard:
     CaseQueryType:
       info: Configure qué tipos de casos se muestran en el widget de casos. Predeterminado muestra solo casos de negocio, Subcasos técnicos muestra solo subcasos técnicos, y Todos muestra tanto casos de negocio como subcasos técnicos.
