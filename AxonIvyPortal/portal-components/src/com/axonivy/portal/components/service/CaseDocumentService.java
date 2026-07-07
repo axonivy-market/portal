@@ -52,7 +52,6 @@ public class CaseDocumentService {
 
   public IDocument upload(String filename, InputStream content, String uploadSubFolder) {
     try {
-      Ivy.log().error("UPLOAD SUB FOLDER IS {0}", uploadSubFolder);
       String path = StringUtils.isNotBlank(uploadSubFolder) ? uploadSubFolder + "/" + filename : filename;
       return documentsOf(iCase).add(path).write().withContentFrom(content);
     } catch (PersistencyException e) {
@@ -72,7 +71,6 @@ public class CaseDocumentService {
     try {
       List<IDocument> allDocuments = new ArrayList<>();
       for (String uploadSubFolder : displaySubFolderList) {
-        Ivy.log().error("DISPLAY SUB FOLDER IS {0}", uploadSubFolder);
         allDocuments.addAll(Sudo.call(() -> iCase.documents().getAllBelow(new Path(uploadSubFolder))));
       }
       return allDocuments;

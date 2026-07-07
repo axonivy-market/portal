@@ -213,64 +213,7 @@
         "labelOffset" : { "x" : 6, "y" : 44 }
       },
       "connect" : [
-        { "id" : "f15", "to" : "f16" }
-      ]
-    }, {
-      "id" : "f16",
-      "type" : "Script",
-      "name" : [
-        "Call customized",
-        "sub process"
-      ],
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.predicate.CustomProcessPredicate;",
-            "import com.axonivy.portal.components.enums.CustomSignature;",
-            "import java.util.HashMap;",
-            "import java.util.Map;",
-            "import com.axonivy.portal.components.service.IvyAdapterService;",
-            "",
-            "Map params = new HashMap();",
-            "params.put(\"businessCase\", in.businessCase);",
-            "params.put(\"displaySubFolderList\", in.displaySubFolderList);",
-            "",
-            "Map result = IvyAdapterService.startSubProcessesInSecurityContext(CustomSignature.GET_DOCUMENT_ITEMS_WITH_DISPLAY_SUBFOLDER_LIST.getSignature(), params, new CustomProcessPredicate());",
-            "in.hasCustomProcess = !result.isEmpty();",
-            "",
-            "if (in.hasCustomProcess) {",
-            "  in.documents = result.get(\"documents\") as List;",
-            "  in.message = result.get(\"message\").toString();",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 472, "y" : 648 }
-      },
-      "connect" : [
-        { "id" : "f17", "to" : "f18" }
-      ]
-    }, {
-      "id" : "f18",
-      "type" : "Alternative",
-      "config" : {
-        "conditions" : {
-          "f20" : "in.hasCustomProcess",
-          "f19" : ""
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 608, "y" : 648 }
-      },
-      "connect" : [
-        { "id" : "f19", "to" : "f21", "label" : {
-            "name" : "No"
-          } },
-        { "id" : "f20", "to" : "f23", "via" : [ { "x" : 608, "y" : 792 }, { "x" : 944, "y" : 792 } ], "label" : {
-            "name" : "Yes",
-            "segment" : 1.19
-          } }
+        { "id" : "f15", "to" : "f21" }
       ]
     }, {
       "id" : "f21",
@@ -309,7 +252,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 816, "y" : 648 },
+        "at" : { "x" : 576, "y" : 648 },
         "size" : { "width" : 128 }
       },
       "connect" : [

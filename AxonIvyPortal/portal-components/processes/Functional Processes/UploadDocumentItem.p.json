@@ -155,7 +155,7 @@
                 "out.message = \"\";",
                 "out.status = UploadDocumentCheckStatus.OK;",
                 "String fileName = in.uploadedFile.getFileName();",
-                "out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputStream(), in.uploadSubFolder);",
+                "out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputStream());",
                 "",
                 "if (out.#uploadedDocument != null) {  ",
                 "  String note = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), fileName));",
@@ -366,7 +366,6 @@
             "params.put(\"enableScriptCheckingForUploadedDocument\", in.enableScriptCheckingForUploadedDocument);",
             "params.put(\"enableVirusScannerForUploadedDocument\", in.enableVirusScannerForUploadedDocument);",
             "params.put(\"allowedUploadFileTypes\", in.allowedUploadFileTypes);",
-            "//params.put(\"uploadSubFolder\", in.uploadSubFolder);",
             "",
             "Map result = IvyAdapterService.startSubProcessesInSecurityContext(CustomSignature.UPLOAD_DOCUMENT_ITEM.getSignature(), params, new CustomProcessPredicate());",
             "in.hasCustomProcess = !result.isEmpty();",
@@ -402,70 +401,6 @@
             "name" : "No"
           } },
         { "id" : "f11", "to" : "f1", "via" : [ { "x" : 792, "y" : 176 }, { "x" : 1144, "y" : 176 } ], "label" : {
-            "name" : "Yes"
-          } }
-      ]
-    }, {
-      "id" : "f13",
-      "type" : "Script",
-      "name" : [
-        "Call customized",
-        "sub process"
-      ],
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.predicate.CustomProcessPredicate;",
-            "import com.axonivy.portal.components.enums.CustomSignature;",
-            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
-            "import ch.ivyteam.ivy.workflow.document.IDocument;",
-            "import org.primefaces.model.StreamedContent;",
-            "import java.util.HashMap;",
-            "import java.util.Map;",
-            "import com.axonivy.portal.components.service.IvyAdapterService;",
-            "",
-            "Map params = new HashMap();",
-            "params.put(\"businessCase\", in.businessCase);",
-            "params.put(\"uploadedFile\", in.uploadedFile);",
-            "params.put(\"enableScriptCheckingForUploadedDocument\", in.enableScriptCheckingForUploadedDocument);",
-            "params.put(\"enableVirusScannerForUploadedDocument\", in.enableVirusScannerForUploadedDocument);",
-            "params.put(\"allowedUploadFileTypes\", in.allowedUploadFileTypes);",
-            "params.put(\"uploadSubFolder\", in.uploadSubFolder);",
-            "",
-            "Map result = IvyAdapterService.startSubProcessesInSecurityContext(CustomSignature.UPLOAD_DOCUMENT_ITEM.getSignature(), params, new CustomProcessPredicate());",
-            "in.hasCustomProcess = !result.isEmpty();",
-            "",
-            "if (in.hasCustomProcess) {",
-            "  in.message = result.get(\"message\").toString();",
-            "  in.uploadedDocument = result.get(\"uploadedDocument\") as IDocument;",
-            "  in.status = UploadDocumentCheckStatus.valueOf(result.get(\"status\") as String);",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 640, "y" : 480 }
-      },
-      "connect" : [
-        { "id" : "f14", "to" : "f15" }
-      ]
-    }, {
-      "id" : "f15",
-      "type" : "Alternative",
-      "config" : {
-        "conditions" : {
-          "f17" : "in.hasCustomProcess",
-          "f16" : ""
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 792, "y" : 480 }
-      },
-      "connect" : [
-        { "id" : "f16", "to" : "S11", "label" : {
-            "name" : "No"
-          } },
-        { "id" : "f17", "to" : "f20", "via" : [ { "x" : 792, "y" : 528 }, { "x" : 1144, "y" : 528 } ], "label" : {
             "name" : "Yes"
           } }
       ]
@@ -704,17 +639,6 @@
             { "id" : "S11-f92", "to" : "S11-f73" }
           ]
         }, {
-          "id" : "S11-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 160 }
-          },
-          "parentConnector" : "f16",
-          "connect" : [
-            { "id" : "S11-f0", "to" : "S11-f36" }
-          ]
-        }, {
           "id" : "S11-g1",
           "type" : "EmbeddedEnd",
           "name" : "out 1",
@@ -730,9 +654,20 @@
             "at" : { "x" : 1184, "y" : 160 }
           },
           "parentConnector" : "f19"
+        }, {
+          "id" : "S11-g3",
+          "type" : "EmbeddedStart",
+          "name" : "in",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 }
+          },
+          "parentConnector" : "f22",
+          "connect" : [
+            { "id" : "S11-f93", "to" : "S11-f36" }
+          ]
         } ],
       "visual" : {
-        "at" : { "x" : 992, "y" : 480 }
+        "at" : { "x" : 720, "y" : 480 }
       },
       "connect" : [
         { "id" : "f18", "to" : "f20" },
@@ -786,7 +721,7 @@
         "labelOffset" : { "x" : -52, "y" : -26 }
       },
       "connect" : [
-        { "id" : "f22", "to" : "f13" }
+        { "id" : "f22", "to" : "S11" }
       ]
     } ]
 }

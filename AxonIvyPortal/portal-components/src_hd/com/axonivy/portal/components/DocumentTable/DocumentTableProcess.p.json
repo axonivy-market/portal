@@ -46,13 +46,12 @@
           ],
           "map" : { },
           "code" : [
+            "import java.util.ArrayList;",
             "import org.apache.commons.lang3.StringUtils;",
+            "out.displaySubFolderList = new ArrayList();",
             "if (StringUtils.isNotBlank(param.displaySubFolderList)){",
             "  out.displaySubFolderList = param.displaySubFolderList.split(\",\");",
-            "}",
-            "",
-            "",
-            "ivy.log.error(\"XXXXXXXXXXXXXXX  {0}\", org.apache.commons.collections4.CollectionUtils.isNotEmpty(out.displaySubFolderList));"
+            "}"
           ]
         },
         "guid" : "16B1C835D6DF8ED1"
