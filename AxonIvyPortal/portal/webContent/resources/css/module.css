@@ -5882,6 +5882,11 @@ a.dashboard-action-container label {
   font-size: 2rem;
 }
 
+.portal-package-file-list {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
 .portal-package-alert-danger-fill {
   background-color: var(--portal-package-alert-danger-background-color);
   border-color: var(--portal-package-alert-danger-border-color);

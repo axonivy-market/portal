@@ -133,7 +133,8 @@
           </ui:fragment>
 
           <!-- File selected but no valid Portal files found -->
-          <ui:fragment rendered="#{portalPackageBean.fileSelected and empty portalPackageBean.validPreviewFiles}">
+          <ui:fragment
+            rendered="#{portalPackageBean.fileSelected and empty portalPackageBean.importResults and empty portalPackageBean.validPreviewFiles}">
             <div class="flex align-items-start gap-2 p-3 border-round border-1 portal-package-alert-danger-fill">
               <i class="ti ti-circle-x mt-1 portal-package-alert-danger-icon" />
               <span
@@ -141,44 +142,22 @@
             </div>
           </ui:fragment>
 
-          <!-- Valid files found -->
-          <ui:fragment rendered="#{not empty portalPackageBean.validPreviewFiles}">
-            <div class="border-1 surface-border border-round overflow-hidden mb-2">
-              <div class="flex align-items-center gap-2 px-3 py-2 surface-ground border-bottom-1 surface-border">
-                <i class="ti ti-circle-check text-green-500" />
-                <span
-                  class="font-medium text-sm">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/PreviewValidFilesHeader',[portalPackageBean.validPreviewFiles.size()])}</span>
-              </div>
-              <p:dataList value="#{portalPackageBean.validPreviewFiles}" var="file" styleClass="list-none p-0 m-0"
-                type="none">
+          <!-- Unified file list — preview stage (valid/invalid) or, after import, the per-file results (success/skipped/failed) -->
+          <ui:fragment rendered="#{not empty portalPackageBean.validPreviewFiles or not empty portalPackageBean.importResults}">
+            <div class="border-1 surface-border border-round mb-2 portal-package-file-list">
+              <p:dataList
+                value="#{not empty portalPackageBean.importResults ? portalPackageBean.importResults : portalPackageBean.previewEntries}"
+                var="entry" styleClass="list-none p-0 m-0" type="none">
                 <div class="flex align-items-center gap-2 px-3 py-2 border-bottom-1 surface-border">
-                  <i class="ti ti-file-type-json text-color-secondary" />
-                  <span class="text-sm">#{file}</span>
+                  <i class="ti #{entry.iconClass}" />
+                  <span class="text-sm">#{entry.filename}</span>
                 </div>
               </p:dataList>
             </div>
           </ui:fragment>
 
-          <!-- Unrecognized files warning -->
-          <ui:fragment rendered="#{not empty portalPackageBean.invalidPreviewFiles}">
-            <div class="border-1 border-round overflow-hidden mb-2 portal-package-alert-warning mt-3">
-              <div class="flex align-items-center gap-2 px-3 py-2 border-bottom-1 portal-package-alert-warning-fill">
-                <i class="ti ti-alert-triangle pb-2 portal-package-alert-warning-icon" />
-                <span
-                  class="font-medium text-sm portal-package-alert-warning-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/PreviewInvalidFilesHeader',[portalPackageBean.invalidPreviewFiles.size()])}</span>
-              </div>
-              <p:dataList value="#{portalPackageBean.invalidPreviewFiles}" var="file" styleClass="list-none p-0 m-0"
-                type="none">
-                <div class="flex align-items-center gap-2 px-3 py-2 border-bottom-1 surface-border">
-                  <i class="ti ti-file-type-json text-color-secondary" />
-                  <span class="text-sm">#{file}</span>
-                </div>
-              </p:dataList>
-            </div>
-          </ui:fragment>
-
-          <!-- Replace warning — shown only when there are valid files -->
-          <ui:fragment rendered="#{not empty portalPackageBean.validPreviewFiles}">
+          <!-- Replace warning — shown only during preview stage when there are valid files -->
+          <ui:fragment rendered="#{empty portalPackageBean.importResults and not empty portalPackageBean.validPreviewFiles}">
             <div
               class="flex align-items-center gap-2 p-3 border-1 surface-border border-round text-color-secondary text-sm surface-ground">
               <i class="ti ti-info-circle" />

@@ -35,6 +35,14 @@ public class PortalPackageBean implements Serializable {
   private final PortalPackageService service = new PortalPackageService();
 
   public static class ImportEntryResult {
+    public static ImportEntryResult valid(final String filename) {
+      return new ImportEntryResult(filename, "VALID");
+    }
+
+    public static ImportEntryResult invalid(final String filename) {
+      return new ImportEntryResult(filename, "INVALID");
+    }
+
     public static ImportEntryResult success(final String filename) {
       return new ImportEntryResult(filename, "SUCCESS");
     }
@@ -57,6 +65,14 @@ public class PortalPackageBean implements Serializable {
 
     public String getFilename() { return filename; }
     public String getStatus() { return status; }
+
+    public String getIconClass() {
+      return switch (status) {
+        case "VALID", "SUCCESS" -> "ti-circle-check text-green-500";
+        case "FAILED" -> "ti-circle-x portal-package-alert-danger-icon";
+        default -> "ti-alert-triangle portal-package-alert-warning-icon";
+      };
+    }
   }
 
   private List<String> validPreviewFiles;
@@ -153,6 +169,13 @@ public class PortalPackageBean implements Serializable {
 
   public List<String> getInvalidPreviewFiles() {
     return invalidPreviewFiles != null ? invalidPreviewFiles : List.of();
+  }
+
+  public List<ImportEntryResult> getPreviewEntries() {
+    final List<ImportEntryResult> entries = new ArrayList<>();
+    getValidPreviewFiles().forEach(name -> entries.add(ImportEntryResult.valid(name)));
+    getInvalidPreviewFiles().forEach(name -> entries.add(ImportEntryResult.invalid(name)));
+    return entries;
   }
 
   public boolean isFileSelected() {
