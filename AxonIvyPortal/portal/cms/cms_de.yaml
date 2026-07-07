@@ -794,6 +794,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       CustomMenuItemsFileDescription: Add custom items in the left-side navigation menu
       ExternalLinksFileDescription: External link processes displayed in the Portal left-side navigation or Portal process list page
       MenuOrderFileDescription: Custom ordering of the main navigation menu items in the Portal sidebar
+      InvalidPackageMessage: The uploaded file could not be read. Please ensure it is a valid zip archive.
+      ImportCompleteMessage: All files were imported successfully.
+      ImportIncompleteMessage: Some files could not be imported. Check the server log for details.
   dashboard:
     CaseQueryType:
       info: Konfigurieren Sie, welche Vorgangstypen im Vorgangs-Widget angezeigt werden. Standard zeigt nur Geschäftsvorgänge, Technische Untervorgänge zeigt nur technische Untervorgänge, und Alle zeigt sowohl Geschäftsvorgänge als auch technische Untervorgänge.

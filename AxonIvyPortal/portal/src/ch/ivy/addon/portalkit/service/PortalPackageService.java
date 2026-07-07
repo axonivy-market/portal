@@ -36,6 +36,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class PortalPackageService {
 
   private static final String PACKAGE_NAME = "Portal_Package.zip";
+  public static final String ACCEPTED_FILE_TYPE = ".zip";
 
   // ── EXPORT ────────────────────────────────────────────────────────────────
 
@@ -199,5 +200,16 @@ public class PortalPackageService {
       descriptions.put(file.getFilename(), file.getDescription());
     }
     return Collections.unmodifiableMap(descriptions);
+  }
+
+  public String getAcceptedFileType() {
+    return ACCEPTED_FILE_TYPE;
+  }
+
+  public PortalPackageService() {
+}
+
+  public static String getPackageName() {
+    return PACKAGE_NAME;
   }
 }

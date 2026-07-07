@@ -790,6 +790,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       CustomMenuItemsFileDescription: Add custom items in the left-side navigation menu
       ExternalLinksFileDescription: External link processes displayed in the Portal left-side navigation or Portal process list page
       MenuOrderFileDescription: Custom ordering of the main navigation menu items in the Portal sidebar
+      InvalidPackageMessage: The uploaded file could not be read. Please ensure it is a valid zip archive.
+      ImportCompleteMessage: All files were imported successfully.
+      ImportIncompleteMessage: Some files could not be imported. Check the server log for details.
   dashboard:
     CaseQueryType:
       info: Configure which case types are shown in the Case Widget. Default shows business cases only, Sub Cases shows technical subcases only, and All shows both business cases and technical subcases.
