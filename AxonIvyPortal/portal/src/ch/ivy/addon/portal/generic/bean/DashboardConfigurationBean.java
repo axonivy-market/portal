@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 
 import com.axonivy.portal.bean.menu.MenuManagementBean;
 
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
@@ -50,7 +51,7 @@ public class DashboardConfigurationBean implements Serializable {
       canEditPrivateDashboard = PermissionUtils.hasDashboardWriteOwnPermission();
       canEditPublicDashboard = PermissionUtils.hasDashboardWritePublicPermission();
       canManageSidebarNavigation = PermissionUtils.isSessionUserHasAdminRole();
-      canManagePackages = PermissionUtils.isSessionUserHasAdminRole();
+      canManagePackages = PermissionUtils.hasPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
     }
   }
 
