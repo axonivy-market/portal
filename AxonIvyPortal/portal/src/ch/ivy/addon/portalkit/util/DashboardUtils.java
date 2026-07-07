@@ -23,7 +23,9 @@ import org.primefaces.PrimeFaces;
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
 import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemplateMigrator;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
@@ -248,7 +250,7 @@ public class DashboardUtils {
     try {
       ObjectMapper mapper = new ObjectMapper();
       JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(json));
-      return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Dashboard.class);
+      return BusinessEntityConverter.convertJsonNodeToList(asArrayNode(migrator.migrate()), Dashboard.class);
     } catch (JsonProcessingException ex) {
       Ivy.log().error("Failed to read dashboard from JSON {0}", ex, json);
     }
@@ -260,11 +262,24 @@ public class DashboardUtils {
     try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
       ObjectMapper mapper = new ObjectMapper();
       JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(reader));
-      return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Dashboard.class);
+      return BusinessEntityConverter.convertJsonNodeToList(asArrayNode(migrator.migrate()), Dashboard.class);
     } catch (JsonProcessingException e) {
       Ivy.log().error("Failed to read dashboard from JSON {0}", e);
     }
     return null;
+  }
+
+  /**
+   * Import files exported for a single dashboard contain a single JSON object instead of
+   * an array. Wrap it into a one-element array so it can be deserialized into a List&lt;Dashboard&gt;.
+   */
+  private static JsonNode asArrayNode(JsonNode node) {
+    if (node != null && !node.isArray()) {
+      ArrayNode arrayNode = new ObjectMapper().createArrayNode();
+      arrayNode.add(node);
+      return arrayNode;
+    }
+    return node;
   }
 
   public static Dashboard convertDashboardToLatestVersion(InputStream inputStream) throws IOException {
