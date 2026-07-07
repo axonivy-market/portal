@@ -7,9 +7,8 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.page.component.DocumentTableComponentPage;
-import static com.codeborne.selenide.Selenide.$;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DocumentTableComponentTest extends BaseTest {
 
   @Override
