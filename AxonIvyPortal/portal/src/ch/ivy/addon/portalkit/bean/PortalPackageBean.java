@@ -32,7 +32,7 @@ public class PortalPackageBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  private final PortalPackageService service = new PortalPackageService();
+  private final PortalPackageService service = PortalPackageService.getInstance();
 
   public static class ImportEntryResult {
     public static ImportEntryResult valid(final String filename) {

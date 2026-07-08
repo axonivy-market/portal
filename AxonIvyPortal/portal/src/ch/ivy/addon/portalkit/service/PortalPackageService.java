@@ -38,7 +38,16 @@ public class PortalPackageService {
   private static final String PACKAGE_NAME = "Portal_Package.zip";
   public static final String ACCEPTED_FILE_TYPE = ".zip";
 
-  // ── EXPORT ────────────────────────────────────────────────────────────────
+  private static PortalPackageService instance;
+
+  private PortalPackageService() {}
+
+  public static PortalPackageService getInstance() {
+    if (instance == null) {
+      instance = new PortalPackageService();
+    }
+    return instance;
+  }
 
   public StreamedContent exportPackage() throws IOException {
     try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -205,9 +214,6 @@ public class PortalPackageService {
   public String getAcceptedFileType() {
     return ACCEPTED_FILE_TYPE;
   }
-
-  public PortalPackageService() {
-}
 
   public static String getPackageName() {
     return PACKAGE_NAME;

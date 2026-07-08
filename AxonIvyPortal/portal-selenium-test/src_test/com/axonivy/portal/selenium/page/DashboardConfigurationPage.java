@@ -94,6 +94,21 @@ public class DashboardConfigurationPage extends TemplatePage {
     $(".dashboard-configuration__content.js-private-dashboard-configuration").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public void selectPackageManagementType() {
+    waitForDashboardConfigurationTypeSelectionAppear();
+    $("a[id$='package-management-type']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("#portalPackageForm").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public boolean isPackageManagementTypeDisplayed() {
+    waitForDashboardConfigurationTypeSelectionAppear();
+    return $("a[id$='package-management-type']").is(Condition.visible);
+  }
+
+  public void clickExportButton() {
+    $("button[id$='export-btn']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+
   public DashboardModificationPage openEditPrivateDashboardsPage() {
     selectPrivateDashboardType();
     return new DashboardModificationPage();
