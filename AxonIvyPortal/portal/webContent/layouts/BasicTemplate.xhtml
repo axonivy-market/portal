@@ -30,7 +30,7 @@
   <!-- themBean: com.axonivy.portal.bean.ThemeBean -->
   <f:attribute name="primefaces.THEME" value="#{themeBean.theme}" />
   <link rel="shortcut icon" href="#{resource['ivy-branding:favicon']}" />
-  <c:set var="loadGridStack" value="#{loadGridStack == 'true' ? 'true' : 'false'}" />
+  <c:set var="loadGridStack" value="#{loadGridStack == 'true' ? true : false}" />
   <!-- GridStack resources -->
   <h:outputStylesheet library="css" name="gridstack.min.css" rendered="#{loadGridStack}" />
   <h:outputStylesheet library="css" name="gridstack-extra.min.css" rendered="#{loadGridStack}" />
