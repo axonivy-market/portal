@@ -11,16 +11,13 @@ import java.net.URLEncoder;
 import java.time.Duration;
 import java.util.Objects;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WindowType;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -31,6 +28,7 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
  * of failed tests and utility methods.
  *
  */
+@ExtendWith(PortalWebTestExtension.class)
 public class BaseTest {
 
   private final static String LOGIN_URL_PATTERN =
@@ -39,23 +37,6 @@ public class BaseTest {
   protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
 
   public BaseTest() {}
-  
-  @BeforeAll
-  public static void initConfig() {
-    FirefoxOptions options = new FirefoxOptions();
-    options.addPreference("dom.disable_beforeunload", true);
-    
-    if (Configuration.browserCapabilities != null) {
-      Configuration.browserCapabilities = Configuration.browserCapabilities.merge(options);
-    } else {
-      Configuration.browserCapabilities = options;
-    }
-  }
-
-  @AfterEach
-  public void tearDown() {
-    WebDriverRunner.getWebDriver().quit();
-  }
 
   protected String simplePaymentUrl = "portal-developer-examples/162511D2577DBA88/simplePayment.ivp";
   protected String createTaskWithIframe = "portal-developer-examples/16E5DB746865BCEC/CreateInvestment.ivp";
@@ -83,11 +64,7 @@ public class BaseTest {
   protected String cleanupDataLink = "portalKitTestHelper/1511A66AF619A768/cleanData.ivp";
   protected String complexPaymentUrl = "portal-developer-examples/162511D2577DBA88/complexPayment.ivp";
   protected String createAlphaCompanyUrl = "portal-components-examples/1818977D467E3129/createAlphaCompany.ivp";
-  protected String viewAlphaCompanyProcessHistoryUrl =
-      "portal-components-examples/1818977D467E3129/viewProcessHistoryOfAlphaCompany.ivp";
   protected String createBetaCompanyUrl = "portal-components-examples/1818977D467E3129/createBetaCompany.ivp";
-  protected String viewBetaCompanyProcessHistoryInDialogUrl =
-      "portal-components-examples/1818977D467E3129/viewProcessHistoryOfBetaCompany.ivp";
   protected String createNewPaymentUrl = "portal-developer-examples/162511D2577DBA88/createNewPayment.ivp";
   protected String documentTableComponentUrl =
       "portal-components-examples/1818938E7EBC9329/showCustomizedDocumentTableExample.ivp";
@@ -239,47 +216,135 @@ public class BaseTest {
     redirectToRelativeLink(createRelatedTaskWithNoResponsible);
   }
 
-  public void grantTaskReadAllPermissionsToCurrentUser() {
-    String grantAllPermissionsForAdminUserURL =
-        "portalKitTestHelper/14DE09882B540AD5/grantTaskReadAllPermissionsToCurrentUser.ivp";
-    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+  public Permissions permissions() {
+    return new Permissions();
   }
 
-  public void grantTaskReadOwnCaseTaskPermissionsToCurrentUser() {
-    String grantAllPermissionsForAdminUserURL =
-        "portalKitTestHelper/14DE09882B540AD5/grantTaskReadOwnCaseTaskPermissionsToCurrentUser.ivp";
-    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+  public class Permissions {
+
+    public void grantTaskReadAllPermissionsToCurrentUser() {
+      String grantAllPermissionsForAdminUserURL =
+          "portalKitTestHelper/14DE09882B540AD5/grantTaskReadAllPermissionsToCurrentUser.ivp";
+      redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+    }
+  
+    public void grantTaskReadOwnCaseTaskPermissionsToCurrentUser() {
+      String grantAllPermissionsForAdminUserURL =
+          "portalKitTestHelper/14DE09882B540AD5/grantTaskReadOwnCaseTaskPermissionsToCurrentUser.ivp";
+      redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+    }
+  
+    public void denyReadAllPermissionFromCurrentUser() {
+      String grantAllPermissionsForAdminUserURL =
+          "portalKitTestHelper/14DE09882B540AD5/denyReadAllPermissionFromCurrentUser.ivp";
+      redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+    }
+  
+    public void denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser() {
+      String denyDocumentOfInvolvedCaseWritePemissionURL =
+          "portalKitTestHelper/14DE09882B540AD5/denyDocumentOfInvolvedCaseWritePemission.ivp";
+      redirectToRelativeLink(denyDocumentOfInvolvedCaseWritePemissionURL);
+    }
+  
+    public void grantDocumentOfInvolvedCaseWritePemissionToCurrentUser() {
+      String grantDocumentOfInvolvedCaseWritePemissionURL =
+          "portalKitTestHelper/14DE09882B540AD5/grantDocumentOfInvolvedCaseWritePemission.ivp";
+      redirectToRelativeLink(grantDocumentOfInvolvedCaseWritePemissionURL);
+    }
+  
+    public void grantSpecificPortalPermission(PortalPermission portalPermission) {
+      String grantSpecificPortalPermissionLink =
+          "portalKitTestHelper/14DE09882B540AD5/grantSpecificPortalPermission.ivp?portalPermission=%s";
+      redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, portalPermission.getValue()));
+    }
+  
+    public void denySpecificPortalPermission(PortalPermission portalPermission) {
+      String denySpecificPortalPermissionLink =
+          "portalKitTestHelper/14DE09882B540AD5/denySpecificPortalPermission.ivp?portalPermission=%s";
+      redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, portalPermission.getValue()));
+    }
+
+    public void grantDashboardWriteOwnPermission() {
+      redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
+    }
+
+    public void denyDashboardWriteOwnPermission() {
+      redirectToRelativeLink(denyDashboardWriteOwnPermissionUrl);
+    }
+
+    public void grantDashboardWritePublicPermission() {
+      redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
+    }
+
+    public void denyDashboardWritePublicPermission() {
+      redirectToRelativeLink(denyDashboardWritePublicPermissionUrl);
+    }
+
+    public void grantDashboardExportOwnPermission() {
+      redirectToRelativeLink(grantDashboardExportOwnPermissionUrl);
+    }
+
+    public void denyDashboardExportOwnPermission() {
+      redirectToRelativeLink(denyDashboardExportOwnPermissionUrl);
+    }
+
+    public void grantDashboardExportPublicPermission() {
+      redirectToRelativeLink(grantDashboardExportPublicPermissionUrl);
+    }
+
+    public void denyDashboardExportPublicPermission() {
+      redirectToRelativeLink(denyDashboardExportPublicPermissionUrl);
+    }
+
+    public void grantDashboardImportOwnPermission() {
+      redirectToRelativeLink(grantDashboardImportOwnPermissionUrl);
+    }
+
+    public void denyDashboardImportOwnPermission() {
+      redirectToRelativeLink(denyDashboardImportOwnPermissionUrl);
+    }
+
+    public void grantDashboardImportPublicPermission() {
+      redirectToRelativeLink(grantDashboardImportPublicPermissionUrl);
+    }
+
+    public void denyDashboardImportPublicPermission() {
+      redirectToRelativeLink(denyDashboardImportPublicPermissionUrl);
+    }
+
+    public void grantDashboardShareLinkPermission() {
+      redirectToRelativeLink(grantDashboardShareLinkPermissionUrl);
+    }
+
+    public void denyDashboardShareLinkPermission() {
+      redirectToRelativeLink(denyDashboardShareLinkPermissionUrl);
+    }
+
+    public void grantShareLinkCaseDetailsPermission() {
+      redirectToRelativeLink(grantShareLinkCaseDetailsPermission);
+    }
+
+    public void denyShareLinkCaseDetailsPermission() {
+      redirectToRelativeLink(denyShareLinkCaseDetailsPermission);
+    }
+
+    public void grantShareLinkTaskDetailsPermission() {
+      redirectToRelativeLink(grantShareLinkTaskDetailsPermission);
+    }
+
+    public void denyShareLinkTaskDetailsPermission() {
+      redirectToRelativeLink(denyShareLinkTaskDetailsPermission);
+    }
+
+    public void testProcessViewerPermission() {
+      redirectToRelativeLink(testProcessViewerPermissionUrl);
+    }
+
+    public void grantPortalPermission() {
+      redirectToRelativeLink(grantPortalPermission);
+    }
   }
 
-  public void denyReadAllPermissionFromCurrentUser() {
-    String grantAllPermissionsForAdminUserURL =
-        "portalKitTestHelper/14DE09882B540AD5/denyReadAllPermissionFromCurrentUser.ivp";
-    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
-  }
-
-  public void denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser() {
-    String denyDocumentOfInvolvedCaseWritePemissionURL =
-        "portalKitTestHelper/14DE09882B540AD5/denyDocumentOfInvolvedCaseWritePemission.ivp";
-    redirectToRelativeLink(denyDocumentOfInvolvedCaseWritePemissionURL);
-  }
-
-  public void grantDocumentOfInvolvedCaseWritePemissionToCurrentUser() {
-    String grantDocumentOfInvolvedCaseWritePemissionURL =
-        "portalKitTestHelper/14DE09882B540AD5/grantDocumentOfInvolvedCaseWritePemission.ivp";
-    redirectToRelativeLink(grantDocumentOfInvolvedCaseWritePemissionURL);
-  }
-
-  public void grantSpecificPortalPermission(PortalPermission portalPermission) {
-    String grantSpecificPortalPermissionLink =
-        "portalKitTestHelper/14DE09882B540AD5/grantSpecificPortalPermission.ivp?portalPermission=%s";
-    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, portalPermission.getValue()));
-  }
-
-  public void denySpecificPortalPermission(PortalPermission portalPermission) {
-    String denySpecificPortalPermissionLink =
-        "portalKitTestHelper/14DE09882B540AD5/denySpecificPortalPermission.ivp?portalPermission=%s";
-    redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, portalPermission.getValue()));
-  }
 
   public void cleanUpGlobalVariables() {
     String cleanUpURL = "portalKitTestHelper/1511A66AF619A768/cleanupGlobalVars.ivp";

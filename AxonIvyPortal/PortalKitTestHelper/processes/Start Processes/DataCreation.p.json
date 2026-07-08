@@ -1392,7 +1392,7 @@
             "import ch.ivy.addon.portalkit.service.RegisteredApplicationService;",
             "",
             "DisplayNameConvertor convertor = new DisplayNameConvertor();",
-            "convertor.add(new Locales().getCurrentLocale(), \"Google\");",
+            "convertor.add(Locales.getCurrentLocale(), \"Google\");",
             "",
             "Application app = new Application();",
             "app.displayName = convertor.toJson();",

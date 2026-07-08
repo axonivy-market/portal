@@ -34,7 +34,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
   public void testHideUploadDeleteDocumentWhenNotHasDocumentOfInvolvedCaseWritePemission() {
     createCaseAndUploadDocumentByUser(TestAccount.DEMO_USER);
 
-    denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser();
+    permissions().denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser();
     casePage = NavigationHelper.navigateToCaseList();
     caseDetailsPage = casePage.openDetailsCase("SupportTicket");
 
@@ -66,7 +66,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
   }
 
   private void uploadDocumentToTestingCaseByUser() {
-    grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
+    permissions().grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     casePage = NavigationHelper.navigateToCaseList();
     caseDetailsPage = casePage.openDetailsCase("SupportTicket");

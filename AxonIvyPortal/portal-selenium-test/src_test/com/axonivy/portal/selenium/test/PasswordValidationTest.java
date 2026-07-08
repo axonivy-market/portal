@@ -34,7 +34,7 @@ public class PasswordValidationTest extends BaseTest {
     accessToPasswordValidation();
     assertTrue(passwordValidationPage.isDisplayed());
 
-    denySpecificPortalPermission(PortalPermission.PASSWORD_VALIDATION);
+    permissions().denySpecificPortalPermission(PortalPermission.PASSWORD_VALIDATION);
     newDashboardPage = new NewDashboardPage();
     adminSettingsPage = newDashboardPage.openAdminSettings();
     assertFalse(adminSettingsPage.isPasswordValidationTabViewPresent());
@@ -42,21 +42,21 @@ public class PasswordValidationTest extends BaseTest {
 
   @Test
   public void testVisibilityForEnablePasswordValidationToggle() {
-    grantSpecificPortalPermission(PortalPermission.PASSWORD_VALIDATION);
+    permissions().grantSpecificPortalPermission(PortalPermission.PASSWORD_VALIDATION);
     accessToPasswordValidation();
     assertTrue(passwordValidationPage.isPasswordValidationTogglePresent());
   }
 
   @Test
   public void testSaveButtonDisableAsDefault() {
-    grantSpecificPortalPermission(PortalPermission.PASSWORD_VALIDATION);
+    permissions().grantSpecificPortalPermission(PortalPermission.PASSWORD_VALIDATION);
     accessToPasswordValidation();
     assertFalse(passwordValidationPage.isEnableSaveButton());
   }
 
   @Test
   public void testSaveButtonEnableAfterSwitchPasswordValidationToggle() {
-    grantSpecificPortalPermission(PortalPermission.PASSWORD_VALIDATION);
+    permissions().grantSpecificPortalPermission(PortalPermission.PASSWORD_VALIDATION);
     accessToPasswordValidation();
     passwordValidationPage.clickOnPasswordValidationToggle();
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
@@ -66,7 +66,7 @@ public class PasswordValidationTest extends BaseTest {
 
   @Test
   public void testEnablePolicyTableAfterEnablePasswordValidationToggle() {
-    grantSpecificPortalPermission(PortalPermission.PASSWORD_VALIDATION);
+    permissions().grantSpecificPortalPermission(PortalPermission.PASSWORD_VALIDATION);
     accessToPasswordValidation();
     if (!passwordValidationPage.isPasswordValidationToggleChecked()) {
       passwordValidationPage.clickOnPasswordValidationToggle();
@@ -76,7 +76,7 @@ public class PasswordValidationTest extends BaseTest {
 
   @Test
   public void testSaveButtonDisabledAfterClickSaveButton() {
-    grantSpecificPortalPermission(PortalPermission.PASSWORD_VALIDATION);
+    permissions().grantSpecificPortalPermission(PortalPermission.PASSWORD_VALIDATION);
     accessToPasswordValidation();
     passwordValidationPage.clickOnPasswordValidationToggle();
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)

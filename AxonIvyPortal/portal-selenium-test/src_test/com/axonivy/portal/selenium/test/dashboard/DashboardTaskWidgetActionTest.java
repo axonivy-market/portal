@@ -206,7 +206,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     createTasksForTesting();
     redirectToRelativeLink(createTechnicalStateUrl);
-    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
+    permissions().grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
 
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));

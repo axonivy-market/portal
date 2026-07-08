@@ -39,7 +39,7 @@ public class TaskWidgetUserFilterBean extends AbstractTaskWidgetFilterBean {
     }
 
     // Remove user filters which are not in filterable columns anymore
-    WidgetFilterService.removeDisabledFilters(this.widget);
+    WidgetFilterService.pruneInvalidUserFilters(this.widget);
 
     for (DashboardFilter filter : this.widget.getUserFilters()) {
       if (Optional.ofNullable(filter).map(DashboardFilter::getFilterType)

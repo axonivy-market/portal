@@ -174,9 +174,14 @@ public final class MenuLoader implements Serializable {
   }
 
   private static List<PortalMenuItemDefinition> buildThirdPartyItems() {
-    // Public config only (as the sidebar always did): per-user private apps must not
-    // leak into the shared menu order that admin actions persist.
     return RegisteredApplicationService.getInstance().getPublicConfig().stream()
+        .map(app -> ThirdPartyAppMenuItemDefinitionAdapter.getInstance()
+            .toMenuDefinition(app, THIRD_PARTY_APP_CONFIGURATION))
+        .collect(Collectors.toList());
+  }
+
+  public static List<PortalMenuItemDefinition> loadPrivateThirdPartyDefinitions() {
+    return RegisteredApplicationService.getInstance().getPrivateConfig().stream()
         .map(app -> ThirdPartyAppMenuItemDefinitionAdapter.getInstance()
             .toMenuDefinition(app, THIRD_PARTY_APP_CONFIGURATION))
         .collect(Collectors.toList());

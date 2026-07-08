@@ -516,6 +516,17 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void addFilter(String columnName, com.axonivy.portal.selenium.common.FilterOperator operator) {
     ComplexFilterHelper.addFilter(columnName, operator);
   }
+
+  public boolean isOperatorOptionAvailableForFilterField(String fieldName, String operatorLabel) {
+    var filterRow = $("div[class*='dashboard-widget-filter__main-panel']")
+      .$$("div[class*='dashboard-widget-filter__filter-wrapper']").findBy(text(fieldName))
+      .shouldBe(appear, DEFAULT_TIMEOUT);
+
+    var operatorOptions = filterRow.$$("select[id$=':operator-selection_input'] option");
+    return operatorOptions.texts().stream()
+      .map(String::trim)
+      .anyMatch(option -> option.equalsIgnoreCase(operatorLabel.trim()));
+  }
   
   public void inputValueOnLatestFilter(FilterValueType type, Object... values) {
     ComplexFilterHelper.inputValueOnLatestFilter(type, values);

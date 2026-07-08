@@ -63,6 +63,10 @@ public class NewAbsencePage extends TemplatePage {
     $$(itemSelector).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $(panelSelector).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     $("button[id$='absence-form:add-deputy-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    // add-deputy-button re-renders the whole form via ajax (update="@form"); wait for it to
+    // settle so a subsequent addDeputy() call doesn't type into a node that's about to be replaced.
+    $$("tbody[id$='absence-form:selected-deputy-panel_data'] tr")
+        .findBy(Condition.text(fullName)).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void setDeputyAsPermanent(int deputyIndex) {

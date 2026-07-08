@@ -28,8 +28,8 @@ public class DashboardCloneWidgetScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
 
-    redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
-    redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
+    permissions().grantDashboardWritePublicPermission();
+    permissions().grantDashboardWriteOwnPermission();
 
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();

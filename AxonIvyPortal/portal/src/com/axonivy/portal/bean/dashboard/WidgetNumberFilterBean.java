@@ -17,6 +17,7 @@ import jakarta.faces.view.ViewScoped;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.service.filter.operatorpolicy.service.GlobalOperatorPolicyService;
 
 @Named
 @ViewScoped
@@ -24,14 +25,15 @@ public class WidgetNumberFilterBean implements Serializable {
 
   private static final long serialVersionUID = 6088715427600445713L;
 
-  private static List<FilterOperator> operators = FilterOperator.NUMBER_OPERATORS.stream().toList();
   private static List<FilterOperator> SINGLE_FILTER_OPERATORS = Arrays.asList(EQUAL, NOT_EQUAL, LESS, LESS_OR_EQUAL,
       GREATER, GREATER_OR_EQUAL);
-  private static List<FilterOperator> statisticOperators = FilterOperator.STATISTIC_NUMBER_OPERATORS.stream().toList();
-  
+  private final GlobalOperatorPolicyService globalOperatorPolicyService = new GlobalOperatorPolicyService();
+  private List<FilterOperator> statisticOperators;
 
-  public List<FilterOperator> getOperators() {
-    return operators;
+  @PostConstruct
+  public void initOperators() {
+    statisticOperators = globalOperatorPolicyService.keepGloballyEnabledOperators(
+        FilterOperator.STATISTIC_NUMBER_OPERATORS.stream().toList());
   }
   
   public List<FilterOperator> getStatisticOperators() {

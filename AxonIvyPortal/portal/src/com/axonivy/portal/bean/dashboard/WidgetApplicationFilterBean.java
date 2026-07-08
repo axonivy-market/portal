@@ -10,7 +10,6 @@ import jakarta.faces.view.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
 import ch.ivy.addon.portalkit.util.ListUtilities;
 import ch.ivyteam.ivy.application.IApplication;
@@ -23,7 +22,6 @@ public class WidgetApplicationFilterBean implements Serializable {
 
   private static final long serialVersionUID = 4458514225804204212L;
 
-  private static List<FilterOperator> operators = FilterOperator.APPLICATION_OPERATORS.stream().toList();
   private List<String> applications;
   private String applicationString;
 
@@ -33,10 +31,6 @@ public class WidgetApplicationFilterBean implements Serializable {
 
     this.applicationString = String.join(", ",
         new ArrayList<>(CollectionUtils.intersection(applications, filter.getValues())));
-  }
-
-  public List<FilterOperator> getOperators() {
-    return operators;
   }
 
   public List<String> getApplications() {

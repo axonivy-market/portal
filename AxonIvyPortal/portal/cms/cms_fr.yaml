@@ -220,6 +220,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AppleStoreURL: Définir l'URL pour télécharger l'application mobile Axon Ivy sur l'Apple Store.
       ApplicationName: Le nom de l'application qui sera affiché dans le titre de la page.
       BaseQRCodeUrl: Définir l'URL de base du code QR à afficher.
+      DashboardFilterOperatorPolicy: Les opérateurs décochés sont désactivés globalement.
       DefaultThemeMode: Le mode de thème par défaut de l'application
       EnableSwitchThemeModeButton: Défini à true pour activer le bouton de changement de thème.
       GlobalSearchScopeCategoriesNote: Définition des types recherchés par la recherche globale
@@ -828,6 +829,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: Ce widget peut afficher une page web externe.
     Filter:
       FilterOptionHeader: Options de filtre
+      FilterOptionHeaderTooltip: Certains champs de filtre et opérateurs peuvent être désactivés par votre administrateur. Les filtres utilisant des champs ou des opérateurs désactivés seront automatiquement supprimés. Veuillez contacter votre administrateur pour plus d'informations.
       FilterPanelHeader: Panneau de filtre
       ManageWidgetFilterHeader: Gestion des filtres des widgets
       NotFound: Aucun filtre trouvé
@@ -972,6 +974,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     noPermission: Vous n'avez pas les permissions pour voir les tableaux de bord.
     noWidget: Il n'y a pas de widgets fournis pour ce tableau de bord.
     numberPattern: Modèle de numéro
+    operators: Opérateurs
+    operatorPolicyTooltip: Si les opérateurs sont désactivés globalement par l'administrateur, ils ne peuvent pas être activés ici. Le filtre d'un champ ne peut pas être activé lorsque tous les opérateurs sont désactivés globalement.
     preview: Aperçu
     processList: Liste des processus
     processListIntroduction: Ce widget montre les démarrages de processus disponibles. Vous avez la possibilité de choisir différents formats

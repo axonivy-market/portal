@@ -123,6 +123,13 @@ public class MenuView implements Serializable {
       }
     }
 
+    for (PortalMenuItemDefinition def : MenuLoader.loadPrivateThirdPartyDefinitions()) {
+      MenuElement element = buildMenuElement(def, startableProcessLinks);
+      if (element != null) {
+        mainMenuModel.getElements().add(element);
+      }
+    }
+
     mainMenuModel.generateUniqueIds();
   }
 
@@ -190,7 +197,7 @@ public class MenuView implements Serializable {
   private boolean canStartCustomProcess(CustomMenuItemDefinition def, Set<String> startableProcessLinks) {
     String startLink = stripQuery(def.getProcessStartPath());
     if (StringUtils.isBlank(startLink)) {
-      return true;
+      return false;
     }
     return startableProcessLinks.contains(startLink);
   }
@@ -239,9 +246,11 @@ public class MenuView implements Serializable {
 
   private MenuItem buildExternalLinkItem(ExternalLinkMenuItemDefinition def) {
     String target = BooleanUtils.isTrue(def.getOpenInNewTab()) ? "_blank" : "_self";
+    String safeUrl = MenuUtils.safeExternalUrl(def.getUrl());
+    String url = StringUtils.defaultIfBlank(UrlUtils.buildUrl(safeUrl), DEFAULT_LINK);
     PortalMenuItem item = new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.EXTERNAL_LINK, isWorkingOnATask)
         .icon(buildIconClass(def.getIcon()))
-        .url(StringUtils.defaultIfBlank(MenuUtils.safeExternalUrl(def.getUrl()), DEFAULT_LINK))
+        .url(url)
         .target(target)
         .cleanParam(true)
         .workingTaskId(workingTaskId)

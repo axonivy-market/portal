@@ -11,6 +11,7 @@
   <cc:attribute name="filterIndex" />
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="messageId" />
+  <cc:attribute name="operators" required="true" />
   <cc:attribute name="workerCompleteMethod" required="true" method-signature="java.util.List workerCompleteMethod(java.lang.String)"/>
 </cc:interface>
 
@@ -25,7 +26,7 @@
   <h:panelGroup id="worker-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield worker-filter-operator-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}" pt:aria-label="#{ivy.cms.co('/Labels/SelectOperator')}">
-        <f:selectItems value="#{widgetWorkerFilterBean.operators}" var="operator"
+        <f:selectItems value="#{cc.attrs.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetWorkerFilterBean.onChangeOperator(filter)}"
             update="#{cc.attrs.componentToUpdate} worker-list-panel" />

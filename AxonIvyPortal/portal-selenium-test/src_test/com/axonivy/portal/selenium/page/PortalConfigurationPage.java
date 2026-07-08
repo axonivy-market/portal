@@ -146,7 +146,7 @@ public class PortalConfigurationPage extends TemplatePage {
   public void selectMenuType(String menuKindLabel) {
     $("[id$='menu-configuration-form:menu-type']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    $("[id$='menu-type_items']").shouldBe(appear, DEFAULT_TIMEOUT)
+    $("[id$='menu-type_panel']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("li").filter(Condition.text(menuKindLabel)).first()
         .shouldBe(getClickableCondition()).click();
     $("[id$='menu-configuration-form']").shouldBe(appear, DEFAULT_TIMEOUT);

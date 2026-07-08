@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.service.filter.operatorpolicy.service.GlobalOperatorPolicyService;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -22,8 +23,14 @@ public class WidgetStateFilterBean implements Serializable {
 
   private static final long serialVersionUID = -8191354257458990196L;
 
-  private static List<FilterOperator> stateOperators = FilterOperator.STATE_OPERATORS.stream().toList();
-  private static List<FilterOperator> statisticOperators = FilterOperator.STATISTIC_TEXT_OPERATORS.stream().toList();
+  private final GlobalOperatorPolicyService globalOperatorPolicyService = new GlobalOperatorPolicyService();
+  private List<FilterOperator> statisticOperators;
+
+  @PostConstruct
+  public void initOperators() {
+    statisticOperators = globalOperatorPolicyService.keepGloballyEnabledOperators(
+        FilterOperator.STATISTIC_TEXT_OPERATORS.stream().toList());
+  }
 
   private List<String> states;
   private String statesString;
@@ -43,10 +50,6 @@ public class WidgetStateFilterBean implements Serializable {
         : "/ch.ivy.addon.portalkit.ui.jsf/businessCaseState/";
     String displayState = Ivy.cms().co(cmsUri + state.toString());
     return StringUtils.isBlank(displayState) ? state : displayState;
-  }
-
-  public List<FilterOperator> getStateOperators() {
-    return stateOperators;
   }
 
   public List<FilterOperator> getStatisticOperators() {

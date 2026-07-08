@@ -23,9 +23,11 @@ public class DashboardModificationPage extends TemplatePage {
   }
 
   public ElementsCollection getDashboardRows() {
-    SelenideElement dashboardTable = $("tbody[id='dashboard-modification-component:dashboard-table_data']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    return dashboardTable.$$("tr:not(.ui-datatable-empty-message)");
+    return $$(
+        "tbody[id='dashboard-modification-component:top-menu-dashboard-table_data'] tr:not(.ui-datatable-empty-message),"
+            +
+            "tbody[id='dashboard-modification-component:dashboard-table_data'] tr:not(.ui-datatable-empty-message)," +
+            "tbody[id='dashboard-modification-component:hidden-dashboard-table_data'] tr:not(.ui-datatable-empty-message)");
   }
 
   public void waitForDashboardTableToLoad() {
@@ -33,14 +35,14 @@ public class DashboardModificationPage extends TemplatePage {
   }
 
   public void waitForDashboardTableToLoad(Duration timeout) {
-    $("tbody[id='dashboard-modification-component:dashboard-table_data']")
-        .shouldBe(Condition.appear, timeout);
-    $("tbody[id='dashboard-modification-component:dashboard-table_data'] tr:not(.ui-datatable-empty-message)")
+    // The modification container is always present; at least one table section will
+    // have data.
+    $("[id='dashboard-modification-component:dashboard-modification-container']")
         .shouldBe(Condition.appear, timeout);
   }
 
   public SelenideElement getDashboardRowByName(String dashboardName) {
-    for (SelenideElement dashboardRow : getDashboardRows()) {
+    for (SelenideElement dashboardRow : getDashboardRows().asDynamicIterable()) {
       if (dashboardRow.$("td:nth-child(1)").getText().contentEquals(dashboardName)) {
         return dashboardRow;
       }
@@ -61,15 +63,19 @@ public class DashboardModificationPage extends TemplatePage {
     }
     return null;
   }
-  
+
   private SelenideElement getDashboardConfigurationActionMenu(SelenideElement dashboardRow) {
-    dashboardRow.$("div#dashboard-configuration-action-group").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-    .$("button[id$='dashboard-configuration-action-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    return $$("div[id$='dashboard-configuration-action-menu']").filter(Condition.appear).first();
+    dashboardRow.$(
+        "button[id$='dashboard-configuration-action-button'], button[id$='top-dashboard-action-button']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $$(
+        "div[id$='dashboard-configuration-action-menu'], div[id$='top-dashboard-action-menu']").filter(Condition.appear)
+        .first();
   }
-  
+
   private void clickButtonOnDashboardConfigurationActionMenu(String buttonName, SelenideElement dashboardRow) {
-    getDashboardConfigurationActionMenu(dashboardRow).$$("span").filter(Condition.text(buttonName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getDashboardConfigurationActionMenu(dashboardRow).$$("span").filter(Condition.text(buttonName)).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void clickEditDashboardByName(String dashboardName) {
@@ -87,12 +93,13 @@ public class DashboardModificationPage extends TemplatePage {
         .shouldBe(getClickableCondition()).click();
     deleteConfirmDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
-  
+
   public void selectDashboardDisplayType(DashboardDisplayType type) {
     String label = displayTypeLabel(type);
     $("div.create-public-dashboard-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-    .$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("ul[id$='dashboard-display-menu_items']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li").filter(Condition.text(label)).first().click();
+        .$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("ul[id$='dashboard-display-menu_items']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li")
+        .filter(Condition.text(label)).first().click();
   }
 
   private static String displayTypeLabel(DashboardDisplayType type) {
@@ -102,7 +109,7 @@ public class DashboardModificationPage extends TemplatePage {
       case HIDDEN -> "Hidden";
     };
   }
-  
+
   public void saveEditDashboard() {
     getEditDashboardDialog().$("button[id$='dashboard-detail-save-button']").click();
   }
@@ -169,7 +176,7 @@ public class DashboardModificationPage extends TemplatePage {
     SelenideElement dashboard = getDashboardRowByName(dashboardName);
     dashboard.shouldBe(Condition.appear);
     return getDashboardConfigurationActionMenu(dashboard)
-    .$$("ul > li > a").filter(Condition.attribute("title", "Export dashboard")).first();
+        .$$("ul > li > a").filter(Condition.attribute("title", "Export dashboard")).first();
   }
 
   public SelenideElement getDashboardShareLinkButton() {
@@ -182,25 +189,25 @@ public class DashboardModificationPage extends TemplatePage {
     clickButtonOnDashboardConfigurationActionMenu("Share", dashboard);
     $("div[id$=':share-dashboard-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
-  
+
   public SelenideElement getElementBorder() {
     ElementsCollection elements = $("[id=\"task-task_1:task-component:dashboard-tasks:dashboard-tasks-columns:1\"]")
         .$$(".ui-column-resizer.ui-draggable.ui-draggable-handle");
     return elements.get(0);
-}
-  
+  }
+
   public void resizeColumn() {
     $("[id='task-task_1:task-component:dashboard-tasks-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     ElementsCollection elements = $("[id=\"task-task_1:task-component:dashboard-tasks:dashboard-tasks-columns:1\"]")
-    .$$(".ui-column-resizer.ui-draggable.ui-draggable-handle");
+        .$$(".ui-column-resizer.ui-draggable.ui-draggable-handle");
     ElementsCollection targets = $("[id='task-task_1:task-component:dashboard-tasks:dashboard-tasks-columns:3']")
         .$$(".ui-column-resizer.ui-draggable.ui-draggable-handle");
-        
+
     new Actions(driver)
-    .dragAndDrop(elements.get(0), targets.get(0))
-    .perform();
+        .dragAndDrop(elements.get(0), targets.get(0))
+        .perform();
   }
-  
+
   public int getPriorityColumnSize() {
     return $("[id=\"task-task_1:task-component:dashboard-tasks:dashboard-tasks-columns:1\"]")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT)

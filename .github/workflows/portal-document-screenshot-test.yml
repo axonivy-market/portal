@@ -24,11 +24,11 @@ on:
       engineDownloadURL:
         description: 'url to download engine'
         type: string
-        default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
+        default: 'https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip'
         required: true
 
 env:
-  ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
+  ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/sprint
   ENGINE_URL: ${{ inputs.engineDownloadURL }}
   
 jobs:
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Set up Java
         uses: actions/setup-java@v5
@@ -53,7 +53,7 @@ jobs:
           echo "Check out code from ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
           echo "Build screenshot for document. Use 2 inputs:" >> $GITHUB_STEP_SUMMARY
           echo "- engineDownloadURL: ${{ inputs.engineDownloadURL }}" >>  $GITHUB_STEP_SUMMARY
-          echo "Default value: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip" >> $GITHUB_STEP_SUMMARY
+          echo "Default value: https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip" >> $GITHUB_STEP_SUMMARY
           echo "- testPatternToRun: ${{ inputs.testPatternToRun }} " >> $GITHUB_STEP_SUMMARY
           echo "Default value: com.axonivy.portal.selenium.document.screenshot.*Test" >> $GITHUB_STEP_SUMMARY
 
@@ -63,7 +63,7 @@ jobs:
           
       - name: Set up and verify directories
         run: |
-          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/nightly"
+          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/sprint"
           mkdir -p $ENGINE_DIR
           sudo chown -R $USER:$USER $ENGINE_DIR
           echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV

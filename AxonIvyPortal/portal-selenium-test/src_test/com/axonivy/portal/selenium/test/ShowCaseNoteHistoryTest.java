@@ -42,7 +42,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
 
   @Test
   public void testShowCaseNoteHistory() {
-    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    permissions().grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     CaseWidgetNewDashBoardPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsCase(CASE_NAME);
     ScreenshotUtils.resizeBrowser(new Dimension(1600, 3000));
@@ -63,7 +63,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
 
   @Test
   public void testShowCaseNoteHistoryInTask() {
-    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    permissions().grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
     String caseUuid = caseDetailsPage.getCaseUuid();

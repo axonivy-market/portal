@@ -3704,6 +3704,13 @@ _:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
   right: 1rem;
 }
 
+.admin-settings-container .ui-selectcheckboxmenu .ui-selectcheckboxmenu-label {
+  max-width: calc(100% - 2rem);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .application-input-with-button {
   margin-top: 3px !important;
 }

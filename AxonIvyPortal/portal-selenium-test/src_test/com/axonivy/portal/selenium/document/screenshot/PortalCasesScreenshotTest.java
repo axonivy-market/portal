@@ -37,8 +37,8 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
-    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
-    grantSpecificPortalPermission(PortalPermission.CASE_DISPLAY_CUSTOM_FIELDS_ACTION);
+    permissions().grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    permissions().grantSpecificPortalPermission(PortalPermission.CASE_DISPLAY_CUSTOM_FIELDS_ACTION);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingCaseMapUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);

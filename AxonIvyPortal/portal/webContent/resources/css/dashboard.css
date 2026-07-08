@@ -479,12 +479,25 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu {
   background-image: none;
 }
 
+body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu.task-configuration__operator-selection-menu {
+  float: none;
+  width: 65%;
+}
+
 body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
   top: 5px;
 }
 
 .task-configuration__selectcheckboxmenu-panel {
   width: 300px;
+}
+
+.task-configuration__operator-selection-panel {
+  width: 220px;
+}
+
+.task-configuration__operator-selection-panel .ui-selectcheckboxmenu-item:has(.ui-chkbox-box.ui-state-disabled) > label {
+  color: var(--action-step-disabled-text-color);
 }
 
 .task-configuration__column-picker.ui-picklist .ui-picklist-list {
@@ -786,6 +799,20 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 .column-management-datatable__reorder i {
   cursor: move;
   padding: 4px 10px;
+}
+
+.column-management-operator-header {
+  gap: 0.35rem;
+}
+
+.column-management-operator-info-icon {
+  color: var(--ivy-primary-color-grey-medium);
+  cursor: pointer;
+}
+
+.column-management-datatable.ui-datatable tbody.ui-datatable-data > tr > td {
+  height: 50px;
+  vertical-align: middle;
 }
 
 .dashboard-tasks__id,

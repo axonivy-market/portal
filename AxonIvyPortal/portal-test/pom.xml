@@ -12,6 +12,9 @@
   <artifactId>portal-test</artifactId>
   <version>14.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
+  <properties>
+    <maven.deploy.skip>true</maven.deploy.skip>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>com.axonivy.ivy.api</groupId>
@@ -23,10 +26,20 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>6.1.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
       <version>${project.version}</version>
       <type>iar</type>
+    </dependency>
+    <dependency>
+      <groupId>com.axonivy.ivy.api</groupId>
+      <artifactId>ivy-poi-api</artifactId>
     </dependency>
   </dependencies>
   <repositories>

@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
+import com.axonivy.portal.service.filter.operatorpolicy.service.GlobalOperatorPolicyService;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 
@@ -27,19 +28,19 @@ public class WidgetDateFilterBean implements Serializable {
 
   private static final long serialVersionUID = 4356531402161360729L;
 
-  private static List<FilterOperator> operators = FilterOperator.DATE_OPERATORS.stream().toList();
-  private static List<FilterOperator> createdDateOperators = FilterOperator.CREATED_DATE_OPERATORS.stream().toList();
-
   private static FilterPeriodType[] filterPeriodTypes = FilterPeriodType.values();
   private static List<FilterPeriodType> currentFilterPeriodTypes = FilterPeriodType.PERIOD_TYPES_FOR_CURRENT_OPERATOR
       .stream().toList();
 
   private static SimpleDateFormat formatter = new SimpleDateFormat(BaseFilter.DATE_FORMAT);
   
-  private static List<FilterOperator> statisticOperators = FilterOperator.STATISTIC_DATE_OPERATORS.stream().toList();
+  private final GlobalOperatorPolicyService globalOperatorPolicyService = new GlobalOperatorPolicyService();
+  private List<FilterOperator> statisticOperators;
 
-  public List<FilterOperator> getOperators() {
-    return operators;
+  @PostConstruct
+  public void initOperators() {
+    statisticOperators = globalOperatorPolicyService.keepGloballyEnabledOperators(
+        FilterOperator.STATISTIC_DATE_OPERATORS.stream().toList());
   }
 
   public FilterPeriodType[] getFilterPeriodTypes() {
@@ -94,10 +95,6 @@ public class WidgetDateFilterBean implements Serializable {
     }
   }
 
-  public List<FilterOperator> getCreatedDateOperators() {
-    return createdDateOperators;
-  }
-  
   public List<FilterOperator> getStatisticOperators() {
     return statisticOperators;
   }

@@ -47,16 +47,16 @@ public class DashboardConfigurationTest extends BaseTest {
   public void setup() {
     super.setup();
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
-    redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
+    permissions().grantDashboardWritePublicPermission();
+    permissions().grantDashboardWriteOwnPermission();
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
   }
 
   @Test
   public void testEditOnlyPrivateDashboards() {
-    redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
-    redirectToRelativeLink(denyDashboardWritePublicPermissionUrl);
+    permissions().grantDashboardWriteOwnPermission();
+    permissions().denyDashboardWritePublicPermission();
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.getPrivateDashboardConfigurationTypeSelection().shouldBe(Condition.appear);
@@ -65,8 +65,8 @@ public class DashboardConfigurationTest extends BaseTest {
 
   @Test
   public void testEditOnlyPublicDashboards() {
-    redirectToRelativeLink(denyDashboardWriteOwnPermissionUrl);
-    redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
+    permissions().denyDashboardWriteOwnPermission();
+    permissions().grantDashboardWritePublicPermission();
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.getPublicDashboardConfigurationTypeSelection().shouldBe(Condition.appear);
@@ -75,8 +75,8 @@ public class DashboardConfigurationTest extends BaseTest {
 
   @Test
   public void testHideConfigureDashboardButton() {
-    redirectToRelativeLink(denyDashboardWriteOwnPermissionUrl);
-    redirectToRelativeLink(denyDashboardWritePublicPermissionUrl);
+    permissions().denyDashboardWriteOwnPermission();
+    permissions().denyDashboardWritePublicPermission();
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.getDashboardConfigurationMenu().shouldBe(Condition.disappear);
   }
@@ -249,7 +249,7 @@ public class DashboardConfigurationTest extends BaseTest {
     SelenideElement dashboard = modificationPage.getDashboardRowByName(EDITED_PRIVATE_DASHBOARD_1);
     dashboard.shouldBe(Condition.appear);
     dashboard.$("td:nth-child(1)").shouldHave(Condition.exactText(EDITED_PRIVATE_DASHBOARD_1));
-    dashboard.$("td:nth-child(2)").shouldHave(Condition.exactText(DASHBOARD_1_DESCRIPTION));
+    dashboard.$("td:nth-child(3)").shouldHave(Condition.exactText(DASHBOARD_1_DESCRIPTION));
   }
 
   @Test
@@ -341,8 +341,8 @@ public class DashboardConfigurationTest extends BaseTest {
   public void testExportOnlyPrivateDashboards() {
     createPrivateDashboardUseTemplate();
     createPublicDashboardUseTemplate();
-    redirectToRelativeLink(grantDashboardExportOwnPermissionUrl);
-    redirectToRelativeLink(denyDashboardExportPublicPermissionUrl);
+    permissions().grantDashboardExportOwnPermission();
+    permissions().denyDashboardExportPublicPermission();
     var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     configurationPage.openEditPublicDashboardsPage().getDashboardExportButtonOfDashboard("New public dashboard")
         .shouldBe(Condition.disappear);
@@ -354,8 +354,8 @@ public class DashboardConfigurationTest extends BaseTest {
   public void testCanExportOnlyPublicDashboards() {
     createPrivateDashboardUseTemplate();
     createPublicDashboardUseTemplate();
-    redirectToRelativeLink(denyDashboardExportOwnPermissionUrl);
-    redirectToRelativeLink(grantDashboardExportPublicPermissionUrl);
+    permissions().denyDashboardExportOwnPermission();
+    permissions().grantDashboardExportPublicPermission();
     DashboardConfigurationPage configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     DashboardModificationPage publicDashboardPage = configurationPage.openEditPublicDashboardsPage();
     publicDashboardPage.waitForDashboardTableToLoad();
@@ -395,11 +395,7 @@ public class DashboardConfigurationTest extends BaseTest {
     SelenideElement dashboard = modificationPage.getDashboardRowByName(name);
     dashboard.shouldBe(Condition.appear);
     modificationPage.getDashboardCellByNameAndPosition(name, 1).shouldHave(Condition.exactText(name));
-    if (isPublicDashboard) {
-      modificationPage.getDashboardCellByNameAndPosition(name, 3).shouldHave(Condition.exactText(description));
-    } else {
-      modificationPage.getDashboardCellByNameAndPosition(name, 2).shouldHave(Condition.exactText(description));
-    }
+    modificationPage.getDashboardCellByNameAndPosition(name, 3).shouldHave(Condition.exactText(description));
   }
 
   private void createPrivateDashboardUseTemplate() {
@@ -426,12 +422,12 @@ public class DashboardConfigurationTest extends BaseTest {
 
   @Test
   public void testVisibleSharingDashboardButton() {
-    redirectToRelativeLink(denyDashboardShareLinkPermissionUrl);
+    permissions().denyDashboardShareLinkPermission();
     LinkNavigator.redirectToPortalDashboardConfiguration();
     DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
     modificationPage.getDashboardShareLinkButton().shouldBe(Condition.disappear);
 
-    redirectToRelativeLink(grantDashboardShareLinkPermissionUrl);
+    permissions().grantDashboardShareLinkPermission();
     refreshPage();
     DashboardModificationPage modificationPage2 = navigateToConfigurationAndEditDashboards(true);
     modificationPage2.getDashboardShareLinkButton().shouldBe(Condition.appear);
@@ -439,7 +435,7 @@ public class DashboardConfigurationTest extends BaseTest {
 
   @Test
   public void testSharingDashboard() {
-    redirectToRelativeLink(grantDashboardShareLinkPermissionUrl);
+    permissions().grantDashboardShareLinkPermission();
     LinkNavigator.redirectToPortalDashboardConfiguration();
     DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
     modificationPage.getDashboardShareLinkDialog();
@@ -447,8 +443,8 @@ public class DashboardConfigurationTest extends BaseTest {
 
   @Test
   public void testImportOnlyPublicDashboards() {
-    redirectToRelativeLink(grantDashboardImportPublicPermissionUrl);
-    redirectToRelativeLink(denyDashboardImportOwnPermissionUrl);
+    permissions().grantDashboardImportPublicPermission();
+    permissions().denyDashboardImportOwnPermission();
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
@@ -460,8 +456,8 @@ public class DashboardConfigurationTest extends BaseTest {
 
   @Test
   public void testImportOnlyPrivateDashboards() {
-    redirectToRelativeLink(denyDashboardImportPublicPermissionUrl);
-    redirectToRelativeLink(grantDashboardImportOwnPermissionUrl);
+    permissions().denyDashboardImportPublicPermission();
+    permissions().grantDashboardImportOwnPermission();
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
@@ -473,7 +469,7 @@ public class DashboardConfigurationTest extends BaseTest {
 
   @Test
   public void testImportPrivateDashboard() {
-    redirectToRelativeLink(grantDashboardImportOwnPermissionUrl);
+    permissions().grantDashboardImportOwnPermission();
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePrivateDashboardMenu();
@@ -493,7 +489,7 @@ public class DashboardConfigurationTest extends BaseTest {
 
   @Test
   public void testImportDashboardWithDuplicateLocales() {
-    redirectToRelativeLink(grantDashboardImportOwnPermissionUrl);
+    permissions().grantDashboardImportOwnPermission();
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePrivateDashboardMenu();
@@ -532,7 +528,7 @@ public class DashboardConfigurationTest extends BaseTest {
 
   @Test
   public void testImportPublicDashboard() {
-    redirectToRelativeLink(grantDashboardImportPublicPermissionUrl);
+    permissions().grantDashboardImportPublicPermission();
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
