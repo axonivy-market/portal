@@ -36,7 +36,7 @@
 
   <h:outputStylesheet name="custom.css" library="ivy-branding" />
 
-  <c:set var="loadPortalScript" value="#{loadPortalScript == 'false' ? 'false' : 'true'}" />
+  <c:set var="loadPortalScript" value="#{loadPortalScript == 'false' ? false : true}" />
   <h:outputScript name="responsive-toolkit.js" library="js" />
   <h:outputScript name="main.js" library="js" rendered="#{loadPortalScript}" />
   <h:outputScript name="portal.js" library="js" rendered="#{loadPortalScript}" />
@@ -44,6 +44,7 @@
 
 <h:body styleClass="iframe-body">
   <h:panelGroup layout="block" styleClass="layout-main js-layout-main portal-layout-container">
+    <!-- layoutContentStyleClass: java.lang.String -->
     <div id="main-area-panel"
       class="layout-content js-layout-content #{layoutContentStyleClass}">
       <ui:insert name="pageContent" />

@@ -68,7 +68,7 @@
     </h:form>
   </p:confirmDialog>
 
-  <script>
+  <script type="text/javascript">
 	function returnHomePage() {
       showConfirmDialogBeforeUnload = false;
       window.open('#{htmlSanitizerBean.escapeForJS(userMenuBean.logoutPage)}', '_self');

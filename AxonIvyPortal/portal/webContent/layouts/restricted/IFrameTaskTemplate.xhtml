@@ -93,7 +93,7 @@
     <ui:param name="taskIcon" value="#{iFrameTaskTemplateBean.taskIcon}" />
 
     <ui:define name="content">
-      <script>
+      <script type="text/javascript">
         $(document).ready(function() {
           var taskUrl = '#{htmlSanitizerBean.escapeForJS(iFrameTaskTemplateBean.taskUrl)}';
           if (!taskUrl) {
