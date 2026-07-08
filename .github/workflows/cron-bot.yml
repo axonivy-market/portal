@@ -28,7 +28,7 @@ on:
     - cron: '0 16 * * *'
     # schedule for document release/12
     - cron: '5 17 * * *'
-    # schedule for A11y Audit for release/12
+    # schedule for Lighthouse Audit for release/12
     - cron: '20 17 * * *'
     # LTS10 ***************************************
     # schedule for document screenshot release/10
@@ -142,7 +142,7 @@ jobs:
               })
 
         - uses: actions/github-script@v9
-          name: Trigger A11y Report for release/12.0
+          name: Trigger Lighthouse Audit for release/12.0
           if: github.event.schedule == '20 17 * * *'
           with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -150,7 +150,7 @@ jobs:
               await github.rest.actions.createWorkflowDispatch({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                workflow_id: 'a11y-report.yml',
+                workflow_id: 'lighthouse-report.yml',
                 ref: 'release/12.0'
               })
               
