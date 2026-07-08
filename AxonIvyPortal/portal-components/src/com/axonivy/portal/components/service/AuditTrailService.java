@@ -62,6 +62,24 @@ public class AuditTrailService {
     }
   }
 
+    public void save(String input) {
+    try {
+      String author = Ivy.session().getSessionUserName();
+      AuditTrailDTO newEntry = AuditTrailDTOFactory.build(author, input);
+      AuditTrailBundle bundle = Ivy.repo().get(AuditTrailBundle.class);
+      if (bundle == null) {
+        bundle = new AuditTrailBundle();
+      }
+      List<AuditTrailDTO> merged = new ArrayList<>(bundle.getEntries());
+      merged.add(newEntry);
+      merged.sort((a, b) -> b.getTimestamp().compareTo(a.getTimestamp()));
+      bundle.setEntries(merged);
+      Ivy.repo().save(bundle);
+    } catch (Exception e) {
+      Ivy.log().error("Failed to save audit trail ", e);
+    }
+  }
+
   public List<AuditTrailDTO> load(ICase caze) {
     try {
       AuditTrailBundle bundle = Ivy.repo().get(AuditTrailBundle.class);
