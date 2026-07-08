@@ -16,15 +16,15 @@
   <cc:attribute name="requiredMessage" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/RequiredFieldMessage')}" 
   	shortDescription="Validation message displayed when the required field is empty. Type: String. Default value: 'This field is required'. Required: false."/>
   <cc:attribute name="forceSelection" type="java.lang.Boolean" default="true" shortDescription="When enabled, only users from the suggestion list can be selected. Type: boolean. Default value: true. Required: false." />
-  <cc:attribute name="minQueryLength" default="1" shortDescription="Minimum number of characters required to start searching. Type: int. Default value: 1. Required: false." />
-  <cc:attribute name="isDisabled" shortDescription="Disables the user selection input. Type: boolean. Default value: false. Required: false." />
-  <cc:attribute name="isRequired" shortDescription="Marks the user selection field as required. Type: boolean. Default value: false. Required: false." />
-  <cc:attribute name="isReadOnly" shortDescription="Prevents changing the selected user when enabled. Type: boolean. Default value: false. Required: false." />
+  <cc:attribute name="minQueryLength" type="java.lang.Integer" default="1" shortDescription="Minimum number of characters required to start searching. Type: int. Default value: 1. Required: false." />
+  <cc:attribute name="isDisabled" type="java.lang.Boolean" shortDescription="Disables the user selection input. Type: boolean. Default value: false. Required: false." />
+  <cc:attribute name="isRequired" type="java.lang.Boolean" shortDescription="Marks the user selection field as required. Type: boolean. Default value: false. Required: false." />
+  <cc:attribute name="isReadOnly" type="java.lang.Boolean" shortDescription="Prevents changing the selected user when enabled. Type: boolean. Default value: false. Required: false." />
   <cc:attribute name="hightlight" type="java.lang.Boolean" default="true" shortDescription="Automatically highlights the first suggested user. Type: boolean. Default value: true. Required: false." />
-  <cc:attribute name="size" shortDescription="Number of characters used to define the input width. Type: int. Required: false." />
+  <cc:attribute name="size" type="java.lang.Integer" shortDescription="Number of characters used to define the input width. Type: int. Required: false." />
   <cc:attribute name="itemLabel" default="#{user.getDisplayName()}"
     shortDescription="Text displayed for users in the dropdown and the selected value. Type: String. Default value: user's display name. Required: false." />
-  <cc:attribute name="scrollHeight" default="390" shortDescription="Maximum height of the autocomplete dropdown panel. Type: int. Default value: 390. Required: false." />
+  <cc:attribute name="scrollHeight" type="java.lang.Integer" default="390" shortDescription="Maximum height of the autocomplete dropdown panel. Type: int. Default value: 390. Required: false." />
   <cc:attribute name="inputStyleClass" shortDescription="CSS style class applied to the autocomplete input field. Type: String. Required: false." />
   <cc:attribute name="autoCompleteStyleClass" shortDescription="CSS style class applied to the autocomplete component. Type: String. Required: false." />
   <cc:attribute name="autoCompletePanelStyleClass" shortDescription="CSS style class applied to the autocomplete dropdown panel. Type: String. Required: false." />
@@ -32,7 +32,7 @@
     shortDescription="Custom method for loading users. Must accept a String query and return List&lt;UserDTO&gt;. Type: Method Expression. Defaul: completeUser. Required: false." />
   <cc:attribute name="cache" type="java.lang.Boolean" default="true" shortDescription="Caches autocomplete search results when enabled. Type: boolean. Default value: true. Required: false." />
   <cc:attribute name="moreText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/More')}..." shortDescription="Text displayed for the 'More' link when results exceed the limit. Type: String. Default value: More.... Required: false." />
-  <cc:attribute name="queryDelay" default="300" shortDescription="Delay in milliseconds before sending the search query. Type: int. Default value: 300. Required: false." />
+  <cc:attribute name="queryDelay" default="300" type="java.lang.Integer" shortDescription="Delay in milliseconds before sending the search query. Type: int. Default value: 300. Required: false." />
   <cc:attribute name="maxResults" default="100" type="java.lang.Integer" shortDescription="Maximum number of results displayed in the dropdown. Type: int. Default value: 100. Required: false." />
   <cc:attribute name="hasCustomizedSelectionList" type="java.lang.Boolean" default="false" shortDescription="Displays a customized selection list when enabled. Type: boolean. Default value: false. Required: false." />
   <cc:attribute name="emptyMessage" shortDescription="Message displayed when no results are available. Type: String. Default value: No results. Required: false." 
