@@ -87,7 +87,7 @@
     <p:remoteCommand id="update-welcome-text-#{widget.id}-rc" name="updateWelcomeText_#{widget.internalId}" update="welcome-text welcome-text-dark-mode" process="@this" async="true"
       actionListener="#{dashboardWelcomeWidgetBean.updateWelcomeText(widget)}"
       oncomplete="WelcomeWidget.updateWelcomeTextStyles('#{htmlSanitizerBean.escapeForJS(widget.id)}','#{htmlSanitizerBean.escapeForJS(widget.welcomeTextColor)}', '#{htmlSanitizerBean.escapeForJS(widget.welcomeTextColorDarkMode)}', '#{htmlSanitizerBean.escapeForJS(widget.welcomeTextPosition)}','#{htmlSanitizerBean.escapeForJS(widget.welcomeTextSize)}');" />
-    <script>
+    <script type="text/javascript">
       $(document).ready(function() {
         WelcomeWidget.init('#{htmlSanitizerBean.escapeForJS(widget.id)}',
             '#{htmlSanitizerBean.escapeForJS(widget.welcomeTextColor)}',

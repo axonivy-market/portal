@@ -279,7 +279,7 @@
     <p:remoteCommand name="initGreetingTexts" update="welcome-text-input-container"
       actionListener="#{dashboardWelcomeWidgetConfigurationBean.initClientTime()}"
       oncomplete="WelcomeWidgetConfiguration.updatePreviewText('#{widget.greeting}');" />
-    <script>
+    <script type="text/javascript">
       $(document).ready(function() {
        updateAll();
       });
