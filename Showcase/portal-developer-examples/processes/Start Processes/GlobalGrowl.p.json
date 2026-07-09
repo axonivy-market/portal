@@ -234,7 +234,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.publicapi.PortalGrowlMessageAPI;",
-            "PortalGrowlMessageAPI.setCustomMessage(\"Task is completed\");"
+            "PortalGrowlMessageAPI.setCustomMessage(\"Task is completed\", \"This is a growl message customization\");"
           ]
         }
       },
@@ -324,7 +324,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.publicapi.PortalGrowlMessageAPI;",
-            "PortalGrowlMessageAPI.setCustomMessage(\"Task with skip task list is completed\");"
+            "PortalGrowlMessageAPI.setCustomMessage(\"Task with skip task list is completed\", \"This is a growl message customization\");"
           ]
         }
       },
