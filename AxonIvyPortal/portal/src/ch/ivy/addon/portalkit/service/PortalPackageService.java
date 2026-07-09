@@ -18,12 +18,18 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
+import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
+import com.axonivy.portal.dto.menu.MenuOrder;
 import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
+import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
+import ch.ivy.addon.portalkit.dto.UserMenu;
+import ch.ivy.addon.portalkit.dto.casedetails.CaseDetails;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.PortalPackageFile;
@@ -163,13 +169,28 @@ public class PortalPackageService {
       switch (file) {
         case DASHBOARD -> importDashboards(json);
         case EXTERNAL_LINK -> importExternalLinks(json);
-        default -> Ivy.var().set(file.getVariableKey(), json);
+        case CUSTOM_STATISTIC -> importList(json, Statistic.class, file.getVariableKey());
+        case USER_MENU -> importList(json, UserMenu.class, file.getVariableKey());
+        case CASE_DETAIL -> importList(json, CaseDetails.class, file.getVariableKey());
+        case THIRD_PARTY_APP -> importList(json, Application.class, file.getVariableKey());
+        case CUSTOM_MENU_ITEMS -> importList(json, CustomSubMenuItem.class, file.getVariableKey());
+        case MENU_ORDER -> importSingle(json, MenuOrder.class, file.getVariableKey());
       }
       return true;
     } catch (Exception e) {
       Ivy.log().error("Failed to import Portal package file {0}", e, file.getFilename());
       return false;
     }
+  }
+
+  private <T> void importList(String json, Class<T> type, String variableKey) {
+    List<T> entities = BusinessEntityConverter.jsonValueToEntities(json, type);
+    Ivy.var().set(variableKey, BusinessEntityConverter.entityToJsonValue(entities));
+  }
+
+  private <T> void importSingle(String json, Class<T> type, String variableKey) {
+    T entity = BusinessEntityConverter.jsonValueToEntity(json, type);
+    Ivy.var().set(variableKey, BusinessEntityConverter.entityToJsonValue(entity));
   }
 
   private void importDashboards(String json) {
