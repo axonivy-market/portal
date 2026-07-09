@@ -97,7 +97,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   public void selectPackageManagementType() {
     waitForDashboardConfigurationTypeSelectionAppear();
     $("a[id$='package-management-type']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("#portalPackageForm").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='portal-package-form']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public boolean isPackageManagementTypeDisplayed() {
@@ -107,6 +107,39 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public void clickExportButton() {
     $("button[id$='export-btn']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+
+  public SelenideElement openImportPackageDialog() {
+    $("button[id$='import-btn']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    return $("[id$='portal-package-import-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void uploadPackageFile(String fileName) {
+    $("input[id$='importFileUpload_input']").sendKeys(FileHelper.getAbsolutePathToTestFile(fileName));
+  }
+
+  public void confirmImportPackage() {
+    $("[id$='portal-package-import-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("[id$='dialogActions']").$("button").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public SelenideElement getImportDialogMessages() {
+    return $("[id$='import-dialog-messages']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getImportPreviewNoValidFilesMessage() {
+    return $(".portal-package-alert-danger-fill").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getImportPreviewEntryRow(String filename) {
+    return $(".portal-package-file-list").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("div.flex.align-items-center.gap-2.px-3.py-2.border-bottom-1.surface-border")
+        .filter(Condition.text(filename)).first();
+  }
+
+  public boolean isConfirmImportButtonDisabled() {
+    return $("[id$='portal-package-import-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("[id$='dialogActions']").$("button").is(Condition.disabled);
   }
 
   public DashboardModificationPage openEditPrivateDashboardsPage() {

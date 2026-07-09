@@ -135,7 +135,7 @@ public class PortalPackageService {
     zos.closeEntry();
   }
 
-  // ── IMPORT ────────────────────────────────────────────────────────────────
+  // IMPORT
 
   public Map<String, Boolean> importPackage(byte[] zipBytes) {
     Map<String, Boolean> results = new LinkedHashMap<>();
