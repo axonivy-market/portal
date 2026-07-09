@@ -29,9 +29,9 @@ public class TaskCaseDetailA11yTest extends BaseTest{
     super.setup();
     login(TestAccount.ADMIN_USER);
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
-    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
-    grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_CUSTOM_FIELDS_ACTION);
-    grantSpecificPortalPermission(PortalPermission.TASK_WRITE_EXPIRY_ACTIVATOR);
+    permissions().grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    permissions().grantSpecificPortalPermission(PortalPermission.TASK_DISPLAY_CUSTOM_FIELDS_ACTION);
+    permissions().grantSpecificPortalPermission(PortalPermission.TASK_WRITE_EXPIRY_ACTIVATOR);
   }
 
   @Test
