@@ -14,7 +14,7 @@ Access it through the :guilabel:`Portal Configuration` user menu item.
 Overview
 ========
 
-The Portal Configuration page has three tabs:
+The Portal Configuration page has four tabs:
 
 .. table::
    :widths: 20 40 40
@@ -30,6 +30,9 @@ The Portal Configuration page has three tabs:
    +-------------------------+---------------------------------------------------+--------------------------------------------+
    | **Sidebar**             | ``AXONIVY_PORTAL_ADMIN`` role                     | Configure sidebar menu items and           |
    |                         |                                                   | sidebar behaviour (admin only)             |
+   +-------------------------+---------------------------------------------------+--------------------------------------------+
+   | **Package Management**  | :ref:`🔑PortalPackageManagement                   | Export or import Portal configuration      |
+   |                         | <PortalPackageManagement>`                        | as a JSON package                          |
    +-------------------------+---------------------------------------------------+--------------------------------------------+
 
 Private dashboards configuration
@@ -372,6 +375,81 @@ Below the menu items table, the **Sidebar Settings** card provides controls that
 .. note::
    When either Sidebar Setting is changed, the page automatically reloads to apply the change.
 
+Package Management configuration
+==================================
+
+.. important::
+   **Access Requirements**: The :guilabel:`Package Management` tab is only accessible to users with the :ref:`🔑PortalPackageManagement <PortalPackageManagement>` permission.
+
+The tab :guilabel:`Package Management` allows you to export the current Portal configuration into a single zip package, or import a zip package to apply its configuration.
+
+|package-management-configuration|
+
+Exportable configuration files
+-------------------------------
+
+A package contains the following JSON files. Only files with existing data are included in an export.
+
+.. table::
+   :widths: 30 70
+
+   +----------------------------------------+------------------------------------------------------------------------------------+
+   | File                                   | Description                                                                        |
+   +========================================+====================================================================================+
+   | ``Portal_Dashboard.json``              | Dashboard widget layouts and configurations for all Portal dashboards              |
+   +----------------------------------------+------------------------------------------------------------------------------------+
+   | ``Portal_CustomStatistic.json``        | Custom statistic chart definitions displayed on Portal dashboards                  |
+   +----------------------------------------+------------------------------------------------------------------------------------+
+   | ``Portal_UserMenu.json``               | Custom items and links added to the default user menu                              |
+   +----------------------------------------+------------------------------------------------------------------------------------+
+   | ``Portal_CaseDetails.json``            | Configuration of built-in widgets or custom panels on the case details page        |
+   +----------------------------------------+------------------------------------------------------------------------------------+
+   | ``Portal_ThirdPartyApplications.json`` | Third-party application links integrated into the Portal menu                      |
+   +----------------------------------------+------------------------------------------------------------------------------------+
+   | ``Portal_CustomMenuItems.json``        | Custom items added to the left-side navigation menu                                |
+   +----------------------------------------+------------------------------------------------------------------------------------+
+   | ``Portal_ExternalLinks.json``          | External link processes displayed in the left-side navigation or process list page |
+   +----------------------------------------+------------------------------------------------------------------------------------+
+   | ``Portal_MenuOrder.json``              | Custom ordering of the main navigation menu items in the sidebar                   |
+   +----------------------------------------+------------------------------------------------------------------------------------+
+
+HowTo: export a Portal package
+--------------------------------
+
+#. Select :guilabel:`Export` button.
+
+#. The package is downloaded as ``Portal_Package.zip``.
+
+HowTo: import a Portal package
+--------------------------------
+
+#. Select :guilabel:`Import` button.
+
+#. The :guilabel:`Import Portal Package` dialog is opened.
+
+#. Drag and drop, or click :guilabel:`browse files` to select the zip file containing the Portal package you want to import.
+
+|import-portal-package-dialog|
+
+#. The dialog previews the recognized and unrecognized files found in the uploaded zip:
+
+   - Recognized files are marked valid and will be imported.
+   - Unrecognized files are skipped and will not be imported.
+
+|import-portal-package-preview|
+
+#. Select :guilabel:`Import` button to apply the package.
+
+#. The dialog shows the result for each file: imported successfully, skipped (unrecognized), or failed.
+
+.. important::
+
+      - Importing a package **replaces** the existing configuration for each recognized file type. This action cannot be undone.
+      - File names must match exactly as listed above for a file to be recognized on import.
+
+.. note::
+   Only ``.zip`` files are accepted. If the uploaded file cannot be read, or contains no recognized Portal configuration files, an error message is shown and nothing is imported.
+
 Permission Reference
 ====================
 
@@ -394,6 +472,8 @@ Different Portal Configuration actions require specific permissions:
    | **Share public dashboard link**       | :ref:`🔑ShareDashboardLink <ShareDashboardLink>`                             |
    +---------------------------------------+------------------------------------------------------------------------------+
    | **Manage sidebar navigation**         | ``AXONIVY_PORTAL_ADMIN`` role                                                |
+   +---------------------------------------+------------------------------------------------------------------------------+
+   | **Export/import Portal package**      | :ref:`🔑PortalPackageManagement <PortalPackageManagement>`                   |
    +---------------------------------------+------------------------------------------------------------------------------+
 
 .. include:: ../includes/_common-icon.rst
@@ -430,3 +510,9 @@ Different Portal Configuration actions require specific permissions:
    :alt: Add menu item dialog
 .. |sidebar-settings-panel| image:: ../../screenshots/dashboard-configuration/sidebar-settings-panel.png
    :alt: Sidebar settings panel
+.. |package-management-configuration| image:: ../../screenshots/dashboard-configuration/package-management-configuration.png
+   :alt: Package management configuration tab
+.. |import-portal-package-dialog| image:: ../../screenshots/dashboard-configuration/import-portal-package-dialog.png
+   :alt: Import Portal package dialog
+.. |import-portal-package-preview| image:: ../../screenshots/dashboard-configuration/import-portal-package-preview.png
+   :alt: Import Portal package preview with valid and invalid files
