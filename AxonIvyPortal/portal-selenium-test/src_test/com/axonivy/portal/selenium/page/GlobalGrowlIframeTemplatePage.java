@@ -29,4 +29,11 @@ public class GlobalGrowlIframeTemplatePage extends TemplatePage {
     return new NewDashboardPage();
   }
 
+  public void clickProceedToNextTask() {
+    String idSelector = "content-form:proceed";
+    waitForElementDisplayed(By.id(idSelector), true);
+    $("button[id='" + idSelector + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    clickByJavaScript($("button[id='" + idSelector + "']"));
+    $("label[id='content-form:customized-comment']").shouldBe(Condition.appear);
+  }
 }
