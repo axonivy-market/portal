@@ -17,8 +17,8 @@
       <url>https://nexus.axonivy.com/repository/maven-releases/</url>
     </repository>
     <snapshotRepository>
-      <id>nexus.axonivy.com</id>
-      <url>https://nexus.axonivy.com/repository/maven-snapshots/</url>
+      <id>nexus.ivyteam.io</id>
+      <url>https://nexus.ivyteam.io/repository/maven-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
   <properties>
