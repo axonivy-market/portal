@@ -13,14 +13,25 @@ import java.util.zip.ZipOutputStream;
 
 import org.primefaces.model.StreamedContent;
 
+import ch.ivy.addon.portalkit.configuration.Application;
+import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.UserMenu;
+import ch.ivy.addon.portalkit.dto.casedetails.CaseDetails;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 
+import com.axonivy.portal.bo.Statistic;
+import com.axonivy.portal.bo.StatisticAggregation;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
+import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.axonivy.portal.components.enums.MenuKind;
+import com.axonivy.portal.dto.menu.MenuOrder;
+import com.axonivy.portal.dto.menu.MenuOrderEntry;
+import com.axonivy.portal.enums.statistic.ChartTarget;
+import com.axonivy.portal.enums.statistic.ChartType;
+import com.axonivy.portal.menu.management.enums.MenuSource;
 
 public class TestPortalPackageUtils {
 
@@ -50,6 +61,54 @@ public class TestPortalPackageUtils {
     dashboard.setTitles(List.of(new DisplayName(Locale.ENGLISH, title)));
     dashboard.setWidgets(List.of(widget));
     return dashboard;
+  }
+
+  public static Statistic buildStatistic(String id, String title, String field) {
+    Statistic statistic = new Statistic();
+    statistic.setId(id);
+    statistic.setNames(List.of(new DisplayName(Locale.ENGLISH, title)));
+    statistic.setChartTarget(ChartTarget.TASK);
+    statistic.setChartType(ChartType.NUMBER);
+    StatisticAggregation aggregation = new StatisticAggregation();
+    aggregation.setField(field);
+    statistic.setStatisticAggregation(aggregation);
+    return statistic;
+  }
+
+  public static CaseDetails buildCaseDetails(String id) {
+    CaseDetails caseDetails = new CaseDetails();
+    caseDetails.setId(id);
+    return caseDetails;
+  }
+
+  public static Application buildApplication(String id, String name, String displayName, String link) {
+    Application application = new Application();
+    application.setId(id);
+    application.setName(name);
+    application.setDisplayName(displayName);
+    application.setLink(link);
+    return application;
+  }
+
+  public static CustomSubMenuItem buildCustomSubMenuItem(String id, String label, String link) {
+    CustomSubMenuItem item = new CustomSubMenuItem();
+    item.setId(id);
+    item.setMenuKind(MenuKind.EXTERNAL_LINK);
+    item.setLabel(label);
+    item.setLink(link);
+    return item;
+  }
+
+  public static MenuOrder buildMenuOrder(String version, String entryId) {
+    return new MenuOrder(version, List.of(new MenuOrderEntry(entryId, MenuSource.STANDARD)));
+  }
+
+  public static ExternalLink buildExternalLink(String id, String title, String link) {
+    ExternalLink externalLink = new ExternalLink();
+    externalLink.setId(id);
+    externalLink.setNames(List.of(new DisplayName(Locale.ENGLISH, title)));
+    externalLink.setLink(link);
+    return externalLink;
   }
 
   public static byte[] buildZip(Map<String, String> entries) throws IOException {
