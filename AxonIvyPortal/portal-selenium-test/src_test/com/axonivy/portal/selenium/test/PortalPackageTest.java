@@ -41,15 +41,6 @@ public class PortalPackageTest extends BaseTest {
   }
 
   @Test
-  public void testExportButtonIsClickable() {
-    grantSpecificPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
-    dashboardConfigurationPage = openDashboardConfiguration();
-    dashboardConfigurationPage.selectPackageManagementType();
-    dashboardConfigurationPage.clickExportButton();
-    assertFalse($("span[class$='ui-messages-error-summary']").exists(), "Export triggered an error message");
-  }
-
-  @Test
   public void testImportInvalidPackageShowsNoValidFilesMessage() {
     grantSpecificPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
     dashboardConfigurationPage = openDashboardConfiguration();

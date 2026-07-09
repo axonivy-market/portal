@@ -105,10 +105,6 @@ public class DashboardConfigurationPage extends TemplatePage {
     return $("a[id$='package-management-type']").is(Condition.visible);
   }
 
-  public void clickExportButton() {
-    $("button[id$='export-btn']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-  }
-
   public SelenideElement openImportPackageDialog() {
     $("button[id$='import-btn']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     return $("[id$='portal-package-import-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
