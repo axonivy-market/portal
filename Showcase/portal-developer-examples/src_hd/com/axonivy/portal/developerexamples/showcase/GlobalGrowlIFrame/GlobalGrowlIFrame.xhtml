@@ -17,7 +17,8 @@
             ui-g-12 ui-md-3 ui-lg-2, 
             ui-g-12 ui-md-9 ui-lg-4">
 
-          <p:outputLabel for="dataField" value="Comment" />
+          <p:outputLabel id="default-comment" for="dataField" rendered="#{!data.isCustomized}" value="Comment" />
+          <p:outputLabel id="customized-comment" for="dataField" rendered="#{data.isCustomized}" value="Comment" />
           <p:inputText id="dataField" value="#{data.field}" />
 
         </p:panelGrid>

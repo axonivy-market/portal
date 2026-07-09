@@ -184,5 +184,156 @@
       "connect" : [
         { "id" : "f45", "to" : "f11", "via" : [ { "x" : 896, "y" : 320 } ] }
       ]
+    }, {
+      "id" : "f48",
+      "type" : "RequestStart",
+      "name" : "customizedMessage.ivp",
+      "config" : {
+        "signature" : "customizedMessage",
+        "request" : {
+          "name" : "Display growl customized message for task using IFrame"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 416 },
+        "labelOffset" : { "x" : 57, "y" : 49 }
+      },
+      "connect" : [
+        { "id" : "f50", "to" : "f49" }
+      ]
+    }, {
+      "id" : "f49",
+      "type" : "DialogCall",
+      "name" : "GlobalGrowlIFrame",
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame:start(Boolean)",
+        "call" : {
+          "map" : {
+            "param.isCustomized" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 416 },
+        "size" : { "width" : 160, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f52", "to" : "f53" }
+      ]
+    }, {
+      "id" : "f51",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 416 }
+      }
+    }, {
+      "id" : "f53",
+      "type" : "Script",
+      "name" : "Customize growl",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.PortalGrowlMessageAPI;",
+            "PortalGrowlMessageAPI.setCustomMessage(\"Task is completed\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 508, "y" : 417 },
+        "size" : { "width" : 152, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f54", "to" : "f51", "color" : "default" }
+      ]
+    }, {
+      "id" : "f55",
+      "type" : "RequestStart",
+      "name" : "customizedMessageWithSkipTaskList.ivp",
+      "config" : {
+        "signature" : "customizedMessageWithSkipTaskList",
+        "request" : {
+          "name" : "Display growl customized message for task using IFrame with skip task list"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 520 },
+        "labelOffset" : { "x" : 97, "y" : 49 }
+      },
+      "connect" : [
+        { "id" : "f56", "to" : "f57" }
+      ]
+    }, {
+      "id" : "f57",
+      "type" : "DialogCall",
+      "name" : "GlobalGrowlIFrame",
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame:start(Boolean)"
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 520 },
+        "size" : { "width" : 160, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f68", "to" : "f62" }
+      ]
+    }, {
+      "id" : "f61",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 952, "y" : 520 }
+      }
+    }, {
+      "id" : "f62",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Task with skip task list",
+          "skipTasklist" : true
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 436, "y" : 520 }
+      },
+      "connect" : [
+        { "id" : "f63", "to" : "f64", "color" : "default" }
+      ]
+    }, {
+      "id" : "f64",
+      "type" : "DialogCall",
+      "name" : "GlobalGrowlIFrame",
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame:start(Boolean)",
+        "call" : {
+          "map" : {
+            "param.isCustomized" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 584, "y" : 520 },
+        "size" : { "width" : 160, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f65", "to" : "f66" }
+      ]
+    }, {
+      "id" : "f66",
+      "type" : "Script",
+      "name" : "Customize growl",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.PortalGrowlMessageAPI;",
+            "PortalGrowlMessageAPI.setCustomMessage(\"Task with skip task list is completed\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 832, "y" : 520 },
+        "size" : { "width" : 152, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f67", "to" : "f61" }
+      ]
     } ]
 }

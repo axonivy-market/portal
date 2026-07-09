@@ -19,6 +19,7 @@ import com.axonivy.portal.selenium.page.GlobalGrowlIframeTemplatePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessViewerPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
+import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.Condition;
@@ -33,6 +34,13 @@ public class GlobalGrowlTest extends BaseTest {
   private static final String CLOSE_PROCESS_VIEWER_MESSAGE = "You closed the process viewer.";
   private static final String GROWL_STANDARD_MESSAGE_URL =
       "portal-developer-examples/16A7BB2ADC9580A8/frameStandardMessage.ivp";
+  private static final String GROWL_CUSTOMIZED_MESSAGE_URL =
+      "portal-developer-examples/16A7BB2ADC9580A8/customizedMessage.ivp?embedInFrame";
+  private static final String GROWL_CUSTOMIZED_SKIP_TASK_LIST_MESSAGE_URL =
+      "portal-developer-examples/16A7BB2ADC9580A8/customizedMessageWithSkipTaskList.ivp?embedInFrame";
+  private static final String CUSTOMIZED_GROWL_MESSAGE = "Task is completed";
+  private static final String CUSTOMIZED_GROWL_SKIP_TASK_LIST_MESSAGE =
+      "Task with skip task list is completed";
 
   @Override
   @BeforeEach
@@ -72,6 +80,25 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(taskWidgetPage, FINISH_MESSAGE_WITH_DETAILS);
   }
 
+  @Test
+  public void testDisplayCustomizedGrowlAfterFinishTaskWithIFrame() {
+    redirectToRelativeLink(GROWL_CUSTOMIZED_MESSAGE_URL);
+    new TaskTemplateIFramePage().switchToIFrameOfTask();
+    GlobalGrowlIframeTemplatePage taskPage = new GlobalGrowlIframeTemplatePage();
+    NewDashboardPage taskWidgetPage = taskPage.clickProceed();
+    assertGrowlMessage(taskWidgetPage, CUSTOMIZED_GROWL_MESSAGE);
+  }
+
+  @Test
+  public void testDisplayCustomizedGrowlAfterFinishTaskWithIFrameAndSkipTaskList() {
+    redirectToRelativeLink(GROWL_CUSTOMIZED_SKIP_TASK_LIST_MESSAGE_URL);
+    new TaskTemplateIFramePage().switchToIFrameOfTask();
+    GlobalGrowlIframeTemplatePage taskPage = new GlobalGrowlIframeTemplatePage();
+    taskPage.clickProceedToNextTask();
+    taskPage = new GlobalGrowlIframeTemplatePage();
+    NewDashboardPage taskWidgetPage = taskPage.clickProceed();
+    assertGrowlMessage(taskWidgetPage, CUSTOMIZED_GROWL_SKIP_TASK_LIST_MESSAGE);
+  }
 
   @Test
   public void testDisplayDefaultGrowlAfterCancelTaskWithoutIFrame() {
