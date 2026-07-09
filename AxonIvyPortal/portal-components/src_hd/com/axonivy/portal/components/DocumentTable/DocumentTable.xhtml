@@ -197,7 +197,7 @@
           rendered="#{cc.attrs.uploadRendered}"
           update="#{cc.clientId}:document-table document-upload-messages #{cc.attrs.updatedComponentAfterUploaded}"
           invalidSizeMessage="#{documentUploadBean.getFileUploadInvalidSizeMessage(documentUploadBean.fileUploadSizeLimit)}"
-          onstart="/* #{logic.setFileLimit(cc.attrs.fileLimit)} */" sizeLimit="#{documentUploadBean.fileUploadSizeLimit}"
+          onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}" sizeLimit="#{documentUploadBean.fileUploadSizeLimit}"
           styleClass="document-upload-in-dialog" value="#{data.uploadedFile}">
         </p:fileUpload>
         <p:outputPanel id="document-upload-dropzone" styleClass="document-upload-dropzone">
