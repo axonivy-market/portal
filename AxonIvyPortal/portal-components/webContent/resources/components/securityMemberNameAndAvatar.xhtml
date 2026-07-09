@@ -6,17 +6,17 @@
   
 
 <cc:interface>
-  <cc:attribute name="isShowAvatar" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
+  <cc:attribute name="isShowAvatar" type="java.lang.Boolean" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
   <cc:attribute name="id" />
   <cc:attribute name="displayNameId" default="username" />
-  <cc:attribute name="displayName" required="true" />
+  <cc:attribute name="displayName" required="true" type="java.lang.String"/>
   <cc:attribute name="displayNameRendered" type="java.lang.Boolean" default="true" />
   <cc:attribute name="securityMember" required="true" />
-  <cc:attribute name="displayNameStyleClass" />
+  <cc:attribute name="displayNameStyleClass" type="java.lang.String"/>
   <cc:attribute name="containerStyleClass" />
   <cc:attribute name="representName" />
   <cc:attribute name="isStandAlone" type="java.lang.Boolean" default="true" />
-  <cc:attribute name="isShowTechnicalDisplayNameOnTooltip" default="#{portalComponentAvatarBean.getPortalShowTechnicalTooltipOrDefault(false)}" />
+  <cc:attribute name="isShowTechnicalDisplayNameOnTooltip" type="java.lang.Boolean" default="#{portalComponentAvatarBean.getPortalShowTechnicalTooltipOrDefault(false)}" />
   <cc:attribute name="showLabel" type="java.lang.Boolean" default="true"/>
 </cc:interface>
 
