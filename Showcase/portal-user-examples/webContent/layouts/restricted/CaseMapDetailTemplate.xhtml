@@ -26,12 +26,12 @@
               </ui:insert>
               <div class="ui-g-12">
                 <div class="ui-g-12">
-                  <h:outputText value="#{caseMapDetailBean.getDisplayStage(caseMapDetail,stageIndex)}"
+                  <h:outputText value="#{exampleCaseMapDetailBean.getDisplayStage(caseMapDetail,stageIndex)}"
                     styleClass="title-text" id="stage-#{stageIndex}-name" />
                 </div>
 
                 <!-- PROCESS -->
-                <ui:repeat var="process" value="#{caseMapDetailBean.getProcessOfStage(caseMapDetail, stageIndex)}"
+                <ui:repeat var="process" value="#{exampleCaseMapDetailBean.getProcessOfStage(caseMapDetail, stageIndex)}"
                   varStatus="processStatus">
                   <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-6 ui-sm-12 ">
                     <div class="ui-g-12">
@@ -45,7 +45,7 @@
                           <div class="card ui-g-12 description-content height-100">
 
                             <ui:repeat var="desc"
-                              value="#{caseMapDetailBean.getProcessDescription(caseMapDetail, process)}">
+                              value="#{exampleCaseMapDetailBean.getProcessDescription(caseMapDetail, process)}">
                               <div class="ui-g-12">
                                 <div class="ui-g-2 TexAlCenter">
                                   <p:graphicImage library="ivy-cms" name="/Images/check-circle-1" height="20rem" />
@@ -62,7 +62,7 @@
                   </h:panelGroup>
                 </ui:repeat>
                 <!-- SIDE STEP -->
-                <ui:repeat var="process" value="#{caseMapDetailBean.getSideStepOfStage(caseMapDetail, stageIndex)}">
+                <ui:repeat var="process" value="#{exampleCaseMapDetailBean.getSideStepOfStage(caseMapDetail, stageIndex)}">
                   <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12 side-step-panel">
                     <div class="ui-g-12">
                       <div class="dropdown side-step-info ">
@@ -87,7 +87,7 @@
                           <div class="card ui-g-12 description-content">
 
                             <ui:repeat var="desc"
-                              value="#{caseMapDetailBean.getProcessDescription(caseMapDetail, process)}">
+                              value="#{exampleCaseMapDetailBean.getProcessDescription(caseMapDetail, process)}">
                               <div class="ui-g-12">
                                 <div class="ui-g-2 TexAlCenter">
                                   <p:graphicImage library="ivy-cms" name="/Images/check-circle-1" height="20rem" />

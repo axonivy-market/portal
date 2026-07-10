@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.userexamples.dto.CaseMapDetail;
 
-@ManagedBean(name = "caseMapDetailBean")
+@ManagedBean(name = "exampleCaseMapDetailBean")
 @ViewScoped
 public class CaseMapDetailBean implements Serializable {
   private static final long serialVersionUID = 1L;
