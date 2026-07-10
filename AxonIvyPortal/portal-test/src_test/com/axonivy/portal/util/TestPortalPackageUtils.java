@@ -20,6 +20,7 @@ import ch.ivy.addon.portalkit.dto.UserMenu;
 import ch.ivy.addon.portalkit.dto.casedetails.CaseDetails;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 
 import com.axonivy.portal.bo.Statistic;
@@ -109,6 +110,29 @@ public class TestPortalPackageUtils {
     externalLink.setNames(List.of(new DisplayName(Locale.ENGLISH, title)));
     externalLink.setLink(link);
     return externalLink;
+  }
+
+  public static ExternalLink buildExternalLinkWithImage(String id, String title, String link, String imageContent,
+      String imageType) {
+    ExternalLink externalLink = buildExternalLink(id, title, link);
+    externalLink.setImageContent(imageContent);
+    externalLink.setImageType(imageType);
+    return externalLink;
+  }
+
+  public static Dashboard buildDashboardWithWelcomeWidgetImage(String id, String title, String widgetId,
+      String imageContent, String imageType) {
+    WelcomeDashboardWidget widget = new WelcomeDashboardWidget();
+    widget.setId(widgetId);
+    widget.setImageContent(imageContent);
+    widget.setImageType(imageType);
+
+    Dashboard dashboard = new Dashboard();
+    dashboard.setId(id);
+    dashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
+    dashboard.setTitles(List.of(new DisplayName(Locale.ENGLISH, title)));
+    dashboard.setWidgets(List.of(widget));
+    return dashboard;
   }
 
   public static byte[] buildZip(Map<String, String> entries) throws IOException {

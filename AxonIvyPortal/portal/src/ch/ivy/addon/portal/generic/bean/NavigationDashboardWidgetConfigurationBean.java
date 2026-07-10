@@ -1,13 +1,19 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import java.util.Arrays;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 
 import com.axonivy.portal.components.util.ImageUploadResult;
 import com.axonivy.portal.util.ImageUploadUtils;
+import com.axonivy.portal.util.UploadDocumentUtils;
+
+import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
 @ManagedBean
@@ -64,5 +70,14 @@ public class NavigationDashboardWidgetConfigurationBean extends NavigationDashbo
       getWidget().setImageLocationDarkMode(null);
       getWidget().setImageTypeDarkMode(null);
     }
+  }
+
+  public Long getUploadFileLimit() {
+    return UploadDocumentUtils.getImageUploadSizeLimit();
+  }
+
+  public String getFileUploadInvalidSizeMessage() {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize",
+        Arrays.asList(FileUtils.byteCountToDisplaySize(getUploadFileLimit())));
   }
 }

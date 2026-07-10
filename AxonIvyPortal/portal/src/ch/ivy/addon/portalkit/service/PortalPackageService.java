@@ -24,6 +24,7 @@ import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.menu.MenuOrder;
 import com.axonivy.portal.util.ImageUploadUtils;
+import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portalkit.configuration.Application;
@@ -35,6 +36,8 @@ import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.PortalPackageFile;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.NavigationWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -195,6 +198,12 @@ public class PortalPackageService {
 
   private void importDashboards(String json) {
     List<Dashboard> dashboards = BusinessEntityConverter.jsonValueToEntities(json, Dashboard.class);
+    for (Dashboard dashboard : dashboards) {
+      if (DashboardUtils.hasOversizedWidgetImage(dashboard)) {
+        throw new PortalException(
+            "Dashboard '" + dashboard.getTitle() + "' contains an image exceeding the upload size limit.");
+      }
+    }
     dashboards.forEach(this::writeDashboardWidgetImages);
     Ivy.var().set(PortalVariable.DASHBOARD.key, BusinessEntityConverter.entityToJsonValue(dashboards));
   }
@@ -211,6 +220,12 @@ public class PortalPackageService {
 
   private void importExternalLinks(String json) {
     List<ExternalLink> links = BusinessEntityConverter.jsonValueToEntities(json, ExternalLink.class);
+    for (ExternalLink link : links) {
+      if (UploadDocumentUtils.isBase64ImageSizeExceeded(link.getImageContent())) {
+        throw new PortalException(
+            "External link '" + link.getName() + "' contains an image exceeding the upload size limit.");
+      }
+    }
     links.forEach(this::writeExternalLinkImage);
     Ivy.var().set(PortalVariable.EXTERNAL_LINK.key, BusinessEntityConverter.entityToJsonValue(links));
   }
