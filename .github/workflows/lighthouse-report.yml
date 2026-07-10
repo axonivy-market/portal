@@ -74,7 +74,7 @@ jobs:
 
       - name: Build Portal Modules
         run: |
-          mvn clean install -f pom.xml -pl '!AxonIvyPortal/portal-test' -am -DskipTests \
+          mvn clean install -f pom.xml -pl '!AxonIvyPortal/portal-test' -DskipTests \
             -Divy.engine.directory="$ENGINE_DIR"
           mvn clean package -DskipTests -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory="$ENGINE_DIR"
 

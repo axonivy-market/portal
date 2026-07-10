@@ -47,7 +47,7 @@ jobs:
       - name: Build Portal modules
         run: |
           set -o pipefail
-          mvn clean install -f pom.xml -pl '!AxonIvyPortal/portal-test,!AxonIvyPortal/portal-selenium-test' -am \
+          mvn clean install -f pom.xml -pl '!AxonIvyPortal/portal-test,!AxonIvyPortal/portal-selenium-test' \
             -Divy.engine.directory="$ENGINE_DIR" 2>&1 | \
             sed -E "s|[0-9]+\. (WARNING) in ([^ ]*) \(at line ([0-9]+)\)(.*)|::\L\1 file=\2,line=\3::build issue|g" | \
             sed -E "s|\[WARNING\] ${GITHUB_WORKSPACE}/([^:]+):\[([0-9]+),[0-9]+\] (.*)|::warning file=\1,line=\2::\3|g" | \

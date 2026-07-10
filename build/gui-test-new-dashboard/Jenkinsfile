@@ -47,7 +47,7 @@ pipeline {
                 utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
                 echo '====================Build Portal modules===================='
-                maven cmd: "clean install -ntp -f pom.xml -pl '!AxonIvyPortal/portal-test' -am -Divy.engine.directory=${env.engineDir} -DskipTests"
+                maven cmd: "clean install -ntp -f pom.xml -pl '!AxonIvyPortal/portal-test' -Divy.engine.directory=${env.engineDir} -DskipTests"
 
                 echo '====================Build and deploy test package===================='
                 maven cmd: "clean package -ntp -DskipTests -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=${env.engineDir}"

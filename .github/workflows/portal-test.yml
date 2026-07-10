@@ -299,7 +299,6 @@ jobs:
         run: |
           mvn clean install -ntp \
             -pl AxonIvyPortal/portal-components,AxonIvyPortal/portal \
-            -am \
             -Divy.engine.directory=$ENGINE_DIR
 
       - name: Run portal-test tests

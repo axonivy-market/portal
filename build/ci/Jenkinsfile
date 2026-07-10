@@ -20,7 +20,7 @@ pipeline {
           docker.build('build-portal-modules', '-f build/Dockerfile.python .').inside('-v /var/tools/maven-cache:/home/build/') {
             utils = load 'build/common/utils.groovy'
             utils.updatePortalDependenciesAsRangeVersion()
-            maven cmd: "clean install -f pom.xml -pl '!AxonIvyPortal/portal-test,!AxonIvyPortal/portal-selenium-test' -am"
+            maven cmd: "clean install -f pom.xml -pl '!AxonIvyPortal/portal-test,!AxonIvyPortal/portal-selenium-test'"
             builtModules = true
           }
           archiveArtifacts artifacts: '*/*/target/*.iar', allowEmptyArchive: true
