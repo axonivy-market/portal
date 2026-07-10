@@ -2,7 +2,15 @@ package com.axonivy.portal.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.io.ByteArrayOutputStream;
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import com.google.gson.Gson;
 
 import ch.ivyteam.ivy.environment.IvyTest;
 
@@ -12,7 +20,7 @@ class TestThirdPartyDependencies {
   @Test
   void testJsoup() {
     String html = "<html><head><title>Test Title</title></head><body><p>Hello World</p></body></html>";
-    org.jsoup.nodes.Document doc = org.jsoup.Jsoup.parse(html);
+    Document doc = Jsoup.parse(html);
     assertThat(doc.title()).isEqualTo("Test Title");
     assertThat(doc.body().text()).isEqualTo("Hello World");
 
@@ -23,9 +31,9 @@ class TestThirdPartyDependencies {
 
   @Test
   void testPdfBox() throws Exception {
-    try (org.apache.pdfbox.pdmodel.PDDocument doc = new org.apache.pdfbox.pdmodel.PDDocument()) {
+    try (PDDocument doc = new PDDocument()) {
       doc.addPage(new org.apache.pdfbox.pdmodel.PDPage());
-      java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
+      ByteArrayOutputStream out = new ByteArrayOutputStream();
       doc.save(out);
       byte[] pdfBytes = out.toByteArray();
       assertThat(pdfBytes).isNotEmpty();
@@ -36,16 +44,16 @@ class TestThirdPartyDependencies {
 
   @Test
   void testGson() {
-    com.google.gson.Gson gson = new com.google.gson.GsonBuilder().serializeNulls().create();
+    Gson gson = new com.google.gson.GsonBuilder().serializeNulls().create();
 
     // Test serialization
-    java.util.Map<String, String> map = new java.util.HashMap<>();
+    Map<String, String> map = new java.util.HashMap<>();
     map.put("key", "value");
     String json = gson.toJson(map);
     assertThat(json).contains("\"key\":\"value\"");
 
     // Test deserialization
-    java.util.Map<?, ?> deserialized = gson.fromJson(json, java.util.Map.class);
+    Map<?, ?> deserialized = gson.fromJson(json, java.util.Map.class);
     assertThat(deserialized.get("key")).isEqualTo("value");
   }
 }
