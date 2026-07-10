@@ -308,7 +308,7 @@ jobs:
           if [ -n "${{ inputs.testPatternToRun }}" ]; then
             TEST_FILTER="-Dtest=${{ inputs.testPatternToRun }}"
           fi
-          mvn clean verify -ntp \
+          mvn clean test -ntp \
             -f AxonIvyPortal/portal-test/pom.xml \
             -Divy.engine.directory=$ENGINE_DIR \
             $TEST_FILTER

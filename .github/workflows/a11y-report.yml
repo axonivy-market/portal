@@ -85,7 +85,7 @@ jobs:
         continue-on-error: true
         run: |
           mkdir -p AxonIvyPortal/portal-selenium-test/target/axe-reports/ || true
-          mvn clean verify \
+          mvn clean test \
             -f AxonIvyPortal/portal-selenium-test/customized_pom.xml \
             -Divy.engine.download.url="${{ github.event.inputs.engineDownloadURL }}" \
             -Dtest="${{ github.event.inputs.testPatternToRun }}" \
