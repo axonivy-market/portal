@@ -1304,7 +1304,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     name: Name
     newTaskNotification: Sie haben neue Aufgaben.
     removeExpiryTimeNote: '{0} ({1}) hat Frist der Aufgabe #{2} entfernt'
-    resetTaskWarning: Diese Aufgabe wurde bereit gestartet. Mit einem Neustart werden bisherige Änderungen verloren gehen. Möchten Sie die Aufgabe trotzdem zurücksetzen?
+    resetTaskWarning: Diese Aufgabe wurde bereits gestartet. Mit einem Neustart werden bisherige Änderungen verloren gehen. Möchten Sie die Aufgabe trotzdem zurücksetzen?
     responsibleAfterEscalation: Verantwortlich nach Eskalation
     setDeadlineNote: '{0} ({1}) hat das Fälligkeitsdatum von der Aufgabe #{2} zum {3} angepasst'
     setNameNote: Der Aufgabenname wurde durch {0} von {1} auf {2} geändert
