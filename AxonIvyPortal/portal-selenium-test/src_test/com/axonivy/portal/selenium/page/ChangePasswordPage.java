@@ -3,7 +3,6 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
@@ -53,7 +52,7 @@ public class ChangePasswordPage extends TemplatePage {
         DEFAULT_TIMEOUT);
   }
 
-  public WebElement getChangePasswordDialog() {
+  public SelenideElement getChangePasswordDialog() {
     Sleeper.sleep(200);// sleep a bit to make focus field effect before taking the screenshot
     return findElementById("change-password-dialog");
   }

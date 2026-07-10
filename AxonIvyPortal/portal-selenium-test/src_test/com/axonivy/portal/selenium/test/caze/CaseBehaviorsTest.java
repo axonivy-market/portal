@@ -31,7 +31,7 @@ public class CaseBehaviorsTest extends BaseTest {
   public void setup() {
     super.setup();
     login(TestAccount.ADMIN_USER);
-    grantSpecificPortalPermission(PortalPermission.SHOW_CASE_DETAILS);
+    permissions().grantSpecificPortalPermission(PortalPermission.SHOW_CASE_DETAILS);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
   }
 

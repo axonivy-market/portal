@@ -81,7 +81,7 @@ public class CaseDetailsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     newDashboardPage = new NewDashboardPage();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
-    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    permissions().grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
   }
 
   @Test
@@ -127,7 +127,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testShareCaseDetails() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(grantShareLinkCaseDetailsPermission);
+    permissions().grantShareLinkCaseDetailsPermission();
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openCaseList();
@@ -138,7 +138,7 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.getShareButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     caseDetailsPage.getShareDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
-    redirectToRelativeLink(denyShareLinkCaseDetailsPermission);
+    permissions().denyShareLinkCaseDetailsPermission();
     redirectToNewDashBoard();
     mainMenuPage.openCaseList();
     caseDetailsPage = caseWidgetPage.openDetailsCase(ORDER_PIZZA);
@@ -489,8 +489,8 @@ public class CaseDetailsTest extends BaseTest {
 
   @AfterEach
   public void teardown() {
-    denySpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
-    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    permissions().denySpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+    permissions().denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
   }
 
   @Test
@@ -560,7 +560,7 @@ public class CaseDetailsTest extends BaseTest {
 
   @Test
   public void testUncheckSystemNotesByDefaultForAdminUser() {
-    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    permissions().grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
     updateGlobalVariable(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "false");
     redirectToRelativeLink(CREATE_NOTES);
 
@@ -579,7 +579,7 @@ public class CaseDetailsTest extends BaseTest {
     updateGlobalVariable(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "false");
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink(CREATE_NOTES);
-    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    permissions().grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
 
     CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsCase("Create note");
@@ -589,7 +589,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.clickOnSystemNotesCheckbox(true);
 
     detailsPage.getNotesWithContent("System note").shouldHave(size(1));
-    denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    permissions().denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
   }
 
   @Test
@@ -637,7 +637,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testShowCustomFieldsLinkWhenPermissionGranted() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
-    grantSpecificPortalPermission(PortalPermission.CASE_DISPLAY_CUSTOM_FIELDS_ACTION);
+    permissions().grantSpecificPortalPermission(PortalPermission.CASE_DISPLAY_CUSTOM_FIELDS_ACTION);
     redirectToNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
@@ -656,7 +656,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.waitPageLoaded();
     detailsPage.getNotesWithContent("System note").shouldHave(size(0));
 
-    grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+    permissions().grantSpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
     casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsCase("Create note");
     detailsPage.waitPageLoaded();

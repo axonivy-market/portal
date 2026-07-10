@@ -91,7 +91,7 @@ pipeline {
         script {
           withBuildImage {
             def mavenGoal = params.deployToRepo ? 'deploy' : 'install'
-            maven cmd: "clean ${mavenGoal} -Prelease -f pom.xml -Divy.engine.directory=${env.engineDir} -Divy.engine.version=[7.0.0,] -Divy.compiler.engine.start.timeout=120 ${params.engineDownloadURL}"
+            maven cmd: "clean ${mavenGoal} -Prelease -f pom.xml -pl '!AxonIvyPortal/portal-selenium-test' -Divy.engine.directory=${env.engineDir} -Divy.engine.version=[7.0.0,] -Divy.compiler.engine.start.timeout=120 ${params.engineDownloadURL}"
           }
         }
       }
