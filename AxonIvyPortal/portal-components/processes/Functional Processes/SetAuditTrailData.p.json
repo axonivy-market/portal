@@ -1,0 +1,53 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
+  "id" : "19F466DE2D32789B",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.SetAuditTrailDataData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "setAuditTrailData(String)",
+      "config" : {
+        "signature" : "setAuditTrailData",
+        "input" : {
+          "params" : [
+            { "name" : "content", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.content" : "param.content"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 600, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.service.AuditTrailService;",
+            "AuditTrailService.getInstance().save(in.content);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1", "color" : "default" }
+      ]
+    } ]
+}

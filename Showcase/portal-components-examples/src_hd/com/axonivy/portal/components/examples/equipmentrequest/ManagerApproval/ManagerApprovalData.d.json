@@ -16,9 +16,6 @@
   }, {
     "name" : "rejectedReason"
   }, {
-    "name" : "requestData",
-    "type" : "com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequest"
-  }, {
     "name" : "caseId",
     "type" : "java.lang.Long"
   }, {
@@ -29,5 +26,8 @@
     "type" : "ch.ivyteam.ivy.workflow.ICase"
   }, {
     "name" : "content"
+  }, {
+    "name" : "requestData",
+    "type" : "com.axonivy.portal.components.examples.equipmentrequest.EquipmentRequest"
   } ]
 }

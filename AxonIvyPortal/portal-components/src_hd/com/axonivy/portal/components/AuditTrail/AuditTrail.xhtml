@@ -21,7 +21,7 @@
     shortDescription="Header text for the timestamp column. Required: false." />
   <cc:attribute name="customHeader" type="java.lang.String" default="Audit Trail"
     shortDescription="Title text shown in the header section. Required: false." />
-  <cc:attribute name="showAddNote" type="java.lang.Boolean" default="false"
+  <cc:attribute name="hideAddInformation" type="java.lang.Boolean" default="true"
     shortDescription="Whether to display the add-note action for appending information. Required: false." />
 </cc:interface>
 
@@ -37,16 +37,16 @@
         <i class="ti ti-clock audit-trail-history-icon" />
         <span class="audit-trail-title">#{cc.attrs.customHeader}</span>
       </div>
-      <p:commandLink type="button" styleClass="audit-trail-add-link" rendered="#{cc.attrs.showAddNote}"
+      <p:commandLink type="button" styleClass="audit-trail-add-link"
+        rendered="#{!cc.attrs.hideAddInformation and data.isCasePersistent}"
         onclick="PF('addAuditInfoDialog').show()">
         <i class="ti ti-plus" />
-        <span>Add your note</span>
+        <span>Add information</span>
       </p:commandLink>
     </h:panelGroup>
 
     <p:dataTable id="history-table" widgetVar="historyTable" var="entry" value="#{data.auditTrailDTOs}"
-      emptyMessage="No history found." reflow="true" lazy="false"
-      scrollable="true" scrollHeight="200"
+      emptyMessage="No history found." reflow="true" lazy="false" scrollable="true" scrollHeight="200"
       styleClass="audit-trail-history-table #{cc.attrs.tableStyleClass}">
 
       <p:column headerText="#{cc.attrs.contentColumnHeader}" styleClass="audit-trail-content-col">
@@ -71,22 +71,23 @@
 
     </p:dataTable>
 
-    <p:dialog header="Add note" widgetVar="addAuditInfoDialog" modal="true" responsive="true"
+    <p:dialog id="add-information-dialog" header="Add information" widgetVar="addAuditInfoDialog" modal="true" responsive="true"
       closeOnEscape="true" resizable="false" width="480" styleClass="audit-trail-add-dialog"
-      rendered="#{cc.attrs.showAddNote}">
+      rendered="#{!cc.attrs.hideAddInformation}">
       <div class="field">
         <p:inputTextarea id="add-info-input" value="#{data.additionalInformation}" rows="4"
-          styleClass="audit-trail-add-input" placeholder="Add your note here" />
+          styleClass="audit-trail-add-input" placeholder="Add information here" />
       </div>
       <f:facet name="footer">
-        <p:commandButton value="Add" ariaLabel="Add" icon="ti ti-check"
-          actionListener="#{logic.addInformation}" process="@this add-info-input"
-          oncomplete="PF('addAuditInfoDialog').hide(); refreshAuditTrailTable();" />
-        <p:commandLink value="Cancel" ariaLabel="Cancel"
-          onclick="PF('addAuditInfoDialog').hide(); return false;" styleClass="audit-trail-add-cancel" />
+        <div class="flex block align-items-center flex-column">
+          <p:commandButton styleClass="w-full" value="Add" ariaLabel="Add" actionListener="#{logic.addInformation}"
+            process="add-information-dialog" oncomplete="PF('addAuditInfoDialog').hide(); refreshAuditTrailTable();" />
+        </div>
+
       </f:facet>
     </p:dialog>
-    <p:remoteCommand id="refresh-audit-trail-table" name="refreshAuditTrailTable" action="#{logic.getAuditTrailList()}" update="history-table"></p:remoteCommand>
+    <p:remoteCommand id="refresh-audit-trail-table" name="refreshAuditTrailTable" action="#{logic.getAuditTrailList()}" process="@this"
+      update="history-table"></p:remoteCommand>
   </h:panelGroup>
 </cc:implementation>
 
