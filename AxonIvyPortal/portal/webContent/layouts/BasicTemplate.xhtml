@@ -7,7 +7,25 @@
   >
 
 <h:head>
-    
+
+    <script type="text/javascript">
+      (function() {
+        // Guard against Portal's shell ever rendering nested inside another Portal shell
+        // (e.g. an engine-level "back to start" redirect landing inside a task iframe).
+        // Skipped when legitimately embedded cross-origin, e.g. an MS Teams tab.
+        if (window.self === window.top || #{masterDataBean.portalInTeams}) {
+          return;
+        }
+        try {
+          if (window.parent.document.querySelector('.js-layout-wrapper')) {
+            window.top.location.href = window.location.href;
+          }
+        } catch (e) {
+          // Cross-origin parent - not a Portal-in-Portal case, leave as is.
+        }
+      })();
+    </script>
+
     <!-- WARNING: -->
     <!-- This template is used for Portal only. -->
     
