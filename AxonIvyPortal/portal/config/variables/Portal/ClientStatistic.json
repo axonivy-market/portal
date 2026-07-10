@@ -570,7 +570,7 @@
   {
     "id": "7",
     "aggregates": "state",
-    "filter": "state:RUNNING",
+    "filter": "state:RUNNING,isInvolved",
     "permissions": [
       "Everybody"
     ],
