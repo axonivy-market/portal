@@ -70,11 +70,11 @@ jobs:
 
       - name: Build Portal Modules
         run: |
-          mvn clean install -f pom.xml -Divy.engine.directory=$ENGINE_DIR
+          mvn clean install -f pom.xml -pl '!AxonIvyPortal/portal-test' -am -DskipTests -Divy.engine.directory="$ENGINE_DIR"
 
       - name: Build and Deploy Test Package
         run: |
-          mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=$ENGINE_DIR
+          mvn clean package -DskipTests -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=$ENGINE_DIR
           DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
           mkdir -p $DEPLOYMENT
           rm -rf $DEPLOYMENT/*
@@ -85,7 +85,7 @@ jobs:
         continue-on-error: true
         run: |
           mkdir -p AxonIvyPortal/portal-selenium-test/target/axe-reports/ || true
-          mvn clean test \
+          mvn clean verify \
             -f AxonIvyPortal/portal-selenium-test/customized_pom.xml \
             -Divy.engine.download.url="${{ github.event.inputs.engineDownloadURL }}" \
             -Dtest="${{ github.event.inputs.testPatternToRun }}" \
