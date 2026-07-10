@@ -125,14 +125,14 @@ public class PortalPackageService {
 
   private void writeRawVariable(ZipOutputStream zos, PortalPackageFile file) throws IOException {
     String json = Ivy.var().get(file.getVariableKey());
-    if (StringUtils.isNotBlank(json) && !"[]".equals(json.trim())) {
+    if (StringUtils.isNotBlank(json) && !"[]".equals(json.trim()) && "{}".equals(json.trim())) {
       writeEntry(zos, file.getFilename(), json);
     }
   }
 
   private boolean isRawVariableEmpty(PortalPackageFile file) {
     String json = Ivy.var().get(file.getVariableKey());
-    return StringUtils.isBlank(json) || "[]".equals(json.trim());
+    return StringUtils.isBlank(json) || "[]".equals(json.trim()) || "{}".equals(json.trim());
   }
 
   private void writeEntry(ZipOutputStream zos, String name, String content) throws IOException {
