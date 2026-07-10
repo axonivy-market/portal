@@ -18,12 +18,14 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import ch.ivy.addon.portalkit.bo.PortalJsonViews;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 
 /**
  * This class provides method to convert Business entity object into JSON value and reverse
@@ -64,7 +66,7 @@ public class BusinessEntityConverter {
 
   private static String prettyPrintObjectEntityToJsonValue(Object entity) {
     try {
-      return getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(entity);
+      return getObjectMapper().writer().withRootName("dashboard").withDefaultPrettyPrinter().writeValueAsString(entity);
     } catch (JsonProcessingException e) {
       throw new PortalException(e);
     }
@@ -105,6 +107,14 @@ public class BusinessEntityConverter {
   public static <T> List<T> convertJsonNodeToList(JsonNode jsonNode, Class<T> classType) {
     if (Optional.ofNullable(jsonNode).isPresent()) {
       try {
+        List<T> a = getObjectMapper().treeToValue(jsonNode, getListOfJavaType(classType));
+        for (T x : a) {
+          if (x instanceof Dashboard dashboard) {
+            Dashboard dasboard = (Dashboard) x;
+            Ivy.log().error("dashboard id is {0}, name is {1}", dasboard.getId(), dashboard.getDescription());
+          }
+
+        }
         return getObjectMapper().treeToValue(jsonNode, getListOfJavaType(classType));
       } catch (IOException e) {
         throw new PortalException(e);
@@ -130,7 +140,9 @@ public class BusinessEntityConverter {
       objectMapper = JsonMapper
           .builder()
           .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+          .configure(DeserializationFeature.UNWRAP_ROOT_VALUE,false)
           .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
+          .enable(SerializationFeature.WRAP_ROOT_VALUE)          
           .build(); 
     }
     return objectMapper;
@@ -159,4 +171,28 @@ public class BusinessEntityConverter {
     DashboardUtils.updatePropertiesToNullIfCurrentValueIsDefaultValue(dashboards);
     return prettyPrintObjectEntityToJsonValue(dashboards);
   }
+
+  
+    public static void main(String[] args) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+
+        // Sample data list
+        List<String> frameworkList = Arrays.asList("Spring", "Quarkus", "Micronaut");
+
+        // Convert the list to a plain JSON array string
+        String jsonArray = mapper.writeValueAsString(frameworkList);
+        System.out.println(jsonArray); 
+        // Output: ["Spring","Quarkus","Micronaut"]
+         mapper.enable(SerializationFeature.WRAP_ROOT_VALUE); 
+
+        // Convert with pretty printing for cleaner formatting
+        String prettyJsonArray = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(frameworkList);
+        System.out.println(prettyJsonArray);
+        String sampleJson = "{\r\n" + //
+                    "  \"ArrayList\" : [ \"Spring\", \"Quarkus\", \"Micronaut\" ]\r\n" + //
+                    "}";
+
+        
+    }
+
 }

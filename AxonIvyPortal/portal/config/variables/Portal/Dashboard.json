@@ -1,4 +1,5 @@
-[
+{
+  "dashboards": [
   {
     "id": "1",
     "version": "13.1.0",
@@ -581,3 +582,4 @@
     "dashboardDisplayType": "top_menu"
   }
 ]
+}

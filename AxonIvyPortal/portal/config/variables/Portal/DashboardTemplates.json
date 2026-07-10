@@ -1,4 +1,5 @@
-[
+{
+  "dashboard-templates": [
   {
     "version": "13.1.0",
     "id": "default-portal-dashboard-template",
@@ -1178,3 +1179,4 @@
     }
   }
 ]
+}

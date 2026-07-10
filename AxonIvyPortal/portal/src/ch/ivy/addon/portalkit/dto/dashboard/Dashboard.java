@@ -16,7 +16,9 @@ import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
+@JsonRootName("Dashboard")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Dashboard extends AbstractConfiguration implements Serializable {
 

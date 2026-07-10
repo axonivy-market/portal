@@ -6,6 +6,7 @@ import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
 
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class DashboardService extends JsonConfigurationService<Dashboard> {
 
@@ -30,6 +31,7 @@ public class DashboardService extends JsonConfigurationService<Dashboard> {
 
   public Dashboard saveDefaultDashboardAsFirstDashboard(Dashboard defaultDashboard) {
     List<Dashboard> entities = getPublicConfig();
+    Ivy.log().error("default config with size {0}", entities.size());
     defaultDashboard.setVersion(DashboardFilterJsonVersion.LATEST_VERSION.getValue());
     entities.addFirst(defaultDashboard);
     savePublicConfig(entities);

@@ -147,10 +147,15 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   private void updateSelectedDashboard() {
+    Ivy.log().error("Dashboard size is {0}", dashboards.size());
+    for (Dashboard dashboard : dashboards) {
+      Ivy.log().error("dashboard descr {0}, id {1}", dashboard.getDescription(), dashboard.getId());
+    }
     currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
     selectedDashboard = dashboards.get(currentDashboardIndex);
 
-    String selectedDashboardName = selectedDashboard.getTitles().stream()
+    String selectedDashboardName = CollectionUtils.emptyIfNull(selectedDashboard.getTitles())
+        .stream()
         .filter(displayName -> displayName.getLocale().equals(LanguageService.getInstance().getUserLocale())).findFirst()
         .orElseGet(() -> selectedDashboard.getTitles().get(0)).getValue();
     setSelectedDashboardName(selectedDashboardName);

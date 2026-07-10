@@ -1,4 +1,5 @@
-[{
+{
+  "task-details": [{
     "id": "default-task-detail",
     "widgets": [{
         "type": "information",
@@ -22,3 +23,4 @@
     ]
   }
 ]
+}
