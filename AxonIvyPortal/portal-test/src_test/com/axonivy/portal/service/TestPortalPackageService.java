@@ -4,7 +4,9 @@ import static com.axonivy.portal.util.TestPortalPackageUtils.buildApplication;
 import static com.axonivy.portal.util.TestPortalPackageUtils.buildCaseDetails;
 import static com.axonivy.portal.util.TestPortalPackageUtils.buildCustomSubMenuItem;
 import static com.axonivy.portal.util.TestPortalPackageUtils.buildDashboard;
+import static com.axonivy.portal.util.TestPortalPackageUtils.buildDashboardWithWelcomeWidgetImage;
 import static com.axonivy.portal.util.TestPortalPackageUtils.buildExternalLink;
+import static com.axonivy.portal.util.TestPortalPackageUtils.buildExternalLinkWithImage;
 import static com.axonivy.portal.util.TestPortalPackageUtils.buildMenuOrder;
 import static com.axonivy.portal.util.TestPortalPackageUtils.buildStatistic;
 import static com.axonivy.portal.util.TestPortalPackageUtils.buildUserMenu;
@@ -29,6 +31,7 @@ import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.UserMenu;
 import ch.ivy.addon.portalkit.dto.casedetails.CaseDetails;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPackageFile;
 import ch.ivy.addon.portalkit.service.PortalPackageService;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -49,6 +52,7 @@ public class TestPortalPackageService {
     for (PortalPackageFile file : PortalPackageFile.values()) {
       Ivy.var().set(file.getVariableKey(), "");
     }
+    Ivy.var().set(GlobalVariable.IMAGE_UPLOAD_SIZE_LIMIT.getKey(), GlobalVariable.IMAGE_UPLOAD_SIZE_LIMIT.getDefaultValue());
   }
 
   @Test
@@ -151,6 +155,20 @@ public class TestPortalPackageService {
   }
 
   @Test
+  void importPackage_dashboard_oversizedWelcomeImage_doesNotUpdateVariable() throws IOException {
+    Ivy.var().set(GlobalVariable.IMAGE_UPLOAD_SIZE_LIMIT.getKey(), "0");
+    Dashboard dashboard =
+        buildDashboardWithWelcomeWidgetImage("dashboard-1", "My Dashboard", "welcome_1", "QUJDREVGRw==", "png");
+    String json = toJson(List.of(dashboard));
+    byte[] zipBytes = buildZip(Map.of(PortalPackageFile.DASHBOARD.getFilename(), json));
+
+    Map<String, Boolean> results = service.importPackage(zipBytes);
+
+    assertThat(results).containsEntry(PortalPackageFile.DASHBOARD.getFilename(), false);
+    assertThat(Ivy.var().get(PortalPackageFile.DASHBOARD.getVariableKey())).isBlank();
+  }
+
+  @Test
   void importPackage_externalLink_validJson_setsIvyVariable() throws IOException {
     ExternalLink externalLink = buildExternalLink("link-1", "My Link", "https://example.com");
     String json = toJson(List.of(externalLink));
@@ -165,6 +183,20 @@ public class TestPortalPackageService {
   @Test
   void importPackage_externalLink_malformedJson_doesNotUpdateVariable() throws IOException {
     byte[] zipBytes = buildZip(Map.of(PortalPackageFile.EXTERNAL_LINK.getFilename(), MALFORMED_JSON));
+
+    Map<String, Boolean> results = service.importPackage(zipBytes);
+
+    assertThat(results).containsEntry(PortalPackageFile.EXTERNAL_LINK.getFilename(), false);
+    assertThat(Ivy.var().get(PortalPackageFile.EXTERNAL_LINK.getVariableKey())).isBlank();
+  }
+
+  @Test
+  void importPackage_externalLink_oversizedImage_doesNotUpdateVariable() throws IOException {
+    Ivy.var().set(GlobalVariable.IMAGE_UPLOAD_SIZE_LIMIT.getKey(), "0");
+    ExternalLink externalLink =
+        buildExternalLinkWithImage("link-1", "My Link", "https://example.com", "QUJDREVGRw==", "png");
+    String json = toJson(List.of(externalLink));
+    byte[] zipBytes = buildZip(Map.of(PortalPackageFile.EXTERNAL_LINK.getFilename(), json));
 
     Map<String, Boolean> results = service.importPackage(zipBytes);
 

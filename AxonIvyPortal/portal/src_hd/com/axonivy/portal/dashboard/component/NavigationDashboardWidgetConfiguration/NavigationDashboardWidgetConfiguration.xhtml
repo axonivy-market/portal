@@ -120,8 +120,8 @@
                   dragDropSupport="true" auto="true" update="file-upload-panel"
                   allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
                   accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('navigationWidgetUpload');"
-                  sizeLimit="5242880"
-                  invalidSizeMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/fileSizeExceeded')}"
+                  sizeLimit="#{navigationDashboardWidgetConfigurationBean.uploadFileLimit}"
+                  invalidSizeMessage="#{navigationDashboardWidgetConfigurationBean.fileUploadInvalidSizeMessage}"
                   invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
                   dropZone="navigation-widget-preview-image-panel" />
                   
@@ -163,8 +163,8 @@
                   dragDropSupport="true" auto="true" update="file-upload-panel-dark-mode"
                   allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
                   accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('navigationWidgetDarkModeUpload');"
-                  sizeLimit="5242880"
-                  invalidSizeMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/fileSizeExceeded')}"
+                  sizeLimit="#{navigationDashboardWidgetConfigurationBean.uploadFileLimit}"
+                  invalidSizeMessage="#{navigationDashboardWidgetConfigurationBean.fileUploadInvalidSizeMessage}"
                   invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
                   dropZone="navigation-widget-preview-image-panel"/>
                   

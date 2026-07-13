@@ -1652,6 +1652,7 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Widget klonen von
             DashboardImportDetails:
+              DashboardImageSizeExceeded: Dashboard "{0}" wurde nicht importiert, da es ein Bild enthält, das größer als die zulässige Upload-Größe ({1}) ist.
               DashboardImportTitle: Dashboard {0}
               FileInfomation: Dateiinformationen
               ImportPrivate: Privates Dashboard importieren
