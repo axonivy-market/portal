@@ -46,7 +46,7 @@ public class DocumentTableComponentPage extends TemplatePage {
     return $("object[type='application/pdf']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).isDisplayed();
   }
 
-  public boolean isEmptyTable(){
+  public boolean isEmptyTable() {
     return $("[id$=':document-table-component:document-table']").find("table tbody").$$("tr.ui-datatable-empty-message").size() == 1;
   }
 }
