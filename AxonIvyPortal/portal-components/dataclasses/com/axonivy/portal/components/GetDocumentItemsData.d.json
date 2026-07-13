@@ -17,9 +17,5 @@
     "name" : "hasCustomProcess",
     "type" : "Boolean",
     "modifiers" : [ ]
-  }, {
-    "name" : "displaySubFolderList",
-    "type" : "String[]",
-    "modifiers" : [ ]
   } ]
 }
