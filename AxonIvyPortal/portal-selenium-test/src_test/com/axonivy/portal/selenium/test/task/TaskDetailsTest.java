@@ -7,10 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
@@ -267,6 +264,8 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.openDashboardTaskDetails("User: create note");
     taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.getNotesWithContent("System note").shouldHave(size(1));
+  }
+
   public void testBannerMessage() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
