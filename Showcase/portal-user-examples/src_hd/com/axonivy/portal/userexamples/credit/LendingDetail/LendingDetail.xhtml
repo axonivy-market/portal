@@ -6,7 +6,7 @@
   <ui:composition template="/layouts/restricted/CaseMapDetailTemplate.xhtml">
     <ui:param name="caseMapDetail" value="#{data.caseMapDetail}" />
     <ui:param name="stageIndex" value="#{data.stageIndex}" />
-    <ui:define name="pageTitle">#{caseMapDetailBean.getDisplayStage(caseMapDetail,stageIndex)}</ui:define>
+    <ui:define name="pageTitle">#{exampleCaseMapDetailBean.getDisplayStage(caseMapDetail,stageIndex)}</ui:define>
     <ui:define name="header">
       <div class="ui-g-1 ui-xl-1 ui-lg-1 ui-md-2 ui-sm-3">
         <p:graphicImage library="ivy-cms" name="#{caseMapDetail.icon}" />
@@ -34,13 +34,13 @@
           id="previous-stage"
           actionListener="#{logic.navigate(data.caseMapDetail, data.stageIndex - 1)}" 
           rendered="#{stageIndex > 0}"/>
-        <p:spacer width="10rem" rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
+        <p:spacer width="10rem" rendered="#{exampleCaseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
         <p:commandLink value="#{ivy.cms.co('/Labels/NextStage')}" 
           actionListener="#{logic.navigate(data.caseMapDetail, data.stageIndex + 1)}"
           id="next-stage" 
-          rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
-        <p:spacer width="5rem" rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
-        <i class="ti ti-chevron-right ui-md-hidden ui-sm-hidden" style="color:var(--primary-color);" jsf:rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
+          rendered="#{exampleCaseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
+        <p:spacer width="5rem" rendered="#{exampleCaseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
+        <i class="ti ti-chevron-right ui-md-hidden ui-sm-hidden" style="color:var(--primary-color);" jsf:rendered="#{exampleCaseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
       </div>
     </ui:define>
     
@@ -50,7 +50,7 @@
         actionListener="#{logic.cancel}" />
       <p:spacer width="20px" />
       <p:commandButton value="#{ivy.cms.co('/Labels/Start')} #{caseMapDetail.name}"
-        actionListener="#{caseMapDetailBean.startCaseMap(caseMapDetail.startLink)}" />
+        actionListener="#{exampleCaseMapDetailBean.startCaseMap(caseMapDetail.startLink)}" />
       </h:form>
     </ui:define>
   </ui:composition>
