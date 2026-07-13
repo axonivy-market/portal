@@ -111,15 +111,15 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{(column.format eq 'STRING' or column.format eq 'TEXT') and column.field ne 'name'}">
-            <h:outputText id="custom-column" value="#{dashboardTaskWidgetBean.createParseTextFromHtml(column.display(task))}" styleClass="dashboard-widget-column__custom #{column.fieldStyleClass}" style="#{column.fieldStyle}" />
-            <p:tooltip for="custom-column" value="#{column.display(task)}" trackMouse="true" hideEvent="mouseleave click"/>
+            <h:outputText id="custom-column" value="#{dashboardTaskWidgetBean.createParseTextFromHtml(dashboardTaskWidgetBean.display(column, task))}" styleClass="dashboard-widget-column__custom #{column.fieldStyleClass}" style="#{column.fieldStyle}" />
+            <p:tooltip for="custom-column" value="#{dashboardTaskWidgetBean.display(column, task)}" trackMouse="true" hideEvent="mouseleave click"/>
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.format eq 'TIMESTAMP'}">
-            <h:outputText id="task-timestamp" value="#{column.display(task)}" style="#{column.fieldStyle}">
+            <h:outputText id="task-timestamp" value="#{dashboardTaskWidgetBean.display(column, task)}" style="#{column.fieldStyle}">
               <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
             </h:outputText>
-            <p:tooltip for="task-timestamp" value="#{column.display(task)}" trackMouse="true" hideEvent="mouseleave click">
+            <p:tooltip for="task-timestamp" value="#{dashboardTaskWidgetBean.display(column, task)}" trackMouse="true" hideEvent="mouseleave click">
               <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
             </p:tooltip>
           </h:panelGroup>
@@ -134,18 +134,18 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'application'}">
-            <h:outputText id="task-application" value="#{column.display(task)}"/>
-            <p:tooltip for="task-application" value="#{column.display(task)}" trackMouse="true" hideEvent="mouseleave click"/>
+            <h:outputText id="task-application" value="#{dashboardTaskWidgetBean.display(column, task)}"/>
+            <p:tooltip for="task-application" value="#{dashboardTaskWidgetBean.display(column, task)}" trackMouse="true" hideEvent="mouseleave click"/>
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'businessCaseId'}">
-            <h:outputText id="task-business-case-id" value="#{column.display(task)}"/>
-            <p:tooltip for="task-business-case-id" value="#{column.display(task)}" trackMouse="true" hideEvent="mouseleave click"/>
+            <h:outputText id="task-business-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}"/>
+            <p:tooltip for="task-business-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}" trackMouse="true" hideEvent="mouseleave click"/>
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'technicalCaseId'}">
-            <h:outputText id="task-technical-case-id" value="#{column.display(task)}"/>
-            <p:tooltip for="task-technical-case-id" value="#{column.display(task)}" trackMouse="true" hideEvent="mouseleave click"/>
+            <h:outputText id="task-technical-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}"/>
+            <p:tooltip for="task-technical-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}" trackMouse="true" hideEvent="mouseleave click"/>
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">
