@@ -56,10 +56,15 @@ public class ResponsibleColumnModel extends TaskColumnModel {
 
   @Override
   public Object display(ITask task) {
-    if (task == null || CollectionUtils.isEmpty(task.responsibles().all())) {
+    if (task == null) {
       return StringUtils.EMPTY;
     }
-    ISecurityMember member = task.responsibles().all().getFirst().get();
+    // Resolve responsibles once: task.responsibles().all() was previously evaluated twice per render.
+    var responsibles = task.responsibles().all();
+    if (CollectionUtils.isEmpty(responsibles)) {
+      return StringUtils.EMPTY;
+    }
+    ISecurityMember member = responsibles.getFirst().get();
     return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(member, member.getMemberName());
   }
   
