@@ -90,8 +90,8 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'owner'}">
-            <h:outputText id="owners" value="#{column.display(caseItem)}" />
-            <p:tooltip value="#{column.display(caseItem)}" for="owners" />
+            <h:outputText id="owners" value="#{dashboardCaseWidgetBean.display(column, caseItem)}" />
+            <p:tooltip value="#{dashboardCaseWidgetBean.display(column, caseItem)}" for="owners" />
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'name'}">
@@ -99,8 +99,8 @@
           </h:panelGroup>
 
           <h:panelGroup rendered="#{(column.format eq 'STRING' or column.format eq 'TEXT') and column.field ne 'name' and !column.isCustomAction}">
-            <h:outputText id="custom-column" value="#{column.display(caseItem)}" styleClass="dashboard-widget-column__custom #{column.fieldStyleClass}" style="#{column.fieldStyle}" />
-            <p:tooltip for="custom-column" value="#{column.display(caseItem)}" trackMouse="true" hideEvent="mouseleave click"/>
+            <h:outputText id="custom-column" value="#{dashboardCaseWidgetBean.display(column, caseItem)}" styleClass="dashboard-widget-column__custom #{column.fieldStyleClass}" style="#{column.fieldStyle}" />
+            <p:tooltip for="custom-column" value="#{dashboardCaseWidgetBean.display(column, caseItem)}" trackMouse="true" hideEvent="mouseleave click"/>
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.caseWithCustomAction(caseItem)}">
@@ -112,10 +112,10 @@
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.format eq 'TIMESTAMP'}">
-            <h:outputText id="case-timestamp" value="#{column.display(caseItem)}" style="#{column.fieldStyle}">
+            <h:outputText id="case-timestamp" value="#{dashboardCaseWidgetBean.display(column, caseItem)}" style="#{column.fieldStyle}">
               <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
             </h:outputText>
-            <p:tooltip for="case-timestamp" value="#{column.display(caseItem)}" trackMouse="true" hideEvent="mouseleave click">
+            <p:tooltip for="case-timestamp" value="#{dashboardCaseWidgetBean.display(column, caseItem)}" trackMouse="true" hideEvent="mouseleave click">
               <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
             </p:tooltip>
           </h:panelGroup>
@@ -130,8 +130,8 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'application'}">
-            <h:outputText id="case-application" value="#{column.display(caseItem)}"/>
-            <p:tooltip for="case-application" value="#{column.display(caseItem)}" trackMouse="true" hideEvent="mouseleave click"/>
+            <h:outputText id="case-application" value="#{dashboardCaseWidgetBean.display(column, caseItem)}"/>
+            <p:tooltip for="case-application" value="#{dashboardCaseWidgetBean.display(column, caseItem)}" trackMouse="true" hideEvent="mouseleave click"/>
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">
