@@ -813,7 +813,7 @@
       "type" : "Alternative",
       "config" : {
         "conditions" : {
-          "f80" : "in.uploadSubFolder is initialized"
+          "f80" : "org.apache.commons.lang3.StringUtils.isNotBlank(in.uploadSubFolder)"
         }
       },
       "visual" : {
