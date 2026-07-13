@@ -11,7 +11,9 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -26,6 +28,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+
 
 /**
  * This class provides method to convert Business entity object into JSON value and reverse
@@ -74,7 +77,18 @@ public class BusinessEntityConverter {
 
   public static <T> T jsonValueToEntity(String jsonValue, Class<T> classType) {
     try {
-      return getObjectMapper().readValue(jsonValue, classType);
+      JsonNode rootNode = getObjectMapper().readTree(jsonValue);
+      Ivy.log().error("jsonValueToEntity {0}, and class type is {1}", jsonValue, classType.getName());
+      if (rootNode.isObject() && rootNode.has("dashboard")) {
+        Ivy.log().error("IS OBJECT and dashboard json is {0}", rootNode.get("dashboard").toString());
+        rootNode.get("dashboard").toString();
+        return getObjectMapper().readValue(rootNode.get("dashboard").toString(), classType);
+      } else if (rootNode.isArray()) {
+        Ivy.log().error("IS ARRAY and dashboard json is {0}", rootNode.toString());
+        return getObjectMapper().readValue(jsonValue, classType);
+      } 
+
+      return null;
     } catch (IOException e) {
       throw new PortalException(e);
     }
@@ -92,9 +106,21 @@ public class BusinessEntityConverter {
     if (StringUtils.isBlank(jsonValue)) {
       return new ArrayList<>();
     }
+    Ivy.log().error("jsonValueToEntity {0}, and class type is {1}", jsonValue, classType.getName());
     try {
-      return getObjectMapper().readValue(jsonValue,
-          getListOfJavaType(classType));
+      JsonNode rootNode = getObjectMapper().readTree(jsonValue);
+      if (rootNode.isObject()) {
+        Ivy.log().error("IS OBJECT ");
+        if (rootNode.has("dashboard")){
+          
+          return getObjectMapper().readValue(rootNode.get("dashboard").toString(), getListOfJavaType(classType));
+        }
+        
+      } else if (rootNode.isArray()) {
+        Ivy.log().error("IS ARRAY and dashboard json is {0}", rootNode.toString());
+        return getObjectMapper().readValue(jsonValue, getListOfJavaType(classType));
+      } 
+      return new ArrayList<>();
     } catch (IOException e) {
       throw new PortalException(e);
     }
@@ -140,7 +166,7 @@ public class BusinessEntityConverter {
       objectMapper = JsonMapper
           .builder()
           .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-          .configure(DeserializationFeature.UNWRAP_ROOT_VALUE,false)
+          .configure(DeserializationFeature.UNWRAP_ROOT_VALUE, false)
           .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
           .enable(SerializationFeature.WRAP_ROOT_VALUE)          
           .build(); 
@@ -174,25 +200,12 @@ public class BusinessEntityConverter {
 
   
     public static void main(String[] args) throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-
-        // Sample data list
-        List<String> frameworkList = Arrays.asList("Spring", "Quarkus", "Micronaut");
-
-        // Convert the list to a plain JSON array string
-        String jsonArray = mapper.writeValueAsString(frameworkList);
-        System.out.println(jsonArray); 
-        // Output: ["Spring","Quarkus","Micronaut"]
-         mapper.enable(SerializationFeature.WRAP_ROOT_VALUE); 
-
-        // Convert with pretty printing for cleaner formatting
-        String prettyJsonArray = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(frameworkList);
-        System.out.println(prettyJsonArray);
-        String sampleJson = "{\r\n" + //
-                    "  \"ArrayList\" : [ \"Spring\", \"Quarkus\", \"Micronaut\" ]\r\n" + //
-                    "}";
-
-        
+      List<CustomSubMenuItem> items = jsonValueToEntities("{}", CustomSubMenuItem.class);
     }
 
+}
+
+
+class User {
+    public String name;
 }
