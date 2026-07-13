@@ -1539,6 +1539,8 @@ Dialogs:
               TaskCompletedByYouInfo: Vous avez déjà accompli la tâche sur {0}.
             TaskItemGeneralInfo:
               Expiry: Responsable de l'expiration
+              TaskParkedByOtherInfo: Vous ne pouvez pas travailler sur la tâche car <strong>{0}</strong> l'a mise en attente. Elle a été exclusivement réservée par cet utilisateur pour y travailler plus tard.
+              TaskParkedByYouInfo: Vous avez mis la tâche en attente. Elle vous est exclusivement réservée pour y travailler plus tard. Vous pouvez réinitialiser la tâche pour libérer sa réservation.
   com:
     axonivy:
       portal:
