@@ -5,6 +5,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
+  <cc:attribute name="task" />
   <cc:attribute name="containerStyleClass" type="java.lang.String" default=""
     shortDescription="Additional CSS class for the outer container. Required: false." />
   <cc:attribute name="headerStyleClass" type="java.lang.String" default=""
@@ -27,7 +28,7 @@
 
 <cc:implementation>
   <h:outputStylesheet library="css" name="audit-trail-component.css" />
-  <f:event listener="#{logic.getAuditTrailList()}" type="preRenderComponent" />
+  <!-- <f:event listener="#{logic.start(cc.attrs.task)}" type="preRenderComponent" /> -->
   <h:panelGroup id="audit-trail-content" layout="block"
     styleClass="audit-trail-container #{cc.attrs.containerStyleClass}">
 
@@ -45,8 +46,8 @@
       </p:commandLink>
     </h:panelGroup>
 
-    <p:dataTable id="history-table" widgetVar="historyTable" var="entry" value="#{data.auditTrailDTOs}"
-      emptyMessage="No history found." reflow="true" lazy="false" scrollable="true" scrollHeight="200"
+    <p:dataTable id="history-table" widgetVar="historyTable" var="entry" value="#{data.auditTrailDTOs}" paginator="true" pageLinks="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
+      emptyMessage="No data found." reflow="true" lazy="false" scrollable="true" scrollHeight="200"
       styleClass="audit-trail-history-table #{cc.attrs.tableStyleClass}">
 
       <p:column headerText="#{cc.attrs.contentColumnHeader}" styleClass="audit-trail-content-col">

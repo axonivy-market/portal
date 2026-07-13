@@ -1,22 +1,24 @@
 {
   "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
-  "id" : "19F466DE2D32789B",
+  "id" : "19F58E3B0C4F0849",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "com.axonivy.portal.SetAuditTrailDataData"
+    "data" : "com.axonivy.portal.SetAuditTrailItemData"
   },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "setAuditTrailData(String)",
+      "name" : "setData(ITask,String)",
       "config" : {
-        "signature" : "setAuditTrailData",
+        "signature" : "setData",
         "input" : {
           "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" },
             { "name" : "content", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.content" : "param.content"
+            "out.content" : "param.content",
+            "out.task" : "param.task"
           }
         }
       },
@@ -30,21 +32,24 @@
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 600, "y" : 64 }
+        "at" : { "x" : 352, "y" : 64 }
       }
     }, {
       "id" : "f3",
       "type" : "Script",
+      "name" : "Save data",
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.workflow.ICase;",
             "import com.axonivy.portal.components.service.AuditTrailService;",
-            "AuditTrailService.getInstance().save(in.content);"
+            "ICase businessCase = in.task.getCase().getBusinessCase();",
+            "AuditTrailService.getInstance().save(businessCase, in.content);"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 224, "y" : 64 }
       },
       "connect" : [
         { "id" : "f4", "to" : "f1", "color" : "default" }

@@ -13,5 +13,8 @@
   }, {
     "name" : "isCasePersistent",
     "type" : "Boolean"
+  }, {
+    "name" : "task",
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
   } ]
 }

@@ -151,25 +151,7 @@
         "at" : { "x" : 152, "y" : 296 }
       },
       "connect" : [
-        { "id" : "f21", "to" : "f20" }
-      ]
-    }, {
-      "id" : "f20",
-      "type" : "SubProcessCall",
-      "name" : "Save rejection reason for audit trail table",
-      "config" : {
-        "processCall" : "Functional Processes/AuditTrailSupporter:saveContent(String)",
-        "call" : {
-          "map" : {
-            "param.content" : "in.requestData.rejectionReason"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 360, "y" : 296 }
-      },
-      "connect" : [
-        { "id" : "f22", "to" : "f10" }
+        { "id" : "f20", "to" : "f10" }
       ]
     } ]
 }

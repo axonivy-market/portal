@@ -18,5 +18,8 @@
     "name" : "businessCase",
     "type" : "ch.ivyteam.ivy.workflow.ICase",
     "modifiers" : [ ]
+  }, {
+    "name" : "reserveTaskContent",
+    "modifiers" : [ ]
   } ]
 }

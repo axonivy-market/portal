@@ -1,13 +1,13 @@
 {
   "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
-  "simpleName" : "SetAuditTrailDataData",
+  "simpleName" : "SetAuditTrailItemData",
   "namespace" : "com.axonivy.portal",
   "fields" : [ {
-    "name" : "content",
+    "name" : "task",
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
     "modifiers" : [ ]
   }, {
-    "name" : "caze",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "name" : "content",
     "modifiers" : [ ]
   } ]
 }
