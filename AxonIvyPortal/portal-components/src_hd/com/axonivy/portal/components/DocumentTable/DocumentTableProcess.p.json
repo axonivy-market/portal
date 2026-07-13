@@ -50,7 +50,7 @@
             "import org.apache.commons.lang3.StringUtils;",
             "out.displaySubFolderList = new ArrayList();",
             "if (StringUtils.isNotBlank(param.displaySubFolderList)){",
-            "  out.displaySubFolderList = param.displaySubFolderList.split(\",\");",
+            "  out.displaySubFolderList = param.displaySubFolderList.strip().split(\"\\\\s*,\\\\s*\");",
             "}"
           ]
         },
