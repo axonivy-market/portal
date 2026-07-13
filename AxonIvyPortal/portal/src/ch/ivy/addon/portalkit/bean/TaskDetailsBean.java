@@ -41,6 +41,8 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   private static final String CANNOT_WORK_ON_DESTROYED_TASK_WARNING_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/CannotWorkOnDestroyedTaskWarning";
   private static final String TASK_COMPLETED_BY_YOU_INFO_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/TaskCompletedByYouInfo";
   private static final String TASK_COMPLETED_BY_OTHER_INFO_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/TaskCompletedByOtherInfo";
+  private static final String TASK_PARKED_BY_YOU_INFO_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/TaskParkedByYouInfo";
+  private static final String TASK_PARKED_BY_OTHER_INFO_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/TaskParkedByOtherInfo";
   private static final String INVALID_STATE_INFO_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/InvalidStateInfo";
   private static final String UUID = "uuid";
   private boolean hasShowDurationTime;
@@ -165,23 +167,33 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   public String getInfoBannerMessage() {
     ITask selectedTask = getSelectedTaskFromData();
     return switch (selectedTask.getState()) {
-    case CREATED, RESUMED, PARKED -> {
-      if (currentIsWorkerUser()) {
-        yield Ivy.cms().co(RESET_TASK_WARNING_CMS_URI, Arrays.asList(buildResetTaskUrl(selectedTask)));
-      } else {
-        yield Ivy.cms().co(CANNOT_WORK_ON_TASK_WARNING_CMS_URI, Arrays.asList(getWorkerUser(selectedTask)));
-      }
-    }
-    case DONE, READY_FOR_JOIN, JOINING, JOIN_FAILED -> {
-      if (currentIsWorkerUser()) {
-        yield Ivy.cms().co(TASK_COMPLETED_BY_YOU_INFO_CMS_URI, Arrays.asList(formatDate(selectedTask.getEndTimestamp())));
-      } else {
-        yield Ivy.cms().co(TASK_COMPLETED_BY_OTHER_INFO_CMS_URI, Arrays.asList(getWorkerUser(selectedTask), formatDate(selectedTask.getEndTimestamp())));
-      }
-    }
-    case DESTROYED -> Ivy.cms().co(CANNOT_WORK_ON_DESTROYED_TASK_WARNING_CMS_URI);
-    default -> Ivy.cms().co(INVALID_STATE_INFO_CMS_URI);
+      case PARKED -> parkedInfoBannerMessage(selectedTask);
+      case CREATED, RESUMED -> workingInfoBannerMessage(selectedTask);
+      case DONE, READY_FOR_JOIN, JOINING, JOIN_FAILED -> completedInfoBannerMessage(selectedTask);
+      case DESTROYED -> Ivy.cms().co(CANNOT_WORK_ON_DESTROYED_TASK_WARNING_CMS_URI);
+      default -> Ivy.cms().co(INVALID_STATE_INFO_CMS_URI);
     };
+  }
+
+  private String parkedInfoBannerMessage(ITask selectedTask) {
+    if (currentIsWorkerUser()) {
+      return Ivy.cms().co(TASK_PARKED_BY_YOU_INFO_CMS_URI);
+    }
+    return Ivy.cms().co(TASK_PARKED_BY_OTHER_INFO_CMS_URI);
+  }
+
+  private String workingInfoBannerMessage(ITask selectedTask) {
+    if (currentIsWorkerUser()) {
+      return Ivy.cms().co(RESET_TASK_WARNING_CMS_URI, Arrays.asList(buildResetTaskUrl(selectedTask)));
+    }
+    return Ivy.cms().co(CANNOT_WORK_ON_TASK_WARNING_CMS_URI, Arrays.asList(getWorkerUser(selectedTask)));
+  }
+
+  private String completedInfoBannerMessage(ITask selectedTask) {
+    if (currentIsWorkerUser()) {
+      return Ivy.cms().co(TASK_COMPLETED_BY_YOU_INFO_CMS_URI, Arrays.asList(formatDate(selectedTask.getEndTimestamp())));
+    }
+    return Ivy.cms().co(TASK_COMPLETED_BY_OTHER_INFO_CMS_URI, Arrays.asList(getWorkerUser(selectedTask), formatDate(selectedTask.getEndTimestamp())));
   }
 
   private boolean isActivator() {
