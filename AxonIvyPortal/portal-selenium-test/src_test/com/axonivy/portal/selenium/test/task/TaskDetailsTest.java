@@ -266,6 +266,7 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage.getNotesWithContent("System note").shouldHave(size(1));
   }
 
+  @Test
   public void testBannerMessage() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
