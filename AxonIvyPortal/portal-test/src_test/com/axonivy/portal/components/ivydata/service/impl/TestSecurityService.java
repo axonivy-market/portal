@@ -3,6 +3,7 @@ package com.axonivy.portal.components.ivydata.service.impl;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -39,8 +40,9 @@ class TestSecurityService {
   }
 
   private static void createUser(String username, String fullName) {
+    String password = UUID.randomUUID().toString();
     Sudo.get(() -> ISecurityContext.current().users()
-        .create(NewUser.create(username).password("+d3m0++").fullName(fullName).toNewUser()));
+        .create(NewUser.create(username).password(password).fullName(fullName).toNewUser()));
   }
 
   @Test
