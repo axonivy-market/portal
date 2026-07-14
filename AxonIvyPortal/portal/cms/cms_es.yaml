@@ -219,6 +219,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AppleStoreURL: Establezca la URL para descargar la aplicación móvil Axon Ivy en Apple Store.
       ApplicationName: El nombre de la aplicación que se mostrará en el título de la página.
       BaseQRCodeUrl: Establezca la URL base para mostrar el código QR.
+      DashboardFilterOperatorPolicy: Los operadores no marcados se deshabilitan globalmente.
       DefaultThemeMode: El modo de tema por defecto de la aplicación
       EnableSwitchThemeModeButton: Establecer en true para habilitar el botón de cambio de tema.
       GlobalSearchScopeCategoriesNote: Definición de los tipos que buscará la búsqueda global
@@ -665,6 +666,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Estamos creando la Exportación, esto puede tardar unos minutos
     warning: Advertencia!
     welcomeToPortal: Bienvenido, por favor inicie su sesión
+    businessCaseId: ID de caso de negocio
+    technicalCaseId: ID de caso técnico
+    workingUser: Usuario trabajador
     wrongDateFormat: Por favor ingrese una fecha válida.
     year: Año
     years: Años
@@ -788,6 +792,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: Este widget puede mostrar una página web externa.
     Filter:
       FilterOptionHeader: Opciones de filtro
+      FilterOptionHeaderTooltip: Algunos campos de filtro y operadores pueden estar deshabilitados por su administrador. Los filtros que utilicen campos u operadores deshabilitados se eliminarán automáticamente. Comuníquese con su administrador para obtener más información.
       FilterPanelHeader: Panel de filtro
       ManageWidgetFilterHeader: Gestión de filtros de widgets
       NotFound: No se ha encontrado ningún filtro
@@ -1241,7 +1246,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: Esta tarea no tiene manejo lógico de escalado, por lo tanto no se puede establecer el tiempo de expiración.
     technicalCase: Caso técnico
     workflowEventDialog: 'Eventos del Workflow de la tarea #{0}'
-    workingUser: Usuario trabajador
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: La fecha límite de la tarea se ha establecido con éxito.
@@ -1685,6 +1689,7 @@ Labels:
     DashboardStandardTaskColumn:
       ACTIONS: Acciones
       APPLICATION: Aplicación
+      BUSINESS_CASE_ID: ID de caso de negocio
       CATEGORY: Categoría
       COMPLETED: Fecha de finalización
       CREATED: Fecha de creación
@@ -1697,6 +1702,8 @@ Labels:
       RESPONSIBLE: Responsable
       START: Inicio
       STATE: Estado
+      TECHNICAL_CASE_ID: ID de caso técnico
+      WORKER: Usuario trabajador
     FilterOperator:
       AFTER: Es Después
       BEFORE: Es Antes

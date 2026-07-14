@@ -2878,6 +2878,13 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   word-break: break-all;
 }
 
+.admin-settings-container .ui-selectcheckboxmenu .ui-selectcheckboxmenu-label {
+  max-width: calc(100% - 2rem);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .announcement-information {
   max-width: calc(100% - 200px);
   float: left;

@@ -9,8 +9,11 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import javax.annotation.PostConstruct;
+
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.service.filter.operatorpolicy.GlobalOperatorPolicyService;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -21,11 +24,16 @@ public class WidgetPriorityFilterBean implements Serializable {
 
   private static final long serialVersionUID = 5710087841257652703L;
 
-  private static List<FilterOperator> priorityOperators = FilterOperator.PRIORITY_OPERATORS.stream().toList();
+  private List<FilterOperator> resolvedPriorityOperators;
   private static final String TASK_PRIORITY_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/";
 
   private List<String> priorities;
   private String prioritiesString;
+
+  @PostConstruct
+  public void initOperators() {
+    resolvedPriorityOperators = GlobalOperatorPolicyService.getInstance().keepGloballyEnabledOperators(FilterOperator.PRIORITY_OPERATORS.stream().toList());
+  }
 
   public void init(DashboardFilter filter) {
     List<WorkflowPriority> wfPriority = Arrays.asList(WorkflowPriority.EXCEPTION, WorkflowPriority.HIGH,
@@ -36,7 +44,7 @@ public class WidgetPriorityFilterBean implements Serializable {
   }
 
   public List<FilterOperator> getPriorityOperators() {
-    return priorityOperators;
+    return resolvedPriorityOperators;
   }
 
   public List<String> getPriorities() {

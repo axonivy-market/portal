@@ -265,26 +265,31 @@ class ClientChart {
         emptyChartDataMessage = item.emptyChartDataMessage;
       }
     });
-    // HTML element for the empty chart
-    let emptyChartHtml =
-      '<div class="empty-message-container">' +
-      '    <i class="si si-analytics-pie-2 empty-message-icon"></i>' +
-      '    <p class="empty-message-text">' + emptyChartDataMessage + '</p>' +
-      '</div>';
-    $(chart).html(emptyChartHtml);
+    const container = document.createElement('div');
+    container.className = 'empty-message-container';
+    const icon = document.createElement('i');
+    icon.className = 'si si-analytics-pie-2 empty-message-icon';
+    const message = document.createElement('p');
+    message.className = 'empty-message-text';
+    message.textContent = emptyChartDataMessage == null ? '' : String(emptyChartDataMessage);
+    container.appendChild(icon);
+    container.appendChild(message);
+    $(chart).empty().append(container);
   }
 
   // Method to render no permission error to see chart
   renderNoPermissionStatistics(chart, noPermissionChartMessage) {
-
-    // HTML element for the empty chart with no permission message
-    let noPermissionChartHtml =
-      '<div class="process-dashboard-widget__empty-process empty-message-container">' +
-      '    <i class="si si-lock-1 empty-message-icon"></i>' +
-      '    <br><span class="empty-message-text">' + noPermissionChartMessage + '</span>' +
-      '</div>';
-
-    $(chart).html(noPermissionChartHtml);
+    const container = document.createElement('div');
+    container.className = 'process-dashboard-widget__empty-process empty-message-container';
+    const icon = document.createElement('i');
+    icon.className = 'si si-lock-1 empty-message-icon';
+    const message = document.createElement('span');
+    message.className = 'empty-message-text';
+    message.textContent = noPermissionChartMessage == null ? '' : String(noPermissionChartMessage);
+    container.appendChild(icon);
+    container.appendChild(document.createElement('br'));
+    container.appendChild(message);
+    $(chart).empty().append(container);
   }
 
   updateButtonAriaLabels(chart, widgetName, additionalConfig) {

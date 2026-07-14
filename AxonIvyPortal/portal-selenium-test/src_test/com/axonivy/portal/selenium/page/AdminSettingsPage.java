@@ -36,6 +36,19 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
+    openGlobalVariableEditDialog(variableName);
+    waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
+    saveGlobalVariable(variableValue, isBooleanType);
+  }
+
+  public void updateGlobalMultiSelectionItem(String variableName, String itemValue, boolean shouldBeSelected) {
+    openSettingTab();
+    openGlobalVariableEditDialog(variableName);
+    waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
+    setMultiSelectionItemStateAndSave(itemValue, shouldBeSelected);
+  }
+
+  private void openGlobalVariableEditDialog(String variableName) {
     $("button[id$='admin-setting-component:adminTabView:restore-all-to-default-button']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
     waitForElementDisplayed(By.id("admin-setting-component:adminTabView:settingTable"), true);
@@ -50,8 +63,42 @@ public class AdminSettingsPage extends TemplatePage {
       String editButtonId = currentElementId.replace("settings-action-button", "edit-application");
       $("a[id='" + editButtonId + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
-    waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
-    saveGlobalVariable(variableValue, isBooleanType);
+  }
+
+  private void setMultiSelectionItemStateAndSave(String itemValue, boolean shouldBeSelected) {
+    waitForElementClickableThenClick("[id='admin-setting-component:valueSetting_label']");
+    SelenideElement valueSettingPanel = $(By.id("admin-setting-component:valueSetting_panel"))
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    SelenideElement valueCheckbox = findMultiSelectionValueCheckbox(valueSettingPanel, itemValue);
+    boolean isSelected = valueCheckbox.getAttribute("class").contains("ui-state-active");
+    if (shouldBeSelected != isSelected) {
+      valueCheckbox.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    }
+
+    closeMultiSelectionPanel(valueSettingPanel);
+    waitForElementClickableThenClick("[id='admin-setting-component:save-setting']");
+  }
+
+  private void closeMultiSelectionPanel(SelenideElement valueSettingPanel) {
+    valueSettingPanel.$("a.ui-selectcheckboxmenu-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    valueSettingPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement findMultiSelectionValueCheckbox(SelenideElement valueSettingPanel, String optionKey) {
+    String normalizedOptionKey = normalizeForLabelComparison(optionKey);
+    for (SelenideElement option : valueSettingPanel.$$("li.ui-selectcheckboxmenu-item")) {
+      String optionLabel = option.$("label").shouldBe(Condition.appear, DEFAULT_TIMEOUT).getText();
+      if (normalizeForLabelComparison(optionLabel).equals(normalizedOptionKey)) {
+        return option.$("div.ui-chkbox-box").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+      }
+    }
+
+    throw new IllegalArgumentException("Cannot find multi-selection option: " + optionKey);
+  }
+
+  private String normalizeForLabelComparison(String value) {
+    return value.replaceAll("[^A-Za-z0-9]", "").toUpperCase();
   }
 
   public void resetAllSettings() {

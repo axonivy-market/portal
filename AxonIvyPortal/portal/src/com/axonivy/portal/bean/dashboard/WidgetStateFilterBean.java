@@ -8,8 +8,11 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
 
+import javax.annotation.PostConstruct;
+
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.service.filter.operatorpolicy.GlobalOperatorPolicyService;
 
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
@@ -23,10 +26,15 @@ public class WidgetStateFilterBean implements Serializable {
 
   private static final long serialVersionUID = -8191354257458990196L;
 
-  private static List<FilterOperator> stateOperators = FilterOperator.STATE_OPERATORS.stream().toList();
+  private List<FilterOperator> resolvedStateOperators;
 
   private List<String> states;
   private String statesString;
+
+  @PostConstruct
+  public void initOperators() {
+    resolvedStateOperators = GlobalOperatorPolicyService.getInstance().keepGloballyEnabledOperators(FilterOperator.STATE_OPERATORS.stream().toList());
+  }
 
   public void init(DashboardFilter filter, DashboardWidget widget) {
     if (DashboardWidgetType.TASK == widget.getType()) {
@@ -46,7 +54,7 @@ public class WidgetStateFilterBean implements Serializable {
   }
 
   public List<FilterOperator> getStateOperators() {
-    return stateOperators;
+    return resolvedStateOperators;
   }
 
   public List<String> getStates() {

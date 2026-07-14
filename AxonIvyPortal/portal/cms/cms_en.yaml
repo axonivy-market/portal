@@ -219,6 +219,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AppleStoreURL: Set URL to download Axon Ivy mobile app on Apple Store.
       ApplicationName: The application name that will be displayed on the page title.
       BaseQRCodeUrl: Set Base URL for QR code to display.
+      DashboardFilterOperatorPolicy: Unchecked operators are disabled globally.
       DefaultThemeMode: The default theme mode of the application
       EnableSwitchThemeModeButton: Set to true to enable the switch theme button.
       GlobalSearchScopeCategoriesNote: Defining the types that the global search will search for
@@ -663,6 +664,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: We are creating the Export, this can take a few minutes
     warning: Warning!
     welcomeToPortal: Welcome, please login
+    businessCaseId: Business Case ID
+    technicalCaseId: Technical Case ID
+    workingUser: Working user
     wrongDateFormat: Please enter valid date.
     year: year
     years: years
@@ -786,6 +790,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: This widget can display an external webpage.
     Filter:
       FilterOptionHeader: Filter options
+      FilterOptionHeaderTooltip: Some filter fields and operators may be disabled by your administrator. Filters using disabled fields or operators will be automatically removed. Please contact your administrator for more information.
       FilterPanelHeader: Filter panel
       ManageWidgetFilterHeader: Widget filter management
       NotFound: No filter found
@@ -1239,7 +1244,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: This task does not contain any escalation handling logic, therefore no expiry time can be set.
     technicalCase: Technical Case
     workflowEventDialog: 'Workflow Events of task #{0}'
-    workingUser: Working user
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: Task deadline has been set successfully.
@@ -1681,6 +1685,7 @@ Labels:
     DashboardStandardTaskColumn:
       ACTIONS: Actions
       APPLICATION: Application
+      BUSINESS_CASE_ID: Business Case ID
       CATEGORY: Category
       COMPLETED: Completed Date
       CREATED: Created Date
@@ -1693,6 +1698,8 @@ Labels:
       RESPONSIBLE: Responsible
       START: Start
       STATE: State
+      TECHNICAL_CASE_ID: Technical Case ID
+      WORKER: Working user
     FilterOperator:
       AFTER: Is After
       BEFORE: Is Before

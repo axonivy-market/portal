@@ -8,18 +8,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-18 10:03+0000\n"
-"PO-Revision-Date: 2026-05-18 10:42+0000\n"
-"Last-Translator: Tung Le <tung.le@axonactive.com>\n"
+"POT-Creation-Date: 2026-06-29 10:12+0000\n"
+"PO-Revision-Date: 2026-06-30 03:00+0000\n"
+"Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
+"Language: ja\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
 "portal-12/doc/portal-developer-guide/ja/>\n"
-"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.6.dev0\n"
 "Generated-By: Babel 2.18.0\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
 msgid "Architecture"
@@ -263,11 +263,11 @@ msgstr "モジュール"
 #: ../../source/portal-developer-guide/architecture/index.rst:98
 #: ../../source/portal-developer-guide/customization/extend-task-leave-and-reserve-actions.rst:24
 #: ../../source/portal-developer-guide/customization/extend-task-leave-and-reserve-actions.rst:41
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:107
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:132
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:163
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:208
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:259
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:108
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:133
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:164
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:209
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:264
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:112
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:137
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:162
@@ -552,11 +552,11 @@ msgstr "機能"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:194
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:108
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:133
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:165
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:210
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:260
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:109
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:134
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:166
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:211
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:265
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:113
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:138
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:164
@@ -1078,8 +1078,8 @@ msgstr ""
 #: ../../source/portal-developer-guide/components/error-handling.rst:193
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:251
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:302
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:762
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:676
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:767
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:726
 msgid "Result"
 msgstr "結果"
 
@@ -1694,7 +1694,7 @@ msgid "``states`` (case business states)."
 msgstr "``states`` （ケースのビジネスの状態）."
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:113
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:504
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:509
 msgid ""
 "Refer to :dev-url:`Case business states </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for available "
@@ -3272,13 +3272,11 @@ msgid ""
 "``http`` or ``https``) to prevent open-redirect or protocol-injection "
 "attacks."
 msgstr ""
-"``url`` パラメータとして、サニタイズされていないユーザー制御の入力を直接渡さ"
-"ないでください。 ``navigateToUrl()`` および ``resetTaskAndNavigateToUrl()`` "
-"は、内部で値をURLデコードし、 ``SanitizeAPI.escapeForJavascript()`` を使用し"
-"てJavaScriptコンテキスト向けにエスケープします。ただし、オープンリダイレクト"
-"やプロトコルインジェクション攻撃を防ぐため、アプリケーションの境界でURLを検証"
-"する必要があります（例：スキームが ``http`` または ``https`` であることを確認"
-"する）。"
+"``url`` パラメータとして、サニタイズされていないユーザー制御の入力を直接渡さないでください。 ``navigateToUrl()`` "
+"および ``resetTaskAndNavigateToUrl()`` は、内部で値をURLデコードし、 "
+"``SanitizeAPI.escapeForJavascript()`` "
+"を使用してJavaScriptコンテキスト向けにエスケープします。ただし、オープンリダイレクトやプロトコルインジェクション攻撃を防ぐため、アプリケーションの境界でURLを検証する必要があります（例：スキームが"
+" ``http`` または ``https`` であることを確認する）。"
 
 #: ../../source/portal-developer-guide/customization/navigate-back.rst:37
 msgid "Reset Task and Navigate"
@@ -3724,11 +3722,12 @@ msgstr ""
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:118
 msgid ""
 "If you are using IFrames and you want to customize the colors of the "
-"project specific UIs, then refer to this documentation :dev-url:`/12.0"
-"/designer-guide/how-to/overrides.html`"
+"project specific UIs, then refer to this documentation :dev-"
+"url:`/doc/12.0/designer-guide/how-to/overrides.html`"
 msgstr ""
-"IFrameを使用しており、プロジェクト固有のUIの色をカスタマイズしたい場合は、こちらのドキュメントを参照してください。:dev-"
-"url:`/12.0/designer-guide/how-to/overrides.html`"
+"IFrame を使用しており、プロジェクト固有の UI の色をカスタマイズしたい場合は、"
+"こちらのドキュメントを参照してください:dev-url:`/doc/12.0/designer-guide/how-"
+"to/overrides.html`"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:122
 msgid ""
@@ -4483,12 +4482,13 @@ msgstr ""
 msgid ""
 "We support all task business states for filter type ``states``. Please "
 "refer to :dev-url:`Task Business States </doc/12.0/public-"
-"api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` to check for "
+"api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` to check for "
 "available task business states."
 msgstr ""
-"フィルタータイプ ``states`` ではすべてのタスクのビジネスの状態がサポートされます。:dev-url:`タスクのビジネスの状態 "
-"</doc/12.0/public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` "
-"を参照して、利用可能なタスクのビジネスの状態を確認してください。"
+"フィルタタイプ ``` `states`` については、すべてのタスクビジネス状態をサポート"
+"しています。利用可能なタスクビジネス状態については、:dev-url:`Task Business "
+"States </doc/12.0/public-api/ch/ivyteam/ivy/workflow/task/"
+"TaskBusinessState.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:140
 msgid "Show Custom Panels (Widgets)"
@@ -4680,14 +4680,14 @@ msgstr "以下は、ポータルダッシュボードのニュースウィジェ
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:59
 #: ../../source/portal-developer-guide/dashboard/index.rst:107
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:98
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:99
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:103
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:66
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:55
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:44
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:45
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:37
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:97
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:98
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:84
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:61
 #: ../../source/portal-developer-guide/usermenu/index.rst:76
@@ -4699,8 +4699,8 @@ msgid "**Required Properties:**"
 msgstr "**必須プロパティ:**"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:63
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:101
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:217
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:102
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:223
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:65
 msgid "``type`` (string)"
 msgstr "``type`` (文字列)"
@@ -4715,7 +4715,7 @@ msgstr "ニュースウィジェット用に ``\"news\"`` に設定必須"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:68
 #: ../../source/portal-developer-guide/dashboard/index.rst:113
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:104
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:105
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-template.rst:107
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:68
 #: ../../source/portal-developer-guide/usermenu/index.rst:82
@@ -4742,7 +4742,7 @@ msgstr "例:``\"news_18459642ba614d79bddea3f57e800bcf\"``"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:75
 #: ../../source/portal-developer-guide/dashboard/index.rst:265
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:107
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:108
 msgid "``names`` (array)"
 msgstr "``names`` (配列)"
 
@@ -4765,7 +4765,7 @@ msgid "Example: ``[{\"locale\": \"en\", \"value\": \"Company News\"}]``"
 msgstr "例:``[{\"locale\": \"en\", \"value\": \"Company News\"}]``"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:82
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:110
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:111
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:71
 msgid "``layout`` (object)"
 msgstr "``layout`` (object)"
@@ -4859,7 +4859,7 @@ msgid "Recommended: 5-8 for adequate news display"
 msgstr "推奨: 適切なニュース表示のため5-8行"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:116
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:130
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:131
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:91
 msgid "``styleClass`` (string, optional)"
 msgstr "``styleClass`` (文字列、オプション)"
@@ -4877,8 +4877,8 @@ msgid "Example: ``\"news-widget-custom highlight-border\"``"
 msgstr "例:``\"news-widget-custom highlight-border\"``"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:122
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:133
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:201
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:134
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:207
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:94
 msgid "``style`` (string, optional)"
 msgstr "``style`` (文字列、オプション)"
@@ -5383,23 +5383,23 @@ msgid ""
 "dashboard."
 msgstr "以下はポータルダッシュボードのケースウィジェットの JSON 定義の例です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:100
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:101
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:105
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:68
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:57
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:46
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:47
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:39
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:99
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:100
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:63
 msgid "**Required Properties**"
 msgstr "**必須プロパティ**"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:106
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:131
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:162
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:207
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:258
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:107
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:132
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:163
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:208
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:263
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:111
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:136
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:161
@@ -5428,9 +5428,9 @@ msgstr "**必須プロパティ**"
 msgid "Property"
 msgstr "プロパティ"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:109
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:227
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:270
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:110
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:232
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:275
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:114
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:205
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:77
@@ -5441,20 +5441,20 @@ msgstr "プロパティ"
 msgid "``type``"
 msgstr "``type``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:110
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:113
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:147
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:150
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:167
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:191
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:212
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:216
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:220
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:228
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:232
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:262
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:268
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:271
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:111
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:114
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:148
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:151
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:168
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:192
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:213
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:217
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:221
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:233
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:237
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:267
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:273
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:276
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:115
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:118
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:182
@@ -5488,11 +5488,11 @@ msgstr "``type``"
 msgid "string"
 msgstr "string"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:111
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:112
 msgid "Widget type. Must be ``\"case\"`` for case widget"
 msgstr "ウィジェットタイプ。ケースウィジェットの場合は必ず ``\"case\"`` とする。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:112
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:113
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:117
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:80
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:69
@@ -5502,19 +5502,19 @@ msgstr "ウィジェットタイプ。ケースウィジェットの場合は必
 msgid "``id``"
 msgstr "``id``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:114
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:115
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:119
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:82
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:71
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:60
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:61
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:53
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:105
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:106
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:69
 msgid "Unique identifier for the widget"
 msgstr "ウィジェットの固有識別子"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:115
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:116
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:120
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:83
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:72
@@ -5523,10 +5523,10 @@ msgstr "ウィジェットの固有識別子"
 msgid "``names``"
 msgstr "``names``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:116
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:122
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:224
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:265
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:117
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:123
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:229
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:270
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:121
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:185
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:84
@@ -5538,20 +5538,20 @@ msgstr "``names``"
 msgid "array"
 msgstr "array"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:117
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:118
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:122
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:85
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:74
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:63
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:64
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:108
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:109
 #, python-brace-format
 msgid ""
 "Multilingual display names. Each entry: ``{\"locale\": \"en\", \"value\":"
 " \"Name\"}``"
 msgstr "多言語対応の表示名。各エントリ：``{\"locale\": \"en\", \"value\": \"Name\"}``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:118
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:119
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:123
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:86
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:75
@@ -5561,7 +5561,7 @@ msgstr "多言語対応の表示名。各エントリ：``{\"locale\": \"en\", \
 msgid "``layout``"
 msgstr "``layout``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:119
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:120
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:124
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:127
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:87
@@ -5573,40 +5573,40 @@ msgstr "``layout``"
 msgid "object"
 msgstr "object"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:120
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:121
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:125
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:88
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:77
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:66
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:67
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:56
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:111
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:112
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:72
 msgid "Widget position and size (see Layout Properties below)"
 msgstr "ウィジェットの位置とサイズ（下記のレイアウトプロパティを参照）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:121
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:122
 msgid "``columns``"
 msgstr "``columns``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:123
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:114
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:124
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:115
 msgid "Column configurations (see Columns section below)"
 msgstr "列の設定（下記「列」セクション参照）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:125
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:126
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:130
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:93
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:79
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:71
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:69
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:61
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:116
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:117
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:77
 msgid "**Layout Properties**"
 msgstr "**レイアウトプロパティ**"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:134
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:135
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:139
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:102
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:88
@@ -5616,11 +5616,11 @@ msgstr "**レイアウトプロパティ**"
 msgid "``x``"
 msgstr "``x``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:135
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:138
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:141
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:144
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:175
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:136
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:139
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:142
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:145
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:176
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:140
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:143
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:146
@@ -5649,19 +5649,19 @@ msgstr "``x``"
 msgid "number"
 msgstr "number"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:136
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:137
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:141
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:104
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:90
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:82
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:80
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:72
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:119
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:120
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:80
 msgid "Column position in 12-column grid (0-11). CSS left = ``x / 12 * 100%``"
 msgstr "12列グリッドにおける列位置（0-11）。CSS左寄せ = ``x / 12 * 100%``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:137
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:138
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:142
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:105
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:91
@@ -5671,19 +5671,19 @@ msgstr "12列グリッドにおける列位置（0-11）。CSS左寄せ = ``x / 
 msgid "``y``"
 msgstr "``y``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:139
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:140
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:144
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:107
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:93
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:85
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:83
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:75
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:122
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:123
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:83
 msgid "Row position. CSS top = ``y / 12 * 100%``"
 msgstr "行位置。CSS top = ``y / 12 * 100%``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:140
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:141
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:145
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:108
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:94
@@ -5693,19 +5693,19 @@ msgstr "行位置。CSS top = ``y / 12 * 100%``"
 msgid "``w``"
 msgstr "``w``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:142
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:143
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:147
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:110
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:96
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:88
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:86
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:78
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:125
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:126
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:86
 msgid "Width in grid columns (1-12). Pixel width = ``60 * w + 20 * (w - 1)``"
 msgstr "グリッド列幅（1～12）。ピクセル幅 = ``60 * w + 20 * (w - 1)``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:143
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:144
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:148
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:111
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:97
@@ -5715,53 +5715,53 @@ msgstr "グリッド列幅（1～12）。ピクセル幅 = ``60 * w + 20 * (w - 
 msgid "``h``"
 msgstr "``h``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:145
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:128
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:146
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:129
 msgid "Height in grid rows (min 5). Pixel height = ``60 * h + 20 * (h - 1)``"
 msgstr "グリッド行の高さ（最小5行）。ピクセル高 = ``` `60 * h + 20 * (h - 1)``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:146
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:147
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:100
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:92
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:90
 msgid "``styleClass``"
 msgstr "``styleClass``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:148
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:149
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:102
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:94
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:92
 msgid "*(Optional)* CSS classes for custom styling"
 msgstr "*（任意）カスタムスタイリング用の* CSSクラス"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:149
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:231
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:150
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:236
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:103
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:95
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:93
 msgid "``style``"
 msgstr "``style``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:151
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:152
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:105
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:97
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:95
 msgid "*(Optional)* Inline CSS styles"
 msgstr "*(オプション)* インラインCSSスタイル"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:154
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:155
 msgid ""
 "**Recommended case widget size:** Width 8-12 columns, Height 8-12 rows "
 "for optimal table display with pagination."
 msgstr "**推奨ケースウィジェットサイズ：** 幅8-12列、高さ8-12行（ページネーション付きテーブル表示に最適）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:156
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:139
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:157
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:140
 msgid "**Display & Behavior Properties**"
 msgstr "**表示と動作のプロパティ**"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:164
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:209
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:165
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:210
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:163
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:126
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:118
@@ -5773,29 +5773,30 @@ msgstr "**表示と動作のプロパティ**"
 msgid "Default"
 msgstr "デフォルト"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:166
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:167
 msgid "``sortField``"
 msgstr "``sortField``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:168
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:225
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:233
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:169
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:230
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:238
 msgid "*(none)*"
 msgstr "*(なし)*"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:169
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:170
 msgid "Default column for sorting (e.g., ``\"name\"``, ``\"startTimestamp\"``)"
 msgstr "ソート用デフォルト列（例：``、\"name\"``、``、\"startTimestamp\"``）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:170
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:171
 msgid "``sortDescending``"
 msgstr "``sortDescending``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:171
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:179
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:183
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:187
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:195
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:172
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:180
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:184
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:188
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:196
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:225
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:166
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:129
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:121
@@ -5808,38 +5809,39 @@ msgstr "``sortDescending``"
 msgid "boolean"
 msgstr "ブール値"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:172
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:188
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:196
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:173
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:189
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:197
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:122
 msgid "``false``"
 msgstr "``false``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:173
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:145
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:174
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:146
 msgid "Sort direction. ``false`` = ascending, ``true`` = descending"
 msgstr "ソート方向。``false`` = 昇順、``true`` = 降順"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:174
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:175
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:261
 msgid "``rowsPerPage``"
 msgstr "``rowsPerPage``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:176
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:177
 msgid "``10``"
 msgstr "``10``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:177
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:178
 msgid "Number of cases displayed per page"
 msgstr "1ページに表示する件数"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:178
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:179
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:111
 msgid "``showWidgetInfo``"
 msgstr "``showWidgetInfo``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:180
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:184
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:181
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:185
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:226
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:167
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:130
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:126
@@ -5851,13 +5853,13 @@ msgstr "``showWidgetInfo``"
 msgid "``true``"
 msgstr "``true``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:181
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:182
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:114
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:151
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:152
 msgid "Show/hide widget information icon"
 msgstr "ウィジェット情報アイコンの表示/非表示"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:182
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:183
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:165
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:128
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:124
@@ -5867,36 +5869,36 @@ msgstr "ウィジェット情報アイコンの表示/非表示"
 msgid "``showFullscreenMode``"
 msgstr "``showFullscreenMode``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:185
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:186
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:168
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:131
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-notification-widget.rst:127
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:115
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:110
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:99
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:154
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:155
 msgid "Show/hide fullscreen mode icon"
 msgstr "全画面モードアイコンの表示/非表示"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:186
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:187
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:193
 msgid "``enableQuickSearch``"
 msgstr "``enableQuickSearch``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:189
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:157
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:190
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:158
 msgid "Enable quick search text box"
 msgstr "クイック検索テキストボックスを有効にする"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:190
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:191
 msgid "``caseQueryType``"
 msgstr "``caseQueryType``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:192
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:193
 msgid "``\"BUSINESS_CASE\"``"
 msgstr "``\"BUSINESS_CASE\"``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:193
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:194
 msgid ""
 "Defines which level of cases to display. By default, the widget queries "
 "by ``\"BUSINESS_CASE\"``. Available values: ``\"BUSINESS_CASE\"`` shows "
@@ -5907,180 +5909,189 @@ msgstr ""
 "を参照します。利用可能な値：``\"BUSINESS_CASE\"`` はトップレベルのケースのみを表示します。``\"SUB_CASE\"`` "
 "はサブケース（ビジネスケースの子）のみを表示します。``\"ALL\"`` はビジネスケースとサブケースの両方を表示します。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:194
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:195
 msgid "``isTopMenu``"
 msgstr "``isTopMenu``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:197
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:166
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:198
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:167
 msgid "``true`` = top-level nav item, ``false`` = under Dashboard menu"
 msgstr "``true`` = トップレベルナビゲーション項目、``false`` = ダッシュボードメニュー内項目"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:199
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:168
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:200
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:169
 msgid "**Columns Configuration**"
 msgstr "**列の設定**"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:201
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:170
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:202
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:171
 msgid "Each column object in the ``columns`` array:"
 msgstr "``columns`` 配列内の各列オブジェクト："
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:211
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:261
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:212
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:266
 msgid "``field``"
 msgstr "``field``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:213
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:214
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:259
 msgid "*(required)*"
 msgstr "*(必須)*"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:214
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:215
 msgid "Column field name (see Standard Columns below)"
 msgstr "列フィールド名（下記「標準列」参照）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:215
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:216
 msgid "``visible``"
 msgstr "``visible``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:217
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:218
 msgid "``\"true\"``"
 msgstr "``\"true\"``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:218
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:190
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:219
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:193
 msgid "Column visibility: ``\"true\"`` or ``\"false\"``"
 msgstr "列の可視性: ``\"true\"`` または ``\"false\"``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:219
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:220
 msgid "``quickSearch``"
 msgstr "``quickSearch``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:221
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:222
 msgid "``\"false\"``"
 msgstr "``\"false\"``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:222
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:193
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:223
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:196
 msgid "Include in quick search: ``\"true\"`` or ``\"false\"``"
 msgstr "クイック検索に含める: ``` `\"true\"`` または ``` `\"false\"``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:223
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:224
+msgid "``enableFilter``"
+msgstr "``enableFilter``"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:227
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:199
+msgid "Allow filtering on this column in complex filter."
+msgstr "複合フィルターにおいて、この列でのフィルタリングを許可します。"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:228
 msgid "``headers``"
 msgstr "``headers``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:226
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:196
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:231
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:202
 #, python-brace-format
 msgid ""
 "Multilingual column headers: ``[{\"locale\": \"en\", \"value\": "
 "\"Header\"}]``"
 msgstr "多言語の列見出し:``[{\"locale\": \"en\", \"value\": \"Header\"}]``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:229
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:234
 msgid "``\"STANDARD\"``"
 msgstr "``\"STANDARD\"``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:230
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:199
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:235
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:205
 msgid "Column type: ``\"STANDARD\"`` or ``\"CUSTOM\"``"
 msgstr "列タイプ： ``\"STANDARD\"`` または ``\"CUSTOM\"``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:234
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:202
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:239
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:208
 msgid "Inline CSS for custom columns (e.g., ``\"width: 110px\"``)"
 msgstr "カスタム列用のインラインCSS（例：``\"width: 110px\"``）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:236
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:241
 msgid "**Standard Column Fields**"
 msgstr "**標準カラムフィールド**"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:238
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:243
 msgid "``id`` - Case ID"
 msgstr "``id`` - ケースID"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:239
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:244
 msgid "``Pin`` - Pin button for case"
 msgstr "``Pin`` - ケース用ピンボタン"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:240
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:245
 msgid "``name`` - Case name"
 msgstr "``name`` - 大文字小文字を区別する名前"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:241
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:246
 msgid "``description`` - Case description"
 msgstr "``description`` - ケースの説明"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:242
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:247
 msgid "``state`` - Case business state"
 msgstr "``state`` - ケースビジネス状態"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:243
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:248
 msgid "``creator`` - Case creator"
 msgstr "``creator`` - ケース作成者"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:244
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:183
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:249
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:184
 msgid "``startTimestamp`` - Creation date and time"
 msgstr "``startTimestamp`` - 作成日時"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:245
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:184
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:250
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:185
 msgid "``endTimestamp`` - End date and time"
 msgstr "``endTimestamp`` - 終了日時"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:246
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:251
 msgid "``owner`` - List of case owners"
 msgstr "``owner`` - 担当者のリスト"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:247
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:252
 msgid "``category`` - Case category"
 msgstr "``category`` - 大文字小文字の区別"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:248
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:253
 msgid "``actions`` - Action buttons (details, destroy, etc.)"
 msgstr "``actions`` - アクションボタン（詳細、破棄など）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:250
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:204
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:255
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:210
 msgid "**Filters Configuration**"
 msgstr "**フィルターの設定**"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:252
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:206
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:257
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:212
 msgid "The ``filters`` array defines pre-configured filter conditions:"
 msgstr "``filters`` 配列は事前設定されたフィルタ条件を定義します："
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:263
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:209
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:268
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:215
 msgid "Column field name to filter"
 msgstr "列フィールド名によるフィルタリング"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:264
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:269
 msgid "``values``"
 msgstr "``values``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:266
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:212
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:271
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:218
 msgid "Filter values (format depends on field type)"
 msgstr "値をフィルタリング（形式はフィールドタイプに依存）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:267
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:272
 msgid "``operator``"
 msgstr "``operator``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:269
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:215
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:274
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:221
 msgid "Filter operator (see Filter Conditions section)"
 msgstr "フィルター演算子（フィルター条件セクションを参照）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:272
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:218
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:277
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:224
 msgid "``\"standard\"`` or ``\"custom\"``"
 msgstr "``\"standard\"`` または ``\"custom\"``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:275
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:280
 msgid ""
 "For detailed filter configuration, see the :ref:`Filter Conditions "
 "<configure-new-dashboard-case-widget-filter-structure>` section below."
@@ -6088,49 +6099,49 @@ msgstr ""
 "詳細なフィルタ設定については、下記の「:ref:`Filter Conditions <configure-new-dashboard-case-"
 "widget-filter-structure>` 」セクションを参照してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:280
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:227
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:285
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:233
 msgid "Custom Columns"
 msgstr "カスタム列"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:282
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:287
 msgid ""
 "The Portal supports custom fields for a case. You can show them on the "
 "case widget as a column."
 msgstr "ポータルは、ケースのカスタムフィールドをサポートします。ケースウィジェットでは列として表示できます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:286
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:291
 msgid "Traditional Custom Columns"
 msgstr "従来のカスタム列"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:288
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:293
 msgid ""
 "You can predefine which columns to display, along with other attributes "
 "such as filters, formats, and styles. Below is a standard JSON example of"
 " a custom column."
 msgstr "表示する列を、フィルター、形式、スタイルなどの他の属性とともに事前に定義できます。以下はカスタム列の標準的な JSON の例です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:309
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:314
 msgid ""
 "Besides the attributes explained in the previous section, a custom column"
 " has two differences:"
 msgstr "カスタム列には、前のセクションで説明した属性のほかに、以下の 2 つの違いがあります。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:312
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:253
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:317
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:259
 msgid ""
 "``type``: type of the widget column. There are two options: ``STANDARD`` "
 "and ``CUSTOM``."
 msgstr "``type``：ウィジェットの列のタイプ。 ``STANDARD`` と ``CUSTOM`` の 2 つのオプションがあります。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:314
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:319
 msgid ""
 "``field``: this attribute is the name of the case's custom field which "
 "will be used to get data for the column."
 msgstr "``field``：この属性は、列のデータを取得するのに使用されるケースのカスタムフィールドの名前です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:318
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:259
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:323
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:265
 msgid ""
 "Portal only displays custom fields declared in the ``custom-fields.yaml``"
 " file. Refer to :dev-url:`Custom Fields Meta Information </doc/12.0"
@@ -6141,22 +6152,22 @@ msgstr ""
 "url:`カスタムフィールドのメタ情報 </doc/12.0/designer-guide/how-to/workflow/custom-"
 "fields.html#meta-information>` を参照してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:322
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:327
 msgid "Custom Action Button Columns"
 msgstr "カスタムアクションボタンの列"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:323
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:328
 msgid ""
 "Portal supports creating custom action buttons as a column in case widget"
 " for specific needs. By clicking on these buttons, a custom process is "
 "triggered."
 msgstr "ポータルでは、ニーズに合わせてケースウィジェットの列としてカスタムアクションボタンを作成できます。これらのボタンをクリックすると、カスタムプロセスがトリガーされます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:325
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:330
 msgid "Follow these steps to implement it:"
 msgstr "以下の手順に従って実装します。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:327
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:332
 msgid ""
 "#. Create a new process that will be triggered after clicking on the "
 "custom action button. In this process, define a request start event that "
@@ -6168,39 +6179,39 @@ msgstr ""
 "パラメーターを受け入れるリクエスト開始イベントを定義します。ケースの詳細ページの ``カスタムアクション`` "
 "ボタンをクリックすると、このプロセスが呼び出され、ケースの UUID が ``uuid`` パラメーターとして受け渡されます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:331
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:336
 msgid "|custom-action-button-process-demo|"
 msgstr "|custom-action-button-process-demo|"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:815
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:820
 msgid "custom-action-button-process-demo"
 msgstr "custom-action-button-process-demo"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:333
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:338
 msgid ""
 "Design and implement the action/script for the custom action within this "
 "process."
 msgstr "このプロセスで、カスタムアクションのアクション／スクリプトを設計、実装します。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:335
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:340
 msgid "|custom-action-destroy-case|"
 msgstr "|custom-action-destroy-case|"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:817
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:822
 msgid "custom-action-destroy-case"
 msgstr "custom-action-destroy-case"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:337
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:342
 msgid "Describe the custom action button in ``custom-fields.yaml``."
 msgstr "``custom-fields.yaml`` のカスタムアクションボタンを記述します。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:349
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:354
 msgid ""
 "``IsCustomAction: true`` is mandatory to inform Portal that it is an "
 "action button."
 msgstr "これがアクションボタンであることをポータルに伝えるには、 ``IsCustomAction: true`` が必須です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:350
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:355
 msgid ""
 "For the ``Icon``, please refer to the streamline icon showcase available "
 "in Html Dialog Demos on Axon Ivy Market."
@@ -6208,24 +6219,24 @@ msgstr ""
 "``Icon`` については、Axon Ivy Market の Html Dialog Demos で利用可能な Streamline "
 "アイコンを参照してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:352
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:357
 msgid "On the process start of the main process, assign a custom field to it."
 msgstr "メインプロセスのプロセスの開始でカスタムフィールドを割り当てます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:354
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:359
 msgid "|custom-action-button-custom-field|"
 msgstr "|custom-action-button-custom-field|"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:814
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:819
 msgid "custom-action-button-custom-field"
 msgstr "custom-action-button-custom-field"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:357
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:263
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:362
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:269
 msgid "Filter Conditions"
 msgstr "フィルター条件"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:359
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:364
 msgid ""
 "You can predefine filter conditions for most columns of the case widget. "
 "Each column has different conditions: some accept only a list, some "
@@ -6236,138 +6247,138 @@ msgstr ""
 "ケースウィジェットのほとんどの列でフィルター条件を事前に定義できます。条件は列ごとに異なり、リストのみ、文字列のみを受け入れる列もあれば、日時など、特定の形式の文字列を必要とする列もあります。詳細については、"
 " :ref:`複合フィルター <complex-filter>` を参照してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:364
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:270
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:369
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:276
 msgid "Base structure of filter json:"
 msgstr "Json フィルターの基本構造："
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:390
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:296
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:395
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:302
 msgid "``field``: filter field name corresponding with column name"
 msgstr "``field``：列名に対応するフィルターのフィールド名"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:392
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:297
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:397
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:303
 msgid "``values``: filter value, could be a list, a string or a number"
 msgstr "``values``：フィルターの値（リスト、文字列または数値）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:394
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:298
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:399
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:304
 msgid ""
 "``operator``: filter operator, operators can be difference depend on each"
 " field type."
 msgstr "``operator``：フィルター演算子。演算子はフィールドのタイプによって異なります。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:396
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:300
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:401
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:306
 msgid ""
 "**String column**: is, is_not, empty, not_empty, contains, not_contains, "
 "start_with, not_start_with, end_with, not_end_with"
 msgstr "**文字列列**：is、is_not、empty、not_empty、contains、not_contains、start_with、not_start_with、end_with、not_end_with"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:398
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:302
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:403
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:308
 msgid ""
 "**Number column**: between, not_between, empty, not_empty, equal, "
 "not_equal, less, less_or_equal, greater, greater_or_equal"
 msgstr "**数値列**：between、not_between、empty、not_empty、equal、not_equal、less、less_or_equal、greater、greater_or_equal"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:400
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:304
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:405
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:310
 msgid ""
 "**Date column**: today, yesterday, is, is_not, before, after, between, "
 "not_between, current, last, next, empty, not_empty"
 msgstr "**日付列**：today、yesterday、is、is_not、before、after、between、not_between、current、last、next、empty、not_empty"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:402
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:407
 msgid ""
 "``type``: ``standard`` for a standard column or ``custom`` for a custom "
 "column"
 msgstr "``type``： ``standard`` （標準の列）または ``custom`` （カスタム列）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:404
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:308
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:409
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:314
 msgid "Date type additional field:"
 msgstr "日付タイプの追加フィールド："
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:406
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:411
 msgid "``periodType``: string value, ``YEAR``, ``MONTH``, ``WEEK``, ``DAY``"
 msgstr "``periodType``：文字列値、 ``YEAR``、 ``MONTH``、 ``WEEK``、 ``DAY``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:408
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:413
 msgid "``from``: string value. E.g.: \"03/19/2024\""
 msgstr "``from``：文字列値。例：\"2024/03/19\""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:410
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:415
 msgid "``to``: string value. E.g.: \"01/01/2024\""
 msgstr "``to``：文字列値。例：\"2024/01/01\""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:412
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:417
 msgid "Number type additional field:"
 msgstr "数値タイプの追加フィールド："
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:414
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:419
 msgid "``from``: string value. E.g.: \"3.0\""
 msgstr "``from``：文字列値。例：「3.0」"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:416
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:421
 msgid "``to``: string value. E.g.: \"55.2\""
 msgstr "``to``：文字列値。例：「55.2」"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:419
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:316
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:424
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:322
 msgid ""
 "There are additional fields dependent on the operator and many specific "
 "filters for each field type. Below is the list of filterable columns and "
 "their corresponding filter conditions."
 msgstr "追加フィールドは、各フィールドタイプの演算子やフィルターに依存します。以下はフィルター設定可能な列とそれに対応するフィルター条件のリストです。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:423
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:321
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:428
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:327
 msgid ""
 "We encourage utilizing dashboard configurations to edit widgets and then "
 "leveraging the export dashboard feature to ensure better expectations "
 "when customizing these widgets."
 msgstr "これらのウィジェットをカスタマイズする際は、期待どおりに動作するように、ダッシュボード設定を使用してウィジェットを編集してから、ダッシュボードのエクスポート機能を利用することを推奨します。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:425
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:323
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:430
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:329
 msgid "Standard Column:"
 msgstr "標準の列："
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:427
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:432
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:202
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:353
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:365
 msgid "``name``"
 msgstr "``name``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:451
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:477
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:456
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:482
 msgid ""
 "This column accepts all operators available for String column. "
 "Additionally, it accepts ``values`` as a list of strings ."
 msgstr "この列は、文字列列で利用可能なすべての演算子を受け入れます。さらに、文字列のリストとして ``値`` も受け入れます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:453
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:379
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:458
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:391
 msgid "``description``"
 msgstr "``description``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:479
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:484
 msgid "``state``: Case business state"
 msgstr "``state``：ケースのビジネスの状態"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:502
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:507
 msgid ""
 "This column only accepts a list of case business state names as the "
 "filter value. The available filter operator is ``in``."
 msgstr "この列は、フィルター値としてケースのビジネスの状態名のリストのみ受け入れます。利用可能なフィルターの演算子は ``in`` です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:507
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:512
 msgid "``creator``"
 msgstr "``creator``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:536
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:541
 msgid ""
 "This column only accepts a list of usernames as filter value for the case"
 " creator's username. The available filter operators are ``in``, "
@@ -6377,13 +6388,13 @@ msgstr ""
 "この列は、ケース作成者のユーザー名のフィルター値としてユーザー名のリストのみ受け入れます。利用可能なフィルターの演算子は ``in``、 "
 "``not_in``、 ``current_user`` です。 ``current_user`` 演算子には値フィールドは必要ありません。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:539
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:544
 msgid ""
 "``startTimestamp`` and ``endTimestamp``: created date and finished date "
 "of the Case"
 msgstr "``startTimestamp``、 ``endTimestamp``：ケースの作成日と終了日"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:594
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:599
 msgid ""
 "This column accepts all operators available for Date column. Fields may "
 "vary depending on the operator. The JSON example above covers most use "
@@ -6394,11 +6405,11 @@ msgstr ""
 "の例は、日付フィールドのほとんどのユースケースをカバーします。受け入れ可能な日付の形式は、 ``dd.MM.yyyy``、 "
 "``dd.MM.yyyy HH:mm``、 ``MM/dd/yyyy``、``MM/dd/yyyy HH:mm`` です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:597
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:602
 msgid "``category``"
 msgstr "``category``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:621
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:626
 msgid ""
 "The available filter operators are ``in``, ``not_in``, ``no_category``, "
 "``contains`` and ``not_contains``. The ``no_category`` operator does not "
@@ -6407,11 +6418,11 @@ msgstr ""
 "利用可能なフィルターの演算子は ``in``、 ``not_in``、 ``no_category``、``contains``、 "
 "``not_contains`` です。 ``no_category`` 演算子には値フィールドは必要ありません。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:624
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:629
 msgid "Custom Field Column:"
 msgstr "カスタムフィールド列："
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:626
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:631
 msgid ""
 ":ref:`configure-new-dashboard-case-widget-custom-columns` are using the "
 "same operator as :ref:`Standard Column <configure-new-dashboard-case-"
@@ -6420,36 +6431,36 @@ msgstr ""
 ":ref:`configure-new-dashboard-case-widget-custom-columns` は、:ref:`標準の列 "
 "<configure-new-dashboard-case-widget-filter-structure>` と同じ演算子を使用しています。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:628
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:633
 msgid "``type`` field must be ``custom``"
 msgstr "``type`` フィールドは ``custom`` になります。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:653
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:567
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:658
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:617
 msgid "Quick Search"
 msgstr "クイック検索"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:655
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:660
 msgid ""
 "The Quick search is a useful function for users to quickly search the "
 "cases within the case widget. The configuration of the quick search has "
 "two attributes:"
 msgstr "クイック検索は、ユーザーがケースウィジェット内のケースを素早く検索できる便利な機能です。クイック検索の設定には以下の 2 つの属性があります。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:658
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:572
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:663
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:622
 msgid "``enableQuickSearch``: enables the quick search feature for the widget."
 msgstr "``enableQuickSearch``：ウィジェットのクイック検索機能を有効にします。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:660
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:574
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:665
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:624
 msgid ""
 "``quickSearch``: indicates that a column is searchable using the quick "
 "search feature."
 msgstr "``quickSearch``：クイック検索機能を使用した列の検索が可能なことを示します。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:662
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:576
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:667
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:626
 msgid ""
 "If you set the ``enableQuickSearch`` attribute to ``false``, the quick "
 "search feature will be disabled, regardless of the ``quickSearch`` "
@@ -6458,7 +6469,7 @@ msgstr ""
 "``enableQuickSearch`` 属性を ``false`` に設定すると、 ``quickSearch`` "
 "属性の値にかかわらず、クイック検索機能が無効になります。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:665
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:670
 msgid ""
 "Conversely, if you set the ``enableQuickSearch`` attribute to ``true``, "
 "the quick search feature will search within the values of all columns "
@@ -6471,12 +6482,12 @@ msgstr ""
 "``true`` に設定されているすべての列の値でクイック検索機能による検索が可能になります。 ``quickSearch`` "
 "属性をケースウィジェットのいずれの列にも割り当てていない場合、クイック検索機能はデフォルトで名前フィールドと説明フィールドを検索します。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:670
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:584
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:675
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:634
 msgid "Below are the definition of these attributes:"
 msgstr "これらの属性の定義は以下のとおりです。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:672
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:677
 msgid ""
 "``enableQuickSearch``: to enable/disable the quick search feature, set "
 "the ``enableQuickSearch`` field of the case widget as shown below."
@@ -6484,30 +6495,30 @@ msgstr ""
 "``enableQuickSearch``：クイック検索機能を有効／無効にします。以下のようにケースウィジェットの "
 "``enableQuickSearch`` フィールドを設定してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:688
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:716
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:602
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:630
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:693
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:721
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:652
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:680
 msgid "Valid values:"
 msgstr "有効な値："
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:690
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:604
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:695
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:654
 msgid "``true``: show the quick search text box."
 msgstr "``true``：クイック検索テキストボックスを表示します。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:691
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:605
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:696
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:655
 msgid "``false``: hide the quick search text box."
 msgstr "``false``：クイック検索テキストボックスを非表示にします。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:692
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:606
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:697
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:656
 msgid "``not defined``: hide the quick search text box."
 msgstr "``not defined``：クイック検索テキストボックスを非表示にします。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:694
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:608
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:699
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:658
 msgid ""
 "``quickSearch``: to choose which columns can be searched by the quick "
 "search feature, set the ``quickSearch`` field for each column as shown "
@@ -6516,18 +6527,18 @@ msgstr ""
 "``quickSearch``：クイック検索機能で検索できる列を選択します。以下のように各列の ``quickSearch`` "
 "フィールドを設定してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:718
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:632
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:723
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:682
 msgid "``true``: apply quick search for this column."
 msgstr "``true``：この列にクイック検索を適用します。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:719
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:633
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:724
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:683
 msgid "``false``: do not apply quick search for this column."
 msgstr "``false``：この列にクイック検索を適用しません。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:720
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:634
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:725
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:684
 msgid ""
 "``not defined``: the ``name`` and ``description`` columns are ``true``, "
 "other columns are ``false`` by default."
@@ -6535,13 +6546,13 @@ msgstr ""
 "``not defined``： ``name`` 列と ``description`` 列は ``true``、その他の列は自動的に "
 "``false`` になります。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:723
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:637
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:728
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:687
 msgid "Multi-Language Support for Custom String Fields"
 msgstr "カスタム文字列フィールドの多言語サポート"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:725
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:639
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:730
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:689
 msgid ""
 "With the **Multi-Language Support for Custom Fields** feature, we enable "
 "the provision of values in a custom field in multiple languages. The "
@@ -6551,20 +6562,20 @@ msgstr ""
 "**カスタムフィールドの多言語対応** "
 "機能により、カスタムフィールドの値を多言語で提供できるようになります。フィールドの内容は、カスタムフィールドで選択された言語に基づいて表示されます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:729
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:643
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:734
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:693
 msgid ""
 "Portal only supports Multi-Language for Custom Fields with ``TYPE: "
 "STRING``."
 msgstr "ポータルでは、 ``TYPE: STRING`` のカスタムフィールドのみ多言語をサポートします。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:732
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:646
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:737
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:696
 msgid "Enabling Multi-Language Support"
 msgstr "多言語サポートの有効化"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:734
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:648
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:739
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:698
 msgid ""
 "To allow a custom field to retrieve multilingual values from the CMS, set"
 " the ``HasCmsValue`` attribute to ``true`` in the corresponding ``custom-"
@@ -6577,7 +6588,7 @@ msgstr ""
 "に設定してください。そうでない場合、ロジックは変更されず、カスタムフィールドは静的値を使用します。さらに、値は CMS "
 "に複数の言語で入力して維持する必要があります。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:738
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:743
 #, python-brace-format
 msgid ""
 "Following this path to add your custom field values: "
@@ -6591,12 +6602,12 @@ msgstr ""
 "guide/configuration/custom-fields.html#localize-label-description-"
 "category-and-values>`。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:744
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:658
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:749
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:708
 msgid "Example YAML Configuration"
 msgstr "YAML設定例"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:754
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:759
 msgid ""
 "In your CMS, the path should be "
 "``/CustomFields/Cases/Country/Values/Vietnam``, "
@@ -6607,131 +6618,131 @@ msgstr ""
 "``/CustomFields/Cases/Country/Values/Korea`` または "
 "``/CustomFields/Cases/Country/Values/Germany``。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:759
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:764
 msgid "|case-field-cms|"
 msgstr "|case-field-cms|"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:812
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:817
 msgid "case-field-cms"
 msgstr "case-field-cms"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:764
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:678
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:769
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:728
 msgid ""
 "If ``HasCmsValues`` is set with ``true``, the values from the CMS are "
 "used."
 msgstr "``HasCmsValues`` が ``true`` に設定されている場合、CMS の値が使用されます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:765
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:679
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:770
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:729
 msgid ""
 "If the values are entered and translated in the CMS, then the custom "
 "field is displayed based on the selected language."
 msgstr "値が CMS に入力され翻訳されている場合、カスタムフィールドは選択された言語に基づいて表示されます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:766
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:680
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:771
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:730
 msgid ""
 "If the translation for a value is missing in the CMS, the static value "
 "from the entry is used instead."
 msgstr "値の翻訳が CMS に存在しない場合は、エントリの静的な値が代わりに使用されます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:769
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:683
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:774
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:733
 msgid "Sorting, Filtering, and Searching with Multi-Language Custom Fields"
 msgstr "多言語カスタムフィールドによる並べ替え、フィルタリング、検索"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:772
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:686
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:777
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:736
 msgid "Sorting"
 msgstr "ソート"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:774
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:688
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:779
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:738
 msgid ""
 "``HasCmsValues = false`` or not set. Sorting is performed as usual based "
 "on the stored values."
 msgstr "``HasCmsValues = false`` または未設定の場合。ソートは保存された値に基づいて通常どおり実行されます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:775
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:689
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:780
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:739
 msgid ""
 "``HasCmsValues = true``. Sorting is performed based on values translated "
 "in the currently selected language."
 msgstr "``HasCmsValues = true`` の場合は、現在選択されている言語に翻訳された値に基づいてソートが実行されます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:779
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:693
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:784
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:743
 msgid ""
 "If ``HasCmsValues = true`` but a translation is missing in a specific "
 "language, only the translated values are sorted."
 msgstr "``HasCmsValues = true`` で特定の言語に翻訳が存在しない場合、翻訳された値のみがソートされます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:782
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:697
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:787
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:747
 msgid "Searching"
 msgstr "検索"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:784
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:699
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:789
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:749
 msgid ""
 "``HasCmsValues = false`` or not set. The search is performed as usual "
 "based on the stored value."
 msgstr "``HasCmsValues = false`` または未設定の場合、検索は保存された値に基づいて通常どおり実行されます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:785
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:700
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:790
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:750
 msgid ""
 "``HasCmsValues = true``. The search is conducted in both the CMS "
 "translations and the original value."
 msgstr "``HasCmsValues = true`` の場合、検索は CMS の翻訳と元の値の両方で実行されます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:787
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:792
 msgid ""
 "Example: When language is Spanish, a user can search for **Corea** or the"
 " original value **Korea**."
 msgstr "例：言語がスペイン語の場合、ユーザーは **Corea** または元の値 **Korea** で検索できます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:790
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:705
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:795
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:755
 msgid "Filtering"
 msgstr "フィルタリング"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:792
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:707
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:797
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:757
 msgid ""
 "``HasCmsValues = false`` or not set. Filtering is performed as usual "
 "based on the stored value."
 msgstr "``HasCmsValues = false`` または未設定の場合、フィルタリングは保存された値に基づいて通常どおり実行されます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:793
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:708
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:798
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:758
 msgid ""
 "``HasCmsValues = true``. The filter is conducted in both the CMS "
 "translations and the original value."
 msgstr "``HasCmsValues = true`` の場合、フィルターは CMS の翻訳と元の値の両方で実行されます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:797
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:712
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:802
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:762
 msgid ""
 "When enabling the Multi-Language for Custom Fields, only accepted "
 "``CONTAINS`` operator."
 msgstr "カスタムフィールドの多言語化を有効にする場合、``CONTAINS`` 演算子のみ受け付けます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:801
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:716
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:806
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:766
 msgid ""
 "If a value needs to be filtered in multiple languages, all corresponding "
 "translations must be in the filter."
 msgstr "値を複数の言語でフィルタリングする必要がある場合は、すべての対応する翻訳がフィルターに含まれている必要があります。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:804
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:719
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:809
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:769
 msgid "Conclusion"
 msgstr "結論"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:806
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:721
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:811
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:771
 msgid ""
 "With Multi-Language Support for Custom Fields, we enable flexible and "
 "dynamic provision of field content in multiple languages. The "
@@ -7394,16 +7405,16 @@ msgid "``sorting``"
 msgstr "``sorting``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:191
-msgid "``\"ALPHABETICALLY\"``"
-msgstr "``\"ALPHABETICALLY\"``"
+msgid "``\"BY_ALPHABETICALLY\"``"
+msgstr "``\"BY_ALPHABETICALLY\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:192
 msgid ""
-"Sort order: ``\"ALPHABETICALLY\"`` or ``\"SORTING_INDEX\"`` (requires "
+"Sort order: ``\"BY_ALPHABETICALLY\"`` or ``\"BY_INDEX\"`` (requires "
 "custom field)"
 msgstr ""
-"ソート順: ``` `\"ALPHABETICALLY\"`` または ``` `\"SORTING_INDEX\"`` "
-"(カスタムフィールドが必要)"
+"並べ替え順序： ``\"BY_ALPHABETICALLY\"`` または ``\"BY_INDEX\"`` （"
+"カスタムフィールドが必要です）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:196
 msgid "Enable quick search textbox for process names"
@@ -7647,191 +7658,211 @@ msgid ""
 "dashboard:"
 msgstr "以下は、ポータルダッシュボードにおけるタスクウィジェットのサンプルJSON定義です："
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:102
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:103
 msgid "Widget type. Must be ``\"task\"`` for task widget"
 msgstr "ウィジェットタイプ。タスクウィジェットの場合は必ず ``\"task\"`` とする。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:113
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:114
 msgid "``columns`` (array)"
 msgstr "``columns`` (配列)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:118
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:119
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:79
 msgid "``x`` (number)"
 msgstr "``x`` (number)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:121
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:122
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:82
 msgid "``y`` (number)"
 msgstr "``y`` (number)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:124
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:125
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:85
 msgid "``w`` (number)"
 msgstr "``w`` (number)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:127
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:128
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:88
 msgid "``h`` (number)"
 msgstr "``h`` (number)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:131
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:132
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:92
 msgid "CSS classes for custom styling"
 msgstr "カスタムスタイリング用のCSSクラス"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:134
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:135
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:95
 msgid "Inline CSS styles"
 msgstr "インラインCSSスタイル"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:137
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:138
 msgid ""
 "**Recommended task widget size:** Width 8-12 columns, Height 8-12 rows "
 "for optimal table display with pagination."
 msgstr "**推奨タスクウィジェットサイズ：** 幅8-12列、高さ8-12行（ページネーション付きテーブル表示に最適）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:141
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:142
 msgid "``sortField`` (string, optional)"
 msgstr "``sortField`` (文字列、オプション)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:142
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:143
 msgid ""
 "Default column for sorting (e.g., ``\"name\"``, ``\"priority\"``, "
 "``\"startTimestamp\"``)"
 msgstr "ソート用デフォルト列（例：``\"name\"``, ``\"priority\"``, ``\"startTimestamp\"``）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:144
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:145
 msgid "``sortDescending`` (boolean, default: ``false``)"
 msgstr "``sortDescending`` (ブール値、デフォルト: ``false``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:147
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:148
 msgid "``rowsPerPage`` (number, default: ``10``)"
 msgstr "``rowsPerPage`` (数値、デフォルト:``10``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:148
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:149
 msgid "Number of tasks displayed per page"
 msgstr "1ページに表示するタスク数"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:150
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:151
 msgid "``showWidgetInfo`` (boolean, default: ``true``)"
 msgstr "``showWidgetInfo`` (ブール値、デフォルト: ``` `true``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:153
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:154
 msgid "``showFullscreenMode`` (boolean, default: ``true``)"
 msgstr "``showFullscreenMode`` (ブール値、デフォルト: ``` `true``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:156
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:157
 msgid "``enableQuickSearch`` (boolean, default: ``false``)"
 msgstr "``enableQuickSearch`` (ブール値、デフォルト: ``` `false``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:159
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:160
 msgid "``canWorkOn`` (boolean, default: ``false``)"
 msgstr "``canWorkOn`` (ブール値、デフォルト: ``` `false``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:160
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:161
 msgid "Filter only tasks the current user can work on"
 msgstr "現在のユーザーが作業可能なタスクのみをフィルタリングする"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:162
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:163
 msgid "``filterTasksByCurrentCaseOwner`` (boolean, default: ``false``)"
 msgstr "``filterTasksByCurrentCaseOwner`` (ブール値、デフォルト: ``` `false``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:163
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:164
 msgid ""
 "Filter only tasks where current user is case owner (requires "
 "``Portal.Cases.EnableOwner`` setting)"
 msgstr "現在のユーザーがケース所有者であるタスクのみをフィルタリング（``Portal.Cases.EnableOwner`` 設定が必要）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:165
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:166
 msgid "``isTopMenu`` (boolean, default: ``false``)"
 msgstr "``isTopMenu`` (ブール値、デフォルト: ``` `false``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:172
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:173
 msgid "``field`` (string, required)"
 msgstr "``field`` (文字列, 必須)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:173
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:174
 msgid ""
 "Column field name. Use one of the standard fields below for built-in "
 "values, or the name of your custom field:"
 msgstr "列フィールド名。組み込み値には以下の標準フィールドのいずれかを使用するか、カスタムフィールド名を使用してください："
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:175
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:176
 msgid "``start`` - Start button to begin task execution"
 msgstr "``start`` - タスク実行を開始するスタートボタン"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:176
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:177
 msgid "``Pin`` - Pin button for task"
 msgstr "``Pin`` - タスク用ピンボタン"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:177
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:178
 msgid "``priority`` - Task priority"
 msgstr "``priority`` - タスク優先度"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:178
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:179
 msgid "``id`` - Task ID"
 msgstr "``id`` - タスクID"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:179
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:180
 msgid "``name`` - Task name"
 msgstr "``name`` - タスク名"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:180
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:181
 msgid "``description`` - Task description"
 msgstr "``description`` - タスクの説明"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:181
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:182
 msgid "``activator`` - Task activator"
 msgstr "``activator`` - タスク起動ツール"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:182
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:183
 msgid "``state`` - Task business state"
 msgstr "``state`` - タスクのビジネス状態"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:185
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:186
 msgid "``expiryTimestamp`` - Expiry date and time"
 msgstr "``expiryTimestamp`` - 有効期限と時刻"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:186
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:187
 msgid "``application`` - Application name"
 msgstr "``application`` - アプリケーション名"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:187
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:188
 msgid ""
 "``actions`` - Action buttons (details, reset, delegate, reserve, destroy,"
 " etc.)"
 msgstr "``actions`` - アクションボタン（詳細、リセット、委任、予約、破棄など）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:189
+msgid ""
+"``businessCaseId`` - Business Case ID (hidden by default; sortable; quick"
+" search supported)"
+msgstr ""
+"``businessCaseId`` - ビジネスケースID（デフォルトでは非表示、ソート可能、"
+"クイック検索対応）"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:190
+msgid ""
+"``technicalCaseId`` - Technical Case ID (hidden by default; sortable; "
+"quick search supported)"
+msgstr ""
+"``technicalCaseId`` - 技術ケースID（デフォルトでは非表示、ソート可能、"
+"クイック検索対応）"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:192
 msgid "``visible`` (string, default: ``\"true\"``)"
 msgstr "``visible`` (文字列、デフォルト:``\"true\"``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:192
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:195
 msgid "``quickSearch`` (string, default: ``\"false\"``)"
 msgstr "``quickSearch`` (文字列、デフォルト:``\"false\"``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:195
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:198
+msgid "``enableFilter`` (boolean, default: ``true``)"
+msgstr "``enableFilter`` (ブール値、デフォルト:``true``)"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:201
 msgid "``headers`` (array, optional)"
 msgstr "``headers`` (配列、オプション)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:198
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:204
 msgid "``type`` (string, default: ``\"STANDARD\"``)"
 msgstr "``type`` (文字列、デフォルト:``\"STANDARD\"``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:208
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:214
 msgid "``field`` (string)"
 msgstr "``field`` (文字列)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:211
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:217
 msgid "``values`` (array)"
 msgstr "``values`` (配列)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:214
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:220
 msgid "``operator`` (string)"
 msgstr "``operator`` (文字列)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:221
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:227
 msgid ""
 "For detailed filter configuration, see the :ref:`Filter Conditions "
 "<configure-new-dashboard-task-widget-filter-structure>` section below."
@@ -7839,31 +7870,31 @@ msgstr ""
 "詳細なフィルタ設定については、下記の「:ref:`Filter Conditions <configure-new-dashboard-task-"
 "widget-filter-structure>` 」セクションを参照してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:229
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:235
 msgid ""
 "Axon Ivy supports custom fields for tasks. You can show them in the Task "
 "widget as a column."
 msgstr "Axon Ivy は、タスクのカスタムフィールドをサポートします。タスクウィジェットでは列として表示できます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:232
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:238
 msgid ""
 "You can predefine which column to show, and other attributes such as "
 "filter, format, and style. Below is a standard JSON of a custom column."
 msgstr "表示する列と、フィルター、形式、スタイルなどの他の属性を事前に定義できます。以下はカスタム列の標準的な JSON です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:250
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:256
 msgid ""
 "Besides attributes explained in the previous section, a custom column has"
 " two differences:"
 msgstr "カスタム列には、前のセクションで説明した属性のほかに、以下の 2 つの違いがあります。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:255
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:261
 msgid ""
 "``field``: this attribute is the name of the task's custom field which "
 "will be used to get data for the column."
 msgstr "``field``：この属性は、列のデータを取得するのに使用されるタスクのカスタムフィールドの名前です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:265
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:271
 msgid ""
 "You can predefine filter conditions for most columns of the task widget. "
 "Each column has different requirements: some accept only a list, some "
@@ -7874,55 +7905,56 @@ msgstr ""
 "タスクウィジェットのほとんどの列でフィルター条件を事前に定義できます。要件は列ごとに異なり、リストのみ、文字列のみを受け入れる列もあれば、日時など、特定の形式の文字列を必要とする列もあります。詳細については、"
 " :ref:`複合フィルター <complex-filter>` を参照してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:306
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:312
 msgid "``type``: ``standard`` for standard column or ``custom`` for custom column"
 msgstr "``type``： ``standard`` （標準の列）または ``custom`` （カスタム列）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:310
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:316
 msgid "``periodType``: string value. E.g.: ``YEAR``, ``MONTH``, ``WEEK``, ``DAY``"
 msgstr "``periodType``：文字列値。例： ``YEAR``、 ``MONTH``、 ``WEEK``、 ``DAY``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:312
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:318
 msgid "``from``: string value. E.g.: \"04/04/2024\""
 msgstr "``from``：文字列値。例：\"2024/04/04\""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:314
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:320
 msgid "``to``: string value. E.g.: \"05/05/2024\""
 msgstr "``to``：文字列値。例：\"2024/05/05\""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:325
-msgid "``activator``"
-msgstr "``activator``"
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:331
+msgid "``activator`` and ``worker``"
+msgstr "``activator`` および``worker``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:349
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:361
 msgid ""
-"This column only accepts a list of role names or usernames as filter "
-"conditions for the task's responsible username. The available filter "
-"operators are ``in``, ``not_in`` and ``current_user``. The "
-"``current_user`` operator does not require value field."
+"These columns only accept a list of role names or usernames as filter "
+"conditions for the task's responsible username or working username. The "
+"available filter operators are ``in``, ``not_in`` and ``current_user``. "
+"The ``current_user`` operator does not require value field."
 msgstr ""
-"この列は、タスク責任者のユーザー名のフィルター条件としてロール名またはユーザー名のリストのみ受け入れます。利用可能なフィルターの演算子は "
-"``in``、 ``not_in``、 ``current_user`` です。``current_user`` "
-"演算子には値フィールドは必要ありません。"
+"これらの列では、タスクの担当ユーザー名または作業ユーザー名のフィルタ条件とし"
+"て、ロール名またはユーザー名のリストのみを受け付けます。使用可能なフィルタ演"
+"算子は ``in``、 ``not_in``、 ``current_user`` です。 ``current_user`` 演算子では、"
+"valueフィールドは不要です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:376
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:405
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:388
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:417
 msgid ""
 "This column accepts all operators available for String column. "
 "Additionally, it accepts ``value`` as a list of string."
 msgstr "この列は、文字列列で利用可能なすべての演算子を受け入れます。さらに、文字列のリストとして ``値`` も受け入れます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:407
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:419
 msgid "``priority``"
 msgstr "``priority``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:431
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:443
 msgid ""
 "This column only accepts a list of priorities' names as the filter "
 "condition. The available filter operator is ``in``."
 msgstr "この列は、フィルター条件として優先度名のリストのみ受け入れます。利用可能なフィルターの演算子は ``in`` です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:434
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:446
 msgid ""
 "Refer to :dev-url:`Task Priority </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for available task "
@@ -7931,32 +7963,33 @@ msgstr ""
 "利用可能なタスクの優先度については、:dev-url:`タスクの優先度 </doc/12.0/public-"
 "api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` を参照してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:437
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:449
 msgid "``state``"
 msgstr "``state``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:460
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:472
 msgid ""
 "This column only accepts a list of task business state names as its "
 "filter condition. The available filter operator is ``in``."
 msgstr "この列は、フィルター条件としてタスクのビジネスの状態名のリストのみ受け入れます。利用可能なフィルターの演算子は ``in`` です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:463
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:475
 msgid ""
 "Refer to :dev-url:`Task Business States </doc/12.0/public-"
-"api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` for available task "
-"business states."
+"api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` for available "
+"task business states."
 msgstr ""
-"利用可能なタスクのビジネスの状態については、:dev-url:`タスクのビジネスの状態 </doc/12.0/public-"
-"api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` を参照してください。"
+"利用可能なタスクのビジネス状態については、:dev-url:`Task Business States </"
+"doc/12.0/public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` を"
+"参照してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:467
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:479
 msgid ""
 "``startTimestamp`` and ``expiryTimestamp`` : created date and finished "
 "date of the Task"
 msgstr "``startTimestamp``、 ``expiryTimestamp``：タスクの作成日と終了日"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:510
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:522
 msgid ""
 "These columns accept all operators available for Date column. Fields may "
 "vary depending on the operator. The JSON example above covers most use "
@@ -7967,15 +8000,41 @@ msgstr ""
 " ``dd.MM.yyyy``、 ``dd.MM.yyyy HH:mm``、 ``MM/dd/yyyy``、 ``MM/dd/yyyy "
 "HH:mm`` です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:515
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:527
 msgid "``application``"
 msgstr "``application``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:537
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:549
+msgid "``businessCaseId`` and ``technicalCaseId``"
+msgstr "``businessCaseId`` および``technicalCaseId``"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:579
+msgid ""
+"These columns display the Business Case ID and Technical Case ID of the "
+"task's associated case, respectively. The ``contains`` operator performs "
+"a substring match against the string representation of the numeric ID. "
+"This is consistent with how the task ``id`` filter works. The only "
+"available filter operator is ``contains``."
+msgstr ""
+"これらの列には、それぞれタスクに関連付けられたケースのビジネスケースIDと"
+"テクニカルケースIDが表示されます。``contains`` 演算子は、数値IDの文字列表現に"
+"対して部分文字列の一致チェックを行います。これは、タスクの``id`` フィルターの"
+"動作と一貫しています。利用可能なフィルター演算子は、``contains`` のみです。"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:585
+msgid ""
+"These columns support sorting and quick search (quick search is disabled "
+"by default; set ``quickSearch: \"true\"`` on the column to enable it)."
+msgstr ""
+"これらの列は、並べ替えとクイック検索に対応しています（クイック検索は"
+"デフォルトで無効になっています。有効にするには、列に対して ``` `quickSearch: "
+"\"true\"`` を設定してください）。"
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:587
 msgid "Custom Field Column :"
 msgstr "カスタムフィールド列："
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:539
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:589
 msgid ""
 ":ref:`configure-new-dashboard-task-widget-custom-columns` are using the "
 "same operator as :ref:`Standard Column <configure-new-dashboard-task-"
@@ -7984,7 +8043,7 @@ msgstr ""
 ":ref:`configure-new-dashboard-task-widget-custom-columns` は、:ref:`標準の列 "
 "<configure-new-dashboard-task-widget-filter-structure>` と同じ演算子を使用しています。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:543
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:593
 msgid ""
 "``type`` field must be ``custom`` for Custom Field and ``custom_case`` "
 "for Custom Case Field."
@@ -7992,14 +8051,14 @@ msgstr ""
 "``type`` フィールドは ``custom`` （カスタムフィールド）、 ``custom_case`` "
 "（カスタムケースフィールド）になります。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:569
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:619
 msgid ""
 "The quick search is a useful function for users to quickly search the "
 "tasks within the task widget. The configuration of the quick search has "
 "two attributes:"
 msgstr "クイック検索は、ユーザーがタスクウィジェット内のタスクを素早く検索できる便利な機能です。クイック検索の設定には以下の 2 つの属性があります。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:579
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:629
 msgid ""
 "Conversely, if you set the ``enableQuickSearch`` attribute to ``true``, "
 "the quick search feature will search within the values of all columns "
@@ -8012,7 +8071,7 @@ msgstr ""
 "``true`` に設定されているすべての列の値でクイック検索機能による検索が可能になります。``quickSearch`` "
 "属性をタスクウィジェットのいずれの列にも割り当てていない場合、クイック検索機能はデフォルトで名前フィールドと説明フィールドを検索します。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:586
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:636
 msgid ""
 "``enableQuickSearch``: to enable/disable the quick search feature, set "
 "the ``enableQuickSearch`` field of the Task widget as shown below."
@@ -8020,7 +8079,7 @@ msgstr ""
 "``enableQuickSearch``：クイック検索機能を有効／無効にします。以下のようにタスクウィジェットの "
 "``enableQuickSearch`` フィールドを設定してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:652
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:702
 #, python-brace-format
 msgid ""
 "Following this path to add your custom field values: "
@@ -8034,7 +8093,7 @@ msgstr ""
 "/designer-guide/configuration/custom-fields.html#localize-label-"
 "description-category-and-values>` に従ってください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:668
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:718
 msgid ""
 "In your CMS, the path should be "
 "``/CustomFields/Tasks/DriversVehicle/Values/Bike``, "
@@ -8045,15 +8104,15 @@ msgstr ""
 "``/CustomFields/Tasks/DriversVehicle/Values/Car`` または "
 "``/CustomFields/Tasks/DriversVehicle/Values/MonsterTruck`` であるべきです。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:673
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:723
 msgid "|task-field-cms|"
 msgstr "|task-field-cms|"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:727
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:777
 msgid "task-field-cms"
 msgstr "task-field-cms"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:702
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:752
 msgid ""
 "Example: When language is German, a user can search for **Fahrrad** or "
 "the original value **Bike**."
@@ -8473,10 +8532,10 @@ msgstr ""
 #: ../../source/portal-developer-guide/deployment/index.rst:13
 msgid ""
 "For comprehensive deployment information, refer to the :dev-url:`Axon Ivy"
-" deployment guidelines </12.0/engine-guide/deployment/index.html>`."
+" deployment guidelines </doc/12.0/engine-guide/deployment/index.html>`."
 msgstr ""
-"包括的なデプロイメント情報については、:dev-url:`Axon Ivy deployment guidelines </12.0"
-"/engine-guide/deployment/index.html>` を参照してください。"
+"包括的なデプロイ情報については、:dev-url:`のAxon Ivyデプロイガイドライン </"
+"doc/12.0/engine-guide/deployment/index.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:16
 msgid "Deployment Architecture"
@@ -8571,15 +8630,16 @@ msgstr "本番環境へのデプロイ（すべての構成アーティファク
 #: ../../source/portal-developer-guide/deployment/index.rst:71
 msgid ""
 "Use .zip files for production deployments. They bundle :dev-url:`branding"
-" </12.0/designer-guide/user-interface/branding/branding-engine.html>`, "
-"variables, databases, and REST clients :dev-url:`configuration </12.0"
-"/engine-guide/deployment/prepare/application-configuration/index.html>` "
-"with your projects."
+" </doc/12.0/designer-guide/user-interface/branding/branding-"
+"engine.html>`, variables, databases, and REST clients :dev-"
+"url:`configuration </doc/12.0/engine-guide/deployment/prepare"
+"/application-configuration/index.html>` with your projects."
 msgstr ""
-"本番環境へのデプロイには .zip ファイルを使用してください。これらはプロジェクトに :dev-url:`branding </12.0"
-"/designer-guide/user-interface/branding/branding-engine.html>` "
-"、変数、データベース、および REST クライアント :dev-url:`configuration </12.0/engine-"
-"guide/deployment/prepare/application-configuration/index.html>` をバンドルします。"
+"本番環境へのデプロイには .zip ファイルを使用してください。これには、:dev-"
+"url:`のブランディング </doc/12.0/designer-guide/user-interface/branding/"
+"branding-engine.html>` 、変数、データベース、および REST クライアント:dev-"
+"url:`の設定 </doc/12.0/engine-guide/deployment/prepare/application-"
+"configuration/index.html>` がプロジェクトにバンドルされています。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:74
 msgid "Prepare Deployment Packages"
@@ -8782,14 +8842,15 @@ msgstr "ポータル設定は複数の方法で管理できます。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:185
 msgid ""
-"Configuration can be done through :dev-url:`deployment files </12.0"
+"Configuration can be done through :dev-url:`deployment files </doc/12.0"
 "/engine-guide/deployment/prepare/application-configuration/index.html>` "
-"or the :dev-url:`Engine Cockpit UI </12.0/engine-guide/reference/engine-"
-"cockpit>`."
+"or the :dev-url:`Engine Cockpit UI </doc/12.0/engine-guide/reference"
+"/engine-cockpit>`."
 msgstr ""
-"設定は :dev-url:`deployment files </12.0/engine-guide/deployment/prepare"
-"/application-configuration/index.html>` または :dev-url:`Engine Cockpit UI "
-"</12.0/engine-guide/reference/engine-cockpit>` を通じて行えます。"
+"設定は、:dev-url:`のデプロイメントファイル（ </doc/12.0/engine-guide/"
+"deployment/prepare/application-configuration/index.html>` ）または:dev-"
+"url:`Engine Cockpit UI（ </doc/12.0/engine-guide/reference/engine-cockpit>` "
+"）を通じて行うことができます。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:188
 #: ../../source/portal-developer-guide/installation/index.rst:95
@@ -10085,8 +10146,8 @@ msgid ""
 "1. The global variable ``Portal.KeepSidebarExpanded`` is deprecated and "
 "will be removed in a future version. Use ``Portal.Sidebar.Mode`` instead."
 msgstr ""
-"1。 グローバル変数 ``Portal.KeepSidebarExpand`` は非推奨であり、将来の"
-"バージョンで削除されます。 ``Portal.Sidebar.Mode``."
+"1。 グローバル変数 ``Portal.KeepSidebarExpand`` は非推奨であり、将来のバージョンで削除されます。 "
+"``Portal.Sidebar.Mode``."
 
 #: ../../source/portal-developer-guide/installation/index.rst:164
 msgid "Migrate 11.3.2 To 12.0.0"
@@ -10506,8 +10567,8 @@ msgid ""
 "After migrating to version 10, reset the ``StandardProcess.DefaultPages``"
 " value in your application configuration as needed."
 msgstr ""
-"バージョン 10 への移行後、必要に応じてアプリケーション設定の および "
-"``StandardProcess.DefaultPages`` の値をリセットしてください。"
+"バージョン 10 への移行後、必要に応じてアプリケーション設定の および ``StandardProcess.DefaultPages`` "
+"の値をリセットしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:303
 msgid "Migrate 9.3 To 9.4"

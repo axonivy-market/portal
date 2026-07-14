@@ -219,6 +219,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AppleStoreURL: Apple Store で Axon Ivy モバイル アプリをダウンロードするための URL を設定します。
       ApplicationName: ページタイトルに表示されるアプリケーション名。
       BaseQRCodeUrl: 表示するQRコードのベースURLを設定します。
+      DashboardFilterOperatorPolicy: 未選択の演算子はグローバルで無効になります。
       DefaultThemeMode: アプリケーションのテーマモードの初期値
       EnableDocumentPreview: ドキュメントのプレビューを有効にするには true に設定してください。（プレビュー可能なファイルの種類：pdf、png、txt、log）
       EnableSwitchThemeModeButton: テーマ切り替えボタンを有効にするには true に設定してください。
@@ -664,6 +665,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: エクスポートの準備中、数分かかる場合があります
     warning: 警告
     welcomeToPortal: ようこそ、ログインしてください
+    businessCaseId: ビジネスケースID
+    technicalCaseId: テクニカルケースID
+    workingUser: 作業中ユーザー
     wrongDateFormat: 有効な日付を入力してください。
     year: 年
     years: 年
@@ -787,6 +791,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: このウィジェットは外部Webページを表示できます。
     Filter:
       FilterOptionHeader: フィルターオプション
+      FilterOptionHeaderTooltip: 一部のフィルターフィールドや演算子は管理者によって無効化されている場合があります。無効なフィールドまたは演算子を使用しているフィルターは自動的に削除されます。詳細については管理者にお問い合わせください。
       FilterPanelHeader: フィルターパネル
       ManageWidgetFilterHeader: ウィジェットフィルター管理
       NotFound: フィルターが見つかりません
@@ -1240,7 +1245,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: このタスクにはエスカレーション処理ロジックが含まれていないため、有効期限を設定できません。
     technicalCase: テクニカルケース
     workflowEventDialog: 'タスク #{0} のワークフローイベント'
-    workingUser: 作業中ユーザー
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: タスクの期限の設定に成功しました。
@@ -1676,6 +1680,7 @@ Labels:
     DashboardStandardTaskColumn:
       ACTIONS: アクション
       APPLICATION: アプリケーション
+      BUSINESS_CASE_ID: ビジネスケースID
       CATEGORY: カテゴリー
       COMPLETED: '完了日'
       CREATED: 作成日
@@ -1688,6 +1693,8 @@ Labels:
       RESPONSIBLE: 責任者
       START: 開始
       STATE: 状態
+      TECHNICAL_CASE_ID: テクニカルケースID
+      WORKER: 作業中ユーザー
     FilterOperator:
       AFTER: 指定の値の後にある
       BEFORE: 指定の値の前にある

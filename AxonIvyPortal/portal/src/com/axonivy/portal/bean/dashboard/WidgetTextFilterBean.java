@@ -1,15 +1,16 @@
 package com.axonivy.portal.bean.dashboard;
 
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.EnumSet;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import javax.annotation.PostConstruct;
+
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.service.filter.operatorpolicy.GlobalOperatorPolicyService;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomString;
 import com.axonivy.portal.util.filter.field.task.custom.caze.TaskFilterCaseFieldCustomString;
 
@@ -21,15 +22,21 @@ public class WidgetTextFilterBean implements Serializable {
 
   private static final long serialVersionUID = 3218284115015773931L;
 
-  private static List<FilterOperator> operators = FilterOperator.TEXT_OPERATORS.stream().toList();
-  private static List<FilterOperator> operatorsForCustomFieldWithCms = Collections.unmodifiableSet(EnumSet.of(FilterOperator.CONTAINS)).stream().toList();
+  private List<FilterOperator> resolvedOperators;
+  private List<FilterOperator> resolvedOperatorsForCustomFieldWithCms;
+
+  @PostConstruct
+  public void initOperators() {
+    resolvedOperators = GlobalOperatorPolicyService.getInstance().keepGloballyEnabledOperators(FilterOperator.TEXT_OPERATORS.stream().toList());
+    resolvedOperatorsForCustomFieldWithCms = GlobalOperatorPolicyService.getInstance().keepGloballyEnabledOperators(List.of(FilterOperator.CONTAINS));
+  }
 
   public List<FilterOperator> getOperators() {
-    return operators;
+    return resolvedOperators;
   }
   
   public List<FilterOperator> getOperatorsForCustomFieldWithCms() {
-    return operatorsForCustomFieldWithCms;
+    return resolvedOperatorsForCustomFieldWithCms;
   }
 
   public void onChangeOperator(@SuppressWarnings("unused") DashboardFilter filter) {
@@ -40,7 +47,7 @@ public class WidgetTextFilterBean implements Serializable {
       return false;
     }
 
-    for (FilterOperator operator : operators) {
+    for (FilterOperator operator : getOperators()) {
       if (operator == FilterOperator.EMPTY || operator == FilterOperator.NOT_EMPTY) {
         continue;
       }

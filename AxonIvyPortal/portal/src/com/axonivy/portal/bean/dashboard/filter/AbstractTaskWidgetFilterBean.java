@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.service.filter.operatorpolicy.GlobalOperatorPolicyService;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
@@ -50,18 +51,21 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
   private void initFilterFields() {
     Set<String> disabledStandardFilterFieldNames = this.widget.getColumns().stream().filter(Objects::nonNull)
       .filter(column -> DashboardColumnType.STANDARD == column.getType())
-      .filter(column -> BooleanUtils.isFalse(column.getEnableFilter())).map(ColumnModel::getField)
+      .filter(column -> BooleanUtils.isFalse(column.getEnableFilter()))
+      .map(ColumnModel::getField)
       .collect(Collectors.toSet());
 
     this.filterFields = new ArrayList<>();
     this.filterFields.add(TaskFilterFieldFactory.getDefaultFilterField());
     this.filterFields.addAll(TaskFilterFieldFactory.getStandardFilterableFields(this.widget.getId()).stream()
-      .filter(field -> !disabledStandardFilterFieldNames.contains(field.getName()))
+      .filter(field -> !disabledStandardFilterFieldNames.contains(field.getName())
+                 && GlobalOperatorPolicyService.getInstance().hasAnyGloballyEnabledOperator(field))
       .collect(Collectors.toList()));
 
     updateFilterLabels();
     // Add custom fields which are selected by user.
     this.widget.getFilterableColumns().stream().filter(column -> column.getType() != DashboardColumnType.STANDARD)
+        .filter(column -> GlobalOperatorPolicyService.getInstance().hasAnyGloballyEnabledOperator(column))
         .map(column -> TaskFilterFieldFactory.findBy(column.getField(), column.getType())).filter(Objects::nonNull)
         .forEach(this.filterFields::add);
   }
@@ -70,6 +74,8 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
     if (CollectionUtils.isEmpty(Optional.ofNullable(this.widget).map(TaskDashboardWidget::getFilters).get())) {
       return;
     }
+
+    this.widget.setFilters(GlobalOperatorPolicyService.getInstance().keepGloballyEnabledFilters(this.widget.getFilters()));
 
     // If the filter available in the filter list, initialize it
     for (DashboardFilter filter : this.widget.getFilters()) {
@@ -125,6 +131,7 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
 
     filter.setLabel(filterField.getLabel());
     filter.getFilterField().addNewFilter(filter);
+    filter.setOperator(GlobalOperatorPolicyService.getInstance().getFirstEnabledOperator(filter.getField(), filter.getOperator()));
     initCustomFieldNumberPattern(filter, field, filter.getFilterField());
   }
 
@@ -140,7 +147,7 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
 
   public abstract void addNewFilter(TaskDashboardWidget widget);
 
-  public List<SecurityMemberDTO> completeCreators(String query) {
+  public List<SecurityMemberDTO> completeUsers(String query) {
     return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE).stream()
         .filter(SecurityMemberDTO::isUser).collect(Collectors.toList());
   }

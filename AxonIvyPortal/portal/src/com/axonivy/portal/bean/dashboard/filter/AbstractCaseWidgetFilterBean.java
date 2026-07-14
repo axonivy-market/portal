@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.service.filter.operatorpolicy.GlobalOperatorPolicyService;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreator;
@@ -48,13 +49,15 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
   private void initFilterFields() {
     Set<String> disabledStandardFilterFieldNames = this.widget.getColumns().stream().filter(Objects::nonNull)
       .filter(column -> DashboardColumnType.STANDARD == column.getType())
-      .filter(column -> BooleanUtils.isFalse(column.getEnableFilter())).map(ColumnModel::getField)
+      .filter(column -> BooleanUtils.isFalse(column.getEnableFilter()))
+      .map(ColumnModel::getField)
       .collect(Collectors.toSet());
 
     this.filterFields = new ArrayList<>();
     this.filterFields.add(FilterFieldFactory.getDefaultFilterField());
     this.filterFields.addAll(FilterFieldFactory.getStandardFilterableFields(this.widget.getId()).stream()
-      .filter(field -> !disabledStandardFilterFieldNames.contains(field.getName()))
+      .filter(field -> !disabledStandardFilterFieldNames.contains(field.getName())
+                 && GlobalOperatorPolicyService.getInstance().hasAnyGloballyEnabledOperator(field))
       .collect(Collectors.toList()));
 
     // Remove Case Creator filter when the HideCaseCreator variable is enable.
@@ -65,6 +68,7 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
     updateFilterLabels();
     // Add custom fields which are selected by user.
     this.widget.getFilterableColumns().stream().filter(col -> col.getType() == DashboardColumnType.CUSTOM)
+        .filter(col -> GlobalOperatorPolicyService.getInstance().hasAnyGloballyEnabledOperator(col))
         .map(col -> FilterFieldFactory.findCustomFieldBy(col.getField())).filter(Objects::nonNull)
         .forEach(this.filterFields::add);
 
@@ -74,6 +78,8 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
     if (CollectionUtils.isEmpty(Optional.ofNullable(this.widget).map(CaseDashboardWidget::getFilters).get())) {
       return;
     }
+
+    this.widget.setFilters(GlobalOperatorPolicyService.getInstance().keepGloballyEnabledFilters(this.widget.getFilters()));
 
     // If the filter available in the filter list, initialize it
     for (DashboardFilter filter : this.widget.getFilters()) {
@@ -126,6 +132,7 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
 
     filter.setLabel(filterField.getLabel());
     filterField.addNewFilter(filter);
+    filter.setOperator(GlobalOperatorPolicyService.getInstance().getFirstEnabledOperator(filter.getField(), filter.getOperator()));
     initCustomFieldNumberPattern(filter, field, filterField);
   }
 

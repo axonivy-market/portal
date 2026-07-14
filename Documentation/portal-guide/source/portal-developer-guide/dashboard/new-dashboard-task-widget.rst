@@ -59,6 +59,7 @@ Below is a sample JSON definition of a task widget in the Portal dashboard:
          },
          {
             "field": "name",
+            "enableFilter": false,
             "quickSearch": "true"
          },
          {
@@ -185,12 +186,17 @@ Each column object in the ``columns`` array:
    - ``expiryTimestamp`` - Expiry date and time
    - ``application`` - Application name
    - ``actions`` - Action buttons (details, reset, delegate, reserve, destroy, etc.)
+   - ``businessCaseId`` - Business Case ID (hidden by default; sortable; quick search supported)
+   - ``technicalCaseId`` - Technical Case ID (hidden by default; sortable; quick search supported)
 
 ``visible`` (string, default: ``"true"``)
    Column visibility: ``"true"`` or ``"false"``
 
 ``quickSearch`` (string, default: ``"false"``)
    Include in quick search: ``"true"`` or ``"false"``
+
+``enableFilter`` (boolean, default: ``true``)
+   Allow filtering on this column in complex filter.
 
 ``headers`` (array, optional)
    Multilingual column headers: ``[{"locale": "en", "value": "Header"}]``
@@ -322,7 +328,7 @@ corresponding filter conditions.
 
 Standard Column:
 
-   - ``activator``
+   - ``activator`` and ``worker``
 
       .. code-block:: javascript
 
@@ -340,14 +346,20 @@ Standard Column:
                   "values": [ "backendDev2" ],
                   "operator": "not_in",
                   "type": "standard"
+               },
+               {
+                  "field": "worker",
+                  "values": [ "admin" ],
+                  "operator": "in",
+                  "type": "standard"
                }
             ]
          }
 
       ..
 
-      This column only accepts a list of role names or usernames as filter conditions
-      for the task's responsible username. The available filter operators are ``in``, ``not_in`` and ``current_user``.
+      These columns only accept a list of role names or usernames as filter conditions
+      for the task's responsible username or working username. The available filter operators are ``in``, ``not_in`` and ``current_user``.
       The ``current_user`` operator does not require value field.
 
    - ``name``
@@ -460,7 +472,7 @@ Standard Column:
       This column only accepts a list of task business state names as its filter
       condition. The available filter operator is ``in``. 
 
-      Refer to :dev-url:`Task Business States </doc/12.0/public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` for
+      Refer to :dev-url:`Task Business States </doc/12.0/public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` for
       available task business states.
 
 
@@ -533,6 +545,44 @@ Standard Column:
                }
             ]
          }
+
+   - ``businessCaseId`` and ``technicalCaseId``
+
+      .. code-block:: javascript
+
+         {
+            ...
+
+            "columns": [
+               {
+                  "field": "businessCaseId"
+               }
+            ],
+            "filters": [
+               {
+                  "field": "businessCaseId",
+                  "values": [ "1001" ],
+                  "operator": "contains",
+                  "type": "standard"
+               },
+               {
+                  "field": "technicalCaseId",
+                  "values": [ "2001" ],
+                  "operator": "contains",
+                  "type": "standard"
+               }
+            ]
+         }
+
+      ..
+
+      These columns display the Business Case ID and Technical Case ID of the task's associated case,
+      respectively. The ``contains`` operator performs a substring match against the string representation
+      of the numeric ID.
+      This is consistent with how the task ``id`` filter works. The only available filter operator is ``contains``.
+
+      .. note::
+         These columns support sorting and quick search (quick search is disabled by default; set ``quickSearch: "true"`` on the column to enable it).
 
 Custom Field Column :
 

@@ -73,6 +73,13 @@
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"
           responsibleCompleteMethod="#{cc.attrs.managedBean.completeOwners}" />
       </h:panelGroup>
+      
+      <h:panelGroup layout="block" rendered="#{filter.isWorker()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.WorkerFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"
+          workerCompleteMethod="#{cc.attrs.managedBean.completeUsers}" />
+      </h:panelGroup>
 
       <h:panelGroup layout="block" rendered="#{filter.isCategory()}">
         <ic:com.axonivy.portal.dashboard.component.filter.CategoryFilter
@@ -103,6 +110,18 @@
       
   
       <h:panelGroup layout="block" rendered="#{filter.isId()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.IdFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" rendered="#{filter.isBusinessCaseId()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.IdFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" rendered="#{filter.isTechnicalCaseId()}">
         <ic:com.axonivy.portal.dashboard.component.filter.IdFilter filter="#{filter}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />

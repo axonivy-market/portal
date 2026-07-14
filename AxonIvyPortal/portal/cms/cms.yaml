@@ -166,6 +166,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AppleStoreURL: Set URL to download Axon Ivy mobile app on Apple Store.
       BaseQRCodeUrl: Set Base URL for QR code to display.
       GooglePlayURL: Set URL to download Axon Ivy mobile app on Google Play.
+      DashboardFilterOperatorPolicy: Unchecked operators are disabled globally.
       behaviourWhenClickingOnLineInCaseList: Toggle between accessing case details or business details when clicking on a case in the case widget on the dashboard, global search, related cases, and process widget in combined mode.
       behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
@@ -527,6 +528,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     visible: Visible
     warning: Warning!
     welcomeToPortal: Welcome, please login
+    businessCaseId: Business Case ID
+    technicalCaseId: Technical Case ID
+    workingUser: Working user
     wrongDateFormat: Please enter valid date.
     year: year
     years: years
@@ -586,6 +590,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     EmptyFilterMessage: No widget filter found
     Filter:
       FilterOptionHeader: Filter options
+      FilterOptionHeaderTooltip: Some filter fields and operators may be disabled by your administrator. Filters using disabled fields or operators will be automatically removed. Please contact your administrator for more information.
       FilterPanelHeader: Filter panel
       ManageWidgetFilterHeader: Widget filter management
       NotFound: No filter found
@@ -917,7 +922,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: This task does not contain any escalation handling logic, therefore no expiry time can be set.
     technicalCase: Technical Case
     workflowEventDialog: 'Workflow Events of task #{0}'
-    workingUser: Working user
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: Task deadline has been set successfully.
@@ -1175,9 +1179,11 @@ Labels:
   EnterValues: Enter values
   Enums:
     DashboardStandardTaskColumn:
+      BUSINESS_CASE_ID: Business Case ID
       EXPIRY: Expiry
       PRIORITY: Priority
       RESPONSIBLE: Responsible
+      TECHNICAL_CASE_ID: Technical Case ID
   Expand: Expand
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task

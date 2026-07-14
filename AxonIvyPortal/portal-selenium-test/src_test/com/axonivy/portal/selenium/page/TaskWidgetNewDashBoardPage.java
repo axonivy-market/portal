@@ -285,6 +285,17 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     getStateFilterCheckBox(state).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     getCloseStateFilter().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
+
+  public void selectPriorityFilterValue(String priorityValue) {
+    $(".dashboard-widget-filter__main-panel")
+        .$$(".dashboard-widget-filter__filter-wrapper").last()
+        .$("div[id$=':priorities']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("div.ui-selectcheckboxmenu-panel[style*='display: block']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("li.ui-selectcheckboxmenu-item").filter(text(priorityValue)).first()
+        .$("div.ui-chkbox-box").click();
+    $("div.ui-selectcheckboxmenu-panel[style*='display: block']")
+        .$("a.ui-selectcheckboxmenu-close").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
   
   public void filterTaskState(Object... states) {
     addFilter("State", null);
@@ -548,6 +559,18 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void addFilter(String columnName, com.axonivy.portal.selenium.common.FilterOperator operator) {
     ComplexFilterHelper.addFilter(columnName, operator);
+  }
+
+  public boolean isOperatorOptionAvailableForFilterField(String fieldName, String operatorLabel) {
+    var filterRow = $("div[class*='dashboard-widget-filter__main-panel']")
+      .$$("div[class*='dashboard-widget-filter__filter-wrapper']").findBy(text(fieldName))
+      .shouldBe(appear, DEFAULT_TIMEOUT);
+
+    var operatorOptions = filterRow.$$("select[id$=':operator-selection_input'] option");
+    operatorOptions.shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+    return operatorOptions.texts().stream()
+      .map(String::trim)
+      .anyMatch(option -> option.equalsIgnoreCase(operatorLabel.trim()));
   }
   
   public void inputValueOnLatestFilter(FilterValueType type, Object... values) {

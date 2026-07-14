@@ -104,7 +104,7 @@
                 "",
                 "ivy.case.setCategoryPath(\"Technical Task\");",
                 "",
-                "SignalCode code = new SignalCode(\"ch:axonivy:portal:example:createtaskfailed\");",
+                "SignalCode code = SignalCode.of(\"ch:axonivy:portal:example:createtaskfailed\");",
                 "ivy.wf.signals().send(code);"
               ]
             },
@@ -198,7 +198,7 @@
               "code" : [
                 "import ch.ivyteam.ivy.process.model.value.SignalCode;",
                 "",
-                "SignalCode code = new SignalCode(\"ch:axonivy:portal:example:createtechnicaltask\");",
+                "SignalCode code = SignalCode.of(\"ch:axonivy:portal:example:createtechnicaltask\");",
                 "ivy.wf.signals().send(code);"
               ]
             }
@@ -779,7 +779,7 @@
             "",
             "ivy.case.setCategoryPath(\"Payment\");",
             "",
-            "SignalCode code = new SignalCode(\"ch:axonivy:portal:example:createnewpayment\");",
+            "SignalCode code = SignalCode.of(\"ch:axonivy:portal:example:createnewpayment\");",
             "ivy.wf.signals().send(code);"
           ]
         },

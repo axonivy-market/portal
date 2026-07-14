@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-product</artifactId>
-  <version>12.0.16-SNAPSHOT</version>
+  <version>12.0.17-SNAPSHOT</version>
   <packaging>pom</packaging>
   <distributionManagement>
     <repository>
@@ -44,7 +44,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
-        <version>3.3.0</version>
+        <version>3.8.0</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -66,7 +66,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>3.0.0-M1</version>
+          <version>3.1.4</version>
         </plugin>
       </plugins>
     </pluginManagement>

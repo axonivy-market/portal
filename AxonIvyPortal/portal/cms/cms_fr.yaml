@@ -219,6 +219,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AppleStoreURL: Définir l'URL pour télécharger l'application mobile Axon Ivy sur l'Apple Store.
       ApplicationName: Le nom de l'application qui sera affiché dans le titre de la page.
       BaseQRCodeUrl: Définir l'URL de base du code QR à afficher.
+      DashboardFilterOperatorPolicy: Les opérateurs décochés sont désactivés globalement.
       DefaultThemeMode: Le mode de thème par défaut de l'application
       EnableSwitchThemeModeButton: Défini à true pour activer le bouton de changement de thème.
       GlobalSearchScopeCategoriesNote: Définition des types recherchés par la recherche globale
@@ -665,6 +666,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Nous créons l'export, cela peut prendre quelques minutes
     warning: Attention!
     welcomeToPortal: Bienvenue, veuillez vous connecter
+    businessCaseId: ID du cas métier
+    technicalCaseId: ID du cas technique
+    workingUser: Gestionnaire
     wrongDateFormat: Veuillez entrer une date valide
     year: an
     years: ans
@@ -788,6 +792,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: Ce widget peut afficher une page web externe.
     Filter:
       FilterOptionHeader: Options de filtre
+      FilterOptionHeaderTooltip: Certains champs de filtre et opérateurs peuvent être désactivés par votre administrateur. Les filtres utilisant des champs ou des opérateurs désactivés seront automatiquement supprimés. Veuillez contacter votre administrateur pour plus d'informations.
       FilterPanelHeader: Panneau de filtre
       ManageWidgetFilterHeader: Gestion des filtres des widgets
       NotFound: Aucun filtre trouvé
@@ -1242,7 +1247,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: Cette tâche ne contient pas de logique d'escalade. Aucune période d'expiration ne peut donc être définie.
     technicalCase: Dossier technique
     workflowEventDialog: 'Événements du flux de travail de la tâche #{0}'
-    workingUser: Gestionnaire
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: La date limite de la tâche a été réglée avec succès.
@@ -1685,6 +1689,7 @@ Labels:
     DashboardStandardTaskColumn:
       ACTIONS: Actions
       APPLICATION: Application
+      BUSINESS_CASE_ID: ID du cas métier
       CATEGORY: Catégorie
       COMPLETED: Date de fin
       CREATED: Date de création
@@ -1697,6 +1702,8 @@ Labels:
       RESPONSIBLE: Responsable
       START: Démarrage
       STATE: État
+      TECHNICAL_CASE_ID: ID du cas technique
+      WORKER: Gestionnaire
     FilterOperator:
       AFTER: Est après
       BEFORE: Est avant

@@ -56,6 +56,9 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
       case STATE -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE";
       case CATEGORY -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY";
       case APPLICATION -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/APPLICATION";
+      case WORKER -> "/ch.ivy.addon.portalkit.ui.jsf/common/workingUser";
+      case BUSINESS_CASE_ID -> "/ch.ivy.addon.portalkit.ui.jsf/common/businessCaseId";
+      case TECHNICAL_CASE_ID -> "/ch.ivy.addon.portalkit.ui.jsf/common/technicalCaseId";
       default -> "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/" + columnField.name();
     };
 
@@ -96,6 +99,15 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
       case CATEGORY -> taskItem.getCategory().getPath();
       case DESCRIPTION -> taskItem.getDescription();
       case APPLICATION -> taskItem.getApplication().getName();
+      case WORKER -> taskItem.getWorkerUser() == null
+          ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable")
+          : taskItem.getWorkerUser().getDisplayName();
+      case BUSINESS_CASE_ID -> taskItem.getCase() == null
+          ? ""
+          : String.valueOf(taskItem.getCase().getBusinessCase().getId());
+      case TECHNICAL_CASE_ID -> taskItem.getCase() == null
+          ? ""
+          : String.valueOf(taskItem.getCase().getId());
       default -> "";
     };
   }

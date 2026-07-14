@@ -21,6 +21,7 @@ import org.primefaces.PrimeFaces;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
+import com.axonivy.portal.components.publicapi.SanitizeAPI;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.HtmlUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -225,13 +226,16 @@ public class ChatAssigneeBean implements Serializable {
   }
 
   private void openChatGroup(String groupChatName) {
-    String function = "$('#toggle-chat-panel-command').click();" + 
-        "var checkExist = setInterval(function() { " + 
-        "   if ($('span[title=\"" + groupChatName + "\"]').length) {" + 
-        "      $('span[title=\"" + groupChatName + "\"]').click();" + 
-        "      clearInterval(checkExist);" + 
-        "   }" + 
-        "}, 100);";
+    String escapedName = SanitizeAPI.escapeForJavascript(groupChatName);
+    String function = "$('#toggle-chat-panel-command').click();"
+        + "var targetGroupChatName = \"" + escapedName + "\";"
+        + "var checkExist = setInterval(function() {"
+        + "  var target = $('#chat-form\\\\:group-chat-container .js-group-card-name').filter(function() { return $(this).attr('title') === targetGroupChatName; });"
+        + "  if (target.length) {"
+        + "    target.click();"
+        + "    clearInterval(checkExist);"
+        + "  }"
+        + "}, 100);";
     PrimeFaces.current().executeScript(function);
   }
 

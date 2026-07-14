@@ -219,6 +219,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AppleStoreURL: Legen Sie die URL für den Download der Axon Ivy Mobile App im Apple Store fest.
       ApplicationName: Der Name der Anwendung, der auf dem Seitentitel angezeigt werden soll.
       BaseQRCodeUrl: Legen Sie die Basis-URL für den anzuzeigenden QR-Code fest.
+      DashboardFilterOperatorPolicy: Nicht ausgewählte Operatoren werden global deaktiviert.
       DefaultThemeMode: Der Standardthemenmodus der Anwendung
       EnableSwitchThemeModeButton: Setzen Sie diesen Wert auf true, um die Schaltfläche "Thema wechseln" zu aktivieren.
       GlobalSearchScopeCategoriesNote: Festlegung der Typen, nach denen bei der globalen Suche gesucht werden soll
@@ -626,7 +627,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     sessionExpriedInTeams: Ihre Session ist abgelaufen. Die Anwendung wird neu gestartet.
     setting: Einstellungen
     showDetail: Details anzeigen
-    showRelatedCaseInfo: Zugehöriger Fall
+    showRelatedCaseInfo: Zugehöriger Vorgang
     showSystemNotes: Systemhinweise
     showSystemTasks: Systemaufgaben
     sorting: Sortierung
@@ -663,6 +664,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
     warning: Warnung!
     welcomeToPortal: Willkommen, bitte melden Sie sich an
+    businessCaseId: Business-Fall-ID
+    technicalCaseId: Technische Fall-ID
+    workingUser: Bearbeiter
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
     year: Jahr
     years: Jahre
@@ -788,6 +792,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidgetIntroduction: Dieses Widget kann eine externe Webseite anzeigen.
     Filter:
       FilterOptionHeader: Filter-Optionen
+      FilterOptionHeaderTooltip: Einige Filterfelder und Operatoren wurden möglicherweise von Ihrem Administrator deaktiviert. Filter, die deaktivierte Felder oder Operatoren verwenden, werden automatisch entfernt. Bitte wenden Sie sich an Ihren Administrator für weitere Informationen.
       FilterPanelHeader: Filterbereich
       ManageWidgetFilterHeader: Widget-Filter-Verwaltung
       NotFound: Kein Filter gefunden
@@ -1241,7 +1246,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskExpiryDisable: Es kann keine Ablaufzeit gesetzt werden, da diese Aufgabe keine Eskalationslogik enthält.
     technicalCase: Technischer Vorgang
     workflowEventDialog: 'Workflow Events für Aufgabe #{0}'
-    workingUser: Bearbeiter
   taskExpiryDateDialog:
     message:
       setDeadlineSuccess: Die Aufgabenfrist wurde erfolgreich gespeichert
@@ -1300,7 +1304,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     name: Name
     newTaskNotification: Sie haben neue Aufgaben.
     removeExpiryTimeNote: '{0} ({1}) hat Frist der Aufgabe #{2} entfernt'
-    resetTaskWarning: Diese Aufgabe wurde bereit gestartet. Mit einem Neustart werden bisherige Änderungen verloren gehen. Möchten Sie die Aufgabe trotzdem zurücksetzen?
+    resetTaskWarning: Diese Aufgabe wurde bereits gestartet. Mit einem Neustart werden bisherige Änderungen verloren gehen. Möchten Sie die Aufgabe trotzdem zurücksetzen?
     responsibleAfterEscalation: Verantwortlich nach Eskalation
     setDeadlineNote: '{0} ({1}) hat das Fälligkeitsdatum von der Aufgabe #{2} zum {3} angepasst'
     setNameNote: Der Aufgabenname wurde durch {0} von {1} auf {2} geändert
@@ -1681,6 +1685,7 @@ Labels:
     DashboardStandardTaskColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
+      BUSINESS_CASE_ID: Business-Fall-ID
       CATEGORY: Kategorie
       COMPLETED: Abgeschlossenes Datum
       CREATED: Erstellt am
@@ -1693,6 +1698,8 @@ Labels:
       RESPONSIBLE: Verantwortlich
       START: Start
       STATE: Status
+      TECHNICAL_CASE_ID: Technische Fall-ID
+      WORKER: Bearbeiter
     FilterOperator:
       AFTER: Ist nach
       BEFORE: Ist vor
