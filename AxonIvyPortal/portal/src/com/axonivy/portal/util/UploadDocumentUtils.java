@@ -139,4 +139,12 @@ public class UploadDocumentUtils {
     Long sizeLimitInByte = (long) (uploadSizeLimitNumber * MEGABYTE_IN_BYTE);
     return sizeLimitInByte;
   }
+
+  public static boolean isBase64ImageSizeExceeded(String base64Content) {
+    if (StringUtils.isBlank(base64Content)) {
+      return false;
+    }
+    long estimatedBytes = (base64Content.length() * 3L) / 4L;
+    return estimatedBytes > getImageUploadSizeLimit();
+  }
 }
