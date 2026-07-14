@@ -1537,10 +1537,10 @@ Dialogs:
               ShareTaskDetails: Share task details
               TaskCompletedByOtherInfo: Task has already been completed by user <strong>{0}</strong> on {1}.
               TaskCompletedByYouInfo: You already have completed the task on {0}.
-            TaskItemGeneralInfo:
-              Expiry: Expiry Responsible
               TaskParkedByOtherInfo: You cannot work on the task because <strong>{0}</strong> has parked it. It was exclusively reserved by them for working on it later.
               TaskParkedByYouInfo: You have parked the task. It was exclusively reserved by you for working on it later. You may reset the task to release its reservation.
+            TaskItemGeneralInfo:
+              Expiry: Expiry Responsible
   com:
     axonivy:
       portal:

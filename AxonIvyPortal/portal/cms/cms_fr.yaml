@@ -1537,10 +1537,10 @@ Dialogs:
               ShareTaskDetails: Partager les détails de la tâche
               TaskCompletedByOtherInfo: La tâche a déjà été effectuée par l'utilisateur <strong>{0}</strong> sur {1}.
               TaskCompletedByYouInfo: Vous avez déjà accompli la tâche sur {0}.
-            TaskItemGeneralInfo:
-              Expiry: Responsable de l'expiration
               TaskParkedByOtherInfo: Vous ne pouvez pas travailler sur la tâche car <strong>{0}</strong> l'a mise en attente. Elle a été exclusivement réservée par cet utilisateur pour y travailler plus tard.
               TaskParkedByYouInfo: Vous avez mis la tâche en attente. Elle vous est exclusivement réservée pour y travailler plus tard. Vous pouvez réinitialiser la tâche pour libérer sa réservation.
+            TaskItemGeneralInfo:
+              Expiry: Responsable de l'expiration
   com:
     axonivy:
       portal:
