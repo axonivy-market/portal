@@ -8,17 +8,15 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "setData(ITask,String)",
+      "name" : "setData(String)",
       "config" : {
         "signature" : "setData",
         "input" : {
           "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" },
             { "name" : "content", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.content" : "param.content",
-            "out.task" : "param.task"
+            "out.content" : "param.content"
           }
         }
       },
@@ -43,8 +41,7 @@
           "code" : [
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import com.axonivy.portal.components.service.AuditTrailService;",
-            "ICase businessCase = in.task.getCase().getBusinessCase();",
-            "AuditTrailService.getInstance().save(businessCase, in.content);"
+            "AuditTrailService.getInstance().save(in.content);"
           ]
         }
       },

@@ -31,9 +31,6 @@
           <h:outputText id="value" value="#{item.getOrNull()}" rendered="#{item.type() ne 'TIMESTAMP' and item.type() ne 'NUMBER'}" />
         </p:column>
       </p:dataTable>
-      <h:form>
-      <ic:com.axonivy.portal.components.AuditTrail showAddNote="true"></ic:com.axonivy.portal.components.AuditTrail>
-      </h:form>
     </ui:define>
   </ui:composition>
 </h:body>

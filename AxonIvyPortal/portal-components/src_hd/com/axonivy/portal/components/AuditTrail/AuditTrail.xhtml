@@ -5,7 +5,6 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="task" />
   <cc:attribute name="containerStyleClass" type="java.lang.String" default=""
     shortDescription="Additional CSS class for the outer container. Required: false." />
   <cc:attribute name="headerStyleClass" type="java.lang.String" default=""
@@ -28,7 +27,6 @@
 
 <cc:implementation>
   <h:outputStylesheet library="css" name="audit-trail-component.css" />
-  <!-- <f:event listener="#{logic.start(cc.attrs.task)}" type="preRenderComponent" /> -->
   <h:panelGroup id="audit-trail-content" layout="block"
     styleClass="audit-trail-container #{cc.attrs.containerStyleClass}">
 

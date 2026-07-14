@@ -9,6 +9,7 @@ import com.axonivy.portal.components.factory.AuditTrailDTOFactory;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
 
 public class AuditTrailService {
 
@@ -21,11 +22,8 @@ public class AuditTrailService {
     return instance;
   }
 
-  public void save(ICase caze, String input) {
+  public void save(String input) {
     try {
-      if (!caze.getBusinessCase().isPersistent()) {
-        return;
-      }
       String author = Ivy.session().getSessionUserName();
       AuditTrailDTO newEntry = AuditTrailDTOFactory.build(author, input);
       AuditTrailBundle bundle = Ivy.repo().get(AuditTrailBundle.class);
@@ -39,12 +37,26 @@ public class AuditTrailService {
     }
   }
 
-  public List<AuditTrailDTO> load(ICase caze) {
+  public List<AuditTrailDTO> load() {
     try {
       AuditTrailBundle bundle = Ivy.repo().get(AuditTrailBundle.class);
-      return bundle == null ? new ArrayList<>() : new ArrayList<>(bundle.getEntries());
+      return bundle.getEntries();
     } catch (Exception e) {
-      Ivy.log().error("Failed to load audit trail for case " + caze.getId(), e);
+      Ivy.log().error("Failed to load audit trail for case ", e);
+      return new ArrayList<>();
+    }
+  }
+
+  public List<AuditTrailDTO> load(ICase caze) {
+    try {
+      IBusinessCase businessCase = caze.getBusinessCase();
+      if (businessCase.isPersistent()) {
+        AuditTrailBundle bundle = Ivy.repo().find(businessCase, AuditTrailBundle.class);
+        return bundle.getEntries();
+      }
+      return new ArrayList<>();
+    } catch (Exception e) {
+      Ivy.log().error("Failed to save audit trail ", e);
       return new ArrayList<>();
     }
   }

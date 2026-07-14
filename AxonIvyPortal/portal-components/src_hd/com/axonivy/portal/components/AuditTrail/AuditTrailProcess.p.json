@@ -22,22 +22,14 @@
       "id" : "f4",
       "type" : "HtmlDialogExit",
       "visual" : {
-        "at" : { "x" : 216, "y" : 680 }
+        "at" : { "x" : 408, "y" : 680 }
       }
     }, {
       "id" : "f15",
       "type" : "HtmlDialogStart",
-      "name" : "start(ITask)",
+      "name" : "start()",
       "config" : {
         "signature" : "start",
-        "input" : {
-          "params" : [
-            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
-          ],
-          "map" : {
-            "out.task" : "param.task"
-          }
-        },
         "guid" : "19EECB9B942997F9"
       },
       "visual" : {
@@ -64,7 +56,7 @@
       "id" : "f21",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 480, "y" : 344 }
+        "at" : { "x" : 400, "y" : 344 }
       }
     }, {
       "id" : "f31",
@@ -84,17 +76,16 @@
       "id" : "f33",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 480, "y" : 512 }
+        "at" : { "x" : 400, "y" : 512 }
       }
     }, {
       "id" : "f39",
       "type" : "SubProcessCall",
       "name" : "save data",
       "config" : {
-        "processCall" : "Functional Processes/SetAuditTrailItem:setData(ch.ivyteam.ivy.workflow.ITask,String)",
+        "processCall" : "Functional Processes/SetAuditTrailItem:setData(String)",
         "call" : {
           "map" : {
-            "param.task" : "in.task",
             "param.content" : "in.additionalInformation"
           }
         },
@@ -103,7 +94,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 288, "y" : 512 }
+        "at" : { "x" : 224, "y" : 512 }
       },
       "connect" : [
         { "id" : "f42", "to" : "f33" }
@@ -117,7 +108,7 @@
           "code" : [
             "import com.axonivy.portal.components.dto.AuditTrailBundle;",
             "import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;",
-            "in.caze = in.task.getCase();",
+            "in.caze = ivy.case;",
             "IBusinessCase businessCase = in.caze.getBusinessCase();",
             "in.isCasePersistent = businessCase.isPersistent();",
             "",
@@ -125,7 +116,8 @@
             "  AuditTrailBundle bundle = ivy.repo.get(AuditTrailBundle.class) as AuditTrailBundle;",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 144 }
@@ -141,12 +133,12 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.service.AuditTrailService;",
-            "in.auditTrailDTOs = AuditTrailService.getInstance().load(in.caze);"
+            "in.auditTrailDTOs = AuditTrailService.getInstance().load();"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 344 }
+        "at" : { "x" : 224, "y" : 344 }
       },
       "connect" : [
         { "id" : "f48", "to" : "f21" }

@@ -142,7 +142,8 @@
           "map" : { },
           "code" : [
             "import com.axonivy.portal.components.service.AuditTrailService;",
-            "out.requestData.isApproved = false;"
+            "out.requestData.isApproved = false;",
+            "out.content = ivy.session.getSessionUserName() + \" rejected\";"
           ]
         },
         "guid" : "19EF2864B17265FD"
@@ -151,7 +152,25 @@
         "at" : { "x" : 152, "y" : 296 }
       },
       "connect" : [
-        { "id" : "f20", "to" : "f10" }
+        { "id" : "f20", "to" : "f21" }
+      ]
+    }, {
+      "id" : "f21",
+      "type" : "SubProcessCall",
+      "name" : "note the user who rejects",
+      "config" : {
+        "processCall" : "Functional Processes/SetAuditTrailItem:setData(String)",
+        "call" : {
+          "map" : {
+            "param.content" : "in.content"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 296 }
+      },
+      "connect" : [
+        { "id" : "f22", "to" : "f10" }
       ]
     } ]
 }
