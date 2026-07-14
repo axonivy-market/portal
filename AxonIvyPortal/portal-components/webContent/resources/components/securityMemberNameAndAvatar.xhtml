@@ -10,14 +10,14 @@
   <cc:attribute name="id" />
   <cc:attribute name="displayNameId" default="username" />
   <cc:attribute name="displayName" required="true" />
-  <cc:attribute name="displayNameRendered" default="true" />
+  <cc:attribute name="displayNameRendered" type="java.lang.Boolean" default="true" />
   <cc:attribute name="securityMember" required="true" />
   <cc:attribute name="displayNameStyleClass" />
   <cc:attribute name="containerStyleClass" />
   <cc:attribute name="representName" />
-  <cc:attribute name="isStandAlone" default="true" />
+  <cc:attribute name="isStandAlone" type="java.lang.Boolean" default="true" />
   <cc:attribute name="isShowTechnicalDisplayNameOnTooltip" default="#{portalComponentAvatarBean.getPortalShowTechnicalTooltipOrDefault(false)}" />
-  <cc:attribute name="showLabel" default="true"/>
+  <cc:attribute name="showLabel" type="java.lang.Boolean" default="true"/>
 </cc:interface>
 
 <cc:implementation>
@@ -27,7 +27,9 @@
   <c:set var="tooltipTechnicalDisplayName"
     value="#{cc.attrs.isShowTechnicalDisplayNameOnTooltip ? portalComponentAvatarBean.tooltipTechnicalDisplayName(cc.attrs.securityMember) : cc.attrs.displayName}" />
   <div id="#{cc.attrs.id}" class="#{cc.attrs.isShowAvatar ? 'has-avatar' : ''} #{cc.attrs.containerStyleClass}">
-    <pc:avatar securityMember="#{cc.attrs.securityMember}" rendered="#{cc.attrs.securityMember != null or cc.attrs.representName != null}" renderedAvatar="#{cc.attrs.isShowAvatar}" representName="#{cc.attrs.representName}" showLabel="#{cc.attrs.showLabel}"/>
+    <ui:fragment rendered="#{cc.attrs.securityMember != null or cc.attrs.representName != null}">
+      <pc:avatar securityMember="#{cc.attrs.securityMember}" renderedAvatar="#{cc.attrs.isShowAvatar}" representName="#{cc.attrs.representName}" showLabel="#{cc.attrs.showLabel}"/>
+    </ui:fragment>
     <cc:renderFacet name="alternativeAvatar" />
     <h:outputText id="#{cc.attrs.displayNameId}" value="#{cc.attrs.displayName}"
       rendered="#{cc.attrs.displayNameRendered and !userMenuBean.isMobileDevice()}"

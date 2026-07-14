@@ -233,7 +233,7 @@
                             sortBy="#{deputyRole.deputyRoleDisplayName}" sortOrder="ASC">
                             <h:outputText value="#{deputyRole.deputyRoleDisplayName}"
                               styleClass="substition-role-display-name absence-column-value" />
-                            <span class="substition-role-type" deputy-role-type="#{deputyRole.deputyRoleType.toString()}" />
+                            <span class="substition-role-type" deputy-role-type="#{deputyRole.deputyRoleType}" />
                           </p:column>
                           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputies')}" styleClass="ui-fluid">
                             <c:set var="showAvatar" value="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />

@@ -12,13 +12,13 @@
   <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" />
   <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
   <cc:attribute name="selectedTaskId" />
-  <cc:attribute name="showHeaderToolbar" default="true" />
+  <cc:attribute name="showHeaderToolbar" type="java.lang.Boolean" default="true" />
   <cc:attribute name="destroyTaskDialogComponent" default="" />
   <cc:attribute name="noTaskFoundMessage" />
   <cc:attribute name="hideWidgetHeader" default="false" type="java.lang.Boolean" />
   <cc:attribute name="currentPortalPage" default="TASK_LIST" shortDescription="Sticky task list after finish task" />
-  <cc:attribute name="readOnly" default="false" />
-  <cc:attribute name="inCaseInformationFrame" default="false" />
+  <cc:attribute name="readOnly" type="java.lang.Boolean" default="false" />
+  <cc:attribute name="inCaseInformationFrame" type="java.lang.Boolean" default="false" />
   <cc:facet name="taskListHeader" shortDescription="Header of task list" />
 </cc:interface>
 
