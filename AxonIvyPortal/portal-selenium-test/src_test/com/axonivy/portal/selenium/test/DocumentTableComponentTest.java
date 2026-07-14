@@ -51,7 +51,7 @@ public class DocumentTableComponentTest extends BaseTest {
 
   @Test
   public void testUploadDocumentToCustomFolder() {
-    String documentTableCustomUploadFolderUrl = "portal-components-examples/1818938E7EBC9329/showDocumentTableWithUploadSubfolder.ivp";
+    String documentTableCustomUploadFolderUrl = documentTableComponentUrl.replace("showCustomizedDocumentTableExample.ivp", "showDocumentTableWithUploadSubfolder.ivp");
     redirectToRelativeLink(documentTableCustomUploadFolderUrl);
     DocumentTableComponentPage documentTableComponentPage = new DocumentTableComponentPage();
     documentTableComponentPage.uploadSampleDocument(FileHelper.getAbsolutePathToTestFile("sample-file.txt"));
