@@ -190,7 +190,7 @@
             "import ch.ivyteam.ivy.workflow.document.IDocument;",
             "",
             "if (in.#businessCase is initialized) {",
-            "  List<IDocument> iDocuments = CaseDocumentService.newInstance(in.businessCase).getAll();",
+            "  List<IDocument> iDocuments = CaseDocumentService.newInstance(in.businessCase).getAll(in.displaySubFolderList);",
             "  CustomizedIvyDocumentTransformer transformer = new CustomizedIvyDocumentTransformer();",
             "  in.documents = transformer.transform(iDocuments);",
             "  for(CustomizedIvyDocument doc : in.documents) {",
@@ -240,13 +240,15 @@
             { "name" : "uploadedFile", "type" : "org.primefaces.model.file.UploadedFile", "desc" : "" },
             { "name" : "enableScriptCheckingForUploadedDocument", "type" : "Boolean", "desc" : "" },
             { "name" : "enableVirusScannerForUploadedDocument", "type" : "Boolean", "desc" : "" },
-            { "name" : "allowedUploadFileTypes", "type" : "String", "desc" : "" }
+            { "name" : "allowedUploadFileTypes", "type" : "String", "desc" : "" },
+            { "name" : "uploadSubFolder", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.allowedUploadFileTypes" : "param.allowedUploadFileTypes",
             "out.businessCase" : "param.businessCase",
             "out.enableScriptCheckingForUploadedDocument" : "param.enableScriptCheckingForUploadedDocument",
             "out.enableVirusScannerForUploadedDocument" : "param.enableVirusScannerForUploadedDocument",
+            "out.uploadSubFolder" : "param.uploadSubFolder",
             "out.uploadedFile" : "param.uploadedFile"
           }
         },
@@ -264,7 +266,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 128, "y" : 160 },
+        "at" : { "x" : 136, "y" : 160 },
         "labelOffset" : { "x" : -52, "y" : -26 }
       },
       "connect" : [
@@ -360,12 +362,12 @@
             "out.message = \"\";",
             "out.status = UploadDocumentCheckStatus.OK.name();",
             "String fileName = in.uploadedFile.getFileName();",
-            "out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputStream());",
+            "out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputStream(), in.uploadSubFolder);",
             "",
             "if (out.#uploadedDocument != null) {  ",
             "  String note = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), fileName));",
             "  in.businessCase.createNote(ivy.session, note);",
-            "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadSucceed\");",
+            "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadSucceed\"); ",
             "} else {",
             "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadFailed\");",
             "  out.status = UploadDocumentCheckStatus.FAIL.name();",
@@ -917,7 +919,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 144, "y" : 912 },
+        "at" : { "x" : 144, "y" : 984 },
         "labelOffset" : { "x" : 17, "y" : 33 }
       },
       "connect" : [
@@ -933,7 +935,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 352, "y" : 912 }
+        "at" : { "x" : 352, "y" : 984 }
       },
       "connect" : [
         { "id" : "f105", "to" : "f104" }
@@ -949,14 +951,14 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 480, "y" : 912 },
+        "at" : { "x" : 480, "y" : 984 },
         "labelOffset" : { "y" : -24 }
       },
       "connect" : [
         { "id" : "f106", "to" : "S0", "label" : {
             "name" : "No"
           } },
-        { "id" : "f111", "to" : "f108", "via" : [ { "x" : 480, "y" : 960 }, { "x" : 728, "y" : 960 } ], "label" : {
+        { "id" : "f111", "to" : "f108", "via" : [ { "x" : 480, "y" : 1032 }, { "x" : 728, "y" : 1032 } ], "label" : {
             "name" : "Yes",
             "segment" : 1.5
           } }
@@ -1088,7 +1090,7 @@
           "parentConnector" : "f109"
         } ],
       "visual" : {
-        "at" : { "x" : 616, "y" : 912 }
+        "at" : { "x" : 616, "y" : 984 }
       },
       "connect" : [
         { "id" : "f109", "to" : "f108" }
@@ -1097,13 +1099,13 @@
       "id" : "f107",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 800, "y" : 912 }
+        "at" : { "x" : 800, "y" : 984 }
       }
     }, {
       "id" : "f108",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 728, "y" : 912 }
+        "at" : { "x" : 728, "y" : 984 }
       },
       "connect" : [
         { "id" : "f110", "to" : "f107" }
@@ -1126,6 +1128,42 @@
       },
       "connect" : [
         { "id" : "f113", "to" : "f12" }
+      ]
+    }, {
+      "id" : "f114",
+      "type" : "CallSubStart",
+      "name" : "portalGetDocumentItems(ICase,List<String>)",
+      "config" : {
+        "signature" : "portalGetDocumentItems",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "displaySubFolderList", "type" : "List<String>", "desc" : "" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase",
+            "out.displaySubFolderList" : "param.displaySubFolderList"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>", "desc" : "" },
+            { "name" : "message", "type" : "String", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.documents" : "in.documents",
+            "result.message" : "in.message",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 136, "y" : 856 },
+        "labelOffset" : { "x" : 6, "y" : 44 }
+      },
+      "connect" : [
+        { "id" : "f115", "to" : "f37", "via" : [ { "x" : 272, "y" : 856 } ] }
       ]
     } ]
 }

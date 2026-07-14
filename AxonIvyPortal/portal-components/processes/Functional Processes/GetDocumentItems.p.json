@@ -181,5 +181,88 @@
       "connect" : [
         { "id" : "f13", "to" : "f3" }
       ]
+    }, {
+      "id" : "f14",
+      "type" : "CallSubStart",
+      "name" : "getDocumentItems(ICase,List<String>)",
+      "config" : {
+        "signature" : "getDocumentItems",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "displaySubFolderList", "type" : "List<String>", "desc" : "" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase",
+            "out.displaySubFolderList" : "param.displaySubFolderList"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>", "desc" : "" },
+            { "name" : "message", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.documents" : "in.documents",
+            "result.message" : "in.message"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 328, "y" : 648 },
+        "labelOffset" : { "x" : 6, "y" : 44 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f21" }
+      ]
+    }, {
+      "id" : "f21",
+      "type" : "Script",
+      "name" : "get document items",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.document.DocumentCustomField;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import com.axonivy.portal.components.enums.BasicDocumentType;",
+            "import com.axonivy.portal.components.ivydata.bo.IvyDocument;",
+            "import com.axonivy.portal.components.document.IvyDocumentTransformer;",
+            "import ch.ivyteam.ivy.workflow.document.IDocument;",
+            "import com.axonivy.portal.components.service.CaseDocumentService;",
+            "",
+            "if(in.#businessCase is initialized) {",
+            "  List<IDocument> iDocuments = CaseDocumentService.newInstance(in.businessCase).getAll(in.displaySubFolderList);",
+            "  IvyDocumentTransformer transformer = new IvyDocumentTransformer();",
+            "  in.documents = transformer.transform(iDocuments);",
+            "for (IvyDocument ivyDocument : in.documents) {",
+            "    String documentTypeString = null;",
+            "    String stringField = DocumentCustomField.TYPE_PREFIX + ivyDocument.uuid;",
+            "    documentTypeString = in.businessCase.customFields().stringField(stringField).getOrNull();",
+            "    if (StringUtils.isBlank(documentTypeString)) {",
+            "        stringField = DocumentCustomField.TYPE_PREFIX + ivyDocument.id;",
+            "        documentTypeString = in.businessCase.customFields().stringField(stringField).getOrNull();",
+            "    }",
+            "    if (StringUtils.isNotBlank(documentTypeString)) {",
+            "        ivyDocument.setType(BasicDocumentType.valueOf(documentTypeString.toUpperCase()));",
+            "    }",
+            "}",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 576, "y" : 648 },
+        "size" : { "width" : 128 }
+      },
+      "connect" : [
+        { "id" : "f22", "to" : "f23" }
+      ]
+    }, {
+      "id" : "f23",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 944, "y" : 648 }
+      }
     } ]
 }

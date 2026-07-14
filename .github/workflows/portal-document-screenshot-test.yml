@@ -91,22 +91,11 @@ jobs:
 
       - name: Build Portal modules
         run: |
-          modules=(
-            "AxonIvyPortal/portal-components"
-            "AxonIvyPortal/portal"
-            "AxonIvyPortal/PortalKitTestHelper"
-            "Showcase/portal-user-examples"
-            "Showcase/portal-developer-examples"
-            "Showcase/InternalSupport"
-            "Showcase/portal-components-examples"
-          )
-          for module in "${modules[@]}"; do
-            mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
-          done
+          mvn clean install -f pom.xml -pl '!AxonIvyPortal/portal-test' -DskipTests -Divy.engine.directory="$ENGINE_DIR"
 
       - name: Build and deploy test package
         run: |
-          mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=$ENGINE_DIR
+          mvn clean package -DskipTests -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=$ENGINE_DIR
           DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
           mkdir -p $DEPLOYMENT
           rm -rf $DEPLOYMENT/*
@@ -115,11 +104,11 @@ jobs:
       - name: Run test
         id: run-test        
         run: |
-          mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
+          mvn clean package -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
         continue-on-error: true
 
       - name: Log out on failures
-        if: job.steps.run-test.status == failure()
+        if: steps.run-test.outcome == 'failure'
         run: |
           cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
           

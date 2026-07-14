@@ -33,7 +33,7 @@
                     <div class="ui-g-12 height-100 case-map-stage">
                       <div class="ui-g-12 #{stageStatus.first?'':'line-left'} #{stageStatus.last?'':'line-right'}">
                         <div class="square center card">
-                          <i class="#{caseMapDetailBean.getIconOfStage(caseMapDetail, stage)} case-stage-icon" />
+                          <i class="#{exampleCaseMapDetailBean.getIconOfStage(caseMapDetail, stage)} case-stage-icon" />
                         </div>
                       </div>
                       <div class="ui-g-12 case-stage">
@@ -47,7 +47,7 @@
                       <div class="card ui-g-12 case-stage-detail">
 
                         <!-- PROCESS -->
-                        <ui:repeat var="desc" value="#{caseMapDetailBean.getProcessOfStage(caseMapDetail, stage)}">
+                        <ui:repeat var="desc" value="#{exampleCaseMapDetailBean.getProcessOfStage(caseMapDetail, stage)}">
                           <div class="card ui-g-12 case-stage-process">
                             <div class="ui-g-11">
                               <h:outputText value="#{desc}" styleClass="case-stage-text" />
@@ -57,7 +57,7 @@
                             </div>
                             <hr />
                             <div class="ui-g-12"
-                              jsf:rendered="#{caseMapDetailBean.renderPreCondition(caseMapDetail, desc)}">
+                              jsf:rendered="#{exampleCaseMapDetailBean.renderPreCondition(caseMapDetail, desc)}">
                               <i class="ti ti-diamond precondition-icon"
                                 title="#{ivy.cms.co('/Labels/HasPrecondition')}" />
                             </div>
@@ -65,10 +65,10 @@
                         </ui:repeat>
 
                         <!-- SIDE STEP -->
-                        <div jsf:rendered="#{not empty caseMapDetailBean.getSideStepOfStage(caseMapDetail, stage)}">
+                        <div jsf:rendered="#{not empty exampleCaseMapDetailBean.getSideStepOfStage(caseMapDetail, stage)}">
                           <hr />
                         </div>
-                        <ui:repeat var="desc" value="#{caseMapDetailBean.getSideStepOfStage(caseMapDetail, stage)}">
+                        <ui:repeat var="desc" value="#{exampleCaseMapDetailBean.getSideStepOfStage(caseMapDetail, stage)}">
                           <div class="card ui-g-12 case-stage-process">
                             <div class="ui-g-11">
                               <h:outputText value="#{desc}" styleClass="case-stage-text" />
@@ -78,7 +78,7 @@
                             </div>
                             <hr />
                             <div class="ui-g-12"
-                              jsf:rendered="#{caseMapDetailBean.renderPreCondition(caseMapDetail, desc)}">
+                              jsf:rendered="#{exampleCaseMapDetailBean.renderPreCondition(caseMapDetail, desc)}">
                               <span class="ti ti-diamond precondition-icon"
                                 title="#{ivy.cms.co('/Labels/HasPrecondition')}" />
                             </div>

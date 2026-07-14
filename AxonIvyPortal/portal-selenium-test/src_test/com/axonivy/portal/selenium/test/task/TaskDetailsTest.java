@@ -5,8 +5,8 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -264,5 +264,47 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.openDashboardTaskDetails("User: create note");
     taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.getNotesWithContent("System note").shouldHave(size(1));
+  }
+
+  @Test
+  public void testBannerMessage() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.DEMO_USER);
+    redirectToNewDashBoard();
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskDetailsPage taskDetailsPage;
+
+    // ========== PARKED ==========
+    // Reserve (park) task as demo user
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Maternity Leave Request");
+    taskWidget.applyFilter();
+    taskWidget.reserveTask(0);
+    refreshPage();
+
+    // Banner when current user has parked the task
+    taskWidget.openDashboardTaskDetails("Maternity Leave Request");
+    taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    taskDetailsPage.getStatusBanner().shouldHave(Condition.text(
+        "You have parked the task. It was exclusively reserved by you for working on it later. You may reset the task to release its reservation."));
+
+    // Banner when another user has parked the task
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NavigationHelper.navigateToTaskList();
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Maternity Leave Request");
+    taskWidget.applyFilter();
+    taskWidget.openDashboardTaskDetails("Maternity Leave Request");
+    taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    taskDetailsPage.getStatusBanner().shouldHave(Condition.text(
+        "You cannot work on the task because " + TestAccount.DEMO_USER.getFullName()
+            + " has parked it. It was exclusively reserved by them for working on it later."));
   }
 }

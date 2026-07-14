@@ -47,22 +47,12 @@ jobs:
       - name: Build Portal modules
         run: |
           set -o pipefail
-          modules=(
-            "AxonIvyPortal/portal-components"
-            "AxonIvyPortal/portal"
-            "AxonIvyPortal/PortalKitTestHelper"
-            "Showcase/portal-user-examples"
-            "Showcase/portal-developer-examples"
-            "Showcase/InternalSupport"
-            "Showcase/portal-components-examples"
-          )
-          for module in "${modules[@]}"; do
-            mvn clean install -DskipTests -f "$module/pom.xml" -Divy.engine.directory="$ENGINE_DIR" 2>&1 | \
-              sed -E "s|[0-9]+\. (WARNING) in ([^ ]*) \(at line ([0-9]+)\)(.*)|::\L\1 file=\2,line=\3::build issue|g" | \
-              sed -E "s|\[WARNING\] ${GITHUB_WORKSPACE}/([^:]+):\[([0-9]+),[0-9]+\] (.*)|::warning file=\1,line=\2::\3|g" | \
-              sed -E "s|\[WARNING\] |::warning::|g" | \
-              sed "s|::warning file=${GITHUB_WORKSPACE}/|::warning file=|g"
-          done
+          mvn clean install -f pom.xml -pl '!AxonIvyPortal/portal-test,!AxonIvyPortal/portal-selenium-test' \
+            -Divy.engine.directory="$ENGINE_DIR" 2>&1 | \
+            sed -E "s|[0-9]+\. (WARNING) in ([^ ]*) \(at line ([0-9]+)\)(.*)|::\L\1 file=\2,line=\3::build issue|g" | \
+            sed -E "s|\[WARNING\] ${GITHUB_WORKSPACE}/([^:]+):\[([0-9]+),[0-9]+\] (.*)|::warning file=\1,line=\2::\3|g" | \
+            sed -E "s|\[WARNING\] |::warning::|g" | \
+            sed "s|::warning file=${GITHUB_WORKSPACE}/|::warning file=|g"
 
   compiler-warnings:
     name: Compiler Warnings

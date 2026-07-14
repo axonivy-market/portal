@@ -636,6 +636,7 @@
         "type": "standard"
       }
     ],
+    "filter": "isInvolved",
     "permissions": [
       "Everybody"
     ],

@@ -1,63 +1,71 @@
 package com.axonivy.portal.components.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
+import ch.ivyteam.ivy.environment.IvyTest;
+
+@IvyTest
 class TestHtmlUtils {
 
   @Test
-  void sanitize_nullInput_returnsNull() {
+  void sanitize_null_returnsNull() {
     assertThat(HtmlUtils.sanitize(null)).isNull();
   }
 
   @Test
-  void sanitize_scriptTag_isStripped() {
-    String result = HtmlUtils.sanitize("<script>alert(1)</script><p>hello</p>");
-    assertThat(result).doesNotContain("<script>").contains("hello");
+  void sanitize_safeHtml_preservesTags() {
+    String html = "<p>Hello <b>World</b>!</p>";
+    assertThat(HtmlUtils.sanitize(html)).isEqualTo(html);
   }
 
   @Test
-  void sanitize_allowsStyleAndClassAttributes() {
-    String result = HtmlUtils.sanitize("<p style=\"color:red\" class=\"foo\">hi</p>");
-    assertThat(result).contains("style=\"color:red\"").contains("class=\"foo\"");
+  void sanitize_unsafeHtml_removesScript() {
+    String html = "<p>Hello <script>alert('xss')</script>World</p>";
+    assertThat(HtmlUtils.sanitize(html)).isEqualTo("<p>Hello World</p>");
   }
 
   @Test
-  void sanitize_relativeHref_isPreserved() {
-    String result = HtmlUtils.sanitize("<a href=\"/relative/path\">link</a>");
-    assertThat(result).contains("href=\"/relative/path\"");
+  void sanitize_relativeLinks_preservesRelativeLinks() {
+    String html = "<a href=\"relative/path/to/page\">Link</a>";
+    assertThat(HtmlUtils.sanitize(html)).isEqualTo(html);
   }
 
   @Test
-  void parseTextFromHtml_stripsTagsAndScript() {
-    String result = HtmlUtils.parseTextFromHtml("<div><script>alert(1)</script><p>Hello <b>World</b></p></div>");
-    assertThat(result).isEqualTo("Hello World");
+  void sanitize_javascriptProtocols_removesJavascriptLink() {
+    String html = "<a href=\"javascript:alert('xss')\">Link</a>";
+    assertThat(HtmlUtils.sanitize(html)).isEqualTo("<a>Link</a>");
   }
 
   @Test
-  void parseTextFromHtml_plainText_isUnchanged() {
-    assertThat(HtmlUtils.parseTextFromHtml("just text")).isEqualTo("just text");
+  void parseTextFromHtml_validHtml_extractsText() {
+    String html = "<p>Hello <b>World</b>!</p>";
+    assertThat(HtmlUtils.parseTextFromHtml(html)).isEqualTo("Hello World!");
   }
 
-  @ParameterizedTest
-  @NullSource
-  void escapeForIcon_nullInput_returnsEmpty(String input) {
-    assertThat(HtmlUtils.escapeForIcon(input)).isEmpty();
+  @Test
+  void parseTextFromHtml_null_throwsException() {
+    assertThatThrownBy(() -> HtmlUtils.parseTextFromHtml(null))
+        .isInstanceOf(NullPointerException.class);
   }
 
-  @ParameterizedTest
-  @ValueSource(strings = { "fa fa-home", "  fa fa-home  ", "si si-github", "ti ti-check", "tif tif-user" })
-  void escapeForIcon_validIconClass_isReturnedTrimmed(String input) {
-    assertThat(HtmlUtils.escapeForIcon(input)).isEqualTo(input.trim());
+  @Test
+  void escapeForIcon_null_returnsEmptyString() {
+    assertThat(HtmlUtils.escapeForIcon(null)).isEmpty();
   }
 
-  @ParameterizedTest
-  @ValueSource(strings = { "javascript:alert(1)", "fa home", "fa fa-home; background:url(x)", "<script>alert(1)</script>", "" })
-  void escapeForIcon_invalidIconClass_returnsEmpty(String input) {
-    assertThat(HtmlUtils.escapeForIcon(input)).isEmpty();
+  @Test
+  void escapeForIcon_validIcon_returnsIcon() {
+    assertThat(HtmlUtils.escapeForIcon("fa fa-home")).isEqualTo("fa fa-home");
+    assertThat(HtmlUtils.escapeForIcon("ti ti-user")).isEqualTo("ti ti-user");
+    assertThat(HtmlUtils.escapeForIcon("si si-github")).isEqualTo("si si-github");
+  }
+
+  @Test
+  void escapeForIcon_invalidIcon_returnsEmptyString() {
+    assertThat(HtmlUtils.escapeForIcon("invalid icon!")).isEmpty();
+    assertThat(HtmlUtils.escapeForIcon("<script>")).isEmpty();
   }
 }

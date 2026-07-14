@@ -66,10 +66,10 @@ pipeline {
           bat 'AxonIvyPortal/portal-selenium-test/resources/copy-decorate-js-css.bat'
 
           echo '====================Build Portal modules===================='
-          bat "mvn clean install -f pom.xml -Divy.engine.directory=%engineDir%"
+          bat "mvn clean install -DskipTests -f pom.xml -pl \"!AxonIvyPortal/portal-test\" -Divy.engine.directory=%engineDir%"
 
           echo '====================Build and deploy test package===================='
-          bat "mvn clean package -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=%engineDir%"
+          bat "mvn clean package -DskipTests -f AxonIvyPortal/portal-selenium-test/deployment-pom.xml -Divy.engine.directory=%engineDir%"
           powershell """
             \$DEPLOYMENT= \$env:engineDir + "/system/demo-applications/demo-portal"
             rmdir \$DEPLOYMENT/* -recurse
@@ -79,7 +79,7 @@ pipeline {
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Execute maven for testing===================='
-          bat "mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500"
+          bat "mvn clean verify -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500"
           utils.cleanDisk()
 
           echo '====================Copy OpenSearch log===================='

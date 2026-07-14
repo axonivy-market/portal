@@ -299,9 +299,7 @@ jobs:
         run: |
           mvn clean install -ntp \
             -pl AxonIvyPortal/portal-components,AxonIvyPortal/portal \
-            -am \
-            -Divy.engine.directory=$ENGINE_DIR \
-            -DskipTests
+            -Divy.engine.directory=$ENGINE_DIR
 
       - name: Run portal-test tests
         id: run-test
@@ -310,7 +308,7 @@ jobs:
           if [ -n "${{ inputs.testPatternToRun }}" ]; then
             TEST_FILTER="-Dtest=${{ inputs.testPatternToRun }}"
           fi
-          mvn clean install -ntp \
+          mvn clean test -ntp \
             -f AxonIvyPortal/portal-test/pom.xml \
             -Divy.engine.directory=$ENGINE_DIR \
             $TEST_FILTER
