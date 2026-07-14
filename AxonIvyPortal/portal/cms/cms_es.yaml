@@ -1471,6 +1471,8 @@ Dialogs:
               ShareTaskDetails: Compartir detalles de la tarea
               TaskCompletedByOtherInfo: La tarea ya ha sido completada por el usuario <strong>{0}</strong> en {1}.
               TaskCompletedByYouInfo: Ya ha completado la tarea en {0}.
+              TaskParkedByOtherInfo: No puedes trabajar en la tarea porque <strong>{0}</strong> la ha aparcado. Ha sido reservada exclusivamente por este usuario para trabajar en ella más tarde.
+              TaskParkedByYouInfo: Has aparcado la tarea. Ha sido reservada exclusivamente por ti para trabajar en ella más tarde. Puedes restablecer la tarea para liberar su reserva.
   com:
     axonivy:
       portal:

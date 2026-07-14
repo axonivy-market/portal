@@ -5,10 +5,10 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
-import org.junit.jupiter.api.AfterEach;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
@@ -113,55 +113,6 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testShowTaskStatusBannerOnTaskDetails() {
-    redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.ADMIN_USER);
-    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
-    redirectToNewDashBoard();
-    NavigationHelper.navigateToTaskList();
-    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
-    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-
-    taskWidget.openDashboardTaskDetails("Maternity Leave Request");
-    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
-    taskDetailsPage.clickStartTask();
-    redirectToNewDashBoard();
-
-    NavigationHelper.navigateToTaskList();
-    taskWidget = new TopMenuTaskWidgetPage();
-    taskWidget.openDashboardTaskDetails("Maternity Leave Request");
-    taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-
-    NavigationHelper.navigateToTaskList();
-    taskWidget = new TopMenuTaskWidgetPage();
-    taskWidget.openFilterWidget();
-    taskWidget.addFilter("Name", FilterOperator.IS);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Sick Leave Request");
-    taskWidget.applyFilter();
-    taskWidget.destroyTask(0);
-    taskWidget.openDashboardTaskDetails("Sick Leave Request");
-    taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-
-    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    NavigationHelper.navigateToTaskList();
-    taskWidget = new TopMenuTaskWidgetPage();
-    taskWidget.openFilterWidget();
-    taskWidget.removeFilter(0);
-    taskWidget.addFilter("Name", FilterOperator.IS);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, TAKE_ORDER);
-    taskWidget.applyFilter();
-
-    taskWidget.startTask(0);
-    redirectToNewDashBoard();
-    NavigationHelper.navigateToTaskList();
-    taskWidget.openFilterWidget();
-    taskWidget.removeFilter(0);
-    taskWidget.applyFilter();
-    taskWidget.openDashboardTaskDetails(TAKE_ORDER);
-    taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-  }
-  
-  @Test
   public void testUncheckSystemNotesByDefaultForAdminUser() {
     updateGlobalVariable(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "false");
     login(TestAccount.ADMIN_USER);
@@ -240,5 +191,47 @@ public class TaskDetailsTest extends BaseTest {
     assertTrue(taskDetailsPage.getCustomFieldsDialog().isDisplayed());
     List<String> customFieldNames = taskDetailsPage.getCustomFieldNames();
     assertFalse(customFieldNames.isEmpty());
+  }
+  
+  @Test
+  public void testBannerMessage() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.DEMO_USER);
+    redirectToNewDashBoard();
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskDetailsPage taskDetailsPage;
+
+    // ========== PARKED ==========
+    // Reserve (park) task as demo user
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Maternity Leave Request");
+    taskWidget.applyFilter();
+    taskWidget.reserveTask(0);
+    refreshPage();
+
+    // Banner when current user has parked the task
+    taskWidget.openDashboardTaskDetails("Maternity Leave Request");
+    taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    taskDetailsPage.getStatusBanner().shouldHave(Condition.text(
+        "You have parked the task. It was exclusively reserved by you for working on it later. You may reset the task to release its reservation."));
+
+    // Banner when another user has parked the task
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NavigationHelper.navigateToTaskList();
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Maternity Leave Request");
+    taskWidget.applyFilter();
+    taskWidget.openDashboardTaskDetails("Maternity Leave Request");
+    taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    taskDetailsPage.getStatusBanner().shouldHave(Condition.text(
+        "You cannot work on the task because " + TestAccount.DEMO_USER.getFullName()
+            + " has parked it. It was exclusively reserved by them for working on it later."));
   }
 }

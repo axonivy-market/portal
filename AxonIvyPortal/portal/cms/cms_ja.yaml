@@ -1468,6 +1468,8 @@ Dialogs:
               ShareTaskDetails: タスクの詳細を共有
               TaskCompletedByOtherInfo: タスクは、ユーザー <strong>{0}</strong> によって {1} に既に完了しています。
               TaskCompletedByYouInfo: あなたは、このタスクを {0} に完了しています。
+              TaskParkedByOtherInfo: <strong>{0}</strong> が保留にしているため、このタスクの作業を行うことはできません。後で作業するために、そのユーザー専用に予約されています。
+              TaskParkedByYouInfo: タスクを保留にしました。後で作業するために、あなた専用に予約されています。タスクをリセットして予約を解除することができます。
   com:
     axonivy:
       portal:
