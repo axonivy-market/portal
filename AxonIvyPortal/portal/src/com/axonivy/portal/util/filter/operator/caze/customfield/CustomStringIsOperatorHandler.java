@@ -1,5 +1,6 @@
 package com.axonivy.portal.util.filter.operator.caze.customfield;
 
+import static com.axonivy.portal.util.CaseQueryUtils.initCaseQuery;
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
@@ -21,9 +22,9 @@ public class CustomStringIsOperatorHandler {
     if (CollectionUtils.isEmpty(filter.getValues())) {
       return null;
     }
-    CaseQuery query = CaseQuery.create();
+    CaseQuery query = initCaseQuery(filter.getFilterType());
     filter.getValues().forEach(text -> {
-      CaseQuery subQuery = CaseQuery.create();
+      CaseQuery subQuery = initCaseQuery(filter.getFilterType());
       subQuery.where().customField().stringField(filter.getField()).isEqualIgnoreCase(text.toLowerCase());
       query.where().or(subQuery);
     });
@@ -34,9 +35,9 @@ public class CustomStringIsOperatorHandler {
     if (CollectionUtils.isEmpty(filter.getValues())) {
       return null;
     }
-    CaseQuery query = CaseQuery.create();
+    CaseQuery query = initCaseQuery(filter.getFilterType());
     filter.getValues().forEach(text -> {
-      CaseQuery subQuery = CaseQuery.create();
+      CaseQuery subQuery = initCaseQuery(filter.getFilterType());
       subQuery.where().customField().stringField(filter.getField()).isNotEqualIgnoreCase(text.toLowerCase());
       query.where().and(subQuery);
     });
