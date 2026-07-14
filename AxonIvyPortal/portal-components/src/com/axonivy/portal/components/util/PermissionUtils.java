@@ -32,18 +32,4 @@ public class PermissionUtils {
         IPermission.CASE_READ_ALL_OWN_ROLE_INVOLVED);
   }
 
-    public static boolean checkReadAllNotesPermission() {
-    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-        IPermission.NOTE_READ_ALL);
-  }
-
-  /**
-   * Check if current user has read all workflow events permission
-   *
-   * @return True : has read all workflow events permission, False : do not have this permission
-   */
-  public static boolean checkReadAllWorkflowEventPermission() {
-    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-        IPermission.WORKFLOW_EVENT_READ_ALL);
-  }
 }
