@@ -15,6 +15,10 @@
     "modifiers" : [ ]
   }, {
     "name" : "hasCustomProcess",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
+  }, {
+    "name" : "displaySubFolderList",
+    "type" : "List<String>"
   } ]
 }

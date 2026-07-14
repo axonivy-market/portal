@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.DefaultStreamedContent;
@@ -46,8 +47,13 @@ public class CaseDocumentService {
   }
 
   public IDocument upload(String filename, InputStream content) {
+    return upload(filename, content, null);
+  }
+
+  public IDocument upload(String filename, InputStream content, String uploadSubFolder) {
     try {
-      return documentsOf(iCase).add(filename).write().withContentFrom(content);
+      String path = StringUtils.isNotBlank(uploadSubFolder) ? uploadSubFolder + "/" + filename : filename;
+      return documentsOf(iCase).add(path).write().withContentFrom(content);
     } catch (PersistencyException e) {
       Ivy.log().error("Error in uploading the document {0} ", e, filename);
       return null;
@@ -56,6 +62,21 @@ public class CaseDocumentService {
 
   public List<IDocument> getAll() {
     return new ArrayList<>(getAllDocumentsOf(iCase));
+  }
+
+  public List<IDocument> getAll(List<String> displaySubFolderList) {
+    if (CollectionUtils.isEmpty(displaySubFolderList)) {
+      return getAll();
+    }
+    try {
+      List<IDocument> allDocuments = new ArrayList<>();
+      for (String uploadSubFolder : displaySubFolderList) {
+        allDocuments.addAll(Sudo.call(() -> iCase.documents().getAllBelow(new Path(uploadSubFolder))));
+      }
+      return allDocuments;
+    } catch (Exception e) {
+      throw new PortalException(e);
+    }
   }
 
   /**
