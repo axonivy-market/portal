@@ -4,13 +4,15 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/frame-10.xhtml">
-    <ui:define name="title">Default Document Table Component Example</ui:define>
+    <ui:define name="title">Customized upload and display subfolder document table component example</ui:define>
     <ui:define name="content">
       <div class="layout-wrapper">
-        <h1>Default Document Table Component Example</h1>
-        <h:form id="form">
-          <ic:com.axonivy.portal.components.DocumentTable/>
-        </h:form>
+      <h1>Customized upload and display subfolder document table component example</h1>
+      <h:form id="form">
+        <ic:com.axonivy.portal.components.DocumentTable id="document-table-component"
+          uploadSubFolder="customerData" displaySubFolderList="customizeUploadSubFolder/hrDocument">
+        </ic:com.axonivy.portal.components.DocumentTable>
+      </h:form>
       </div>
       <ic:com.axonivy.portal.components.IFrameTaskConfig isWorkingOnATask="false" />
     </ui:define>

@@ -2,7 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
 
-import org.openqa.selenium.WebElement;
+import com.codeborne.selenide.SelenideElement;
 
 public class ProjectVersionPage extends TemplatePage {
 
@@ -24,7 +24,7 @@ public class ProjectVersionPage extends TemplatePage {
         .isDisplayed();
   }
 
-  public WebElement getProjectVersionDialog() {
+  public SelenideElement getProjectVersionDialog() {
     return $("[id='project-info-dialog']");
   }
 }

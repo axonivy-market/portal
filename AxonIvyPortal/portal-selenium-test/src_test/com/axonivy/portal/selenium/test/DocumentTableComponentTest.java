@@ -48,4 +48,16 @@ public class DocumentTableComponentTest extends BaseTest {
     documentTableComponentPage.waitForPreviewDialog();
     assertTrue(documentTableComponentPage.isPreviewContentDisplayed());
   }
+
+  @Test
+  public void testUploadDocumentToCustomFolder() {
+    String documentTableCustomUploadFolderUrl = documentTableComponentUrl.replace("showCustomizedDocumentTableExample.ivp", "showDocumentTableWithUploadSubfolder.ivp");
+    redirectToRelativeLink(documentTableCustomUploadFolderUrl);
+    DocumentTableComponentPage documentTableComponentPage = new DocumentTableComponentPage();
+    documentTableComponentPage.uploadSampleDocument(FileHelper.getAbsolutePathToTestFile("sample-file.txt"));
+    refreshPage();
+    documentTableComponentPage.waitForDocumentTableComponentPageLoaded();
+    // expect empty table because upload folder is different to display folder
+    assertTrue(documentTableComponentPage.isEmptyTable());
+  }
 }

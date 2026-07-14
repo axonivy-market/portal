@@ -43,3 +43,5 @@ enableVirusScannerForUploadedDocument,,Boolean,"| Boolean value to specify virus
 allowedUploadFileTypes,,String,"| String value to specify the list of file extension that can be uploaded.
 | The setting will detect Portal setting ``Portal.Document.WhitelistExtension`` as its default value, refer to :ref:`update-portal-settings` for more details.
 | If Portal setting is not available, default value is ``doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png``."
+uploadSubFolder,,String,"Defines the subfolder path to upload documents."
+displaySubFolderList,,String,"Defines the list of subfolder paths to display documents, separated by commas."

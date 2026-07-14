@@ -36,5 +36,7 @@
     "name" : "hasCustomProcess",
     "type" : "Boolean",
     "modifiers" : [ ]
+  }, {
+    "name" : "uploadSubFolder"
   } ]
 }
