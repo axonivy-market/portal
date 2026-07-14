@@ -19,13 +19,13 @@ public class CustomTextIsEmptyOperatorHandler {
 
   public TaskQuery buildIsEmptyQuery(DashboardFilter filter) {
     TaskQuery subQuery = TaskQuery.create();
-    subQuery.where().customField().textField(filter.getField()).isNull();
+    subQuery.where().customField().textField(filter.getField()).isNull().or().customField().textField(filter.getField()).isEqual("");
     return subQuery;
   }
 
   public TaskQuery buildNotEmptyQuery(DashboardFilter filter) {
     TaskQuery subQuery = TaskQuery.create();
-    subQuery.where().customField().textField(filter.getField()).isNotNull();
+    subQuery.where().customField().textField(filter.getField()).isNotNull().and().customField().textField(filter.getField()).isNotEqual("");
     return subQuery;
   }
 
