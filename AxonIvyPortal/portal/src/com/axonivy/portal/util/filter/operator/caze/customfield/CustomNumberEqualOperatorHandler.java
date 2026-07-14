@@ -1,5 +1,6 @@
 package com.axonivy.portal.util.filter.operator.caze.customfield;
 
+import static com.axonivy.portal.util.CaseQueryUtils.initCaseQuery;
 import java.math.BigDecimal;
 
 import org.apache.commons.lang3.StringUtils;
@@ -24,7 +25,7 @@ public class CustomNumberEqualOperatorHandler {
       return null;
     }
 
-    CaseQuery query = CaseQuery.create();
+    CaseQuery query = initCaseQuery(filter.getFilterType());
     query.where().customField().numberField(filter.getField())
       .isEqual(BigDecimal.valueOf(NumberUtils.toDouble(filter.getValue())));
     return query;
@@ -35,7 +36,7 @@ public class CustomNumberEqualOperatorHandler {
       return null;
     }
 
-    CaseQuery query = CaseQuery.create();
+    CaseQuery query = initCaseQuery(filter.getFilterType());
     query.where().customField().numberField(filter.getField())
       .isNotEqual(BigDecimal.valueOf(NumberUtils.toDouble(filter.getValue())));
     return query;

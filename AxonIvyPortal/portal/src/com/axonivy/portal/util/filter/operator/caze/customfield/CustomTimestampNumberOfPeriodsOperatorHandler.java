@@ -1,5 +1,6 @@
 package com.axonivy.portal.util.filter.operator.caze.customfield;
 
+import static com.axonivy.portal.util.CaseQueryUtils.initCaseQuery;
 import java.util.Date;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
@@ -38,7 +39,7 @@ public class CustomTimestampNumberOfPeriodsOperatorHandler {
   }
 
   private CaseQuery buildQuery(Date from, Date to, boolean isPast, DashboardFilter filter) {
-    CaseQuery query = CaseQuery.create();
+    CaseQuery query = initCaseQuery(filter.getFilterType());
     if (isPast) {
       query.where().customField().timestampField(filter.getField())
           .isGreaterOrEqualThan(PortalDateUtils.getStartOfDate(from));
@@ -60,7 +61,7 @@ public class CustomTimestampNumberOfPeriodsOperatorHandler {
       case MONTH -> buildQuery(PortalDateUtils.getMonthByPeriod(absNumberOfPeriods), today, isPast, filter);
       case WEEK -> buildQuery(PortalDateUtils.getWeekByPeriod(absNumberOfPeriods), today, isPast, filter);
       case DAY -> buildQuery(PortalDateUtils.getDayByPeriod(absNumberOfPeriods), today, isPast, filter);
-      default -> CaseQuery.create();
+      default -> initCaseQuery(filter.getFilterType());
     };
     return query;
   }

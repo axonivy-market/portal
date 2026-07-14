@@ -1,5 +1,6 @@
 package com.axonivy.portal.util.filter.operator.caze.customfield;
 
+import static com.axonivy.portal.util.CaseQueryUtils.initCaseQuery;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -16,13 +17,13 @@ public class CustomTextIsEmptyOperatorHandler {
   }
 
   public CaseQuery buildIsEmptyQuery(DashboardFilter filter) {
-    CaseQuery subQuery = CaseQuery.create();
+    CaseQuery subQuery = initCaseQuery(filter.getFilterType());
     subQuery.where().customField().textField(filter.getField()).isNull().or().customField().textField(filter.getField()).isEqual("");
     return subQuery;
   }
 
   public CaseQuery buildNotEmptyQuery(DashboardFilter filter) {
-    CaseQuery subQuery = CaseQuery.create();
+    CaseQuery subQuery = initCaseQuery(filter.getFilterType());
     subQuery.where().customField().textField(filter.getField()).isNotNull().and().customField().textField(filter.getField()).isNotEqual("");
     return subQuery;
   }
