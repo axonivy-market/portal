@@ -18,14 +18,14 @@ public class CustomTextIsEmptyOperatorHandler {
   public CaseQuery buildIsEmptyQuery(DashboardFilter filter) {
     CaseQuery subQuery = CaseQuery.create();
     subQuery.where().customField().textField(filter.getField()).isNull().or().customField()
-        .textField(filter.getField()).isLike("");
+        .textField(filter.getField()).isEqual("");
     return subQuery;
   }
 
   public CaseQuery buildNotEmptyQuery(DashboardFilter filter) {
     CaseQuery subQuery = CaseQuery.create();
     subQuery.where().customField().textField(filter.getField()).isNotNull().and().customField()
-        .textField(filter.getField()).isNotLike("");
+        .textField(filter.getField()).isNotEqual("");
     return subQuery;
   }
 }

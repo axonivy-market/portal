@@ -17,13 +17,13 @@ public class NameIsEmptyOperatorHandler {
 
   public TaskQuery buildIsEmptyQuery(DashboardFilter filter) {
     TaskQuery subQuery = TaskQuery.create();
-    subQuery.where().name().isNull().or().name().isLike("");
+    subQuery.where().name().isNull().or().name().isEqual("");
     return subQuery;
   }
 
   public TaskQuery buildNotEmptyQuery(DashboardFilter filter) {
     TaskQuery subQuery = TaskQuery.create();
-    subQuery.where().name().isNotNull().and().name().isNotLike("");
+    subQuery.where().name().isNotNull().and().name().isNotEqual("");
     return subQuery;
   }
 }
