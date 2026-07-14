@@ -45,7 +45,7 @@
     default="#{ivy.cms.co('/Labels/NoResults')}" />
 
   <!-- Avatar in Selection list attributes  -->
-  <cc:attribute name="isShowAvatarInSelectionList" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}"
+  <cc:attribute name="isShowAvatarInSelectionList" type="java.lang.Boolean" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}"
     shortDescription="Displays role avatars in the selection list when enabled. Type: boolean. Default value: true. Required: false." />
   <cc:attribute name="displayNameRenderedInSelectionList" type="java.lang.Boolean" default="true"
     shortDescription="Controls visibility of the role display name in the selection list. Type: boolean. Default value: true. Required: false." />
