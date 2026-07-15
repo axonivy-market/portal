@@ -12,8 +12,6 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.junit.jupiter.api.Test;
 
-import com.axonivy.portal.components.document.PDFDocumentDetector;
-
 import ch.ivyteam.ivy.environment.IvyTest;
 
 @IvyTest

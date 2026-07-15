@@ -42,7 +42,7 @@ class TestIvyAdapterService {
   @Test
   void startSubProcessesInSecurityContextWithCollectCondition_noMatchingSubProcess_returnsEmptyMap() {
     Map<String, Object> result =
-        IvyAdapterService.startSubProcessesInSecurityContext(NO_SUCH_SIGNATURE, null, r -> true);
+        IvyAdapterService.startSubProcessesInSecurityContext(NO_SUCH_SIGNATURE, null, Map::isEmpty);
     assertThat(result).isEmpty();
   }
 }

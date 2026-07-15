@@ -7,8 +7,6 @@ import java.nio.charset.StandardCharsets;
 
 import org.junit.jupiter.api.Test;
 
-import com.axonivy.portal.components.document.SVGSecurityScanner;
-
 import ch.ivyteam.ivy.environment.IvyTest;
 
 @IvyTest

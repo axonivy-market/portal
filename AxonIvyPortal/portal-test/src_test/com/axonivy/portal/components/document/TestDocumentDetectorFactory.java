@@ -6,11 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import com.axonivy.portal.components.document.ExcelDocumentDetector;
-import com.axonivy.portal.components.document.PDFDocumentDetector;
-import com.axonivy.portal.components.document.SVGSecurityScanner;
-import com.axonivy.portal.components.document.WordDocumentDetector;
-
 import ch.ivy.addon.portalkit.document.DocumentDetectorFactory;
 import ch.ivyteam.ivy.environment.IvyTest;
 

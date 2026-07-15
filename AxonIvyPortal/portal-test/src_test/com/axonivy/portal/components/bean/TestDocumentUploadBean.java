@@ -4,9 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
+import com.axonivy.portal.components.enums.GlobalVariable;
 import com.axonivy.portal.components.ivydata.bo.IvyDocument;
 import com.axonivy.portal.components.masterdata.MasterData;
 
+import ch.ivyteam.ivy.environment.AppFixture;
 import ch.ivyteam.ivy.environment.IvyTest;
 
 @IvyTest
@@ -42,20 +44,41 @@ class TestDocumentUploadBean {
   }
 
   @Test
-  void getPortalScriptCheckingSettingOrDefault_notSet_returnsDefault() {
+  void getPortalScriptCheckingSettingOrDefault_empty_returnsDefault(AppFixture fixture) {
+    fixture.var(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT.getKey(), "");
     assertThat(bean.getPortalScriptCheckingSettingOrDefault(true)).isTrue();
     assertThat(bean.getPortalScriptCheckingSettingOrDefault(false)).isFalse();
   }
 
   @Test
-  void getPortalVirusScannerSettingOrDefault_notSet_returnsDefault() {
+  void getPortalScriptCheckingSettingOrDefault_explicitValue_ignoresDefault(AppFixture fixture) {
+    fixture.var(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT.getKey(), "false");
+    assertThat(bean.getPortalScriptCheckingSettingOrDefault(true)).isFalse();
+  }
+
+  @Test
+  void getPortalVirusScannerSettingOrDefault_empty_returnsDefault(AppFixture fixture) {
+    fixture.var(GlobalVariable.ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT.getKey(), "");
     assertThat(bean.getPortalVirusScannerSettingOrDefault(true)).isTrue();
     assertThat(bean.getPortalVirusScannerSettingOrDefault(false)).isFalse();
   }
 
   @Test
-  void getPortalAllowedUploadFileTypesSettingOrDefault_notSet_returnsDefault() {
+  void getPortalVirusScannerSettingOrDefault_explicitValue_ignoresDefault(AppFixture fixture) {
+    fixture.var(GlobalVariable.ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT.getKey(), "true");
+    assertThat(bean.getPortalVirusScannerSettingOrDefault(false)).isTrue();
+  }
+
+  @Test
+  void getPortalAllowedUploadFileTypesSettingOrDefault_empty_returnsDefault(AppFixture fixture) {
+    fixture.var(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION.getKey(), "");
     assertThat(bean.getPortalAllowedUploadFileTypesSettingOrDefault(".pdf,.docx")).isEqualTo(".pdf,.docx");
+  }
+
+  @Test
+  void getPortalAllowedUploadFileTypesSettingOrDefault_explicitValue_ignoresDefault(AppFixture fixture) {
+    fixture.var(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION.getKey(), ".png");
+    assertThat(bean.getPortalAllowedUploadFileTypesSettingOrDefault(".pdf,.docx")).isEqualTo(".png");
   }
 
   @Test

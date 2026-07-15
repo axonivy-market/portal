@@ -7,8 +7,6 @@ import java.io.InputStream;
 
 import org.junit.jupiter.api.Test;
 
-import com.axonivy.portal.components.document.WordDocumentDetector;
-
 import ch.ivyteam.ivy.environment.IvyTest;
 
 @IvyTest
