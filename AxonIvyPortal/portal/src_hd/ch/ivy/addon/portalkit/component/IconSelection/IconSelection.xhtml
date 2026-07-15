@@ -6,9 +6,9 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="value" required="true" default="fa-play"
     shortDescription="Value expression to bind selected Icon on" />
-  <cc:attribute name="isReadOnly" default="false" />
-  <cc:attribute name="hideIconArray" default="false"/>
-  <cc:attribute name="isImmediate" default="true"/>
+  <cc:attribute name="isReadOnly" type="java.lang.Boolean" default="false" />
+  <cc:attribute name="hideIconArray" type="java.lang.Boolean" default="false"/>
+  <cc:attribute name="isImmediate" type="java.lang.Boolean" default="true"/>
 </cc:interface>
 <cc:implementation>
   <h:outputScript name="icon-selection.js" library="js" />

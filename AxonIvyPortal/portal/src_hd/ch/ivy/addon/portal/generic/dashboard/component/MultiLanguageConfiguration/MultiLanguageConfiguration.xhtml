@@ -11,15 +11,15 @@
   xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="rendered" default="true"/>
+  <cc:attribute name="rendered" type="java.lang.Boolean" default="true"/>
   <cc:attribute name="managedBean" required="true"/>
   <cc:attribute name="titles" required="true" />
   <cc:attribute name="componentToUpdateOnCreate" />
   <cc:attribute name="componentToUpdateOnModify" />
   <cc:attribute name="updateCurrentLanguage" />
-  <cc:attribute name="titleRequired" default="true"/>
-  <cc:attribute name="dynamic" default="false" />
-  <cc:attribute name="useInputText" default="true" shortDescription="if true uses render input text, otherwise uses text area"/>
+  <cc:attribute name="titleRequired" type="java.lang.Boolean" default="true"/>
+  <cc:attribute name="dynamic" type="java.lang.Boolean" default="false" />
+  <cc:attribute name="useInputText" type="java.lang.Boolean" default="true" shortDescription="if true uses render input text, otherwise uses text area"/>
 </cc:interface>
 
 <cc:implementation>

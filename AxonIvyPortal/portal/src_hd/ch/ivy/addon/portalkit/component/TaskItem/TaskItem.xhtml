@@ -7,7 +7,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" required="true" shortDescription="Task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="rowIndex" />
-  <cc:attribute name="isSelected" type="Boolean" />
+  <cc:attribute name="isSelected" type="java.lang.Boolean" />
   <cc:attribute name="onTaskStartCallback" />
   <cc:facet name="taskHeader" shortDescription="Header content of a task item" />
   <cc:attribute name="dataModel" />
@@ -17,8 +17,8 @@
   <cc:attribute name="onEscalationComplete" />
   <cc:attribute name="onWorkflowEventComplete" />
   <cc:attribute name="onCustomFieldsDialogComplete" />
-  <cc:attribute name="inFrame" default="false" />
-  <cc:attribute name="readOnly" default="true" />
+  <cc:attribute name="inFrame" type="java.lang.Boolean" default="false" />
+  <cc:attribute name="readOnly" type="java.lang.Boolean" default="true" />
 </cc:interface>
 
 <cc:implementation>
