@@ -3,11 +3,11 @@
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="taskName" shortDescription="Custom text for task name" />
-  <cc:attribute name="taskIcon" shortDescription="Task icon to be displayed, using Tabler or Awesome font, e.g., 'ti ti-arrow-right'" />
-  <cc:attribute name="isHideTaskName" shortDescription="Hide task name, false (default) or true" />
-  <cc:attribute name="caseId" shortDescription="ID of case to be displayed in case information dialog" />
-  <cc:attribute name="isHideCaseInfo" shortDescription="Hide `Show Information` button, false (default) or true" />
+  <cc:attribute name="taskName" type="java.lang.String" shortDescription="Custom text for task name" />
+  <cc:attribute name="taskIcon" type="java.lang.String" shortDescription="Task icon to be displayed, using Tabler or Awesome font, e.g., 'ti ti-arrow-right'" />
+  <cc:attribute name="isHideTaskName" type="java.lang.Boolean" shortDescription="Hide task name, false (default) or true" />
+  <cc:attribute name="caseId" type="java.lang.String" shortDescription="ID of case to be displayed in case information dialog" />
+  <cc:attribute name="isHideCaseInfo" type="java.lang.Boolean" shortDescription="Hide `Show Information` button, false (default) or true" />
   <cc:attribute name="currentProcessStep" shortDescription="Current process step, could be the index of the step or the step name" />
   <cc:attribute name="processSteps" shortDescription="List of process steps, e.g., `[&quot;Create Investment Request&quot;, &quot;Approve Investment Reques&quot;]`
     or `# {portalComponentUtilsBean.convertToJSON(data.steps)}`" />
@@ -23,46 +23,46 @@
 </cc:interface> 
 
 <cc:implementation>
-  <ui:fragment rendered="#{not empty cc.attrs.taskName}"><script>window.taskName = '#{htmlSanitizerBean.escapeForJS(cc.attrs.taskName)}';</script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.taskIcon}"><script>window.taskIcon = '#{htmlSanitizerBean.escapeForIcon(cc.attrs.taskIcon)}';</script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.isHideTaskName}"><script>
+  <ui:fragment rendered="#{not empty cc.attrs.taskName}"><script type="text/javascript">window.taskName = '#{htmlSanitizerBean.escapeForJS(cc.attrs.taskName)}';</script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.taskIcon}"><script type="text/javascript">window.taskIcon = '#{htmlSanitizerBean.escapeForIcon(cc.attrs.taskIcon)}';</script></ui:fragment>
+  <ui:fragment rendered="#{cc.attrs.isHideTaskName}"><script type="text/javascript">
     window.isHideTaskName = ('#{htmlSanitizerBean.escapeForJS(cc.attrs.isHideTaskName)}'.toLowerCase() === "true");
   </script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.caseId}"><script>window.caseId = '#{htmlSanitizerBean.escapeForJS(cc.attrs.caseId)}';</script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.isHideCaseInfo}"><script>
+  <ui:fragment rendered="#{not empty cc.attrs.caseId}"><script type="text/javascript">window.caseId = '#{htmlSanitizerBean.escapeForJS(cc.attrs.caseId)}';</script></ui:fragment>
+  <ui:fragment rendered="#{cc.attrs.isHideCaseInfo}"><script type="text/javascript">
     window.isHideCaseInfo = ('#{htmlSanitizerBean.escapeForJS(cc.attrs.isHideCaseInfo)}'.toLowerCase() === "true");
   </script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.currentProcessStep}"><script>
+  <ui:fragment rendered="#{not empty cc.attrs.currentProcessStep}"><script type="text/javascript">
     window.currentProcessStep = '#{htmlSanitizerBean.escapeForJS(cc.attrs.currentProcessStep)}';
     if (!isNaN(Number(window.currentProcessStep))) {
       window.currentProcessStep = Number(window.currentProcessStep);
     }
   </script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.processSteps}"><script>
+  <ui:fragment rendered="#{not empty cc.attrs.processSteps}"><script type="text/javascript">
     try {
       window.processSteps = JSON.parse('#{htmlSanitizerBean.escapeForJS(cc.attrs.processSteps)}');
     } catch (error) {
       // Just ignore parsing JSON processSteps
     }
   </script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.isShowAllSteps}"><script>
+  <ui:fragment rendered="#{not empty cc.attrs.isShowAllSteps}"><script type="text/javascript">
     window.isShowAllSteps = ('#{htmlSanitizerBean.escapeForJS(cc.attrs.isShowAllSteps)}'.toLowerCase() === "true");
   </script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.processChainDirection}"><script>window.processChainDirection = '#{htmlSanitizerBean.escapeForJS(cc.attrs.processChainDirection)}';</script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.processChainShape}"><script>window.processChainShape = '#{htmlSanitizerBean.escapeForJS(cc.attrs.processChainShape)}';</script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.isHideTaskAction}"><script>
+  <ui:fragment rendered="#{not empty cc.attrs.processChainDirection}"><script type="text/javascript">window.processChainDirection = '#{htmlSanitizerBean.escapeForJS(cc.attrs.processChainDirection)}';</script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.processChainShape}"><script type="text/javascript">window.processChainShape = '#{htmlSanitizerBean.escapeForJS(cc.attrs.processChainShape)}';</script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.isHideTaskAction}"><script type="text/javascript">
     window.isHideTaskAction = ('#{htmlSanitizerBean.escapeForJS(cc.attrs.isHideTaskAction)}'.toLowerCase() === "true");
   </script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.isWorkingOnATask}"><script>
+  <ui:fragment rendered="#{not empty cc.attrs.isWorkingOnATask}"><script type="text/javascript">
     window.isWorkingOnATask = ('#{htmlSanitizerBean.escapeForJS(cc.attrs.isWorkingOnATask)}'.toLowerCase() === "true");
   </script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.announcementInvisible}"><script>
+  <ui:fragment rendered="#{not empty cc.attrs.announcementInvisible}"><script type="text/javascript">
     window.announcementInvisible = ('#{htmlSanitizerBean.escapeForJS(cc.attrs.announcementInvisible)}'.toLowerCase() === "true");
   </script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.isCardFrame}"><script>
+  <ui:fragment rendered="#{not empty cc.attrs.isCardFrame}"><script type="text/javascript">
     window.isCardFrame = ('#{htmlSanitizerBean.escapeForJS(cc.attrs.isCardFrame)}'.toLowerCase() === "true");
   </script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.viewName}"><script>window.viewName = '#{htmlSanitizerBean.escapeForJS(cc.attrs.viewName)}';</script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.viewName}"><script type="text/javascript">window.viewName = '#{htmlSanitizerBean.escapeForJS(cc.attrs.viewName)}';</script></ui:fragment>
 </cc:implementation>
 
 </html>
