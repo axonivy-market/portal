@@ -13,22 +13,18 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import ch.ivy.addon.portalkit.bo.PortalJsonViews;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
-import ch.ivyteam.ivy.environment.Ivy;
-
 
 /**
  * This class provides method to convert Business entity object into JSON value and reverse
@@ -78,13 +74,9 @@ public class BusinessEntityConverter {
   public static <T> T jsonValueToEntity(String jsonValue, Class<T> classType) {
     try {
       JsonNode rootNode = getObjectMapper().readTree(jsonValue);
-      Ivy.log().error("jsonValueToEntity {0}, and class type is {1}", jsonValue, classType.getName());
       if (rootNode.isObject() && rootNode.has("dashboard")) {
-        Ivy.log().error("IS OBJECT and dashboard json is {0}", rootNode.get("dashboard").toString());
-        rootNode.get("dashboard").toString();
         return getObjectMapper().readValue(rootNode.get("dashboard").toString(), classType);
       } else if (rootNode.isArray()) {
-        Ivy.log().error("IS ARRAY and dashboard json is {0}", rootNode.toString());
         return getObjectMapper().readValue(jsonValue, classType);
       } 
 
@@ -106,18 +98,13 @@ public class BusinessEntityConverter {
     if (StringUtils.isBlank(jsonValue)) {
       return new ArrayList<>();
     }
-    Ivy.log().error("jsonValueToEntity {0}, and class type is {1}", jsonValue, classType.getName());
     try {
       JsonNode rootNode = getObjectMapper().readTree(jsonValue);
       if (rootNode.isObject()) {
-        Ivy.log().error("IS OBJECT ");
-        if (rootNode.has("dashboard")){
-          
+        if (rootNode.has("dashboard")) {
           return getObjectMapper().readValue(rootNode.get("dashboard").toString(), getListOfJavaType(classType));
         }
-        
       } else if (rootNode.isArray()) {
-        Ivy.log().error("IS ARRAY and dashboard json is {0}", rootNode.toString());
         return getObjectMapper().readValue(jsonValue, getListOfJavaType(classType));
       } 
       return new ArrayList<>();
@@ -133,15 +120,21 @@ public class BusinessEntityConverter {
   public static <T> List<T> convertJsonNodeToList(JsonNode jsonNode, Class<T> classType) {
     if (Optional.ofNullable(jsonNode).isPresent()) {
       try {
-        List<T> a = getObjectMapper().treeToValue(jsonNode, getListOfJavaType(classType));
-        for (T x : a) {
-          if (x instanceof Dashboard dashboard) {
-            Dashboard dasboard = (Dashboard) x;
-            Ivy.log().error("dashboard id is {0}, name is {1}", dasboard.getId(), dashboard.getDescription());
+        JsonNode nodeToConvert = jsonNode;
+        if (jsonNode.isObject()) {
+          // Handle root-wrapped arrays like {"ArrayList": [...]} produced when WRAP_ROOT_VALUE
+          // was enabled. Unwrap by looking up the "ArrayList" key specifically.
+          JsonNode wrappedArray = jsonNode.get("ArrayList");
+          if (wrappedArray != null && wrappedArray.isArray()) {
+            nodeToConvert = wrappedArray;
           }
-
-        }
-        return getObjectMapper().treeToValue(jsonNode, getListOfJavaType(classType));
+        }        if (nodeToConvert.isObject()) {
+          // Still an ObjectNode (no "ArrayList" wrapper) — treat as a single entity and wrap in a list.
+          T entity = getObjectMapper().treeToValue(nodeToConvert, classType);
+          List<T> result = new ArrayList<>();
+          result.add(entity);
+          return result;
+        }        return getObjectMapper().treeToValue(nodeToConvert, getListOfJavaType(classType));
       } catch (IOException e) {
         throw new PortalException(e);
       }
@@ -166,9 +159,7 @@ public class BusinessEntityConverter {
       objectMapper = JsonMapper
           .builder()
           .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-          .configure(DeserializationFeature.UNWRAP_ROOT_VALUE, false)
           .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
-          .enable(SerializationFeature.WRAP_ROOT_VALUE)          
           .build(); 
     }
     return objectMapper;
@@ -198,14 +189,4 @@ public class BusinessEntityConverter {
     return prettyPrintObjectEntityToJsonValue(dashboards);
   }
 
-  
-    public static void main(String[] args) throws Exception {
-      List<CustomSubMenuItem> items = jsonValueToEntities("{}", CustomSubMenuItem.class);
-    }
-
-}
-
-
-class User {
-    public String name;
 }

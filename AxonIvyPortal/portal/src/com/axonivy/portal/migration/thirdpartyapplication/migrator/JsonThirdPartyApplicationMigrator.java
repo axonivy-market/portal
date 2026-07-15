@@ -46,6 +46,15 @@ public class JsonThirdPartyApplicationMigrator {
   public JsonNode migrate() {
     if (node.isArray()) {
       node.elements().forEachRemaining(application -> migrate(application));
+    } else if (node.isObject() && node.has("ArrayList")) {
+      // Handle root-wrapped arrays like {"ArrayList": [...]} produced when WRAP_ROOT_VALUE
+      // was enabled. Migrate each application inside the wrapped array.
+      JsonNode innerArray = node.get("ArrayList");
+      if (innerArray.isArray()) {
+        innerArray.elements().forEachRemaining(application -> migrate(application));
+      } else {
+        migrate(node);
+      }
     } else {
       migrate(node);
     }
