@@ -1549,6 +1549,7 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Clonar widget desde
             DashboardImportDetails:
+              DashboardImageSizeExceeded: El panel "{0}" no se importó porque contiene una imagen más grande que el tamaño de carga permitido ({1}).
               DashboardImportTitle: Dashboard {0}
               FileInfomation: Informacion del archivo
               ImportPrivate: Importar panel privado
