@@ -5,7 +5,7 @@
 <cc:interface>
   <cc:attribute name="securityMember" required="true" />
   <cc:attribute name="id" />
-  <cc:attribute name="renderedAvatar" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
+  <cc:attribute name="renderedAvatar" type="java.lang.Boolean" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
   <cc:attribute name="useLowercaseEmail" type="java.lang.Boolean" default="true" shortDescription="Convert the email address to lowercase before looking up the avatar." />
   <cc:attribute name="representName" />
   <cc:attribute name="showLabel" type="java.lang.Boolean" default="true" />

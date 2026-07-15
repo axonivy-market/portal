@@ -20,13 +20,13 @@
     shortDescription="Validation message displayed when the required field is empty. Type: String. Default value: 'This field is required'. Required: false." />
   <cc:attribute name="forceSelection" type="java.lang.Boolean" default="true"
     shortDescription="When enabled, only roles from the suggestion list can be selected. Type: boolean. Default value: true. Required: false." />
-  <cc:attribute name="minQueryLength" default="1"
+  <cc:attribute name="minQueryLength" type="java.lang.Integer" default="1"
     shortDescription="Minimum number of characters required to start searching. Type: int. Default value: 1. Required: false." />
   <cc:attribute name="isDisabled" type="java.lang.Boolean" shortDescription="Disables the role selection input. Type: boolean. Default value: false. Required: false." />
   <cc:attribute name="isRequired" type="java.lang.Boolean" shortDescription="Marks the role selection field as required. Type: boolean. Default value: false. Required: false." />
   <cc:attribute name="isReadOnly" type="java.lang.Boolean" shortDescription="Prevents changing the selected role when enabled. Type: boolean. Default value: false. Required: false." />
   <cc:attribute name="hightlight" type="java.lang.Boolean" default="true" shortDescription="Automatically highlights the first suggested role. Type: boolean. Default value: true. Required: false." />
-  <cc:attribute name="size" shortDescription="Number of characters used to define the input width. Type: int. Required: false." />
+  <cc:attribute name="size" type="java.lang.Integer" shortDescription="Number of characters used to define the input width. Type: int. Required: false." />
   <cc:attribute name="itemLabel" default="#{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}"
     shortDescription="Text displayed for roles in the dropdown and the selected value. Type: String. Default value: #{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}. Required: false." />
   <cc:attribute name="scrollHeight" type="java.lang.Integer" default="390" shortDescription="Maximum height of the autocomplete dropdown panel. Type: int. Default value: 390. Required: false." />
@@ -45,7 +45,7 @@
     default="#{ivy.cms.co('/Labels/NoResults')}" />
 
   <!-- Avatar in Selection list attributes  -->
-  <cc:attribute name="isShowAvatarInSelectionList" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}"
+  <cc:attribute name="isShowAvatarInSelectionList" type="java.lang.Boolean" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}"
     shortDescription="Displays role avatars in the selection list when enabled. Type: boolean. Default value: true. Required: false." />
   <cc:attribute name="displayNameRenderedInSelectionList" type="java.lang.Boolean" default="true"
     shortDescription="Controls visibility of the role display name in the selection list. Type: boolean. Default value: true. Required: false." />

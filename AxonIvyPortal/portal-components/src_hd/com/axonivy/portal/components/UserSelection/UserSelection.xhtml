@@ -39,7 +39,7 @@
     default="#{ivy.cms.co('/Labels/NoResults')}" />
 
   <!-- Avatar in Selection list attributes  -->
-  <cc:attribute name="isShowAvatarInSelectionList" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}"
+  <cc:attribute name="isShowAvatarInSelectionList" type="java.lang.Boolean" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}"
     shortDescription="Displays user avatars in the selection list when enabled. Type: boolean. Default value: true. Required: false." />
   <cc:attribute name="displayNameRenderedInSelectionList" type="java.lang.Boolean" default="true" shortDescription="Controls visibility of the user display name in the selection list. Type: boolean. Default value: true. Required: false." />
   <cc:attribute name="displayNameInSelectionListStyleClass" shortDescription="CSS style class for the user display name in the selection list. Type: String. Required: false." />
@@ -47,7 +47,7 @@
 
   <!-- Label attributes -->
   <cc:attribute name="label" shortDescription="Label text for the user selection component. Type: String. Required: false." />
-  <cc:attribute name="floatingLabel" shortDescription="Displays the label using floating style. Type: boolean. Default value: false. Required: false." />
+  <cc:attribute name="floatingLabel" type="java.lang.Boolean" shortDescription="Displays the label using floating style. Type: boolean. Default value: false. Required: false." />
   <cc:attribute name="labelStyleClass" shortDescription="CSS style class applied to the label. Type: String. Required: false." />
 
   <!-- Message attributes -->
