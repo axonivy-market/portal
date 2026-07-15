@@ -25,6 +25,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.ICustomFieldOrderBy;
@@ -48,6 +49,7 @@ public class DashboardTaskSearchCriteria {
     TaskSortingQueryAppender appender = new TaskSortingQueryAppender(query);
     query = appender.appendSorting(this).toQuery();
     appendQuickSearchQuery(query);
+    Ivy.log().info("[QueryDebug] final TaskQuery:\n{0}", query);
     return query;
   }
 
@@ -82,6 +84,8 @@ public class DashboardTaskSearchCriteria {
       DashboardColumnType storedType = filter.getFilterType();
       DashboardColumnType resolvedType = DashboardWidgetUtils.resolveCaseCustomColumnType(this.columns, filter);
       filter.setFilterType(resolvedType);
+      Ivy.log().info("[QueryDebug] filter field={0} storedType={1} resolvedType={2} operator={3}",
+          filter.getField(), storedType, resolvedType, filter.getOperator());
       try {
         FilterField filterField = TaskFilterFieldFactory.findBy(filter.getField(), filter.getFilterType());
         if (filterField != null) {
