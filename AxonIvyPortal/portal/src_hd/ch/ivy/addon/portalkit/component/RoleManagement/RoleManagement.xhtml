@@ -179,6 +179,7 @@
           <ic:com.axonivy.portal.components.RoleSelection id="parent-role"
             componentId="parent-role-selection"
             selectedRole="#{roleManagementBean.selectedParentRole}"
+            completeMethod="#{roleManagementBean.completeParentRole}"
             isRequired="#{roleManagementBean.canMoveRole}"
             isDisabled="#{!roleManagementBean.canMoveRole}"
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/ParentRole')}"
