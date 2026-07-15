@@ -1,4 +1,4 @@
-package com.axonivy.portal.document;
+package com.axonivy.portal.components.document;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
