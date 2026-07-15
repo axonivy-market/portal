@@ -1,4 +1,5 @@
 package com.axonivy.portal.util.filter.operator.caze.customfield;
+import static com.axonivy.portal.util.CaseQueryUtils.initCaseQuery;
 
 import java.util.Date;
 
@@ -19,7 +20,7 @@ public class CustomTimestampTodayOperatorHandler {
   }
 
   public CaseQuery buildQuery(DashboardFilter filter) {
-    CaseQuery query = CaseQuery.create();
+    CaseQuery query = initCaseQuery(filter.getFilterType());
     Date from = PortalDateUtils.getStartOfToday();
     Date to = PortalDateUtils.getEndOfToday();
     buildQuery(query, from, to, filter);
@@ -27,7 +28,7 @@ public class CustomTimestampTodayOperatorHandler {
   }
 
   private void buildQuery(CaseQuery query, Date from, Date to, DashboardFilter filter) {
-    CaseQuery subQuery = CaseQuery.create();
+    CaseQuery subQuery = initCaseQuery(filter.getFilterType());
     subQuery.where().customField().timestampField(filter.getField()).isGreaterOrEqualThan(from);
     subQuery.where().customField().timestampField(filter.getField()).isLowerOrEqualThan(to);
     query.where().and(subQuery);

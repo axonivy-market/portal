@@ -1,4 +1,5 @@
 package com.axonivy.portal.util.filter.operator.caze.customfield;
+import static com.axonivy.portal.util.CaseQueryUtils.initCaseQuery;
 
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -22,7 +23,7 @@ private static CustomStringInOperatorHandler instance;
       return null;
     }
     
-    CaseQuery query = CaseQuery.create();
+    CaseQuery query = initCaseQuery(filter.getFilterType());
     IFilterQuery filterQuery = query.where();
     for (String keyword : filter.getValues()) {
       filterQuery.or().customField().stringField(filter.getField()).isEqual(keyword);
