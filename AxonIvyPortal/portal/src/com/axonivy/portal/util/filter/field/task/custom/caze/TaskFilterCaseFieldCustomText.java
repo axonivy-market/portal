@@ -37,7 +37,9 @@ public class TaskFilterCaseFieldCustomText extends CustomFilterField {
   @Override
   public void initFilter(DashboardFilter filter) {
     filter.setFilterField(this);
-    filter.setFilterType(DashboardColumnType.CUSTOM_CASE);
+    if (filter.getFilterType() != DashboardColumnType.CUSTOM_BUSINESS_CASE) {
+      filter.setFilterType(DashboardColumnType.CUSTOM_CASE);
+    }
     filter.setFilterFormat(FilterFormat.TEXT);
     filter.setField(getName());
   }

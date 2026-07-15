@@ -22,6 +22,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -76,13 +77,21 @@ public class DashboardTaskSearchCriteria {
         continue;
       }
 
-      FilterField filterField = TaskFilterFieldFactory.findBy(filter.getField(), filter.getFilterType());
-      if (filterField != null) {
-        
-        TaskQuery filterQuery = filterField.generateFilterTaskQuery(filter);
-        if (filterQuery != null) {
-          query.where().and(filterQuery);
+      // The column is the source of truth for the case scope. Resolve it locally for THIS query only
+      // and restore the stored type afterwards - never persist it (a migration will fix stored data).
+      DashboardColumnType storedType = filter.getFilterType();
+      DashboardColumnType resolvedType = DashboardWidgetUtils.resolveCaseCustomColumnType(this.columns, filter);
+      filter.setFilterType(resolvedType);
+      try {
+        FilterField filterField = TaskFilterFieldFactory.findBy(filter.getField(), filter.getFilterType());
+        if (filterField != null) {
+          TaskQuery filterQuery = filterField.generateFilterTaskQuery(filter);
+          if (filterQuery != null) {
+            query.where().and(filterQuery);
+          }
         }
+      } finally {
+        filter.setFilterType(storedType);
       }
     }
   }
