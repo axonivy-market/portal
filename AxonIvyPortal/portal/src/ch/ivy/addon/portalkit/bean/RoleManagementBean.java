@@ -265,6 +265,18 @@ public class RoleManagementBean implements Serializable {
     this.selectedParentRole = selectedParentRole;
   }
 
+  /**
+   * Parent role candidates must include hidden roles (e.g. AXONIVY_PORTAL_ADMIN), since Role Management
+   * is an admin tool and shouldn't hide roles meant to be hidden only from normal end-user UI.
+   */
+  public List<RoleDTO> completeParentRole(String query) {
+    List<RoleDTO> roles = RoleUtils.filterRoles(RoleUtils.getAllRoles(), query).stream()
+        .map(RoleDTO::new)
+        .collect(Collectors.toList());
+    roles.sort((first, second) -> first.getDisplayName().compareToIgnoreCase(second.getDisplayName()));
+    return roles;
+  }
+
   public boolean isCreationMode() {
     return isCreationMode;
   }
