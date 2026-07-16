@@ -837,6 +837,14 @@
             "param.enableVirusScannerForUploadedDocument" : "in.enableVirusScannerForUploadedDocument",
             "param.allowedUploadFileTypes" : "in.allowedUploadFileTypes"
           }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.message" : "result.message",
+            "out.uploadDocumentCheckStatus" : "result.status",
+            "out.uploadedDocument" : "result.#uploadedDocument"
+          }
         }
       },
       "visual" : {
