@@ -29,12 +29,12 @@ public class PortalPackageTest extends BaseTest {
 
   @Test
   public void testVisibilityForPackageManagementTab() {
-    grantSpecificPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
+    permissions().grantSpecificPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
     dashboardConfigurationPage = openDashboardConfiguration();
     assertTrue(dashboardConfigurationPage.isPackageManagementTypeDisplayed(),
         "PackageManagement tab is not displayed");
 
-    denySpecificPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
+    permissions().denySpecificPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
     dashboardConfigurationPage = openDashboardConfiguration();
     assertFalse(dashboardConfigurationPage.isPackageManagementTypeDisplayed(),
         "PackageManagement tab is displayed");
@@ -42,7 +42,7 @@ public class PortalPackageTest extends BaseTest {
 
   @Test
   public void testImportInvalidPackageShowsNoValidFilesMessage() {
-    grantSpecificPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
+    permissions().grantSpecificPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
     dashboardConfigurationPage = openDashboardConfiguration();
     dashboardConfigurationPage.selectPackageManagementType();
     dashboardConfigurationPage.openImportPackageDialog();
@@ -56,7 +56,7 @@ public class PortalPackageTest extends BaseTest {
 
   @Test
   public void testImportMixedValidAndInvalidFilesShowsPerFileIcons() {
-    grantSpecificPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
+    permissions().grantSpecificPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
     dashboardConfigurationPage = openDashboardConfiguration();
     dashboardConfigurationPage.selectPackageManagementType();
     dashboardConfigurationPage.openImportPackageDialog();
@@ -72,7 +72,7 @@ public class PortalPackageTest extends BaseTest {
 
   @Test
   public void testImportPartialFailureShowsPerFileResults() {
-    grantSpecificPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
+    permissions().grantSpecificPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
     dashboardConfigurationPage = openDashboardConfiguration();
     dashboardConfigurationPage.selectPackageManagementType();
     dashboardConfigurationPage.openImportPackageDialog();
@@ -92,7 +92,7 @@ public class PortalPackageTest extends BaseTest {
 
   @Test
   public void testImportValidPackage() {
-    grantSpecificPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
+    permissions().grantSpecificPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
     dashboardConfigurationPage = openDashboardConfiguration();
     dashboardConfigurationPage.selectPackageManagementType();
     dashboardConfigurationPage.openImportPackageDialog();
