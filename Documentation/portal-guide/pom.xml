@@ -25,6 +25,7 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
+              <overwrite>true</overwrite>
               <outputDirectory>build/doc/en/portal-developer-guide/public-api</outputDirectory>
               <resources>
                 <resource>
@@ -41,6 +42,7 @@
                 <goal>copy-resources</goal>
             </goals>
             <configuration>
+                <overwrite>true</overwrite>
                 <outputDirectory>build/doc/ja/portal-developer-guide/public-api</outputDirectory>
                 <resources>
                     <resource>
