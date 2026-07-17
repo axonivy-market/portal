@@ -209,7 +209,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   protected void initSelectedColumns() {
     CaseColumnsConfigurationService service = CaseColumnsConfigurationService.getInstance();
     Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null);
-    Long applicationId = Ivy.request().getApplication().getId();
+    Long applicationId = Ivy.request().getApplication().id();
     Long processModelId = Ivy.request().getProcessModelVersion().getId();
     if (userId != null) {
       CaseColumnsConfiguration configData = service.getConfiguration(applicationId, userId, processModelId);
@@ -235,7 +235,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     setAutoHideColumns(isDisableSelectionCheckboxes);
     CaseColumnsConfigurationService service = CaseColumnsConfigurationService.getInstance();
     Long processModelId = Ivy.request().getProcessModelVersion().getId();
-    Long applicationId = Ivy.request().getApplication().getId();
+    Long applicationId = Ivy.request().getApplication().id();
     CaseColumnsConfiguration caseColumnsConfiguration = service.getConfiguration(applicationId,
         Ivy.session().getSessionUser().getId(), processModelId);
     if (caseColumnsConfiguration != null) {
@@ -254,7 +254,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     caseColumnsConfiguration.setProcessModelId(Ivy.request().getProcessModelVersion().getId());
     caseColumnsConfiguration.setUserId(Ivy.session().getSessionUser().getId());
     caseColumnsConfiguration.setSecurityMemberId(Ivy.session().getSessionUser().getSecurityMemberId());
-    caseColumnsConfiguration.setApplicationId(Ivy.request().getApplication().getId());
+    caseColumnsConfiguration.setApplicationId(Ivy.request().getApplication().id());
     caseColumnsConfiguration.setSelectedColumns(new ArrayList<>());
     updateCaseColumnsConfiguration(caseColumnsConfiguration);
     return caseColumnsConfiguration;
