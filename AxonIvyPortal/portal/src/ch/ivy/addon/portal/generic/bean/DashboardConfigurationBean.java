@@ -50,7 +50,7 @@ public class DashboardConfigurationBean implements Serializable {
     if (!isMobileDevice) {
       canEditPrivateDashboard = PermissionUtils.hasDashboardWriteOwnPermission();
       canEditPublicDashboard = PermissionUtils.hasDashboardWritePublicPermission();
-      canManageSidebarNavigation = PermissionUtils.isSessionUserHasAdminRole();
+      canManageSidebarNavigation = PermissionUtils.hasPortalPermission(PortalPermission.PORTAL_SIDEBAR_CONFIGURATION);
       canManagePackages = PermissionUtils.hasPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
     }
   }
@@ -96,7 +96,7 @@ public class DashboardConfigurationBean implements Serializable {
   public void accessToMenuManagement() {
     // Re-check server-side: the tab link is hidden for non-admins but the action
     // can be posted directly by anyone who can open the configuration page.
-    if (!PermissionUtils.isSessionUserHasAdminRole()) {
+    if (!canManageSidebarNavigation) {
       return;
     }
     resetAllIndicators();
@@ -109,9 +109,7 @@ public class DashboardConfigurationBean implements Serializable {
   }
 
   public void accessToPackageManagement() {
-    // Re-check server-side: the tab link is hidden for non-admins but the action
-    // can be posted directly by anyone who can open the configuration page.
-    if (!PermissionUtils.isSessionUserHasAdminRole()) {
+    if (!canManagePackages) {
       return;
     }
     resetAllIndicators();
