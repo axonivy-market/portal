@@ -7,12 +7,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.application.FacesMessage;
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.faces.context.FacesContext;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
@@ -40,6 +34,11 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @Named
 @ViewScoped
@@ -283,7 +282,7 @@ public class ChatAssigneeBean implements Serializable {
     GroupChat group = new GroupChat();
     group.setCaseId(iCase.getId());
     group.setCaseName(iCase.getName());
-    group.setApplicationName(task.getApplication().getName());
+    group.setApplicationName(task.getApplication().name());
     group.setCreator(Ivy.session().getSessionUserName());
     group.setAssignees(selectedAssignees);
     return group;
