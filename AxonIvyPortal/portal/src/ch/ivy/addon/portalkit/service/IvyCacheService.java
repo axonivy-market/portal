@@ -157,7 +157,7 @@ public class IvyCacheService {
             if (cache != null) {
               IDataCacheGroup wsGroupName = cache.getGroup(cacheGroupName);
               if (wsGroupName != null){
-                Ivy.log().info("CLEAR APPLICATION CACHE - GROUP {0} ON APPLICATION {1}", cacheGroupName, app.getName());
+                Ivy.log().info("CLEAR APPLICATION CACHE - GROUP {0} ON APPLICATION {1}", cacheGroupName, app.name());
                 wsGroupName.invalidateAllEntries();
               }
             }
