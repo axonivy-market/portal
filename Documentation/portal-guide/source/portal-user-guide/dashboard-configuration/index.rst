@@ -4,7 +4,7 @@ Portal Configuration
 ********************
 
 .. important::
-   **Access Requirements**: Only users with the :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :ref:`🔑DashboardWritePublic <DashboardWritePublic>` permission, or the ``AXONIVY_PORTAL_ADMIN`` role, can see and access the :guilabel:`Portal Configuration` menu item. These permissions allow you to add, edit, reorder, show, and hide private or public dashboards, and to configure sidebar navigation.
+   **Access Requirements**: The :guilabel:`Portal Configuration` menu item is visible to users with at least one of the following permissions: :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`, :ref:`🔑DashboardWritePublic <DashboardWritePublic>`, :ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>`, or :ref:`🔑PortalPackageManagement <PortalPackageManagement>`. Each tab within the page is independently gated by its own permission — see the table below.
 
 Portal Configuration provides centralized management of your personal and organization-wide dashboards, as well as the sidebar navigation menu.
 Access it through the :guilabel:`Portal Configuration` user menu item.
@@ -28,8 +28,8 @@ The Portal Configuration page has four tabs:
    | **Public Dashboards**   | :ref:`🔑DashboardWritePublic                      | Manage shared dashboards visible           |
    |                         | <DashboardWritePublic>`                           | to users with specific permissions         |
    +-------------------------+---------------------------------------------------+--------------------------------------------+
-   | **Sidebar**             | ``AXONIVY_PORTAL_ADMIN`` role                     | Configure sidebar menu items and           |
-   |                         |                                                   | sidebar behaviour (admin only)             |
+   | **Sidebar**             | :ref:`🔑PortalSidebarConfiguration                | Configure sidebar menu items and           |
+   |                         | <PortalSidebarConfiguration>`                     | sidebar behaviour                          |
    +-------------------------+---------------------------------------------------+--------------------------------------------+
    | **Package Management**  | :ref:`🔑PortalPackageManagement                   | Export or import Portal configuration      |
    |                         | <PortalPackageManagement>`                        | as a JSON package                          |
@@ -277,7 +277,7 @@ Sidebar configuration
 =====================
 
 .. important::
-   **Admin Access Required**: The :guilabel:`Sidebar` tab is only accessible to users with the ``AXONIVY_PORTAL_ADMIN`` role.
+   **Access Requirements**: The :guilabel:`Sidebar` tab is only accessible to users with the :ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>` permission.
 
 The tab :guilabel:`Sidebar` allows portal administrators to manage the sidebar menu items and configure sidebar behaviour for all users.
 
@@ -471,7 +471,7 @@ Different Portal Configuration actions require specific permissions:
    +---------------------------------------+------------------------------------------------------------------------------+
    | **Share public dashboard link**       | :ref:`🔑ShareDashboardLink <ShareDashboardLink>`                             |
    +---------------------------------------+------------------------------------------------------------------------------+
-   | **Manage sidebar navigation**         | ``AXONIVY_PORTAL_ADMIN`` role                                                |
+   | **Manage sidebar navigation**         | :ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>`             |
    +---------------------------------------+------------------------------------------------------------------------------+
    | **Export/import Portal package**      | :ref:`🔑PortalPackageManagement <PortalPackageManagement>`                   |
    +---------------------------------------+------------------------------------------------------------------------------+

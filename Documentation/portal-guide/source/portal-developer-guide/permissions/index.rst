@@ -1306,6 +1306,27 @@ Portal General Permissions
        | **Granted by default** | No                                                          |
        +------------------------+-------------------------------------------------------------+
 
+.. _PortalSidebarConfiguration:
+
+   :ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>`
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Admin Settings & Configuration                              |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Allows a user to **access the Sidebar tab** in the          |
+       |                        | **Portal Configuration** page, to manage sidebar menu       |
+       |                        | items and sidebar behaviour.                                |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Grant to **selected administrators** who are responsible    |
+       |                        | for **maintaining the sidebar navigation menu** without     |
+       |                        | needing full admin rights.                                  |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | No                                                          |
+       +------------------------+-------------------------------------------------------------+
+
 .. _permission-absence-substitute:
 
 Portal Absence And Substitute Permissions
