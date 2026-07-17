@@ -24,12 +24,14 @@ public class DashboardConfigurationBean implements Serializable {
   private boolean canEditPrivateDashboard;
   private boolean canEditPublicDashboard;
   private boolean canManageSidebarNavigation;
+  private boolean canManagePackages;
   private boolean isPublicDashboard;
   private boolean isSelectingAction = true;
   private boolean isSelectingTemplate;
   private boolean isEditingDashboard;
   private boolean isReorderingDashboard;
   private boolean isMenuManagement;
+  private boolean isPackageManagement;
 
   @PostConstruct
   public void initConfigurationBean() {
@@ -47,7 +49,8 @@ public class DashboardConfigurationBean implements Serializable {
     if (!isMobileDevice) {
       canEditPrivateDashboard = PermissionUtils.hasDashboardWriteOwnPermission();
       canEditPublicDashboard = PermissionUtils.hasDashboardWritePublicPermission();
-      canManageSidebarNavigation = PermissionUtils.isSessionUserHasAdminRole();
+      canManageSidebarNavigation = PermissionUtils.hasPortalSidebarConfigurationPermission();
+      canManagePackages = PermissionUtils.hasPortalPackageManagementPermission();
     }
   }
 
@@ -57,6 +60,7 @@ public class DashboardConfigurationBean implements Serializable {
     isEditingDashboard = false;
     isReorderingDashboard = false;
     isMenuManagement = false;
+    isPackageManagement = false;
   }
 
   public void switchDashboardType(boolean isPublicDashboard) {
@@ -91,7 +95,7 @@ public class DashboardConfigurationBean implements Serializable {
   public void accessToMenuManagement() {
     // Re-check server-side: the tab link is hidden for non-admins but the action
     // can be posted directly by anyone who can open the configuration page.
-    if (!PermissionUtils.isSessionUserHasAdminRole()) {
+    if (!canManageSidebarNavigation) {
       return;
     }
     resetAllIndicators();
@@ -101,6 +105,14 @@ public class DashboardConfigurationBean implements Serializable {
     if (menuBean != null) {
       menuBean.loadMenus();
     }
+  }
+
+  public void accessToPackageManagement() {
+    if (!canManagePackages) {
+      return;
+    }
+    resetAllIndicators();
+    this.isPackageManagement = true;
   }
 
   public boolean isMobileDevice() {
@@ -129,6 +141,10 @@ public class DashboardConfigurationBean implements Serializable {
 
   public boolean isCanManageSidebarNavigation() {
     return canManageSidebarNavigation;
+  }
+
+  public boolean isCanManagePackages() {
+    return canManagePackages;
   }
 
   public boolean isPublicDashboard() {
@@ -177,5 +193,13 @@ public class DashboardConfigurationBean implements Serializable {
 
   public void setMenuManagement(boolean isMenuManagement) {
     this.isMenuManagement = isMenuManagement;
+  }
+
+  public boolean isPackageManagement() {
+    return isPackageManagement;
+  }
+
+  public void setPackageManagement(boolean isPackageManagement) {
+    this.isPackageManagement = isPackageManagement;
   }
 }

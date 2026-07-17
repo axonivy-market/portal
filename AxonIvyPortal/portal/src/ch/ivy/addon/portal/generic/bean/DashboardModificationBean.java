@@ -3,7 +3,6 @@ package ch.ivy.addon.portal.generic.bean;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -57,7 +56,6 @@ import ch.ivy.addon.portalkit.util.NavigationWidgetUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
@@ -435,11 +433,7 @@ public class DashboardModificationBean extends DashboardBean {
     Optional.ofNullable(dashboard.getWidgets()).orElse(Collections.emptyList()).forEach(widget -> {
       if (widget instanceof WelcomeDashboardWidget) {
         WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
-        welcomeWidget.setImageType(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageType()));
-        welcomeWidget
-            .setImageContent(encodeWelcomeWidgetImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType()));
-        welcomeWidget.setImageTypeDarkMode(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageTypeDarkMode()));
-        welcomeWidget.setImageContentDarkMode(encodeWelcomeWidgetImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode()));
+        WelcomeWidgetUtils.prepareWidgetForExport(welcomeWidget);
       } else if (widget instanceof NavigationDashboardWidget) {
         NavigationDashboardWidget navWid = (NavigationDashboardWidget) widget;
         navWid.setImageContent(ImageUploadUtils.imageToBase64(navWid.getImageLocation(),
@@ -450,18 +444,6 @@ public class DashboardModificationBean extends DashboardBean {
     });
     Optional.ofNullable(dashboard.getWidgets()).orElse(Collections.emptyList())
         .forEach(DashboardWidgetUtils::simplifyWidgetColumnData);
-  }
-
-  private String encodeWelcomeWidgetImage(String imageLocation, String imageType) {
-    if (StringUtils.isBlank(imageLocation)) {
-      return "";
-    }
-    String result = "";
-    ContentObject widgetImage = WelcomeWidgetUtils.getImageContentObject(imageLocation, imageType);
-    if (widgetImage != null && widgetImage.exists()) {
-      result = new String(Base64.getEncoder().encode(WelcomeWidgetUtils.readObjectValueOfDefaultLocale(widgetImage).read().bytes()));
-    }
-    return result;
   }
 
   private String getFileName(String dashboardName) {

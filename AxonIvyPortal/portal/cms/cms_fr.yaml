@@ -764,6 +764,37 @@ ch.ivy.addon.portalkit.ui.jsf:
       privateFilter: Mes filtres
       publicFilter: Publique
       savedFilters: 'Filtres enregistrés:'
+    PortalPackageManagement:
+      GeneralInfo: 'Gérez les fichiers de configuration de Portal sous la forme d''un package ZIP portable. Utilisez Exporter pour télécharger tous les fichiers de configuration JSON actuels regroupés dans une seule archive ZIP, ou utilisez Importer pour charger un package ZIP et appliquer ses configurations — en remplaçant les configurations existantes.'
+      ExportTitle: Exporter
+      ExportDescription: Exportez les fichiers de configuration de Portal sous forme de package ZIP. Seuls les fichiers contenant des données existantes sont disponibles à la sélection.
+      ExportNote: Seuls les fichiers non vides sont inclus dans le package.
+      ExportButton: Exporter
+      ImportTitle: Importer
+      ImportDescription: Téléchargez un fichier ZIP contenant les fichiers JSON requis. Les noms de fichiers doivent respecter le modèle ci-dessus.
+      ImportButton: Importer
+      ImportDialogHeader: Importer le package Portal
+      DropZoneLabel: Glissez-déposez un fichier .zip ici
+      DropZoneOr: ou
+      BrowseFiles: parcourir les fichiers
+      PreviewNoFileMessage: Les éléments valides seront listés ici après la sélection d'un fichier.
+      PreviewNoValidFilesMessage: Aucun fichier de configuration Portal reconnu n'a été trouvé. Veuillez charger un fichier Portal_Package.zip valide.
+      PreviewValidFilesHeader: Valide(s) ({0} fichier(s))
+      PreviewInvalidFilesHeader: Les fichiers non reconnus seront ignorés ({0} fichier(s))
+      ReplaceWarning: Les données existantes de chaque type importé seront remplacées. Cette action est irréversible.
+      FileNameHeader: Nom du fichier
+      DescriptionHeader: Description
+      DashboardFileDescription: Mises en page et configurations des widgets de tableau de bord pour tous les tableaux de bord Portal
+      CustomStatisticFileDescription: Définitions des graphiques statistiques personnalisés affichés sur les tableaux de bord Portal
+      UserMenuFileDescription: Ajoutez des éléments et des liens personnalisés au menu utilisateur par défaut
+      CaseDetailsFileDescription: Configurez, réorganisez et étendez la page de détails du cas avec des widgets intégrés ou des panneaux personnalisés
+      ThirdPartyApplicationsFileDescription: Liens vers des applications tierces intégrés dans le menu Portal
+      CustomMenuItemsFileDescription: Ajoutez des éléments personnalisés dans le menu de navigation latéral gauche
+      ExternalLinksFileDescription: Processus de liens externes affichés dans la navigation latérale gauche de Portal ou sur la page de liste des processus
+      MenuOrderFileDescription: Ordre personnalisé des éléments du menu de navigation principal dans la barre latérale de Portal
+      InvalidPackageMessage: Le fichier téléchargé n'a pas pu être lu. Veuillez vous assurer qu'il s'agit d'une archive ZIP valide.
+      ImportCompleteMessage: Tous les fichiers ont été importés avec succès.
+      ImportIncompleteMessage: Certains fichiers n'ont pas pu être importés. Consultez le journal du serveur pour plus de détails.
   dashboard:
     CaseQueryType:
       info: Configurez les types de cas affichés dans le widget de cas. Par défaut, seuls les cas métier sont affichés, Sous-cas techniques affiche uniquement les sous-cas techniques, et Tous affiche à la fois les cas métier et les sous-cas techniques.
@@ -821,6 +852,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Sélectionnez l'action
       SomeThingWentWrong: Quelque chose n'a pas fonctionné
       Title: Configuration du portail
+      PackageManagement: Package management
+      PackageManagementTabInfoPanel: '<p><b>What can I do here?</b></p><p>Export the current Portal configuration as a single zip package, or import a previously exported package to replace it.</p><p><b>Export</b></p><p>Downloads a <code>Portal_Package.zip</code> containing one JSON file per configuration type. Only types with existing data are included.</p><p><b>Import</b></p><p>Upload a zip package to preview which files it contains before applying. Recognized files replace the matching configuration; unrecognized files are skipped. This action cannot be undone.</p>'
     DrillDownWidget:
       caseDrillDown: Widget de cas détaillé pour {0}
       taskDrillDown: Widget de tâche détaillé pour {0}
@@ -1615,6 +1648,7 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Cloner le widget depuis
             DashboardImportDetails:
+              DashboardImageSizeExceeded: Le tableau de bord "{0}" n'a pas été importé car il contient une image plus grande que la taille de téléchargement autorisée ({1}).
               DashboardImportTitle: Dashboard {0}
               FileInfomation: Informations sur le fichier
               ImportPrivate: Importer un tableau de bord privé

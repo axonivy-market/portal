@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 
+import com.codeborne.selenide.Condition;
+
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
@@ -114,5 +116,26 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
     ScreenshotUtils.captureElementScreenshot(dashboardConfigurationPage.getImportDialog(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "import-private-dashboard-dialog");
+  }
+
+  @Test
+  public void screenshotPackageManagementUserGuide() throws IOException {
+    showNewDashboard();
+    newDashboardPage = new NewDashboardPage();
+    DashboardConfigurationPage dashboardConfigurationPage = newDashboardPage.openDashboardConfigurationPage();
+    // Content is taller than the other tabs; the crop in captureElementWithMarginOptionScreenshot
+    // assumes the whole element already fits on screen, so the viewport must be tall enough.
+    ScreenshotUtils.resizeBrowser(new Dimension(1050, 1250));
+    dashboardConfigurationPage.selectPackageManagementType();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
+        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "package-management-configuration", new ScreenshotMargin(10));
+    SelenideElement importPackageDialog = dashboardConfigurationPage.openImportPackageDialog();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(importPackageDialog,
+        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "import-portal-package-dialog", new ScreenshotMargin(10));
+    dashboardConfigurationPage.uploadPackageFile("Portal_Package_Mixed.zip");
+    dashboardConfigurationPage.getImportPreviewEntryRow("Portal_ExternalLinks.json")
+        .$("i.ti-circle-check").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(importPackageDialog,
+        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "import-portal-package-preview", new ScreenshotMargin(10));
   }
 }

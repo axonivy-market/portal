@@ -359,4 +359,12 @@
   
     /* Leave task warning message*/
   --warning-before-leave-task: var(--ivy-primary-color-grey-medium);
+
+  /* Portal Package Management */
+  --portal-package-alert-danger-background-color: var(--ivy-tertinary-color-red-light);
+  --portal-package-alert-danger-border-color: var(--ivy-tertinary-color-red-medium);
+  --portal-package-alert-danger-text-color: var(--ivy-tertinary-color-red-dark);
+  --portal-package-alert-warning-background-color: var(--ivy-tertinary-color-yellow-light);
+  --portal-package-alert-warning-border-color: var(--ivy-tertinary-color-yellow-medium);
+  --portal-package-alert-warning-text-color: var(--ivy-tertinary-color-yellow-dark);
 }

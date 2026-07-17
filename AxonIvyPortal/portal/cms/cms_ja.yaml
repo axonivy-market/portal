@@ -763,6 +763,37 @@ ch.ivy.addon.portalkit.ui.jsf:
       privateFilter: マイ フィルター
       publicFilter: 公開用
       savedFilters: 保存されたフィルター：
+    PortalPackageManagement:
+      GeneralInfo: 'Portalの設定ファイルをポータブルなZIPパッケージとして管理します。エクスポートを使用すると、現在のすべてのJSON設定ファイルを1つのZIPアーカイブにまとめてダウンロードできます。インポートを使用すると、ZIPパッケージをアップロードしてその設定を適用できます（既存の設定は置き換えられます）。'
+      ExportTitle: エクスポート
+      ExportDescription: Portalの設定ファイルをZIPパッケージとしてエクスポートします。既存のデータがあるファイルのみ選択できます。
+      ExportNote: 空でないファイルのみパッケージに含まれます。
+      ExportButton: エクスポート
+      ImportTitle: インポート
+      ImportDescription: 必要なJSONファイルを含むZIPファイルをアップロードしてください。ファイル名は上記のパターンに従う必要があります。
+      ImportButton: インポート
+      ImportDialogHeader: Portalパッケージのインポート
+      DropZoneLabel: ここに.zipファイルをドラッグ&ドロップ
+      DropZoneOr: または
+      BrowseFiles: ファイルを参照
+      PreviewNoFileMessage: ファイルを選択すると、有効な項目がここに表示されます。
+      PreviewNoValidFilesMessage: 認識可能なPortal設定ファイルが見つかりませんでした。有効なPortal_Package.zipをアップロードしてください。
+      PreviewValidFilesHeader: 有効（{0}件のファイル）
+      PreviewInvalidFilesHeader: 認識されないファイルはスキップされます（{0}件のファイル）
+      ReplaceWarning: インポートされた各タイプの既存データは置き換えられます。この操作は元に戻せません。
+      FileNameHeader: ファイル名
+      DescriptionHeader: 説明
+      DashboardFileDescription: すべてのPortalダッシュボードのダッシュボードウィジェットのレイアウトと設定
+      CustomStatisticFileDescription: Portalダッシュボードに表示されるカスタム統計チャートの定義
+      UserMenuFileDescription: デフォルトのユーザーメニューにカスタム項目とリンクを追加します
+      CaseDetailsFileDescription: 組み込みウィジェットまたはカスタムパネルを使用して、ケース詳細ページを設定、並べ替え、拡張します
+      ThirdPartyApplicationsFileDescription: Portalメニューに統合されたサードパーティアプリケーションのリンク
+      CustomMenuItemsFileDescription: 左側のナビゲーションメニューにカスタム項目を追加します
+      ExternalLinksFileDescription: Portalの左側ナビゲーションまたはプロセス一覧ページに表示される外部リンクプロセス
+      MenuOrderFileDescription: Portalサイドバーのメインナビゲーションメニュー項目のカスタム順序
+      InvalidPackageMessage: アップロードされたファイルを読み取れませんでした。有効なZIPアーカイブであることを確認してください。
+      ImportCompleteMessage: すべてのファイルが正常にインポートされました。
+      ImportIncompleteMessage: 一部のファイルをインポートできませんでした。詳細はサーバーログを確認してください。
   dashboard:
     CaseQueryType:
       info: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
@@ -820,6 +851,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: アクションを選択してください
       SomeThingWentWrong: 問題が発生しました
       Title: ポータル設定
+      PackageManagement: Package management
+      PackageManagementTabInfoPanel: '<p><b>What can I do here?</b></p><p>Export the current Portal configuration as a single zip package, or import a previously exported package to replace it.</p><p><b>Export</b></p><p>Downloads a <code>Portal_Package.zip</code> containing one JSON file per configuration type. Only types with existing data are included.</p><p><b>Import</b></p><p>Upload a zip package to preview which files it contains before applying. Recognized files replace the matching configuration; unrecognized files are skipped. This action cannot be undone.</p>'
     DrillDownWidget:
       caseDrillDown: 「{0}」用ドリルダウンケースウィジェット
       taskDrillDown: 「{0}」用ドリルダウンタスクウィジェット
@@ -1614,6 +1647,7 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: 以下の場所からウィジェットを複製する：
             DashboardImportDetails:
+              DashboardImageSizeExceeded: ダッシュボード"{0}"には許可されたアップロードサイズ（{1}）を超える画像が含まれているため、インポートされませんでした。
               DashboardImportTitle: ダッシュボード{0}
               FileInfomation: ファイル情報
               ImportPrivate: 個人用ダッシュボードをインポートする

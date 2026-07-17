@@ -764,6 +764,37 @@ ch.ivy.addon.portalkit.ui.jsf:
       privateFilter: Mis filtros
       publicFilter: Público
       savedFilters: 'Filtros guardados:'
+    PortalPackageManagement:
+      GeneralInfo: 'Gestione los archivos de configuración de Portal como un paquete ZIP portátil. Use Exportar para descargar todos los archivos de configuración JSON actuales agrupados en un único archivo ZIP, o use Importar para cargar un paquete ZIP y aplicar sus configuraciones, reemplazando las existentes.'
+      ExportTitle: Exportar
+      ExportDescription: Exporte los archivos de configuración de Portal como un paquete ZIP. Solo los archivos con datos existentes están disponibles para su selección.
+      ExportNote: Solo se incluyen en el paquete los archivos no vacíos.
+      ExportButton: Exportar
+      ImportTitle: Importar
+      ImportDescription: Cargue un archivo ZIP que incluya los archivos JSON requeridos. Los nombres de archivo deben seguir el patrón anterior.
+      ImportButton: Importar
+      ImportDialogHeader: Importar paquete de Portal
+      DropZoneLabel: Arrastre y suelte un archivo .zip aquí
+      DropZoneOr: o
+      BrowseFiles: buscar archivos
+      PreviewNoFileMessage: Los elementos válidos se mostrarán aquí después de seleccionar un archivo.
+      PreviewNoValidFilesMessage: No se encontraron archivos de configuración de Portal reconocidos. Cargue un Portal_Package.zip válido.
+      PreviewValidFilesHeader: Válido(s) ({0} archivo(s))
+      PreviewInvalidFilesHeader: Los archivos no reconocidos se omitirán ({0} archivo(s))
+      ReplaceWarning: Los datos existentes de cada tipo importado serán reemplazados. Esta acción no se puede deshacer.
+      FileNameHeader: Nombre del archivo
+      DescriptionHeader: Descripción
+      DashboardFileDescription: Diseños y configuraciones de widgets del panel para todos los paneles de Portal
+      CustomStatisticFileDescription: Definiciones de gráficos de estadísticas personalizadas mostradas en los paneles de Portal
+      UserMenuFileDescription: Agregue elementos y enlaces personalizados al menú de usuario predeterminado
+      CaseDetailsFileDescription: Configure, reorganice y amplíe la página de detalles del caso con widgets integrados o paneles personalizados
+      ThirdPartyApplicationsFileDescription: Enlaces a aplicaciones de terceros integrados en el menú de Portal
+      CustomMenuItemsFileDescription: Agregue elementos personalizados en el menú de navegación lateral izquierdo
+      ExternalLinksFileDescription: Procesos de enlaces externos mostrados en la navegación lateral izquierda de Portal o en la página de lista de procesos
+      MenuOrderFileDescription: Orden personalizado de los elementos del menú de navegación principal en la barra lateral de Portal
+      InvalidPackageMessage: No se pudo leer el archivo cargado. Asegúrese de que sea un archivo ZIP válido.
+      ImportCompleteMessage: Todos los archivos se importaron correctamente.
+      ImportIncompleteMessage: Algunos archivos no se pudieron importar. Consulte el registro del servidor para obtener más información.
   dashboard:
     CaseQueryType:
       info: Configure qué tipos de casos se muestran en el widget de casos. Predeterminado muestra solo casos de negocio, Subcasos técnicos muestra solo subcasos técnicos, y Todos muestra tanto casos de negocio como subcasos técnicos.
@@ -821,6 +852,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Seleccione la acción
       SomeThingWentWrong: Algo salió mal
       Title: Configuración del portal
+      PackageManagement: Package management
+      PackageManagementTabInfoPanel: '<p><b>What can I do here?</b></p><p>Export the current Portal configuration as a single zip package, or import a previously exported package to replace it.</p><p><b>Export</b></p><p>Downloads a <code>Portal_Package.zip</code> containing one JSON file per configuration type. Only types with existing data are included.</p><p><b>Import</b></p><p>Upload a zip package to preview which files it contains before applying. Recognized files replace the matching configuration; unrecognized files are skipped. This action cannot be undone.</p>'
     DrillDownWidget:
       caseDrillDown: Widget de casos detallados para {0}
       taskDrillDown: Widget de tareas detalladas para {0}
@@ -1617,6 +1650,7 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Clonar widget desde
             DashboardImportDetails:
+              DashboardImageSizeExceeded: El panel "{0}" no se importó porque contiene una imagen más grande que el tamaño de carga permitido ({1}).
               DashboardImportTitle: Dashboard {0}
               FileInfomation: Informacion del archivo
               ImportPrivate: Importar panel privado
