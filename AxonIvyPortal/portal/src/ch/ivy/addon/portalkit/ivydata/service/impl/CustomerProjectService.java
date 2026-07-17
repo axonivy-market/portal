@@ -24,7 +24,7 @@ public class CustomerProjectService {
     for (var app : apps) {
       var pmvs = app.projects().all()
           .filter(pmv -> !PortalConstants.PORTAL_LIBRARY_ID.equals(pmv.getLibraryId()) && RELEASE_STATES.contains(pmv.app().state().releaseState()))
-          .sorted((pmv1, pmv2) -> Strings.CI.compare(pmv1.getName(), pmv2.getName()))
+          .sorted((pmv1, pmv2) -> Strings.CI.compare(pmv1.name(), pmv2.name()))
           .collect(Collectors.toList());
       appPmvs.put(app.name(), pmvs);
     }

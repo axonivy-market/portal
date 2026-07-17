@@ -61,7 +61,7 @@ public class DashboardProcess implements Process {
     this.startLink = process.getLink().getRelative();
     this.icon = process.customFields().value("cssIcon");
     this.category = process.getCategory();
-    this.application = process.pmv().getApplication().name();
+    this.application = process.pmv().app().name();
     this.imageUrl = collectProcessImage(process);
     this.sortIndex = getSortIndexInCustomField(process);
     this.portalProcessInformation = getPortalProcessInformation(process);
