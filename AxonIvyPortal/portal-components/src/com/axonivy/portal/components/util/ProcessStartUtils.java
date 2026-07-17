@@ -68,7 +68,7 @@ public class ProcessStartUtils {
   
   public static String findFriendlyRequestPathContainsKeyword(String keyword, Object portalStartPmvId) {
     if (portalStartPmvId == null) {
-      return findFriendlyRequestPathContainsKeywordInPMV(keyword, Ivy.wfTask().getProcessModelVersion());
+      return findFriendlyRequestPathContainsKeywordInPMV(keyword, Ivy.wfTask().getProcessModelVersion().pmv());
     } else {
       var apps = ApplicationRepository.of(ISecurityContext.current()).all();
       for (var app : apps) {
