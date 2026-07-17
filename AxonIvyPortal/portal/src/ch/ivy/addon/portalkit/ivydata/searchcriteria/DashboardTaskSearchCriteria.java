@@ -83,6 +83,13 @@ public class DashboardTaskSearchCriteria {
       // and restore the stored type afterwards - never persist it (a migration will fix stored data).
       DashboardColumnType storedType = filter.getFilterType();
       DashboardColumnType resolvedType = DashboardWidgetUtils.resolveCaseCustomColumnType(this.columns, filter);
+      if (resolvedType == null) {
+        // Untyped filter (stored type null) with no matching column to resolve it from - e.g. an
+        // orphaned filter from legacy/migrated data. TaskFilterFieldFactory.findBy() switches on the
+        // type and has no null case, so it would NPE instead of hitting its default branch. Skip this
+        // one filter rather than let it break the whole query build.
+        continue;
+      }
       filter.setFilterType(resolvedType);
       Ivy.log().info("[QueryDebug] filter field={0} storedType={1} resolvedType={2} operator={3}",
           filter.getField(), storedType, resolvedType, filter.getOperator());
