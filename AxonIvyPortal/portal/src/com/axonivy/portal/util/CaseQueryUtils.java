@@ -6,11 +6,12 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 public class CaseQueryUtils {
 
   public static CaseQuery initCaseQuery(DashboardColumnType type) {
-    // return CaseQuery.create();
-    if (DashboardColumnType.CUSTOM_CASE == type) {
-      return CaseQuery.subCases();
-    } else { // default is business case
+    if (DashboardColumnType.CUSTOM_BUSINESS_CASE == type) {
       return CaseQuery.businessCases();
+    } else if (DashboardColumnType.CUSTOM_CASE == type) {
+      return CaseQuery.subCases();
+    } else {
+      return CaseQuery.create();
     }
   }
 }
