@@ -690,7 +690,7 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 .state-cell .open-task-state,
 .state-column .open-task-state, .case-detail-body .open-task-state {
   background: var(--task-state-suspended-background);
-  border-color: var(--task-state-suspended-background);
+  border-color: var(--task-state-suspended-border-color);
   color: var(--task-state-suspended-color); }
 
 .state-cell .in_progress-task-state,
@@ -715,7 +715,7 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 .state-column .open-case-state,
 .state-column .open-task-state{
   background: var(--task-state-suspended-background);
-  border-color: var(--task-state-suspended-background);
+  border-color: var(--task-state-suspended-border-color);
   color: var(--task-state-suspended-color); }
 
 .state-cell .error-task-state,
@@ -723,6 +723,19 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   background: var(--task-state-failed-background);
   border-color: var(--task-state-failed-background);
   color: var(--task-state-failed-text-color) }
+
+.state-cell .delayed-task-state,
+.state-column .delayed-task-state {
+  background: var(--task-state-delayed-background);
+  border-color: var(--task-state-delayed-border-color);
+  color: var(--task-state-delayed-color); }
+
+.state-cell .destroyed-task-state,
+.state-column .destroyed-task-state,
+.state-column .destroyed-case-state {
+  background: var(--task-state-destroyed-background);
+  border-color: var(--task-state-destroyed-border-color);
+  color: var(--task-state-destroyed-color); }
 
 /**Style for Absences and Debuty  --------------------------------------*/
 .substituted-user-text {

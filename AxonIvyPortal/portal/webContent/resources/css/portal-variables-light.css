@@ -183,13 +183,20 @@
   --task-normal-priority-color: #49BAD6;
   --task-high-priority-color: #007095;
   --task-exception-priority-color: #EE4A52;
-  --task-state-suspended-background: #DADADA;
-  --task-state-suspended-color: var(--ivy-primary-color-grey-dark);
+  --task-state-suspended-background: #EDF9F0;
+  --task-state-suspended-border-color: #B4E7C2;
+  --task-state-suspended-color: #2B7841;
   --task-state-resumed-background: #FFE896;
   --task-state-done-background: #D4EBA2;
   --task-state-parked-background: rgba(0, 112, 149, 0.2);
   --task-state-failed-background: #EE4A52;
   --task-state-failed-text-color: var(--ivy-primary-color-white);
+  --task-state-delayed-background: #FCE8E8;
+  --task-state-delayed-border-color: #F49FA2;
+  --task-state-delayed-color: #8C0D11;
+  --task-state-destroyed-background: #FCE8E8;
+  --task-state-destroyed-border-color: #F49FA2;
+  --task-state-destroyed-color: #8C0D11;
   /* Task Action Item */
   --task-action-item-widget-header-color: var(--ivy-primary-color-white);
   --task-action-item-label-font-weight: normal;
