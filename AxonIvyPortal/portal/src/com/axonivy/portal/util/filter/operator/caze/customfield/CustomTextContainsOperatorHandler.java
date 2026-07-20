@@ -24,7 +24,7 @@ public class CustomTextContainsOperatorHandler {
     if (CollectionUtils.isEmpty(filter.getValues())) {
       return null;
     }
-    CaseQuery query = initCaseQuery(filter.getFilterType()); // TODO filterfield correct? business and/or technical cases?
+    CaseQuery query = initCaseQuery(filter.getFilterType());
     filter.getValues().forEach(text -> {
       CaseQuery subQuery = initCaseQuery(filter.getFilterType());
       subQuery.where().customField().textField(filter.getField())

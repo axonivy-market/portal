@@ -39,7 +39,7 @@ public class CustomStringContainsOperatorHandler {
 
     if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(filter.getField())) {
       List<String> keywordList = PortalCustomFieldUtils.getCmsValuesMatchingWithKeywordList(filter.getField(),
-          DashboardColumnType.CUSTOM_CASE, filter.getValues());
+          filter.getFilterType(), filter.getValues());
       if (!keywordList.isEmpty()) {
         CaseQuery addingQuery = buildQueryForCustomFieldWithCmsValue(filter, keywordList);
         query.where().or(addingQuery);
