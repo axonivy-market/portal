@@ -807,6 +807,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       Description: In this area, you can configure the dashboards according to your requirements and modify the order of the navigation elements.
       DoNotSupportMobile: Dashboard configuration is not supported for mobile devices.
       EditPrivateDashboards: Edit your private dashboards
+      EditLayout: Edit Layout
       PrivateTabInfo: 'Create and manage your personal dashboards.<ul><li>These dashboards are only visible to you</li><li>They appear under the Dashboard icon in the sidebar</li></ul>'
       PublicTabInfo: 'Manage dashboards for all users. Control where each dashboard appears:<ul><li><b>Sidebar</b> — appears as a top-level item in the sidebar menu</li><li><b>Submenu</b> — appears under the Dashboard icon</li><li><b>Hidden</b> — not visible to users</li></ul>'
       Visibility: Visibility
@@ -842,7 +843,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       MenuManagementTabInfo: 'Manage the top-level sidebar navigation items. You can:<ul><li>Add new menu entries (dashboards, external links, Ivy processes)</li><li>Reorder items by drag and drop</li><li>Edit or remove existing menu entries</li></ul>'
       PrivateDashboard: Private dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
-      EditLayout: Edit Layout
       Dashboard: Dashboard
       PublicDashboard: Public dashboards
       PublicDashboardConfiguration: Public dashboard configuration

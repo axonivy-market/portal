@@ -78,28 +78,30 @@
                       partialSubmit="true"/>
                   </li>
                 </ul>
-                <h:panelGroup layout="block" styleClass="dashboard-dynamic-buttons flex gap-2">
-                  <p:commandButton id="create-dashboard-action" actionListener="#{dashboardConfigurationBean.addNewDashboard(isPublicDashboard)}"
-                      rendered="#{!dashboardConfigurationBean.mobileDevice and !dashboardConfigurationBean.menuManagement and !dashboardConfigurationBean.packageManagement}"
-                      value="#{isPublicDashboard ? ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard') : 'New private dashboard'}"
-                      ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard')}"
-                      styleClass="dashboard-action-container-icon #{selectedDashboardTypeStyleClass}"
-                      icon="ti ti-plus"
-                      partialSubmit="true" global="false"
-                      update="dashboard-configuration-type dashboard-configuration-content sidebar-navigation-content package-management-content"
-                      oncomplete="PF('create-new-dashboard-dialog').show(); resetPortalLeftMenuState()"
-                      title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard')}" />
-                  <p:commandButton id="add-menu-item-action" actionListener="#{menuDetailsBean.onCreateNewMenu(menuManagementBean.getLastIndex())}"
-                      rendered="#{!dashboardConfigurationBean.mobileDevice and dashboardConfigurationBean.menuManagement and not menuManagementBean.sidebarDisabled}"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/AddItem')}"
-                      styleClass=""
-                      icon="ti ti-plus"
-                      partialSubmit="true" global="false"
-                      update="menu-configuration-dialog"
-                      oncomplete="PF('menu-configuration-dialog').show();"
-                      title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/AddItem')}"
-                      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/AddItem')}" />
-                </h:panelGroup>
+                <h:form id="dashboard-dynamic-buttons-form">
+                  <h:panelGroup layout="block" styleClass="dashboard-dynamic-buttons flex gap-2">
+                    <p:commandButton id="create-dashboard-action" actionListener="#{dashboardConfigurationBean.addNewDashboard(isPublicDashboard)}"
+                        rendered="#{!dashboardConfigurationBean.mobileDevice and !dashboardConfigurationBean.menuManagement and !dashboardConfigurationBean.packageManagement}"
+                        value="#{isPublicDashboard ? ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateNewPrivateDashboard')}"
+                        ariaLabel="#{isPublicDashboard ? ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateNewPrivateDashboard')}"
+                        styleClass="dashboard-action-container-icon #{selectedDashboardTypeStyleClass}"
+                        icon="ti ti-plus"
+                        partialSubmit="true" global="false"
+                        update="dashboard-configuration-type dashboard-configuration-content sidebar-navigation-content package-management-content"
+                        oncomplete="PF('create-new-dashboard-dialog').show(); resetPortalLeftMenuState()"
+                        title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard')}" />
+                    <p:commandButton id="add-menu-item-action" actionListener="#{menuDetailsBean.onCreateNewMenu(menuManagementBean.getLastIndex())}"
+                        rendered="#{!dashboardConfigurationBean.mobileDevice and dashboardConfigurationBean.menuManagement and not menuManagementBean.sidebarDisabled}"
+                        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/AddItem')}"
+                        styleClass=""
+                        icon="ti ti-plus"
+                        partialSubmit="true" global="false"
+                        update="menu-configuration-dialog"
+                        oncomplete="PF('menu-configuration-dialog').show();"
+                        title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/AddItem')}"
+                        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/AddItem')}" />
+                  </h:panelGroup>
+                </h:form>
               </h:panelGroup>
             </div>
 
@@ -107,9 +109,7 @@
               <h:panelGroup layout="block"
                 rendered="#{!dashboardConfigurationBean.mobileDevice and !dashboardConfigurationBean.menuManagement and !dashboardConfigurationBean.packageManagement}"
                 styleClass="ui-g-12 dashboard-configuration__content u-no-padding-top #{isPublicDashboard ? 'js-public-dashboard-configuration':'js-private-dashboard-configuration'}">
-                
-                <h:panelGroup rendered="false">
-                </h:panelGroup>
+
                 <ui:fragment>
                   <ic:ch.ivy.addon.portal.generic.dashboard.component.DashboardModification id="dashboard-modification-component"
                     listenerOnBackAction="#{dashboardConfigurationBean.backToConfigurationTab()}"
@@ -134,10 +134,10 @@
                       <div class="flex flex-column gap-2">
                         <p:outputLabel for="disable-sidebar-switch"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/DisableSidebar')}" />
-                        <p:inputSwitch id="disable-sidebar-switch" value="#{menuManagementBean.sidebarDisabled}">
+                        <p:toggleSwitch id="disable-sidebar-switch" value="#{menuManagementBean.sidebarDisabled}">
                           <p:ajax event="change" listener="#{menuManagementBean.saveSidebarMode}"
                             update="sidebar-settings-form" />
-                        </p:inputSwitch>
+                        </p:toggleSwitch>
                       </div>
                       <h:panelGroup id="sidebar-behaviour-panel" layout="block" rendered="#{not menuManagementBean.sidebarDisabled}"
                         styleClass="flex flex-column gap-2 flex-1">
@@ -165,7 +165,7 @@
 
               <!-- Menu Items Table -->
               <h:panelGroup layout="block" rendered="#{not menuManagementBean.sidebarDisabled}">
-                <h:form id="add-menu-item-form" style="display:none;" /> <!-- Keep form if needed by other updates -->
+
 
                 <!-- Menu Items Table -->
                 <h:panelGroup layout="block" id="menu-table-container" styleClass="col-12 u-padding-top-10">

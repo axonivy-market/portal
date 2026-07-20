@@ -808,6 +808,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       Description: この領域では、要件に応じてダッシュボードを構成し、ナビゲーション要素の順序を変更できます。
       DoNotSupportMobile: ダッシュボードの設定は、モバイルデバイスではサポートされていません。
       EditPrivateDashboards: 個人用ダッシュボードを編集する
+      EditLayout: レイアウトの編集
       EditPublicDashboards: 公開用ダッシュボードを編集する
       PrivateTabInfo: '個人用ダッシュボードを作成・管理します。<ul><li>あなただけに表示されます</li><li>サイドバーのダッシュボードアイコンの下に表示されます</li></ul>'
       PublicTabInfo: 'すべてのユーザー向けのダッシュボードを管理します。表示設定:<ul><li><b>サイドバー</b> — サイドバーメニューのトップレベル項目として表示</li><li><b>サブメニュー</b> — ダッシュボードアイコンの下に表示</li><li><b>非表示</b> — ユーザーに表示されません</li></ul>'
@@ -844,7 +845,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       MenuManagementTabInfo: 'サイドバーのナビゲーション項目を管理します。以下の操作が可能です:<ul><li>新しいメニュー項目の追加（ダッシュボード、外部リンク、Ivyプロセス）</li><li>ドラッグ＆ドロップで項目を並べ替え</li><li>既存のメニュー項目を編集・削除</li></ul>'
       PrivateDashboard: 個人用ダッシュボード
       PrivateDashboardConfiguration: 個人用ダッシュボードの設定
-      EditLayout: レイアウトの編集
       PublicDashboard: 公開用ダッシュボード
       PublicDashboardConfiguration: 公開用ダッシュボードの設定
       ReorderPrivateDashboards: あなたのダッシュボードを並び替える

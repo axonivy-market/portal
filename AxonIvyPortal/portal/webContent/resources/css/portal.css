@@ -2074,7 +2074,7 @@ canvas#preview-statistic-chart {
   font-weight: normal;
 }
 
-.card, .ui-g > .card {
+.dashboard-configuration-page .card, .dashboard-configuration-page .ui-g > .card {
   border-radius: 15px !important;
   box-shadow: var(--card-box-shadow) !important;
 }
