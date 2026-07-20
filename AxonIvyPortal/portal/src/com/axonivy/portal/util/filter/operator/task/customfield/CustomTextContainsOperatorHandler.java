@@ -25,7 +25,7 @@ public class CustomTextContainsOperatorHandler {
     if (CollectionUtils.isEmpty(filter.getValues())) {
       return null;
     }
-    TaskQuery query = TaskQuery.create(); // TODO filterfield correct? business and/or technical cases?
+    TaskQuery query = TaskQuery.create();
     filter.getValues().forEach(text -> {
       TaskQuery subQuery = TaskQuery.create();
       subQuery.where().customField().textField(filter.getField())
