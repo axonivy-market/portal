@@ -367,4 +367,12 @@
   --portal-package-alert-warning-background-color: var(--ivy-tertinary-color-yellow-light);
   --portal-package-alert-warning-border-color: var(--ivy-tertinary-color-yellow-medium);
   --portal-package-alert-warning-text-color: var(--ivy-tertinary-color-yellow-dark);
+  
+  --dashboard-icon-bg-color: var(--ivy-dashboard-icon-bg-dark);
+  --dashboard-icon-border-color: var(--ivy-dashboard-icon-border-dark);
+
+  --sidebar-settings-card-bg-color: var(--ivy-portal-color-gray-20);
+  --sidebar-settings-card-border-color: var(--ivy-dashboard-icon-border-dark);
+
+  --card-box-shadow: 0 0 27px 0 rgba(0, 0, 0, 0.4);
 }

@@ -844,6 +844,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       MenuManagementTabInfo: 'サイドバーのナビゲーション項目を管理します。以下の操作が可能です:<ul><li>新しいメニュー項目の追加（ダッシュボード、外部リンク、Ivyプロセス）</li><li>ドラッグ＆ドロップで項目を並べ替え</li><li>既存のメニュー項目を編集・削除</li></ul>'
       PrivateDashboard: 個人用ダッシュボード
       PrivateDashboardConfiguration: 個人用ダッシュボードの設定
+      EditLayout: レイアウトの編集
       PublicDashboard: 公開用ダッシュボード
       PublicDashboardConfiguration: 公開用ダッシュボードの設定
       ReorderPrivateDashboards: あなたのダッシュボードを並び替える

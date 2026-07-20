@@ -847,6 +847,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       MenuManagementTabInfo: 'Verwalten Sie die Navigationselemente der Seitenleiste. Sie können:<ul><li>Neue Menüeinträge hinzufügen (Dashboards, externe Links, Ivy-Prozesse)</li><li>Einträge per Drag-and-Drop neu anordnen</li><li>Bestehende Menüeinträge bearbeiten oder entfernen</li></ul>'
       PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
+      EditLayout: Layout bearbeiten
       PublicDashboard: Öffentliche Dashboards
       PublicDashboardConfiguration: Konfiguration des öffentlichen Dashboards
       ReorderPrivateDashboards: Dashboards neu anordnen

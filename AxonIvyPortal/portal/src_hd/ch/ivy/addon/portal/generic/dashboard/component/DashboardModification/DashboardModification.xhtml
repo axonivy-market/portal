@@ -23,7 +23,8 @@
         styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}">
-          <h:panelGroup id="top-dashboard-title-group" styleClass="u-truncate-text" layout="block">
+          <h:panelGroup id="top-dashboard-title-group" styleClass="u-truncate-text flex align-items-center gap-2" layout="block">
+            <span class="dashboard-icon-container"><i class="#{empty topDashboard.iconClass ? 'ti ti-layout-dashboard' : topDashboard.iconClass}" /></span>
             <h:outputText value="#{topDashboard.title}" />
           </h:panelGroup>
         </p:column>
@@ -43,19 +44,19 @@
             <h:panelGroup layout="block">
               <p:commandButton id="top-dashboard-action-button" icon="ti ti-dots"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page ui-focused" type="button" />
+                styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain ui-no-rounded-button-process-page" type="button" />
               <p:menu id="top-dashboard-action-menu" styleClass="w-auto" overlay="true" trigger="top-dashboard-action-button"
                 my="right top" at="right bottom">
                 <p:menuitem id="top-edit" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(topDashboard)}"
-                  icon="ti ti-pencil" styleClass="dashboard-configuration-action-menu-icon"
+                  icon="ti ti-settings-cog" styleClass="dashboard-configuration-action-menu-icon"
                   update="#{cc.clientId}:configuration-dashboard-detail-component:dashboard-detail-form" global="false"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" oncomplete="PF('configuration-dashboard-detail-dialog').show()"
-                  resetValues="true" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" />
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}" oncomplete="PF('configuration-dashboard-detail-dialog').show()"
+                  resetValues="true" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}" />
                 <p:menuitem id="top-configure-dashboard" process="@this"
-                  actionListener="#{dashboardModificationBean.navigateToDashboardDetailsPage(topDashboard.id)}" icon="ti ti-settings-cog" update="@this"
+                  actionListener="#{dashboardModificationBean.navigateToDashboardDetailsPage(topDashboard.id)}" icon="ti ti-pencil" update="@this"
                   styleClass="dashboard-configuration-action-menu-icon" oncomplete="resetPortalLeftMenuState()"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}"
-                  title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}" />
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/EditLayout')}"
+                  title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/EditLayout')}" />
                 <p:menuitem id="top-export-dashboard"
                   styleClass="dashboard-configuration-action-menu-icon"
                   title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
@@ -90,13 +91,14 @@
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SubMenuDashboardsDescription')}</span>
     </h:panelGroup>
 
-    <p:dataTable id="dashboard-table" lazy="false" draggableRows="true" rowDragSelector="i.ti-menu-2"
+    <p:dataTable id="dashboard-table" lazy="false" draggableRows="true" rowDragSelector="i.ti-grip-vertical"
       value="#{dashboardModificationBean.dashboards}" var="dashboard"
       styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
       <p:ajax event="rowReorder" global="false" update="dashboard-table" listener="#{dashboardModificationBean.saveArrangment()}"/>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}">
-        <h:panelGroup id="dashboard-title-group" styleClass="u-truncate-text" layout="block">
+        <h:panelGroup id="dashboard-title-group" styleClass="u-truncate-text flex align-items-center gap-2" layout="block">
+          <span class="dashboard-icon-container"><i class="#{empty dashboard.iconClass ? 'ti ti-layout-dashboard' : dashboard.iconClass}" /></span>
           <h:outputText value="#{dashboard.title}" />
           <p:tooltip for="dashboard-title-group" value="#{dashboard.title}" trackMouse="true" hideEvent="mouseleave click" styleClass="dashboard-configuration-tooltip"/>
         </h:panelGroup>
@@ -119,19 +121,19 @@
           <h:panelGroup layout="block">
             <p:commandButton id="dashboard-configuration-action-button" icon="ti ti-dots"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-              styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page ui-focused" type="button" />
+              styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain ui-no-rounded-button-process-page" type="button" />
             <p:menu id="dashboard-configuration-action-menu" styleClass="w-auto" overlay="true" trigger="dashboard-configuration-action-button"
               my="right top" at="right bottom">
-              <p:menuitem id="edit" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(dashboard)}"
-                icon="ti ti-pencil" styleClass="dashboard-configuration-action-menu-icon"
+              <p:menuitem id="edit-dashboard" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(dashboard)}"
+                icon="ti ti-settings-cog" styleClass="dashboard-configuration-action-menu-icon"
                 update="#{cc.clientId}:configuration-dashboard-detail-component:dashboard-detail-form" global="false"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" oncomplete="PF('configuration-dashboard-detail-dialog').show()"
-                target="_blank" resetValues="true" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" rendered="true" />
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}" oncomplete="PF('configuration-dashboard-detail-dialog').show()"
+                target="_blank" resetValues="true" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}" rendered="true" />
               <p:menuitem id="configure-dashboard" process="@this"
-                actionListener="#{dashboardModificationBean.navigateToDashboardDetailsPage(dashboard.id)}" icon="ti ti-settings-cog" update="@this"
+                actionListener="#{dashboardModificationBean.navigateToDashboardDetailsPage(dashboard.id)}" icon="ti ti-pencil" update="@this"
                 styleClass="dashboard-configuration-action-menu-icon" oncomplete="resetPortalLeftMenuState()"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}" rendered="true"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}" />
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/EditLayout')}" rendered="true"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/EditLayout')}" />
               <p:menuitem id="export-dashboard"
                   styleClass="dashboard-configuration-action-menu-icon"
                   title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
@@ -160,7 +162,7 @@
       </p:column>
       <p:column styleClass="settings-table-reorder w-3rem">
         <h:panelGroup styleClass=" ui-button-outlined action-column-icon-button u-mar-right-5">
-          <i id="reorder-button-#{dashboard.id}" class="ti ti-menu-2 dashboard-icon-drag-drop" />
+          <i id="reorder-button-#{dashboard.id}" class="ti ti-grip-vertical dashboard-icon-drag-drop" />
         </h:panelGroup>
       </p:column>
     </p:dataTable>
@@ -174,7 +176,8 @@
         styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}">
-          <h:panelGroup id="hidden-dashboard-title-group" styleClass="u-truncate-text" layout="block">
+          <h:panelGroup id="hidden-dashboard-title-group" styleClass="u-truncate-text flex align-items-center gap-2" layout="block">
+            <span class="dashboard-icon-container"><i class="#{empty hiddenDashboard.iconClass ? 'ti ti-layout-dashboard' : hiddenDashboard.iconClass}" /></span>
             <h:outputText value="#{hiddenDashboard.title}" />
           </h:panelGroup>
         </p:column>
@@ -194,19 +197,19 @@
             <h:panelGroup layout="block">
               <p:commandButton id="hidden-dashboard-action-button" icon="ti ti-dots"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page ui-focused" type="button" />
+                styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain ui-no-rounded-button-process-page" type="button" />
               <p:menu id="hidden-dashboard-action-menu" styleClass="w-auto" overlay="true" trigger="hidden-dashboard-action-button"
                 my="right top" at="right bottom">
-                <p:menuitem id="hidden-edit" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(hiddenDashboard)}"
-                  icon="ti ti-pencil" styleClass="dashboard-configuration-action-menu-icon"
+                <p:menuitem id="hidden-edit-dashboard" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(hiddenDashboard)}"
+                  icon="ti ti-settings-cog" styleClass="dashboard-configuration-action-menu-icon"
                   update="#{cc.clientId}:configuration-dashboard-detail-component:dashboard-detail-form" global="false"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" oncomplete="PF('configuration-dashboard-detail-dialog').show()"
-                  resetValues="true" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" />
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}" oncomplete="PF('configuration-dashboard-detail-dialog').show()"
+                  resetValues="true" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}" />
                 <p:menuitem id="hidden-configure-dashboard" process="@this"
-                  actionListener="#{dashboardModificationBean.navigateToDashboardDetailsPage(hiddenDashboard.id)}" icon="ti ti-settings-cog" update="@this"
+                  actionListener="#{dashboardModificationBean.navigateToDashboardDetailsPage(hiddenDashboard.id)}" icon="ti ti-pencil" update="@this"
                   styleClass="dashboard-configuration-action-menu-icon" oncomplete="resetPortalLeftMenuState()"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}"
-                  title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}" />
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/EditLayout')}"
+                  title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/EditLayout')}" />
                 <p:menuitem id="hidden-export-dashboard"
                   styleClass="dashboard-configuration-action-menu-icon"
                   title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
@@ -287,7 +290,7 @@
   <ic:com.axonivy.portal.component.ShareLinkDialog id="share-dashboard-component" 
     shareDialogId="share-dashboard-dialog" 
     url="#{dashboardModificationBean.dashboardUrl}"
-    title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/ShareDashboard')}"/> 
+    title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/ShareDashboard')}"/>
 
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
     <ui:param name="id" value="remove-dashboard-dialog" />

@@ -170,4 +170,10 @@
 
   /* Chatbot */
   --candidate-question-header-font-size: 1.5rem;
+
+  /* Dashboard Icons */
+  --ivy-dashboard-icon-bg-light: #F8F8F8;
+  --ivy-dashboard-icon-border-light: #EBEBEB;
+  --ivy-dashboard-icon-bg-dark: #383838;
+  --ivy-dashboard-icon-border-dark: #4A4A4A;
 }

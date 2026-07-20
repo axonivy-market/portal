@@ -845,6 +845,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       MenuManagementTabInfo: 'Gérez les éléments de navigation de la barre latérale. Vous pouvez:<ul><li>Ajouter de nouveaux éléments de menu (tableaux de bord, liens externes, processus Ivy)</li><li>Réorganiser les éléments par glisser-déposer</li><li>Modifier ou supprimer des éléments de menu existants</li></ul>'
       PrivateDashboard: Tableaux de bord privés
       PrivateDashboardConfiguration: Configuration des tableaux de bord privés
+      EditLayout: Modifier la mise en page
       PublicDashboard: Tableaux de bord publics
       PublicDashboardConfiguration: Configuration des tableaux de bord publics
       ReorderPrivateDashboards: Réorganiser vos tableaux de bord

@@ -2073,3 +2073,8 @@ canvas#preview-statistic-chart {
 .login-body .login-wrapper .login-panel > button > span.ui-button-icon-left {
   font-weight: normal;
 }
+
+.card, .ui-g > .card {
+  border-radius: 15px !important;
+  box-shadow: var(--card-box-shadow) !important;
+}
