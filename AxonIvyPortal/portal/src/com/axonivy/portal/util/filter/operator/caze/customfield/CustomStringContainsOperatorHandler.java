@@ -8,7 +8,6 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
-import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
@@ -41,7 +40,7 @@ public class CustomStringContainsOperatorHandler {
 
     if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(filter.getField())) {
       List<String> keywordList = PortalCustomFieldUtils.getCmsValuesMatchingWithKeywordList(filter.getField(),
-          DashboardColumnType.CUSTOM_CASE, filter.getValues());
+          filter.getFilterType(), filter.getValues());
       if (!keywordList.isEmpty()) {
         CaseQuery addingQuery = buildQueryForCustomFieldWithCmsValue(filter, keywordList);
         query.where().or(addingQuery);

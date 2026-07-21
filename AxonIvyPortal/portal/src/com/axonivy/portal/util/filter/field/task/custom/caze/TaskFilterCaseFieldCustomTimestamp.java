@@ -22,13 +22,15 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 public class TaskFilterCaseFieldCustomTimestamp extends CustomFilterField {
 
   private ICustomFieldMeta customField;
+  private DashboardColumnType columnType;
 
   public TaskFilterCaseFieldCustomTimestamp() {
   }
 
-  public TaskFilterCaseFieldCustomTimestamp(ICustomFieldMeta customField) {
+  public TaskFilterCaseFieldCustomTimestamp(ICustomFieldMeta customField, DashboardColumnType columnType) {
     super(customField.name(), FilterFormat.DATE);
     this.customField = customField;
+    this.columnType = columnType;
   }
 
   @Override
@@ -39,9 +41,7 @@ public class TaskFilterCaseFieldCustomTimestamp extends CustomFilterField {
   @Override
   public void initFilter(DashboardFilter filter) {
     filter.setFilterField(this);
-    if (filter.getFilterType() != DashboardColumnType.CUSTOM_BUSINESS_CASE) {
-      filter.setFilterType(DashboardColumnType.CUSTOM_CASE);
-    }
+    filter.setFilterType(columnType);
     filter.setFilterFormat(FilterFormat.DATE);
     filter.setField(getName());
   }
