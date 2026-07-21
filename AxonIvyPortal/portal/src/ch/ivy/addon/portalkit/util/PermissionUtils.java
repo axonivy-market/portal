@@ -154,6 +154,14 @@ public class PermissionUtils {
     return hasPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
   }
 
+  public static boolean hasPortalSidebarConfigurationPermission() {
+    return hasPortalPermission(PortalPermission.PORTAL_SIDEBAR_CONFIGURATION);
+  }
+
+  public static boolean hasPortalPackageManagementPermission() {
+    return hasPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
+  }
+
   public static String getCaseName(ICase iCase) {
     return Sudo.get(() -> {
       return iCase.names().current();

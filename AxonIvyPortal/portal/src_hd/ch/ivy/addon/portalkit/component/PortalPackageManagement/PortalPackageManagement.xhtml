@@ -1,0 +1,190 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:p="http://primefaces.org/ui">
+
+<cc:interface componentType="IvyComponent">
+</cc:interface>
+
+<cc:implementation>
+
+  <h:form id="portal-package-form">
+    <p:messages id="portalPackageMessages" closable="true" />
+
+    <!-- GENERAL INFO -->
+    <h:panelGroup layout="block" styleClass="mb-5 pl-3">
+      <p class="m-0 text-color-secondary">
+        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/GeneralInfo')}
+      </p>
+    </h:panelGroup>
+
+    <!-- EXPORT SECTION -->
+    <h:panelGroup layout="block" styleClass="mb-5 grid pl-3">
+      <div class="col-12">
+        <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ExportTitle')}</h4>
+        <p class="text-color-secondary">
+          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ExportDescription')}
+        </p>
+      </div>
+
+      <div class="col-12">
+        <table class="w-full border-collapse mb-3 border-1 surface-border border-round">
+          <thead>
+            <tr>
+              <th class="text-left p-3 border-bottom-1 surface-border font-medium portal-package-filename-col">
+                #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/FileNameHeader')}</th>
+              <th class="text-left p-3 border-bottom-1 surface-border font-medium">
+                #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/DescriptionHeader')}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <ui:repeat value="#{portalPackageBean.packageFiles}" var="file" varStatus="fileStatus">
+              <tr class="border-bottom-1 surface-border">
+                <td class="p-3"><i class="ti ti-file-type-json text-color-secondary mr-2" />
+                  <span class="font-medium">#{file.filename}</span>
+                </td>
+                <td class="p-3 text-color-secondary">#{file.description}</td>
+              </tr>
+            </ui:repeat>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-12">
+        <span class="text-color-secondary text-sm">
+          <i class="ti ti-info-circle mr-1" />
+          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ExportNote')}
+        </span>
+      </div>
+
+      <div class="col-12">
+        <p:commandButton id="export-btn"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ExportButton')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ExportButton')}"
+          styleClass="primary-color-light-button w-full" ajax="false">
+          <p:fileDownload value="#{portalPackageBean.exportPackage()}" />
+        </p:commandButton>
+      </div>
+    </h:panelGroup>
+
+    <p:separator styleClass="mb-5" />
+
+    <!-- IMPORT SECTION -->
+    <h:panelGroup layout="block" styleClass="mb-5 grid pl-3">
+      <div class="col-12">
+        <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportTitle')}</h4>
+        <p class="text-color-secondary">
+          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportDescription')}
+        </p>
+      </div>
+
+      <div class="col-12">
+        <p:commandButton id="import-btn"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportButton')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportButton')}"
+          styleClass="primary-color-light-button w-full"
+          onclick="PF('portalPackageImportDialog').show(); return false;" type="button" />
+      </div>
+    </h:panelGroup>
+
+    <!-- IMPORT DIALOG -->
+    <p:dialog id="portal-package-import-dialog"
+      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportDialogHeader')}"
+      widgetVar="portalPackageImportDialog" appendTo="@(body)" modal="true" responsive="true" closeOnEscape="true"
+      resizable="false" width="640px" styleClass="portal-package-import-dialog dialog-responsive">
+
+      <p:ajax event="close" listener="#{portalPackageBean.resetImportState()}"
+        update="import-dialog-messages @(.portal-package-preview) @(.portal-package-actions)" />
+
+      <p:messages id="import-dialog-messages" closable="true" />
+      <!-- Hidden file upload — drop zone below acts as the trigger -->
+      <p:fileUpload id="importFileUpload" listener="#{portalPackageBean.handleFileSelect}" mode="advanced" auto="true"
+        accept="#{portalPackageBean.acceptedFileType}" widgetVar="importFileWidget" styleClass="portal-package-hidden-upload"
+        update="import-dialog-messages @(.portal-package-preview) @(.portal-package-actions)" dragDropSupport="true"
+        oncomplete="PF('importFileWidget').clear();" dropZone="importDropZone" />
+
+      <div class="flex flex-column gap-4">
+
+        <!-- Drop zone -->
+        <p:outputPanel id="importDropZone" styleClass="ui-dashboard-upload-file-panel">
+          <span class="ui-dashboard-upload-file-label">
+            <div><i class="ti ti-file-upload portal-package-upload-icon" /></div>
+
+            <span
+              class="mt-2">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/DropZoneLabel')}</span>
+            <span
+              class="text-color-secondary text-sm mt-1">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/DropZoneOr')}
+              <p:link
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/BrowseFiles')}"
+                onclick="PF('importFileWidget').show(); return false;" styleClass="ml-1" />
+            </span>
+          </span>
+        </p:outputPanel>
+
+        <!-- Preview panel — updated after file select -->
+        <p:outputPanel id="previewPanel" layout="block" styleClass="portal-package-preview">
+          <!-- No file selected yet -->
+          <ui:fragment rendered="#{not portalPackageBean.fileSelected}">
+            <div
+              class="flex align-items-center gap-2 p-3 border-1 surface-border border-round text-color-secondary text-sm surface-ground">
+              <i class="ti ti-info-circle" />
+              <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/PreviewNoFileMessage')}</span>
+            </div>
+          </ui:fragment>
+
+          <!-- File selected but no valid Portal files found -->
+          <ui:fragment
+            rendered="#{portalPackageBean.fileSelected and empty portalPackageBean.importResults and empty portalPackageBean.validPreviewFiles}">
+            <div class="flex align-items-start gap-2 p-3 border-round border-1 portal-package-alert-danger-fill">
+              <i class="ti ti-circle-x mt-1 portal-package-alert-danger-icon" />
+              <span
+                class="text-sm portal-package-alert-danger-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/PreviewNoValidFilesMessage')}</span>
+            </div>
+          </ui:fragment>
+
+          <!-- Unified file list — preview stage (valid/invalid) or, after import, the per-file results (success/skipped/failed) -->
+          <ui:fragment rendered="#{not empty portalPackageBean.validPreviewFiles or not empty portalPackageBean.importResults}">
+            <div class="border-1 surface-border border-round mb-2 portal-package-file-list">
+              <p:dataList
+                value="#{not empty portalPackageBean.importResults ? portalPackageBean.importResults : portalPackageBean.previewEntries}"
+                var="entry" styleClass="list-none p-0 m-0" type="none">
+                <div class="flex align-items-center gap-2 px-3 py-2 border-bottom-1 surface-border">
+                  <i class="ti #{entry.iconClass}" />
+                  <span class="text-sm">#{entry.filename}</span>
+                </div>
+              </p:dataList>
+            </div>
+          </ui:fragment>
+
+          <!-- Replace warning — shown only during preview stage when there are valid files -->
+          <ui:fragment rendered="#{empty portalPackageBean.importResults and not empty portalPackageBean.validPreviewFiles}">
+            <div
+              class="flex align-items-center gap-2 p-3 border-1 surface-border border-round text-color-secondary text-sm surface-ground">
+              <i class="ti ti-info-circle" />
+              <span
+                class="text-sm">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ReplaceWarning')}</span>
+            </div>
+          </ui:fragment>
+        </p:outputPanel>
+
+        <!-- Footer actions -->
+        <p:outputPanel id="dialogActions" layout="block"
+          styleClass="portal-package-actions text-align-center gap-2 border-top-1 surface-border pt-3">
+          <p:commandButton
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportButton')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportButton')}"
+            styleClass="w-full" actionListener="#{portalPackageBean.confirmImport}"
+            update="import-dialog-messages @(.portal-package-preview) @(.portal-package-actions)" process="@form"
+            disabled="#{empty portalPackageBean.validPreviewFiles}" />
+        </p:outputPanel>
+
+      </div>
+
+    </p:dialog>
+
+  </h:form>
+
+
+</cc:implementation>
+
+</html>

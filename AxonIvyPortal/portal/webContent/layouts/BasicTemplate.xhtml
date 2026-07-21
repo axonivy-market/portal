@@ -45,9 +45,10 @@
     </ui:insert> - #{masterDataBean.portalApplicationName}
   </title>
 
+  <!-- themBean: com.axonivy.portal.bean.ThemeBean -->
   <f:attribute name="primefaces.THEME" value="#{themeBean.theme}" />
   <link rel="shortcut icon" href="#{resource['ivy-branding:favicon']}" />
-  <c:set var="loadGridStack" value="#{loadGridStack == 'true' ? 'true' : 'false'}" />
+  <c:set var="loadGridStack" value="#{loadGridStack == 'true' ? true : false}" />
   <!-- GridStack resources -->
   <h:outputStylesheet library="css" name="gridstack.min.css" rendered="#{loadGridStack}" />
   <h:outputStylesheet library="css" name="gridstack-extra.min.css" rendered="#{loadGridStack}" />
@@ -55,7 +56,7 @@
   <!-- FREYA IMPORT -->
   <h:outputStylesheet name="#{ivyFreyaTheme.layout}" library="#{ivyFreyaTheme.library}" />
   <h:outputScript name="js/layout.js" library="#{ivyFreyaTheme.library}" />
-  <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
+  <script type="text/javascript" src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
   <h:outputStylesheet library="css" name="portal-root-variables.css" />
   <h:outputStylesheet library="css" name="portal-variables-#{ivyFreyaTheme.mode}.css" />
   <h:outputStylesheet library="primeflex" name="primeflex-3.min.css" />

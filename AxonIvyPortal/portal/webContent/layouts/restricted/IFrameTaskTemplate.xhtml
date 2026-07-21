@@ -92,8 +92,9 @@
     <ui:param name="taskName" value="#{iFrameTaskTemplateBean.taskName}" />
     <ui:param name="taskIcon" value="#{iFrameTaskTemplateBean.taskIcon}" />
 
+<!-- htmlSanitizerBean: com.axonivy.portal.components.bean.HtmlSanitizerBean -->
     <ui:define name="content">
-      <script>
+      <script type="text/javascript">
         $(document).ready(function() {
           var taskUrl = '#{htmlSanitizerBean.escapeForJS(iFrameTaskTemplateBean.taskUrl)}';
           if (!taskUrl) {

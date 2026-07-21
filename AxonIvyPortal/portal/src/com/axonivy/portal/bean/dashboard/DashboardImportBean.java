@@ -91,6 +91,8 @@ public class DashboardImportBean extends DashboardModificationBean {
       return;
     }
 
+    importedDashboards = filterOutOversizedImageDashboards(importedDashboards);
+
     // Build oldId → newId map so navigation widget references can be remapped after
     // import
     oldToNewIdMap = new HashMap<>();
@@ -120,6 +122,27 @@ public class DashboardImportBean extends DashboardModificationBean {
 
     fileSize = FileUtils.byteCountToDisplaySize(importFile.getSize());
     isLoaded = true;
+  }
+
+  private List<Dashboard> filterOutOversizedImageDashboards(List<Dashboard> dashboards) {
+    if (CollectionUtils.isEmpty(dashboards)) {
+      return dashboards;
+    }
+    List<Dashboard> validDashboards = new ArrayList<>();
+    for (Dashboard dashboard : dashboards) {
+      if (DashboardUtils.hasOversizedWidgetImage(dashboard)) {
+        String dashboardTitle =
+            StringUtils.defaultIfBlank(dashboard.getTitle(), StringUtils.defaultString(dashboard.getId()));
+        Ivy.log().warn("Dashboard [{0}] was skipped: contains an image larger than the upload size limit.",
+            dashboardTitle);
+        displayedMessage(Ivy.cms().co(
+            "/Dialogs/com/axonivy/portal/dashboard/component/DashboardImportDetails/DashboardImageSizeExceeded",
+            List.of(dashboardTitle, FileUtils.byteCountToDisplaySize(UploadDocumentUtils.getImageUploadSizeLimit()))));
+      } else {
+        validDashboards.add(dashboard);
+      }
+    }
+    return validDashboards;
   }
 
   private void findAndSetPermissions() {

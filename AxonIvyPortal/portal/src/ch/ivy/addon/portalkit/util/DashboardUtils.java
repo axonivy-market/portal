@@ -20,8 +20,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
 import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemplateMigrator;
+import com.axonivy.portal.util.UploadDocumentUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,6 +38,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -293,6 +296,26 @@ public class DashboardUtils {
       Ivy.log().error("Failed to read dashboard from JSON {0}", ex);
     }
     return null;
+  }
+
+  public static boolean hasOversizedWidgetImage(Dashboard dashboard) {
+    if (dashboard == null || CollectionUtils.isEmpty(dashboard.getWidgets())) {
+      return false;
+    }
+    for (DashboardWidget widget : dashboard.getWidgets()) {
+      if (widget instanceof WelcomeDashboardWidget welcomeWidget) {
+        if (UploadDocumentUtils.isBase64ImageSizeExceeded(welcomeWidget.getImageContent())
+            || UploadDocumentUtils.isBase64ImageSizeExceeded(welcomeWidget.getImageContentDarkMode())) {
+          return true;
+        }
+      } else if (widget instanceof NavigationDashboardWidget navigationWidget) {
+        if (UploadDocumentUtils.isBase64ImageSizeExceeded(navigationWidget.getImageContent())
+            || UploadDocumentUtils.isBase64ImageSizeExceeded(navigationWidget.getImageContentDarkMode())) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   private static List<DashboardTemplate> convertDashboardTemplatesToLatestVersion(String json) {

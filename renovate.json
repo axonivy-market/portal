@@ -11,9 +11,18 @@
     "labels": [
         "skip-changelog"
     ],
+    "timezone": "Asia/Bangkok",
     "schedule": ["before 5am on monday"],
     "rebaseWhen": "never",
     "semanticCommits": "disabled",
+    "maven": {
+        "fileMatch": [
+            "(^|/|\\\\)pom\.xml$",
+            "(^|/|\\\\)customized_pom\.xml$",
+            "(^|/|\\\\)document_screenshot_pom\.xml$",
+            "(^|/|\\\\)deployment-pom\.xml$"
+        ]
+    },
     "packageRules": [
         {
             "description": "Disable major upgrades for release branches",

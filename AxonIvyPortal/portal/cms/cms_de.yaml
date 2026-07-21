@@ -766,6 +766,37 @@ ch.ivy.addon.portalkit.ui.jsf:
       privateFilter: Meine Filter
       publicFilter: Öffentlich
       savedFilters: 'Gespeicherte Filter:'
+    PortalPackageManagement:
+      GeneralInfo: 'Verwalten Sie Portal-Konfigurationsdateien als portables ZIP-Paket. Verwenden Sie Exportieren, um alle aktuellen JSON-Konfigurationsdateien gebündelt in einem einzigen ZIP-Archiv herunterzuladen, oder verwenden Sie Importieren, um ein ZIP-Paket hochzuladen und dessen Konfigurationen anzuwenden — wodurch die bestehenden ersetzt werden.'
+      ExportTitle: Exportieren
+      ExportDescription: Exportieren Sie Portal-Konfigurationsdateien als ZIP-Paket. Nur Dateien mit vorhandenen Daten stehen zur Auswahl.
+      ExportNote: Nur nicht leere Dateien werden in das Paket aufgenommen.
+      ExportButton: Exportieren
+      ImportTitle: Importieren
+      ImportDescription: Laden Sie eine ZIP-Datei hoch, die die erforderlichen JSON-Dateien enthält. Die Dateinamen müssen dem obigen Muster entsprechen.
+      ImportButton: Importieren
+      ImportDialogHeader: Portal-Paket importieren
+      DropZoneLabel: Ziehen Sie eine ZIP-Datei hierher
+      DropZoneOr: oder
+      BrowseFiles: Dateien durchsuchen
+      PreviewNoFileMessage: Gültige Elemente werden hier angezeigt, nachdem Sie eine Datei ausgewählt haben.
+      PreviewNoValidFilesMessage: Keine erkannten Portal-Konfigurationsdateien gefunden. Bitte laden Sie eine gültige Portal_Package.zip hoch.
+      PreviewValidFilesHeader: Gültig ({0} Datei(en))
+      PreviewInvalidFilesHeader: Nicht erkannte Dateien werden übersprungen ({0} Datei(en))
+      ReplaceWarning: Die vorhandenen Daten jedes importierten Typs werden ersetzt. Diese Aktion kann nicht rückgängig gemacht werden.
+      FileNameHeader: Dateiname
+      DescriptionHeader: Beschreibung
+      DashboardFileDescription: Dashboard-Widget-Layouts und -Konfigurationen für alle Portal-Dashboards
+      CustomStatisticFileDescription: Definitionen benutzerdefinierter Statistikdiagramme, die auf Portal-Dashboards angezeigt werden
+      UserMenuFileDescription: Benutzerdefinierte Einträge und Links zum Standard-Benutzermenü hinzufügen
+      CaseDetailsFileDescription: Konfigurieren, neu anordnen und erweitern Sie die Falldetailseite mit integrierten Widgets oder benutzerdefinierten Panels
+      ThirdPartyApplicationsFileDescription: In das Portal-Menü integrierte Links zu Drittanwendungen
+      CustomMenuItemsFileDescription: Benutzerdefinierte Einträge im linken Navigationsmenü hinzufügen
+      ExternalLinksFileDescription: Externe Link-Prozesse, die in der linken Navigation oder der Prozesslisten-Seite des Portals angezeigt werden
+      MenuOrderFileDescription: Benutzerdefinierte Reihenfolge der Hauptnavigationsmenüpunkte in der Portal-Seitenleiste
+      InvalidPackageMessage: Die hochgeladene Datei konnte nicht gelesen werden. Bitte stellen Sie sicher, dass es sich um ein gültiges ZIP-Archiv handelt.
+      ImportCompleteMessage: Alle Dateien wurden erfolgreich importiert.
+      ImportIncompleteMessage: Einige Dateien konnten nicht importiert werden. Weitere Informationen finden Sie im Server-Log.
   dashboard:
     CaseQueryType:
       info: Konfigurieren Sie, welche Vorgangstypen im Vorgangs-Widget angezeigt werden. Standard zeigt nur Geschäftsvorgänge, Technische Untervorgänge zeigt nur technische Untervorgänge, und Alle zeigt sowohl Geschäftsvorgänge als auch technische Untervorgänge.
@@ -823,6 +854,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       SelectAction: Wählen Sie die Aktion
       SomeThingWentWrong: Etwas ist schief gelaufen
       Title: Portal-Konfiguration
+      PackageManagement: Package management
+      PackageManagementTabInfoPanel: '<p><b>What can I do here?</b></p><p>Export the current Portal configuration as a single zip package, or import a previously exported package to replace it.</p><p><b>Export</b></p><p>Downloads a <code>Portal_Package.zip</code> containing one JSON file per configuration type. Only types with existing data are included.</p><p><b>Import</b></p><p>Upload a zip package to preview which files it contains before applying. Recognized files replace the matching configuration; unrecognized files are skipped. This action cannot be undone.</p>'
     DrillDownWidget:
       caseDrillDown: Drilldown-Fall-Widget für {0}
       taskDrillDown: Drilldown-Aufgaben-Widget für {0}
@@ -1621,6 +1654,7 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Widget klonen von
             DashboardImportDetails:
+              DashboardImageSizeExceeded: Dashboard "{0}" wurde nicht importiert, da es ein Bild enthält, das größer als die zulässige Upload-Größe ({1}) ist.
               DashboardImportTitle: Dashboard {0}
               FileInfomation: Dateiinformationen
               ImportPrivate: Privates Dashboard importieren
