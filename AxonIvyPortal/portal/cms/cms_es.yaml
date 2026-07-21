@@ -840,7 +840,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AddItem: Agregar elemento
       Label: Etiqueta
       Source: Origen
-      Target: Destino
+      Target: Enlaza a
       Dashboard: Panel de control
       MenuManagement: Gestión de menús
       MenuManagementTabInfo: 'Gestione los elementos de navegación de la barra lateral. Puede:<ul><li>Agregar nuevas entradas de menú (paneles, enlaces externos, procesos Ivy)</li><li>Reordenar elementos arrastrando y soltando</li><li>Editar o eliminar entradas de menú existentes</li></ul>'

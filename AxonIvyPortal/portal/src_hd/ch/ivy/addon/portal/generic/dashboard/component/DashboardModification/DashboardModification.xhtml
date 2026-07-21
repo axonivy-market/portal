@@ -22,13 +22,13 @@
         value="#{dashboardModificationBean.topMenuDashboards}" var="topDashboard"
         styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" width="25%">
           <h:panelGroup id="top-dashboard-title-group" styleClass="u-truncate-text flex align-items-center gap-2" layout="block">
             <span class="dashboard-icon-container"><i class="#{empty topDashboard.iconClass ? 'ti ti-layout-dashboard' : topDashboard.iconClass}" /></span>
             <h:outputText value="#{topDashboard.title}" />
           </h:panelGroup>
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/Labels/Permissions')}">
+        <p:column headerText="#{ivy.cms.co('/Labels/Permissions')}" width="15%">
           <h:panelGroup id="top-dashboard-permissions-group" styleClass="u-truncate-text" layout="block">
             <h:outputText value="#{dashboardModificationBean.generateDashboardPermisisonForDisplay(topDashboard)}" />
           </h:panelGroup>
@@ -96,14 +96,14 @@
       styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
       <p:ajax event="rowReorder" global="false" update="dashboard-table" listener="#{dashboardModificationBean.saveArrangment()}"/>
-      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}">
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" width="25%">
         <h:panelGroup id="dashboard-title-group" styleClass="u-truncate-text flex align-items-center gap-2" layout="block">
           <span class="dashboard-icon-container"><i class="#{empty dashboard.iconClass ? 'ti ti-layout-dashboard' : dashboard.iconClass}" /></span>
           <h:outputText value="#{dashboard.title}" />
           <p:tooltip for="dashboard-title-group" value="#{dashboard.title}" trackMouse="true" hideEvent="mouseleave click" styleClass="dashboard-configuration-tooltip"/>
         </h:panelGroup>
       </p:column>
-      <p:column headerText="#{ivy.cms.co('/Labels/Permissions')}">
+      <p:column headerText="#{ivy.cms.co('/Labels/Permissions')}" rendered="#{isPublicDashboard}" width="15%">
         <h:panelGroup id="dashboard-permissions-group" styleClass="u-truncate-text" layout="block">
           <h:outputText value="#{dashboardModificationBean.generateDashboardPermisisonForDisplay(dashboard)}" />
           <p:tooltip for="dashboard-permissions-group" value="#{dashboardModificationBean.generateDashboardPermisisonForDisplay(dashboard)}" trackMouse="true" hideEvent="mouseleave click" styleClass="dashboard-configuration-tooltip"/>
@@ -175,13 +175,13 @@
         value="#{dashboardModificationBean.hiddenDashboards}" var="hiddenDashboard"
         styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" width="25%">
           <h:panelGroup id="hidden-dashboard-title-group" styleClass="u-truncate-text flex align-items-center gap-2" layout="block">
             <span class="dashboard-icon-container"><i class="#{empty hiddenDashboard.iconClass ? 'ti ti-layout-dashboard' : hiddenDashboard.iconClass}" /></span>
             <h:outputText value="#{hiddenDashboard.title}" />
           </h:panelGroup>
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/Labels/Permissions')}">
+        <p:column headerText="#{ivy.cms.co('/Labels/Permissions')}" width="15%">
           <h:panelGroup id="hidden-dashboard-permissions-group" styleClass="u-truncate-text" layout="block">
             <h:outputText value="#{dashboardModificationBean.generateDashboardPermisisonForDisplay(hiddenDashboard)}" />
           </h:panelGroup>

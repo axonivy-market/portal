@@ -838,7 +838,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AddItem: Add item
       Label: Label
       Source: Source
-      Target: Target
+      Target: Links to
       MenuManagement: Menu management
       MenuManagementTabInfo: 'Manage the top-level sidebar navigation items. You can:<ul><li>Add new menu entries (dashboards, external links, Ivy processes)</li><li>Reorder items by drag and drop</li><li>Edit or remove existing menu entries</li></ul>'
       PrivateDashboard: Private dashboards

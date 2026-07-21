@@ -842,7 +842,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AddItem: Eintrag hinzufügen
       Label: Bezeichnung
       Source: Quelle
-      Target: Ziel
+      Target: Link zu
       Dashboard: Dashboard
       MenuManagement: Menüverwaltung
       MenuManagementTabInfo: 'Verwalten Sie die Navigationselemente der Seitenleiste. Sie können:<ul><li>Neue Menüeinträge hinzufügen (Dashboards, externe Links, Ivy-Prozesse)</li><li>Einträge per Drag-and-Drop neu anordnen</li><li>Bestehende Menüeinträge bearbeiten oder entfernen</li></ul>'

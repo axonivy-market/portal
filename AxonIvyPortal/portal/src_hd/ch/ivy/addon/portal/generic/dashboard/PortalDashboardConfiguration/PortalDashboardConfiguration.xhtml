@@ -175,7 +175,7 @@
                   draggableRows="true" rowDragSelector="i.ti-grip-vertical">
                   <p:ajax event="rowReorder" global="false" update="menu-table" listener="#{menuManagementBean.onRowReorder}"/>
 
-                  <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Label')}">
+                  <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Label')}" width="20%">
                     <h:panelGroup id="menu-label-group" styleClass="u-truncate-text flex align-items-center gap-2" layout="block">
                       <span class="dashboard-icon-container">
                         <i class="#{menu.iconClass} menu-table-label-icon" aria-hidden="true" />
@@ -194,7 +194,7 @@
                     </h:panelGroup>
                   </p:column>
 
-                  <p:column headerText="#{ivy.cms.co('/Labels/Permissions')}">
+                  <p:column headerText="#{ivy.cms.co('/Labels/Permissions')}" width="15%">
                     <h:panelGroup id="menu-permissions-group" styleClass="flex align-items-center gap-2" layout="block">
                       <h:outputText styleClass="u-truncate-text"
                         value="#{empty menu.displayedPermission ? '-' : menu.displayedPermission}" />
@@ -209,13 +209,13 @@
                     </h:panelGroup>
                   </p:column>
 
-                  <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/type')}" width="150">
+                  <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/type')}" width="15%">
                     <span class="ui-tag ui-tag-rounded white-space-nowrap #{menuManagementBean.getMenuTypeClass(menu)}">
                       <h:outputText value="#{menuManagementBean.getMenuKindLabel(menuManagementBean.resolveMenuKind(menu))}" />
                     </span>
                   </p:column>
 
-                  <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Source')}" width="170">
+                  <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Source')}" width="10%">
                     <h:panelGroup id="menu-source-group" layout="block" styleClass="flex align-items-center gap-2">
                       <h:outputText value="#{menuManagementBean.getMenuSourceLabel(menu)}" />
                       <h:outputText id="callable-info-icon" styleClass="ti ti-info-circle menu-source-info-icon"
