@@ -22,10 +22,8 @@ import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
-import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.ICustomFieldOrderBy;
@@ -49,7 +47,6 @@ public class DashboardTaskSearchCriteria {
     TaskSortingQueryAppender appender = new TaskSortingQueryAppender(query);
     query = appender.appendSorting(this).toQuery();
     appendQuickSearchQuery(query);
-    Ivy.log().info("[QueryDebug] final TaskQuery:\n{0}", query);
     return query;
   }
 
@@ -79,30 +76,18 @@ public class DashboardTaskSearchCriteria {
         continue;
       }
 
-      // The column is the source of truth for the case scope. Resolve it locally for THIS query only
-      // and restore the stored type afterwards - never persist it (a migration will fix stored data).
-      DashboardColumnType storedType = filter.getFilterType();
-      DashboardColumnType resolvedType = DashboardWidgetUtils.resolveCaseCustomColumnType(this.columns, filter);
-      if (resolvedType == null) {
-        // Untyped filter (stored type null) with no matching column to resolve it from - e.g. an
-        // orphaned filter from legacy/migrated data. TaskFilterFieldFactory.findBy() switches on the
-        // type and has no null case, so it would NPE instead of hitting its default branch. Skip this
-        // one filter rather than let it break the whole query build.
+      // The stored type is authoritative: predefined filters are migrated on read by the JSON converter,
+      // saved user filters by the buildWidgetModels migration, and new filters are typed correctly at
+      // creation. An untyped filter (null type) would NPE in findBy()'s switch (no null case), so skip it.
+      if (filter.getFilterType() == null) {
         continue;
       }
-      filter.setFilterType(resolvedType);
-      Ivy.log().info("[QueryDebug] filter field={0} storedType={1} resolvedType={2} operator={3}",
-          filter.getField(), storedType, resolvedType, filter.getOperator());
-      try {
-        FilterField filterField = TaskFilterFieldFactory.findBy(filter.getField(), filter.getFilterType());
-        if (filterField != null) {
-          TaskQuery filterQuery = filterField.generateFilterTaskQuery(filter);
-          if (filterQuery != null) {
-            query.where().and(filterQuery);
-          }
+      FilterField filterField = TaskFilterFieldFactory.findBy(filter.getField(), filter.getFilterType());
+      if (filterField != null) {
+        TaskQuery filterQuery = filterField.generateFilterTaskQuery(filter);
+        if (filterQuery != null) {
+          query.where().and(filterQuery);
         }
-      } finally {
-        filter.setFilterType(storedType);
       }
     }
   }
