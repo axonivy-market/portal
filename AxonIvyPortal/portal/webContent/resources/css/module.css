@@ -3208,16 +3208,17 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   line-break: anywhere;
 }
 
-.ui-button.primary-color-light-button {
-  background: var(--portal-accessibility-bg-color); 
-  color: var(--portal-button-text-color);
-  font-weight: 600;
-  height: 3.25rem;
+body .ui-button {
+  background: var(--button-primary-bg-color);
+  border-color: var(--button-primary-bg-color);
+  color: var(--button-primary-text-color);
 }
 
-.ui-button.primary-color-light-button:hover {
-  background: hsla(var(--ivy-primary-light-color-h), var(--ivy-primary-light-color-s), 89%, 1); 
-  color: var(--ivy-primary-color);
+body .ui-button:hover {
+  background: var(--button-primary-bg-color);
+  border-color: var(--button-primary-bg-color);
+  color: var(--button-primary-text-color);
+  opacity: 0.85;
 }
 
 .add-absence-dialog .deputy-selection-scroll-wrapper {
@@ -5537,7 +5538,7 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 
 .dashboard-type-list li.active {
   background-color: transparent;
-  border-color: var(--primary-color);
+  border-color: var(--dashboard-tab-active-color);
 }
 
 .dashboard-type-list li a {
@@ -5549,13 +5550,13 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 }
 
 .dashboard-type-list li.active a {
-  color: var(--primary-color);
+  color: var(--dashboard-tab-active-color);
   font-weight: 700;
   opacity: 1;
 }
 
 .dashboard-type-list li.active i {
-  color: var(--primary-color);
+  color: var(--dashboard-tab-active-color);
   opacity: 1;
 }
 

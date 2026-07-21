@@ -767,7 +767,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       GeneralInfo: 'Portalの設定ファイルをポータブルなZIPパッケージとして管理します。エクスポートを使用すると、現在のすべてのJSON設定ファイルを1つのZIPアーカイブにまとめてダウンロードできます。インポートを使用すると、ZIPパッケージをアップロードしてその設定を適用できます（既存の設定は置き換えられます）。'
       ExportTitle: エクスポート
       ExportDescription: Portalの設定ファイルをZIPパッケージとしてエクスポートします。既存のデータがあるファイルのみ選択できます。
-      ExportNote: 空でないファイルのみパッケージに含まれます。
       ExportButton: エクスポート
       ImportTitle: インポート
       ImportDescription: 必要なJSONファイルを含むZIPファイルをアップロードしてください。ファイル名は上記のパターンに従う必要があります。

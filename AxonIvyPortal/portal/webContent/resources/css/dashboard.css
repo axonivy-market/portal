@@ -2301,6 +2301,7 @@ body.dark .menu-type-static {
 
 .sidebar-settings-card .sidebar-mode-select {
   min-width: 14rem;
+  background-color: var(--sidebar-mode-select-bg-color);
 }
 
 .sidebar-settings-card .sidebar-reload-warning {

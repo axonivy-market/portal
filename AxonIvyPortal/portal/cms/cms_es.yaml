@@ -768,7 +768,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       GeneralInfo: 'Gestione los archivos de configuración de Portal como un paquete ZIP portátil. Use Exportar para descargar todos los archivos de configuración JSON actuales agrupados en un único archivo ZIP, o use Importar para cargar un paquete ZIP y aplicar sus configuraciones, reemplazando las existentes.'
       ExportTitle: Exportar
       ExportDescription: Exporte los archivos de configuración de Portal como un paquete ZIP. Solo los archivos con datos existentes están disponibles para su selección.
-      ExportNote: Solo se incluyen en el paquete los archivos no vacíos.
       ExportButton: Exportar
       ImportTitle: Importar
       ImportDescription: Cargue un archivo ZIP que incluya los archivos JSON requeridos. Los nombres de archivo deben seguir el patrón anterior.

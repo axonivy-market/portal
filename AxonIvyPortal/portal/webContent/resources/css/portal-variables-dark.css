@@ -373,6 +373,10 @@
 
   --sidebar-settings-card-bg-color: var(--ivy-portal-color-gray-20);
   --sidebar-settings-card-border-color: var(--ivy-dashboard-icon-border-dark);
+  --sidebar-mode-select-bg-color: var(--ivy-primary-color-grey-dark);
+  --button-primary-bg-color: var(--ivy-primary-color-white);
+  --button-primary-text-color: var(--ivy-primary-color-black);
+  --dashboard-tab-active-color: var(--ivy-primary-color-white);
 
   --card-box-shadow: 0 0 27px 0 rgba(0, 0, 0, 0.4);
 }
