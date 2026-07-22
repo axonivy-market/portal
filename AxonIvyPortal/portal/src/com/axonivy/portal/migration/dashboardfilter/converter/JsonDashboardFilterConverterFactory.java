@@ -25,9 +25,13 @@ public class JsonDashboardFilterConverterFactory extends AbstractJsonConverterFa
       new com.axonivy.portal.migration.dashboardfilter.converter.v113.DashboardTaskWidgetFilterConverter()
     );
 
+  private static final List<IJsonConverter> LE121 = List
+      .of(new com.axonivy.portal.migration.dashboardfilter.converter.v121.DashboardTaskWidgetFilterTypeConverter());
+
   static {
     CONVERTERS.addAll(LE112);
     CONVERTERS.addAll(LE113);
+    CONVERTERS.addAll(LE121);
   }
 
   

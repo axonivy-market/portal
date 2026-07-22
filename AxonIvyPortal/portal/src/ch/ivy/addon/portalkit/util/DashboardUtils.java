@@ -332,6 +332,18 @@ public class DashboardUtils {
         .getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
   }
 
+  /**
+   * Returns the session user's dashboards, preferring the warm {@code PORTAL_DASHBOARDS} session cache
+   * (populated whenever the user is on a dashboard) and falling back to a fresh {@link #collectDashboards()}
+   * when the cache is cold. The returned dashboards are already migrated, so their widget columns carry the
+   * correct type - the authoritative source for read-time filter migrations.
+   */
+  public static List<Dashboard> getSessionDashboards() {
+    List<Dashboard> cached = Optional.ofNullable(getPortalDashboardItemWrapper())
+        .map(PortalDashboardItemWrapper::dashboards).orElse(null);
+    return CollectionUtils.isNotEmpty(cached) ? cached : collectDashboards();
+  }
+
   public static boolean isMainDashboard(String dashboardId, boolean defaultValue) {
     if (StringUtils.isEmpty(dashboardId)) {
       return false;
