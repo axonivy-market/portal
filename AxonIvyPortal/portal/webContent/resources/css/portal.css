@@ -686,16 +686,14 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   font-size: var(--task-state-font-size);
   line-height: var(--task-state-line-height);
   border: 1px solid; }
-
-.state-cell .open-task-state,
-.state-column .open-task-state, .case-detail-body .open-task-state {
+.case-detail-body .open-task-state {
   background: var(--task-state-suspended-background);
   border-color: var(--task-state-suspended-border-color);
   color: var(--task-state-suspended-color); }
 
 .state-cell .in_progress-task-state,
 .case-detail-body .in_progress-task-state {
-  color: var(--ivy-primary-color-black);
+  color: var(--task-state-resumed-color);
   background: var(--task-state-resumed-background);
   border-color: var(--task-state-resumed-background); }
 
@@ -705,8 +703,7 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   border-color: var(--task-state-done-background);
   color: var(--task-state-done-color) }
 
-.state-cell .open-task-state,
-.state-column .open-task-state {
+.state-cell .open-task-state {
   background: var(--task-state-parked-background);
   border-color: var(--task-state-parked-background); }
 
