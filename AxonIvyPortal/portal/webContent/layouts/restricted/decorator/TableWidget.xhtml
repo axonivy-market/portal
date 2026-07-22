@@ -94,52 +94,31 @@
         </h:form>
     </h:panelGroup> -->
 
-    <h:panelGroup id="actions-button-panel-#{index}" layout="block"
-        styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1' } widget-header-show-pin"
-        rendered="true">
-        <h:form id="actions-widget-form">
-          <p:menuButton id="actions-menu-button"  buttonStyleClass="rounded-button ui-button-widget ui-button-outlined actions-menu-button-#{index}" icon="ti ti-dots">
-            <p:menuitem id="bulk-delegate-toggle-button-#{index}"
-              icon="si si-list-bullets" value="Bulk selection"
-              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/toggleBulkDelegation')}"
-              styleClass="rounded-button ui-button-outlined u-mar-right-5 ui-button-widget #{bulkActionBean.isInBulkMode(widget) ? 'ui-button-primary' : ''}"
-              actionListener="#{bulkActionBean.startBulkDelegation(widget)}"
-              update="@(.delegation-action-bar-#{widget.id}) @(.widget-header-default-actions-#{widget.id}) #{componentToUpdateOnResetFilter}"
-              process="@this">
-            </p:menuitem>
-            <p:menuitem id="info-menu-item-#{index}"
-              icon="ti ti-brand-google-analytics"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}"
-              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetInfoContext', [widgetName])}"
-              rendered="#{renderInfo}"
-              onclick="event.preventDefault(); PF('info-overlay-panel-#{index}').show($('.actions-menu-button-#{index}')); return false;" />
-          </p:menuButton>
-        </h:form>
-
-    </h:panelGroup>
-
     <h:panelGroup id="widget-header-quick-search-#{index}" layout="block"
       styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1'} widget-header-quick-search"
       rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch()}">
       <h:form id="quick-search-form" onkeydown="if (isPressedSpecialKeys(event) == true) { return false; }">
       <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
-      <p:inputText id="quick-search-input-#{index}" value="#{widget.quickSearchKeyword}"
-        placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}"
-        onkeydown="handleKeyDown(event)" disabled="#{!isReadOnlyMode}">
-        <p:tooltip styleClass="quick-search-input-tooltip"  for="quick-search-input-#{index}" value="#{dashboardBean.searchScope}" position="top" />
-        <p:ajax delay="800" listener="#{widget.updateQuickSearchKeyword()}"
-          onstart="return shouldTriggerAjax(event)"
-          event="keydown" process="@this"
-          update="#{componentToUpdateOnResetFilter}" />
+      <span class="ui-input-icon-right">
+        <i class="ti ti-search" />
+        <p:inputText id="quick-search-input-#{index}" value="#{widget.quickSearchKeyword}"
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}"
+          onkeydown="handleKeyDown(event)" disabled="#{!isReadOnlyMode}">
+          <p:tooltip styleClass="quick-search-input-tooltip"  for="quick-search-input-#{index}" value="#{dashboardBean.searchScope}" position="top" />
+          <p:ajax delay="800" listener="#{widget.updateQuickSearchKeyword()}"
+            onstart="return shouldTriggerAjax(event)"
+            event="keydown" process="@this"
+            update="#{componentToUpdateOnResetFilter}" />
 
-        <p:ajax delay="100" listener="#{widget.updateQuickSearchKeyword()}"
-          event="cut" process="@this"
-          update="#{componentToUpdateOnResetFilter}" />
+          <p:ajax delay="100" listener="#{widget.updateQuickSearchKeyword()}"
+            event="cut" process="@this"
+            update="#{componentToUpdateOnResetFilter}" />
 
-        <p:ajax delay="100" listener="#{widget.updateQuickSearchKeyword()}"
-          event="paste" process="@this"
-          update="#{componentToUpdateOnResetFilter}" />
-      </p:inputText>
+          <p:ajax delay="100" listener="#{widget.updateQuickSearchKeyword()}"
+            event="paste" process="@this"
+            update="#{componentToUpdateOnResetFilter}" />
+        </p:inputText>
+      </span>
       </h:form>
     </h:panelGroup>
 
@@ -157,11 +136,51 @@
       </h:form>
     </h:panelGroup> -->
     
-    <h:panelGroup layout="block" styleClass="quick-search-icon" rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch() and widget.type eq 'PROCESS'}">
+    <h:panelGroup layout="block" styleClass="quick-search-icon" rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch()}">
      <p:commandButton id="quick-search-icon-#{index}" icon="ti ti-search" styleClass="rounded-button ui-button-outlined u-mar-right-5 ui-button-widget"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}"
       onclick="showQuickSearchInput(#{index});" global="false" disabled="#{!isReadOnlyMode}" >
      </p:commandButton>
+    </h:panelGroup>
+
+    <h:panelGroup id="actions-button-panel-#{index}" layout="block"
+        styleClass="#{isReadOnlyMode ? 'mr-2' : 'mr-1' } widget-header-show-pin"
+        rendered="true">
+        <h:form id="actions-widget-form">
+          <p:menuButton id="actions-menu-button" menuStyleClass="actions-menu-panel" collision="flipfit"  buttonStyleClass="rounded-button ui-button-widget ui-button-outlined actions-menu-button-#{index}" icon="ti ti-dots">
+            <p:menuitem id="bulk-delegate-toggle-button-#{index}" rendered="#{renderSelectionToggle}"
+              icon="si si-list-bullets" value="Bulk selection"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/toggleBulkDelegation')}"
+              styleClass="flex align-items-center" containerStyleClass="actions-menu-item-bordered"
+              actionListener="#{bulkActionBean.startBulkDelegation(widget)}"
+              update="@(.delegation-action-bar-#{widget.id}) @(.widget-header-default-actions-#{widget.id}) #{componentToUpdateOnResetFilter}"
+              process="@this">
+            </p:menuitem>
+            <p:menuitem value="#{dashboardBean.showPinnedItemToggleLabel(widget)}"
+              icon="#{widget.showPinnedItem ? 'tif tif-pin' : 'ti ti-pin'}"
+              action="#{dashboardBean.togglePinned(widget)}"
+              update="#{componentToUpdateOnResetFilter} actions-widget-form" process="@this" />
+            <p:divider/>
+            <p:menuitem id="filter-sidebar-link-item-#{index}" value="Filter" icon="ti ti-filter"
+              containerStyleClass="actions-menu-item-bordered"/>
+            <p:menuitem id="info-menu-item-#{index}"
+              icon="ti ti-info-circle"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetInfoContext', [widgetName])}"
+              rendered="#{renderInfo}"
+              onclick="event.preventDefault(); PF('info-overlay-panel-#{index}').show($('.actions-menu-button-#{index}')); return false;" />
+          </p:menuButton>
+        </h:form>
+    </h:panelGroup>
+
+    <h:panelGroup id="view-toggle-panel-#{index}" layout="block" rendered="#{widget.type ne 'PROCESS'}"
+        styleClass="widget-view-toggle">
+      <p:commandButton id="view-toggle-list-#{index}" type="button" icon="ti ti-list"
+        styleClass="widget-view-toggle__button widget-view-toggle__button--active"
+        ariaLabel="List view" global="false" />
+      <p:commandButton id="view-toggle-grid-#{index}" type="button" icon="ti ti-layout-grid"
+        styleClass="widget-view-toggle__button"
+        ariaLabel="Grid view" global="false" />
     </h:panelGroup>
 
     <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block">
@@ -205,7 +224,7 @@
         <c:set var="countFilter" value="#{widget.userDefinedFiltersCount.isPresent() ? widget.userDefinedFiltersCount.get():0}"/>
         <p:badge value="#{countFilter}" visible="#{countFilter ne '0'}"
           rendered="#{renderFilter}" styleClass="widget__filter-noti-number">
-          <p:commandButton id="filter-sidebar-link-#{index}" type="button" icon="ti ti-filter"
+          <p:commandButton id="filter-sidebar-link-#{index}" type="button" icon="ti ti-filter" rendered="false"
             ariaLabel="#{countFilter ne '0' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetFiltersWithCountContext', [widgetName, countFilter]) : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetFiltersContext', [widgetName])}"
             styleClass="rounded-button widget__filter-sidebar-link ui-button-outlined ui-button-widget" />
         </p:badge>

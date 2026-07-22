@@ -618,15 +618,15 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   public void togglePinned(DashboardWidget widget) {
-    widget.setShowPinnedItem(isShowPinnedItem);
+    widget.setShowPinnedItem(!widget.getShowPinnedItem());
     widget.toggleShowPinned();
   }
 
-  public String showPinnedItemToggleLable(DashboardWidget widget) {
-    if (DashboardWidgetType.TASK.equals(widget.getType())) {
-      return Ivy.cms().co("/Labels/PinnedTasks");
-    }
-    return Ivy.cms().co("/Labels/PinnedCases");
+  public String showPinnedItemToggleLabel(DashboardWidget widget) {
+    String action = widget.getShowPinnedItem() ? "Hide" : "Show";
+    String entity = DashboardWidgetType.TASK.equals(widget.getType()) ? "tasks" : "cases";
+
+    return String.format("%s pinned %s", action, entity);
   }
 
   public boolean isTaskWidget(DashboardWidget widget) {

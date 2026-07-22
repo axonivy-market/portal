@@ -6013,7 +6013,8 @@ body .ui-link.ui-sidestep-action, .action-container > .ui-sidestep-action {
 }
 
 body .ui-button.ui-button-outlined.ui-button-widget, .ui-button.ui-widget.ui-button-widget {
-  border-color: var(--widget-header-icon);
+  background-color: var(--widget-button-background-color);
+  border-color: var(--widget-button-border-color);
 }
 
 body .ui-button.ui-widget.ui-button-widget {
@@ -6033,6 +6034,38 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page.ui-state-focus {
 body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-button {
   color: var(--widget-header-icon);
 }
+/* =================== WIDGET VIEW TOGGLE ====================== */
+body .widget-view-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.2rem;
+  height: 2.357em;
+  box-sizing: border-box;
+  border-radius: 0.6rem;
+  background-color: var(--widget-button-background-color);
+  border: 1px solid var(--ivy-portal-color-gray-light);
+}
+
+body .widget-view-toggle .ui-button.widget-view-toggle__button,
+body .widget-view-toggle .ui-button.ui-widget.widget-view-toggle__button {
+  height: 100%;
+  width: auto;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  background-color: var(--widget-button-background-color);
+  border: none;
+  box-shadow: none;
+  border-radius: 0.4rem;
+  color: var(--widget-header-icon);
+}
+
+body .widget-view-toggle .ui-button.widget-view-toggle__button.widget-view-toggle__button--active,
+body .widget-view-toggle .ui-button.ui-widget.widget-view-toggle__button.widget-view-toggle__button--active {
+  background-color: #FFFFFF;
+}
+/* =================== WIDGET VIEW TOGGLE END ====================== */
+
 /* =================== PORTAL BUTTON END ====================== */
 
 /* AI logo */
