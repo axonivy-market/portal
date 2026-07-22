@@ -78,7 +78,7 @@
     <h:panelGroup id="widget-header-default-actions-#{index}" layout="block" styleClass="widget-header-default-actions widget-header-default-actions-#{widget.id} flex align-items-center">
     <h:panelGroup rendered="#{not dashboardBean.isTaskWidget(widget) or not bulkActionBean.isInBulkMode(widget)}">
 
-    <h:panelGroup id="show-pin-#{index}" layout="block"
+    <!-- <h:panelGroup id="show-pin-#{index}" layout="block"
         styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1' } widget-header-show-pin"
         rendered="#{dashboardBean.canShowPinnedItemToggle(widget)}">
         <h:form id="show-pin-form">
@@ -92,6 +92,24 @@
                 </p:toggleSwitch>
             </h:panelGroup>
         </h:form>
+    </h:panelGroup> -->
+
+    <h:panelGroup id="actions-button-panel-#{index}" layout="block"
+        styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1' } widget-header-show-pin"
+        rendered="true">
+        <h:form id="actions-widget-form">
+          <p:menuButton id="actions-menu-button" buttonStyleClass="rounded-button ui-button-widget ui-button-outlined" icon="ti ti-dots">
+            <p:menuitem id="bulk-delegate-toggle-button-#{index}"
+              icon="si si-list-bullets" value="Bulk selection"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/toggleBulkDelegation')}"
+              styleClass="rounded-button ui-button-outlined u-mar-right-5 ui-button-widget #{bulkActionBean.isInBulkMode(widget) ? 'ui-button-primary' : ''}"
+              actionListener="#{bulkActionBean.startBulkDelegation(widget)}"
+              update="@(.delegation-action-bar-#{widget.id}) @(.widget-header-default-actions-#{widget.id}) #{componentToUpdateOnResetFilter}"
+              process="@this">
+            </p:menuitem>
+          </p:menuButton>
+        </h:form>
+
     </h:panelGroup>
 
     <h:panelGroup id="widget-header-quick-search-#{index}" layout="block"
@@ -119,7 +137,7 @@
       </h:form>
     </h:panelGroup>
 
-    <h:panelGroup layout="block" styleClass="u-mar-right-2" rendered="#{renderSelectionToggle}">
+    <!-- <h:panelGroup layout="block" styleClass="u-mar-right-2" rendered="#{renderSelectionToggle}">
       <h:form id="toggle-delegation-form">
         <p:commandButton id="bulk-delegate-toggle-button-#{index}"
           icon="si si-list-bullets"
@@ -131,7 +149,7 @@
         <p:tooltip for="bulk-delegate-toggle-button-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/toggleBulkDelegation')}"
           trackMouse="true" hideEvent="mouseleave click" />
       </h:form>
-    </h:panelGroup>
+    </h:panelGroup> -->
     
     <h:panelGroup layout="block" styleClass="quick-search-icon" rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch() and widget.type eq 'PROCESS'}">
      <p:commandButton id="quick-search-icon-#{index}" icon="ti ti-search" styleClass="rounded-button ui-button-outlined u-mar-right-5 ui-button-widget"
@@ -197,7 +215,7 @@
         rendered="#{renderInfo}"
         hideEvent="mouseleave click" />
 
-      <p:commandButton id="expand-link-#{index}" type="button" icon="ti ti-arrows-maximize"
+      <!-- <p:commandButton id="expand-link-#{index}" type="button" icon="ti ti-arrows-maximize"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widgetName])}"
         styleClass="rounded-button ui-button-outlined expand-link u-mar-right-5 ui-button-widget"
         rendered="#{renderExpandCollapse}" onclick="expandFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')"/>
@@ -206,7 +224,7 @@
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext', [widgetName])}"
         styleClass="rounded-button ui-button-outlined collapse-link u-mar-right-5 ui-button-widget"
         rendered="#{renderExpandCollapse}"
-        onclick="collapseFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')" />
+        onclick="collapseFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')" /> -->
 
       <p:commandButton id="edit-widget-#{index}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
