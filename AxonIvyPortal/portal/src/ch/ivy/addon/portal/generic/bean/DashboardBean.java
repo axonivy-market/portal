@@ -37,6 +37,8 @@ import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
+import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseEmptyMessage;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
@@ -183,9 +185,42 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     for (var widget : dashboard.getWidgets()) {
       DashboardWidgetUtils.buildWidgetColumns(widget);
       if (!(widget instanceof SingleProcessDashboardWidget)) {
+        migrateSavedFilterCaseScopes(widget);
         WidgetFilterService.getInstance().applyUserFilterFromSession(widget);
       }
       DashboardWidgetUtils.removeStyleNewWidget(widget);
+    }
+  }
+
+  /**
+   * Migrates task-widget saved filters (per-user property) whose case-custom fields were persisted with
+   * the wrong scope (always {@code custom_case}, even for business-case fields). The saved-filter JSON
+   * carries no columns, so the type is re-derived from the widget's live columns - the authoritative
+   * source (see {@link DashboardWidgetUtils#resolveCaseCustomColumnType}) - and re-saved. Runs at load,
+   * before the widget is queried; idempotent, so it stops writing once the data is corrected. Predefined
+   * dashboard filters are migrated separately by the dashboard JSON converter; new filters are typed
+   * correctly at creation.
+   */
+  private void migrateSavedFilterCaseScopes(DashboardWidget widget) {
+    if (widget.getType() != DashboardWidgetType.TASK) {
+      return;
+    }
+    List<TaskColumnModel> columns = ((TaskDashboardWidget) widget).getColumns();
+    if (CollectionUtils.isEmpty(columns)) {
+      return;
+    }
+    for (WidgetFilterModel model : WidgetFilterService.getInstance().findFiltersByWidgetId(widget.getId())) {
+      boolean changed = false;
+      for (DashboardFilter filter : CollectionUtils.emptyIfNull(model.getUserFilters())) {
+        DashboardColumnType resolved = DashboardWidgetUtils.resolveCaseCustomColumnType(columns, filter);
+        if (resolved != null && resolved != filter.getFilterType()) {
+          filter.setFilterType(resolved);
+          changed = true;
+        }
+      }
+      if (changed) {
+        WidgetFilterService.getInstance().save(model);
+      }
     }
   }
 
