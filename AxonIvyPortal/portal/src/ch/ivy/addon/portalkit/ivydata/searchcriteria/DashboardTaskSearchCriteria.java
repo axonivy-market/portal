@@ -76,9 +76,14 @@ public class DashboardTaskSearchCriteria {
         continue;
       }
 
+      // The stored type is authoritative: predefined filters are migrated on read by the JSON converter,
+      // saved user filters by the buildWidgetModels migration, and new filters are typed correctly at
+      // creation. An untyped filter (null type) would NPE in findBy()'s switch (no null case), so skip it.
+      if (filter.getFilterType() == null) {
+        continue;
+      }
       FilterField filterField = TaskFilterFieldFactory.findBy(filter.getField(), filter.getFilterType());
       if (filterField != null) {
-        
         TaskQuery filterQuery = filterField.generateFilterTaskQuery(filter);
         if (filterQuery != null) {
           query.where().and(filterQuery);

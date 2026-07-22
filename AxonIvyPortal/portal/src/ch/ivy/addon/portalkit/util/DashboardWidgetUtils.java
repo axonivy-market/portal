@@ -26,6 +26,8 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
@@ -775,6 +777,43 @@ public class DashboardWidgetUtils {
       }
     }
     return null;
+  }
+
+  /**
+   * Resolves the effective case/business-case type for a filter by treating the widget columns as
+   * the source of truth: it finds the column(s) matching the filter's field and returns the column
+   * type. Business case wins when the same field is both a CUSTOM_CASE and a CUSTOM_BUSINESS_CASE
+   * column. STANDARD and task CUSTOM filters (and fields with no matching case column) are returned
+   * unchanged. This never mutates the filter - the caller decides how to apply the result.
+   *
+   * @param columns the widget columns (the authoritative source of the type)
+   * @param filter the filter whose case scope should be resolved
+   * @return CUSTOM_BUSINESS_CASE / CUSTOM_CASE derived from the column, otherwise the filter's own type
+   */
+  public static DashboardColumnType resolveCaseCustomColumnType(List<? extends AbstractColumn> columns,
+      DashboardFilter filter) {
+    DashboardColumnType current = filter.getFilterType();
+    // Only resolve case-custom (or untyped) filters; never re-type STANDARD or task CUSTOM filters.
+    if (current != null && current != DashboardColumnType.CUSTOM_CASE
+        && current != DashboardColumnType.CUSTOM_BUSINESS_CASE) {
+      return current;
+    }
+    if (CollectionUtils.isEmpty(columns) || filter.getField() == null) {
+      return current;
+    }
+    boolean matchedCaseColumn = false;
+    for (AbstractColumn column : columns) {
+      if (!filter.getField().equals(column.getField())) {
+        continue;
+      }
+      if (column.getType() == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
+        return DashboardColumnType.CUSTOM_BUSINESS_CASE; // business case wins on ambiguity
+      }
+      if (column.getType() == DashboardColumnType.CUSTOM_CASE) {
+        matchedCaseColumn = true;
+      }
+    }
+    return matchedCaseColumn ? DashboardColumnType.CUSTOM_CASE : current;
   }
 
 
