@@ -19,7 +19,7 @@ on:
       testPatternToRun:
         description: 'Test pattern to run'
         type: string
-        default: 'com.axonivy.portal.selenium.a11y.**'
+        default: 'com.axonivy.portal.selenium.accessibility.**'
         required: true
       engineDownloadURL:
         description: |

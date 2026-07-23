@@ -1,10 +1,10 @@
-package com.axonivy.portal.selenium.a11y;
+package com.axonivy.portal.selenium.accessibility;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
-import com.axonivy.portal.selenium.common.A11yHelpers;
+import com.axonivy.portal.selenium.common.AccessibilityHelpers;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
@@ -18,7 +18,7 @@ import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
 @IvyWebTest
-public class TaskCaseDetailA11yTest extends BaseTest{
+public class TaskCaseDetailAccessibilityTest extends BaseTest{
   private static final String EAT_PIZZA = "Eat Pizza";
   private static final String ORDER_PIZZA = "Order Pizza";
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
@@ -43,28 +43,28 @@ public class TaskCaseDetailA11yTest extends BaseTest{
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails(EAT_PIZZA);
     var taskDetailsPage = new TaskDetailsPage();
-    A11yHelpers.makeA11yReport();
+    AccessibilityHelpers.makeA11yReport();
 
     taskDetailsPage.openAddNoteDialog();
-    A11yHelpers.makeElementA11yReport(taskDetailsPage.getAddNoteDialog(), "add-note-dialog");
+    AccessibilityHelpers.makeElementA11yReport(taskDetailsPage.getAddNoteDialog(), "add-note-dialog");
     taskDetailsPage.closeAddNoteDialog();
 
     taskDetailsPage.openAddAttachmentDialog();
-    A11yHelpers.makeElementA11yReport(taskDetailsPage.getAddAttachmentDialog(), "add-attachment-dialog");
+    AccessibilityHelpers.makeElementA11yReport(taskDetailsPage.getAddAttachmentDialog(), "add-attachment-dialog");
     taskDetailsPage.closeAddAttachmentDialog();
 
     taskDetailsPage.openWorkflowEventDialog();
-    A11yHelpers.makeElementA11yReport(taskDetailsPage.getWorkflowEventsTable(), "workflow-event-dialog");
+    AccessibilityHelpers.makeElementA11yReport(taskDetailsPage.getWorkflowEventsTable(), "workflow-event-dialog");
     taskDetailsPage.closeWorkflowEventDialog();
 
     taskDetailsPage.openAfterEscalationDialog();
-    A11yHelpers.makeElementA11yReport(taskDetailsPage.getAfterEscalationDialog(), "after-escalation-dialog");
+    AccessibilityHelpers.makeElementA11yReport(taskDetailsPage.getAfterEscalationDialog(), "after-escalation-dialog");
     taskDetailsPage.closeAfterEscalationDialog();
 
-    A11yHelpers.makeElementA11yReport(taskDetailsPage.openDestroyDialog(), "destroy-dialog");
+    AccessibilityHelpers.makeElementA11yReport(taskDetailsPage.openDestroyDialog(), "destroy-dialog");
     taskDetailsPage.closeDestroyDialog();
 
-    A11yHelpers.makeElementA11yReport(taskDetailsPage.openDelegateDialog(), "delegate-dialog");
+    AccessibilityHelpers.makeElementA11yReport(taskDetailsPage.openDelegateDialog(), "delegate-dialog");
     // taskDetailsPage.closeDelegateDialog();
   }
 
@@ -79,6 +79,6 @@ public class TaskCaseDetailA11yTest extends BaseTest{
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase(ORDER_PIZZA);
     caseDetailsPage.clickChangeDesc();
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
-    A11yHelpers.makeA11yReport();
+    AccessibilityHelpers.makeA11yReport();
   }
 }

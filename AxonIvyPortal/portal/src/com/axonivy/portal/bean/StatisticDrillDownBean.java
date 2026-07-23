@@ -2,12 +2,12 @@ package com.axonivy.portal.bean;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import com.axonivy.portal.service.StatisticService;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class StatisticDrillDownBean implements Serializable {
 

@@ -1,6 +1,6 @@
 package ch.ivy.addon.portal.chat;
 
-import javax.ws.rs.container.AsyncResponse;
+import jakarta.ws.rs.container.AsyncResponse;
 
 /**
  * Stores information for each chat long-polling request, it includes AsyncResponse and clientId

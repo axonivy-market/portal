@@ -128,7 +128,7 @@ public class PortalPackageService {
 
   private void writeRawVariable(ZipOutputStream zos, PortalPackageFile file) throws IOException {
     String json = Ivy.var().get(file.getVariableKey());
-    if (StringUtils.isNotBlank(json) && !"[]".equals(json.trim()) && "{}".equals(json.trim())) {
+    if (StringUtils.isNotBlank(json) && !"[]".equals(json.trim()) && !"{}".equals(json.trim())) {
       writeEntry(zos, file.getFilename(), json);
     }
   }

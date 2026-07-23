@@ -5,9 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -21,7 +21,7 @@ import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivyteam.ivy.environment.Ivy;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class WidgetDateFilterBean implements Serializable {
 

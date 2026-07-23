@@ -2,8 +2,8 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.util.ArrayList;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import ch.ivy.addon.portalkit.constant.DashboardConstants;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
@@ -13,7 +13,7 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 
 @ViewScoped
-@ManagedBean
+@Named
 public class DashboardTemplateSelectionBean extends DashboardModificationBean {
 
   private static final long serialVersionUID = 6975567087140152855L;
