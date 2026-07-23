@@ -57,10 +57,14 @@ public class ResponsibleColumnModel extends TaskColumnModel implements Serializa
 
   @Override
   public Object display(ITask task) {
-    if (task == null || task.getActivator() == null) {
+    if (task == null) {
       return StringUtils.EMPTY;
     }
+    // Resolve the activator once: task.getActivator() was previously dereferenced twice per render.
     ISecurityMember member = task.getActivator();
+    if (member == null) {
+      return StringUtils.EMPTY;
+    }
     return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(member, member.getMemberName());
   }
   

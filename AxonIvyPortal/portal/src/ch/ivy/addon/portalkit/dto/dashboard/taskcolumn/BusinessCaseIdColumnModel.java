@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 
 public class BusinessCaseIdColumnModel extends TaskColumnModel implements Serializable {
@@ -42,10 +43,15 @@ public class BusinessCaseIdColumnModel extends TaskColumnModel implements Serial
 
   @Override
   public Object display(ITask task) {
-    if (task == null || task.getCase() == null) {
+    if (task == null) {
       return null;
     }
-    return task.getCase().getBusinessCase().getId();
+    // Resolve the case once: task.getCase() was previously dereferenced twice per render.
+    ICase caze = task.getCase();
+    if (caze == null) {
+      return null;
+    }
+    return caze.getBusinessCase().getId();
   }
 
   @Override
