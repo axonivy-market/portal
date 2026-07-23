@@ -3320,24 +3320,24 @@ body .ui-button:hover {
   padding-top: 24px;
 }
 
-.deputy-avatar-stack {
+.avatar-stack {
   display: inline-flex;
   align-items: center;
   padding: 0.25rem 0;
 }
 
-.deputy-avatar-stack .deputy-avatar-stack-item {
+.avatar-stack .avatar-stack-item {
   display: inline-flex;
   align-items: center;
 }
 
-.deputy-avatar-stack .deputy-avatar-stack-item + .deputy-avatar-stack-item {
+.avatar-stack .avatar-stack-item + .avatar-stack-item {
   margin-left: -10px;
 }
 
-.deputy-avatar-stack .deputy-avatar-stack-item .ui-avatar,
-.deputy-avatar-stack .deputy-avatar-stack-item img {
-  border: 2px solid var(--surface-0, #fff);
+.avatar-stack .avatar-stack-item .ui-avatar,
+.avatar-stack .avatar-stack-item img {
+  border: 2px solid #FFFFFF;
   box-sizing: content-box;
 }
 
