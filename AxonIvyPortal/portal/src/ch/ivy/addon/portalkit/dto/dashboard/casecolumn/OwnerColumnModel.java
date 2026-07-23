@@ -54,10 +54,21 @@ public class OwnerColumnModel extends CaseColumnModel {
 
   @Override
   public Object display(ICase caze) {
-    if (caze == null || CollectionUtils.isEmpty(caze.owners().all())) {
+    if (caze == null) {
       return StringUtils.EMPTY;
     }
-    return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForCaseOwners(caze.owners());
+    // Resolve the owner list once. caze.owners() and owners.all() were each evaluated more than
+    // once per render (all() is called again inside generateBriefDisplayNameForCaseOwners), so
+    // build the display string from the already-fetched list instead.
+    var owners = caze.owners();
+    var ownerList = owners == null ? null : owners.all();
+    if (CollectionUtils.isEmpty(ownerList)) {
+      return StringUtils.EMPTY;
+    }
+    return ownerList.stream()
+        .map(owner -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(
+            owner.member(), owner.memberName()))
+        .collect(Collectors.joining(", "));
   }
   
   @JsonIgnore
