@@ -105,7 +105,7 @@
                             sortBy="#{absence.amount}" styleClass="absence-duration w-1">
                             <h:outputText value="#{absence.amount} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/days')}" styleClass="absence-column-value" />
                           </p:column>
-                          <p:column rendered="#{absenceManagementBean.canReadSubstitute(absenceManagementBean.selectedAbsenceUser)}" groupRow="true" styleClass="vertical-align-top absence-substitutes"
+                          <p:column rendered="#{absenceManagementBean.canReadSubstitute(absenceManagementBean.selectedAbsenceUser)}" styleClass="vertical-align-top absence-substitutes"
                             headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Substitutes')}" >
                               <c:set var="showAvatar" value="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
                               <c:set var="isMoreThanOneUser" value="#{absenceManagementBean.displaySubstitutesOnAbsenceTab.size() gt 1}" />
