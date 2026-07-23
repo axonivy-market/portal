@@ -24,6 +24,14 @@
   --button-secondary-bg-color: var(--ivy-primary-color-white);
   --button-secondary-text-color: var(--primary-color);
 
+  /* Start button (task widget start column) */
+  --start-btn-bg: var(--ivy-portal-blue-pale);
+  --start-btn-border-color: var(--ivy-portal-blue-muted);
+  --start-btn-text-color: var(--ivy-portal-blue-dark);
+  --start-btn-disabled-bg: var(--ivy-portal-color-gray-spaces);
+  --start-btn-disabled-border-color: var(--ivy-portal-color-gray-light);
+  --start-btn-disabled-text-color: var(--ivy-portal-color-gray-medium);
+
   /* Color and border radius of context button, it only affects when button has attribute styleClass="context-button" */
   --context-button-border-radius: 0px;
   --context-button-background-color: var(--ivy-primary-color-grey-light);
