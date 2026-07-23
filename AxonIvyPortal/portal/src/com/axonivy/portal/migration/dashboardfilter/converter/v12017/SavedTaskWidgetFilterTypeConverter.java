@@ -1,4 +1,4 @@
-package com.axonivy.portal.migration.dashboardfilter.converter.v121;
+package com.axonivy.portal.migration.dashboardfilter.converter.v12017;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,19 +24,10 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 
 /**
- * Re-types each saved task-widget user filter's case scope from its widget column, treating the column
- * as the source of truth: a filter on a business-case custom field becomes {@code custom_business_case}
- * (business case wins when a field is both a case and a business-case column). This is the saved-filter
- * counterpart of {@code dashboard.converter.v121.DashboardTaskWidgetFilterTypeConverter} - it exists
- * because case-custom filters were always persisted as {@code custom_case}, which routes the query to the
- * wrong case scope.
- *
- * <p>Unlike the other dashboardfilter converters, a saved {@link ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel}
- * carries no columns, so the type cannot be resolved from the filter JSON alone. The columns are looked up
- * from the owning widget in the session dashboards (see {@link DashboardUtils#getSessionDashboards()}),
- * which is safe here: this converter runs while a dashboard is loaded, and dashboard collection never reads
- * saved filters (no re-entrancy). Only case-custom (or untyped) filters are touched - STANDARD and task
- * {@code custom} filters are left alone (see {@link DashboardWidgetUtils#resolveCaseCustomColumnType}).
+ * Re-types saved task-widget user filters by case scope, from the widget column (business case wins on a
+ * tie). Saved filters store no columns, so they are looked up from the owning widget in the session
+ * dashboards ({@link DashboardUtils#getSessionDashboards()}) - safe from re-entrancy because dashboard
+ * collection never reads saved filters. Counterpart of the dashboard-track DashboardTaskWidgetFilterTypeConverter.
  */
 public class SavedTaskWidgetFilterTypeConverter implements IJsonConverter {
 
@@ -48,7 +39,7 @@ public class SavedTaskWidgetFilterTypeConverter implements IJsonConverter {
 
   @Override
   public AbstractJsonVersion version() {
-    return new DashboardFilterJsonVersion("12.1.0");
+    return new DashboardFilterJsonVersion("12.0.17");
   }
 
   @Override

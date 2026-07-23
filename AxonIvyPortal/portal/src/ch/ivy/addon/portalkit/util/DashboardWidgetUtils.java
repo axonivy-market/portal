@@ -780,20 +780,13 @@ public class DashboardWidgetUtils {
   }
 
   /**
-   * Resolves the effective case/business-case type for a filter by treating the widget columns as
-   * the source of truth: it finds the column(s) matching the filter's field and returns the column
-   * type. Business case wins when the same field is both a CUSTOM_CASE and a CUSTOM_BUSINESS_CASE
-   * column. STANDARD and task CUSTOM filters (and fields with no matching case column) are returned
-   * unchanged. This never mutates the filter - the caller decides how to apply the result.
-   *
-   * @param columns the widget columns (the authoritative source of the type)
-   * @param filter the filter whose case scope should be resolved
-   * @return CUSTOM_BUSINESS_CASE / CUSTOM_CASE derived from the column, otherwise the filter's own type
+   * Resolves a filter's case scope from the widget columns (the source of truth): CUSTOM_BUSINESS_CASE if a
+   * matching business-case column exists (wins on a tie), else CUSTOM_CASE if a matching case column exists,
+   * else the filter's own type. Only case-custom / untyped filters are resolved; never mutates the filter.
    */
   public static DashboardColumnType resolveCaseCustomColumnType(List<? extends AbstractColumn> columns,
       DashboardFilter filter) {
     DashboardColumnType current = filter.getFilterType();
-    // Only resolve case-custom (or untyped) filters; never re-type STANDARD or task CUSTOM filters.
     if (current != null && current != DashboardColumnType.CUSTOM_CASE
         && current != DashboardColumnType.CUSTOM_BUSINESS_CASE) {
       return current;

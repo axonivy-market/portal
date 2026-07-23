@@ -333,10 +333,8 @@ public class DashboardUtils {
   }
 
   /**
-   * Returns the session user's dashboards, preferring the warm {@code PORTAL_DASHBOARDS} session cache
-   * (populated whenever the user is on a dashboard) and falling back to a fresh {@link #collectDashboards()}
-   * when the cache is cold. The returned dashboards are already migrated, so their widget columns carry the
-   * correct type - the authoritative source for read-time filter migrations.
+   * Session user's dashboards, cache-first ({@code PORTAL_DASHBOARDS}) with a {@link #collectDashboards()}
+   * fallback when cold. Already migrated, so widget columns carry the correct type.
    */
   public static List<Dashboard> getSessionDashboards() {
     List<Dashboard> cached = Optional.ofNullable(getPortalDashboardItemWrapper())

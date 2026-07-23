@@ -1,4 +1,4 @@
-package com.axonivy.portal.migration.dashboard.converter.v121;
+package com.axonivy.portal.migration.dashboard.converter.v12017;
 
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +38,7 @@ public class DashboardTaskWidgetFilterTypeConverter implements IJsonConverter {
 
   @Override
   public AbstractJsonVersion version() {
-    return new DashboardJsonVersion("12.1.0");
+    return new DashboardJsonVersion("12.0.17");
   }
 
   @Override
