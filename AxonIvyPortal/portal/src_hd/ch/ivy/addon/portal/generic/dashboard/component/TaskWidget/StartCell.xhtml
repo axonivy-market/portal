@@ -4,12 +4,11 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-<p:commandLink id="start-task" actionListener="#{dashboardTaskWidgetBean.handleStartTask(task)}" onclick="event.stopPropagation();"
-  disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)} or isPreviewMode or isResizing" oncomplete="resetPortalLeftMenuState()"
-  ariaLabel="#{ariaLabel}"
+<p:commandButton id="start-task" styleClass="ui-button-flat dashboard-tasks__start-button" actionListener="#{dashboardTaskWidgetBean.handleStartTask(task)}" onclick="event.stopPropagation();"
+  disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task) or isPreviewMode or isResizing}" oncomplete="resetPortalLeftMenuState()"
+  ariaLabel="#{ariaLabel}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" icon="ti ti-player-play"
   process="@this">
-  <span class="ti ti-player-play" />
-</p:commandLink>
+</p:commandButton>
 <p:tooltip for="start-task" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskStart')}" trackMouse="true"
   hideEvent="mouseleave click" />
 </html>

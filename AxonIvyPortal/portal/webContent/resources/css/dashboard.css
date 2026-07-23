@@ -737,8 +737,17 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   width: 100%;
 }
 
-.dashboard-tasks__start .ui-commandlink {
-  padding: .5rem 1rem;
+body .ui-button.dashboard-tasks__start-button {
+  border-radius: 100px;
+  border: 1px solid var(--start-btn-border-color);
+  background: var(--start-btn-bg);
+  color: var(--start-btn-text-color);
+}
+
+body .ui-button.dashboard-tasks__start-button.ui-state-disabled {
+  background: var(--start-btn-disabled-bg);
+  border-color: var(--start-btn-disabled-border-color);
+  color: var(--start-btn-disabled-text-color);
 }
 
 body .widget__content .ui-datatable thead th,
