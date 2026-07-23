@@ -3,8 +3,8 @@ package com.axonivy.portal.components.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import com.axonivy.portal.components.constant.PortalComponentConstants;
 import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;
@@ -12,7 +12,7 @@ import com.axonivy.portal.components.persistence.converter.BusinessEntityConvert
 /**
  * Contains utilities, use them in xhtml. This bean is mentioned Portal documentation, handle it like public API.
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class PortalComponentUtilsBean implements Serializable {
 

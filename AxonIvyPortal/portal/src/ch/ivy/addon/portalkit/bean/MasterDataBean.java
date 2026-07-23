@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.FacesMessage;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
@@ -33,7 +33,7 @@ import ch.ivy.addon.portalkit.service.GrowlMessageService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
-@ManagedBean
+@Named
 @SessionScoped
 public class MasterDataBean implements Serializable {
 

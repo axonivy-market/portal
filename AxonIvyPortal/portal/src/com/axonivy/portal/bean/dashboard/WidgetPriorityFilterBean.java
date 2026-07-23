@@ -6,9 +6,9 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
@@ -17,7 +17,7 @@ import com.axonivy.portal.service.filter.operatorpolicy.service.GlobalOperatorPo
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class WidgetPriorityFilterBean implements Serializable {
 

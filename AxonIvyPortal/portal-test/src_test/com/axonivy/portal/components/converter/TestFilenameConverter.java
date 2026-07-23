@@ -2,7 +2,10 @@ package com.axonivy.portal.components.converter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import javax.faces.component.UIComponentBase;
+import java.util.HashMap;
+import java.util.Map;
+
+import jakarta.faces.component.UIComponentBase;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,9 +14,16 @@ import org.junit.jupiter.params.provider.NullSource;
 class TestFilenameConverter {
 
   static class StubComponent extends UIComponentBase {
+    private final Map<String, Object> attributes = new HashMap<>();
+
     @Override
     public String getFamily() {
       return "stub";
+    }
+
+    @Override
+    public Map<String, Object> getAttributes() {
+      return attributes;
     }
   }
 

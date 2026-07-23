@@ -2,11 +2,11 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.lang.reflect.Field;
 
-import javax.el.ELContext;
-import javax.el.MethodExpression;
-import javax.faces.application.Application;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
+import jakarta.el.ELContext;
+import jakarta.el.MethodExpression;
+import jakarta.faces.application.Application;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.lang3.ClassUtils;
 

@@ -4,8 +4,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.regex.Pattern;
 
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.faces.context.FacesContext;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 

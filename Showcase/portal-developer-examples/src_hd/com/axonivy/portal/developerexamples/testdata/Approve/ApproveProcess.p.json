@@ -88,7 +88,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "FacesContext.getCurrentInstance().getExternalContext().redirect(ivy.html.applicationHomeRef());"
           ]

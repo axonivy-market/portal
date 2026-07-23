@@ -2,12 +2,12 @@ package com.axonivy.portal.components.converter;
 
 import java.util.Map;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
-import javax.faces.convert.FacesConverter;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.convert.Converter;
+import jakarta.faces.convert.ConverterException;
+import jakarta.faces.convert.FacesConverter;
 
 /**
  * Converter that can handle POJOs. Can handle each type of object.
@@ -21,7 +21,7 @@ import javax.faces.convert.FacesConverter;
  * Attention: This converter could fail in rare cases because it is based on the identityHashcode which is not unique for an object.
  */
 @FacesConverter("pojoConverter")
-public class PojoConverter implements Converter {
+public class PojoConverter implements Converter<Object> {
   private static final String UNIQUE_CONVERTER_IDENTIFIER = PojoConverter.class.getName();
   private static final String KEY_DELIMITER = ":::";
   private static final String MAP_KEY_TEMPLATE = UNIQUE_CONVERTER_IDENTIFIER + KEY_DELIMITER + "%s" + KEY_DELIMITER

@@ -2,12 +2,12 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.RequestScoped;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 
-@ManagedBean
+@Named
 @RequestScoped
 public class NavigatorBean implements Serializable {
   private static final long serialVersionUID = 1L;

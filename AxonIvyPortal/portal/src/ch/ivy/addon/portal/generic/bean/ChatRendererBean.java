@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.Optional;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
@@ -18,7 +18,7 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class ChatRendererBean implements Serializable {
 

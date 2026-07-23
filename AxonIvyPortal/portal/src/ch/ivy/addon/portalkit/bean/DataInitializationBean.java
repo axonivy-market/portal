@@ -2,13 +2,13 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.SessionScoped;
 
 import ch.ivy.addon.portalkit.util.RoleUtils;
 
-@ManagedBean
+@Named
 @SessionScoped
 public class DataInitializationBean implements Serializable {
   private static final long serialVersionUID = 1L;

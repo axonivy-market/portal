@@ -25,7 +25,7 @@
     "name" : "queryLanguage"
   }, {
     "name" : "formatLanguages",
-    "type" : "java.util.List<javax.faces.model.SelectItem>"
+    "type" : "java.util.List<jakarta.faces.model.SelectItem>"
   }, {
     "name" : "isShortcutEnabled",
     "type" : "Boolean"

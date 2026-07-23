@@ -8,7 +8,7 @@ import java.util.Base64;
 import java.util.List;
 import java.util.stream.Stream;
 
-import javax.faces.context.FacesContext;
+import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
