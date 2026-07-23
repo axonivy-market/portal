@@ -86,14 +86,6 @@
           "canWorkOn": true,
           "columns": [
             {
-              "field": "start",
-              "width": "53"
-            },
-            {
-              "field": "priority",
-              "width": "50"
-            },
-            {
               "field": "id",
               "visible": false
             },
@@ -114,16 +106,16 @@
               "width": "60"
             },
             {
-              "field": "startTimestamp",
-              "width": "80"
-            },
-            {
               "field": "expiryTimestamp",
               "width": "80"
             },
             {
               "field": "category",
               "visible": false
+            },
+            {
+              "field": "start",
+              "width": "53"
             },
             {
               "field": "actions",
