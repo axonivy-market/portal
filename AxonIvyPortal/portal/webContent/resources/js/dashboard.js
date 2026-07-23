@@ -102,7 +102,7 @@ function loadGrid(isResponsive) {
       if (descriptionElement.length > 0) {
         setupImageProcessWidgetDescription(descriptionElement);
       }
-      udateResizableTablesWhenResizeWidget();
+      updateResizableTablesWhenResizeWidget();
       setupGridProcessWidget();
     });
 
@@ -235,6 +235,14 @@ function expandFullscreen(index, widgetId) {
   }
 }
 
+function getReservedHeightForTableBody(tableBody) {
+  let card = tableBody.closest('.grid-stack-item-content.card.dashboard-card');
+  let widgetHeader     = card.find('.widget__header').outerHeight(true) || 0;
+  let scrollableHeader = tableBody.siblings('.ui-datatable-scrollable-header').outerHeight(true) || 0;
+  let scrollableFooter = tableBody.siblings('.ui-datatable-scrollable-footer').outerHeight(true) || 0;
+  return widgetHeader + scrollableHeader + scrollableFooter;
+}
+
 let resizeObserver;
 function resizeTableBody() {
   if (!resizeObserver) {
@@ -244,12 +252,9 @@ function resizeTableBody() {
           let tableBody = $(entry.target);
           let parentHeight = tableBody.parents('.grid-stack-item-content.card.dashboard-card').height();
 
-          if (!window.matchMedia("(max-width: 767px)").matches) {
-            if (tableBody.height() !== parentHeight - 100) {
-              tableBody.height(parentHeight - 100);
-            }
-          } else {
-            tableBody.height(parentHeight * 0.9);
+          let targetHeight = Math.round(parentHeight - getReservedHeightForTableBody(tableBody));
+          if (Math.round(tableBody.height()) !== targetHeight) {
+            tableBody.height(targetHeight);
           }
           const widgetName = tableBody.parents('.grid-stack-item').find('.js-table-widget-var').val();
           if (!widgetName) return;
@@ -558,7 +563,7 @@ function filterWidgetsByTab(tab) {
   hasVisibleWidgets ? $('.js-no-widget').addClass('hidden') : $('.js-no-widget').removeClass('hidden');
 }
 
-function udateResizableTablesWhenResizeWidget() {
+function updateResizableTablesWhenResizeWidget() {
   const scrollableBody = document.querySelectorAll('.ui-datatable-scrollable-body');
   scrollableBody.forEach((sb) => {
     let tableBody = $(sb);
@@ -567,11 +572,7 @@ function udateResizableTablesWhenResizeWidget() {
     }
 
     let parentHeight = tableBody.parents('.grid-stack-item-content.card.dashboard-card').height();
-    if (!window.matchMedia("(max-width: 767px)").matches) {
-      tableBody.height(parentHeight - 100);
-    } else {
-      tableBody.height(parentHeight * 0.9);
-    }
+    tableBody.height(Math.round(parentHeight - getReservedHeightForTableBody(tableBody)));
 
     const widgetName = tableBody.parents('.grid-stack-item').find('.js-table-widget-var').val();
     if (widgetName === undefined) {
