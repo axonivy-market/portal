@@ -56,12 +56,10 @@ public class ClusterChatEventSender {
 
   @SuppressWarnings("removal")
   private static void broadcastClusterChat(ClusterChatAction action, ClusterChatEventParameter param) {
-    wf().getApplication().sendSystemEvent(new SystemEvent<>(THIRD_PARTY, action.name(), param));
+    wf().getApplication().systemEventDispatcher().sendSystemEvent(new SystemEvent<>(THIRD_PARTY, action.name(), param));
   }
 
   private static String sessionUserName() {
     return Ivy.session().getSessionUserName();
   }
-
-
 }

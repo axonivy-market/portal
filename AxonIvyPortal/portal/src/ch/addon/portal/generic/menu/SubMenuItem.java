@@ -84,7 +84,7 @@ public class SubMenuItem {
   }
 
   public static String generateId(MenuKind menuKind, String link) {
-    return UUID.nameUUIDFromBytes((IApplication.current().getName() + menuKind.name() + link).getBytes(StandardCharsets.UTF_8))
+    return UUID.nameUUIDFromBytes((IApplication.current().name() + menuKind.name() + link).getBytes(StandardCharsets.UTF_8))
         .toString().replace("-", "");
   }
 }

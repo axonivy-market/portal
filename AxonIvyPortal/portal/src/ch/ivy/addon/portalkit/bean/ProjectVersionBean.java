@@ -6,16 +6,15 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-
 import ch.ivy.addon.portalkit.ivydata.service.impl.CustomerProjectService;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.application.ReleaseState;
+import ch.ivyteam.ivy.application.app.state.ReleaseState;
 import ch.ivyteam.ivy.environment.Ivy;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class ProjectVersionBean implements Serializable {
 
@@ -47,7 +46,7 @@ public class ProjectVersionBean implements Serializable {
   }
 
   private String portalVersion() {
-    return IApplication.current().getProcessModelVersions()
+    return IApplication.current().projects().all()
         .filter(pmv -> PORTAL_LIBRARY_ID.equals(pmv.getLibraryId()))
         .findAny()
         .map(IProcessModelVersion::getLibraryVersion)

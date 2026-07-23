@@ -3,8 +3,8 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.lang3.BooleanUtils;
 
@@ -16,7 +16,7 @@ import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ICase;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class SecurityMemberDisplayNameBean implements Serializable {
 

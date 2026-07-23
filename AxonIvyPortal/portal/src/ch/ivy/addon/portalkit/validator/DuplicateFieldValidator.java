@@ -5,12 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.FacesValidator;
-import javax.faces.validator.Validator;
-import javax.faces.validator.ValidatorException;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.FacesValidator;
+import jakarta.faces.validator.Validator;
+import jakarta.faces.validator.ValidatorException;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
@@ -19,7 +19,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @FacesValidator("duplicateFieldValidator")
-public class DuplicateFieldValidator implements Validator {
+public class DuplicateFieldValidator implements Validator<Object> {
 
   @SuppressWarnings("unchecked")
   @Override

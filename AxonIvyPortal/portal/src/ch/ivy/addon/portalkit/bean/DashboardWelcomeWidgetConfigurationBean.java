@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.FacesMessage;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
@@ -37,7 +37,7 @@ import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
-@ManagedBean
+@Named
 public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWidgetBean implements IMultiLanguage  {
 
   private static final long serialVersionUID = 597266282990903281L;

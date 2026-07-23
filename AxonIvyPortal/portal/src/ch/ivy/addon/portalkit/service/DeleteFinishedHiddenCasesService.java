@@ -11,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.application.ReleaseState;
+import ch.ivyteam.ivy.application.app.state.ReleaseState;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -68,9 +68,9 @@ public class DeleteFinishedHiddenCasesService {
   private IProcessModelVersion findPortalPMVByLibraryId(IApplication app, String libraryId) {
     try {
       return Sudo.call(() -> {
-        var pms = app.getProcessModelVersions().toList();
+        var pms = app.projects().all().toList();
         for (var pmv : pms) {
-          var pmv2 = pmv.getApplication().getReleaseState() == ReleaseState.RELEASED ? pmv : null;
+          var pmv2 = pmv.app().state().releaseState() == ReleaseState.RELEASED ? pmv : null;
           if (isPortalPMV(pmv2, libraryId)) {
             return pmv2;
           }

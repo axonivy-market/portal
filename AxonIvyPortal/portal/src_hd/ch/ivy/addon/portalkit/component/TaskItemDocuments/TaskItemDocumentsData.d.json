@@ -8,7 +8,7 @@
     "modifiers" : [ ]
   }, {
     "name" : "documentContent",
-    "type" : "javax.activation.DataHandler",
+    "type" : "jakarta.activation.DataHandler",
     "modifiers" : [ ]
   }, {
     "name" : "streamedContent",

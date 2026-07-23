@@ -106,7 +106,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.context.FacesContext;",
             "import com.axonivy.portal.util.BusinessDetailsUtils;",
             "",
             "FacesContext.getCurrentInstance().getExternalContext().redirect(BusinessDetailsUtils.getAdditionalCaseDetailsPageUri(in.caze));"

@@ -40,7 +40,7 @@
             "import ch.ivyteam.ivy.bpm.error.BpmError;",
             "out.task = ivy.wf.findTask(Long.valueOf(in.taskId));",
             "",
-            "if (!in.url.startsWith(out.task.getApplication().getContextPath())) {",
+            "if (!in.url.startsWith(out.task.getApplication().contextPath())) {",
             "  BpmError.create(\"frame:unsupported:url\").withMessage(\"only relative urls are supported (security reasons)\").throwError();",
             "}"
           ]

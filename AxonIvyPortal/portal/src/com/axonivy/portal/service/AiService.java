@@ -68,7 +68,7 @@ public class AiService {
     params.put("taskExpiryDateTo", taskExpiryDateTo);
     params.put("onlyMyTask", onlyMyTask);
 
-    String processPath = IApplication.current().getName()
+    String processPath = IApplication.current().name()
         .concat(TASK_PROCESS_PATH);
     AiAssistantAPI.addIframeIvyProcessLinkToAiResult(processPath, params,
         result);
@@ -117,7 +117,7 @@ public class AiService {
     params.put("caseDescription", caseDescription);
     params.put("caseState", caseState);
 
-    String processPath = IApplication.current().getName()
+    String processPath = IApplication.current().name()
         .concat(CASE_PROCESS_PATH);
     AiAssistantAPI.addIframeIvyProcessLinkToAiResult(processPath, params,
         result);
@@ -164,7 +164,7 @@ public class AiService {
     params.put("processName", processName);
     params.put("processDescription", processDescription);
 
-    String processPath = IApplication.current().getName()
+    String processPath = IApplication.current().name()
         .concat(PROCESS_PROCESS_PATH);
     AiAssistantAPI.addIframeIvyProcessLinkToAiResult(processPath, params,
         result);

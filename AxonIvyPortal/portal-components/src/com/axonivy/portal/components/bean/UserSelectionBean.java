@@ -3,17 +3,17 @@ package com.axonivy.portal.components.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.el.MethodExpression;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.el.MethodExpression;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.util.BeanUtils;
 import com.axonivy.portal.components.util.UserUtils;
 import com.axonivy.portal.components.jsf.Attrs;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class UserSelectionBean implements Serializable {
 

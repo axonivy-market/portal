@@ -2,8 +2,8 @@ package com.axonivy.portal.components.bean;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
@@ -12,7 +12,7 @@ import com.axonivy.portal.components.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
-@ManagedBean
+@Named
 @ApplicationScoped
 public class PortalComponentDisplayNameFormatBean implements Serializable {
   private static final long serialVersionUID = 1L;

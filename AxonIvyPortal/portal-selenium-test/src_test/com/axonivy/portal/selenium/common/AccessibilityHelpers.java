@@ -12,7 +12,7 @@ import com.deque.html.axecore.results.Results;
 import com.deque.html.axecore.selenium.AxeBuilder;
 import com.deque.html.axecore.selenium.AxeReporter;
 
-public class A11yHelpers {
+public class AccessibilityHelpers {
   private static final List<String> WCAG_TAGS = Arrays.asList("wcag2a", "wcag2aa", "wcag21aa", "best-practice");
 
   public static void makeA11yReport() {

@@ -13,14 +13,14 @@ import static ch.ivy.addon.portalkit.document.DocumentExtensionConstants.XML_FOR
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.SessionScoped;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RegExUtils;
 import org.apache.commons.lang3.StringUtils;
 
-@ManagedBean
+@Named
 @SessionScoped
 public class DocumentIconBean implements Serializable {
 

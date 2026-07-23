@@ -9,7 +9,7 @@ import ch.ivy.addon.portalkit.bo.ProcessStep;
 import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
+import ch.ivyteam.ivy.application.app.ApplicationRepository;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.exec.Sudo;
@@ -38,9 +38,9 @@ public class ProcessStepUtils {
 
     return Sudo.get(() -> {
       IProcessModelVersion releasedProcessModelVersion = null;
-      List<IApplication> apps = IApplicationRepository.of(ISecurityContext.current()).allReleased();
+      List<IApplication> apps = ApplicationRepository.of(ISecurityContext.current()).allReleased();
       for (var app : apps) {
-        releasedProcessModelVersion = app.findProcessModelVersion(processModelName);        
+        releasedProcessModelVersion = app.projects().find(processModelName);        
       }
       
       if (releasedProcessModelVersion != null) {

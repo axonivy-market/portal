@@ -28,7 +28,7 @@ public class PortalIvyDataException extends Exception {
   public String getAppName() {
     if (StringUtils.isBlank(appName)) {
       return Optional.ofNullable(Ivy.request()).map(IProcessModelVersionRequest::getApplication)
-          .map(IApplication::getName).orElse(StringUtils.EMPTY);
+          .map(IApplication::name).orElse(StringUtils.EMPTY);
     }
     return appName;
   }

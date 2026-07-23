@@ -10,8 +10,8 @@ import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.application.ReleaseState;
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
+import ch.ivyteam.ivy.application.app.ApplicationRepository;
+import ch.ivyteam.ivy.application.app.state.ReleaseState;
 import ch.ivyteam.ivy.security.ISecurityContext;
 
 public class CustomerProjectService {
@@ -20,13 +20,13 @@ public class CustomerProjectService {
 
   public Map<String, List<IProcessModelVersion>> collect() {
     var appPmvs = new HashMap<String, List<IProcessModelVersion>>();
-    var apps = IApplicationRepository.of(ISecurityContext.current()).all();
+    var apps = ApplicationRepository.of(ISecurityContext.current()).all();
     for (var app : apps) {
-      var pmvs = app.getProcessModelVersions()
-          .filter(pmv -> !PortalConstants.PORTAL_LIBRARY_ID.equals(pmv.getLibraryId()) && RELEASE_STATES.contains(pmv.getApplication().getReleaseState()))
-          .sorted((pmv1, pmv2) -> Strings.CI.compare(pmv1.getName(), pmv2.getName()))
+      var pmvs = app.projects().all()
+          .filter(pmv -> !PortalConstants.PORTAL_LIBRARY_ID.equals(pmv.getLibraryId()) && RELEASE_STATES.contains(pmv.app().state().releaseState()))
+          .sorted((pmv1, pmv2) -> Strings.CI.compare(pmv1.name(), pmv2.name()))
           .collect(Collectors.toList());
-      appPmvs.put(app.getName(), pmvs);
+      appPmvs.put(app.name(), pmvs);
     }
     return appPmvs;
   }

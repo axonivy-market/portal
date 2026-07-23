@@ -495,9 +495,15 @@ public class DashboardWidgetUtils {
     return buildTaskColumns(widget);
   }
 
+  private static final Set<DashboardStandardTaskColumn> NOT_DEFAULT_TASK_COLUMNS = Set.of(
+      DashboardStandardTaskColumn.BUSINESS_CASE_ID, DashboardStandardTaskColumn.TECHNICAL_CASE_ID);
+
   public static List<TaskColumnModel> initStandardTaskColumns() {
     List<TaskColumnModel> columnModels = new ArrayList<>();
     for (var col : DashboardStandardTaskColumn.values()) {
+      if (NOT_DEFAULT_TASK_COLUMNS.contains(col)) {
+        continue;
+      }
       TaskColumnModel columnModel = new TaskColumnModel();
       columnModel.setField(col.getField());
       columnModels.add(columnModel);

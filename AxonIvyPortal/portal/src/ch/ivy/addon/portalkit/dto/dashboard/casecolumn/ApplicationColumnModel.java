@@ -11,7 +11,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.util.ListUtilities;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
+import ch.ivyteam.ivy.application.app.ApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -38,12 +38,12 @@ public class ApplicationColumnModel extends CaseColumnModel {
     if (iCase == null) {
       return null;
     }
-    return iCase.getApplication().getName();
+    return iCase.getApplication().name();
   }
   
   @JsonIgnore
   public List<String> getApplications() {
-    return ListUtilities.transformList(IApplicationRepository.of(ISecurityContext.current()).all(), IApplication::getName);
+    return ListUtilities.transformList(ApplicationRepository.of(ISecurityContext.current()).all(), IApplication::name);
   }
   
   @JsonIgnore

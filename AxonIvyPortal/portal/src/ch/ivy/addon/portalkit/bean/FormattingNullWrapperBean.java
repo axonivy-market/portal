@@ -4,14 +4,14 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
 
 import com.axonivy.portal.components.service.DateTimeGlobalSettingService;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
-@ManagedBean
+@Named
 @ApplicationScoped
 public class FormattingNullWrapperBean implements Serializable {
   private static final long serialVersionUID = 1L;

@@ -9,7 +9,7 @@ import com.axonivy.portal.components.util.ProcessStartUtils;
 
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
+import ch.ivyteam.ivy.application.app.ApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
@@ -33,8 +33,8 @@ public final class ProcessStartAPI {
    */
   public static String findStartableLinkByUserFriendlyRequestPath(String friendlyRequestPath) {
     return Sudo.get(() -> {
-      var apps = IApplicationRepository.of(ISecurityContext.current()).allReleased();
-      for (IApplication app : apps) {
+      var apps = ApplicationRepository.of(ISecurityContext.current()).allReleased();
+      for (var app : apps) {
         var webStartable = findWebStartableByUserFriendlyRequestPath(friendlyRequestPath, app);
         if (webStartable != null) {
           return webStartable.getLink().getRelative();
@@ -57,7 +57,7 @@ public final class ProcessStartAPI {
   }
 
   private static IWebStartable findWebStartableByUserFriendlyRequestPath(String requestPath, IApplication application) {
-    return application.getProcessModelVersions()
+    return application.projects().all()
         .map(p -> findWebStartableByPathAndPmv(requestPath, p))
         .filter(Objects::nonNull)
         .filter(ws -> isStartableProcess(ws.getLink().getRelative()))

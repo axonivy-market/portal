@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -45,7 +45,7 @@ import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.caze.owner.CaseOwner;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails> {
 

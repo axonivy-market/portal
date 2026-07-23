@@ -94,7 +94,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.bean.TaskWidgetBean;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "if (!out.#dataModel is initialized) {",
             "  FacesContext context = FacesContext.getCurrentInstance();",

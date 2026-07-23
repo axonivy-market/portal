@@ -1,6 +1,6 @@
 package com.axonivy.portal.components.jsf;
 
-import javax.faces.context.FacesContext;
+import jakarta.faces.context.FacesContext;
 
 /**
  * <p>

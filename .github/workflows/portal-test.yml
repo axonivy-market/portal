@@ -2,6 +2,10 @@ name: Portal Test
 run-name: 🧪 Portal Test
 permissions: read-all
 on:
+  push:
+    branches:
+      - master
+  pull_request:
   workflow_dispatch:
     inputs:
       testPatternToRun:
@@ -291,7 +295,7 @@ jobs:
       - name: Download engine
         run: |
           cd $ENGINE_DIR
-          wget "${{ inputs.engineDownloadURL }}" -O axonivy-engine.zip
+          wget "${{ inputs.engineDownloadURL || 'https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip' }}" -O axonivy-engine.zip
           unzip -o axonivy-engine.zip -d .
           rm axonivy-engine.zip
 

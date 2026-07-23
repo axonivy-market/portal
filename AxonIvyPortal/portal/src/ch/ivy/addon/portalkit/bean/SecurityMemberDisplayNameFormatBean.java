@@ -3,8 +3,8 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
 
 import com.axonivy.portal.components.dto.UserDTO;
 
@@ -12,7 +12,7 @@ import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
-@ManagedBean
+@Named
 @ApplicationScoped
 /**
  * This bean provide some methods to generate display name for {@link ISecurityMember}

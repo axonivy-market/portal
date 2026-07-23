@@ -2,8 +2,8 @@ package com.axonivy.portal.bean.ai;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 
@@ -11,7 +11,7 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class AssistantResultBean implements Serializable {
 

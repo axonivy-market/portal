@@ -204,6 +204,10 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
     taskWidget.waitPreviewTableLoaded();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
 
+    taskWidget.openColumnManagementDialog();
+    taskWidget.addStandardField("businessCaseId");
+    taskWidget.saveColumn();
+
     taskWidget.openFilter();
     taskWidget.addFilter("Business Case ID", FilterOperator.CONTAINS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "0000000000");
@@ -222,6 +226,10 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
     TaskEditWidgetNewDashBoardPage taskWidget = newDashboardDetailsEditPage.addNewTaskWidget();
     taskWidget.waitPreviewTableLoaded();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
+
+    taskWidget.openColumnManagementDialog();
+    taskWidget.addStandardField("technicalCaseId");
+    taskWidget.saveColumn();
 
     taskWidget.openFilter();
     taskWidget.addFilter("Technical Case ID", FilterOperator.CONTAINS);

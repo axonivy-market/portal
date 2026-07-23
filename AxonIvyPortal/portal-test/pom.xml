@@ -38,6 +38,12 @@
       <type>iar</type>
     </dependency>
     <dependency>
+      <groupId>com.axonivy.portal</groupId>
+      <artifactId>portal-components</artifactId>
+      <version>${project.version}</version>
+      <type>iar</type>
+    </dependency>
+    <dependency>
       <groupId>com.axonivy.ivy.api</groupId>
       <artifactId>ivy-poi-api</artifactId>
     </dependency>

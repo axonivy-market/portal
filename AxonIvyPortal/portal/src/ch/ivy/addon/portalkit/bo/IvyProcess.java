@@ -19,7 +19,7 @@ public class IvyProcess implements Process {
   private String portalProcessInformation;
 
   public IvyProcess(IWebStartable process) {
-    this.application = process.pmv().getApplication().getName();
+    this.application = process.pmv().app().name();
     this.process = process;
     this.imageUrl = collectProcessImage(process);
     this.index = process.customFields().value(CustomFields.SORT_INDEX);

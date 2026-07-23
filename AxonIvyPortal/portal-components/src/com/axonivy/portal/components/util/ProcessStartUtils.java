@@ -8,7 +8,7 @@ import com.axonivy.portal.components.enums.SessionAttribute;
 
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
+import ch.ivyteam.ivy.application.app.ApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpResponse;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -40,9 +40,9 @@ public class ProcessStartUtils {
         return webStartable;
       }
 
-      List<IApplication> apps = IApplicationRepository.of(ISecurityContext.current()).allReleased();
+      List<IApplication> apps = ApplicationRepository.of(ISecurityContext.current()).allReleased();
       List<IProcessModelVersion> processModelVersions = apps.stream()
-        .flatMap(app -> app.getProcessModelVersions())
+        .flatMap(app -> app.projects().all())
         .toList();
       for (var pmv : processModelVersions) {
         webStartable = findWebStartableByPathAndPmv(requestPath, pmv);
@@ -68,11 +68,14 @@ public class ProcessStartUtils {
   
   public static String findFriendlyRequestPathContainsKeyword(String keyword, Object portalStartPmvId) {
     if (portalStartPmvId == null) {
-      return findFriendlyRequestPathContainsKeywordInPMV(keyword, Ivy.wfTask().getProcessModelVersion());
+      return findFriendlyRequestPathContainsKeywordInPMV(keyword, Ivy.wfTask().getProcessModelVersion().pmv());
     } else {
-      List<IApplication> applicationsInSecurityContext = IApplicationRepository.of(ISecurityContext.current()).all();
-      for (IApplication app : applicationsInSecurityContext) {
-        IProcessModelVersion findProcessModelVersion = app.getProcessModelVersions().filter(pmv -> pmv.getId() == (long) portalStartPmvId).findAny().orElse(null);
+      var apps = ApplicationRepository.of(ISecurityContext.current()).all();
+      for (var app : apps) {
+        var findProcessModelVersion = app.projects().all()
+          .filter(pmv -> pmv.getId() == (long) portalStartPmvId)
+          .findAny()
+          .orElse(null);
         if (findProcessModelVersion != null) {
           return findFriendlyRequestPathContainsKeywordInPMV(keyword, findProcessModelVersion);
         }
