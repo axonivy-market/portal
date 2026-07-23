@@ -382,4 +382,6 @@
   --dashboard-tab-active-color: var(--ivy-primary-color-white);
 
   --card-box-shadow: 0 0 27px 0 rgba(0, 0, 0, 0.4);
+  --filters-card-bg-color: var(--sidebar-settings-card-bg-color);
+  --filters-card-border-color: var(--sidebar-settings-card-border-color);
 }

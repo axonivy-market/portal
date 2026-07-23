@@ -23,6 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addSubstitute: 代行者を追加
     deputies: 代行者
     description: 不在につながる休暇、病気、その他の外的要因を設定します。
+    disableAbsencesInThePast: 過去の不在を非表示
     editAbsence: 不在の編集
     editSubstitute: 代用を編集
     from: 開始日

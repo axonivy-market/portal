@@ -23,6 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addSubstitute: Stellvertreter hinzufügen
     deputies: Stellvertreter
     description: Während meiner Abwesenheit werden Workflow Aufgaben automatisch den definierten Stellvertretern zugeteilt.
+    disableAbsencesInThePast: Vergangene Abwesenheiten ausblenden
     editAbsence: Abwesenheiten bearbeiten
     editSubstitute: Ersatz bearbeiten
     from: Von

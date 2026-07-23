@@ -189,7 +189,7 @@ public class AbsencePage extends TemplatePage {
   }
 
   public void openAddSubstituteDialog() {
-    waitForElementClickableThenClick("button[id$='absences-management-form:absences-tabview:add-substitute']");
+    waitForElementClickableThenClick("button[id$='absences-management-form:add-substitute']");
     $(By.id("choose-deputy-dialog")).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 

@@ -23,6 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addSubstitute: Agregar sustituto
     deputies: Sustitutos
     description: Establezca sus vacaciones, enfermedades u otras obligaciones externas que lleven a cualquier ausencia.
+    disableAbsencesInThePast: Ocultar ausencias en el pasado
     editAbsence: Editar ausencia
     editSubstitute: Editar sustituto
     from: Del

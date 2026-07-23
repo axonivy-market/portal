@@ -29,6 +29,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.context.PrimeFacesContext;
+import org.primefaces.event.TabChangeEvent;
 
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.util.FacesMessageUtils;
@@ -53,6 +54,7 @@ import ch.ivyteam.ivy.security.IUser;
 @ViewScoped
 public class AbsenceManagementBean implements Serializable {
   private static final long serialVersionUID = 1L;
+  private static final String SUBSTITUTES_TAB_ID = "substitutes-tab";
 
   private boolean ownAbsencesReadable;
   private boolean ownAbsencesCreatable;
@@ -88,6 +90,7 @@ public class AbsenceManagementBean implements Serializable {
   private String message;
   private boolean createDeputyMode;
   private List<ISecurityMember> displaySubstitutesOnAbsenceTab;
+  private boolean substitutesTabActive;
 
   @PostConstruct
   public void init() {
@@ -670,6 +673,22 @@ public class AbsenceManagementBean implements Serializable {
 
   public void setAbsenceInThePastShown(boolean absenceInThePastShown) {
     this.absenceInThePastShown = absenceInThePastShown;
+  }
+
+  public boolean isAbsencesInThePastDisabled() {
+    return !absenceInThePastShown;
+  }
+
+  public void setAbsencesInThePastDisabled(boolean absencesInThePastDisabled) {
+    this.absenceInThePastShown = !absencesInThePastDisabled;
+  }
+
+  public boolean isSubstitutesTabActive() {
+    return substitutesTabActive;
+  }
+
+  public void onAbsenceTabChange(TabChangeEvent<Object> event) {
+    substitutesTabActive = SUBSTITUTES_TAB_ID.equals(event.getTab().getId());
   }
 
   public List<DeputyRole> getDeputyRoles() {
