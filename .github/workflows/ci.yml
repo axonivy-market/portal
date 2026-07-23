@@ -40,7 +40,7 @@ jobs:
 
       - name: Download Ivy engine
         run: |
-          wget https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip -O "$ENGINE_DIR/engine.zip"
+          wget https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip -O "$ENGINE_DIR/engine.zip"
           unzip -o "$ENGINE_DIR/engine.zip" -d "$ENGINE_DIR"
           rm "$ENGINE_DIR/engine.zip"
 
