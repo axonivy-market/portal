@@ -26,7 +26,6 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
-import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
@@ -778,32 +777,6 @@ public class DashboardWidgetUtils {
     }
     return null;
   }
-
-  public static DashboardColumnType resolveCaseCustomColumnType(List<? extends AbstractColumn> columns,
-      DashboardFilter filter) {
-    DashboardColumnType current = filter.getFilterType();
-    if (current != null && current != DashboardColumnType.CUSTOM_CASE
-        && current != DashboardColumnType.CUSTOM_BUSINESS_CASE) {
-      return current;
-    }
-    if (CollectionUtils.isEmpty(columns) || filter.getField() == null) {
-      return current;
-    }
-    boolean matchedCaseColumn = false;
-    for (AbstractColumn column : columns) {
-      if (!filter.getField().equals(column.getField())) {
-        continue;
-      }
-      if (column.getType() == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
-        return DashboardColumnType.CUSTOM_BUSINESS_CASE; // business case wins on ambiguity
-      }
-      if (column.getType() == DashboardColumnType.CUSTOM_CASE) {
-        matchedCaseColumn = true;
-      }
-    }
-    return matchedCaseColumn ? DashboardColumnType.CUSTOM_CASE : current;
-  }
-
 
   public static List<DashboardProcess> sortProcessByMostUsed(List<DashboardProcess> processes) {
     if (processes == null || processes.isEmpty()) {

@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
-import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -21,7 +20,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
-import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 
 public class SavedTaskWidgetFilterTypeConverter implements IJsonConverter {
 
@@ -61,13 +59,35 @@ public class SavedTaskWidgetFilterTypeConverter implements IJsonConverter {
     if (field == null) {
       return;
     }
-    DashboardFilter probe = new DashboardFilter();
-    probe.setField(field);
-    probe.setFilterType(parseType(textValue(filterNode, TYPE)));
-    DashboardColumnType resolved = DashboardWidgetUtils.resolveCaseCustomColumnType(columns, probe);
-    if (resolved != null && resolved != probe.getFilterType()) {
+    DashboardColumnType current = parseType(textValue(filterNode, TYPE));
+    DashboardColumnType resolved = resolveCaseCustomColumnType(columns, field, current);
+    if (resolved != null && resolved != current) {
       filterNode.set(TYPE, new TextNode(resolved.getType()));
     }
+  }
+
+  private DashboardColumnType resolveCaseCustomColumnType(List<TaskColumnModel> columns, String field,
+      DashboardColumnType current) {
+    if (current != null && current != DashboardColumnType.CUSTOM_CASE
+        && current != DashboardColumnType.CUSTOM_BUSINESS_CASE) {
+      return current;
+    }
+    if (CollectionUtils.isEmpty(columns) || field == null) {
+      return current;
+    }
+    boolean matchedCaseColumn = false;
+    for (TaskColumnModel column : columns) {
+      if (!field.equals(column.getField())) {
+        continue;
+      }
+      if (column.getType() == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
+        return DashboardColumnType.CUSTOM_BUSINESS_CASE; // business case wins on ambiguity
+      }
+      if (column.getType() == DashboardColumnType.CUSTOM_CASE) {
+        matchedCaseColumn = true;
+      }
+    }
+    return matchedCaseColumn ? DashboardColumnType.CUSTOM_CASE : current;
   }
 
   private List<TaskColumnModel> findTaskWidgetColumns(String widgetId) {
