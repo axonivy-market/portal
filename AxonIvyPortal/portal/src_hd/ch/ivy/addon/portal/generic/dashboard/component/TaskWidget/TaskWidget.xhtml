@@ -75,7 +75,7 @@
           </h:panelGroup>
         </p:column>
 
-        <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'} widget-column-header"
+        <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'} #{column.field eq taskWidget.firstVisibleColumnField ? 'dashboard-tasks__first-column' : ''} widget-column-header"
           visible="#{column.visible}" field="#{column.field}" filterable="false"
           sortBy="#{column.field}" sortable="#{(isPreviewMode or isReadOnlyMode) and column.sortable}"
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay}">
