@@ -15,7 +15,7 @@ public class PermissionUtils {
    * @return True : has read all cases permission, False : do not have this permission
    */
   public static boolean checkReadAllCasesPermission() {
-    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
+    return Ivy.session().hasPermission(Ivy.request().getApplication().securityContext().securityDescriptor(),
         IPermission.CASE_READ_ALL);
   }
 

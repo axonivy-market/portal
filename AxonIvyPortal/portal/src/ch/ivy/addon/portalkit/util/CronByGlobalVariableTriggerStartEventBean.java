@@ -25,8 +25,8 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
     super.initialize(eventRuntime, configuration);
     try {
       Variable var =
-          Variables.of(eventRuntime.getProcessModelVersion().getApplication()).variable(configuration.get(VARIABLE));
-      Variable deleteAllFinishedHiddenCasesVar = Variables.of(eventRuntime.getProcessModelVersion().getApplication())
+          Variables.of(eventRuntime.getProcessModelVersion().app()).variable(configuration.get(VARIABLE));
+      Variable deleteAllFinishedHiddenCasesVar = Variables.of(eventRuntime.getProcessModelVersion().app())
           .variable(PORTAL_DELETE_ALL_FINISHED_HIDDEN_CASE);
       if (var != null) {
         String pattern = var.value();

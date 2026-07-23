@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
+import ch.ivyteam.ivy.application.app.ApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
 public class GroupChat implements Serializable {
@@ -77,12 +77,12 @@ public class GroupChat implements Serializable {
   public Set<SecurityMemberDTO> getAssignees() {
     if (CollectionUtils.isEmpty(this.assignees) && CollectionUtils.isNotEmpty(this.assigneeNames)
         && StringUtils.isNotBlank(this.applicationName)) {
-      var app = IApplicationRepository.instance().findReleasedByName(applicationName);
+      var app = ApplicationRepository.instance().findReleasedByName(applicationName);
       this.assignees = new HashSet<>();
       for (String assigneeName : assigneeNames) {
         ISecurityMember assignee = assigneeName.startsWith("#")
-            ? app.getSecurityContext().users().findById(assigneeName.substring(1))
-            : app.getSecurityContext().members().find(assigneeName);
+            ? app.securityContext().users().findById(assigneeName.substring(1))
+            : app.securityContext().members().find(assigneeName);
         if (assignee != null) {
           this.assignees.add(new SecurityMemberDTO(assignee));
         }

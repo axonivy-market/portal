@@ -20,7 +20,7 @@ import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.ListUtilities;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
+import ch.ivyteam.ivy.application.app.ApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
 
 public class ApplicationColumnModel extends ProcessColumnModel {
@@ -43,7 +43,7 @@ public class ApplicationColumnModel extends ProcessColumnModel {
 
   @JsonIgnore
   public List<String> getApplications() {
-    return ListUtilities.transformList(IApplicationRepository.of(ISecurityContext.current()).all(), IApplication::getName);
+    return ListUtilities.transformList(ApplicationRepository.of(ISecurityContext.current()).all(), IApplication::name);
   }
   
   @JsonIgnore

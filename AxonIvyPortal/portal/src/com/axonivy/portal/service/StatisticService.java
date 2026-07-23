@@ -16,8 +16,6 @@ import java.util.Set;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
-import jakarta.ws.rs.NotFoundException;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
@@ -26,14 +24,18 @@ import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
 import com.axonivy.portal.constant.StatisticConstants;
-import com.axonivy.portal.dto.StatisticDrillDownDTO;
 import com.axonivy.portal.dto.StatisticDTO;
+import com.axonivy.portal.dto.StatisticDrillDownDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.dto.statistic.AggregationDTO;
+import com.axonivy.portal.dto.statistic.AggregationResultDTO;
+import com.axonivy.portal.dto.statistic.BucketDTO;
 import com.axonivy.portal.enums.statistic.AdditionalChartConfig;
 import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.migration.statistic.migrator.JsonStatisticMigrator;
+import com.axonivy.portal.util.AggregationResultMapper;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
@@ -43,13 +45,9 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import com.axonivy.portal.dto.statistic.AggregationDTO;
-import com.axonivy.portal.dto.statistic.AggregationResultDTO;
-import com.axonivy.portal.dto.statistic.BucketDTO;
-import com.axonivy.portal.util.AggregationResultMapper;
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
+import ch.ivyteam.ivy.application.app.ApplicationRepository;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
@@ -58,6 +56,7 @@ import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
+import jakarta.ws.rs.NotFoundException;
 
 public class StatisticService {
 
@@ -428,8 +427,8 @@ public class StatisticService {
   }
 
   private String resolveCategoryName(String categoryPath) {
-    return IApplicationRepository.of(ISecurityContext.current()).all()
-      .stream().flatMap(app -> app.getProcessModelVersions())
+    return ApplicationRepository.of(ISecurityContext.current()).all().stream()
+      .flatMap(app -> app.projects().all())
       .map(pmv -> ContentManagement.of(pmv).co("/Categories/" + categoryPath + "/name"))
       .filter(StringUtils::isNotBlank)
       .findFirst()

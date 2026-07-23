@@ -5,10 +5,6 @@ import static ch.ivy.addon.portalkit.enums.PortalPermission.SHOW_CASE_DETAILS;
 import java.io.Serializable;
 import java.util.Objects;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.inject.Named;
-import jakarta.enterprise.context.RequestScoped;
-
 import com.axonivy.portal.util.BusinessDetailsUtils;
 
 import ch.ivy.addon.portal.generic.bean.UserMenuBean;
@@ -23,6 +19,9 @@ import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.workflow.ICase;
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
 
 @Named
 @RequestScoped
@@ -52,7 +51,7 @@ public class CaseActionBean implements Serializable {
     if (Objects.isNull(iCase) || Objects.isNull(iCase.getApplication()) || Objects.isNull(iCase.getProcessStart())) {
       return "#";
     }
-    return PortalNavigator.buildProcessInfoUrl(iCase.getApplication().getName().concat("/")
+    return PortalNavigator.buildProcessInfoUrl(iCase.getApplication().name().concat("/")
         .concat(iCase.getProcessStart().getFullUserFriendlyRequestPath()));
   }
 
