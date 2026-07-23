@@ -1,6 +1,5 @@
 package com.axonivy.portal.bean.dashboard.filter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +18,7 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 
 @Named
 @ViewScoped
-public class CaseWidgetUserFilterBean extends AbstractCaseWidgetFilterBean implements Serializable {
+public class CaseWidgetUserFilterBean extends AbstractCaseWidgetFilterBean {
 
   private static final long serialVersionUID = 7812171996900852992L;
 

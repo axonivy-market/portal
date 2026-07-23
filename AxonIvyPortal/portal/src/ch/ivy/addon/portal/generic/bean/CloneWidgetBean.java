@@ -1,6 +1,5 @@
 package ch.ivy.addon.portal.generic.bean;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +30,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @Named
 @ViewScoped
-public class CloneWidgetBean extends DashboardDetailModificationBean implements Serializable {
+public class CloneWidgetBean extends DashboardDetailModificationBean {
 
   private static final long serialVersionUID = -973028688683038591L;
 

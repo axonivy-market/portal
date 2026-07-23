@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import java.io.Serializable;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
@@ -34,7 +33,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @Named
 @ViewScoped
-public class DashboardProcessBean extends AbstractProcessBean implements Serializable {
+public class DashboardProcessBean extends AbstractProcessBean {
 
   private static final long serialVersionUID = -6664090186198762432L;
   private List<ProcessWidgetMode> displayModes;

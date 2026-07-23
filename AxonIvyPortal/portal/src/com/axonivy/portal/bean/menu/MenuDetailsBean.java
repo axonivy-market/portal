@@ -1,6 +1,5 @@
 package com.axonivy.portal.bean.menu;
 
-import java.io.Serializable;
 import static com.axonivy.portal.menu.management.enums.MenuSource.DASHBOARD;
 
 import java.net.URI;
@@ -60,7 +59,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @Named
 @ViewScoped
-public class MenuDetailsBean extends AbstractMenuBean implements IMultiLanguage, Serializable {
+public class MenuDetailsBean extends AbstractMenuBean implements IMultiLanguage {
 
   private PortalMenuItemDefinition selectedMenuDefinition;
 

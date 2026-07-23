@@ -1,6 +1,5 @@
 package ch.ivy.addon.portal.generic.bean;
 
-import java.io.Serializable;
 import java.util.Arrays;
 
 import jakarta.inject.Named;
@@ -18,7 +17,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
 @Named
-public class NavigationDashboardWidgetConfigurationBean extends NavigationDashboardWidgetBean implements IMultiLanguage, Serializable {
+public class NavigationDashboardWidgetConfigurationBean extends NavigationDashboardWidgetBean implements IMultiLanguage {
 
   private static final long serialVersionUID = 1L;
 

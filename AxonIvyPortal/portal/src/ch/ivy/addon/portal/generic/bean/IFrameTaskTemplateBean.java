@@ -1,6 +1,5 @@
 package ch.ivy.addon.portal.generic.bean;
 
-import java.io.Serializable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +36,7 @@ import ch.ivyteam.ivy.workflow.TaskState;
 
 @Named(value = "iFrameTaskTemplateBean")
 @ViewScoped
-public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements Serializable {
+public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean {
 
   private static final long serialVersionUID = 1L;
 

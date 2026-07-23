@@ -1,6 +1,5 @@
 package ch.ivy.addon.portal.generic.bean;
 
-import java.io.Serializable;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -61,7 +60,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
 @Named
-public class DashboardModificationBean extends DashboardBean implements Serializable {
+public class DashboardModificationBean extends DashboardBean {
 
   private static final long serialVersionUID = 1L;
   protected static final String PUBLIC_DASHBOARD_DEFAULT_ICON = "ti-world-share";

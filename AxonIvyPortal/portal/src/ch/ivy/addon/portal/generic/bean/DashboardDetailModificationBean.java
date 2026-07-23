@@ -1,6 +1,5 @@
 package ch.ivy.addon.portal.generic.bean;
 
-import java.io.Serializable;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CUSTOM;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NEWS;
@@ -107,7 +106,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ViewScoped
 @Named
-public class DashboardDetailModificationBean extends DashboardBean implements PropertyChangeListener, Serializable {
+public class DashboardDetailModificationBean extends DashboardBean implements PropertyChangeListener {
 
   private static final long serialVersionUID = -5272278165636659596L;
   private static final String DEFAULT_COMPLEX_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:predefined-filter";

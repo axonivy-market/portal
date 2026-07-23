@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import java.io.Serializable;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,7 +61,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @Named
 @ViewScoped
-public class ProcessWidgetBean extends AbstractProcessBean implements IMultiLanguage, Serializable {
+public class ProcessWidgetBean extends AbstractProcessBean implements IMultiLanguage {
 
   private static final long serialVersionUID = -5889375917550618261L;
   private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";

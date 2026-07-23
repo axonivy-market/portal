@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import java.io.Serializable;
 import static com.axonivy.portal.util.WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT;
 
 import java.nio.charset.StandardCharsets;
@@ -39,7 +38,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
 @Named
-public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWidgetBean implements IMultiLanguage, Serializable  {
+public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWidgetBean implements IMultiLanguage  {
 
   private static final long serialVersionUID = 597266282990903281L;
 
