@@ -1,11 +1,12 @@
 package com.axonivy.portal.bean.dashboard.filter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -17,9 +18,9 @@ import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 
-@ManagedBean
+@Named
 @ViewScoped
-public class TaskWidgetUserFilterBean extends AbstractTaskWidgetFilterBean {
+public class TaskWidgetUserFilterBean extends AbstractTaskWidgetFilterBean implements Serializable {
 
   private static final long serialVersionUID = 2329063671455796253L;
 

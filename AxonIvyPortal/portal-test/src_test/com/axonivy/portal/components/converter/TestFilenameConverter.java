@@ -2,7 +2,7 @@ package com.axonivy.portal.components.converter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import javax.faces.component.UIComponentBase;
+import jakarta.faces.component.UIComponentBase;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

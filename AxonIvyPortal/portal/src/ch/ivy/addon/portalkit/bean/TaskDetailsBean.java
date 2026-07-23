@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.EnumSet;
@@ -7,8 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.primefaces.model.SortMeta;
 
@@ -31,8 +32,8 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
 @ViewScoped
-@ManagedBean
-public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails> {
+@Named
+public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails> implements Serializable {
 
   private static final long serialVersionUID = 8566646437739271552L;
   private static final String RESET_TASK_FRIENDLY_REQUEST_PATH = "Start Processes/PortaStart/ResetTask.ivp";

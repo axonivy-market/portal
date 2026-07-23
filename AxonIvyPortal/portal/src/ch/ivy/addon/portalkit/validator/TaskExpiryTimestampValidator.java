@@ -5,19 +5,19 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.Objects;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.FacesValidator;
-import javax.faces.validator.Validator;
-import javax.faces.validator.ValidatorException;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.FacesValidator;
+import jakarta.faces.validator.Validator;
+import jakarta.faces.validator.ValidatorException;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
 @FacesValidator("taskExpiryTimestampValidator")
-public class TaskExpiryTimestampValidator implements Validator {
+public class TaskExpiryTimestampValidator implements Validator<Object> {
 
   @Override
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {

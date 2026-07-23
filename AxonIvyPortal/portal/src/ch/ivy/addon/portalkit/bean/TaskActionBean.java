@@ -7,8 +7,8 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -34,7 +34,7 @@ import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class TaskActionBean implements Serializable {
 

@@ -3,9 +3,9 @@ package com.axonivy.portal.bean.dashboard;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -18,7 +18,7 @@ import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class WidgetStateFilterBean implements Serializable {
 

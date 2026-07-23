@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.FilterMeta;

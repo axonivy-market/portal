@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -16,7 +16,7 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class WidgetApplicationFilterBean implements Serializable {
 

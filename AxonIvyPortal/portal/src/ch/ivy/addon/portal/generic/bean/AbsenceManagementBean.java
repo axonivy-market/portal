@@ -21,11 +21,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.application.FacesMessage;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.context.PrimeFacesContext;
@@ -49,7 +49,7 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class AbsenceManagementBean implements Serializable {
   private static final long serialVersionUID = 1L;

@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.event.SelectEvent;
@@ -20,7 +20,7 @@ import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.service.filter.operatorpolicy.service.GlobalOperatorPolicyService;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class WidgetCreatorFilterBean implements Serializable {
 

@@ -1,6 +1,6 @@
 package ch.ivy.addon.portalkit.jsf;
 
-import javax.faces.context.FacesContext;
+import jakarta.faces.context.FacesContext;
 
 /**
  * <p>

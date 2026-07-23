@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,10 +15,10 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.FacesMessage;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
@@ -59,9 +60,9 @@ import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
-@ManagedBean
+@Named
 @ViewScoped
-public class ProcessWidgetBean extends AbstractProcessBean implements IMultiLanguage {
+public class ProcessWidgetBean extends AbstractProcessBean implements IMultiLanguage, Serializable {
 
   private static final long serialVersionUID = -5889375917550618261L;
   private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";

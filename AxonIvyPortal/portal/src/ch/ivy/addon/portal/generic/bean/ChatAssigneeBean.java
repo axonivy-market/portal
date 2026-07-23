@@ -7,11 +7,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.application.FacesMessage;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -41,7 +41,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class ChatAssigneeBean implements Serializable {
 

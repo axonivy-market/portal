@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
@@ -10,10 +11,10 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -31,9 +32,9 @@ import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
-@ManagedBean
+@Named
 @ViewScoped
-public class DashboardProcessBean extends AbstractProcessBean {
+public class DashboardProcessBean extends AbstractProcessBean implements Serializable {
 
   private static final long serialVersionUID = -6664090186198762432L;
   private List<ProcessWidgetMode> displayModes;

@@ -56,9 +56,9 @@
           "code" : [
             "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
             "import org.apache.commons.lang3.StringUtils;",
-            "import javax.faces.context.ExternalContext;",
-            "import javax.faces.context.FacesContext;",
-            "import javax.servlet.http.HttpServletRequest;",
+            "import jakarta.faces.context.ExternalContext;",
+            "import jakarta.faces.context.FacesContext;",
+            "import jakarta.servlet.http.HttpServletRequest;",
             "import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;",
             "import java.net.URLDecoder;",
             "",

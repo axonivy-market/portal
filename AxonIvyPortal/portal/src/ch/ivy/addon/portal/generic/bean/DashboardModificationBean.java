@@ -1,5 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import java.io.Serializable;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -16,9 +17,9 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.ws.rs.core.MediaType;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.ws.rs.core.MediaType;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -59,8 +60,8 @@ import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
-@ManagedBean
-public class DashboardModificationBean extends DashboardBean {
+@Named
+public class DashboardModificationBean extends DashboardBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
   protected static final String PUBLIC_DASHBOARD_DEFAULT_ICON = "ti-world-share";

@@ -9,11 +9,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.application.FacesMessage.Severity;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.faces.context.FacesContext;
 
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.UserDTO;
@@ -33,7 +33,7 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.role.NewRole;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class RoleManagementBean implements Serializable {
   private static final long serialVersionUID = -4867516739222351669L;

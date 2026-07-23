@@ -100,8 +100,8 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "FacesContext.getCurrentInstance().addMessage(\"form:role-item-select-event-component:item-select-event-for-role-selection\", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, \"You selected \" + in.selectedRoleForInsertChildren.getDisplayName(), null));"
           ]

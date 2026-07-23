@@ -120,8 +120,8 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
             "in.isValid = in.leaveRequestData.from.compareTo(in.leaveRequestData.to) > 0? false : true;",
             "if(!in.isValid) {",
             "FacesContext.getCurrentInstance().validationFailed();",

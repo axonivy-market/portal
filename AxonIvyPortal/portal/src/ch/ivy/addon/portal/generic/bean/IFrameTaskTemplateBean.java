@@ -1,5 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import java.io.Serializable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,13 +8,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.faces.application.FacesMessage;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.Flash;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -34,9 +35,9 @@ import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
-@ManagedBean(name = "iFrameTaskTemplateBean")
+@Named(value = "iFrameTaskTemplateBean")
 @ViewScoped
-public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean {
+public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
