@@ -332,10 +332,6 @@ public class DashboardUtils {
         .getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
   }
 
-  /**
-   * Session user's dashboards, cache-first ({@code PORTAL_DASHBOARDS}) with a {@link #collectDashboards()}
-   * fallback when cold. Already migrated, so widget columns carry the correct type.
-   */
   public static List<Dashboard> getSessionDashboards() {
     List<Dashboard> cached = Optional.ofNullable(getPortalDashboardItemWrapper())
         .map(PortalDashboardItemWrapper::dashboards).orElse(null);

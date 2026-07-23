@@ -779,11 +779,6 @@ public class DashboardWidgetUtils {
     return null;
   }
 
-  /**
-   * Resolves a filter's case scope from the widget columns (the source of truth): CUSTOM_BUSINESS_CASE if a
-   * matching business-case column exists (wins on a tie), else CUSTOM_CASE if a matching case column exists,
-   * else the filter's own type. Only case-custom / untyped filters are resolved; never mutates the filter.
-   */
   public static DashboardColumnType resolveCaseCustomColumnType(List<? extends AbstractColumn> columns,
       DashboardFilter filter) {
     DashboardColumnType current = filter.getFilterType();

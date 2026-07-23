@@ -23,12 +23,6 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 
-/**
- * Re-types saved task-widget user filters by case scope, from the widget column (business case wins on a
- * tie). Saved filters store no columns, so they are looked up from the owning widget in the session
- * dashboards ({@link DashboardUtils#getSessionDashboards()}) - safe from re-entrancy because dashboard
- * collection never reads saved filters. Counterpart of the dashboard-track DashboardTaskWidgetFilterTypeConverter.
- */
 public class SavedTaskWidgetFilterTypeConverter implements IJsonConverter {
 
   private static final String WIDGET_TYPE = "widgetType";
