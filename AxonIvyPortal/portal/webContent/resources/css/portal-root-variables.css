@@ -176,4 +176,10 @@
   --ivy-dashboard-icon-border-light: #EBEBEB;
   --ivy-dashboard-icon-bg-dark: #383838;
   --ivy-dashboard-icon-border-dark: #4A4A4A;
+
+  /* Sidebar configuration colors */
+  --ivy-portal-color-gray-84: #D4D6D9;
+  --ivy-portal-color-gray-17: #2C2C2C;
+  --ivy-portal-color-gray-13: #202020;
+  --ivy-portal-color-slate-light: #CBD5E1;
 }

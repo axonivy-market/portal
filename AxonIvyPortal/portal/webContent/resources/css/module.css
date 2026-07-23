@@ -3221,6 +3221,19 @@ body .ui-button:hover {
   opacity: 0.85;
 }
 
+/* Opt-in pale/light button style, kept for buttons that still need the older look */
+.ui-button.primary-color-light-button {
+  background: var(--portal-accessibility-bg-color);
+  color: var(--portal-button-text-color);
+  font-weight: 600;
+  height: 3.25rem;
+}
+
+.ui-button.primary-color-light-button:hover {
+  background: hsla(var(--ivy-primary-light-color-h), var(--ivy-primary-light-color-s), 89%, 1);
+  color: var(--ivy-primary-color);
+}
+
 .add-absence-dialog .deputy-selection-scroll-wrapper {
   max-height: 150px;
   overflow-y: auto;
@@ -3689,7 +3702,7 @@ _:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
 
 .admin-settings-container>.card {
   min-height: 300px;
-  max-width: 1400px;
+  max-width: 1850px;
   margin: 0 auto;
 }
 
@@ -5507,7 +5520,7 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 
 /* Dashboard Configuration */
 .dashboard-configuration-page {
-  max-width: 1400px;
+  max-width: 1850px;
   margin: 10px auto;
 }
 

@@ -2302,10 +2302,26 @@ body.dark .menu-type-static {
 .sidebar-settings-card .sidebar-mode-select {
   min-width: 14rem;
   background-color: var(--sidebar-mode-select-bg-color);
+  border-color: var(--sidebar-mode-select-border-color);
+}
+
+.sidebar-settings-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider {
+  background: var(--sidebar-toggle-checked-bg-color);
+}
+
+.sidebar-settings-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider:before,
+.sidebar-settings-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider .ui-toggleswitch-handler {
+  background: var(--sidebar-toggle-knob-color);
 }
 
 .sidebar-settings-card .sidebar-reload-warning {
   padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+}
+
+.sidebar-settings-card .sidebar-reload-warning .p-message-icon,
+.sidebar-settings-card .sidebar-reload-warning .p-message-detail {
+  color: var(--portal-package-alert-warning-text-color);
 }
 
 .sidebar-settings-card .sidebar-reload-warning .ui-button {
