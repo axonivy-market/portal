@@ -38,7 +38,7 @@ import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
  * saved filters (no re-entrancy). Only case-custom (or untyped) filters are touched - STANDARD and task
  * {@code custom} filters are left alone (see {@link DashboardWidgetUtils#resolveCaseCustomColumnType}).
  */
-public class DashboardTaskWidgetFilterTypeConverter implements IJsonConverter {
+public class SavedTaskWidgetFilterTypeConverter implements IJsonConverter {
 
   private static final String WIDGET_TYPE = "widgetType";
   private static final String WIDGET_ID = "widgetId";
