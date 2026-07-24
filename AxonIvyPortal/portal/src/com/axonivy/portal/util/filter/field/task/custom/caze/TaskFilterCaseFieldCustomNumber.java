@@ -18,13 +18,15 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 public class TaskFilterCaseFieldCustomNumber extends CustomFilterField {
 
   private ICustomFieldMeta customField;
+  private DashboardColumnType columnType;
 
   public TaskFilterCaseFieldCustomNumber() {
   }
 
-  public TaskFilterCaseFieldCustomNumber(ICustomFieldMeta customField) {
+  public TaskFilterCaseFieldCustomNumber(ICustomFieldMeta customField, DashboardColumnType columnType) {
     super(customField.name(), FilterFormat.NUMBER);
     this.customField = customField;
+    this.columnType = columnType;
   }
 
   @Override
@@ -35,7 +37,7 @@ public class TaskFilterCaseFieldCustomNumber extends CustomFilterField {
   @Override
   public void initFilter(DashboardFilter filter) {
     filter.setFilterField(this);
-    filter.setFilterType(DashboardColumnType.CUSTOM_CASE);
+    filter.setFilterType(columnType);
     filter.setFilterFormat(FilterFormat.NUMBER);
     filter.setField(getName());
   }

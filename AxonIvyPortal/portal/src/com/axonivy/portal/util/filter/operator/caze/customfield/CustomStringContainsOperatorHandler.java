@@ -6,6 +6,7 @@ import java.util.List;
 
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.hibernate.validator.internal.util.stereotypes.ThreadSafe;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.CaseQueryUtils;
@@ -42,7 +43,7 @@ public class CustomStringContainsOperatorHandler {
 
     if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(filter.getField())) {
       List<String> keywordList = PortalCustomFieldUtils.getCmsValuesMatchingWithKeywordList(filter.getField(),
-          DashboardColumnType.CUSTOM_CASE, filter.getValues());
+          filter.getFilterType(), filter.getValues());
       if (!keywordList.isEmpty()) {
         CaseQuery addingQuery = buildQueryForCustomFieldWithCmsValue(filter, keywordList);
         query.where().or(addingQuery);
