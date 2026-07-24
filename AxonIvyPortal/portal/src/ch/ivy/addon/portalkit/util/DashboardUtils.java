@@ -332,6 +332,12 @@ public class DashboardUtils {
         .getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
   }
 
+  public static List<Dashboard> getSessionDashboards() {
+    List<Dashboard> cached = Optional.ofNullable(getPortalDashboardItemWrapper())
+        .map(PortalDashboardItemWrapper::dashboards).orElse(null);
+    return CollectionUtils.isNotEmpty(cached) ? cached : collectDashboards();
+  }
+
   public static boolean isMainDashboard(String dashboardId, boolean defaultValue) {
     if (StringUtils.isEmpty(dashboardId)) {
       return false;
