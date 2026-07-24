@@ -154,7 +154,7 @@
             <!-- Menu item - Expand/Collapse fullscreen -->
             <p:menuitem id="toggle-fullscreen-item-#{index}" value="Expand" icon="ti ti-arrows-maximize"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widgetName])}"
-              styleClass="toggle-fullscreen-item toggle-fullscreen-item-#{index}"
+              styleClass="toggle-fullscreen-item toggle-fullscreen-item-#{index} actions-menu-item-bordered"
               rendered="#{renderExpandCollapse}"
               onclick="event.preventDefault(); toggleFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}'); return false;" />
             <!-- Menu item - Info -->

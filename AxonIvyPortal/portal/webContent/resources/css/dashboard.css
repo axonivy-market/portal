@@ -2354,5 +2354,5 @@ body.dark .menu-type-static {
 }
 
 .actions-menu-panel .actions-menu-item-bordered {
-  border-bottom: 1px solid var(--ivy-portal-color-gray-spaces) !important;
+  border-bottom: 1px solid var(--widget-button-border-color) !important;
 }
