@@ -42,7 +42,7 @@
 
   <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" appendTo="@(body)"
     styleClass="options-panel #{cc.attrs.sideStepsPanelStyleClass}" dynamic="true" rendered="#{!cc.attrs.isDisabled}"
-    my="left top" at="left bottom" showCloseIcon="true" dismissable="false" cache="false" collision="none"
+    my="left top" at="bottom right" showCloseIcon="true" dismissable="false" cache="false" collision="flip"
     onShow="focusFirstVisibleElementInPanel('#{cc.attrs.panelWidgetVar}', 'a')"
     pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}">
 
