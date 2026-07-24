@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.lang3.math.NumberUtils;
 import org.primefaces.PrimeFaces;
@@ -33,7 +33,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
 @ViewScoped
-@ManagedBean
+@Named
 public class NotificationBean implements Serializable {
 
   private static final long serialVersionUID = 4467991301954952570L;

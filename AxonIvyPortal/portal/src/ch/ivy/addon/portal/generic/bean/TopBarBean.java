@@ -2,14 +2,14 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import com.axonivy.portal.components.jsf.ManagedBeans;
 
 @ViewScoped
-@ManagedBean
+@Named
 public class TopBarBean implements Serializable {
   private static final long serialVersionUID = -4224901891867040688L;
   private boolean showNavigationBackButton;

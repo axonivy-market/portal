@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -16,7 +16,7 @@ import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class CaseWidgetUserFilterBean extends AbstractCaseWidgetFilterBean {
 

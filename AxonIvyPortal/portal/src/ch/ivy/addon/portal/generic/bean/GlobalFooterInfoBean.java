@@ -2,14 +2,14 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.RequestScoped;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
-@ManagedBean
+@Named
 @RequestScoped
 public class GlobalFooterInfoBean implements Serializable {
   private static final long serialVersionUID = 1L;

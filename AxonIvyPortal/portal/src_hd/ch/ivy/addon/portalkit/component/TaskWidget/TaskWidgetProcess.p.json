@@ -75,8 +75,8 @@
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import org.primefaces.PrimeFaces;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "if (in.numberOfNewTask > 0){",
             "  FacesContext facesContext = FacesContext.getCurrentInstance();",
@@ -170,7 +170,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;",
             "import ch.ivy.addon.portalkit.bean.TaskWidgetBean;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "FacesContext context = FacesContext.getCurrentInstance();",
             "TaskWidgetBean taskWidgetBean = context.getApplication().evaluateExpressionGet(context, \"#{taskWidgetBean}\", TaskWidgetBean.class) as TaskWidgetBean;",
@@ -398,7 +398,7 @@
             "import ch.ivy.addon.portalkit.dto.TaskEndInfo;",
             "import ch.ivy.addon.portalkit.service.StickyTaskListService;",
             "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "TaskEndInfo taskEndInfo = new TaskEndInfo();",
             "taskEndInfo.setDataModel(in.dataModel);",

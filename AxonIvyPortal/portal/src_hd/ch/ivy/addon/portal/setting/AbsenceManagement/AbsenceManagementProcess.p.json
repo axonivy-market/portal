@@ -179,8 +179,8 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
-            "import javax.faces.context.FacesContext;",
-            "import javax.faces.context.Flash;",
+            "import jakarta.faces.context.FacesContext;",
+            "import jakarta.faces.context.Flash;",
             "",
             "",
             "// Turn off growl message",

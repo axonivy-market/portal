@@ -9,11 +9,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.application.FacesMessage.Severity;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.faces.context.FacesContext;
 
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.UserDTO;
@@ -33,7 +33,7 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.role.NewRole;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class RoleManagementBean implements Serializable {
   private static final long serialVersionUID = -4867516739222351669L;
@@ -263,6 +263,18 @@ public class RoleManagementBean implements Serializable {
 
   public void setSelectedParentRole(RoleDTO selectedParentRole) {
     this.selectedParentRole = selectedParentRole;
+  }
+
+  /**
+   * Parent role candidates must include hidden roles (e.g. AXONIVY_PORTAL_ADMIN), since Role Management
+   * is an admin tool and shouldn't hide roles meant to be hidden only from normal end-user UI.
+   */
+  public List<RoleDTO> completeParentRole(String query) {
+    List<RoleDTO> roles = RoleUtils.filterRoles(RoleUtils.getAllRoles(), query).stream()
+        .map(RoleDTO::new)
+        .collect(Collectors.toList());
+    roles.sort((first, second) -> first.getDisplayName().compareToIgnoreCase(second.getDisplayName()));
+    return roles;
   }
 
   public boolean isCreationMode() {

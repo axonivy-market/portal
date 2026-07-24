@@ -11,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.DisplayNameDTO;
 
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
+import ch.ivyteam.ivy.application.app.ApplicationRepository;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -77,8 +77,8 @@ public class DisplayNameUtils {
 
   private static String resolveCmsUri(DisplayNameDTO cmsDisplayName) {
     String projectName = cmsDisplayName.getProjectName();
-    return IApplicationRepository.of(ISecurityContext.current()).all().stream()
-        .map(app -> app.findProcessModelVersion(projectName)).filter(Objects::nonNull).findFirst()
+    return ApplicationRepository.of(ISecurityContext.current()).all().stream()
+        .map(app -> app.projects().find(projectName)).filter(Objects::nonNull).findFirst()
         .map(pmv -> ContentManagement.of(pmv).co(cmsDisplayName.getValue())).orElse(EMPTY);
   }
 }

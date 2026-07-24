@@ -107,7 +107,7 @@ public class TaskExporter extends Exporter {
       case CATEGORY:
         return task.getCategory().getPath();
       case APPLICATION:
-        return task.getApplication().getName();
+        return task.getApplication().name();
       default:
         return "";
     }

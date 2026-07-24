@@ -2,12 +2,12 @@ package com.axonivy.portal.components.examples.bean;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import com.axonivy.portal.components.service.DateTimeGlobalSettingService;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class DateTimeExampleBean implements Serializable {
   private static final long serialVersionUID = 393379085832602153L;

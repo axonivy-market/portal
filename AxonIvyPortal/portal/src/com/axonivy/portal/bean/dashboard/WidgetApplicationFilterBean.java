@@ -4,19 +4,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivy.addon.portalkit.util.ListUtilities;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
+import ch.ivyteam.ivy.application.app.ApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class WidgetApplicationFilterBean implements Serializable {
 
@@ -26,9 +25,7 @@ public class WidgetApplicationFilterBean implements Serializable {
   private String applicationString;
 
   public void init(DashboardFilter filter) {
-    this.applications = ListUtilities.transformList(IApplicationRepository.of(ISecurityContext.current()).all(),
-        IApplication::getName);
-
+    this.applications = ListUtilities.transformList(ApplicationRepository.of(ISecurityContext.current()).all(), IApplication::name);
     this.applicationString = String.join(", ",
         new ArrayList<>(CollectionUtils.intersection(applications, filter.getValues())));
   }

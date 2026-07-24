@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -14,7 +14,7 @@ import com.axonivy.portal.developerexamples.dto.SideStepExampleDTO;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
-@ManagedBean
+@Named
 public class SideStepExampleBean implements Serializable {
 
   private static final long serialVersionUID = 1L;

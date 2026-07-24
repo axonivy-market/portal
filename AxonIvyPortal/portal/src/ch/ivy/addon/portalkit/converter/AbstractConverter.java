@@ -2,12 +2,12 @@ package ch.ivy.addon.portalkit.converter;
 
 import java.util.Map;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.convert.Converter;
 
-public abstract class AbstractConverter<T> implements Converter {
+public abstract class AbstractConverter<T> implements Converter<Object> {
 
   protected static final String KEY_DELIMITER = ":::";
 
