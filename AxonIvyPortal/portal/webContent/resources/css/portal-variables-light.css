@@ -191,12 +191,12 @@
   --task-normal-priority-color: #49BAD6;
   --task-high-priority-color: #007095;
   --task-exception-priority-color: #EE4A52;
-  --task-state-suspended-background: hsla(217, 91%, 60%, 0.25);
+  --task-state-suspended-background: hsla(217, 91%, 60%, 0.1);
   --task-state-suspended-border-color: hsla(217, 91%, 60%, 0.25);
   --task-state-suspended-color: hsla(217, 91%, 60%, 1);
-  --task-state-resumed-background: hsla(217, 91%, 60%, 0.15);
-  --task-state-resumed-border: hsla(217, 91%, 60%, 0.25);
-  --task-state-resumed-color: hsla(217, 91%, 60%, 1);
+  --task-state-resumed-background: hsla(48, 96%, 53%, 0.1);
+  --task-state-resumed-border: hsla(48, 96%, 53%, 0.25);
+  --task-state-resumed-color: hsla(48, 85%, 29%, 1);
   --task-state-done-background: hsla(135, 50%, 95%, 1);
   --task-state-done-border: hsla(136, 52%, 81%, 1);
   --task-state-done-color: hsla(137, 47%, 32%, 1);
