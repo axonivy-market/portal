@@ -1,4 +1,5 @@
-[
+﻿{
+  "user-menu": [
     {
         "id": "axon-ivy",
         "title": "Axon Ivy",
@@ -24,3 +25,4 @@
         }
     }
 ]
+}

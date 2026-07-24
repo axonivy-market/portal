@@ -11,7 +11,6 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
@@ -19,12 +18,14 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import ch.ivy.addon.portalkit.bo.PortalJsonViews;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 
 /**
  * This class provides method to convert Business entity object into JSON value and reverse
@@ -65,17 +66,23 @@ public class BusinessEntityConverter {
 
   private static String prettyPrintObjectEntityToJsonValue(Object entity) {
     try {
-      return getObjectMapper().writer().withRootName("dashboard").withDefaultPrettyPrinter().writeValueAsString(entity);
+      return getObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(entity);
     } catch (JsonProcessingException e) {
       throw new PortalException(e);
     }
   }
 
   public static <T> T jsonValueToEntity(String jsonValue, Class<T> classType) {
+    if (StringUtils.isBlank(jsonValue)) {
+      return null;
+    }
     try {
       JsonNode rootNode = getObjectMapper().readTree(jsonValue);
-      if (rootNode.isObject() && rootNode.has("dashboard")) {
-        return getObjectMapper().readValue(rootNode.get("dashboard").toString(), classType);
+      if (rootNode.isObject()) {
+        if (rootNode.fieldNames().hasNext()) {   
+          String rootName = rootNode.fieldNames().next();
+          return getObjectMapper().readValue(rootNode.get(rootName).toString(), classType);
+        }
       } else if (rootNode.isArray()) {
         return getObjectMapper().readValue(jsonValue, classType);
       } 
@@ -100,9 +107,14 @@ public class BusinessEntityConverter {
     }
     try {
       JsonNode rootNode = getObjectMapper().readTree(jsonValue);
+      
       if (rootNode.isObject()) {
-        if (rootNode.has("dashboard")) {
-          return getObjectMapper().readValue(rootNode.get("dashboard").toString(), getListOfJavaType(classType));
+        if (rootNode.fieldNames().hasNext()) {        
+          String rootName = rootNode.fieldNames().next();
+          Ivy.log().error("The root node is an object, the root name is: " + rootName);
+          if (rootNode.has(rootName)) {
+            return getObjectMapper().readValue(rootNode.get(rootName).toString(), getListOfJavaType(classType));
+          }
         }
       } else if (rootNode.isArray()) {
         return getObjectMapper().readValue(jsonValue, getListOfJavaType(classType));
@@ -118,28 +130,67 @@ public class BusinessEntityConverter {
   }
 
   public static <T> List<T> convertJsonNodeToList(JsonNode jsonNode, Class<T> classType) {
-    if (Optional.ofNullable(jsonNode).isPresent()) {
-      try {
-        JsonNode nodeToConvert = jsonNode;
-        if (jsonNode.isObject()) {
-          // Handle root-wrapped arrays like {"ArrayList": [...]} produced when WRAP_ROOT_VALUE
-          // was enabled. Unwrap by looking up the "ArrayList" key specifically.
-          JsonNode wrappedArray = jsonNode.get("ArrayList");
-          if (wrappedArray != null && wrappedArray.isArray()) {
-            nodeToConvert = wrappedArray;
-          }
-        }        if (nodeToConvert.isObject()) {
-          // Still an ObjectNode (no "ArrayList" wrapper) — treat as a single entity and wrap in a list.
-          T entity = getObjectMapper().treeToValue(nodeToConvert, classType);
-          List<T> result = new ArrayList<>();
-          result.add(entity);
-          return result;
-        }        return getObjectMapper().treeToValue(nodeToConvert, getListOfJavaType(classType));
-      } catch (IOException e) {
-        throw new PortalException(e);
-      }
+    Ivy.log().error("JsonNode at the beginning of function is {0}", jsonNode.toString().substring(0, Math.min(jsonNode.toString().length(), 100)));
+    if (!Optional.ofNullable(jsonNode).isPresent()) {
+      return new ArrayList<>();
     }
-    return new ArrayList<>();
+    try {
+      JsonNode nodeToConvert = jsonNode;
+
+      // Handle root-wrapped format {"ArrayList": [...]} produced by WRAP_ROOT_VALUE.
+      // Only unwrap if the first field contains an array whose elements are objects
+      // (i.e. real entity nodes), not primitive/string arrays like "permissions":["Everybody"].
+      if (nodeToConvert.isObject()) {
+        JsonNode candidateArray = null;
+        if (nodeToConvert.fieldNames().hasNext()) {
+          String rootName = nodeToConvert.fieldNames().next();
+          JsonNode firstValue = nodeToConvert.get(rootName);
+          if (firstValue != null && firstValue.isArray()
+              && firstValue.size() > 0 && firstValue.get(0).isObject()) {
+            candidateArray = firstValue;
+          }
+        }
+        if (candidateArray != null) {
+          nodeToConvert = candidateArray;
+        } else {
+          // Single-entity ObjectNode (plain Dashboard or primitive-valued wrapper) — wrap in a list
+          List<T> result = new ArrayList<>();
+          result.add(getObjectMapper().treeToValue(nodeToConvert, classType));
+          return result;
+        }
+      }
+
+      // Handle array that may contain nested arrays (corrupted format [[{...}], {...}])
+      if (nodeToConvert.isArray()) {
+        boolean hasNestedArrays = false;
+        for (JsonNode element : nodeToConvert) {
+          if (element.isArray()) {
+            hasNestedArrays = true;
+            break;
+          }
+        }
+        if (hasNestedArrays) {
+          Ivy.log().error("Detected nested arrays in dashboard JSON, flattening");
+          List<T> result = new ArrayList<>();
+          for (JsonNode element : nodeToConvert) {
+            if (element.isArray()) {
+              for (JsonNode inner : element) {
+                if (inner.isObject()) {
+                  result.add(getObjectMapper().treeToValue(inner, classType));
+                }
+              }
+            } else if (element.isObject()) {
+              result.add(getObjectMapper().treeToValue(element, classType));
+            }
+          }
+          return result;
+        }
+      }
+
+      return getObjectMapper().treeToValue(nodeToConvert, getListOfJavaType(classType));
+    } catch (IOException e) {
+      throw new PortalException(e);
+    }
   }
 
   public static <T> T convertJsonNodeToEntity(JsonNode jsonNode, Class<T> classType) {
@@ -160,6 +211,7 @@ public class BusinessEntityConverter {
           .builder()
           .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
           .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
+          .enable(SerializationFeature.WRAP_ROOT_VALUE)
           .build(); 
     }
     return objectMapper;

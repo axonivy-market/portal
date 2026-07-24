@@ -1,4 +1,5 @@
-[
+﻿{
+  "dashboard": [
   {
     "id": "default-task-list-dashboard",
     "version": "13.1.0",
@@ -572,4 +573,4 @@
       "Everybody"
     ]
   }
-]
+]}

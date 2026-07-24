@@ -39,6 +39,7 @@ import ch.ivy.addon.portalkit.dto.widget.HistoryWidget;
 import ch.ivy.addon.portalkit.dto.widget.InformationWidget;
 import ch.ivy.addon.portalkit.dto.widget.RelatedTaskWidget;
 import ch.ivy.addon.portalkit.dto.widget.TechnicalCaseWidget;
+import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -48,7 +49,7 @@ import ch.ivyteam.ivy.security.IUser;
 public abstract class AbstractConfigurableContentBean<T extends AbstractConfigurableContent> implements Serializable {
 
   private static final long serialVersionUID = -5019885123920232407L;
-  protected static ObjectMapper mapper;
+  //protected static ObjectMapper mapper;
   protected static GlobalSettingService globalSettingService;
   protected boolean isReadOnlyMode = true;
   protected boolean isReseted;
@@ -61,13 +62,13 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
   protected abstract Class<T> getConfigurationType();
 
   public void initConfig() {
-    if (mapper == null) {
+    /*if (mapper == null) {
       mapper = JsonMapper
           .builder()
           .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
           .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
           .build();
-    }
+    }*/
 
     globalSettingService = GlobalSettingService.getInstance();
     isShowNotAvailableData = PermissionUtils.isSessionUserHasAdminRole();
@@ -200,7 +201,13 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
   }
 
   private List<T> parseConfigurationJson(String configurationJson) throws JsonMappingException, JsonProcessingException {
+    return BusinessEntityConverter.jsonValueToEntities(configurationJson, getConfigurationType());
+    /* 
+    if (StringUtils.isBlank(configurationJson)) {
+      return new ArrayList<>();
+    }
     return mapper.readValue(configurationJson, mapper.getTypeFactory().constructCollectionType(List.class, getConfigurationType()));
+    */
   }
 
   protected List<T> loadGlobalConfigurations() throws JsonMappingException, JsonProcessingException {
@@ -258,6 +265,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
 
   protected List<T> loadDefaultGlobalConfigurations() throws JsonMappingException, JsonProcessingException {
     var configurationJsonData = Ivy.var().variable(getVariableKey()).defaultValue();
+    Ivy.log().error("configurationJsonData is " + configurationJsonData);
     return parseConfigurationJson(configurationJsonData);
   }
   
@@ -303,7 +311,8 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
   protected List<WidgetLayout> extractWidgetLayoutFromRequest() throws JsonProcessingException, JsonMappingException {
     Map<String, String> requestParamMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
     var nodes = Optional.ofNullable(requestParamMap.get("nodes")).orElse(EMPTY);
-    return Arrays.asList(mapper.readValue(nodes, WidgetLayout[].class));
+    return BusinessEntityConverter.jsonValueToEntities(nodes, WidgetLayout.class);
+    //return Arrays.asList(mapper.readValue(nodes, WidgetLayout[].class));
   }
 
   protected boolean doesWidgetExist(AbstractWidget widget) {
@@ -323,7 +332,10 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
   }
 
   private void saveConfigurationsToUserProperty() throws JsonProcessingException {
-    String configurationJson = mapper.writeValueAsString(configurationList);
+    //String configurationJson = mapper.writeValueAsString(configurationList);
+    String configurationJson = BusinessEntityConverter.prettyPrintEntityToJsonValue(configurationList);
+
+    Ivy.log().error("saveConfigurationsToUserProperty is {0}", configurationJson);
     getSessionUser().setProperty(getVariableKey(), configurationJson);
   }
 

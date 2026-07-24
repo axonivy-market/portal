@@ -1,5 +1,5 @@
 {
-  "dashboard-templates": [
+  "dashboard-template": [
   {
     "version": "13.1.0",
     "id": "default-portal-dashboard-template",

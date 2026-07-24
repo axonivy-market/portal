@@ -44,15 +44,27 @@ public class JsonDashboardMigrator {
   }
 
   public JsonNode migrate() {
+    
     if (node.isArray()) {
+      Ivy.log().error("Migrating dashboard array with size: {0}", node.size());
       node.elements().forEachRemaining(dashboard -> migrate(dashboard));
+
+      
     } else {
+      Ivy.log().error("Migrating single dashboard");
       migrate(node);
     }
     return node;
   }
 
   private void migrate(JsonNode dashboard) {
+    //readVersion(dashboard);
+    if (dashboard.isArray()) {
+      Ivy.log().error("Dashboard is an array, size: {0}", dashboard.size());
+      dashboard.elements().forEachRemaining(dashboardNode -> migrate(dashboardNode));
+      return;
+    }
+    Ivy.log().error("Migrating dashboard version: {0}, full content: {1}", dashboard.get(AbstractJsonVersion.VERSION_FIELD_NAME), dashboard.toString().substring(0, 100));
     var converters = JsonDashboardConverterFactory.getConverters(readVersion(dashboard)).stream()
         .filter(conv -> conv.version().compareTo(version) <= 0)
         .collect(Collectors.toList());
@@ -60,6 +72,7 @@ public class JsonDashboardMigrator {
       if (CollectionUtils.isNotEmpty(converters)) {
         converters.stream().forEachOrdered(converter -> run(converter, dashboard));
       }
+    Ivy.log().error("Migrating JSONNode OK");
   }
 
   private void run(IJsonConverter converter, JsonNode dashboard) {

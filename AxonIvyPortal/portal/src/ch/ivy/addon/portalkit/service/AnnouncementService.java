@@ -90,7 +90,7 @@ public class AnnouncementService {
 
   public boolean isAnnouncementActivated() {
     Announcement announcement = getAnnouncement();
-    return announcement.isEnabled();
+    return announcement != null ? announcement.isEnabled() : false;
   }
 
   public Announcement getAnnouncementWithAllSupportedLanguage() {

@@ -1,4 +1,5 @@
-[
+﻿{
+  "custom-menu-items": [
   {
     "id": "1",
     "link": "https://google.com",
@@ -39,4 +40,4 @@
     "version": "12.0.0"
   }
 
-]
+]}
