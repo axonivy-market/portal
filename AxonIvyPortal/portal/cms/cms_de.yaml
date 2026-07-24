@@ -1321,6 +1321,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldsDialog: 'Benutzerdefinierte Felder der Aufgabe #{0}'
     delayedUntil: Sperrfrist
     deleteFile: Datei löschen
+    dueDate: Fällig
     documents: Dokumente
     duration: Dauer
     events: Workflow-Ereignisse

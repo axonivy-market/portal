@@ -8,117 +8,46 @@
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="priorityComponentToUpdate" />
   <cc:attribute name="componentToUpdate" />
+  <cc:attribute name="stateComponentToUpdate" />
   <cc:attribute name="styleClass" />
-  <cc:attribute name="onWorkflowEventComplete" />
   <cc:attribute name="onEditTaskExpiryActivator" />
   <cc:attribute name="readOnly" type="java.lang.Boolean" default="false" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
-  <c:set var="state" value="#{cc.attrs.task.state}" />
   <!-- PANEL GENERAL INFORMATION -->
 
   <h:panelGroup styleClass="ui-g-12 u-padding-0">
-    <div class="task-detail-title">
-      <h:outputText
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/generalInformation')}" class="text-ellipsis" />
-    </div>
-
-    <div id="general-information" class="ui-g general-information">
-      <div class="ui-xl-3 ui-lg-3 ui-md-3 ui-sm-4 ui-g-3 u-no-padding-left min-width-column-task-details-when-resize">
-        <div class="ui-g-12 no-padding-column text-content text-ellipsis">
-          <h:outputText styleClass="task-detail-column-title"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}" />
-        </div>
-        <div class="ui-g-12 no-padding-column text-content last-line text-ellipsis">
-          <h:outputText id="task-id" value="#{task.getId()}" />
-        </div>
-
-      </div>
-      <div class="ui-xl-3 ui-lg-3 ui-md-3 ui-sm-4 ui-g-3 u-no-padding-left min-width-column-task-details-when-resize">
-        <div class="ui-g-12 no-padding-column text-content text-ellipsis">
-          <h:outputText styleClass="task-detail-column-title"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY')}" />
-        </div>
-        <div class="ui-g-12 no-padding-column text-content last-line">
-          <h:panelGroup styleClass="task-details-priority">
-            <ui:fragment rendered="#{taskActionBean.canChangePriority(task)}">
-              <h:form id="priority-form" styleClass="task-priority-form">
-                <p:inplace id="edit-priority-inplace" effectSpeed="fast" styleClass="edit-priority-inplace portal-edit-inplace"
-                  disabled="#{cc.attrs.readOnly}"
-                  saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-                  cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" editor="true">
-                  <f:facet name="output">
-                    <h:panelGroup id="priority-icon">
-                      <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority
-                        id="task-priority-component" priority="#{task.priority}"
-                        showIconWithText="true" showEditIcon="#{!cc.attrs.readOnly}"/>
-                    </h:panelGroup>
-                  </f:facet>
-                  <p:ajax event="save" update="priority-form" />
-                  <p:selectOneMenu id="priority-select-menu" value="#{task.originalPriority}"
-                    styleClass="task-details-priority" rendered="#{!task.isExpired()}">
-                    <f:selectItems value="#{task.getPriority().values()}" var="priority"
-                      itemLabel="#{taskBean.getPriority(priority)}" itemValue="#{priority}" />
-                  </p:selectOneMenu>
-                  <p:selectOneMenu id="expiry-priority-select-menu" value="#{task.expiryPriority}"
-                    styleClass="task-details-priority" rendered="#{task.isExpired()}">
-                    <f:selectItems value="#{task.getPriority().values()}" var="priority"
-                      itemLabel="#{taskBean.getPriority(priority)}" itemValue="#{priority}" />
-                  </p:selectOneMenu>
-                </p:inplace>
-              </h:form>
-            </ui:fragment>
-            <ui:fragment rendered="#{not taskActionBean.canChangePriority(task)}">
-              <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority
-                priority="#{task.priority}" showIconWithText="true" />
-            </ui:fragment>
-          </h:panelGroup>
-        </div>
+    <!-- Card: Task Details (heading + Description + Role&User/Time sub-cards + Task&Case).
+         The Priority|State|Due|Workflow strip that used to render here was moved into
+         TaskItemDetails.xhtml so Header+Strip render as a single Figma-matching card
+         (see the id-path/Selenium note there). -->
+    <div class="card task-detail-taskdetails-card">
+      <div class="ui-g-12 u-padding-0 task-detail-block-title task-detail-details-heading">
+        <h:outputText value="#{ivy.cms.co('/Labels/TaskItemDetail')}" />
       </div>
 
-      <div class="ui-xl-3 ui-lg-3 ui-md-3 ui-sm-4 ui-g-3 u-no-padding-left min-width-column-task-details-when-resize">
-        <div class="ui-g-12 no-padding-column text-content text-ellipsis"> 
-          <h:outputText styleClass="task-detail-column-title"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
-        </div>
-        <div class="ui-g-12 no-padding-column text-content last-line text-ellipsis">
-          <h:panelGroup id="task-detail-state" styleClass="state-cell default-task-cell">
-            <ic:ch.ivy.addon.portalkit.component.task.column.TaskState
-              state="#{task.businessState}" showIndicatorBesideText="true" responsiveStyleClass="" />
-          </h:panelGroup>
-          <p:tooltip rendered="#{state == 'FAILED' or state == 'JOIN_FAILED'}" for="task-detail-state"
-            value="#{taskBean.getTaskFailedReason(task)}" trackMouse="true" hideEvent="mouseleave click" />
-        </div>
-      </div>
+      <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="task-detail-description" task="#{task}"
+        labelStyleClasses="u-no-padding-left" readOnly="#{cc.attrs.readOnly}" />
 
-      <div class="ui-xl-3 ui-lg-3 ui-md-3 ui-sm-hidden ui-g-3 u-no-padding-left min-width-column-task-details-when-resize">
-        <div class="ui-g-12 no-padding-column text-content">
-          <h:outputText styleClass="task-detail-column-title" rendered="#{taskActionBean.showReadWorkflowEvent}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/events')}" />
-        </div>
-        <div class="ui-g-12 no-padding-column text-content last-line text-ellipsis">
-          <p:commandLink id="workflow-event-link" onstart="event.stopPropagation();"
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/seeDetail')}"
-            disabled="#{!taskActionBean.canReadWorkflowEventTask()}" rendered="#{taskActionBean.showReadWorkflowEvent}"
-            oncomplete="#{cc.attrs.onWorkflowEventComplete}" global="false">
-            <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/seeDetail')}</span>
-          </p:commandLink>
-        </div>
-      </div>
-    </div>
-
-    <p:divider styleClass="separator-task-detail" />
-
-    <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="task-detail-description" task="#{task}"
-      labelStyleClasses="u-no-padding-left" readOnly="#{cc.attrs.readOnly}" />
-
-    <p:divider styleClass="separator-task-detail" />
-    <!-- Role and User information -->
-    <div id="role-and-user-information" class="ui-g-6 ui-sm-12 ui-md-12 ui-lg-12 ui-xl-6 role-and-user-information u-padding-0">
-      <div class="ui-g-12 task-detail-title">
+      <p:divider styleClass="separator-task-detail" />
+      <!-- Role and User information + Time information: a flex row (not PrimeFlex float
+           `.ui-g-6`) so both sub-cards stretch to equal height and get a real gap between
+           them instead of touching, per Figma. -->
+      <div class="ui-g-12 u-padding-0 task-detail-subcards-row">
+    <div id="role-and-user-information" class="ui-sm-12 ui-md-12 ui-lg-12 role-and-user-information task-detail-inner-card">
+      <div class="ui-g-12 task-detail-title task-detail-subcard-title flex align-items-center justify-content-between">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/RoleUserInformation')}" styleClass="text-ellipsis" />
+        <p:commandLink id="delegate-task-command" styleClass="task-detail-delegate-link" global="false"
+          rendered="#{taskActionBean.showDelegateTask}" disabled="#{!taskActionBean.canDelegate(task) or cc.attrs.readOnly}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
+          onstart="event.stopPropagation();"
+          actionListener="#{taskActionBean.updateSelectedTaskItemId(false, task.id)}"
+          update="@widgetVar(task-delegate-dialog)" oncomplete="initDataToDelegate()" process="@this">
+          <i class="ti ti-users" />
+          <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}</span>
+        </p:commandLink>
       </div>
       <h:panelGroup styleClass="ui-g-12 content-field" layout="block"
         rendered="#{taskDetailsBean.isRenderItemGeneral(task.getWorkerUser(), task.getWorkerUserName())}">
@@ -162,8 +91,8 @@
     </div>
 
     <!-- Time information -->
-    <div id="time-information" class="ui-g-6 ui-sm-12 ui-md-12 ui-lg-12 ui-xl-6 time-information u-padding-0">
-      <div class="ui-g-12 task-detail-title">
+    <div id="time-information" class="ui-sm-12 ui-md-12 ui-lg-12 time-information task-detail-inner-card">
+      <div class="ui-g-12 task-detail-title task-detail-subcard-title">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timeInformation')}" styleClass="text-ellipsis" />
       </div>
 
@@ -199,7 +128,7 @@
               </f:facet>
 
               <p:ajax event="save" listener="#{logic.updateDelayTimestamp(task)}"
-                update="delay-form #{cc.clientId}:task-detail-state #{cc.attrs.componentToUpdate}" resetValues="true" />
+                update="delay-form #{cc.attrs.stateComponentToUpdate} #{cc.attrs.componentToUpdate}" resetValues="true" />
               <p:datePicker id="delay-date-calendar" styleClass="delay-date-calendar" value="#{task.delayTimestamp}"
                 placeholder="#{dateTimePatternBean.getShortDateTimePattern(false)}"
                 showTime="#{!dateTimePatternBean.isTimeHidden}"  locale="#{localeBean.locale}" >
@@ -282,10 +211,11 @@
         </div>
       </h:panelGroup>
     </div>
+      </div>
 
     <!-- Task and Case information -->
-    <div id="task-and-case-information" class="ui-g-12 task-and-case-information u-padding-0">
-      <div class="ui-g-12 task-detail-title">
+    <div id="task-and-case-information" class="ui-g-12 task-and-case-information task-detail-inner-card task-detail-kv">
+      <div class="ui-g-12 task-detail-title task-detail-subcard-title">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/TaskCaseInformation')}" styleClass="text-ellipsis" />
       </div>
 
@@ -319,8 +249,10 @@
         </div>
         <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-8 ui-g-10 u-no-padding-left u-truncate-text">
           <p:commandLink id="related-case" styleClass="task-business-case" disabled="#{cc.attrs.readOnly}"
-            value="#{taskBean.displayCaseName(task)}" ariaLabel="#{taskBean.displayCaseName(task)}"
+            ariaLabel="#{taskBean.displayCaseName(task)}"
             actionListener="#{logic.navigateToRelatedCase(task.getCase().getBusinessCase())}">
+            <i class="ti ti-external-link" />
+            <h:outputText value="#{taskBean.displayCaseName(task)}" />
           </p:commandLink>
         </div>
       </h:panelGroup>
@@ -332,16 +264,19 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}" rendered="true" />
         </div>
         <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-8 ui-g-10 u-no-padding-left u-truncate-text">
-          <p:commandLink id="related-technical-case" value="#{taskBean.getTechnicalCaseDisplayName(task)}"
+          <p:commandLink id="related-technical-case"
             ariaLabel="#{taskBean.getTechnicalCaseDisplayName(task)}"
             actionListener="#{logic.navigateToRelatedCase(task.getCase())}"
             rendered="#{task.getCase().getId() != task.getCase().getBusinessCase().getId()}"
+            styleClass="task-business-case"
             disabled="#{cc.attrs.readOnly}">
+            <i class="ti ti-external-link" />
+            <h:outputText value="#{taskBean.getTechnicalCaseDisplayName(task)}" />
           </p:commandLink>
         </div>
       </h:panelGroup>
     </div>
-    
+    </div>
   </h:panelGroup>
 
   <p:tooltip for="task-category" value="#{task.getCategory().getPath()}" trackMouse="true" hideEvent="mouseleave click" />

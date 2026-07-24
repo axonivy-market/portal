@@ -174,6 +174,27 @@
   --task-detail-header-font-weight: bold;
   --task-detail-section-title-font-weight: bold;
   --task-detail-separator-border-color: #F4F4F4;
+  /* Task Detail UI redesign (IVYPORTAL-20779) */
+  --task-detail-card-bg: var(--ivy-primary-color-white);
+  --task-detail-card-border-color: #EBEBEB;
+  --task-detail-card-radius: 15px;
+  --task-detail-subcard-bg: #FAFAFA;
+  --task-detail-subcard-border-color: #EBEBEB;
+  --task-detail-eyebrow-color: #757575;
+  --task-detail-label-color: #757575;
+  --task-detail-value-color: #1B1B1B;
+  --task-detail-strip-bg: #FAFAFA;
+  --task-detail-strip-divider-color: #E7E7E7;
+  --task-detail-divider-color: #EBEBEB;
+  --task-detail-empty-icon-bg: #F8F8F8;
+  --task-detail-empty-icon-color: #BFBFBF;
+  --task-detail-state-open-indicator-color: #47C46B;
+  --task-detail-primary-tint-bg: #E6F1F5;
+  --task-detail-accent-btn-border: #96C4D4;
+  --task-detail-neutral-btn-bg: #FAFAFA;
+  --task-detail-neutral-btn-border: #EBEBEB;
+  --task-detail-card-gap: 25px;
+  --task-detail-card-padding: 20px;
   --task-start-info-header-font-weight: bold;
   --task-start-info-task-id-font-weight: normal;
   --task-name-input-font-weight: bold;

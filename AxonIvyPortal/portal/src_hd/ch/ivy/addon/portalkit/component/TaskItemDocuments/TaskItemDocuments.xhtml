@@ -18,24 +18,22 @@
 
   <div id="#{cc.clientId}" class="task-details-item-document ui-g">
     <h:form id="task-document-form" prependId="false" styleClass="ui-g-12 u-padding-0">
-      <div class="task-detail-section-title ui-g-12">
-        <div class="task-details-document-title ui-g-6 u-truncate-text u-padding-0 task-details-panel-title" role="heading" aria-level="1">
-          <i class="ti ti-file-text" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/documents')}
+      <div class="task-detail-section-title ui-g-12 flex align-items-center justify-content-between">
+        <div class="task-details-document-title u-truncate-text u-padding-0 task-details-panel-title task-detail-block-title" role="heading" aria-level="1">
+          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/documents')}
         </div>
-        <h:panelGroup layout="block" styleClass="ui-g-6 u-padding-0 document-task-detail-section-header-actions">
-          <p:commandLink id="add-document-command" global="false"
+        <h:panelGroup layout="block" styleClass="u-padding-0 document-task-detail-section-header-actions flex align-items-center">
+          <p:commandButton id="add-document-command" global="false"
                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
+                         title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
                          rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
-                         styleClass="task-details-document-add-link u-mar-right-10"
-                         oncomplete="PF('document-upload-dialog').show()">
-            <span class="ti ti-file-plus" />
-            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
-            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
-          </p:commandLink>
+                         icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
+                         styleClass="task-details-document-add-link portal-icon-btn-round portal-icon-btn-accent u-mar-right-10"
+                         oncomplete="PF('document-upload-dialog').show()"/>
           <p:link id="show-more-doc-link" rendered="#{caseTaskDocumentBean.showMoreDocument}"
-            styleClass="task-details-document-add-link doc-show-more-link"
+            styleClass="task-details-document-add-link doc-show-more-link portal-pill-btn"
             href="#{caseTaskDocumentBean.getTaskDocumentsLink(task)}" target="_blank">
-            <span class="ti ti-queue-pop-out doc-show-more-link-icon" />
+            <span class="ti ti-external-link doc-show-more-link-icon" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
@@ -113,10 +111,18 @@
         </p:dataTable>
 
         <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{empty data.documents}">
-          <i class="ti ti-info-circle" />
+          <i class="ti ti-file-text" />
           <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noDocumentAvailable')}" />
           <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddDocument')}"
             rendered="#{caseTaskDocumentBean.canWriteDocument(task)}" />
+          <p:commandLink id="add-document-command-empty" global="false"
+                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
+                         rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
+                         styleClass="task-details-document-add-link no-item-action-link"
+                         oncomplete="PF('document-upload-dialog').show()">
+            <i class="ti ti-circle-plus" />
+            <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
+          </p:commandLink>
         </h:panelGroup>
       </div>
     </h:form>

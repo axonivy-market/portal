@@ -1318,6 +1318,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldsDialog: 'Custom Fields of task #{0}'
     delayedUntil: Delayed until
     deleteFile: Delete file
+    dueDate: Due
     documents: Documents
     duration: Duration
     events: Workflow Events

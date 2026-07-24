@@ -1319,6 +1319,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldsDialog: 'Champs personnalisés de la tâche #{0}'
     delayedUntil: Retardé jusqu'au
     deleteFile: Supprimer le fichier
+    dueDate: Échéance
     documents: Documents
     duration: Durée
     events: Événements relatifs au flux de travail

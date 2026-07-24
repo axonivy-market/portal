@@ -4417,10 +4417,6 @@ _:-ms-fullscreen, :root .content-link-history {
   }
 }
 
-.note-show-more-link-icon, .note-show-more-link {
-  margin-left: 5px;
-}
-
 /*  =================== END TASK TEMPLATE PAGE ========================= */
 
 @media screen and (max-width: 1320px) {

@@ -908,6 +908,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     completedOn: Completed on
     delayedUntil: Delayed until
     deleteFile: Delete file
+    dueDate: Due
     documents: Documents
     duration: Duration
     events: Workflow Events

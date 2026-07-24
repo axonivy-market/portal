@@ -1320,6 +1320,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldsDialog: 'Campos personalizados de la tarea #{0}'
     delayedUntil: Retrasado hasta
     deleteFile: Borrar archivo
+    dueDate: Vencimiento
     documents: Documentos
     duration: Duración
     events: Eventos del Workflow

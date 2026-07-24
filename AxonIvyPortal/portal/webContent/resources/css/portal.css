@@ -2073,3 +2073,448 @@ canvas#preview-statistic-chart {
 .login-body .login-wrapper .login-panel > button > span.ui-button-icon-left {
   font-weight: normal;
 }
+
+/* =====================================================================
+   Task Detail UI redesign (IVYPORTAL-20779)
+   - Shared atoms use neutral `.portal-*` names so other redesign PRs /
+     pages (e.g. Case detail) can reuse them; page-specific rules are
+     scoped under `.task-detail-*`.
+   - Colors/spacing come from --task-detail-* tokens (light + dark).
+   ===================================================================== */
+
+/* ---- Shared: round icon button (e.g. more "...", "+" add) ---- */
+.portal-icon-btn-round.ui-button,
+.portal-icon-btn-round {
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--task-detail-neutral-btn-border);
+  background: var(--task-detail-neutral-btn-bg);
+  color: var(--task-detail-value-color);
+}
+.portal-icon-btn-round.portal-icon-btn-accent {
+  border-color: var(--task-detail-accent-btn-border);
+  background: var(--task-detail-primary-tint-bg);
+  color: var(--primary-color);
+}
+
+/* ---- Shared: pill button (e.g. Start, Edit layout, Show more) ---- */
+.portal-pill-btn.ui-button,
+.portal-pill-btn {
+  border-radius: 999px;
+  border: 1px solid var(--task-detail-neutral-btn-border);
+  background: var(--task-detail-neutral-btn-bg);
+  color: var(--task-detail-value-color);
+  padding: 0.4rem 1rem;
+  gap: 0.35rem;
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500;
+}
+.portal-pill-btn.portal-pill-btn-accent.ui-button,
+.portal-pill-btn.portal-pill-btn-accent {
+  border-color: var(--task-detail-accent-btn-border);
+  background: var(--task-detail-primary-tint-bg);
+  color: var(--primary-color);
+}
+
+/* ---- Shared: empty-state block (task & case documents/notes) ---- */
+.no-item-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5rem;
+  padding: 2.5rem 1rem;
+}
+.no-item-panel > .ti,
+.no-item-panel > .tif,
+.no-item-panel > .si {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 6.25rem;
+  height: 6.25rem;
+  border-radius: 50%;
+  background: var(--task-detail-empty-icon-bg);
+  color: var(--task-detail-empty-icon-color);
+  font-size: 2.6rem !important;
+}
+.no-item-panel .no-item-header {
+  font-size: 1rem; /* 16px, overrides the theme's --no-item-header-font-size (2rem) for this redesign */
+  font-weight: 600;
+  color: var(--task-detail-value-color);
+}
+.no-item-panel .no-item-detail {
+  color: var(--task-detail-label-color);
+  font-size: 0.875rem; /* 14px */
+  font-weight: 400;
+}
+.no-item-panel .no-item-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; /* ~8px, measured icon-to-text gap in the SVG */
+  color: var(--primary-color);
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500;
+  margin-top: 0.25rem;
+  line-height: 1;
+}
+/* Keep the add-link icon small (measured ~11px, ~0.75em of the 14px label text) and override
+   the shared 8rem illustration-icon rule. Icon fonts carry their own internal line-height that
+   can visually offset the glyph from the adjacent text even inside a flex row with
+   align-items:center — force line-height:1 and vertical-align:middle to neutralize that, and
+   rely on the parent's inline-flex + align-items:center for the actual centering. */
+.no-item-panel .no-item-action-link .ti {
+  font-size: 0.75rem !important;
+  line-height: 1 !important;
+  vertical-align: middle;
+  width: auto;
+  height: auto;
+  background: none;
+  border-radius: 0;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+}
+/* module.css `.ti-circle-plus{position:relative;top:18px;display:contents}` (line ~4184) is a
+   legacy tweak for an unrelated icon usage; it shoves this glyph 18px down and strips its box
+   (display:contents), which breaks the flex centering against the "Add document/note" label.
+   Neutralize it for this link specifically. */
+.no-item-panel .no-item-action-link .ti-circle-plus {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  display: inline-flex !important;
+}
+
+/* ---- Cards: outer widget card + inner sub-cards ---- */
+.task-item-body .card.task-detail-card {
+  border: 1px solid var(--task-detail-card-border-color);
+  border-radius: var(--task-detail-card-radius);
+  background: var(--task-detail-card-bg);
+}
+.task-detail-inner-card {
+  border: 1px solid var(--task-detail-subcard-border-color);
+  border-radius: var(--task-detail-card-radius);
+  background: var(--task-detail-subcard-bg);
+  padding: 1rem 1.25rem;
+}
+
+/* ---- 2-card stack for the "information" GridStack widget, matching Figma:
+   Card 1 = Header + Strip (Priority|State|Due|Workflow) in one card.
+   Card 2 = Task Details (Description + Role&User/Time sub-cards + Task&Case).
+   Spaced by --task-detail-card-gap. The Strip's markup lives in TaskItemDetails.xhtml
+   (moved out of TaskItemGeneralInfo's `general-information` NamingContainer — see the
+   id-path/Selenium note there) so it can render inside the same card as the header. ---- */
+.task-detail-widget-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--task-detail-card-gap);
+}
+.task-detail-widget-stack-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--task-detail-card-gap);
+}
+.task-item-body .task-detail-widget-stack .card,
+.task-item-body .task-detail-widget-stack-item .card {
+  border: 1px solid var(--task-detail-card-border-color);
+  border-radius: var(--task-detail-card-radius);
+  background: var(--task-detail-card-bg);
+  padding: var(--task-detail-card-padding);
+  margin: 0;
+}
+.task-detail-header-card,
+.task-detail-taskdetails-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+/* Role&User/Time/Task&Case sub-cards inside this card are PrimeFlex `.ui-g-*` columns
+   (float-based) rendered without a wrapping `.ui-g` row, so nothing clears their floats.
+   Without a new block-formatting context the card collapses to the height of its
+   in-flow content only, and the floated sub-cards render visually outside/below its
+   border. `flow-root` contains them without touching overflow/visibility. */
+.task-detail-taskdetails-card {
+  display: flow-root;
+}
+/* The Strip is an inner bordered box within the Header card (like the Role&User/Time/Task&Case
+   sub-cards inside the Task Details card) — give it breathing room from the header row above it. */
+.task-detail-header-card .task-detail-attr-strip {
+  margin-top: 1.25rem;
+}
+
+/* Section / block headings inside the information widget.
+   Font specs measured from TaskDetail_light_mode.svg / TaskDetail_dark_mode.svg (family Inter):
+   - Top-level card heading ("Task Details", "Documents", "Notes", empty-state header): 16px/600.
+   - Sub-card title ("Role & User information", "Time Information", "Task and Case Information",
+     "Description"): 14px/600 — smaller tier, do not confuse with the top-level heading above. */
+.task-detail-block-title {
+  font-weight: 600;
+  font-size: 1rem; /* 16px */
+  color: var(--task-detail-value-color);
+}
+.task-detail-subcard-title,
+.task-description-title {
+  font-weight: 600;
+  font-size: 0.875rem; /* 14px */
+  color: var(--task-detail-value-color);
+}
+/* `.task-detail-title` deliberately excluded here: it's only ever paired with
+   `.task-detail-subcard-title` on sub-card headings (never used alone as a row label in this
+   component), and coupling it to this rule silently demoted those headings back to 400 by
+   source-order, defeating `.task-detail-subcard-title`'s font-weight:600. */
+.task-detail-column-title {
+  color: var(--task-detail-label-color);
+  font-size: 0.875rem; /* 14px row label */
+  font-weight: 400;
+  opacity: 1;
+}
+
+/* ---- Task header (identity row) ---- */
+/* Override module.css `.task-detail-section-title{display:inline-block!important}`
+   and `.action-container{justify-content:center}` for the redesigned header row. */
+.task-item-body .task-detail-header-row {
+  display: flex !important;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.task-detail-header-row .task-detail-identity {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.task-detail-header-row .task-detail-header-actions.action-container {
+  flex: 0 0 auto;
+  justify-content: flex-end;
+}
+.task-detail-identity {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+.task-detail-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem; /* 12px */
+  font-weight: 500;
+  color: var(--task-detail-eyebrow-color);
+}
+.task-detail-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.task-detail-name {
+  font-weight: 600;
+  font-size: 1rem; /* 16px */
+  color: var(--task-detail-value-color);
+}
+.task-detail-pin-indicator {
+  color: var(--primary-color);
+}
+.task-detail-subtitle {
+  color: var(--task-detail-label-color);
+  font-size: 0.75rem; /* 12px */
+  font-weight: 400;
+}
+.task-detail-header-actions .task-action-item-label {
+  font-size: 0.875rem; /* 14px, "Start" label — scoped to this header only */
+}
+
+/* Delegate Task link in the Role & User sub-card header */
+.task-detail-delegate-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--primary-color);
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500;
+  line-height: 1;
+}
+/* Icon+text link rows: neutralize icon-font internal line-height so the icon lines up with
+   the text baseline inside these inline-flex rows (same fix as .no-item-action-link above). */
+.task-detail-delegate-link .ti,
+.task-business-case .ti,
+.task-detail-attr .task-detail-attr-value .ti,
+.portal-pill-btn .ti {
+  line-height: 1;
+  vertical-align: middle;
+}
+
+/* Role & User information / Time Information: real flex row (not float `.ui-g-6`) so both
+   sub-cards stretch to equal height and get a real gap instead of touching. */
+.task-detail-subcards-row {
+  display: flex;
+  align-items: stretch;
+  gap: var(--task-detail-card-gap);
+  flex-wrap: wrap;
+}
+.task-detail-subcards-row > .task-detail-inner-card {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+/* Block headings spacing + right-aligned values in KV cards */
+.task-detail-details-heading {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.task-detail-inner-card .task-detail-block-title {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--task-detail-divider-color);
+}
+/* Role & User information / Time Information / Task and Case Information headings use
+   `.task-detail-subcard-title`, not `.task-detail-block-title` — same divider treatment, but
+   `padding-bottom` needs `!important` because module.css's `.task-detail-title{padding:10px 0
+   5px 0!important}` (shared class on the same element) would otherwise win. */
+.task-detail-inner-card .task-detail-subcard-title {
+  padding-bottom: 0.6rem !important;
+  border-bottom: 1px solid var(--task-detail-divider-color);
+  margin-bottom: 0.75rem;
+}
+/* Documents/Notes header action row: the "+" button carries a one-off `u-mar-right-10` and
+   the (Notes-only) "System notes" checkbox carries none, so the gap before the "+" and the
+   gap before "Show more" don't match. Use a single flex `gap` (the container is already
+   `display:flex!important` via module.css ~line 4281) for uniform spacing between every item,
+   and neutralize the ad-hoc margin so it isn't added on top of the gap. */
+.document-task-detail-section-header-actions,
+.note-task-detail-section-header-actions {
+  gap: 0.625rem; /* ~10px */
+}
+.document-task-detail-section-header-actions .u-mar-right-10,
+.note-task-detail-section-header-actions .u-mar-right-10 {
+  margin-right: 0;
+}
+
+/* Horizontal divider under Documents / Notes panel headers. Figma measures ~24px between the
+   header row and the divider, and ~35px between the divider and the content below (on top of the
+   empty-state's own 2.5rem padding) — give the divider real breathing room on both sides instead
+   of a border sitting flush against the header text. */
+.task-details-item-document .task-detail-section-title,
+.task-details-item-note .task-detail-section-title {
+  /* module.css `.task-detail-section-title{padding:0!important}` (line ~4269) wipes any
+     non-!important padding, including padding-bottom — must re-assert with !important too,
+     specificity alone does not beat an existing !important declaration. */
+  padding-bottom: 1rem !important;
+  border-bottom: 1px solid var(--task-detail-divider-color);
+  margin-bottom: 1.25rem;
+}
+.task-detail-inner-card .content-field > div:last-child,
+.task-and-case-information .content-field > div:last-child {
+  text-align: right;
+}
+/* The "Responsible" value cell also carries `.flex` (needed for the avatar+name Responsibles
+   component to lay out inline) — `text-align` has no effect on flex children, only
+   `justify-content` positions them, which is why this one row wasn't right-aligned like its
+   siblings ("Working user" -> "N/A"). */
+.task-detail-inner-card .content-field > div:last-child.flex {
+  justify-content: flex-end;
+}
+.task-and-case-information {
+  margin-top: 1.25rem; /* ~21px gap from the Role&User/Time row above, per SVG measurement */
+}
+.task-and-case-information .content-field .task-business-case,
+.task-and-case-information .content-field .ti-external-link {
+  color: var(--primary-color);
+}
+.task-and-case-information .content-field .task-business-case {
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500;
+}
+
+/* SideStep trigger ("...") in the task header: keep the shared component
+   markup intact, only present it as a round icon-only "more" button here. */
+.task-detail-header-actions {
+  gap: 0.5rem;
+}
+.task-detail-header-actions .ui-sidestep-action .task-action-item-label {
+  display: none;
+}
+.task-detail-header-actions .ui-sidestep-action .ti-chevron-down {
+  display: none;
+}
+.task-detail-header-actions .ui-sidestep-action.portal-icon-btn-round::before {
+  content: "\2022\2009\2022\2009\2022";
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1;
+}
+
+/* ---- Attribute strip: Priority | State | Due | Workflow ---- */
+.task-detail-attr-strip {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--task-detail-card-border-color);
+  border-radius: var(--task-detail-card-radius);
+  background: var(--task-detail-strip-bg);
+}
+.task-detail-attr-strip > .task-detail-attr {
+  position: relative;
+  flex: 1 1 25%;
+  min-width: 140px;
+  box-sizing: border-box;
+  padding: 0.6rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+/* short, vertically-centered divider between strip columns (Figma: 30px tall #E7E7E7) */
+.task-detail-attr-strip > .task-detail-attr:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 60%;
+  border-left: 1px solid var(--task-detail-strip-divider-color);
+}
+/* Strip label ("Priority"/"State"/"Due"/"Workflow") is smaller/uppercase than the general
+   row-label style (.task-detail-column-title elsewhere is 14px/400) — scope-override here. */
+.task-detail-attr .task-detail-column-title {
+  font-size: 0.75rem; /* 12px */
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.task-detail-attr .task-detail-attr-value {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--task-detail-value-color);
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500;
+}
+/* "See details" (Workflow) is a primary-colored link, not a plain value */
+.task-detail-attr .task-detail-attr-value a[id$=":workflow-event-link"],
+.task-detail-attr .task-detail-attr-value a[id$=":workflow-event-link"] .ti {
+  color: var(--primary-color);
+}
+/* Open-state indicator DOT (showIndicatorBesideText variant only, used by the
+   detail-family pages) → green per Figma. Task-list state BADGE keeps its own
+   color because it has no `.state-indicator` class, so it is not matched here. */
+.state-with-indicator .task-state.open-task-state.state-indicator {
+  background: var(--task-detail-state-open-indicator-color);
+  border-color: var(--task-detail-state-open-indicator-color);
+}
+
+/* Divider tokenized, with explicit vertical margin (~20px each side, per SVG measurement) so it
+   doesn't sit flush against the content above/below it. */
+.task-item-body .separator-task-detail.ui-divider,
+.task-item-body .separator-task-detail {
+  border-color: var(--task-detail-divider-color);
+  margin: 1.25rem 0;
+}
+
+@media screen and (max-width: 640px) {
+  .task-detail-attr-strip > .task-detail-attr {
+    flex-basis: 50%;
+  }
+  .task-detail-attr-strip > .task-detail-attr:nth-child(odd)::before {
+    display: none;
+  }
+}

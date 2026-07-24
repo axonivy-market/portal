@@ -14,27 +14,24 @@
   <c:set var="task" value="#{cc.attrs.task}" />
   <f:event listener="#{logic.initData(task)}" type="preRenderComponent" />
   <h:panelGroup class="task-details-item-note ui-g" id="task-details-item-note" layout="block">
-    <div class="task-detail-section-title ui-g-12">
-      <div class="ui-g-3 u-truncate-text u-padding-0 task-details-panel-title" role="heading" aria-level="1">
-        <i class="ti ti-clock-check" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/histories')}
-
+    <div class="task-detail-section-title ui-g-12 flex align-items-center justify-content-between flex-wrap">
+      <div class="u-truncate-text u-padding-0 task-details-panel-title task-detail-block-title" role="heading" aria-level="1">
+        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/histories')}
       </div>
-      <div class="ui-g-9 u-padding-0">
-        <h:panelGroup layout="block" styleClass="note-task-detail-section-header-actions">
+      <div class="u-padding-0">
+        <h:panelGroup layout="block" styleClass="note-task-detail-section-header-actions flex align-items-center">
           <p:selectBooleanCheckbox value="#{data.showSystemNotesChkbox}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}"
             rendered="#{data.showSystemNotes}" id="show-system-notes-checkbox" styleClass="task-history-checkbox">
             <p:ajax update="task-history-content-container" process="@this" partialSubmit="true" listener="#{logic.showHideSystemNotes}" oncomplete="ResponsiveTable.init(':task-note-table')"/>
           </p:selectBooleanCheckbox>
-          <p:commandLink id="add-note-command" styleClass="task-details-document-add-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}" global="false"
+          <p:commandButton id="add-note-command" styleClass="task-details-document-add-link portal-icon-btn-round portal-icon-btn-accent u-mar-right-10" rendered="#{caseTaskNoteHistoryBean.showAddNote}" global="false"
                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
-                         oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()" actionListener="#{data.setTask(task)}">
-            <span class="ti ti-clipboard-plus" />
-            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
-            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
-          </p:commandLink>
-          <p:link id="show-more-note-link" styleClass="task-details-document-add-link note-show-more-link ui-commandlink" target="_blank"
+                         title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
+                         icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
+                         oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()" actionListener="#{data.setTask(task)}"/>
+          <p:link id="show-more-note-link" styleClass="task-details-document-add-link note-show-more-link ui-commandlink portal-pill-btn" target="_blank"
             href="#{caseTaskNoteHistoryBean.getTaskNoteHistoryLink(task)}" rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
-            <span class="ti ti-queue-pop-out note-show-more-link-icon" />
+            <span class="ti ti-external-link note-show-more-link-icon" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
@@ -78,9 +75,15 @@
       </p:dataTable>
 
         <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{empty data.notes}">
-          <i class="ti ti-info-circle" />
+          <i class="ti ti-edit" />
           <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noNoteAvailable')}" />
           <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddNote')}" />
+          <p:commandLink id="add-note-command-empty" styleClass="task-details-document-add-link no-item-action-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}" global="false"
+                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
+                         oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()" actionListener="#{data.setTask(task)}">
+            <i class="ti ti-circle-plus" />
+            <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
+          </p:commandLink>
         </h:panelGroup>
     </h:panelGroup>
   </h:panelGroup>

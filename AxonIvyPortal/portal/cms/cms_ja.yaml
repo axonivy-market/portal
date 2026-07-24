@@ -1318,6 +1318,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldsDialog: タスク#{0}のカスタムフィールド
     delayedUntil: この日まで延期
     deleteFile: ファイルを削除
+    dueDate: 期限
     documents: ドキュメント
     duration: 所要時間
     events: ワークフローイベント
