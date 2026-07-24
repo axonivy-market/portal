@@ -29,7 +29,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;
 import ch.ivy.addon.portalkit.util.UrlUtils;
-import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUserToken;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -68,7 +68,7 @@ public class AiService {
     params.put("taskExpiryDateTo", taskExpiryDateTo);
     params.put("onlyMyTask", onlyMyTask);
 
-    String processPath = IApplication.current().name()
+    String processPath = Application.current().name()
         .concat(TASK_PROCESS_PATH);
     AiAssistantAPI.addIframeIvyProcessLinkToAiResult(processPath, params,
         result);
@@ -117,7 +117,7 @@ public class AiService {
     params.put("caseDescription", caseDescription);
     params.put("caseState", caseState);
 
-    String processPath = IApplication.current().name()
+    String processPath = Application.current().name()
         .concat(CASE_PROCESS_PATH);
     AiAssistantAPI.addIframeIvyProcessLinkToAiResult(processPath, params,
         result);
@@ -164,7 +164,7 @@ public class AiService {
     params.put("processName", processName);
     params.put("processDescription", processDescription);
 
-    String processPath = IApplication.current().name()
+    String processPath = Application.current().name()
         .concat(PROCESS_PROCESS_PATH);
     AiAssistantAPI.addIframeIvyProcessLinkToAiResult(processPath, params,
         result);

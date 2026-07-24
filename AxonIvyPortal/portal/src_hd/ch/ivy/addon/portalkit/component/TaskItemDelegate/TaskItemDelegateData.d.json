@@ -15,7 +15,7 @@
     "modifiers" : [ ]
   }, {
     "name" : "application",
-    "type" : "ch.ivyteam.ivy.application.IApplication",
+    "type" : "ch.ivyteam.ivy.application.app.Application",
     "modifiers" : [ ]
   }, {
     "name" : "disabledDelegateButton",

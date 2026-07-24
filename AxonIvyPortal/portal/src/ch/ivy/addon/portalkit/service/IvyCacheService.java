@@ -7,9 +7,8 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
-import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.application.app.ApplicationRepository;
-import ch.ivyteam.ivy.application.app.state.ActivityState;
 import ch.ivyteam.ivy.data.cache.IDataCache;
 import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
 import ch.ivyteam.ivy.data.cache.IDataCacheGroup;
@@ -150,7 +149,7 @@ public class IvyCacheService {
   public void invalidateApplicationCacheForAllAvailableApplications(String cacheGroupName) {
     try {
       Sudo.run(() -> {
-        List<IApplication> ivyApplications = ApplicationRepository.instance().all();
+        List<Application> ivyApplications = ApplicationRepository.instance().all();
         ivyApplications.forEach(app -> {
           if(isActive(app)) {
             IDataCache cache = IDataCache.of(app);
@@ -190,8 +189,8 @@ public class IvyCacheService {
     return Ivy.datacache().getAppCache();
   }
 
-  private boolean isActive(IApplication app) {
-    return app.state().activityState() == ActivityState.ACTIVE;
+  private boolean isActive(Application app) {
+    return app.state().active();
   }
 
   /**
