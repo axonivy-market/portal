@@ -160,13 +160,12 @@ public class TaskSearchCriteria {
 
     try {
         long idKeyword = Long.parseLong(keyword.trim());
-        String containingIdKeyword = String.format("%%%d%%", idKeyword);
-        filterByKeywordQuery.where().or().taskId().isLike(containingIdKeyword);
+        // Numeric keyword: match the task id via an equality (primary-key) lookup instead of
+        // CAST(TaskId) LIKE '%n%', which casts the PK to text and defeats the PK index.
+        filterByKeywordQuery.where().or().taskId().isEqual(idKeyword);
       } catch (NumberFormatException e) {
-        if (isGlobalSearch()) {
-          String containingIdKeyword = String.format("%%%d%%", -1);
-          filterByKeywordQuery.where().or().taskId().isLike(containingIdKeyword);
-        }
+        // Non-numeric keyword: no task-id predicate. (Previously added a guaranteed-empty
+        // taskId LIKE '%-1%' under global search, which forced a full CAST(TaskId) scan.)
       }
     return filterByKeywordQuery;
   }

@@ -119,14 +119,12 @@ public class CaseSearchCriteria {
 
     try {
       long idKeyword = Long.parseLong(keyword.trim());
-      String containingIdKeyword = String.format("%%%d%%", idKeyword);
-      filterByKeywordQuery.where().or().caseId().isLike(containingIdKeyword);
+      // Numeric keyword: match the case id via an equality (primary-key) lookup instead of
+      // CAST(CaseId) LIKE '%n%', which casts the PK to text and defeats the PK index.
+      filterByKeywordQuery.where().or().caseId().isEqual(idKeyword);
     } catch (NumberFormatException e) {
-      if (isGlobalSearch()) {
-        String containingIdKeyword = String.format("%%%d%%", -1);
-        filterByKeywordQuery.where().or().caseId().isLike(containingIdKeyword);
-      }
-      // do nothing
+      // Non-numeric keyword: no case-id predicate. (Previously added a guaranteed-empty
+      // caseId LIKE '%-1%' under global search, which forced a full CAST(CaseId) scan.)
     }
     return filterByKeywordQuery;
   }

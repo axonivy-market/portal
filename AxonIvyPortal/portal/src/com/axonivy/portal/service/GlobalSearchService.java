@@ -65,6 +65,8 @@ public class GlobalSearchService {
   private TaskSearchCriteria buildTaskCriteria(SearchPayload payload) {
     TaskSearchCriteria criteria = new TaskSearchCriteria();
     criteria.setKeyword(payload.getQuery());
+    // Honor SEARCH_SCOPE_BY_TASK_FIELDS on this REST path (see buildCaseCriteria).
+    criteria.setGlobalSearch(true);
     criteria.setSortField(TaskSortField.EXPIRY_TIME.toString());
     criteria.setSortDescending(true);
     criteria.setTaskAssigneeType(TaskAssigneeType.ALL);
@@ -79,6 +81,10 @@ public class GlobalSearchService {
   private CaseSearchCriteria buildCaseCriteria(SearchPayload payload) {
     CaseSearchCriteria criteria = new CaseSearchCriteria();
     criteria.setKeyword(payload.getQuery());
+    // Honor SEARCH_SCOPE_BY_CASE_FIELDS on this REST path: queryForKeyword only restricts the
+    // scanned fields when isGlobalSearch is true. Without this the config is ignored and NAME +
+    // DESCRIPTION + CUSTOM always run (the CUSTOM anyStringField scan is the dominant cost).
+    criteria.setGlobalSearch(true);
     criteria.setSearchScopeCaseFields(getSearchScopeCaseFields());
     criteria.setBusinessCase(true);
     criteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
@@ -179,7 +185,12 @@ public class GlobalSearchService {
       }
       return searchScopeCaseFields;
     }
-    return List.of(SearchScopeCaseField.NAME, SearchScopeCaseField.DESCRIPTION, SearchScopeCaseField.CUSTOM);
+    // Default excludes CUSTOM: searching custom fields runs
+    // customField().anyStringField().isLikeIgnoreCase('%kw%'), a full scan of the entire
+    // IWA_CaseCustomStringField table - the dominant cost of the slow global-search-cases query.
+    // Admins who need custom-field search can re-enable it via SEARCH_SCOPE_BY_CASE_FIELDS
+    // (e.g. NAME,DESCRIPTION,CUSTOM).
+    return List.of(SearchScopeCaseField.NAME, SearchScopeCaseField.DESCRIPTION);
   }
 
   private String buildCaseDataLink(ICase caze, boolean canAccessBusinessDetails) {
