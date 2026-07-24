@@ -18,10 +18,10 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.IProcessModelVersion;
+import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.application.app.state.ActivityState;
 import ch.ivyteam.ivy.application.app.state.ReleaseState;
+import ch.ivyteam.ivy.application.project.Project;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -32,7 +32,7 @@ public class ServiceUtilities {
 
   private ServiceUtilities() {}
   
-  private static void requireNonNull(IApplication app) {
+  private static void requireNonNull(Application app) {
     Objects.requireNonNull(app, "The application must not be null");
   }
 
@@ -67,7 +67,7 @@ public class ServiceUtilities {
     return roles;
   }
   
-  public static List<IProcessModelVersion> getActiveReleasedPmvs(IApplication app) {
+  public static List<Project> getActiveReleasedPmvs(Application app) {
     requireNonNull(app);
 
     return app.projects().all()

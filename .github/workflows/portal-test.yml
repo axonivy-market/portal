@@ -15,9 +15,9 @@ on:
         required: false
       engineDownloadURL:
         description: |
-          url to download engine, default is the sprint build.
+          url to download engine, default is the nightly build.
         type: string
-        default: 'https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip'
+        default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
         required: true
 
 env:
@@ -287,7 +287,7 @@ jobs:
 
       - name: Set up and verify directories
         run: |
-          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/sprint"
+          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/nightly"
           mkdir -p $ENGINE_DIR
           sudo chown -R $USER:$USER $ENGINE_DIR
           echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
@@ -295,7 +295,7 @@ jobs:
       - name: Download engine
         run: |
           cd $ENGINE_DIR
-          wget "${{ inputs.engineDownloadURL || 'https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip' }}" -O axonivy-engine.zip
+          wget "${{ inputs.engineDownloadURL || 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip' }}" -O axonivy-engine.zip
           unzip -o axonivy-engine.zip -d .
           rm axonivy-engine.zip
 

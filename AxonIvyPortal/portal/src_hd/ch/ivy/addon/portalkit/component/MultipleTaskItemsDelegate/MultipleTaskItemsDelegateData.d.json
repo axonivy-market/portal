@@ -13,7 +13,7 @@
     "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"
   }, {
     "name" : "application",
-    "type" : "ch.ivyteam.ivy.application.IApplication",
+    "type" : "ch.ivyteam.ivy.application.app.Application",
     "modifiers" : [ ]
   }, {
     "name" : "disabledDelegateButton",

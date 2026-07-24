@@ -121,7 +121,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
   private String newWidgetId;
   private DashboardWidget deleteWidget;
   private Long portalGridsCurrentRow;
-  private String selectedDashboardId;
   private boolean isPublicDashboard;
   private List<String> categories;
   private String restoreDashboardMessage;
@@ -135,8 +134,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
   private List<Dashboard> cloneableDashboards;
   private Statistic selectedStatistic;
 
+  @Override
   @PostConstruct
-  public void initConfigration() {
+  public void init() {
     foundTemplate = Optional.empty();
     selectedDashboardId = Attrs.currentContext().getAttribute("#{data.dashboardId}", String.class);
     isPublicDashboard = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", Boolean.class);

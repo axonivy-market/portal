@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.util.ImageUploadUtils;
 
-import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -55,7 +55,7 @@ public class NavigationWidgetUtils {
   }
   
   private static ContentObject getApplicationCMS() {
-    return ContentManagement.cms(IApplication.current()).root();
+    return ContentManagement.cms(Application.current()).root();
   }
   
   private static String getFileNameOfImage(String imageLocation) {
