@@ -70,7 +70,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
 
   protected List<Dashboard> dashboards;
   protected Dashboard selectedDashboard;
-  private String selectedDashboardId;
+  protected String selectedDashboardId;
   protected DashboardWidget widget;
   protected boolean isReadOnlyMode = true;
   private int currentDashboardIndex;
