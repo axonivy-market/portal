@@ -1,5 +1,6 @@
 package com.axonivy.portal.util.filter.operator.caze.customfield;
 
+import static com.axonivy.portal.util.CaseQueryUtils.initCaseQuery;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -15,10 +16,10 @@ public class CustomTimestampEmptyOperatorHandler {
   }
 
   public CaseQuery buildEmptyQuery(DashboardFilter filter) {
-    return CaseQuery.create().where().customField().timestampField(filter.getField()).isNull();
+    return initCaseQuery(filter.getFilterType()).where().customField().timestampField(filter.getField()).isNull();
   }
 
   public CaseQuery buildNotEmptyQuery(DashboardFilter filter) {
-    return CaseQuery.create().where().customField().timestampField(filter.getField()).isNotNull();
+    return initCaseQuery(filter.getFilterType()).where().customField().timestampField(filter.getField()).isNotNull();
   }
 }

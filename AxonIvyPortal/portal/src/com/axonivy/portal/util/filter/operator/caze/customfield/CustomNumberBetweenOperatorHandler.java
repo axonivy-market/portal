@@ -1,5 +1,6 @@
 package com.axonivy.portal.util.filter.operator.caze.customfield;
 
+import static com.axonivy.portal.util.CaseQueryUtils.initCaseQuery;
 import java.math.BigDecimal;
 
 import org.apache.commons.lang3.math.NumberUtils;
@@ -22,7 +23,7 @@ public class CustomNumberBetweenOperatorHandler {
     Number from = BigDecimal.valueOf(NumberUtils.toDouble(filter.getFrom()));
     Number to = BigDecimal.valueOf(NumberUtils.toDouble(filter.getTo()));
 
-    CaseQuery query = CaseQuery.create();
+    CaseQuery query = initCaseQuery(filter.getFilterType());
 
     if (from != null && to != null) {
       query.where().customField().numberField(filter.getField()).isLowerOrEqualThan(to)
@@ -47,7 +48,7 @@ public class CustomNumberBetweenOperatorHandler {
     Number from = BigDecimal.valueOf(NumberUtils.toDouble(filter.getFrom()));
     Number to = BigDecimal.valueOf(NumberUtils.toDouble(filter.getTo()));
 
-    CaseQuery query = CaseQuery.create();
+    CaseQuery query = initCaseQuery(filter.getFilterType());
 
     if (from != null && to != null) {
       query.where().customField().numberField(filter.getField()).isLowerOrEqualThan(from)
