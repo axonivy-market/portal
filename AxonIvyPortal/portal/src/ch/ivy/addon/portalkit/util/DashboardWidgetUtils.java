@@ -26,7 +26,6 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
-
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
@@ -777,6 +776,7 @@ public class DashboardWidgetUtils {
     }
     return null;
   }
+
 
   public static List<DashboardProcess> sortProcessByMostUsed(List<DashboardProcess> processes) {
     if (processes == null || processes.isEmpty()) {
