@@ -38,6 +38,7 @@ import ch.ivy.addon.portalkit.dto.widget.DocumentWidget;
 import ch.ivy.addon.portalkit.dto.widget.HistoryWidget;
 import ch.ivy.addon.portalkit.dto.widget.InformationWidget;
 import ch.ivy.addon.portalkit.dto.widget.RelatedTaskWidget;
+import ch.ivy.addon.portalkit.dto.widget.SummaryWidget;
 import ch.ivy.addon.portalkit.dto.widget.TechnicalCaseWidget;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
@@ -222,6 +223,9 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
       }
       else if (widget instanceof DocumentWidget) {
         widget.setType(WidgetType.DOCUMENT);
+      }
+      else if (widget instanceof SummaryWidget) {
+        widget.setType(WidgetType.SUMMARY);
       }
       else if (widget instanceof InformationWidget) {
         widget.setType(WidgetType.INFORMATION);

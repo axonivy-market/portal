@@ -2204,34 +2204,18 @@ canvas#preview-statistic-chart {
   padding: 1rem 1.25rem;
 }
 
-/* ---- 2-card stack for the "information" GridStack widget, matching Figma:
-   Card 1 = Header + Strip (Priority|State|Due|Workflow) in one card.
-   Card 2 = Task Details (Description + Role&User/Time sub-cards + Task&Case).
-   Spaced by --task-detail-card-gap. The Strip's markup lives in TaskItemDetails.xhtml
-   (moved out of TaskItemGeneralInfo's `general-information` NamingContainer — see the
-   id-path/Selenium note there) so it can render inside the same card as the header. ---- */
-.task-detail-widget-stack {
-  display: flex;
-  flex-direction: column;
-  gap: var(--task-detail-card-gap);
-}
-.task-detail-widget-stack-item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--task-detail-card-gap);
-}
-.task-item-body .task-detail-widget-stack .card,
-.task-item-body .task-detail-widget-stack-item .card {
-  border: 1px solid var(--task-detail-card-border-color);
-  border-radius: var(--task-detail-card-radius);
-  background: var(--task-detail-card-bg);
-  padding: var(--task-detail-card-padding);
-  margin: 0;
-}
+/* ---- Left-column cards: the identity/strip "summary" widget and the "Task Details"
+   ("information") widget. Each is now its OWN GridStack widget (so both resize/move
+   independently). Like the Notes/Documents cards, the outer `.card.task-detail-card`
+   (grid-stack-item-content, styled at the top of this section) carries the background/border and
+   is stretched by GridStack to fill the cell — so the background fills when the card is dragged
+   taller. These inner wrappers only lay out the content and supply the card padding (the header
+   row and the attribute strip use `u-padding-0`). ---- */
 .task-detail-header-card,
 .task-detail-taskdetails-card {
   width: 100%;
   box-sizing: border-box;
+  padding: var(--task-detail-card-padding);
 }
 /* Role&User/Time/Task&Case sub-cards inside this card are PrimeFlex `.ui-g-*` columns
    (float-based) rendered without a wrapping `.ui-g` row, so nothing clears their floats.
