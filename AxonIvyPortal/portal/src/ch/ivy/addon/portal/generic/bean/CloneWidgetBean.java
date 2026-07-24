@@ -42,7 +42,7 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
 
   @Override
   @PostConstruct
-  public void initConfigration() {
+  public void init() {
     targetDashboard = null;
   }
 
