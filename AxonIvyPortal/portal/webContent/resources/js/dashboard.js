@@ -273,6 +273,23 @@ function resizeTableBody() {
 
 }
 
+function toggleFullscreen(index, widgetId) {
+  var widget = $('div.grid-stack-item[gs-id = "' + widgetId + '"]');
+  var item = $('.toggle-fullscreen-item-' + index);
+  var icon = item.find('.ui-menuitem-icon');
+  var label = item.find('.ui-menuitem-text');
+
+  if (widget.hasClass('expand-fullscreen')) {
+    collapseFullscreen(index, widgetId);
+    icon.removeClass('ti-arrows-minimize').addClass('ti-arrows-maximize');
+    label.text('Expand');
+  } else {
+    expandFullscreen(index, widgetId);
+    icon.removeClass('ti-arrows-maximize').addClass('ti-arrows-minimize');
+    label.text('Collapse');
+  }
+}
+
 function collapseFullscreen(index, widgetId) {
   var widget = $('div.grid-stack-item[gs-id = "' + widgetId + '"]');
   widget.removeClass('expand-fullscreen');
