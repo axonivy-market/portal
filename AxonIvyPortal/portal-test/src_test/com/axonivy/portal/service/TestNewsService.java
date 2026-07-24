@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.portal.dto.News;
 
-import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.IvyTest;
 
@@ -123,7 +123,7 @@ class TestNewsService {
     service.saveOrUpdate(List.of(enNews, deNews));
 
     var newsId = service.findAll().getFirst().getId();
-    var contentObject = ContentManagement.cms(IApplication.current())
+    var contentObject = ContentManagement.cms(Application.current())
         .root().child().get(NewsService.PORTAL_NEWS_CMS_ROOT).get()
         .child().get(newsId).get();
 

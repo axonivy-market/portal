@@ -1,6 +1,6 @@
 package ch.ivy.addon.portal.chat;
 
-import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IWorkflowContext;
 import ch.ivyteam.log.ILogger;
@@ -32,7 +32,7 @@ public final class ChatReferencesContainer {
   }
 
   @SuppressWarnings("removal")
-  public static IApplication getApplication() {
+  public static Application getApplication() {
     return wf().getApplication();
   }
 
