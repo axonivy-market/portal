@@ -22,7 +22,7 @@ import com.axonivy.portal.dto.News;
 import com.axonivy.portal.enums.NewsColumn;
 import com.axonivy.portal.util.NewsUtils;
 
-import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.cm.ContentManagementSystem;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectChildAccessor;
@@ -136,7 +136,7 @@ public class NewsService {
   }
 
   private ContentObject getPortalNewsRoot() {
-    ContentManagementSystem cms = ContentManagement.cms(IApplication.current());
+    ContentManagementSystem cms = ContentManagement.cms(Application.current());
     Optional<ContentObject> newsRoot = cms.root().child().get(PORTAL_NEWS_CMS_ROOT);
     if (newsRoot.isEmpty()) {
       return cms.root().child().string(PORTAL_NEWS_CMS_ROOT);

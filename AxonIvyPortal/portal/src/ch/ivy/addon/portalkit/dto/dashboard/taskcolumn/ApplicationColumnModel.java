@@ -10,7 +10,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.ListUtilities;
-import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.application.app.ApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -48,7 +48,7 @@ public class ApplicationColumnModel extends TaskColumnModel {
   
   @JsonIgnore
   public List<String> getApplications() {
-    return ListUtilities.transformList(ApplicationRepository.of(ISecurityContext.current()).all(), IApplication::name);
+    return ListUtilities.transformList(ApplicationRepository.of(ISecurityContext.current()).all(), Application::name);
   }
   
   @JsonIgnore
