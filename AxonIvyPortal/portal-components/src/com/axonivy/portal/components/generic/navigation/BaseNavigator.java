@@ -12,12 +12,12 @@ import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.service.exception.PortalException;
 import com.axonivy.portal.components.util.ProcessStartUtils;
 
-import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IProcessStart;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 import ch.ivyteam.ivy.workflow.standard.DefaultPagesConfigurator;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class BaseNavigator {
   protected static void navigateByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
@@ -42,7 +42,7 @@ public class BaseNavigator {
   protected static String getRelativeLink(StandardProcessType standardProcess) {
     return Sudo.get(() -> {
       IProcessStart standardProcessImplementation =
-          DefaultPagesConfigurator.of(IApplication.current()).findProcessStart(standardProcess).orElse(null);
+          DefaultPagesConfigurator.of(Application.current()).findProcessStart(standardProcess).orElse(null);
       if (standardProcessImplementation != null) {
         return standardProcessImplementation.getLink().getRelative();
       }
