@@ -6035,16 +6035,20 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-butto
   color: var(--widget-header-icon);
 }
 /* =================== WIDGET VIEW TOGGLE ====================== */
+body .quick-search-icon {
+  margin-right: 0.7rem;
+}
+
 body .widget-view-toggle {
   display: inline-flex;
   align-items: center;
   gap: 0.2rem;
-  padding: 0.2rem;
-  height: 2.357em;
+  height: 2.35em;
   box-sizing: border-box;
   border-radius: 0.6rem;
   background-color: var(--widget-button-background-color);
   border: 1px solid var(--ivy-portal-color-gray-light);
+  margin-right: 0.7rem;
 }
 
 body .widget-view-toggle .ui-button.widget-view-toggle__button,

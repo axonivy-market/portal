@@ -733,9 +733,6 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   margin-bottom: 0;
 }
 
-.dashboard-tasks__start-container {
-  width: 100%;
-}
 
 body .ui-button.dashboard-tasks__start-button {
   border-radius: 100px;
@@ -743,6 +740,8 @@ body .ui-button.dashboard-tasks__start-button {
   background: var(--start-btn-bg);
   color: var(--start-btn-text-color);
 }
+
+
 
 body .ui-button.dashboard-tasks__start-button.ui-state-disabled {
   background: var(--start-btn-disabled-bg);
