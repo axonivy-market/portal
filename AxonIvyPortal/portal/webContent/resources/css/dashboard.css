@@ -2146,35 +2146,35 @@ body .ui-button.ui-widget.filter-dialog__save-button .ui-button-text {
   gap: 3px;
 }
 
-.filter-dialog .dashboard-widget-filter__main-panel {
+.dashboard-widget-filter__main-panel:not(.ui-g) {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.filter-dialog .dashboard-widget-filter__main-panel .dashboard-widget-filter__list {
+.dashboard-widget-filter__main-panel .dashboard-widget-filter__list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.filter-dialog .dashboard-widget-filter__condition {
+.dashboard-widget-filter__main-panel .dashboard-widget-filter__condition {
   display: flex;
   align-items: flex-start;
   gap: 10px;
 }
 
-.filter-dialog .dashboard-widget-filter__condition > .dashboard-widget-filter__filter-wrapper {
+.dashboard-widget-filter__main-panel .dashboard-widget-filter__condition > .dashboard-widget-filter__filter-wrapper {
   flex: 1 1 auto;
 }
 
-.filter-dialog .dashboard-widget-filter__connector {
+.dashboard-widget-filter__main-panel .dashboard-widget-filter__connector {
   flex: 0 0 44px;
   display: flex;
   align-items: center;
 }
 
-.filter-dialog .filter-and-badge {
+.dashboard-widget-filter__main-panel .filter-and-badge {
   flex: 1 1 auto;
   box-sizing: border-box;
   display: inline-flex;
@@ -2204,7 +2204,7 @@ body .ui-button.ui-widget.filter-dialog__save-button .ui-button-text {
   color: var(--text-color);
 }
 
-.filter-dialog .dashboard-widget-filter__main-panel .add-condition-button.ui-button {
+.dashboard-widget-filter__main-panel .add-condition-button.ui-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2217,7 +2217,7 @@ body .ui-button.ui-widget.filter-dialog__save-button .ui-button-text {
   color: var(--primary-color);
 }
 
-.filter-dialog .dashboard-widget-filter__main-panel .add-condition-button.ui-button .ui-button-text {
+.dashboard-widget-filter__main-panel .add-condition-button.ui-button .ui-button-text {
   padding: 0 0 0 14px;
 }
 
@@ -2231,7 +2231,7 @@ body .ui-button.ui-widget.filter-dialog__save-button .ui-button-text {
   width: 100%;
 }
 
-body .filter-dialog .dashboard-widget-filter__remove-filter {
+body .dashboard-widget-filter__main-panel .dashboard-widget-filter__remove-filter {
   padding: 0;
   border: none;
   background: none;
@@ -2241,7 +2241,7 @@ body .filter-dialog .dashboard-widget-filter__remove-filter {
   transition: background-color 0.2s ease;
 }
 
-body .filter-dialog .dashboard-widget-filter__remove-filter .ui-icon {
+body .dashboard-widget-filter__main-panel .dashboard-widget-filter__remove-filter .ui-icon {
   font-size: 19px;
   color: var(--text-color);
 }
