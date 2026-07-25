@@ -38,9 +38,10 @@
     </ui:define>
 
     <ui:define name="widgetFilterContent">
-      <ui:include src="CaseFilter.xhtml">
+      <ui:include src="/layouts/restricted/includes/WidgetFilterConditions.xhtml">
         <ui:param name="widget" value="#{widget}" />
         <ui:param name="index" value="#{index}" />
+        <ui:param name="filterBean" value="#{caseWidgetUserFilterBean}" />
       </ui:include>
     </ui:define>
 

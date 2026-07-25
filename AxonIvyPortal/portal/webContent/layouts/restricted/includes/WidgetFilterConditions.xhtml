@@ -3,10 +3,13 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="jakarta.faces"
   xmlns:c="jakarta.tags.core">
-<!-- taskWidgetUserFilterBean: com.axonivy.portal.bean.dashboard.filter.TaskWidgetUserFilterBean -->
-<!-- widget: ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget -->
+<!-- Shared "Set Filter" body for Task and Case dashboard widgets.
+     Required params:
+     - widget: ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget (Task/Case)
+     - index: widget index on the dashboard
+     - filterBean: the widget's user-filter bean (TaskWidgetUserFilterBean / CaseWidgetUserFilterBean) -->
 <h:panelGroup id="filter-container" layout="block" styleClass="widget-filter-panel">
-  <f:event listener="#{taskWidgetUserFilterBean.preRender(widget)}" type="preRenderComponent" />
+  <f:event listener="#{filterBean.preRender(widget)}" type="preRenderComponent" />
 
   <div>
     <p:messages id="filter-messages" globalOnly="true" />
@@ -20,7 +23,7 @@
       </div>
     </div>
     <h:panelGroup id="#{widget.id}-read-only-predefined-filters" layout="block" styleClass="dashboard-widget-filter__read-only-panel">
-      <ui:repeat id="predefined-filter-list" var="chipLabel" value="#{taskWidgetUserFilterBean.defaultFilterChipLabels}">
+      <ui:repeat id="predefined-filter-list" var="chipLabel" value="#{filterBean.defaultFilterChipLabels}">
         <p:chip label="#{chipLabel}" styleClass="default-filter-chip" />
       </ui:repeat>
     </h:panelGroup>
@@ -45,7 +48,7 @@
               </h:panelGroup>
             </div>
             <ic:com.axonivy.portal.dashboard.component.filter.DashboardFilter id="filter-component" filter="#{filter}" widget="#{widget}"
-              managedBean="#{taskWidgetUserFilterBean}" componentToUpdate="#{p:resolveFirstComponentWithId(filterComponentToUpdate, view).clientId}"
+              managedBean="#{filterBean}" componentToUpdate="#{p:resolveFirstComponentWithId(filterComponentToUpdate, view).clientId}"
               onCompleteRemoveFilter="loadSaveFilters#{index}()"
               filterIndex="#{status.index}"/>
           </div>
@@ -53,7 +56,7 @@
       </h:panelGroup>
       <p:commandButton id="add-filter" icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
         update="#{widget.id}-user-filter" process="#{widget.id}-user-filter" styleClass="add-condition-button"
-        actionListener="#{taskWidgetUserFilterBean.addNewFilter(widget)}"
+        actionListener="#{filterBean.addNewFilter(widget)}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/AddCondition')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/AddCondition')}"
         title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/AddCondition')}"
