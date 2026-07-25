@@ -90,7 +90,7 @@
   --widget-advanced-filter-hover-border: var(--ivy-primary-color-grey-light);
   --widget-filter-selection-container-border: transparent;
   --widget-advanced-filter-command-state-focus-background-color: none;
-  --widget-advanced-filter-overlay-panel-footer: var(--ivy-primary-color-grey-light);
+  --widget-advanced-filter-dialog-footer: var(--ivy-primary-color-grey-light);
   --widget-advanced-filter-command-background-color: none;
   --widget-advanced-filter-background-color: none;
   --widget-advanced-filter-hover-backround-color: var(--ivy-primary-color-grey-pale);

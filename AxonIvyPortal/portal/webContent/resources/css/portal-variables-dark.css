@@ -80,7 +80,7 @@
   --widget-advanced-filter-hover-border: var(--ivy-primary-color-grey-light);
   --widget-filter-selection-container-border: transparent;
   --widget-advanced-filter-command-state-focus-background-color: none;
-  --widget-advanced-filter-overlay-panel-footer: var(--surface-d, rgb(84 91 103 / 50%));
+  --widget-advanced-filter-dialog-footer: var(--surface-d, rgb(84 91 103 / 50%));
   --widget-advanced-filter-command-background-color: none;
   --widget-advanced-filter-background-color: none;
   --widget-advanced-filter-hover-backround-color: transparent;

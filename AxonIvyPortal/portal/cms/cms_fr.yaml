@@ -866,11 +866,21 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidget: Page externe
     ExternalPageWidgetIntroduction: Ce widget peut afficher une page web externe.
     Filter:
+      AddCondition: Ajouter une condition
+      ApplyFilters: Appliquer les filtres
+      DefaultFiltersDescription: Filtres définis comme valeurs par défaut dans la configuration du widget.
+      DefaultFiltersTitle: Filtres par défaut
       FilterOptionHeader: Options de filtre
       FilterOptionHeaderTooltip: Certains champs de filtre et opérateurs peuvent être désactivés par votre administrateur. Les filtres utilisant des champs ou des opérateurs désactivés seront automatiquement supprimés. Veuillez contacter votre administrateur pour plus d'informations.
       FilterPanelHeader: Panneau de filtre
       ManageWidgetFilterHeader: Gestion des filtres des widgets
+      NewFilterConditionsDescription: Afficher les tâches qui correspondent à toutes les conditions suivantes.
+      NewFilterConditionsTitle: Nouvelles conditions de filtre
       NotFound: Aucun filtre trouvé
+      SaveFilterDescription: Enregistrez ces conditions de filtre pour les réutiliser plus tard.
+      SaveFilterNamePlaceholder: Entrez le nom du filtre
+      SaveFilterOptional: (facultatif)
+      SetFilterHeader: Définir le filtre
       WidgetNameColumn: Nom du widget
       WrongDateFormat: La date n'est pas valide
     FilterTasksByCurrentCaseOwner: Filtrer les tâches par propriétaire actuel du dossier
