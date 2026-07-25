@@ -801,6 +801,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ImportCompleteMessage: Tous les fichiers ont été importés avec succès.
       ImportIncompleteMessage: Certains fichiers n'ont pas pu être importés. Consultez le journal du serveur pour plus de détails.
   dashboard:
+    CanWorkOnAsUser: N'afficher que les tâches sur lesquelles je peux travailler en tant qu'utilisateur
     CaseQueryType:
       info: Configurez les types de cas affichés dans le widget de cas. Par défaut, seuls les cas métier sont affichés, Sous-cas techniques affiche uniquement les sous-cas techniques, et Tous affiche à la fois les cas métier et les sous-cas techniques.
       label: Type de cas
@@ -870,6 +871,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ApplyFilters: Appliquer les filtres
       DefaultFiltersDescription: Filtres définis comme valeurs par défaut dans la configuration du widget.
       DefaultFiltersTitle: Filtres par défaut
+      FilterConditionsTitle: Conditions de filtre
       FilterOptionHeader: Options de filtre
       FilterOptionHeaderTooltip: Certains champs de filtre et opérateurs peuvent être désactivés par votre administrateur. Les filtres utilisant des champs ou des opérateurs désactivés seront automatiquement supprimés. Veuillez contacter votre administrateur pour plus d'informations.
       FilterPanelHeader: Panneau de filtre

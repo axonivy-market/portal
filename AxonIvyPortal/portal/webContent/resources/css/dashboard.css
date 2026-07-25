@@ -566,8 +566,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 
 .ui-dialog.filter-dialog .ui-dialog-content {
   max-width: none;
-  
-  padding: 0 !important;
+  padding: 0;
   display: flex;
   flex-direction: column;
   min-height: 548px;
@@ -599,6 +598,41 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   min-height: 548px;
   border-radius: 15px;
   box-shadow: 0 0 27.225px 0 rgba(0, 0, 0, 0.05);
+}
+
+.ui-dialog.widget-configuration-filter-dialog {
+  border-radius: 10px;
+  box-shadow: 0 0 27.225px 0 rgba(0, 0, 0, 0.05);
+}
+
+.ui-dialog.widget-configuration-filter-dialog::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.ui-dialog.widget-configuration-filter-dialog .ui-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.widget-configuration-filter-dialog .filter-dialog__body {
+  overflow: auto;
+}
+
+.widget-configuration-filter-dialog .dashboard-widget-filter__options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.widget-configuration-filter-dialog .footer-buttons-container {
+  gap: 20px;
+  padding-bottom: 20px;
 }
 
 .filter-dialog .filter-form {
@@ -714,8 +748,7 @@ body .ui-divider.ui-divider-horizontal::before {
   }
 }
 
-.restore-button,
-.ui-overlaypanel-footer__cancel {
+.restore-button {
   display: inline-block;
   line-height: 3rem
 }
@@ -724,17 +757,9 @@ body .ui-divider.ui-divider-horizontal::before {
   max-width: 450px;
 }
 
-.ui-overlaypanel-footer__cancel {
-  margin-right: 15px;
-}
-
 @media screen and (max-width: 40em) {
   .widget-info-panel {
     width: 100%;
-  }
-  
-  .ui-overlaypanel-footer__cancel {
-    margin-right: 0;
   }
 }
 
@@ -2146,7 +2171,7 @@ body .ui-button.ui-widget.filter-dialog__save-button .ui-button-text {
   gap: 3px;
 }
 
-.dashboard-widget-filter__main-panel:not(.ui-g) {
+.dashboard-widget-filter__main-panel {
   display: flex;
   flex-direction: column;
   gap: 20px;

@@ -799,6 +799,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ImportCompleteMessage: All files were imported successfully.
       ImportIncompleteMessage: Some files could not be imported. Check the server log for details.
   dashboard:
+    CanWorkOnAsUser: Only show me the tasks I can work on as a user
     CaseQueryType:
       info: Configure which case types are shown in the Case Widget. Default shows business cases only, Sub Cases shows technical subcases only, and All shows both business cases and technical subcases.
       label: Case Type
@@ -868,6 +869,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ApplyFilters: Apply filters
       DefaultFiltersDescription: Filters that have been set in the widget configuration as default.
       DefaultFiltersTitle: Default filters
+      FilterConditionsTitle: Filter conditions
       FilterOptionHeader: Filter options
       FilterOptionHeaderTooltip: Some filter fields and operators may be disabled by your administrator. Filters using disabled fields or operators will be removed automatically. Please contact your administrator for more information.
       FilterPanelHeader: Filter panel

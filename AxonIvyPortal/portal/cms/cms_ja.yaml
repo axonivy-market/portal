@@ -800,6 +800,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ImportCompleteMessage: すべてのファイルが正常にインポートされました。
       ImportIncompleteMessage: 一部のファイルをインポートできませんでした。詳細はサーバーログを確認してください。
   dashboard:
+    CanWorkOnAsUser: ユーザーとして作業できるタスクのみを表示
     CaseQueryType:
       info: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
       label: ケースタイプ
@@ -869,6 +870,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ApplyFilters: フィルターを適用
       DefaultFiltersDescription: ウィジェット設定でデフォルトとして設定されたフィルターです。
       DefaultFiltersTitle: デフォルトフィルター
+      FilterConditionsTitle: フィルター条件
       FilterOptionHeader: フィルターオプション
       FilterOptionHeaderTooltip: 一部のフィルターフィールドや演算子は管理者によって無効化されている場合があります。無効なフィールドまたは演算子を使用しているフィルターは自動的に削除されます。詳細については管理者にお問い合わせください。
       FilterPanelHeader: フィルターパネル

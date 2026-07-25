@@ -803,6 +803,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ImportCompleteMessage: Alle Dateien wurden erfolgreich importiert.
       ImportIncompleteMessage: Einige Dateien konnten nicht importiert werden. Weitere Informationen finden Sie im Server-Log.
   dashboard:
+    CanWorkOnAsUser: Nur die Aufgaben anzeigen, die ich als Benutzer bearbeiten kann
     CaseQueryType:
       info: Konfigurieren Sie, welche Vorgangstypen im Vorgangs-Widget angezeigt werden. Standard zeigt nur Geschäftsvorgänge, Technische Untervorgänge zeigt nur technische Untervorgänge, und Alle zeigt sowohl Geschäftsvorgänge als auch technische Untervorgänge.
       label: Vorgangstyp
@@ -872,6 +873,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ApplyFilters: Filter anwenden
       DefaultFiltersDescription: Filter, die in der Widget-Konfiguration als Standard festgelegt wurden.
       DefaultFiltersTitle: Standardfilter
+      FilterConditionsTitle: Filterbedingungen
       FilterOptionHeader: Filter-Optionen
       FilterOptionHeaderTooltip: Einige Filterfelder und Operatoren wurden möglicherweise von Ihrem Administrator deaktiviert. Filter, die deaktivierte Felder oder Operatoren verwenden, werden automatisch entfernt. Bitte wenden Sie sich an Ihren Administrator für weitere Informationen.
       FilterPanelHeader: Filterbereich
