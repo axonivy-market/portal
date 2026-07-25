@@ -681,6 +681,29 @@ body .ui-divider.ui-divider-horizontal::before {
   min-height: 0;
 }
 
+.process-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.process-filter__field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.process-filter__field > span:empty {
+  display: none;
+}
+
+.process-filter__field > div {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+}
+
 .info-overlay-panel__footer {
   text-align: right;
 }
