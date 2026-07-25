@@ -25,9 +25,9 @@
   --button-secondary-text-color: var(--primary-color);
 
   /* Start button (task widget start column) */
-  --start-btn-bg: var(--ivy-primary-color-white);
+  --start-btn-bg: var(--ivy-portal-color-gray-25);
   --start-btn-border-color: var(--ivy-portal-color-gray-45);
-  --start-btn-text-color: var(--ivy-portal-color-gray-17);
+  --start-btn-text-color: var(--ivy-primary-color-white);
   --start-btn-disabled-bg: var(--ivy-portal-color-gray-20);
   --start-btn-disabled-border-color: var(--ivy-portal-color-gray-29);
   --start-btn-disabled-text-color: var(--ivy-portal-color-gray-medium);
@@ -339,6 +339,10 @@
   --widget-header-icon: var(--ivy-primary-color-white);
   --widget-button-border-color: var(--ivy-portal-color-gray-dark);
   --widget-button-background-color: var(--ivy-portal-color-gray-20);
+  --widget-view-toggle-bg: hsla(0, 0%, 22%, 1);
+  --widget-view-toggle-active-bg: hsla(0, 0%, 17%, 1);
+  --widget-view-toggle-icon: var(--ivy-portal-color-gray-medium);
+  --widget-view-toggle-border: transparent;
   /* New Dashboard */
   --dashboard-table-column-small-screen-description-color: var(--ivy-primary-color-grey-medium);
   --new-widget-dialog-title-color: var(--ivy-primary-color-black);
