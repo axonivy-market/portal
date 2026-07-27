@@ -25,6 +25,7 @@
       <h:panelGroup rendered="#{responsibles != null and responsibleSize gt 1}"> 
         <h:panelGroup id="all-responsibles" styleClass="ml-1" >
           <p:avatarGroup styleClass="responsibles-avatar-group" rendered="#{cc.attrs.isShowAvatar}">
+            <p:tooltip globalSelector=".ui-avatar"/>
             <ui:repeat value="#{responsibleBean.getResponsibleLimit10(responsibles)}" var="responsible" varStatus="s">
               <pc:avatar securityMember="#{responsible.get()}"
                 rendered="#{responsible.get() != null and s.index lt 3}"
@@ -42,8 +43,8 @@
             (<i class="mr-1 ti ti-users" /><h:outputText value="#{responsibleSize}" />)
           </h:panelGroup>
         </h:panelGroup>
-        <p:tooltip for="responsibles-more" position="top" autoHide="false"
-          rendered="#{cc.attrs.isShowAvatar and responsibleSize gt 3}">
+        <p:tooltip for="#{cc.attrs.isShowAvatar ? 'responsibles-more' : 'all-responsibles'}" position="top" autoHide="false"
+          rendered="#{cc.attrs.isShowAvatar ? responsibleSize gt 3 : true}">
           <div class="py-1">
             <ui:repeat id="task-responsibles" value="#{responsibleBean.getResponsibleLimit10(responsibles)}" var="responsible">
               <div class="py-1">
@@ -53,29 +54,6 @@
                     renderedAvatar="#{cc.attrs.isShowAvatar}" />
                   <cc:renderFacet name="alternativeAvatar" />
                   <h:outputText id="username"
-                    value="#{cc.attrs.isShowTechnicalDisplayNameOnTooltip ? portalComponentAvatarBean.tooltipTechnicalDisplayName(responsible.get()) : responsibleBean.getDisplayName(responsible.get())}"
-                    rendered="#{!userMenuBean.isMobileDevice()}"
-                    styleClass="#{cc.attrs.isShowAvatar ? 'name-after-avatar' : ''} #{responsible.get() == null ? 'u-no-padding-left' : ''}">
-                  </h:outputText>
-                </div>
-              </div>
-            </ui:repeat>
-          </div>
-          <h:panelGroup styleClass="repsonsible-more-text" rendered="#{responsibleSize gt 10}" layout="block">
-            <h:outputText value="#{responsibleBean.getMoretext(responsibles)}" />
-          </h:panelGroup>
-        </p:tooltip>
-        <p:tooltip for="all-responsibles" position="top" autoHide="false"
-          rendered="#{!cc.attrs.isShowAvatar}">
-          <div class="py-1">
-            <ui:repeat id="task-responsibles-badge" value="#{responsibleBean.getResponsibleLimit10(responsibles)}" var="responsible">
-              <div class="py-1">
-                <div class="#{cc.attrs.isShowAvatar ? 'has-avatar' : ''}">
-                  <pc:avatar securityMember="#{responsible.get()}"
-                    rendered="#{responsible.get() != null}"
-                    renderedAvatar="#{cc.attrs.isShowAvatar}" />
-                  <cc:renderFacet name="alternativeAvatar" />
-                  <h:outputText id="username-badge"
                     value="#{cc.attrs.isShowTechnicalDisplayNameOnTooltip ? portalComponentAvatarBean.tooltipTechnicalDisplayName(responsible.get()) : responsibleBean.getDisplayName(responsible.get())}"
                     rendered="#{!userMenuBean.isMobileDevice()}"
                     styleClass="#{cc.attrs.isShowAvatar ? 'name-after-avatar' : ''} #{responsible.get() == null ? 'u-no-padding-left' : ''}">
