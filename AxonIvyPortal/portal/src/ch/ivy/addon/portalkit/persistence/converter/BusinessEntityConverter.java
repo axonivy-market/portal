@@ -149,6 +149,9 @@ public class BusinessEntityConverter {
               && firstValue.size() > 0 && firstValue.get(0).isObject()) {
             candidateArray = firstValue;
           }
+        } else {
+          // Empty object {} — treated as empty configuration, not a single entity
+          return new ArrayList<>();
         }
         if (candidateArray != null) {
           nodeToConvert = candidateArray;
