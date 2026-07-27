@@ -144,7 +144,7 @@
             </p:menuitem>
             <!-- Menu item - Pin/Unpin -->
             <p:menuitem value="#{dashboardBean.showPinnedItemToggleLabel(widget)}"
-              icon="#{widget.showPinnedItem ? 'tif tif-pin' : 'ti ti-pin'}"
+              icon="#{widget.showPinnedItem ? 'tif tif-pin' : 'ti ti-pin'}" rendered="#{dashboardBean.canShowPinnedItemToggle(widget)}"
               action="#{dashboardBean.togglePinned(widget)}"
               update="#{componentToUpdateOnResetFilter} actions-widget-form" process="@this" />
             <p:divider/>

@@ -733,12 +733,16 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   margin-bottom: 0;
 }
 
+body .ui-button.dashboard-tasks__start-button > .ui-button-icon-left {
+  margin-top: -5px !important;
+}
 
 body .ui-button.dashboard-tasks__start-button {
   border-radius: 100px;
   border: 1px solid var(--start-btn-border-color);
   background: var(--start-btn-bg);
   color: var(--start-btn-text-color);
+  width: 5.4.rem;
 }
 
 body .ui-button.dashboard-tasks__start-button.ui-state-disabled {
