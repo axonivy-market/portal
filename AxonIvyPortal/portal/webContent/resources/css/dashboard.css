@@ -2356,3 +2356,11 @@ body.dark .menu-type-static {
 .actions-menu-panel .actions-menu-item-bordered {
   border-bottom: 1px solid var(--widget-button-border-color) !important;
 }
+
+.responsibles-avatar-group .ui-avatar + .ui-avatar {
+  margin-left: -0.5rem;
+}
+
+.responsibles-avatar-group .ui-avatar.responsibles-more {
+  font-size: 0.75rem;
+}
