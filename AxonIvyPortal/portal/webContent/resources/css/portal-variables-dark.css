@@ -340,8 +340,8 @@
   --widget-button-border-color: var(--ivy-portal-color-gray-dark);
   --widget-button-background-color: var(--ivy-portal-color-gray-20);
   --widget-view-toggle-bg: hsla(0, 0%, 22%, 1);
-  --widget-view-toggle-active-bg: hsla(0, 0%, 17%, 1);
-  --widget-view-toggle-icon: var(--ivy-portal-color-gray-medium);
+  --widget-view-toggle-active-bg: hsla(0, 0%, 100%, 1);
+  --widget-view-toggle-icon: var(--ivy-portal-color-gray-dark);
   --widget-view-toggle-border: transparent;
   /* New Dashboard */
   --dashboard-table-column-small-screen-description-color: var(--ivy-primary-color-grey-medium);

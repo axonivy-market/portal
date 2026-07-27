@@ -741,8 +741,6 @@ body .ui-button.dashboard-tasks__start-button {
   color: var(--start-btn-text-color);
 }
 
-
-
 body .ui-button.dashboard-tasks__start-button.ui-state-disabled {
   background: var(--start-btn-disabled-bg);
   border-color: var(--start-btn-disabled-border-color);

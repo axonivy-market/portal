@@ -6047,7 +6047,6 @@ body .widget-view-toggle {
   box-sizing: border-box;
   border-radius: 0.6rem;
   background-color: var(--widget-view-toggle-bg);
-  border: 1.8px solid var(--widget-view-toggle-border);
   margin-right: 0.7rem;
 }
 
