@@ -1730,6 +1730,10 @@ body .ui-widget.new-widget-dialog__introduction {
   min-height: 200px;
 }
 
+.expand-fullscreen .card-widget-panel.statistic-chart-widget .card-widget__content {
+  height: 100%;
+}
+
 /* News widget */
 .news-widget-configuration.widget-configuration.card {
   margin-right: 0;
