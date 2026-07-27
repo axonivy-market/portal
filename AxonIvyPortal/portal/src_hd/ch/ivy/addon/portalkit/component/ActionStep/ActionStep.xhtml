@@ -32,11 +32,10 @@
   <c:set var="showSeparator" value="#{renderDestroyAction or showAdditionalCaseDetails or showOpenCaseDetail or showProcessOverview or showProcessViewer}"/>
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}"/>
 
-  <p:commandLink id="#{cc.attrs.actionLinkId}" onclick="event.stopPropagation(); return false;" ariaLabel="#{cc.attrs.ariaLabel}"
-    styleClass="#{isPreviewMode ? '' : cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link portal-icon ui-sidestep-action" disabled="#{cc.attrs.readOnly or isPreviewMode}">
-    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
-    <i class="ti ti-chevron-down" />
-  </p:commandLink>
+  <p:commandButton id="#{cc.attrs.actionLinkId}" disabled="#{cc.attrs.isDisabled or cc.attrs.isPreviewMode}" onclick="event.stopPropagation(); return false;"
+    ariaLabel="#{not empty cc.attrs.ariaLabel ? cc.attrs.ariaLabel : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ti ti-dots"
+    styleClass="#{cc.attrs.buttonStyleClass} rounded-button ui-button-widget ui-button-outlined">
+  </p:commandButton>
 
   <p:overlayPanel id="action-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}"
     for="#{cc.attrs.actionLinkId}" my="right top" at="right bottom" showCloseIcon="true" dismissable="true"
