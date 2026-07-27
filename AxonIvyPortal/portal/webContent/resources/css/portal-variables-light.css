@@ -69,6 +69,7 @@
   --statistic-filter-accordion-panel-border: var(--ivy-primary-color-grey-light);
   --chart-container-background-color: #e6f1f5;
   --chart-container-number-color: var(--ivy-primary-color);
+  --chart-container-number-border-color: #007095;
   
   /* Sidebar */
   --sidebar-app-text-color: var(--menuitem-text-color);
