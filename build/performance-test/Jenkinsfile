@@ -20,11 +20,11 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-          engineNames = ['master', '10', '8', 'performance-master', 'performance-10', 'performance-8']
+          engineNames = ['master', '10', 'performance-master', 'performance-10']
           for (engineName in engineNames) {
             sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
           }
-          sh "docker compose -f ${ivyDir}/${engineNames[4]}/docker-compose.yml up -d"
+          sh "docker compose -f ${ivyDir}/${engineNames[3]}/docker-compose.yml up -d"
 
           docker.build('build-portal-10-modules', '-f build/Dockerfile.python .').inside('-v /var/tools/maven-cache:/home/build/') {
             def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal']
