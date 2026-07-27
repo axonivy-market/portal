@@ -116,7 +116,7 @@
      </p:commandButton>
     </h:panelGroup>
 
-    <h:panelGroup id="view-toggle-panel-#{index}" layout="block" rendered="#{widget.type ne 'PROCESS'}"
+    <h:panelGroup id="view-toggle-panel-#{index}" layout="block" rendered="#{widget.type ne 'PROCESS' and isReadOnlyMode}"
         styleClass="widget-view-toggle">
       <!-- View toggle - List -->
       <p:commandButton id="view-toggle-list-#{index}" type="button" icon="ti ti-list"
@@ -129,7 +129,7 @@
     </h:panelGroup>
 
     <h:panelGroup id="actions-button-panel-#{index}" layout="block"
-        rendered="true">
+        rendered="#{isReadOnlyMode}">
         <h:form id="actions-widget-form">
           <!-- Actions menu button (kebab/three-dots) -->
           <p:menuButton id="actions-menu-button" menuStyleClass="actions-menu-panel" collision="flipfit"  buttonStyleClass="rounded-button ui-button-widget ui-button-outlined actions-menu-button-#{index}" icon="ti ti-dots">
