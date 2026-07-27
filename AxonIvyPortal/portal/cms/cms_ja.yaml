@@ -469,6 +469,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     back: 戻る
     backToCaseMap: ケースマップに戻る
     backgroundColor: 背景色
+    bulkSelection: 一括選択
     cancel: キャンセル
     cancelContext: '{0}をキャンセル'
     case: ケース
@@ -480,6 +481,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     close: 閉じる
     closeContext: '{0}を閉じる'
     cockpit: コックピット
+    collapse: 縮小
     collapseWidgetContext: '{0}ウィジェットを縮小'
     colors: 色
     comment: コメント
@@ -524,6 +526,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: Web サイトのコンテンツを更新できませんでした
     escalationTaskHeaderText: エスカレーションのトリガー
     escalationTaskMessage: 有効期限が現在に設定されているため、タスクは期限切れになります。よろしいですか？
+    expand: 展開
     expandWidgetContext: '{0}ウィジェットを展開'
     filter:
       from: 開始
@@ -539,6 +542,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     generalInformation: 一般情報
     globalSearch: 検索...
     goToDetail: 詳細へ移動
+    gridView: グリッド表示
     growlMessage:
       PROCESS_VIEWER: プロセスビューアを閉じました。
       TASK_FINISHED: タスクを正常に完了しました
@@ -554,6 +558,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     leave: 離れる
     leaveAndReserve: 休暇と予約
     linkToCaseDetails: 詳細は、<a href="{0}" >ここ</a>をクリックしてください。
+    listView: リスト表示
     loading: 読み込み中
     loginLogo: ログインロゴ
     logos: ロゴ

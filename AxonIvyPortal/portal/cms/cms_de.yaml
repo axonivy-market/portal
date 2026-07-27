@@ -470,6 +470,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     back: Zurück
     backToCaseMap: Zurück zur Case Map
     backgroundColor: Hintergrundfarbe
+    bulkSelection: Mehrfachauswahl
     cancel: Abbrechen
     cancelContext: '{0} abbrechen'
     case: Vorgang
@@ -481,6 +482,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     close: Schließen
     closeContext: '{0} schließen'
     cockpit: Cockpit
+    collapse: Minimieren
     collapseWidgetContext: Widget {0} minimieren
     colors: Farben
     comment: Kommentar
@@ -525,6 +527,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: Fehler beim aktualisieren der Webseiteinhalte
     escalationTaskHeaderText: Eskalation auslösen
     escalationTaskMessage: Frist wird auf jetzt gesetzt, somit läuft die Bearbeitungsfrist ab. Sind Sie sicher?
+    expand: Erweitern
     expandWidgetContext: Widget {0} erweitern
     filter:
       from: von
@@ -540,6 +543,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     generalInformation: Allgemeine Informationen
     globalSearch: Suche ...
     goToDetail: Zu den Details
+    gridView: Rasteransicht
     growlMessage:
       PROCESS_VIEWER: Sie haben den Prozess-Viewer geschlossen.
       TASK_FINISHED: Sie haben die Aufgabe erfolgreich abgeschlossen
@@ -555,6 +559,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     leave: Verlassen
     leaveAndReserve: Verlassen und reservieren
     linkToCaseDetails: Klicken Sie <a href="{0}" >hier</a> für weitere Details.
+    listView: Listenansicht
     loading: Lädt
     loginLogo: Login Logo
     logos: Logos

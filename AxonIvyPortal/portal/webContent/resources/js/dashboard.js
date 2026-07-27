@@ -282,11 +282,11 @@ function toggleFullscreen(index, widgetId) {
   if (widget.hasClass('expand-fullscreen')) {
     collapseFullscreen(index, widgetId);
     icon.removeClass('ti-arrows-minimize').addClass('ti-arrows-maximize');
-    label.text('Expand');
+    label.text(item.attr('data-expand-label'));
   } else {
     expandFullscreen(index, widgetId);
     icon.removeClass('ti-arrows-maximize').addClass('ti-arrows-minimize');
-    label.text('Collapse');
+    label.text(item.attr('data-collapse-label'));
   }
 }
 
