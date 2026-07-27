@@ -470,6 +470,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     back: Retour
     backToCaseMap: Retour à la carte des cas
     backgroundColor: Couleur de fond
+    bulkSelection: Sélection multiple
     cancel: Annuler
     cancelContext: Annuler {0}
     case: Dossier
@@ -481,6 +482,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     close: Fermer
     closeContext: Fermer {0}
     cockpit: Cockpit
+    collapse: Réduire
     collapseWidgetContext: Réduire le widget {0}
     colors: Couleur
     comment: Commentaire
@@ -525,6 +527,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: N'a pas réussi à mettre à jour le contenu du site Web
     escalationTaskHeaderText: Escalader
     escalationTaskMessage: L'expiration est fixée à maintenant, donc la tâche expire. Etes-vous sûr?
+    expand: Développer
     expandWidgetContext: Agrandir le widget {0}
     filter:
       from: du
@@ -540,6 +543,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     generalInformation: Informations générales
     globalSearch: Recherche ...
     goToDetail: Aller au détail
+    gridView: Vue en grille
     growlMessage:
       PROCESS_VIEWER: Vous avez fermé le visualiseur de processus.
       TASK_FINISHED: Vous avez terminé la tâche avec succès
@@ -555,6 +559,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     leave: Quitter
     leaveAndReserve: Quitter et réserve
     linkToCaseDetails: Cliquez sur <a href="{0}" >ici</a> pour plus de détails.
+    listView: Vue en liste
     loading: Chargement
     loginLogo: Logo login
     logos: Logos

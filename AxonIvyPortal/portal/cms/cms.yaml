@@ -355,6 +355,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     back: Back
     backToCaseMap: Back to case map
     backgroundColor: Background color
+    bulkSelection: Bulk selection
     cancel: Cancel
     cancelContext: Cancel {0}
     case: Case
@@ -366,6 +367,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     close: Close
     closeContext: Close {0}
     cockpit: Cockpit
+    collapse: Collapse
     collapseWidgetContext: Collapse {0} widget
     colors: Colors
     comment: Comment
@@ -404,6 +406,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorFileUploadSize: The file size must be lower than {0}
     errorNotification: Error notification
     errorXhr: Failed to update website content
+    expand: Expand
     expandWidgetContext: Expand {0} widget
     filter:
       from: from
@@ -419,6 +422,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     generalInformation: General information
     globalSearch: Search ...
     goToDetail: Go to detail
+    gridView: Grid view
     hasPrecondition: This process has precondition
     height: Height
     hide: Hide
@@ -430,6 +434,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     leave: Leave
     leaveAndReserve: Leave and reserve
     linkToCaseDetails: Click <a href="{0}" >here</a> for details.
+    listView: List view
     loading: Loading
     loginLogo: Login logo
     logos: Logos

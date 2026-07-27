@@ -116,48 +116,50 @@
      </p:commandButton>
     </h:panelGroup>
 
-    <h:panelGroup id="view-toggle-panel-#{index}" layout="block" rendered="#{widget.type ne 'PROCESS' and isReadOnlyMode}"
+    <h:panelGroup id="view-toggle-panel-#{index}" layout="block" rendered="#{widget.type.name() ne 'PROCESS' and isReadOnlyMode}"
         styleClass="widget-view-toggle">
       <!-- View toggle - List -->
       <p:commandButton id="view-toggle-list-#{index}" type="button" icon="ti ti-list"
         styleClass="widget-view-toggle__button widget-view-toggle__button--active"
-        ariaLabel="List view" global="false" />
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/listView')}" global="false" />
       <!-- View toggle - Grid -->
       <p:commandButton id="view-toggle-grid-#{index}" type="button" icon="ti ti-layout-grid"
         styleClass="widget-view-toggle__button"
-        ariaLabel="Grid view" global="false" />
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/gridView')}" global="false" />
     </h:panelGroup>
 
     <h:panelGroup id="actions-button-panel-#{index}" layout="block"
         rendered="#{isReadOnlyMode}">
         <h:form id="actions-widget-form">
-          <!-- Actions menu button (kebab/three-dots) -->
+          <!-- Actions menu button -->
           <p:menuButton id="actions-menu-button" menuStyleClass="actions-menu-panel" collision="flipfit"  buttonStyleClass="rounded-button ui-button-widget ui-button-outlined actions-menu-button-#{index}" icon="ti ti-dots">
-            <!-- Menu item - Bulk selection -->
+            <!-- Bulk selection -->
             <p:menuitem id="bulk-delegate-toggle-button-#{index}" rendered="#{renderSelectionToggle}"
-              icon="si si-list-bullets" value="Bulk selection"
+              icon="si si-list-bullets" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/bulkSelection')}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/toggleBulkDelegation')}"
               styleClass="flex align-items-center" containerStyleClass="actions-menu-item-bordered"
               actionListener="#{bulkActionBean.startBulkDelegation(widget)}"
               update="@(.delegation-action-bar-#{widget.id}) @(.widget-header-default-actions-#{widget.id}) #{componentToUpdateOnResetFilter}"
               process="@this">
             </p:menuitem>
-            <!-- Menu item - Pin/Unpin -->
+            <!-- Pin/Unpin -->
             <p:menuitem value="#{dashboardBean.showPinnedItemToggleLabel(widget)}"
               icon="#{widget.showPinnedItem ? 'tif tif-pin' : 'ti ti-pin'}" rendered="#{dashboardBean.canShowPinnedItemToggle(widget)}"
               action="#{dashboardBean.togglePinned(widget)}"
               update="#{componentToUpdateOnResetFilter} actions-widget-form" process="@this" />
             <p:divider/>
-            <!-- Menu item - Filter -->
-            <p:menuitem id="filter-sidebar-link-item-#{index}" value="Filter" icon="ti ti-filter"
+            <!-- Filter -->
+            <p:menuitem id="filter-sidebar-link-item-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters')}" icon="ti ti-filter"
               containerStyleClass="actions-menu-item-bordered"/>
-            <!-- Menu item - Expand/Collapse fullscreen -->
-            <p:menuitem id="toggle-fullscreen-item-#{index}" value="Expand" icon="ti ti-arrows-maximize"
+            <!-- Expand/Collapse fullscreen -->
+            <p:menuitem id="toggle-fullscreen-item-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expand')}" icon="ti ti-arrows-maximize"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widgetName])}"
+              pt:data-expand-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expand')}"
+              pt:data-collapse-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapse')}"
               styleClass="toggle-fullscreen-item toggle-fullscreen-item-#{index} actions-menu-item-bordered"
               rendered="#{renderExpandCollapse}"
               onclick="event.preventDefault(); toggleFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}'); return false;" />
-            <!-- Menu item - Info -->
+            <!-- Info -->
             <p:menuitem id="info-menu-item-#{index}"
               icon="ti ti-info-circle"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}"
