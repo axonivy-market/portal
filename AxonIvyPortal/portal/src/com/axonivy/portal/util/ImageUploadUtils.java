@@ -12,7 +12,7 @@ import org.primefaces.model.file.UploadedFile;
 import com.axonivy.portal.components.document.SVGSecurityScanner;
 import com.axonivy.portal.components.util.ImageUploadResult;
 
-import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
@@ -94,7 +94,7 @@ public class ImageUploadUtils {
   }
 
   private static ContentObject getApplicationCMS() {
-    return ContentManagement.cms(IApplication.current()).root();
+    return ContentManagement.cms(Application.current()).root();
   }
   
   public static String imageToBase64(String imageLocation, String extension, String imageDir) {
