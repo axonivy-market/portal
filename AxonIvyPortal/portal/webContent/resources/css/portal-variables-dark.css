@@ -182,8 +182,7 @@
   --task-detail-accent-btn-border: #7E7E7E;
   --task-detail-neutral-btn-bg: #333333;
   --task-detail-neutral-btn-border: #4A4A4A;
-  --task-detail-card-gap: 25px;
-  --task-detail-card-padding: 20px;
+  --task-detail-card-gap: 20px;
   --task-start-info-header-font-weight: bold;
   --task-start-info-task-id-font-weight: normal;
   --task-name-input-font-weight: bold;

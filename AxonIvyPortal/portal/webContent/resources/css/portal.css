@@ -2215,7 +2215,6 @@ canvas#preview-statistic-chart {
 .task-detail-taskdetails-card {
   width: 100%;
   box-sizing: border-box;
-  padding: var(--task-detail-card-padding);
 }
 /* Role&User/Time/Task&Case sub-cards inside this card are PrimeFlex `.ui-g-*` columns
    (float-based) rendered without a wrapping `.ui-g` row, so nothing clears their floats.
@@ -2400,7 +2399,10 @@ canvas#preview-statistic-chart {
   justify-content: flex-end;
 }
 .task-and-case-information {
-  margin-top: 1.25rem; /* ~21px gap from the Role&User/Time row above, per SVG measurement */
+  /* Same token as .task-detail-subcards-row's `gap` so the vertical spacing down to this third
+     sub-card matches the gap between the Role&User / Time sub-cards above — otherwise the three
+     sub-cards are unevenly spaced (25px between the first two, 20px down to this one). */
+  margin-top: var(--task-detail-card-gap);
 }
 .task-and-case-information .content-field .task-business-case,
 .task-and-case-information .content-field .ti-external-link {
