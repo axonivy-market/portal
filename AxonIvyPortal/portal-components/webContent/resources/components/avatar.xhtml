@@ -9,13 +9,14 @@
   <cc:attribute name="useLowercaseEmail" type="java.lang.Boolean" default="true" shortDescription="Convert the email address to lowercase before looking up the avatar." />
   <cc:attribute name="representName" />
   <cc:attribute name="showLabel" type="java.lang.Boolean" default="true" />
+  <cc:attribute name="title" default="" />
 
 </cc:interface>
 
 <cc:implementation>
   <h:outputStylesheet library="css" name="portal-components.css" />
 
-  <p:avatar id="#{cc.attrs.id}" rendered="#{cc.attrs.renderedAvatar}"
+  <p:avatar id="#{cc.attrs.id}" rendered="#{cc.attrs.renderedAvatar}" title="#{not empty cc.attrs.title ? cc.attrs.title : (cc.attrs.showLabel ? (cc.attrs.representName != null ? cc.attrs.representName : portalComponentAvatarBean.getNameInitials(cc.attrs.securityMember.getDisplayName())) : '')}"
     gravatar="#{cc.attrs.representName != null ? cc.attrs.representName : portalComponentAvatarBean.getEmailAddress(cc.attrs.securityMember, cc.attrs.useLowercaseEmail)}" gravatarConfig="d=blank"
     label="#{cc.attrs.showLabel ? (cc.attrs.representName != null ? cc.attrs.representName : portalComponentAvatarBean.getNameInitials(cc.attrs.securityMember.getDisplayName())) : ''}" styleClass="gravatar" shape="circle" />
 </cc:implementation>
