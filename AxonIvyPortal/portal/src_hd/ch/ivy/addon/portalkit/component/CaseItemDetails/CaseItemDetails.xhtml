@@ -22,14 +22,22 @@
   <c:set var="inFrame" value="#{cc.attrs.inFrame}"/>
   <c:set var="showItemDetailsHeader" value="#{cc.attrs.showItemDetailsHeader}"/>
   <c:set var="readOnly" value="#{cc.attrs.readOnly}"/>
+  <!-- Identity + Case ID|State|Case Category strip now live in their own "summary" GridStack
+       widget (CaseItemSummary.xhtml, included in the summary branch below), separate from the
+       Case Details ("information") widget so each card resizes independently and its card
+       background fills the cell. Mirrors the Task Details split. -->
+  <c:set var="summaryContainerID" value="#{cc.clientId}:widgets:#{caseDetailsBean.getWidgetPositionByType('SummaryWidget')}:case-detail-summary-container" />
+  <c:set var="generalContainerID" value="#{cc.clientId}:widgets:#{caseDetailsBean.getWidgetPositionByType('InformationWidget')}:case-detail-general-container" />
+  <!-- Update target after case actions: cover BOTH the summary card (strip: state/category) and
+       the case details card, matching the pre-split behaviour where the single information
+       widget wrapped both and refreshed together. -->
+  <c:set var="informationWidgetComponent" value="#{caseDetailsBean.getWidgetPositionByType('SummaryWidget') gt -1 ? summaryContainerID:''} #{caseDetailsBean.getWidgetPositionByType('InformationWidget') gt -1 ? generalContainerID:''}" />
 
   <h:panelGroup styleClass="ui-g-12 case-detail-header-container u-truncate-text u-no-padding-bottom"
     rendered="#{showItemDetailsHeader}" layout="block">
-    <h:panelGroup id="case-detail-name" styleClass="case-detail-header #{inFrame == true ? '' : 'u-hidden-md-up'}" layout="block">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: "
-        styleClass="case-detail-name-prefix" />
-      <span class="u-truncate-text case-detail-name">#{case.names().current()}</span>
-    </h:panelGroup>
+    <!-- Case name relocated into the summary widget (UI redesign IVYPORTAL-20779).
+         Keep the (empty) name panel id for backward-compat AJAX targets. -->
+    <h:panelGroup id="case-detail-name" styleClass="js-case-name-details hidden" layout="block" />
 
     <p:link id="back-to-cases" href="#" rendered="#{showItemBackButton}"
       onclick="backToPrevPage(#{!isTaskStartedInDetails})" styleClass="case-details-back-btn">
@@ -85,64 +93,65 @@
           gs-no-resize="#{caseDetailsBean.readOnlyMode}"
           gs-no-move="#{caseDetailsBean.readOnlyMode}"
           jsf:rendered="#{not ((widget.type eq 'technicalCase' and not caseDetailsBean.hasTechnicalCases(case)) or (widget.type eq 'businessDetails' and not caseActionBean.showCaseDetails))}">
-          <!-- General & description box -->
+          <!-- Summary box: identity (name/id/created + action steps) and the
+               Case ID|State|Case Category strip, in its own GridStack widget so it resizes
+               independently and its card background fills the cell. Markup lives in the
+               co-located CaseItemSummary.xhtml, brought in via ui:include so it stays in this
+               composite's naming scope (the ActionStep destroy dialog stays here). -->
+          <h:panelGroup id="case-detail-summary-container" layout="block"
+            rendered="#{widget.type eq 'summary'}"
+            styleClass="card case-detail-card grid-stack-item-content #{caseDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
+            <ui:include src="CaseItemSummary.xhtml">
+              <ui:param name="case" value="#{case}" />
+              <ui:param name="inFrame" value="#{inFrame}" />
+              <ui:param name="readOnly" value="#{readOnly}" />
+              <ui:param name="destroyCaseDialogComponent" value="case-item-details:case-details-container:destroy-case-confirmation-dialog" />
+              <ui:param name="informationWidgetComponent" value="#{informationWidgetComponent}" />
+            </ui:include>
+          </h:panelGroup>
+
+          <!-- Case Details box (description + Role&User/Time sub-cards + Business case), its own
+               GridStack widget. Same card-on-grid-item pattern as above. -->
           <h:panelGroup id="case-detail-general-container" layout="block"
             rendered="#{widget.type eq 'information'}"
-            styleClass="card grid-stack-item-content #{caseDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
-            <div class="case-detail-section-title u-truncate-text ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
-              <div class="ui-g-4 u-truncate-text u-padding-0 case-details-panel-title" role="heading" aria-level="1">
-                <i class="ti ti-user-check" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/general')}
-              </div>
-  
-              <h:panelGroup styleClass="case-detail-action-command ui-g-8" layout="block">
-                <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-group" actionLinkId="case-details-action-link"
-                  panelWidgetVar="case-details-action-panel" destroyCaseDialogComponent="case-item-details:case-details-container:destroy-case-confirmation-dialog" 
-                  case="#{case}" inFrame="#{inFrame}" readOnly="#{readOnly}"
-                  renderShowDetailAction="false"
-                  onDestroyComplete="PF('destroy-case-dialog').show()" />
-              </h:panelGroup>
-            </div>
-  
-            <h:panelGroup id="case-detail-data-description-container"
-              styleClass="ui-g-12 u-padding-0 grid-stack-item-content">
-              <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}"
-                inFrame="#{inFrame}" />
-            </h:panelGroup>
+            styleClass="card case-detail-card grid-stack-item-content #{caseDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
+            <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}"
+              inFrame="#{inFrame}" />
           </h:panelGroup>
-  
+
           <!-- Documents box -->
           <h:panelGroup id="case-details-document-card" layout="block"
-            styleClass="card case-document-component grid-stack-item-content"
+            styleClass="card case-detail-card case-document-component grid-stack-item-content"
             rendered="#{widget.type eq 'document' and !caseDetailsBean.hideCaseDocument}">
             <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" componentToUpdate="#{historyWidgetComponent}"/>
           </h:panelGroup>
-          
+
           <!-- Business details -->
           <h:panelGroup id="case-details-business-details-card" layout="block"
-            styleClass="card grid-stack-item-content"
+            styleClass="card case-detail-card grid-stack-item-content"
             rendered="#{widget.type eq 'businessDetails'}">
             <ic:ch.ivy.addon.portalkit.component.CaseItemBusinessDetails id="business-details-widget" case="#{case}"/>
           </h:panelGroup>
 
           <!-- Related cases box -->
           <h:panelGroup id="case-details-technical-case-card"
-            styleClass="card grid-stack-item-content"
+            styleClass="card case-detail-card grid-stack-item-content"
             rendered="#{widget.type eq 'technicalCase'}">
             <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedCases id="related-cases-widget" case="#{case}"
               isWorkingOnTask="#{isWorkingOnTask}" inFrame="#{inFrame}" readOnly="#{readOnly}" />
           </h:panelGroup>
-  
+
           <!-- Related running tasks box -->
           <h:panelGroup id="case-details-related-running-tasks-card"
-            styleClass="card grid-stack-item-content"
+            styleClass="card case-detail-card grid-stack-item-content"
             rendered="#{widget.type eq 'relatedTask'}">
             <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTasks id="task-widget" case="#{case}"
               isWorkingOnTask="#{isWorkingOnTask}" inFrame="#{inFrame}" readOnly="#{readOnly}" componentToUpdateTrigger="#{historyWidgetComponent}"/>
           </h:panelGroup>
-  
+
           <!-- Histories box -->
           <h:panelGroup id="history-container" layout="block"
-            styleClass="card grid-stack-item-content"
+            styleClass="card case-detail-card grid-stack-item-content"
             rendered="#{widget.type eq 'history'}">
             <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="case-histories" case="#{case}" />
           </h:panelGroup>

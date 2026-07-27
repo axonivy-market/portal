@@ -242,6 +242,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: To upload files, drag & drop or select files
     addNoteHelpText: Write your text here.
     businessDetailsTitle: Business Details
+    caseDetails: Case Details
     deleteFile: Delete file
     documents: Documents
     downloadFile: Download file

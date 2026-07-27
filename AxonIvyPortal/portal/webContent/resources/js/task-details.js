@@ -32,9 +32,19 @@ function initTaskDetailsGrid() {
   });
 }
 
+// The `widget-type` attribute rendered by TaskItemDetails.xhtml is `#{widget.type}`, which
+// AbstractConfigurableContentBean.updateWidgetsType() has already normalised to a WidgetType
+// constant ("summary", "information", ...). The class-name cases below are the pre-normalisation
+// values and are kept only as a fallback for any stale markup.
 function getTaskDetailsWidgetType(taskDetailsWidgetName) {
+  const knownTypes = ["summary", "information", "document", "history", "custom"];
+  if (knownTypes.includes(taskDetailsWidgetName)) {
+    return taskDetailsWidgetName;
+  }
+
   let type = "";
   switch (taskDetailsWidgetName) {
+    case "SummaryWidget": type = "summary"; break;
     case "InformationWidget": type = "information"; break;
     case "DocumentWidget": type = "document"; break;
     case "HistoryWidget": type = "history"; break;

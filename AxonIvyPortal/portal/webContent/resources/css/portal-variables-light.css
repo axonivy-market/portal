@@ -174,26 +174,84 @@
   --task-detail-header-font-weight: bold;
   --task-detail-section-title-font-weight: bold;
   --task-detail-separator-border-color: #F4F4F4;
-  /* Task Detail UI redesign (IVYPORTAL-20779) */
-  --task-detail-card-bg: var(--ivy-primary-color-white);
-  --task-detail-card-border-color: #EBEBEB;
-  --task-detail-card-radius: 15px;
-  --task-detail-subcard-bg: #FAFAFA;
-  --task-detail-subcard-border-color: #EBEBEB;
-  --task-detail-eyebrow-color: #757575;
-  --task-detail-label-color: #757575;
-  --task-detail-value-color: #1B1B1B;
-  --task-detail-strip-bg: #FAFAFA;
-  --task-detail-strip-divider-color: #E7E7E7;
-  --task-detail-divider-color: #EBEBEB;
-  --task-detail-empty-icon-bg: #F8F8F8;
-  --task-detail-empty-icon-color: #BFBFBF;
-  --task-detail-state-open-indicator-color: #47C46B;
-  --task-detail-primary-tint-bg: #E6F1F5;
-  --task-detail-accent-btn-border: #96C4D4;
-  --task-detail-neutral-btn-bg: #FAFAFA;
-  --task-detail-neutral-btn-border: #EBEBEB;
-  --task-detail-card-gap: 20px;
+  /* ---------------------------------------------------------------------------
+     Detail-page design tokens (IVYPORTAL-20779) — shared by Task Details and
+     Case Details. Values measured directly from the Figma file "Portal"
+     (Task detail + Case detail nodes); Figma variable names in the comments.
+     Neutral `--portal-detail-*` naming so both pages read from one source;
+     the legacy `--task-detail-*` names below are kept as aliases.
+     --------------------------------------------------------------------------- */
+  /* Surfaces */
+  --portal-detail-card-bg: var(--ivy-primary-color-white);          /* Default/Background */
+  --portal-detail-subcard-bg: hsl(0, 0%, 98%);                      /* Neutral/N25  #FAFAFA */
+  --portal-detail-strip-bg: hsl(0, 0%, 98%);                        /* Neutral/N25 */
+  --portal-detail-table-cell-bg: var(--ivy-primary-color-white);    /* Neutral/N0 */
+  /* Borders */
+  --portal-detail-card-border-color: hsl(0, 0%, 92%);               /* Neutral/N100 #EBEBEB */
+  --portal-detail-subcard-border-color: hsl(0, 0%, 92%);            /* Neutral/N100 */
+  --portal-detail-divider-color: hsl(0, 0%, 92%);                   /* Neutral/N100 */
+  --portal-detail-strip-divider-color: hsl(0, 0%, 91%);             /* Neutral/N200 #E7E7E7 */
+  --portal-detail-table-header-border-color: hsl(0, 0%, 92%);       /* Neutral/N100 */
+  --portal-detail-table-row-border-color: hsl(0, 0%, 91%);          /* Neutral/N200 */
+  /* Text */
+  --portal-detail-value-color: var(--ivy-primary-color-black);      /* Default/Body #1B1B1B */
+  --portal-detail-label-color: hsl(0, 0%, 46%);                     /* Neutral/N800 #757575 */
+  --portal-detail-eyebrow-color: hsl(0, 0%, 46%);                   /* Neutral/N800 */
+  /* Accent (Primary ramp) */
+  --portal-detail-primary-tint-bg: hsl(196, 43%, 93%);              /* Primary/P50  #E6F1F5 */
+  --portal-detail-accent-btn-border: hsl(196, 42%, 71%);            /* Primary/P75  #96C4D4 */
+  --portal-detail-accent-color: var(--ivy-portal-blue-dark);        /* Primary/P300 #007095 */
+  /* Neutral buttons */
+  --portal-detail-neutral-btn-bg: hsl(0, 0%, 98%);                  /* Neutral/N25 */
+  --portal-detail-neutral-btn-border: hsl(0, 0%, 92%);              /* Neutral/N100 */
+  /* Empty state */
+  --portal-detail-empty-icon-bg: hsl(0, 0%, 97%);                   /* Neutral/N50  #F8F8F8 */
+  --portal-detail-empty-icon-color: hsl(0, 0%, 75%);                /* Neutral/N400 #BFBFBF */
+  /* Geometry */
+  --portal-detail-card-radius: 15px;
+  --portal-detail-card-gap: 20px;
+  --portal-detail-card-padding: 20px;
+  --portal-detail-subcard-padding: 15px;
+  --portal-detail-card-shadow: 0 0 27.225px 0 hsla(0, 0%, 0%, 0.05);
+  /* State badges (Related tasks / Related cases tables) */
+  --portal-state-open-bg: hsla(217, 91%, 60%, 0.1);
+  --portal-state-open-border: hsla(217, 91%, 60%, 0.25);
+  --portal-state-open-color: hsl(217, 91%, 60%);
+  --portal-state-in-progress-bg: hsla(48, 96%, 53%, 0.1);
+  --portal-state-in-progress-border: hsla(48, 96%, 53%, 0.25);
+  --portal-state-in-progress-color: hsl(48, 88%, 29%);
+  --portal-state-delayed-bg: hsla(25, 95%, 53%, 0.1);
+  --portal-state-delayed-border: hsla(25, 95%, 53%, 0.25);
+  --portal-state-delayed-color: hsl(25, 95%, 53%);
+  --portal-state-done-bg: hsl(137, 50%, 95%);                       /* States/Success/S50 */
+  --portal-state-done-border: hsl(136, 52%, 80%);                   /* States/Success/S75 */
+  --portal-state-done-color: hsl(139, 47%, 32%);                    /* States/Success/S500 */
+  --portal-state-error-bg: hsl(0, 77%, 95%);                        /* States/Error/E50 */
+  --portal-state-error-border: hsl(358, 81%, 79%);                  /* States/Error/E75 */
+  --portal-state-error-color: hsl(358, 83%, 30%);                   /* States/Error/E500 */
+  --portal-state-neutral-bg: hsl(0, 0%, 97%);                       /* Neutral/N50 */
+  --portal-state-neutral-border: hsl(0, 0%, 92%);                   /* Neutral/N100 */
+  --portal-state-neutral-color: hsl(0, 0%, 46%);                    /* Neutral/N800 */
+  /* Legacy aliases — Task Details CSS still references these names */
+  --task-detail-card-bg: var(--portal-detail-card-bg);
+  --task-detail-card-border-color: var(--portal-detail-card-border-color);
+  --task-detail-card-radius: var(--portal-detail-card-radius);
+  --task-detail-subcard-bg: var(--portal-detail-subcard-bg);
+  --task-detail-subcard-border-color: var(--portal-detail-subcard-border-color);
+  --task-detail-eyebrow-color: var(--portal-detail-eyebrow-color);
+  --task-detail-label-color: var(--portal-detail-label-color);
+  --task-detail-value-color: var(--portal-detail-value-color);
+  --task-detail-strip-bg: var(--portal-detail-strip-bg);
+  --task-detail-strip-divider-color: var(--portal-detail-strip-divider-color);
+  --task-detail-divider-color: var(--portal-detail-divider-color);
+  --task-detail-empty-icon-bg: var(--portal-detail-empty-icon-bg);
+  --task-detail-empty-icon-color: var(--portal-detail-empty-icon-color);
+  --task-detail-state-open-indicator-color: hsl(136, 53%, 52%);     /* #47C46B */
+  --task-detail-primary-tint-bg: var(--portal-detail-primary-tint-bg);
+  --task-detail-accent-btn-border: var(--portal-detail-accent-btn-border);
+  --task-detail-neutral-btn-bg: var(--portal-detail-neutral-btn-bg);
+  --task-detail-neutral-btn-border: var(--portal-detail-neutral-btn-border);
+  --task-detail-card-gap: var(--portal-detail-card-gap);
   --task-start-info-header-font-weight: bold;
   --task-start-info-task-id-font-weight: normal;
   --task-name-input-font-weight: bold;

@@ -13,8 +13,11 @@
   <c:set value="#{caseActionBean.canChangeDescription(case)}" var="canChangeDescription"/>
   <f:event listener="#{caseDetailsBean.initCaseDescription(case)}" type="preRenderComponent"/>
   
-  <div class="ui-g case-details-description-title">
-    <div class="case-detail-title #{cc.attrs.labelStyleClasses} text-ellipsis">
+  <!-- Description block of the Case Details card. The former `ui-g` wrappers were dropped so the
+       label and the text stack with the 10px gap Figma specifies instead of inheriting the
+       float-grid margins. -->
+  <div class="case-details-description-title">
+    <div class="portal-detail-subcard-title #{cc.attrs.labelStyleClasses} text-ellipsis">
       #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}
       <p:commandLink onclick="showWidgetDescriptionInplaceEditor();" ariaLabel="#{ivy.cms.co('/Labels/EditDescription')}" global="false"
         rendered="#{caseActionBean.canChangeDescription(case) and !cc.attrs.readOnly}" id="edit-description-link">
@@ -23,10 +26,10 @@
     </div>
   </div>
 
-  <div class="ui-g">
-    <div class="ui-sm-12 ui-md-12 ui-lg-12 u-no-padding-left case-details-description-content">
+  <div>
+    <div class="u-no-padding-left case-details-description-content">
       <h:form id="case-description-form">
-        <div class="ui-g-12 case-detail-description">
+        <div class="case-detail-description">
           <div id="description-content" class="scroll-panel short-description">
             <p:inplace id="case-description-inplace" editor="true" styleClass="case-description-inplace js-case-description-inplace" effectSpeed="fast"
               widgetVar="widget-description-inplace" disabled="#{!canChangeDescription or cc.attrs.readOnly}"

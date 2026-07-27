@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
+  xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="jakarta.tags.core" xmlns:jsf="jakarta.faces">
+
+<!-- Summary card (identity + Case ID|State|Case Category strip) for the Case Details "summary"
+     GridStack widget. Mirrors TaskItemSummary.xhtml: a plain ui:composition pulled in with
+     ui:include from CaseItemDetails.xhtml so it renders in the parent's EL/naming scope —
+     #{case}, #{inFrame}, #{readOnly} and the moved ids (general-information, case-id,
+     case-state, case-category) resolve exactly as before, with no process duplication.
+     Values are handed in via ui:param from CaseItemDetails.xhtml.
+
+     Everything here is relocated markup: the identity block replaces the old
+     `case-detail-header-container` heading and the strip is the former
+     `#general-information` block of CaseItemGeneralInformation.xhtml — same EL, same
+     CMS keys, same `rendered` conditions. -->
+<ui:composition>
+  <div class="case-detail-header-card">
+    <div class="case-detail-section-title case-detail-header-row u-padding-0 flex align-items-start justify-content-between flex-wrap">
+      <div class="case-detail-identity" role="heading" aria-level="1">
+        <div class="flex flex-column u-truncate-text">
+          <span class="case-detail-eyebrow">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}</span>
+          <div class="case-detail-name-row">
+            <span class="case-detail-name u-truncate-text">#{case.names().current()}</span>
+            <ui:fragment rendered="#{caseBean.isPinnedCase(case)}">
+              <i class="ti ti-pin case-detail-pin-indicator" />
+            </ui:fragment>
+          </div>
+          <span class="case-detail-subtitle">
+            #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')} #{case.id}
+            <h:outputText rendered="#{not empty case.startTimestamp}" value=" &#183; #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')} " />
+            <h:outputText rendered="#{not empty case.startTimestamp}" value="#{case.startTimestamp}">
+              <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}" />
+            </h:outputText>
+          </span>
+        </div>
+      </div>
+
+      <h:panelGroup id="case-detail-action-group" layout="block"
+        styleClass="case-details-action-container action-container case-detail-header-actions flex align-items-center">
+        <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-group" actionLinkId="case-details-action-link"
+          actionLinkStyleClass="portal-icon-btn-round" panelWidgetVar="case-details-action-panel"
+          destroyCaseDialogComponent="#{destroyCaseDialogComponent}"
+          case="#{case}" inFrame="#{inFrame}" readOnly="#{readOnly}"
+          update="#{informationWidgetComponent}"
+          renderShowDetailAction="false"
+          onDestroyComplete="PF('destroy-case-dialog').show()" />
+      </h:panelGroup>
+    </div>
+
+    <p:divider styleClass="separator-task-detail" />
+
+    <!-- Attribute strip: Case ID | State | Case Category (moved here from
+         CaseItemGeneralInformation so Header+Strip render as a single Figma-matching card). -->
+    <div id="general-information" class="general-information case-detail-attr-strip">
+      <!-- Case ID -->
+      <div class="case-detail-attr">
+        <h:outputText styleClass="case-detail-column-title"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
+        <div class="case-detail-attr-value">
+          <h:outputText id="case-id" value="#{case.id}" />
+        </div>
+      </div>
+
+      <!-- State -->
+      <div class="case-detail-attr">
+        <h:outputText styleClass="case-detail-column-title"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
+        <div class="case-detail-attr-value">
+          <h:panelGroup id="case-state" styleClass="case-header-default-cell">
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{case}" showIndicatorBesideText="true"
+              responsiveStyleClass="note-history-state" />
+          </h:panelGroup>
+        </div>
+      </div>
+
+      <!-- Case Category -->
+      <div class="case-detail-attr"
+        jsf:rendered="#{(caseDetailsBean.showNotAvailableData and empty case.categoryPath) or not empty case.categoryPath}">
+        <h:outputText styleClass="case-detail-column-title"
+          value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
+        <div class="case-detail-attr-value u-truncate-text">
+          <h:outputText id="case-category" value="#{case.getCategory().getPath()}" rendered="#{not empty case.categoryPath}" />
+          <h:outputText id="empty-case-category" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable')}"
+            rendered="#{empty case.categoryPath}" />
+        </div>
+      </div>
+    </div>
+  </div>
+</ui:composition>
+</html>
