@@ -85,6 +85,11 @@ Variables:
       # Set this property to true to enable the ability to pin tasks.
       EnablePinnedTask: false
 
+      # Query strategy for the related case subquery built by task widget case custom field filters.
+      # LEGACY uses CaseQuery.create(), SPLIT uses businessCases()/subCases(). Has no effect on the case widget.
+      # [enum: LEGACY, SPLIT]
+      RelatedCaseQueryStrategy: LEGACY
+
     # You can configure the look and feel for task details according to your needs via this json file.
     # This setting will be taken over for all other task details.
     # [file: json]
