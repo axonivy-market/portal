@@ -2084,54 +2084,27 @@ canvas#preview-statistic-chart {
    ===================================================================== */
 
 /* ---- Shared: round icon button (e.g. more "...", "+" add, XLS export) ----
-   Figma: 8.662px padding around a 20.635px icon => 37.96px box, 1.237px border.
-   Size is fixed with explicit width/height rather than derived from padding + icon
-   content: PrimeFaces' own theme CSS puts the icon-only `p:commandButton` icon span
-   (`.ui-button-icon-only .ui-icon`) at `position:absolute` to center it, which pulls
-   it out of flex flow — a content-derived box then collapses to whatever in-flow
-   content remains (nothing, once `.ui-button-text` is hidden below), while the
-   button's own `width:2.4em` from the same theme rule still applies unopposed. The
-   result is a squashed, non-square box that `border-radius:50%` renders as an oval.
-   Forcing width/height here (matching the working `.rounded-button` pattern in
-   dashboard.css) makes the box a true circle regardless of that PrimeFaces quirk. */
+   DO NOT add rules targeting the icon inside this button (font-size, position,
+   width/height on `.ti`/`.ui-icon`/`.ui-button-icon-left`). PrimeFaces' own theme
+   CSS already centers it with `.ui-button-icon-only .ui-icon{position:absolute;
+   top:50%;left:50%;margin-top:-8px;margin-left:-8px}` and hides the mandatory
+   fallback text span with `.ui-button-icon-only .ui-button-text{text-indent:
+   -9999999px}`. That -8px offset is hard-coded for a ~16px glyph, so overriding the
+   icon's `font-size` (e.g. to Figma's 20.635px) leaves the offset unchanged and
+   pushes the glyph off-centre — which is exactly what happened when this block was
+   briefly "corrected" to the Figma numbers. Keep the button box sizing here only
+   and let the theme place the glyph. */
 .portal-icon-btn-round.ui-button,
 .portal-icon-btn-round {
-  box-sizing: border-box;
-  width: 37.96px;
-  height: 37.96px;
-  padding: 0;
-  line-height: 1;
+  width: 2.3rem;
+  height: 2.3rem;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1.237px solid var(--portal-detail-neutral-btn-border);
+  border: 1px solid var(--portal-detail-neutral-btn-border);
   background: var(--portal-detail-neutral-btn-bg);
   color: var(--portal-detail-value-color);
-}
-/* Not scoped to `.ui-button` — PrimeFaces only adds that class (and hides this span
-   itself via its own theme CSS) when `icon` is non-empty; when the global "show
-   button icon" setting is off, `icon=""` and neither happens, so this must hide the
-   fallback text unconditionally. */
-.portal-icon-btn-round .ui-button-text {
-  display: none;
-}
-.portal-icon-btn-round .ti,
-.portal-icon-btn-round .tif,
-.portal-icon-btn-round .ui-icon,
-.portal-icon-btn-round .ui-button-icon-left {
-  /* Neutralize the PrimeFaces `position:absolute` centering hack described above so
-     the icon is a normal in-flow flex item, centered by the button's own
-     align-items/justify-content instead. */
-  position: static;
-  font-size: 20.635px !important;
-  line-height: 1 !important;
-  width: 20.635px;
-  height: 20.635px;
-  margin: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 .portal-icon-btn-round.portal-icon-btn-accent {
   border-color: var(--portal-detail-accent-btn-border);
