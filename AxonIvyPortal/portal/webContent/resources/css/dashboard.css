@@ -742,7 +742,7 @@ body .ui-button.dashboard-tasks__start-button {
   border: 1px solid var(--start-btn-border-color);
   background: var(--start-btn-bg);
   color: var(--start-btn-text-color);
-  width: 5.4.rem;
+  width: 5.4rem;
 }
 
 body .ui-button.dashboard-tasks__start-button.ui-state-disabled {

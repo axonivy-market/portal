@@ -147,7 +147,7 @@
               icon="#{widget.showPinnedItem ? 'tif tif-pin' : 'ti ti-pin'}" rendered="#{dashboardBean.canShowPinnedItemToggle(widget)}"
               action="#{dashboardBean.togglePinned(widget)}"
               update="#{componentToUpdateOnResetFilter} actions-widget-form" process="@this" />
-            <p:divider rendered="#{widget.type.name() ne 'PROCESS'} or !renderSelectionToggle or !dashboardBean.canShowPinnedItemToggle(widget)"/>
+            <p:divider rendered="#{widget.type.name() ne 'PROCESS' or !renderSelectionToggle or !dashboardBean.canShowPinnedItemToggle(widget)"/>
             <!-- Filter -->
             <p:menuitem id="filter-sidebar-link-item-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters')}" icon="ti ti-filter"
               containerStyleClass="actions-menu-item-bordered"/>
