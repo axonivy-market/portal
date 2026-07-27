@@ -201,6 +201,26 @@
   --task-state-destroyed-background: hsla(0, 0%, 97%, 0.1);
   --task-state-destroyed-border-color: hsla(0, 0%, 29%, 1);
   --task-state-destroyed-color: hsla(0, 0%, 84%, 1);
+  --task-state-suspended-background: hsla(217, 91%, 60%, 0.25);
+  --task-state-suspended-border-color: hsla(217, 91%, 60%, 0.25);
+  --task-state-suspended-color: hsla(217, 100%, 82%, 1);
+  --task-state-resumed-background: hsla(48, 96%, 53%, 0.25);
+  --task-state-resumed-border: hsla(48, 96%, 53%, 0.25);
+  --task-state-resumed-color: hsla(48, 96%, 53%, 1);
+  --task-state-done-background: hsla(160, 84%, 39%, 0.25);
+  --task-state-done-border: hsla(160, 84%, 39%, 0.25);
+  --task-state-done-color: hsla(136, 51%, 80%, 1);
+  --task-state-parked-border: hsla(136, 52%, 81%, 1);
+  --task-state-parked-background: hsla(135, 50%, 95%, 1);
+  --task-state-failed-background: hsla(0, 84%, 60%, 0.25);
+  --task-state-failed-text-color: hsla(358, 82%, 79%, 1);
+  --task-state-failed-border: hsla(0, 84%, 60%, 0.25);
+  --task-state-delayed-background: hsla(25, 95%, 53%, 0.25);
+  --task-state-delayed-border-color: hsla(25, 95%, 53%, 0.25);
+  --task-state-delayed-color: hsla(25, 95%, 53%, 1);
+  --task-state-destroyed-background: hsla(0, 0%, 97%, 0.1);
+  --task-state-destroyed-border-color: hsla(0, 0%, 29%, 1);
+  --task-state-destroyed-color: hsla(0, 0%, 84%, 1);
   /* Task Action Item */
   --task-action-item-widget-header-color: var(--ivy-primary-color-white);
   --task-action-item-label-font-weight: normal;
