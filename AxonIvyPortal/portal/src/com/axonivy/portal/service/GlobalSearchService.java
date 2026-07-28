@@ -89,8 +89,6 @@ public class GlobalSearchService {
     boolean isAdminQuery = PermissionUtils.checkReadAllTasksPermission();
     criteria.setAdminQuery(isAdminQuery);
     criteria.extendStatesQueryByPermission(isAdminQuery);
-    boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
-    criteria.setAdminQuery(hasReadAllTasksPermisson);
     return criteria;
   }
 
