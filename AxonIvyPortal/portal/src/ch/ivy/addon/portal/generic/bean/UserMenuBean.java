@@ -148,6 +148,7 @@ public class UserMenuBean implements Serializable {
       targetPage = getHomePageURL();
       openTaskLosingConfirmationDialog();
     } else {
+      executeJSResetPortalMenuState();
       navigateToHomePage();
     }
   }
