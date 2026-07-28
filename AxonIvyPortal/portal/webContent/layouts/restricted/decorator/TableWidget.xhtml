@@ -108,7 +108,7 @@
       </h:form>
     </h:panelGroup>
     
-    <h:panelGroup layout="block" styleClass="quick-search-icon" rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch()}">
+    <h:panelGroup layout="block" styleClass="quick-search-icon" rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch() and widget.type eq 'PROCESS'}">
      <!-- Quick search icon button -->
      <p:commandButton id="quick-search-icon-#{index}" icon="ti ti-search" styleClass="rounded-button ui-button-outlined ui-button-widget"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}"
@@ -116,7 +116,7 @@
      </p:commandButton>
     </h:panelGroup>
 
-    <h:panelGroup id="view-toggle-panel-#{index}" layout="block" rendered="#{widget.type.name() ne 'PROCESS' and isReadOnlyMode}"
+    <h:panelGroup id="view-toggle-panel-#{index}" layout="block" rendered="#{widget.type.name() eq 'TASK' and isReadOnlyMode}"
         styleClass="widget-view-toggle">
       <!-- View toggle - List -->
       <p:commandButton id="view-toggle-list-#{index}" type="button" icon="ti ti-list"
@@ -149,8 +149,7 @@
               update="#{componentToUpdateOnResetFilter} actions-widget-form" process="@this" />
             <p:divider rendered="#{widget.type.name() ne 'PROCESS' or !renderSelectionToggle or !dashboardBean.canShowPinnedItemToggle(widget)}"/>
             <!-- Filter -->
-            <p:menuitem id="filter-sidebar-link-item-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters')}" icon="ti ti-filter"
-              onclick="event.preventDefault(); PF('filter-dialog-#{index}').show(); return false;"
+            <p:menuitem id="filter-sidebar-link-item-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters')}" icon="ti ti-filter" rendered="#{renderFilter}"
               containerStyleClass="actions-menu-item-bordered"/>
             <!-- Expand/Collapse fullscreen -->
             <p:menuitem id="toggle-fullscreen-item-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expand')}" icon="ti ti-arrows-maximize"
