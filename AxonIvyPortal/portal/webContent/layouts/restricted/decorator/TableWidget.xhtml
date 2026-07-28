@@ -150,7 +150,7 @@
             <p:divider rendered="#{widget.type.name() ne 'PROCESS' or !renderSelectionToggle or !dashboardBean.canShowPinnedItemToggle(widget)}"/>
             <!-- Filter -->
             <p:menuitem id="filter-sidebar-link-item-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters')}" icon="ti ti-filter"
-              containerStyleClass="actions-menu-item-bordered"/>
+              containerStyleClass="actions-menu-item-bordered" onclick="event.preventDefault(); PF('filter-dialog-#{index}').show(); return false;"/>
             <!-- Expand/Collapse fullscreen -->
             <p:menuitem id="toggle-fullscreen-item-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expand')}" icon="ti ti-arrows-maximize"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widgetName])}"
