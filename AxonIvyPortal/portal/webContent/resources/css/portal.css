@@ -1938,7 +1938,7 @@ body.dark .focused {
 }
 
 .chart-number-font-size {
-  font-weight: bolder;
+  font-weight: 800;
 }
 
 .chart-content-card .chart-label-container {
@@ -1956,7 +1956,7 @@ body.dark .focused {
 }
 
 .chart-content-card .chart-number-font-size {
-    font-size: max(6rem, 1.5rem + 10cqh);
+  font-size: max(6rem, 1.5rem + 10cqh);
 }
 
 @container (max-width: 200px) {
