@@ -6,9 +6,9 @@ import ch.ivyteam.ivy.workflow.IWorkflowContext;
 import ch.ivyteam.log.ILogger;
 
 /**
- * Holds instance of {@link ChatService}. Also holds IWorkflowContext Ivy.wf(), ILogger Ivy.log() because in cluster
- * mode, when handling system event, it does not have Ivy context, therefore we use these references instead of
- * Ivy.wf(), Ivy.log()
+ * Holds instance of {@link ChatService}. Also holds IWorkflowContext Ivy.wf(), ILogger Ivy.log(), Application
+ * Application.current() because in cluster mode, when handling system event, it does not have Ivy context, therefore we
+ * use these references instead of Ivy.wf(), Ivy.log(), Application.current()
  *
  */
 public final class ChatReferencesContainer {
@@ -17,6 +17,7 @@ public final class ChatReferencesContainer {
   private static boolean isIvyExtentionRegistered;
   private static IWorkflowContext worflowContext;
   private static ILogger logger;
+  private static Application application;
 
   private ChatReferencesContainer() {}
 
@@ -31,11 +32,12 @@ public final class ChatReferencesContainer {
     return worflowContext;
   }
 
-  @SuppressWarnings("removal")
-  public static Application getApplication() {
-    return wf().getApplication();
+  public static Application app() {
+    if (application == null) {
+      application = Application.current();
+    }
+    return application;
   }
-
 
   public static ILogger log() {
     if (logger == null) {
@@ -52,6 +54,9 @@ public final class ChatReferencesContainer {
     }
     if (logger == null) {
       ChatReferencesContainer.logger = Ivy.log();
+    }
+    if (application == null) {
+      ChatReferencesContainer.application = Application.current();
     }
   }
 
