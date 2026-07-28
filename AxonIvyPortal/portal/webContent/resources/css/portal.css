@@ -2084,32 +2084,72 @@ canvas#preview-statistic-chart {
    ===================================================================== */
 
 /* ---- Shared: round icon button (e.g. more "...", "+" add, XLS export) ----
-   DO NOT add rules targeting the icon inside this button (font-size, position,
-   width/height on `.ti`/`.ui-icon`/`.ui-button-icon-left`). PrimeFaces' own theme
-   CSS already centers it with `.ui-button-icon-only .ui-icon{position:absolute;
-   top:50%;left:50%;margin-top:-8px;margin-left:-8px}` and hides the mandatory
-   fallback text span with `.ui-button-icon-only .ui-button-text{text-indent:
-   -9999999px}`. That -8px offset is hard-coded for a ~16px glyph, so overriding the
-   icon's `font-size` (e.g. to Figma's 20.635px) leaves the offset unchanged and
-   pushes the glyph off-centre — which is exactly what happened when this block was
-   briefly "corrected" to the Figma numbers. Keep the button box sizing here only
-   and let the theme place the glyph. */
-.portal-icon-btn-round.ui-button,
-.portal-icon-btn-round {
-  width: 2.3rem;
-  height: 2.3rem;
+   Figma (measured from the rendered PNG of nodes 3827:82336 / 3825:125199):
+   38x38px circle, icon ink 12px for "+" and 20.6px for "...", both dead-centre.
+
+   Root font-size is 14px, NOT the browser default 16px — the Freya layout sets
+   `html{font-size:14px}` (freya-layout/css/layout-ivy-*.css). Everything here is in
+   px so the design's absolute sizes survive that.
+
+   The `body …` prefix and the extra classes are REQUIRED, not cosmetic: the Freya
+   theme ships `body .ui-button.ui-button-icon-only{width:2.357rem}` at specificity
+   (0,2,1), which beats a plain `.portal-icon-btn-round.ui-button` (0,2,0) and pins
+   the width to 33px. With the height coming from here instead, the button rendered
+   33x37.96 — the "oval" bug. `body .ui-button.ui-button-icon-only.portal-icon-btn-round`
+   is (0,3,1) and wins outright, with no reliance on stylesheet order. */
+body .ui-button.ui-button-icon-only.portal-icon-btn-round,
+body a.portal-icon-btn-round,
+body .portal-icon-btn-round {
+  box-sizing: border-box;
+  width: 37.96px;
+  min-width: 37.96px;
+  height: 37.96px;
+  min-height: 37.96px;
+  /* `.ui-button-text` carries `text-indent:-9999999px`, so the automatic minimum size
+     of this flex item collapses to ~0 and the default `flex-shrink:1` lets a crowded
+     header squash the circle sideways. Pin it. */
+  flex: 0 0 auto;
+  padding: 0;
+  /* module.css `.action-link{margin:auto 10px}` (0,1,0) otherwise insets the "..."
+     button 10px from the card edge; Figma has it flush. */
+  margin: 0;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--portal-detail-neutral-btn-border);
+  border: 1.237px solid var(--portal-detail-neutral-btn-border);
   background: var(--portal-detail-neutral-btn-bg);
   color: var(--portal-detail-value-color);
 }
-.portal-icon-btn-round.portal-icon-btn-accent {
+/* Icon inside the `p:commandButton` variant. Freya centres it with
+   `body .ui-button.ui-button-icon-only .ui-icon{position:absolute;top:50%;left:50%;
+   margin:-0.5rem}` — a hard-coded -7px offset that only centres a 14px glyph. Scaling
+   the icon to Figma's 20.635px therefore REQUIRES moving the offset to -half the new
+   size in the same rule; changing only `font-size` is what knocked the glyph
+   off-centre in an earlier attempt. */
+body .ui-button.ui-button-icon-only.portal-icon-btn-round .ui-icon {
+  font-size: 20.635px;
+  margin-top: -10.3175px;
+  margin-left: -10.3175px;
+}
+body .ui-button.portal-icon-btn-round.portal-icon-btn-accent,
+body .portal-icon-btn-round.portal-icon-btn-accent {
   border-color: var(--portal-detail-accent-btn-border);
   background: var(--portal-detail-primary-tint-bg);
   color: var(--portal-detail-accent-color);
+}
+/* Both atoms render as buttons, but `p:commandLink`/`p:link` emit an <a>, and Freya's
+   `body .ui-commandlink:hover, body .ui-link:hover{text-decoration:underline}` (0,2,1)
+   would underline the glyph/label on hover. Needs `a` + `body` + the state pseudo to
+   reach (0,2,2), and must name :hover/:focus explicitly because that is where the
+   theme declares it. */
+body a.portal-icon-btn-round,
+body a.portal-icon-btn-round:hover,
+body a.portal-icon-btn-round:focus,
+body a.portal-pill-btn,
+body a.portal-pill-btn:hover,
+body a.portal-pill-btn:focus {
+  text-decoration: none;
 }
 
 /* ---- Shared: pill button (e.g. Start, Show more) ----
@@ -2467,9 +2507,23 @@ canvas#preview-statistic-chart {
   display: none;
 }
 .task-detail-header-actions .ui-sidestep-action.portal-icon-btn-round::before {
-  content: "\2022\2009\2022\2009\2022";
-  font-weight: 700;
-  letter-spacing: 0.03em;
+  /* The real Tabler `ti-dots` glyph (U+EA95), not three U+2022 bullets. A text bullet
+     is positioned by the baseline and sits ~0.085em below the line box centre
+     (baseline = F/2 + (ascent−descent)/2, while the bullet's ink centres on about half
+     the x-height above it), so it renders visibly low and NO amount of flex alignment
+     can fix it — align-items centres the box, not the glyph inside its line box.
+     Icon-font glyphs span the full em box, so with line-height:1 they self-centre.
+     `ti ti-dots` is also what the rest of the app uses for this "..." action button. */
+  content: "\ea95";
+  font-family: "tabler-icons";
+  font-style: normal;
+  font-weight: normal;
+  /* Figma draws the dots 20.635px wide. The Tabler `dots` glyph only inks the middle
+     0.667em of its em box (viewBox 24, dots at x=5/12/19 with r=1 => x 4..20), so the
+     font-size must be 20.635 / 0.667 to land on the design's width. Without an explicit
+     size this inherits the body font-size and renders the dots at ~45% of the intended
+     width. */
+  font-size: 30.95px;
   line-height: 1;
 }
 
@@ -2577,7 +2631,10 @@ canvas#preview-statistic-chart {
    — specificity alone cannot beat an existing `!important`, so re-assert with `!important`. */
 .case-detail-body .case-detail-header-row {
   display: flex !important;
-  align-items: flex-start;
+  /* Figma centres the "..." button against the 3-line identity block. Kept in sync with
+     the `align-items-center` PrimeFlex class on the same element in CaseItemSummary.xhtml —
+     that class wins via `!important`, this is only the non-PrimeFlex fallback. */
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 0;
@@ -2640,9 +2697,23 @@ canvas#preview-statistic-chart {
   display: none;
 }
 .case-detail-header-actions .ui-sidestep-action.portal-icon-btn-round::before {
-  content: "\2022\2009\2022\2009\2022";
-  font-weight: 700;
-  letter-spacing: 0.03em;
+  /* The real Tabler `ti-dots` glyph (U+EA95), not three U+2022 bullets. A text bullet
+     is positioned by the baseline and sits ~0.085em below the line box centre
+     (baseline = F/2 + (ascent−descent)/2, while the bullet's ink centres on about half
+     the x-height above it), so it renders visibly low and NO amount of flex alignment
+     can fix it — align-items centres the box, not the glyph inside its line box.
+     Icon-font glyphs span the full em box, so with line-height:1 they self-centre.
+     `ti ti-dots` is also what the rest of the app uses for this "..." action button. */
+  content: "\ea95";
+  font-family: "tabler-icons";
+  font-style: normal;
+  font-weight: normal;
+  /* Figma draws the dots 20.635px wide. The Tabler `dots` glyph only inks the middle
+     0.667em of its em box (viewBox 24, dots at x=5/12/19 with r=1 => x 4..20), so the
+     font-size must be 20.635 / 0.667 to land on the design's width. Without an explicit
+     size this inherits the body font-size and renders the dots at ~45% of the intended
+     width. */
+  font-size: 30.95px;
   line-height: 1;
 }
 

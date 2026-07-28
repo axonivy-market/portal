@@ -17,7 +17,11 @@
      CMS keys, same `rendered` conditions. -->
 <ui:composition>
   <div class="case-detail-header-card">
-    <div class="case-detail-section-title case-detail-header-row u-padding-0 flex align-items-start justify-content-between flex-wrap">
+    <!-- align-items-center, not -start: Figma's Header Container (node 3825:125181) uses
+         `items-center` and places the "..." button at y=12.36 in a 62.69px row, i.e. dead
+         centre. PrimeFlex emits `align-items:flex-start!important`, which no amount of
+         specificity in portal.css can override — so the alignment has to be set here. -->
+    <div class="case-detail-section-title case-detail-header-row u-padding-0 flex align-items-center justify-content-between flex-wrap">
       <div class="case-detail-identity" role="heading" aria-level="1">
         <div class="flex flex-column u-truncate-text">
           <span class="case-detail-eyebrow">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}</span>
