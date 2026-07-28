@@ -89,8 +89,8 @@
   --task-state-reserved-font-size: 1.8rem;
   --task-state-system-font-size: 1.8rem;
   --portal-dialog-icon-font-size: 5rem;
-  --widget-header-font-size: var(--large-font-size);
-  --widget-header-font-weight: bold;
+  --widget-header-font-size: 1.15rem;
+  --widget-header-font-weight: 600;
   --process-warning-icon-font-weight: bold;
   --process-icon-font-size: 1.5rem;
   --process-grid-icon-font-size: 4.8rem;
@@ -114,7 +114,7 @@
   --task-item-name-line-height: 2rem;
   --task-item-name-font-weight: 700;
   --task-state-border-radius: 10px;
-  --task-state-font-size: 0.9rem;
+  --task-state-font-size: 1rem;
   --task-state-line-height: 1.6rem;
 
   --participants-list-header-font-weight: bold;

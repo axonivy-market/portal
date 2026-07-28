@@ -279,7 +279,7 @@
 .widget__header-title {
   flex: 1;
   display: inline-block;
-  font-weight: bold;
+  font-weight: var(--widget-header-font-weight);
 }
 
 .widget__content {
@@ -400,7 +400,7 @@ body .ui-dialog .ui-dialog-footer .ui-button.dashboard__edit-global-dashboard {
 
 td.dashboard-tasks__name span,
 td.dashboard-cases__name span {
-  font-weight: var(--process-grid-name-font-weight);
+  font-weight: 500;
 }
 
 td.dashboard-tasks__description span,
