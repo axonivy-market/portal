@@ -180,6 +180,7 @@ public class DashboardNewsWidgetTest extends BaseTest {
     redirectToNewDashBoard();
     DashboardNewsWidgetPage newsWidget = newDashboardPage.selectNewsFeedWidget(DEFAULT_NEWS_WIDGET_NAME);
     newsWidget.expand().shouldHave(size(1));
+    newsWidget.getNewsEmptyMessage().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return newsWidget;
   }
 
