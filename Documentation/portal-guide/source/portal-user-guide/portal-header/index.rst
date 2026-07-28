@@ -161,15 +161,6 @@ The :guilabel:`Change password` menu entry allows you to set a new password.
 .. note::
    Configure the UserSetOwnPassword permission in the :doc-url:`Engine Cockpit </engine-guide/reference/engine-cockpit/security.html>` under PersonalPermissions → PersonalSecurityPermissions → UserSetOwnPassword.
 
-Info
-^^^^
-
-The menu entry :guilabel:`Info` provides you with detailed information about the
-Axon Ivy Engine, the Axon Ivy Portal and your company's application. You
-might be asked for this information in case you issue a support request.
-
-|portal-version-information|
-
 Logout
 ^^^^^^
 
@@ -281,7 +272,5 @@ Different header features require specific permissions:
    :alt: Absences page: Select absence user option
 .. |portal-password-change-dialog| image:: ../../screenshots/settings/change-password.png
    :alt: Change password dialog
-.. |portal-version-information| image:: ../../screenshots/settings/portal-version-information.png
-   :alt: Version information dialog
 .. |portal-global-search-result-page| image:: ../../screenshots/search/global-search-result.png
    :alt: Global search results page
