@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 class TestBusinessEntityConverter {
 
   static class SampleEntity {
@@ -37,6 +39,21 @@ class TestBusinessEntityConverter {
   void entityToJsonNode_returnsTraversableNode() {
     SampleEntity entity = new SampleEntity("bar", 7);
     assertThat(BusinessEntityConverter.entityToJsonNode(entity).get("name").asText()).isEqualTo("bar");
+  }
+
+  @Test
+  void entityToJsonNode_supportsSingleEntityAndListOfEntities() {
+    SampleEntity entity = new SampleEntity("bar", 7);
+    JsonNode node = BusinessEntityConverter.entityToJsonNode(entity);
+    assertThat(node.isObject()).isTrue();
+    assertThat(node.get("name").asText()).isEqualTo("bar");
+
+    List<SampleEntity> entities = List.of(new SampleEntity("a", 1), new SampleEntity("b", 2));
+    JsonNode arrayNode = BusinessEntityConverter.entityToJsonNode(entities);
+    assertThat(arrayNode.isArray()).isTrue();
+    assertThat(arrayNode.size()).isEqualTo(2);
+    assertThat(arrayNode.get(0).get("name").asText()).isEqualTo("a");
+    assertThat(arrayNode.get(1).get("value").asInt()).isEqualTo(2);
   }
 
   @ParameterizedTest
