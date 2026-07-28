@@ -829,7 +829,7 @@ body .ui-divider.ui-divider-horizontal::before {
 }
 
 body .ui-button.dashboard-tasks__start-button > .ui-button-icon-left {
-  margin-top: -5px !important;
+  margin-top: -6px !important;
 }
 
 body .ui-button.dashboard-tasks__start-button {
