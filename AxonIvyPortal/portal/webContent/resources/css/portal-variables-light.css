@@ -69,6 +69,7 @@
   --statistic-filter-accordion-panel-border: var(--ivy-primary-color-grey-light);
   --chart-container-background-color: #e6f1f5;
   --chart-container-number-color: var(--ivy-primary-color);
+  --chart-container-number-border-color: hsla(194.9, 100%, 29.22%, 1);
   
   /* Sidebar */
   --sidebar-app-text-color: var(--menuitem-text-color);
@@ -89,7 +90,7 @@
   --widget-advanced-filter-hover-border: var(--ivy-primary-color-grey-light);
   --widget-filter-selection-container-border: transparent;
   --widget-advanced-filter-command-state-focus-background-color: none;
-  --widget-advanced-filter-overlay-panel-footer: var(--ivy-primary-color-grey-light);
+  --widget-advanced-filter-dialog-footer: var(--ivy-primary-color-grey-light);
   --widget-advanced-filter-command-background-color: none;
   --widget-advanced-filter-background-color: none;
   --widget-advanced-filter-hover-backround-color: var(--ivy-primary-color-grey-pale);
@@ -97,6 +98,31 @@
   --filter-selection-container-group-border-color: var(--ivy-primary-color-grey-medium);
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
   --widget-filter-background-color: var(--ivy-primary-color-grey-pale);
+
+  --wdiget-filter-save-filter-button-background-color: var(--ivy-portal-color-gray-75);
+  --widget-filter-condition-accent-border-color: var(--ivy-portal-blue-muted);
+  --widget-filter-add-condition-background-color: var(--ivy-portal-blue-pale);
+  --widget-filter-and-badge-background-color: var(--ivy-portal-blue-pale);
+  --widget-filter-and-badge-text-color: var(--primary-color);
+  --widget-filter-subtle-surface-color: var(--ivy-portal-color-gray-spaces);
+  --widget-filter-subtle-border-color: var(--ivy-portal-color-gray-light);
+  --widget-filter-chip-border-color: var(--ivy-portal-color-gray-light);
+  --widget-filter-save-input-border-color: hsla(0, 0%, 95%, 1);
+  --widget-filter-save-input-background-color: hsla(0, 0%, 97%, 1);
+  --widget-filter-empty-icon-color: var(--ivy-portal-color-gray-69);
+  --widget-filter-empty-icon-background-color: hsla(0, 0%, 97%, 1);
+  --widget-filter-apply-button-background-color: var(--primary-color);
+  --widget-filter-apply-button-text-color: var(--ivy-primary-color-white);
+  --widget-filter-add-condition-text-color: var(--primary-color);
+  --widget-filter-save-filter-button-text-color: var(--ivy-primary-color-black);
+  --widget-filter-reset-button-text-color: var(--primary-color);
+  --widget-filter-manage-filter-text-color: var(--primary-color);
+  --widget-filter-saved-item-background-color: var(--widget-filter-background-color);
+  --widget-filter-saved-item-active-background-color: var(--saved-filter-button-background-color);
+  --widget-filter-saved-item-active-border: 2px solid var(--ivy-primary-color);
+  --widget-filter-saved-item-active-text-color: var(--ivy-primary-color);
+  --widget-filter-dialog-box-shadow: 0 0 27.225px 0 rgba(0, 0, 0, 0.05);
+  --widget-filter-dialog-backdrop-color: rgba(0, 0, 0, 0.4);
 
   /* Item in Widget List */
   --item-widget-background-color: var(--ivy-primary-color-grey-pale);

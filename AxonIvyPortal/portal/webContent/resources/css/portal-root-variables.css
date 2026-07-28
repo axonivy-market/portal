@@ -45,6 +45,8 @@
   --ivy-portal-color-gray-45: hsla(0, 0%, 49%, 1);
   --ivy-portal-color-gray-29: hsla(0, 0%, 29%, 1);
   --ivy-portal-color-gray-17: hsla(0, 0%, 17%, 1);
+  --ivy-portal-color-gray-75: hsla(0, 0%, 75%, 1);
+  --ivy-portal-color-gray-69: hsla(0, 0%, 69%, 1);
 
   /* Default Portal styles */
   --header-font-size: 2rem;
