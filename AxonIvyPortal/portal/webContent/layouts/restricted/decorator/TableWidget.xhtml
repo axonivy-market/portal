@@ -108,7 +108,7 @@
       </h:form>
     </h:panelGroup>
     
-    <h:panelGroup layout="block" styleClass="quick-search-icon" rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch() and widget.type eq 'PROCESS'}">
+    <h:panelGroup layout="block" styleClass="quick-search-icon" rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch()}">
      <!-- Quick search icon button -->
      <p:commandButton id="quick-search-icon-#{index}" icon="ti ti-search" styleClass="rounded-button ui-button-outlined ui-button-widget"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}"
@@ -116,7 +116,7 @@
      </p:commandButton>
     </h:panelGroup>
 
-    <h:panelGroup id="view-toggle-panel-#{index}" layout="block" rendered="#{widget.type.name() eq 'TASK' and isReadOnlyMode}"
+    <h:panelGroup id="view-toggle-panel-#{index}" layout="block" rendered="#{widget.type.name() ne 'PROCESS' and isReadOnlyMode}"
         styleClass="widget-view-toggle">
       <!-- View toggle - List -->
       <p:commandButton id="view-toggle-list-#{index}" type="button" icon="ti ti-list"
@@ -149,7 +149,7 @@
               update="#{componentToUpdateOnResetFilter} actions-widget-form" process="@this" />
             <p:divider rendered="#{widget.type.name() ne 'PROCESS' or !renderSelectionToggle or !dashboardBean.canShowPinnedItemToggle(widget)}"/>
             <!-- Filter -->
-            <p:menuitem id="filter-sidebar-link-item-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters')}" icon="ti ti-filter" rendered="#{renderFilter}"
+            <p:menuitem id="filter-sidebar-link-item-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters')}" icon="ti ti-filter"
               containerStyleClass="actions-menu-item-bordered"/>
             <!-- Expand/Collapse fullscreen -->
             <p:menuitem id="toggle-fullscreen-item-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expand')}" icon="ti ti-arrows-maximize"
@@ -206,31 +206,6 @@
         name="applyInvalidWidgetFilterCommand#{index}"
         global="false" process="@this" partialSubmit="true" immediate="true"
         rendered="#{renderFilter}"/>
-
-      <span class="u-mar-right-2">
-        <c:set var="countFilter" value="#{widget.userDefinedFiltersCount.isPresent() ? widget.userDefinedFiltersCount.get():0}"/>
-        <p:badge value="#{countFilter}" visible="#{countFilter ne '0'}"
-          rendered="#{renderFilter}" styleClass="widget__filter-noti-number">
-          <!-- Filter button (with active-filter count badge) -->
-          <p:commandButton id="filter-sidebar-link-#{index}" type="button" icon="ti ti-filter" rendered="false"
-            ariaLabel="#{countFilter ne '0' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetFiltersWithCountContext', [widgetName, countFilter]) : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/openWidgetFiltersContext', [widgetName])}"
-            onclick="PF('filter-dialog-#{index}').show(); return false;"
-            styleClass="rounded-button widget__filter-sidebar-link ui-button-outlined ui-button-widget" />
-        </p:badge>
-        <p:tooltip for="filter-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters')}"
-          showEvent="mouseenter" hideEvent="mouseleave" trackMouse="true" rendered="#{renderFilter}" />
-      </span>
-
-      <!-- <p:commandButton id="expand-link-#{index}" type="button" icon="ti ti-arrows-maximize"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widgetName])}"
-        styleClass="rounded-button ui-button-outlined expand-link u-mar-right-5 ui-button-widget"
-        rendered="#{renderExpandCollapse}" onclick="expandFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')"/>
-
-      <p:commandButton id="collapse-link-#{index}" type="button" icon="ti ti-arrows-minimize"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext', [widgetName])}"
-        styleClass="rounded-button ui-button-outlined collapse-link u-mar-right-5 ui-button-widget"
-        rendered="#{renderExpandCollapse}"
-        onclick="collapseFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')" /> -->
 
       <!-- Edit widget button (pencil) -->
       <p:commandButton id="edit-widget-#{index}"
