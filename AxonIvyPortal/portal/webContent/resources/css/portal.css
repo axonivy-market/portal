@@ -508,9 +508,6 @@ body .ui-inputfield.task-name-input {
   font-size: var(--large-font-size);
   font-weight: var(--task-name-input-font-weight); }
 
-.task-detail-header .task-name {
-  font-weight: var(--task-detail-header-font-weight); }
-
 .task-detail-section-title,
 .task-detail-section-title > i.si,
 .task-detail-section-title > div > i.si {
@@ -617,12 +614,6 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   color: var(--case-detail-name-text-color-hight-light);
   padding: 3px;
   border-radius: 2px; }
-
-.case-detail-header,
-.task-detail-header .task-name {
-  font-size: var(--widget-header-font-size);
-  font-weight: var(--widget-header-font-weight);
-  line-height: 26px;}
 
 .related-task-content .related-task,
 .case-related-running {
@@ -2167,7 +2158,7 @@ body a.portal-pill-btn:focus {
   color: var(--portal-detail-value-color);
   padding: 8.662px 15px;
   gap: 3px;
-  font-size: 0.875rem; /* 14px */
+  font-size: 14px;
   font-weight: 500;
   line-height: 1;
 }
@@ -2184,6 +2175,147 @@ body a.portal-pill-btn:focus {
   color: var(--portal-detail-accent-color);
 }
 
+/* ---- Toolbar-size variants of the two atoms above ----
+   Figma 3825:125168 / 3958:164532: a 42.975px circle with a 25.65px glyph, and a 43px
+   pill — both a step up from the 37.96px card-level defaults. Modifiers, not forks. */
+body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-lg,
+body a.portal-icon-btn-round.portal-icon-btn-lg,
+body .portal-icon-btn-round.portal-icon-btn-lg {
+  width: 42.975px;
+  min-width: 42.975px;
+  height: 42.975px;
+  min-height: 42.975px;
+}
+/* Same trap as the base rule above: Freya centres the glyph with a hard-coded
+   `margin:-0.5rem`, so a bigger icon REQUIRES moving the offset to -half the new size in
+   the same rule — changing only `font-size` knocks it off-centre. */
+body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-lg .ui-icon {
+  font-size: 25.65px;
+  margin-top: -12.825px;
+  margin-left: -12.825px;
+}
+.portal-pill-btn.portal-pill-btn-lg.ui-button,
+.portal-pill-btn.portal-pill-btn-lg {
+  height: 43px;
+  padding: 0 15px;
+}
+
+/* ---- Shared: pill button on a `p:commandButton` ----
+   Until now `.portal-pill-btn` only ever sat on a `p:commandLink`/`p:link` (an <a> with a
+   plain `<i>` + `<span>` inside), where the flex layout above just works. A
+   `p:commandButton` renders `.ui-button-text-icon-left` instead (or `.ui-button-text-only`
+   when `visibilityBean.generateButtonIcon()` returns ""), and Freya absolutely-positions
+   that icon (`theme.css` `body .ui-button.ui-button-text-icon-left .ui-icon`) and pads
+   `.ui-button-text` by `0.5rem 1rem 0.5rem 2rem`. Undo both so the pill's own
+   `display:inline-flex` + `gap:3px` take over. (0,4,1)/(0,3,0) beat Freya's (0,3,1)/(0,2,0)
+   without needing `!important`. */
+body .ui-button.portal-pill-btn .ui-button-text {
+  padding: 0;
+}
+body .ui-button.ui-button-text-icon-left.portal-pill-btn .ui-icon {
+  position: static;
+  top: auto;
+  left: auto;
+  margin: 0;
+}
+/* Freya's `body .ui-button.ui-state-hover` is (0,3,0) and beats the plain
+   `.portal-pill-btn.ui-button` (0,2,0), so without this the pill flips to the primary
+   colour on hover/focus/press. Figma defines no hover state for these buttons, so hold the
+   resting appearance rather than invent one. */
+body .ui-button.portal-pill-btn,
+body .ui-button.portal-pill-btn.ui-state-hover,
+body .ui-button.portal-pill-btn.ui-state-focus,
+body .ui-button.portal-pill-btn.ui-state-active,
+body .ui-button.portal-pill-btn.ui-state-down {
+  background: var(--portal-detail-neutral-btn-bg);
+  border-color: var(--portal-detail-neutral-btn-border);
+  color: var(--portal-detail-value-color);
+}
+body .ui-button.portal-pill-btn.portal-pill-btn-accent,
+body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-hover,
+body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-focus,
+body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-active,
+body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-down {
+  background: var(--portal-detail-primary-tint-bg);
+  border-color: var(--portal-detail-accent-btn-border);
+  color: var(--portal-detail-accent-color);
+}
+
+/* ---- Shared: detail-page toolbar (Back + layout actions) ----
+   Figma 3825:125165 — the SAME bar on Task Details and Case Details: a white 15px-radius
+   card, 12px/20px padding (67px tall), no border, soft shadow, 12.375px between the action
+   buttons. Laid out with flex here rather than PrimeFlex `.ui-g-*` columns so each side
+   sizes itself; that is what replaces the old `.has-breadcrumb …{width:50%}` split. */
+.portal-detail-toolbar {
+  box-sizing: border-box;
+  /* Case Details nests this bar inside the decorator's `<div class="ui-g">`
+     (portal-case-details-information.xhtml), and PrimeFlex's `.ui-g` is `display:flex`.
+     Without an explicit width the bar becomes a `flex:0 1 auto` item and shrink-wraps to
+     its buttons — that is what the removed `ui-g-12` used to prevent. */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12.375px;
+  padding: 12px 20px;
+  border-radius: var(--portal-detail-card-radius);
+  background: var(--portal-detail-card-bg);
+  box-shadow: var(--portal-detail-toolbar-shadow);
+  /* Figma: the bar (3825:125165) and the widget grid (3825:125178) are both 1646px wide at
+     x=30, and the bar's bottom sits exactly one grid gutter above the first card — the same
+     25px the cards keep between themselves. `.case-item-body-container` /
+     `.task-item-body-container` cancel GridStack's half-gutter inset so this margin is the
+     whole distance. */
+  margin-bottom: var(--portal-detail-grid-gutter);
+}
+/* Task Details wraps its Back link in an `h:form` (the link is a `p:commandLink`); Case
+   Details has no form. Both levels get the same flex row so the chain is identical. */
+.portal-detail-toolbar-start,
+.portal-detail-toolbar-form {
+  display: flex;
+  align-items: center;
+  gap: 12.375px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.portal-detail-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12.375px;
+  flex: 0 0 auto;
+}
+/* Below 40em `.ui-sm-hidden` drops the whole actions group and only the mobile Share
+   survives — it lives inside the start group, so push it to the far edge by hand. */
+.portal-detail-toolbar-share-mobile {
+  margin-left: auto;
+}
+/* Back: text-only, 14px/500 in Primary/P300, 8.662px to a 17.325px chevron. The
+   `body a…:hover/:focus` arm is required, not cosmetic: Freya declares
+   `body .ui-commandlink:hover, body .ui-link:hover{text-decoration:underline}` at (0,2,1). */
+body a.portal-detail-toolbar-back,
+body a.portal-detail-toolbar-back:hover,
+body a.portal-detail-toolbar-back:focus,
+.portal-detail-toolbar-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8.662px;
+  flex: 0 0 auto;
+  height: 38px;
+  padding: 0;
+  border: none;
+  background: none;
+  border-radius: 7.425px;
+  color: var(--portal-detail-accent-color);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration: none;
+}
+.portal-detail-toolbar-back .ti {
+  font-size: 17.325px;
+  line-height: 1;
+}
+
 /* ---- Shared: empty-state block (task & case documents/notes) ----
    Figma vertical rhythm: 100px icon circle, 20px down to the text block, 5px between
    header and detail, 10px from the detail down to the action link. Expressed as a
@@ -2195,7 +2327,7 @@ body a.portal-pill-btn:focus {
   justify-content: center;
   text-align: center;
   gap: 5px;
-  padding: 2.5rem 1rem;
+  padding: 40px 16px;
 }
 .no-item-panel > .ti,
 .no-item-panel > .tif,
@@ -2213,14 +2345,14 @@ body a.portal-pill-btn:focus {
   margin-bottom: 15px; /* 20px total to the text block (5px gap + 15px) */
 }
 .no-item-panel .no-item-header {
-  font-size: 1rem; /* 16px, overrides the theme's --no-item-header-font-size (2rem) for this redesign */
+  font-size: 16px; /* overrides the theme's --no-item-header-font-size (2rem) for this redesign */
   font-weight: 600;
   line-height: 1.4;
   color: var(--portal-detail-value-color);
 }
 .no-item-panel .no-item-detail {
   color: var(--portal-detail-label-color);
-  font-size: 0.875rem; /* 14px */
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.2;
 }
@@ -2229,7 +2361,7 @@ body a.portal-pill-btn:focus {
   align-items: center;
   gap: 3px;
   color: var(--portal-detail-accent-color);
-  font-size: 0.875rem; /* 14px */
+  font-size: 14px;
   font-weight: 500;
   margin-top: 5px; /* 10px total below the detail line (5px gap + 5px) */
   line-height: 1;
@@ -2306,7 +2438,7 @@ body a.portal-pill-btn:focus {
 /* The Strip is an inner bordered box within the Header card (like the Role&User/Time/Task&Case
    sub-cards inside the Task Details card) — give it breathing room from the header row above it. */
 .task-detail-header-card .task-detail-attr-strip {
-  margin-top: 1.25rem;
+  margin-top: 20px;
 }
 
 /* Section / block headings inside the detail widgets. Two tiers, measured from Figma:
@@ -2317,7 +2449,7 @@ body a.portal-pill-btn:focus {
 .portal-detail-block-title,
 .task-detail-block-title {
   font-weight: 600;
-  font-size: 1rem; /* 16px */
+  font-size: 16px;
   line-height: 1.4;
   color: var(--portal-detail-value-color);
 }
@@ -2325,7 +2457,7 @@ body a.portal-pill-btn:focus {
 .task-detail-subcard-title,
 .task-description-title {
   font-weight: 600;
-  font-size: 0.875rem; /* 14px */
+  font-size: 14px;
   color: var(--portal-detail-value-color);
 }
 /* `.task-detail-title` deliberately excluded here: it's only ever paired with
@@ -2334,7 +2466,7 @@ body a.portal-pill-btn:focus {
    source-order, defeating `.task-detail-subcard-title`'s font-weight:600. */
 .task-detail-column-title {
   color: var(--task-detail-label-color);
-  font-size: 0.875rem; /* 14px row label */
+  font-size: 14px; /* row label */
   font-weight: 400;
   opacity: 1;
 }
@@ -2346,7 +2478,7 @@ body a.portal-pill-btn:focus {
   display: flex !important;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 16px;
 }
 .task-detail-header-row .task-detail-identity {
   flex: 1 1 auto;
@@ -2359,23 +2491,23 @@ body a.portal-pill-btn:focus {
 .task-detail-identity {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 14px;
 }
 .task-detail-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  font-size: 0.75rem; /* 12px */
+  font-size: 12px;
   font-weight: 500;
   color: var(--task-detail-eyebrow-color);
 }
 .task-detail-name-row {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 6px;
 }
 .task-detail-name {
   font-weight: 600;
-  font-size: 1rem; /* 16px */
+  font-size: 16px;
   color: var(--task-detail-value-color);
 }
 .task-detail-pin-indicator {
@@ -2383,20 +2515,20 @@ body a.portal-pill-btn:focus {
 }
 .task-detail-subtitle {
   color: var(--task-detail-label-color);
-  font-size: 0.75rem; /* 12px */
+  font-size: 12px;
   font-weight: 400;
 }
 .task-detail-header-actions .task-action-item-label {
-  font-size: 0.875rem; /* 14px, "Start" label — scoped to this header only */
+  font-size: 14px; /* "Start" label — scoped to this header only */
 }
 
 /* Delegate Task link in the Role & User sub-card header */
 .task-detail-delegate-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 6px;
   color: var(--primary-color);
-  font-size: 0.875rem; /* 14px */
+  font-size: 14px;
   font-weight: 500;
   line-height: 1;
 }
@@ -2425,12 +2557,12 @@ body a.portal-pill-btn:focus {
 
 /* Block headings spacing + right-aligned values in KV cards */
 .task-detail-details-heading {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 .task-detail-inner-card .task-detail-block-title {
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.6rem;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
   border-bottom: 1px solid var(--task-detail-divider-color);
 }
 /* Role & User information / Time Information / Task and Case Information headings use
@@ -2438,9 +2570,9 @@ body a.portal-pill-btn:focus {
    `padding-bottom` needs `!important` because module.css's `.task-detail-title{padding:10px 0
    5px 0!important}` (shared class on the same element) would otherwise win. */
 .task-detail-inner-card .task-detail-subcard-title {
-  padding-bottom: 0.6rem !important;
+  padding-bottom: 10px !important;
   border-bottom: 1px solid var(--task-detail-divider-color);
-  margin-bottom: 0.75rem;
+  margin-bottom: 12px;
 }
 /* Documents/Notes header action row: the "+" button carries a one-off `u-mar-right-10` and
    the (Notes-only) "System notes" checkbox carries none, so the gap before the "+" and the
@@ -2449,7 +2581,7 @@ body a.portal-pill-btn:focus {
    and neutralize the ad-hoc margin so it isn't added on top of the gap. */
 .document-task-detail-section-header-actions,
 .note-task-detail-section-header-actions {
-  gap: 0.625rem; /* ~10px */
+  gap: 10px;
 }
 .document-task-detail-section-header-actions .u-mar-right-10,
 .note-task-detail-section-header-actions .u-mar-right-10 {
@@ -2458,16 +2590,16 @@ body a.portal-pill-btn:focus {
 
 /* Horizontal divider under Documents / Notes panel headers. Figma measures ~24px between the
    header row and the divider, and ~35px between the divider and the content below (on top of the
-   empty-state's own 2.5rem padding) — give the divider real breathing room on both sides instead
+   empty-state's own 40px padding) — give the divider real breathing room on both sides instead
    of a border sitting flush against the header text. */
 .task-details-item-document .task-detail-section-title,
 .task-details-item-note .task-detail-section-title {
   /* module.css `.task-detail-section-title{padding:0!important}` (line ~4269) wipes any
      non-!important padding, including padding-bottom — must re-assert with !important too,
      specificity alone does not beat an existing !important declaration. */
-  padding-bottom: 1rem !important;
+  padding-bottom: 16px !important;
   border-bottom: 1px solid var(--task-detail-divider-color);
-  margin-bottom: 1.25rem;
+  margin-bottom: 20px;
 }
 .task-detail-inner-card .content-field > div:last-child,
 .task-and-case-information .content-field > div:last-child {
@@ -2491,14 +2623,14 @@ body a.portal-pill-btn:focus {
   color: var(--primary-color);
 }
 .task-and-case-information .content-field .task-business-case {
-  font-size: 0.875rem; /* 14px */
+  font-size: 14px;
   font-weight: 500;
 }
 
 /* SideStep trigger ("...") in the task header: keep the shared component
    markup intact, only present it as a round icon-only "more" button here. */
 .task-detail-header-actions {
-  gap: 0.5rem;
+  gap: 8px;
 }
 .task-detail-header-actions .ui-sidestep-action .task-action-item-label {
   display: none;
@@ -2540,10 +2672,10 @@ body a.portal-pill-btn:focus {
   flex: 1 1 25%;
   min-width: 140px;
   box-sizing: border-box;
-  padding: 0.6rem 1.25rem;
+  padding: 10px 20px;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 5px;
 }
 /* short, vertically-centered divider between strip columns (Figma: 30px tall, Neutral/N200) */
 .task-detail-attr-strip > .task-detail-attr:not(:first-child)::before {
@@ -2558,7 +2690,7 @@ body a.portal-pill-btn:focus {
 /* Strip label ("Priority"/"State"/"Due"/"Workflow") is smaller/uppercase than the general
    row-label style (.task-detail-column-title elsewhere is 14px/400) — scope-override here. */
 .task-detail-attr .task-detail-column-title {
-  font-size: 0.75rem; /* 12px */
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -2566,9 +2698,9 @@ body a.portal-pill-btn:focus {
 .task-detail-attr .task-detail-attr-value {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 6px;
   color: var(--task-detail-value-color);
-  font-size: 0.875rem; /* 14px */
+  font-size: 14px;
   font-weight: 500;
 }
 /* "See details" (Workflow) is a primary-colored link, not a plain value */
@@ -2589,7 +2721,7 @@ body a.portal-pill-btn:focus {
 .task-item-body .separator-task-detail.ui-divider,
 .task-item-body .separator-task-detail {
   border-color: var(--task-detail-divider-color);
-  margin: 1.25rem 0;
+  margin: 20px 0;
 }
 
 @media screen and (max-width: 640px) {
@@ -2636,7 +2768,7 @@ body a.portal-pill-btn:focus {
      that class wins via `!important`, this is only the non-PrimeFlex fallback. */
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 16px;
   margin-bottom: 0;
 }
 .case-detail-header-row .case-detail-identity {
@@ -2660,7 +2792,7 @@ body a.portal-pill-btn:focus {
 .case-detail-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.72px;
-  font-size: 0.75rem; /* 12px */
+  font-size: 12px;
   font-weight: 500;
   line-height: normal;
   color: var(--portal-detail-eyebrow-color);
@@ -2668,12 +2800,12 @@ body a.portal-pill-btn:focus {
 .case-detail-name-row {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 6px;
 }
 /* Overrides module.css `.case-detail-name` (list/header styling) inside the card. */
 .case-detail-body .case-detail-name {
   font-weight: 600;
-  font-size: 1rem; /* 16px */
+  font-size: 16px;
   line-height: normal;
   color: var(--portal-detail-value-color);
 }
@@ -2682,7 +2814,7 @@ body a.portal-pill-btn:focus {
 }
 .case-detail-subtitle {
   color: var(--portal-detail-label-color);
-  font-size: 0.75rem; /* 12px */
+  font-size: 12px;
   font-weight: 400;
   line-height: normal;
 }
@@ -2753,7 +2885,7 @@ body a.portal-pill-btn:focus {
 /* Strip labels are 12px/500 with 0.72px tracking and — unlike the summary eyebrow —
    are NOT uppercased in the Case design. */
 .case-detail-attr .case-detail-column-title {
-  font-size: 0.75rem; /* 12px */
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.72px;
   line-height: normal;
@@ -2763,9 +2895,9 @@ body a.portal-pill-btn:focus {
 .case-detail-attr .case-detail-attr-value {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 6px;
   color: var(--portal-detail-value-color);
-  font-size: 0.875rem; /* 14px */
+  font-size: 14px;
   font-weight: 500;
   line-height: normal;
 }
@@ -2805,7 +2937,7 @@ body a.portal-pill-btn:focus {
 }
 .case-detail-casedetails-card .case-detail-description,
 .case-detail-casedetails-card .case-description-output {
-  font-size: 0.875rem; /* 14px */
+  font-size: 14px;
   font-weight: 400;
   color: var(--portal-detail-value-color);
 }
@@ -2846,7 +2978,7 @@ body a.portal-pill-btn:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 16px;
   min-height: 25px;
   padding: 0;
 }
@@ -2861,13 +2993,13 @@ body a.portal-pill-btn:focus {
   flex: 0 1 auto;
   min-width: 0;
   text-align: right;
-  font-size: 0.875rem; /* 14px */
+  font-size: 14px;
   font-weight: 400;
   color: var(--portal-detail-value-color);
 }
 .case-detail-body .case-detail-column-title {
   color: var(--portal-detail-label-color);
-  font-size: 0.875rem; /* 14px row label */
+  font-size: 14px; /* row label */
   font-weight: 400;
   line-height: normal;
   opacity: 1;
@@ -2882,7 +3014,7 @@ body a.portal-pill-btn:focus {
 }
 .case-detail-body .business-case-information .case-detail-business-case {
   color: var(--portal-detail-accent-color);
-  font-size: 0.875rem; /* 14px */
+  font-size: 14px;
   font-weight: 500;
 }
 
@@ -2897,7 +3029,7 @@ body a.portal-pill-btn:focus {
   align-items: center;
   justify-content: space-between;
   /* module.css wipes the padding with `!important`, so re-assert it the same way. */
-  padding-bottom: 1rem !important;
+  padding-bottom: 16px !important;
   border-bottom: 1px solid var(--portal-detail-divider-color);
   margin-bottom: var(--portal-detail-card-gap);
 }
@@ -2908,7 +3040,7 @@ body a.portal-pill-btn:focus {
   margin-bottom: 0;
 }
 .case-detail-body .task-details-panel-title {
-  font-size: 1rem; /* 16px — module.css sets 16px already; restated for the redesign */
+  font-size: 16px; /* module.css sets 16px already; restated for the redesign */
 }
 /* Uniform 10px between every header action (round button, pill, checkbox, config). */
 .document-case-detail-section-header-actions,
@@ -2941,7 +3073,7 @@ body a.portal-pill-btn:focus {
   background: var(--portal-detail-table-cell-bg);
   border: none;
   border-bottom: 1px solid var(--portal-detail-table-header-border-color);
-  font-size: 0.875rem; /* 14px */
+  font-size: 14px;
   font-weight: 400;
   color: var(--portal-detail-value-color);
 }
@@ -2952,7 +3084,7 @@ body a.portal-pill-btn:focus {
   background: var(--portal-detail-table-cell-bg);
   border: none;
   border-bottom: 0.5px solid var(--portal-detail-table-row-border-color);
-  font-size: 0.875rem; /* 14px */
+  font-size: 14px;
   font-weight: 400;
   color: var(--portal-detail-value-color);
 }
@@ -2977,7 +3109,7 @@ body a.portal-pill-btn:focus {
   border-radius: 50%;
 }
 .case-detail-body .ui-datatable tbody td .name-after-avatar {
-  font-size: 0.75rem; /* 12px */
+  font-size: 12px;
   font-weight: 400;
 }
 /* Leading file-type / entity icon chip in the first column (Figma: 7.077px radius,
@@ -3014,7 +3146,7 @@ body a.portal-pill-btn:focus {
   border-radius: 100px;
   background: var(--portal-state-neutral-bg);
   color: var(--portal-state-neutral-color);
-  font-size: 0.875rem; /* 14px */
+  font-size: 14px;
   font-weight: 400;
   line-height: 25.987px;
   white-space: nowrap;

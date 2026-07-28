@@ -662,31 +662,6 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   }
 }
 
-.case-details-back-btn, .task-details-back-btn {
-  flex: 0 0 110px;
-  text-align: right;
-}
-
-@media (min-width: 768px) {
-  .case-details-back-btn, .task-details-back-btn {
-    text-align: left;
-  }
-
-  .iframe-body .task-details-back-btn, .iframe-body .case-details-back-btn {
-    text-align: right;
-  }
-}
-
-.case-detail-title-header-container {
-  padding: 0 !important;
-  display: flex;
-  line-height: 38px;
-}
-
-.case-details-back-btn, .task-details-back-btn, .case-detail-title-header-container .case-detail-header {
-  align-self: center;
-}
-
 .no-case-found {
   margin-left: 21px;
   font-size: var(--large-font-size);
@@ -1522,17 +1497,6 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   display: none;
 }
 
-.has-breadcrumb .task-detail-container, .has-breadcrumb .case-detail-header-container,
-.ms-teams-layout .task-detail-container, .ms-teams-layout .case-detail-header-container {
-  width: 50%;
-}
-
-.has-breadcrumb .switch-and-reset-buttons-area,
-.ms-teams-layout .switch-and-reset-buttons-area {
-  width: 50%;
-  white-space: nowrap;
-}
-
 .filter-container .widget-title-mobile .top-header-main-title {
   width: 100%;
   overflow: hidden;
@@ -2174,11 +2138,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 .case-description-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save {
   margin-right: 5px;
   margin-top: 3px;
-}
-
-.case-detail-header-container {
-  display: flex;
-  flex: 1 0;
 }
 
 .case-details-separator {
@@ -4136,12 +4095,6 @@ _:-ms-fullscreen, :root .content-link-history {
 /* =================== END ADD CHAT ============================= */
 
 /*  =================== TASK DETAIL PAGE ========================= */
-.task-detail-header {
-  line-height: 38px;
-  display: flex;
-  width: 100% !important;
-}
-
 .task-detail-general-card {
   min-height: 890px;
 }
@@ -4324,26 +4277,8 @@ _:-ms-fullscreen, :root .content-link-history {
   text-overflow: ellipsis;
 }
 
-.task-detail-header .task-name {
-  display: block;
-}
-
-.has-breadcrumb .task-detail-header .task-name,
-.ms-teams-layout .task-detail-header .task-name {
-  display: none;
-}
-
 .task-name {
   width: 100%;
-}
-
-.task-details-back-btn, .case-details-back-btn {
-  flex: 0;
-  margin-right: 5px !important;
-  display: inline-flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: flex-end;
 }
 
 .task-note-dialog .ui-dialog-content.ui-widget-content {
@@ -4785,10 +4720,15 @@ border-top: 0.14rem dashed;
   min-width: 85px;
 }
 
+/* GridStack insets every card by half the gutter (`margin: 12.5` in case-details.js /
+   task-details.js), so the grid's painted edges sit 12.5px inside its layout box. Pull the
+   container out by that same half-gutter and the cards line up flush with the toolbar above
+   and with the column edges, while keeping a full 25px between neighbouring cards
+   (Figma 3825:125165 + 3825:125178: both are 1646px wide at x=30, 25px apart). */
 .case-item-body-container,
 .task-item-body-container {
   display: block;
-  margin: 7px -3px;
+  margin: -12.5px;
 }
 
 .task-detail-general-container {
@@ -4810,24 +4750,8 @@ border-top: 0.14rem dashed;
   padding: 7px 0 !important;
 }
 
-.reset-details-settings-button {
-  margin-left: 5px;
-}
-
 .task-details-widgets .task-action-item-position {
   display: inline-flex;
-}
-
-.task-detail-container {
-  text-align: left;
-  flex: 1 0;
-}
-
-.switch-and-reset-buttons-area {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex: 0 0;
 }
 
 .icon-more-link, .icon-less-link {
@@ -4839,16 +4763,6 @@ border-top: 0.14rem dashed;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-box-pack: end;
-}
-
-@media screen and (max-width: 40em) {
-  .task-detail-container.ui-g-6 {
-    width: 100%
-  }
-
-  .switch-and-reset-buttons-area.ui-g-6 {
-    width: 100%
-  }
 }
 
 .task-detail-description .pointer-event-none {

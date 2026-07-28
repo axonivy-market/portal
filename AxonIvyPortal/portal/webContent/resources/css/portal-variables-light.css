@@ -210,9 +210,15 @@
   /* Geometry */
   --portal-detail-card-radius: 15px;
   --portal-detail-card-gap: 20px;
+  /* Gutter of the widget grid itself (toolbar -> first card, and card -> card in both
+     axes). Distinct from --portal-detail-card-gap above, which spaces content INSIDE a
+     card. GridStack owns half of it: keep `margin: 12.5` in case-details.js /
+     task-details.js in sync with this. */
+  --portal-detail-grid-gutter: 25px;
   --portal-detail-card-padding: 20px;
   --portal-detail-subcard-padding: 15px;
   --portal-detail-card-shadow: 0 0 27.225px 0 hsla(0, 0%, 0%, 0.05);
+  --portal-detail-toolbar-shadow: 0 0 13.612px 0 hsla(0, 0%, 0%, 0.07);
   /* State badges (Related tasks / Related cases tables) */
   --portal-state-open-bg: hsla(217, 91%, 60%, 0.1);
   --portal-state-open-border: hsla(217, 91%, 60%, 0.25);

@@ -35,53 +35,65 @@
   <c:set var="documentWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('DocumentWidget') gt -1 ? documentsContainerID:''}" />
   <c:set var="noteContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('HistoryWidget')}:task-detail-note-container" />
   <c:set var="historyWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('HistoryWidget') gt -1 ? noteContainerID:''}" />
-  <div class="ui-g">
+  <!-- Toolbar (UI redesign IVYPORTAL-20779, Figma 3825:125165): Back on the left, layout
+       actions on the right, on a white 15px-radius card. Same markup and same
+       `.portal-detail-toolbar*` classes as CaseItemDetails.xhtml — keep the two in sync.
+       The `rendered` guard on the wrapper matters: without it a header-less embed would
+       paint an empty 67px white bar. -->
+  <h:panelGroup layout="block" styleClass="portal-detail-toolbar" rendered="#{cc.attrs.showItemDetailsHeader}">
     <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}"
-      styleClass="u-truncate-text task-detail-container ui-g-12 u-no-padding-bottom">
-      <h:form id="task-detail-title-form" onsubmit="return false;" styleClass="task-detail-header">
+      styleClass="portal-detail-toolbar-start u-truncate-text">
+      <h:form id="task-detail-title-form" onsubmit="return false;" styleClass="portal-detail-toolbar-form">
         <!-- Task name relocated into the information widget header (UI redesign IVYPORTAL-20779).
              Keep the (empty) name panel id for backward-compat AJAX targets. -->
         <h:panelGroup id="#{cc.attrs.nameId}-edit-form" styleClass="js-task-name-details hidden" />
         <p:commandLink id="back-to-previous-page"
           actionListener="#{taskActionBean.backToPrevPage(cc.attrs.task, cc.attrs.isFromTaskList, cc.attrs.isTaskStartedInDetails)}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
-          styleClass="task-details-back-btn" process="@this">
+          styleClass="portal-detail-toolbar-back" process="@this">
+          <!-- No `p:spacer` here: the 8.662px flex gap on `.portal-detail-toolbar-back` is
+               the design's icon-to-label distance; a spacer would add 3px on top of it. -->
           <i class="ti ti-chevron-left" />
-          <p:spacer width="3px" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
         </p:commandLink>
         <p:commandButton id="share-page-button-mobile" rendered="#{taskDetailsBean.isShowShareButton}"
 		  onclick="PF('share-task-details-dialog').show()" type="button"
-	      icon="#{visibilityBean.generateButtonIcon('ti ti-share')}" 
+	      icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
           ariaLabel="#{ivy.cms.co('/Labels/Share')}"
-	      title="#{ivy.cms.co('/Labels/Share')}" styleClass="ui-sm-hidden-op ui-button-flat"/>
+	      title="#{ivy.cms.co('/Labels/Share')}"
+	      styleClass="ui-sm-hidden-op portal-icon-btn-round portal-icon-btn-lg portal-detail-toolbar-share-mobile"/>
       </h:form>
     </h:panelGroup>
     <h:panelGroup id="task-details-actions"
       rendered="#{not cc.attrs.readOnly and cc.attrs.showItemDetailsHeader}"
-      styleClass="switch-and-reset-buttons-area ui-g-12 u-no-padding-bottom ui-sm-hidden">
+      styleClass="portal-detail-toolbar-actions ui-sm-hidden">
       <p:commandButton id="share-page-button" rendered="#{taskDetailsBean.isShowShareButton}"
      	onclick="PF('share-task-details-dialog').show()" type="button"
-        icon="#{visibilityBean.generateButtonIcon('ti ti-share')}" 
+        icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
         ariaLabel="#{ivy.cms.co('/Labels/Share')}"
-        title="#{ivy.cms.co('/Labels/Share')}" styleClass="u-mar-right-5 ui-button-flat"/>
+        title="#{ivy.cms.co('/Labels/Share')}" styleClass="portal-icon-btn-round portal-icon-btn-lg"/>
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{taskDetailsBean.readOnlyMode}"
         ariaLabel="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{taskDetailsBean.switchToEditMode()}"
         icon="#{visibilityBean.generateButtonIcon('ti ti-pencil')}" update="task-item-body task-details-actions"
         oncomplete="loadTaskDetailsGrid(); disableAllIFrameWhenEditLayout(); PortalLayout.hideHorizontalScrollOnLayoutContent();"
-        styleClass="u-mar-right-5" />
+        styleClass="portal-pill-btn portal-pill-btn-lg" />
       <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         rendered="#{taskDetailsBean.configuration.changed and not taskDetailsBean.readOnlyMode}" ajax="false" type="button"
-        icon="#{visibilityBean.generateButtonIcon('ti ti-refresh')}" styleClass="reset-details-settings-button u-mar-right-5"
+        icon="#{visibilityBean.generateButtonIcon('ti ti-refresh')}"
+        styleClass="reset-details-settings-button portal-pill-btn portal-pill-btn-lg"
         immediate="true" onclick="PF('reset-to-default-task-dialog').show()" />
+      <!-- Save is the primary action of edit mode, so it takes the accent pill; Figma only
+           draws the view-mode state of this bar. -->
       <p:commandButton id="switch-to-view-mode-button" rendered="#{not taskDetailsBean.readOnlyMode}"
         ariaLabel="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}" onclick="saveTaskDetailsGrid()"
-        icon="#{visibilityBean.generateButtonIcon('ti ti-device-floppy')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid(); enableAllIFrameWhenEditLayout();"/>
+        icon="#{visibilityBean.generateButtonIcon('ti ti-device-floppy')}" update="task-item-body task-details-actions"
+        oncomplete="loadTaskDetailsGrid(); enableAllIFrameWhenEditLayout();"
+        styleClass="portal-pill-btn portal-pill-btn-lg portal-pill-btn-accent"/>
     </h:panelGroup>
-  </div>
+  </h:panelGroup>
 
   <h:panelGroup id="task-status-banner" layout="block" styleClass="ui-g #{taskDetailsBean.showInfoBanner()? 'task-status-banner' : ''}">
     <p:staticMessage escape="false" detail="#{htmlSanitizerBean.sanitize(taskDetailsBean.getInfoBannerMessage())}" rendered="#{taskDetailsBean.showInfoBanner()}" severity="#{taskDetailsBean.getInfoBannerSeverity()}" styleClass="task-status-banner-content MarTop10" />

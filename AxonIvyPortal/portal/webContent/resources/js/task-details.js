@@ -15,6 +15,11 @@ function initTaskDetailsGrid() {
   taskDetailsGrid = GridStack.init({
     column: 12,
     cellHeight: 100,
+    // Half the grid gutter — GridStack insets each card by this on all four sides, so
+    // neighbours end up 25px apart, per Figma. Keep in sync with
+    // --portal-detail-grid-gutter (portal-variables-*.css) and with the matching negative
+    // margin on .task-item-body-container (module.css), which cancels the outer inset.
+    margin: 12.5,
     resizable: {
       handles: "e, se, s, sw, w"
     },

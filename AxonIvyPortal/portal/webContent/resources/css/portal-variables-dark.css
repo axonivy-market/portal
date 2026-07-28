@@ -201,9 +201,11 @@
   /* Geometry */
   --portal-detail-card-radius: 15px;
   --portal-detail-card-gap: 20px;
+  --portal-detail-grid-gutter: 25px;
   --portal-detail-card-padding: 20px;
   --portal-detail-subcard-padding: 15px;
   --portal-detail-card-shadow: 0 0 27.225px 0 hsla(0, 0%, 0%, 0.25);
+  --portal-detail-toolbar-shadow: 0 0 13.612px 0 hsla(0, 0%, 0%, 0.25);
   /* State badges — derived from the light hues, see note above */
   --portal-state-open-bg: hsla(217, 91%, 60%, 0.18);
   --portal-state-open-border: hsla(217, 91%, 60%, 0.35);
