@@ -33,7 +33,7 @@
         "signature" : "keepOldNameValue",
         "input" : {
           "params" : [
-            { "name" : "event", "type" : "javax.faces.event.ValueChangeEvent", "desc" : "" }
+            { "name" : "event", "type" : "jakarta.faces.event.ValueChangeEvent", "desc" : "" }
           ],
           "map" : {
             "out.oldName" : "param.event.getOldValue() as String"

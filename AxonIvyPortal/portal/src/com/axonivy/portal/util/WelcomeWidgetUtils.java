@@ -8,19 +8,18 @@ import java.util.Base64;
 import java.util.List;
 import java.util.stream.Stream;
 
-import javax.faces.context.FacesContext;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
-import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.File;
+import jakarta.faces.context.FacesContext;
 
 public class WelcomeWidgetUtils {
 
@@ -109,7 +108,7 @@ public class WelcomeWidgetUtils {
   }
 
   private static ContentObject getApplicationCMS() {
-    return ContentManagement.cms(IApplication.current()).root();
+    return ContentManagement.cms(Application.current()).root();
   }
 
   public static ContentObjectValue readObjectValueOfDefaultLocale(ContentObject contentObject) {

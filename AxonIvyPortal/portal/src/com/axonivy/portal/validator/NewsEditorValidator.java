@@ -1,11 +1,11 @@
 package com.axonivy.portal.validator;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.FacesValidator;
-import javax.faces.validator.Validator;
-import javax.faces.validator.ValidatorException;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.FacesValidator;
+import jakarta.faces.validator.Validator;
+import jakarta.faces.validator.ValidatorException;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -15,7 +15,7 @@ import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @FacesValidator(value = "newsEditorValidator")
-public class NewsEditorValidator implements Validator {
+public class NewsEditorValidator implements Validator<Object> {
 
   private static final int MAX_NEWS_CONTENT_LENGTH = 1000;
 

@@ -1,6 +1,6 @@
 package ch.ivy.addon.portalkit.converter;
 
-import javax.faces.convert.FacesConverter;
+import jakarta.faces.convert.FacesConverter;
 
 import org.apache.commons.lang3.StringUtils;
 

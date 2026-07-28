@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Optional;
 
-import javax.faces.bean.ManagedBean;
+import jakarta.inject.Named;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -19,8 +19,10 @@ import com.axonivy.portal.components.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import jakarta.enterprise.context.RequestScoped;
 
-@ManagedBean
+@Named
+@RequestScoped
 public class PortalComponentAvatarBean implements Serializable {
 
   private static final long serialVersionUID = 6793376941093725298L;

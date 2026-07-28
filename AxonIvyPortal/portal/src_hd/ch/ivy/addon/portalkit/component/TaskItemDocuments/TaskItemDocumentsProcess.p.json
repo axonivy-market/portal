@@ -129,8 +129,8 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.uploadDocumentCheckMessage, null));"
           ]
@@ -208,8 +208,8 @@
         "output" : {
           "code" : [
             "import java.util.Iterator;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
             "Iterator messages = FacesContext.getCurrentInstance().getMessages();",
             "",
             "while(messages.hasNext()) {",
@@ -256,8 +256,8 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
             "if (in.isEncrypted) {",
             " FacesContext.getCurrentInstance().addMessage(\"\", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN, in.uploadDocumentCheckMessage, \"\"));",
             "} else {",
@@ -284,8 +284,8 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "FacesContext.getCurrentInstance().addMessage(\"task-document-global-messages\", FacesMessageUtils.sanitizedMessage(in.deleteDocumentMessage, \"\" ));"
           ]
@@ -561,7 +561,7 @@
           },
           "code" : [
             "import org.primefaces.PrimeFaces;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.context.FacesContext;",
             "import com.axonivy.portal.util.UploadDocumentUtils;",
             "in.isEncrypted = UploadDocumentUtils.isEncrypted(out.streamedContent);",
             "if (in.isEncrypted) {",
@@ -596,7 +596,7 @@
           },
           "code" : [
             "import org.primefaces.PrimeFaces;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.context.FacesContext;",
             "import java.io.IOException;",
             "import com.axonivy.portal.components.util.DocumentUtils;",
             "",
@@ -684,7 +684,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "String successMsg = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocumentSuccess\");",
             "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(successMsg, \"\" ));"
@@ -736,8 +736,8 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.renameDocumentMessage, null));"
           ]

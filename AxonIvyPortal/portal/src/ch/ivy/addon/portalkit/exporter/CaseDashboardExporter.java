@@ -96,7 +96,7 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
       case FINISHED -> caseItem.getEndTimestamp();
       case OWNER -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForCaseOwners(caseItem.owners());
       case CATEGORY-> caseItem.getCategory().getPath();
-      case APPLICATION -> caseItem.getApplication().getName();
+      case APPLICATION -> caseItem.getApplication().name();
       default -> "";
     };
   }

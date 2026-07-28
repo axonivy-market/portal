@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.function.Function;
 
-import javax.faces.model.SelectItem;
+import jakarta.faces.model.SelectItem;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;

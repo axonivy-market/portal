@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import com.axonivy.portal.dto.dashboard.bulkaction.TaskSelectionDto;
 import com.axonivy.portal.enums.BulkActionType;
@@ -21,7 +21,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ViewScoped
-@ManagedBean
+@Named
 public class BulkActionBean implements Serializable {
 
   private static final long serialVersionUID = 10981333936325689L;

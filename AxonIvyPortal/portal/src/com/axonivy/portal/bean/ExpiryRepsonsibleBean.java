@@ -1,11 +1,12 @@
 package com.axonivy.portal.bean;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -17,9 +18,9 @@ import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.task.expiry.responsible.ExpiryResponsible;
 import ch.ivyteam.ivy.workflow.task.expiry.responsible.ExpiryResponsibles;
 
-@ManagedBean
+@Named
 @ViewScoped
-public class ExpiryRepsonsibleBean {
+public class ExpiryRepsonsibleBean implements Serializable {
   
   public int getResponsiblesSize(ExpiryResponsibles responsibles) {
     return CollectionUtils.isEmpty(responsibles.all()) ? 0 : responsibles.all().size();

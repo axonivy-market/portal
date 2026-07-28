@@ -2,10 +2,10 @@ package com.axonivy.portal.bean;
 
 import java.io.Serializable;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.servlet.http.Cookie;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.servlet.http.Cookie;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
@@ -18,7 +18,7 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CookieHelper;
 import ch.ivyteam.ivy.jsf.primefaces.theme.IvyFreyaTheme;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class ThemeBean implements Serializable {
 

@@ -6,23 +6,22 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-
 import ch.ivy.addon.portalkit.ivydata.service.impl.CustomerProjectService;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.application.ReleaseState;
+import ch.ivyteam.ivy.application.app.Application;
+import ch.ivyteam.ivy.application.app.state.ReleaseState;
+import ch.ivyteam.ivy.application.project.Project;
 import ch.ivyteam.ivy.environment.Ivy;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class ProjectVersionBean implements Serializable {
 
   private static final long serialVersionUID = -2148042793400166168L;
   private String engineVersion;
   private String portalVersion;
-  private Map<String, List<IProcessModelVersion>> customerProjects;
+  private Map<String, List<Project>> customerProjects;
 
   public String getEngineVersion() {
     return engineVersion;
@@ -32,7 +31,7 @@ public class ProjectVersionBean implements Serializable {
     return portalVersion;
   }
 
-  public Map<String, List<IProcessModelVersion>> getCustomersProjects() {
+  public Map<String, List<Project>> getCustomersProjects() {
     return customerProjects;
   }
 
@@ -47,10 +46,10 @@ public class ProjectVersionBean implements Serializable {
   }
 
   private String portalVersion() {
-    return IApplication.current().getProcessModelVersions()
-        .filter(pmv -> PORTAL_LIBRARY_ID.equals(pmv.getLibraryId()))
+    return Application.current().projects().all()
+        .filter(project -> PORTAL_LIBRARY_ID.equals(project.mavenCoordinates().id()))
         .findAny()
-        .map(IProcessModelVersion::getLibraryVersion)
+        .map(project -> project.mavenCoordinates().version())
         .orElse(null);
   }
 }

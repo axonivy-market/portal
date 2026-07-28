@@ -2,11 +2,11 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class PortalHomeBean implements Serializable {
   private static final long serialVersionUID = 1L;

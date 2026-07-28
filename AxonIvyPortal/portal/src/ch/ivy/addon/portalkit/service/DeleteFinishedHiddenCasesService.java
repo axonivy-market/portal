@@ -9,9 +9,9 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.application.ReleaseState;
+import ch.ivyteam.ivy.application.app.Application;
+import ch.ivyteam.ivy.application.app.state.ReleaseState;
+import ch.ivyteam.ivy.application.project.Project;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -30,7 +30,7 @@ public class DeleteFinishedHiddenCasesService {
     if (!shouldDeleteAllCases) {
       return;
     }
-    IProcessModelVersion portalPMV = findPortalPMVByLibraryId(IApplication.current(), PORTAL_LIBRARY_ID);
+    var portalPMV = findPortalPMVByLibraryId(Application.current(), PORTAL_LIBRARY_ID);
     if (portalPMV == null) {
       Ivy.log().warn("Can not retrieve portal PMV");
       return;
@@ -65,12 +65,12 @@ public class DeleteFinishedHiddenCasesService {
     Ivy.log().info("***Job for deleting finished hidden cases (deleted " + numOfDeletedCases + " cases) has ended at: " + currentDate);
   }
 
-  private IProcessModelVersion findPortalPMVByLibraryId(IApplication app, String libraryId) {
+  private Project findPortalPMVByLibraryId(Application app, String libraryId) {
     try {
       return Sudo.call(() -> {
-        var pms = app.getProcessModelVersions().toList();
+        var pms = app.projects().all().toList();
         for (var pmv : pms) {
-          var pmv2 = pmv.getApplication().getReleaseState() == ReleaseState.RELEASED ? pmv : null;
+          var pmv2 = pmv.app().state().releaseState() == ReleaseState.RELEASED ? pmv : null;
           if (isPortalPMV(pmv2, libraryId)) {
             return pmv2;
           }
@@ -83,10 +83,10 @@ public class DeleteFinishedHiddenCasesService {
     }
   }
 
-  private boolean isPortalPMV(IProcessModelVersion pmv, String libraryId) {
+  private boolean isPortalPMV(Project pmv, String libraryId) {
     if (pmv == null) {
       return false;
     }
-    return libraryId.equals(pmv.getLibraryId());
+    return libraryId.equals(pmv.mavenCoordinates().id());
   }
 }

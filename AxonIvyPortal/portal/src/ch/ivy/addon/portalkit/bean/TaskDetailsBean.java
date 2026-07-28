@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.primefaces.model.SortMeta;
 
@@ -31,7 +31,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
 @ViewScoped
-@ManagedBean
+@Named
 public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails> {
 
   private static final long serialVersionUID = 8566646437739271552L;

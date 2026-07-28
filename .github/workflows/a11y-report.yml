@@ -19,17 +19,17 @@ on:
       testPatternToRun:
         description: 'Test pattern to run'
         type: string
-        default: 'com.axonivy.portal.selenium.a11y.**'
+        default: 'com.axonivy.portal.selenium.accessibility.**'
         required: true
       engineDownloadURL:
         description: |
           URL to download Axon Ivy Engine. Defaults to nightly build.
         type: string
         required: false
-        default: 'https://developer.axonivy.com/permalink/sprint/axonivy-engine.zip'
+        default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
 
 env:
-  ENGINE_DIR: ${{ github.workspace }}/ivy/engine/sprint
+  ENGINE_DIR: ${{ github.workspace }}/ivy/engine/nightly
 
 jobs:
   a11y-audit:

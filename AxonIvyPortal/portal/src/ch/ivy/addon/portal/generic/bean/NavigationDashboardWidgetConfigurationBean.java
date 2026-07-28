@@ -2,8 +2,8 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.util.Arrays;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -16,7 +16,7 @@ import com.axonivy.portal.util.UploadDocumentUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
-@ManagedBean
+@Named
 public class NavigationDashboardWidgetConfigurationBean extends NavigationDashboardWidgetBean implements IMultiLanguage {
 
   private static final long serialVersionUID = 1L;

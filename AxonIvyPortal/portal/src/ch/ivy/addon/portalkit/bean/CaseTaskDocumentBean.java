@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.faces.bean.ManagedBean;
+import jakarta.inject.Named;
 
 import org.primefaces.model.SortMeta;
 
@@ -20,8 +20,10 @@ import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
+import jakarta.enterprise.context.RequestScoped;
 
-@ManagedBean
+@Named
+@RequestScoped
 public class CaseTaskDocumentBean implements Serializable {
   private static final long serialVersionUID = 1L;
 

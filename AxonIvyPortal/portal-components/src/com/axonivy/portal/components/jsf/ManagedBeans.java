@@ -3,7 +3,7 @@ package com.axonivy.portal.components.jsf;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import javax.faces.context.FacesContext;
+import jakarta.faces.context.FacesContext;
 
 import com.axonivy.portal.components.service.exception.PortalException;
 

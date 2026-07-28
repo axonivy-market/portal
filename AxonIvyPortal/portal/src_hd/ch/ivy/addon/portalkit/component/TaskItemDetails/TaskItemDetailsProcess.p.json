@@ -46,7 +46,7 @@
         "signature" : "keepOldNameValue",
         "input" : {
           "params" : [
-            { "name" : "valueChangeEvent", "type" : "javax.faces.event.ValueChangeEvent", "desc" : "" }
+            { "name" : "valueChangeEvent", "type" : "jakarta.faces.event.ValueChangeEvent", "desc" : "" }
           ],
           "map" : {
             "out.oldName" : "param.valueChangeEvent.getOldValue() as String"
@@ -187,8 +187,8 @@
             "import ch.ivyteam.ivy.security.IUser;",
             "import org.apache.commons.lang3.StringUtils;",
             "import ch.ivyteam.ivy.workflow.TaskState;",
-            "import javax.faces.context.FacesContext;",
-            "import javax.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
+            "import jakarta.faces.application.FacesMessage;",
             "",
             "FacesContext facesContext = FacesContext.getCurrentInstance();",
             "String notification;",
@@ -233,7 +233,7 @@
             "import ch.ivy.addon.portalkit.dto.TaskEndInfo;",
             "import ch.ivy.addon.portalkit.service.StickyTaskListService;",
             "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "TaskEndInfo taskEndInfo = new TaskEndInfo();",
             "taskEndInfo.setDataModel(in.dataModel);",

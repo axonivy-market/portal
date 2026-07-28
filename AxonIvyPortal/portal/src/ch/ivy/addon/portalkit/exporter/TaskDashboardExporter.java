@@ -104,7 +104,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
       case STATE -> getTaskBusinessState(taskItem.getBusinessState());
       case CATEGORY -> taskItem.getCategory().getPath();
       case DESCRIPTION -> taskItem.getDescription();
-      case APPLICATION -> taskItem.getApplication().getName();
+      case APPLICATION -> taskItem.getApplication().name();
       case WORKER -> taskItem.getWorkerUser() == null
           ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable")
           : taskItem.getWorkerUser().getDisplayName();

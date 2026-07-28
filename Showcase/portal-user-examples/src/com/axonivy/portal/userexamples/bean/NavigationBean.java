@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.faces.context.FacesContext;
 
 import com.axonivy.portal.userexamples.dto.UserProcess;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class NavigationBean implements Serializable {
 

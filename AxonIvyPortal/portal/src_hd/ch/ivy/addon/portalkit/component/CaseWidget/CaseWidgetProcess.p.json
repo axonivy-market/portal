@@ -369,7 +369,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;",
             "import ch.ivy.addon.portalkit.bean.CaseWidgetBean;",
-            "import javax.faces.context.FacesContext;",
+            "import jakarta.faces.context.FacesContext;",
             "",
             "FacesContext context = FacesContext.getCurrentInstance();",
             "CaseWidgetBean caseWidgetBean = context.getApplication().evaluateExpressionGet(context, \"#{caseWidgetBean}\", CaseWidgetBean.class) as CaseWidgetBean;",

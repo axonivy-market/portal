@@ -24,6 +24,14 @@
   --button-secondary-bg-color: var(--ivy-primary-color-white);
   --button-secondary-text-color: var(--primary-color);
 
+  /* Start button (task widget start column) */
+  --start-btn-bg: var(--ivy-portal-blue-pale);
+  --start-btn-border-color: var(--ivy-portal-blue-muted);
+  --start-btn-text-color: var(--ivy-portal-blue-dark);
+  --start-btn-disabled-bg: var(--ivy-portal-color-gray-spaces);
+  --start-btn-disabled-border-color: var(--ivy-portal-color-gray-light);
+  --start-btn-disabled-text-color: var(--ivy-portal-color-gray-medium);
+
   /* Color and border radius of context button, it only affects when button has attribute styleClass="context-button" */
   --context-button-border-radius: 0px;
   --context-button-background-color: var(--ivy-primary-color-grey-light);
@@ -183,13 +191,26 @@
   --task-normal-priority-color: #49BAD6;
   --task-high-priority-color: #007095;
   --task-exception-priority-color: #EE4A52;
-  --task-state-suspended-background: #DADADA;
-  --task-state-suspended-color: var(--ivy-primary-color-grey-dark);
-  --task-state-resumed-background: #FFE896;
-  --task-state-done-background: #D4EBA2;
-  --task-state-parked-background: rgba(0, 112, 149, 0.2);
-  --task-state-failed-background: #EE4A52;
-  --task-state-failed-text-color: var(--ivy-primary-color-white);
+  --task-state-suspended-background: hsla(217, 91%, 60%, 0.1);
+  --task-state-suspended-border-color: hsla(217, 91%, 60%, 0.25);
+  --task-state-suspended-color: hsla(217, 91%, 60%, 1);
+  --task-state-resumed-background: hsla(48, 96%, 53%, 0.1);
+  --task-state-resumed-border: hsla(48, 96%, 53%, 0.25);
+  --task-state-resumed-color: hsla(48, 85%, 29%, 1);
+  --task-state-done-background: hsla(135, 50%, 95%, 1);
+  --task-state-done-border: hsla(136, 52%, 81%, 1);
+  --task-state-done-color: hsla(137, 47%, 32%, 1);
+  --task-state-parked-border: hsla(136, 52%, 81%, 1);
+  --task-state-parked-background: hsla(135, 50%, 95%, 1);
+  --task-state-failed-background: hsla(0, 77%, 95%, 1);
+  --task-state-failed-text-color: hsla(358, 83%, 30%, 1);
+  --task-state-failed-border: hsla(358, 79%, 79%, 1);
+  --task-state-delayed-background: hsla(25, 95%, 53%, 0.1);
+  --task-state-delayed-border-color: hsla(25, 95%, 53%, 0.25);
+  --task-state-delayed-color: hsla(25, 95%, 53%, 1);
+  --task-state-destroyed-background: hsla(0, 0%, 97%, 1);
+  --task-state-destroyed-border-color: hsla(0, 0%, 92%, 1);
+  --task-state-destroyed-color: hsla(0, 0%, 46%, 1);
   /* Task Action Item */
   --task-action-item-widget-header-color: var(--ivy-primary-color-white);
   --task-action-item-label-font-weight: normal;
@@ -326,6 +347,12 @@
   --widget-filter-noti-background-color: var(--ivy-tertinary-color-red-medium);
   --widget-filter-noti-color: var(--ivy-primary-color-white);
   --widget-header-icon: var(--ivy-primary-color-black);
+  --widget-button-border-color: var(--ivy-portal-color-gray-light);
+  --widget-button-background-color: var(--ivy-portal-color-gray-spaces);
+  --widget-view-toggle-bg: hsla(0, 0%, 97%, 1);
+  --widget-view-toggle-active-bg: hsla(0, 0%, 100%, 1);
+  --widget-view-toggle-icon: var(--ivy-portal-color-gray-medium);
+  --widget-view-toggle-border: var(--ivy-portal-color-gray-light);
   /* New Dashboard */
   --dashboard-table-column-small-screen-description-color: var(--ivy-primary-color-grey-medium);
   --new-widget-dialog-title-color: var(--ivy-primary-color-black);

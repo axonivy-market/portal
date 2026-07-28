@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.request.IProcessModelVersionRequest;
+import ch.ivyteam.ivy.request.ProjectRequest;
 
 public class PortalIvyDataException extends Exception {
 
@@ -27,8 +27,8 @@ public class PortalIvyDataException extends Exception {
 
   public String getAppName() {
     if (StringUtils.isBlank(appName)) {
-      return Optional.ofNullable(Ivy.request()).map(IProcessModelVersionRequest::getApplication)
-          .map(IApplication::getName).orElse(StringUtils.EMPTY);
+      return Optional.ofNullable(Ivy.request()).map(ProjectRequest::getApplication)
+          .map(Application::name).orElse(StringUtils.EMPTY);
     }
     return appName;
   }

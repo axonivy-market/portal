@@ -6,7 +6,7 @@ import java.util.UUID;
 import com.axonivy.portal.components.enums.MenuKind;
 
 import ch.ivy.addon.portalkit.enums.Protocol;
-import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.Application;
 
 public class SubMenuItem {
   
@@ -84,7 +84,7 @@ public class SubMenuItem {
   }
 
   public static String generateId(MenuKind menuKind, String link) {
-    return UUID.nameUUIDFromBytes((IApplication.current().getName() + menuKind.name() + link).getBytes(StandardCharsets.UTF_8))
+    return UUID.nameUUIDFromBytes((Application.current().name() + menuKind.name() + link).getBytes(StandardCharsets.UTF_8))
         .toString().replace("-", "");
   }
 }

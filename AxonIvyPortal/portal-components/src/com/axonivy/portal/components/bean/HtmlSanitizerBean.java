@@ -2,8 +2,8 @@ package com.axonivy.portal.components.bean;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import com.axonivy.portal.components.publicapi.SanitizeAPI;
 import com.axonivy.portal.components.util.HtmlUtils;
@@ -13,7 +13,7 @@ import com.axonivy.portal.components.util.HtmlUtils;
  * escape="false" in xhtml files and checking HtmlSanitizerBean is used for value attribute.
  *
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class HtmlSanitizerBean implements Serializable {
 

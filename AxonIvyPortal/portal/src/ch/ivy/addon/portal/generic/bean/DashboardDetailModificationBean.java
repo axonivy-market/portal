@@ -30,10 +30,10 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -105,7 +105,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ViewScoped
-@ManagedBean
+@Named
 public class DashboardDetailModificationBean extends DashboardBean implements PropertyChangeListener {
 
   private static final long serialVersionUID = -5272278165636659596L;
@@ -121,7 +121,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
   private String newWidgetId;
   private DashboardWidget deleteWidget;
   private Long portalGridsCurrentRow;
-  private String selectedDashboardId;
   private boolean isPublicDashboard;
   private List<String> categories;
   private String restoreDashboardMessage;
@@ -135,8 +134,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
   private List<Dashboard> cloneableDashboards;
   private Statistic selectedStatistic;
 
+  @Override
   @PostConstruct
-  public void initConfigration() {
+  public void init() {
     foundTemplate = Optional.empty();
     selectedDashboardId = Attrs.currentContext().getAttribute("#{data.dashboardId}", String.class);
     isPublicDashboard = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", Boolean.class);

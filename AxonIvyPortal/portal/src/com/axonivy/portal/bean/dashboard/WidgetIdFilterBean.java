@@ -2,12 +2,12 @@ package com.axonivy.portal.bean.dashboard;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class WidgetIdFilterBean implements Serializable {
 

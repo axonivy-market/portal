@@ -8,10 +8,10 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+import jakarta.faces.context.FacesContext;
 
 import org.primefaces.event.SelectEvent;
 
@@ -30,7 +30,7 @@ import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ViewScoped
-@ManagedBean
+@Named
 public class DashboardTaskWidgetBean implements Serializable {
 
   private static final long serialVersionUID = 1098133393632524689L;
