@@ -583,6 +583,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Public
       savedFilters: 'Saved filters:'
   dashboard:
+    CanWorkOnAsUser: Only show me the tasks I can work on as a user
     DashboardConfiguration:
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Create new public dashboard
@@ -595,19 +596,30 @@ ch.ivy.addon.portalkit.ui.jsf:
       Title: Portal configuration
     EmptyFilterMessage: No widget filter found
     Filter:
+      AddCondition: Add condition
+      ApplyFilters: Apply filters
+      DefaultFiltersDescription: Filters that have been set in the widget configuration as default.
+      DefaultFiltersTitle: Default filters
+      FilterConditionsTitle: Filter conditions
       FilterOptionHeader: Filter options
-      FilterOptionHeaderTooltip: Some filter fields and operators may be disabled by your administrator. Filters using disabled fields or operators will be automatically removed. Please contact your administrator for more information.
+      FilterOptionHeaderTooltip: Some filter fields and operators may be disabled by your administrator. Filters using disabled fields or operators will be removed automatically. Please contact your administrator for more information.
       FilterPanelHeader: Filter panel
       ManageWidgetFilterHeader: Widget filter management
+      NewFilterConditionsDescription: Show tasks that match all of the following conditions.
+      NewFilterConditionsTitle: New filter conditions
       NotFound: No filter found
+      SaveFilterDescription: Save those filter conditions for future use.
+      SaveFilterNamePlaceholder: Enter filter name
+      SaveFilterOptional: (optional)
+      SetFilterHeader: Set Filter
       WidgetNameColumn: Widget name
       WrongDateFormat: The date is invalid
-    ManageFilter: Manage filters
+    ManageFilter: Manage saved filters
     NoData: No data
-    NoSavedFilterMessage: No saved filter found. Try to create a new by click on Save Filter button
+    NoSavedFilterMessage: No saved filters
     SaveNewWidgetFilterHeader: Save a new widget filter
-    SavedFilterHeader: Saved filters
-    SearchForFilter: Search for filter
+    SavedFilterHeader: Saved Filters
+    SearchForFilter: Search for a filter
     StatisticWidget:
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
     WidgetFilterName: Widget filter name

@@ -61,7 +61,7 @@
       <p:commandButton id="show-filter" styleClass="mr-2" icon="ti ti-filter" 
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
-        type="button" onclick="openFilterPanel(event);"/>
+        type="button" onclick="PF('widget-configuration-filter-dialog').show();"/>
     </div>
 
     <p:overlayPanel id="widget-configuration-panel" for="widget-configuration-button" 
@@ -180,44 +180,42 @@
   </div>
 </h:panelGroup>
 
-  <h:panelGroup id="widget-filter-content" layout="block" styleClass="filter-panel js-filter-panel" >
-      <div class="ui-g ui-g-12 MarTop20 filter-panel-header">
-        <div class="ui-g-4 ui-md-5">
-          <h4 class="filter-panel-title">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters")}</h4>
-        </div>
-        <div class="ui-g-8 ui-md-7">
-          <p:remoteCommand id="updateComponentOnPreviewCmd" name="updateComponentOnPreviewCmd"
-            process="@none" update="#{componentToUpdateOnPreview}"
-            oncomplete="registerClickOnPanelEvent();" />
-          <p:commandButton id="preview-button"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-            actionListener="#{taskWidgetConfigurationFilterBean.updateWidgetFilterBeforeApply(widget)}"
-            styleClass="Fright preview-button u-hidden-sm-down" icon="ti ti-check"
-            process="predefined-filter widget-title"
-            update="predefined-filter configuration-filter-messages-panel"
-            oncomplete="closeFilterPanelWithValidation(); if (args &amp;&amp; !args.validationFailed) { updateComponentOnPreviewCmd(); }" />
-          <p:commandButton id="reset-filter" icon="ti ti-refresh"
-            update="predefined-filter configuration-filter-messages-panel" process="predefined-filter" styleClass="Fright ui-button-secondary preview-button u-hidden-sm-down u-mar-right-5"
-            actionListener="#{taskWidgetConfigurationFilterBean.resetFilter(widget)}"
-            ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}"
-            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}"
-            title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}">
-              <f:param name="skipValidator" value="true" />
-          </p:commandButton>
-          <p:commandLink id="cancel-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-            styleClass="Fright u-mar-right-5 ui-overlaypanel-footer__cancel"
-            onclick="closeFilterPanel();return false;"
-            update="predefined-filter"
-            immediate="true" global="false"/> 
-        </div>
-      </div>
-      <div class="ui-g-12 filter-area" >
+  <p:dialog id="widget-filter-content" widgetVar="widget-configuration-filter-dialog"
+      styleClass="widget-configuration-filter-dialog"
+      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/SetFilterHeader')}"
+      modal="false" closable="true" closeOnEscape="true"
+      draggable="false" resizable="false" dynamic="false" fitViewport="true" width="900">
+      <p:remoteCommand id="updateComponentOnPreviewCmd" name="updateComponentOnPreviewCmd"
+        process="@none" update="#{componentToUpdateOnPreview}" />
+
+      <h:panelGroup layout="block" styleClass="filter-dialog__body">
         <ui:insert name="widgetFilterContent" />
+      </h:panelGroup>
+
+      <p:divider layout="horizontal" />
+
+      <div class="flex align-items-center justify-content-end footer-buttons-container">
+        <p:commandLink id="reset-filter" styleClass="flex align-items-center reset-button"
+          process="predefined-filter"
+          update="predefined-filter configuration-filter-messages-panel"
+          actionListener="#{taskWidgetConfigurationFilterBean.resetFilter(widget)}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetFilters')}">
+          <f:param name="skipValidator" value="true" />
+          <i class="pr-1 ti ti-refresh"/>
+          <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetFilters')}</span>
+        </p:commandLink>
+
+        <p:commandButton id="preview-button" styleClass="preview-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/ApplyFilters')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/ApplyFilters')}"
+          actionListener="#{taskWidgetConfigurationFilterBean.updateWidgetFilterBeforeApply(widget)}"
+          process="predefined-filter widget-title"
+          update="predefined-filter configuration-filter-messages-panel"
+          oncomplete="closeFilterPanelWithValidation(); if (args &amp;&amp; !args.validationFailed) { updateComponentOnPreviewCmd(); }" />
       </div>
+
       <ui:insert name="multiLanguageDialog" />
-  </h:panelGroup>
+  </p:dialog>
  
 
 </html>

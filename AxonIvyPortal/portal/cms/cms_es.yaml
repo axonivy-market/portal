@@ -801,6 +801,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ImportCompleteMessage: Todos los archivos se importaron correctamente.
       ImportIncompleteMessage: Algunos archivos no se pudieron importar. Consulte el registro del servidor para obtener más información.
   dashboard:
+    CanWorkOnAsUser: Mostrar solo las tareas en las que puedo trabajar como usuario
     CaseQueryType:
       info: Configure qué tipos de casos se muestran en el widget de casos. Predeterminado muestra solo casos de negocio, Subcasos técnicos muestra solo subcasos técnicos, y Todos muestra tanto casos de negocio como subcasos técnicos.
       label: Tipo de caso
@@ -866,11 +867,22 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidget: Página externa
     ExternalPageWidgetIntroduction: Este widget puede mostrar una página web externa.
     Filter:
+      AddCondition: Añadir condición
+      ApplyFilters: Aplicar filtros
+      DefaultFiltersDescription: Filtros establecidos como predeterminados en la configuración del widget.
+      DefaultFiltersTitle: Filtros predeterminados
+      FilterConditionsTitle: Condiciones de filtro
       FilterOptionHeader: Opciones de filtro
       FilterOptionHeaderTooltip: Algunos campos de filtro y operadores pueden estar deshabilitados por su administrador. Los filtros que utilicen campos u operadores deshabilitados se eliminarán automáticamente. Comuníquese con su administrador para obtener más información.
       FilterPanelHeader: Panel de filtro
       ManageWidgetFilterHeader: Gestión de filtros de widgets
+      NewFilterConditionsDescription: Mostrar tareas que cumplan todas las condiciones siguientes.
+      NewFilterConditionsTitle: Nuevas condiciones de filtro
       NotFound: No se ha encontrado ningún filtro
+      SaveFilterDescription: Guarde estas condiciones de filtro para usarlas más tarde.
+      SaveFilterNamePlaceholder: Introduzca el nombre del filtro
+      SaveFilterOptional: (opcional)
+      SetFilterHeader: Establecer filtro
       WidgetNameColumn: Nombre de widget
       WrongDateFormat: La fecha no es válida
     FilterTasksByCurrentCaseOwner: Filtrar las tareas por el propietario actual del caso
