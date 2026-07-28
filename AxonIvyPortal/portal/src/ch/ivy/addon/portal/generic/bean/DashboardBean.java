@@ -158,10 +158,10 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   private void storeAndHighlightDashboardIfRequired() {
-    if (StringUtils.isBlank(selectedDashboardId) || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId())
-        && DashboardUtils.getDashboardsWithoutMenuItem().size() > 1)) {
-      DashboardUtils.storeDashboardInSession(selectedDashboard.getId());
+    if (!isRequestPathForMainOrDetailModification()) {
+      return;
     }
+    DashboardUtils.storeDashboardInSession(selectedDashboard.getId());
     if (isReadOnlyMode) {
       DashboardUtils.highlightDashboardMenuItem(selectedDashboard.getId());
     }
@@ -543,6 +543,9 @@ public class DashboardBean implements Serializable, IMultiLanguage {
 
 
   private void updateSelectedDashboardIdFromSessionAttribute() {
+    if (StringUtils.isNotBlank(selectedDashboardId)) {
+      return;
+    }
     if (Ivy.request().getRequestPath().endsWith("/PortalMainDashboard.xhtml")) {
       selectedDashboardId = (String) Ivy.session().getAttribute(SELECTED_DASHBOARD_ID.name());
     } else {
