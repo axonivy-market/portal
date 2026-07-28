@@ -45,6 +45,9 @@
   --ivy-portal-color-gray-45: hsla(0, 0%, 49%, 1);
   --ivy-portal-color-gray-29: hsla(0, 0%, 29%, 1);
   --ivy-portal-color-gray-17: hsla(0, 0%, 17%, 1);
+  --ivy-portal-color-gray-13: hsla(0, 0%, 12.55%, 1);
+  --ivy-portal-color-gray-84: hsla(216, 6.17%, 84.12%, 1);
+  --ivy-portal-color-slate-light: hsla(212.73, 26.84%, 83.92%, 1);
 
   /* Default Portal styles */
   --header-font-size: 2rem;
@@ -184,10 +187,4 @@
   --ivy-dashboard-icon-border-light: #EBEBEB;
   --ivy-dashboard-icon-bg-dark: #383838;
   --ivy-dashboard-icon-border-dark: #4A4A4A;
-
-  /* Sidebar configuration colors */
-  --ivy-portal-color-gray-84: #D4D6D9;
-  --ivy-portal-color-gray-17: #2C2C2C;
-  --ivy-portal-color-gray-13: #202020;
-  --ivy-portal-color-slate-light: #CBD5E1;
 }
