@@ -1,4 +1,5 @@
-[
+{
+  "statistics": [
   {
     "id": "21ef6b6842384c33a787b2a5912257e7",
     "version": "13.2.0",
@@ -974,3 +975,4 @@
     "chartDrillDownEnabled": true
   }
 ]
+}

@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
  * DTO object contains information about side step task process.
@@ -25,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * </pre>
  */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonRootName(value = "side-step-process")
 public class SideStepProcessDTO implements Serializable {
   private static final long serialVersionUID = 1L;
   private String signal;

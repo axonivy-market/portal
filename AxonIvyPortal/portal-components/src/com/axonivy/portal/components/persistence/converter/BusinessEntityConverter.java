@@ -25,7 +25,8 @@ public final class BusinessEntityConverter {
 
   public static String entityToJsonValue(BusinessEntity entity) {
     try {
-      return getObjectMapper().writeValueAsString(entity);
+        return getObjectMapper().writer().withRootName("xxxx").writeValueAsString(entity);
+      // return getObjectMapper().writeValueAsString(entity);
     } catch (JsonProcessingException e) {
       throw new PortalException(e);
     }

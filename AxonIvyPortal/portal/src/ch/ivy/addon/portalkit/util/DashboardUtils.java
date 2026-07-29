@@ -263,25 +263,11 @@ public class DashboardUtils {
     return null;
   }
 
-  /**
-   * Import files exported for a single dashboard contain a single JSON object instead of
-   * an array. Wrap it into a one-element array so it can be deserialized into a List<Dashboard>.
-   */
-  private static JsonNode asArrayNode(JsonNode node) {
-    if (node != null && !node.isArray()) {
-      ArrayNode arrayNode = new ObjectMapper().createArrayNode();
-      arrayNode.add(node);
-      return arrayNode;
-    }
-    return node;
- }
-
   public static List<Dashboard> convertDashboardsFromUploadFileToLatestVersion(InputStream inputStream)
       throws IOException {
     try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
       ObjectMapper mapper = new ObjectMapper();
       JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(reader));
-      // return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Dashboard.class);
       return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Dashboard.class);
     } catch (JsonProcessingException e) {
       Ivy.log().error("Failed to read dashboard from JSON {0}", e);

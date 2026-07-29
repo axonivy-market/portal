@@ -66,6 +66,10 @@ public class BusinessEntityConverter {
 
   private static String prettyPrintObjectEntityToJsonValue(Object entity) {
     try {
+      Ivy.log().error("Pretty print JSON value: " + entity.getClass().getName());
+      if (entity instanceof List) {
+        return getObjectMapper().writer().withRootName("dashboard").withDefaultPrettyPrinter().writeValueAsString(entity);
+      }
       return getObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(entity);
     } catch (JsonProcessingException e) {
       throw new PortalException(e);
