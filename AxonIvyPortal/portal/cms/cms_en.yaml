@@ -1045,7 +1045,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreDefaultMessage: If you proceed, you will loose all widgets created by yourself. The standard settings will be applied.
     select: Select
     selectEditAction: Which action do you want to procced?
+    showAllCases: Show all cases
+    showAllTasks: Show all tasks
     showFullWidget: Show full widget
+    showPinnedCases: Show pinned cases
+    showPinnedTasks: Show pinned tasks
     statisticChartIntroduction: This widget displays available statistic charts.
     statisticChartWidget: Statistic chart
     statisticWidgets: Statistic Widgets

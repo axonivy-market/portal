@@ -1045,7 +1045,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreDefaultMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。標準設定が適用されます。
     select: 選択
     selectEditAction: どのアクションを実行しますか?
+    showAllCases: すべてのケースを表示
+    showAllTasks: すべてのタスクを表示
     showFullWidget: ウィジェット全体を表示
+    showPinnedCases: ピン留めされたケースを表示
+    showPinnedTasks: ピン留めされたタスクを表示
     statisticChartIntroduction: このウィジェットには、使用可能な統計チャートが表示されます。
     statisticChartWidget: 統計チャート
     statisticWidgets: 統計ウィジェット

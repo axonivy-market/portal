@@ -627,10 +627,15 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   public String showPinnedItemToggleLabel(DashboardWidget widget) {
-    String action = widget.getShowPinnedItem() ? "Hide" : "Show";
-    String entity = DashboardWidgetType.TASK.equals(widget.getType()) ? "tasks" : "cases";
+      boolean isTask = DashboardWidgetType.TASK.equals(widget.getType());
+      String cmsKey;
+      if (widget.getShowPinnedItem()) {
+        cmsKey = isTask ? "showAllTasks" : "showAllCases";
+      } else {
+        cmsKey = isTask ? "showPinnedTasks" : "showPinnedCases";
+      }
 
-    return String.format("%s pinned %s", action, entity);
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/" + cmsKey);
   }
 
   public boolean isTaskWidget(DashboardWidget widget) {
