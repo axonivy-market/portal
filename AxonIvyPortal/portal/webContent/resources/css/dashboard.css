@@ -846,6 +846,11 @@ body .ui-button.dashboard-tasks__start-button.ui-state-disabled {
   color: var(--start-btn-disabled-text-color);
 }
 
+body .ui-button.dashboard-tasks__start-button:not(.ui-state-disabled):hover {
+  background: var(--start-btn-hover-bg);
+  color: var(--start-btn-text-color);
+}
+
 body .widget__content .ui-datatable thead th,
 body .widget__content .ui-datatable tbody td,
 body .dashboard__table--edit.ui-datatable-resizable thead th,
@@ -1434,6 +1439,12 @@ body .ui-button.ui-widget.filter-dialog__save-button .ui-button-text {
   background: var(--widget-filter-apply-button-background-color);
   border-color: var(--widget-filter-apply-button-background-color);
   color: var(--widget-filter-apply-button-text-color);
+}
+
+body.dark .apply-filter-button.ui-button:hover,
+body.dark .widget-configuration-filter-dialog .preview-button.ui-button:hover {
+  background: var(--widget-filter-apply-button-hover-background-color);
+  border-color: var(--widget-filter-apply-button-hover-background-color);
 }
 
 a.reset-button {

@@ -6017,6 +6017,10 @@ body .ui-button.ui-button-outlined.ui-button-widget, .ui-button.ui-widget.ui-but
   border-color: var(--widget-button-border-color);
 }
 
+body .ui-button.ui-button-outlined.ui-button-widget:hover, .ui-button.ui-widget.ui-button-widget:hover {
+  background-color: var(--widget-button-hover-background-color);
+}
+
 body .ui-button.ui-widget.ui-button-widget {
   color: var(--widget-header-icon);
 }
