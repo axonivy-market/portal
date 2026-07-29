@@ -4,19 +4,19 @@
         "type": "information",
         "id": "information",
         "layout": {
-          "x": 0, "y": 0, "w": 6, "h": 12
+          "x": 0, "y": 0, "w": 6, "h": 60
         }
       }, {
         "type": "document",
         "id": "document",
         "layout": {
-          "x": 6, "y": 4, "w": 6, "h": 6
+          "x": 6, "y": 20, "w": 6, "h": 30
         }
       }, {
         "type": "history",
         "id": "history",
         "layout": {
-          "x": 6, "y": 10, "w": 6, "h": 6
+          "x": 6, "y": 50, "w": 6, "h": 30
         }
       }
     ]
@@ -29,7 +29,7 @@
         "type": "custom",
         "id": "custom-top",
         "layout": {
-          "x": 0, "y": 0, "w": 12, "h": 4
+          "x": 0, "y": 0, "w": 12, "h": 20
         },
         "data": {
           "type": "taskItemDetailCustomPanelTop"
@@ -38,13 +38,13 @@
         "type": "information",
         "id": "information",
         "layout": {
-          "x": 0, "y": 4, "w": 6, "h": 12
+          "x": 0, "y": 20, "w": 6, "h": 60
         }
       }, {
         "type": "custom",
         "id": "custom-url",
         "layout": {
-          "x": 6, "y": 4, "w": 6, "h": 7
+          "x": 6, "y": 20, "w": 6, "h": 35
         },
         "data": {
           "url": "https://www.example.com"
@@ -53,7 +53,7 @@
         "type": "custom",
         "id": "custom-bottom",
         "layout": {
-          "x": 6, "y": 11, "w": 6, "h": 5
+          "x": 6, "y": 55, "w": 6, "h": 25
         },
         "data": {
           "type": "taskItemDetailCustomPanelBottom"
@@ -69,13 +69,13 @@
         "type": "information",
         "id": "information",
         "layout": {
-          "x": 0, "y": 0, "w": 6, "h": 12
+          "x": 0, "y": 0, "w": 6, "h": 60
         }
       }, {
         "type": "custom",
         "id": "custom-ivy-process",
         "layout": {
-          "x": 6, "y": 0, "w": 6, "h": 7
+          "x": 6, "y": 0, "w": 6, "h": 35
         },
         "data": {
           "processPath": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
@@ -90,7 +90,7 @@
         "type": "history",
         "id": "history",
         "layout": {
-          "x": 6, "y": 7, "w": 6, "h": 5
+          "x": 6, "y": 35, "w": 6, "h": 25
         }
       }
     ]

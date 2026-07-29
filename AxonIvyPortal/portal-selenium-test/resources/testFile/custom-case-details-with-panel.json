@@ -4,31 +4,31 @@
         "type": "information",
         "id": "information",
         "layout": {
-          "w": 6, "h": 8, "x": 0, "y": 0
+          "w": 6, "h": 40, "x": 0, "y": 0
         }
       }, {
         "type": "document",
         "id": "document",
         "layout": {
-          "w": 6, "h": 8, "x": 6, "y": 0
+          "w": 6, "h": 40, "x": 6, "y": 0
         }
       }, {
         "type": "technicalCase",
         "id": "technicalCase",
         "layout": {
-          "w": 12, "h": 6, "x": 0, "y": 8
+          "w": 12, "h": 30, "x": 0, "y": 40
         }
       }, {
         "type": "relatedTask",
         "id": "relatedTask",
         "layout": {
-          "w": 12, "h": 6, "x": 0, "y": 14
+          "w": 12, "h": 30, "x": 0, "y": 70
         }
       }, {
         "type": "history",
         "id": "history",
         "layout": {
-          "w": 12, "h": 6, "x": 0, "y": 20
+          "w": 12, "h": 30, "x": 0, "y": 100
         }
       }
     ]
@@ -41,19 +41,19 @@
         "type": "information",
         "id": "information",
         "layout": {
-          "w": 6, "h": 8, "x": 0, "y": 0
+          "w": 6, "h": 40, "x": 0, "y": 0
         }
       }, {
         "type": "document",
         "id": "document",
         "layout": {
-          "w": 6, "h": 8, "x": 6, "y": 0
+          "w": 6, "h": 40, "x": 6, "y": 0
         }
       }, {
         "type": "history",
         "id": "history",
         "layout": {
-          "w": 12, "h": 6, "x": 0, "y": 8
+          "w": 12, "h": 30, "x": 0, "y": 40
         }
       }
     ]
@@ -66,13 +66,13 @@
         "type": "information",
         "id": "information",
         "layout": {
-          "w": 6, "h": 8, "x": 0, "y": 0
+          "w": 6, "h": 40, "x": 0, "y": 0
         }
       }, {
         "id": "caseItemDetailCustomMiddle",
         "type": "custom",
         "layout": {
-          "x": 6, "y": 0, "w": 6, "h": 8
+          "x": 6, "y": 0, "w": 6, "h": 40
         },
         "data": {
           "type": "caseItemDetailCustomMiddle"
@@ -81,7 +81,7 @@
         "id": "caseItemDetailCustomBottom",
         "type": "custom",
         "layout": {
-          "x": 0, "y": 8, "w": 12, "h": 6
+          "x": 0, "y": 40, "w": 12, "h": 30
         },
         "data": {
           "type": "caseItemDetailCustomBottom"

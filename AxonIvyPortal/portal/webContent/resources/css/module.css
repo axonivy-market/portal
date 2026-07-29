@@ -4720,15 +4720,18 @@ border-top: 0.14rem dashed;
   min-width: 85px;
 }
 
-/* GridStack insets every card by half the gutter (`margin: 12.5` in case-details.js /
-   task-details.js), so the grid's painted edges sit 12.5px inside its layout box. Pull the
-   container out by that same half-gutter and the cards line up flush with the toolbar above
-   and with the column edges, while keeping a full 25px between neighbouring cards
-   (Figma 3825:125165 + 3825:125178: both are 1646px wide at x=30, 25px apart). */
+/* No margin here on purpose. GridStack insets every card by its `margin` option — left at
+   the library default of 10px in case-details.js / task-details.js — so the cards sit 10px
+   inside this container on every side and end up 20px apart. Rather than cancelling that
+   with a negative margin (which made this box 20px wider than its parent and pushed it out
+   into the page padding), `.portal-detail-toolbar` takes the SAME 10px inset, so the bar and
+   the outer cards share an edge and nothing overflows. See --portal-detail-grid-inset.
+
+   `display: block` IS load-bearing: both elements are `h:panelGroup` without `layout="block"`,
+   so JSF renders a <span>. */
 .case-item-body-container,
 .task-item-body-container {
   display: block;
-  margin: -12.5px;
 }
 
 .task-detail-general-container {

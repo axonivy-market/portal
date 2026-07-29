@@ -4,37 +4,37 @@
         "type": "summary",
         "id": "summary",
         "layout": {
-          "x": 0, "y": 0, "w": 6, "h": 3
+          "x": 0, "y": 0, "w": 6, "h": 15
         }
       }, {
         "type": "information",
         "id": "information",
         "layout": {
-          "x": 0, "y": 3, "w": 6, "h": 5
+          "x": 0, "y": 15, "w": 6, "h": 25
         }
       }, {
         "type": "document",
         "id": "document",
         "layout": {
-          "x": 0, "y": 8, "w": 6, "h": 5
+          "x": 0, "y": 40, "w": 6, "h": 25
         }
       }, {
         "type": "relatedTask",
         "id": "relatedTask",
         "layout": {
-          "x": 6, "y": 0, "w": 6, "h": 8
+          "x": 6, "y": 0, "w": 6, "h": 40
         }
       }, {
         "type": "history",
         "id": "history",
         "layout": {
-          "x": 6, "y": 8, "w": 6, "h": 5
+          "x": 6, "y": 40, "w": 6, "h": 25
         }
       }, {
         "type": "technicalCase",
         "id": "technicalCase",
         "layout": {
-          "x": 0, "y": 13, "w": 12, "h": 5
+          "x": 0, "y": 65, "w": 12, "h": 25
         }
       }
     ]

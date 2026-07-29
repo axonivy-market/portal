@@ -6,15 +6,15 @@
           "x": 0,
           "y": 0,
           "w": 6,
-          "h": 12
+          "h": 60
         }
       }, {
         "type": "history",
         "layout": {
           "x": 6,
-          "y": 6,
+          "y": 30,
           "w": 6,
-          "h": 6
+          "h": 30
         }
       }, {
         "type": "custom",
@@ -22,7 +22,7 @@
           "x": 6,
           "y": 0,
           "w": 6,
-          "h": 6
+          "h": 30
         },
         "data": {
           "processPath": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",

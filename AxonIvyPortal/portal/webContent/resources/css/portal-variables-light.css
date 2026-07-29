@@ -207,18 +207,32 @@
   /* Empty state */
   --portal-detail-empty-icon-bg: hsl(0, 0%, 97%);                   /* Neutral/N50  #F8F8F8 */
   --portal-detail-empty-icon-color: hsl(0, 0%, 75%);                /* Neutral/N400 #BFBFBF */
+  /* Type scale.
+     Everything below is in rem, on purpose: `ivy-branding/custom.css` is the last
+     stylesheet in every template, so a customer can rescale the whole detail page by
+     overriding `html{font-size}`. The ratios are calibrated against Freya's root
+     (`html{font-size:14px}` in freya-layout/css/layout-ivy-*.css), i.e. 1rem == 14px ==
+     the design's body size. Keep the trailing px annotations — reading a bare 1.1429rem
+     and assuming a 16px root is exactly the bug this replaced. */
+  --portal-detail-heading-font-size: 1.1429rem; /* 16px - card/section headings, task + case name */
+  --portal-detail-font-size: 1rem;              /* 14px - body, values, buttons, table cells */
+  --portal-detail-label-font-size: 0.8571rem;   /* 12px - eyebrow, subtitle, strip labels */
   /* Geometry */
-  --portal-detail-card-radius: 15px;
-  --portal-detail-card-gap: 20px;
-  /* Gutter of the widget grid itself (toolbar -> first card, and card -> card in both
-     axes). Distinct from --portal-detail-card-gap above, which spaces content INSIDE a
-     card. GridStack owns half of it: keep `margin: 12.5` in case-details.js /
-     task-details.js in sync with this. */
-  --portal-detail-grid-gutter: 25px;
-  --portal-detail-card-padding: 20px;
-  --portal-detail-subcard-padding: 15px;
-  --portal-detail-card-shadow: 0 0 27.225px 0 hsla(0, 0%, 0%, 0.05);
-  --portal-detail-toolbar-shadow: 0 0 13.612px 0 hsla(0, 0%, 0%, 0.07);
+  --portal-detail-card-radius: 1.0714rem;   /* 15px */
+  --portal-detail-card-gap: 1.4286rem;      /* 20px */
+  /* Half-gutter of the widget grid: GridStack insets every card by this on all four sides.
+     The value is GridStack's own default `margin: 10`, which case-details.js /
+     task-details.js deliberately do not override — this token mirrors it so the CSS can
+     line up with the grid. .portal-detail-toolbar takes the same inset, which puts it in
+     the grid's rhythm and makes every visible gap on the page 2 x this.
+     Distinct from --portal-detail-card-gap above, which spaces content INSIDE a card.
+     px, not rem, on purpose: the grid inset does not follow html{font-size}, and if this
+     token did, the toolbar would drift away from the card-to-card gap at other root sizes. */
+  --portal-detail-grid-inset: 10px;
+  --portal-detail-card-padding: 1.4286rem;  /* 20px */
+  --portal-detail-subcard-padding: 1.0714rem; /* 15px */
+  --portal-detail-card-shadow: 0 0 1.9446rem 0 hsla(0, 0%, 0%, 0.05);   /* 27.225px */
+  --portal-detail-toolbar-shadow: 0 0 0.9723rem 0 hsla(0, 0%, 0%, 0.07); /* 13.612px */
   /* State badges (Related tasks / Related cases tables) */
   --portal-state-open-bg: hsla(217, 91%, 60%, 0.1);
   --portal-state-open-border: hsla(217, 91%, 60%, 0.25);

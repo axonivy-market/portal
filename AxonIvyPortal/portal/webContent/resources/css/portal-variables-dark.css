@@ -198,14 +198,18 @@
   /* Empty state */
   --portal-detail-empty-icon-bg: hsl(0, 0%, 22%);                   /* #383838 */
   --portal-detail-empty-icon-color: hsl(0, 0%, 46%);                /* #757575 */
+  /* Type scale — see the note in portal-variables-light.css; 1rem == Freya's 14px root */
+  --portal-detail-heading-font-size: 1.1429rem; /* 16px */
+  --portal-detail-font-size: 1rem;              /* 14px */
+  --portal-detail-label-font-size: 0.8571rem;   /* 12px */
   /* Geometry */
-  --portal-detail-card-radius: 15px;
-  --portal-detail-card-gap: 20px;
-  --portal-detail-grid-gutter: 25px;
-  --portal-detail-card-padding: 20px;
-  --portal-detail-subcard-padding: 15px;
-  --portal-detail-card-shadow: 0 0 27.225px 0 hsla(0, 0%, 0%, 0.25);
-  --portal-detail-toolbar-shadow: 0 0 13.612px 0 hsla(0, 0%, 0%, 0.25);
+  --portal-detail-card-radius: 1.0714rem;   /* 15px */
+  --portal-detail-card-gap: 1.4286rem;      /* 20px */
+  --portal-detail-grid-inset: 10px;         /* GridStack's default per-card inset; px on purpose */
+  --portal-detail-card-padding: 1.4286rem;  /* 20px */
+  --portal-detail-subcard-padding: 1.0714rem; /* 15px */
+  --portal-detail-card-shadow: 0 0 1.9446rem 0 hsla(0, 0%, 0%, 0.25);   /* 27.225px */
+  --portal-detail-toolbar-shadow: 0 0 0.9723rem 0 hsla(0, 0%, 0%, 0.25); /* 13.612px */
   /* State badges — derived from the light hues, see note above */
   --portal-state-open-bg: hsla(217, 91%, 60%, 0.18);
   --portal-state-open-border: hsla(217, 91%, 60%, 0.35);

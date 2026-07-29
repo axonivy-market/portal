@@ -2072,6 +2072,24 @@ canvas#preview-statistic-chart {
    - Colors/spacing come from --portal-detail-* tokens (light + dark).
      Values below were measured directly from the Figma file, so the px
      numbers in the comments are the design's numbers, not approximations.
+
+   UNITS — read this before editing any length in this section:
+   - Lengths are in `rem` against Freya's root (`html{font-size:14px}` in
+     freya-layout/css/layout-ivy-*.css), so **1rem == 14px**, NOT the browser
+     default 16px. Every converted declaration carries a trailing comment with
+     its design px — `padding: 0.8571rem` is annotated as 12px. Trust that
+     annotation, never re-derive the ratio: assuming a 16px root is what
+     silently rendered this whole section 12.5% small before.
+   - rem (not px) because `ivy-branding/custom.css` is the last stylesheet in
+     every template (BasicTemplate.xhtml), so a customer can rescale these pages
+     by overriding html{font-size}. Text sizes go through the three
+     --portal-detail-*font-size tokens; icon glyph metrics are plain rem.
+   - EXCEPTIONS that stay in px, deliberately:
+       * every border-width (1px hairlines and Figma's 1.237px/0.708px strokes)
+         — borders should not grow with text, and scaled sub-pixel borders
+         render inconsistently across browsers;
+       * `border-radius: 100px` on pills and `50%` on circles — those are
+         "big enough to be fully round" sentinels, not measurements.
    ===================================================================== */
 
 /* ---- Shared: round icon button (e.g. more "...", "+" add, XLS export) ----
@@ -2092,10 +2110,10 @@ body .ui-button.ui-button-icon-only.portal-icon-btn-round,
 body a.portal-icon-btn-round,
 body .portal-icon-btn-round {
   box-sizing: border-box;
-  width: 37.96px;
-  min-width: 37.96px;
-  height: 37.96px;
-  min-height: 37.96px;
+  width: 2.7114rem; /* 37.96px */
+  min-width: 2.7114rem; /* 37.96px */
+  height: 2.7114rem; /* 37.96px */
+  min-height: 2.7114rem; /* 37.96px */
   /* `.ui-button-text` carries `text-indent:-9999999px`, so the automatic minimum size
      of this flex item collapses to ~0 and the default `flex-shrink:1` lets a crowded
      header squash the circle sideways. Pin it. */
@@ -2119,9 +2137,9 @@ body .portal-icon-btn-round {
    size in the same rule; changing only `font-size` is what knocked the glyph
    off-centre in an earlier attempt. */
 body .ui-button.ui-button-icon-only.portal-icon-btn-round .ui-icon {
-  font-size: 20.635px;
-  margin-top: -10.3175px;
-  margin-left: -10.3175px;
+  font-size: 1.4739rem; /* 20.635px */
+  margin-top: -0.737rem; /* -10.3175px */
+  margin-left: -0.737rem; /* -10.3175px */
 }
 body .ui-button.portal-icon-btn-round.portal-icon-btn-accent,
 body .portal-icon-btn-round.portal-icon-btn-accent {
@@ -2156,15 +2174,15 @@ body a.portal-pill-btn:focus {
   border: 1.237px solid var(--portal-detail-neutral-btn-border);
   background: var(--portal-detail-neutral-btn-bg);
   color: var(--portal-detail-value-color);
-  padding: 8.662px 15px;
-  gap: 3px;
-  font-size: 14px;
+  padding: 0.6187rem 1.0714rem; /* 8.662px 15px */
+  gap: 0.2143rem; /* 3px */
+  font-size: var(--portal-detail-font-size); /* 14px */
   font-weight: 500;
   line-height: 1;
 }
 .portal-pill-btn .ti,
 .portal-pill-btn .tif {
-  font-size: 19px !important;
+  font-size: 1.3571rem !important; /* 19px */
   line-height: 1 !important;
   margin: 0;
 }
@@ -2181,23 +2199,23 @@ body a.portal-pill-btn:focus {
 body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-lg,
 body a.portal-icon-btn-round.portal-icon-btn-lg,
 body .portal-icon-btn-round.portal-icon-btn-lg {
-  width: 42.975px;
-  min-width: 42.975px;
-  height: 42.975px;
-  min-height: 42.975px;
+  width: 3.0696rem; /* 42.975px */
+  min-width: 3.0696rem; /* 42.975px */
+  height: 3.0696rem; /* 42.975px */
+  min-height: 3.0696rem; /* 42.975px */
 }
 /* Same trap as the base rule above: Freya centres the glyph with a hard-coded
    `margin:-0.5rem`, so a bigger icon REQUIRES moving the offset to -half the new size in
    the same rule — changing only `font-size` knocks it off-centre. */
 body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-lg .ui-icon {
-  font-size: 25.65px;
-  margin-top: -12.825px;
-  margin-left: -12.825px;
+  font-size: 1.8321rem; /* 25.65px */
+  margin-top: -0.9161rem; /* -12.825px */
+  margin-left: -0.9161rem; /* -12.825px */
 }
 .portal-pill-btn.portal-pill-btn-lg.ui-button,
 .portal-pill-btn.portal-pill-btn-lg {
-  height: 43px;
-  padding: 0 15px;
+  height: 3.0714rem; /* 43px */
+  padding: 0 1.0714rem; /* 15px */
 }
 
 /* ---- Shared: pill button on a `p:commandButton` ----
@@ -2248,25 +2266,30 @@ body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-down {
    sizes itself; that is what replaces the old `.has-breadcrumb …{width:50%}` split. */
 .portal-detail-toolbar {
   box-sizing: border-box;
-  /* Case Details nests this bar inside the decorator's `<div class="ui-g">`
-     (portal-case-details-information.xhtml), and PrimeFlex's `.ui-g` is `display:flex`.
-     Without an explicit width the bar becomes a `flex:0 1 auto` item and shrink-wraps to
-     its buttons — that is what the removed `ui-g-12` used to prevent. */
-  width: 100%;
+  /* The bar takes exactly the inset GridStack gives every card, so it sits in the grid's
+     rhythm: its edges line up with the outer cards, and the distance down to the first card
+     is this margin (10px) plus the card's own inset (10px) = the same 20px the cards keep
+     between themselves. Figma 3825:125165 and 3825:125178 are both 1646px wide at x=30,
+     i.e. the bar and the grid share one left edge.
+
+     `calc()` rather than a plain `width: 100%`, and both matter:
+       - Case Details nests the bar inside the decorator's `<div class="ui-g">`
+         (portal-case-details-information.xhtml), which is `display:flex`. `width:100%` plus
+         20px of margin would overflow the flex line; `calc(100% - 20px)` + 20px fills it
+         exactly, so `.case-detail-body` still wraps onto the next line. Without any width
+         the bar would be a `flex:0 1 auto` item and shrink-wrap to its buttons.
+       - Task Details has no decorator, so the bar is an ordinary block child of
+         `.layout-content` — the same declaration works there unchanged. */
+  width: calc(100% - var(--portal-detail-grid-inset) * 2);
+  margin: 0 var(--portal-detail-grid-inset) var(--portal-detail-grid-inset);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12.375px;
-  padding: 12px 20px;
+  gap: 0.8839rem; /* 12.375px */
+  padding: 0.8571rem 1.4286rem; /* 12px 20px */
   border-radius: var(--portal-detail-card-radius);
   background: var(--portal-detail-card-bg);
   box-shadow: var(--portal-detail-toolbar-shadow);
-  /* Figma: the bar (3825:125165) and the widget grid (3825:125178) are both 1646px wide at
-     x=30, and the bar's bottom sits exactly one grid gutter above the first card — the same
-     25px the cards keep between themselves. `.case-item-body-container` /
-     `.task-item-body-container` cancel GridStack's half-gutter inset so this margin is the
-     whole distance. */
-  margin-bottom: var(--portal-detail-grid-gutter);
 }
 /* Task Details wraps its Back link in an `h:form` (the link is a `p:commandLink`); Case
    Details has no form. Both levels get the same flex row so the chain is identical. */
@@ -2274,14 +2297,14 @@ body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-down {
 .portal-detail-toolbar-form {
   display: flex;
   align-items: center;
-  gap: 12.375px;
+  gap: 0.8839rem; /* 12.375px */
   flex: 1 1 auto;
   min-width: 0;
 }
 .portal-detail-toolbar-actions {
   display: flex;
   align-items: center;
-  gap: 12.375px;
+  gap: 0.8839rem; /* 12.375px */
   flex: 0 0 auto;
 }
 /* Below 40em `.ui-sm-hidden` drops the whole actions group and only the mobile Share
@@ -2298,21 +2321,21 @@ body a.portal-detail-toolbar-back:focus,
 .portal-detail-toolbar-back {
   display: inline-flex;
   align-items: center;
-  gap: 8.662px;
+  gap: 0.6187rem; /* 8.662px */
   flex: 0 0 auto;
-  height: 38px;
+  height: 2.7143rem; /* 38px */
   padding: 0;
   border: none;
   background: none;
-  border-radius: 7.425px;
+  border-radius: 0.5304rem; /* 7.425px */
   color: var(--portal-detail-accent-color);
-  font-size: 14px;
+  font-size: var(--portal-detail-font-size); /* 14px */
   font-weight: 500;
   line-height: normal;
   text-decoration: none;
 }
 .portal-detail-toolbar-back .ti {
-  font-size: 17.325px;
+  font-size: 1.2375rem; /* 17.325px */
   line-height: 1;
 }
 
@@ -2326,8 +2349,8 @@ body a.portal-detail-toolbar-back:focus,
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 5px;
-  padding: 40px 16px;
+  gap: 0.3571rem; /* 5px */
+  padding: 2.8571rem 1.1429rem; /* 40px 16px */
 }
 .no-item-panel > .ti,
 .no-item-panel > .tif,
@@ -2335,35 +2358,35 @@ body a.portal-detail-toolbar-back:focus,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
-  height: 100px;
+  width: 7.1429rem; /* 100px */
+  height: 7.1429rem; /* 100px */
   border-radius: 50%;
   background: var(--portal-detail-empty-icon-bg);
   color: var(--portal-detail-empty-icon-color);
-  font-size: 52.997px !important;
+  font-size: 3.7855rem !important; /* 52.997px */
   line-height: 1 !important;
-  margin-bottom: 15px; /* 20px total to the text block (5px gap + 15px) */
+  margin-bottom: 1.0714rem; /* 15px. 20px total to the text block (5px gap + 15px) */
 }
 .no-item-panel .no-item-header {
-  font-size: 16px; /* overrides the theme's --no-item-header-font-size (2rem) for this redesign */
+  font-size: var(--portal-detail-heading-font-size); /* 16px. overrides the theme's --no-item-header-font-size (2rem) for this redesign */
   font-weight: 600;
   line-height: 1.4;
   color: var(--portal-detail-value-color);
 }
 .no-item-panel .no-item-detail {
   color: var(--portal-detail-label-color);
-  font-size: 14px;
+  font-size: var(--portal-detail-font-size); /* 14px */
   font-weight: 400;
   line-height: 1.2;
 }
 .no-item-panel .no-item-action-link {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
+  gap: 0.2143rem; /* 3px */
   color: var(--portal-detail-accent-color);
-  font-size: 14px;
+  font-size: var(--portal-detail-font-size); /* 14px */
   font-weight: 500;
-  margin-top: 5px; /* 10px total below the detail line (5px gap + 5px) */
+  margin-top: 0.3571rem; /* 5px. 10px total below the detail line (5px gap + 5px) */
   line-height: 1;
 }
 /* Keep the add-link icon at the measured 16px and override the shared 100px illustration-icon
@@ -2372,7 +2395,7 @@ body a.portal-detail-toolbar-back:focus,
    line-height:1 and vertical-align:middle to neutralize that, and rely on the parent's
    inline-flex + align-items:center for the actual centering. */
 .no-item-panel .no-item-action-link .ti {
-  font-size: 16px !important;
+  font-size: 1.1429rem !important; /* 16px */
   line-height: 1 !important;
   vertical-align: middle;
   width: auto;
@@ -2438,7 +2461,7 @@ body a.portal-detail-toolbar-back:focus,
 /* The Strip is an inner bordered box within the Header card (like the Role&User/Time/Task&Case
    sub-cards inside the Task Details card) — give it breathing room from the header row above it. */
 .task-detail-header-card .task-detail-attr-strip {
-  margin-top: 20px;
+  margin-top: 1.4286rem; /* 20px */
 }
 
 /* Section / block headings inside the detail widgets. Two tiers, measured from Figma:
@@ -2449,7 +2472,7 @@ body a.portal-detail-toolbar-back:focus,
 .portal-detail-block-title,
 .task-detail-block-title {
   font-weight: 600;
-  font-size: 16px;
+  font-size: var(--portal-detail-heading-font-size); /* 16px */
   line-height: 1.4;
   color: var(--portal-detail-value-color);
 }
@@ -2457,7 +2480,7 @@ body a.portal-detail-toolbar-back:focus,
 .task-detail-subcard-title,
 .task-description-title {
   font-weight: 600;
-  font-size: 14px;
+  font-size: var(--portal-detail-font-size); /* 14px */
   color: var(--portal-detail-value-color);
 }
 /* `.task-detail-title` deliberately excluded here: it's only ever paired with
@@ -2466,7 +2489,7 @@ body a.portal-detail-toolbar-back:focus,
    source-order, defeating `.task-detail-subcard-title`'s font-weight:600. */
 .task-detail-column-title {
   color: var(--task-detail-label-color);
-  font-size: 14px; /* row label */
+  font-size: var(--portal-detail-font-size); /* 14px. row label */
   font-weight: 400;
   opacity: 1;
 }
@@ -2478,7 +2501,7 @@ body a.portal-detail-toolbar-back:focus,
   display: flex !important;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
+  gap: 1.1429rem; /* 16px */
 }
 .task-detail-header-row .task-detail-identity {
   flex: 1 1 auto;
@@ -2491,23 +2514,23 @@ body a.portal-detail-toolbar-back:focus,
 .task-detail-identity {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 1rem; /* 14px */
 }
 .task-detail-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: var(--portal-detail-label-font-size); /* 12px */
+  font-weight: 400;
   color: var(--task-detail-eyebrow-color);
 }
 .task-detail-name-row {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.4286rem; /* 6px */
 }
 .task-detail-name {
   font-weight: 600;
-  font-size: 16px;
+  font-size: var(--portal-detail-heading-font-size); /* 16px */
   color: var(--task-detail-value-color);
 }
 .task-detail-pin-indicator {
@@ -2515,20 +2538,20 @@ body a.portal-detail-toolbar-back:focus,
 }
 .task-detail-subtitle {
   color: var(--task-detail-label-color);
-  font-size: 12px;
+  font-size: var(--portal-detail-label-font-size); /* 12px */
   font-weight: 400;
 }
 .task-detail-header-actions .task-action-item-label {
-  font-size: 14px; /* "Start" label — scoped to this header only */
+  font-size: var(--portal-detail-font-size); /* 14px. "Start" label — scoped to this header only */
 }
 
 /* Delegate Task link in the Role & User sub-card header */
 .task-detail-delegate-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.4286rem; /* 6px */
   color: var(--primary-color);
-  font-size: 14px;
+  font-size: var(--portal-detail-font-size); /* 14px */
   font-weight: 500;
   line-height: 1;
 }
@@ -2551,18 +2574,18 @@ body a.portal-detail-toolbar-back:focus,
   flex-wrap: wrap;
 }
 .task-detail-subcards-row > .task-detail-inner-card {
-  flex: 1 1 320px;
+  flex: 1 1 22.8571rem; /* 320px */
   min-width: 0;
 }
 
 /* Block headings spacing + right-aligned values in KV cards */
 .task-detail-details-heading {
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 0.5714rem; /* 8px */
+  margin-bottom: 0.5714rem; /* 8px */
 }
 .task-detail-inner-card .task-detail-block-title {
-  margin-bottom: 12px;
-  padding-bottom: 10px;
+  margin-bottom: 0.8571rem; /* 12px */
+  padding-bottom: 0.7143rem; /* 10px */
   border-bottom: 1px solid var(--task-detail-divider-color);
 }
 /* Role & User information / Time Information / Task and Case Information headings use
@@ -2570,9 +2593,9 @@ body a.portal-detail-toolbar-back:focus,
    `padding-bottom` needs `!important` because module.css's `.task-detail-title{padding:10px 0
    5px 0!important}` (shared class on the same element) would otherwise win. */
 .task-detail-inner-card .task-detail-subcard-title {
-  padding-bottom: 10px !important;
+  padding-bottom: 0.7143rem !important; /* 10px */
   border-bottom: 1px solid var(--task-detail-divider-color);
-  margin-bottom: 12px;
+  margin-bottom: 0.8571rem; /* 12px */
 }
 /* Documents/Notes header action row: the "+" button carries a one-off `u-mar-right-10` and
    the (Notes-only) "System notes" checkbox carries none, so the gap before the "+" and the
@@ -2581,7 +2604,7 @@ body a.portal-detail-toolbar-back:focus,
    and neutralize the ad-hoc margin so it isn't added on top of the gap. */
 .document-task-detail-section-header-actions,
 .note-task-detail-section-header-actions {
-  gap: 10px;
+  gap: 0.7143rem; /* 10px */
 }
 .document-task-detail-section-header-actions .u-mar-right-10,
 .note-task-detail-section-header-actions .u-mar-right-10 {
@@ -2597,9 +2620,9 @@ body a.portal-detail-toolbar-back:focus,
   /* module.css `.task-detail-section-title{padding:0!important}` (line ~4269) wipes any
      non-!important padding, including padding-bottom — must re-assert with !important too,
      specificity alone does not beat an existing !important declaration. */
-  padding-bottom: 16px !important;
+  padding-bottom: 1.1429rem !important; /* 16px */
   border-bottom: 1px solid var(--task-detail-divider-color);
-  margin-bottom: 20px;
+  margin-bottom: 1.4286rem; /* 20px */
 }
 .task-detail-inner-card .content-field > div:last-child,
 .task-and-case-information .content-field > div:last-child {
@@ -2623,14 +2646,14 @@ body a.portal-detail-toolbar-back:focus,
   color: var(--primary-color);
 }
 .task-and-case-information .content-field .task-business-case {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--portal-detail-font-size); /* 14px */
+  font-weight: 400;
 }
 
 /* SideStep trigger ("...") in the task header: keep the shared component
    markup intact, only present it as a round icon-only "more" button here. */
 .task-detail-header-actions {
-  gap: 8px;
+  gap: 0.5714rem; /* 8px */
 }
 .task-detail-header-actions .ui-sidestep-action .task-action-item-label {
   display: none;
@@ -2655,7 +2678,7 @@ body a.portal-detail-toolbar-back:focus,
      font-size must be 20.635 / 0.667 to land on the design's width. Without an explicit
      size this inherits the body font-size and renders the dots at ~45% of the intended
      width. */
-  font-size: 30.95px;
+  font-size: 2.2107rem; /* 30.95px */
   line-height: 1;
 }
 
@@ -2670,12 +2693,12 @@ body a.portal-detail-toolbar-back:focus,
 .task-detail-attr-strip > .task-detail-attr {
   position: relative;
   flex: 1 1 25%;
-  min-width: 140px;
+  min-width: 10rem; /* 140px */
   box-sizing: border-box;
-  padding: 10px 20px;
+  padding: 0.7143rem 1.4286rem; /* 10px 20px */
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 0.3571rem; /* 5px */
 }
 /* short, vertically-centered divider between strip columns (Figma: 30px tall, Neutral/N200) */
 .task-detail-attr-strip > .task-detail-attr:not(:first-child)::before {
@@ -2684,24 +2707,24 @@ body a.portal-detail-toolbar-back:focus,
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  height: 30px;
+  height: 2.1429rem; /* 30px */
   border-left: 1px solid var(--portal-detail-strip-divider-color);
 }
 /* Strip label ("Priority"/"State"/"Due"/"Workflow") is smaller/uppercase than the general
    row-label style (.task-detail-column-title elsewhere is 14px/400) — scope-override here. */
 .task-detail-attr .task-detail-column-title {
-  font-size: 12px;
-  font-weight: 500;
+  font-size: var(--portal-detail-label-font-size); /* 12px */
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 .task-detail-attr .task-detail-attr-value {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.4286rem; /* 6px */
   color: var(--task-detail-value-color);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--portal-detail-font-size); /* 14px */
+  font-weight: 400;
 }
 /* "See details" (Workflow) is a primary-colored link, not a plain value */
 .task-detail-attr .task-detail-attr-value a[id$=":workflow-event-link"],
@@ -2721,7 +2744,7 @@ body a.portal-detail-toolbar-back:focus,
 .task-item-body .separator-task-detail.ui-divider,
 .task-item-body .separator-task-detail {
   border-color: var(--task-detail-divider-color);
-  margin: 20px 0;
+  margin: 1.4286rem 0; /* 20px */
 }
 
 @media screen and (max-width: 640px) {
@@ -2768,7 +2791,7 @@ body a.portal-detail-toolbar-back:focus,
      that class wins via `!important`, this is only the non-PrimeFlex fallback. */
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 1.1429rem; /* 16px */
   margin-bottom: 0;
 }
 .case-detail-header-row .case-detail-identity {
@@ -2784,28 +2807,28 @@ body a.portal-detail-toolbar-back:focus,
 .case-detail-identity {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 1.0714rem; /* 15px */
 }
 .case-detail-identity > .flex-column {
-  gap: 5px;
+  gap: 0.3571rem; /* 5px */
 }
 .case-detail-eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.72px;
-  font-size: 12px;
-  font-weight: 500;
+  letter-spacing: 0.06em; /* 0.72px at 12px */
+  font-size: var(--portal-detail-label-font-size); /* 12px */
+  font-weight: 400;
   line-height: normal;
   color: var(--portal-detail-eyebrow-color);
 }
 .case-detail-name-row {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.4286rem; /* 6px */
 }
 /* Overrides module.css `.case-detail-name` (list/header styling) inside the card. */
 .case-detail-body .case-detail-name {
   font-weight: 600;
-  font-size: 16px;
+  font-size: var(--portal-detail-heading-font-size); /* 16px */
   line-height: normal;
   color: var(--portal-detail-value-color);
 }
@@ -2814,7 +2837,7 @@ body a.portal-detail-toolbar-back:focus,
 }
 .case-detail-subtitle {
   color: var(--portal-detail-label-color);
-  font-size: 12px;
+  font-size: var(--portal-detail-label-font-size); /* 12px */
   font-weight: 400;
   line-height: normal;
 }
@@ -2822,7 +2845,7 @@ body a.portal-detail-toolbar-back:focus,
 /* ActionStep trigger ("...") in the summary header: keep the shared component markup
    intact, only present it as a round icon-only "more" button here. */
 .case-detail-header-actions {
-  gap: 10px;
+  gap: 0.7143rem; /* 10px */
 }
 .case-detail-header-actions .ui-sidestep-action .task-action-item-label,
 .case-detail-header-actions .ui-sidestep-action .ti-chevron-down {
@@ -2845,7 +2868,7 @@ body a.portal-detail-toolbar-back:focus,
      font-size must be 20.635 / 0.667 to land on the design's width. Without an explicit
      size this inherits the body font-size and renders the dots at ~45% of the intended
      width. */
-  font-size: 30.95px;
+  font-size: 2.2107rem; /* 30.95px */
   line-height: 1;
 }
 
@@ -2856,8 +2879,8 @@ body a.portal-detail-toolbar-back:focus,
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
-  gap: 50px;
-  padding: 15px 50px;
+  gap: 3.5714rem; /* 50px */
+  padding: 1.0714rem 3.5714rem; /* 15px 50px */
   border: 1px solid var(--portal-detail-card-border-color);
   border-radius: var(--portal-detail-card-radius);
   background: var(--portal-detail-strip-bg);
@@ -2865,29 +2888,29 @@ body a.portal-detail-toolbar-back:focus,
 .case-detail-attr-strip > .case-detail-attr {
   position: relative;
   flex: 1 1 0;
-  min-width: 140px;
+  min-width: 10rem; /* 140px */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 0.5rem; /* 7px */
 }
 /* Short, vertically-centered divider sitting in the middle of the 50px gap
    (Figma: 30px tall, Neutral/N200). */
 .case-detail-attr-strip > .case-detail-attr:not(:first-child)::before {
   content: "";
   position: absolute;
-  left: -25px;
+  left: -1.7857rem; /* -25px */
   top: 50%;
   transform: translateY(-50%);
-  height: 30px;
+  height: 2.1429rem; /* 30px */
   border-left: 1px solid var(--portal-detail-strip-divider-color);
 }
 /* Strip labels are 12px/500 with 0.72px tracking and — unlike the summary eyebrow —
    are NOT uppercased in the Case design. */
 .case-detail-attr .case-detail-column-title {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.72px;
+  font-size: var(--portal-detail-label-font-size); /* 12px */
+  font-weight: 400;
+  letter-spacing: 0.06em; /* 0.72px at 12px */
   line-height: normal;
   color: var(--portal-detail-label-color);
   opacity: 1;
@@ -2895,10 +2918,10 @@ body a.portal-detail-toolbar-back:focus,
 .case-detail-attr .case-detail-attr-value {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.4286rem; /* 6px */
   color: var(--portal-detail-value-color);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--portal-detail-font-size); /* 14px */
+  font-weight: 400;
   line-height: normal;
 }
 /* The State cell renders the shared CaseState component, which brings its own
@@ -2924,12 +2947,12 @@ body a.portal-detail-toolbar-back:focus,
 }
 /* Description: label 14px/600 + pencil, 10px down to the text, 14px/400 body copy. */
 .case-detail-casedetails-card .case-details-description-title {
-  margin-bottom: 10px;
+  margin-bottom: 0.7143rem; /* 10px */
 }
 .case-detail-casedetails-card .case-details-description-title .portal-detail-subcard-title {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.7143rem; /* 10px */
   padding: 0 !important; /* beats module.css `.text-ellipsis{padding:10px 0 3px}` */
 }
 .case-detail-casedetails-card .case-details-description-content {
@@ -2937,7 +2960,7 @@ body a.portal-detail-toolbar-back:focus,
 }
 .case-detail-casedetails-card .case-detail-description,
 .case-detail-casedetails-card .case-description-output {
-  font-size: 14px;
+  font-size: var(--portal-detail-font-size); /* 14px */
   font-weight: 400;
   color: var(--portal-detail-value-color);
 }
@@ -2957,7 +2980,7 @@ body a.portal-detail-toolbar-back:focus,
   flex-wrap: wrap;
 }
 .portal-detail-subcards-row > .portal-detail-inner-card {
-  flex: 1 1 320px;
+  flex: 1 1 22.8571rem; /* 320px */
   min-width: 0;
 }
 /* Business case sub-card sits below the row with the same 20px rhythm. */
@@ -2967,8 +2990,8 @@ body a.portal-detail-toolbar-back:focus,
 
 /* Sub-card internals: title with an underline, then 10px-spaced key/value rows. */
 .case-detail-body .portal-detail-inner-card .portal-detail-subcard-title {
-  padding: 0 0 10px 0 !important; /* beats module.css `.case-detail-title{padding:10px 0 5px 0!important}` */
-  margin-bottom: 10px;
+  padding: 0 0 0.7143rem 0 !important; /* 10px. beats module.css `.case-detail-title{padding:10px 0 5px 0!important}` */
+  margin-bottom: 0.7143rem; /* 10px */
   border-bottom: 1px solid var(--portal-detail-divider-color);
 }
 .case-detail-body .portal-detail-inner-card .portal-detail-subcard-title .text-ellipsis {
@@ -2978,12 +3001,12 @@ body a.portal-detail-toolbar-back:focus,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  min-height: 25px;
+  gap: 1.1429rem; /* 16px */
+  min-height: 1.7857rem; /* 25px */
   padding: 0;
 }
 .case-detail-body .portal-detail-inner-card .content-field + .content-field {
-  margin-top: 10px;
+  margin-top: 0.7143rem; /* 10px */
 }
 .case-detail-body .portal-detail-kv-label {
   flex: 0 1 auto;
@@ -2993,13 +3016,13 @@ body a.portal-detail-toolbar-back:focus,
   flex: 0 1 auto;
   min-width: 0;
   text-align: right;
-  font-size: 14px;
+  font-size: var(--portal-detail-font-size); /* 14px */
   font-weight: 400;
   color: var(--portal-detail-value-color);
 }
 .case-detail-body .case-detail-column-title {
   color: var(--portal-detail-label-color);
-  font-size: 14px; /* row label */
+  font-size: var(--portal-detail-font-size); /* 14px. row label */
   font-weight: 400;
   line-height: normal;
   opacity: 1;
@@ -3008,14 +3031,14 @@ body a.portal-detail-toolbar-back:focus,
 .case-detail-body .portal-detail-kv-value .ui-avatar,
 .case-detail-body .portal-detail-kv-value .avatar,
 .case-detail-body .portal-detail-kv-value img {
-  width: 25px;
-  height: 25px;
+  width: 1.7857rem; /* 25px */
+  height: 1.7857rem; /* 25px */
   border-radius: 50%;
 }
 .case-detail-body .business-case-information .case-detail-business-case {
   color: var(--portal-detail-accent-color);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--portal-detail-font-size); /* 14px */
+  font-weight: 400;
 }
 
 /* ---- Widget headers (Documents / History / Related tasks / Related cases /
@@ -3029,7 +3052,7 @@ body a.portal-detail-toolbar-back:focus,
   align-items: center;
   justify-content: space-between;
   /* module.css wipes the padding with `!important`, so re-assert it the same way. */
-  padding-bottom: 16px !important;
+  padding-bottom: 1.1429rem !important; /* 16px */
   border-bottom: 1px solid var(--portal-detail-divider-color);
   margin-bottom: var(--portal-detail-card-gap);
 }
@@ -3040,7 +3063,7 @@ body a.portal-detail-toolbar-back:focus,
   margin-bottom: 0;
 }
 .case-detail-body .task-details-panel-title {
-  font-size: 16px; /* module.css sets 16px already; restated for the redesign */
+  font-size: var(--portal-detail-heading-font-size); /* 16px. module.css sets 16px already; restated for the redesign */
 }
 /* Uniform 10px between every header action (round button, pill, checkbox, config). */
 .document-case-detail-section-header-actions,
@@ -3049,7 +3072,7 @@ body a.portal-detail-toolbar-back:focus,
 .related-case-section-header-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.7143rem; /* 10px */
 }
 .document-case-detail-section-header-actions .u-mar-right-10,
 .case-detail-history-section-header-actions .u-mar-right-10,
@@ -3068,23 +3091,23 @@ body a.portal-detail-toolbar-back:focus,
    border; body cell 16px/12px padding with a 0.5px Neutral/N200 bottom border. */
 .case-detail-body .ui-datatable thead th {
   box-sizing: border-box;
-  height: 57px;
-  padding: 16px 12px;
+  height: 4.0714rem; /* 57px */
+  padding: 1.1429rem 0.8571rem; /* 16px 12px */
   background: var(--portal-detail-table-cell-bg);
   border: none;
   border-bottom: 1px solid var(--portal-detail-table-header-border-color);
-  font-size: 14px;
+  font-size: var(--portal-detail-font-size); /* 14px */
   font-weight: 400;
   color: var(--portal-detail-value-color);
 }
 .case-detail-body .ui-datatable tbody td {
   box-sizing: border-box;
-  height: 57px;
-  padding: 16px 12px;
+  height: 4.0714rem; /* 57px */
+  padding: 1.1429rem 0.8571rem; /* 16px 12px */
   background: var(--portal-detail-table-cell-bg);
   border: none;
   border-bottom: 0.5px solid var(--portal-detail-table-row-border-color);
-  font-size: 14px;
+  font-size: var(--portal-detail-font-size); /* 14px */
   font-weight: 400;
   color: var(--portal-detail-value-color);
 }
@@ -3104,12 +3127,12 @@ body a.portal-detail-toolbar-back:focus,
 .case-detail-body .ui-datatable tbody td .ui-avatar,
 .case-detail-body .ui-datatable tbody td .avatar,
 .case-detail-body .ui-datatable tbody td .has-avatar img {
-  width: 25px;
-  height: 25px;
+  width: 1.7857rem; /* 25px */
+  height: 1.7857rem; /* 25px */
   border-radius: 50%;
 }
 .case-detail-body .ui-datatable tbody td .name-after-avatar {
-  font-size: 12px;
+  font-size: var(--portal-detail-label-font-size); /* 12px */
   font-weight: 400;
 }
 /* Leading file-type / entity icon chip in the first column (Figma: 7.077px radius,
@@ -3119,12 +3142,12 @@ body a.portal-detail-toolbar-back:focus,
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding: 4.954px;
+  padding: 0.3539rem; /* 4.954px */
   border: 0.708px solid var(--portal-detail-accent-btn-border);
-  border-radius: 7.077px;
+  border-radius: 0.5055rem; /* 7.077px */
   background: var(--portal-detail-primary-tint-bg);
   color: var(--portal-detail-accent-color);
-  font-size: 14.864px !important;
+  font-size: 1.0617rem !important; /* 14.864px */
   line-height: 1 !important;
 }
 
@@ -3141,14 +3164,14 @@ body a.portal-detail-toolbar-back:focus,
   box-sizing: border-box;
   width: fit-content;
   max-width: none;
-  padding: 2px 10px;
+  padding: 0.1429rem 0.7143rem; /* 2px 10px */
   border: 1.237px solid var(--portal-state-neutral-border);
   border-radius: 100px;
   background: var(--portal-state-neutral-bg);
   color: var(--portal-state-neutral-color);
-  font-size: 14px;
+  font-size: var(--portal-detail-font-size); /* 14px */
   font-weight: 400;
-  line-height: 25.987px;
+  line-height: 1.856; /* 25.987px at the 14px body size; unitless so it tracks font-size */
   white-space: nowrap;
 }
 .case-detail-body .open-case-state,
@@ -3204,11 +3227,11 @@ body a.portal-detail-toolbar-back:focus,
 /* ---- Responsive ------------------------------------------------------------ */
 @media screen and (max-width: 960px) {
   .case-detail-attr-strip {
-    gap: 20px;
-    padding: 15px 20px;
+    gap: 1.4286rem; /* 20px */
+    padding: 1.0714rem 1.4286rem; /* 15px 20px */
   }
   .case-detail-attr-strip > .case-detail-attr:not(:first-child)::before {
-    left: -10px;
+    left: -0.7143rem; /* -10px */
   }
 }
 @media screen and (max-width: 640px) {
