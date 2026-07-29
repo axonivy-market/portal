@@ -2582,6 +2582,14 @@ body.dark .menu-type-static {
   line-height: 1;
 }
 
+.actions-menu-panel .ui-tag {
+  font-weight: 400;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border-radius: 50%;
+}
+
 .responsibles-avatar-group .ui-avatar + .ui-avatar {
   margin-left: -0.5rem;
 }
