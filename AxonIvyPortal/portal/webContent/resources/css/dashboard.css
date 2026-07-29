@@ -2576,6 +2576,12 @@ body.dark .menu-type-static {
   border-bottom: 1px solid var(--widget-button-border-color) !important;
 }
 
+.actions-menu-panel .ui-menuitem-link {
+  display: flex !important;
+  align-items: center;
+  line-height: 1;
+}
+
 .responsibles-avatar-group .ui-avatar + .ui-avatar {
   margin-left: -0.5rem;
 }
