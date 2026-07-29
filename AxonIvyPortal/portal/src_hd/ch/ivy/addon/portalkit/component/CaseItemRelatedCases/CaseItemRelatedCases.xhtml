@@ -18,11 +18,11 @@
 
   <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
-    <div class="ui-g-12 case-details-related-case-header-section flex align-items-center justify-content-between flex-wrap">
-      <div class="u-truncate-text task-details-panel-title portal-detail-block-title" role="heading" aria-level="1">
+    <div class="ui-g-12 case-detail-section-title case-details-related-case-header-section portal-detail-widget-header flex align-items-center justify-content-between flex-wrap">
+      <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="1">
         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCases')}
       </div>
-      <h:panelGroup layout="block" styleClass="related-case-section-header-actions flex align-items-center" id="related-case-actions">
+      <h:panelGroup layout="block" styleClass="related-case-section-header-actions portal-detail-widget-header-actions flex align-items-center" id="related-case-actions">
         <h:form id="related-cases-form" styleClass="related-case-export-to-excel ui-sm-hidden">
           <p:commandLink ajax="false" id="related-case-export-to-excel"
             styleClass="portal-icon-btn-round"

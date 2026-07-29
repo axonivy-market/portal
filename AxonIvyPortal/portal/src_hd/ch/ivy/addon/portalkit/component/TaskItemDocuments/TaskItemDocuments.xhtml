@@ -18,11 +18,11 @@
 
   <div id="#{cc.clientId}" class="task-details-item-document ui-g">
     <h:form id="task-document-form" prependId="false" styleClass="ui-g-12 u-padding-0">
-      <div class="task-detail-section-title ui-g-12 flex align-items-center justify-content-between">
-        <div class="task-details-document-title u-truncate-text u-padding-0 task-details-panel-title task-detail-block-title" role="heading" aria-level="1">
+      <div class="task-detail-section-title portal-detail-widget-header ui-g-12 flex align-items-center justify-content-between">
+        <div class="u-truncate-text u-padding-0 task-details-panel-title task-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="1">
           #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/documents')}
         </div>
-        <h:panelGroup layout="block" styleClass="u-padding-0 document-task-detail-section-header-actions flex align-items-center">
+        <h:panelGroup layout="block" styleClass="u-padding-0 document-task-detail-section-header-actions portal-detail-widget-header-actions flex align-items-center">
           <p:commandButton id="add-document-command" global="false"
                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
                          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"

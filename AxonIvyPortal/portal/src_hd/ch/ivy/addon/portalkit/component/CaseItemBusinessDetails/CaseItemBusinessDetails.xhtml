@@ -21,8 +21,8 @@
 
   <h:panelGroup id="case-item-additional-details" layout="block"
     rendered="#{data.hasPermission and empty data.url}">
-    <div class="case-detail-section-title ui-g-12 flex align-items-center justify-content-between">
-      <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title"
+    <div class="case-detail-section-title portal-detail-widget-header ui-g-12 flex align-items-center justify-content-between">
+      <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title portal-detail-widget-header-title"
         role="heading" aria-level="1">
         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/businessDetailsTitle')}
       </div>

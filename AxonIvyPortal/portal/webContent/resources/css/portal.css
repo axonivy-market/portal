@@ -2470,7 +2470,8 @@ body a.portal-detail-toolbar-back:focus,
    - Sub-card title ("Role & User information", "Time Information", "Task and Case Information",
      "Description"): 14px/600 — smaller tier, do not confuse with the top-level heading above. */
 .portal-detail-block-title,
-.task-detail-block-title {
+.task-detail-block-title,
+.portal-detail-widget-header-title {
   font-weight: 600;
   font-size: var(--portal-detail-heading-font-size); /* 16px */
   line-height: 1.4;
@@ -2597,33 +2598,10 @@ body a.portal-detail-toolbar-back:focus,
   border-bottom: 1px solid var(--task-detail-divider-color);
   margin-bottom: 0.8571rem; /* 12px */
 }
-/* Documents/Notes header action row: the "+" button carries a one-off `u-mar-right-10` and
-   the (Notes-only) "System notes" checkbox carries none, so the gap before the "+" and the
-   gap before "Show more" don't match. Use a single flex `gap` (the container is already
-   `display:flex!important` via module.css ~line 4281) for uniform spacing between every item,
-   and neutralize the ad-hoc margin so it isn't added on top of the gap. */
-.document-task-detail-section-header-actions,
-.note-task-detail-section-header-actions {
-  gap: 0.7143rem; /* 10px */
-}
-.document-task-detail-section-header-actions .u-mar-right-10,
-.note-task-detail-section-header-actions .u-mar-right-10 {
-  margin-right: 0;
-}
-
-/* Horizontal divider under Documents / Notes panel headers. Figma measures ~24px between the
-   header row and the divider, and ~35px between the divider and the content below (on top of the
-   empty-state's own 40px padding) — give the divider real breathing room on both sides instead
-   of a border sitting flush against the header text. */
-.task-details-item-document .task-detail-section-title,
-.task-details-item-note .task-detail-section-title {
-  /* module.css `.task-detail-section-title{padding:0!important}` (line ~4269) wipes any
-     non-!important padding, including padding-bottom — must re-assert with !important too,
-     specificity alone does not beat an existing !important declaration. */
-  padding-bottom: 1.1429rem !important; /* 16px */
-  border-bottom: 1px solid var(--task-detail-divider-color);
-  margin-bottom: 1.4286rem; /* 20px */
-}
+/* Documents/Notes header row + action gap: moved to the shared `.portal-detail-widget-header` /
+   `.portal-detail-widget-header-actions` classes (see the "Shared: widget-card header row"
+   block below) — the same rule now covers this row on Task Details AND the equivalent rows on
+   Case Details. */
 .task-detail-inner-card .content-field > div:last-child,
 .task-and-case-information .content-field > div:last-child {
   text-align: right;
@@ -3041,44 +3019,39 @@ body a.portal-detail-toolbar-back:focus,
   font-weight: 400;
 }
 
-/* ---- Widget headers (Documents / History / Related tasks / Related cases /
-        Business details): 16px/600 title left, action cluster right, then a
-        divider with 20px clear below it. -------------------------------------- */
-/* Scoped on `.case-detail-body` rather than `.case-details-item` so the Business details
-   widget — whose root panel does not carry `.case-details-item` — gets the same divider. */
-.case-detail-body .case-detail-section-title,
-.case-detail-body .case-details-related-case-header-section {
-  display: flex !important; /* beats module.css `display:inline-block!important` */
+/* ---- Shared: widget-card header row (title + actions) ----
+   Figma 4004:191924 — Documents/Notes/History/Related tasks/Related cases/Business details all
+   use this same row on BOTH Task Details and Case Details: 16px/600 title left, action cluster
+   right, then a divider with 20px clear below it. Plain (unscoped) classes so one definition
+   covers both pages — portal.css loading last is what lets a single `!important` beat
+   module.css's `!important` on `.task-detail-section-title` / `.case-detail-section-title`
+   (display:inline-block, padding:0), the same way the old Case-only rule already did. */
+.portal-detail-widget-header {
+  display: flex !important;
   align-items: center;
   justify-content: space-between;
-  /* module.css wipes the padding with `!important`, so re-assert it the same way. */
+  flex-wrap: wrap;
+  padding: 0 !important;
   padding-bottom: 1.1429rem !important; /* 16px */
   border-bottom: 1px solid var(--portal-detail-divider-color);
-  margin-bottom: var(--portal-detail-card-gap);
+  margin-bottom: var(--portal-detail-card-gap); /* 20px */
 }
-/* The summary card's identity row is not a widget header — it has its own divider. */
+/* The summary card's identity row is not a widget header — it keeps its own divider (or none);
+   it never carries `.portal-detail-widget-header`, but still carries `.case-detail-section-title`
+   for other reasons, so pin these back to zero for it specifically. */
 .case-detail-body .case-detail-header-card .case-detail-section-title {
   padding-bottom: 0 !important;
   border-bottom: none;
   margin-bottom: 0;
 }
-.case-detail-body .task-details-panel-title {
-  font-size: var(--portal-detail-heading-font-size); /* 16px. module.css sets 16px already; restated for the redesign */
-}
-/* Uniform 10px between every header action (round button, pill, checkbox, config). */
-.document-case-detail-section-header-actions,
-.case-detail-history-section-header-actions,
-.related-task-section-header-actions,
-.related-case-section-header-actions {
+/* Uniform 10px between every header action (round button, pill, checkbox, config), on both pages. */
+.portal-detail-widget-header-actions {
   display: flex;
   align-items: center;
   gap: 0.7143rem; /* 10px */
 }
-.document-case-detail-section-header-actions .u-mar-right-10,
-.case-detail-history-section-header-actions .u-mar-right-10,
-.related-task-section-header-actions .u-mar-right-10,
-.related-case-section-header-actions .u-mar-right-10 {
-  margin-right: 0;
+.portal-detail-widget-header-actions .u-mar-right-10 {
+  margin-right: 0; /* neutralize the ad-hoc margin some buttons still carry; the gap above replaces it */
 }
 .related-task-section-header-actions .related-task-export-to-excel,
 .related-case-section-header-actions .related-case-export-to-excel {

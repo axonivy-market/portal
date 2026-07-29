@@ -14,45 +14,43 @@
   <f:event listener="#{logic.initData(case)}" type="preRenderComponent" />
   <div class="case-details-item #{cc.attrs.styleClass} ui-g">
 
-    <div class="case-detail-section-title ui-g-12 flex align-items-center justify-content-between flex-wrap">
-      <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title" role="heading" aria-level="1">
+    <div class="case-detail-section-title portal-detail-widget-header ui-g-12 flex align-items-center justify-content-between flex-wrap">
+      <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="1">
         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/history')}
       </div>
-      <div class="u-padding-0">
-        <h:panelGroup layout="block" styleClass="case-detail-history-section-header-actions flex align-items-center">
-          <p:selectBooleanCheckbox id="related-case-checkbox" value="#{data.showRelatedCaseInfo}" 
-            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showRelatedCaseInfo')}"
-            rendered="#{data.showRelatedCaseInfoCheckbox}"
-            styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
-            <p:ajax update="case-histories-table" process="@this" partialSubmit="true" oncomplete="ResponsiveTable.init(':case-histories');"/>
-          </p:selectBooleanCheckbox>
-          <p:selectBooleanCheckbox id="system-task-checkbox" value="#{data.showSystemTasksChkbox}" 
-            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemTasks')}" rendered="#{data.showSystemTasks}"
-            styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
-            <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" oncomplete="ResponsiveTable.init(':case-histories');"/>
-          </p:selectBooleanCheckbox>
-          <p:selectBooleanCheckbox id="system-note-checkbox" value="#{data.showSystemNotesChkbox}" 
-          itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}" 
-          rendered="#{data.showSystemNotes}"
-            styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
-            <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" oncomplete="ResponsiveTable.init(':case-histories');"/>
-          </p:selectBooleanCheckbox>
-          <p:commandButton id="add-note-command" styleClass="case-details-document-add-link portal-icon-btn-round portal-icon-btn-accent"
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
-            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
-            icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
-            rendered="#{caseTaskNoteHistoryBean.showAddNote}" onclick="PF('add-note-dialog-#{case.id}').show()"
-            actionListener="#{data.setCaze(case)}" />
-          <p:link id="show-more-note-link" disabled="#{empty data.histories}"
-            styleClass="case-details-document-add-link note-show-more-link js-note-show-more-link portal-pill-btn" target="_blank"
-            href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case.uuid())}"
-            rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
-            <span class="ti ti-external-link note-show-more-link-icon" />
-            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
-            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
-          </p:link>
-        </h:panelGroup>
-      </div>
+      <h:panelGroup layout="block" styleClass="case-detail-history-section-header-actions portal-detail-widget-header-actions flex align-items-center">
+        <p:selectBooleanCheckbox id="related-case-checkbox" value="#{data.showRelatedCaseInfo}"
+          itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showRelatedCaseInfo')}"
+          rendered="#{data.showRelatedCaseInfoCheckbox}"
+          styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
+          <p:ajax update="case-histories-table" process="@this" partialSubmit="true" oncomplete="ResponsiveTable.init(':case-histories');"/>
+        </p:selectBooleanCheckbox>
+        <p:selectBooleanCheckbox id="system-task-checkbox" value="#{data.showSystemTasksChkbox}"
+          itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemTasks')}" rendered="#{data.showSystemTasks}"
+          styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
+          <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" oncomplete="ResponsiveTable.init(':case-histories');"/>
+        </p:selectBooleanCheckbox>
+        <p:selectBooleanCheckbox id="system-note-checkbox" value="#{data.showSystemNotesChkbox}"
+        itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}"
+        rendered="#{data.showSystemNotes}"
+          styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
+          <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" oncomplete="ResponsiveTable.init(':case-histories');"/>
+        </p:selectBooleanCheckbox>
+        <p:commandButton id="add-note-command" styleClass="case-details-document-add-link portal-icon-btn-round portal-icon-btn-accent"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
+          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
+          icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
+          rendered="#{caseTaskNoteHistoryBean.showAddNote}" onclick="PF('add-note-dialog-#{case.id}').show()"
+          actionListener="#{data.setCaze(case)}" />
+        <p:link id="show-more-note-link" disabled="#{empty data.histories}"
+          styleClass="case-details-document-add-link note-show-more-link js-note-show-more-link portal-pill-btn" target="_blank"
+          href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case.uuid())}"
+          rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
+          <span class="ti ti-external-link note-show-more-link-icon" />
+          <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
+          <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
+        </p:link>
+      </h:panelGroup>
     </div>
 
     <h:panelGroup id="case-histories-table" class="ui-g-12 u-padding-0">
