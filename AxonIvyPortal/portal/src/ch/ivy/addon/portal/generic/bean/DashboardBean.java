@@ -143,7 +143,8 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   private boolean isRequestPathForMainOrDetailModification() {
     String requestPath = Ivy.request().getRequestPath();
     return requestPath.endsWith("/PortalMainDashboard.xhtml")
-        || requestPath.endsWith("/PortalDashboardDetailModification.xhtml");
+        || requestPath.endsWith("/PortalDashboardDetailModification.xhtml")
+        || requestPath.endsWith("/PortalDashboard.xhtml");
   }
 
   private void updateSelectedDashboard() {
