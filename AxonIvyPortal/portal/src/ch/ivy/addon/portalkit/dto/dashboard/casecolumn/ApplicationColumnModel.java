@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
-import ch.ivy.addon.portalkit.util.ListUtilities;
 import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.application.app.ApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -43,7 +42,7 @@ public class ApplicationColumnModel extends CaseColumnModel {
   
   @JsonIgnore
   public List<String> getApplications() {
-    return ListUtilities.transformList(ApplicationRepository.of(ISecurityContext.current()).all(), Application::name);
+    return ApplicationRepository.of(ISecurityContext.current()).all().map(Application::name).toList();
   }
   
   @JsonIgnore

@@ -77,7 +77,7 @@ public class DisplayNameUtils {
 
   private static String resolveCmsUri(DisplayNameDTO cmsDisplayName) {
     String projectName = cmsDisplayName.getProjectName();
-    return ApplicationRepository.of(ISecurityContext.current()).all().stream()
+    return ApplicationRepository.of(ISecurityContext.current()).all()
         .map(app -> app.projects().find(projectName)).filter(Objects::nonNull).findFirst()
         .map(pmv -> ContentManagement.of(pmv).co(cmsDisplayName.getValue())).orElse(EMPTY);
   }

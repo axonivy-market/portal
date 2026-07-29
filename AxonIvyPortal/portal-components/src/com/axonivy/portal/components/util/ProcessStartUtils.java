@@ -40,12 +40,12 @@ public class ProcessStartUtils {
         return webStartable;
       }
 
-      List<Application> apps = ApplicationRepository.of(ISecurityContext.current()).allReleased();
-      List<Project> processModelVersions = apps.stream()
+      List<Application> apps = ApplicationRepository.of(ISecurityContext.current()).allReleased().toList();
+      List<Project> projects = apps.stream()
         .flatMap(app -> app.projects().all())
         .toList();
-      for (var pmv : processModelVersions) {
-        webStartable = findWebStartableByPathAndPmv(requestPath, pmv);
+      for (var project : projects) {
+        webStartable = findWebStartableByPathAndPmv(requestPath, project);
         if (webStartable != null) {
           return webStartable;
         }
@@ -70,7 +70,7 @@ public class ProcessStartUtils {
     if (portalStartPmvId == null) {
       return findFriendlyRequestPathContainsKeywordInPMV(keyword, Ivy.wfTask().getProcessModelVersion().project());
     } else {
-      var apps = ApplicationRepository.of(ISecurityContext.current()).all();
+      var apps = ApplicationRepository.of(ISecurityContext.current()).all().toList();
       for (var app : apps) {
         var findProcessModelVersion = app.projects().all()
           .filter(pmv -> pmv.id() == (long) portalStartPmvId)
