@@ -20,7 +20,7 @@ public class CustomerProjectService {
 
   public Map<String, List<Project>> collect() {
     var appPmvs = new HashMap<String, List<Project>>();
-    var apps = ApplicationRepository.of(ISecurityContext.current()).all();
+    var apps = ApplicationRepository.of(ISecurityContext.current()).all().toList();
     for (var app : apps) {
       var pmvs = app.projects().all()
           .filter(pmv -> !PortalConstants.PORTAL_LIBRARY_ID.equals(pmv.mavenCoordinates().id()) && RELEASE_STATES.contains(pmv.app().state().releaseState()))

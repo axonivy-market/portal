@@ -1,5 +1,6 @@
 package com.axonivy.portal.components.publicapi;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
@@ -33,7 +34,7 @@ public final class ProcessStartAPI {
    */
   public static String findStartableLinkByUserFriendlyRequestPath(String friendlyRequestPath) {
     return Sudo.get(() -> {
-      var apps = ApplicationRepository.of(ISecurityContext.current()).allReleased();
+      List<Application> apps = ApplicationRepository.of(ISecurityContext.current()).allReleased().toList();
       for (var app : apps) {
         var webStartable = findWebStartableByUserFriendlyRequestPath(friendlyRequestPath, app);
         if (webStartable != null) {
