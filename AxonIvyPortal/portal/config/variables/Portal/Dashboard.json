@@ -60,50 +60,43 @@
         },
         "enableQuickSearch": true,
         "columns": [
-          {
-            "field": "start",
-            "width": "65"
-          },
-          {
-            "field": "priority",
-            "width": "65"
-          },
-          {
-            "field": "id",
-            "visible": false
-          },
-          {
-            "field": "name",
-            "width": "315"
-          },
-          {
-            "field": "description",
-            "visible": false
-          },
-          {
-            "field": "activator",
-            "width": "120"
-          },
-          {
-            "field": "state",
-            "visible": false
-          },
-          {
-            "field": "startTimestamp",
-            "visible": false
-          },
-          {
-            "field": "expiryTimestamp"
-          },
-          {
-            "field": "category",
-            "visible": false
-          },
-          {
-            "field": "actions",
-            "width": "78"
-          }
-        ],
+            {
+              "field": "id",
+              "visible": false
+            },
+            {
+              "field": "name",
+              "width": "185"
+            },
+            {
+              "field": "description",
+              "visible": false
+            },
+            {
+              "field": "activator",
+              "width": "85"
+            },
+            {
+              "field": "state",
+              "width": "60"
+            },
+            {
+              "field": "expiryTimestamp",
+              "width": "80"
+            },
+            {
+              "field": "category",
+              "visible": false
+            },
+            {
+              "field": "start",
+              "width": "60"
+            },
+            {
+              "field": "actions",
+              "width": "65"
+            }
+          ],
         "sortDescending": true,
         "sortField": "startTimestamp",
         "canWorkOn": true,
@@ -287,6 +280,7 @@
           "x": 8,
           "y": 2
         },
+        "showFullscreenMode": false,
         "chartId": "10"
       },
       {
@@ -298,6 +292,7 @@
           "x": 10,
           "y": 2
         },
+        "showFullscreenMode": false,
         "chartId": "11"
       },
       {
@@ -309,6 +304,7 @@
           "x": 0,
           "y": 11
         },
+        "showFullscreenMode": false,
         "chartId": "7"
       },
       {
@@ -320,6 +316,7 @@
           "x": 0,
           "y": 8
         },
+        "showFullscreenMode": false,
         "chartId": "3"
       },
       {
@@ -331,6 +328,7 @@
           "x": 0,
           "y": 14
         },
+        "showFullscreenMode": false,
         "chartId": "5"
       },
       {
