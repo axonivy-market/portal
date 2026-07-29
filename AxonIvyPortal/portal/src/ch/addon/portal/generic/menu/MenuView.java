@@ -99,6 +99,7 @@ public class MenuView implements Serializable {
     if (PortalMenuNavigator.showWarningDialog(params)) {
       return;
     }
+    DashboardUtils.updateSelectedDashboardToSession(PortalMenuNavigator.extractMenuItemId(event));
     PortalMenuNavigator.navigateToTargetPage(params);
   }
 

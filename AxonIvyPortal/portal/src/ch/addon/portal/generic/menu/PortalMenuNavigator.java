@@ -99,6 +99,10 @@ public class PortalMenuNavigator {
     MenuItem menuItem = ((MenuActionEvent) event).getMenuItem();
     return menuItem.getParams();
   }
+
+  public static String extractMenuItemId(ActionEvent event) {
+    return ((MenuActionEvent) event).getMenuItem().getId();
+  }
   public static List<Application> getThirdPartyApps() {
     List<Application> applications = RegisteredApplicationService.getInstance().getPublicConfig();
     applications.removeIf(application -> {
