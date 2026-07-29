@@ -24,6 +24,7 @@ import java.util.Map;
 import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.bo.ItemByCategoryStatistic;
+import com.axonivy.portal.util.GlobalSearchCountUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
@@ -74,7 +75,7 @@ public class TaskService {
       IPagedResult<ITask> iTask = Ivy.wf().getTaskQueryExecutor()
           .getResultsPaged(finalQuery);
       result.setTasks(iTask.window(startIndex, count));
-      result.setTotalTasks(iTask.count());
+      result.setTotalTasks(GlobalSearchCountUtils.isTaskCountEnabled() ? iTask.count() : -1);
       return result;
     });
   }

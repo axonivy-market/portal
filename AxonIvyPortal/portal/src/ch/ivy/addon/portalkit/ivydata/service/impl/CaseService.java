@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.bo.ItemByCategoryStatistic;
+import com.axonivy.portal.util.GlobalSearchCountUtils;
 
 import ch.ivy.addon.portalkit.bo.CaseCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
@@ -72,7 +73,7 @@ public class CaseService{
       CaseQuery finalQuery = extendQuery(criteria);
       IPagedResult<ICase> iCase = Ivy.wf().getCaseQueryExecutor().getResultsPaged(finalQuery);
       result.setCases(iCase.window(startIndex, count));
-      result.setTotalCases(iCase.count());
+      result.setTotalCases(GlobalSearchCountUtils.isCaseCountEnabled() ? iCase.count() : -1);
       return result;
     });
   }

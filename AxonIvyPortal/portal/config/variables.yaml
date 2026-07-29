@@ -198,6 +198,13 @@ Variables:
       ByCaseFields: NAME,DESCRIPTION,CUSTOM
     # Defining the types that the global search will search for
     GlobalSearchScopeCategories: PROCESSES,TASKS,CASES
+    Search:
+      # Skip the SQL COUNT for case global search when DISABLED.
+      # [enum: ENABLED, DISABLED]
+      GlobalSearchCaseCountStrategy: ENABLED
+      # Skip the SQL COUNT for task global search when DISABLED.
+      # [enum: ENABLED, DISABLED]
+      GlobalSearchTaskCountStrategy: ENABLED
     # Additional menu items for the main menu of Portal. Could be an Ivy process or an external link.
     # [file: json]
     CustomMenuItems: ""

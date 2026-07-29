@@ -219,9 +219,12 @@ if (document) {
   function handleUISearchResults($parent, data) {
     let viewAllLink = $parent.siblings('.global-search-all-results')[0];
     let noResults = $parent.siblings('.global-search-no-results')[0];
-    if (data && data.totalResult > 0) {
+    let countUnknown = data && data.totalResult < 0;
+    let hasResults = data && (data.totalResult > 0 || (countUnknown && data.results.length > 0));
+    if (hasResults) {
       $(viewAllLink).removeClass('hidden');
-      $(viewAllLink).find('a').html(data.viewAllText + ' (' + data.totalResult + ')')
+      let label = countUnknown ? data.viewAllText : data.viewAllText + ' (' + data.totalResult + ')';
+      $(viewAllLink).find('a').html(label)
       $(noResults).addClass('hidden');
     } else {
       $(viewAllLink).addClass('hidden');
