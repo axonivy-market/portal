@@ -2458,11 +2458,10 @@ body a.portal-detail-toolbar-back:focus,
 .task-detail-taskdetails-card {
   display: flow-root;
 }
-/* The Strip is an inner bordered box within the Header card (like the Role&User/Time/Task&Case
-   sub-cards inside the Task Details card) — give it breathing room from the header row above it. */
-.task-detail-header-card .task-detail-attr-strip {
-  margin-top: 1.4286rem; /* 20px */
-}
+/* No margin-top on `.task-detail-attr-strip`: the `p:divider` directly above it already carries
+   `margin: 20px 0`, and they are adjacent siblings in a plain block flow (this card has no BFC —
+   only `.task-detail-taskdetails-card` above gets `flow-root`), so the two margins collapse to
+   max(20,20). Both pages render 40px identity-row -> strip from the divider alone. */
 
 /* Section / block headings inside the detail widgets. Two tiers, measured from Figma:
    - Top-level card heading ("Task Details", "Case Details", "Documents", "Notes",
@@ -2500,7 +2499,13 @@ body a.portal-detail-toolbar-back:focus,
    and `.action-container{justify-content:center}` for the redesigned header row. */
 .task-item-body .task-detail-header-row {
   display: flex !important;
-  align-items: flex-start;
+  /* items-center per Figma 4004:191786, same as Case. Kept in sync with the
+     `align-items-center` PrimeFlex class on the same element in TaskItemSummary.xhtml —
+     that class wins via `!important`, this is only the non-PrimeFlex fallback. */
+  align-items: center;
+  /* module.css `.task-detail-section-title{margin-bottom:14px}` is never otherwise reset on the
+     Task side (Case resets it further down); the divider below supplies the spacing. */
+  margin-bottom: 0;
   justify-content: space-between;
   gap: 1.1429rem; /* 16px */
 }
@@ -2515,13 +2520,14 @@ body a.portal-detail-toolbar-back:focus,
 .task-detail-identity {
   display: flex;
   align-items: center;
-  gap: 1rem; /* 14px */
+  gap: 1.0714rem; /* 15px */
 }
 .task-detail-eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.06em; /* 0.72px at 12px */
   font-size: var(--portal-detail-label-font-size); /* 12px */
-  font-weight: 400;
+  font-weight: 500;
+  line-height: normal;
   color: var(--task-detail-eyebrow-color);
 }
 .task-detail-name-row {
@@ -2542,8 +2548,21 @@ body a.portal-detail-toolbar-back:focus,
   font-size: var(--portal-detail-label-font-size); /* 12px */
   font-weight: 400;
 }
+/* "Start" label — scoped to this header only. TEMPORARY: Figma 4004:191805 has this one pill at
+   Inter Regular 400 while every other pill ("Show more", "Edit layout") is Medium 500, so the
+   weight is overridden here rather than in the shared `.portal-pill-btn` atom. A shared Start
+   style is coming from another (unmerged) PR — replace this then.
+   Figma's `line-height: 25.987px` is deliberately NOT copied: it pairs with Figma's `py-2px`
+   (≈32.5px tall), whereas our pill uses `padding: 8.662px` + `line-height: 1` (≈33.8px). Applying
+   the line-height on top of our padding would make the button 45.8px tall. */
 .task-detail-header-actions .task-action-item-label {
-  font-size: var(--portal-detail-font-size); /* 14px. "Start" label — scoped to this header only */
+  font-size: var(--portal-detail-font-size); /* 14px */
+}
+/* Needs (0,4,0): `.task-action-item.start-task-action .task-action-item-label` further up in this
+   file is (0,3,0) and sets `--task-start-action-font-weight`, i.e. BOLD — so a plain
+   `.task-detail-header-actions .task-action-item-label` (0,2,0) is silently ignored here. */
+.task-detail-header-actions .task-action-item.start-task-action .task-action-item-label {
+  font-weight: 400;
 }
 
 /* Delegate Task link in the Role & User sub-card header */
@@ -2631,7 +2650,7 @@ body a.portal-detail-toolbar-back:focus,
 /* SideStep trigger ("...") in the task header: keep the shared component
    markup intact, only present it as a round icon-only "more" button here. */
 .task-detail-header-actions {
-  gap: 0.5714rem; /* 8px */
+  gap: 0.7143rem; /* 10px */
 }
 .task-detail-header-actions .ui-sidestep-action .task-action-item-label {
   display: none;
@@ -2660,41 +2679,19 @@ body a.portal-detail-toolbar-back:focus,
   line-height: 1;
 }
 
-/* ---- Attribute strip: Priority | State | Due | Workflow ---- */
-.task-detail-attr-strip {
-  display: flex;
-  flex-wrap: wrap;
-  border: 1px solid var(--task-detail-card-border-color);
-  border-radius: var(--task-detail-card-radius);
-  background: var(--task-detail-strip-bg);
-}
-.task-detail-attr-strip > .task-detail-attr {
-  position: relative;
-  flex: 1 1 25%;
-  min-width: 10rem; /* 140px */
-  box-sizing: border-box;
-  padding: 0.7143rem 1.4286rem; /* 10px 20px */
-  display: flex;
-  flex-direction: column;
-  gap: 0.3571rem; /* 5px */
-}
-/* short, vertically-centered divider between strip columns (Figma: 30px tall, Neutral/N200) */
-.task-detail-attr-strip > .task-detail-attr:not(:first-child)::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 2.1429rem; /* 30px */
-  border-left: 1px solid var(--portal-detail-strip-divider-color);
-}
-/* Strip label ("Priority"/"State"/"Due"/"Workflow") is smaller/uppercase than the general
-   row-label style (.task-detail-column-title elsewhere is 14px/400) — scope-override here. */
+/* ---- Attribute strip: Priority | State | Due | Workflow ----
+   Geometry lives in the shared block down in the Case section
+   (".case-detail-attr-strip, .task-detail-attr-strip") — Figma draws the two strips
+   identically, so they share one definition. Only the label/value typography, which uses
+   the page-specific `--task-detail-*` colour aliases, stays here. */
+/* Strip label ("Priority"/"State"/"Due"/"Workflow") is smaller than the general row-label
+   style (.task-detail-column-title elsewhere is 14px) — scope-override here. Figma
+   4004:191811 is sentence case, NOT uppercase; only the eyebrow above is uppercased. */
 .task-detail-attr .task-detail-column-title {
   font-size: var(--portal-detail-label-font-size); /* 12px */
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  font-weight: 500;
+  letter-spacing: 0.06em; /* 0.72px at 12px */
+  line-height: normal;
 }
 .task-detail-attr .task-detail-attr-value {
   display: flex;
@@ -2702,7 +2699,8 @@ body a.portal-detail-toolbar-back:focus,
   gap: 0.4286rem; /* 6px */
   color: var(--task-detail-value-color);
   font-size: var(--portal-detail-font-size); /* 14px */
-  font-weight: 400;
+  font-weight: 500;
+  line-height: normal;
 }
 /* "See details" (Workflow) is a primary-colored link, not a plain value */
 .task-detail-attr .task-detail-attr-value a[id$=":workflow-event-link"],
@@ -2718,20 +2716,24 @@ body a.portal-detail-toolbar-back:focus,
 }
 
 /* Divider tokenized, with explicit vertical margin (~20px each side, per SVG measurement) so it
-   doesn't sit flush against the content above/below it. */
+   doesn't sit flush against the content above/below it.
+   `padding: 0` undoes Freya's `body .ui-divider.ui-divider-horizontal{padding:0 1rem}`, which
+   otherwise insets the rule 14px on each side — Figma draws it full-bleed across the card. */
 .task-item-body .separator-task-detail.ui-divider,
-.task-item-body .separator-task-detail {
-  border-color: var(--task-detail-divider-color);
-  margin: 1.4286rem 0; /* 20px */
+.task-item-body .separator-task-detail,
+.case-detail-body .separator-task-detail.ui-divider,
+.case-detail-body .separator-task-detail {
+  border-color: var(--portal-detail-divider-color);
+  margin: var(--portal-detail-card-gap) 0; /* 20px */
+  padding: 0;
 }
-
-@media screen and (max-width: 640px) {
-  .task-detail-attr-strip > .task-detail-attr {
-    flex-basis: 50%;
-  }
-  .task-detail-attr-strip > .task-detail-attr:nth-child(odd)::before {
-    display: none;
-  }
+/* The visible line is drawn by the ::before, and Freya hard-codes it:
+   `body .ui-divider.ui-divider-horizontal:before{border-top:1px #D4D6D9}` at (0,2,2). Our rules
+   above only set `border-color` on the element, so without this the rule renders #D4D6D9 instead
+   of Neutral/N100. `body` + two classes + the pseudo = (0,3,2), which wins. */
+body .task-item-body .separator-task-detail.ui-divider:before,
+body .case-detail-body .separator-task-detail.ui-divider:before {
+  border-top-color: var(--portal-detail-divider-color);
 }
 
 /* =====================================================================
@@ -2787,6 +2789,7 @@ body a.portal-detail-toolbar-back:focus,
   align-items: center;
   gap: 1.0714rem; /* 15px */
 }
+.task-detail-identity > .flex-column,
 .case-detail-identity > .flex-column {
   gap: 0.3571rem; /* 5px */
 }
@@ -2794,7 +2797,7 @@ body a.portal-detail-toolbar-back:focus,
   text-transform: uppercase;
   letter-spacing: 0.06em; /* 0.72px at 12px */
   font-size: var(--portal-detail-label-font-size); /* 12px */
-  font-weight: 400;
+  font-weight: 500;
   line-height: normal;
   color: var(--portal-detail-eyebrow-color);
 }
@@ -2850,10 +2853,13 @@ body a.portal-detail-toolbar-back:focus,
   line-height: 1;
 }
 
-/* ---- Summary card: attribute strip (Case ID | State | Case Category) --------
-   Figma: 15px vertical / 50px horizontal padding, 50px gap between columns,
-   7px between a column's label and value, 1px Neutral/N100 border, 15px radius. */
-.case-detail-attr-strip {
+/* ---- Shared: summary-card attribute strip -----------------------------------
+   Case ID | State | Case Category (3 columns) and Priority | State | Due | Workflow
+   (4 columns). Figma 3825:125202 / 4004:191809 draw them identically, so one definition:
+   15px vertical / 50px horizontal padding, 50px gap between columns, 7px between a
+   column's label and value, 1px Neutral/N100 border, 15px radius. */
+.case-detail-attr-strip,
+.task-detail-attr-strip {
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
@@ -2863,10 +2869,16 @@ body a.portal-detail-toolbar-back:focus,
   border-radius: var(--portal-detail-card-radius);
   background: var(--portal-detail-strip-bg);
 }
-.case-detail-attr-strip > .case-detail-attr {
+.case-detail-attr-strip > .case-detail-attr,
+.task-detail-attr-strip > .task-detail-attr {
   position: relative;
   flex: 1 1 0;
-  min-width: 10rem; /* 140px */
+  /* 7.5rem, NOT the 10rem the Case-only rule used to carry. The Task strip has FOUR columns
+     where Case has three: in the real card (749px content box) the strip's inner width is
+     647px, so 4 columns land at 124.25px each — a 140px min-width would force a wrap. 124px
+     is also exactly Figma's own Task column width (4x124 + 6x50 = 796 at their 936px card),
+     so 124.25px is the intended size; 105px just leaves headroom before wrapping. */
+  min-width: 7.5rem; /* 105px */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -2874,7 +2886,8 @@ body a.portal-detail-toolbar-back:focus,
 }
 /* Short, vertically-centered divider sitting in the middle of the 50px gap
    (Figma: 30px tall, Neutral/N200). */
-.case-detail-attr-strip > .case-detail-attr:not(:first-child)::before {
+.case-detail-attr-strip > .case-detail-attr:not(:first-child)::before,
+.task-detail-attr-strip > .task-detail-attr:not(:first-child)::before {
   content: "";
   position: absolute;
   left: -1.7857rem; /* -25px */
@@ -2885,9 +2898,12 @@ body a.portal-detail-toolbar-back:focus,
 }
 /* Strip labels are 12px/500 with 0.72px tracking and — unlike the summary eyebrow —
    are NOT uppercased in the Case design. */
-.case-detail-attr .case-detail-column-title {
+/* `.case-detail-body .case-detail-column-title` further down is ALSO (0,2,0) and comes later in
+   source, so it would win and render these strip labels at the KV-row size (14px). Scope this one
+   with `.case-detail-body` too -> (0,3,0), which wins outright. */
+.case-detail-body .case-detail-attr .case-detail-column-title {
   font-size: var(--portal-detail-label-font-size); /* 12px */
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.06em; /* 0.72px at 12px */
   line-height: normal;
   color: var(--portal-detail-label-color);
@@ -2899,7 +2915,7 @@ body a.portal-detail-toolbar-back:focus,
   gap: 0.4286rem; /* 6px */
   color: var(--portal-detail-value-color);
   font-size: var(--portal-detail-font-size); /* 14px */
-  font-weight: 400;
+  font-weight: 500;
   line-height: normal;
 }
 /* The State cell renders the shared CaseState component, which brings its own
@@ -2943,12 +2959,8 @@ body a.portal-detail-toolbar-back:focus,
   color: var(--portal-detail-value-color);
 }
 
-/* Divider between the description and the sub-cards: 20px clear on both sides. */
-.case-detail-body .separator-task-detail.ui-divider,
-.case-detail-body .separator-task-detail {
-  border-color: var(--portal-detail-divider-color);
-  margin: var(--portal-detail-card-gap) 0;
-}
+/* Divider between the description and the sub-cards: styled together with the Task one in the
+   shared `.separator-task-detail` block above (20px clear both sides, full-bleed, N100 rule). */
 
 /* Role & User information + Time Information side by side, equal height, 20px gap. */
 .portal-detail-subcards-row {
@@ -3197,21 +3209,26 @@ body a.portal-detail-toolbar-back:focus,
   line-height: 1;
 }
 
-/* ---- Responsive ------------------------------------------------------------ */
+/* ---- Responsive ------------------------------------------------------------
+   Covers both summary strips, matching the shared geometry defined above. */
 @media screen and (max-width: 960px) {
-  .case-detail-attr-strip {
+  .case-detail-attr-strip,
+  .task-detail-attr-strip {
     gap: 1.4286rem; /* 20px */
     padding: 1.0714rem 1.4286rem; /* 15px 20px */
   }
-  .case-detail-attr-strip > .case-detail-attr:not(:first-child)::before {
+  .case-detail-attr-strip > .case-detail-attr:not(:first-child)::before,
+  .task-detail-attr-strip > .task-detail-attr:not(:first-child)::before {
     left: -0.7143rem; /* -10px */
   }
 }
 @media screen and (max-width: 640px) {
-  .case-detail-attr-strip > .case-detail-attr {
+  .case-detail-attr-strip > .case-detail-attr,
+  .task-detail-attr-strip > .task-detail-attr {
     flex-basis: 100%;
   }
-  .case-detail-attr-strip > .case-detail-attr::before {
+  .case-detail-attr-strip > .case-detail-attr::before,
+  .task-detail-attr-strip > .task-detail-attr::before {
     display: none;
   }
   .portal-detail-subcards-row > .portal-detail-inner-card {

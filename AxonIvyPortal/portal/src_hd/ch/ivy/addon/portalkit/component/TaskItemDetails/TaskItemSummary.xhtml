@@ -12,7 +12,11 @@
      duplication. Values are handed in via ui:param from TaskItemDetails.xhtml. -->
 <ui:composition>
   <div class="task-detail-header-card">
-    <div class="task-detail-section-title task-detail-header-row ui-g-12 u-padding-0 flex align-items-start justify-content-between flex-wrap">
+    <!-- align-items-center, not -start: Figma's Header Container (node 4004:191786) uses
+         `items-center`, same as the Case card. PrimeFlex emits `align-items:flex-start!important`,
+         which no amount of specificity in portal.css can override — so the alignment has to be
+         set here. -->
+    <div class="task-detail-section-title task-detail-header-row ui-g-12 u-padding-0 flex align-items-center justify-content-between flex-wrap">
       <div class="task-detail-identity" role="heading" aria-level="1">
         <div class="flex flex-column u-truncate-text">
           <span class="task-detail-eyebrow">#{ivy.cms.co('/Labels/Task')}</span>

@@ -36,7 +36,7 @@
            `.ui-g-6`) so both sub-cards stretch to equal height and get a real gap between
            them instead of touching, per Figma. -->
       <div class="ui-g-12 u-padding-0 task-detail-subcards-row">
-    <div id="role-and-user-information" class="ui-sm-12 ui-md-12 ui-lg-12 role-and-user-information task-detail-inner-card">
+    <div id="role-and-user-information" class="role-and-user-information task-detail-inner-card">
       <div class="ui-g-12 task-detail-title task-detail-subcard-title flex align-items-center justify-content-between">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/RoleUserInformation')}" styleClass="text-ellipsis" />
         <p:commandLink id="delegate-task-command" styleClass="task-detail-delegate-link" global="false"
@@ -91,7 +91,7 @@
     </div>
 
     <!-- Time information -->
-    <div id="time-information" class="ui-sm-12 ui-md-12 ui-lg-12 time-information task-detail-inner-card">
+    <div id="time-information" class="time-information task-detail-inner-card">
       <div class="ui-g-12 task-detail-title task-detail-subcard-title">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timeInformation')}" styleClass="text-ellipsis" />
       </div>
