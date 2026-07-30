@@ -70,8 +70,8 @@
           ariaLabel="#{ivy.cms.co('/Labels/Share')}"
           title="#{ivy.cms.co('/Labels/Share')}" styleClass="portal-icon-btn-round portal-icon-btn-lg"/>
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{caseDetailsBean.readOnlyMode}"
-        ariaLabel="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}"
-        value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{caseDetailsBean.switchToEditMode()}"
+        ariaLabel="#{ivy.cms.co('/Labels/EditLayout')}"
+        value="#{ivy.cms.co('/Labels/EditLayout')}" actionListener="#{caseDetailsBean.switchToEditMode()}"
         icon="#{visibilityBean.generateButtonIcon('ti ti-pencil')}" styleClass="portal-pill-btn portal-pill-btn-lg"
         update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid();PortalLayout.hideHorizontalScrollOnLayoutContent()" />
       <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"

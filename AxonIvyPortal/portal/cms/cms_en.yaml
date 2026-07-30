@@ -1485,7 +1485,6 @@ Dialogs:
     TaskDetail:
       DataDescription: Data and Description
       restoreToDefaultSettings: Restore to default settings
-      switchToEditMode: Edit
       switchToViewMode: Save
   agileBPM:
     define_WF:
@@ -1919,6 +1918,7 @@ Labels:
   CreateNewDashboard: Create new dashboard
   Description: Description
   EditDescription: Edit description
+  EditLayout: Edit layout
   EnterFromValue: Enter from value
   EnterToValue: Enter to value
   EnterValue: Enter value

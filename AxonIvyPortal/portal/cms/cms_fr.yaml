@@ -1486,7 +1486,6 @@ Dialogs:
     TaskDetail:
       DataDescription: Données et description
       restoreToDefaultSettings: Rétablir les paramètres par défaut
-      switchToEditMode: Editer
       switchToViewMode: Enregistrer
   agileBPM:
     define_WF:
@@ -1930,6 +1929,7 @@ Labels:
   CreateNewDashboard: Créer un nouveau tableau de bord
   Description: Description
   EditDescription: Editer la description
+  EditLayout: Modifier la mise en page
   EnterFromValue: Saisir la valeur initiale
   EnterToValue: |
     Saisir la valeur finale

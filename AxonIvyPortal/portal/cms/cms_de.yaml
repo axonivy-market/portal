@@ -1488,7 +1488,6 @@ Dialogs:
     TaskDetail:
       DataDescription: Daten und Beschreibung
       restoreToDefaultSettings: Standardeinstellungen wiederherstellen
-      switchToEditMode: Bearbeiten
       switchToViewMode: Speichern
   agileBPM:
     define_WF:
@@ -1934,6 +1933,7 @@ Labels:
   CreateNewDashboard: Neues Dashboard erstellen
   Description: Beschreibung
   EditDescription: Beschreibung bearbeiten
+  EditLayout: Layout bearbeiten
   EnterFromValue: Anfangswert eingeben
   EnterToValue: Endwert eingeben
   EnterValue: Wert eingeben
