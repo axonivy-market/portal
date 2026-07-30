@@ -1429,6 +1429,10 @@ body .ui-button.ui-widget.filter-dialog__save-button {
   border: none;
 }
 
+body .ui-button.ui-widget.filter-dialog__save-button:hover {
+  background: var(--widget-button-hover-background-color);
+}
+
 body .ui-button.ui-widget.filter-dialog__save-button .ui-button-text {
   padding: 0;
   color: var(--widget-filter-save-filter-button-text-color);
@@ -2269,6 +2273,11 @@ a.saved-filter__manage-filter {
   border-radius: 100px;
   background-color: var(--widget-filter-add-condition-background-color);
   color: var(--widget-filter-add-condition-text-color);
+}
+
+.dashboard-widget-filter__main-panel .add-condition-button.ui-button:hover {
+  background: var(--start-btn-hover-bg);
+  color: var(--start-btn-text-color);
 }
 
 .dashboard-widget-filter__main-panel .add-condition-button.ui-button .ui-button-text {
