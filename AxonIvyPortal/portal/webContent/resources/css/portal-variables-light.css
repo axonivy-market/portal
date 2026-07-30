@@ -28,6 +28,7 @@
   --start-btn-bg: var(--ivy-portal-blue-pale);
   --start-btn-border-color: var(--ivy-portal-blue-muted);
   --start-btn-text-color: var(--ivy-portal-blue-dark);
+  --start-btn-hover-bg: hsla(195, 42%, 80%, 1);
   --start-btn-disabled-bg: var(--ivy-portal-color-gray-spaces);
   --start-btn-disabled-border-color: var(--ivy-portal-color-gray-light);
   --start-btn-disabled-text-color: var(--ivy-portal-color-gray-medium);
@@ -35,7 +36,7 @@
   /* Color and border radius of context button, it only affects when button has attribute styleClass="context-button" */
   --context-button-border-radius: 0px;
   --context-button-background-color: var(--ivy-primary-color-grey-light);
-  --context-button-state-hover-or-focus-background-color: var(--ivy-primary-color-grey-pale);
+  --context-button-state-hover-or-focus-background-color: hsla(0, 0%, 94%, 1);
 
   /* Widget header */
   --widget-header-main-border-bottom-color: var(--ivy-primary-color-grey-light);
@@ -375,6 +376,7 @@
   --widget-header-icon: var(--ivy-primary-color-black);
   --widget-button-border-color: var(--ivy-portal-color-gray-light);
   --widget-button-background-color: var(--ivy-portal-color-gray-spaces);
+  --widget-button-hover-background-color: hsla(0, 0%, 94%, 1);
   --widget-view-toggle-bg: hsla(0, 0%, 97%, 1);
   --widget-view-toggle-active-bg: hsla(0, 0%, 100%, 1);
   --widget-view-toggle-icon: var(--ivy-portal-color-gray-medium);
