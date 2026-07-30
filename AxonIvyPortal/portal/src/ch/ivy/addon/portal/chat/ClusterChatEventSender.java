@@ -1,6 +1,6 @@
 package ch.ivy.addon.portal.chat;
 
-import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.app;
 import static ch.ivy.addon.portal.chat.ClusterChatAction.PORTAL_CHAT_HANDLE_USER_OFFLINE;
 import static ch.ivy.addon.portal.chat.ClusterChatAction.PORTAL_CHAT_READ_GROUP_MESSAGE;
 import static ch.ivy.addon.portal.chat.ClusterChatAction.PORTAL_CHAT_READ_MESSAGE;
@@ -54,9 +54,8 @@ public class ClusterChatEventSender {
     broadcastClusterChat(PORTAL_CHAT_READ_GROUP_MESSAGE, param);
   }
 
-  @SuppressWarnings("removal")
   private static void broadcastClusterChat(ClusterChatAction action, ClusterChatEventParameter param) {
-    wf().getApplication().systemEventDispatcher().sendSystemEvent(new SystemEvent<>(THIRD_PARTY, action.name(), param));
+    app().systemEventDispatcher().sendSystemEvent(new SystemEvent<>(THIRD_PARTY, action.name(), param));
   }
 
   private static String sessionUserName() {

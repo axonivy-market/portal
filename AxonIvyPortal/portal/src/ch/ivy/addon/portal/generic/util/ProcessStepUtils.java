@@ -2,14 +2,13 @@ package ch.ivy.addon.portal.generic.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ProcessStep;
 import ch.ivy.addon.portalkit.configuration.UserProcess;
-import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.application.app.ApplicationRepository;
-import ch.ivyteam.ivy.application.project.Project;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.exec.Sudo;
@@ -37,14 +36,14 @@ public class ProcessStepUtils {
     String processModelName = processParts[processParts.length - 3];
 
     return Sudo.get(() -> {
-      Project releasedProcessModelVersion = null;
-      List<Application> apps = ApplicationRepository.of(ISecurityContext.current()).allReleased();
-      for (var app : apps) {
-        releasedProcessModelVersion = app.projects().find(processModelName);        
-      }
-      
-      if (releasedProcessModelVersion != null) {
-        ContentManagement contentManagement = ContentManagement.of(ContentManagement.cms(releasedProcessModelVersion));
+      var project = ApplicationRepository.of(ISecurityContext.current()).allReleased()
+        .map(app -> app.projects().find(processModelName))
+        .filter(Objects::nonNull)
+        .findAny()
+        .orElse(null);
+            
+      if (project != null) {
+        ContentManagement contentManagement = ContentManagement.of(ContentManagement.cms(project));
         String processSteps = contentManagement.co(SLASH.concat(PROCESSES_CMS_URI).concat(SLASH).concat(processName).concat(SLASH).concat(PROCESS_STEP));
         if (StringUtils.isNotBlank(processSteps)) {
           return convertToProcessStep(processSteps);

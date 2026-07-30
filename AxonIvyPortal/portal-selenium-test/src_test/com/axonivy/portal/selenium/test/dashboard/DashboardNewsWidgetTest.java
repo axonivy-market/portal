@@ -83,6 +83,7 @@ public class DashboardNewsWidgetTest extends BaseTest {
     newsWidget.getNewsItemIcon(newsItemIndex).shouldHave(Condition.cssClass(NEWS_ITEM_ICON));
     newsWidget.getNewsItemTitle(newsItemIndex).shouldHave(Condition.text(NEWS_ITEM_TITLE));
     newsWidget.getNewsItemContent(newsItemIndex).shouldHave(Condition.text(NEWS_ITEM_CONTENT));
+    deleteExistingNewsItem(newsItemIndex);
   }
 
   @Test
@@ -110,6 +111,7 @@ public class DashboardNewsWidgetTest extends BaseTest {
     newsWidget.getNewsItemIcon(newsItemIndex).shouldHave(Condition.cssClass(NEWS_ITEM_ICON));
     newsWidget.getNewsItemTitle(newsItemIndex).shouldHave(Condition.text(NEWS_ITEM_TITLE));
     newsWidget.getNewsItemContent(newsItemIndex).shouldHave(Condition.text(NEWS_ITEM_CONTENT));
+    deleteExistingNewsItem(newsItemIndex);
   }
 
   private void changeLanguageToFrench(String menuName, int languageIndex) {
@@ -136,6 +138,7 @@ public class DashboardNewsWidgetTest extends BaseTest {
     newsWidget.getNewsItemIcon(newsItemIndex).shouldHave(Condition.cssClass(editIcon));
     newsWidget.getNewsItemTitle(newsItemIndex).shouldHave(Condition.text(editTitle));
     newsWidget.getNewsItemContent(newsItemIndex).shouldHave(Condition.text(editContent));
+    deleteExistingNewsItem(newsItemIndex);
   }
 
   private void editExistingNewsItem(int newsItemIndex, String langTag, String editIcon, String editTitle,
@@ -166,6 +169,12 @@ public class DashboardNewsWidgetTest extends BaseTest {
     newsWidget.getNewsEmptyMessage().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
+  private void deleteExistingNewsItem(int newsItemIndex) {
+    newsWidget.clickOnDeleteIconOfNews(newsItemIndex);
+    newsWidget.confirmAndRemoveNewsItem();
+    newsWidget.getNewsEmptyMessage().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
   private void publishSampleNewsFeed(String languageTag) {
     newsWidget.openAddNewsFeedItemDialog();
     newsWidget.enterNewsItemData(languageTag, NEWS_ITEM_ICON, NEWS_ITEM_TITLE, NEWS_ITEM_CONTENT);
@@ -180,6 +189,7 @@ public class DashboardNewsWidgetTest extends BaseTest {
     redirectToNewDashBoard();
     DashboardNewsWidgetPage newsWidget = newDashboardPage.selectNewsFeedWidget(DEFAULT_NEWS_WIDGET_NAME);
     newsWidget.expand().shouldHave(size(1));
+    newsWidget.getNewsEmptyMessage().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return newsWidget;
   }
 

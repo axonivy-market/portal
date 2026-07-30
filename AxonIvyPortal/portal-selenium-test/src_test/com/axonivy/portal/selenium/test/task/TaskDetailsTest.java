@@ -16,6 +16,7 @@ import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
@@ -157,10 +158,9 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, TAKE_ORDER);
     taskWidget.applyFilter();
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    taskWidget.startTask(0);
-    // at this stage, start task then it's done
-    // user will be redirected to task list
-    // then we should click on the task again to go to task detail as I observe
+    TopMenuTaskWidgetPage takeOrderTaskWidget = taskWidget;
+    WaitHelper.waitForNavigation(() -> takeOrderTaskWidget.startTask(0));
+
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     refreshPage();
     taskWidget.clickOnTaskName(TAKE_ORDER);
