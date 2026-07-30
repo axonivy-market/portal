@@ -13,8 +13,10 @@ import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivyteam.ivy.environment.Ivy;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@FacesValidator(value = "newsEditorValidator")
+@FacesValidator(value = "newsEditorValidator", managed = true)
+@ApplicationScoped
 public class NewsEditorValidator implements Validator<Object> {
 
   private static final int MAX_NEWS_CONTENT_LENGTH = 1000;
