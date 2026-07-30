@@ -24,10 +24,19 @@
   --button-secondary-bg-color: var(--ivy-primary-color-white);
   --button-secondary-text-color: var(--primary-color);
 
+  /* Start button (task widget start column) */
+  --start-btn-bg: var(--ivy-portal-blue-pale);
+  --start-btn-border-color: var(--ivy-portal-blue-muted);
+  --start-btn-text-color: var(--ivy-portal-blue-dark);
+  --start-btn-hover-bg: hsla(195, 42%, 80%, 1);
+  --start-btn-disabled-bg: var(--ivy-portal-color-gray-spaces);
+  --start-btn-disabled-border-color: var(--ivy-portal-color-gray-light);
+  --start-btn-disabled-text-color: var(--ivy-portal-color-gray-medium);
+
   /* Color and border radius of context button, it only affects when button has attribute styleClass="context-button" */
   --context-button-border-radius: 0px;
   --context-button-background-color: var(--ivy-primary-color-grey-light);
-  --context-button-state-hover-or-focus-background-color: var(--ivy-primary-color-grey-pale);
+  --context-button-state-hover-or-focus-background-color: hsla(0, 0%, 94%, 1);
 
   /* Widget header */
   --widget-header-main-border-bottom-color: var(--ivy-primary-color-grey-light);
@@ -61,6 +70,7 @@
   --statistic-filter-accordion-panel-border: var(--ivy-primary-color-grey-light);
   --chart-container-background-color: #e6f1f5;
   --chart-container-number-color: var(--ivy-primary-color);
+  --chart-container-number-border-color: hsla(194.9, 100%, 29.22%, 1);
   
   /* Sidebar */
   --sidebar-app-text-color: var(--menuitem-text-color);
@@ -81,7 +91,7 @@
   --widget-advanced-filter-hover-border: var(--ivy-primary-color-grey-light);
   --widget-filter-selection-container-border: transparent;
   --widget-advanced-filter-command-state-focus-background-color: none;
-  --widget-advanced-filter-overlay-panel-footer: var(--ivy-primary-color-grey-light);
+  --widget-advanced-filter-dialog-footer: var(--ivy-primary-color-grey-light);
   --widget-advanced-filter-command-background-color: none;
   --widget-advanced-filter-background-color: none;
   --widget-advanced-filter-hover-backround-color: var(--ivy-primary-color-grey-pale);
@@ -89,6 +99,31 @@
   --filter-selection-container-group-border-color: var(--ivy-primary-color-grey-medium);
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
   --widget-filter-background-color: var(--ivy-primary-color-grey-pale);
+
+  --wdiget-filter-save-filter-button-background-color: var(--ivy-portal-color-gray-75);
+  --widget-filter-condition-accent-border-color: var(--ivy-portal-blue-muted);
+  --widget-filter-add-condition-background-color: var(--ivy-portal-blue-pale);
+  --widget-filter-and-badge-background-color: var(--ivy-portal-blue-pale);
+  --widget-filter-and-badge-text-color: var(--primary-color);
+  --widget-filter-subtle-surface-color: var(--ivy-portal-color-gray-spaces);
+  --widget-filter-subtle-border-color: var(--ivy-portal-color-gray-light);
+  --widget-filter-chip-border-color: var(--ivy-portal-color-gray-light);
+  --widget-filter-save-input-border-color: hsla(0, 0%, 95%, 1);
+  --widget-filter-save-input-background-color: hsla(0, 0%, 97%, 1);
+  --widget-filter-empty-icon-color: var(--ivy-portal-color-gray-69);
+  --widget-filter-empty-icon-background-color: hsla(0, 0%, 97%, 1);
+  --widget-filter-apply-button-background-color: var(--primary-color);
+  --widget-filter-apply-button-text-color: var(--ivy-primary-color-white);
+  --widget-filter-add-condition-text-color: var(--primary-color);
+  --widget-filter-save-filter-button-text-color: var(--ivy-primary-color-black);
+  --widget-filter-reset-button-text-color: var(--primary-color);
+  --widget-filter-manage-filter-text-color: var(--primary-color);
+  --widget-filter-saved-item-background-color: var(--widget-filter-background-color);
+  --widget-filter-saved-item-active-background-color: var(--saved-filter-button-background-color);
+  --widget-filter-saved-item-active-border: 2px solid var(--ivy-primary-color);
+  --widget-filter-saved-item-active-text-color: var(--ivy-primary-color);
+  --widget-filter-dialog-box-shadow: 0 0 27.225px 0 rgba(0, 0, 0, 0.05);
+  --widget-filter-dialog-backdrop-color: rgba(0, 0, 0, 0.4);
 
   /* Item in Widget List */
   --item-widget-background-color: var(--ivy-primary-color-grey-pale);
@@ -424,6 +459,13 @@
   --widget-filter-noti-background-color: var(--ivy-tertinary-color-red-medium);
   --widget-filter-noti-color: var(--ivy-primary-color-white);
   --widget-header-icon: var(--ivy-primary-color-black);
+  --widget-button-border-color: var(--ivy-portal-color-gray-light);
+  --widget-button-background-color: var(--ivy-portal-color-gray-spaces);
+  --widget-button-hover-background-color: hsla(0, 0%, 94%, 1);
+  --widget-view-toggle-bg: hsla(0, 0%, 97%, 1);
+  --widget-view-toggle-active-bg: hsla(0, 0%, 100%, 1);
+  --widget-view-toggle-icon: var(--ivy-portal-color-gray-medium);
+  --widget-view-toggle-border: var(--ivy-portal-color-gray-light);
   /* New Dashboard */
   --dashboard-table-column-small-screen-description-color: var(--ivy-primary-color-grey-medium);
   --new-widget-dialog-title-color: var(--ivy-primary-color-black);
