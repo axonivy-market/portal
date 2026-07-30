@@ -12,8 +12,10 @@ import jakarta.faces.validator.ValidatorException;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@FacesValidator("taskDelayTimestampValidator")
+@FacesValidator(value = "taskDelayTimestampValidator", managed = true)
+@ApplicationScoped
 public class TaskDelayTimestampValidator implements Validator<Object> {
 
   @Override

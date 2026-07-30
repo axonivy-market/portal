@@ -17,8 +17,10 @@ import com.axonivy.portal.components.util.FacesMessageUtils;
 import ch.ivy.addon.portal.generic.bean.ColumnManagementBean;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.environment.Ivy;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@FacesValidator("duplicateFieldValidator")
+@FacesValidator(value = "duplicateFieldValidator", managed = true)
+@ApplicationScoped
 public class DuplicateFieldValidator implements Validator<Object> {
 
   @SuppressWarnings("unchecked")

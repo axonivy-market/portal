@@ -5,8 +5,10 @@ import jakarta.faces.convert.FacesConverter;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.configuration.UserProcess;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@FacesConverter("userProcessConverter")
+@FacesConverter(value = "userProcessConverter", managed = true)
+@ApplicationScoped
 public class UserProcessConverter extends AbstractConverter<UserProcessConverter> {
 
   @Override
