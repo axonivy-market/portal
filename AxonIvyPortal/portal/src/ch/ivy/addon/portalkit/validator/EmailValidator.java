@@ -13,8 +13,10 @@ import jakarta.faces.validator.ValidatorException;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@FacesValidator("emailValidator")
+@FacesValidator(value = "emailValidator", managed = true)
+@ApplicationScoped
 public class EmailValidator implements Validator<Object> {
   public static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
   private static final Pattern EMAIL_VALIDATION_PATTERN = Pattern.compile(EMAIL_PATTERN);

@@ -16,8 +16,10 @@ import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.environment.Ivy;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@FacesValidator(value = "dashboardDateFilterValidator")
+@FacesValidator(value = "dashboardDateFilterValidator", managed = true)
+@ApplicationScoped
 public class DashboardDateFilterValidator implements Validator<Object> {
 
   private static final String MESSAGE_PREFIX_PATTERN = "%s(%d)";

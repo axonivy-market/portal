@@ -9,8 +9,10 @@ import jakarta.faces.convert.ConverterException;
 import jakarta.faces.convert.FacesConverter;
 
 import org.apache.commons.lang3.StringUtils;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@FacesConverter("filenameConverter")
+@FacesConverter(value = "filenameConverter", managed = true)
+@ApplicationScoped
 public class FilenameConverter implements Converter<Object> {
 
   @Override
