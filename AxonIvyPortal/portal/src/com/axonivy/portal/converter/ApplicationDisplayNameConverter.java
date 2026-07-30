@@ -7,8 +7,10 @@ import jakarta.faces.convert.ConverterException;
 import jakarta.faces.convert.FacesConverter;
 
 import org.apache.commons.lang3.StringUtils;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@FacesConverter("applicationDisplayNameConverter")
+@FacesConverter(value = "applicationDisplayNameConverter", managed = true)
+@ApplicationScoped
 public class ApplicationDisplayNameConverter implements Converter<Object> {
 
   @Override

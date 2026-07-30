@@ -16,8 +16,10 @@ import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
 import ch.ivyteam.ivy.environment.Ivy;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@FacesValidator(value = "dashboardTextFilterValidator")
+@FacesValidator(value = "dashboardTextFilterValidator", managed = true)
+@ApplicationScoped
 public class DashboardTextFilterValidator implements Validator<Object> {
 
   private static final String MESSAGE_PREFIX_PATTERN = "%s(%d)";
