@@ -6043,6 +6043,38 @@ body .quick-search-icon {
   margin-right: 0.7rem;
 }
 
+body .table-widget-icon-button {
+  width: 2.711rem !important;
+  height: 2.711rem !important;
+}
+
+body .table-widget-action-button {
+  width: 2.711rem !important;
+  height: 2.711rem !important;
+}
+
+body .widget-view-toggle.table-widget-view-toggle {
+  width: 5.091rem !important;
+  height: 2.711rem !important;
+}
+
+body .actions-menu-panel {
+  width: 16.143rem !important;
+  height: 15.714rem !important;
+  overflow: hidden;
+}
+
+body .actions-menu-panel .ui-menuitem {
+  height: 3.143rem !important;
+}
+
+body .actions-menu-panel .ui-menuitem-link {
+  height: 100% !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
 body .widget-view-toggle {
   display: inline-flex;
   align-items: center;
