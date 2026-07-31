@@ -33,7 +33,7 @@
               <h:outputText id="project-name" value="#{pmv.getName()}" />
             </p:column>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}" styleClass="project-version" >
-              <h:outputText id="project-version" value="#{pmv.getLibraryVersion()}" />
+              <h:outputText id="project-version" value="#{pmv.mavenCoordinates().version()}" />
             </p:column>
           </p:dataTable>
         </div>
