@@ -1,0 +1,394 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "1802215F521FBBAA",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.generic.TaskDocuments.TaskDocumentsData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(String)",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "uuid", "type" : "String", "desc" : "" }
+          ],
+          "map" : { },
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
+            "out.task = TaskService.newInstance().findTaskByUUID(param.uuid);"
+          ]
+        },
+        "guid" : "1802215F56A1C1AA"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : 22 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "1802215F5712F489"
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 64 }
+      }
+    }, {
+      "id" : "f30",
+      "type" : "SubProcessCall",
+      "name" : "Find documents",
+      "config" : {
+        "processCall" : "Functional Processes/GetDocumentList:getDocumentList(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.businessCase" : "in.task.getCase().getBusinessCase()"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.documents" : "result.documents"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f8" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "initData()",
+      "config" : {
+        "signature" : "initData",
+        "guid" : "1802244D8B3A4339"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -7 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f30" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 160 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 256 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "SubProcessCall",
+      "name" : "Download Document",
+      "config" : {
+        "processCall" : "Functional Processes/DownloadDocument:downloadDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "call" : {
+          "map" : {
+            "param.bussinessCase" : "in.task.getCase().getBusinessCase()",
+            "param.document" : "in.document"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.streamedContent" : "result.streamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 256 },
+        "size" : { "width" : 128 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "deleteDocument()",
+      "config" : {
+        "signature" : "deleteDocument",
+        "guid" : "180402B1B9EC50AB"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 352 }
+      },
+      "connect" : [
+        { "id" : "f25", "to" : "f19" }
+      ]
+    }, {
+      "id" : "f38",
+      "type" : "SubProcessCall",
+      "name" : "Find documents",
+      "config" : {
+        "processCall" : "Functional Processes/GetDocumentList:getDocumentList(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.businessCase" : "in.task.getCase().getBusinessCase()"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.documents" : "result.documents"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 568, "y" : 352 }
+      },
+      "connect" : [
+        { "id" : "f24", "to" : "f22" }
+      ]
+    }, {
+      "id" : "f22",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 672, "y" : 352 }
+      }
+    }, {
+      "id" : "f50",
+      "type" : "Script",
+      "name" : [
+        "Show success",
+        "message"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
+            "",
+            "FacesContext.getCurrentInstance().addMessage(\"task-document-global-messages\", FacesMessageUtils.sanitizedMessage(in.deleteDocumentMessage, \"\" ));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 392, "y" : 352 },
+        "size" : { "width" : 128 }
+      },
+      "connect" : [
+        { "id" : "f39", "to" : "f38" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "SubProcessCall",
+      "name" : "Delete Document",
+      "config" : {
+        "processCall" : "Functional Processes/DeleteDocument:deleteDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "call" : {
+          "map" : {
+            "param.businessCase" : "in.task.getCase().getBusinessCase()",
+            "param.document" : "in.document"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.deleteDocumentMessage" : "result.message"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 352 }
+      },
+      "connect" : [
+        { "id" : "f26", "to" : "f50" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "downloadDocument(IvyDocument)",
+      "config" : {
+        "signature" : "downloadDocument",
+        "input" : {
+          "params" : [
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
+          ],
+          "map" : {
+            "out.document" : "param.document"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+          ],
+          "map" : {
+            "result.streamedContent" : "in.streamedContent"
+          }
+        },
+        "guid" : "180402B1B9E2C8F4"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f13",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "renameDocument()",
+      "config" : {
+        "signature" : "renameDocument",
+        "guid" : "1991448934766BB6"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 472 }
+      },
+      "connect" : [
+        { "id" : "f43", "to" : "f37" }
+      ]
+    }, {
+      "id" : "f37",
+      "type" : "SubProcessCall",
+      "name" : "Rename Document",
+      "config" : {
+        "processCall" : "Functional Processes/RenameDocumentItem:renameDocumentItem(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "call" : {
+          "map" : {
+            "param.businessCase" : "in.task.getCase()",
+            "param.document" : "in.document"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.isRenameDocumentSuccess" : "result.isSuccess",
+            "out.renameDocumentMessage" : "result.message"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 472 }
+      },
+      "connect" : [
+        { "id" : "f48", "to" : "f44" }
+      ]
+    }, {
+      "id" : "f44",
+      "type" : "Alternative",
+      "name" : "rename successfully?",
+      "config" : {
+        "conditions" : {
+          "f45" : "in.isRenameDocumentSuccess"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 376, "y" : 472 },
+        "labelOffset" : { "x" : 24, "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f45", "to" : "f14", "label" : {
+            "name" : "Yes"
+          } },
+        { "id" : "f47", "to" : "f16", "label" : {
+            "name" : "No"
+          } }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "Script",
+      "name" : "Show success message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import jakarta.faces.context.FacesContext;",
+            "",
+            "String successMsg = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocumentSuccess\");",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(successMsg, \"\" ));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 512, "y" : 472 }
+      },
+      "connect" : [
+        { "id" : "f52", "to" : "f40" }
+      ]
+    }, {
+      "id" : "f16",
+      "type" : "Script",
+      "name" : "Show error message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
+            "",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.renameDocumentMessage, null));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 376, "y" : 592 }
+      },
+      "connect" : [
+        { "id" : "f55", "to" : "f40", "via" : [ { "x" : 688, "y" : 592 } ] }
+      ]
+    }, {
+      "id" : "f40",
+      "type" : "SubProcessCall",
+      "name" : "Find documents",
+      "config" : {
+        "processCall" : "Functional Processes/GetDocumentList:getDocumentList(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.businessCase" : "in.task.getCase()"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.documents" : "result.documents"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 472 }
+      },
+      "connect" : [
+        { "id" : "f54", "to" : "f41" }
+      ]
+    }, {
+      "id" : "f41",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 808, "y" : 472 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    } ]
+}
