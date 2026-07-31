@@ -2665,6 +2665,11 @@ body .widget-view-toggle .ui-button.ui-widget.widget-view-toggle__button.widget-
 }
 /* =================== WIDGET VIEW TOGGLE END ====================== */
 
+body .dashboard-side-steps-menu-button {
+  width: 2.143rem !important; /* 30px */
+  height: 2.143rem !important;
+}
+
 .responsibles-avatar-group .ui-avatar + .ui-avatar {
   margin-left: -0.5rem;
 }
