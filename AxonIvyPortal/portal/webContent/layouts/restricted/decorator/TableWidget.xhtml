@@ -110,14 +110,14 @@
     
     <h:panelGroup layout="block" styleClass="quick-search-icon" rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch()}">
      <!-- Quick search icon button -->
-     <p:commandButton id="quick-search-icon-#{index}" icon="ti ti-search" styleClass="rounded-button ui-button-outlined ui-button-widget"
+     <p:commandButton id="quick-search-icon-#{index}" icon="ti ti-search" styleClass="rounded-button ui-button-outlined ui-button-widget widget-icon-button"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}"
       onclick="showQuickSearchInput(#{index});" global="false" disabled="#{!isReadOnlyMode}" >
      </p:commandButton>
     </h:panelGroup>
 
     <h:panelGroup id="view-toggle-panel-#{index}" layout="block" rendered="#{widget.type.name() eq 'TASK' and isReadOnlyMode}"
-        styleClass="widget-view-toggle">
+        styleClass="widget-view-toggle table-widget-view-toggle">
       <!-- View toggle - List -->
       <p:commandButton id="view-toggle-list-#{index}" type="button" icon="ti ti-list"
         styleClass="widget-view-toggle__button widget-view-toggle__button--active"
@@ -132,7 +132,7 @@
         rendered="#{isReadOnlyMode}">
         <h:form id="actions-widget-form">
           <!-- Actions menu button -->
-          <p:menuButton id="actions-menu-button" menuStyleClass="actions-menu-panel" collision="flipfit"  buttonStyleClass="rounded-button ui-button-widget ui-button-outlined actions-menu-button-#{index}" icon="ti ti-dots">
+          <p:menuButton id="actions-menu-button" menuStyleClass="actions-menu-panel" collision="flipfit"  buttonStyleClass="rounded-button ui-button-widget ui-button-outlined actions-menu-button-#{index} widget-icon-button" icon="ti ti-dots">
             <!-- Bulk selection -->
             <p:menuitem id="bulk-delegate-toggle-button-#{index}" rendered="#{renderSelectionToggle}"
               icon="ti ti-list-check" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/bulkSelection')}"
@@ -223,7 +223,7 @@
       <p:commandButton id="edit-widget-#{index}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
         icon="ti ti-pencil"
-        styleClass="rounded-button ui-button-outlined u-hidden-sm-down u-mar-right-5"
+        styleClass="rounded-button ui-button-outlined u-hidden-sm-down u-mar-right-5 widget-icon-button"
         oncomplete="PF('new-widget-configuration-dialog').show()"
         global="false"
         actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
@@ -236,7 +236,7 @@
 
       <!-- Clone widget button (copy) -->
       <p:commandButton id="clone-widget-#{index}" type="button" icon="ti ti-copy"
-        styleClass="rounded-button ui-button-outlined u-mar-right-5"
+        styleClass="rounded-button ui-button-outlined u-mar-right-5 widget-icon-button"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CloneWidget')}"
         rendered="#{!isReadOnlyMode}">
         <p:ajax event="click" listener="#{cloneWidgetBean.setCloneWidget(widget)}"
@@ -251,7 +251,7 @@
       <p:commandButton id="delete-widget-#{index}"
         icon="ti ti-trash"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
-        styleClass="rounded-button ui-button-outlined ui-button-danger"
+        styleClass="rounded-button ui-button-outlined ui-button-danger widget-icon-button"
         oncomplete="PF('remove-widget-dialog').show()"
         global="false"
         actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
