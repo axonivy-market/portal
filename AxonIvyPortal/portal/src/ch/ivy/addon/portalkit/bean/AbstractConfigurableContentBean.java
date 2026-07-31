@@ -282,14 +282,20 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
 
   public void save() throws IOException {
     this.isReadOnlyMode = true;
-    updateToConfiguration();
+    List<WidgetLayout> layouts = extractWidgetLayoutFromRequest();
+    if (CollectionUtils.isEmpty(layouts)) {
+      // The request carries no grid payload, e.g. the AJAX request of the save button itself:
+      // only the `saveConfigurationCommand` remote command posts the `nodes` parameter. Bail out
+      // instead of persisting, otherwise configuration.setWidgets(emptyList) wipes the layout.
+      return;
+    }
+    updateToConfiguration(layouts);
     saveConfigurationsToUserProperty();
     this.isReseted = false;
   }
 
-  private List<AbstractWidget> getUpdatedWidgets() throws JsonMappingException, JsonProcessingException {
+  private List<AbstractWidget> getUpdatedWidgets(List<WidgetLayout> layouts) {
     var result = new ArrayList<AbstractWidget>();
-    List<WidgetLayout> layouts = extractWidgetLayoutFromRequest();
     CollectionUtils.emptyIfNull(layouts).forEach(layout -> {
       AbstractWidget currentWidget = widgets.stream()
                 .filter(widget -> Strings.CS.equals(widget.getId(), layout.getId()))
@@ -307,6 +313,9 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
   protected List<WidgetLayout> extractWidgetLayoutFromRequest() throws JsonProcessingException, JsonMappingException {
     Map<String, String> requestParamMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
     var nodes = Optional.ofNullable(requestParamMap.get("nodes")).orElse(EMPTY);
+    if (StringUtils.isBlank(nodes)) {
+      return List.of();
+    }
     return Arrays.asList(mapper.readValue(nodes, WidgetLayout[].class));
   }
 
@@ -335,9 +344,9 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
     return config -> Strings.CS.equals(compareId, config.getId());
   }
 
-  protected void updateToConfiguration() throws JsonMappingException, JsonProcessingException {
+  protected void updateToConfiguration(List<WidgetLayout> layouts) throws JsonMappingException, JsonProcessingException {
     configuration.setChanged(!this.isReseted);
-    List<AbstractWidget> updateWidgets = getUpdatedWidgets();
+    List<AbstractWidget> updateWidgets = getUpdatedWidgets(layouts);
     if (CollectionUtils.isNotEmpty(this.widgets)) {
       for (AbstractWidget widget : updateWidgets) {
         if (doesWidgetExist(widget)) {
