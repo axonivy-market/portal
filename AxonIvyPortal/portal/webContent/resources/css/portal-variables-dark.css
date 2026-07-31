@@ -165,7 +165,6 @@
   --case-task-document-name-color: var(--ivy-primary-color-black);
   --case-item-action-steps-item-hover-background-color: var(--ivy-primary-color-grey-pale);
   --case-item-action-steps-item-hover-text-color: var(--ivy-primary-color-grey-dark);
-  --case-action-separator-border-color: hsla(180, 1%, 61%, 0.5);
   --case-state-in-progress-color: var(--ivy-tertinary-color-yellow-dark);
   --case-state-done-color: #4eb41c;
   --case-widget-column-header-border-bottom: var(--ivy-primary-color-grey-medium);
@@ -265,6 +264,16 @@
   --portal-state-neutral-bg: hsl(0, 0%, 22%);
   --portal-state-neutral-border: hsl(0, 0%, 29%);
   --portal-state-neutral-color: hsl(0, 0%, 64%);
+  /* Action popup menu — see the light file for the Figma reference. The design
+     only specifies light mode; these four are derived the same way the rest of
+     this file is: the divider takes the shared dark border tone
+     (--portal-detail-divider-color), the shadow the deeper dark alpha used by
+     --portal-detail-card-shadow above, and the destroy red lightens to stay
+     legible on a dark surface. Radius is theme-independent. */
+  --portal-action-menu-radius: 10px;
+  --portal-action-menu-shadow: 0 0 1.1143rem 0.2143rem hsla(0, 0%, 0%, 0.4); /* 15.6px blur, 3px spread */
+  --portal-action-menu-divider-color: hsl(0, 0%, 29%);
+  --portal-action-menu-destroy-color: hsl(358, 83%, 61%);
   /* Legacy aliases — Task Details CSS still references these names */
   --task-detail-card-bg: var(--portal-detail-card-bg);
   --task-detail-card-border-color: var(--portal-detail-card-border-color);
@@ -409,12 +418,10 @@
   --action-step-text-color: var(--ivy-primary-color-grey-medium);
   --action-step-hover-text-color: var(--ivy-primary-color-grey-dark);
   --action-step-disabled-text-color: var(--ivy-primary-color-grey-medium);
-  --action-step-separator-border-color: #F4F4F4;
   --place-holder-text-color: var(--ivy-primary-color-grey-medium);
   --text-tab-default-color: var(--ivy-primary-color-grey-medium);
   --no-item-icon-color: var(--ivy-primary-color-grey-light);
   --user-menu-items-border-color: var(--ivy-portal-color-gray-dark);
-  --option-item-border-color: var(--ivy-portal-color-gray-dark);
 
   /* Portal breadcrumb */
   --breadcrumb-background-color: transparent;

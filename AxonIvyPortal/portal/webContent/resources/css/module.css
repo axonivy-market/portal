@@ -605,30 +605,8 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   box-sizing: border-box;
 }
 
-.action-steps-panel {
-  white-space: nowrap;
-}
-
-.action-steps-panel .action-icon {
-  margin-right: 5px;
-  float: left;
-}
-
-.action-steps-panel .action-step-item {
-  clear: both;
-  float: left;
-  padding: 10px;
-  margin: 0;
-  line-height: 1.4rem;
-  box-sizing: content-box;
-  text-align: left;
-  color: var(--text-color);
-  min-width: 260px;
-}
-
-.action-steps-panel.ui-menu{
-  width: auto;
-}
+/* `.action-steps-panel` geometry now lives in the shared `.portal-action-menu`
+   section at the end of portal.css (IVYPORTAL-20779). */
 
 .case-detail-header {
   display: flex;
@@ -1851,10 +1829,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   justify-content: flex-end;
 }
 
-.options-panel .option-action-icon {
-  margin-right: 5px;
-}
-
 .note-content-textarea {
   width: calc(100% - 2px);
 }
@@ -1883,28 +1857,12 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   width: 80px;
 }
 
-.action-steps-panel .ui-overlaypanel-content,
-.options-panel.ui-overlaypanel .ui-overlaypanel-content {
-  display: grid;
-}
-
-.options-panel.ui-overlaypanel .ui-overlaypanel-content,
 .ui-overlaypanel .ui-overlaypanel-content{
   padding: 1rem 0 !important;
 }
 
-.options-panel .option-item  {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  clear: both;
-  float: left;
-  padding: 10px 18px 10px 10px;
-  margin: 0;
-  width: 160px;
-  box-sizing: content-box;
-  color: var(--text-color);
-}
+/* `.options-panel .option-item` geometry now lives in the shared
+   `.portal-action-menu` section at the end of portal.css (IVYPORTAL-20779). */
 
  .options-panel .option-item:hover .option-item-label {
   text-decoration: underline;

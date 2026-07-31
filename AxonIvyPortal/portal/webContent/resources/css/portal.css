@@ -805,10 +805,6 @@ body .ui-inputfield.case-detail-name-input {
   background: var(--case-header-action-cell-button-background-color);
   outline: var(--case-header-action-cell-button-background-color); }
 
-.action-steps-panel .case-action-separator::before,
-.options-panel .task-action-separator::before {
-  border: 0.8px solid var(--case-action-separator-border-color); }
-
 .case-list-item {
   border-bottom: 1px solid var(--case-widget-column-header-border-bottom); }
 
@@ -817,18 +813,11 @@ body .ui-inputfield.case-detail-name-input {
   font-size: var(--case-item-description-font-size);
   line-height: var(--case-item-description-line-height); }
 
-.action-steps-panel {
-  font-size: var(--large-font-size); }
-
 .action-steps-panel.ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link.ui-state-disabled {
   color: var(--action-step-disabled-text-color); }
 
 .action-steps-panel a.action-step-item:hover {
   color: var(--menu-action-hover-text-color); }
-
-.action-steps-panel a.action-step-item:not(:last-child) {
-  border-bottom: 1px solid var(--option-item-border-color);
-}
 
 .case-state-in-progress {
   color: var(--case-state-in-progress-color); }
@@ -843,13 +832,6 @@ body .ui-inputfield.case-detail-name-input {
 .case-list .ui-datascroller,
 .case-list .ui-datascroller .ui-datascroller-content {
   background-color: var(--case-list-data-scroller-content-background-color); }
-
-.action-steps-panel .action-icon {
-  font-size: var(--large-font-size); }
-
-.action-steps-panel .separator::before {
-  border-top: 2px solid var(--action-step-separator-border-color);
-}
 
 .case-header-name-desc-cell .case-header-name-cell {
   font-weight: var(--case-item-name-font-weight);
@@ -1187,16 +1169,8 @@ ul.users-in-role {
   color: var(--menu-action-hover-text-color);
 }
 
-.options-panel .option-item:not(:last-child) {
-  border-bottom: 1px solid var(--option-item-border-color);
-}
-
 .options-panel .pointer-event-none {
   pointer-events: none;
-}
-
-.task-additional-actions-panel, .case-side-steps-panel {
-  border-top: 1px solid var(--ivy-primary-color-grey-light);
 }
 
 .process-widget-action .name-sort-command,
@@ -1455,11 +1429,6 @@ body.in-dialog .ui-widget-overlay {
 
 #reorder-button:hover {
   cursor: move;
-}
-
-.option-item-long-label {
-  max-width: 120px;
-  line-height: 1.2;
 }
 
 .axonivy-loader h5 {
@@ -3277,6 +3246,241 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
   background: var(--portal-state-neutral-bg);
   border-color: var(--portal-state-neutral-border);
   color: var(--portal-state-neutral-color);
+}
+
+/* ---- Shared: action popup menu ---------------------------------------------
+   Figma "Action Dropdown" 4001:180630. ONE geometry for all three renderings of
+   the same design:
+     .portal-action-menu.action-steps-panel  ActionStep  (case)   p:overlayPanel
+     .portal-action-menu.options-panel       SideStep    (task)   p:overlayPanel
+     .portal-action-menu.ui-menu             AbstractTaskTemplate p:menu
+   Every rule below is scoped to `.portal-action-menu`; the old per-panel
+   geometry in module.css / earlier in this file has been deleted rather than
+   overridden, so there is exactly one place that sizes this component.
+   The panel is `appendTo="@(body)"`, so it can never be reached through an
+   ancestor selector — all hooks live on the panel element itself.
+
+   Figma: panel 196px wide, radius 10px, no border, padding 0,
+   shadow 0 0 15.6px 3px rgba(0,0,0,.15); rows 44px with 15px padding,
+   5px icon-to-label gap, 16px icons, 14px/1.2 Inter 400;
+   separators 1px Neutral/N50, closing line 1px Neutral/N200.
+   1rem == 14px here (Freya sets html{font-size:14px}); borders and the radius
+   stay in px. Hover/disabled are deliberately NOT redefined — Figma has no such
+   variants, so the existing behaviour above is left untouched. */
+.portal-action-menu.ui-overlaypanel,
+.portal-action-menu.ui-menu {
+  box-sizing: border-box;
+  /* Figma pins 196px, but the item list is dynamic (permissions, and side-step
+     names authored by customers) and labels are translated. Treat 196px as the
+     floor, let the panel grow to fit, and cap it so one long label cannot push
+     the menu across the viewport — past the cap the label truncates. */
+  min-width: 14rem; /* 196px */
+  width: max-content;
+  max-width: 22.8571rem; /* 320px */
+  padding: 0;
+  border: none;
+  border-radius: var(--portal-action-menu-radius);
+  /* Deliberately NO `overflow: hidden`. Freya positions the close button at
+     negative top/right offsets so it floats over the panel corner, and clipping
+     the overflow cut it into a crescent. The background follows border-radius on
+     its own, and the row dividers are top-borders on items that never reach the
+     rounded corners, so there is nothing here that needs clipping. */
+  background: var(--portal-detail-card-bg);
+  box-shadow: var(--portal-action-menu-shadow);
+  font-size: var(--portal-detail-font-size); /* 14px */
+  white-space: nowrap;
+}
+/* Freya draws the callout arrow with these; Figma has none. */
+.portal-action-menu.ui-overlaypanel::before,
+.portal-action-menu.ui-overlaypanel::after {
+  display: none;
+}
+/* module.css has `.ui-overlaypanel .ui-overlaypanel-content{padding:1rem 0
+   !important}` (0,1,1) for every overlay in the portal. That rule stays — other
+   overlays depend on it — so this one has to be (0,3,0) + !important to win
+   outright, independent of stylesheet order. */
+.portal-action-menu.ui-overlaypanel .ui-overlaypanel-content {
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+/* The side-step group is a wrapper element in the middle of the item list.
+   `display: contents` makes its children rows of the same flex column, so the
+   group's items line up with the fixed actions above them. Note this does NOT
+   change DOM parentage, which is what lets the two :first-child rules below tell
+   "first row of the menu" apart from "first row of the group". */
+.portal-action-menu .case-side-steps-panel,
+.portal-action-menu .task-additional-actions-panel {
+  display: contents;
+}
+
+.portal-action-menu .portal-action-menu-item {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  /* space-between parks the trailing external-link icon on the right edge; rows
+     without one are unaffected because the label is the only growing child. */
+  justify-content: space-between;
+  gap: 0.3571rem; /* 5px */
+  width: 100%;
+  /* Figma fixes the row at 44px while also specifying 15px padding all round —
+     the two disagree (15+17+15 = 47), and the fixed height wins there. Using
+     min-height + horizontal-only padding reproduces the 44px row and still lets
+     a wrapped or larger-font label grow the row instead of overflowing it. */
+  min-height: 3.1429rem; /* 44px */
+  padding: 0 var(--portal-detail-subcard-padding); /* 15px */
+  margin: 0;
+  /* The deleted rules laid these items out with floats; PrimeFaces' own
+     `.ui-menu-items` can also float. Both would take the item out of the flex
+     column, so neutralise them explicitly. */
+  float: none;
+  clear: none;
+  font-size: var(--portal-detail-font-size); /* 14px */
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: var(--portal-detail-value-color);
+  /* Dividers are TOP borders, not bottom ones: that is what lets the group
+     divider below be recoloured on a single element without stacking against a
+     bottom border from the row above it. */
+  border-top: 1px solid var(--portal-action-menu-divider-color);
+}
+/* No divider above the very first row. `>` is required — with the group wrapper
+   at `display: contents` the group's own first item is still a DOM child of the
+   wrapper, not of the content box, so it is untouched here and keeps the border
+   the rule below recolours. */
+.portal-action-menu.ui-overlaypanel > .ui-overlaypanel-content > .portal-action-menu-item:first-child {
+  border-top: none;
+}
+/* The side-step group gets a heavier line above it than the plain row-to-row
+   separators. Side steps are process-defined and named by the customer, so they
+   are a different kind of thing from the fixed actions above — the pre-redesign
+   UI marked them the same way, with this exact colour on
+   `.case-side-steps-panel { border-top }`. Reusing that variable keeps the value
+   identical instead of introducing a near-duplicate token. */
+.portal-action-menu .case-side-steps-panel > .portal-action-menu-item:first-child,
+.portal-action-menu .task-additional-actions-panel > .portal-action-menu-item:first-child {
+  border-top-color: var(--ivy-primary-color-grey-light);
+}
+
+/* `.ti`/`.tif` carry `font-size: var(--portal-tabler-icon-size)` (1.2em) from
+   the top of this file, which would render these at 16.8px. Figma says 16. */
+.portal-action-menu .portal-action-menu-icon {
+  flex: 0 0 auto;
+  width: 1.1429rem; /* 16px */
+  height: 1.1429rem; /* 16px */
+  font-size: 1.1429rem; /* 16px */
+  line-height: 1;
+  margin: 0;
+}
+/* Same declarations as `.u-truncate-text`, inlined on purpose: this component
+   also renders inside IFrameWithoutMenuTemplate / Login, which do not load
+   utility.css in the same position, and the label must never be the reason the
+   menu overflows its max-width. */
+.portal-action-menu .portal-action-menu-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* Trailing "opens in a new tab" glyph — Primary/P300 in Figma. `margin-left:
+   auto` keeps it flush right even on rows whose label is shorter than the
+   panel, where space-between alone has nothing to push against. */
+.portal-action-menu .portal-action-menu-trail {
+  flex: 0 0 auto;
+  margin-left: auto;
+  font-size: 1.1429rem; /* 16px */
+  line-height: 1;
+  color: var(--portal-detail-accent-color);
+}
+/* Figma's destroy red is States/Error/E300, one step darker and more saturated
+   than the `--ivy-tertinary-color-red-medium` that module.css applies to every
+   `.color-destroy` in the portal. Only the menu moves to the new value —
+   dashboard/absence delete buttons share that class and keep the old red.
+   module.css already declares its rule !important at (0,3,0); the `body` prefix
+   here makes this (0,3,1) so it wins on specificity, not on file order. */
+body .portal-action-menu .portal-action-menu-item.color-destroy {
+  color: var(--portal-action-menu-destroy-color) !important;
+}
+/* Let the icon follow the label instead of keeping the default text colour. */
+.portal-action-menu .color-destroy .portal-action-menu-icon {
+  color: inherit;
+}
+/* `.additional-case-details-link` is a case-details link style that two items in
+   this menu also carry (module.css `margin-left:10px`, plus font-size 120% and a
+   bold weight earlier in this file). Inside the menu those are noise — the row
+   would sit 10px off the panel edge and out-size its neighbours. */
+.portal-action-menu .additional-case-details-link {
+  margin-left: 0;
+  font-size: inherit;
+  font-weight: 400;
+}
+/* The close button is deliberately left entirely to the theme. Figma omits it,
+   but portal.js drives Escape through it, so it stays — and pulling it inside
+   the panel made it overlap the first row and get clipped by the corner radius.
+   Freya's floating-badge placement at the outer corner is what shipped before
+   the redesign and it reads correctly against this panel, so there is no rule
+   here at all.
+
+   The p:menu rendering (task template) emits PrimeFaces' own markup, so the
+   shared item classes cannot be put on it. Map its generated elements onto the
+   same geometry as above. */
+.portal-action-menu.ui-menu .ui-menu-list {
+  padding: 0;
+  margin: 0;
+}
+.portal-action-menu.ui-menu .ui-menuitem-link {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 0.3571rem; /* 5px */
+  width: 100%;
+  min-height: 3.1429rem; /* 44px */
+  padding: 0 var(--portal-detail-subcard-padding); /* 15px */
+  margin: 0;
+  float: none;
+  clear: none;
+  font-size: var(--portal-detail-font-size); /* 14px */
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: var(--portal-detail-value-color);
+  border-top: 1px solid var(--portal-action-menu-divider-color);
+}
+.portal-action-menu.ui-menu .ui-menuitem:first-child .ui-menuitem-link {
+  border-top: none;
+}
+.portal-action-menu.ui-menu .ui-menuitem-icon {
+  flex: 0 0 auto;
+  width: 1.1429rem; /* 16px */
+  height: 1.1429rem; /* 16px */
+  font-size: 1.1429rem; /* 16px */
+  line-height: 1;
+  margin: 0;
+}
+.portal-action-menu.ui-menu .ui-menuitem-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* AbstractTaskTemplate puts a `p:divider` between the chat/process actions and
+   the side-step list — the p:menu equivalent of the group divider above. Every
+   row already draws its own top border, so the divider element itself is now
+   redundant and would stack into a 2px line; hide it and promote the border of
+   the row that follows it instead.
+   Two sibling forms because PrimeFaces renders p:divider inside a p:menu either
+   as a bare element among the <li>s or wrapped in one, depending on version. If
+   neither matches, the group line simply stays the normal separator colour —
+   no double line either way. */
+.portal-action-menu.ui-menu .ui-divider.separator {
+  display: none;
+}
+.portal-action-menu.ui-menu .ui-divider.separator + .ui-menuitem > .ui-menuitem-link,
+.portal-action-menu.ui-menu .ui-menuitem:has(> .ui-divider.separator) + .ui-menuitem > .ui-menuitem-link {
+  border-top-color: var(--ivy-primary-color-grey-light);
 }
 
 /* ---- Responsive ------------------------------------------------------------
