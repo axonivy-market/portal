@@ -704,13 +704,14 @@ public class NewDashboardPage extends TemplatePage {
 
   private void testRemoveCompactModeProcessFilter() {
     removeCompactModeProcessFilter(MY_FILTER);
-    getManageWidgetFilterDialogFirstSavedFilter()
-        .shouldBe(Condition.attribute("data-rk", SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME), DEFAULT_TIMEOUT);
+    getManageWidgetFilterDialogFirstSavedFilter().$("td:nth-child(2)")
+    .shouldBe(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME), DEFAULT_TIMEOUT);
   }
 
   public void removeCompactModeProcessFilter(String filterName) {
     SelenideElement savedFilter = getManageWidgetFilterDialogFirstSavedFilter();
-    savedFilter.shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldHave(Condition.attribute("data-rk", filterName));
+    savedFilter.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    savedFilter.$("td:nth-child(2)").shouldHave(Condition.exactTextCaseSensitive(filterName));
     savedFilter.$("td").click();
     savedFilter.shouldBe(Condition.cssClass("ui-state-highlight"), DEFAULT_TIMEOUT);
     getManageWidgetFilterDialogRemoveButton().shouldBe(Condition.enabled).click();
