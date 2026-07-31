@@ -278,7 +278,7 @@
           
           <p:dialog id="manage-filter-dialog" widgetVar="manage-filter-dialog"
             header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/ManageWidgetFilterHeader')}"
-            modal="true" fitViewport="true" styleClass="manage-filter-dialog"
+            modal="true" fitViewport="true" styleClass="manage-filter-dialog" onHide="reloadManageFilterDialogOpenerWidget();"
             dynamic="true" appendTo="@(body)" closable="true" closeOnEscape="true"
             onShow="loadAllWidgetSavedFilters();">
             <h:form id="delete-saved-filter-form" styleClass="ui-g">

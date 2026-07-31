@@ -66,7 +66,7 @@
   <div>
     <p:commandLink ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ManageFilter')}"
         styleClass="saved-filter__manage-filter ui-button-flat" global="false"
-        onclick="hideAllDashboardOverlayPanels(); PF('manage-filter-dialog').show();">
+        onclick="hideAllDashboardOverlayPanels(); openManageFilterDialog('#{index}');">
       <i class="pr-1 pt-1 ti ti-pencil" />
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ManageFilter')}</span>
     </p:commandLink>

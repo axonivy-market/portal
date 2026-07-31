@@ -376,6 +376,23 @@ function hideAllDashboardOverlayPanels() {
   }
 }
 
+var manageFilterDialogOpenerWidgetIndex;
+
+function openManageFilterDialog(widgetIndex) {
+  manageFilterDialogOpenerWidgetIndex = widgetIndex;
+  PF('manage-filter-dialog').show();
+}
+
+function reloadManageFilterDialogOpenerWidget() {
+  if (manageFilterDialogOpenerWidgetIndex === undefined) {
+    return;
+  }
+  var reloadUserFilters = window['loadUserFilters' + manageFilterDialogOpenerWidgetIndex];
+  if (typeof reloadUserFilters === 'function') {
+    reloadUserFilters();
+  }
+}
+
 // Start Process Dashboard Widget
 function respondProcessWidget(displayMode) {
  if (displayMode === 'FULL_MODE') {
