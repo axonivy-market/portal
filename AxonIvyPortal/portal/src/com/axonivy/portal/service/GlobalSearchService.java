@@ -72,7 +72,6 @@ public class GlobalSearchService {
     boolean isAdminQuery = PermissionUtils.checkReadAllTasksPermission();
     criteria.setAdminQuery(isAdminQuery);
     criteria.extendStatesQueryByPermission(isAdminQuery);
-    // Required for queryForKeyword() to honor SEARCH_SCOPE_BY_TASK_FIELDS instead of searching every field.
     criteria.setGlobalSearch(true);
     criteria.setSearchScopeTaskFields(getSearchScopeTaskFields());
     return criteria;
@@ -81,7 +80,6 @@ public class GlobalSearchService {
   private CaseSearchCriteria buildCaseCriteria(SearchPayload payload) {
     CaseSearchCriteria criteria = new CaseSearchCriteria();
     criteria.setKeyword(payload.getQuery());
-    // Required for queryForKeyword() to honor SEARCH_SCOPE_BY_CASE_FIELDS instead of searching every field.
     criteria.setGlobalSearch(true);
     criteria.setSearchScopeCaseFields(getSearchScopeCaseFields());
     criteria.setBusinessCase(true);

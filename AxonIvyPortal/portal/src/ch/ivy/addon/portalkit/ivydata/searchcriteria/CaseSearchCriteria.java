@@ -123,8 +123,6 @@ public class CaseSearchCriteria {
       filterByKeywordQuery.where().or().caseId().isLike(containingIdKeyword);
     } catch (NumberFormatException e) {
       if (isGlobalSearch()) {
-        // Never leave the keyword query empty (IVYPORTAL-14457). No case id is negative,
-        // so this matches nothing; isEqual avoids a CAST on every row.
         filterByKeywordQuery.where().or().caseId().isEqual(-1L);
       }
       // do nothing
