@@ -46,7 +46,6 @@ public class BusinessCaseIdColumnModel extends TaskColumnModel implements Serial
     if (task == null) {
       return null;
     }
-    // Resolve the case once: task.getCase() was previously dereferenced twice per render.
     ICase caze = task.getCase();
     if (caze == null) {
       return null;

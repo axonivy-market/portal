@@ -60,7 +60,6 @@ public class ResponsibleColumnModel extends TaskColumnModel implements Serializa
     if (task == null) {
       return StringUtils.EMPTY;
     }
-    // Resolve the activator once: task.getActivator() was previously dereferenced twice per render.
     ISecurityMember member = task.getActivator();
     if (member == null) {
       return StringUtils.EMPTY;

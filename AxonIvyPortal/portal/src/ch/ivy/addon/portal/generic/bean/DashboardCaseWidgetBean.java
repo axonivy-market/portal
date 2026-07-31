@@ -65,15 +65,6 @@ public class DashboardCaseWidgetBean implements Serializable {
 
   private static final String DISPLAY_CACHE_KEY = "portalDashboardCaseDisplayCache";
 
-  /**
-   * Returns {@code column.display(caze)}, memoized for the duration of the current request.
-   * <p>
-   * A dashboard cell binds the same value twice - once for the cell text and once for its
-   * (eagerly rendered) tooltip - so without memoization {@code display()}, and the per-row
-   * {@code customFields()} work it performs, runs once per binding. The cache lives in the JSF
-   * request map, so it is scoped to a single render pass and discarded between requests; there is
-   * no cross-render staleness.
-   */
   public Object display(CaseColumnModel column, ICase caze) {
     if (column == null || caze == null) {
       return null;
