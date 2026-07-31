@@ -184,8 +184,7 @@ public class TaskSearchCriteria {
         filterByKeywordQuery.where().or().taskId().isLike(containingIdKeyword);
       } catch (NumberFormatException e) {
         if (isGlobalSearch()) {
-          String containingIdKeyword = String.format("%%%d%%", -1);
-          filterByKeywordQuery.where().or().taskId().isLike(containingIdKeyword);
+          filterByKeywordQuery.where().or().taskId().isEqual(-1L);
         }
       }
     return filterByKeywordQuery;
