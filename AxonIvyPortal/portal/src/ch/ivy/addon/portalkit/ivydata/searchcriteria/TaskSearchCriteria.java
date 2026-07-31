@@ -184,8 +184,6 @@ public class TaskSearchCriteria {
         filterByKeywordQuery.where().or().taskId().isLike(containingIdKeyword);
       } catch (NumberFormatException e) {
         if (isGlobalSearch()) {
-          // Never leave the keyword query empty (IVYPORTAL-14457). No task id is negative,
-          // so this matches nothing; isEqual avoids a CAST on every row.
           filterByKeywordQuery.where().or().taskId().isEqual(-1L);
         }
       }
