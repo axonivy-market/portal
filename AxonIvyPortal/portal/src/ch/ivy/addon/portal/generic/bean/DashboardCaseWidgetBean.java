@@ -2,7 +2,9 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -18,6 +20,7 @@ import com.axonivy.portal.util.BusinessDetailsUtils;
 import com.axonivy.portal.util.CaseBehaviorUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.enums.CaseEmptyMessage;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -58,5 +61,33 @@ public class DashboardCaseWidgetBean implements Serializable {
 
   public String createExtractedTextFromHtml(String text) {
     return HtmlParser.extractTextFromHtml(text);
+  }
+
+  private static final String DISPLAY_CACHE_KEY = "portalDashboardCaseDisplayCache";
+
+  public Object display(CaseColumnModel column, ICase caze) {
+    if (column == null || caze == null) {
+      return null;
+    }
+    Map<String, Object> cache = displayCache();
+    String key = System.identityHashCode(column) + ":" + caze.getId();
+    if (cache.containsKey(key)) {
+      return cache.get(key);
+    }
+    Object value = column.display(caze);
+    cache.put(key, value);
+    return value;
+  }
+
+  @SuppressWarnings("unchecked")
+  private static Map<String, Object> displayCache() {
+    Map<String, Object> requestMap =
+        FacesContext.getCurrentInstance().getExternalContext().getRequestMap();
+    Map<String, Object> cache = (Map<String, Object>) requestMap.get(DISPLAY_CACHE_KEY);
+    if (cache == null) {
+      cache = new HashMap<>();
+      requestMap.put(DISPLAY_CACHE_KEY, cache);
+    }
+    return cache;
   }
 }

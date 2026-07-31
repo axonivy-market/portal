@@ -2,7 +2,9 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -19,6 +21,7 @@ import com.axonivy.portal.components.util.HtmlUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPage;
@@ -87,6 +90,34 @@ public class DashboardTaskWidgetBean implements Serializable {
 
   public String createParseTextFromHtml(String text) {
     return HtmlUtils.parseTextFromHtml(text);
+  }
+
+  private static final String DISPLAY_CACHE_KEY = "portalDashboardTaskDisplayCache";
+
+  public Object display(TaskColumnModel column, ITask task) {
+    if (column == null || task == null) {
+      return null;
+    }
+    Map<String, Object> cache = displayCache();
+    String key = System.identityHashCode(column) + ":" + task.getId();
+    if (cache.containsKey(key)) {
+      return cache.get(key);
+    }
+    Object value = column.display(task);
+    cache.put(key, value);
+    return value;
+  }
+
+  @SuppressWarnings("unchecked")
+  private static Map<String, Object> displayCache() {
+    Map<String, Object> requestMap =
+        FacesContext.getCurrentInstance().getExternalContext().getRequestMap();
+    Map<String, Object> cache = (Map<String, Object>) requestMap.get(DISPLAY_CACHE_KEY);
+    if (cache == null) {
+      cache = new HashMap<>();
+      requestMap.put(DISPLAY_CACHE_KEY, cache);
+    }
+    return cache;
   }
 
   public TaskEmptyMessage getNoTasksMessage() {
