@@ -57,12 +57,11 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(changePasswordPage.getChangePasswordDialog(),
         ScreenshotUtils.SETTINGS_FOLDER + "change-password", new ScreenshotMargin(20));
 
-    // Wait for Application verison apdation
-    // showNewDashboard();
-    // homePage.waitForCaseWidgetLoaded();
-    // ProjectVersionPage projectVersionPage = homePage.openProjectVersionPage();
-    // ScreenshotUtils.captureElementWithMarginOptionScreenshot(projectVersionPage.getProjectVersionDialog(),
-    //     ScreenshotUtils.SETTINGS_FOLDER + "portal-version-information", new ScreenshotMargin(20));
+    showNewDashboard();
+    homePage.waitForCaseWidgetLoaded();
+    ProjectVersionPage projectVersionPage = homePage.openProjectVersionPage();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(projectVersionPage.getProjectVersionDialog(),
+        ScreenshotUtils.SETTINGS_FOLDER + "portal-version-information", new ScreenshotMargin(20));
   }
 
   @Test
