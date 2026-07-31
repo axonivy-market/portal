@@ -1463,9 +1463,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: タスクリスト全体を表示
     sort: 並べ替え
   taskWarning:
-    createdTaskLeave: このページを離れようとしています。次のいずれかのオプションを選択してください：<UL><LI>&nbsp; &nbsp; 離れる：変更を破棄し、選択したページに移動します。<LI>&nbsp; &nbsp; キャンセル：このタスクの作業を続けます。</UL>
+    createdTaskLeave: 今離れると、このタスクを再度開始できなくなります。
     createdTaskLogout: このページを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>&nbsp;ログアウ：変更を破棄してログアウトします。<LI>&nbsp;キャンセル：このタスクの作業を続けます。</UL>
-    resetParkTaskBeforeLeave: 進行中のタスクを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>離れる：変更を破棄して選択したページに移動します。<LI>保持：変更を破棄してタスクをタスクリストに保持します。<LI>キャンセル：このタスクの作業を続けます。</UL>
+    leaveTaskHeader: このタスクを離れますか？
+    resetParkTaskBeforeLeave: このタスクは進行中です。今離れると再度開始できなくなります。保持すると、タスクリストに再表示されます。
     resetParkTaskBeforeLogout: 進行中のタスクを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>&nbsp; &nbsp; ログアウト：変更を破棄してログアウトします。<LI>&nbsp; &nbsp; 保持：変更を破棄してタスクを個人用タスクリストに保持します。その後ログアウトします。<LI>&nbsp; &nbsp; キャンセル：このタスクの作業を続けます。</UL>
     taskNotFound: タスクが存在しないか、このタスクを表示する権限がありません。
   userProfile:

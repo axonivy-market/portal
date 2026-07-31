@@ -432,7 +432,7 @@
   --sidebar-mode-select-bg-color: var(--ivy-portal-color-gray-17);
   --sidebar-mode-select-border-color: var(--ivy-portal-color-gray-13);
   --sidebar-toggle-checked-bg-color: var(--ivy-portal-color-slate-light);
-  --sidebar-toggle-knob-color: var(--ivy-primary-color-white);
+  --sidebar-toggle-knob-color: var(--ivy-primary-color-black);
   --button-primary-bg-color: var(--ivy-primary-color-white);
   --button-primary-text-color: var(--ivy-primary-color-black);
   --dashboard-tab-active-color: var(--ivy-primary-color-white);
@@ -440,4 +440,6 @@
   --card-box-shadow: 0 0 27px 0 rgba(0, 0, 0, 0.4);
   --filters-card-bg-color: var(--sidebar-settings-card-bg-color);
   --filters-card-border-color: var(--sidebar-settings-card-border-color);
+  --filters-toggle-checked-bg-color: hsla(0, 0%, 100%, 1);
+  --filters-toggle-knob-color: var(--ivy-primary-color-black);
 }

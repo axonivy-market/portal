@@ -3237,6 +3237,15 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding: 1rem 1.25rem;
 }
 
+.filters-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider {
+  background: var(--filters-toggle-checked-bg-color);
+}
+
+.filters-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider:before,
+.filters-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider .ui-toggleswitch-handler {
+  background: var(--filters-toggle-knob-color);
+}
+
 /* "Selected user" dropdown, styled to match Portal Configuration's sidebar-mode-select dropdown */
 .filters-card .absence-user-selection.ui-autocomplete input.ui-autocomplete-input {
   background-color: var(--sidebar-mode-select-bg-color);

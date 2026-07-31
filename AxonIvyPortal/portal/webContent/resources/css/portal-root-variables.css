@@ -29,6 +29,8 @@
   --ivy-tertinary-color-yellow-dark: hsl(46, 100%, 58%);
   --ivy-tertinary-color-yellow-medium: hsl(49, 99%, 65%);
   --ivy-tertinary-color-yellow-light: hsl(47, 100%, 79%);
+  --ivy-tertinary-color-orange-dark: hsla(27, 100%, 50%, 1);
+  --ivy-tertinary-color-orange-light: hsla(26, 100%, 95%, 1);
 
   /* Colors for Portal */
   --ivy-portal-blue-light: hsl(188.09, 66.92%, 73.92%);
