@@ -1424,7 +1424,7 @@ body .filter-dialog__save-input.ui-inputfield {
 body .ui-button.ui-widget.filter-dialog__save-button {
   border-radius: 8px;
   padding: 10px 20px;
-  background: var(--wdiget-filter-save-filter-button-background-color);
+  background: var(--widget-filter-save-filter-button-background-color);
   color: var(--widget-filter-save-filter-button-text-color);
   border: none;
 }
