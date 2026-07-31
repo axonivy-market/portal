@@ -87,11 +87,8 @@ public class BusinessEntityConverter {
           String rootName = rootNode.fieldNames().next();
           return getObjectMapper().readValue(rootNode.get(rootName).toString(), classType);
         }
-      } else if (rootNode.isArray()) {
-        return getObjectMapper().readValue(jsonValue, classType);
       } 
-
-      return null;
+      return getObjectMapper().readValue(jsonValue, classType);
     } catch (IOException e) {
       throw new PortalException(e);
     }
