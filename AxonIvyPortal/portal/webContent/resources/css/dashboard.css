@@ -1428,6 +1428,8 @@ body .filter-dialog__save-input.ui-inputfield {
 }
 
 body .ui-button.ui-widget.filter-dialog__save-button {
+  width: 5.213rem; /* 73px */
+  height: 2.643rem; /* 37px */
   border-radius: 8px;
   padding: 10px 20px;
   background: var(--widget-filter-save-filter-button-background-color);
@@ -2272,8 +2274,8 @@ a.saved-filter__manage-filter {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
-  width: fit-content;
+  width: 9.506rem;
+  height: 2.143rem;
   padding: 2px 10px;
   border: 1.24px solid var(--widget-filter-condition-accent-border-color);
   border-radius: 100px;
@@ -2293,6 +2295,11 @@ a.saved-filter__manage-filter {
 .filter-dialog .footer-buttons-container {
   padding-top: 20px;
   gap: 20px;
+}
+
+.filter-dialog .apply-filter-button.ui-button {
+  width: 9.714rem;
+  height: 2.643rem;
 }
 
 
