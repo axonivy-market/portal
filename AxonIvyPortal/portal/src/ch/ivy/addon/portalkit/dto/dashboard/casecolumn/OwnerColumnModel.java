@@ -57,9 +57,6 @@ public class OwnerColumnModel extends CaseColumnModel {
     if (caze == null) {
       return StringUtils.EMPTY;
     }
-    // Resolve the owner list once. caze.owners() and owners.all() were each evaluated more than
-    // once per render (all() is called again inside generateBriefDisplayNameForCaseOwners), so
-    // build the display string from the already-fetched list instead.
     var owners = caze.owners();
     var ownerList = owners == null ? null : owners.all();
     if (CollectionUtils.isEmpty(ownerList)) {

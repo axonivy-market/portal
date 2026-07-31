@@ -59,7 +59,6 @@ public class ResponsibleColumnModel extends TaskColumnModel {
     if (task == null) {
       return StringUtils.EMPTY;
     }
-    // Resolve responsibles once: task.responsibles().all() was previously evaluated twice per render.
     var responsibles = task.responsibles().all();
     if (CollectionUtils.isEmpty(responsibles)) {
       return StringUtils.EMPTY;
