@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.service;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -149,8 +148,7 @@ public class IvyCacheService {
   public void invalidateApplicationCacheForAllAvailableApplications(String cacheGroupName) {
     try {
       Sudo.run(() -> {
-        List<Application> ivyApplications = ApplicationRepository.instance().all();
-        ivyApplications.forEach(app -> {
+        ApplicationRepository.instance().all().forEach(app -> {
           if(isActive(app)) {
             IDataCache cache = IDataCache.of(app);
             if (cache != null) {

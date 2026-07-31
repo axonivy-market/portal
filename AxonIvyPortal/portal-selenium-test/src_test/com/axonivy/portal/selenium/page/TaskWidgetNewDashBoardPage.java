@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
@@ -69,10 +70,21 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getCellByRowAndColumnName(int rowIndex, String columnName) {
-    int columnIndex = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT)
-      .$$("thead th").texts().indexOf(columnName);
+    int columnIndex = getColumnIndexByName(columnName);
     return $(taskWidgetId).$("tbody[id$='dashboard-tasks_data']").$("tr[data-ri='" + rowIndex + "']")
         .$$("td").get(columnIndex);
+  }
+
+  private int getColumnIndexByName(String columnName) {
+    StaleElementReferenceException lastException = null;
+    for (int attempt = 0; attempt < 3; attempt++) {
+      try {
+        return $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("thead th").texts().indexOf(columnName);
+      } catch (StaleElementReferenceException e) {
+        lastException = e;
+      }
+    }
+    throw lastException;
   }
 
   public void startFirstTask() {

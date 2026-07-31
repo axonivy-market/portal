@@ -8,7 +8,6 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
-import ch.ivy.addon.portalkit.util.ListUtilities;
 import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.application.app.ApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -25,7 +24,7 @@ public class WidgetApplicationFilterBean implements Serializable {
   private String applicationString;
 
   public void init(DashboardFilter filter) {
-    this.applications = ListUtilities.transformList(ApplicationRepository.of(ISecurityContext.current()).all(), Application::name);
+    this.applications = ApplicationRepository.of(ISecurityContext.current()).all().map(Application::name).toList();
     this.applicationString = String.join(", ",
         new ArrayList<>(CollectionUtils.intersection(applications, filter.getValues())));
   }

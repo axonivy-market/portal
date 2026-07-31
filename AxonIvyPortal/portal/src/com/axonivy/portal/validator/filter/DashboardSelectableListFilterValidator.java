@@ -17,8 +17,10 @@ import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.environment.Ivy;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@FacesValidator(value = "dashboardSelectableListFilterValidator")
+@FacesValidator(value = "dashboardSelectableListFilterValidator", managed = true)
+@ApplicationScoped
 public class DashboardSelectableListFilterValidator implements Validator<Object> {
 
   private static final String MESSAGE_PREFIX_PATTERN = "%s(%d)";

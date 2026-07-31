@@ -48,6 +48,8 @@
   --ivy-portal-color-gray-13: hsla(0, 0%, 12.55%, 1);
   --ivy-portal-color-gray-84: hsla(216, 6.17%, 84.12%, 1);
   --ivy-portal-color-slate-light: hsla(212.73, 26.84%, 83.92%, 1);
+  --ivy-portal-color-gray-75: hsla(0, 0%, 75%, 1);
+  --ivy-portal-color-gray-69: hsla(0, 0%, 69%, 1);
 
   /* Default Portal styles */
   --header-font-size: 2rem;
@@ -90,8 +92,8 @@
   --task-state-reserved-font-size: 1.8rem;
   --task-state-system-font-size: 1.8rem;
   --portal-dialog-icon-font-size: 5rem;
-  --widget-header-font-size: var(--large-font-size);
-  --widget-header-font-weight: bold;
+  --widget-header-font-size: 1.15rem;
+  --widget-header-font-weight: 600;
   --process-warning-icon-font-weight: bold;
   --process-icon-font-size: 1.5rem;
   --process-grid-icon-font-size: 4.8rem;
@@ -115,7 +117,7 @@
   --task-item-name-line-height: 2rem;
   --task-item-name-font-weight: 700;
   --task-state-border-radius: 10px;
-  --task-state-font-size: 0.9rem;
+  --task-state-font-size: 1rem;
   --task-state-line-height: 1.6rem;
 
   --participants-list-header-font-weight: bold;

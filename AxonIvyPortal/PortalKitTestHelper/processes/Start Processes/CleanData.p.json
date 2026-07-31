@@ -461,7 +461,7 @@
             "import ch.ivyteam.ivy.cm.ContentManagementSystem;",
             "import com.axonivy.portal.service.NewsService;",
             "",
-            "ContentManagementSystem cmsSystem = ContentManagement.cms(IApplication.current());",
+            "ContentManagementSystem cmsSystem = ContentManagement.cms(Application.current());",
             "Optional<ContentObject> newsRoot = cmsSystem.root().child().get(NewsService.PORTAL_NEWS_CMS_ROOT);",
             "if (newsRoot.isPresent()) {",
             "   (cmsSystem.root().child().get(NewsService.PORTAL_NEWS_CMS_ROOT).get() as ContentObject).delete();",

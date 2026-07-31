@@ -11,8 +11,10 @@ import jakarta.faces.convert.FacesConverter;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@FacesConverter("processSelectionConverter")
+@FacesConverter(value = "processSelectionConverter", managed = true)
+@ApplicationScoped
 public class ProcessSelectionConverter implements Converter<Object> {
   private static final String UNIQUE_CONVERTER_IDENTIFIER = ProcessSelectionConverter.class.getName();
   private static final String KEY_DELIMITER = ":::";

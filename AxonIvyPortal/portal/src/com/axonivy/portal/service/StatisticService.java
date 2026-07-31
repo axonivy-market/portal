@@ -427,7 +427,7 @@ public class StatisticService {
   }
 
   private String resolveCategoryName(String categoryPath) {
-    return ApplicationRepository.of(ISecurityContext.current()).all().stream()
+    return ApplicationRepository.of(ISecurityContext.current()).all()
       .flatMap(app -> app.projects().all())
       .map(pmv -> ContentManagement.of(pmv).co("/Categories/" + categoryPath + "/name"))
       .filter(StringUtils::isNotBlank)
