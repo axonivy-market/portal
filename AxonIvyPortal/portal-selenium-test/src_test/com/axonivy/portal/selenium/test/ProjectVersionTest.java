@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.test;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -21,7 +20,6 @@ public class ProjectVersionTest extends BaseTest {
   }
 
   @Test
-  @Disabled("Application Version Update")
   public void shouldShowProjectVersion() {
     ProjectVersionPage projectVersionPage = newDashboardPage.openProjectVersionPage();
     assertTrue(projectVersionPage.isEngineVersionDisplayed(), "Engine version not displayed");
