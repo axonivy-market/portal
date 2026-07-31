@@ -279,7 +279,6 @@
   --task-detail-divider-color: var(--portal-detail-divider-color);
   --task-detail-empty-icon-bg: var(--portal-detail-empty-icon-bg);
   --task-detail-empty-icon-color: var(--portal-detail-empty-icon-color);
-  --task-detail-state-open-indicator-color: hsl(136, 53%, 52%);     /* #47C46B */
   --task-detail-primary-tint-bg: var(--portal-detail-primary-tint-bg);
   --task-detail-accent-btn-border: var(--portal-detail-accent-btn-border);
   --task-detail-neutral-btn-bg: var(--portal-detail-neutral-btn-bg);

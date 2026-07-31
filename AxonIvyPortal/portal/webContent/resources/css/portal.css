@@ -2162,8 +2162,12 @@ body a.portal-pill-btn:focus {
 }
 
 /* ---- Shared: pill button (e.g. Start, Show more) ----
-   Figma: 8.662px vertical / 15px horizontal padding, 3px gap, 1.237px border,
-   fully rounded (100px), 14px/500 label. */
+   Figma 4004:191802: 8.662px vertical / 15px horizontal padding, 3px gap, 1.237px border,
+   fully rounded (100px), 14px/500 label, 37.96px tall.
+   `min-height` is explicit because padding + `line-height: 1` only reach ~33.8px on their own
+   (see the Start-label note further down) — the pill used to hit 37.96px by accident, via an
+   oversized icon. Pinning it also keeps the pill flush with the `.portal-icon-btn-round` (same
+   37.96px) sitting beside it in the detail header. */
 .portal-pill-btn.ui-button,
 .portal-pill-btn {
   box-sizing: border-box;
@@ -2175,14 +2179,17 @@ body a.portal-pill-btn:focus {
   background: var(--portal-detail-neutral-btn-bg);
   color: var(--portal-detail-value-color);
   padding: 0.6187rem 1.0714rem; /* 8.662px 15px */
+  min-height: 2.7114rem; /* 37.96px */
   gap: 0.2143rem; /* 3px */
   font-size: var(--portal-detail-font-size); /* 14px */
   font-weight: 500;
   line-height: 1;
 }
+/* Figma 4004:191804 (the Start pill's play glyph) is 17.081px — the card-level size. The 43px
+   toolbar variant uses a bigger glyph; that lives on the `-lg` modifier below. */
 .portal-pill-btn .ti,
 .portal-pill-btn .tif {
-  font-size: 1.3571rem !important; /* 19px */
+  font-size: 1.2201rem !important; /* 17.081px */
   line-height: 1 !important;
   margin: 0;
 }
@@ -2216,6 +2223,13 @@ body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-lg .ui
 .portal-pill-btn.portal-pill-btn-lg {
   height: 3.0714rem; /* 43px */
   padding: 0 1.0714rem; /* 15px */
+}
+/* Figma 3958:164532: the 43px toolbar pill genuinely carries a 19px glyph, a step up from the
+   37.96px card pill's 17.081px. (0,3,0) beats the base rule's (0,2,0), and both are `!important`,
+   so specificity decides — the modifier wins. */
+.portal-pill-btn.portal-pill-btn-lg .ti,
+.portal-pill-btn.portal-pill-btn-lg .tif {
+  font-size: 1.3571rem !important; /* 19px */
 }
 
 /* ---- Shared: pill button on a `p:commandButton` ----
@@ -2686,12 +2700,22 @@ body a.portal-detail-toolbar-back:focus,
    the page-specific `--task-detail-*` colour aliases, stays here. */
 /* Strip label ("Priority"/"State"/"Due"/"Workflow") is smaller than the general row-label
    style (.task-detail-column-title elsewhere is 14px) — scope-override here. Figma
-   4004:191811 is sentence case, NOT uppercase; only the eyebrow above is uppercased. */
+   4004:191811 is sentence case, NOT uppercase; only the eyebrow above is uppercased.
+   Both line boxes below are pinned rather than left at `normal`: the strip's 71px total height is
+   the sum of them (see the height arithmetic on the shared strip block), so `normal` — which
+   varies with the resolved font — would let the strip drift off Figma. 15px/17px are Figma's
+   label and value text heights. */
 .task-detail-attr .task-detail-column-title {
   font-size: var(--portal-detail-label-font-size); /* 12px */
   font-weight: 500;
   letter-spacing: 0.06em; /* 0.72px at 12px */
-  line-height: normal;
+  line-height: 1.0714rem; /* 15px */
+  /* One line, always: now that the columns shrink to fit (see the shared column rule), a label like
+     "Workflow Events" would otherwise wrap to two lines in a narrow card and push the strip past
+     71px. Ellipsis keeps the height fixed. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .task-detail-attr .task-detail-attr-value {
   display: flex;
@@ -2700,20 +2724,20 @@ body a.portal-detail-toolbar-back:focus,
   color: var(--task-detail-value-color);
   font-size: var(--portal-detail-font-size); /* 14px */
   font-weight: 500;
-  line-height: normal;
+  line-height: 1.2143rem; /* 17px */
+  min-width: 0; /* let the row shrink inside a shrunken column instead of forcing it wider */
+  overflow: hidden;
 }
 /* "See details" (Workflow) is a primary-colored link, not a plain value */
 .task-detail-attr .task-detail-attr-value a[id$=":workflow-event-link"],
 .task-detail-attr .task-detail-attr-value a[id$=":workflow-event-link"] .ti {
   color: var(--primary-color);
 }
-/* Open-state indicator DOT (showIndicatorBesideText variant only, used by the
-   detail-family pages) → green per Figma. Task-list state BADGE keeps its own
-   color because it has no `.state-indicator` class, so it is not matched here. */
-.state-with-indicator .task-state.open-task-state.state-indicator {
-  background: var(--task-detail-state-open-indicator-color);
-  border-color: var(--task-detail-state-open-indicator-color);
-}
+/* The state indicator DOT is deliberately NOT styled here. Every task/case state resolves its
+   colour from a pre-defined variable through the shared `.state-cell`/`.state-column` cascade
+   (module.css:769-784 for the geometry, portal.css:674-716 for the per-state fill), which is the
+   same mechanism the task list, dashboard widgets and search results use. Re-colouring the state
+   palette means changing those variables, not adding a detail-page-only override. */
 
 /* Divider tokenized, with explicit vertical margin (~20px each side, per SVG measurement) so it
    doesn't sit flush against the content above/below it.
@@ -2857,14 +2881,31 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
    Case ID | State | Case Category (3 columns) and Priority | State | Due | Workflow
    (4 columns). Figma 3825:125202 / 4004:191809 draw them identically, so one definition:
    15px vertical / 50px horizontal padding, 50px gap between columns, 7px between a
-   column's label and value, 1px Neutral/N100 border, 15px radius. */
+   column's label and value, 1px Neutral/N100 border, 15px radius.
+
+   HEIGHT — 74px, pinned here so BOTH strips measure the same.
+   Figma draws both frames at 896x71, and the label/value line boxes are pinned (not `normal`) in
+   the typography rules above/below with the value-row icons capped at 17px, which gets the Case
+   strip — three plain-text columns — to exactly that:
+     1px border + 15px pad + (15px label + 7px gap + 17px value) + 15px pad + 1px border = 71px
+   The Task strip measures ~74px instead. The extra ~3px comes from something inside the Priority
+   column (the only structural difference: `h:form` > `p:inplace` > a floated `.priority-icon`) and
+   was NOT reproduced by pinning line boxes, capping the icon, or flattening the Workflow link's
+   line box — all three were tried and none moved it. Rather than keep guessing, the two pages are
+   held equal at the larger value: 74px is a floor for both, so the Case strip rises to meet the
+   Task strip. Consistency between the two pages was chosen over Figma's 71px.
+   If the Priority cause is ever found, drop this back to 5.0714rem (71px). */
 .case-detail-attr-strip,
 .task-detail-attr-strip {
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
   gap: 3.5714rem; /* 50px */
+  /* Narrower than the column gap, and only ever visible if a wrap does happen despite the
+     shrink-to-fit columns below — 50px between stacked rows reads as a layout error. */
+  row-gap: 1.0714rem; /* 15px */
   padding: 1.0714rem 3.5714rem; /* 15px 50px */
+  min-height: 5.2857rem; /* 74px */
   border: 1px solid var(--portal-detail-card-border-color);
   border-radius: var(--portal-detail-card-radius);
   background: var(--portal-detail-strip-bg);
@@ -2873,16 +2914,26 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
 .task-detail-attr-strip > .task-detail-attr {
   position: relative;
   flex: 1 1 0;
-  /* 7.5rem, NOT the 10rem the Case-only rule used to carry. The Task strip has FOUR columns
-     where Case has three: in the real card (749px content box) the strip's inner width is
-     647px, so 4 columns land at 124.25px each — a 140px min-width would force a wrap. 124px
-     is also exactly Figma's own Task column width (4x124 + 6x50 = 796 at their 936px card),
-     so 124.25px is the intended size; 105px just leaves headroom before wrapping. */
-  min-width: 7.5rem; /* 105px */
+  /* `min-width: 0`, deliberately — NOT a px floor. The dividers are `:not(:first-child)::before`
+     pseudo-elements, and a pseudo-element cannot know about flex line breaks: the moment the strip
+     wraps, the first column of the new row still draws a divider, left dangling in empty space
+     (and the trailing column sits alone under a mostly empty row). A wrap-aware divider is not
+     expressible in CSS, so the fix is to make a wrap unnecessary — with a zero floor the columns
+     shrink to share whatever width there is and stay on one row, which is also how Figma draws
+     them. Long values are clipped rather than wrapping the layout; below 640px the columns stack
+     to full width and the dividers are hidden outright, so the pseudo-element is fine there.
+     For reference, Figma's own Task column is 124px (4x124 + 6x50 = 796 in their 936px card). */
+  min-width: 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 0.5rem; /* 7px */
+  /* The strip's 74px floor is taller than this column's own content on the Case page (39px), and
+     the column stretches to fill it — without this the label+value would sit hard against the top
+     with the slack all below. Centering makes both pages read identically. */
+  justify-content: center;
+  /* NO `overflow: hidden` here — the divider `::before` sits at `left: -25px`, outside this box,
+     and would be clipped away. Clipping happens on the label/value children instead. */
 }
 /* Short, vertically-centered divider sitting in the middle of the 50px gap
    (Figma: 30px tall, Neutral/N200). */
@@ -2905,9 +2956,13 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
   font-size: var(--portal-detail-label-font-size); /* 12px */
   font-weight: 500;
   letter-spacing: 0.06em; /* 0.72px at 12px */
-  line-height: normal;
+  line-height: 1.0714rem; /* 15px */
   color: var(--portal-detail-label-color);
   opacity: 1;
+  /* One line, always — same reasoning as the Task label ("Case Category" is the long one here). */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .case-detail-attr .case-detail-attr-value {
   display: flex;
@@ -2916,23 +2971,41 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
   color: var(--portal-detail-value-color);
   font-size: var(--portal-detail-font-size); /* 14px */
   font-weight: 500;
-  line-height: normal;
+  line-height: 1.2143rem; /* 17px */
+  min-width: 0; /* let the row shrink inside a shrunken column instead of forcing it wider */
+  overflow: hidden;
 }
-/* The State cell renders the shared CaseState component, which brings its own
-   inline-block/padding styling from module.css — strip that back inside the card so
-   only the indicator dot + label show, matching the plain-text siblings. */
+/* The State cell renders the shared CaseState component; align its wrappers with the plain-text
+   siblings. Layout only — the dot itself is left entirely to the shared state cascade, so no
+   `background`/`border` reset here (one used to live below and it blanked the dot's fill). */
 .case-detail-attr .case-detail-attr-value .case-header-default-cell,
 .case-detail-attr .case-detail-attr-value .state-with-indicator {
   display: inline-flex;
   align-items: center;
 }
-.case-detail-attr .case-detail-attr-value .case-state {
+
+/* Value-row icons match the 17px value line box, so no icon can push a column past the strip's
+   71px. Without this they fall back to the global `.ti{font-size:1.2em}` = 16.8px baseline —
+   close, but then the strip height depends on that baseline rather than on this block.
+   `line-height: 1` is already applied to these by the icon+text link rule further up. */
+.task-detail-attr .task-detail-attr-value .ti,
+.task-detail-attr .task-detail-attr-value .tif,
+.case-detail-attr .case-detail-attr-value .ti,
+.case-detail-attr .case-detail-attr-value .tif {
+  font-size: 1.2143rem; /* 17px */
+  flex: 0 0 auto; /* columns shrink to fit now — the glyph must not be squashed with the text */
+}
+
+/* module.css:4264-4270 pads the Priority inplace display `0.75rem 0.5rem 0 0.5rem` (10.5px top)
+   and pulls it 7px left — baseline hacks for the OLD `ui-g general-information` float grid, where
+   `.text-content` carried its own padding-top. In the flex strip they make the Priority row 27.5px
+   instead of 17px (strip ~81px instead of 71px) and knock "High" out of line with the sibling
+   values. Neutralized inside the strip only; (0,5,0) beats module.css's (0,3,0). */
+.task-detail-attr .task-detail-attr-value .task-details-priority .portal-edit-inplace .ui-inplace-display {
   padding: 0;
-  background: none;
-  border: none;
-  font-size: inherit;
-  font-weight: inherit;
-  color: inherit;
+}
+.task-detail-attr .task-detail-attr-value .task-details-priority .edit-priority-inplace .ui-inplace-display {
+  margin-left: 0;
 }
 
 /* ---- Case Details card: heading, description, sub-cards -------------------- */
@@ -3139,10 +3212,15 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
 /* ---- State badges in the Related tasks / Related cases tables --------------
    Figma: fully rounded, 2px/10px padding, 1.237px border, 14px/400 label.
    module.css styles `.state-column .case-state` / `.state-cell .task-state` with
-   `padding:0 8px` and caps the width at 90px — both are overridden here. */
-.case-detail-body .state-column .case-state,
-.case-detail-body .state-cell .task-state,
-.case-detail-body .related-task-state-column .task-state {
+   `padding:0 8px` and caps the width at 90px — both are overridden here.
+   `:not(.state-indicator)` on every selector in this block: the summary strip renders the SAME
+   component with `showIndicatorBesideText="true"`, which emits a bare `<i>` dot carrying the same
+   `.case-state`/`.task-state` + per-state classes. Without the exclusion these (0,3,0)/(0,2,0)
+   rules beat `module.css:776`'s dot geometry and repaint the dot with the pill's tint. The dot
+   must keep resolving through the shared cascade instead. */
+.case-detail-body .state-column .case-state:not(.state-indicator),
+.case-detail-body .state-cell .task-state:not(.state-indicator),
+.case-detail-body .related-task-state-column .task-state:not(.state-indicator) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -3159,54 +3237,46 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
   line-height: 1.856; /* 25.987px at the 14px body size; unitless so it tracks font-size */
   white-space: nowrap;
 }
-.case-detail-body .open-case-state,
-.case-detail-body .open-task-state,
-.case-detail-body .created-task-state,
-.case-detail-body .suspended-task-state {
+.case-detail-body .open-case-state:not(.state-indicator),
+.case-detail-body .open-task-state:not(.state-indicator),
+.case-detail-body .created-task-state:not(.state-indicator),
+.case-detail-body .suspended-task-state:not(.state-indicator) {
   background: var(--portal-state-open-bg);
   border-color: var(--portal-state-open-border);
   color: var(--portal-state-open-color);
 }
-.case-detail-body .in_progress-case-state,
-.case-detail-body .in_progress-task-state,
-.case-detail-body .resumed-task-state {
+.case-detail-body .in_progress-case-state:not(.state-indicator),
+.case-detail-body .in_progress-task-state:not(.state-indicator),
+.case-detail-body .resumed-task-state:not(.state-indicator) {
   background: var(--portal-state-in-progress-bg);
   border-color: var(--portal-state-in-progress-border);
   color: var(--portal-state-in-progress-color);
 }
-.case-detail-body .delayed-case-state,
-.case-detail-body .delayed-task-state,
-.case-detail-body .waiting-task-state {
+.case-detail-body .delayed-case-state:not(.state-indicator),
+.case-detail-body .delayed-task-state:not(.state-indicator),
+.case-detail-body .waiting-task-state:not(.state-indicator) {
   background: var(--portal-state-delayed-bg);
   border-color: var(--portal-state-delayed-border);
   color: var(--portal-state-delayed-color);
 }
-.case-detail-body .done-case-state,
-.case-detail-body .done-task-state {
+.case-detail-body .done-case-state:not(.state-indicator),
+.case-detail-body .done-task-state:not(.state-indicator) {
   background: var(--portal-state-done-bg);
   border-color: var(--portal-state-done-border);
   color: var(--portal-state-done-color);
 }
-.case-detail-body .failed-case-state,
-.case-detail-body .failed-task-state,
-.case-detail-body .join_failed-task-state {
+.case-detail-body .failed-case-state:not(.state-indicator),
+.case-detail-body .failed-task-state:not(.state-indicator),
+.case-detail-body .join_failed-task-state:not(.state-indicator) {
   background: var(--portal-state-error-bg);
   border-color: var(--portal-state-error-border);
   color: var(--portal-state-error-color);
 }
-.case-detail-body .destroyed-case-state,
-.case-detail-body .destroyed-task-state {
+.case-detail-body .destroyed-case-state:not(.state-indicator),
+.case-detail-body .destroyed-task-state:not(.state-indicator) {
   background: var(--portal-state-neutral-bg);
   border-color: var(--portal-state-neutral-border);
   color: var(--portal-state-neutral-color);
-}
-/* The indicator-dot variant (summary strip) must NOT become a pill — it is a bare
-   `<i>` with `.state-indicator` next to the label. */
-.case-detail-body .state-with-indicator .case-state.state-indicator {
-  padding: 0;
-  border-radius: 50%;
-  border: none;
-  line-height: 1;
 }
 
 /* ---- Responsive ------------------------------------------------------------
