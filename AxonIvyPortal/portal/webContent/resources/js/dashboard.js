@@ -251,8 +251,11 @@ function resizeTableBody() {
         entries.forEach(entry => {
           let tableBody = $(entry.target);
           let parentHeight = tableBody.closest('.grid-stack-item-content.card.dashboard-card').height();
+          if (!parentHeight) {
+            return;
+          }
 
-          let targetHeight = Math.round(parentHeight - getReservedHeightForTableBody(tableBody));
+          let targetHeight = Math.max(0, Math.round(parentHeight - getReservedHeightForTableBody(tableBody)));
           if (Math.round(tableBody.height()) !== targetHeight) {
             tableBody.height(targetHeight);
           }
