@@ -2575,9 +2575,11 @@ body.dark .menu-type-static {
   padding: 0.5em 0;
 }
 
-.actions-menu-panel {
-  width: 16.5rem;
-  height: fit-content;
+body .actions-menu-panel {
+  width: 16.143rem !important;
+  height: 15.714rem !important;
+  overflow: hidden;
+  max-height: fit-content;
   right: auto !important;
 }
 
@@ -2585,9 +2587,15 @@ body.dark .menu-type-static {
   border-bottom: 1px solid var(--widget-button-border-color) !important;
 }
 
-.actions-menu-panel .ui-menuitem-link {
+body .actions-menu-panel .ui-menuitem {
+  height: 3.143rem !important;
+}
+
+body .actions-menu-panel .ui-menuitem-link {
+  height: 100% !important;
+  box-sizing: border-box !important;
   display: flex !important;
-  align-items: center;
+  align-items: center !important;
   line-height: 1;
 }
 
