@@ -83,6 +83,6 @@ public class DashboardCaseWidgetBean implements Serializable {
   private static Map<String, Object> displayCache() {
     Map<String, Object> requestMap =
         FacesContext.getCurrentInstance().getExternalContext().getRequestMap();
-    return (Map<String, Object>) requestMap.computeIfAbsent(DISPLAY_CACHE_KEY, k -> new HashMap<>());
+    return (Map<String, Object>) requestMap.computeIfAbsent(DISPLAY_CACHE_KEY, _ -> new HashMap<>());
   }
 }
