@@ -3216,7 +3216,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .absence-tab-actions {
   position: absolute;
-  top: -0.25rem;
+  top: -0.5rem;
   right: 0;
   display: flex;
   align-items: center;
@@ -3346,7 +3346,7 @@ body .ui-button:hover {
 
 .avatar-stack .avatar-stack-item .ui-avatar,
 .avatar-stack .avatar-stack-item img {
-  border: 2px solid #FFFFFF;
+  border: 2px solid var(--substituted-user-avatar-color);
   box-sizing: content-box;
 }
 
