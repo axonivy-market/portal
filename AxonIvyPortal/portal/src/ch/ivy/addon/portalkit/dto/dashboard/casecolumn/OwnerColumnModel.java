@@ -55,10 +55,18 @@ public class OwnerColumnModel extends CaseColumnModel implements Serializable {
 
   @Override
   public Object display(ICase caze) {
-    if (caze == null || CollectionUtils.isEmpty(caze.owners().all())) {
+    if (caze == null) {
       return StringUtils.EMPTY;
     }
-    return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForCaseOwners(caze.owners());
+    var owners = caze.owners();
+    var ownerList = owners == null ? null : owners.all();
+    if (CollectionUtils.isEmpty(ownerList)) {
+      return StringUtils.EMPTY;
+    }
+    return ownerList.stream()
+        .map(owner -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(
+            owner.member(), owner.memberName()))
+        .collect(Collectors.joining(", "));
   }
   
   @JsonIgnore
