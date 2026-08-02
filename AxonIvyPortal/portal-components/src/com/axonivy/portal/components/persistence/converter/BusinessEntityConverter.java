@@ -11,7 +11,10 @@ import com.axonivy.portal.components.service.exception.PortalException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 
 /**
  * This class provides method to convert Business entity object into Json value
@@ -25,8 +28,7 @@ public final class BusinessEntityConverter {
 
   public static String entityToJsonValue(BusinessEntity entity) {
     try {
-        return getObjectMapper().writer().withRootName("xxxx").writeValueAsString(entity);
-      // return getObjectMapper().writeValueAsString(entity);
+      return getObjectMapper().writeValueAsString(entity);
     } catch (JsonProcessingException e) {
       throw new PortalException(e);
     }
@@ -70,9 +72,18 @@ public final class BusinessEntityConverter {
   }
 
   public static ObjectMapper getObjectMapper() {
+    // if (objectMapper == null) {
+    //   objectMapper = new ObjectMapper()
+    //       .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    // }
+    // return objectMapper;
     if (objectMapper == null) {
-      objectMapper = new ObjectMapper()
-          .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+      objectMapper = JsonMapper
+          .builder()
+          .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+          .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
+          // .enable(SerializationFeature.WRAP_ROOT_VALUE)
+          .build(); 
     }
     return objectMapper;
   }

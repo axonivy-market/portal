@@ -44,7 +44,13 @@ public class JsonDashboardFilterMigrator {
   }
 
   public JsonNode migrate() {
-    node.elements().forEachRemaining(config -> migrate(config));
+    // node.elements().forEachRemaining(config -> migrate(config));
+    // return node;
+    if (node.isArray()) {
+      node.elements().forEachRemaining(config -> migrate(config));
+    } else {
+      migrate(node);
+    }
     return node;
   }
 
