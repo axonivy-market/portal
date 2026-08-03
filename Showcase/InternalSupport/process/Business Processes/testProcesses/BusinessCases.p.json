@@ -1,0 +1,499 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "15B1EA24CCF377E8",
+  "config" : {
+    "data" : "internaltest.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "updateCheckInTime.ivp",
+      "config" : {
+        "signature" : "updateCheckInTime",
+        "request" : {
+          "name" : "Update checkin time"
+        },
+        "task" : {
+          "name" : "Update checkin time"
+        },
+        "case" : {
+          "name" : "Update checkin time"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 96 },
+        "labelOffset" : { "x" : 86, "y" : 20 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f8" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 64, "y" : 352 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "SignalStartEvent",
+      "name" : "signal",
+      "config" : {
+        "signalCode" : "com:axonivy:portal:internalsupport:updateCheckInTime"
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 96 },
+        "labelOffset" : { "x" : 39, "y" : 20 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f2" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 288, "y" : 352 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "<%=in1.taskName%>"
+          } ],
+        "case" : {
+          "name" : "<%=in1.caseName%>"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 224 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f4", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : "send signal",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.process.model.value.SignalCode;",
+            "",
+            "SignalCode code = SignalCode.of(\"com:axonivy:portal:internalsupport:updateCheckInTime\");",
+            "ivy.wf.signals().send(code);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f2",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "out.caseName = \"TECH: Update checkin time\";",
+            "out.taskName = \"Update checkin time of case \" +  ivy.case.getBusinessCase().getId();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f5", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "RequestStart",
+      "name" : "OrderPizza.ivp",
+      "config" : {
+        "signature" : "OrderPizza",
+        "task" : {
+          "name" : "Order pizza"
+        },
+        "case" : {
+          "name" : "Order Pizza"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 96 },
+        "labelOffset" : { "x" : 60, "y" : 20 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f13" }
+      ]
+    }, {
+      "id" : "f13",
+      "type" : "TriggerCall",
+      "name" : "order",
+      "config" : {
+        "processCall" : "Business Processes/testProcesses/BusinessCases:takeOrder()"
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f27", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 352 }
+      }
+    }, {
+      "id" : "f19",
+      "type" : "RequestStart",
+      "name" : "takeOrder()",
+      "config" : {
+        "signature" : "takeOrder",
+        "request" : {
+          "isHttpRequestable" : false
+        },
+        "triggerable" : true,
+        "task" : {
+          "name" : "Take Order"
+        },
+        "case" : {
+          "name" : "Take Order and Make Pizza"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 612, "y" : 96 },
+        "labelOffset" : { "x" : 53, "y" : 20 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f20", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f20",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "Make Pizza"
+          } ]
+      },
+      "visual" : {
+        "at" : { "x" : 612, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f28", "to" : "f16", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
+    }, {
+      "id" : "f22",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 612, "y" : 352 }
+      }
+    }, {
+      "id" : "f24",
+      "type" : "SignalStartEvent",
+      "name" : "delivery",
+      "config" : {
+        "signalCode" : "com:axonivy:portal:internalsupport:pizzaDelivery"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 96 },
+        "labelOffset" : { "x" : 42, "y" : 20 }
+      },
+      "connect" : [
+        { "id" : "f35", "to" : "f34", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f25",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 896, "y" : 352 }
+      }
+    }, {
+      "id" : "f27",
+      "type" : "TaskSwitchGateway",
+      "name" : "Eat",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "Eat Pizza"
+          } ]
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 288 },
+        "labelOffset" : { "x" : 31, "y" : 20 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f17", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
+    }, {
+      "id" : "f16",
+      "type" : "TriggerCall",
+      "name" : "BusinessCases",
+      "config" : {
+        "processCall" : "Business Processes/testProcesses/BusinessCases:pack()"
+      },
+      "visual" : {
+        "at" : { "x" : 612, "y" : 288 }
+      },
+      "connect" : [
+        { "id" : "f23", "to" : "f22" }
+      ]
+    }, {
+      "id" : "f29",
+      "type" : "RequestStart",
+      "name" : "pack()",
+      "config" : {
+        "signature" : "pack",
+        "request" : {
+          "isHttpRequestable" : false
+        },
+        "triggerable" : true,
+        "task" : {
+          "name" : "Pack Pizza"
+        },
+        "case" : {
+          "name" : "Pack Pizza"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 768, "y" : 96 },
+        "labelOffset" : { "x" : 39, "y" : 20 }
+      },
+      "connect" : [
+        { "id" : "f33", "to" : "f32" }
+      ]
+    }, {
+      "id" : "f30",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 768, "y" : 352 }
+      }
+    }, {
+      "id" : "f32",
+      "type" : "Script",
+      "name" : "delivery",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.process.model.value.SignalCode;",
+            "",
+            "SignalCode code = SignalCode.of(\"com:axonivy:portal:internalsupport:pizzaDelivery\");",
+            "ivy.wf.signals().send(code);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 768, "y" : 224 }
+      },
+      "connect" : [
+        { "id" : "f31", "to" : "f30" }
+      ]
+    }, {
+      "id" : "f34",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "Delivery Pizza"
+          } ],
+        "case" : {
+          "name" : "Delivery Pizza"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 224 }
+      },
+      "connect" : [
+        { "id" : "f26", "to" : "f25", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
+    }, {
+      "id" : "f36",
+      "type" : "RequestStart",
+      "name" : "saleAndInform.ivp",
+      "config" : {
+        "signature" : "saleAndInform",
+        "request" : {
+          "name" : "Sale and inform",
+          "description" : "Task with UI and trigger signal"
+        },
+        "case" : {
+          "name" : "Sale and inform"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1120, "y" : 96 },
+        "labelOffset" : { "x" : 73, "y" : 20 }
+      },
+      "connect" : [
+        { "id" : "f49", "to" : "f48" }
+      ]
+    }, {
+      "id" : "f37",
+      "type" : "UserTask",
+      "name" : "SaleDepartment",
+      "config" : {
+        "dialog" : "internaltest.ui.SaleDepartment:start()",
+        "task" : {
+          "name" : "Work with sale department",
+          "category" : "SALE/SIGNCONTRACT"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1120, "y" : 480 }
+      },
+      "connect" : [
+        { "id" : "f40", "to" : "f39" }
+      ]
+    }, {
+      "id" : "f39",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1120, "y" : 608 }
+      }
+    }, {
+      "id" : "f41",
+      "type" : "Script",
+      "name" : "trigger signal",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.process.model.value.SignalCode;",
+            "",
+            "SignalCode code = SignalCode.of(\"com:axonivy:portal:internalsupport:informSale\");",
+            "ivy.wf.signals().send(code);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1120, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f38", "to" : "f37" }
+      ]
+    }, {
+      "id" : "f43",
+      "type" : "SignalStartEvent",
+      "name" : "Send mail",
+      "config" : {
+        "signalCode" : "com:axonivy:portal:internalsupport:informSale"
+      },
+      "visual" : {
+        "at" : { "x" : 1296, "y" : 208 },
+        "labelOffset" : { "x" : 52, "y" : 20 }
+      },
+      "connect" : [
+        { "id" : "f46", "to" : "f44" }
+      ]
+    }, {
+      "id" : "f44",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Send email inform"
+        },
+        "case" : {
+          "name" : "Send mail inform",
+          "category" : "SALE/SENDMAIL"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1296, "y" : 304 }
+      },
+      "connect" : [
+        { "id" : "f47", "to" : "f45" }
+      ]
+    }, {
+      "id" : "f45",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1296, "y" : 416 }
+      }
+    }, {
+      "id" : "f48",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Submit request",
+          "skipTasklist" : true
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1120, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f56", "to" : "f55" }
+      ]
+    }, {
+      "id" : "f50",
+      "type" : "RequestStart",
+      "name" : "startTriggerMail.ivp",
+      "config" : {
+        "signature" : "startTriggerMail",
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "roles" : [
+              "SYSTEM"
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1440, "y" : 208 },
+        "labelOffset" : { "x" : 75, "y" : 20 }
+      },
+      "connect" : [
+        { "id" : "f54", "to" : "f53" }
+      ]
+    }, {
+      "id" : "f51",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1440, "y" : 416 }
+      }
+    }, {
+      "id" : "f53",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Trigger mail",
+          "category" : "SALE/SENDMAIL",
+          "skipTasklist" : true
+        },
+        "case" : {
+          "name" : "Trigger mail",
+          "category" : "SALE/SENDMAIL"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1440, "y" : 304 }
+      },
+      "connect" : [
+        { "id" : "f52", "to" : "f51" }
+      ]
+    }, {
+      "id" : "f55",
+      "type" : "TriggerCall",
+      "name" : "Trigger mail",
+      "config" : {
+        "processCall" : "Business Processes/testProcesses/BusinessCases:startTriggerMail()"
+      },
+      "visual" : {
+        "at" : { "x" : 1120, "y" : 288 }
+      },
+      "connect" : [
+        { "id" : "f42", "to" : "f41" }
+      ]
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "size" : 384
+      }, {
+        "size" : 608
+      } ]
+  }
+}

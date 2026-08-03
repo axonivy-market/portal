@@ -1,0 +1,209 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "1756E0BE3BCBAD12",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.setting.AbsenceManagement.AbsenceManagementData"
+  },
+  "elements" : [ {
+      "id" : "f19",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 640, "y" : 352 }
+      }
+    }, {
+      "id" : "f17",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "autoCompleteForSubstituteOnApp(String)",
+      "config" : {
+        "signature" : "autoCompleteForSubstituteOnApp",
+        "input" : {
+          "params" : [
+            { "name" : "query", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.queryAutoComplete" : "param.query"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>", "desc" : "" }
+          ],
+          "map" : { },
+          "code" : [
+            "import com.axonivy.portal.components.dto.UserDTO;",
+            "import ch.ivy.addon.portalkit.util.UserUtils;",
+            "",
+            "java.util.List<UserDTO> users = UserUtils.filterOut(in.users, in.selectedAbsenceUser);",
+            "result.users.addAll(users);"
+          ]
+        },
+        "guid" : "1756E446A9CC288A"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 352 }
+      },
+      "connect" : [
+        { "id" : "f33", "to" : "f48" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "signature" : "start",
+        "guid" : "1756E446A9DF005A"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 }
+      },
+      "connect" : [
+        { "id" : "f179", "to" : "f178" }
+      ]
+    }, {
+      "id" : "f53",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "autoCompleteForUserOnApp(String)",
+      "config" : {
+        "signature" : "autoCompleteForUserOnApp",
+        "input" : {
+          "params" : [
+            { "name" : "query", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.queryAutoComplete" : "param.query"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>", "desc" : "" }
+          ],
+          "map" : {
+            "result.users" : "in.users"
+          }
+        },
+        "guid" : "1756E446A9D252D7"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 480 },
+        "labelOffset" : { "x" : 26, "y" : 42 }
+      },
+      "connect" : [
+        { "id" : "f46", "to" : "f45" }
+      ]
+    }, {
+      "id" : "f45",
+      "type" : "SubProcessCall",
+      "name" : "Ivy Data Processes/SecurityService",
+      "config" : {
+        "processCall" : "Ivy Data Processes/SecurityService:findUsers(String,Integer,Integer,java.util.List<String>,java.util.List<String>)",
+        "call" : {
+          "map" : {
+            "param.query" : "in.queryAutoComplete",
+            "param.startIndex" : "0",
+            "param.count" : "ch.ivy.addon.portalkit.constant.PortalConstants.MAX_USERS_IN_AUTOCOMPLETE"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.users" : "result.users"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 480 },
+        "size" : { "width" : 192 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 640, "y" : 480 }
+      }
+    }, {
+      "id" : "f48",
+      "type" : "SubProcessCall",
+      "name" : "find Users",
+      "config" : {
+        "processCall" : "Ivy Data Processes/SecurityService:findUsers(String,Integer,Integer,java.util.List<String>,java.util.List<String>)",
+        "call" : {
+          "map" : {
+            "param.query" : "in.queryAutoComplete",
+            "param.startIndex" : "0",
+            "param.count" : "ch.ivy.addon.portalkit.constant.PortalConstants.MAX_USERS_IN_AUTOCOMPLETE"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.users" : "result.users"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 352 }
+      },
+      "connect" : [
+        { "id" : "f43", "to" : "f19" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 496, "y" : 208 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "backToHome()",
+      "config" : {
+        "signature" : "backToHome",
+        "guid" : "1756E4AF3567EC52"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 208 },
+        "labelOffset" : { "x" : 24 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Navigate To Portal EndPage",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
+            "import jakarta.faces.context.FacesContext;",
+            "import jakarta.faces.context.Flash;",
+            "",
+            "",
+            "// Turn off growl message",
+            "Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();",
+            "flash.put(\"overridePortalGrowl\", true);",
+            "flash.setRedirect(true);",
+            "",
+            "PortalNavigatorAPI.navigateToPortalEndPage();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 208 },
+        "size" : { "width" : 160 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f178",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 216, "y" : 96 }
+      }
+    } ]
+}

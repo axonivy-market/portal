@@ -1,0 +1,142 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "16AB5FD24113C5D2",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "ch.ivy.add.portalkit.DownloadDocumentData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "downloadDocument(ICase,IvyDocument)",
+      "config" : {
+        "signature" : "downloadDocument",
+        "input" : {
+          "params" : [
+            { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.bussinessCase",
+            "out.document" : "param.document"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+          ],
+          "map" : {
+            "result.streamedContent" : "in.streamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 240 },
+        "labelOffset" : { "x" : -2, "y" : 50 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 832, "y" : 240 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Download document item",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
+            "",
+            "out.streamedContent = CaseDocumentService.newInstance(in.businessCase).download(in.document);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 704, "y" : 240 },
+        "size" : { "width" : 160 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This sub process can be customized  to download file from DMS",
+        "",
+        "The custom proccess signature must be: \"portalDownloadDocument(ICase,IvyDocument)\""
+      ],
+      "visual" : {
+        "at" : { "x" : 214, "y" : 414 },
+        "size" : { "width" : 372, "height" : 107 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f0" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : [
+        "Call customized",
+        "sub process"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import org.primefaces.model.StreamedContent;",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"businessCase\", in.businessCase);",
+            "params.put(\"document\", in.document);",
+            "",
+            "Map result = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.DOWNLOAD_DOCUMENT.getSignature(), params);",
+            "in.hasCustomProcess = result != null;",
+            "if (in.hasCustomProcess) {",
+            "  in.streamedContent = result.get(\"streamedContent\") as StreamedContent;",
+            "  in.status = UploadDocumentCheckStatus.toEnum(result.get(\"status\").toString());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 240 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "Alternative",
+      "name" : "Has custom sub process?",
+      "config" : {
+        "conditions" : {
+          "f11" : "in.hasCustomProcess && in.status != com.axonivy.portal.components.enums.UploadDocumentCheckStatus.SKIP",
+          "f10" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 504, "y" : 240 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f3", "label" : {
+            "name" : "No"
+          } },
+        { "id" : "f11", "to" : "f1", "via" : [ { "x" : 504, "y" : 312 }, { "x" : 832, "y" : 312 } ], "label" : {
+            "name" : "Yes"
+          } }
+      ]
+    } ]
+}

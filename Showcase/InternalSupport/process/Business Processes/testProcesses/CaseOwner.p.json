@@ -1,0 +1,233 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "16A68510A341BE6E",
+  "config" : {
+    "data" : "internaltest.CaseOwnerData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "userIsOwner.ivp",
+      "config" : {
+        "signature" : "userIsOwner",
+        "request" : {
+          "name" : "demo user is owner"
+        },
+        "task" : {
+          "name" : "Start: case user owner"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : 14 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : [
+        "Set demo user",
+        "as owner"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "ivy.case.owners().add(ISecurityContext.current().users().find(\"demo\"));"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "size" : { "width" : 128 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f5", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "demo user is owner",
+            "responsible" : {
+              "roles" : [
+                "CREATOR"
+              ]
+            }
+          } ],
+        "case" : {
+          "name" : "demo user is owner"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "RequestStart",
+      "name" : "roleIsOwner.ivp",
+      "config" : {
+        "signature" : "roleIsOwner",
+        "request" : {
+          "name" : "CaseOwner role is owner"
+        },
+        "task" : {
+          "name" : "Start: case role owner"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : 5, "y" : 37 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "Test role is owner",
+            "responsible" : {
+              "roles" : [
+                "CREATOR"
+              ]
+            }
+          } ],
+        "case" : {
+          "name" : "Test role is owner"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f9", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 160 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : [
+        "Set CaseOwner role",
+        "as owner"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "ivy.case.owners().add(ISecurityContext.current().roles().find(\"CaseOwner\"));"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 },
+        "size" : { "width" : 144 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f8", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "RequestStart",
+      "name" : "multipleOwners",
+      "config" : {
+        "signature" : "multipleOwners",
+        "request" : {
+          "name" : "Create case with multiple owners",
+          "description" : "Create case with multiple owners"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f15" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "Script",
+      "name" : "Set multiple case owners",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "if (ISecurityContext.current().users().find(\"demo\") != null){",
+            "  ivy.case.owners().add(ISecurityContext.current().users().find(\"demo\"));  ",
+            "}",
+            "",
+            "if (ISecurityContext.current().users().find(\"admin\") != null){",
+            "  ivy.case.owners().add(ISecurityContext.current().users().find(\"admin\"));",
+            "}",
+            "",
+            "if (ISecurityContext.current().roles().find(\"CaseOwner\") != null){",
+            "  ivy.case.owners().add(ISecurityContext.current().roles().find(\"CaseOwner\"));",
+            "",
+            "}",
+            "",
+            "if (ISecurityContext.current().roles().find(\"HR\") != null){",
+            "  ivy.case.owners().add(ISecurityContext.current().roles().find(\"HR\"));",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f22", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 280 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f22",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "Task with multiple case owners",
+            "responsible" : {
+              "roles" : [
+                "CREATOR"
+              ]
+            }
+          } ],
+        "case" : {
+          "name" : "Case with multiple owners"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f19", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
+    } ]
+}
