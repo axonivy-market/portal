@@ -1,0 +1,695 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "172546E1FDEB1FF7",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.setting.UserProfile.UserProfileData"
+  },
+  "elements" : [ {
+      "id" : "S70",
+      "type" : "EmbeddedProcess",
+      "name" : "Save General Setting",
+      "elements" : [ {
+          "id" : "S70-f28",
+          "type" : "Script",
+          "name" : "update selected homepage",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portal.generic.bean.UserProfileBean;",
+                "import ch.ivy.addon.portalkit.jsf.ManagedBeans;",
+                "",
+                "UserProfileBean userProfileBean =  ManagedBeans.get(\"userProfileBean\") as UserProfileBean;",
+                "userProfileBean.saveHomepage(in.selectedHomepage.getName());"
+              ]
+            },
+            "sudo" : true
+          },
+          "visual" : {
+            "at" : { "x" : 216, "y" : 160 },
+            "size" : { "width" : 160 }
+          },
+          "connect" : [
+            { "id" : "S70-f1", "to" : "S70-g1" }
+          ]
+        }, {
+          "id" : "S70-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 18, "y" : 25 }
+          },
+          "parentConnector" : "f11",
+          "connect" : [
+            { "id" : "S70-f0", "to" : "S70-f28" }
+          ]
+        }, {
+          "id" : "S70-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 384, "y" : 160 },
+            "labelOffset" : { "x" : 21, "y" : 25 }
+          },
+          "parentConnector" : "f75"
+        } ],
+      "visual" : {
+        "at" : { "x" : 456, "y" : 280 },
+        "size" : { "width" : 128 }
+      },
+      "connect" : [
+        { "id" : "f75", "to" : "S71" }
+      ]
+    }, {
+      "id" : "S60",
+      "type" : "EmbeddedProcess",
+      "name" : "Init Process Setting",
+      "elements" : [ {
+          "id" : "S60-f11",
+          "type" : "Script",
+          "name" : "Load Process modes",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+                "import ch.ivy.addon.portalkit.configuration.GlobalSetting;",
+                "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+                "import org.apache.commons.lang3.StringUtils;",
+                "import org.apache.commons.lang3.Strings;",
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "import ch.ivy.addon.portalkit.enums.ProcessMode;",
+                "",
+                "in.processModes.clear();",
+                "GlobalSettingService globalSettingService = new GlobalSettingService();",
+                "GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_MODE);",
+                "",
+                "ProcessMode defaultSettingEnum = ProcessMode.valueOf(defaultSetting.value);",
+                "",
+                "String defaultProcessModeSetting = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption\", [defaultSettingEnum == null ? \"\" : defaultSettingEnum.getLabel()]);",
+                "in.processModes.add(defaultProcessModeSetting);",
+                "",
+                "for (ProcessMode mode : ProcessMode.values()) {",
+                "  in.processModes.add(mode.getLabel());",
+                "}",
+                "",
+                "String userProcessSetting = UserSettingService.newInstance().getDefaultProcessMode();",
+                "if (StringUtils.isBlank(userProcessSetting) || Strings.CI.equals(userProcessSetting, UserSettingService.DEFAULT)) {",
+                "  userProcessSetting = defaultProcessModeSetting;",
+                "}",
+                "",
+                "",
+                "in.selectedProcessMode = userProcessSetting;"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 200, "y" : 160 },
+            "size" : { "width" : 128 }
+          },
+          "connect" : [
+            { "id" : "S60-f1", "to" : "S60-g1" }
+          ]
+        }, {
+          "id" : "S60-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 3, "y" : 160 },
+            "labelOffset" : { "x" : 18, "y" : 25 }
+          },
+          "parentConnector" : "f78",
+          "connect" : [
+            { "id" : "S60-f0", "to" : "S60-f11" }
+          ]
+        }, {
+          "id" : "S60-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 352, "y" : 160 },
+            "labelOffset" : { "x" : 21, "y" : 25 }
+          },
+          "parentConnector" : "f26"
+        } ],
+      "visual" : {
+        "at" : { "x" : 832, "y" : 144 }
+      },
+      "connect" : [
+        { "id" : "f26", "to" : "f8" }
+      ]
+    }, {
+      "id" : "S40",
+      "type" : "EmbeddedProcess",
+      "name" : "Init General Setting",
+      "elements" : [ {
+          "id" : "S40-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 18, "y" : 25 }
+          },
+          "parentConnector" : "f10",
+          "connect" : [
+            { "id" : "S40-f0", "to" : "S40-f4" }
+          ]
+        }, {
+          "id" : "S40-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 584, "y" : 160 },
+            "labelOffset" : { "x" : 21, "y" : 25 }
+          },
+          "parentConnector" : "f77"
+        }, {
+          "id" : "S40-f4",
+          "type" : "Script",
+          "name" : "Load homepages",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.addon.portal.generic.userprofile.homepage.Homepage;",
+                "import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;",
+                "",
+                "Homepage defaultHomepage = HomepageUtils.findDefaultHomepage();",
+                "defaultHomepage.setName(\"\");",
+                "defaultHomepage.setLabel(ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption\", [defaultHomepage.getLabel()]));",
+                "out.homepages = HomepageUtils.loadHomepages();",
+                "out.homepages.add(0, defaultHomepage);",
+                "out.selectedHomepage = HomepageUtils.findHomepageInMyProfile();"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 408, "y" : 160 }
+          },
+          "connect" : [
+            { "id" : "S40-f1", "to" : "S40-g1" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 416, "y" : 144 }
+      },
+      "connect" : [
+        { "id" : "f77", "to" : "S72" }
+      ]
+    }, {
+      "id" : "S30",
+      "type" : "EmbeddedProcess",
+      "name" : "Init Language",
+      "elements" : [ {
+          "id" : "S30-f11",
+          "type" : "SubProcessCall",
+          "name" : "LanguageService",
+          "config" : {
+            "processCall" : "Ivy Data Processes/LanguageService:findUserLanguages()",
+            "output" : {
+              "map" : {
+                "out" : "in",
+                "out.language" : "result.language"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 160 }
+          },
+          "connect" : [
+            { "id" : "S30-f25", "to" : "S30-f9" }
+          ]
+        }, {
+          "id" : "S30-f9",
+          "type" : "Script",
+          "name" : [
+            "Add empty option",
+            "Set locale"
+          ],
+          "config" : {
+            "output" : {
+              "code" : [
+                "import jakarta.faces.context.FacesContext;",
+                "import ch.ivy.addon.portalkit.util.UserUtils;",
+                "",
+                "in.language.supportedLanguages.add(0, \"\");",
+                "in.language.supportedFormattingLanguages.add(0, \"\");",
+                "UserUtils.setLanguage();"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 344, "y" : 160 },
+            "size" : { "width" : 128 }
+          },
+          "connect" : [
+            { "id" : "S30-f1", "to" : "S30-g1" }
+          ]
+        }, {
+          "id" : "S30-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 18, "y" : 25 }
+          },
+          "parentConnector" : "f7",
+          "connect" : [
+            { "id" : "S30-f0", "to" : "S30-f11" }
+          ]
+        }, {
+          "id" : "S30-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 480, "y" : 160 },
+            "labelOffset" : { "x" : 21, "y" : 25 }
+          },
+          "parentConnector" : "f10"
+        } ],
+      "visual" : {
+        "at" : { "x" : 216, "y" : 144 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "S40" }
+      ]
+    }, {
+      "id" : "S10",
+      "type" : "EmbeddedProcess",
+      "name" : "Save Language",
+      "elements" : [ {
+          "id" : "S10-f18",
+          "type" : "SubProcessCall",
+          "name" : "LanguageService",
+          "config" : {
+            "processCall" : "Ivy Data Processes/LanguageService:saveUserLanguage(ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage)",
+            "call" : {
+              "map" : {
+                "param.language" : "in.language"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 160 }
+          },
+          "connect" : [
+            { "id" : "S10-f31", "to" : "S10-f20" }
+          ]
+        }, {
+          "id" : "S10-f20",
+          "type" : "Script",
+          "name" : "Set locale",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.util.UserUtils;",
+                "",
+                "UserUtils.setLanguage();"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 344, "y" : 160 }
+          },
+          "connect" : [
+            { "id" : "S10-f1", "to" : "S10-f32" }
+          ]
+        }, {
+          "id" : "S10-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 18, "y" : 25 }
+          },
+          "parentConnector" : "f35",
+          "connect" : [
+            { "id" : "S10-f0", "to" : "S10-f18" }
+          ]
+        }, {
+          "id" : "S10-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 632, "y" : 160 },
+            "labelOffset" : { "x" : 21, "y" : 25 }
+          },
+          "parentConnector" : "f11"
+        }, {
+          "id" : "S10-f32",
+          "type" : "Script",
+          "name" : "Invalidate Announcement cache",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.service.AnnouncementService;",
+                "AnnouncementService.getInstance().invalidateCache();"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 512, "y" : 161 },
+            "size" : { "width" : 128, "height" : 62 }
+          },
+          "connect" : [
+            { "id" : "S10-f33", "to" : "S10-g1", "color" : "default" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 248, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "S70" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1016, "y" : 144 }
+      }
+    }, {
+      "id" : "f12",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "initSettings()",
+      "config" : {
+        "signature" : "initSettings",
+        "guid" : "17255599F044D2FD"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 144 },
+        "labelOffset" : { "x" : 20, "y" : 37 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "S30" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "save()",
+      "config" : {
+        "signature" : "save",
+        "guid" : "17255B3EA938571E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 280 },
+        "labelOffset" : { "x" : 9, "y" : 40 }
+      },
+      "connect" : [
+        { "id" : "f35", "to" : "S10" }
+      ]
+    }, {
+      "id" : "f42",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1168, "y" : 280 }
+      }
+    }, {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "signature" : "start",
+        "guid" : "172546E1FE4FCAB2"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f21",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 496, "y" : 392 }
+      }
+    }, {
+      "id" : "f16",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "backToHome()",
+      "config" : {
+        "signature" : "backToHome",
+        "guid" : "1742004FD7E8D572"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 392 },
+        "labelOffset" : { "x" : 24 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f14" }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "Script",
+      "name" : "Back to Home",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
+            "",
+            "PortalNavigatorAPI.navigateToPortalHome();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 392 }
+      },
+      "connect" : [
+        { "id" : "f22", "to" : "f21" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Back to Home",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
+            "",
+            "PortalNavigatorAPI.navigateToPortalHome();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1024, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f3", "to" : "f42" }
+      ]
+    }, {
+      "id" : "S00",
+      "type" : "EmbeddedProcess",
+      "name" : "Save Process Setting",
+      "elements" : [ {
+          "id" : "S00-g0",
+          "type" : "EmbeddedStart",
+          "visual" : {
+            "at" : { "y" : 256 }
+          },
+          "parentConnector" : "f76",
+          "connect" : [
+            { "id" : "S00-f2", "to" : "S00-f1" }
+          ]
+        }, {
+          "id" : "S00-g1",
+          "type" : "EmbeddedEnd",
+          "visual" : {
+            "at" : { "x" : 576, "y" : 256 }
+          },
+          "parentConnector" : "f17"
+        }, {
+          "id" : "S00-f1",
+          "type" : "Script",
+          "name" : "Save Process Setting",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "UserSettingService.newInstance().saveProcessModeSetting(in.selectedProcessMode);"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 288, "y" : 256 },
+            "size" : { "width" : 128 }
+          },
+          "connect" : [
+            { "id" : "S00-f0", "to" : "S00-g1" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 840, "y" : 280 },
+        "size" : { "width" : 128 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f23",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "completeFormattingLanguage(String)",
+      "config" : {
+        "signature" : "completeFormattingLanguage",
+        "input" : {
+          "params" : [
+            { "name" : "queryLanguage", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.queryLanguage" : "param.queryLanguage"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "java.util.List<jakarta.faces.model.SelectItem>", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.formatLanguages"
+          }
+        },
+        "guid" : "181ECCCA970B553D"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 512 },
+        "labelOffset" : { "x" : 86 }
+      },
+      "connect" : [
+        { "id" : "f27", "to" : "f25" }
+      ]
+    }, {
+      "id" : "f25",
+      "type" : "Script",
+      "name" : "filter formatting language",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.Strings;",
+            "import jakarta.faces.model.SelectItem;",
+            "",
+            "List<SelectItem> items = in.language.getFormattingLanguages();",
+            "in.formatLanguages.clear();",
+            "for (SelectItem item: items){",
+            "  if (Strings.CI.contains(item.label, in.queryLanguage)){",
+            "    in.formatLanguages.add(item);",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 512 },
+        "size" : { "width" : 144 }
+      },
+      "connect" : [
+        { "id" : "f29", "to" : "f28" }
+      ]
+    }, {
+      "id" : "f28",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 496, "y" : 512 }
+      }
+    }, {
+      "id" : "S71",
+      "type" : "EmbeddedProcess",
+      "name" : "Save Accessibility Setting",
+      "elements" : [ {
+          "id" : "S71-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in",
+          "visual" : {
+            "at" : { "x" : 520, "y" : 280 }
+          },
+          "parentConnector" : "f75",
+          "connect" : [
+            { "id" : "S71-f3", "to" : "S71-f2" }
+          ]
+        }, {
+          "id" : "S71-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out",
+          "visual" : {
+            "at" : { "x" : 920, "y" : 280 }
+          },
+          "parentConnector" : "f76"
+        }, {
+          "id" : "S71-f2",
+          "type" : "Script",
+          "name" : "Update IsShortcutEnabled",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.constant.UserProperty;",
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "UserSettingService.getInstance().updateUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS, Boolean.toString(in.isShortcutEnabled));"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 712, "y" : 280 }
+          },
+          "connect" : [
+            { "id" : "S71-f4", "to" : "S71-g1" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 632, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f76", "to" : "S00" }
+      ]
+    }, {
+      "id" : "S72",
+      "type" : "EmbeddedProcess",
+      "name" : "Init Accessibility Setting",
+      "elements" : [ {
+          "id" : "S72-f0",
+          "type" : "Script",
+          "name" : "Init IsShortcutEnabled",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "boolean isShortcutEnable = UserSettingService.getInstance().isKeyboardShortcutsEnabled();",
+                "in.isShortcutEnabled = isShortcutEnable;"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 304, "y" : 256 }
+          },
+          "connect" : [
+            { "id" : "S72-f3", "to" : "S72-g1" }
+          ]
+        }, {
+          "id" : "S72-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 256 }
+          },
+          "parentConnector" : "f77",
+          "connect" : [
+            { "id" : "S72-f2", "to" : "S72-f0" }
+          ]
+        }, {
+          "id" : "S72-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out",
+          "visual" : {
+            "at" : { "x" : 544, "y" : 256 }
+          },
+          "parentConnector" : "f78"
+        } ],
+      "visual" : {
+        "at" : { "x" : 624, "y" : 144 }
+      },
+      "connect" : [
+        { "id" : "f78", "to" : "S60" }
+      ]
+    } ]
+}
