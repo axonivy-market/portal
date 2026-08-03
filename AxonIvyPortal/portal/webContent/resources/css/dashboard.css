@@ -2184,7 +2184,7 @@ a.saved-filter__manage-filter {
   margin-top: 0;
 }
 
-.dashboard-widget-filter__filter-panel > div {
+.dashboard-widget-filter__filter-panel > div:not(.and-text-panel) {
   margin-right: 0.5em;
   display: flex;
   align-items: flex-start;

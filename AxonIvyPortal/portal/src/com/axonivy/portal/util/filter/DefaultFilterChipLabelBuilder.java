@@ -48,6 +48,9 @@ public final class DefaultFilterChipLabelBuilder {
   }
 
   private static String resolveValue(DashboardFilter filter, String widgetType) {
+    if (filter.getOperator() == null) {
+      return StringUtils.EMPTY;
+    }
     return switch (filter.getOperator()) {
       case EMPTY, NOT_EMPTY, TODAY, YESTERDAY, CURRENT_USER, CURRENT_USER_CAN_WORK_ON, NO_CATEGORY -> StringUtils.EMPTY;
       case BETWEEN, NOT_BETWEEN -> String.format("%s - %s", filter.getFrom(), filter.getTo());

@@ -607,7 +607,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     requiredFieldMessage: este campo es obligatorio
     reserve: Reservar
     reset: Reiniciar
-    resetFilters: Restablecer filtros
+    resetFilters: Restablecer todo
     resetSettingHeaderText: ¿Resetear la configuración?
     resetTaskHeaderText: ¿Reiniciar esta tarea?
     resetToDefaultMessage: Esta operación no se puede deshacer. ¿Estás seguro de que quieres restablecer la configuración por defecto?

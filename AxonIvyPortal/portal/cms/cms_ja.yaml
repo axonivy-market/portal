@@ -606,7 +606,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     requiredFieldMessage: このフィールドは必須です
     reserve: 保持
     reset: リセット
-    resetFilters: フィルターをリセット
+    resetFilters: すべてリセット
     resetSettingHeaderText: 設定をリセットしますか？
     resetTaskHeaderText: このタスクをリセットしますか？
     resetToDefaultMessage: この操作は元に戻せません。初期設定にリセットしてもよろしいですか?
