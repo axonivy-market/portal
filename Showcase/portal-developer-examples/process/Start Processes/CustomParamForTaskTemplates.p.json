@@ -1,0 +1,77 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "1718293B3F6E5478",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.CustomParamForTaskTemplatesData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "signature" : "start",
+        "request" : {
+          "name" : "Templates with custom params"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 160 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "IFrame task with custom params"
+          }, {
+            "id" : "TaskC",
+            "name" : "IFrame with custom task name"
+          } ]
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f5", "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f12", "to" : "f11", "via" : [ { "x" : 192, "y" : 47 } ], "condition" : "ivp==\"TaskC.ivp\"" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "DialogCall",
+      "name" : "CustomParamsForIFrame",
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.CustomParamsForIFrame:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 160 },
+        "size" : { "width" : 160 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "DialogCall",
+      "name" : "CustomTaskNameForIFrame",
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.testdata.CustomTaskNameForIFrame:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 359, "y" : 47 },
+        "size" : { "width" : 171, "height" : 57 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f1", "via" : [ { "x" : 512, "y" : 47 } ] }
+      ]
+    } ]
+}

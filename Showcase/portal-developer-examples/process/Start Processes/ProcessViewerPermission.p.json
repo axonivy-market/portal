@@ -1,0 +1,86 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "183C12775FE2BAB8",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.ProcessViewerPermissionData",
+    "permissions" : {
+      "view" : {
+        "allowed" : false
+      }
+    }
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "signature" : "start",
+        "request" : {
+          "name" : "Test Process Viewer Permission"
+        },
+        "case" : {
+          "name" : "Process Viewer Permission Example Case"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Process Viewer Permission Example Task"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "RequestStart",
+      "name" : "startWithPermission.ivp",
+      "config" : {
+        "signature" : "startWithPermission",
+        "permission" : {
+          "anonymous" : false,
+          "roles" : [
+            "GeneralManager"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 176 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "visual" : {
+        "at" : { "x" : 232, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f6" }
+      ]
+    } ]
+}

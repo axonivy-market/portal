@@ -1,0 +1,143 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "15EF0843F1DB39F2",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "ch.ivy.add.portalkit.LogoutData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "logout(Boolean,ITask)",
+      "config" : {
+        "signature" : "logout",
+        "input" : {
+          "params" : [
+            { "name" : "isTaskReserve", "type" : "Boolean", "desc" : "" },
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+          ],
+          "map" : {
+            "out.isTaskReserve" : "param.isTaskReserve",
+            "out.task" : "param.task"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 112, "y" : 264 },
+        "labelOffset" : { "x" : 25, "y" : 37 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 760, "y" : 264 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Logout",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "",
+            "if (in.isTaskReserve) {",
+            "  Map params = new HashMap();",
+            "  params.put(\"workingTask\", in.task);",
+            "",
+            "  IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.EXTEND_TASK_RESERVE.getSignature(), params);",
+            "  ivy.session.parkTask(in.#task != null ? in.task : ivy.task);",
+            "}",
+            "ivy.session.logoutSessionUser();"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 416, "y" : 376 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f10", "via" : [ { "x" : 624, "y" : 376 } ] }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : [
+        "Call customized",
+        "sub process"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"isTaskReserve\", in.isTaskReserve);",
+            "params.put(\"task\", in.task);",
+            "",
+            "Map result = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.LOGOUT.getSignature(), params);",
+            "in.hasCustomProcess = result != null;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 264 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f9" : "in.hasCustomProcess",
+          "f8" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 416, "y" : 264 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f3", "label" : {
+            "name" : "No"
+          } },
+        { "id" : "f9", "to" : "f10", "label" : {
+            "name" : "Yes",
+            "segment" : 0.62
+          } }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Clear session attributes",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
+            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "",
+            "for (SessionAttribute item: SessionAttribute.values()){",
+            "  SecurityServiceUtils.removeSessionAttribute(item.toString());",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 624, "y" : 264 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f1" }
+      ]
+    } ]
+}

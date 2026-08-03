@@ -1,0 +1,63 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "16E1584824AEC16C",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.generic.iframe.TaskTemplateIFrame.TaskTemplateIFrameData"
+  },
+  "elements" : [ {
+      "id" : "f5",
+      "type" : "HtmlDialogStart",
+      "name" : "start(String,Number)",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "url", "type" : "String", "desc" : "" },
+            { "name" : "taskId", "type" : "Number", "desc" : "" }
+          ],
+          "map" : {
+            "out.taskId" : "param.taskId",
+            "out.url" : "param.url"
+          }
+        },
+        "guid" : "189AFECA63AAE8B5"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 176 },
+        "labelOffset" : { "x" : 49 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Find task by id",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.bpm.error.BpmError;",
+            "out.task = ivy.wf.findTask(Long.valueOf(in.taskId));",
+            "",
+            "if (!in.url.startsWith(out.task.getApplication().contextPath())) {",
+            "  BpmError.create(\"frame:unsupported:url\").withMessage(\"only relative urls are supported (security reasons)\").throwError();",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 344, "y" : 176 }
+      }
+    } ]
+}
