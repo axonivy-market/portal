@@ -131,7 +131,6 @@ public class BusinessEntityConverter {
   }
 
   public static <T> List<T> convertJsonNodeToList(JsonNode jsonNode, Class<T> classType) {
-    Ivy.log().error("JsonNode at the beginning of function is {0}", jsonNode.toString().substring(0, Math.min(jsonNode.toString().length(), 100)));
     if (!Optional.ofNullable(jsonNode).isPresent()) {
       return new ArrayList<>();
     }

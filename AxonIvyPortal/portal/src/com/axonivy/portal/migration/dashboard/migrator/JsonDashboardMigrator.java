@@ -64,7 +64,6 @@ public class JsonDashboardMigrator {
       dashboard.elements().forEachRemaining(dashboardNode -> migrate(dashboardNode));
       return;
     }
-    Ivy.log().error("Migrating dashboard version: {0}, full content: {1}", dashboard.get(AbstractJsonVersion.VERSION_FIELD_NAME), dashboard.toString().substring(0, 100));
     var converters = JsonDashboardConverterFactory.getConverters(readVersion(dashboard)).stream()
         .filter(conv -> conv.version().compareTo(version) <= 0)
         .collect(Collectors.toList());
