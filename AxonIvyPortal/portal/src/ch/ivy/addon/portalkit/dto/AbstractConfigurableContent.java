@@ -29,6 +29,23 @@ public abstract class AbstractConfigurableContent implements Serializable {
   }
 
   /**
+   * Schema version of this configuration, read by {@code JsonCaseDetailsMigrator} /
+   * {@code JsonTaskDetailsMigrator} to tell whether the converters still have to run. The field has
+   * been here since 13.2.0 but never had accessors, so Jackson could neither read nor write it;
+   * without them the version would be dropped when a user saves their layout and every subsequent
+   * read would migrate an already-migrated configuration again.
+   *
+   * @return version
+   */
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+  /**
    * Add @JsonSerialize annotation and refer to sub class
    * e.g: @JsonSerialize(as = SubClass.class)
    * @return filters

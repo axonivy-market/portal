@@ -200,7 +200,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
     return result;
   }
 
-  private List<T> parseConfigurationJson(String configurationJson) throws JsonMappingException, JsonProcessingException {
+  protected List<T> parseConfigurationJson(String configurationJson) throws JsonMappingException, JsonProcessingException {
     return mapper.readValue(configurationJson, mapper.getTypeFactory().constructCollectionType(List.class, getConfigurationType()));
   }
 
