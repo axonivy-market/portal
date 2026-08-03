@@ -844,6 +844,8 @@ body .ui-button.dashboard-tasks__start-button {
 
 body .dashboard-tasks__start-container {
   width: 5.4rem;
+display: inline-flex;
+  justify-content: center;
 }
 
 body .ui-button.dashboard-tasks__start-button.ui-state-disabled {
