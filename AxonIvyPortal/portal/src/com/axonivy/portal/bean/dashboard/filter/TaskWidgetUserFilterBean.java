@@ -10,11 +10,9 @@ import jakarta.faces.view.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.util.filter.DefaultFilterChipLabelBuilder;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 
-import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
@@ -84,9 +82,4 @@ public class TaskWidgetUserFilterBean extends AbstractTaskWidgetFilterBean {
 
   @Override
   public void resetCaseWidgetFilter(CaseDashboardWidget widget) { }
-
-  public List<String> getDefaultFilterChipLabels() {
-    return widget == null ? List.of()
-        : DefaultFilterChipLabelBuilder.build(widget.getFilters(), PortalConstants.TASK);
-  }
 }

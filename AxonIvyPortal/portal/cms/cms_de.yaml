@@ -470,7 +470,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     back: Zurück
     backToCaseMap: Zurück zur Case Map
     backgroundColor: Hintergrundfarbe
-    bulkSelection: Mehrfachauswahl
     cancel: Abbrechen
     cancelContext: '{0} abbrechen'
     case: Vorgang
@@ -482,7 +481,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     close: Schließen
     closeContext: '{0} schließen'
     cockpit: Cockpit
-    collapse: Minimieren
     collapseWidgetContext: Widget {0} minimieren
     colors: Farben
     comment: Kommentar
@@ -527,7 +525,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: Fehler beim aktualisieren der Webseiteinhalte
     escalationTaskHeaderText: Eskalation auslösen
     escalationTaskMessage: Frist wird auf jetzt gesetzt, somit läuft die Bearbeitungsfrist ab. Sind Sie sicher?
-    expand: Erweitern
     expandWidgetContext: Widget {0} erweitern
     filter:
       from: von
@@ -543,7 +540,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     generalInformation: Allgemeine Informationen
     globalSearch: Suche ...
     goToDetail: Zu den Details
-    gridView: Rasteransicht
     growlMessage:
       PROCESS_VIEWER: Sie haben den Prozess-Viewer geschlossen.
       TASK_FINISHED: Sie haben die Aufgabe erfolgreich abgeschlossen
@@ -559,7 +555,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     leave: Verlassen
     leaveAndReserve: Verlassen und reservieren
     linkToCaseDetails: Klicken Sie <a href="{0}" >hier</a> für weitere Details.
-    listView: Listenansicht
     loading: Lädt
     loginLogo: Login Logo
     logos: Logos
@@ -803,7 +798,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       ImportCompleteMessage: Alle Dateien wurden erfolgreich importiert.
       ImportIncompleteMessage: Einige Dateien konnten nicht importiert werden. Weitere Informationen finden Sie im Server-Log.
   dashboard:
-    CanWorkOnAsUser: Nur die Aufgaben anzeigen, die ich als Benutzer bearbeiten kann
     CaseQueryType:
       info: Konfigurieren Sie, welche Vorgangstypen im Vorgangs-Widget angezeigt werden. Standard zeigt nur Geschäftsvorgänge, Technische Untervorgänge zeigt nur technische Untervorgänge, und Alle zeigt sowohl Geschäftsvorgänge als auch technische Untervorgänge.
       label: Vorgangstyp
@@ -869,22 +863,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidget: Externe Webseite
     ExternalPageWidgetIntroduction: Dieses Widget kann eine externe Webseite anzeigen.
     Filter:
-      AddCondition: Bedingung hinzufügen
-      ApplyFilters: Filter anwenden
-      DefaultFiltersDescription: Filter, die in der Widget-Konfiguration als Standard festgelegt wurden.
-      DefaultFiltersTitle: Standardfilter
-      FilterConditionsTitle: Filterbedingungen
       FilterOptionHeader: Filter-Optionen
       FilterOptionHeaderTooltip: Einige Filterfelder und Operatoren wurden möglicherweise von Ihrem Administrator deaktiviert. Filter, die deaktivierte Felder oder Operatoren verwenden, werden automatisch entfernt. Bitte wenden Sie sich an Ihren Administrator für weitere Informationen.
       FilterPanelHeader: Filterbereich
       ManageWidgetFilterHeader: Widget-Filter-Verwaltung
-      NewFilterConditionsDescription: Zeige Aufgaben, die alle folgenden Bedingungen erfüllen.
-      NewFilterConditionsTitle: Neue Filterbedingungen
       NotFound: Kein Filter gefunden
-      SaveFilterDescription: Speichern Sie diese Filterbedingungen zur späteren Verwendung.
-      SaveFilterNamePlaceholder: Filternamen eingeben
-      SaveFilterOptional: (optional)
-      SetFilterHeader: Filter festlegen
       WidgetNameColumn: Widget-Name
       WrongDateFormat: Das Datum ist ungültig
     FilterTasksByCurrentCaseOwner: Aufgaben nach aktuellem Fallbesitzer filtern
@@ -1048,11 +1031,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreDefaultMessage: Wenn Sie fortfahren, verlieren Sie alle von Ihnen erstellten Widgets. Es werden die Standardeinstellungen übernommen.
     select: Wählen Sie
     selectEditAction: Welche Aktion möchten Sie durchführen?
-    showAllCases: Alle Fälle anzeigen
-    showAllTasks: Alle Aufgaben anzeigen
     showFullWidget: Vollständiges Widget anzeigen
-    showPinnedCases: Angeheftete Fälle anzeigen
-    showPinnedTasks: Angeheftete Aufgaben anzeigen
     statisticChartIntroduction: Dieses Widget zeigt die verfügbaren statistischen Diagramme an.
     statisticChartWidget: Statistisches Diagramm
     statisticWidgets: Statistik-Widgets

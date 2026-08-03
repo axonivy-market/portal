@@ -462,10 +462,25 @@ function isPressedSpecialKeys(event) {
 
 function showQuickSearchInput(index) {
   var widgetHeaderQuickSearch = "div[id$='widget-header-quick-search-" + index + "']";
+  var widgetHeaderActions = "div[id$='process-panel-group-" + index + "'] div[id$='widget-header-actions']";
   var quickSearchInput = "input[id$='quick-search-input-" + index + "']";
-
-  $(widgetHeaderQuickSearch).toggleClass("widget-header-quick-search-show");
+  if ($(widgetHeaderActions).css("display") == "none") {
+    showWidgetHeaderActions();
+  } else {
+    hideWidgetHeaderActions();
+  }
   changeQuickSearchIconButton(index);
+
+  function showWidgetHeaderActions() {
+    $(widgetHeaderActions).css("display","inline-flex");
+    $(widgetHeaderQuickSearch).removeClass("widget-header-quick-search-show");
+  }
+
+  function hideWidgetHeaderActions() {
+    $(widgetHeaderActions).css("display","none");
+    $(widgetHeaderQuickSearch).addClass("widget-header-quick-search-show");
+    $(quickSearchInput).css("width","100%");
+  }
 
   function changeQuickSearchIconButton(index) {
     var spanEl = "button[id$='quick-search-icon-" + index + "'] > span";

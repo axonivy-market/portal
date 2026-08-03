@@ -470,7 +470,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     back: Retour
     backToCaseMap: Retour à la carte des cas
     backgroundColor: Couleur de fond
-    bulkSelection: Sélection multiple
     cancel: Annuler
     cancelContext: Annuler {0}
     case: Dossier
@@ -482,7 +481,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     close: Fermer
     closeContext: Fermer {0}
     cockpit: Cockpit
-    collapse: Réduire
     collapseWidgetContext: Réduire le widget {0}
     colors: Couleur
     comment: Commentaire
@@ -527,7 +525,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: N'a pas réussi à mettre à jour le contenu du site Web
     escalationTaskHeaderText: Escalader
     escalationTaskMessage: L'expiration est fixée à maintenant, donc la tâche expire. Etes-vous sûr?
-    expand: Développer
     expandWidgetContext: Agrandir le widget {0}
     filter:
       from: du
@@ -543,7 +540,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     generalInformation: Informations générales
     globalSearch: Recherche ...
     goToDetail: Aller au détail
-    gridView: Vue en grille
     growlMessage:
       PROCESS_VIEWER: Vous avez fermé le visualiseur de processus.
       TASK_FINISHED: Vous avez terminé la tâche avec succès
@@ -559,7 +555,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     leave: Quitter
     leaveAndReserve: Quitter et réserve
     linkToCaseDetails: Cliquez sur <a href="{0}" >ici</a> pour plus de détails.
-    listView: Vue en liste
     loading: Chargement
     loginLogo: Logo login
     logos: Logos
@@ -801,7 +796,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       ImportCompleteMessage: Tous les fichiers ont été importés avec succès.
       ImportIncompleteMessage: Certains fichiers n'ont pas pu être importés. Consultez le journal du serveur pour plus de détails.
   dashboard:
-    CanWorkOnAsUser: N'afficher que les tâches sur lesquelles je peux travailler en tant qu'utilisateur
     CaseQueryType:
       info: Configurez les types de cas affichés dans le widget de cas. Par défaut, seuls les cas métier sont affichés, Sous-cas techniques affiche uniquement les sous-cas techniques, et Tous affiche à la fois les cas métier et les sous-cas techniques.
       label: Type de cas
@@ -867,22 +861,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidget: Page externe
     ExternalPageWidgetIntroduction: Ce widget peut afficher une page web externe.
     Filter:
-      AddCondition: Ajouter une condition
-      ApplyFilters: Appliquer les filtres
-      DefaultFiltersDescription: Filtres définis comme valeurs par défaut dans la configuration du widget.
-      DefaultFiltersTitle: Filtres par défaut
-      FilterConditionsTitle: Conditions de filtre
       FilterOptionHeader: Options de filtre
       FilterOptionHeaderTooltip: Certains champs de filtre et opérateurs peuvent être désactivés par votre administrateur. Les filtres utilisant des champs ou des opérateurs désactivés seront automatiquement supprimés. Veuillez contacter votre administrateur pour plus d'informations.
       FilterPanelHeader: Panneau de filtre
       ManageWidgetFilterHeader: Gestion des filtres des widgets
-      NewFilterConditionsDescription: Afficher les tâches qui correspondent à toutes les conditions suivantes.
-      NewFilterConditionsTitle: Nouvelles conditions de filtre
       NotFound: Aucun filtre trouvé
-      SaveFilterDescription: Enregistrez ces conditions de filtre pour les réutiliser plus tard.
-      SaveFilterNamePlaceholder: Entrez le nom du filtre
-      SaveFilterOptional: (facultatif)
-      SetFilterHeader: Définir le filtre
       WidgetNameColumn: Nom du widget
       WrongDateFormat: La date n'est pas valide
     FilterTasksByCurrentCaseOwner: Filtrer les tâches par propriétaire actuel du dossier
@@ -1046,11 +1029,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreDefaultMessage: Si vous procédez ainsi, vous perdrez tous les widgets créés par vous-même. Les paramètres standard seront appliqués.
     select: Sélectionnez
     selectEditAction: Quelle action voulez-vous effectuer ?
-    showAllCases: Afficher tous les dossiers
-    showAllTasks: Afficher toutes les tâches
     showFullWidget: Afficher le widget complet
-    showPinnedCases: Afficher les dossiers épinglés
-    showPinnedTasks: Afficher les tâches épinglées
     statisticChartIntroduction: Ce widget affiche les graphiques statistiques disponibles.
     statisticChartWidget: Graphique de statistiques
     statisticWidgets: Widgets Statistiques
