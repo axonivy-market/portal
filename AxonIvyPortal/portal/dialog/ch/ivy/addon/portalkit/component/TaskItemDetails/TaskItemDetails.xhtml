@@ -18,41 +18,23 @@
   <f:event listener="#{taskDetailsBean.init()}" type="preRenderComponent"/>
   <c:set var="task" value="#{data.task}" />
   <c:set var="state" value="#{task.state}" />
-  <!-- Identity + Priority|State|Due|Workflow strip now live in their own "summary" GridStack widget
-       (TaskItemSummary.xhtml, included in the summary branch below), separate from the Task Details
-       ("information") widget so each card resizes independently and its card background fills the cell. -->
   <c:set var="summaryContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('SummaryWidget')}:task-detail-summary-container" />
   <c:set var="generalContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('InformationWidget')}:task-detail-general-container" />
-  <!-- Update target after task actions: cover BOTH the summary card (strip: state/priority) and the
-       task details card, plus the status banner — matching the pre-split behaviour where the single
-       information widget wrapped both and refreshed together. -->
   <c:set var="informationWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('SummaryWidget') gt -1 ? summaryContainerID:''} #{taskDetailsBean.getWidgetPositionByType('InformationWidget') gt -1 ? generalContainerID:''} #{cc.clientId}:task-status-banner" />
-  <!-- Absolute client id of the State indicator. The Priority|State|Due|Workflow strip now lives in the
-       summary widget (TaskItemSummary.xhtml, via ui:include so no extra NamingContainer segment) — needed
-       so TaskItemGeneralInfo's "Delayed until" p:ajax can still update it via #{cc.attrs.stateComponentToUpdate}. -->
   <c:set var="stateContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('SummaryWidget')}:task-detail-state" />
   <c:set var="documentsContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('DocumentWidget')}:task-documents:task-details-documents" />
   <c:set var="documentWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('DocumentWidget') gt -1 ? documentsContainerID:''}" />
   <c:set var="noteContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('HistoryWidget')}:task-detail-note-container" />
   <c:set var="historyWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('HistoryWidget') gt -1 ? noteContainerID:''}" />
-  <!-- Toolbar (UI redesign IVYPORTAL-20779, Figma 3825:125165): Back on the left, layout
-       actions on the right, on a white 15px-radius card. Same markup and same
-       `.portal-detail-toolbar*` classes as CaseItemDetails.xhtml — keep the two in sync.
-       The `rendered` guard on the wrapper matters: without it a header-less embed would
-       paint an empty 67px white bar. -->
   <h:panelGroup layout="block" styleClass="portal-detail-toolbar" rendered="#{cc.attrs.showItemDetailsHeader}">
     <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}"
       styleClass="portal-detail-toolbar-start u-truncate-text">
       <h:form id="task-detail-title-form" onsubmit="return false;" styleClass="portal-detail-toolbar-form">
-        <!-- Task name relocated into the information widget header (UI redesign IVYPORTAL-20779).
-             Keep the (empty) name panel id for backward-compat AJAX targets. -->
         <h:panelGroup id="#{cc.attrs.nameId}-edit-form" styleClass="js-task-name-details hidden" />
         <p:commandLink id="back-to-previous-page"
           actionListener="#{taskActionBean.backToPrevPage(cc.attrs.task, cc.attrs.isFromTaskList, cc.attrs.isTaskStartedInDetails)}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
           styleClass="portal-detail-toolbar-back" process="@this">
-          <!-- No `p:spacer` here: the 8.662px flex gap on `.portal-detail-toolbar-back` is
-               the design's icon-to-label distance; a spacer would add 3px on top of it. -->
           <i class="ti ti-chevron-left" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
         </p:commandLink>
@@ -84,8 +66,6 @@
         icon="#{visibilityBean.generateButtonIcon('ti ti-refresh')}"
         styleClass="reset-details-settings-button portal-pill-btn portal-pill-btn-lg"
         immediate="true" onclick="PF('reset-to-default-task-dialog').show()" />
-      <!-- Save is the primary action of edit mode, so it takes the accent pill; Figma only
-           draws the view-mode state of this bar. -->
       <p:commandButton id="switch-to-view-mode-button" rendered="#{not taskDetailsBean.readOnlyMode}"
         ariaLabel="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}" onclick="saveTaskDetailsGrid()"
@@ -116,13 +96,6 @@
           gs-no-resize="#{taskDetailsBean.readOnlyMode}"
           gs-no-move="#{taskDetailsBean.readOnlyMode}">
 
-          <!-- Summary box: identity (name/id/created + Start/more actions) and the
-               Priority|State|Due|Workflow strip, in its own GridStack widget so it resizes
-               independently and its card background fills the cell (Notes/Documents pattern:
-               `card task-detail-card` sits directly on the grid-stack-item-content element).
-               Markup lives in the co-located TaskItemSummary.xhtml, brought in via ui:include so
-               it stays in this composite's #{logic}/naming scope (Start uses #{logic.openTask()},
-               resume uses #{logic.validate(task)}, reset-task-dialog stays here). -->
           <h:panelGroup id="task-detail-summary-container" layout="block" rendered="#{widget.type eq 'summary'}"
             styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <ui:include src="TaskItemSummary.xhtml">
@@ -135,8 +108,6 @@
             </ui:include>
           </h:panelGroup>
 
-          <!-- Task Details box (description + Role&User/Time sub-cards + Task&Case), its own
-               GridStack widget. Same card-on-grid-item pattern as above. -->
           <h:panelGroup id="task-detail-general-container" layout="block" rendered="#{widget.type eq 'information'}"
             styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="general-information" task="#{task}"

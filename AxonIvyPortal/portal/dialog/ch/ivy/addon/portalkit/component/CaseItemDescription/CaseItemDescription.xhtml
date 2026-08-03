@@ -13,9 +13,6 @@
   <c:set value="#{caseActionBean.canChangeDescription(case)}" var="canChangeDescription"/>
   <f:event listener="#{caseDetailsBean.initCaseDescription(case)}" type="preRenderComponent"/>
   
-  <!-- Description block of the Case Details card. The former `ui-g` wrappers were dropped so the
-       label and the text stack with the 10px gap Figma specifies instead of inheriting the
-       float-grid margins. -->
   <div class="case-details-description-title">
     <div class="portal-detail-subcard-title #{cc.attrs.labelStyleClasses} text-ellipsis">
       #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}

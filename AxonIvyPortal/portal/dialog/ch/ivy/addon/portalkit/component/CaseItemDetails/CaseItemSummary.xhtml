@@ -4,23 +4,8 @@
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
   xmlns:c="jakarta.tags.core" xmlns:jsf="jakarta.faces">
 
-<!-- Summary card (identity + Case ID|State|Case Category strip) for the Case Details "summary"
-     GridStack widget. Mirrors TaskItemSummary.xhtml: a plain ui:composition pulled in with
-     ui:include from CaseItemDetails.xhtml so it renders in the parent's EL/naming scope —
-     #{case}, #{inFrame}, #{readOnly} and the moved ids (general-information, case-id,
-     case-state, case-category) resolve exactly as before, with no process duplication.
-     Values are handed in via ui:param from CaseItemDetails.xhtml.
-
-     Everything here is relocated markup: the identity block replaces the old
-     `case-detail-header-container` heading and the strip is the former
-     `#general-information` block of CaseItemGeneralInformation.xhtml — same EL, same
-     CMS keys, same `rendered` conditions. -->
 <ui:composition>
   <div class="case-detail-header-card">
-    <!-- align-items-center, not -start: Figma's Header Container (node 3825:125181) uses
-         `items-center` and places the "..." button at y=12.36 in a 62.69px row, i.e. dead
-         centre. PrimeFlex emits `align-items:flex-start!important`, which no amount of
-         specificity in portal.css can override — so the alignment has to be set here. -->
     <div class="case-detail-section-title case-detail-header-row u-padding-0 flex align-items-center justify-content-between flex-wrap">
       <div class="case-detail-identity" role="heading" aria-level="1">
         <div class="flex flex-column u-truncate-text">
@@ -55,8 +40,6 @@
 
     <p:divider styleClass="separator-task-detail" />
 
-    <!-- Attribute strip: Case ID | State | Case Category (moved here from
-         CaseItemGeneralInformation so Header+Strip render as a single Figma-matching card). -->
     <div id="general-information" class="general-information case-detail-attr-strip">
       <!-- Case ID -->
       <div class="case-detail-attr">

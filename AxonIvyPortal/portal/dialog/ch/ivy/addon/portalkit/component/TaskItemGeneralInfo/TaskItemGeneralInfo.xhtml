@@ -19,10 +19,6 @@
   <!-- PANEL GENERAL INFORMATION -->
 
   <h:panelGroup styleClass="ui-g-12 u-padding-0">
-    <!-- Card: Task Details (heading + Description + Role&User/Time sub-cards + Task&Case).
-         The Priority|State|Due|Workflow strip that used to render here was moved into
-         TaskItemDetails.xhtml so Header+Strip render as a single Figma-matching card
-         (see the id-path/Selenium note there). -->
     <div class="task-detail-taskdetails-card">
       <div class="ui-g-12 u-padding-0 task-detail-block-title task-detail-details-heading">
         <h:outputText value="#{ivy.cms.co('/Labels/TaskItemDetail')}" />
@@ -32,9 +28,6 @@
         labelStyleClasses="u-no-padding-left" readOnly="#{cc.attrs.readOnly}" />
 
       <p:divider styleClass="separator-task-detail" />
-      <!-- Role and User information + Time information: a flex row (not PrimeFlex float
-           `.ui-g-6`) so both sub-cards stretch to equal height and get a real gap between
-           them instead of touching, per Figma. -->
       <div class="ui-g-12 u-padding-0 task-detail-subcards-row">
     <div id="role-and-user-information" class="role-and-user-information task-detail-inner-card">
       <div class="ui-g-12 task-detail-title task-detail-subcard-title flex align-items-center justify-content-between">

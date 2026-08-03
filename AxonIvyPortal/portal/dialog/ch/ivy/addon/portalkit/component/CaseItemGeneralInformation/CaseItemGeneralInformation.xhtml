@@ -14,9 +14,6 @@
   <c:set var="case" value="#{cc.attrs.case}" />
   <f:event listener="#{caseDetailsBean.setInFrame(cc.attrs.inFrame)}" type="preRenderComponent" />
   <div class="ui-g-12 u-padding-0">
-    <!-- Card: Case Details (heading + Description + Role&User/Time sub-cards + Business case).
-         The Case ID|State|Case Category strip that used to render here was moved into
-         CaseItemSummary.xhtml so Header+Strip render as a single Figma-matching card. -->
     <div class="case-detail-casedetails-card">
       <div class="portal-detail-block-title portal-detail-details-heading">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/caseDetails')}" />
@@ -27,9 +24,6 @@
 
       <p:divider styleClass="separator-task-detail" />
 
-      <!-- Role and User information + Time information: a flex row (not the float-based
-           `ui-g-6`) so both sub-cards stretch to equal height and get a real gap between
-           them instead of touching, per Figma. -->
       <div class="portal-detail-subcards-row">
         <div id="role-and-user-information" class="role-and-user-information portal-detail-inner-card">
           <div class="portal-detail-subcard-title">
@@ -106,8 +100,6 @@
         </div>
       </div>
 
-      <!-- Business case information: not drawn in Figma (the mock uses a business case, which
-           hides this block) but kept because technical cases still need it. -->
       <h:panelGroup id="business-case-information" layout="block" rendered="#{!case.isBusinessCase()}"
         styleClass="business-case-information portal-detail-inner-card portal-detail-trailing-card">
         <div class="portal-detail-subcard-title">

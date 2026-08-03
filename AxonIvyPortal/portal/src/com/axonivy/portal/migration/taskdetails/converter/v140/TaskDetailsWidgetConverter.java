@@ -13,26 +13,6 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import ch.ivy.addon.portalkit.constant.WidgetType;
 
-/**
- * Brings a Task Details configuration written before 14.0.0 up to the redesigned layout. Its
- * widgets are {@code summary}, {@code information}, {@code document}, {@code history} and
- * {@code custom} — the Case Details widgets {@code relatedTask}, {@code technicalCase} and
- * {@code businessDetails} never appear here. Two things changed:
- *
- * <ol>
- * <li><b>Grid unit.</b> GridStack {@code cellHeight} went from 100px to 20px in
- * {@code task-details.js} while {@code column} stayed at 12 — {@code gridstack.min.css} bakes in
- * the 1/12 geometry, so it could not be raised. Therefore {@code y} and {@code h} are multiplied by
- * {@value #CELL_HEIGHT_RATIO} and {@code x}/{@code w} are left alone:
- * {@code y_new * 20px == y_old * 100px}, i.e. every card renders on exactly the same pixels as
- * before.</li>
- * <li><b>Widget split.</b> The old {@code information} widget rendered the identity strip
- * (priority / state / due / workflow) and the field list in one card; those are now two widgets,
- * {@code summary} and {@code information}. The summary takes the top {@value #SUMMARY_HEIGHT} rows
- * of the area the information widget used to occupy and the information keeps the rest, so the
- * total footprint is unchanged and no other widget has to move.</li>
- * </ol>
- */
 public class TaskDetailsWidgetConverter implements IJsonConverter {
 
   private static final String WIDGETS = "widgets";
@@ -42,17 +22,8 @@ public class TaskDetailsWidgetConverter implements IJsonConverter {
   private static final String AXIS_Y = "y";
   private static final String HEIGHT = "h";
 
-  /** Old cellHeight (100px) divided by the new one (20px). */
   private static final int CELL_HEIGHT_RATIO = 5;
-
-  /** Rows the extracted summary widget occupies: 12 * 20px = 240px. */
   private static final int SUMMARY_HEIGHT = 12;
-
-  /**
-   * Floor for what is left over for the information widget: 10 * 20px = 200px. Only kicks in for an
-   * information widget that was already tiny (old {@code h <= 4}); the configuration then grows
-   * taller than it was and GridStack pushes the widgets below it down on load.
-   */
   private static final int MIN_INFORMATION_HEIGHT = 10;
 
   @Override
@@ -93,10 +64,6 @@ public class TaskDetailsWidgetConverter implements IJsonConverter {
         .map(ObjectNode.class::cast);
   }
 
-  /**
-   * Carves a summary widget out of the top of the information widget. Configurations where the user
-   * deliberately dropped the information widget stay without a summary.
-   */
   private static void splitInformationWidget(ArrayNode widgets) {
     int informationIndex = indexOfType(widgets, WidgetType.INFORMATION);
     if (informationIndex < 0) {
@@ -135,10 +102,6 @@ public class TaskDetailsWidgetConverter implements IJsonConverter {
     return -1;
   }
 
-  /**
-   * The plain {@code summary} id matches the shipped default. Fall back to a suffixed one on the off
-   * chance that a hand-written configuration already uses it for something else.
-   */
   private static String summaryId(ArrayNode widgets) {
     String id = WidgetType.SUMMARY;
     for (int suffix = 2; hasId(widgets, id); suffix++) {

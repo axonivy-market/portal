@@ -208,65 +208,45 @@
   --task-detail-header-font-weight: bold;
   --task-detail-section-title-font-weight: bold;
   --task-detail-separator-border-color: #F4F4F4;
-  /* ---------------------------------------------------------------------------
-     Detail-page design tokens (IVYPORTAL-20779) — shared by Task Details and
-     Case Details. Values measured directly from the Figma file "Portal"
-     (Task detail + Case detail nodes); Figma variable names in the comments.
-     Neutral `--portal-detail-*` naming so both pages read from one source;
-     the legacy `--task-detail-*` names below are kept as aliases.
-     --------------------------------------------------------------------------- */
+  /* Detail-page design tokens (IVYPORTAL-20779) — shared by Task Details and Case Details */
   /* Surfaces */
-  --portal-detail-card-bg: var(--ivy-primary-color-white);          /* Default/Background */
-  --portal-detail-subcard-bg: hsl(0, 0%, 98%);                      /* Neutral/N25  #FAFAFA */
-  --portal-detail-strip-bg: hsl(0, 0%, 98%);                        /* Neutral/N25 */
-  --portal-detail-table-cell-bg: var(--ivy-primary-color-white);    /* Neutral/N0 */
+  --portal-detail-card-bg: var(--ivy-primary-color-white);
+  --portal-detail-subcard-bg: hsl(0, 0%, 98%);
+  --portal-detail-strip-bg: hsl(0, 0%, 98%);
+  --portal-detail-table-cell-bg: var(--ivy-primary-color-white);
   /* Borders */
-  --portal-detail-card-border-color: hsl(0, 0%, 92%);               /* Neutral/N100 #EBEBEB */
-  --portal-detail-subcard-border-color: hsl(0, 0%, 92%);            /* Neutral/N100 */
-  --portal-detail-divider-color: hsl(0, 0%, 92%);                   /* Neutral/N100 */
-  --portal-detail-strip-divider-color: hsl(0, 0%, 91%);             /* Neutral/N200 #E7E7E7 */
-  --portal-detail-table-header-border-color: hsl(0, 0%, 92%);       /* Neutral/N100 */
-  --portal-detail-table-row-border-color: hsl(0, 0%, 91%);          /* Neutral/N200 */
+  --portal-detail-card-border-color: hsl(0, 0%, 92%);
+  --portal-detail-subcard-border-color: hsl(0, 0%, 92%);
+  --portal-detail-divider-color: hsl(0, 0%, 92%);
+  --portal-detail-strip-divider-color: hsl(0, 0%, 91%);
+  --portal-detail-table-header-border-color: hsl(0, 0%, 92%);
+  --portal-detail-table-row-border-color: hsl(0, 0%, 91%);
   /* Text */
-  --portal-detail-value-color: var(--ivy-primary-color-black);      /* Default/Body #1B1B1B */
-  --portal-detail-label-color: hsl(0, 0%, 46%);                     /* Neutral/N800 #757575 */
-  --portal-detail-eyebrow-color: hsl(0, 0%, 46%);                   /* Neutral/N800 */
+  --portal-detail-value-color: var(--ivy-primary-color-black);
+  --portal-detail-label-color: hsl(0, 0%, 46%);
+  --portal-detail-eyebrow-color: hsl(0, 0%, 46%);
   /* Accent (Primary ramp) */
-  --portal-detail-primary-tint-bg: hsl(196, 43%, 93%);              /* Primary/P50  #E6F1F5 */
-  --portal-detail-accent-btn-border: hsl(196, 42%, 71%);            /* Primary/P75  #96C4D4 */
-  --portal-detail-accent-color: var(--ivy-portal-blue-dark);        /* Primary/P300 #007095 */
+  --portal-detail-primary-tint-bg: hsl(196, 43%, 93%);
+  --portal-detail-accent-btn-border: hsl(196, 42%, 71%);
+  --portal-detail-accent-color: var(--ivy-portal-blue-dark);
   /* Neutral buttons */
-  --portal-detail-neutral-btn-bg: hsl(0, 0%, 98%);                  /* Neutral/N25 */
-  --portal-detail-neutral-btn-border: hsl(0, 0%, 92%);              /* Neutral/N100 */
+  --portal-detail-neutral-btn-bg: hsl(0, 0%, 98%);
+  --portal-detail-neutral-btn-border: hsl(0, 0%, 92%);
   /* Empty state */
-  --portal-detail-empty-icon-bg: hsl(0, 0%, 97%);                   /* Neutral/N50  #F8F8F8 */
-  --portal-detail-empty-icon-color: hsl(0, 0%, 75%);                /* Neutral/N400 #BFBFBF */
-  /* Type scale.
-     Everything below is in rem, on purpose: `ivy-branding/custom.css` is the last
-     stylesheet in every template, so a customer can rescale the whole detail page by
-     overriding `html{font-size}`. The ratios are calibrated against Freya's root
-     (`html{font-size:14px}` in freya-layout/css/layout-ivy-*.css), i.e. 1rem == 14px ==
-     the design's body size. Keep the trailing px annotations — reading a bare 1.1429rem
-     and assuming a 16px root is exactly the bug this replaced. */
-  --portal-detail-heading-font-size: 1.1429rem; /* 16px - card/section headings, task + case name */
-  --portal-detail-font-size: 1rem;              /* 14px - body, values, buttons, table cells */
-  --portal-detail-label-font-size: 0.8571rem;   /* 12px - eyebrow, subtitle, strip labels */
+  --portal-detail-empty-icon-bg: hsl(0, 0%, 97%);
+  --portal-detail-empty-icon-color: hsl(0, 0%, 75%);
+  /* Type scale — 1rem == 14px (Freya root font-size) */
+  --portal-detail-heading-font-size: 1.1429rem;
+  --portal-detail-font-size: 1rem;
+  --portal-detail-label-font-size: 0.8571rem;
   /* Geometry */
-  --portal-detail-card-radius: 1.0714rem;   /* 15px */
-  --portal-detail-card-gap: 1.4286rem;      /* 20px */
-  /* Half-gutter of the widget grid: GridStack insets every card by this on all four sides.
-     The value is GridStack's own default `margin: 10`, which case-details.js /
-     task-details.js deliberately do not override — this token mirrors it so the CSS can
-     line up with the grid. .portal-detail-toolbar takes the same inset, which puts it in
-     the grid's rhythm and makes every visible gap on the page 2 x this.
-     Distinct from --portal-detail-card-gap above, which spaces content INSIDE a card.
-     px, not rem, on purpose: the grid inset does not follow html{font-size}, and if this
-     token did, the toolbar would drift away from the card-to-card gap at other root sizes. */
+  --portal-detail-card-radius: 1.0714rem;
+  --portal-detail-card-gap: 1.4286rem;
   --portal-detail-grid-inset: 10px;
-  --portal-detail-card-padding: 1.4286rem;  /* 20px */
-  --portal-detail-subcard-padding: 1.0714rem; /* 15px */
-  --portal-detail-card-shadow: 0 0 1.9446rem 0 hsla(0, 0%, 0%, 0.05);   /* 27.225px */
-  --portal-detail-toolbar-shadow: 0 0 0.9723rem 0 hsla(0, 0%, 0%, 0.07); /* 13.612px */
+  --portal-detail-card-padding: 1.4286rem;
+  --portal-detail-subcard-padding: 1.0714rem;
+  --portal-detail-card-shadow: 0 0 1.9446rem 0 hsla(0, 0%, 0%, 0.05);
+  --portal-detail-toolbar-shadow: 0 0 0.9723rem 0 hsla(0, 0%, 0%, 0.07);
   /* State badges (Related tasks / Related cases tables) */
   --portal-state-open-bg: hsla(217, 91%, 60%, 0.1);
   --portal-state-open-border: hsla(217, 91%, 60%, 0.25);
@@ -277,24 +257,19 @@
   --portal-state-delayed-bg: hsla(25, 95%, 53%, 0.1);
   --portal-state-delayed-border: hsla(25, 95%, 53%, 0.25);
   --portal-state-delayed-color: hsl(25, 95%, 53%);
-  --portal-state-done-bg: hsl(137, 50%, 95%);                       /* States/Success/S50 */
-  --portal-state-done-border: hsl(136, 52%, 80%);                   /* States/Success/S75 */
-  --portal-state-done-color: hsl(139, 47%, 32%);                    /* States/Success/S500 */
-  --portal-state-error-bg: hsl(0, 77%, 95%);                        /* States/Error/E50 */
-  --portal-state-error-border: hsl(358, 81%, 79%);                  /* States/Error/E75 */
-  --portal-state-error-color: hsl(358, 83%, 30%);                   /* States/Error/E500 */
-  --portal-state-neutral-bg: hsl(0, 0%, 97%);                       /* Neutral/N50 */
-  --portal-state-neutral-border: hsl(0, 0%, 92%);                   /* Neutral/N100 */
-  --portal-state-neutral-color: hsl(0, 0%, 46%);                    /* Neutral/N800 */
-  /* Action popup menu — shared by the ActionStep overlay (case), the SideStep
-     overlay (task) and the task-actions `p:menu`. Figma "Action Dropdown"
-     4001:180630. Everything else the menu needs (surface, text, accent, the
-     N200 closing line, 14px type, 15px padding) already exists above and is
-     reused as-is; only these four values had no equivalent. */
+  --portal-state-done-bg: hsl(137, 50%, 95%);
+  --portal-state-done-border: hsl(136, 52%, 80%);
+  --portal-state-done-color: hsl(139, 47%, 32%);
+  --portal-state-error-bg: hsl(0, 77%, 95%);
+  --portal-state-error-border: hsl(358, 81%, 79%);
+  --portal-state-error-color: hsl(358, 83%, 30%);
+  --portal-state-neutral-bg: hsl(0, 0%, 97%);
+  --portal-state-neutral-border: hsl(0, 0%, 92%);
+  --portal-state-neutral-color: hsl(0, 0%, 46%);
   --portal-action-menu-radius: 10px;
-  --portal-action-menu-shadow: 0 0 1.1143rem 0.2143rem hsla(0, 0%, 0%, 0.15); /* 15.6px blur, 3px spread */
-  --portal-action-menu-divider-color: hsl(0, 0%, 97%);              /* Neutral/N50  #F8F8F8 */
-  --portal-action-menu-destroy-color: hsl(358, 83%, 49%);           /* States/Error/E300 #E5151C */
+  --portal-action-menu-shadow: 0 0 1.1143rem 0.2143rem hsla(0, 0%, 0%, 0.15);
+  --portal-action-menu-divider-color: hsl(0, 0%, 97%);
+  --portal-action-menu-destroy-color: hsl(358, 83%, 49%);
   /* Legacy aliases — Task Details CSS still references these names */
   --task-detail-card-bg: var(--portal-detail-card-bg);
   --task-detail-card-border-color: var(--portal-detail-card-border-color);

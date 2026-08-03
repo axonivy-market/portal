@@ -262,12 +262,6 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     return PortalVariable.CASE_DETAIL.key;
   }
 
-  /**
-   * Migrates a Case Details configuration written before 14.0.0 while it is loaded — the widget
-   * split into summary + information and the 100px -> 20px grid rescale. The tree is converted in
-   * memory only; the migrator stamps the new version into it before it is bound, so the untouched
-   * save path persists the migrated layout the next time the user saves.
-   */
   @Override
   protected List<CaseDetails> parseConfigurationJson(String configurationJson)
       throws JsonMappingException, JsonProcessingException {

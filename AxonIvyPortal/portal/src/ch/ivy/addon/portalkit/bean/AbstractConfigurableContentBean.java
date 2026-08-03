@@ -284,9 +284,6 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
     this.isReadOnlyMode = true;
     List<WidgetLayout> layouts = extractWidgetLayoutFromRequest();
     if (CollectionUtils.isEmpty(layouts)) {
-      // The request carries no grid payload, e.g. the AJAX request of the save button itself:
-      // only the `saveConfigurationCommand` remote command posts the `nodes` parameter. Bail out
-      // instead of persisting, otherwise configuration.setWidgets(emptyList) wipes the layout.
       return;
     }
     updateToConfiguration(layouts);

@@ -15,12 +15,6 @@ import com.fasterxml.jackson.databind.node.TextNode;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
-/**
- * Migrates a {@code Portal.TaskDetails} value — an array of Task Details configurations — to the
- * latest schema. The node is mutated in place; nothing is written back to the variable, so an
- * administrator's file in the engine configuration directory is converted on every read and only
- * ever persisted when a user saves their own layout.
- */
 public class JsonTaskDetailsMigrator {
 
   private final JsonNode node;
@@ -36,8 +30,10 @@ public class JsonTaskDetailsMigrator {
   }
 
   /**
-   * Read the configuration version. A configuration without one predates the versioning scheme, so
-   * it is treated as the oldest version and every converter runs on it.
+   * Read task details version
+   * If version is null, assume that this configuration is created since the oldest version
+   *
+   * @return json version
    */
   private static AbstractJsonVersion readVersion(JsonNode node) {
     return Optional.ofNullable(node)

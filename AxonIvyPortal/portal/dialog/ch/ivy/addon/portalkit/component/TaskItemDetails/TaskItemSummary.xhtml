@@ -4,18 +4,8 @@
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
   xmlns:c="jakarta.tags.core" xmlns:jsf="jakarta.faces">
 
-<!-- Summary card (identity + Priority|State|Due|Workflow strip) for the Task Details "summary"
-     GridStack widget. Extracted from TaskItemDetails.xhtml into a co-located ui:include fragment
-     (same pattern as TaskItem -> TaskAction.xhtml) so it renders in the parent's EL/naming scope:
-     #{logic}, #{task} and the moved ids (priority-form, task-detail-state, due-date,
-     workflow-event-link, general-information) resolve exactly as before, with no process
-     duplication. Values are handed in via ui:param from TaskItemDetails.xhtml. -->
 <ui:composition>
   <div class="task-detail-header-card">
-    <!-- align-items-center, not -start: Figma's Header Container (node 4004:191786) uses
-         `items-center`, same as the Case card. PrimeFlex emits `align-items:flex-start!important`,
-         which no amount of specificity in portal.css can override — so the alignment has to be
-         set here. -->
     <div class="task-detail-section-title task-detail-header-row u-padding-0 flex align-items-center justify-content-between flex-wrap">
       <div class="task-detail-identity" role="heading" aria-level="1">
         <div class="flex flex-column u-truncate-text">
@@ -65,9 +55,6 @@
 
     <p:divider styleClass="separator-task-detail" />
 
-    <!-- Attribute strip: Priority | State | Due | Workflow (moved here from
-         TaskItemGeneralInfo so Header+Strip render as a single Figma-matching card;
-         see the id-path/Selenium note in TaskItemDetails.xhtml). -->
     <div id="general-information" class="general-information task-detail-attr-strip">
       <!-- Priority -->
       <div class="task-detail-attr">
@@ -124,7 +111,7 @@
         </div>
       </div>
 
-      <!-- Due (expiry, read-only; editing stays in Time Information) -->
+      <!-- Due -->
       <div class="task-detail-attr">
         <h:outputText styleClass="task-detail-column-title"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/dueDate')}" />
