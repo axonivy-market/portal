@@ -7,7 +7,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -19,6 +22,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.introspect.BeanPropertyDefinition;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import ch.ivy.addon.portalkit.bo.PortalJsonViews;
@@ -80,7 +84,7 @@ public class BusinessEntityConverter {
     if (StringUtils.isBlank(jsonValue)) {
       return null;
     }
-    try {
+    /*try {
       JsonNode rootNode = getObjectMapper().readTree(jsonValue);
       if (rootNode.isObject()) {
         if (rootNode.fieldNames().hasNext()) {   
@@ -91,8 +95,34 @@ public class BusinessEntityConverter {
       return getObjectMapper().readValue(jsonValue, classType);
     } catch (IOException e) {
       throw new PortalException(e);
+    }*/
+     try {
+      ObjectMapper mapper = getObjectMapper();
+      JsonNode rootNode = mapper.readTree(jsonValue);
+      JsonNode targetNode = unwrapIfNeeded(rootNode, classType, mapper);
+      return mapper.treeToValue(targetNode, classType);
+    } catch (IOException e) {
+      throw new PortalException(e);
     }
   }
+
+  private static JsonNode unwrapIfNeeded(JsonNode rootNode, Class<?> classType, ObjectMapper mapper) {
+  // A wrapper looks like {"someRootKey": {...actual object...}} — exactly one field,
+  // whose value is itself an object, and whose name isn't one of the target class's own properties.
+  if (!rootNode.isObject() || rootNode.size() != 1) {
+    return rootNode;
+  }
+  Map.Entry<String, JsonNode> onlyField = rootNode.properties().iterator().next();
+  if (!onlyField.getValue().isObject()) {
+    return rootNode;
+  }
+  Set<String> knownProperties = mapper.getSerializationConfig()
+      .introspect(mapper.constructType(classType))
+      .findProperties().stream()
+      .map(BeanPropertyDefinition::getName)
+      .collect(Collectors.toSet());
+  return knownProperties.contains(onlyField.getKey()) ? rootNode : onlyField.getValue();
+}
 
   public static <T> T inputStreamToEntity(InputStream inputStream, Class<T> classType) {
     try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
@@ -110,7 +140,7 @@ public class BusinessEntityConverter {
       JsonNode rootNode = getObjectMapper().readTree(jsonValue);
       
       if (rootNode.isObject()) {
-        if (rootNode.fieldNames().hasNext()) {        
+        if (!rootNode.isEmpty()) {        
           String rootName = rootNode.fieldNames().next();
           Ivy.log().error("The root node is an object, the root name is: " + rootName);
           if (rootNode.has(rootName)) {
