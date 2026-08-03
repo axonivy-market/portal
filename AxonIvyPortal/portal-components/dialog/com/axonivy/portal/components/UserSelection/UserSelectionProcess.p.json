@@ -1,0 +1,29 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "180975ACFFBC3EAE",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.components.UserSelection.UserSelectionData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "signature" : "start",
+        "guid" : "1701DB2EB182D39E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 240, "y" : 64 }
+      }
+    } ]
+}
