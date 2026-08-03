@@ -1,0 +1,73 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "179D499523153784",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "signature" : "start",
+        "request" : {
+          "name" : "Default Process Image selection example",
+          "description" : "Loading photo for default process image by selection",
+          "category" : "Example",
+          "customFields" : [
+            { "name" : "cssIcon", "value" : "ti ti-home" },
+            { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/process/INNOVATION\")%>" }
+          ]
+        },
+        "permission" : {
+          "anonymous" : false
+        },
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 640, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "PhotoLibraryOfDefaultProcessImageExample",
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.PhotoLibraryOfDefaultProcessImageExample:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 64 },
+        "size" : { "width" : 256 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Task created by Photo Library Of Default Process Image Example",
+          "description" : "Task created by Photo Library Of Default Process Image Example"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 528, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    } ]
+}

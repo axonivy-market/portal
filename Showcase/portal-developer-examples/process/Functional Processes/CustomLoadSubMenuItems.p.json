@@ -1,0 +1,82 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "1657E6622F0C0122",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.CustomLoadSubMenuItemsData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "portalLoadSubMenuItems()",
+      "config" : {
+        "signature" : "portalLoadSubMenuItems",
+        "result" : {
+          "params" : [
+            { "name" : "subMenuItems", "type" : "java.util.List<com.axonivy.portal.components.configuration.CustomSubMenuItem>", "desc" : "" }
+          ],
+          "map" : {
+            "result.subMenuItems" : "in.subMenuItems"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 152 },
+        "labelOffset" : { "x" : 81, "y" : 31 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 96, "y" : 376 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Load menu items",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;",
+            "import com.axonivy.portal.components.configuration.CustomSubMenuItem;",
+            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "",
+            "CustomSubMenuItem google = new CustomSubMenuItem();",
+            "google.setIcon(\"ti ti-info-circle\");",
+            "google.setLabel(ApplicationMultiLanguageAPI.getCmsValueByUserLocale(\"/Processes/google\"));",
+            "google.setLink(\"www.google.com\");",
+            "google.setIsExternalLink(true);",
+            "google.setIndex(1);",
+            "in.subMenuItems.add(google);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 248 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This process added custom menu items to Portal:",
+        "",
+        "- User example guide: Ivy process to user example guide",
+        "- Google: open external link www.google.com."
+      ],
+      "visual" : {
+        "at" : { "x" : 512, "y" : 244 },
+        "size" : { "width" : 528, "height" : 84 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f3" }
+      ]
+    } ]
+}
