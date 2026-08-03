@@ -90,7 +90,7 @@
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
   --widget-filter-background-color: var(--ivy-primary-color-grey-dark);
 
-  --widget-filter-save-filter-button-background-color: var(--ivy-portal-color-gray-69);
+  --wdiget-filter-save-filter-button-background-color: var(--ivy-portal-color-gray-69);
   --widget-filter-condition-accent-border-color: hsla(0, 0%, 49%, 1);
   --widget-filter-add-condition-background-color: hsla(0, 0%, 100%, 1);
   --widget-filter-and-badge-background-color: hsla(0, 0%, 15%, 1);

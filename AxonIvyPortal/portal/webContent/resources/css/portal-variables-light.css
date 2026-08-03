@@ -100,7 +100,7 @@
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
   --widget-filter-background-color: var(--ivy-primary-color-grey-pale);
 
-  --widget-filter-save-filter-button-background-color: var(--ivy-portal-color-gray-75);
+  --wdiget-filter-save-filter-button-background-color: var(--ivy-portal-color-gray-75);
   --widget-filter-condition-accent-border-color: var(--ivy-portal-blue-muted);
   --widget-filter-add-condition-background-color: var(--ivy-portal-blue-pale);
   --widget-filter-and-badge-background-color: var(--ivy-portal-blue-pale);

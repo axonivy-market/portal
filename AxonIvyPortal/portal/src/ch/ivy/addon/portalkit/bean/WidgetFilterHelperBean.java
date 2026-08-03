@@ -5,7 +5,6 @@ import java.io.Serializable;
 import jakarta.faces.application.FacesMessage;
 import jakarta.inject.Named;
 import jakarta.faces.view.ViewScoped;
-import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
@@ -13,7 +12,6 @@ import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
-import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -25,32 +23,19 @@ public class WidgetFilterHelperBean implements Serializable {
   private static final long serialVersionUID = 7129952876083492724L;
 
   private WidgetFilterModel saveFilter;
-  private String newFilterName;
+  private String loadFiltersRemoteCommand;
 
-  public void saveInlineWidgetFilter(DashboardWidget widget) {
-    WidgetFilterService.getInstance().prepareSaveFilter(widget);
-    if (saveFilter == null) {
-      return;
-    }
-    saveFilter.setName(StringUtils.trim(newFilterName));
-
+  public void saveNewWidgetFilter() {
     if (isDuplicatedFilter()) {
-      FacesContext context = FacesContext.getCurrentInstance();
-      context.validationFailed();
-      context.addMessage(resolveNameInputClientId(context),
-          FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
-              Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError"), null));
+      FacesContext.getCurrentInstance().validationFailed();
+      FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError"), null);
+      FacesContext.getCurrentInstance().addMessage("save-filter-form", message);
       return;
     }
-
+    
     WidgetFilterService.getInstance().save(saveFilter);
     setSaveFilter(null);
-    newFilterName = null;
-  }
-
-  private String resolveNameInputClientId(FacesContext context) {
-    return UIComponent.getCurrentComponent(context)
-        .findComponent("inline-save-filter-name").getClientId(context);
   }
 
   private boolean isDuplicatedFilter() {
@@ -58,6 +43,13 @@ public class WidgetFilterHelperBean implements Serializable {
     var foundFilter = result.stream().filter(filter -> Strings.CI.equals(filter.getName(), saveFilter.getName()))
         .findFirst().orElse(null);
     return foundFilter == null ? false : true;
+  }
+
+  public String getLoadWidgetFilters() {
+    if (StringUtils.isNotEmpty(loadFiltersRemoteCommand)) {
+      return loadFiltersRemoteCommand.concat("()");
+    }
+    return "";
   }
 
   public WidgetFilterModel getSaveFilter() {
@@ -68,11 +60,11 @@ public class WidgetFilterHelperBean implements Serializable {
     this.saveFilter = saveFilter;
   }
 
-  public String getNewFilterName() {
-    return newFilterName;
+  public String getLoadFiltersRemoteCommand() {
+    return loadFiltersRemoteCommand;
   }
 
-  public void setNewFilterName(String newFilterName) {
-    this.newFilterName = newFilterName;
+  public void setLoadFiltersRemoteCommand(String loadFiltersRemoteCommand) {
+    this.loadFiltersRemoteCommand = loadFiltersRemoteCommand;
   }
 }

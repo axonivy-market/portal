@@ -355,7 +355,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     back: Back
     backToCaseMap: Back to case map
     backgroundColor: Background color
-    bulkSelection: Bulk selection
     cancel: Cancel
     cancelContext: Cancel {0}
     case: Case
@@ -367,7 +366,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     close: Close
     closeContext: Close {0}
     cockpit: Cockpit
-    collapse: Collapse
     collapseWidgetContext: Collapse {0} widget
     colors: Colors
     comment: Comment
@@ -406,7 +404,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorFileUploadSize: The file size must be lower than {0}
     errorNotification: Error notification
     errorXhr: Failed to update website content
-    expand: Expand
     expandWidgetContext: Expand {0} widget
     filter:
       from: from
@@ -422,7 +419,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     generalInformation: General information
     globalSearch: Search ...
     goToDetail: Go to detail
-    gridView: Grid view
     hasPrecondition: This process has precondition
     height: Height
     hide: Hide
@@ -434,7 +430,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     leave: Leave
     leaveAndReserve: Leave and reserve
     linkToCaseDetails: Click <a href="{0}" >here</a> for details.
-    listView: List view
     loading: Loading
     loginLogo: Login logo
     logos: Logos
@@ -583,7 +578,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Public
       savedFilters: 'Saved filters:'
   dashboard:
-    CanWorkOnAsUser: Only show me the tasks I can work on as a user
     DashboardConfiguration:
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Create new public dashboard
@@ -596,30 +590,19 @@ ch.ivy.addon.portalkit.ui.jsf:
       Title: Portal configuration
     EmptyFilterMessage: No widget filter found
     Filter:
-      AddCondition: Add condition
-      ApplyFilters: Apply filters
-      DefaultFiltersDescription: Filters that have been set in the widget configuration as default.
-      DefaultFiltersTitle: Default filters
-      FilterConditionsTitle: Filter conditions
       FilterOptionHeader: Filter options
-      FilterOptionHeaderTooltip: Some filter fields and operators may be disabled by your administrator. Filters using disabled fields or operators will be removed automatically. Please contact your administrator for more information.
+      FilterOptionHeaderTooltip: Some filter fields and operators may be disabled by your administrator. Filters using disabled fields or operators will be automatically removed. Please contact your administrator for more information.
       FilterPanelHeader: Filter panel
       ManageWidgetFilterHeader: Widget filter management
-      NewFilterConditionsDescription: Show tasks that match all of the following conditions.
-      NewFilterConditionsTitle: New filter conditions
       NotFound: No filter found
-      SaveFilterDescription: Save those filter conditions for future use.
-      SaveFilterNamePlaceholder: Enter filter name
-      SaveFilterOptional: (optional)
-      SetFilterHeader: Set Filter
       WidgetNameColumn: Widget name
       WrongDateFormat: The date is invalid
-    ManageFilter: Manage saved filters
+    ManageFilter: Manage filters
     NoData: No data
-    NoSavedFilterMessage: No saved filters
+    NoSavedFilterMessage: No saved filter found. Try to create a new by click on Save Filter button
     SaveNewWidgetFilterHeader: Save a new widget filter
-    SavedFilterHeader: Saved Filters
-    SearchForFilter: Search for a filter
+    SavedFilterHeader: Saved filters
+    SearchForFilter: Search for filter
     StatisticWidget:
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
     WidgetFilterName: Widget filter name
@@ -708,11 +691,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreDefaultMessage: If you proceed, you will loose all widgets created by yourself. The standard settings will be applied.
     select: Select
     selectEditAction: Which action do you want to procced?
-    showAllCases: Show all cases
-    showAllTasks: Show all tasks
     showFullWidget: Show full widget
-    showPinnedCases: Show pinned cases
-    showPinnedTasks: Show pinned tasks
     statisticChartIntroduction: This widget displays available statistic charts.
     statisticChartWidget: Statistic chart
     switchToViewMode: View Mode

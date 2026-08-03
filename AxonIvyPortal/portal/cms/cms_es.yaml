@@ -470,7 +470,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     back: Regresar
     backToCaseMap: Volver al mapa de caso
     backgroundColor: Color de fondo
-    bulkSelection: Selección múltiple
     cancel: Cancelar
     cancelContext: Cancelar {0}
     case: Caso
@@ -482,7 +481,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     close: Cerrar
     closeContext: Cerrar {0}
     cockpit: Inicio
-    collapse: Contraer
     collapseWidgetContext: Contraer widget {0}
     colors: Colores
     comment: Comentario
@@ -527,7 +525,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: Error al actualizar el contenido web
     escalationTaskHeaderText: Ejecutar escalación
     escalationTaskMessage: Expiración ahora, por lo que la tarea expira. ¿Está seguro?
-    expand: Expandir
     expandWidgetContext: Expandir widget {0}
     filter:
       from: desde
@@ -543,7 +540,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     generalInformation: Información general
     globalSearch: Buscar ...
     goToDetail: Ir a detalles
-    gridView: Vista de cuadrícula
     growlMessage:
       PROCESS_VIEWER: Has cerrado el visor de procesos.
       TASK_FINISHED: Ha finalizado la tarea con éxito.
@@ -559,7 +555,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     leave: Salir
     leaveAndReserve: Salir y reservar
     linkToCaseDetails: Haga click <a href="{0}" >aquí</a> para más detalles.
-    listView: Vista de lista
     loading: Cargando
     loginLogo: Logo de inicio de sesión
     logos: Logos
@@ -801,7 +796,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       ImportCompleteMessage: Todos los archivos se importaron correctamente.
       ImportIncompleteMessage: Algunos archivos no se pudieron importar. Consulte el registro del servidor para obtener más información.
   dashboard:
-    CanWorkOnAsUser: Mostrar solo las tareas en las que puedo trabajar como usuario
     CaseQueryType:
       info: Configure qué tipos de casos se muestran en el widget de casos. Predeterminado muestra solo casos de negocio, Subcasos técnicos muestra solo subcasos técnicos, y Todos muestra tanto casos de negocio como subcasos técnicos.
       label: Tipo de caso
@@ -867,22 +861,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidget: Página externa
     ExternalPageWidgetIntroduction: Este widget puede mostrar una página web externa.
     Filter:
-      AddCondition: Añadir condición
-      ApplyFilters: Aplicar filtros
-      DefaultFiltersDescription: Filtros establecidos como predeterminados en la configuración del widget.
-      DefaultFiltersTitle: Filtros predeterminados
-      FilterConditionsTitle: Condiciones de filtro
       FilterOptionHeader: Opciones de filtro
       FilterOptionHeaderTooltip: Algunos campos de filtro y operadores pueden estar deshabilitados por su administrador. Los filtros que utilicen campos u operadores deshabilitados se eliminarán automáticamente. Comuníquese con su administrador para obtener más información.
       FilterPanelHeader: Panel de filtro
       ManageWidgetFilterHeader: Gestión de filtros de widgets
-      NewFilterConditionsDescription: Mostrar tareas que cumplan todas las condiciones siguientes.
-      NewFilterConditionsTitle: Nuevas condiciones de filtro
       NotFound: No se ha encontrado ningún filtro
-      SaveFilterDescription: Guarde estas condiciones de filtro para usarlas más tarde.
-      SaveFilterNamePlaceholder: Introduzca el nombre del filtro
-      SaveFilterOptional: (opcional)
-      SetFilterHeader: Establecer filtro
       WidgetNameColumn: Nombre de widget
       WrongDateFormat: La fecha no es válida
     FilterTasksByCurrentCaseOwner: Filtrar las tareas por el propietario actual del caso
@@ -1046,11 +1029,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreDefaultMessage: Si procede, perderá todos los widgets creados por usted. Se aplicará la configuración estándar.
     select: Seleccione
     selectEditAction: Con qué acción quiere proceder?
-    showAllCases: Mostrar todos los casos
-    showAllTasks: Mostrar todas las tareas
     showFullWidget: Mostrar el widget completo
-    showPinnedCases: Mostrar casos anclados
-    showPinnedTasks: Mostrar tareas ancladas
     statisticChartIntroduction: Este widget muestra los gráficos estadísticos disponibles.
     statisticChartWidget: Gráfico estadístico
     statisticWidgets: Widgets estadísticos
