@@ -35,7 +35,7 @@ public class ProcessStartUtils {
 
   public static IWebStartable findWebStartableByUserFriendlyRequestPath(String requestPath) {
     return Sudo.get(() -> {
-      IWebStartable webStartable = findWebStartableByPathAndPmv(requestPath, Ivy.request().getProcessModelVersion());
+      IWebStartable webStartable = findWebStartableByPathAndPmv(requestPath, Ivy.request().project());
       if (webStartable != null) {
         return webStartable;
       }
