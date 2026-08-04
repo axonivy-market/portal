@@ -829,7 +829,7 @@ body .ui-button.dashboard-tasks__start-button {
 
 body .dashboard-tasks__start-container {
   width: 5.4rem;
-display: inline-flex;
+  display: inline-flex;
   justify-content: center;
 }
 
@@ -2397,9 +2397,12 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
   cursor: pointer;
 }
 
-.dashboard-tasks__selection-column {
-  text-align: center;
+.dashboard-tasks--table th.dashboard-tasks__selection-column,
+.dashboard-tasks--table td.dashboard-tasks__selection-column {
   width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  text-align: center;
 }
 
 /* Menu type tag colors - light mode */
