@@ -310,8 +310,8 @@
         dynamic="true"
         onShow="loadUserFilters#{index}(); #{onFilterDialogShow};"
         pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterPanelHeader')}">
-        <h:form id="filter-form-#{index}" styleClass="filter-form flex flex-column">
-          <h:panelGroup id="filter-dialog-content-#{index}" styleClass="flex filter-dialog__panes" layout="block">
+        <h:form id="filter-form-#{index}" styleClass="filter-form flex flex-column flex-auto">
+          <h:panelGroup id="filter-dialog-content-#{index}" styleClass="flex flex-auto align-items-stretch filter-dialog__panels" layout="block">
             <h:panelGroup id="saved-filters-container" styleClass="saved-filter ui-sm-hidden" layout="block">
               <div class="saved-filter-content">
               <ui:include src="/layouts/restricted/includes/WidgetFilter.xhtml">
@@ -345,12 +345,12 @@
                     process="filter-form-#{index}"
                     immediate="true" global="false"/>
               </div>
-              <h:panelGroup layout="block" styleClass="filter-dialog__body">
+              <h:panelGroup layout="block" styleClass="filter-dialog__body flex flex-column flex-1 min-h-0">
                 <h:panelGroup layout="block" styleClass="filter-dialog__content">
                   <ui:insert name="widgetFilterContent" />
                 </h:panelGroup>
 
-                <h:panelGroup layout="block" styleClass="filter-dialog__save-group">
+                <h:panelGroup layout="block" styleClass="filter-dialog__save-group mt-auto">
                   <p:divider layout="horizontal" />
 
                   <h:panelGroup id="inline-save-filter-section" layout="block" styleClass="filter-dialog__save-section">

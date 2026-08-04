@@ -637,33 +637,18 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 
 .filter-dialog .filter-form {
   gap: 20px;
-  flex: 1 1 auto;
 }
 
-.filter-dialog__panes {
-  flex: 1 1 auto;
-  align-items: stretch;
-}
-.filter-dialog__panes > .saved-filter {
+.filter-dialog__panels > .saved-filter {
   box-sizing: content-box;
   flex: 0 0 205px;
   width: 205px;
   padding: 20px;
 }
-.filter-dialog__panes > .flex.flex-column {
+
+.filter-dialog__panels > .flex.flex-column {
   min-width: 0;
   padding: 20px;
-}
-
-.filter-dialog__body {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-height: 0;
-}
-
-.filter-dialog__save-group {
-  margin-top: auto;
 }
 
 .filter-dialog .filter-dialog__close.ui-button {
@@ -1484,9 +1469,6 @@ a.saved-filter__manage-filter {
 .saved-filter__middle {
   flex: 1 1 auto;
   min-height: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .saved-filter__middle:has(.saved-filter__items-wrapper:not(.hidden) .saved-filter__items) {
