@@ -17,11 +17,6 @@ import com.axonivy.portal.util.filter.field.FilterField;
 
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 
-/**
- * Builds the read-only "default filter" chip labels shown at the top of the Set Filter dialog,
- * e.g. {@code State in "Done, Open"}. Shared by the Task and Case widget filter beans so both
- * render the labels the same way; {@code widgetType} only steers state-code translation.
- */
 public final class DefaultFilterChipLabelBuilder {
 
   private DefaultFilterChipLabelBuilder() {
