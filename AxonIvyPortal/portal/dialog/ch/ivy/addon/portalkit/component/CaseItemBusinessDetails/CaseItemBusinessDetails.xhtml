@@ -27,10 +27,10 @@
         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/businessDetailsTitle')}
       </div>
     </div>
-    <p:dataTable id="additional-case-detail-table"
+    <p:dataTable id="additional-case-detail-table" styleClass="case-details-business-details-table"
       value="#{case.customFields().all()}" var="item"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-      reflow="true" lazy="false">
+      lazy="false">
       <p:column
         headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}">
         <h:outputText id="name" value="#{item.name()}" />

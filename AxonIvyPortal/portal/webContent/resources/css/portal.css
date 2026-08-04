@@ -2812,6 +2812,9 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
   font-size: var(--portal-detail-label-font-size);
   font-weight: 400;
 }
+.case-details-business-details-table {
+  clear: both;
+}
 .case-detail-body .case-details-document-download-icon {
   display: inline-flex;
   align-items: center;
