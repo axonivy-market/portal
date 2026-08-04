@@ -2651,6 +2651,19 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
   font-weight: 400;
   color: var(--portal-detail-value-color);
 }
+.case-detail-casedetails-card .case-detail-description {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+.case-detail-casedetails-card .case-detail-description > .scroll-panel {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.case-detail-casedetails-card .case-detail-description-input {
+  width: 100%;
+  box-sizing: border-box;
+}
 
 /* Role & User information + Time Information side by side */
 .portal-detail-subcards-row {
