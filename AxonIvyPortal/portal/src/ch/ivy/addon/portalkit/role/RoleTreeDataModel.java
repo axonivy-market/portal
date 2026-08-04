@@ -26,6 +26,8 @@ public class RoleTreeDataModel implements Serializable {
 
   public void reloadTree() {
     this.filterKeyword = "";
+    this.filteredTreeNode = null;
+    this.roles = null;
     rootTreeNode = new DefaultTreeNode<RoleHolder>(ROOT_NODE, null, null);
     rootTreeNode.setExpanded(true);
     buildTree();

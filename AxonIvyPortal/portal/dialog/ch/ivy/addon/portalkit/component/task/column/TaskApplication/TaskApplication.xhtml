@@ -14,8 +14,8 @@
 
   <h:panelGroup>
     <h:outputText id="#{cc.attrs.componentId}" styleClass="application-column #{cc.attrs.responsiveStyleClass}"
-      value="#{task.application.name}" />
-    <p:tooltip for="#{cc.attrs.componentId}" value="#{task.application.name}" trackMouse="true" hideEvent="mouseleave click" rendered="#{not empty task.application.name}" />
+      value="#{task.application.name()}" />
+    <p:tooltip for="#{cc.attrs.componentId}" value="#{task.application.name()}" trackMouse="true" hideEvent="mouseleave click" rendered="#{not empty task.application.name()}" />
   </h:panelGroup>
 </cc:implementation>
 
