@@ -21,6 +21,8 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 @ViewScoped
 public class CaseWidgetUserFilterBean extends AbstractCaseWidgetFilterBean {
 
+  private static final String CASE_WIDGET_TYPE = "case";
+
   private static final long serialVersionUID = 7812171996900852992L;
 
   private List<DashboardFilter> originalUserFilters;
@@ -73,6 +75,6 @@ public class CaseWidgetUserFilterBean extends AbstractCaseWidgetFilterBean {
 
   public List<String> getDefaultFilterChipLabels() {
     return widget == null ? List.of()
-        : DefaultFilterChipLabelBuilder.build(widget.getFilters(), "case");
+        : DefaultFilterChipLabelBuilder.build(widget.getFilters(), CASE_WIDGET_TYPE);
   }
 }
