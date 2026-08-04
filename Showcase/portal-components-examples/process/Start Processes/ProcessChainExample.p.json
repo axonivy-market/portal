@@ -1,0 +1,45 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "181897243F2BFDD3",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.ProcessChainExampleData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "showProcessChainExamples.ivp",
+      "config" : {
+        "signature" : "showProcessChainExamples",
+        "request" : {
+          "name" : "Process Chain Example"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : 37, "y" : 41 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "ProcessChainExample",
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.ProcessChainExample:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 64 },
+        "size" : { "width" : 144 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    } ]
+}

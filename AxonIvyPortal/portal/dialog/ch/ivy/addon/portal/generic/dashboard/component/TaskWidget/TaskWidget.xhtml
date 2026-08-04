@@ -1,0 +1,224 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:cc="jakarta.faces.composite" xmlns:jsf="jakarta.faces"
+  xmlns:c="jakarta.tags.core" xmlns:fn="jakarta.tags.functions"
+  xmlns:pt="jakarta.faces.passthrough">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="taskWidget" type="ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget" required="true" />
+  <cc:attribute name="renderColumnConfiguration" type="java.lang.Boolean" default="false" />
+  <cc:attribute name="taskWidgetVar" default="dashboard-tasks" />
+  <cc:attribute name="isReadOnlyMode" type="java.lang.Boolean" default="false" />
+  <cc:attribute name="isPreviewMode" type="java.lang.Boolean" default="false"/>
+  <cc:attribute name="onCompleteLoadWidget" />
+  <cc:attribute name="componentToUpdateTaskWidget" />
+  <cc:attribute name="isAIResult" type="java.lang.Boolean" default="false" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="taskWidget" value="#{cc.attrs.taskWidget}" />
+  <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
+  <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
+  <c:set var="isResizing" value="#{!cc.attrs.isReadOnlyMode and !cc.attrs.isPreviewMode}" />
+
+  <p:remoteCommand id="rcLoadTaskFirstTimeAIResult" rendered="#{cc.attrs.isAIResult}"
+                   autoRun="true" actionListener="#{taskWidget.dataModel.loadFirstTime()}"
+                   update="dashboard-tasks-container" global="false" async="true" process="@this"
+                   oncomplete="loadWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); #{cc.attrs.onCompleteLoadWidget};" />
+
+  <p:remoteCommand id="rcLoadTaskFirstTime" rendered="#{!cc.attrs.isAIResult}"
+                   autoRun="true" actionListener="#{taskWidget.dataModel.loadFirstTime()}"
+                   update="dashboard-tasks-container" global="false" async="true" process="@this"
+                   oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); #{cc.attrs.onCompleteLoadWidget}; #{cc.attrs.isPreviewMode ? 'calculateFilterPaneltPosition();' : ''}" />
+  <p:inputText type="hidden" value="#{cc.attrs.taskWidgetVar}-#{taskWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
+  <div class="ui-g">
+    <h:panelGroup layout="block"
+      styleClass="js-loading-#{taskWidget.id} task-dashboard-widget__loading-message ui-g-12">
+      <ui:repeat var="task" value="#{taskWidget.loadingItems()}">
+        <p:skeleton styleClass="MarTop20" height="4rem" />
+      </ui:repeat>
+    </h:panelGroup>
+
+    <h:panelGroup id="dashboard-tasks-container" layout="block"
+      styleClass="ui-g-12 u-padding-0 js-dashboard-tasks-container-#{taskWidget.id} hidden dashboard-tasks-container">
+      <h:panelGroup id="columns-configuration" layout="block" rendered="#{cc.attrs.renderColumnConfiguration}" styleClass="dashboard-tasks-container__columns-configuration">
+        <p:commandLink id="column-toggler" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
+                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
+                       update="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}"
+                       oncomplete="PF('column-management-dialog').show()" process="@this" global="false">
+          <p:resetInput target="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" />
+        </p:commandLink>
+      </h:panelGroup>
+      <p:dataTable id="dashboard-tasks" widgetVar="#{cc.attrs.taskWidgetVar}-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task"
+        lazy="true" scrollRows="25"
+        disabledSelection="#{isPreviewMode or bulkActionBean.isInBulkMode(taskWidget)}"
+        liveScroll="true" scrollable="true" sortBy="#{isResizing ? null : taskWidget.sortBy}"
+        showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
+        rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode and not bulkActionBean.isInBulkMode(taskWidget)}" selectionMode="single"
+        styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'hidden' : ''} #{isResizing ? 'js-resizing' : ''}"
+        rowStyleClass="dashboard-table--row-style"
+        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
+        <p:ajax event="rowSelect" listener="#{dashboardTaskWidgetBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode or bulkActionBean.isInBulkMode(taskWidget)}" />
+        <p:ajax event="colResize" process="dashboard-tasks" global="false" partialSubmit="true"
+          listener="#{dashboardDetailModificationBean.onResizeColumn}" disabled="#{!isResizing}" />
+        <f:attribute name="widgetId" value="#{taskWidget.id}" />
+        <p:ajax event="sort" update="dashboard-tasks" onstart="liveScroll()" disabled="#{!isPreviewMode and !isReadOnlyMode}" />
+
+        <p:column headerText="" rendered="#{bulkActionBean.isInBulkMode(taskWidget)}" styleClass="dashboard-tasks__selection-column">
+          <h:panelGroup styleClass="js-task-selection js-task-selection-#{taskWidget.id}">
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskSelection task="#{task}"
+              isEnabled="#{taskActionBean.handleSelectionAction(bulkActionBean.getActionType(taskWidget.id), task) and not bulkActionBean.isReachMaxSelectionLimit(taskWidget)}" managedBean="#{bulkActionBean}"
+              onSelectCheckbox="#{bulkActionBean.onSelectTask(task, taskWidget)}"
+              taskWidget="#{taskWidget}" />
+          </h:panelGroup>
+        </p:column>
+
+        <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'} widget-column-header"
+          visible="#{column.visible}" field="#{column.field}" filterable="false"
+          sortBy="#{column.field}" sortable="#{(isPreviewMode or isReadOnlyMode) and column.sortable}"
+          style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay}">
+
+          <f:facet name="header">
+           <h:outputText id="header" value="#{column.headerText}" />
+           <p:tooltip value="#{column.headerText}" for="header" />
+          </f:facet>
+
+          <h:panelGroup rendered="#{column.field eq 'start'}" styleClass="dashboard-tasks__start-container">
+            <ui:include src="StartCell.xhtml">
+              <ui:param name="isResizing" value="#{isResizing}" />
+              <ui:param name="isPreviewMode" value="#{isPreviewMode}" />
+              <ui:param name="ariaLabel" value="#{taskBean.getAriaLabel(task, taskWidget.columns)}" />
+            </ui:include>
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.field eq 'pin' and visibilityBean.enablePinTask}">
+            <h:outputText id="task-pin" value="#{column.display(task)}"/>
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskPin task="#{task}"/>
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.field eq 'priority'}">
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}" alwaysShowPriority="true" />
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.field eq 'activator'}">
+            <ui:include src="ResponsibleCell.xhtml" />
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.field eq 'worker'}">
+            <ui:include src="WorkerCell.xhtml" />
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.field eq 'state'}">
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{task.businessState}"
+            stateStyleClass="#{column.fieldStyleClass}" alwaysShowState="true"/>
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.field eq 'name'}">
+            <ui:include src="NameCell.xhtml" />
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{(column.format eq 'STRING' or column.format eq 'TEXT') and column.field ne 'name'}">
+            <h:outputText id="custom-column" value="#{dashboardTaskWidgetBean.createParseTextFromHtml(dashboardTaskWidgetBean.display(column, task))}" styleClass="dashboard-widget-column__custom #{column.fieldStyleClass}" style="#{column.fieldStyle}" />
+            <p:tooltip for="custom-column" value="#{dashboardTaskWidgetBean.display(column, task)}" trackMouse="true" hideEvent="mouseleave click"/>
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.format eq 'TIMESTAMP'}">
+            <h:outputText id="task-timestamp" value="#{dashboardTaskWidgetBean.display(column, task)}" style="#{column.fieldStyle}">
+              <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
+            </h:outputText>
+            <p:tooltip for="task-timestamp" value="#{dashboardTaskWidgetBean.display(column, task)}" trackMouse="true" hideEvent="mouseleave click">
+              <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
+            </p:tooltip>
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.format eq 'NUMBER'}">
+            <h:outputText value="#{column.display(task)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.field eq 'category'}">
+            <h:outputText id="task-category" value="#{column.display(task)}"/>
+            <p:tooltip for="task-category" value="#{task.getCategory().getPath()}" trackMouse="true" hideEvent="mouseleave click"/>
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.field eq 'application'}">
+            <h:outputText id="task-application" value="#{dashboardTaskWidgetBean.display(column, task)}"/>
+            <p:tooltip for="task-application" value="#{dashboardTaskWidgetBean.display(column, task)}" trackMouse="true" hideEvent="mouseleave click"/>
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.field eq 'businessCaseId'}">
+            <h:outputText id="task-business-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}"/>
+            <p:tooltip for="task-business-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}" trackMouse="true" hideEvent="mouseleave click"/>
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.field eq 'technicalCaseId'}">
+            <h:outputText id="task-technical-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}"/>
+            <p:tooltip for="task-technical-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}" trackMouse="true" hideEvent="mouseleave click"/>
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">
+            <ui:include src="ActionsCell.xhtml">
+              <ui:param name="destroyTaskDialogComponent" value="destroy-task-confirmation-dialog" />
+              <ui:param name="isDisableActions" value="#{bulkActionBean.isInBulkMode(taskWidget)}" />
+            </ui:include>
+          </h:panelGroup>
+          
+        </p:columns>
+      </p:dataTable>
+      <h:panelGroup layout="block" id="empty-message-container"
+        styleClass="empty-message-container #{!isPreviewMode and taskWidget.taskCount lt 1 and taskWidget.dataModel.countLoad lt 1 ? '' : 'hidden'}">
+        <c:set var="noTasksWhenFilter"
+          value="#{taskWidget.userDefinedFiltersCount.isPresent() or (not empty taskWidget.quickSearchKeyword)}" />
+        <h:panelGroup layout="block" id="empty-message-when-filter"
+          rendered="#{noTasksWhenFilter}">
+          <i class="ti ti-filter empty-message-icon" />
+          <br />
+          <h:outputText
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/iconMessage/taskWidget/noTasksFoundWhenFilter')}"
+            styleClass="empty-message-text" />
+        </h:panelGroup>
+        <h:panelGroup layout="block" id="empty-message-when-not-filter"
+          rendered="#{!noTasksWhenFilter}">
+          <i class="ti #{dashboardTaskWidgetBean.noTasksMessage.icon} empty-message-icon" />
+          <br />
+          <h:outputText value="#{dashboardTaskWidgetBean.noTasksMessage.message}"
+            styleClass="empty-message-text" />
+        </h:panelGroup>
+      </h:panelGroup>
+    </h:panelGroup>
+  </div>
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="reset-task-confirmation-dialog" />
+    <ui:param name="widgetVar" value="reset-task-confirmation-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="ti ti-alert-triangle" />
+    <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetTaskHeaderText')}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
+
+    <ui:define name="dialogFooter">
+      <h:form id="reset-task-confirmation-form" rendered="#{!isPreviewMode}">
+        <p:commandLink onclick="PF('reset-task-confirmation-dialog').hide()"
+                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
+        <p:commandButton actionListener="#{dashboardTaskWidgetBean.resetAndOpenTask}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          icon="#{visibilityBean.generateButtonIcon('ti ti-arrow-back-up')}"
+          onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
+      </h:form>
+    </ui:define>
+  </ui:decorate>
+   <script type="text/javascript">
+      function liveScroll() {
+        if (PF('dashboard-tasks-#{taskWidget.id}') != null) {
+          PF('dashboard-tasks-#{taskWidget.id}').scrollOffset = 0;
+          PF('dashboard-tasks-#{taskWidget.id}').scrollBody.scrollTop(1);
+          PF('dashboard-tasks-#{taskWidget.id}').allLoadedLiveScroll = false;
+        }
+      }
+
+    </script>
+</cc:implementation>
+</html>

@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
+  xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+
+<cc:interface componentType="IvyComponent">
+</cc:interface>
+
+<cc:implementation>
+  <div id="#{cc.clientId}" class="ui-g project-version-container">
+    <div class="ui-g-3 ui-sm-6 pl-0">
+      <h:outputText id="engine-version-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/engineVersion')}:" />
+    </div>
+    <div class="ui-g-9 ui-sm-6 text-right pl-0">
+      <h:outputText id="engine-version" value="#{projectVersionBean.engineVersion}" />
+    </div>
+    <div class="ui-g-3 ui-sm-6 pl-0">
+      <h:outputText id="portal-version-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/portalVersion')}:" />
+    </div>
+    <div class="ui-g-9 ui-sm-6 text-right">
+      <h:outputText id="portal-version" value="#{projectVersionBean.portalVersion}" />
+    </div>
+
+    <h:panelGroup rendered="#{not empty projectVersionBean.customersProjects}">
+      <ui:repeat id="application-list" value="#{projectVersionBean.customersProjects.entrySet().toArray()}" var="entry">
+        <div class="ui-g-12 pl-0">
+          <p:dataTable id="application-project-version-table" value="#{entry.value}" var="pmv" styleClass="project-version-table"
+            reflow="true" lazy="false">
+            <f:facet name="header">
+              <h:outputText id="application-name" value="#{entry.key}" />
+            </f:facet>
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/projectName')}">
+              <h:outputText id="project-name" value="#{pmv.getName()}" />
+            </p:column>
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}" styleClass="project-version" >
+              <h:outputText id="project-version" value="#{pmv.mavenCoordinates().version()}" />
+            </p:column>
+          </p:dataTable>
+        </div>
+      </ui:repeat>
+    </h:panelGroup>
+  </div>
+</cc:implementation>
+</html>

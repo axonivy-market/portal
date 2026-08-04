@@ -1,0 +1,550 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "id" : "150F0B4F8F3CB2CB",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "map" : {
+            "out.resetAllSettings" : "false"
+          }
+        },
+        "guid" : "14B6C3C6330883A7"
+      },
+      "visual" : {
+        "at" : { "x" : 132, "y" : 64 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 7 }
+      },
+      "connect" : [
+        { "id" : "f265", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 344, "y" : 64 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f69",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "editSetting(GlobalSetting)",
+      "config" : {
+        "signature" : "editSetting",
+        "input" : {
+          "params" : [
+            { "name" : "setting", "type" : "ch.ivy.addon.portalkit.configuration.GlobalSetting", "desc" : "" }
+          ],
+          "map" : {
+            "out.selectedSetting" : "param.setting"
+          }
+        },
+        "guid" : "14B77FA478FB87A1"
+      },
+      "visual" : {
+        "at" : { "x" : 1264, "y" : 224 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 22, "y" : -10 }
+      },
+      "connect" : [
+        { "id" : "f73", "to" : "f72" }
+      ]
+    }, {
+      "id" : "f72",
+      "type" : "Script",
+      "name" : "set value",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import java.util.ArrayList;",
+            "import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariableType;",
+            "import java.util.Arrays;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "",
+            "in.dialogTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editSetting\");",
+            "GlobalVariable globalVariable = GlobalVariable.valueOfKey(in.selectedSetting.key);",
+            "in.settingInputType = globalVariable.getType();",
+            "if (globalVariable.getType() == GlobalVariableType.SELECTION) {",
+            "  in.selectedSetting.value = in.selectedSetting.value.toUpperCase();",
+            "  in.dropDownValues = globalVariable.getOptions();",
+            "  if (in.dropDownValues.isEmpty()) {",
+            "    in.dropDownValues = globalVariable.getObjectOptions();",
+            "  }",
+            "} else if (globalVariable == GlobalVariable.DEFAULT_HOMEPAGE) {",
+            "  in.externalDropDownValues = HomepageUtils.getHomepageOptionsForAdminSettings();",
+            "} else if (globalVariable.getType() == GlobalVariableType.EXTERNAL_SELECTION) {",
+            "  in.externalDropDownValues = globalVariable.getExternalOptions();",
+            "} else if (globalVariable.getType() == GlobalVariableType.MULTI_EXTERNAL_SELECTIONS) {",
+            "  in.externalDropDownValues = globalVariable.getExternalOptions();",
+            "  in.selectedMultiSettings = new ArrayList();",
+            "  if (StringUtils.isNotBlank(in.selectedSetting.value)) {",
+            "    for (String setting : in.selectedSetting.value.split(\",\")) {",
+            "      in.selectedMultiSettings.add(setting.toUpperCase());",
+            "    }",
+            "  }",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 1264, "y" : 320 }
+      },
+      "connect" : [
+        { "id" : "f26", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f80",
+      "type" : "HtmlDialogEventStart",
+      "name" : "saveSetting",
+      "config" : {
+        "guid" : "14B784950D872997"
+      },
+      "visual" : {
+        "at" : { "x" : 720, "y" : 224 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 7, "y" : -9 }
+      },
+      "connect" : [
+        { "id" : "f29", "to" : "f15" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "Script",
+      "name" : "save global setting",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import String;",
+            "import org.apache.commons.collections4.CollectionUtils;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariableType;",
+            "import ch.ivy.addon.portalkit.configuration.GlobalSetting;",
+            "",
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "",
+            "if (in.settingInputType == GlobalVariableType.MULTI_EXTERNAL_SELECTIONS) {",
+            "  String combinedSettings = \"\";",
+            "  if (CollectionUtils.isNotEmpty(in.selectedMultiSettings)) {",
+            "    combinedSettings = String.join(\",\", in.selectedMultiSettings);",
+            "  }",
+            "  in.selectedSetting.setValue(combinedSettings);",
+            "}",
+            "",
+            "GlobalSettingService globalSettingService= new GlobalSettingService();",
+            "in.selectedSetting = globalSettingService.save(in.selectedSetting) as GlobalSetting;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 720, "y" : 320 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f2" }
+      ]
+    }, {
+      "id" : "f286",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1088, "y" : 320 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f74",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "submitResetSetting(GlobalSetting)",
+      "config" : {
+        "signature" : "submitResetSetting",
+        "input" : {
+          "params" : [
+            { "name" : "setting", "type" : "ch.ivy.addon.portalkit.configuration.GlobalSetting", "desc" : "" }
+          ],
+          "map" : { },
+          "code" : [
+            "out.selectedSetting = param.setting;",
+            "out.confirmMsg  = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/resetSettingConfirmation\");",
+            "out.resetAllSettings = false;"
+          ]
+        },
+        "guid" : "163DD18A566F4B85"
+      },
+      "visual" : {
+        "at" : { "x" : 888, "y" : 224 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 49, "y" : -12 }
+      },
+      "connect" : [
+        { "id" : "f55", "to" : "f75" }
+      ]
+    }, {
+      "id" : "f285",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "submitResetAllSettings()",
+      "config" : {
+        "signature" : "submitResetAllSettings",
+        "input" : {
+          "map" : { },
+          "code" : [
+            "out.confirmMsg  = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/resetAllSettingsConfirmation\");",
+            "out.resetAllSettings = true;"
+          ]
+        },
+        "guid" : "163DD18A56815DFE"
+      },
+      "visual" : {
+        "at" : { "x" : 1088, "y" : 224 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 11, "y" : -10 }
+      },
+      "connect" : [
+        { "id" : "f57", "to" : "f286" }
+      ]
+    }, {
+      "id" : "f75",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 888, "y" : 320 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f63",
+      "type" : "Script",
+      "name" : "reset selected setting",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "globalSettingService.resetGlobalSetting(in.selectedSetting.getKey());",
+            "in.selectedSetting.setValueToDefault();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 320 },
+        "size" : { "width" : 128 }
+      },
+      "connect" : [
+        { "id" : "f53", "to" : "f2", "via" : [ { "x" : 336, "y" : 416 } ] }
+      ]
+    }, {
+      "id" : "f276",
+      "type" : "Script",
+      "name" : "reset all settings",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "int i = 0;",
+            "for (GlobalVariable globalVariable : GlobalVariable.values()) {",
+            "  globalSettingService.resetGlobalSetting(globalVariable.getKey());",
+            "  in.settingList.get(i).setValueToDefault();",
+            "  i++;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 528, "y" : 320 }
+      },
+      "connect" : [
+        { "id" : "f23", "to" : "f2", "via" : [ { "x" : 528, "y" : 416 } ] }
+      ]
+    }, {
+      "id" : "f67",
+      "type" : "HtmlDialogEventStart",
+      "name" : "resetValue",
+      "config" : {
+        "guid" : "163DD1F145199579"
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 224 },
+        "labelOffset" : { "x" : 7, "y" : -13 }
+      },
+      "connect" : [
+        { "id" : "f281", "to" : "f63" }
+      ]
+    }, {
+      "id" : "f278",
+      "type" : "HtmlDialogEventStart",
+      "name" : "resetValues",
+      "config" : {
+        "guid" : "163DD1F1451A5EB6"
+      },
+      "visual" : {
+        "at" : { "x" : 528, "y" : 224 },
+        "labelOffset" : { "x" : 4, "y" : -12 }
+      },
+      "connect" : [
+        { "id" : "f279", "to" : "f276" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "init data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "",
+            "// Setting tab",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "in.settingList = globalSettingService.findAll();",
+            "in.filteredSettingList = in.settingList;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 144, "y" : 320 }
+      },
+      "connect" : [
+        { "id" : "f62", "to" : "f60" }
+      ]
+    }, {
+      "id" : "f87",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "isApplicationDefaultEmailLanguage(String)",
+      "config" : {
+        "signature" : "isApplicationDefaultEmailLanguage",
+        "input" : {
+          "params" : [
+            { "name" : "language", "type" : "String", "desc" : "" }
+          ],
+          "map" : { },
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.AnnouncementService;",
+            "out.isDefaultApplicationLanguage = AnnouncementService.getInstance().isDefaultApplicationLanguage(param.language);"
+          ]
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.isDefaultApplicationLanguage"
+          }
+        },
+        "guid" : "16A33CB19C2E90CF"
+      },
+      "visual" : {
+        "at" : { "x" : 672, "y" : 608 },
+        "labelOffset" : { "x" : 47, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f90", "to" : "f89" }
+      ]
+    }, {
+      "id" : "f89",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 672, "y" : 800 }
+      }
+    }, {
+      "id" : "f56",
+      "type" : "Script",
+      "name" : "init data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
+            "import ch.ivy.addon.portalkit.service.AnnouncementService;",
+            "",
+            "// Announcement tab",
+            "in.announcement = AnnouncementService.getInstance().getAnnouncementWithAllSupportedLanguage();",
+            "in.isAnnouncementActivated = AnnouncementService.getInstance().isAnnouncementActivated();",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
+            "  ivy.cms.co(in.isAnnouncementActivated ? \"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"",
+            "  : \"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled\"), null));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 144, "y" : 688 }
+      },
+      "connect" : [
+        { "id" : "f84", "to" : "f83" }
+      ]
+    }, {
+      "id" : "f39",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "initAdminSettings()",
+      "config" : {
+        "signature" : "initAdminSettings",
+        "guid" : "1816138474B8F445"
+      },
+      "visual" : {
+        "at" : { "x" : 144, "y" : 224 },
+        "labelOffset" : { "x" : 8, "y" : -8 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f60",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 144, "y" : 416 }
+      }
+    }, {
+      "id" : "f66",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "initAnnouncementSettings()",
+      "config" : {
+        "signature" : "initAnnouncementSettings",
+        "guid" : "1816139068BE6768"
+      },
+      "visual" : {
+        "at" : { "x" : 144, "y" : 608 },
+        "labelOffset" : { "x" : 17, "y" : -11 }
+      },
+      "connect" : [
+        { "id" : "f27", "to" : "f56" }
+      ]
+    }, {
+      "id" : "f83",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 144, "y" : 800 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "Script",
+      "name" : "update messages",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.bean.AdminSettingBean;",
+            "AdminSettingBean.updatePortalManagementMessages();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 720, "y" : 416 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f25" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1048, "y" : 416 }
+      }
+    }, {
+      "id" : "f24",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 408, "y" : 800 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1264, "y" : 416 }
+      }
+    }, {
+      "id" : "f38",
+      "type" : "Script",
+      "name" : "save changes",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import jakarta.faces.application.FacesMessage;",
+            "import jakarta.faces.context.FacesContext;",
+            "import ch.ivy.addon.portalkit.service.AnnouncementService;",
+            "import ch.ivy.addon.portalkit.bean.AdminSettingBean;",
+            "",
+            "AnnouncementService service = AnnouncementService.getInstance();",
+            "",
+            "if (in.isAnnouncementActivated) {",
+            "  in.announcement.setEnabled(true);",
+            "  service.save(in.announcement);",
+            "  out.isAnnouncementActivated = true;",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
+            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"), null));",
+            "} else {",
+            "  service.deactivateAnnouncement();",
+            "  service.saveValueChangeAnnouncement(in.announcement);",
+            "  out.isAnnouncementActivated = false;",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
+            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled\"), null));",
+            "}",
+            "",
+            "AdminSettingBean.updatePortalManagementMessages();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 688 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f24" }
+      ]
+    }, {
+      "id" : "f28",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "saveChangesAnnouncement()",
+      "config" : {
+        "signature" : "saveChangesAnnouncement",
+        "guid" : "19131B2C06569468"
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 608 },
+        "labelOffset" : { "x" : 11, "y" : -13 }
+      },
+      "connect" : [
+        { "id" : "f46", "to" : "f38" }
+      ]
+    }, {
+      "id" : "f25",
+      "type" : "Script",
+      "name" : "Invalidate cache when changed the cache timeout variable",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.IvyCacheService;",
+            "import ch.ivy.addon.portalkit.enums.PortalVariable;",
+            "",
+            "if (in.selectedSetting.key.contentEquals(PortalVariable.SESSION_CACHE_TIMEOUT.key)) {",
+            "  IvyCacheService.getInstance().invalidatePortalSessionCacheEntries();",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 904, "y" : 417 },
+        "size" : { "width" : 160, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f52", "to" : "f8", "color" : "default" }
+      ]
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "Start Method",
+        "size" : 128
+      }, {
+        "name" : "Global settings",
+        "size" : 400
+      }, {
+        "name" : "Announcements",
+        "size" : 352
+      } ]
+  }
+}
