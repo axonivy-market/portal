@@ -16,8 +16,8 @@
 <cc:implementation>
   <h:outputStylesheet library="css" name="portal-components.css" />
 
-  <p:avatar id="#{cc.attrs.id}" rendered="#{cc.attrs.renderedAvatar}" title="#{not empty cc.attrs.title ? cc.attrs.title : (cc.attrs.showLabel ? (cc.attrs.representName != null ? cc.attrs.representName : portalComponentAvatarBean.getNameInitials(cc.attrs.securityMember.getDisplayName())) : '')}"
+  <p:avatar id="#{cc.attrs.id}" rendered="#{cc.attrs.renderedAvatar}" title="#{portalComponentAvatarBean.getAvatarTitle(cc.attrs.title, cc.attrs.showLabel, cc.attrs.representName, cc.attrs.securityMember)}"
     gravatar="#{cc.attrs.representName != null ? cc.attrs.representName : portalComponentAvatarBean.getEmailAddress(cc.attrs.securityMember, cc.attrs.useLowercaseEmail)}" gravatarConfig="d=blank"
-    label="#{cc.attrs.showLabel ? (cc.attrs.representName != null ? cc.attrs.representName : portalComponentAvatarBean.getNameInitials(cc.attrs.securityMember.getDisplayName())) : ''}" styleClass="gravatar" shape="circle" />
+    label="#{cc.attrs.showLabel ? portalComponentAvatarBean.getAvatarLabel(cc.attrs.representName, cc.attrs.securityMember) : ''}" styleClass="gravatar" shape="circle" />
 </cc:implementation>
 </html>

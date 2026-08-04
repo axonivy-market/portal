@@ -35,6 +35,24 @@ public class PortalComponentAvatarBean implements Serializable {
     return SecurityMemberUtils.getNameInitials(displayName);
   }
 
+  public String getAvatarLabel(String representName, ISecurityMember securityMember) {
+    if (StringUtils.isNotEmpty(representName)) {
+      return representName;
+    }
+    if (securityMember == null) {
+      return StringUtils.EMPTY;
+    }
+    return StringUtils.defaultString(getNameInitials(securityMember.getDisplayName()));
+  }
+
+  public String getAvatarTitle(String title, boolean showLabel, String representName,
+      ISecurityMember securityMember) {
+    if (StringUtils.isNotEmpty(title)) {
+      return title;
+    }
+    return showLabel ? getAvatarLabel(representName, securityMember) : StringUtils.EMPTY;
+  }
+
   public String getEmailAddress(ISecurityMember securityMember,
       boolean useLowercaseEmail) {
     if (securityMember == null || !securityMember.available() || !securityMember.isUser()) {
