@@ -29,7 +29,6 @@ import ch.ivy.addon.portalkit.bo.PortalJsonViews;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 
 /**
  * This class provides method to convert Business entity object into JSON value and reverse
@@ -70,7 +69,6 @@ public class BusinessEntityConverter {
 
   private static String prettyPrintObjectEntityToJsonValue(Object entity) {
     try {
-      Ivy.log().error("Pretty print JSON value: " + entity.getClass().getName());
       if (entity instanceof List) {
         return getObjectMapper().writer().withRootName("dashboard").withDefaultPrettyPrinter().writeValueAsString(entity);
       }
@@ -252,7 +250,11 @@ public class BusinessEntityConverter {
 
   public static String entityToJsonValue(List<Dashboard> dashboards) {
     DashboardUtils.updatePropertiesToNullIfCurrentValueIsDefaultValue(dashboards);
-    return objectEntityToJsonValue(dashboards);
+    try {
+      return getObjectMapper().writer().withRootName("dashboard").writeValueAsString(dashboards);
+    } catch (JsonProcessingException e) {
+      throw new PortalException(e);
+    }
   }
 
   public static String prettyPrintEntityToJsonValue(List<Dashboard> dashboards) {

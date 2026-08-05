@@ -38,6 +38,7 @@ public class PortalUserExamplesInitBean extends AbstractProcessStartEventBean {
     String sampleDashboardsJson = Ivy.var().get(PortalUserExamplesVariable.SAMPLE_DASHBOARD_KEY.getKey());
     String portalDashboardsJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
     String combinedDashboard = JsonUtils.mergeJsonArrays(portalDashboardsJson, sampleDashboardsJson);
+    Ivy.log().error("COMBINED DASHBOARD:" + combinedDashboard);
     Ivy.var().set(PortalVariable.DASHBOARD.key, combinedDashboard);
   }
 
@@ -45,6 +46,7 @@ public class PortalUserExamplesInitBean extends AbstractProcessStartEventBean {
     String sampleStatisticJson = Ivy.var().get(PortalUserExamplesVariable.SAMPLE_STATISTIC_KEY.getKey());
     String portalStatisticJson = Ivy.var().get(PORTAL_CUSTOM_STATISTIC_KEY);
     String combinedStatistic = JsonUtils.mergeJsonArrays(portalStatisticJson, sampleStatisticJson);
+    Ivy.log().error("COMBINED STATISTIC:" + combinedStatistic);
     Ivy.var().set(PORTAL_CUSTOM_STATISTIC_KEY, combinedStatistic);
   }
 }

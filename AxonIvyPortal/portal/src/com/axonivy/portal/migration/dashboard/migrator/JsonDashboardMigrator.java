@@ -47,10 +47,7 @@ public class JsonDashboardMigrator {
     
     if (node.isArray()) {
       node.elements().forEachRemaining(dashboard -> migrate(dashboard));
-
-      
     } else {
-      Ivy.log().error("Migrating single dashboard");
       migrate(node);
     }
     return node;
