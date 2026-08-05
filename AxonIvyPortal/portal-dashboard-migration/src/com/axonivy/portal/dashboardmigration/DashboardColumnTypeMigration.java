@@ -51,7 +51,7 @@ public final class DashboardColumnTypeMigration {
    */
   public static String migrateAllUsers() {
     List<IUser> users = allUsers();
-    Ivy.log().info("Dashboard migration: starting for {0} user(s), property {1}.", users.size(), DASHBOARD_PROPERTY);
+    Ivy.log().warn("Dashboard migration: starting for {0} user(s), property {1}.", users.size(), DASHBOARD_PROPERTY);
 
     int rewritten = 0;
     int untouched = 0;
@@ -73,7 +73,7 @@ public final class DashboardColumnTypeMigration {
     String summary = String.format(
         "Dashboard migration finished: %d user(s) rewritten, %d already correct or empty, %d failed (of %d).",
         rewritten, untouched, failed, users.size());
-    Ivy.log().info(summary);
+    Ivy.log().warn(summary);
     return summary;
   }
 
@@ -85,9 +85,11 @@ public final class DashboardColumnTypeMigration {
   public static boolean migrateUser(IUser user) {
     String storedJson = user.getProperty(DASHBOARD_PROPERTY);
     if (StringUtils.isBlank(storedJson)) {
-      Ivy.log().debug("Dashboard migration: user {0} has nothing stored, skipped.", user.getName());
+      Ivy.log().warn("Dashboard migration: user {0} has nothing stored, skipped.", user.getName());
       return false;
     }
+    Ivy.log().warn("Dashboard migration: user {0} original value of {1}: {2}", user.getName(), DASHBOARD_PROPERTY,
+        storedJson);
 
     JsonNode dashboards;
     try {
@@ -107,13 +109,16 @@ public final class DashboardColumnTypeMigration {
     List<String> retyped = new ArrayList<>();
     retypeDashboards(dashboards, retyped);
     if (retyped.isEmpty()) {
-      Ivy.log().debug("Dashboard migration: user {0} has no {1} left, nothing written.", user.getName(), CUSTOM_CASE);
+      Ivy.log().warn("Dashboard migration: user {0} has no {1} left, nothing written.", user.getName(), CUSTOM_CASE);
       return false;
     }
 
-    user.setProperty(DASHBOARD_PROPERTY, dashboards.toString());
-    Ivy.log().info("Dashboard migration: user {0} - re-typed {1} entr(ies) to {2}: {3}", user.getName(),
+    String migratedJson = dashboards.toString();
+    user.setProperty(DASHBOARD_PROPERTY, migratedJson);
+    Ivy.log().warn("Dashboard migration: user {0} - re-typed {1} entr(ies) to {2}: {3}", user.getName(),
         retyped.size(), CUSTOM_BUSINESS_CASE, String.join(", ", retyped));
+    Ivy.log().warn("Dashboard migration: user {0} migrated value of {1}: {2}", user.getName(), DASHBOARD_PROPERTY,
+        migratedJson);
     return true;
   }
 
