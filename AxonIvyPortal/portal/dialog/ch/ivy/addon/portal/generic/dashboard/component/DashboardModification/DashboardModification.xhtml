@@ -44,7 +44,7 @@
             <h:panelGroup layout="block">
               <p:commandButton id="top-dashboard-action-button" icon="ti ti-dots"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain ui-no-rounded-button-process-page" type="button" />
+                styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain" type="button" />
               <p:menu id="top-dashboard-action-menu" styleClass="w-auto" overlay="true" trigger="top-dashboard-action-button"
                 my="right top" at="right bottom">
                 <p:menuitem id="top-edit" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(topDashboard)}"
@@ -121,7 +121,7 @@
           <h:panelGroup layout="block">
             <p:commandButton id="dashboard-configuration-action-button" icon="ti ti-dots"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-              styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain ui-no-rounded-button-process-page" type="button" />
+              styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain" type="button" />
             <p:menu id="dashboard-configuration-action-menu" styleClass="w-auto" overlay="true" trigger="dashboard-configuration-action-button"
               my="right top" at="right bottom">
               <p:menuitem id="edit-dashboard" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(dashboard)}"
@@ -168,7 +168,7 @@
     </p:dataTable>
 
     <h:panelGroup layout="block" rendered="#{isPublicDashboard}"
-      styleClass="u-padding-top-10">
+      styleClass="ui-g-12 u-no-padding-left">
       <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Hidden')}</h5>
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/HiddenDashboardsDescription')}</span>
       <p:dataTable id="hidden-dashboard-table" lazy="false"
@@ -197,7 +197,7 @@
             <h:panelGroup layout="block">
               <p:commandButton id="hidden-dashboard-action-button" icon="ti ti-dots"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain ui-no-rounded-button-process-page" type="button" />
+                styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain" type="button" />
               <p:menu id="hidden-dashboard-action-menu" styleClass="w-auto" overlay="true" trigger="hidden-dashboard-action-button"
                 my="right top" at="right bottom">
                 <p:menuitem id="hidden-edit-dashboard" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(hiddenDashboard)}"

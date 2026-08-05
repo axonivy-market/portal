@@ -149,7 +149,7 @@
                             styleClass="absences-table-action-column">
                             <p:commandButton id="absence-action-button" icon="ti ti-dots" rendered="#{absenceManagementBean.isAbsenceEditable(absence) or absenceManagementBean.isAbsenceDeletable(absence)}"
                               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                              styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain ui-no-rounded-button-process-page"
+                              styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain"
                               type="button" />
                             <p:menu class="absence-column-value" overlay="true" trigger="absence-action-button"
                               my="right top" at="right bottom" styleClass="settings-action-menu">
@@ -256,7 +256,7 @@
                               actionListener="#{absenceManagementBean.initSelectedDeputies(deputyRole)}"
                               oncomplete="PF('choose-deputy-dialog').show();"
                               update="choose-deputy-dialog" global="false"
-                              process="@this" styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain ui-no-rounded-button-process-page"
+                              process="@this" styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain"
                               rendered="#{absenceManagementBean.canCreateSubstitute(absenceManagementBean.selectedAbsenceUser)}" />
                           </p:column>
                         </p:dataTable>

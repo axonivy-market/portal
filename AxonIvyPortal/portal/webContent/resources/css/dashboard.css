@@ -2400,8 +2400,6 @@ body.dark .menu-type-static {
   color: var(--text-color, #333) !important;
   border: 1px solid var(--dashboard-icon-border-color) !important;
   box-sizing: border-box !important;
-  margin: 0 !important;
-  padding: 0 !important;
 }
 
 .dashboard-circle-icon i, 
@@ -2443,4 +2441,9 @@ body.dark .menu-type-static {
   border-bottom: 1px solid var(--border-color) !important;
   padding-bottom: 0;
   margin-bottom: 20px;
+}
+
+.dashboard-tabs-header .dashboard-type-list {
+  border-bottom: none;
+  margin-bottom: -1px;
 }
