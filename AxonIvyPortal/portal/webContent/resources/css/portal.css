@@ -1916,7 +1916,7 @@ body.dark .focused {
 }
 
 .chart-content-card .chart-number-font-size {
-  font-size: max(6rem, 1.5rem + 10cqh);
+  font-size: clamp(1.5rem, min(1.5rem + 30cqh, 4.5rem / var(--card-count, 1) + 1.5rem, (100cqw - 30px * (var(--card-count, 1) - 1)) / var(--card-count, 1) * 0.8), 6rem);
 }
 
 @container (max-width: 200px) {
@@ -1943,7 +1943,7 @@ body.dark .focused {
   }
 
   .chart-content-card .chart-number-font-size {
-    font-size: max(3rem, 1.5rem + 10cqh);
+    font-size: clamp(1.5rem, min(1.5rem + 30cqh, 4.5rem / var(--card-count, 1) + 1.5rem, (100cqw - 30px * (var(--card-count, 1) - 1)) / var(--card-count, 1) * 0.8), 3rem);
   }
 }
 
