@@ -25,9 +25,7 @@ import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
 import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemplateMigrator;
 import com.axonivy.portal.util.UploadDocumentUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
@@ -252,13 +250,10 @@ public class DashboardUtils {
   public static List<Dashboard> convertDashboardsToLatestVersion(String json) {
     try {
       ObjectMapper mapper = new ObjectMapper();
-      Ivy.log().error("JsonDashboardMigrator");
       JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(json));
-      // return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Dashboard.class);
-      Ivy.log().error("Convert dashboards to latest version");
       return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Dashboard.class);
     } catch (JsonProcessingException ex) {
-      Ivy.log().error("Failed to read dashboard from JSON {0}", ex.getStackTrace().toString());
+      Ivy.log().error("Failed to read dashboard from JSON {0}", ex.getMessage(), ex);
     }
     return null;
   }
@@ -431,7 +426,6 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> getPublicDashboards() {
-    Ivy.log().error("Get public dashboards");
     String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
     if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
       Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
@@ -451,9 +445,7 @@ public class DashboardUtils {
         List<Dashboard> dashboards = new ArrayList<>();
         try {
           String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
-          //Ivy.log().error("Dashboard JSON: {0}", dashboardJson);
           dashboards = jsonToDashboards(dashboardJson);
-          Ivy.log().error("Public Dashboards SIZE: {0}", dashboards.size());
           setDashboardAsPublic(dashboards);
         } catch (Exception e) {
           Ivy.log().error("Cannot load public dashboards {0}", e.getMessage(), e.getStackTrace());
@@ -474,7 +466,6 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> getPrivateDashboards() {
-    Ivy.log().error("Get private dashboards");
     String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
     if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
       Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());

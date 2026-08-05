@@ -46,7 +46,6 @@ public class JsonDashboardMigrator {
   public JsonNode migrate() {
     
     if (node.isArray()) {
-      Ivy.log().error("Migrating dashboard array with size: {0}", node.size());
       node.elements().forEachRemaining(dashboard -> migrate(dashboard));
 
       
@@ -60,7 +59,6 @@ public class JsonDashboardMigrator {
   private void migrate(JsonNode dashboard) {
     //readVersion(dashboard);
     if (dashboard.isArray()) {
-      Ivy.log().error("Dashboard is an array, size: {0}", dashboard.size());
       dashboard.elements().forEachRemaining(dashboardNode -> migrate(dashboardNode));
       return;
     }
@@ -71,7 +69,6 @@ public class JsonDashboardMigrator {
       if (CollectionUtils.isNotEmpty(converters)) {
         converters.stream().forEachOrdered(converter -> run(converter, dashboard));
       }
-    Ivy.log().error("Migrating JSONNode OK");
   }
 
   private void run(IJsonConverter converter, JsonNode dashboard) {

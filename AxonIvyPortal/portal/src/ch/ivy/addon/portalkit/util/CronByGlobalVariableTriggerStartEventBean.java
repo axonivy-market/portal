@@ -24,7 +24,7 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
   public void initialize(IProcessStartEventBeanRuntime eventRuntime, ProgramConfig configuration) {
     super.initialize(eventRuntime, configuration);
     try {
-      /*Variable var =
+      Variable var =
           Variables.of(eventRuntime.getProcessModelVersion().app()).variable(configuration.get(VARIABLE));
       Variable deleteAllFinishedHiddenCasesVar = Variables.of(eventRuntime.getProcessModelVersion().app())
           .variable(PORTAL_DELETE_ALL_FINISHED_HIDDEN_CASE);
@@ -36,7 +36,7 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
         } else {
           eventRuntime.poll().disable();
         }
-      }*/
+      }
     } catch (Exception ex) {
       throw new IvyRuntimeException("Cannot evaluate the ivyScript configuration ", ex);
     }

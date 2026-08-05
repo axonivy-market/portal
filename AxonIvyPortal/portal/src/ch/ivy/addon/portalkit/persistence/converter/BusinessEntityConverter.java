@@ -84,19 +84,7 @@ public class BusinessEntityConverter {
     if (StringUtils.isBlank(jsonValue)) {
       return null;
     }
-    /*try {
-      JsonNode rootNode = getObjectMapper().readTree(jsonValue);
-      if (rootNode.isObject()) {
-        if (rootNode.fieldNames().hasNext()) {   
-          String rootName = rootNode.fieldNames().next();
-          return getObjectMapper().readValue(rootNode.get(rootName).toString(), classType);
-        }
-      } 
-      return getObjectMapper().readValue(jsonValue, classType);
-    } catch (IOException e) {
-      throw new PortalException(e);
-    }*/
-     try {
+    try {
       ObjectMapper mapper = getObjectMapper();
       JsonNode rootNode = mapper.readTree(jsonValue);
       JsonNode targetNode = unwrapIfNeeded(rootNode, classType, mapper);
@@ -107,22 +95,22 @@ public class BusinessEntityConverter {
   }
 
   private static JsonNode unwrapIfNeeded(JsonNode rootNode, Class<?> classType, ObjectMapper mapper) {
-  // A wrapper looks like {"someRootKey": {...actual object...}} — exactly one field,
-  // whose value is itself an object, and whose name isn't one of the target class's own properties.
-  if (!rootNode.isObject() || rootNode.size() != 1) {
-    return rootNode;
+    // A wrapper looks like {"someRootKey": {...actual object...}} — exactly one field,
+    // whose value is itself an object, and whose name isn't one of the target class's own properties.
+    if (!rootNode.isObject() || rootNode.size() != 1) {
+      return rootNode;
+    }
+    Map.Entry<String, JsonNode> onlyField = rootNode.properties().iterator().next();
+    if (!onlyField.getValue().isObject()) {
+      return rootNode;
+    }
+    Set<String> knownProperties = mapper.getSerializationConfig()
+        .introspect(mapper.constructType(classType))
+        .findProperties().stream()
+        .map(BeanPropertyDefinition::getName)
+        .collect(Collectors.toSet());
+    return knownProperties.contains(onlyField.getKey()) ? rootNode : onlyField.getValue();
   }
-  Map.Entry<String, JsonNode> onlyField = rootNode.properties().iterator().next();
-  if (!onlyField.getValue().isObject()) {
-    return rootNode;
-  }
-  Set<String> knownProperties = mapper.getSerializationConfig()
-      .introspect(mapper.constructType(classType))
-      .findProperties().stream()
-      .map(BeanPropertyDefinition::getName)
-      .collect(Collectors.toSet());
-  return knownProperties.contains(onlyField.getKey()) ? rootNode : onlyField.getValue();
-}
 
   public static <T> T inputStreamToEntity(InputStream inputStream, Class<T> classType) {
     try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
@@ -142,7 +130,6 @@ public class BusinessEntityConverter {
       if (rootNode.isObject()) {
         if (!rootNode.isEmpty()) {        
           String rootName = rootNode.fieldNames().next();
-          Ivy.log().error("The root node is an object, the root name is: " + rootName);
           if (rootNode.has(rootName)) {
             return getObjectMapper().readValue(rootNode.get(rootName).toString(), getListOfJavaType(classType));
           }
@@ -203,7 +190,6 @@ public class BusinessEntityConverter {
           }
         }
         if (hasNestedArrays) {
-          Ivy.log().error("Detected nested arrays in dashboard JSON, flattening");
           List<T> result = new ArrayList<>();
           for (JsonNode element : nodeToConvert) {
             if (element.isArray()) {
