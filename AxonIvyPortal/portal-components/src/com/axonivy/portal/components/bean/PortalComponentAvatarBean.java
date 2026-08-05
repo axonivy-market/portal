@@ -35,22 +35,44 @@ public class PortalComponentAvatarBean implements Serializable {
     return SecurityMemberUtils.getNameInitials(displayName);
   }
 
-  public String getAvatarLabel(String representName, ISecurityMember securityMember) {
+  /**
+   * Supports different member types: ISecurityMember, SecurityMemberDTO, UserDTO, RoleDTO.
+   * @param representName
+   * @param securityMember
+   * @return string
+   */
+  public String getAvatarLabel(String representName, Object securityMember) {
     if (StringUtils.isNotEmpty(representName)) {
       return representName;
     }
     if (securityMember == null) {
       return StringUtils.EMPTY;
     }
-    return StringUtils.defaultString(getNameInitials(securityMember.getDisplayName()));
+    return StringUtils.defaultString(getNameInitials(resolveDisplayName(securityMember)));
   }
 
   public String getAvatarTitle(String title, boolean showLabel, String representName,
-      ISecurityMember securityMember) {
+      Object securityMember) {
     if (StringUtils.isNotEmpty(title)) {
       return title;
     }
     return showLabel ? getAvatarLabel(representName, securityMember) : StringUtils.EMPTY;
+  }
+
+  private String resolveDisplayName(Object member) {
+    if (member instanceof ISecurityMember securityMember) {
+      return securityMember.getDisplayName();
+    }
+    if (member instanceof SecurityMemberDTO securityMember) {
+      return securityMember.getDisplayName();
+    }
+    if (member instanceof UserDTO user) {
+      return user.getDisplayName();
+    }
+    if (member instanceof RoleDTO role) {
+      return role.getDisplayName();
+    }
+    return StringUtils.EMPTY;
   }
 
   public String getEmailAddress(ISecurityMember securityMember,
