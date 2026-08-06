@@ -55,7 +55,7 @@
         </ui:repeat>
       </h:panelGroup>
       <p:commandButton id="add-filter" icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
-        update="#{widget.id}-user-filter" process="#{widget.id}-user-filter" styleClass="add-condition-button"
+        update="#{widget.id}-user-filter" process="#{widget.id}-user-filter" styleClass="add-condition-button dashboard-button-truncate"
         actionListener="#{filterBean.addNewFilter(widget)}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/AddCondition')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/AddCondition')}"

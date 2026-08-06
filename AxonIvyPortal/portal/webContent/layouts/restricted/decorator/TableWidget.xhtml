@@ -310,6 +310,7 @@
         dynamic="true"
         onShow="loadUserFilters#{index}(); #{onFilterDialogShow};"
         pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterPanelHeader')}">
+        <p:tooltip globalSelector=".ui-button" hideEvent="mouseleave click"/>
         <h:form id="filter-form-#{index}" styleClass="filter-form flex flex-column flex-auto">
           <h:panelGroup id="filter-dialog-content-#{index}" styleClass="flex flex-auto align-items-stretch filter-dialog__panels" layout="block">
             <h:panelGroup id="saved-filters-container" styleClass="saved-filter ui-sm-hidden" layout="block">
@@ -338,7 +339,7 @@
                 <!-- Filter cancel button (x) -->
                 <p:commandButton icon="ti ti-x" id="widget-filter-cancel-button"
                     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterPanelHeader')])}"
-                    styleClass="ui-button-flat filter-dialog__close"
+                    styleClass="ui-button-flat filter-dialog__close" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterPanelHeader')])}"
                     oncomplete="PF('filter-dialog-#{index}').hide();"
                     actionListener="#{widget.onCancelUserFilters()}"
                     update="filter-form-#{index}"
@@ -370,9 +371,9 @@
                       </p:inputText>
 
                       <p:commandButton id="inline-save-filter"
-                        widgetVar="inlineSaveFilterButton#{index}"
-                        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-                        styleClass="filter-dialog__save-button"
+                        widgetVar="inlineSaveFilterButton#{index}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
+                        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+                        styleClass="filter-dialog__save-button dashboard-button-truncate"
                         actionListener="#{widgetFilterHelperBean.saveInlineWidgetFilter(widget)}"
                         process="inline-save-filter-section #{componentToProcessOnApplyFilter}"
                         update="inline-save-filter-section #{componentToProcessOnApplyFilter}"
@@ -404,7 +405,7 @@
 
                 <p:commandButton id="apply-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/ApplyFilters')}"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/applyContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterOptionHeader')])}"
-                  partialSubmit="true" widgetVar="applyButton#{index}"
+                  partialSubmit="true" widgetVar="applyButton#{index}" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/ApplyFilters')}"
                   update="filter-form-#{index}"
                   process="filter-form-#{index}"
                   oncomplete="if (args &amp;&amp; !args.validationFailed) {
@@ -414,7 +415,7 @@
                     }
                     initWidgetFilterHtml('#{widget.id}');"
                   actionListener="#{widget.onApplyUserFilters()}"
-                  styleClass="apply-filter-button" />
+                  styleClass="apply-filter-button dashboard-button-truncate" />
               </div>
             </h:panelGroup>
           </h:panelGroup>

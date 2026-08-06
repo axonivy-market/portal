@@ -2275,6 +2275,12 @@ a.saved-filter__manage-filter {
   padding: 0 0 0 14px;
 }
 
+.dashboard-button-truncate .ui-button-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .filter-dialog .footer-buttons-container {
   padding-top: 20px;
   gap: 20px;
