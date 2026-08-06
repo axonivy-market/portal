@@ -19,7 +19,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1928, "y" : 1528 }
+        "at" : { "x" : 1928, "y" : 1592 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f1" }
@@ -28,7 +28,7 @@
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 1928, "y" : 1640 }
+        "at" : { "x" : 1928, "y" : 1704 }
       }
     }, {
       "id" : "f0",
@@ -59,18 +59,42 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
             "",
-            "out.caze = ivy.wf.getCaseQueryExecutor().createCaseQuery().where().uuid().isEqual(in.caseId.uuid()).executor().firstResult() as ICase;"
+            "// Only resolve cases the current user is allowed to see, same rule as the case list",
+            "out.caze = CaseService.newInstance().findCaseByUUID(in.caseId.uuid());"
           ]
-        },
-        "sudo" : true
+        }
       },
       "visual" : {
         "at" : { "x" : 1928, "y" : 1408 }
       },
       "connect" : [
-        { "id" : "f6", "to" : "f5" }
+        { "id" : "f6", "to" : "f100" }
+      ]
+    }, {
+      "id" : "f100",
+      "type" : "Alternative",
+      "name" : "Case accessible?",
+      "config" : {
+        "conditions" : {
+          "f101" : "in.caze != null"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1928, "y" : 1504 },
+        "labelOffset" : { "x" : 72, "y" : -32 }
+      },
+      "connect" : [
+        { "id" : "f101", "to" : "f5", "label" : {
+            "name" : "Yes",
+            "offset" : { "x" : -23, "y" : -7 }
+          } },
+        { "id" : "f102", "to" : "f1", "via" : [ { "x" : 2016, "y" : 1504 }, { "x" : 2016, "y" : 1704 } ], "label" : {
+            "name" : "No",
+            "segment" : 2.16,
+            "offset" : { "x" : -36, "y" : -186 }
+          } }
       ]
     }, {
       "id" : "f54",

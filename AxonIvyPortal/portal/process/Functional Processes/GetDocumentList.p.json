@@ -35,13 +35,34 @@
         "labelOffset" : { "x" : 6, "y" : 44 }
       },
       "connect" : [
-        { "id" : "f4", "to" : "f7" }
+        { "id" : "f4", "to" : "f20" }
+      ]
+    }, {
+      "id" : "f20",
+      "type" : "Alternative",
+      "name" : "Case accessible?",
+      "config" : {
+        "conditions" : {
+          "f21" : "in.#businessCase is initialized && in.businessCase != null && ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.businessCase.uuid())"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 472, "y" : 240 },
+        "labelOffset" : { "x" : 14, "y" : -14 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f7", "label" : {
+            "name" : "Yes"
+          } },
+        { "id" : "f22", "to" : "f1", "via" : [ { "x" : 472, "y" : 152 }, { "x" : 1096, "y" : 152 } ], "label" : {
+            "name" : "No"
+          } }
       ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 968, "y" : 240 }
+        "at" : { "x" : 1096, "y" : 240 }
       }
     }, {
       "id" : "f3",
@@ -82,7 +103,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 840, "y" : 240 },
+        "at" : { "x" : 968, "y" : 240 },
         "size" : { "width" : 128 }
       },
       "connect" : [
@@ -141,7 +162,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 488, "y" : 240 }
+        "at" : { "x" : 616, "y" : 240 }
       },
       "connect" : [
         { "id" : "f9", "to" : "f8" }
@@ -157,14 +178,14 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 648, "y" : 240 },
+        "at" : { "x" : 776, "y" : 240 },
         "labelOffset" : { "x" : 14, "y" : 34 }
       },
       "connect" : [
         { "id" : "f10", "to" : "f3", "label" : {
             "name" : "No"
           } },
-        { "id" : "f11", "to" : "f1", "via" : [ { "x" : 648, "y" : 312 }, { "x" : 968, "y" : 312 } ], "label" : {
+        { "id" : "f11", "to" : "f1", "via" : [ { "x" : 776, "y" : 312 }, { "x" : 1096, "y" : 312 } ], "label" : {
             "name" : "Yes"
           } }
       ]
