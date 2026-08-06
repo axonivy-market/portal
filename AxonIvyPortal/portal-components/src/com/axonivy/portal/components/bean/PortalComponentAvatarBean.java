@@ -60,19 +60,13 @@ public class PortalComponentAvatarBean implements Serializable {
   }
 
   private String resolveDisplayName(Object member) {
-    if (member instanceof ISecurityMember securityMember) {
-      return securityMember.getDisplayName();
-    }
-    if (member instanceof SecurityMemberDTO securityMember) {
-      return securityMember.getDisplayName();
-    }
-    if (member instanceof UserDTO user) {
-      return user.getDisplayName();
-    }
-    if (member instanceof RoleDTO role) {
-      return role.getDisplayName();
-    }
-    return StringUtils.EMPTY;
+    return switch (member) {
+      case ISecurityMember securityMember -> securityMember.getDisplayName();
+      case SecurityMemberDTO securityMember -> securityMember.getDisplayName();
+      case UserDTO user -> user.getDisplayName();
+      case RoleDTO role -> role.getDisplayName();
+      default -> StringUtils.EMPTY;
+    };
   }
 
   public String getEmailAddress(ISecurityMember securityMember,
@@ -124,28 +118,14 @@ public class PortalComponentAvatarBean implements Serializable {
    * @return string
    */
   public String tooltipTechnicalDisplayName(Object member) {
-    // Return empty string if input is null
-    if (member == null) {
-      return StringUtils.EMPTY;
-    }
-
-    // Handle ISecurityMember objects
-    if (member instanceof ISecurityMember securityMember) {
-      return formatTooltip(securityMember.getDisplayName(), securityMember.getMemberName(), securityMember.getName());
-    }
-
-    // Handle UserDTO objects
-    if (member instanceof UserDTO user) {
-      return formatTooltip(user.getDisplayName(), user.getMemberName(), user.getName());
-    }
-
-    // Handle RoleDTO objects
-    if (member instanceof RoleDTO role) {
-      return formatTooltip(role.getDisplayName(), role.getMemberName(), role.getName());
-    }
-
-    // Fallback for unsupported types
-    return StringUtils.EMPTY;
+    return switch (member) {
+      case null -> StringUtils.EMPTY;
+      case ISecurityMember securityMember ->
+        formatTooltip(securityMember.getDisplayName(), securityMember.getMemberName(), securityMember.getName());
+      case UserDTO user -> formatTooltip(user.getDisplayName(), user.getMemberName(), user.getName());
+      case RoleDTO role -> formatTooltip(role.getDisplayName(), role.getMemberName(), role.getName());
+      default -> StringUtils.EMPTY;
+    };
   }
 
   /**
