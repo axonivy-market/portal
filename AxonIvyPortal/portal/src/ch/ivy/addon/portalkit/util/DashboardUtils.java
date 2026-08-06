@@ -253,7 +253,7 @@ public class DashboardUtils {
       JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(json));
       return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Dashboard.class);
     } catch (JsonProcessingException ex) {
-      Ivy.log().error("Failed to read dashboard from JSON {0}", ex.getMessage(), ex);
+      Ivy.log().error("Failed to read dashboard from JSON {0}", ex, json);
     }
     return null;
   }
