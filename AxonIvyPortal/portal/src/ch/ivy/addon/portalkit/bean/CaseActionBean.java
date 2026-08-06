@@ -3,6 +3,8 @@ package ch.ivy.addon.portalkit.bean;
 import static ch.ivy.addon.portalkit.enums.PortalPermission.SHOW_CASE_DETAILS;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import com.axonivy.portal.util.BusinessDetailsUtils;
@@ -11,6 +13,7 @@ import ch.ivy.addon.portal.generic.bean.UserMenuBean;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -29,6 +32,7 @@ public class CaseActionBean implements Serializable {
 
   private static final long serialVersionUID = 7468665222036995531L;
   private boolean isShowCaseDetails;
+  private final Map<String, Boolean> accessibleCaseByUuid = new HashMap<>();
 
   @PostConstruct
   public void initCaseActions() {
@@ -63,11 +67,20 @@ public class CaseActionBean implements Serializable {
     return hasPermission(iCase, IPermission.CASE_DESTROY);
   }
 
+  /**
+   * Holding the permission globally is not enough: the action must also target a case the current
+   * user is allowed to see, otherwise it can be applied to any case reached by uuid.
+   */
   private boolean hasPermission(ICase iCase, IPermission permission) {
     if (iCase == null || permission == null) {
       return false;
     }
-    return PermissionUtils.hasPermission(permission);
+    return PermissionUtils.hasPermission(permission) && isCaseAccessible(iCase);
+  }
+
+  private boolean isCaseAccessible(ICase iCase) {
+    return accessibleCaseByUuid.computeIfAbsent(iCase.uuid(),
+        uuid -> CaseService.newInstance().isCaseAccessible(uuid));
   }
 
   public boolean isShowCaseDetails() {
