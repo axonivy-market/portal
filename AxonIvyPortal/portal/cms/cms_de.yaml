@@ -873,6 +873,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ApplyFilters: Filter anwenden
       DefaultFiltersDescription: Filter, die in der Widget-Konfiguration als Standard festgelegt wurden.
       DefaultFiltersTitle: Standardfilter
+      EmptyFilterValidationError: Definieren Sie mindestens eine Filterbedingung, bevor Sie speichern.
       FilterConditionsTitle: Filterbedingungen
       FilterOptionHeader: Filter-Optionen
       FilterOptionHeaderTooltip: Einige Filterfelder und Operatoren wurden möglicherweise von Ihrem Administrator deaktiviert. Filter, die deaktivierte Felder oder Operatoren verwenden, werden automatisch entfernt. Bitte wenden Sie sich an Ihren Administrator für weitere Informationen.

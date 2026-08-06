@@ -871,6 +871,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ApplyFilters: Appliquer les filtres
       DefaultFiltersDescription: Filtres définis comme valeurs par défaut dans la configuration du widget.
       DefaultFiltersTitle: Filtres par défaut
+      EmptyFilterValidationError: Définissez au moins une condition de filtre avant d'enregistrer.
       FilterConditionsTitle: Conditions de filtre
       FilterOptionHeader: Options de filtre
       FilterOptionHeaderTooltip: Certains champs de filtre et opérateurs peuvent être désactivés par votre administrateur. Les filtres utilisant des champs ou des opérateurs désactivés seront automatiquement supprimés. Veuillez contacter votre administrateur pour plus d'informations.

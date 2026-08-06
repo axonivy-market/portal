@@ -8,6 +8,7 @@ import jakarta.faces.view.ViewScoped;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
@@ -29,23 +30,27 @@ public class WidgetFilterHelperBean implements Serializable {
 
   public void saveInlineWidgetFilter(DashboardWidget widget) {
     WidgetFilterService.getInstance().prepareSaveFilter(widget);
-    if (saveFilter == null) {
+    if (saveFilter == null || CollectionUtils.isEmpty(saveFilter.getUserFilters())) {
+      addSaveFilterError("/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/EmptyFilterValidationError");
       return;
     }
     saveFilter.setName(StringUtils.trim(newFilterName));
 
     if (isDuplicatedFilter()) {
-      FacesContext context = FacesContext.getCurrentInstance();
-      context.validationFailed();
-      context.addMessage(resolveNameInputClientId(context),
-          FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
-              Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError"), null));
+      addSaveFilterError("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError");
       return;
     }
 
     WidgetFilterService.getInstance().save(saveFilter);
     setSaveFilter(null);
     newFilterName = null;
+  }
+
+  private void addSaveFilterError(String cmsUri) {
+    FacesContext context = FacesContext.getCurrentInstance();
+    context.validationFailed();
+    context.addMessage(resolveNameInputClientId(context), FacesMessageUtils
+        .sanitizedMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(cmsUri), null));
   }
 
   private String resolveNameInputClientId(FacesContext context) {
