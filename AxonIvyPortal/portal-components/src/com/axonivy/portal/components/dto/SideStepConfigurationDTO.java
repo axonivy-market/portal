@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
  * </pre> 
  */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@JsonRootName(value = "side-step-configuration")
+@JsonRootName(value = "sideStepConfigurationDTO")
 public class SideStepConfigurationDTO implements Serializable {
   private static final long serialVersionUID = -1404169898838544342L;
   private String version;

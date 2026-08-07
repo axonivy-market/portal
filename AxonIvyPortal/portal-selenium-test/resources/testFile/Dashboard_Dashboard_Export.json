@@ -2,7 +2,7 @@
   "dashboard": [
   {
     "id": "1",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "templateId": "default-portal-dashboard-template",
     "titles": [
       {
@@ -257,7 +257,7 @@
   },
   {
     "id": "5c6fc770781b43188570bc291d5a4d2f",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "templateId": "create-from-scratch",
     "titles": [
       {

@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
  * </pre>
  */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@JsonRootName(value = "side-step-process-param")
+@JsonRootName(value = "sideStepProcessParamDTO")
 public class SideStepProcessParamDTO implements Serializable {
   private static final long serialVersionUID = -4988849644631374542L;
   private String version;

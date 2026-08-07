@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.introspect.BeanPropertyDefinition;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -69,9 +70,6 @@ public class BusinessEntityConverter {
 
   private static String prettyPrintObjectEntityToJsonValue(Object entity) {
     try {
-      if (entity instanceof List) {
-        return getObjectMapper().writer().withRootName("dashboard").withDefaultPrettyPrinter().writeValueAsString(entity);
-      }
       return getObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(entity);
     } catch (JsonProcessingException e) {
       throw new PortalException(e);
@@ -229,7 +227,8 @@ public class BusinessEntityConverter {
           .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
           .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
           .enable(SerializationFeature.WRAP_ROOT_VALUE)
-          .build(); 
+          .propertyNamingStrategy(PropertyNamingStrategies.LOWER_CAMEL_CASE)
+          .build();
     }
     return objectMapper;
   }
@@ -251,7 +250,7 @@ public class BusinessEntityConverter {
   public static String entityToJsonValue(List<Dashboard> dashboards) {
     DashboardUtils.updatePropertiesToNullIfCurrentValueIsDefaultValue(dashboards);
     try {
-      return getObjectMapper().writer().withRootName("dashboard").writeValueAsString(dashboards);
+      return getObjectMapper().writer().withRootName("dashboards").writeValueAsString(dashboards);
     } catch (JsonProcessingException e) {
       throw new PortalException(e);
     }

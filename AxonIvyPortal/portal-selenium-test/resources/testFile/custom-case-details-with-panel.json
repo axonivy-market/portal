@@ -1,5 +1,5 @@
 {
-  "case-details": [{
+  "caseDetails": [{
     "id": "default-case-detail",
     "widgets": [{
         "type": "information",

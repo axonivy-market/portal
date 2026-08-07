@@ -2,7 +2,7 @@
   "statistics": [
   {
     "id": "1",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "statisticAggregation": {
       "field": "priority",
       "type": "standard"
@@ -76,7 +76,7 @@
   },
   {
     "id": "2",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "statisticAggregation": {
       "field": "priority",
       "type": "standard"
@@ -181,7 +181,7 @@
   },
   {
     "id": "3",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "statisticAggregation": {
       "field": "priority",
       "type": "standard"
@@ -301,7 +301,7 @@
   },
   {
     "id": "4",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "statisticAggregation": {
       "field": "category",
       "type": "standard",
@@ -410,7 +410,7 @@
   },
   {
     "id": "5",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "statisticAggregation": {
       "field": "startTimestamp",
       "type": "standard",
@@ -516,7 +516,7 @@
   },
   {
     "id": "6",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "statisticAggregation": {
       "field": "endTimestamp",
       "type": "standard",
@@ -622,7 +622,7 @@
   },
   {
     "id": "7",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "statisticAggregation": {
       "field": "state",
       "type": "standard"
@@ -693,7 +693,7 @@
   },
   {
     "id": "8",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "statisticAggregation": {
       "field": "expiryTimestamp",
       "type": "standard",
@@ -755,7 +755,7 @@
   },
   {
     "id": "9",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "statisticAggregation": {
       "field": "priority",
       "type": "standard"
@@ -832,7 +832,7 @@
   },
   {
     "id": "10",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "statisticAggregation": {
       "field": "state",
       "type": "standard"
@@ -900,7 +900,7 @@
   },
   {
     "id": "11",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "statisticAggregation": {
       "field": "expiryTimestamp",
       "type": "standard",

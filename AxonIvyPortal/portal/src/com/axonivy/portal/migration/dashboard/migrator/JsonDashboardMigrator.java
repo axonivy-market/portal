@@ -44,7 +44,6 @@ public class JsonDashboardMigrator {
   }
 
   public JsonNode migrate() {
-    
     if (node.isArray()) {
       node.elements().forEachRemaining(dashboard -> migrate(dashboard));
     } else {
@@ -54,7 +53,6 @@ public class JsonDashboardMigrator {
   }
 
   private void migrate(JsonNode dashboard) {
-    //readVersion(dashboard);
     if (dashboard.isArray()) {
       dashboard.elements().forEachRemaining(dashboardNode -> migrate(dashboardNode));
       return;

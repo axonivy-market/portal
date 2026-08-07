@@ -152,7 +152,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     selectedDashboard = dashboards.get(currentDashboardIndex);
 
     String selectedDashboardName = "";
-    if (selectedDashboard.getTitles() != null){
+    if (CollectionUtils.isNotEmpty(selectedDashboard.getTitles())) {
       selectedDashboardName = selectedDashboard.getTitles()
           .stream()
           .filter(displayName -> displayName.getLocale().equals(LanguageService.getInstance().getUserLocale())).findFirst()
