@@ -3401,13 +3401,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   }
 }
 
-.grid-view-form .process-action-group {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 0.7rem;
-}
-
 .edit-process-dialog {
   max-width: 650px;
   overflow: hidden !important;
@@ -4987,7 +4980,18 @@ border-top: 0.14rem dashed;
 
 .process-action-group .ui-button.icon-more-menu-button {
   margin: 0;
-  min-width: 2.357rem;
+}
+
+.process-action-group .ui-button.process-action-button {
+  width: 2.711rem; /* 38px */
+  height: 2.357rem !important; /* 33px */
+  border-color: var(--widget-button-border-color) !important;
+  color: var(--widget-header-icon);
+}
+
+.process-action-group .ui-button.process-action-button:hover {
+  background-color: var(--widget-button-hover-background-color) !important;
+  color: var(--widget-header-icon);
 }
 
 .image-view-form {
@@ -5020,6 +5024,8 @@ border-top: 0.14rem dashed;
 
 .grid-view-form .process-action-group {
   position: absolute;
+  right: 0;
+  top: 0;
   padding: 9px;
   width: auto;
   display: inline-flex;
@@ -5030,6 +5036,28 @@ border-top: 0.14rem dashed;
 .process-action-button {
   background-color: var(--process-action-button-color) !important;
   backdrop-filter: blur(2px);
+}
+
+body .ui-button.process-start-action {
+  border-radius: 100px;
+  border: 1px solid var(--start-btn-border-color);
+  background: var(--start-btn-bg);
+  color: var(--start-btn-text-color);
+  height: 2.143rem !important;
+  min-width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+body .ui-button.process-start-action.ui-state-disabled {
+  background: var(--start-btn-disabled-bg);
+  border-color: var(--start-btn-disabled-border-color);
+  color: var(--start-btn-disabled-text-color);
+}
+
+body .ui-button.process-start-action:not(.ui-state-disabled):hover {
+  background: var(--start-btn-hover-bg);
+  color: var(--start-btn-text-color);
 }
 
 .process-group.grid-process-container .process-grid__header {
@@ -5094,11 +5122,6 @@ body .process-compact-mode > .ui-fieldset-content {
   width: 100%;
   text-align: end;
   padding: 2px;
-}
-
-.image-view-form .start-process > button > span, .image-process-actions > button > span{
-  color: var(--primary-color);
-  font-weight: 500;
 }
 
 .image-view-form .start-process-image-widget {
