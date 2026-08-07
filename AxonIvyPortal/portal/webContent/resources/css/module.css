@@ -5038,6 +5038,28 @@ border-top: 0.14rem dashed;
   backdrop-filter: blur(2px);
 }
 
+body .ui-button.process-start-action {
+  border-radius: 100px;
+  border: 1px solid var(--start-btn-border-color);
+  background: var(--start-btn-bg);
+  color: var(--start-btn-text-color);
+  height: 2.143rem !important;
+  min-width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+body .ui-button.process-start-action.ui-state-disabled {
+  background: var(--start-btn-disabled-bg);
+  border-color: var(--start-btn-disabled-border-color);
+  color: var(--start-btn-disabled-text-color);
+}
+
+body .ui-button.process-start-action:not(.ui-state-disabled):hover {
+  background: var(--start-btn-hover-bg);
+  color: var(--start-btn-text-color);
+}
+
 .process-group.grid-process-container .process-grid__header {
   margin-top: 2.5rem;
 }
@@ -5100,11 +5122,6 @@ body .process-compact-mode > .ui-fieldset-content {
   width: 100%;
   text-align: end;
   padding: 2px;
-}
-
-.image-view-form .start-process > button > span, .image-process-actions > button > span{
-  color: var(--primary-color);
-  font-weight: 500;
 }
 
 .image-view-form .start-process-image-widget {
