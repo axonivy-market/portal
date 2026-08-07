@@ -147,7 +147,7 @@
               icon="#{widget.showPinnedItem ? 'tif tif-pin' : 'ti ti-pin'}" rendered="#{dashboardBean.canShowPinnedItemToggle(widget)}"
               action="#{dashboardBean.togglePinned(widget)}"
               update="#{componentToUpdateOnResetFilter} actions-widget-form" process="@this" />
-            <p:divider rendered="#{widget.type.name() ne 'PROCESS' or !renderSelectionToggle or !dashboardBean.canShowPinnedItemToggle(widget)}"/>
+            <p:divider rendered="#{renderSelectionToggle or dashboardBean.canShowPinnedItemToggle(widget)}"/>
             <!-- Filter -->
             <c:set var="countFilter" value="#{widget.userDefinedFiltersCount.isPresent() ? widget.userDefinedFiltersCount.get():0}"/>
             <p:menuitem id="filter-sidebar-link-item-#{index}"  
@@ -168,7 +168,7 @@
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widgetName])}"
               pt:data-expand-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expand')}"
               pt:data-collapse-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapse')}"
-              styleClass="toggle-fullscreen-item toggle-fullscreen-item-#{index} actions-menu-item-bordered"
+              styleClass="toggle-fullscreen-item toggle-fullscreen-item-#{index}" containerStyleClass="actions-menu-item-bordered"
               rendered="#{renderExpandCollapse}"
               onclick="event.preventDefault(); toggleFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}'); return false;" />
             <!-- Info -->

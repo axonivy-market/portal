@@ -2592,6 +2592,10 @@ body .actions-menu-panel {
   border-bottom: 1px solid var(--widget-button-border-color) !important;
 }
 
+.actions-menu-panel .actions-menu-item-bordered:last-child {
+  border-bottom: none !important;
+}
+
 body .actions-menu-panel .ui-menuitem {
   height: 3.143rem !important;
 }
