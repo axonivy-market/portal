@@ -2622,6 +2622,11 @@ body .widget-icon-button {
   height: 2.711rem !important; /* 38px */
 }
 
+body .process-action-group .ui-button.process-action-button {
+  width: 2.711rem; /* 38px */
+  height: 2.711rem !important; /* 38px */
+}
+
 body .widget-view-toggle.table-widget-view-toggle {
   width: 5.091rem !important; /* 71.27px */
   height: 2.711rem !important;

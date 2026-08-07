@@ -28,7 +28,7 @@
   <c:set var="canClone" value="#{cc.attrs.canClone or !cc.attrs.isReadOnlyMode or cc.attrs.isInConfiguration}" />
   <c:set var="showProcessViewer" value="#{processItemActionBean.isShowProcessViewer(process)}"/>
   <c:set var="hideActionButton" value="#{cc.attrs.hideActionButton or (!canModify and !showProcessViewer)}"/>
-  <c:set var="buttonStyle" value="#{cc.attrs.outlinedButtonStyle ? 'ui-button-outlined':'ui-button-raised '}"/>
+  <c:set var="buttonStyle" value="#{cc.attrs.outlinedButtonStyle ? 'ui-button-outlined':''}"/>
   <c:set var="isExternalLink" value="#{dashboardProcessBean.isExternalLink(process)}" />
   <c:set var="isCaseMap" value="#{dashboardProcessBean.isCaseMap(process)}" />
 
@@ -36,7 +36,7 @@
     <h:panelGroup layout="block" rendered="#{!hideActionButton}">
       <p:commandButton id="process-action-button" icon="ti ti-dots"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/actionMenuContext', [process.name])}"
-        styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page process-action-button" type="button"/>
+        styleClass="rounded-button icon-more-menu-button #{buttonStyle} process-action-button" type="button"/>
 
       <p:menu id="process-action-menu" overlay="true"
         trigger="process-action-button"
