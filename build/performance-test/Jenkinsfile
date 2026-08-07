@@ -38,10 +38,11 @@ pipeline {
             def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':9000' + '/'
             for (module in modules) {
               maven cmd: "clean install -f ${module}/pom.xml"
-              def modulePom = readMavenPom(file: "${module}/pom.xml")
-              def deployFile = "target/${modulePom.getArtifactId()}-${modulePom.getVersion()}.iar"
-              maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.file=${deployFile} -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.test.users=true -Divy.deploy.engine.app.version=released"
             }
+            maven cmd: "clean package -f AxonIvyPortal/PortalApp/pom.xml"
+            def portalAppPom = readMavenPom(file: 'AxonIvyPortal/PortalApp/pom.xml')
+            def deployFile = "target/${portalAppPom.getArtifactId()}-${portalAppPom.getVersion()}.zip"
+            maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f AxonIvyPortal/PortalApp/pom.xml -Divy.deploy.file=${deployFile} -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.test.users=true -Divy.deploy.engine.app.version=released"
           }
         }
       }
