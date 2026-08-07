@@ -4273,8 +4273,8 @@ _:-ms-fullscreen, :root .content-link-history {
   min-height: 40px;
 }
 
-.case-upload-dialog, .case-view-note-dialog, .document-upload-dialog, .task-note-dialog,
-.task-upload-dialog, .document-renaming-dialog {
+.case-view-note-dialog, .document-upload-dialog, .task-note-dialog,
+.document-renaming-dialog {
   min-width: 50vw;
 }
 
@@ -4282,7 +4282,7 @@ _:-ms-fullscreen, :root .content-link-history {
   .case-details {
     padding: 0 !important;
   }
-  .case-upload-dialog, .case-view-note-dialog, .task-upload-dialog, .document-upload-dialog, .task-note-dialog {
+  .case-view-note-dialog, .document-upload-dialog, .task-note-dialog {
     min-width: 70vw;
     max-width: 96vw;
   }
@@ -5797,20 +5797,6 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
     min-width: 85vw;
     max-width: 35rem;
   }	
-}
-
-/* =================== SHARE DIALOG ====================== */
-
-.share-dialog{
-  min-width: 40%;
-  max-width: 60%;
-}
-
-@media screen and (max-width: 40em) {
-  .share-dialog {
-    min-width: 85vw;
-    max-width: 95%;
-  }	 
 }
 
 /* =================== SKELETON ====================== */
