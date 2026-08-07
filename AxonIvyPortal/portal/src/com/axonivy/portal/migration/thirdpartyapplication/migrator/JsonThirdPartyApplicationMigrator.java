@@ -51,8 +51,8 @@ public class JsonThirdPartyApplicationMigrator {
         String firstField = node.fieldNames().next();
         JsonNode firstValue = node.get(firstField);
         if (firstValue != null && firstValue.isArray()
-            && firstValue.size() > 0 && firstValue.get(0).isObject()) {
-          // Handle root-wrapped arrays like {"ArrayList": [...]} — key is read dynamically
+            && (firstValue.isEmpty() || firstValue.get(0).isObject())) {
+          // Handle root-wrapped arrays like {"third-party-application": [...]} — key is read dynamically
           firstValue.elements().forEachRemaining(application -> migrate(application));
         } else {
           // Single application object
