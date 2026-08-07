@@ -3,6 +3,9 @@ package com.axonivy.portal.components.persistence.converter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -11,7 +14,10 @@ import com.axonivy.portal.components.service.exception.PortalException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.introspect.BeanPropertyDefinition;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 
 /**
  * This class provides method to convert Business entity object into Json value
@@ -32,11 +38,35 @@ public final class BusinessEntityConverter {
   }
 
   public static <T> T jsonValueToEntity(String jsonValue, Class<T> classType) {
+    if (StringUtils.isBlank(jsonValue)) {
+      return null;
+    }
     try {
-      return getObjectMapper().readValue(jsonValue, classType);
+      ObjectMapper mapper = getObjectMapper();
+      JsonNode rootNode = mapper.readTree(jsonValue);
+      JsonNode targetNode = unwrapIfNeeded(rootNode, classType, mapper);
+      return mapper.treeToValue(targetNode, classType);
     } catch (IOException e) {
       throw new PortalException(e);
     }
+  }
+
+  private static JsonNode unwrapIfNeeded(JsonNode rootNode, Class<?> classType, ObjectMapper mapper) {
+    // A wrapper looks like {"someRootKey": {...actual object...}} — exactly one field,
+    // whose value is itself an object, and whose name isn't one of the target class's own properties.
+    if (!rootNode.isObject() || rootNode.size() != 1) {
+      return rootNode;
+    }
+    Map.Entry<String, JsonNode> onlyField = rootNode.properties().iterator().next();
+    if (!onlyField.getValue().isObject()) {
+      return rootNode;
+    }
+    Set<String> knownProperties = mapper.getSerializationConfig()
+        .introspect(mapper.constructType(classType))
+        .findProperties().stream()
+        .map(BeanPropertyDefinition::getName)
+        .collect(Collectors.toSet());
+    return knownProperties.contains(onlyField.getKey()) ? rootNode : onlyField.getValue();
   }
 
   public static String entityToJsonValue(Object entity) {
@@ -70,8 +100,11 @@ public final class BusinessEntityConverter {
 
   public static ObjectMapper getObjectMapper() {
     if (objectMapper == null) {
-      objectMapper = new ObjectMapper()
-          .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+      objectMapper = JsonMapper
+          .builder()
+          .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+          .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
+          .build(); 
     }
     return objectMapper;
   }

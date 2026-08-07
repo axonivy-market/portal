@@ -46,8 +46,20 @@ public class JsonThirdPartyApplicationMigrator {
   public JsonNode migrate() {
     if (node.isArray()) {
       node.elements().forEachRemaining(application -> migrate(application));
-    } else {
-      migrate(node);
+    } else if (node.isObject()) {
+      if (node.fieldNames().hasNext()) {
+        String firstField = node.fieldNames().next();
+        JsonNode firstValue = node.get(firstField);
+        if (firstValue != null && firstValue.isArray()
+            && (firstValue.isEmpty() || firstValue.get(0).isObject())) {
+          // Handle root-wrapped arrays like {"third-party-application": [...]} — key is read dynamically
+          firstValue.elements().forEachRemaining(application -> migrate(application));
+        } else {
+          // Single application object
+          migrate(node);
+        }
+      }
+      // else: empty object {} — nothing to migrate
     }
     return node;
   }
