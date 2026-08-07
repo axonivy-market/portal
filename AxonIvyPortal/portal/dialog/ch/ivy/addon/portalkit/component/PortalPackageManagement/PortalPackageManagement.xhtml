@@ -18,71 +18,56 @@
     </h:panelGroup>
 
     <!-- EXPORT SECTION -->
-    <h:panelGroup layout="block" styleClass="mb-5 grid pl-3">
-      <div class="col-12">
-        <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ExportTitle')}</h4>
-        <p class="text-color-secondary">
-          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ExportDescription')}
-        </p>
-      </div>
-
-      <div class="col-12">
-        <table class="w-full border-collapse mb-3 border-1 surface-border border-round">
-          <thead>
-            <tr>
-              <th class="text-left p-3 border-bottom-1 surface-border font-medium portal-package-filename-col">
-                #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/FileNameHeader')}</th>
-              <th class="text-left p-3 border-bottom-1 surface-border font-medium">
-                #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/DescriptionHeader')}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <ui:repeat value="#{portalPackageBean.packageFiles}" var="file" varStatus="fileStatus">
-              <tr class="border-bottom-1 surface-border">
-                <td class="p-3"><i class="ti ti-file-type-json text-color-secondary mr-2" />
-                  <span class="font-medium">#{file.filename}</span>
-                </td>
-                <td class="p-3 text-color-secondary">#{file.description}</td>
-              </tr>
-            </ui:repeat>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="col-12">
-        <span class="text-color-secondary text-sm">
-          <i class="ti ti-info-circle mr-1" />
-          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ExportNote')}
-        </span>
-      </div>
-
-      <div class="col-12">
+    <h:panelGroup layout="block" styleClass="mb-5 pl-3">
+      <div class="flex justify-content-between align-items-start gap-3 mb-3">
+        <div>
+          <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ExportTitle')}</h4>
+          <p class="text-color-secondary">
+            #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ExportDescription')}
+          </p>
+        </div>
         <p:commandButton id="export-btn"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ExportButton')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ExportButton')}"
-          styleClass="primary-color-light-button w-full" ajax="false">
+          styleClass="white-space-nowrap" icon="ti ti-upload" ajax="false">
           <p:fileDownload value="#{portalPackageBean.exportPackage()}" />
         </p:commandButton>
       </div>
+
+      <table class="w-full border-collapse mb-3 border-1 surface-border border-round">
+        <thead>
+          <tr>
+            <th class="text-left p-3 border-bottom-1 surface-border font-medium portal-package-filename-col">
+              #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/FileNameHeader')}</th>
+            <th class="text-left p-3 border-bottom-1 surface-border font-medium">
+              #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/DescriptionHeader')}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <ui:repeat value="#{portalPackageBean.packageFiles}" var="file" varStatus="fileStatus">
+            <tr class="border-bottom-1 surface-border">
+              <td class="p-3">#{file.filename}</td>
+              <td class="p-3 text-color-secondary">#{file.description}</td>
+            </tr>
+          </ui:repeat>
+        </tbody>
+      </table>
     </h:panelGroup>
 
-    <p:separator styleClass="mb-5" />
-
     <!-- IMPORT SECTION -->
-    <h:panelGroup layout="block" styleClass="mb-5 grid pl-3">
-      <div class="col-12">
-        <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportTitle')}</h4>
-        <p class="text-color-secondary">
-          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportDescription')}
-        </p>
-      </div>
-
-      <div class="col-12">
+    <h:panelGroup layout="block" styleClass="mb-5 pl-3">
+      <div class="flex justify-content-between align-items-start gap-3">
+        <div>
+          <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportTitle')}</h4>
+          <p class="text-color-secondary">
+            #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportDescription')}
+          </p>
+        </div>
         <p:commandButton id="import-btn"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportButton')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportButton')}"
-          styleClass="primary-color-light-button w-full"
+          styleClass="white-space-nowrap" icon="ti ti-download"
           onclick="PF('portalPackageImportDialog').show(); return false;" type="button" />
       </div>
     </h:panelGroup>

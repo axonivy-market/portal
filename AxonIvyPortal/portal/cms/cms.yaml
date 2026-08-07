@@ -582,6 +582,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Create new public dashboard
       EditPrivateDashboards: Edit your private dashboards
+      EditLayout: Edit Layout
       EditPublicDashboards: Edit public dashboards
       PrivateDashboardConfiguration: Private dashboard configuration
       PublicDashboardConfiguration: Public dashboard configuration

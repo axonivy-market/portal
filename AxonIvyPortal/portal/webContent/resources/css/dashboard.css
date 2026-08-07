@@ -2292,18 +2292,36 @@ body.dark .menu-type-static {
 
 /* Sidebar settings card in Sidebar navigation tab */
 .sidebar-settings-card {
-  background: var(--surface-ground);
-  border: 1px solid var(--surface-border);
+  background: var(--sidebar-settings-card-bg-color);
+  border: 1px solid var(--sidebar-settings-card-border-color);
   box-sizing: border-box;
   margin: 0.5em;
+  border-radius: 15px;
 }
 
 .sidebar-settings-card .sidebar-mode-select {
   min-width: 14rem;
+  background-color: var(--sidebar-mode-select-bg-color);
+  border-color: var(--sidebar-mode-select-border-color);
+}
+
+.sidebar-settings-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider {
+  background: var(--sidebar-toggle-checked-bg-color);
+}
+
+.sidebar-settings-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider:before,
+.sidebar-settings-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider .ui-toggleswitch-handler {
+  background: var(--sidebar-toggle-knob-color);
 }
 
 .sidebar-settings-card .sidebar-reload-warning {
   padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+}
+
+.sidebar-settings-card .sidebar-reload-warning .p-message-icon,
+.sidebar-settings-card .sidebar-reload-warning .p-message-detail {
+  color: var(--portal-package-alert-warning-text-color);
 }
 
 .sidebar-settings-card .sidebar-reload-warning .ui-button {
@@ -2329,10 +2347,103 @@ body.dark .menu-type-static {
   margin-right: 0.5rem;
   text-align: center;
   vertical-align: middle;
-  color: var(--ivy-primary-color-grey-medium);
 }
 
 .add-menu-item-action {
   margin: 0.5em;
   padding: 0.5em 0;
+}
+
+/* Dashboard Configuration and Icons */
+.dashboard-configuration-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-icon-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: var(--dashboard-icon-bg-color);
+  color: var(--text-color, #333);
+  border: 1px solid var(--dashboard-icon-border-color);
+  box-sizing: border-box;
+}
+
+.dashboard-icon-container.u-mar-right-10 {
+  margin-right: 10px !important;
+}
+
+.dashboard-icon-container i {
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  font-size: 16px !important;
+}
+
+.dashboard-circle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  background-color: var(--dashboard-icon-bg-color) !important;
+  color: var(--text-color, #333) !important;
+  border: 1px solid var(--dashboard-icon-border-color) !important;
+  box-sizing: border-box !important;
+}
+
+.dashboard-circle-icon i, 
+.dashboard-circle-icon.ui-button .ui-icon,
+.dashboard-circle-icon::before {
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  font-size: 16px !important;
+  display: block !important;
+}
+
+.dashboard-circle-icon.ui-button .ui-button-text {
+  display: none !important;
+}
+
+/* Dashboard Configuration Table Overrides */
+.dashboard-configuration__content .ui-datatable .ui-datatable-data > tr > td {
+  border-bottom: 1px solid var(--border-color) !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  padding: 12px 15px !important;
+}
+
+.dashboard-configuration__content .ui-datatable .ui-datatable-header,
+.dashboard-configuration__content .ui-datatable .ui-widget-header {
+  border-bottom: 1px solid var(--border-color) !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.dashboard-tabs-header {
+  border-bottom: 1px solid var(--border-color) !important;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+}
+
+.dashboard-tabs-header .dashboard-type-list {
+  border-bottom: none;
+  margin-bottom: -1px;
 }
