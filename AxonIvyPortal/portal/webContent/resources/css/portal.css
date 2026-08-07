@@ -2106,6 +2106,11 @@ body a.portal-pill-btn:focus {
   color: var(--portal-detail-accent-color);
 }
 
+/* Shared: "Show more" link of the note / history / document widgets ----------------------------------------*/
+.portal-detail-show-more-btn {
+  font-weight: var(--details-document-add-link-font-weight);
+}
+
 /* Shared: toolbar-size variants of the two atoms above ----------------------------------------*/
 body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-lg,
 body a.portal-icon-btn-round.portal-icon-btn-lg,
@@ -2648,7 +2653,7 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   flex-wrap: wrap;
 }
 .portal-detail-subcards-row > .portal-detail-inner-card {
-  flex: 1 1 22.8571rem;
+  flex: 1 1 18rem;
   min-width: 0;
 }
 /* Business case sub-card */
