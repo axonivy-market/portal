@@ -24,10 +24,19 @@
   --button-secondary-bg-color: var(--ivy-primary-color-white);
   --button-secondary-text-color: var(--primary-color);
 
+  /* Start button (task widget start column) */
+  --start-btn-bg: var(--ivy-portal-blue-pale);
+  --start-btn-border-color: var(--ivy-portal-blue-muted);
+  --start-btn-text-color: var(--ivy-portal-blue-dark);
+  --start-btn-hover-bg: hsla(195, 42%, 80%, 1);
+  --start-btn-disabled-bg: var(--ivy-portal-color-gray-spaces);
+  --start-btn-disabled-border-color: var(--ivy-portal-color-gray-light);
+  --start-btn-disabled-text-color: var(--ivy-portal-color-gray-medium);
+
   /* Color and border radius of context button, it only affects when button has attribute styleClass="context-button" */
   --context-button-border-radius: 0px;
   --context-button-background-color: var(--ivy-primary-color-grey-light);
-  --context-button-state-hover-or-focus-background-color: var(--ivy-primary-color-grey-pale);
+  --context-button-state-hover-or-focus-background-color: hsla(0, 0%, 94%, 1);
 
   /* Widget header */
   --widget-header-main-border-bottom-color: var(--ivy-primary-color-grey-light);
@@ -61,6 +70,7 @@
   --statistic-filter-accordion-panel-border: var(--ivy-primary-color-grey-light);
   --chart-container-background-color: #e6f1f5;
   --chart-container-number-color: var(--ivy-primary-color);
+  --chart-container-number-border-color: hsla(194.9, 100%, 29.22%, 1);
   
   /* Sidebar */
   --sidebar-app-text-color: var(--menuitem-text-color);
@@ -81,7 +91,7 @@
   --widget-advanced-filter-hover-border: var(--ivy-primary-color-grey-light);
   --widget-filter-selection-container-border: transparent;
   --widget-advanced-filter-command-state-focus-background-color: none;
-  --widget-advanced-filter-overlay-panel-footer: var(--ivy-primary-color-grey-light);
+  --widget-advanced-filter-dialog-footer: var(--ivy-primary-color-grey-light);
   --widget-advanced-filter-command-background-color: none;
   --widget-advanced-filter-background-color: none;
   --widget-advanced-filter-hover-backround-color: var(--ivy-primary-color-grey-pale);
@@ -89,6 +99,31 @@
   --filter-selection-container-group-border-color: var(--ivy-primary-color-grey-medium);
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
   --widget-filter-background-color: var(--ivy-primary-color-grey-pale);
+
+  --wdiget-filter-save-filter-button-background-color: var(--ivy-portal-color-gray-75);
+  --widget-filter-condition-accent-border-color: var(--ivy-portal-blue-muted);
+  --widget-filter-add-condition-background-color: var(--ivy-portal-blue-pale);
+  --widget-filter-and-badge-background-color: var(--ivy-portal-blue-pale);
+  --widget-filter-and-badge-text-color: var(--primary-color);
+  --widget-filter-subtle-surface-color: var(--ivy-portal-color-gray-spaces);
+  --widget-filter-subtle-border-color: var(--ivy-portal-color-gray-light);
+  --widget-filter-chip-border-color: var(--ivy-portal-color-gray-light);
+  --widget-filter-save-input-border-color: hsla(0, 0%, 95%, 1);
+  --widget-filter-save-input-background-color: hsla(0, 0%, 97%, 1);
+  --widget-filter-empty-icon-color: var(--ivy-portal-color-gray-69);
+  --widget-filter-empty-icon-background-color: hsla(0, 0%, 97%, 1);
+  --widget-filter-apply-button-background-color: var(--primary-color);
+  --widget-filter-apply-button-text-color: var(--ivy-primary-color-white);
+  --widget-filter-add-condition-text-color: var(--primary-color);
+  --widget-filter-save-filter-button-text-color: var(--ivy-primary-color-black);
+  --widget-filter-reset-button-text-color: var(--primary-color);
+  --widget-filter-manage-filter-text-color: var(--primary-color);
+  --widget-filter-saved-item-background-color: var(--widget-filter-background-color);
+  --widget-filter-saved-item-active-background-color: var(--saved-filter-button-background-color);
+  --widget-filter-saved-item-active-border: 2px solid var(--ivy-primary-color);
+  --widget-filter-saved-item-active-text-color: var(--ivy-primary-color);
+  --widget-filter-dialog-box-shadow: 0 0 27.225px 0 rgba(0, 0, 0, 0.05);
+  --widget-filter-dialog-backdrop-color: rgba(0, 0, 0, 0.4);
 
   /* Item in Widget List */
   --item-widget-background-color: var(--ivy-primary-color-grey-pale);
@@ -140,7 +175,6 @@
   --case-task-document-name-color: var(--ivy-primary-color-black);
   --case-item-action-steps-item-hover-background-color: var(--ivy-primary-color-grey-pale);
   --case-item-action-steps-item-hover-text-color: var(--ivy-primary-color-grey-dark);
-  --case-action-separator-border-color: hsla(180, 1%, 61%, 0.5);
   --case-state-in-progress-color: var(--ivy-tertinary-color-yellow-dark);
   --case-state-done-color: #4eb41c;
   --case-widget-column-header-border-bottom: var(--ivy-primary-color-grey-light);
@@ -174,6 +208,87 @@
   --task-detail-header-font-weight: bold;
   --task-detail-section-title-font-weight: bold;
   --task-detail-separator-border-color: #F4F4F4;
+  /* Detail-page design tokens (IVYPORTAL-20779) — shared by Task Details and Case Details */
+  /* Surfaces */
+  --portal-detail-card-bg: var(--ivy-primary-color-white);
+  --portal-detail-subcard-bg: hsl(0, 0%, 98%);
+  --portal-detail-strip-bg: hsl(0, 0%, 98%);
+  --portal-detail-table-cell-bg: var(--ivy-primary-color-white);
+  /* Borders */
+  --portal-detail-card-border-color: hsl(0, 0%, 92%);
+  --portal-detail-subcard-border-color: hsl(0, 0%, 92%);
+  --portal-detail-divider-color: hsl(0, 0%, 92%);
+  --portal-detail-strip-divider-color: hsl(0, 0%, 91%);
+  --portal-detail-table-header-border-color: hsl(0, 0%, 92%);
+  --portal-detail-table-row-border-color: hsl(0, 0%, 91%);
+  /* Text */
+  --portal-detail-value-color: var(--ivy-primary-color-black);
+  --portal-detail-label-color: hsl(0, 0%, 46%);
+  --portal-detail-eyebrow-color: hsl(0, 0%, 46%);
+  /* Accent (Primary ramp) */
+  --portal-detail-primary-tint-bg: hsl(196, 43%, 93%);
+  --portal-detail-accent-btn-border: hsl(196, 42%, 71%);
+  --portal-detail-accent-color: var(--ivy-portal-blue-dark);
+  /* Neutral buttons */
+  --portal-detail-neutral-btn-bg: hsl(0, 0%, 98%);
+  --portal-detail-neutral-btn-border: hsl(0, 0%, 92%);
+  /* Empty state */
+  --portal-detail-empty-icon-bg: hsl(0, 0%, 97%);
+  --portal-detail-empty-icon-color: hsl(0, 0%, 75%);
+  /* Type scale — 1rem == 14px (Freya root font-size) */
+  --portal-detail-heading-font-size: 1.1429rem;
+  --portal-detail-font-size: 1rem;
+  --portal-detail-label-font-size: 0.8571rem;
+  /* Geometry */
+  --portal-detail-card-radius: 1.0714rem;
+  --portal-detail-card-gap: 1.4286rem;
+  --portal-detail-grid-inset: 10px;
+  --portal-detail-card-padding: 1.4286rem;
+  --portal-detail-subcard-padding: 1.0714rem;
+  --portal-detail-card-shadow: 0 0 1.9446rem 0 hsla(0, 0%, 0%, 0.05);
+  --portal-detail-toolbar-shadow: 0 0 0.9723rem 0 hsla(0, 0%, 0%, 0.07);
+  /* State badges (Related tasks / Related cases tables) */
+  --portal-state-open-bg: hsla(217, 91%, 60%, 0.1);
+  --portal-state-open-border: hsla(217, 91%, 60%, 0.25);
+  --portal-state-open-color: hsl(217, 91%, 60%);
+  --portal-state-in-progress-bg: hsla(48, 96%, 53%, 0.1);
+  --portal-state-in-progress-border: hsla(48, 96%, 53%, 0.25);
+  --portal-state-in-progress-color: hsl(48, 88%, 29%);
+  --portal-state-delayed-bg: hsla(25, 95%, 53%, 0.1);
+  --portal-state-delayed-border: hsla(25, 95%, 53%, 0.25);
+  --portal-state-delayed-color: hsl(25, 95%, 53%);
+  --portal-state-done-bg: hsl(137, 50%, 95%);
+  --portal-state-done-border: hsl(136, 52%, 80%);
+  --portal-state-done-color: hsl(139, 47%, 32%);
+  --portal-state-error-bg: hsl(0, 77%, 95%);
+  --portal-state-error-border: hsl(358, 81%, 79%);
+  --portal-state-error-color: hsl(358, 83%, 30%);
+  --portal-state-neutral-bg: hsl(0, 0%, 97%);
+  --portal-state-neutral-border: hsl(0, 0%, 92%);
+  --portal-state-neutral-color: hsl(0, 0%, 46%);
+  --portal-action-menu-radius: 10px;
+  --portal-action-menu-shadow: 0 0 1.1143rem 0.2143rem hsla(0, 0%, 0%, 0.15);
+  --portal-action-menu-divider-color: hsl(0, 0%, 97%);
+  --portal-action-menu-destroy-color: hsl(358, 83%, 49%);
+  /* Legacy aliases — Task Details CSS still references these names */
+  --task-detail-card-bg: var(--portal-detail-card-bg);
+  --task-detail-card-border-color: var(--portal-detail-card-border-color);
+  --task-detail-card-radius: var(--portal-detail-card-radius);
+  --task-detail-subcard-bg: var(--portal-detail-subcard-bg);
+  --task-detail-subcard-border-color: var(--portal-detail-subcard-border-color);
+  --task-detail-eyebrow-color: var(--portal-detail-eyebrow-color);
+  --task-detail-label-color: var(--portal-detail-label-color);
+  --task-detail-value-color: var(--portal-detail-value-color);
+  --task-detail-strip-bg: var(--portal-detail-strip-bg);
+  --task-detail-strip-divider-color: var(--portal-detail-strip-divider-color);
+  --task-detail-divider-color: var(--portal-detail-divider-color);
+  --task-detail-empty-icon-bg: var(--portal-detail-empty-icon-bg);
+  --task-detail-empty-icon-color: var(--portal-detail-empty-icon-color);
+  --task-detail-primary-tint-bg: var(--portal-detail-primary-tint-bg);
+  --task-detail-accent-btn-border: var(--portal-detail-accent-btn-border);
+  --task-detail-neutral-btn-bg: var(--portal-detail-neutral-btn-bg);
+  --task-detail-neutral-btn-border: var(--portal-detail-neutral-btn-border);
+  --task-detail-card-gap: var(--portal-detail-card-gap);
   --task-start-info-header-font-weight: bold;
   --task-start-info-task-id-font-weight: normal;
   --task-name-input-font-weight: bold;
@@ -299,12 +414,10 @@
   --action-step-text-color: var(--ivy-primary-color-grey-medium);
   --action-step-hover-text-color: var(--ivy-primary-color-grey-dark);
   --action-step-disabled-text-color: var(--ivy-primary-color-grey-medium);
-  --action-step-separator-border-color: #F4F4F4;
   --place-holder-text-color: var(--ivy-primary-color-grey-medium);
   --text-tab-default-color: var(--ivy-primary-color-grey-medium);
   --no-item-icon-color: var(--ivy-primary-color-grey-light);
   --user-menu-items-border-color: var(--ivy-primary-color-grey-pale);
-  --option-item-border-color: var(--ivy-primary-color-grey-pale);
   /* Portal breadcrumb */
   --breadcrumb-background-color: transparent;
   --breadcrumb-home-icon-color: var(--primary-color);
@@ -326,6 +439,13 @@
   --widget-filter-noti-background-color: var(--ivy-tertinary-color-red-medium);
   --widget-filter-noti-color: var(--ivy-primary-color-white);
   --widget-header-icon: var(--ivy-primary-color-black);
+  --widget-button-border-color: var(--ivy-portal-color-gray-light);
+  --widget-button-background-color: var(--ivy-portal-color-gray-spaces);
+  --widget-button-hover-background-color: hsla(0, 0%, 94%, 1);
+  --widget-view-toggle-bg: hsla(0, 0%, 97%, 1);
+  --widget-view-toggle-active-bg: hsla(0, 0%, 100%, 1);
+  --widget-view-toggle-icon: var(--ivy-portal-color-gray-medium);
+  --widget-view-toggle-border: var(--ivy-portal-color-gray-light);
   /* New Dashboard */
   --dashboard-table-column-small-screen-description-color: var(--ivy-primary-color-grey-medium);
   --new-widget-dialog-title-color: var(--ivy-primary-color-black);

@@ -242,6 +242,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: To upload files, drag & drop or select files
     addNoteHelpText: Write your text here.
     businessDetailsTitle: Business Details
+    caseDetails: Case Details
     deleteFile: Delete file
     documents: Documents
     downloadFile: Download file
@@ -908,6 +909,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     completedOn: Completed on
     delayedUntil: Delayed until
     deleteFile: Delete file
+    dueDate: Due
     documents: Documents
     duration: Duration
     events: Workflow Events
@@ -1065,7 +1067,6 @@ Dialogs:
     TaskDetail:
       DataDescription: Data and Description
       restoreToDefaultSettings: Restore to default settings
-      switchToEditMode: Edit
       switchToViewMode: Save
   agileBPM:
     define_WF:
@@ -1215,6 +1216,7 @@ Labels:
   Configuration: Configuration
   CreateNewDashboard: Create new dashboard
   Description: Description
+  EditLayout: Edit layout
   EnterFromValue: Enter from value
   EnterToValue: Enter to value
   EnterValue: Enter value
