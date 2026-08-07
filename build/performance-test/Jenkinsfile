@@ -20,12 +20,12 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-          engineNames = ['master', '12', '10', '8', 'performance-master-new', 'performance-12', 'performance-10', 'performance-8']
+          engineNames = ['master', '12', '10', 'performance-master-new', 'performance-12', 'performance-10']
           for (engineName in engineNames) {
             sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
           }
           sh """
-            docker compose -f ${ivyDir}/${engineNames[4]}/docker-compose.yml up -d
+            docker compose -f ${ivyDir}/${engineNames[3]}/docker-compose.yml up -d
             #Workaround because PMV Portal starts slow
             sleep 100
           """
