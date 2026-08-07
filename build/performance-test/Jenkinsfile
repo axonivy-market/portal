@@ -20,7 +20,7 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-          engineNames = ['master', '12', '10', '8', 'performance-master', 'performance-12', 'performance-10', 'performance-8']
+          engineNames = ['master', '12', '10', '8', 'performance-master-new', 'performance-12', 'performance-10', 'performance-8']
           for (engineName in engineNames) {
             sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
           }
@@ -38,7 +38,10 @@ pipeline {
             def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':9000' + '/'
             for (module in modules) {
               maven cmd: "clean install -f ${module}/pom.xml"
-              maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${deploymentPom} -Divy.deploy.file=${deployZip} -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.test.users=true -Divy.deploy.engine.app.version=released"            }
+              def modulePom = readMavenPom(file: "${module}/pom.xml")
+              def deployFile = "${module}/target/${modulePom.getArtifactId()}-${modulePom.getVersion()}.iar"
+              maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.file=${deployFile} -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.test.users=true -Divy.deploy.engine.app.version=released"
+            }
           }
         }
       }
@@ -64,6 +67,22 @@ pipeline {
           echo '====================Test ten users===================='
           updateConfigFile('data/users_server.csv', '10')
           executeJMeter('result_10_users.jtl')
+
+          echo '====================Test 100 users===================='
+          updateConfigFile('data/users_100_server.csv', '100', '100')
+          executeJMeter('result_100_users.jtl')
+
+          echo '====================Test 200 users===================='
+          updateConfigFile('data/users_200_server.csv', '200', '200')
+          executeJMeter('result_200_users.jtl')
+
+          echo '====================Test 300 users===================='
+          updateConfigFile('data/users_300_server.csv', '300', '300')
+          executeJMeter('result_300_users.jtl')
+
+          echo '====================Test 400 users===================='
+          updateConfigFile('data/users_400_server.csv', '400', '400')
+          executeJMeter('result_400_users.jtl')
         }
       }
     }
@@ -89,10 +108,11 @@ pipeline {
   }
 }
 
-def updateConfigFile(acccountFilePath, numberOfUser) {
+def updateConfigFile(acccountFilePath, numberOfUser, rampUp = '1') {
   sh """
     awk -F'=' -v OFS='=' -v newval='${acccountFilePath}' '/^file.csv/{\$2=newval;print;next}1' ${jmeterSourceDir}/test.properties > ${jmeterSourceDir}/tmp.properties
-    awk -F'=' -v OFS='=' -v newval='${numberOfUser}' '/^portal.thread.numberOfUser/{\$2=newval;print;next}1' ${jmeterSourceDir}/tmp.properties > ${jmeterSourceDir}/test.properties
+    awk -F'=' -v OFS='=' -v newval='${numberOfUser}' '/^portal.thread.numberOfUser/{\$2=newval;print;next}1' ${jmeterSourceDir}/tmp.properties > ${jmeterSourceDir}/tmp2.properties
+    awk -F'=' -v OFS='=' -v newval='${rampUp}' '/^portal.thread.rampup/{\$2=newval;print;next}1' ${jmeterSourceDir}/tmp2.properties > ${jmeterSourceDir}/test.properties
   """
 }
 
