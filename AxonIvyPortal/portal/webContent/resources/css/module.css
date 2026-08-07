@@ -3714,7 +3714,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .config-columns-panel {
   min-width: 250px;
-  padding: 10px 6px !important;
+  padding: 10px !important;
 }
 
 .config-columns-panel .ui-button.ui-widget {
