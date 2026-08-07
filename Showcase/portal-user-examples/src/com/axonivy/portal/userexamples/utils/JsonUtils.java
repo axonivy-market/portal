@@ -57,6 +57,10 @@ public class JsonUtils {
       return root;
     }
     if (root.isObject()) {
+      if (root.isEmpty()) {
+        // No data persisted yet (e.g. default/uninitialized state) -> treat as empty array
+        return mapper.createArrayNode();
+      }
       Iterator<JsonNode> fields = root.elements();
       while (fields.hasNext()) {
         JsonNode value = fields.next();
@@ -66,5 +70,5 @@ public class JsonUtils {
       }
     }
     throw new IllegalArgumentException("Expected a JSON array or an object wrapping one array field, got: " + json);
-  }
+}
 }
