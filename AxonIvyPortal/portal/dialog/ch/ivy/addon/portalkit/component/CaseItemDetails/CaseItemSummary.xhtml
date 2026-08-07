@@ -43,7 +43,7 @@
     <div id="general-information" class="general-information case-detail-attr-strip">
       <!-- Case ID -->
       <div class="case-detail-attr">
-        <h:outputText styleClass="case-detail-column-title"
+        <h:outputText styleClass="portal-detail-column-title"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
         <div class="case-detail-attr-value">
           <h:outputText id="case-id" value="#{case.id}" />
@@ -52,7 +52,7 @@
 
       <!-- State -->
       <div class="case-detail-attr">
-        <h:outputText styleClass="case-detail-column-title"
+        <h:outputText styleClass="portal-detail-column-title"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
         <div class="case-detail-attr-value">
           <h:panelGroup id="case-state" styleClass="case-header-default-cell">
@@ -65,7 +65,7 @@
       <!-- Case Category -->
       <div class="case-detail-attr"
         jsf:rendered="#{(caseDetailsBean.showNotAvailableData and empty case.categoryPath) or not empty case.categoryPath}">
-        <h:outputText styleClass="case-detail-column-title"
+        <h:outputText styleClass="portal-detail-column-title"
           value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
         <div class="case-detail-attr-value u-truncate-text">
           <h:outputText id="case-category" value="#{case.getCategory().getPath()}" rendered="#{not empty case.categoryPath}" />

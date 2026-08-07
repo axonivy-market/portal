@@ -300,7 +300,6 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
 .grid-view-form .process-action-group {
   font-size: var(--small-font-size); }
 
-.task-detail-column-title,
 .edit-process-info-group .edit-process-detail-1st-cell {
   opacity: 0.65;
   font-size: var(--small-font-size); }
@@ -2216,6 +2215,25 @@ body a.portal-detail-toolbar-back:focus,
 }
 
 /* Shared: empty-state block (task & case documents/notes) ----------------------------------------*/
+/* Flex chain from the gridstack card down to .no-item-panel, so the empty state can center on both
+   axes. flex-shrink stays 0: a table taller than the card must keep scrolling, not get clipped. */
+.portal-detail-widget-card {
+  display: flex;
+  flex-direction: column;
+}
+.portal-detail-widget-card > .portal-detail-widget,
+.portal-detail-widget > .portal-detail-widget-form,
+.portal-detail-widget-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  width: 100%;
+}
+.portal-detail-widget-body > .no-item-panel {
+  flex: 1 0 auto;
+  padding: 1.1429rem;
+}
+
 .no-item-panel {
   display: flex;
   flex-direction: column;
@@ -2223,6 +2241,7 @@ body a.portal-detail-toolbar-back:focus,
   justify-content: center;
   text-align: center;
   gap: 0.3571rem;
+  margin-top: 0;
   padding: 2.8571rem 1.1429rem;
 }
 .no-item-panel > .ti,
@@ -2282,8 +2301,8 @@ body a.portal-detail-toolbar-back:focus,
 }
 
 /* Cards: outer widget card + inner sub-cards ----------------------------------------*/
-.task-item-body .card.task-detail-card,
-.case-detail-body .card.case-detail-card {
+.portal-detail-body .card.task-detail-card,
+.portal-detail-body .card.case-detail-card {
   border: none;
   border-radius: var(--portal-detail-card-radius);
   background: var(--portal-detail-card-bg);
@@ -2291,8 +2310,7 @@ body a.portal-detail-toolbar-back:focus,
   padding: var(--portal-detail-card-padding);
 }
 /* Sub-card ("Role & User information", "Time Information", …) */
-.portal-detail-inner-card,
-.task-detail-inner-card {
+.portal-detail-inner-card {
   box-sizing: border-box;
   border: 1px solid var(--portal-detail-subcard-border-color);
   border-radius: var(--portal-detail-card-radius);
@@ -2302,19 +2320,16 @@ body a.portal-detail-toolbar-back:focus,
 
 /* Left-column cards: the "summary" widget and the "information" widget ----------------------------------------*/
 .task-detail-header-card,
-.task-detail-taskdetails-card,
 .case-detail-header-card,
-.case-detail-casedetails-card {
+.portal-detail-details-card {
   width: 100%;
   box-sizing: border-box;
 }
-.task-detail-taskdetails-card,
-.case-detail-casedetails-card {
+.portal-detail-details-card {
   display: flow-root;
 }
 
 .portal-detail-block-title,
-.task-detail-block-title,
 .portal-detail-widget-header-title {
   font-weight: 600;
   font-size: var(--portal-detail-heading-font-size);
@@ -2322,22 +2337,21 @@ body a.portal-detail-toolbar-back:focus,
   color: var(--portal-detail-value-color);
 }
 .portal-detail-subcard-title,
-.task-detail-subcard-title,
 .task-description-title {
   font-weight: 600;
   font-size: var(--portal-detail-font-size);
   color: var(--portal-detail-value-color);
 }
-.task-detail-column-title {
-  color: var(--task-detail-label-color);
+.portal-detail-column-title {
+  color: var(--portal-detail-label-color);
   font-size: var(--portal-detail-font-size);
   font-weight: 400;
-  opacity: 1;
+  line-height: normal;
 }
 
 /* ---- Shared: summary card header (identity row) ---- */
-.task-item-body .task-detail-header-row,
-.case-detail-body .case-detail-header-row {
+.portal-detail-body .task-detail-header-row,
+.portal-detail-body .case-detail-header-row {
   display: flex !important;
   align-items: center;
   margin-bottom: 0;
@@ -2412,49 +2426,23 @@ body a.portal-detail-toolbar-back:focus,
   vertical-align: middle;
 }
 
-.task-detail-subcards-row {
-  display: flex;
-  align-items: stretch;
-  gap: var(--task-detail-card-gap);
-  flex-wrap: wrap;
-}
-.task-detail-subcards-row > .task-detail-inner-card {
-  flex: 1 1 22.8571rem;
-  min-width: 0;
-}
-
-/* Block headings spacing + right-aligned values in KV cards */
-.task-detail-details-heading {
-  margin-top: 0.5714rem;
-  margin-bottom: 0.5714rem;
-}
-.task-detail-inner-card .task-detail-block-title {
-  margin-bottom: 0.8571rem;
-  padding-bottom: 0.7143rem;
-  border-bottom: 1px solid var(--task-detail-divider-color);
-}
-.task-detail-inner-card .task-detail-subcard-title {
-  padding-bottom: 0.7143rem !important;
-  border-bottom: 1px solid var(--task-detail-divider-color);
-  margin-bottom: 0.8571rem;
-}
-.task-detail-inner-card .content-field > div:last-child,
-.task-and-case-information .content-field > div:last-child {
-  text-align: right;
-}
-.task-detail-inner-card .content-field > div:last-child.flex {
-  justify-content: flex-end;
-}
-.task-and-case-information {
-  margin-top: var(--task-detail-card-gap);
-}
 .task-and-case-information .content-field .task-business-case,
 .task-and-case-information .content-field .ti-external-link {
   color: var(--primary-color);
 }
 .task-and-case-information .content-field .task-business-case {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.2857rem;
+  max-width: 100%;
+  vertical-align: middle;
   font-size: var(--portal-detail-font-size);
   font-weight: 400;
+}
+.task-and-case-information .content-field .task-business-case .ti-external-link {
+  flex: 0 0 auto;
+  font-size: 1rem;
+  line-height: 1;
 }
 
 /* Shared: action-menu trigger ("...") in the summary card header ----------------------------------------*/
@@ -2479,7 +2467,8 @@ body a.portal-detail-toolbar-back:focus,
 }
 
 /* Attribute strip: Priority | State | Due | Workflow ----------------------------------------*/
-.task-detail-attr .task-detail-column-title {
+.task-detail-attr .portal-detail-column-title,
+.case-detail-attr .portal-detail-column-title {
   font-size: var(--portal-detail-label-font-size);
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -2505,16 +2494,13 @@ body a.portal-detail-toolbar-back:focus,
   color: var(--primary-color);
 }
 
-.task-item-body .separator-task-detail.ui-divider,
-.task-item-body .separator-task-detail,
-.case-detail-body .separator-task-detail.ui-divider,
-.case-detail-body .separator-task-detail {
+.portal-detail-body .separator-task-detail.ui-divider,
+.portal-detail-body .separator-task-detail {
   border-color: var(--portal-detail-divider-color);
   margin: var(--portal-detail-card-gap) 0;
   padding: 0;
 }
-body .task-item-body .separator-task-detail.ui-divider:before,
-body .case-detail-body .separator-task-detail.ui-divider:before {
+body .portal-detail-body .separator-task-detail.ui-divider:before {
   border-top-color: var(--portal-detail-divider-color);
 }
 
@@ -2534,7 +2520,7 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
   color: var(--portal-detail-eyebrow-color);
 }
 /* Overrides module.css `.case-detail-name` (list/header styling) inside the card. */
-.case-detail-body .case-detail-name {
+.portal-detail-body .case-detail-name {
   font-weight: 600;
   font-size: var(--portal-detail-heading-font-size);
   line-height: normal;
@@ -2585,17 +2571,6 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
   height: 2.1429rem;
   border-left: 1px solid var(--portal-detail-strip-divider-color);
 }
-.case-detail-body .case-detail-attr .case-detail-column-title {
-  font-size: var(--portal-detail-label-font-size);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  line-height: 1.0714rem;
-  color: var(--portal-detail-label-color);
-  opacity: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 .case-detail-attr .case-detail-attr-value {
   display: flex;
   align-items: center;
@@ -2628,39 +2603,39 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
   margin-left: 0;
 }
 
-/* ---- Case Details card: heading, description, sub-cards -------------------- */
-.case-detail-casedetails-card .portal-detail-details-heading {
+/* ---- Details card: heading, description, sub-cards -------------------- */
+.portal-detail-details-card .portal-detail-details-heading {
   margin-bottom: var(--portal-detail-card-gap);
 }
 /* Description */
-.case-detail-casedetails-card .case-details-description-title {
+.portal-detail-details-card .case-details-description-title {
   margin-bottom: 0.7143rem;
 }
-.case-detail-casedetails-card .case-details-description-title .portal-detail-subcard-title {
+.portal-detail-details-card .case-details-description-title .portal-detail-subcard-title {
   display: flex;
   align-items: center;
   gap: 0.7143rem;
   padding: 0 !important;
 }
-.case-detail-casedetails-card .case-details-description-content {
+.portal-detail-details-card .case-details-description-content {
   padding: 0 !important;
 }
-.case-detail-casedetails-card .case-detail-description,
-.case-detail-casedetails-card .case-description-output {
+.portal-detail-details-card .case-detail-description,
+.portal-detail-details-card .case-description-output {
   font-size: var(--portal-detail-font-size);
   font-weight: 400;
   color: var(--portal-detail-value-color);
 }
-.case-detail-casedetails-card .case-detail-description {
+.portal-detail-details-card .case-detail-description {
   display: flex;
   width: 100%;
   box-sizing: border-box;
 }
-.case-detail-casedetails-card .case-detail-description > .scroll-panel {
+.portal-detail-details-card .case-detail-description > .scroll-panel {
   flex: 1 1 auto;
   min-width: 0;
 }
-.case-detail-casedetails-card .case-detail-description-input {
+.portal-detail-details-card .case-detail-description-input {
   width: 100%;
   box-sizing: border-box;
 }
@@ -2682,30 +2657,30 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
 }
 
 /* Sub-card internals: title + key/value rows */
-.case-detail-body .portal-detail-inner-card .portal-detail-subcard-title {
+.portal-detail-inner-card .portal-detail-subcard-title {
   padding: 0 0 0.7143rem 0 !important;
-  margin-bottom: 0.7143rem;
   border-bottom: 1px solid var(--portal-detail-divider-color);
 }
-.case-detail-body .portal-detail-inner-card .portal-detail-subcard-title .text-ellipsis {
+.portal-detail-inner-card .portal-detail-subcard-title .text-ellipsis {
   padding: 0;
 }
-.case-detail-body .portal-detail-inner-card .content-field {
+.portal-detail-inner-card .content-field {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.1429rem;
   min-height: 1.7857rem;
-  padding: 0;
+  margin: 0;
+  padding: 0.5714rem 0;
 }
-.case-detail-body .portal-detail-inner-card .content-field + .content-field {
-  margin-top: 0.7143rem;
+.portal-detail-inner-card .content-field + .content-field {
+  border-top: 1px solid var(--portal-detail-divider-color);
 }
-.case-detail-body .portal-detail-kv-label {
+.portal-detail-kv-label {
   flex: 0 1 auto;
   min-width: 0;
 }
-.case-detail-body .portal-detail-kv-value {
+.portal-detail-kv-value {
   flex: 0 1 auto;
   min-width: 0;
   text-align: right;
@@ -2713,22 +2688,18 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
   font-weight: 400;
   color: var(--portal-detail-value-color);
 }
-.case-detail-body .case-detail-column-title {
-  color: var(--portal-detail-label-color);
-  font-size: var(--portal-detail-font-size);
-  font-weight: 400;
-  line-height: normal;
-  opacity: 1;
+.portal-detail-kv-value.flex {
+  justify-content: flex-end;
 }
 /* Avatar + name inside a value cell (Creator) */
-.case-detail-body .portal-detail-kv-value .ui-avatar,
-.case-detail-body .portal-detail-kv-value .avatar,
-.case-detail-body .portal-detail-kv-value img {
+.portal-detail-kv-value .ui-avatar,
+.portal-detail-kv-value .avatar,
+.portal-detail-kv-value img {
   width: 1.7857rem;
   height: 1.7857rem;
   border-radius: 50%;
 }
-.case-detail-body .business-case-information .case-detail-business-case {
+.portal-detail-body .business-case-information .case-detail-business-case {
   color: var(--portal-detail-accent-color);
   font-size: var(--portal-detail-font-size);
   font-weight: 400;
@@ -2745,7 +2716,8 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
   border-bottom: 1px solid var(--portal-detail-divider-color);
   margin-bottom: var(--portal-detail-card-gap);
 }
-.case-detail-body .case-detail-header-card .case-detail-section-title {
+.portal-detail-body .case-detail-header-card .case-detail-section-title,
+.portal-detail-body .task-detail-header-card .task-detail-section-title {
   padding-bottom: 0 !important;
   border-bottom: none;
   margin-bottom: 0;
@@ -2766,7 +2738,7 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
 }
 
 /* Tables (Documents, Related tasks, Related cases, History) ----------------------------------------*/
-.case-detail-body .ui-datatable thead th {
+.portal-detail-body .ui-datatable thead th {
   box-sizing: border-box;
   height: 4.0714rem;
   padding: 1.1429rem 0.8571rem;
@@ -2777,7 +2749,7 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
   font-weight: 400;
   color: var(--portal-detail-value-color);
 }
-.case-detail-body .ui-datatable tbody td {
+.portal-detail-body .ui-datatable tbody td {
   box-sizing: border-box;
   height: 4.0714rem;
   padding: 1.1429rem 0.8571rem;
@@ -2789,33 +2761,35 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
   color: var(--portal-detail-value-color);
 }
 /* No row striping — keep every row on the card background */
-.case-detail-body .ui-datatable tbody tr.ui-datatable-even > td,
-.case-detail-body .ui-datatable tbody tr.ui-datatable-odd > td {
+.portal-detail-body .ui-datatable tbody tr.ui-datatable-even > td,
+.portal-detail-body .ui-datatable tbody tr.ui-datatable-odd > td {
   background: var(--portal-detail-table-cell-bg);
 }
-.case-detail-body .ui-datatable tbody td a,
-.case-detail-body .ui-datatable tbody td .ui-commandlink {
+.portal-detail-body .ui-datatable tbody td a,
+.portal-detail-body .ui-datatable tbody td .ui-commandlink {
   font-weight: 500;
 }
-.case-detail-body .case-details-documents tbody td .case-document-name-text {
+.portal-detail-body .ui-datatable tbody td .case-document-name-text,
+.portal-detail-body .ui-datatable tbody td .task-document-name-text {
   color: var(--portal-detail-accent-color);
 }
 /* Avatar in a table cell */
-.case-detail-body .ui-datatable tbody td .ui-avatar,
-.case-detail-body .ui-datatable tbody td .avatar,
-.case-detail-body .ui-datatable tbody td .has-avatar img {
+.portal-detail-body .ui-datatable tbody td .ui-avatar,
+.portal-detail-body .ui-datatable tbody td .avatar,
+.portal-detail-body .ui-datatable tbody td .has-avatar img {
   width: 1.7857rem;
   height: 1.7857rem;
   border-radius: 50%;
 }
-.case-detail-body .ui-datatable tbody td .name-after-avatar {
+.portal-detail-body .ui-datatable tbody td .name-after-avatar {
   font-size: var(--portal-detail-label-font-size);
   font-weight: 400;
 }
 .case-details-business-details-table {
   clear: both;
 }
-.case-detail-body .case-details-document-download-icon {
+.portal-detail-body .case-details-document-download-icon,
+.portal-detail-body .task-details-document-download-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2830,9 +2804,9 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
 }
 
 /* State badges in the Related tasks / Related cases tables ----------------------------------------*/
-.case-detail-body .state-column .case-state:not(.state-indicator),
-.case-detail-body .state-cell .task-state:not(.state-indicator),
-.case-detail-body .related-task-state-column .task-state:not(.state-indicator) {
+.portal-detail-body .state-column .case-state:not(.state-indicator),
+.portal-detail-body .state-cell .task-state:not(.state-indicator),
+.portal-detail-body .related-task-state-column .task-state:not(.state-indicator) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2849,43 +2823,43 @@ body .case-detail-body .separator-task-detail.ui-divider:before {
   line-height: 1.856;
   white-space: nowrap;
 }
-.case-detail-body .open-case-state:not(.state-indicator),
-.case-detail-body .open-task-state:not(.state-indicator),
-.case-detail-body .created-task-state:not(.state-indicator),
-.case-detail-body .suspended-task-state:not(.state-indicator) {
+.portal-detail-body .open-case-state:not(.state-indicator),
+.portal-detail-body .open-task-state:not(.state-indicator),
+.portal-detail-body .created-task-state:not(.state-indicator),
+.portal-detail-body .suspended-task-state:not(.state-indicator) {
   background: var(--portal-state-open-bg);
   border-color: var(--portal-state-open-border);
   color: var(--portal-state-open-color);
 }
-.case-detail-body .in_progress-case-state:not(.state-indicator),
-.case-detail-body .in_progress-task-state:not(.state-indicator),
-.case-detail-body .resumed-task-state:not(.state-indicator) {
+.portal-detail-body .in_progress-case-state:not(.state-indicator),
+.portal-detail-body .in_progress-task-state:not(.state-indicator),
+.portal-detail-body .resumed-task-state:not(.state-indicator) {
   background: var(--portal-state-in-progress-bg);
   border-color: var(--portal-state-in-progress-border);
   color: var(--portal-state-in-progress-color);
 }
-.case-detail-body .delayed-case-state:not(.state-indicator),
-.case-detail-body .delayed-task-state:not(.state-indicator),
-.case-detail-body .waiting-task-state:not(.state-indicator) {
+.portal-detail-body .delayed-case-state:not(.state-indicator),
+.portal-detail-body .delayed-task-state:not(.state-indicator),
+.portal-detail-body .waiting-task-state:not(.state-indicator) {
   background: var(--portal-state-delayed-bg);
   border-color: var(--portal-state-delayed-border);
   color: var(--portal-state-delayed-color);
 }
-.case-detail-body .done-case-state:not(.state-indicator),
-.case-detail-body .done-task-state:not(.state-indicator) {
+.portal-detail-body .done-case-state:not(.state-indicator),
+.portal-detail-body .done-task-state:not(.state-indicator) {
   background: var(--portal-state-done-bg);
   border-color: var(--portal-state-done-border);
   color: var(--portal-state-done-color);
 }
-.case-detail-body .failed-case-state:not(.state-indicator),
-.case-detail-body .failed-task-state:not(.state-indicator),
-.case-detail-body .join_failed-task-state:not(.state-indicator) {
+.portal-detail-body .failed-case-state:not(.state-indicator),
+.portal-detail-body .failed-task-state:not(.state-indicator),
+.portal-detail-body .join_failed-task-state:not(.state-indicator) {
   background: var(--portal-state-error-bg);
   border-color: var(--portal-state-error-border);
   color: var(--portal-state-error-color);
 }
-.case-detail-body .destroyed-case-state:not(.state-indicator),
-.case-detail-body .destroyed-task-state:not(.state-indicator) {
+.portal-detail-body .destroyed-case-state:not(.state-indicator),
+.portal-detail-body .destroyed-task-state:not(.state-indicator) {
   background: var(--portal-state-neutral-bg);
   border-color: var(--portal-state-neutral-border);
   color: var(--portal-state-neutral-color);

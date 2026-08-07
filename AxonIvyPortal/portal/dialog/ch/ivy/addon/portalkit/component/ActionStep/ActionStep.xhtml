@@ -39,7 +39,7 @@
   </p:commandLink>
 
   <p:overlayPanel id="action-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}"
-    for="#{cc.attrs.actionLinkId}" my="right top" at="right bottom" showCloseIcon="true" dismissable="true"
+    for="#{cc.attrs.actionLinkId}" my="right top" at="right bottom" showCloseIcon="false" dismissable="true"
     appendTo="@(body)" styleClass="portal-action-menu action-steps-panel #{cc.attrs.stepsPanelStyleClass}" dynamic="true" cache="false"
     onShow="focusFirstVisibleElementInPanel('#{cc.attrs.panelWidgetVar}', 'a')"
     pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}">

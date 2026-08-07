@@ -79,7 +79,7 @@
     <p:staticMessage escape="false" detail="#{htmlSanitizerBean.sanitize(taskDetailsBean.getInfoBannerMessage())}" rendered="#{taskDetailsBean.showInfoBanner()}" severity="#{taskDetailsBean.getInfoBannerSeverity()}" styleClass="task-status-banner-content MarTop10" />
   </h:panelGroup>
 
-  <h:panelGroup layout="block" styleClass="task-item-body " id="task-item-body">
+  <h:panelGroup layout="block" styleClass="task-item-body portal-detail-body " id="task-item-body">
     <h:panelGroup class="task-item-body-container task-details-widgets js-task-details-widgets u-padding-0 grid-stack" id="task-details-widgets"
       rendered="#{not empty taskDetailsBean.widgets}">
 
@@ -121,7 +121,7 @@
           <f:event listener="#{logic.getHideTaskDocumentConfiguration}" type="preRenderComponent" />
           <h:panelGroup id="task-detail-document-container"
             rendered="#{cc.attrs.showItemDetailDocuments and !data.isHideTaskDocument and widget.type eq 'document'}"
-            styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
+            styleClass="card task-detail-card portal-detail-widget-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="task-documents" task="#{task}"
               componentToUpdate="#{informationWidgetComponent} #{historyWidgetComponent}"
               documentWidget="#{widget}" />
@@ -130,7 +130,7 @@
           <!-- Notes box -->
           <h:panelGroup id="task-detail-note-container"
             rendered="#{cc.attrs.showItemDetailsNotes and widget.type eq 'history'}"
-            styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
+            styleClass="card task-detail-card portal-detail-widget-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="task-notes" task="#{task}"
               historyWidget="#{widget}" />
           </h:panelGroup>

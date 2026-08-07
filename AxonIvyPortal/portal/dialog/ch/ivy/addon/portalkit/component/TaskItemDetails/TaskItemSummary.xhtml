@@ -58,7 +58,7 @@
     <div id="general-information" class="general-information task-detail-attr-strip">
       <!-- Priority -->
       <div class="task-detail-attr">
-        <h:outputText styleClass="task-detail-column-title"
+        <h:outputText styleClass="portal-detail-column-title"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY')}" />
         <div class="task-detail-attr-value">
           <h:panelGroup styleClass="task-details-priority">
@@ -99,7 +99,7 @@
 
       <!-- State -->
       <div class="task-detail-attr">
-        <h:outputText styleClass="task-detail-column-title"
+        <h:outputText styleClass="portal-detail-column-title"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
         <div class="task-detail-attr-value">
           <h:panelGroup id="task-detail-state" styleClass="state-cell default-task-cell">
@@ -113,7 +113,7 @@
 
       <!-- Due -->
       <div class="task-detail-attr">
-        <h:outputText styleClass="task-detail-column-title"
+        <h:outputText styleClass="portal-detail-column-title"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/dueDate')}" />
         <div class="task-detail-attr-value">
           <i class="ti ti-calendar" />
@@ -123,7 +123,7 @@
 
       <!-- Workflow -->
       <div class="task-detail-attr">
-        <h:outputText styleClass="task-detail-column-title" rendered="#{taskActionBean.showReadWorkflowEvent}"
+        <h:outputText styleClass="portal-detail-column-title" rendered="#{taskActionBean.showReadWorkflowEvent}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/events')}" />
         <div class="task-detail-attr-value">
           <p:commandLink id="workflow-event-link" onstart="event.stopPropagation();"

@@ -13,9 +13,9 @@
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
   <f:event listener="#{logic.initData(task)}" type="preRenderComponent" />
-  <h:panelGroup class="task-details-item-note ui-g" id="task-details-item-note" layout="block">
+  <h:panelGroup class="task-details-item-note portal-detail-widget ui-g" id="task-details-item-note" layout="block">
     <div class="task-detail-section-title portal-detail-widget-header ui-g-12 flex align-items-center justify-content-between flex-wrap">
-      <div class="u-truncate-text u-padding-0 task-details-panel-title task-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="1">
+      <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="1">
         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/histories')}
       </div>
       <h:panelGroup layout="block" styleClass="note-task-detail-section-header-actions portal-detail-widget-header-actions flex align-items-center">
@@ -37,7 +37,7 @@
       </h:panelGroup>
     </div>
 
-    <h:panelGroup id="task-history-content-container" styleClass="ui-g-12">
+    <h:panelGroup id="task-history-content-container" styleClass="ui-g-12 portal-detail-widget-body">
       <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" widgetVar="task-note-table"
         pageLinks="3" rows="#{cc.attrs.historyWidget.rowPerPage}" rowsPerPageTemplate="5,10,20,50"
         paginatorPosition="bottom" rendered="#{not empty data.notes}"

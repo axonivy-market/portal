@@ -4624,18 +4624,6 @@ border-top: 0.14rem dashed;
 }
 
 /** Case information iframe ---- end-----**/
-.time-information .content-field {
-  padding: 0;
-}
-
-.task-and-case-information .content-field {
-  padding: 0;
-}
-
-.role-and-user-information .content-field {
-  padding: 0;
-}
-
 .task-details-panel-title {
   font-size: 16px;
 }

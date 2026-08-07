@@ -16,10 +16,10 @@
   <f:event listener="#{logic.initData(task)}" type="preRenderComponent" />
   <p:growl id="task-document-global-messages" for="task-document-global-messages" />
 
-  <div id="#{cc.clientId}" class="task-details-item-document ui-g">
-    <h:form id="task-document-form" prependId="false" styleClass="ui-g-12 u-padding-0">
+  <div id="#{cc.clientId}" class="task-details-item-document portal-detail-widget ui-g">
+    <h:form id="task-document-form" prependId="false" styleClass="ui-g-12 u-padding-0 portal-detail-widget-form">
       <div class="task-detail-section-title portal-detail-widget-header ui-g-12 flex align-items-center justify-content-between">
-        <div class="u-truncate-text u-padding-0 task-details-panel-title task-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="1">
+        <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="1">
           #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/documents')}
         </div>
         <h:panelGroup layout="block" styleClass="u-padding-0 document-task-detail-section-header-actions portal-detail-widget-header-actions flex align-items-center">
@@ -40,7 +40,7 @@
         </h:panelGroup>
       </div>
 
-      <div class="ui-g-12 u-padding-0">
+      <div class="ui-g-12 u-padding-0 portal-detail-widget-body">
         <p:dataTable id="task-details-documents" var="document" rendered="#{not empty data.documents}" value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" 
           pageLinks="3" rows="#{cc.attrs.documentWidget.rowPerPage}" rowsPerPageTemplate="5,10,20,50"
           paginatorPosition="bottom" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
