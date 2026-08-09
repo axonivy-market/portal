@@ -261,6 +261,12 @@ function getTableWidgetOf(tableBody) {
   return widgetName ? PF(widgetName) : undefined;
 }
 
+// allLoadedLiveScroll is not reliable after a refresh of the widget, it is recomputed from the chunk
+// size instead of the loaded rows, so use the same check as Primefaces does in loadLiveRows
+function hasChunkToLoad(widget) {
+  return widget.scrollOffset + widget.cfg.scrollStep <= widget.cfg.scrollLimit;
+}
+
 function fillLiveScrollUntilOverflow(tableBody, widget) {
   const body = tableBody.get(0);
   if (!body || !widget || !widget.cfg || !widget.cfg.liveScroll) {
@@ -274,7 +280,7 @@ function fillLiveScrollUntilOverflow(tableBody, widget) {
   const loadNextChunkIfNeeded = function() {
     // A body without height is not laid out yet, a later resize restarts the filling
     if (!body.isConnected || body.clientHeight <= 0 || !widget.shouldLiveScroll || widget.allLoadedLiveScroll
-        || hasVerticalOverflow(body) || attempts >= LIVE_SCROLL_FILL_MAX_ATTEMPTS) {
+        || !hasChunkToLoad(widget) || hasVerticalOverflow(body) || attempts >= LIVE_SCROLL_FILL_MAX_ATTEMPTS) {
       liveScrollFillingBodies.delete(body);
       return;
     }
