@@ -60,5 +60,36 @@
       "connect" : [
         { "id" : "f2", "to" : "f7" }
       ]
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "openDetails()",
+      "config" : {
+        "signature" : "openDetails",
+        "guid" : "1A0C4E10A1B2C002"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 224 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "SubProcessCall",
+      "name" : "OpenPortalCaseDetails",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)",
+        "call" : {
+          "map" : {
+            "param.caseData" : "in.ivyCase",
+            "param.isShowBackButton" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 224 },
+        "size" : { "width" : 144 }
+      }
     } ]
 }

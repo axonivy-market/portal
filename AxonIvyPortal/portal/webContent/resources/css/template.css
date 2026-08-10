@@ -254,21 +254,6 @@ a.left-sidebar-menu-icon {
   flex-wrap: wrap;
 }
 
-.note-history-export-button {
-  margin-top: 10px;
-  margin-bottom: 60px;
-}
-
-.note-history-container {
-  padding: .5em;
-  padding-bottom: 60px;
-}
-
-.note-history-container .note-history-state {
-  width: 100%;
-  float: none;
-}
-
 .case-template-content .case-details, .task-template-content .case-details {
   margin: 0 !important;
 }

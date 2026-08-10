@@ -3009,6 +3009,19 @@ body .portal-action-menu .portal-action-menu-item.color-destroy {
   border-top-color: var(--ivy-primary-color-grey-light);
 }
 
+/* Shared: standalone detail pages (documents / note history) ----------------------------------------*/
+.portal-detail-page-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+  min-width: 0;
+  gap: var(--portal-detail-card-gap);
+  margin: var(--portal-detail-grid-inset);
+}
+.portal-detail-page-content > .card {
+  margin-bottom: 0;
+}
+
 /* Shared: mid-size dialogs (share link, Excel export status, add note) ----------------------------------------*/
 .share-dialog.ui-dialog,
 .export-status-dialog.ui-dialog,

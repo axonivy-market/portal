@@ -391,5 +391,36 @@
         "at" : { "x" : 808, "y" : 496 },
         "labelOffset" : { "x" : 10, "y" : 30 }
       }
+    }, {
+      "id" : "f60",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "openDetails()",
+      "config" : {
+        "signature" : "openDetails",
+        "guid" : "1A0C4E10A1B2C001"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 712 }
+      },
+      "connect" : [
+        { "id" : "f62", "to" : "f61" }
+      ]
+    }, {
+      "id" : "f61",
+      "type" : "SubProcessCall",
+      "name" : "OpenPortalCaseDetails",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)",
+        "call" : {
+          "map" : {
+            "param.caseData" : "in.selectedCase",
+            "param.isShowBackButton" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 712 },
+        "size" : { "width" : 144 }
+      }
     } ]
 }
