@@ -1874,6 +1874,33 @@
               <stringProp name="RegexExtractor.match_number">1</stringProp>
             </RegexExtractor>
             <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract FirstTab Task Widget Id" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">firstTabTaskId</stringProp>
+              <stringProp name="RegexExtractor.regex">id=&quot;task-task_([a-zA-Z0-9]+):</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">MISSING_TASK_WIDGET_ID</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract FirstTab Case Widget Id" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">firstTabCaseId</stringProp>
+              <stringProp name="RegexExtractor.regex">id=&quot;case-case_([a-zA-Z0-9]+):</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">MISSING_CASE_WIDGET_ID</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract FirstTab Process Widget Id" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">firstTabProcessId</stringProp>
+              <stringProp name="RegexExtractor.regex">id=&quot;process-process_([a-zA-Z0-9]+):</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">MISSING_PROCESS_WIDGET_ID</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
             <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
@@ -1906,31 +1933,31 @@
                   </elementProp>
                   <elementProp name="jakarta.faces.source" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">task-task_1:task-component:rcLoadTaskFirstTime</stringProp>
+                    <stringProp name="Argument.value">task-task_${firstTabTaskId}:task-component:rcLoadTaskFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.source</stringProp>
                   </elementProp>
                   <elementProp name="jakarta.faces.partial.execute" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">task-task_1:task-component:rcLoadTaskFirstTime</stringProp>
+                    <stringProp name="Argument.value">task-task_${firstTabTaskId}:task-component:rcLoadTaskFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.partial.execute</stringProp>
                   </elementProp>
                   <elementProp name="jakarta.faces.partial.render" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">task-task_1:task-component:dashboard-tasks-container</stringProp>
+                    <stringProp name="Argument.value">task-task_${firstTabTaskId}:task-component:dashboard-tasks-container</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.partial.render</stringProp>
                   </elementProp>
-                  <elementProp name="task-task_1:task-component:rcLoadTaskFirstTime" elementType="HTTPArgument">
+                  <elementProp name="task-task_${firstTabTaskId}:task-component:rcLoadTaskFirstTime" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">task-task_1:task-component:rcLoadTaskFirstTime</stringProp>
+                    <stringProp name="Argument.value">task-task_${firstTabTaskId}:task-component:rcLoadTaskFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">task-task_1:task-component:rcLoadTaskFirstTime</stringProp>
+                    <stringProp name="Argument.name">task-task_${firstTabTaskId}:task-component:rcLoadTaskFirstTime</stringProp>
                   </elementProp>
                   <elementProp name="user-menu-required-login:global-search-component-mobile:global-search-data" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -1997,31 +2024,31 @@
                   </elementProp>
                   <elementProp name="jakarta.faces.source" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">case-case_1:case-component:rcLoadCaseFirstTime</stringProp>
+                    <stringProp name="Argument.value">case-case_${firstTabCaseId}:case-component:rcLoadCaseFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.source</stringProp>
                   </elementProp>
                   <elementProp name="jakarta.faces.partial.execute" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">case-case_1:case-component:rcLoadCaseFirstTime</stringProp>
+                    <stringProp name="Argument.value">case-case_${firstTabCaseId}:case-component:rcLoadCaseFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.partial.execute</stringProp>
                   </elementProp>
                   <elementProp name="jakarta.faces.partial.render" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">case-case_1:case-component:dashboard-cases-container</stringProp>
+                    <stringProp name="Argument.value">case-case_${firstTabCaseId}:case-component:dashboard-cases-container</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.partial.render</stringProp>
                   </elementProp>
-                  <elementProp name="case-case_1:case-component:rcLoadCaseFirstTime" elementType="HTTPArgument">
+                  <elementProp name="case-case_${firstTabCaseId}:case-component:rcLoadCaseFirstTime" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">case-case_1:case-component:rcLoadCaseFirstTime</stringProp>
+                    <stringProp name="Argument.value">case-case_${firstTabCaseId}:case-component:rcLoadCaseFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">case-case_1:case-component:rcLoadCaseFirstTime</stringProp>
+                    <stringProp name="Argument.name">case-case_${firstTabCaseId}:case-component:rcLoadCaseFirstTime</stringProp>
                   </elementProp>
                   <elementProp name="user-menu-required-login:global-search-component-mobile:global-search-data" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -2088,31 +2115,31 @@
                   </elementProp>
                   <elementProp name="jakarta.faces.source" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">process-process_1:process-component:rcLoadProcessFirstTime</stringProp>
+                    <stringProp name="Argument.value">process-process_${firstTabProcessId}:process-component:rcLoadProcessFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.source</stringProp>
                   </elementProp>
                   <elementProp name="jakarta.faces.partial.execute" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">process-process_1:process-component:rcLoadProcessFirstTime</stringProp>
+                    <stringProp name="Argument.value">process-process_${firstTabProcessId}:process-component:rcLoadProcessFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.partial.execute</stringProp>
                   </elementProp>
                   <elementProp name="jakarta.faces.partial.render" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">process-process_1:process-component:dashboard-processes-container</stringProp>
+                    <stringProp name="Argument.value">process-process_${firstTabProcessId}:process-component:dashboard-processes-container</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.partial.render</stringProp>
                   </elementProp>
-                  <elementProp name="process-process_1:process-component:rcLoadProcessFirstTime" elementType="HTTPArgument">
+                  <elementProp name="process-process_${firstTabProcessId}:process-component:rcLoadProcessFirstTime" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">process-process_1:process-component:rcLoadProcessFirstTime</stringProp>
+                    <stringProp name="Argument.value">process-process_${firstTabProcessId}:process-component:rcLoadProcessFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">process-process_1:process-component:rcLoadProcessFirstTime</stringProp>
+                    <stringProp name="Argument.name">process-process_${firstTabProcessId}:process-component:rcLoadProcessFirstTime</stringProp>
                   </elementProp>
                   <elementProp name="user-menu-required-login:global-search-component-mobile:global-search-data" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -2422,6 +2449,33 @@
                 <stringProp name="RegexExtractor.match_number">1</stringProp>
               </RegexExtractor>
               <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract SecondTab Task Widget Id" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">secondTabTaskId</stringProp>
+                <stringProp name="RegexExtractor.regex">id=&quot;task-task_([a-zA-Z0-9]+):</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default">MISSING_TASK_WIDGET_ID</stringProp>
+                <stringProp name="RegexExtractor.match_number">1</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract SecondTab Case Widget Id" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">secondTabCaseId</stringProp>
+                <stringProp name="RegexExtractor.regex">id=&quot;case-case_([a-zA-Z0-9]+):</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default">MISSING_CASE_WIDGET_ID</stringProp>
+                <stringProp name="RegexExtractor.match_number">1</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract SecondTab Process Widget Id" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">secondTabProcessId</stringProp>
+                <stringProp name="RegexExtractor.regex">id=&quot;process-process_([a-zA-Z0-9]+):</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default">MISSING_PROCESS_WIDGET_ID</stringProp>
+                <stringProp name="RegexExtractor.match_number">1</stringProp>
+              </RegexExtractor>
+              <hashTree/>
               <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
                 <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
               </DurationAssertion>
@@ -2449,31 +2503,31 @@
                   </elementProp>
                   <elementProp name="jakarta.faces.source" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">task-custom-task_1:task-component:rcLoadTaskFirstTime</stringProp>
+                    <stringProp name="Argument.value">task-task_${secondTabTaskId}:task-component:rcLoadTaskFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.source</stringProp>
                   </elementProp>
                   <elementProp name="jakarta.faces.partial.execute" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">task-custom-task_1:task-component:rcLoadTaskFirstTime</stringProp>
+                    <stringProp name="Argument.value">task-task_${secondTabTaskId}:task-component:rcLoadTaskFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.partial.execute</stringProp>
                   </elementProp>
                   <elementProp name="jakarta.faces.partial.render" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">task-custom-task_1:task-component:dashboard-tasks-container</stringProp>
+                    <stringProp name="Argument.value">task-task_${secondTabTaskId}:task-component:dashboard-tasks-container</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.partial.render</stringProp>
                   </elementProp>
-                  <elementProp name="task-custom-task_1:task-component:rcLoadTaskFirstTime" elementType="HTTPArgument">
+                  <elementProp name="task-task_${secondTabTaskId}:task-component:rcLoadTaskFirstTime" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">task-custom-task_1:task-component:rcLoadTaskFirstTime</stringProp>
+                    <stringProp name="Argument.value">task-task_${secondTabTaskId}:task-component:rcLoadTaskFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">task-custom-task_1:task-component:rcLoadTaskFirstTime</stringProp>
+                    <stringProp name="Argument.name">task-task_${secondTabTaskId}:task-component:rcLoadTaskFirstTime</stringProp>
                   </elementProp>
                   <elementProp name="user-menu-required-login:global-search-component-mobile:global-search-data" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -2540,31 +2594,31 @@
                   </elementProp>
                   <elementProp name="jakarta.faces.source" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">case-custom-case_1:case-component:rcLoadCaseFirstTime</stringProp>
+                    <stringProp name="Argument.value">case-case_${secondTabCaseId}:case-component:rcLoadCaseFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.source</stringProp>
                   </elementProp>
                   <elementProp name="jakarta.faces.partial.execute" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">case-custom-case_1:case-component:rcLoadCaseFirstTime</stringProp>
+                    <stringProp name="Argument.value">case-case_${secondTabCaseId}:case-component:rcLoadCaseFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.partial.execute</stringProp>
                   </elementProp>
                   <elementProp name="jakarta.faces.partial.render" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">case-custom-case_1:case-component:dashboard-cases-container</stringProp>
+                    <stringProp name="Argument.value">case-case_${secondTabCaseId}:case-component:dashboard-cases-container</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.partial.render</stringProp>
                   </elementProp>
-                  <elementProp name="case-custom-case_1:case-component:rcLoadCaseFirstTime" elementType="HTTPArgument">
+                  <elementProp name="case-case_${secondTabCaseId}:case-component:rcLoadCaseFirstTime" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">case-custom-case_1:case-component:rcLoadCaseFirstTime</stringProp>
+                    <stringProp name="Argument.value">case-case_${secondTabCaseId}:case-component:rcLoadCaseFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">case-custom-case_1:case-component:rcLoadCaseFirstTime</stringProp>
+                    <stringProp name="Argument.name">case-case_${secondTabCaseId}:case-component:rcLoadCaseFirstTime</stringProp>
                   </elementProp>
                   <elementProp name="user-menu-required-login:global-search-component-mobile:global-search-data" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -2631,31 +2685,31 @@
                   </elementProp>
                   <elementProp name="jakarta.faces.source" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">process-custom-compact-mode_1:process-component:rcLoadProcessFirstTime</stringProp>
+                    <stringProp name="Argument.value">process-process_${secondTabProcessId}:process-component:rcLoadProcessFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.source</stringProp>
                   </elementProp>
                   <elementProp name="jakarta.faces.partial.execute" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">process-custom-compact-mode_1:process-component:rcLoadProcessFirstTime</stringProp>
+                    <stringProp name="Argument.value">process-process_${secondTabProcessId}:process-component:rcLoadProcessFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.partial.execute</stringProp>
                   </elementProp>
                   <elementProp name="jakarta.faces.partial.render" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">process-custom-compact-mode_1:process-component:dashboard-processes-container</stringProp>
+                    <stringProp name="Argument.value">process-process_${secondTabProcessId}:process-component:dashboard-processes-container</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">jakarta.faces.partial.render</stringProp>
                   </elementProp>
-                  <elementProp name="process-custom-compact-mode_1:process-component:rcLoadProcessFirstTime" elementType="HTTPArgument">
+                  <elementProp name="process-process_${secondTabProcessId}:process-component:rcLoadProcessFirstTime" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">process-custom-compact-mode_1:process-component:rcLoadProcessFirstTime</stringProp>
+                    <stringProp name="Argument.value">process-process_${secondTabProcessId}:process-component:rcLoadProcessFirstTime</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">process-custom-compact-mode_1:process-component:rcLoadProcessFirstTime</stringProp>
+                    <stringProp name="Argument.name">process-process_${secondTabProcessId}:process-component:rcLoadProcessFirstTime</stringProp>
                   </elementProp>
                   <elementProp name="user-menu-required-login:global-search-component-mobile:global-search-data" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
