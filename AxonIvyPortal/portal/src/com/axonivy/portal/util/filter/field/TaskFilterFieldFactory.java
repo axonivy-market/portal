@@ -39,6 +39,7 @@ public class TaskFilterFieldFactory {
   private static final Map<String, FilterField> STANDARD_FILTER_FIELD = new HashMap<>();
   private static final Map<String, CustomFilterField> CUSTOM_FILTER_FIELD = new HashMap<>();
   private static final Map<String, CustomFilterField> CUSTOM_CASE_FILTER_FIELD = new HashMap<>();
+  private static final Map<String, CustomFilterField> CUSTOM_BUSINESS_CASE_FILTER_FIELD = new HashMap<>();
   private static final Map<String, Map<String, FilterField>> WIDGET_FILTER_FIELD = new HashMap<>();
   
   static {
@@ -71,7 +72,7 @@ public class TaskFilterFieldFactory {
     case STANDARD -> getStandardFilterField(widgetId).get(field);
     case CUSTOM -> CUSTOM_FILTER_FIELD.get(field);
     case CUSTOM_CASE -> CUSTOM_CASE_FILTER_FIELD.get(field);
-    case CUSTOM_BUSINESS_CASE -> CUSTOM_CASE_FILTER_FIELD.get(field);
+    case CUSTOM_BUSINESS_CASE -> CUSTOM_BUSINESS_CASE_FILTER_FIELD.get(field);
     default -> throw new IllegalArgumentException("Unexpected value: " + type.name());
     };
   }
@@ -100,7 +101,7 @@ public class TaskFilterFieldFactory {
     case STANDARD -> STANDARD_FILTER_FIELD.get(field);
     case CUSTOM -> CUSTOM_FILTER_FIELD.get(field);
     case CUSTOM_CASE -> CUSTOM_CASE_FILTER_FIELD.get(field);
-    case CUSTOM_BUSINESS_CASE -> CUSTOM_CASE_FILTER_FIELD.get(field);
+    case CUSTOM_BUSINESS_CASE -> CUSTOM_BUSINESS_CASE_FILTER_FIELD.get(field);
     default -> throw new IllegalArgumentException("Unexpected value: " + type.name());
     };
   }
@@ -158,17 +159,37 @@ public class TaskFilterFieldFactory {
       }
     }
 
+    // A case custom field can be added to a task widget as a sub case column or as a business case
+    // column, so it gets a filter field per case scope. The filter field remembers which one it
+    // belongs to and stamps that type on the filters it initializes.
     CUSTOM_CASE_FILTER_FIELD.clear();
+    CUSTOM_BUSINESS_CASE_FILTER_FIELD.clear();
     for (ICustomFieldMeta customCaseField : ICustomFieldMeta.cases()) {
       switch (customCaseField.type()) {
-      case STRING ->
-        CUSTOM_CASE_FILTER_FIELD.put(customCaseField.name(), new TaskFilterCaseFieldCustomString(customCaseField));
-      case TEXT ->
-        CUSTOM_CASE_FILTER_FIELD.put(customCaseField.name(), new TaskFilterCaseFieldCustomText(customCaseField));
-      case TIMESTAMP ->
-        CUSTOM_CASE_FILTER_FIELD.put(customCaseField.name(), new TaskFilterCaseFieldCustomTimestamp(customCaseField));
-      case NUMBER ->
-        CUSTOM_CASE_FILTER_FIELD.put(customCaseField.name(), new TaskFilterCaseFieldCustomNumber(customCaseField));
+      case STRING -> {
+        CUSTOM_CASE_FILTER_FIELD.put(customCaseField.name(),
+            new TaskFilterCaseFieldCustomString(customCaseField, DashboardColumnType.CUSTOM_CASE));
+        CUSTOM_BUSINESS_CASE_FILTER_FIELD.put(customCaseField.name(),
+            new TaskFilterCaseFieldCustomString(customCaseField, DashboardColumnType.CUSTOM_BUSINESS_CASE));
+      }
+      case TEXT -> {
+        CUSTOM_CASE_FILTER_FIELD.put(customCaseField.name(),
+            new TaskFilterCaseFieldCustomText(customCaseField, DashboardColumnType.CUSTOM_CASE));
+        CUSTOM_BUSINESS_CASE_FILTER_FIELD.put(customCaseField.name(),
+            new TaskFilterCaseFieldCustomText(customCaseField, DashboardColumnType.CUSTOM_BUSINESS_CASE));
+      }
+      case TIMESTAMP -> {
+        CUSTOM_CASE_FILTER_FIELD.put(customCaseField.name(),
+            new TaskFilterCaseFieldCustomTimestamp(customCaseField, DashboardColumnType.CUSTOM_CASE));
+        CUSTOM_BUSINESS_CASE_FILTER_FIELD.put(customCaseField.name(),
+            new TaskFilterCaseFieldCustomTimestamp(customCaseField, DashboardColumnType.CUSTOM_BUSINESS_CASE));
+      }
+      case NUMBER -> {
+        CUSTOM_CASE_FILTER_FIELD.put(customCaseField.name(),
+            new TaskFilterCaseFieldCustomNumber(customCaseField, DashboardColumnType.CUSTOM_CASE));
+        CUSTOM_BUSINESS_CASE_FILTER_FIELD.put(customCaseField.name(),
+            new TaskFilterCaseFieldCustomNumber(customCaseField, DashboardColumnType.CUSTOM_BUSINESS_CASE));
+      }
       default -> throw new IllegalArgumentException("Unexpected value: " + customCaseField.type());
       }
     }
