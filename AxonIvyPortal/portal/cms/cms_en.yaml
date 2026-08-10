@@ -160,6 +160,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_1: Heading 1
       HEADING_2: Heading 2
       HEADING_3: Heading 3
+      HEADING_4: Heading 4
       NORMAL_TEXT: Normal Text
   MyProfile:
     Accessibility: Accessibility
@@ -926,19 +927,20 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeConfigurationDescription: You can configure your widget in this configuration area. Please define the welcome text and image to be used.
       WelcomeWidget:
         AdvancedSettings: Advanced settings
+        ChangeImage: Change image
+        DarkMode: Dark mode
+        ImagePreview: Image preview
+        ImageRecommendation: 'Recommended: 1600×400px • JPG, PNG or SVG'
+        LightMode: Light mode
+        ConfigurationHeader: Welcome widget configuration
         ChooseAFit: Choose a fit
-        DisplayedText: '{0} display text'
+        DisplayText: Display text
         Greeting:
           Afternoon: Good afternoon
           Evening: Good evening
           Morning: Good morning
-        Image: Image
-        ImageDarkMode: Image for dark mode
         ImageInlineStyle: Image inline style
-        ImageLightMode: Image for light mode
         ImageStyleClass: Image style class
-        PreviewDarkMode: Preview for dark mode
-        PreviewLightMode: Preview for light mode
         PreviewTooltip: This Preview can’t render all settings but only should give an idea how the final widget will look like, image size, orientating and some CSS settings will not be previewed here.
         ShowGreeting: Show greeting
         TextColorDarkMode: Text color for dark mode

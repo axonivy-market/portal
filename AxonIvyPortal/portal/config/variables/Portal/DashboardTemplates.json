@@ -276,7 +276,7 @@
             "y": 0
           },
           "welcomeTextPosition": "TOP_LEFT",
-          "welcomeTextSize": "HEADING_3",
+          "welcomeTextSize": "HEADING_4",
           "welcomeTextColor": "#ffffff",
           "welcomeTexts": [
             {

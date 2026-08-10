@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.enums;
 
+import java.util.Optional;
+
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum DashboardWidgetType {
@@ -37,6 +39,13 @@ public enum DashboardWidgetType {
 
   public String getLabel() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/" + name());
+  }
+
+  public Optional<String> getConfigurationHeader() {
+    return switch (this) {
+      case WELCOME -> Optional.of(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ConfigurationHeader"));
+      default -> Optional.empty();
+    };
   }
 
   public boolean canEnableQuickSearch() {

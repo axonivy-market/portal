@@ -33,6 +33,7 @@ import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
+import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -50,6 +51,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   private ContentObject imageCMSObjectDarkMode;
   private int parsedClientTime;
   private List<WelcomeImageFit> imageFits;
+  private String welcomeTextValue;
 
   @Override
   public void init() {
@@ -230,11 +232,6 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
         Arrays.asList(FileUtils.byteCountToDisplaySize(getUploadFileLimit())));
   }
 
-  public boolean isApplicationDefaultEmailLanguage(String language) {
-    Locale defaultLocale = LanguageService.getInstance().getDefaultLanguage();
-    return defaultLocale.toLanguageTag().equalsIgnoreCase(language);
-  }
-
   private ContentObject getWelcomeWidgetImageContentObject(boolean isTempImage) {
     String imageName = WelcomeWidgetUtils.getFileNameOfImage(widget.getImageLocation());
     imageName = isTempImage ? "temp_".concat(imageName) : imageName;
@@ -249,17 +246,35 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     this.imageFits = imageFits;
   }
   
-  public String getLanguageDisplayText(Locale x) {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DisplayedText", 
-        Arrays.asList(x.getDisplayName(Ivy.session().getContentLocale())));
-  }
-  
   public void updateAltTextByLocale() {
     String currentAlt = LanguageUtils.getLocalizedName(widget.getAltTexts(), widget.getAltText());
     initAndSetValue(currentAlt, widget.getAltTexts());
   }
-  
+
   public void updateCurrentLanguage() {
     widget.setAltText(DisplayNameConvertor.updateCurrentValue(widget.getAltText(), widget.getAltTexts()));
+  }
+
+  public String getWelcomeTextValue() {
+    return LanguageUtils.getLocalizedName(widget.getWelcomeTexts(), welcomeTextValue);
+  }
+
+  public void setWelcomeTextValue(String welcomeTextValue) {
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(widget.getWelcomeTexts(), welcomeTextValue);
+    widget.setWelcomeTexts(nameResult.names());
+    this.welcomeTextValue = nameResult.name();
+  }
+
+  public void updateWelcomeTextByLocale() {
+    String currentText = LanguageUtils.getLocalizedName(widget.getWelcomeTexts(), welcomeTextValue);
+    initAndSetValue(currentText, widget.getWelcomeTexts());
+  }
+
+  public void updateCurrentWelcomeLanguage() {
+    setWelcomeTextValue(DisplayNameConvertor.updateCurrentValue(getWelcomeTextValue(), widget.getWelcomeTexts()));
+  }
+
+  public String getGreetingPreviewText() {
+    return generateGreetingText(getSupportedUserLanguage());
   }
 }
