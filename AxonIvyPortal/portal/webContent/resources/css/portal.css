@@ -2144,6 +2144,29 @@ body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-lg .ui
   margin-top: -0.9161rem;
   margin-left: -0.9161rem;
 }
+
+/* Shared: table-size variant of the round icon button ----------------------------------------*/
+body .portal-icon-btn-round.portal-icon-btn-sm,
+body .ui-datatable .ui-sidestep-action.portal-icon-btn-round,
+body .task-start-list .ui-sidestep-action.portal-icon-btn-round,
+body .case-list .ui-sidestep-action.portal-icon-btn-round {
+  width: 2.1429rem;
+  min-width: 2.1429rem;
+  height: 2.1429rem;
+  min-height: 2.1429rem;
+}
+body .portal-icon-btn-round.portal-icon-btn-sm .ti,
+body .ui-datatable .ui-sidestep-action.portal-icon-btn-round .ti,
+body .task-start-list .ui-sidestep-action.portal-icon-btn-round .ti,
+body .case-list .ui-sidestep-action.portal-icon-btn-round .ti {
+  font-size: 1.2201rem;
+}
+body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-sm .ui-icon {
+  font-size: 1.2201rem;
+  margin-top: -0.61rem;
+  margin-left: -0.61rem;
+}
+
 .portal-pill-btn.portal-pill-btn-lg.ui-button,
 .portal-pill-btn.portal-pill-btn-lg {
   height: 3.0714rem;
@@ -2499,10 +2522,6 @@ body a.portal-detail-toolbar-back:focus,
 .ui-sidestep-action.portal-icon-btn-round .ti {
   font-size: 1.4739rem;
   line-height: 1;
-}
-.task-detail-header-actions .ui-sidestep-action.portal-icon-btn-round .ti,
-.case-detail-header-actions .ui-sidestep-action.portal-icon-btn-round .ti {
-  font-size: 2.2107rem;
 }
 
 /* Attribute strip: Priority | State | Due | Workflow ----------------------------------------*/
