@@ -4113,10 +4113,6 @@ _:-ms-fullscreen, :root .content-link-history {
   overflow: hidden;
 }
 
-.content-field-after-escalation .has-avatar {
-  max-width: 80% !important;
-}
-
 .separator-task-detail::before {
   border-top: 1px solid var(--task-detail-separator-border-color);
 }

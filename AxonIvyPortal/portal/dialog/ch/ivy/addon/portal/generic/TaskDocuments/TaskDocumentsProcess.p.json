@@ -390,36 +390,5 @@
         "at" : { "x" : 808, "y" : 472 },
         "labelOffset" : { "x" : 10, "y" : 30 }
       }
-    }, {
-      "id" : "f60",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "openDetails()",
-      "config" : {
-        "signature" : "openDetails",
-        "guid" : "1A0C4E10A1B2C003"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 640 }
-      },
-      "connect" : [
-        { "id" : "f62", "to" : "f61" }
-      ]
-    }, {
-      "id" : "f61",
-      "type" : "SubProcessCall",
-      "name" : "OpenPortalTaskDetails",
-      "config" : {
-        "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean,Boolean)",
-        "call" : {
-          "map" : {
-            "param.task" : "in.task",
-            "param.showItemDetailsHeader" : "true"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 264, "y" : 640 },
-        "size" : { "width" : 144 }
-      }
     } ]
 }

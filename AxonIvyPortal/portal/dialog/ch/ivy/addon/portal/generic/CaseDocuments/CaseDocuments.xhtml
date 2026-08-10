@@ -15,7 +15,7 @@
         <h:form id="case-doc-toolbar-form" onsubmit="return false;" styleClass="portal-detail-toolbar">
           <h:panelGroup layout="block" styleClass="portal-detail-toolbar-start u-truncate-text">
             <p:commandLink id="back-to-case-details" process="@this"
-              actionListener="#{logic.openDetails}"
+              actionListener="#{caseTaskDocumentBean.navigateToCaseDetails(data.selectedCase)}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
               styleClass="portal-detail-toolbar-back">
               <i class="ti ti-chevron-left" aria-hidden="true" />

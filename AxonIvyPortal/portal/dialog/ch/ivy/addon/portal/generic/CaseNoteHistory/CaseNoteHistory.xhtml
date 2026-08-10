@@ -12,7 +12,7 @@
         <h:panelGroup layout="block" styleClass="portal-detail-toolbar">
           <h:panelGroup layout="block" styleClass="portal-detail-toolbar-start u-truncate-text">
             <p:commandLink id="back-to-case-details" process="@this"
-              actionListener="#{logic.openDetails}"
+              actionListener="#{caseTaskNoteHistoryBean.navigateToCaseDetails(data.ivyCase)}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
               styleClass="portal-detail-toolbar-back">
               <i class="ti ti-chevron-left" aria-hidden="true" />
