@@ -2496,14 +2496,13 @@ body a.portal-detail-toolbar-back:focus,
 .case-detail-header-actions {
   gap: 0.7143rem;
 }
-.task-detail-header-actions .ui-sidestep-action .task-action-item-label,
-.case-detail-header-actions .ui-sidestep-action .task-action-item-label {
-  display: none;
+.ui-sidestep-action.portal-icon-btn-round .ti {
+  font-size: 1.4739rem;
+  line-height: 1;
 }
 .task-detail-header-actions .ui-sidestep-action.portal-icon-btn-round .ti,
 .case-detail-header-actions .ui-sidestep-action.portal-icon-btn-round .ti {
   font-size: 2.2107rem;
-  line-height: 1;
 }
 
 /* Attribute strip: Priority | State | Due | Workflow ----------------------------------------*/
