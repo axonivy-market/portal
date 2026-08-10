@@ -58,7 +58,7 @@ public enum GlobalVariable {
   DEFAULT_PROCESS_IMAGE("Portal.Processes.DefaultImage", GlobalVariableType.EXTERNAL_SELECTION, DefaultImage.DEFAULT.name(), "defaultProcessImage", getDefaultProcessImage()),
   DEFAULT_HOMEPAGE("Portal.Homepage", GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage"),
   DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST("Portal.Tasks.BehaviourWhenClickingOnLineInTaskList", GlobalVariableType.EXTERNAL_SELECTION,
-      BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name(), "behaviourWhenClickingOnLineInTaskList", getBehavioursWhenClickingOnLineInTaskList()),
+      BehaviourWhenClickingOnLineInTaskList.ACCESS_TASK_DETAILS.name(), "behaviourWhenClickingOnLineInTaskList", getBehavioursWhenClickingOnLineInTaskList()),
   DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_CASE_LIST("Portal.Cases.BehaviourWhenClickingOnLineInCaseList", GlobalVariableType.EXTERNAL_SELECTION,
       BehaviourWhenClickingOnLineInCaseList.ACCESS_CASE_DETAILS.name(), "behaviourWhenClickingOnLineInCaseList", getBehavioursWhenClickingOnLineInCaseList()),
   ENABLE_PROCESS_VIEWER("Portal.ProcessViewer", GlobalVariableType.SELECTION, Option.TRUE.toString(), "enableProcessViewer"),

@@ -24,10 +24,19 @@
   --button-secondary-bg-color: var(--ivy-primary-color-white);
   --button-secondary-text-color: var(--primary-color);
 
+  /* Start button (task widget start column) */
+  --start-btn-bg: var(--ivy-portal-color-gray-25);
+  --start-btn-border-color: var(--ivy-portal-color-gray-45);
+  --start-btn-text-color: var(--ivy-primary-color-white);
+  --start-btn-hover-bg: hsla(0, 0%, 40%, 1);
+  --start-btn-disabled-bg: var(--ivy-portal-color-gray-20);
+  --start-btn-disabled-border-color: var(--ivy-portal-color-gray-29);
+  --start-btn-disabled-text-color: var(--ivy-portal-color-gray-medium);
+
   /* Color and border radius of context button,  it only affects when button has attribute styleClass="context-button" */
   --context-button-border-radius: 0px;
   --context-button-background-color: var(--ivy-primary-color-grey-light);
-  --context-button-state-hover-or-focus-background-color: var(--ivy-primary-color-grey-pale);
+  --context-button-state-hover-or-focus-background-color: hsla(0, 0%, 38%, 1);
 
   /* Widget header */
   --widget-sort-menu-border-bottom-color: var(--ivy-primary-color-grey-medium);
@@ -61,8 +70,9 @@
 
   /* Statistic widget */
   --statistic-filter-accordion-panel-border: var(--ivy-primary-color-grey-light);
-  --chart-container-background-color: var(--ivy-primary-color-grey-light);
+  --chart-container-background-color: var(--ivy-portal-color-gray-17);
   --chart-container-number-color: var(--ivy-primary-color);
+  --chart-container-number-border-color: var(--ivy-portal-color-gray-spaces);
   
   /* Filter Widget */
   --advanced-filter-error-color: var(--ivy-tertinary-color-red-medium);
@@ -71,7 +81,7 @@
   --widget-advanced-filter-hover-border: var(--ivy-primary-color-grey-light);
   --widget-filter-selection-container-border: transparent;
   --widget-advanced-filter-command-state-focus-background-color: none;
-  --widget-advanced-filter-overlay-panel-footer: var(--surface-d, rgb(84 91 103 / 50%));
+  --widget-advanced-filter-dialog-footer: var(--surface-d, rgb(84 91 103 / 50%));
   --widget-advanced-filter-command-background-color: none;
   --widget-advanced-filter-background-color: none;
   --widget-advanced-filter-hover-backround-color: transparent;
@@ -79,6 +89,32 @@
   --filter-selection-container-group-border-color: var(--ivy-primary-color-grey-medium);
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
   --widget-filter-background-color: var(--ivy-primary-color-grey-dark);
+
+  --widget-filter-save-filter-button-background-color: var(--ivy-portal-color-gray-69);
+  --widget-filter-condition-accent-border-color: hsla(0, 0%, 49%, 1);
+  --widget-filter-add-condition-background-color: hsla(0, 0%, 100%, 1);
+  --widget-filter-and-badge-background-color: hsla(0, 0%, 15%, 1);
+  --widget-filter-and-badge-text-color: hsla(0, 0%, 98%, 1);
+  --widget-filter-subtle-surface-color: hsla(0, 0%, 22%, 1);
+  --widget-filter-subtle-border-color: var(--surface-d, rgb(84 91 103 / 50%));
+  --widget-filter-chip-border-color: hsla(0, 0%, 29%, 1);
+  --widget-filter-save-input-border-color: hsla(0, 0%, 13%, 1);
+  --widget-filter-save-input-background-color: hsla(0, 0%, 22%, 1);
+  --widget-filter-empty-icon-color: var(--ivy-primary-color-grey-medium);
+  --widget-filter-empty-icon-background-color: hsla(0, 0%, 22%, 1);
+  --widget-filter-apply-button-background-color: hsla(0, 0%, 100%, 1);
+  --widget-filter-apply-button-hover-background-color: hsla(0, 0%, 38%, 1);
+  --widget-filter-apply-button-text-color: var(--ivy-primary-color-black);
+  --widget-filter-add-condition-text-color: var(--ivy-primary-color-black);
+  --widget-filter-save-filter-button-text-color: var(--ivy-primary-color-black);
+  --widget-filter-reset-button-text-color: hsla(0, 0%, 100%, 1);
+  --widget-filter-manage-filter-text-color: hsla(0, 0%, 100%, 1);
+  --widget-filter-saved-item-background-color: hsla(0, 0%, 22%, 1);
+  --widget-filter-saved-item-active-background-color: hsla(0, 0%, 17%, 1);
+  --widget-filter-saved-item-active-border: 1px solid hsla(0, 0%, 100%, 1);
+  --widget-filter-saved-item-active-text-color: hsla(0, 0%, 100%, 1);
+  --widget-filter-dialog-box-shadow: 0 0 27.225px 0 rgba(0, 0, 0, 0.35);
+  --widget-filter-dialog-backdrop-color: rgba(0, 0, 0, 0.6);
 
   /* Item in Widget List */
   --item-widget-background-color: var(--ivy-primary-color-grey-dark);
@@ -172,13 +208,26 @@
   --task-normal-priority-color: #49BAD6;
   --task-high-priority-color: #007095;
   --task-exception-priority-color: #EE4A52;
-  --task-state-suspended-background: #DADADA;
-  --task-state-suspended-color: var(--ivy-primary-color-grey-dark);
-  --task-state-resumed-background: #FFE896;
-  --task-state-done-background: #D4EBA2;
-  --task-state-parked-background: rgba(0, 112, 149, 0.2);
-  --task-state-failed-background: #EE4A52;
-  --task-state-failed-text-color: var(--ivy-primary-color-white);
+  --task-state-suspended-background: hsla(217, 91%, 60%, 0.25);
+  --task-state-suspended-border-color: hsla(217, 91%, 60%, 0.25);
+  --task-state-suspended-color: hsla(217, 100%, 82%, 1);
+  --task-state-resumed-background: hsla(48, 96%, 53%, 0.25);
+  --task-state-resumed-border: hsla(48, 96%, 53%, 0.25);
+  --task-state-resumed-color: hsla(48, 96%, 53%, 1);
+  --task-state-done-background: hsla(160, 84%, 39%, 0.25);
+  --task-state-done-border: hsla(160, 84%, 39%, 0.25);
+  --task-state-done-color: hsla(136, 51%, 80%, 1);
+  --task-state-parked-border: hsla(136, 52%, 81%, 1);
+  --task-state-parked-background: hsla(135, 50%, 95%, 1);
+  --task-state-failed-background: hsla(0, 84%, 60%, 0.25);
+  --task-state-failed-text-color: hsla(358, 82%, 79%, 1);
+  --task-state-failed-border: hsla(0, 84%, 60%, 0.25);
+  --task-state-delayed-background: hsla(25, 95%, 53%, 0.25);
+  --task-state-delayed-border-color: hsla(25, 95%, 53%, 0.25);
+  --task-state-delayed-color: hsla(25, 95%, 53%, 1);
+  --task-state-destroyed-background: hsla(0, 0%, 97%, 0.1);
+  --task-state-destroyed-border-color: hsla(0, 0%, 29%, 1);
+  --task-state-destroyed-color: hsla(0, 0%, 84%, 1);
   /* Task Action Item */
   --task-action-item-widget-header-color: var(--ivy-primary-color-white);
   --task-action-item-label-font-weight: normal;
@@ -309,13 +358,20 @@
   --image-process-header-background-color: hsla(0, 0%, 96%, 1);
   --image-process-header-background-color-hover: hsla(0, 0%, 86%, 1);
   --image-process-header-color: hsla(0, 0%, 49%, 1);
-  --process-action-button-color: hsla(0, 0%, 0%, 0.56);
+  --process-action-button-color: var(--widget-button-background-color);
   /* Process information page */
   --process-info-step-icon-font-color: var(--primary-color);
   /* Widget header */
   --widget-filter-noti-background-color: var(--ivy-tertinary-color-red-medium);
   --widget-filter-noti-color: var(--ivy-primary-color-white);
   --widget-header-icon: var(--ivy-primary-color-white);
+  --widget-button-border-color: var(--ivy-portal-color-gray-dark);
+  --widget-button-background-color: var(--ivy-portal-color-gray-20);
+  --widget-button-hover-background-color: hsla(0, 0%, 38%, 1);
+  --widget-view-toggle-bg: hsla(0, 0%, 22%, 1);
+  --widget-view-toggle-active-bg: hsla(0, 0%, 100%, 1);
+  --widget-view-toggle-icon: var(--ivy-portal-color-gray-dark);
+  --widget-view-toggle-border: transparent;
   /* New Dashboard */
   --dashboard-table-column-small-screen-description-color: var(--ivy-primary-color-grey-medium);
   --new-widget-dialog-title-color: var(--ivy-primary-color-black);

@@ -92,7 +92,7 @@
                     </div>
                     <div class="w-full pl-0 absence-management">
                       <p:tooltip globalSelector="i"/>
-                      <p:tooltip globalSelector=".deputy-avatar-stack-item" trackMouse="true"/>
+                      <p:tooltip globalSelector=".avatar-stack-item" trackMouse="true"/>
                       <p:dataTable id="absence-table" styleClass="absence-table pl-0"
                           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                           reflow="true" value="#{absenceManagementBean.displayedAbsences}" var="absence" paginator="true" rows="4"
@@ -114,11 +114,11 @@
                               <c:set var="isMoreThanOneUser" value="#{absenceManagementBean.displaySubstitutesOnAbsenceTab.size() gt 1}" />
                               
                               <div class="subsitute-column">
-                                <h:panelGroup layout="block" styleClass="deputy-avatar-stack"
+                                <h:panelGroup layout="block" styleClass="avatar-stack"
                                   rendered="#{showAvatar and isMoreThanOneUser}">
                                   <ui:repeat value="#{absenceManagementBean.displaySubstitutesOnAbsenceTab}" var="deputy">
                                     <c:set var="isPermanent" value="#{absenceManagementBean.isPermanentDeputy(deputy)}" />
-                                    <span class="deputy-avatar-stack-item"
+                                    <span class="avatar-stack-item"
                                       title="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.memberName)}#{isPermanent ? ' - ' : ''}#{isPermanent ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/setAsPermanent') : ''}">
                                       <pc:securityMemberNameAndAvatar
                                         displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.memberName)}"
@@ -240,10 +240,10 @@
                             <c:set var="showAvatar" value="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
                             <c:set var="isMoreThanOneDeputy" value="#{deputyRole.deputies.size() gt 1}" />
                             <div class="absence-column-value">
-                              <h:panelGroup layout="block" styleClass="deputy-avatar-stack"
+                              <h:panelGroup layout="block" styleClass="avatar-stack"
                                 rendered="#{showAvatar and isMoreThanOneDeputy}">
                                 <ui:repeat value="#{deputyRole.deputies}" var="deputy">
-                                  <span class="deputy-avatar-stack-item"
+                                  <span class="avatar-stack-item"
                                     title="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.memberName)}">
                                     <pc:securityMemberNameAndAvatar
                                       displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.memberName)}"
