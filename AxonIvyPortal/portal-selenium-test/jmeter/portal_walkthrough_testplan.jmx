@@ -2206,7 +2206,7 @@
                   </elementProp>
                   <elementProp name="selectedMenuId" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">user-menu-required-login:main-navigator:main-menu__js__customized-dashboard-sub-dashboard</stringProp>
+                    <stringProp name="Argument.value">user-menu-required-login:main-navigator:main-menu__js__${__P(portal.dashboard.secondtab.id)}-sub-dashboard</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">selectedMenuId</stringProp>
@@ -2332,7 +2332,7 @@
                   </elementProp>
                   <elementProp name="user-menu-required-login:main-navigator:main-menu_menuid" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.value">_js__customized-dashboard-sub-dashboard</stringProp>
+                    <stringProp name="Argument.value">_js__${__P(portal.dashboard.secondtab.id)}-sub-dashboard</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">user-menu-required-login:main-navigator:main-menu_menuid</stringProp>
