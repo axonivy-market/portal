@@ -318,7 +318,8 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/businessCase')}" />
         </div>
         <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-8 ui-g-10 u-no-padding-left u-truncate-text">
-          <p:commandLink id="related-case" styleClass="task-business-case" disabled="#{cc.attrs.readOnly}"
+          <p:commandLink id="related-case" styleClass="task-business-case"
+            disabled="#{cc.attrs.readOnly or not caseWidgetBean.isCaseFound(task.getCase().getBusinessCase())}"
             value="#{taskBean.displayCaseName(task)}" ariaLabel="#{taskBean.displayCaseName(task)}"
             actionListener="#{logic.navigateToRelatedCase(task.getCase().getBusinessCase())}">
           </p:commandLink>
@@ -336,7 +337,7 @@
             ariaLabel="#{taskBean.getTechnicalCaseDisplayName(task)}"
             actionListener="#{logic.navigateToRelatedCase(task.getCase())}"
             rendered="#{task.getCase().getId() != task.getCase().getBusinessCase().getId()}"
-            disabled="#{cc.attrs.readOnly}">
+            disabled="#{cc.attrs.readOnly or not caseWidgetBean.isCaseFound(task.getCase())}">
           </p:commandLink>
         </div>
       </h:panelGroup>
