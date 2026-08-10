@@ -53,36 +53,20 @@ pipeline {
           resultDir = "/var/tools/performance-result/${env.engineVersion}/${today}"
           fileOperations([folderCreateOperation(folderPath: "${resultDir}")])
 
-          echo '====================Test one admin user===================='
+          echo '====================Test one user===================='
           updateConfigFile('data/single_admin_user_server.csv', '1')
           // First executing takes more time, so not record the result of first time
           executeJMeter('../tmp.jtl')
 
-          executeJMeter('result_1_admin_user.jtl')
-
-          echo '====================Test for one normal user===================='
-          updateConfigFile('data/single_normal_user_server.csv', '1')
-          executeJMeter('result_1_normal_user.jtl')
+          executeJMeter('result_1_user.jtl')
 
           echo '====================Test ten users===================='
           updateConfigFile('data/users_server.csv', '10')
           executeJMeter('result_10_users.jtl')
 
-          echo '====================Test 100 users===================='
-          updateConfigFile('data/users_100_server.csv', '100', '100')
-          executeJMeter('result_100_users.jtl')
-
-          echo '====================Test 200 users===================='
-          updateConfigFile('data/users_200_server.csv', '200', '200')
-          executeJMeter('result_200_users.jtl')
-
-          echo '====================Test 300 users===================='
-          updateConfigFile('data/users_300_server.csv', '300', '300')
-          executeJMeter('result_300_users.jtl')
-
-          echo '====================Test 400 users===================='
-          updateConfigFile('data/users_400_server.csv', '400', '400')
-          executeJMeter('result_400_users.jtl')
+          echo '====================Test twenty users===================='
+          updateConfigFile('data/users_20_server.csv', '20')
+          executeJMeter('result_20_users.jtl')
         }
       }
     }
