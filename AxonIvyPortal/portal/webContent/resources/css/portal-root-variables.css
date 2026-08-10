@@ -113,7 +113,7 @@
   --task-item-description-line-height: 1.6rem;
   --task-item-name-line-height: 2rem;
   --task-item-name-font-weight: 700;
-  --task-state-border-radius: 10px;
+  --task-state-border-radius: 100px;
   --task-state-font-size: 1rem;
   --task-state-line-height: 1.6rem;
 

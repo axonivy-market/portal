@@ -212,28 +212,23 @@
   /* Surfaces */
   --portal-detail-card-bg: var(--ivy-primary-color-white);
   --portal-detail-subcard-bg: hsl(0, 0%, 98%);
-  --portal-detail-strip-bg: hsl(0, 0%, 98%);
+  --portal-detail-strip-bg: var(--portal-detail-subcard-bg);
   --portal-detail-table-cell-bg: var(--ivy-primary-color-white);
   /* Borders */
   --portal-detail-card-border-color: hsl(0, 0%, 92%);
-  --portal-detail-subcard-border-color: hsl(0, 0%, 92%);
-  --portal-detail-divider-color: hsl(0, 0%, 92%);
-  --portal-detail-strip-divider-color: hsl(0, 0%, 91%);
-  --portal-detail-table-header-border-color: hsl(0, 0%, 92%);
+  --portal-detail-subcard-border-color: var(--portal-detail-card-border-color);
+  --portal-detail-divider-color: var(--portal-detail-card-border-color);
+  --portal-detail-table-header-border-color: var(--portal-detail-card-border-color);
   --portal-detail-table-row-border-color: hsl(0, 0%, 91%);
+  --portal-detail-strip-divider-color: var(--portal-detail-table-row-border-color);
   /* Text */
   --portal-detail-value-color: var(--ivy-primary-color-black);
   --portal-detail-label-color: hsl(0, 0%, 46%);
-  --portal-detail-eyebrow-color: hsl(0, 0%, 46%);
+  --portal-detail-eyebrow-color: var(--portal-detail-label-color);
   /* Accent (Primary ramp) */
-  --portal-detail-primary-tint-bg: hsl(196, 43%, 93%);
-  --portal-detail-accent-btn-border: hsl(196, 42%, 71%);
   --portal-detail-accent-color: var(--ivy-portal-blue-dark);
-  /* Neutral buttons */
-  --portal-detail-neutral-btn-bg: hsl(0, 0%, 98%);
-  --portal-detail-neutral-btn-border: hsl(0, 0%, 92%);
   /* Empty state */
-  --portal-detail-empty-icon-bg: hsl(0, 0%, 97%);
+  --portal-detail-empty-icon-bg: hsl(0, 0%, 97.3%);
   --portal-detail-empty-icon-color: hsl(0, 0%, 75%);
   /* Type scale — 1rem == 14px (Freya root font-size) */
   --portal-detail-heading-font-size: 1.1429rem;
@@ -247,48 +242,10 @@
   --portal-detail-subcard-padding: 1.0714rem;
   --portal-detail-card-shadow: 0 0 1.9446rem 0 hsla(0, 0%, 0%, 0.05);
   --portal-detail-toolbar-shadow: 0 0 0.9723rem 0 hsla(0, 0%, 0%, 0.07);
-  /* State badges (Related tasks / Related cases tables) */
-  --portal-state-open-bg: hsla(217, 91%, 60%, 0.1);
-  --portal-state-open-border: hsla(217, 91%, 60%, 0.25);
-  --portal-state-open-color: hsl(217, 91%, 60%);
-  --portal-state-in-progress-bg: hsla(48, 96%, 53%, 0.1);
-  --portal-state-in-progress-border: hsla(48, 96%, 53%, 0.25);
-  --portal-state-in-progress-color: hsl(48, 88%, 29%);
-  --portal-state-delayed-bg: hsla(25, 95%, 53%, 0.1);
-  --portal-state-delayed-border: hsla(25, 95%, 53%, 0.25);
-  --portal-state-delayed-color: hsl(25, 95%, 53%);
-  --portal-state-done-bg: hsl(137, 50%, 95%);
-  --portal-state-done-border: hsl(136, 52%, 80%);
-  --portal-state-done-color: hsl(139, 47%, 32%);
-  --portal-state-error-bg: hsl(0, 77%, 95%);
-  --portal-state-error-border: hsl(358, 81%, 79%);
-  --portal-state-error-color: hsl(358, 83%, 30%);
-  --portal-state-neutral-bg: hsl(0, 0%, 97%);
-  --portal-state-neutral-border: hsl(0, 0%, 92%);
-  --portal-state-neutral-color: hsl(0, 0%, 46%);
   --portal-action-menu-radius: 10px;
   --portal-action-menu-shadow: 0 0 1.1143rem 0.2143rem hsla(0, 0%, 0%, 0.15);
   --portal-action-menu-divider-color: hsl(0, 0%, 97%);
   --portal-action-menu-destroy-color: hsl(358, 83%, 49%);
-  /* Legacy aliases — Task Details CSS still references these names */
-  --task-detail-card-bg: var(--portal-detail-card-bg);
-  --task-detail-card-border-color: var(--portal-detail-card-border-color);
-  --task-detail-card-radius: var(--portal-detail-card-radius);
-  --task-detail-subcard-bg: var(--portal-detail-subcard-bg);
-  --task-detail-subcard-border-color: var(--portal-detail-subcard-border-color);
-  --task-detail-eyebrow-color: var(--portal-detail-eyebrow-color);
-  --task-detail-label-color: var(--portal-detail-label-color);
-  --task-detail-value-color: var(--portal-detail-value-color);
-  --task-detail-strip-bg: var(--portal-detail-strip-bg);
-  --task-detail-strip-divider-color: var(--portal-detail-strip-divider-color);
-  --task-detail-divider-color: var(--portal-detail-divider-color);
-  --task-detail-empty-icon-bg: var(--portal-detail-empty-icon-bg);
-  --task-detail-empty-icon-color: var(--portal-detail-empty-icon-color);
-  --task-detail-primary-tint-bg: var(--portal-detail-primary-tint-bg);
-  --task-detail-accent-btn-border: var(--portal-detail-accent-btn-border);
-  --task-detail-neutral-btn-bg: var(--portal-detail-neutral-btn-bg);
-  --task-detail-neutral-btn-border: var(--portal-detail-neutral-btn-border);
-  --task-detail-card-gap: var(--portal-detail-card-gap);
   --task-start-info-header-font-weight: bold;
   --task-start-info-task-id-font-weight: normal;
   --task-name-input-font-weight: bold;

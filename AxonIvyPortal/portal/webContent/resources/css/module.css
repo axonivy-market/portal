@@ -832,7 +832,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   white-space: nowrap;
   box-sizing: border-box;
   width: fit-content;
-  padding: 0 8px;
+  padding: 0.1429rem 0.7143rem;
 }
 
 .state-column .case-state.ellipsis-state, 

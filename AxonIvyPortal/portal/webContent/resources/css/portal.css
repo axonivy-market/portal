@@ -2061,8 +2061,8 @@ body .portal-icon-btn-round {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1.237px solid var(--portal-detail-neutral-btn-border);
-  background: var(--portal-detail-neutral-btn-bg);
+  border: 1.237px solid var(--widget-button-border-color);
+  background: var(--widget-button-background-color);
   color: var(--portal-detail-value-color);
 }
 body .ui-button.ui-button-icon-only.portal-icon-btn-round .ui-icon {
@@ -2070,11 +2070,20 @@ body .ui-button.ui-button-icon-only.portal-icon-btn-round .ui-icon {
   margin-top: -0.737rem;
   margin-left: -0.737rem;
 }
+body .ui-button.ui-button-icon-only.portal-icon-btn-round:not(.ui-state-disabled):hover,
+body a.portal-icon-btn-round:hover,
+body .portal-icon-btn-round:hover {
+  background: var(--widget-button-hover-background-color);
+}
 body .ui-button.portal-icon-btn-round.portal-icon-btn-accent,
 body .portal-icon-btn-round.portal-icon-btn-accent {
-  border-color: var(--portal-detail-accent-btn-border);
-  background: var(--portal-detail-primary-tint-bg);
-  color: var(--portal-detail-accent-color);
+  border-color: var(--start-btn-border-color);
+  background: var(--start-btn-bg);
+  color: var(--start-btn-text-color);
+}
+body .ui-button.portal-icon-btn-round.portal-icon-btn-accent:not(.ui-state-disabled):hover,
+body .portal-icon-btn-round.portal-icon-btn-accent:hover {
+  background: var(--start-btn-hover-bg);
 }
 body a.portal-icon-btn-round,
 body a.portal-icon-btn-round:hover,
@@ -2093,8 +2102,8 @@ body a.portal-pill-btn:focus {
   align-items: center;
   justify-content: center;
   border-radius: 100px;
-  border: 1.237px solid var(--portal-detail-neutral-btn-border);
-  background: var(--portal-detail-neutral-btn-bg);
+  border: 1.237px solid var(--widget-button-border-color);
+  background: var(--widget-button-background-color);
   color: var(--portal-detail-value-color);
   padding: 0.6187rem 1.0714rem;
   min-height: 2.7114rem;
@@ -2111,9 +2120,9 @@ body a.portal-pill-btn:focus {
 }
 .portal-pill-btn.portal-pill-btn-accent.ui-button,
 .portal-pill-btn.portal-pill-btn-accent {
-  border-color: var(--portal-detail-accent-btn-border);
-  background: var(--portal-detail-primary-tint-bg);
-  color: var(--portal-detail-accent-color);
+  border-color: var(--start-btn-border-color);
+  background: var(--start-btn-bg);
+  color: var(--start-btn-text-color);
 }
 
 /* Shared: "Show more" link of the note / history / document widgets ----------------------------------------*/
@@ -2156,22 +2165,44 @@ body .ui-button.ui-button-text-icon-left.portal-pill-btn .ui-icon {
   margin: 0;
 }
 body .ui-button.portal-pill-btn,
-body .ui-button.portal-pill-btn.ui-state-hover,
 body .ui-button.portal-pill-btn.ui-state-focus,
 body .ui-button.portal-pill-btn.ui-state-active,
 body .ui-button.portal-pill-btn.ui-state-down {
-  background: var(--portal-detail-neutral-btn-bg);
-  border-color: var(--portal-detail-neutral-btn-border);
+  background: var(--widget-button-background-color);
+  border-color: var(--widget-button-border-color);
+  color: var(--portal-detail-value-color);
+}
+body .ui-button.portal-pill-btn.ui-state-hover,
+body .portal-pill-btn:not(.ui-state-disabled):hover {
+  background: var(--widget-button-hover-background-color);
+  border-color: var(--widget-button-border-color);
   color: var(--portal-detail-value-color);
 }
 body .ui-button.portal-pill-btn.portal-pill-btn-accent,
-body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-hover,
 body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-focus,
 body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-active,
 body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-down {
-  background: var(--portal-detail-primary-tint-bg);
-  border-color: var(--portal-detail-accent-btn-border);
-  color: var(--portal-detail-accent-color);
+  background: var(--start-btn-bg);
+  border-color: var(--start-btn-border-color);
+  color: var(--start-btn-text-color);
+}
+body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-hover,
+body .portal-pill-btn.portal-pill-btn-accent:not(.ui-state-disabled):hover {
+  background: var(--start-btn-hover-bg);
+  border-color: var(--start-btn-border-color);
+  color: var(--start-btn-text-color);
+}
+body .portal-pill-btn.ui-state-disabled,
+body .portal-pill-btn.portal-pill-btn-accent.ui-state-disabled,
+body .ui-button.portal-pill-btn.ui-state-disabled,
+body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-disabled,
+body .portal-icon-btn-round.ui-state-disabled,
+body .portal-icon-btn-round.portal-icon-btn-accent.ui-state-disabled,
+body .ui-button.portal-icon-btn-round.ui-state-disabled,
+body .ui-button.portal-icon-btn-round.portal-icon-btn-accent.ui-state-disabled {
+  background: var(--start-btn-disabled-bg);
+  border-color: var(--start-btn-disabled-border-color);
+  color: var(--start-btn-disabled-text-color);
 }
 
 /* Shared: detail-page toolbar (Back + layout actions) ----------------------------------------*/
@@ -2401,18 +2432,18 @@ body a.portal-detail-toolbar-back:focus,
   font-size: var(--portal-detail-label-font-size);
   font-weight: 500;
   line-height: normal;
-  color: var(--task-detail-eyebrow-color);
+  color: var(--portal-detail-eyebrow-color);
 }
 .task-detail-name {
   font-weight: 600;
   font-size: var(--portal-detail-heading-font-size);
-  color: var(--task-detail-value-color);
+  color: var(--portal-detail-value-color);
 }
 .task-detail-pin-indicator {
   color: var(--primary-color);
 }
 .task-detail-subtitle {
-  color: var(--task-detail-label-color);
+  color: var(--portal-detail-label-color);
   font-size: var(--portal-detail-label-font-size);
   font-weight: 400;
 }
@@ -2466,17 +2497,11 @@ body a.portal-detail-toolbar-back:focus,
   gap: 0.7143rem;
 }
 .task-detail-header-actions .ui-sidestep-action .task-action-item-label,
-.task-detail-header-actions .ui-sidestep-action .ti-chevron-down,
-.case-detail-header-actions .ui-sidestep-action .task-action-item-label,
-.case-detail-header-actions .ui-sidestep-action .ti-chevron-down {
+.case-detail-header-actions .ui-sidestep-action .task-action-item-label {
   display: none;
 }
-.task-detail-header-actions .ui-sidestep-action.portal-icon-btn-round::before,
-.case-detail-header-actions .ui-sidestep-action.portal-icon-btn-round::before {
-  content: "\ea95";
-  font-family: "tabler-icons";
-  font-style: normal;
-  font-weight: normal;
+.task-detail-header-actions .ui-sidestep-action.portal-icon-btn-round .ti,
+.case-detail-header-actions .ui-sidestep-action.portal-icon-btn-round .ti {
   font-size: 2.2107rem;
   line-height: 1;
 }
@@ -2496,7 +2521,7 @@ body a.portal-detail-toolbar-back:focus,
   display: flex;
   align-items: center;
   gap: 0.4286rem;
-  color: var(--task-detail-value-color);
+  color: var(--portal-detail-value-color);
   font-size: var(--portal-detail-font-size);
   font-weight: 500;
   line-height: 1.2143rem;
@@ -2810,74 +2835,12 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   justify-content: center;
   box-sizing: border-box;
   padding: 0.3539rem;
-  border: 0.708px solid var(--portal-detail-accent-btn-border);
+  border: 0.708px solid var(--start-btn-border-color);
   border-radius: 0.5055rem;
-  background: var(--portal-detail-primary-tint-bg);
+  background: var(--start-btn-bg);
   color: var(--portal-detail-accent-color);
   font-size: 1.0617rem !important;
   line-height: 1 !important;
-}
-
-/* State badges in the Related tasks / Related cases tables ----------------------------------------*/
-.portal-detail-body .state-column .case-state:not(.state-indicator),
-.portal-detail-body .state-cell .task-state:not(.state-indicator),
-.portal-detail-body .related-task-state-column .task-state:not(.state-indicator) {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  width: fit-content;
-  max-width: none;
-  padding: 0.1429rem 0.7143rem;
-  border: 1.237px solid var(--portal-state-neutral-border);
-  border-radius: 100px;
-  background: var(--portal-state-neutral-bg);
-  color: var(--portal-state-neutral-color);
-  font-size: var(--portal-detail-font-size);
-  font-weight: 400;
-  line-height: 1.856;
-  white-space: nowrap;
-}
-.portal-detail-body .open-case-state:not(.state-indicator),
-.portal-detail-body .open-task-state:not(.state-indicator),
-.portal-detail-body .created-task-state:not(.state-indicator),
-.portal-detail-body .suspended-task-state:not(.state-indicator) {
-  background: var(--portal-state-open-bg);
-  border-color: var(--portal-state-open-border);
-  color: var(--portal-state-open-color);
-}
-.portal-detail-body .in_progress-case-state:not(.state-indicator),
-.portal-detail-body .in_progress-task-state:not(.state-indicator),
-.portal-detail-body .resumed-task-state:not(.state-indicator) {
-  background: var(--portal-state-in-progress-bg);
-  border-color: var(--portal-state-in-progress-border);
-  color: var(--portal-state-in-progress-color);
-}
-.portal-detail-body .delayed-case-state:not(.state-indicator),
-.portal-detail-body .delayed-task-state:not(.state-indicator),
-.portal-detail-body .waiting-task-state:not(.state-indicator) {
-  background: var(--portal-state-delayed-bg);
-  border-color: var(--portal-state-delayed-border);
-  color: var(--portal-state-delayed-color);
-}
-.portal-detail-body .done-case-state:not(.state-indicator),
-.portal-detail-body .done-task-state:not(.state-indicator) {
-  background: var(--portal-state-done-bg);
-  border-color: var(--portal-state-done-border);
-  color: var(--portal-state-done-color);
-}
-.portal-detail-body .failed-case-state:not(.state-indicator),
-.portal-detail-body .failed-task-state:not(.state-indicator),
-.portal-detail-body .join_failed-task-state:not(.state-indicator) {
-  background: var(--portal-state-error-bg);
-  border-color: var(--portal-state-error-border);
-  color: var(--portal-state-error-color);
-}
-.portal-detail-body .destroyed-case-state:not(.state-indicator),
-.portal-detail-body .destroyed-task-state:not(.state-indicator) {
-  background: var(--portal-state-neutral-bg);
-  border-color: var(--portal-state-neutral-border);
-  color: var(--portal-state-neutral-color);
 }
 
 /* Shared: action popup menu ----------------------------------------*/
