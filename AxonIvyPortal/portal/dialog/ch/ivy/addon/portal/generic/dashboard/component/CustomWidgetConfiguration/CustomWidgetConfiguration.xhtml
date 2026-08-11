@@ -41,7 +41,7 @@
           actionListener="#{managedBean.updateWidgetNameByLocale()}"
           process="widget-title"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-          update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+          update=":#{cc.clientId}:title-language-config:multiple-languages-dialog"
           oncomplete="PF('multiple-languages-dialog').show();">
           <f:param name="skipValidator" value="true" />
         </p:commandButton>

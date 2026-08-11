@@ -120,7 +120,7 @@
           icon="#{visibilityBean.generateButtonIcon('ti ti-device-floppy')}" partialSubmit="true"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           process="task-detail-note-content #{p:resolveFirstComponentWithId('show-system-notes-checkbox', view).clientId}"
-          update="task-detail-note-content task-detail-create-note-msg #{cc.clientId}:task-history-content-container"
+          update="task-detail-note-content task-detail-create-note-msg :#{cc.clientId}:task-history-content-container"
           actionListener="#{logic.createNote()}" oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.clientId}:addNewNoteDialog').hide();handleTaskDetailsTables()}" />
       </h:panelGroup>
     </h:form>

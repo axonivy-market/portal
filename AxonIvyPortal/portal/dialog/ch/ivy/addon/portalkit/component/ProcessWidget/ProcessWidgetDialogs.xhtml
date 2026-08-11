@@ -60,8 +60,8 @@
               <p:commandButton id="edit-name-language-button"  icon="ti ti-language" 
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                 actionListener="#{processWidgetBean.updateNameByLocale()}"
-                process="#{cc.clientId}:edit-process-form:external-link-name"
-                update="#{cc.clientId}:edit-name-language-config:multiple-languages-dialog"
+                process=":#{cc.clientId}:edit-process-form:external-link-name"
+                update=":#{cc.clientId}:edit-name-language-config:multiple-languages-dialog"
                 oncomplete="PF('multiple-languages-dialog').show();" />
             </div>
           </p:inplace>
@@ -96,8 +96,8 @@
             <p:commandButton id="edit-description-language-button" icon="ti ti-language" 
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
               actionListener="#{processWidgetBean.updateDescriptionByLocale()}"
-              process="#{cc.clientId}:edit-process-form:external-description"
-              update="#{cc.clientId}:edit-description-language-config:multiple-languages-dialog"
+              process=":#{cc.clientId}:edit-process-form:external-description"
+              update=":#{cc.clientId}:edit-description-language-config:multiple-languages-dialog"
               oncomplete="PF('multiple-languages-dialog').show();" />
             </div>
           </p:inplace>
@@ -189,9 +189,9 @@
     <f:facet name="footer">
       <p:commandButton id="save-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-        process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" styleClass="w-full" validateClient="true"
-        update="#{cc.clientId}:edit-process-form:edit-external-link-error-message #{cc.clientId}:process-list #{cc.clientId}"
-        oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); processWidget.setup(); processWidget.hideLoadingText();}" form="#{cc.clientId}:edit-process-form"/>
+        process=":#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" styleClass="w-full" validateClient="true"
+        update=":#{cc.clientId}:edit-process-form:edit-external-link-error-message :#{cc.clientId}:process-list #{cc.clientId}"
+        oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); processWidget.setup(); processWidget.hideLoadingText();}" form=":#{cc.clientId}:edit-process-form"/>
     </f:facet>
   </p:dialog>
   <!-- End Edit Process -->
@@ -216,7 +216,7 @@
     
     <ui:define name="dialogFooter">
       <h:form id="delete-process-workflow-form" styleClass="flex flex-column">
-        <p:commandButton id="remove-process-command" process="@this" update="#{cc.clientId}:process-list #{cc.clientId}"
+        <p:commandButton id="remove-process-command" process="@this" update=":#{cc.clientId}:process-list #{cc.clientId}"
           styleClass="w-full portal-remove-button"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
           actionListener="#{processWidgetBean.deleteProcessWorkflow()}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
@@ -251,8 +251,8 @@
         <p:commandButton id="add-name-language-button"  icon="ti ti-language" 
           actionListener="#{externalLinkBean.updateNameByLocale()}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-          process="#{cc.clientId}:add-external-link-form:external-link-name"
-          update="#{cc.clientId}:name-language-config:multiple-languages-dialog"
+          process=":#{cc.clientId}:add-external-link-form:external-link-name"
+          update=":#{cc.clientId}:name-language-config:multiple-languages-dialog"
           oncomplete="PF('multiple-languages-dialog').show();" />
       </div>
 
@@ -278,8 +278,8 @@
         <p:commandButton id="add-description-language-button" icon="ti ti-language" 
           actionListener="#{externalLinkBean.updateDescriptionByLocale()}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-          process="#{cc.clientId}:add-external-link-form:external-description"
-          update="#{cc.clientId}:description-language-config:multiple-languages-dialog"
+          process=":#{cc.clientId}:add-external-link-form:external-description"
+          update=":#{cc.clientId}:description-language-config:multiple-languages-dialog"
           oncomplete="PF('multiple-languages-dialog').show();" />
       </div>
 
@@ -380,10 +380,10 @@
 
     <f:facet name="footer">
       <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addLink')}"
-        process="#{cc.clientId}:add-external-link-form"
+        process=":#{cc.clientId}:add-external-link-form"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addLink')}"
-        form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink()}"
-        update="#{cc.clientId}:add-external-link-form #{cc.clientId}:process-list #{cc.clientId}" styleClass="w-full" validateClient="true"
+        form=":#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink()}"
+        update=":#{cc.clientId}:add-external-link-form :#{cc.clientId}:process-list #{cc.clientId}" styleClass="w-full" validateClient="true"
         oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); processWidget.setup(); processWidget.hideLoadingText()}" />
     </f:facet>
   </p:dialog>
@@ -392,26 +392,26 @@
   <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
     managedBean="#{externalLinkBean}"
     id="name-language-config" titles="#{externalLinkBean.externalLink.names}"
-    componentToUpdateOnCreate="#{cc.clientId}:add-external-link-form:external-link-name" 
-    componentToUpdateOnModify="#{cc.clientId}:add-external-link-form:external-link-name"/>
+    componentToUpdateOnCreate=":#{cc.clientId}:add-external-link-form:external-link-name" 
+    componentToUpdateOnModify=":#{cc.clientId}:add-external-link-form:external-link-name"/>
     
   <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
     managedBean="#{processWidgetBean}"
     id="edit-name-language-config" titles="#{processWidgetBean.editedExternalLink.names}"
-    componentToUpdateOnCreate="#{cc.clientId}:edit-process-form:external-link-name"
-    componentToUpdateOnModify="#{cc.clientId}:edit-process-form:external-link-name"/>
+    componentToUpdateOnCreate=":#{cc.clientId}:edit-process-form:external-link-name"
+    componentToUpdateOnModify=":#{cc.clientId}:edit-process-form:external-link-name"/>
     
   <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
     managedBean="#{externalLinkBean}" useInputText="false"
     id="description-language-config" titles="#{externalLinkBean.externalLink.descriptions}"
-    componentToUpdateOnCreate="#{cc.clientId}:add-external-link-form:external-description" 
-    componentToUpdateOnModify="#{cc.clientId}:add-external-link-form:external-description"/>
+    componentToUpdateOnCreate=":#{cc.clientId}:add-external-link-form:external-description" 
+    componentToUpdateOnModify=":#{cc.clientId}:add-external-link-form:external-description"/>
     
   <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
     managedBean="#{processWidgetBean}" useInputText="false"
     id="edit-description-language-config" titles="#{processWidgetBean.editedExternalLink.descriptions}"
-    componentToUpdateOnCreate="#{cc.clientId}:edit-process-form:external-description" 
-    componentToUpdateOnModify="#{cc.clientId}:edit-process-form:external-description"/>
+    componentToUpdateOnCreate=":#{cc.clientId}:edit-process-form:external-description" 
+    componentToUpdateOnModify=":#{cc.clientId}:edit-process-form:external-description"/>
     
 </ui:composition>
 </html>

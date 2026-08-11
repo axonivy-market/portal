@@ -43,7 +43,7 @@
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
             actionListener="#{managedBean.updateWidgetNameByLocale()}"
             process="widget-title"
-            update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+            update=":#{cc.clientId}:title-language-config:multiple-languages-dialog"
             oncomplete="PF('multiple-languages-dialog').show();" />
         </div>
       </h:panelGroup>

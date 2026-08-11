@@ -14,7 +14,7 @@
   <p:remoteCommand id="init-data-to-delegate-rc" name="initDataToDelegate"
     actionListener="#{logic.initDataToDelegate(cc.attrs.taskId, cc.attrs.task)}"
     oncomplete="PF('task-delegate-dialog').show()"
-    update="#{cc.clientId}:task-delegate-dialog"
+    update=":#{cc.clientId}:task-delegate-dialog"
     process="@this"/>
 
   <p:dialog id="task-delegate-dialog" closeOnEscape="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
@@ -51,7 +51,7 @@
             </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}"
-                update="#{cc.clientId}:task-delegate-form:proceed-task-delegate-command" />
+                update=":#{cc.clientId}:task-delegate-form:proceed-task-delegate-command" />
            </f:facet>
           </ic:com.axonivy.portal.components.UserSelection>
 
@@ -63,7 +63,7 @@
             autoCompletePanelStyleClass="ui-fluid">
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}"
-                update="#{cc.clientId}:task-delegate-form:proceed-task-delegate-command" />
+                update=":#{cc.clientId}:task-delegate-form:proceed-task-delegate-command" />
             </f:facet>
           </ic:com.axonivy.portal.components.RoleSelection>
           

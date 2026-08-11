@@ -19,7 +19,7 @@
             <p:commandLink id="create-from-scratch" styleClass="dashboard-action-container" oncomplete="PF('dashboard-creation-details-dialog').show()"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateFromScratch')}"
               actionListener="#{dashboardTemplateSelectionBean.createDashboardFromScratch(isPublicDashboard)}"
-              update="#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog" resetValues="true" global="false">
+              update=":#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog" resetValues="true" global="false">
               <div class="dashboard-action__icon">
                 <span class="ti ti-file-plus dashboard-action-container-icon" />
               </div>
@@ -34,7 +34,7 @@
           <h:panelGroup styleClass="ui-g-12 ui-lg-12 ui-md-6 ui-sm-12" rendered="#{dashboardModificationBean.hasImportDashboardPermission(isPublicDashboard)}">
             <p:commandLink id="import-dashboard" styleClass="dashboard-action-container" oncomplete="PF('dashboard-import-dialog').show()"
               actionListener="#{dashboardImportBean.importDashboard(isPublicDashboard)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/import')}"
-              update="#{cc.clientId}:dashboard-import-component:dashboard-import-dialog" resetValues="true" global="false">
+              update=":#{cc.clientId}:dashboard-import-component:dashboard-import-dialog" resetValues="true" global="false">
               <div class="dashboard-action__icon">
                 <span class="ti ti-file-upload dashboard-action-container-icon"></span>
               </div>
@@ -51,7 +51,7 @@
               <p:commandLink id="template" styleClass="dashboard-action-container" ariaLabel="#{template.title}"
                 actionListener="#{dashboardTemplateSelectionBean.onSelectTemplate(template, isPublicDashboard)}"
                 oncomplete="PF('dashboard-creation-details-dialog').show()"
-                update="#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog" resetValues="true" global="false">
+                update=":#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog" resetValues="true" global="false">
                 <div class="dashboard-action__icon">
                   <span class="ti #{template.icon} dashboard-action-container-icon" />
                 </div>

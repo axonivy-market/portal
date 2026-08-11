@@ -35,7 +35,7 @@
 
         <div  id="related-case-column-config" class="related-case-column-config">
           <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="case-columns-configuration"
-            updatedComponent="#{cc.clientId}:related-cases-container #{cc.clientId}:related-case-actions"
+            updatedComponent=":#{cc.clientId}:related-cases-container :#{cc.clientId}:related-case-actions"
             dataModel="#{data.caseLazyDataModel}" oncomplete="PF('case-config-columns-panel').hide()"
             configButtonId="case-config-button" overlayPanelId="case-config-columns-panel" />
         </div>
@@ -114,7 +114,7 @@
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="more-column">
           <div class="case-header-action-cell">
-            <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu" destroyCaseDialogComponent="#{cc.clientId}:destroy-related-case-confirmation-dialog"
+            <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu" destroyCaseDialogComponent=":#{cc.clientId}:destroy-related-case-confirmation-dialog"
               actionLinkStyleClass="ui-button-text-only" case="#{case}" inFrame="#{cc.attrs.inFrame}" onDestroyComplete="PF('destroy-related-case-dialog').show()"/>
           </div>
         </p:column>

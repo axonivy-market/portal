@@ -48,7 +48,7 @@
           </h:form>
 
           <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="case-columns-configuration"
-            updatedComponent="#{cc.clientId}:case-view #{cc.clientId}:widget-column-header #{cc.clientId}:hidden-case-count #{cc.clientId}:case-list-actions"
+            updatedComponent=":#{cc.clientId}:case-view :#{cc.clientId}:widget-column-header :#{cc.clientId}:hidden-case-count :#{cc.clientId}:case-list-actions"
             dataModel="#{data.dataModel}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();"
             configButtonId="case-config-button" overlayPanelId="case-config-columns-panel" />
         </h:panelGroup>

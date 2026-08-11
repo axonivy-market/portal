@@ -6,7 +6,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="head">
-      <h:outputScript library="primefaces" name="chartjs/chartjs.js" />
+      <h:outputScript library="primefaces" name="chart/chart.js" />
       <h:outputScript name="statistic.js" library="js" />
     </ui:define>
 
@@ -320,7 +320,7 @@
                   selection="#{dashboardBean.deleteFilters}" rowKey="#{quickFilter.id}"
                   emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/EmptyFilterMessage')}" lazy="false">
                   
-                  <p:column selectionMode="multiple" styleClass="saved-filter-selection-column text-center" width="20"/>
+                  <p:column selectionBox="true" styleClass="saved-filter-selection-column text-center" width="20"/>
 
                   <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" width="200"
                     filterBy="#{quickFilter.name}" sortBy="#{quickFilter.name}" filterMatchMode="contains">

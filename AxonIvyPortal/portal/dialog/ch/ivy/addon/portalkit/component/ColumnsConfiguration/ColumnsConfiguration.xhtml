@@ -27,7 +27,7 @@
 
   <p:overlayPanel id="#{cc.attrs.overlayPanelId}" widgetVar="#{cc.attrs.overlayPanelId}" appendTo="@(body)"
     styleClass="advanced-filter-panel filter-add-panel config-columns-panel" dismissable="true"
-    for="#{cc.clientId}:#{cc.attrs.configButtonId}" my="left top" at="left bottom"
+    for=":#{cc.clientId}:#{cc.attrs.configButtonId}" my="left top" at="left bottom"
     pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}">
     <h:form id="select-columns-form">
       <div class="config-checkbox-container">
@@ -47,7 +47,7 @@
           <p:commandLink id="cancel-command" process="@this" global="false"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')])}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-            update="#{cc.clientId}:config-columns-container #{cc.clientId}:#{cc.attrs.overlayPanelId}" resetValues="true"
+            update=":#{cc.clientId}:config-columns-container :#{cc.clientId}:#{cc.attrs.overlayPanelId}" resetValues="true"
             oncomplete="PF('#{cc.attrs.overlayPanelId}').hide()"
             actionListener="#{dataModel.setDisableSelectionCheckboxes(dataModel.autoHideColumns)}" />
           <p:spacer width="15" />
@@ -56,7 +56,7 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/applyContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')])}"
             actionListener="#{dataModel.saveColumnsConfiguration()}"
-            update="#{cc.clientId}:config-columns-container @form #{cc.attrs.updatedComponent}"
+            update=":#{cc.clientId}:config-columns-container @form #{cc.attrs.updatedComponent}"
             oncomplete="#{cc.attrs.oncomplete}">
           </p:commandButton>
         </h:panelGroup>

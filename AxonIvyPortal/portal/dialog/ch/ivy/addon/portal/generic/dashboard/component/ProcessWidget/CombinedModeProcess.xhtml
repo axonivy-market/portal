@@ -89,7 +89,7 @@
     <p:selectOneButton id="combined-process-widget-button-selection-#{index}" value="#{widget.showCases}" styleClass="combined-process-widget-button-selection">
       <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks')}" itemValue="false" />
       <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases')}" itemValue="true" />
-      <p:ajax update="#{cc.clientId}:process-task-case-container @this" process="@this"
+      <p:ajax update=":#{cc.clientId}:process-task-case-container @this" process="@this"
         listener="#{widget.setShowCases(widget.showCases)}" partialSubmit="true"/>
     </p:selectOneButton>
   </div>

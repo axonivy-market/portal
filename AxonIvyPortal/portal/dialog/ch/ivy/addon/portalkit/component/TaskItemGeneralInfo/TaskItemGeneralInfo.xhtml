@@ -199,7 +199,7 @@
               </f:facet>
 
               <p:ajax event="save" listener="#{logic.updateDelayTimestamp(task)}"
-                update="delay-form #{cc.clientId}:task-detail-state #{cc.attrs.componentToUpdate}" resetValues="true" />
+                update="delay-form #{p:resolveFirstComponentWithId('task-detail-state', view).clientId} #{cc.attrs.componentToUpdate}" resetValues="true" />
               <p:datePicker id="delay-date-calendar" styleClass="delay-date-calendar" value="#{task.delayTimestamp}"
                 placeholder="#{dateTimePatternBean.getShortDateTimePattern(false)}"
                 showTime="#{!dateTimePatternBean.isTimeHidden}"  locale="#{localeBean.locale}" >

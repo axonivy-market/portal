@@ -71,7 +71,7 @@
       </h:panelGroup>
     </f:facet>
     <h:form>
-      <p:remoteCommand name="updateCopyButton" actionListener="#{data.setIsCopied(false)}" update="#{cc.clientId}:exception-handler-command"
+      <p:remoteCommand name="updateCopyButton" actionListener="#{data.setIsCopied(false)}" update=":#{cc.clientId}:exception-handler-command"
         immediate="true" partialSubmit="true" global="false" delay="1500" process="@this"/>
     </h:form>
   </p:dialog>

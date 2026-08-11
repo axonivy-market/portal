@@ -8,7 +8,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <p:remoteCommand name="initCustomFieldCaseListData" actionListener="#{logic.getCustomFieldsData(cc.attrs.case)}" oncomplete="PF('case-custom-fields-dialog').show()" update="#{cc.clientId}:case-custom-fields-dialog" global="false"/>
+  <p:remoteCommand name="initCustomFieldCaseListData" actionListener="#{logic.getCustomFieldsData(cc.attrs.case)}" oncomplete="PF('case-custom-fields-dialog').show()" update=":#{cc.clientId}:case-custom-fields-dialog" global="false"/>
   <p:dialog id="case-custom-fields-dialog" widgetVar="case-custom-fields-dialog" 
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/customFieldsDialog', [cc.attrs.case.id])}"
     dynamic="true" closable="true" closeOnEscape="true"

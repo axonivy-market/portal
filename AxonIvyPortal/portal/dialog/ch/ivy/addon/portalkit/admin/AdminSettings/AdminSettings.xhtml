@@ -126,7 +126,7 @@
             <p:toggleSwitch id="announcement-toggle-switch" value="#{data.isAnnouncementActivated}" styleClass="flex align-items-center justify-content-center" widgetVar="announcementToggleSwitch" />
           </div>
           <p:commandButton id="save-changes-announcement" process="announcement-form" actionListener="#{logic.saveChangesAnnouncement()}"
-            update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
+            update=":#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}">
           </p:commandButton>

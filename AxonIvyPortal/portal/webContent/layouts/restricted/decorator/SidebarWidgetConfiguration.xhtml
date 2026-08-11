@@ -37,7 +37,7 @@
           actionListener="#{managedBean.updateWidgetNameByLocale()}"
           process="widget-title"
           partialSubmit="true"
-          update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+          update=":#{cc.clientId}:title-language-config:multiple-languages-dialog"
           oncomplete="PF('multiple-languages-dialog').show();" />
         </div>
     </h:panelGroup>  

@@ -16,7 +16,7 @@
       process="@this" partialSubmit="true" immediate="true" global="false" 
       actionListener="#{logic.calculateTaskDelegateOptions(cc.attrs.task)}"
       oncomplete="PF('task-escalation-activator-dialog').show();" resetValues="true"
-      update="#{cc.clientId}:task-escalation-activator-panel">
+      update="#{p:resolveFirstComponentWithId('task-escalation-activator-panel', view).clientId}">
     </p:remoteCommand>
       
   </h:form>
@@ -56,7 +56,7 @@
                 securityMember="#{user}" isStandAlone="false" />
             </p:column>
             <f:facet name="event">
-              <p:ajax event="itemSelect" listener="#{data.setIsDisabledAssignButton(false)}" update="#{cc.clientId}:task-escalation-activator-form:assign-task-command" />
+              <p:ajax event="itemSelect" listener="#{data.setIsDisabledAssignButton(false)}" update="#{p:resolveFirstComponentWithId('assign-task-command', view).clientId}" />
             </f:facet>
           </ic:com.axonivy.portal.components.UserSelection>
 
@@ -70,7 +70,7 @@
             completeMethod="#{logic.autoCompleteForRole}"
             isRenderedMessage="false">
             <f:facet name="event">
-              <p:ajax event="itemSelect" listener="#{data.setIsDisabledAssignButton(false)}" update="#{cc.clientId}:task-escalation-activator-form:assign-task-command" />
+              <p:ajax event="itemSelect" listener="#{data.setIsDisabledAssignButton(false)}" update="#{p:resolveFirstComponentWithId('assign-task-command', view).clientId}" />
             </f:facet>
           </ic:com.axonivy.portal.components.RoleSelection>
         </h:panelGroup>

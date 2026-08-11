@@ -39,7 +39,7 @@
       rendered="#{cc.attrs.renderDeputyInfo and responsibleBean.isSubstituteForTask(task.responsibles())}" />
 
     <p:tooltip rendered="#{securityMemberDisplayNameBean.isRenderDisplayNameTooltip(securityMember)}"
-      for="#{cc.clientId}:name-and-avatar:#{cc.attrs.textId}-text"
+      for=":#{cc.clientId}:name-and-avatar:#{cc.attrs.textId}-text"
       value="#{securityMemberDisplayNameBean.getFullDisplayName(securityMember, memberName)}"
       hideEvent="mouseleave click"
       styleClass="security-member-tooltip"
@@ -49,7 +49,7 @@
     <ui:fragment rendered="#{securityMemberDisplayNameBean.isRenderGroupUsersAsTooltip(securityMember, alwaysShowAsText)}">
       <f:event listener="#{logic.loadUsersForTooltip(securityMember)}" type="preRenderComponent" />
       <p:tooltip escape="false" value="#{htmlSanitizerBean.sanitize(data.usersInTooltips)}"
-        for="#{cc.clientId}:name-and-avatar:#{cc.attrs.textId}-text"
+        for=":#{cc.clientId}:name-and-avatar:#{cc.attrs.textId}-text"
         styleClass="security-member-tooltip"
         hideEvent="mouseleave click" />
     </ui:fragment>
@@ -99,7 +99,7 @@
               styleClass="widget-header-filter-input"
               keywordStoresIn="#{data.keyword}"
               listener="#{logic.filterUserByName(data.keyword)}"
-              updateComponent="#{cc.clientId}:user-form:user-data-container" />
+              updateComponent=":#{cc.clientId}:user-form:user-data-container" />
           </h:panelGroup>
 
           <c:set var="totalMember" value="#{data.memberNames.size()}" />

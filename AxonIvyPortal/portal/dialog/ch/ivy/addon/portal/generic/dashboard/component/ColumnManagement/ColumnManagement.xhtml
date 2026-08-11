@@ -93,7 +93,7 @@
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}" width="70" styleClass="text-center js-column-field-#{column.field}">
           <p:commandLink id="remove-link" actionListener="#{columnManagementBean.remove(column)}" global="false" process="@this" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
-            update="column-management-datatable #{cc.clientId}:column-management-form:standard-field-selection #{cc.clientId}:column-management-form:custom-field-selection">
+            update="column-management-datatable :#{cc.clientId}:column-management-form:standard-field-selection :#{cc.clientId}:column-management-form:custom-field-selection">
             <i class="ti ti-trash" />
           </p:commandLink>
         </p:column>

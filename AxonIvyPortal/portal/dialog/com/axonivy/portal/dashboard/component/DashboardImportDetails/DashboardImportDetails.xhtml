@@ -37,7 +37,6 @@
           <p:fileUpload id="dashboard-upload" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-hand-finger')}" dragDrop="true" widgetVar="dashboardUpload" style="display: none;" onvalidationfailure="handleUploadFileFail('dashboardUpload');" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" styleClass="dashboard-upload" mode="advanced" listener="#{managedBean.loadImportedFile}" update="import-dashboard-form import-dashboard-dialog-message #{p:resolveFirstComponentWithId('footer-button-container', view).clientId}" value="#{managedBean.importFile}" auto="true" dropZone="dashboard-upload-file-panel" requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" oncomplete="PF('#{cc.attrs.importDialogId}').initPosition();">
             <p:validateFile fileLimit="1" allowTypes="/(\.|\/)(json)$/i" />
           </p:fileUpload>
-          </p:fileUpload>
           <p:outputPanel id="dashboard-upload-file-panel" styleClass="ui-dashboard-upload-file-panel" >
               <span class="ui-dashboard-upload-file-label">
               <i class="ti ti-file-upload" id="ui-dashboard-upload-file-icon" />
@@ -91,7 +90,7 @@
                     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                     actionListener="#{managedBean.updateDashboardTitleByLocale()}"
                     process="import-dashboard-title"
-                    update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+                    update=":#{cc.clientId}:title-language-config:multiple-languages-dialog"
                     oncomplete="PF('multiple-languages-dialog').show();" />
                 </div>
                 <h:panelGroup layout="block"

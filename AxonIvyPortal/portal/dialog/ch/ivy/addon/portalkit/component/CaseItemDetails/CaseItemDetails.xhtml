@@ -176,7 +176,7 @@
   </h:panelGroup>
 
   <h:form>
-    <p:remoteCommand name="saveConfigurationCommand" update="#{cc.clientId}:case-details-actions" actionListener="#{caseDetailsBean.save()}"
+    <p:remoteCommand name="saveConfigurationCommand" update=":#{cc.clientId}:case-details-actions" actionListener="#{caseDetailsBean.save()}"
       global="false" />
 
     <p:remoteCommand name="backToCasesList" actionListener="#{caseBean.backToCasesList()}" process="@this"

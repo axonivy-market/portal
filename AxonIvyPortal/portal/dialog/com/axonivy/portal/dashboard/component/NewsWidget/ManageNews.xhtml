@@ -134,7 +134,7 @@
     <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
       actionListener="#{newsWidgetBean.deleteNews()}" icon="#{visibilityBean.generateButtonIcon('ti ti-circle-minus')}"
-      oncomplete="PF('delete-news-dialog').hide();" update="#{cc.clientId}:widget-content" />
+      oncomplete="PF('delete-news-dialog').hide();" update=":#{cc.clientId}:widget-content" />
   </ui:define>
 </ui:decorate>
 </html>

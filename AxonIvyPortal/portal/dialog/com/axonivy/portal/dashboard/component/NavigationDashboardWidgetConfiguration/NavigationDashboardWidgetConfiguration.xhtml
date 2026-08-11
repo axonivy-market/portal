@@ -41,7 +41,7 @@
             icon="ti ti-language" id="title-language-button"
             actionListener="#{managedBean.updateWidgetNameByLocale()}"
             process="widget-title"
-            update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+            update=":#{cc.clientId}:title-language-config:multiple-languages-dialog"
             oncomplete="PF('multiple-languages-dialog').show();">
           </p:commandButton>
       </div>
@@ -68,7 +68,7 @@
             icon="ti ti-language" id="button-name-language"
             actionListener="#{navigationDashboardWidgetBean.updateButtonNameByLocale(widget)}"
             process="button-name"
-            update="#{cc.clientId}:button-name-language-config:multiple-languages-dialog"
+            update=":#{cc.clientId}:button-name-language-config:multiple-languages-dialog"
             oncomplete="PF('multiple-languages-dialog').show();">
           </p:commandButton>
       </div>
