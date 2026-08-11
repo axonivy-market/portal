@@ -13,6 +13,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.SortMeta;
+import org.primefaces.util.ComponentTraversalUtils;
 
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
@@ -243,7 +244,8 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   public String getHistoryWidgetComponentId(String clientId) {
     int widgetPosition = getWidgetPositionByType("HistoryWidget");
     if (widgetPosition > -1) {
-      return clientId + ":widgets:" + widgetPosition +":history-container";
+      var component = ComponentTraversalUtils.firstWithId("history-container", FacesContext.getCurrentInstance().getViewRoot());
+      return component != null ? component.getClientId() : "";
     }
     return "";
   }

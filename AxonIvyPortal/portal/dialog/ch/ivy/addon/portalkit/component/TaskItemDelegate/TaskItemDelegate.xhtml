@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
   xmlns:ui="jakarta.faces.facelets" xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="jakarta.tags.core"
+  xmlns:p="primefaces" xmlns:pe="primefaces.extensions" xmlns:c="jakarta.tags.core"
   xmlns:pc="jakarta.faces.composite/components">
 
 <cc:interface componentType="IvyComponent">
@@ -14,7 +14,7 @@
   <p:remoteCommand id="init-data-to-delegate-rc" name="initDataToDelegate"
     actionListener="#{logic.initDataToDelegate(cc.attrs.taskId, cc.attrs.task)}"
     oncomplete="PF('task-delegate-dialog').show()"
-    update=":#{cc.clientId}:task-delegate-dialog"
+    update="#{p:resolveFirstComponentWithId('task-delegate-dialog', view).clientId}"
     process="@this"/>
 
   <p:dialog id="task-delegate-dialog" closeOnEscape="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
@@ -51,7 +51,7 @@
             </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}"
-                update=":#{cc.clientId}:task-delegate-form:proceed-task-delegate-command" />
+                update="#{p:resolveFirstComponentWithId('proceed-task-delegate-command', view).clientId}" />
            </f:facet>
           </ic:com.axonivy.portal.components.UserSelection>
 
@@ -63,7 +63,7 @@
             autoCompletePanelStyleClass="ui-fluid">
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}"
-                update=":#{cc.clientId}:task-delegate-form:proceed-task-delegate-command" />
+                update="#{p:resolveFirstComponentWithId('proceed-task-delegate-command', view).clientId}" />
             </f:facet>
           </ic:com.axonivy.portal.components.RoleSelection>
           

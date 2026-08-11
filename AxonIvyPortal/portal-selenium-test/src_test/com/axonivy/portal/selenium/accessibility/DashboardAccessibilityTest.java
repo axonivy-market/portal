@@ -19,7 +19,7 @@ import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DashboardAccessibilityTest extends BaseTest{
 
   @BeforeEach
