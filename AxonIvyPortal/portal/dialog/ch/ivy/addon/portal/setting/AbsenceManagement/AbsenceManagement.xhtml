@@ -30,14 +30,14 @@
             <div class="w-full mb-4">
               <div class="flex align-items-start justify-content-between">
                 <div class="flex align-items-center dashboard-configuration-title">
-                  <span class="dashboard-icon-container u-mar-right-10">
+                  <span class="portal-icon-container u-mar-right-10">
                     <i class="ti ti-user-x" />
                   </span>
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}" />
                 </div>
                 <h:panelGroup layout="block" styleClass="dashboard-configuration-info-circle">
                   <h:outputText id="absences-info-icon"
-                    styleClass="dashboard-configuration-info ti ti-info-circle dashboard-circle-icon" />
+                    styleClass="dashboard-configuration-info ti ti-info-circle portal-circle-icon" />
                   <p:tooltip for="absences-info-icon" escape="false" position="bottom"
                     styleClass="dashboard-info-tooltip" hideEvent="mouseleave click"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/description')}" />
@@ -149,10 +149,10 @@
                             styleClass="absences-table-action-column">
                             <p:commandButton id="absence-action-button" icon="ti ti-dots" rendered="#{absenceManagementBean.isAbsenceEditable(absence) or absenceManagementBean.isAbsenceDeletable(absence)}"
                               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                              styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain"
+                              styleClass="rounded-button portal-circle-icon ui-button-flat ui-button-plain"
                               type="button" />
                             <p:menu class="absence-column-value" overlay="true" trigger="absence-action-button"
-                              my="right top" at="right bottom" styleClass="settings-action-menu">
+                              my="right top" at="right bottom" styleClass="settings-action-menu dashboard-action-menu">
                               <p:menuitem id="edit-absence"
                                 actionListener="#{absenceManagementBean.editAbsence(absence)}"
                                 oncomplete="PF('absence-dialog').show()" update="@widgetVar(absence-dialog) absence-table"
@@ -256,7 +256,7 @@
                               actionListener="#{absenceManagementBean.initSelectedDeputies(deputyRole)}"
                               oncomplete="PF('choose-deputy-dialog').show();"
                               update="choose-deputy-dialog" global="false"
-                              process="@this" styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain"
+                              process="@this" styleClass="rounded-button portal-circle-icon ui-button-flat ui-button-plain"
                               rendered="#{absenceManagementBean.canCreateSubstitute(absenceManagementBean.selectedAbsenceUser)}" />
                           </p:column>
                         </p:dataTable>

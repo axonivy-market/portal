@@ -2361,63 +2361,58 @@ body.dark .menu-type-static {
   margin-bottom: 0.5rem;
 }
 
-.dashboard-icon-container {
+.portal-icon-container,
+.portal-circle-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   width: 32px;
   height: 32px;
+  box-sizing: border-box;
+}
+
+.portal-icon-container {
   border-radius: 8px;
   background-color: var(--dashboard-icon-bg-color);
   color: var(--text-color, #333);
   border: 1px solid var(--dashboard-icon-border-color);
-  box-sizing: border-box;
 }
 
-.dashboard-icon-container.u-mar-right-10 {
+.portal-icon-container.u-mar-right-10 {
   margin-right: 10px !important;
 }
 
-.dashboard-icon-container i {
-  position: static !important;
-  left: auto !important;
-  top: auto !important;
-  transform: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 1 !important;
-  font-size: 16px !important;
+.portal-icon-container i {
+  margin: 0;
+  padding: 0;
+  font-size: 1.6rem;
+  line-height: 1;
 }
 
-.dashboard-circle-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px !important;
-  height: 32px !important;
-  border-radius: 50% !important;
+.portal-circle-icon {
+  border-radius: 50%;
   background-color: var(--dashboard-icon-bg-color) !important;
-  color: var(--text-color, #333) !important;
   border: 1px solid var(--dashboard-icon-border-color) !important;
-  box-sizing: border-box !important;
+  color: var(--text-color, #333) !important;
+  margin: 0;
+  padding: 0;
 }
 
-.dashboard-circle-icon i, 
-.dashboard-circle-icon.ui-button .ui-icon,
-.dashboard-circle-icon::before {
+.portal-circle-icon i,
+.portal-circle-icon.ui-button .ui-icon,
+.portal-circle-icon::before {
   position: static !important;
-  left: auto !important;
-  top: auto !important;
   transform: none !important;
   margin: 0 !important;
   padding: 0 !important;
   line-height: 1 !important;
-  font-size: 16px !important;
-  display: block !important;
+  font-size: 1.6rem !important;
+  display: block;
 }
 
-.dashboard-circle-icon.ui-button .ui-button-text {
-  display: none !important;
+.portal-circle-icon.ui-button .ui-button-text {
+  display: none;
 }
 
 /* Dashboard Configuration Table Overrides */
@@ -2446,4 +2441,13 @@ body.dark .menu-type-static {
 .dashboard-tabs-header .dashboard-type-list {
   border-bottom: none;
   margin-bottom: -1px;
+}
+
+.ui-menu.dashboard-action-menu {
+  border: 1px solid var(--dashboard-action-menu-item-border-color) !important;
+  box-shadow: var(--dashboard-action-menu-box-shadow) !important;
+}
+
+.ui-menu.dashboard-action-menu .ui-menu-list .ui-menuitem:not(:last-child) {
+  border-bottom: 1px solid var(--dashboard-action-menu-item-border-color);
 }

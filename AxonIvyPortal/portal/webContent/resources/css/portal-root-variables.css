@@ -187,8 +187,8 @@
   --candidate-question-header-font-size: 1.5rem;
 
   /* Dashboard Icons */
-  --ivy-dashboard-icon-bg-light: #F8F8F8;
-  --ivy-dashboard-icon-border-light: #EBEBEB;
-  --ivy-dashboard-icon-bg-dark: #383838;
-  --ivy-dashboard-icon-border-dark: #4A4A4A;
+  --ivy-dashboard-icon-bg-light: hsl(0, 0%, 97.25%);
+  --ivy-dashboard-icon-border-light: var(--ivy-portal-color-gray-light);
+  --ivy-dashboard-icon-bg-dark: hsl(0, 0%, 21.96%);
+  --ivy-dashboard-icon-border-dark: var(--ivy-portal-color-gray-29);
 }

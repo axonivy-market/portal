@@ -23,9 +23,9 @@
         styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" width="25%">
-          <h:panelGroup id="top-dashboard-title-group" styleClass="u-truncate-text flex align-items-center gap-2" layout="block">
-            <span class="dashboard-icon-container"><i class="#{empty topDashboard.iconClass ? 'ti ti-layout-dashboard' : topDashboard.iconClass}" /></span>
-            <h:outputText value="#{topDashboard.title}" />
+          <h:panelGroup id="top-dashboard-title-group" styleClass="flex align-items-center gap-2" layout="block">
+            <span class="portal-icon-container"><i class="#{empty topDashboard.iconClass ? 'ti ti-layout-dashboard' : topDashboard.iconClass}" /></span>
+            <h:outputText styleClass="u-truncate-text" value="#{topDashboard.title}" />
           </h:panelGroup>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/Labels/Permissions')}" width="15%">
@@ -44,8 +44,8 @@
             <h:panelGroup layout="block">
               <p:commandButton id="top-dashboard-action-button" icon="ti ti-dots"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain" type="button" />
-              <p:menu id="top-dashboard-action-menu" styleClass="w-auto" overlay="true" trigger="top-dashboard-action-button"
+                styleClass="rounded-button portal-circle-icon ui-button-flat ui-button-plain" type="button" />
+              <p:menu id="top-dashboard-action-menu" styleClass="w-auto dashboard-action-menu" overlay="true" trigger="top-dashboard-action-button"
                 my="right top" at="right bottom">
                 <p:menuitem id="top-edit" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(topDashboard)}"
                   icon="ti ti-settings-cog" styleClass="dashboard-configuration-action-menu-icon"
@@ -97,9 +97,9 @@
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
       <p:ajax event="rowReorder" global="false" update="dashboard-table" listener="#{dashboardModificationBean.saveArrangment()}"/>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" width="25%">
-        <h:panelGroup id="dashboard-title-group" styleClass="u-truncate-text flex align-items-center gap-2" layout="block">
-          <span class="dashboard-icon-container"><i class="#{empty dashboard.iconClass ? 'ti ti-layout-dashboard' : dashboard.iconClass}" /></span>
-          <h:outputText value="#{dashboard.title}" />
+        <h:panelGroup id="dashboard-title-group" styleClass="flex align-items-center gap-2" layout="block">
+          <span class="portal-icon-container"><i class="#{empty dashboard.iconClass ? 'ti ti-layout-dashboard' : dashboard.iconClass}" /></span>
+          <h:outputText styleClass="u-truncate-text" value="#{dashboard.title}" />
           <p:tooltip for="dashboard-title-group" value="#{dashboard.title}" trackMouse="true" hideEvent="mouseleave click" styleClass="dashboard-configuration-tooltip"/>
         </h:panelGroup>
       </p:column>
@@ -121,8 +121,8 @@
           <h:panelGroup layout="block">
             <p:commandButton id="dashboard-configuration-action-button" icon="ti ti-dots"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-              styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain" type="button" />
-            <p:menu id="dashboard-configuration-action-menu" styleClass="w-auto" overlay="true" trigger="dashboard-configuration-action-button"
+              styleClass="rounded-button portal-circle-icon ui-button-flat ui-button-plain" type="button" />
+            <p:menu id="dashboard-configuration-action-menu" styleClass="w-auto dashboard-action-menu" overlay="true" trigger="dashboard-configuration-action-button"
               my="right top" at="right bottom">
               <p:menuitem id="edit-dashboard" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(dashboard)}"
                 icon="ti ti-settings-cog" styleClass="dashboard-configuration-action-menu-icon"
@@ -176,9 +176,9 @@
         styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" width="25%">
-          <h:panelGroup id="hidden-dashboard-title-group" styleClass="u-truncate-text flex align-items-center gap-2" layout="block">
-            <span class="dashboard-icon-container"><i class="#{empty hiddenDashboard.iconClass ? 'ti ti-layout-dashboard' : hiddenDashboard.iconClass}" /></span>
-            <h:outputText value="#{hiddenDashboard.title}" />
+          <h:panelGroup id="hidden-dashboard-title-group" styleClass="flex align-items-center gap-2" layout="block">
+            <span class="portal-icon-container"><i class="#{empty hiddenDashboard.iconClass ? 'ti ti-layout-dashboard' : hiddenDashboard.iconClass}" /></span>
+            <h:outputText styleClass="u-truncate-text" value="#{hiddenDashboard.title}" />
           </h:panelGroup>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/Labels/Permissions')}" width="15%">
@@ -197,8 +197,8 @@
             <h:panelGroup layout="block">
               <p:commandButton id="hidden-dashboard-action-button" icon="ti ti-dots"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                styleClass="rounded-button dashboard-circle-icon ui-button-flat ui-button-plain" type="button" />
-              <p:menu id="hidden-dashboard-action-menu" styleClass="w-auto" overlay="true" trigger="hidden-dashboard-action-button"
+                styleClass="rounded-button portal-circle-icon ui-button-flat ui-button-plain" type="button" />
+              <p:menu id="hidden-dashboard-action-menu" styleClass="w-auto dashboard-action-menu" overlay="true" trigger="hidden-dashboard-action-button"
                 my="right top" at="right bottom">
                 <p:menuitem id="hidden-edit-dashboard" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(hiddenDashboard)}"
                   icon="ti ti-settings-cog" styleClass="dashboard-configuration-action-menu-icon"

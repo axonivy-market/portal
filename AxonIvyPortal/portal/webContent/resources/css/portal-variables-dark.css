@@ -245,7 +245,7 @@
   --portal-button-text-color: var(--ivy-primary-color);
   /* Absences and Deputy */
   --substituted-user-text-color: var(--ivy-primary-color-black);
-  --substituted-user-avatar-color: #2c2c2c;
+  --substituted-user-avatar-color: var(--ivy-portal-color-gray-17);
   /* Awesome Icon Selection */
   --content-link-change-awesome-icon-color: var(--primary-color);
   --select-awesome-icon-button-font-weight: bold;
@@ -427,6 +427,8 @@
   
   --dashboard-icon-bg-color: var(--ivy-dashboard-icon-bg-dark);
   --dashboard-icon-border-color: var(--ivy-dashboard-icon-border-dark);
+  --dashboard-action-menu-item-border-color: var(--ivy-dashboard-icon-bg-dark);
+  --dashboard-action-menu-box-shadow: 0px 0px 15.6px 3px rgba(0, 0, 0, 0.3);
 
   --sidebar-settings-card-bg-color: var(--ivy-portal-color-gray-20);
   --sidebar-settings-card-border-color: var(--ivy-dashboard-icon-border-dark);
