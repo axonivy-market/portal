@@ -37,7 +37,7 @@
         </p:selectBooleanCheckbox>
       </div>
       <h:panelGroup id="custom-columns-container">
-        <p:selectManyCheckbox id="columns-checkbox" value="#{dataModel.selectedColumns}" layout="grid" columns="1"
+        <p:selectManyCheckbox id="columns-checkbox" value="#{dataModel.selectedColumns}" layout="responsive" columns="1"
           disabled="#{dataModel.isDisableSelectionCheckboxes()}">
           <f:selectItems value="#{dataModel.allColumns}" var="column" itemLabel="#{dataModel.getColumnLabel(column)}"
             itemDisabled="#{dataModel.getPortalRequiredColumns().contains(column) or column eq 'NAME'}" />

@@ -120,10 +120,10 @@
                       <div class="flex align-items-center gap-2">
                         <p:outputLabel for="disable-sidebar-switch" styleClass="white-space-nowrap"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/DisableSidebar')}" />
-                        <p:inputSwitch id="disable-sidebar-switch" value="#{menuManagementBean.sidebarDisabled}">
+                        <p:toggleSwitch id="disable-sidebar-switch" value="#{menuManagementBean.sidebarDisabled}">
                           <p:ajax event="change" listener="#{menuManagementBean.saveSidebarMode}"
                             update="sidebar-settings-form" />
-                        </p:inputSwitch>
+                        </p:toggleSwitch>
                       </div>
                       <h:panelGroup id="sidebar-behaviour-panel" layout="block" rendered="#{not menuManagementBean.sidebarDisabled}"
                         styleClass="flex align-items-center gap-2">

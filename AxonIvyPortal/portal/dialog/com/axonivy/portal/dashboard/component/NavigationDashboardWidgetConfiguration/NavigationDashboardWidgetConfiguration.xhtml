@@ -111,19 +111,9 @@
             <p:tab title="Light Mode">
               <h:panelGroup id="file-upload-panel" layout="block"
                 styleClass="#{empty widget.imageLocation ? 'ui-g-12 ':'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
-                <p:fileUpload id="navigation-widget-image-upload"
-                  style="display: none;"
-                  widgetVar="navigationWidgetUpload"
-                  rendered="#{empty widget.imageLocation}"
-                  listener="#{navigationDashboardWidgetConfigurationBean.handleImageUpload}"
-                  chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
-                  dragDropSupport="true" auto="true" update="file-upload-panel"
-                  allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
-                  accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('navigationWidgetUpload');"
-                  sizeLimit="#{navigationDashboardWidgetConfigurationBean.uploadFileLimit}"
-                  invalidSizeMessage="#{navigationDashboardWidgetConfigurationBean.fileUploadInvalidSizeMessage}"
-                  invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
-                  dropZone="navigation-widget-preview-image-panel" />
+                <p:fileUpload id="navigation-widget-image-upload" style="display: none;" widgetVar="navigationWidgetUpload" rendered="#{empty widget.imageLocation}" listener="#{navigationDashboardWidgetConfigurationBean.handleImageUpload}" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" dragDrop="true" auto="true" update="file-upload-panel" accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('navigationWidgetUpload');" dropZone="navigation-widget-preview-image-panel" mode="advanced">
+                  <p:validateFile sizeLimit="#{navigationDashboardWidgetConfigurationBean.uploadFileLimit}" allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i" />
+                </p:fileUpload>
                   
                 <p:outputPanel id="navigation-widget-preview-image-panel" styleClass="ui-navigation-widget-preview-image-panel" >
                     <h:panelGroup rendered="#{empty widget.imageLocation}" class="ui-navigation-widget-preview-image-label">
@@ -154,19 +144,9 @@
             <p:tab title="Dark Mode">
               <h:panelGroup id="file-upload-panel-dark-mode" layout="block"
                 styleClass="#{empty widget.imageLocationDarkMode ? 'ui-g-12 ':'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
-                <p:fileUpload id="navigation-widget-image-dark-mode-upload"
-                  style="display: none;"
-                  widgetVar="navigationWidgetDarkModeUpload"
-                  rendered="#{empty widget.imageLocationDarkMode}"
-                  listener="#{navigationDashboardWidgetConfigurationBean.handleImageDarkModeUpload}"
-                  chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
-                  dragDropSupport="true" auto="true" update="file-upload-panel-dark-mode"
-                  allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
-                  accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('navigationWidgetDarkModeUpload');"
-                  sizeLimit="#{navigationDashboardWidgetConfigurationBean.uploadFileLimit}"
-                  invalidSizeMessage="#{navigationDashboardWidgetConfigurationBean.fileUploadInvalidSizeMessage}"
-                  invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
-                  dropZone="navigation-widget-preview-image-panel"/>
+                <p:fileUpload id="navigation-widget-image-dark-mode-upload" style="display: none;" widgetVar="navigationWidgetDarkModeUpload" rendered="#{empty widget.imageLocationDarkMode}" listener="#{navigationDashboardWidgetConfigurationBean.handleImageDarkModeUpload}" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" dragDrop="true" auto="true" update="file-upload-panel-dark-mode" accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('navigationWidgetDarkModeUpload');" dropZone="navigation-widget-preview-image-panel" mode="advanced">
+                  <p:validateFile sizeLimit="#{navigationDashboardWidgetConfigurationBean.uploadFileLimit}" allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i" />
+                </p:fileUpload>
                   
                 <p:outputPanel id="navigation-widget-preview-image-dark-mode-panel" styleClass="ui-navigation-widget-preview-image-panel" >
                     <h:panelGroup rendered="#{empty widget.imageLocationDarkMode}" class="ui-navigation-widget-preview-image-label">

@@ -100,7 +100,7 @@
       <!-- Hidden file upload — drop zone below acts as the trigger -->
       <p:fileUpload id="importFileUpload" listener="#{portalPackageBean.handleFileSelect}" mode="advanced" auto="true"
         accept="#{portalPackageBean.acceptedFileType}" widgetVar="importFileWidget" styleClass="portal-package-hidden-upload"
-        update="import-dialog-messages @(.portal-package-preview) @(.portal-package-actions)" dragDropSupport="true"
+        update="import-dialog-messages @(.portal-package-preview) @(.portal-package-actions)" dragDrop="true"
         oncomplete="PF('importFileWidget').clear();" dropZone="importDropZone" />
 
       <div class="flex flex-column gap-4">

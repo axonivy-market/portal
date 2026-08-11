@@ -140,18 +140,9 @@
         </h6>
         </div>
         <div class="w-full">
-          <p:fileUpload id="document-upload-panel"
-            listener="#{logic.uploadDocument}" mode="advanced"
-            chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
-            style="display: none;" dragDropSupport="true"
-            label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
-            auto="true" multiple="true"
-            sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
-            invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
-            update="#{p:resolveFirstComponentWithId('task-document-form', view).clientId} #{cc.attrs.componentToUpdate} @form"
-            oncomplete="handleTaskDetailsTables()" 
-            onvalidationfailure="handleUploadFileFail('documentUpload');"
-            dropZone="document-upload-file-panel" widgetVar="documentUpload" />
+          <p:fileUpload id="document-upload-panel" listener="#{logic.uploadDocument}" mode="advanced" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" style="display: none;" dragDrop="true" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true" multiple="true" update="#{p:resolveFirstComponentWithId('task-document-form', view).clientId} #{cc.attrs.componentToUpdate} @form" oncomplete="handleTaskDetailsTables()" onvalidationfailure="handleUploadFileFail('documentUpload');" dropZone="document-upload-file-panel" widgetVar="documentUpload">
+            <p:validateFile sizeLimit="#{masterDataBean.fileUploadSizeLimit}" />
+          </p:fileUpload>
         </div>
         <div class="ui-g-12">
           <p:outputPanel id="document-upload-file-panel" styleClass="ui-document-upload-file-panel">
