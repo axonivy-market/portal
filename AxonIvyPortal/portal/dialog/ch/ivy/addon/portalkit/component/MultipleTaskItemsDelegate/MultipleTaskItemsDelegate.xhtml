@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:p="primefaces" xmlns:pe="primefaces.extensions"
   xmlns:c="jakarta.tags.core"
   xmlns:pc="jakarta.faces.composite/components">
 
@@ -19,7 +19,7 @@
   <p:remoteCommand id="init-data-to-delegate-multiple-rc" name="initDataToDelegateMultipleTasks#{widgetIndex}"
     actionListener="#{logic.initDataToDelegateTasks(selectedTasks)}"
     oncomplete="PF('multiple-task-delegate-dialog-#{widgetIndex}').show();"
-    update="#{cc.clientId}:multiple-task-delegate-dialog-#{widgetIndex}"
+    update=":#{cc.clientId}:multiple-task-delegate-dialog-#{widgetIndex}"
     process="@this" />
 
   <p:remoteCommand id="reset-task-selection-rc-#{widgetIndex}" name="resetTaskSelectionOnWidget#{widgetIndex}"
@@ -66,7 +66,7 @@
             </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}"
-                update="#{cc.clientId}:multiple-task-delegate-form:proceed-multiple-task-delegate-command" />
+                update=":#{cc.clientId}:multiple-task-delegate-form:proceed-multiple-task-delegate-command" />
             </f:facet>
           </ic:com.axonivy.portal.components.UserSelection>
 
@@ -78,7 +78,7 @@
             autoCompletePanelStyleClass="ui-fluid">
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}"
-                update="#{cc.clientId}:multiple-task-delegate-form:proceed-multiple-task-delegate-command" />
+                update=":#{cc.clientId}:multiple-task-delegate-form:proceed-multiple-task-delegate-command" />
             </f:facet>
           </ic:com.axonivy.portal.components.RoleSelection>
         </h:panelGroup>
@@ -100,7 +100,7 @@
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"
             icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-right')}"
             actionListener="#{logic.delegateTask}" immediate="false"
-            process="@this #{cc.clientId}:multiple-task-delegate-form:multiple-activator-panel #{cc.clientId}:multiple-task-delegate-form:delegate-comment-panel"
+            process="@this :#{cc.clientId}:multiple-task-delegate-form:multiple-activator-panel :#{cc.clientId}:multiple-task-delegate-form:delegate-comment-panel"
             disabled="#{data.disabledDelegateButton}" update="#{cc.attrs.componentToUpdate}"
             oncomplete="PF('multiple-task-delegate-dialog-#{widgetIndex}').hide(); resetTaskSelectionOnWidget#{widgetIndex}(); #{cc.attrs.onCompletedCallback}"/>
         </h:panelGroup>
