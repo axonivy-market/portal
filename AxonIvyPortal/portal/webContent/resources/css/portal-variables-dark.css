@@ -212,11 +212,11 @@
   --portal-detail-table-row-border-color: hsl(0, 0%, 31%);
   --portal-detail-strip-divider-color: var(--portal-detail-table-row-border-color);
   /* Text */
-  --portal-detail-value-color: hsl(0, 0%, 100%);
+  --portal-detail-value-color: var(--text-color, hsl(0, 0%, 100%));
   --portal-detail-label-color: hsl(0, 0%, 64%);
   --portal-detail-eyebrow-color: var(--portal-detail-label-color);
   /* Accent */
-  --portal-detail-accent-color: hsl(0, 0%, 98%);
+  --portal-detail-accent-color: var(--primary-color, hsl(0, 0%, 98%));
   /* Empty state */
   --portal-detail-empty-icon-bg: hsl(0, 0%, 22%);
   --portal-detail-empty-icon-color: hsl(0, 0%, 46%);

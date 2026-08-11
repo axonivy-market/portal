@@ -222,11 +222,11 @@
   --portal-detail-table-row-border-color: hsl(0, 0%, 91%);
   --portal-detail-strip-divider-color: var(--portal-detail-table-row-border-color);
   /* Text */
-  --portal-detail-value-color: var(--ivy-primary-color-black);
+  --portal-detail-value-color: var(--text-color, var(--ivy-primary-color-black));
   --portal-detail-label-color: hsl(0, 0%, 46%);
   --portal-detail-eyebrow-color: var(--portal-detail-label-color);
   /* Accent (Primary ramp) */
-  --portal-detail-accent-color: var(--ivy-portal-blue-dark);
+  --portal-detail-accent-color: var(--primary-color, var(--ivy-portal-blue-dark));
   /* Empty state */
   --portal-detail-empty-icon-bg: hsl(0, 0%, 97.3%);
   --portal-detail-empty-icon-color: hsl(0, 0%, 75%);
