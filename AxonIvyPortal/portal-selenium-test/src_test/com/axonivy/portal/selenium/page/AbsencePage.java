@@ -60,11 +60,11 @@ public class AbsencePage extends TemplatePage {
   }
 
   public void assertAbsencesTabActive() {
-    $(ABSENCES_TAB_HEADER).shouldHave(Condition.attribute("aria-selected", "true"), DEFAULT_TIMEOUT);
+    $(ABSENCES_TAB_HEADER).$("a").shouldHave(Condition.attribute("aria-selected", "true"), DEFAULT_TIMEOUT);
   }
 
   public void assertSubstitutesTabActive() {
-    $(SUBSTITUTES_TAB_HEADER).shouldHave(Condition.attribute("aria-selected", "true"), DEFAULT_TIMEOUT);
+    $(SUBSTITUTES_TAB_HEADER).$("a").shouldHave(Condition.attribute("aria-selected", "true"), DEFAULT_TIMEOUT);
   }
 
   public boolean isAbsencesTabActive() {
@@ -76,7 +76,7 @@ public class AbsencePage extends TemplatePage {
   }
 
   private boolean isTabActive(SelenideElement tabHeader) {
-    return "true".equals(tabHeader.getAttribute("aria-selected"));
+    return "true".equals(tabHeader.$("a").getAttribute("aria-selected"));
   }
 
   public void countAbsences(int expectedSize) {
