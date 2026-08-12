@@ -7,6 +7,8 @@ import static com.codeborne.selenide.Selenide.$;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
+import com.codeborne.selenide.ScrollIntoViewOptions;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -30,6 +32,11 @@ public class ReorderDashboardPage extends TemplatePage {
 
   private void dragAndDropTo(SelenideElement toRow, SelenideElement fromRow) {
     SelenideElement targetCssSelector = $("[id$='" + toRow.getAttribute("id") + "']");
+    // Center both rows in the viewport first: a native Actions move computes an absolute on-screen point
+    // (here the target's position plus a 50,20 offset), and that throws MoveTargetOutOfBoundsException if
+    // the row sits near the bottom/edge of a short viewport instead of being scrolled into comfortable view.
+    fromRow.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
+    targetCssSelector.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
     Actions builder = new Actions(WebDriverRunner.getWebDriver());
     Action dragAndDrop = builder.clickAndHold(fromRow).pause(500)
         .moveToElement(targetCssSelector, 50, 20).pause(500).release(targetCssSelector)

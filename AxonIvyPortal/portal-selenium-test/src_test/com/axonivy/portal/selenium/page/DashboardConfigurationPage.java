@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
-
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -15,8 +14,11 @@ import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.Sleeper;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ScrollIntoViewOptions;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -346,7 +348,8 @@ public class DashboardConfigurationPage extends TemplatePage {
   public void selectDashboardDisplayType(DashboardDisplayType type, SelenideElement createDashboardDialog) {
     String label = displayTypeLabel(type);
     createDashboardDialog.$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("ul[id$='dashboard-display-menu_items']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li").filter(Condition.text(label)).first().click();
+    WaitHelper.waitPageNoAnimation();
+    $("[id$='dashboard-display-menu_items']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li").filter(Condition.text(label)).first().click();
   }
 
   private static String displayTypeLabel(DashboardDisplayType type) {
@@ -372,12 +375,14 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public NewDashboardPage backToHomePage() {
-    $("span[class*='ti ti-home']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    WaitHelper.waitForNavigation(
+        () -> $("span[class*='ti ti-home']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click());
     return new NewDashboardPage();
   }
 
   public NewDashboardPage backToHomePageBottom() {
-    $("span[class*='ti ti-home']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    WaitHelper.waitForNavigation(
+        () -> $("span[class*='ti ti-home']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click());
     return new NewDashboardPage();
   }
 
@@ -467,6 +472,11 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   private void dragAndDropTo(SelenideElement toRow, SelenideElement fromRow) {
     SelenideElement targetCssSelector = $("[id$='"+ toRow.getAttribute("id") + "']");
+    // Center both rows in the viewport first: a native Actions move computes an absolute on-screen point
+    // (here the target's position plus a 50,20 offset), and that throws MoveTargetOutOfBoundsException if
+    // the row sits near the bottom/edge of a short viewport instead of being scrolled into comfortable view.
+    fromRow.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
+    targetCssSelector.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
     Actions builder = new Actions(WebDriverRunner.getWebDriver());
     Action dragAndDrop = builder.clickAndHold(fromRow).pause(500)
         .moveToElement(targetCssSelector, 50, 20).pause(500).release(targetCssSelector)

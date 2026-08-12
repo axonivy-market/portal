@@ -361,10 +361,15 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':general-information:priority-form:priority-select-menu_label']"),
         true);
     findElementByCssSelector("[id$=':general-information:priority-form:priority-select-menu_label']").click();
+    WaitHelper.waitPageNoAnimation();
     SelenideElement prioritySelectElement = findElementByCssSelector(
         String.format("[id$=':general-information:priority-form:priority-select-menu_%d']", priorityValue));
     waitForElementDisplayed(prioritySelectElement, true);
     prioritySelectElement.click();
+    // Wait for this panel's own closing transition to finish before clicking Save - otherwise its
+    // still-closing overlay can intercept that click, which is a silent no-op.
+    waitForElementDisplayed(
+        $("[id$=':general-information:priority-form:priority-select-menu_panel']"), false);
     clickByJavaScript($("[id$=':general-information:priority-form:edit-priority-inplace_editor'] .ui-inplace-save"));
     waitForElementDisplayed(
         By.cssSelector("[id$=':general-information:priority-form:edit-priority-inplace_editor'] .ui-inplace-save"),

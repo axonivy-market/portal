@@ -9,8 +9,11 @@ import java.util.List;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ScrollIntoViewOptions;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -105,6 +108,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectProcessMode(String mode) {
     getProcessDisplayMode().click();
+    WaitHelper.waitPageNoAnimation();
     $("li[data-label='" + mode + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
@@ -257,7 +261,8 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectCompactProcessSorting(String sorting) {
     getCompactModeSorting().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("li[data-label='" + sorting + "']").click();
+    WaitHelper.waitPageNoAnimation();
+    $("li[data-label='" + sorting + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
   }
 
   private SelenideElement getCompactModeSorting() {
@@ -442,6 +447,11 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
       SelenideElement toElement = findAll.get(toIndex)
           .$(".process-start-list-item").shouldBe(clickable(), DEFAULT_TIMEOUT);
 
+      // Center both rows in the viewport first: a native Actions move computes an absolute on-screen point
+      // (here the target's position plus a 50,20 offset), and that throws MoveTargetOutOfBoundsException if
+      // the row sits near the bottom/edge of a short viewport instead of being scrolled into comfortable view.
+      fromElement.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
+      toElement.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
       Actions builder = new Actions(WebDriverRunner.getWebDriver());
       Action dragAndDrop = builder.clickAndHold(fromElement).pause(500)
           .moveToElement(toElement, 50, 20).pause(500).release(toElement)

@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -238,6 +239,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     getStandardFieldSelection().click();
     SelenideElement standardFieldPanel = $("div[id$='column-management-form:standard-field-selection_panel']");
     standardFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitPageNoAnimation();
     SelenideElement firstFieldElement = standardFieldPanel.$("li").shouldBe(getClickableCondition());
     String field = firstFieldElement.getText();
     firstFieldElement.click();
@@ -258,6 +260,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public void selectFieldType(String type) {
     getColumnManagementDialog().$("div[id$='field-type-selection'] span.ui-icon-triangle-1-s")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(Condition.enabled, DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
     waitForElementClickableThenClick(
         $("div[id$='column-management-form:field-type-selection_panel'] li[data-label='" + type + "']"));
   }
@@ -266,6 +269,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     getCustomFieldSelection().click();
     SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
     customFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitPageNoAnimation();
     return customFieldPanel.$("li[data-item-value='" + field + "']");
   }
 
@@ -288,6 +292,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     getCustomFieldSelection().click();
     SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
     customFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitPageNoAnimation();
     SelenideElement firstFieldElement = customFieldPanel.$("li").shouldBe(getClickableCondition());
     String field = firstFieldElement.getText();
     firstFieldElement.click();
@@ -317,6 +322,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     getStandardFieldSelection().click();
     SelenideElement standardFieldPanel = $("div[id$='column-management-form:standard-field-selection_panel']");
     standardFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitPageNoAnimation();
     return standardFieldPanel.$("li[data-label='" + field + "']");
   }
   

@@ -214,7 +214,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void startProcess() {
-    getStartButton().click();
+    WaitHelper.waitForNavigation(() -> getStartButton().click());
   }
 
   public void startMoreInfoLink() {

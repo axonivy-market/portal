@@ -98,7 +98,7 @@ public class DashboardModificationPage extends TemplatePage {
     String label = displayTypeLabel(type);
     $("div.create-public-dashboard-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("ul[id$='dashboard-display-menu_items']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li")
+    $("[id$='dashboard-display-menu_items']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li")
         .filter(Condition.text(label)).first().click();
   }
 

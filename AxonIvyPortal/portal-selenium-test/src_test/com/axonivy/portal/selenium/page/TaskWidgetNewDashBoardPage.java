@@ -698,6 +698,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectCustomBusinessCaseFieldType() {
     $("span[id$='column-management-form:field-type-selection_label']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
     $("li[data-label='" + CUSTOM_BUSINESS_CASE_FIELD + "']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     waitForPageLoad();
   }
@@ -705,6 +706,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void selectCustomerNameField() {
     $("input[id$='custom-business-case-field-selection_input']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("button[id$='custom-business-case-field-selection_button']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
     $("li[data-item-label='" + CUSTOMER_NAME + "']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("input[value='" + "Customer name column for example" + "']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -772,6 +774,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public ElementsCollection openBulkDelegateUserDropdownAndGetItems() {
     $("button[id$='user-activator-select_button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
     return $$("span[id$='user-activator-select_panel'] .ui-autocomplete-item");
   }
 
@@ -786,6 +789,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public ElementsCollection openBulkDelegateRoleDropdownAndGetItems() {
     $("button[id$='group-activator-select_button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
     return $$("span[id$='group-activator-select_panel'] .ui-autocomplete-item");
   }
 
