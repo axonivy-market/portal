@@ -22,10 +22,12 @@
 
   <p:commandLink id="logout-menu-item"
     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
-    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
     styleClass=""
     rendered="#{!userMenuBean.hiddenLogout}"
-    actionListener="#{logic.logout(task)}" />
+    actionListener="#{logic.logout(task)}">
+    <i class="ti ti-logout" />
+    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}" />
+  </p:commandLink>
 
   <p:confirmDialog id="logout-confirmation-dialog" closeOnEscape="true"
     widgetVar="logoutConfirmation" appendTo="@(body)" style="max-width: 610px;"

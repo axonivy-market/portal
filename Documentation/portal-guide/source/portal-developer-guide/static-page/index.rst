@@ -223,6 +223,7 @@ Add static pages to the user menu (accessed via user avatar in top-right corner)
             "title": "API Reference",
             "permissions": ["Developer", "AXONIVY_PORTAL_ADMIN"],
             "url": "Portal/faces/view/portal-components-examples/documentation/api-reference.xhtml"
+            "icon": "ti ti-file-text"
         }
     ]
 
@@ -255,6 +256,12 @@ Add static pages to the user menu (accessed via user avatar in top-right corner)
         
         - Format: ``<application>/faces/view/<process model>/{path-to-file in webContent/view}.xhtml``
         - Example: ``Portal/faces/view/portal-components-examples/static.xhtml``
+
+    ``icon`` (string, optional)
+        Menu item icon
+        
+        - Supports Tabler Icons (e.g., ``"ti-player-play"``, ``"ti-dashboard"``)
+
 
 .. _static-page-url-conversion:
 
