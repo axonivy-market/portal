@@ -190,7 +190,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
         result = loadGlobalConfigurations();
       }
       else {
-        result = parseConfigurationJson(userConfigurationJson);
+        result = convertToLatestVersion(userConfigurationJson);
       }
     } catch (IOException e) {
       Ivy.log().debug("ParseUserConfiguration error: " + e);
@@ -200,7 +200,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
     return result;
   }
 
-  protected List<T> parseConfigurationJson(String configurationJson) throws JsonMappingException, JsonProcessingException {
+  protected List<T> convertToLatestVersion(String configurationJson) throws JsonMappingException, JsonProcessingException {
     return mapper.readValue(configurationJson, mapper.getTypeFactory().constructCollectionType(List.class, getConfigurationType()));
   }
 
@@ -208,7 +208,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
     var configurationJsonData = Ivy.var().get(getVariableKey());
     if (StringUtils.isNotBlank(configurationJsonData)) {
       try {
-        return parseConfigurationJson(configurationJsonData);
+        return convertToLatestVersion(configurationJsonData);
       } catch (IOException e) {
         Ivy.log().debug("ParseUserConfiguration error: " + e);
       }
@@ -262,7 +262,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
 
   protected List<T> loadDefaultGlobalConfigurations() throws JsonMappingException, JsonProcessingException {
     var configurationJsonData = Ivy.var().variable(getVariableKey()).defaultValue();
-    return parseConfigurationJson(configurationJsonData);
+    return convertToLatestVersion(configurationJsonData);
   }
   
   protected T getDefaultPortalConfig() throws JsonMappingException, JsonProcessingException {

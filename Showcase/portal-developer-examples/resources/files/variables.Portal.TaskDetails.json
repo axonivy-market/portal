@@ -1,5 +1,6 @@
 [{
     "id": "default-task-detail",
+    "version": "14.0.0",
     "widgets": [{
         "type": "information",
         "id": "information",
@@ -22,6 +23,7 @@
     ]
   }, {
     "id": "destroyed-task-detail",
+    "version": "14.0.0",
     "filters": {
       "states": ["DESTROYED"]
     },
@@ -62,6 +64,7 @@
     ]
   }, {
     "id": "custom-task-detail",
+    "version": "14.0.0",
     "filters": {
       "categories": ["manage"]
     },

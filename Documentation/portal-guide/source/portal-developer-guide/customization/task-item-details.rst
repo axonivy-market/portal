@@ -36,6 +36,7 @@ How to configure widgets in task details
       [
          {
             "id": "default-task-detail",
+            "version": "14.0.0",
             "filters": {
                "categories" : ["support"],
                "states" : ["DONE", "OPEN"]
@@ -172,6 +173,7 @@ There are **two steps** for adding new custom panels.
       [
          {
             "id": "default-task-detail",
+            "version": "14.0.0",
             "widgets": 
                [
                   {
@@ -231,6 +233,7 @@ There are **two steps** for adding new custom panels.
          [
             {
                "id": "task-detail",
+               "version": "14.0.0",
                "widgets": [
                   {
                      "type": "information",
@@ -262,6 +265,7 @@ There are **two steps** for adding new custom panels.
             [
                {
                   "id": "task-detail",
+                  "version": "14.0.0",
                   "widgets": [
                      {
                         "type": "information",

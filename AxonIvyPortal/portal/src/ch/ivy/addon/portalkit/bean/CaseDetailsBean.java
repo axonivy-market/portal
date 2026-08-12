@@ -263,7 +263,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   }
 
   @Override
-  protected List<CaseDetails> parseConfigurationJson(String configurationJson)
+  protected List<CaseDetails> convertToLatestVersion(String configurationJson)
       throws JsonMappingException, JsonProcessingException {
     JsonCaseDetailsMigrator migrator = new JsonCaseDetailsMigrator(mapper.readTree(configurationJson));
     return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), CaseDetails.class);

@@ -128,7 +128,7 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   }
 
   @Override
-  protected List<TaskDetails> parseConfigurationJson(String configurationJson)
+  protected List<TaskDetails> convertToLatestVersion(String configurationJson)
       throws JsonMappingException, JsonProcessingException {
     JsonTaskDetailsMigrator migrator = new JsonTaskDetailsMigrator(mapper.readTree(configurationJson));
     return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), TaskDetails.class);

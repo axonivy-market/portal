@@ -22,6 +22,7 @@
   <c:set var="generalContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('InformationWidget')}:task-detail-general-container" />
   <c:set var="informationWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('SummaryWidget') gt -1 ? summaryContainerID:''} #{taskDetailsBean.getWidgetPositionByType('InformationWidget') gt -1 ? generalContainerID:''} #{cc.clientId}:task-status-banner" />
   <c:set var="stateContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('SummaryWidget')}:task-detail-state" />
+  <c:set var="stateWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('SummaryWidget') gt -1 ? stateContainerID:''}" />
   <c:set var="documentsContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('DocumentWidget')}:task-documents:task-details-documents" />
   <c:set var="documentWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('DocumentWidget') gt -1 ? documentsContainerID:''}" />
   <c:set var="noteContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('HistoryWidget')}:task-detail-note-container" />
@@ -112,7 +113,7 @@
             styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="general-information" task="#{task}"
               componentToUpdate="#{historyWidgetComponent} #{informationWidgetComponent}"
-              stateComponentToUpdate="#{stateContainerID}"
+              stateComponentToUpdate="#{stateWidgetComponent}"
               readOnly="#{cc.attrs.readOnly}"
               onEditTaskExpiryActivator="showTaskEscalationActivatorDialog();" />
           </h:panelGroup>

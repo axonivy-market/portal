@@ -1,10 +1,6 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
-  xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:c="jakarta.tags.core" xmlns:jsf="jakarta.faces">
-
-<ui:composition>
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui">
   <div id="action-cell-#{rowIndex}" class="task-header-action-cell">
     <div class="action-container">
       <p:commandLink id="task-action-component" actionListener="#{logic.openTask(task,dataModel)}"
@@ -36,4 +32,3 @@
     </div>
   </div>
 </ui:composition>
-</html>

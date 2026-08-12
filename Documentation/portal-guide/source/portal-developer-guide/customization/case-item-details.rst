@@ -43,6 +43,7 @@ How to Configure Widgets in Case Details
          [
             {
                "id": "default-case-detail",
+               "version": "14.0.0",
                "widgets": [
                   {
                      "type": "information",
@@ -210,6 +211,7 @@ The following two steps are necessary to add new custom panels:
          [
             {
                "id": "default-case-detail",
+               "version": "14.0.0",
                "widgets": [
                   {
                      "type": "information",
@@ -303,6 +305,7 @@ The following two steps are necessary to add new custom panels:
          [
             {
                "id": "case-detail",
+               "version": "14.0.0",
                "widgets": [
                   {
                   "type": "information",
@@ -345,6 +348,7 @@ The following two steps are necessary to add new custom panels:
          [
             {
                "id": "case-detail",
+               "version": "14.0.0",
                "widgets": [
                   {
                      "type": "information",
