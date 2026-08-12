@@ -159,7 +159,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_1: Rúbrica 1
       HEADING_2: Rúbrica 2
       HEADING_3: Rúbrica 3
-      HEADING_4: Rúbrica 4
       NORMAL_TEXT: Texto normal
   MyProfile:
     Accessibility: Accesibilidad
@@ -932,7 +931,6 @@ ch.ivy.addon.portalkit.ui.jsf:
         ChangeImage: Cambiar imagen
         DarkMode: Modo oscuro
         ImagePreview: Vista previa de la imagen
-        ImageRecommendation: 'Recomendado: 1600×400px • JPG, PNG o SVG'
         LightMode: Modo claro
         ConfigurationHeader: Configuración del widget de bienvenida
         ChooseAFit: Elija un ajuste

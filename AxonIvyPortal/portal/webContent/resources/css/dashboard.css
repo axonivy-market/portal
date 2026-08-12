@@ -1714,11 +1714,6 @@ body .ui-widget.new-widget-dialog__introduction {
   font-weight: 600;
 }
 
-.welcome-config__image-hint {
-  color: var(--ivy-portal-color-gray-52);
-  font-style: italic;
-}
-
 .welcome-text {
   position: absolute;
   --welcome-text-inset: 20px;
@@ -1795,6 +1790,11 @@ body .ui-widget.new-widget-dialog__introduction {
   display: none;
 }
 
+.layout-topbar-light .welcome-text-container .welcome-text:empty,
+.layout-topbar-dark .welcome-text-container .welcome-text:empty {
+  display: none;
+}
+
 .welcome-text.NORMAL_TEXT {
   font-size: 1.5rem;
   line-height: 1.5rem;
@@ -1815,11 +1815,6 @@ body .ui-widget.new-widget-dialog__introduction {
   line-height: 1.8rem;
 }
 
-.welcome-text.HEADING_4 {
-  font-size: 1.25rem;
-  line-height: 1.625rem;
-}
-
 .preview-text.welcome-text.NORMAL_TEXT {
   font-size: 1rem;
   line-height: 1rem;
@@ -1838,11 +1833,6 @@ body .ui-widget.new-widget-dialog__introduction {
 .preview-text.welcome-text.HEADING_3 {
   font-size: 1.2rem;
   line-height: 1.2rem;
-}
-
-.preview-text.welcome-text.HEADING_4 {
-  font-size: 0.9rem;
-  line-height: 0.9rem;
 }
 
 .welcome-widget-panel {

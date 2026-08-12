@@ -11,8 +11,8 @@ WelcomeWidgetConfiguration = {
   oldImageStyleClass : '',
   oldTextStyleClass : '',
 
-  init : function(isGreeting) {
-    this.updatePreviewText(isGreeting);
+  init : function() {
+    this.updatePreviewText();
     this.updatePreviewTextPosition();
     this.updatePreviewTextColor();
 	this.updatePreviewTextColorDarkMode();
@@ -20,7 +20,7 @@ WelcomeWidgetConfiguration = {
     this.updateStyleClasses();
     this.updatePreviewImageFit();
   },
-  updatePreviewText : function(isGreeting) {
+  updatePreviewText : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
     var welcomeText = '';
     var findWelcomeText = previewDialog.find('.js-welcome-text-input.language-to-preview');
@@ -28,7 +28,7 @@ WelcomeWidgetConfiguration = {
       welcomeText = findWelcomeText.get(0).value;
     }
 
-    if (isGreeting == 'true' || (isGreeting == undefined && $('.js-greeting-text').length != 0)) {
+    if ($('.js-greeting-text').length != 0) {
       var findGreeting = previewDialog.find('.js-greeting-text.language-to-preview')
     if (findGreeting != undefined && findGreeting.get(0) != undefined){
       welcomeText = findGreeting.get(0).innerHTML + welcomeText;
@@ -155,7 +155,7 @@ updatePreviewImageFit : function() {
   updatePreviewTextSize : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
     var selectedTextSize = previewDialog.find('input[id $="selected-welcome-text-size"]').get(0).value;
-    var sizeClasses = 'NORMAL_TEXT HEADING_1 HEADING_2 HEADING_3 HEADING_4';
+    var sizeClasses = 'NORMAL_TEXT HEADING_1 HEADING_2 HEADING_3';
     var previewText = previewDialog.find('.js-preview-text');
     var previewTextDarkMode = previewDialog.find('.js-preview-text-dark-mode');
     previewText.removeClass(sizeClasses).addClass(selectedTextSize);

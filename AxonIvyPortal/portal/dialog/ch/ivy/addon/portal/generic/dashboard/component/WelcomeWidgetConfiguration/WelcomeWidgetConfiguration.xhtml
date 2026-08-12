@@ -39,7 +39,8 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/LightMode')}"
             pt:data-label-light="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/LightMode')}"
             pt:data-label-dark="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DarkMode')}" />
-          <p:toggleSwitch id="welcome-preview-mode-toggle" styleClass="js-preview-mode-toggle" />
+          <p:toggleSwitch id="welcome-preview-mode-toggle" styleClass="js-preview-mode-toggle"
+            value="#{dashboardWelcomeWidgetConfigurationBean.previewDarkMode}" />
         </div>
       </div>
 
@@ -63,7 +64,7 @@
       <div class="welcome-config__image-actions js-preview-mode--light">
         <p:fileUpload id="image-upload-panel" widgetVar="ImageLightUpload"
           listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUpload}"
-          chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-download')}"
+          chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-upload')}"
           auto="true"
           update="preview-panel config-welcome-widget-message"
           allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
@@ -74,13 +75,12 @@
           sizeLimit="#{dashboardWelcomeWidgetConfigurationBean.uploadFileLimit}"
           oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();"
           process="welcome-text-input-container" />
-        <span class="welcome-config__image-hint">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ImageRecommendation')}</span>
       </div>
 
       <div class="welcome-config__image-actions js-preview-mode--dark hidden">
         <p:fileUpload id="image-dark-mode-upload-panel" widgetVar="ImageDarkUpload"
           listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUploadDarkMode}"
-          chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-download')}"
+          chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-upload')}"
           auto="true"
           update="preview-panel-dark-mode config-welcome-widget-message"
           allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
@@ -91,7 +91,6 @@
           sizeLimit="#{dashboardWelcomeWidgetConfigurationBean.uploadFileLimit}"
           oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();"
           process="welcome-text-input-container" />
-        <span class="welcome-config__image-hint">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ImageRecommendation')}</span>
       </div>
       </div>
 
@@ -257,7 +256,7 @@
 
     <p:remoteCommand name="initGreetingTexts" update="welcome-text-input-container"
       actionListener="#{dashboardWelcomeWidgetConfigurationBean.initClientTime()}"
-      oncomplete="WelcomeWidgetConfiguration.updatePreviewText('#{widget.greeting}');" />
+      oncomplete="WelcomeWidgetConfiguration.updatePreviewText();" />
     <script type="text/javascript">
       $(document).ready(function() {
        updateAll();
@@ -269,7 +268,7 @@
       });
 
       function updateAll() {
-       WelcomeWidgetConfiguration.init('#{htmlSanitizerBean.escapeForJS(widget.greeting)}');
+       WelcomeWidgetConfiguration.init();
        generateGreetingText();
        WelcomeWidgetConfiguration.togglePreviewMode();
       }

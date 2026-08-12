@@ -21,7 +21,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
+import com.axonivy.portal.bean.ThemeBean;
 import com.axonivy.portal.components.document.SVGSecurityScanner;
+import com.axonivy.portal.components.jsf.ManagedBeans;
+import com.axonivy.portal.enums.ThemeMode;
 import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
@@ -52,6 +55,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   private int parsedClientTime;
   private List<WelcomeImageFit> imageFits;
   private String welcomeTextValue;
+  private boolean previewDarkMode;
 
   @Override
   public void init() {
@@ -61,7 +65,22 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     setTextPositions(Arrays.asList(WelcomeTextPosition.values()));
     setTextSizes(Arrays.asList(WelcomeTextSize.values()));
     setImageFits(Arrays.asList(WelcomeImageFit.values()));
+    previewDarkMode = isCurrentUserDarkMode();
     initWelcomeWidget();
+  }
+
+  // Open the preview in whichever theme mode the user currently has the app set to.
+  private boolean isCurrentUserDarkMode() {
+    ThemeBean themeBean = ManagedBeans.get("themeBean");
+    return themeBean != null && ThemeMode.DARK.name().equalsIgnoreCase(themeBean.getThemeMode());
+  }
+
+  public boolean isPreviewDarkMode() {
+    return previewDarkMode;
+  }
+
+  public void setPreviewDarkMode(boolean previewDarkMode) {
+    this.previewDarkMode = previewDarkMode;
   }
 
   private void initWelcomeWidget() {
