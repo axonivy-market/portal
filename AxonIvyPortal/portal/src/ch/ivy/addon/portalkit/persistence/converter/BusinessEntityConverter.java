@@ -7,7 +7,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -18,6 +21,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.introspect.BeanPropertyDefinition;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import ch.ivy.addon.portalkit.bo.PortalJsonViews;
@@ -64,18 +70,42 @@ public class BusinessEntityConverter {
 
   private static String prettyPrintObjectEntityToJsonValue(Object entity) {
     try {
-      return getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(entity);
+      return getObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(entity);
     } catch (JsonProcessingException e) {
       throw new PortalException(e);
     }
   }
 
   public static <T> T jsonValueToEntity(String jsonValue, Class<T> classType) {
+    if (StringUtils.isBlank(jsonValue)) {
+      return null;
+    }
     try {
-      return getObjectMapper().readValue(jsonValue, classType);
+      ObjectMapper mapper = getObjectMapper();
+      JsonNode rootNode = mapper.readTree(jsonValue);
+      JsonNode targetNode = unwrapIfNeeded(rootNode, classType, mapper);
+      return mapper.treeToValue(targetNode, classType);
     } catch (IOException e) {
       throw new PortalException(e);
     }
+  }
+
+  private static JsonNode unwrapIfNeeded(JsonNode rootNode, Class<?> classType, ObjectMapper mapper) {
+    // A wrapper looks like {"someRootKey": {...actual object...}} — exactly one field,
+    // whose value is itself an object, and whose name isn't one of the target class's own properties.
+    if (!rootNode.isObject() || rootNode.size() != 1) {
+      return rootNode;
+    }
+    Map.Entry<String, JsonNode> onlyField = rootNode.properties().iterator().next();
+    if (!onlyField.getValue().isObject()) {
+      return rootNode;
+    }
+    Set<String> knownProperties = mapper.getSerializationConfig()
+        .introspect(mapper.constructType(classType))
+        .findProperties().stream()
+        .map(BeanPropertyDefinition::getName)
+        .collect(Collectors.toSet());
+    return knownProperties.contains(onlyField.getKey()) ? rootNode : onlyField.getValue();
   }
 
   public static <T> T inputStreamToEntity(InputStream inputStream, Class<T> classType) {
@@ -91,8 +121,19 @@ public class BusinessEntityConverter {
       return new ArrayList<>();
     }
     try {
-      return getObjectMapper().readValue(jsonValue,
-          getListOfJavaType(classType));
+      JsonNode rootNode = getObjectMapper().readTree(jsonValue);
+      
+      if (rootNode.isObject()) {
+        if (!rootNode.isEmpty()) {        
+          String rootName = rootNode.fieldNames().next();
+          if (rootNode.has(rootName)) {
+            return getObjectMapper().readValue(rootNode.get(rootName).toString(), getListOfJavaType(classType));
+          }
+        }
+      } else if (rootNode.isArray()) {
+        return getObjectMapper().readValue(jsonValue, getListOfJavaType(classType));
+      } 
+      return new ArrayList<>();
     } catch (IOException e) {
       throw new PortalException(e);
     }
@@ -103,14 +144,68 @@ public class BusinessEntityConverter {
   }
 
   public static <T> List<T> convertJsonNodeToList(JsonNode jsonNode, Class<T> classType) {
-    if (Optional.ofNullable(jsonNode).isPresent()) {
-      try {
-        return getObjectMapper().treeToValue(jsonNode, getListOfJavaType(classType));
-      } catch (IOException e) {
-        throw new PortalException(e);
-      }
+    if (!Optional.ofNullable(jsonNode).isPresent()) {
+      return new ArrayList<>();
     }
-    return new ArrayList<>();
+    try {
+      JsonNode nodeToConvert = jsonNode;
+
+      // Handle root-wrapped format {"ArrayList": [...]} produced by WRAP_ROOT_VALUE.
+      // Only unwrap if the first field contains an array whose elements are objects
+      // (i.e. real entity nodes), not primitive/string arrays like "permissions":["Everybody"].
+      if (nodeToConvert.isObject()) {
+        JsonNode candidateArray = null;
+        if (nodeToConvert.fieldNames().hasNext()) {
+          String rootName = nodeToConvert.fieldNames().next();
+          JsonNode firstValue = nodeToConvert.get(rootName);
+          if (firstValue != null && firstValue.isArray()
+              && firstValue.size() > 0 && firstValue.get(0).isObject()) {
+            candidateArray = firstValue;
+          }
+        } else {
+          // Empty object {} — treated as empty configuration, not a single entity
+          return new ArrayList<>();
+        }
+        if (candidateArray != null) {
+          nodeToConvert = candidateArray;
+        } else {
+          // Single-entity ObjectNode (plain Dashboard or primitive-valued wrapper) — wrap in a list
+          List<T> result = new ArrayList<>();
+          result.add(getObjectMapper().treeToValue(nodeToConvert, classType));
+          return result;
+        }
+      }
+
+      // Handle array that may contain nested arrays (corrupted format [[{...}], {...}])
+      if (nodeToConvert.isArray()) {
+        boolean hasNestedArrays = false;
+        for (JsonNode element : nodeToConvert) {
+          if (element.isArray()) {
+            hasNestedArrays = true;
+            break;
+          }
+        }
+        if (hasNestedArrays) {
+          List<T> result = new ArrayList<>();
+          for (JsonNode element : nodeToConvert) {
+            if (element.isArray()) {
+              for (JsonNode inner : element) {
+                if (inner.isObject()) {
+                  result.add(getObjectMapper().treeToValue(inner, classType));
+                }
+              }
+            } else if (element.isObject()) {
+              result.add(getObjectMapper().treeToValue(element, classType));
+            }
+          }
+          return result;
+        }
+      }
+
+      return getObjectMapper().treeToValue(nodeToConvert, getListOfJavaType(classType));
+    } catch (IOException e) {
+      throw new PortalException(e);
+    }
   }
 
   public static <T> T convertJsonNodeToEntity(JsonNode jsonNode, Class<T> classType) {
@@ -131,7 +226,9 @@ public class BusinessEntityConverter {
           .builder()
           .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
           .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
-          .build(); 
+          .enable(SerializationFeature.WRAP_ROOT_VALUE)
+          .propertyNamingStrategy(PropertyNamingStrategies.LOWER_CAMEL_CASE)
+          .build();
     }
     return objectMapper;
   }
@@ -152,11 +249,16 @@ public class BusinessEntityConverter {
 
   public static String entityToJsonValue(List<Dashboard> dashboards) {
     DashboardUtils.updatePropertiesToNullIfCurrentValueIsDefaultValue(dashboards);
-    return objectEntityToJsonValue(dashboards);
+    try {
+      return getObjectMapper().writer().withRootName("dashboards").writeValueAsString(dashboards);
+    } catch (JsonProcessingException e) {
+      throw new PortalException(e);
+    }
   }
 
   public static String prettyPrintEntityToJsonValue(List<Dashboard> dashboards) {
     DashboardUtils.updatePropertiesToNullIfCurrentValueIsDefaultValue(dashboards);
     return prettyPrintObjectEntityToJsonValue(dashboards);
   }
+
 }

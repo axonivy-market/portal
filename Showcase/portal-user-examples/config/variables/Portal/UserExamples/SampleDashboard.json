@@ -1,6 +1,7 @@
-[ {
+{
+  "dashboard": [ {
   "id" : "87c815fc1817445792a94dd30004d483",
-  "version" : "13.2.0",
+  "version": "14.0.0",
   "templateId" : "create-from-scratch",
   "titles" : [ {
     "locale" : "en",
@@ -351,7 +352,7 @@
   "dashboardDisplayType" : "top_menu"
 }, {
   "id" : "default-user-guide-dashboard",
-  "version" : "13.2.0",
+  "version": "14.0.0",
   "templateId" : "create-from-scratch",
   "titles" : [ {
     "locale" : "en",
@@ -887,4 +888,6 @@
   } ],
   "permissions" : [ "Everybody" ],
   "dashboardDisplayType" : "top_menu"
-}]
+}
+]
+}

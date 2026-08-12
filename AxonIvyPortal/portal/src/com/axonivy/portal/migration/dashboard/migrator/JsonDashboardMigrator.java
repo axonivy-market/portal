@@ -53,6 +53,10 @@ public class JsonDashboardMigrator {
   }
 
   private void migrate(JsonNode dashboard) {
+    if (dashboard.isArray()) {
+      dashboard.elements().forEachRemaining(dashboardNode -> migrate(dashboardNode));
+      return;
+    }
     var converters = JsonDashboardConverterFactory.getConverters(readVersion(dashboard)).stream()
         .filter(conv -> conv.version().compareTo(version) <= 0)
         .collect(Collectors.toList());

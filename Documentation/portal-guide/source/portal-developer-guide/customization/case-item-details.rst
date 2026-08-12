@@ -40,7 +40,8 @@ How to Configure Widgets in Case Details
 
    .. code-block:: javascript
       
-         [
+         {
+           "case-details": [
             {
                "id": "default-case-detail",
                "widgets": [
@@ -96,7 +97,8 @@ How to Configure Widgets in Case Details
                   }
                ]
             }
-         ]                                                       
+         ]
+         }
 
 
    -  The structure of each Case Details layout is saved in variable **Portal.CaseDetails**:
@@ -204,7 +206,8 @@ The following two steps are necessary to add new custom panels:
 
       .. code-block:: javascript
 
-         [
+         {
+           "case-details": [
             {
                "id": "default-case-detail",
                "widgets": [
@@ -280,6 +283,7 @@ The following two steps are necessary to add new custom panels:
                ]
             }
          ]
+         }
          
 #. To customize case details using an **IFrame**, you have to define one of the following two input parameters in the ``data`` node:
 
@@ -297,7 +301,8 @@ The following two steps are necessary to add new custom panels:
 
       .. code-block:: javascript
 
-         [
+         {
+           "case-details": [
             {
                "id": "case-detail",
                "widgets": [
@@ -327,6 +332,7 @@ The following two steps are necessary to add new custom panels:
                ]
             }
          ]
+         }
       ..
 
       Result:
@@ -339,7 +345,8 @@ The following two steps are necessary to add new custom panels:
 
       .. code-block:: javascript
 
-         [
+         {
+           "case-details": [
             {
                "id": "case-detail",
                "widgets": [
@@ -385,6 +392,7 @@ The following two steps are necessary to add new custom panels:
                ]
             }
          ]
+         }
       ..
 
       Provide case custom fields:

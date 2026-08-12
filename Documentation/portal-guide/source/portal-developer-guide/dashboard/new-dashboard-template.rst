@@ -17,7 +17,8 @@ Below is a sample JSON definition of a Portal dashboard template:
 
 .. code-block:: javascript
 
-   [
+   {
+     "dashboard-template": [
       {
          "id": "template-id",
          "titles": [
@@ -77,6 +78,7 @@ Below is a sample JSON definition of a Portal dashboard template:
          }
       }
    ]
+   }
 
 ..
 

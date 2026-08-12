@@ -37,7 +37,8 @@ Below is a comprehensive JSON example showing both external link and Ivy process
 
 .. code-block:: javascript
 
-  [
+  {
+    "user-menu": [
       {
           "id" : "axon-ivy",
           "title" : "Axon Ivy",
@@ -63,6 +64,7 @@ Below is a comprehensive JSON example showing both external link and Ivy process
           }
       }
   ]
+  }
 
 ..
 

@@ -1,4 +1,5 @@
-[
+{
+  "dashboard": [
   {
     "id": "default-dashboard",
     "titles": [
@@ -246,4 +247,5 @@
       }
     ]
   }
-]
+]
+}
