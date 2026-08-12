@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
-  xmlns:ui="jakarta.faces.facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="jakarta.tags.core">
+  xmlns:ui="jakarta.faces.facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions" xmlns:c="jakarta.tags.core">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="viewName" value="USER_PROFILE" />
@@ -147,7 +147,7 @@
                         <c:set var="subscription" value="#{channel.getSubscription(event)}" />
                         <div class="flex align-content-center gap-3">
                           <i class="flex align-items-center si table-icon ti-#{subscription.icon} subscription-icon " title="#{subscription.title}" />
-                          <p:triStateCheckbox rendered="#{userProfileBean.hasNotificationChannelsSettingPermission()}" id="subscriptionCheckbox" value="#{subscription.stateAsString}" styleClass="flex align-items-center">
+                          <p:triStateCheckbox rendered="#{userProfileBean.hasNotificationChannelsSettingPermission()}" id="subscriptionCheckbox" value="#{subscription.stateAsObject}" styleClass="flex align-items-center">
                             <p:ajax event="change" global="false"
                               update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
                               listener="#{channel.setSubscriptionIconAndTitle(event.event)}" />

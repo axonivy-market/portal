@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
-  xmlns:ui="jakarta.faces.facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="jakarta.tags.core">
+  xmlns:ui="jakarta.faces.facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions" xmlns:c="jakarta.tags.core">
 
 <!-- process: package ch.ivy.addon.portalkit.bo.Process -->
 <ui:composition>
@@ -33,7 +33,7 @@
             <p:commandLink id="edit-external-link" styleClass="ti ti-pencil process-item"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
               actionListener="#{processWidgetBean.setEditedProcess(process)}" oncomplete="PF('edit-process-dialog').show();"
-              update="#{cc.clientId}:edit-process-dialog" rendered="#{process.getProcess().ableToEdit}" />
+              update=":#{cc.clientId}:edit-process-dialog" rendered="#{process.getProcess().ableToEdit}" />
             <p:tooltip id="edit-external-link-tooltip" for="edit-external-link" position="top" trackMouse="true" hideEvent="mouseleave click"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
               rendered="#{process.getProcess().ableToEdit}" />
@@ -41,7 +41,7 @@
             <p:commandLink id="delete-external-link" styleClass="ti ti-trash process-item"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExternalLinkTooltip')}"
               actionListener="#{processWidgetBean.setDeletedProcess(process)}" oncomplete="PF('remove-process-workflow-dialog').show();"
-              update="#{cc.clientId}:remove-process-workflow-dialog" rendered="#{process.getProcess().ableToEdit}" />
+              update=":#{cc.clientId}:remove-process-workflow-dialog" rendered="#{process.getProcess().ableToEdit}" />
             <p:tooltip id="delete-external-link-tooltip" for="delete-external-link" position="top" trackMouse="true" hideEvent="mouseleave click"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExternalLinkTooltip')}"
               rendered="#{process.getProcess().ableToEdit}" />

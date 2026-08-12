@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:p="primefaces" xmlns:pe="primefaces.extensions"
   xmlns:c="jakarta.tags.core" xmlns:jsf="jakarta.faces"
   xmlns:pc="jakarta.faces.composite/components">
 
@@ -66,7 +66,7 @@
                 <p:tooltip for="download" trackMouse="true" hideEvent="mouseleave click" value="#{document.relativePath}" />
               </p:commandLink>
               <p:commandLink id="preview-file" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
-                process="@this" update="#{cc.clientId}:preview-document-dialog"
+                process="@this" update="#{p:resolveFirstComponentWithId('preview-document-dialog', view).clientId}"
                 styleClass="ti ti-eye Fright document-preview ui-sm-hidden" actionListener="#{logic.previewDocument(document)}"
                 rendered="#{data.isDocumentPreviewEnabled and caseTaskDocumentBean.isSupportedPreviewType(document)}"
                 oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('preview-document-dialog').show();}">
@@ -77,7 +77,7 @@
                 styleClass="ti ti-pencil Fright document-renaming ui-sm-hidden"
                 rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
                 actionListener="#{data.setDocument(document)}"
-                update="#{cc.clientId}:document-renaming-dialog"
+                update="#{p:resolveFirstComponentWithId('document-renaming-dialog', view).clientId}"
                 oncomplete="PF('document-renaming-dialog').show()">
                 <p:tooltip for="edit-filename" trackMouse="true" hideEvent="mouseleave click"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')} #{document.name}" />
@@ -140,18 +140,9 @@
         </h6>
         </div>
         <div class="w-full">
-          <p:fileUpload id="document-upload-panel"
-            listener="#{logic.uploadDocument}" mode="advanced"
-            chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
-            style="display: none;" dragDropSupport="true"
-            label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
-            auto="true" multiple="true"
-            sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
-            invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
-            update="#{p:resolveFirstComponentWithId('task-document-form', view).clientId} #{cc.attrs.componentToUpdate} @form"
-            oncomplete="handleTaskDetailsTables()" 
-            onvalidationfailure="handleUploadFileFail('documentUpload');"
-            dropZone="document-upload-file-panel" widgetVar="documentUpload" />
+          <p:fileUpload id="document-upload-panel" listener="#{logic.uploadDocument}" mode="advanced" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" style="display: none;" dragDrop="true" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true" multiple="true" update="#{p:resolveFirstComponentWithId('task-document-form', view).clientId} #{cc.attrs.componentToUpdate} @form" oncomplete="handleTaskDetailsTables()" onvalidationfailure="handleUploadFileFail('documentUpload');" dropZone="document-upload-file-panel" widgetVar="documentUpload">
+            <p:validateFile sizeLimit="#{masterDataBean.fileUploadSizeLimit}" />
+          </p:fileUpload>
         </div>
         <div class="ui-g-12">
           <p:outputPanel id="document-upload-file-panel" styleClass="ui-document-upload-file-panel">
@@ -223,7 +214,7 @@
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/confirmationUploadDocument')}" />
 
     <ui:define name="dialogFooter">
-      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/continue')}" update="#{cc.clientId}:preview-document-dialog"
+      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/continue')}" update="#{p:resolveFirstComponentWithId('preview-document-dialog', view).clientId}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/continue')}" styleClass="w-full"
         id="preview-encrypted-document-button" actionListener="#{logic.previewEncryptedDocument}" 
         oncomplete="PF('preview-document-confirmation-dialog').hide(); if (args &amp;&amp; !args.validationFailed) {PF('preview-document-dialog').show();}" />
@@ -252,7 +243,7 @@
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocument')])}"
           icon="#{visibilityBean.generateButtonIcon('ti ti-device-floppy')}"
           actionListener="#{logic.renameDocument}"
-          update="#{cc.clientId}:task-details-documents #{cc.attrs.componentToUpdate} #{cc.clientId}:document-renaming-form:renaming-file-messages"
+          update="#{p:resolveFirstComponentWithId('task-details-documents', view).clientId} #{cc.attrs.componentToUpdate} #{p:resolveFirstComponentWithId('renaming-file-messages', view).clientId}"
           oncomplete="if (document.querySelector('.ui-messages-info')) PF('document-renaming-dialog').hide(); ResponsiveTable.init(':case-details-documents')"
         />
       </h:panelGroup>

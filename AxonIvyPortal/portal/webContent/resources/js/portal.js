@@ -364,7 +364,7 @@ function fireEventClickOnMenuItem(menuItem, prevMenuItemId) {
 }
 
 function resetPortalLeftMenuState() {
-  $.removeCookie('freya_expandeditems', {path: '/'});
+  deleteCookie('freya_expandeditems');
   if (typeof resetSelectedMenuItems === "function") {
     resetSelectedMenuItems();
   }

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -44,6 +45,11 @@ class TestUploadDocumentUtils {
       }
 
       @Override
+      public String getWebkitRelativePath() {
+        return null;
+      }
+
+      @Override
       public InputStream getInputStream() {
         return new ByteArrayInputStream(content);
       }
@@ -64,8 +70,9 @@ class TestUploadDocumentUtils {
       }
 
       @Override
-      public void write(String targetFilePath) throws Exception {
+      public File write(String targetFilePath) throws Exception {
         // not needed for tests
+        return null;
       }
 
       @Override
