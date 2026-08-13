@@ -2693,8 +2693,6 @@ body .widget-view-toggle .ui-button.ui-widget.widget-view-toggle__button.widget-
 body .dashboard-side-steps-menu-button {
   width: 2.143rem !important; /* 30px */
   height: 2.143rem !important;
-  min-width: 2.143rem !important;
-  min-height: 2.143rem !important;
 }
 
 .responsibles-avatar-group .ui-avatar + .ui-avatar {
