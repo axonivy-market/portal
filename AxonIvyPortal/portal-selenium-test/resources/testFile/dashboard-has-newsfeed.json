@@ -1,39 +1,49 @@
 {
-  "dashboard": [{
-		"id": "1",
-		"version": "14.0.0",
-		"titles": [{
-				"locale": "en",
-				"value": "Dashboard"
-			}, {
-				"locale": "fr",
-				"value": "Dashboard"
-			}, {
-				"locale": "de",
-				"value": "Dashboard"
-			}, {
-				"locale": "es",
-				"value": "Dashboard"
-			}
-		],
-		"icon": "ti-chart-pie",
-		"widgets": [{
-				"type": "news",
-				"id": "news_1",
-				"names": [{
-						"locale": "en",
-						"value": "News feed"
-					}
-				],
-				"layout": {
-					"w": 4,
-					"h": 6,
-					"x": 0,
-					"y": 14
-				}
-			}
-		],
-		"permissions": ["Everybody"]
-	}
-]
+  "version": "14.0.0",
+  "items": [
+    {
+      "id": "1",
+      "version": "14.0.0",
+      "titles": [
+        {
+          "locale": "en",
+          "value": "Dashboard"
+        },
+        {
+          "locale": "fr",
+          "value": "Dashboard"
+        },
+        {
+          "locale": "de",
+          "value": "Dashboard"
+        },
+        {
+          "locale": "es",
+          "value": "Dashboard"
+        }
+      ],
+      "icon": "ti-chart-pie",
+      "widgets": [
+        {
+          "type": "news",
+          "id": "news_1",
+          "names": [
+            {
+              "locale": "en",
+              "value": "News feed"
+            }
+          ],
+          "layout": {
+            "w": 4,
+            "h": 6,
+            "x": 0,
+            "y": 14
+          }
+        }
+      ],
+      "permissions": [
+        "Everybody"
+      ]
+    }
+  ]
 }

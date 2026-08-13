@@ -1,28 +1,29 @@
 {
-  "userMenus": [
+  "version": "14.0.0",
+  "items": [
     {
-        "id": "axon-ivy",
-        "title": "Axon Ivy",
-        "permissions": [
-            "#demo"
-        ],
-        "url": "https://www.example.com"
+      "id": "axon-ivy",
+      "title": "Axon Ivy",
+      "permissions": [
+        "#demo"
+      ],
+      "url": "https://www.example.com"
     },
     {
-        "id": "create-invesment",
-        "title": "Create Investment",
-        "permissions": [
-            "Employee",
-            "AXONIVY_PORTAL_ADMIN",
-            "#daniel"
-        ],
-        "url": "Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
-        "params": {
-            "embedInFrame" : "true",
-            "user__customer": "demo",
-            "date__startDate": "11/19/2021",
-            "string__note": "a short note for user"
-        }
+      "id": "create-invesment",
+      "title": "Create Investment",
+      "permissions": [
+        "Employee",
+        "AXONIVY_PORTAL_ADMIN",
+        "#daniel"
+      ],
+      "url": "Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
+      "params": {
+        "embedInFrame": "true",
+        "user__customer": "demo",
+        "date__startDate": "11/19/2021",
+        "string__note": "a short note for user"
+      }
     }
-]
+  ]
 }

@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.dto.GenericJsonListWrapper;
+import com.axonivy.portal.dto.JsonListWrapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
@@ -22,7 +24,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.introspect.BeanPropertyDefinition;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
@@ -50,7 +51,7 @@ public class BusinessEntityConverter {
 
   private static String objectEntityToJsonValue(Object entity) {
     try {
-      return getObjectMapper().writeValueAsString(entity);
+      return getObjectMapper().writeValueAsString(wrapIfList(entity));
     } catch (JsonProcessingException e) {
       throw new PortalException(e);
     }
@@ -58,10 +59,23 @@ public class BusinessEntityConverter {
   
   private static String objectEntityToJsonValueExcludeInternalView(Object entity) {
     try {
-      return getObjectMapper().writerWithView(PortalJsonViews.Public.class).writeValueAsString(entity);
+      return getObjectMapper().writerWithView(PortalJsonViews.Public.class).writeValueAsString(wrapIfList(entity));
     } catch (JsonProcessingException e) {
       throw new PortalException(e);
     }
+  }
+
+  /**
+   * Wraps raw {@code List} values with the canonical version+items wrapper so
+   * every list, not just {@code List<Dashboard>}, gets a stable, type-safe
+   * root shape instead of falling through to Jackson's runtime-class-name
+   * fallback. Non-list entities pass through unchanged.
+   */
+  private static Object wrapIfList(Object entity) {
+    if (entity instanceof List<?> list) {
+      return new GenericJsonListWrapper<>(DEFAULT_LIST_WRAPPER_VERSION, list);
+    }
+    return entity;
   }
 
   public static String prettyPrintEntityToJsonValue(Object entity) {
@@ -121,22 +135,37 @@ public class BusinessEntityConverter {
       return new ArrayList<>();
     }
     try {
-      JsonNode rootNode = getObjectMapper().readTree(jsonValue);
-      
-      if (rootNode.isObject()) {
-        if (!rootNode.isEmpty()) {        
-          String rootName = rootNode.fieldNames().next();
-          if (rootNode.has(rootName)) {
-            return getObjectMapper().readValue(rootNode.get(rootName).toString(), getListOfJavaType(classType));
-          }
-        }
-      } else if (rootNode.isArray()) {
-        return getObjectMapper().readValue(jsonValue, getListOfJavaType(classType));
-      } 
+      ObjectMapper mapper = getObjectMapper();
+      JsonNode rootNode = mapper.readTree(jsonValue);
+
+      // Canonical shape: {"version": "...", "items": [...]}
+      if (isListWrapper(rootNode)) {
+        JavaType wrapperType = mapper.getTypeFactory()
+            .constructParametricType(GenericJsonListWrapper.class, classType);
+        GenericJsonListWrapper<T> wrapper = mapper.convertValue(rootNode, wrapperType);
+        return Optional.ofNullable(wrapper.getItems()).orElseGet(ArrayList::new);
+      }
+
+      // Legacy shapes below, kept for files exported before this migration.
+      if (rootNode.isArray()) {
+        return mapper.readValue(jsonValue, getListOfJavaType(classType));
+      }
+      if (rootNode.isObject() && !rootNode.isEmpty()) {
+        // e.g. {"ArrayList": [...]} / {"dashboards": [...]} produced by the
+        // old WRAP_ROOT_VALUE-based serialization.
+        String rootName = rootNode.fieldNames().next();
+        return mapper.readValue(rootNode.get(rootName).toString(), getListOfJavaType(classType));
+      }
       return new ArrayList<>();
     } catch (IOException e) {
       throw new PortalException(e);
     }
+  }
+
+  private static boolean isListWrapper(JsonNode node) {
+    return node.isObject()
+        && node.has(JsonListWrapper.ITEMS_FIELD_NAME)
+        && node.get(JsonListWrapper.ITEMS_FIELD_NAME).isArray();
   }
 
   public static <T> T convertValue(Object fromValue, Class<T> toValueType) {
@@ -148,9 +177,19 @@ public class BusinessEntityConverter {
       return new ArrayList<>();
     }
     try {
+      // Canonical shape: {"version": "...", "items": [...]}
+      if (isListWrapper(jsonNode)) {
+        List<T> result = new ArrayList<>();
+        for (JsonNode element : jsonNode.get(JsonListWrapper.ITEMS_FIELD_NAME)) {
+          result.add(getObjectMapper().treeToValue(element, classType));
+        }
+        return result;
+      }
+
       JsonNode nodeToConvert = jsonNode;
 
-      // Handle root-wrapped format {"ArrayList": [...]} produced by WRAP_ROOT_VALUE.
+      // Legacy shapes below, kept for files/values migrated before this change.
+      // Handle root-wrapped format {"ArrayList": [...]} produced by the old WRAP_ROOT_VALUE.
       // Only unwrap if the first field contains an array whose elements are objects
       // (i.e. real entity nodes), not primitive/string arrays like "permissions":["Everybody"].
       if (nodeToConvert.isObject()) {
@@ -226,7 +265,6 @@ public class BusinessEntityConverter {
           .builder()
           .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
           .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
-          .enable(SerializationFeature.WRAP_ROOT_VALUE)
           .propertyNamingStrategy(PropertyNamingStrategies.LOWER_CAMEL_CASE)
           .build();
     }
@@ -247,13 +285,24 @@ public class BusinessEntityConverter {
 
   }
 
-  public static String entityToJsonValue(List<Dashboard> dashboards) {
-    DashboardUtils.updatePropertiesToNullIfCurrentValueIsDefaultValue(dashboards);
+  public static final String DEFAULT_LIST_WRAPPER_VERSION = "1.0";
+
+  /**
+   * Serializes a list of entities using the canonical
+   * {@code {"version": "...", "items": [...]}} wrapper shape.
+   */
+  public static <T> String entityToJsonValue(List<T> entities, String version) {
+    GenericJsonListWrapper<T> wrapper = new GenericJsonListWrapper<>(version, entities);
     try {
-      return getObjectMapper().writer().withRootName("dashboards").writeValueAsString(dashboards);
+      return getObjectMapper().writeValueAsString(wrapper);
     } catch (JsonProcessingException e) {
       throw new PortalException(e);
     }
+  }
+
+  public static String entityToJsonValue(List<Dashboard> dashboards) {
+    DashboardUtils.updatePropertiesToNullIfCurrentValueIsDefaultValue(dashboards);
+    return entityToJsonValue(dashboards, DEFAULT_LIST_WRAPPER_VERSION);
   }
 
   public static String prettyPrintEntityToJsonValue(List<Dashboard> dashboards) {

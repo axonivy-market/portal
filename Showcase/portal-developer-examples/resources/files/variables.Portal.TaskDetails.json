@@ -1,100 +1,148 @@
 {
-  "taskDetails": [{
-    "id": "default-task-detail",
-    "widgets": [{
-        "type": "information",
-        "id": "information",
-        "layout": {
-          "x": 0, "y": 0, "w": 6, "h": 12
-        }
-      }, {
-        "type": "document",
-        "id": "document",
-        "layout": {
-          "x": 6, "y": 4, "w": 6, "h": 6
-        }
-      }, {
-        "type": "history",
-        "id": "history",
-        "layout": {
-          "x": 6, "y": 10, "w": 6, "h": 6
-        }
-      }
-    ]
-  }, {
-    "id": "destroyed-task-detail",
-    "filters": {
-      "states": ["DESTROYED"]
-    },
-    "widgets": [{
-        "type": "custom",
-        "id": "custom-top",
-        "layout": {
-          "x": 0, "y": 0, "w": 12, "h": 4
+  "version": "14.0.0",
+  "items": [
+    {
+      "id": "default-task-detail",
+      "widgets": [
+        {
+          "type": "information",
+          "id": "information",
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 6,
+            "h": 12
+          }
         },
-        "data": {
-          "type": "taskItemDetailCustomPanelTop"
-        }
-      }, {
-        "type": "information",
-        "id": "information",
-        "layout": {
-          "x": 0, "y": 4, "w": 6, "h": 12
-        }
-      }, {
-        "type": "custom",
-        "id": "custom-url",
-        "layout": {
-          "x": 6, "y": 4, "w": 6, "h": 7
+        {
+          "type": "document",
+          "id": "document",
+          "layout": {
+            "x": 6,
+            "y": 4,
+            "w": 6,
+            "h": 6
+          }
         },
-        "data": {
-          "url": "https://www.example.com"
-        }
-      }, {
-        "type": "custom",
-        "id": "custom-bottom",
-        "layout": {
-          "x": 6, "y": 11, "w": 6, "h": 5
-        },
-        "data": {
-          "type": "taskItemDetailCustomPanelBottom"
-        }
-      }
-    ]
-  }, {
-    "id": "custom-task-detail",
-    "filters": {
-      "categories": ["manage"]
-    },
-    "widgets": [{
-        "type": "information",
-        "id": "information",
-        "layout": {
-          "x": 0, "y": 0, "w": 6, "h": 12
-        }
-      }, {
-        "type": "custom",
-        "id": "custom-ivy-process",
-        "layout": {
-          "x": 6, "y": 0, "w": 6, "h": 7
-        },
-        "data": {
-          "processPath": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
-          "params": {
-            "startedTaskId": "task.id",
-            "startedTaskCategory": "task.category",
-            "invoiceId": "000001573",
-            "invoiceDescription": "task.customFields.invoiceDescription"
+        {
+          "type": "history",
+          "id": "history",
+          "layout": {
+            "x": 6,
+            "y": 10,
+            "w": 6,
+            "h": 6
           }
         }
-      }, {
-        "type": "history",
-        "id": "history",
-        "layout": {
-          "x": 6, "y": 7, "w": 6, "h": 5
+      ]
+    },
+    {
+      "id": "destroyed-task-detail",
+      "filters": {
+        "states": [
+          "DESTROYED"
+        ]
+      },
+      "widgets": [
+        {
+          "type": "custom",
+          "id": "custom-top",
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 12,
+            "h": 4
+          },
+          "data": {
+            "type": "taskItemDetailCustomPanelTop"
+          }
+        },
+        {
+          "type": "information",
+          "id": "information",
+          "layout": {
+            "x": 0,
+            "y": 4,
+            "w": 6,
+            "h": 12
+          }
+        },
+        {
+          "type": "custom",
+          "id": "custom-url",
+          "layout": {
+            "x": 6,
+            "y": 4,
+            "w": 6,
+            "h": 7
+          },
+          "data": {
+            "url": "https://www.example.com"
+          }
+        },
+        {
+          "type": "custom",
+          "id": "custom-bottom",
+          "layout": {
+            "x": 6,
+            "y": 11,
+            "w": 6,
+            "h": 5
+          },
+          "data": {
+            "type": "taskItemDetailCustomPanelBottom"
+          }
         }
-      }
-    ]
-  }
-]
+      ]
+    },
+    {
+      "id": "custom-task-detail",
+      "filters": {
+        "categories": [
+          "manage"
+        ]
+      },
+      "widgets": [
+        {
+          "type": "information",
+          "id": "information",
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 6,
+            "h": 12
+          }
+        },
+        {
+          "type": "custom",
+          "id": "custom-ivy-process",
+          "layout": {
+            "x": 6,
+            "y": 0,
+            "w": 6,
+            "h": 7
+          },
+          "data": {
+            "processPath": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
+            "params": {
+              "startedTaskId": "task.id",
+              "startedTaskCategory": "task.category",
+              "invoiceId": "000001573",
+              "invoiceDescription": "task.customFields.invoiceDescription"
+            }
+          }
+        },
+        {
+          "type": "history",
+          "id": "history",
+          "layout": {
+            "x": 6,
+            "y": 7,
+            "w": 6,
+            "h": 5
+          }
+        }
+      ]
+    }
+  ]
 }

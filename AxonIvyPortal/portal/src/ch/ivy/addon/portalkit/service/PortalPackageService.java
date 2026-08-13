@@ -21,11 +21,13 @@ import org.primefaces.model.StreamedContent;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
+import com.axonivy.portal.dto.JsonListWrapper;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.menu.MenuOrder;
 import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
@@ -128,14 +130,34 @@ public class PortalPackageService {
 
   private void writeRawVariable(ZipOutputStream zos, PortalPackageFile file) throws IOException {
     String json = Ivy.var().get(file.getVariableKey());
-    if (StringUtils.isNotBlank(json) && !"[]".equals(json.trim()) && !"{}".equals(json.trim())) {
+    if (StringUtils.isNotBlank(json) && !isEmptyJsonCollection(json)) {
       writeEntry(zos, file.getFilename(), json);
     }
   }
 
   private boolean isRawVariableEmpty(PortalPackageFile file) {
     String json = Ivy.var().get(file.getVariableKey());
-    return StringUtils.isBlank(json) || "[]".equals(json.trim()) || "{}".equals(json.trim());
+    return StringUtils.isBlank(json) || isEmptyJsonCollection(json);
+  }
+
+  /**
+   * Treats "[]", "{}", and the canonical {@code {"version": "...", "items": []}}
+   * wrapper (empty or missing items) as an empty collection.
+   */
+  private boolean isEmptyJsonCollection(String json) {
+    String trimmed = json.trim();
+    if ("[]".equals(trimmed) || "{}".equals(trimmed)) {
+      return true;
+    }
+    try {
+      JsonNode node = BusinessEntityConverter.getObjectMapper().readTree(trimmed);
+      if (node.isObject() && node.has(JsonListWrapper.ITEMS_FIELD_NAME)) {
+        return node.get(JsonListWrapper.ITEMS_FIELD_NAME).isEmpty();
+      }
+    } catch (IOException e) {
+      // Not parseable JSON - treat as non-empty raw content rather than fail export/import.
+    }
+    return false;
   }
 
   private void writeEntry(ZipOutputStream zos, String name, String content) throws IOException {

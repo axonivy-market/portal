@@ -7,6 +7,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.ApplicationJsonVersion;
+import com.axonivy.portal.dto.JsonListWrapper;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.thirdpartyapplication.converter.JsonThirdPartyApplicationConverterFactory;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -46,13 +47,18 @@ public class JsonThirdPartyApplicationMigrator {
   public JsonNode migrate() {
     if (node.isArray()) {
       node.elements().forEachRemaining(application -> migrate(application));
+    } else if (isListWrapper(node)) {
+      // Canonical shape: {"version": "...", "items": [...]}. Checked before the
+      // legacy dynamic-root-key heuristic below, since the wrapper's own
+      // "version" field would otherwise be treated as a single application.
+      node.get(JsonListWrapper.ITEMS_FIELD_NAME).elements().forEachRemaining(application -> migrate(application));
     } else if (node.isObject()) {
       if (node.fieldNames().hasNext()) {
         String firstField = node.fieldNames().next();
         JsonNode firstValue = node.get(firstField);
         if (firstValue != null && firstValue.isArray()
             && (firstValue.isEmpty() || firstValue.get(0).isObject())) {
-          // Handle root-wrapped arrays like {"third-party-application": [...]} — key is read dynamically
+          // Handle legacy root-wrapped arrays like {"third-party-application": [...]} — key is read dynamically
           firstValue.elements().forEachRemaining(application -> migrate(application));
         } else {
           // Single application object
@@ -62,6 +68,12 @@ public class JsonThirdPartyApplicationMigrator {
       // else: empty object {} — nothing to migrate
     }
     return node;
+  }
+
+  private static boolean isListWrapper(JsonNode node) {
+    return node.isObject()
+        && node.has(JsonListWrapper.ITEMS_FIELD_NAME)
+        && node.get(JsonListWrapper.ITEMS_FIELD_NAME).isArray();
   }
 
   private void migrate(JsonNode application) {

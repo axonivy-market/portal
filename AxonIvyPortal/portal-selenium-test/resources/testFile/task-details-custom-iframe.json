@@ -1,27 +1,31 @@
 {
-  "taskDetails": [{
-    "id": "default-task-detail",
-    "widgets": [{
-        "type": "information",
-        "layout": {
-          "x": 0,
-          "y": 0,
-          "w": 6,
-          "h": 7
-        }
-      }, {
-        "type": "custom",
-        "layout": {
-          "x": 6,
-          "y": 0,
-          "w": 6,
-          "h": 5
+  "version": "14.0.0",
+  "items": [
+    {
+      "id": "default-task-detail",
+      "widgets": [
+        {
+          "type": "information",
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 6,
+            "h": 7
+          }
         },
-        "data": {
-          "url": "https://www.lucide.dev/"
+        {
+          "type": "custom",
+          "layout": {
+            "x": 6,
+            "y": 0,
+            "w": 6,
+            "h": 5
+          },
+          "data": {
+            "url": "https://www.lucide.dev/"
+          }
         }
-      }
-    ]
-  }
-]
+      ]
+    }
+  ]
 }
