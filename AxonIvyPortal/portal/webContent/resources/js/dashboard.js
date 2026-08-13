@@ -281,6 +281,23 @@ function resizeTableBody() {
 
 }
 
+function toggleFullscreen(index, widgetId) {
+  var widget = $('div.grid-stack-item[gs-id = "' + widgetId + '"]');
+  var item = $('.toggle-fullscreen-item-' + index);
+  var icon = item.find('.ui-menuitem-icon');
+  var label = item.find('.ui-menuitem-text');
+
+  if (widget.hasClass('expand-fullscreen')) {
+    collapseFullscreen(index, widgetId);
+    icon.removeClass('ti-arrows-minimize').addClass('ti-arrows-maximize');
+    label.text(item.attr('data-expand-label'));
+  } else {
+    expandFullscreen(index, widgetId);
+    icon.removeClass('ti-arrows-maximize').addClass('ti-arrows-minimize');
+    label.text(item.attr('data-collapse-label'));
+  }
+}
+
 function collapseFullscreen(index, widgetId) {
   var widget = $('div.grid-stack-item[gs-id = "' + widgetId + '"]');
   widget.removeClass('expand-fullscreen');
@@ -364,6 +381,23 @@ function hideAllDashboardOverlayPanels() {
         PF(hidePanelId).hide();
       }
     });
+  }
+}
+
+var manageFilterDialogOpenerWidgetIndex;
+
+function openManageFilterDialog(widgetIndex) {
+  manageFilterDialogOpenerWidgetIndex = widgetIndex;
+  PF('manage-filter-dialog').show();
+}
+
+function reloadManageFilterDialogOpenerWidget() {
+  if (manageFilterDialogOpenerWidgetIndex === undefined) {
+    return;
+  }
+  var reloadUserFilters = window['loadUserFilters' + manageFilterDialogOpenerWidgetIndex];
+  if (typeof reloadUserFilters === 'function') {
+    reloadUserFilters();
   }
 }
 
