@@ -13,7 +13,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.Strings;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
-import org.primefaces.model.TreeNodeChildren;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -47,7 +46,7 @@ public class LazyRoleTreeNode extends DefaultTreeNode<RoleHolder> {
   }
 
   @Override
-  public TreeNodeChildren getChildren() {
+  public List<TreeNode<RoleHolder>> getChildren() {
     ensureChildrenFetched();
     return super.getChildren();
   }
