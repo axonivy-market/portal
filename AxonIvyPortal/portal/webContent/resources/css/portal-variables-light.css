@@ -227,22 +227,9 @@
   --portal-detail-eyebrow-color: var(--portal-detail-label-color);
   /* Accent (Primary ramp) */
   --portal-detail-accent-color: var(--primary-color, var(--ivy-portal-blue-dark));
-  /* Empty state */
-  --portal-detail-empty-icon-bg: hsl(0, 0%, 97.3%);
-  --portal-detail-empty-icon-color: hsl(0, 0%, 75%);
-  /* Type scale — 1rem == 14px (Freya root font-size) */
-  --portal-detail-heading-font-size: 1.1429rem;
-  --portal-detail-font-size: 1rem;
-  --portal-detail-label-font-size: 0.8571rem;
-  /* Geometry */
-  --portal-detail-card-radius: 1.0714rem;
-  --portal-detail-card-gap: 1.4286rem;
-  --portal-detail-grid-inset: 10px;
-  --portal-detail-card-padding: 1.4286rem;
-  --portal-detail-subcard-padding: 1.0714rem;
+  /* Shadows */
   --portal-detail-card-shadow: 0 0 1.9446rem 0 hsla(0, 0%, 0%, 0.05);
   --portal-detail-toolbar-shadow: 0 0 0.9723rem 0 hsla(0, 0%, 0%, 0.07);
-  --portal-action-menu-radius: 10px;
   --portal-action-menu-shadow: 0 0 1.1143rem 0.2143rem hsla(0, 0%, 0%, 0.15);
   --portal-action-menu-divider-color: hsl(0, 0%, 97%);
   --portal-action-menu-destroy-color: hsl(358, 83%, 49%);
@@ -386,7 +373,8 @@
   --action-step-disabled-text-color: var(--ivy-primary-color-grey-medium);
   --place-holder-text-color: var(--ivy-primary-color-grey-medium);
   --text-tab-default-color: var(--ivy-primary-color-grey-medium);
-  --no-item-icon-color: var(--ivy-primary-color-grey-light);
+  --no-item-icon-color: hsl(0, 0%, 75%);
+  --no-item-icon-background-color: hsl(0, 0%, 97.3%);
   --user-menu-items-border-color: var(--ivy-primary-color-grey-pale);
   /* Portal breadcrumb */
   --breadcrumb-background-color: transparent;

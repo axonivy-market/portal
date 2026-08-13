@@ -1269,17 +1269,6 @@ background-color:var(--primary-color);
 color: var(--button-text-color);
 }
 
-.no-item-panel .ti,
-.no-item-panel .tif,
-.no-item-panel .si {
-  font-size: var(--no-item-icon-font-size) !important;
-  color: var(--no-item-icon-color);
-}
-
-.no-item-panel .no-item-header {
-  font-size: var(--no-item-header-font-size);
-}
-
 /* Portal Global Ajax Status */
 .portal-dialog-icon {
   font-size: var(--portal-dialog-icon-font-size) !important;
@@ -2050,10 +2039,10 @@ body .ui-button.ui-button-icon-only.portal-icon-btn-round,
 body a.portal-icon-btn-round,
 body .portal-icon-btn-round {
   box-sizing: border-box;
-  width: 2.7114rem;
-  min-width: 2.7114rem;
-  height: 2.7114rem;
-  min-height: 2.7114rem;
+  width: var(--portal-icon-btn-size-md);
+  min-width: var(--portal-icon-btn-size-md);
+  height: var(--portal-icon-btn-size-md);
+  min-height: var(--portal-icon-btn-size-md);
   flex: 0 0 auto;
   padding: 0;
   margin: 0;
@@ -2061,14 +2050,14 @@ body .portal-icon-btn-round {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1.237px solid var(--widget-button-border-color);
+  border: var(--portal-icon-btn-border-width) solid var(--widget-button-border-color);
   background: var(--widget-button-background-color);
   color: var(--portal-detail-value-color);
 }
 body .ui-button.ui-button-icon-only.portal-icon-btn-round .ui-icon {
-  font-size: 1.4739rem;
-  margin-top: -0.737rem;
-  margin-left: -0.737rem;
+  font-size: var(--portal-icon-size-lg);
+  margin-top: -0.7143rem;
+  margin-left: -0.7143rem;
 }
 body .ui-button.ui-button-icon-only.portal-icon-btn-round:not(.ui-state-disabled):hover,
 body a.portal-icon-btn-round:hover,
@@ -2101,20 +2090,19 @@ body a.portal-pill-btn:focus {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 100px;
-  border: 1.237px solid var(--widget-button-border-color);
+  border-radius: var(--portal-pill-btn-border-radius);
+  border: var(--portal-icon-btn-border-width) solid var(--widget-button-border-color);
   background: var(--widget-button-background-color);
   color: var(--portal-detail-value-color);
-  padding: 0.6187rem 1.0714rem;
-  min-height: 2.7114rem;
+  padding: 0.5714rem 1.0714rem;
+  min-height: var(--portal-icon-btn-size-md);
   gap: 0.2143rem;
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--default-font-size);
   font-weight: 500;
   line-height: 1;
 }
 .portal-pill-btn .ti,
 .portal-pill-btn .tif {
-  font-size: 1.2201rem !important;
   line-height: 1 !important;
   margin: 0;
 }
@@ -2134,47 +2122,40 @@ body a.portal-pill-btn:focus {
 body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-lg,
 body a.portal-icon-btn-round.portal-icon-btn-lg,
 body .portal-icon-btn-round.portal-icon-btn-lg {
-  width: 3.0696rem;
-  min-width: 3.0696rem;
-  height: 3.0696rem;
-  min-height: 3.0696rem;
+  width: var(--portal-icon-btn-size-lg);
+  min-width: var(--portal-icon-btn-size-lg);
+  height: var(--portal-icon-btn-size-lg);
+  min-height: var(--portal-icon-btn-size-lg);
 }
 body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-lg .ui-icon {
-  font-size: 1.8321rem;
-  margin-top: -0.9161rem;
-  margin-left: -0.9161rem;
+  font-size: var(--portal-icon-size-xl);
+  margin-top: -0.9286rem;
+  margin-left: -0.9286rem;
 }
 
 /* Shared: table-size variant of the round icon button ----------------------------------------*/
-body .portal-icon-btn-round.portal-icon-btn-sm,
 body .ui-datatable .ui-sidestep-action.portal-icon-btn-round,
 body .task-start-list .ui-sidestep-action.portal-icon-btn-round,
 body .case-list .ui-sidestep-action.portal-icon-btn-round {
-  width: 2.1429rem;
-  min-width: 2.1429rem;
-  height: 2.1429rem;
-  min-height: 2.1429rem;
+  width: var(--portal-icon-btn-size-sm);
+  min-width: var(--portal-icon-btn-size-sm);
+  height: var(--portal-icon-btn-size-sm);
+  min-height: var(--portal-icon-btn-size-sm);
 }
-body .portal-icon-btn-round.portal-icon-btn-sm .ti,
 body .ui-datatable .ui-sidestep-action.portal-icon-btn-round .ti,
 body .task-start-list .ui-sidestep-action.portal-icon-btn-round .ti,
 body .case-list .ui-sidestep-action.portal-icon-btn-round .ti {
-  font-size: 1.2201rem;
-}
-body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-sm .ui-icon {
-  font-size: 1.2201rem;
-  margin-top: -0.61rem;
-  margin-left: -0.61rem;
+  font-size: var(--portal-tabler-icon-size);
 }
 
 .portal-pill-btn.portal-pill-btn-lg.ui-button,
 .portal-pill-btn.portal-pill-btn-lg {
-  height: 3.0714rem;
+  height: var(--portal-icon-btn-size-lg);
   padding: 0 1.0714rem;
 }
 .portal-pill-btn.portal-pill-btn-lg .ti,
 .portal-pill-btn.portal-pill-btn-lg .tif {
-  font-size: 1.3571rem !important;
+  font-size: var(--portal-icon-size-lg) !important;
 }
 
 /* Shared: pill button on a `p:commandButton` ----------------------------------------*/
@@ -2236,7 +2217,7 @@ body .ui-button.portal-icon-btn-round.portal-icon-btn-accent.ui-state-disabled {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.8839rem;
+  gap: 0.8571rem;
   padding: 0.8571rem 1.4286rem;
   border-radius: var(--portal-detail-card-radius);
   background: var(--portal-detail-card-bg);
@@ -2246,14 +2227,14 @@ body .ui-button.portal-icon-btn-round.portal-icon-btn-accent.ui-state-disabled {
 .portal-detail-toolbar-form {
   display: flex;
   align-items: center;
-  gap: 0.8839rem;
+  gap: 0.8571rem;
   flex: 1 1 auto;
   min-width: 0;
 }
 .portal-detail-toolbar-actions {
   display: flex;
   align-items: center;
-  gap: 0.8839rem;
+  gap: 0.8571rem;
   flex: 0 0 auto;
 }
 .portal-detail-toolbar-share-mobile {
@@ -2265,21 +2246,19 @@ body a.portal-detail-toolbar-back:focus,
 .portal-detail-toolbar-back {
   display: inline-flex;
   align-items: center;
-  gap: 0.6187rem;
+  gap: 0.5714rem;
   flex: 0 0 auto;
-  height: 2.7143rem;
+  height: var(--portal-icon-btn-size-md);
   padding: 0;
   border: none;
   background: none;
-  border-radius: 0.5304rem;
   color: var(--portal-detail-accent-color);
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--default-font-size);
   font-weight: 500;
   line-height: normal;
   text-decoration: none;
 }
 .portal-detail-toolbar-back .ti {
-  font-size: 1.2375rem;
   line-height: 1;
 }
 
@@ -2310,7 +2289,6 @@ body a.portal-detail-toolbar-back:focus,
   justify-content: center;
   text-align: center;
   gap: 0.3571rem;
-  margin-top: 0;
   padding: 2.8571rem 1.1429rem;
 }
 .no-item-panel > .ti,
@@ -2319,24 +2297,24 @@ body a.portal-detail-toolbar-back:focus,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 7.1429rem;
-  height: 7.1429rem;
+  width: var(--no-item-icon-container-size);
+  height: var(--no-item-icon-container-size);
   border-radius: 50%;
-  background: var(--portal-detail-empty-icon-bg);
-  color: var(--portal-detail-empty-icon-color);
-  font-size: 3.7855rem !important;
-  line-height: 1 !important;
+  background: var(--no-item-icon-background-color);
+  color: var(--no-item-icon-color);
+  font-size: var(--no-item-icon-font-size);
+  line-height: 1;
   margin-bottom: 1.0714rem;
 }
 .no-item-panel .no-item-header {
-  font-size: var(--portal-detail-heading-font-size);
-  font-weight: 600;
+  font-size: var(--no-item-header-font-size);
+  font-weight: var(--widget-header-font-weight);
   line-height: 1.4;
   color: var(--portal-detail-value-color);
 }
 .no-item-panel .no-item-detail {
   color: var(--portal-detail-label-color);
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--no-item-detail-font-size);
   font-weight: 400;
   line-height: 1.2;
 }
@@ -2345,20 +2323,14 @@ body a.portal-detail-toolbar-back:focus,
   align-items: center;
   gap: 0.2143rem;
   color: var(--portal-detail-accent-color);
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--default-font-size);
   font-weight: 500;
   margin-top: 0.3571rem;
   line-height: 1;
 }
 .no-item-panel .no-item-action-link .ti {
-  font-size: 1.1429rem !important;
-  line-height: 1 !important;
+  line-height: 1;
   vertical-align: middle;
-  width: auto;
-  height: auto;
-  background: none;
-  border-radius: 0;
-  color: inherit;
   display: inline-flex;
   align-items: center;
 }
@@ -2400,20 +2372,20 @@ body a.portal-detail-toolbar-back:focus,
 
 .portal-detail-block-title,
 .portal-detail-widget-header-title {
-  font-weight: 600;
-  font-size: var(--portal-detail-heading-font-size);
+  font-weight: var(--widget-header-font-weight);
+  font-size: var(--widget-header-font-size);
   line-height: 1.4;
   color: var(--portal-detail-value-color);
 }
 .portal-detail-subcard-title,
 .task-description-title {
-  font-weight: 600;
-  font-size: var(--portal-detail-font-size);
+  font-weight: var(--widget-header-font-weight);
+  font-size: var(--default-font-size);
   color: var(--portal-detail-value-color);
 }
 .portal-detail-column-title {
   color: var(--portal-detail-label-color);
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--default-font-size);
   font-weight: 400;
   line-height: normal;
 }
@@ -2452,14 +2424,14 @@ body a.portal-detail-toolbar-back:focus,
 .task-detail-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  font-size: var(--portal-detail-label-font-size);
+  font-size: var(--small-font-size);
   font-weight: 500;
   line-height: normal;
   color: var(--portal-detail-eyebrow-color);
 }
 .task-detail-name {
-  font-weight: 600;
-  font-size: var(--portal-detail-heading-font-size);
+  font-weight: var(--widget-header-font-weight);
+  font-size: var(--widget-header-font-size);
   color: var(--portal-detail-value-color);
 }
 .task-detail-pin-indicator {
@@ -2467,11 +2439,11 @@ body a.portal-detail-toolbar-back:focus,
 }
 .task-detail-subtitle {
   color: var(--portal-detail-label-color);
-  font-size: var(--portal-detail-label-font-size);
+  font-size: var(--small-font-size);
   font-weight: 400;
 }
 .task-detail-header-actions .task-action-item-label {
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--default-font-size);
 }
 .task-detail-header-actions .task-action-item.start-task-action .task-action-item-label {
   font-weight: 400;
@@ -2483,7 +2455,7 @@ body a.portal-detail-toolbar-back:focus,
   align-items: center;
   gap: 0.4286rem;
   color: var(--primary-color);
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--default-font-size);
   font-weight: 500;
   line-height: 1;
 }
@@ -2505,12 +2477,12 @@ body a.portal-detail-toolbar-back:focus,
   gap: 0.2857rem;
   max-width: 100%;
   vertical-align: middle;
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--default-font-size);
   font-weight: 400;
 }
 .task-and-case-information .content-field .task-business-case .ti-external-link {
   flex: 0 0 auto;
-  font-size: 1rem;
+  font-size: var(--default-font-size);
   line-height: 1;
 }
 
@@ -2520,14 +2492,14 @@ body a.portal-detail-toolbar-back:focus,
   gap: 0.7143rem;
 }
 .ui-sidestep-action.portal-icon-btn-round .ti {
-  font-size: 1.4739rem;
+  font-size: var(--portal-icon-size-lg);
   line-height: 1;
 }
 
 /* Attribute strip: Priority | State | Due | Workflow ----------------------------------------*/
 .task-detail-attr .portal-detail-column-title,
 .case-detail-attr .portal-detail-column-title {
-  font-size: var(--portal-detail-label-font-size);
+  font-size: var(--small-font-size);
   font-weight: 500;
   letter-spacing: 0.06em;
   line-height: 1.0714rem;
@@ -2540,7 +2512,7 @@ body a.portal-detail-toolbar-back:focus,
   align-items: center;
   gap: 0.4286rem;
   color: var(--portal-detail-value-color);
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--default-font-size);
   font-weight: 500;
   line-height: 1.2143rem;
   min-width: 0;
@@ -2572,15 +2544,15 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 .case-detail-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  font-size: var(--portal-detail-label-font-size);
+  font-size: var(--small-font-size);
   font-weight: 500;
   line-height: normal;
   color: var(--portal-detail-eyebrow-color);
 }
 /* Overrides module.css `.case-detail-name` (list/header styling) inside the card. */
 .portal-detail-body .case-detail-name {
-  font-weight: 600;
-  font-size: var(--portal-detail-heading-font-size);
+  font-weight: var(--widget-header-font-weight);
+  font-size: var(--widget-header-font-size);
   line-height: normal;
   color: var(--portal-detail-value-color);
 }
@@ -2589,7 +2561,7 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 }
 .case-detail-subtitle {
   color: var(--portal-detail-label-color);
-  font-size: var(--portal-detail-label-font-size);
+  font-size: var(--small-font-size);
   font-weight: 400;
   line-height: normal;
 }
@@ -2634,7 +2606,7 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   align-items: center;
   gap: 0.4286rem;
   color: var(--portal-detail-value-color);
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--default-font-size);
   font-weight: 500;
   line-height: 1.2143rem;
   min-width: 0;
@@ -2650,15 +2622,25 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 .task-detail-attr .task-detail-attr-value .tif,
 .case-detail-attr .case-detail-attr-value .ti,
 .case-detail-attr .case-detail-attr-value .tif {
-  font-size: 1.2143rem;
   flex: 0 0 auto;
 }
 
+/* `.priority-cell .priority-icon` floats (module.css), so it adds no height to the inline
+   `.ui-inplace-display`: its hover highlight would only paint a baseline-height strip under the row.
+   Un-float inside the strip and let the display box size itself to the content instead. */
+.task-detail-attr .task-detail-attr-value .task-details-priority .priority-cell,
+.task-detail-attr .task-detail-attr-value .task-details-priority .priority-cell .priority-icon {
+  float: none;
+  display: inline-flex;
+  align-items: center;
+}
 .task-detail-attr .task-detail-attr-value .task-details-priority .portal-edit-inplace .ui-inplace-display {
-  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2857rem 0.4286rem;
 }
 .task-detail-attr .task-detail-attr-value .task-details-priority .edit-priority-inplace .ui-inplace-display {
-  margin-left: 0;
+  margin-left: -0.4286rem;
 }
 
 /* ---- Details card: heading, description, sub-cards -------------------- */
@@ -2680,7 +2662,7 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 }
 .portal-detail-details-card .case-detail-description,
 .portal-detail-details-card .case-description-output {
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--default-font-size);
   font-weight: 400;
   color: var(--portal-detail-value-color);
 }
@@ -2742,7 +2724,7 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   flex: 0 1 auto;
   min-width: 0;
   text-align: right;
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--default-font-size);
   font-weight: 400;
   color: var(--portal-detail-value-color);
 }
@@ -2759,7 +2741,7 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 }
 .portal-detail-body .business-case-information .case-detail-business-case {
   color: var(--portal-detail-accent-color);
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--default-font-size);
   font-weight: 400;
 }
 
@@ -2803,7 +2785,7 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   background: var(--portal-detail-table-cell-bg);
   border: none;
   border-bottom: 1px solid var(--portal-detail-table-header-border-color);
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--default-font-size);
   font-weight: 400;
   color: var(--portal-detail-value-color);
 }
@@ -2814,7 +2796,7 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   background: var(--portal-detail-table-cell-bg);
   border: none;
   border-bottom: 0.5px solid var(--portal-detail-table-row-border-color);
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--default-font-size);
   font-weight: 400;
   color: var(--portal-detail-value-color);
 }
@@ -2840,7 +2822,7 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   border-radius: 50%;
 }
 .portal-detail-body .ui-datatable tbody td .name-after-avatar {
-  font-size: var(--portal-detail-label-font-size);
+  font-size: var(--small-font-size);
   font-weight: 400;
 }
 .case-details-business-details-table {
@@ -2852,12 +2834,12 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding: 0.3539rem;
-  border: 0.708px solid var(--start-btn-border-color);
-  border-radius: 0.5055rem;
+  padding: 0.3571rem;
+  border: var(--portal-icon-btn-border-width) solid var(--start-btn-border-color);
+  border-radius: 0.5rem;
   background: var(--start-btn-bg);
   color: var(--portal-detail-accent-color);
-  font-size: 1.0617rem !important;
+  font-size: var(--default-font-size) !important;
   line-height: 1 !important;
 }
 
@@ -2873,7 +2855,7 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   border-radius: var(--portal-action-menu-radius);
   background: var(--portal-detail-card-bg);
   box-shadow: var(--portal-action-menu-shadow);
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--default-font-size);
   white-space: nowrap;
 }
 /* Freya draws the callout arrow with these; Figma has none. */
@@ -2891,11 +2873,11 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   display: contents;
 }
 
-.portal-action-menu .portal-action-menu-item {
+.portal-action-menu .portal-action-menu-item,
+.portal-action-menu.ui-menu .ui-menuitem-link {
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 0.3571rem;
   width: 100%;
   min-height: 3.1429rem;
@@ -2903,14 +2885,18 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   margin: 0;
   float: none;
   clear: none;
-  font-size: var(--portal-detail-font-size);
+  font-size: var(--default-font-size);
   font-weight: 400;
   line-height: 1.2;
   text-align: left;
   color: var(--portal-detail-value-color);
   border-top: 1px solid var(--portal-action-menu-divider-color);
 }
-.portal-action-menu.ui-overlaypanel > .ui-overlaypanel-content > .portal-action-menu-item:first-child {
+.portal-action-menu .portal-action-menu-item {
+  justify-content: space-between;
+}
+.portal-action-menu.ui-overlaypanel > .ui-overlaypanel-content > .portal-action-menu-item:first-child,
+.portal-action-menu.ui-menu .ui-menuitem:first-child .ui-menuitem-link {
   border-top: none;
 }
 .portal-action-menu .case-side-steps-panel > .portal-action-menu-item:first-child,
@@ -2918,15 +2904,16 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   border-top-color: var(--ivy-primary-color-grey-light);
 }
 
-.portal-action-menu .portal-action-menu-icon {
+.portal-action-menu .portal-action-menu-icon,
+.portal-action-menu.ui-menu .ui-menuitem-icon {
   flex: 0 0 auto;
-  width: 1.1429rem;
-  height: 1.1429rem;
-  font-size: 1.1429rem;
+  width: 1.2rem;
+  height: 1.2rem;
   line-height: 1;
   margin: 0;
 }
-.portal-action-menu .portal-action-menu-label {
+.portal-action-menu .portal-action-menu-label,
+.portal-action-menu.ui-menu .ui-menuitem-text {
   flex: 1 1 auto;
   min-width: 0;
   overflow: hidden;
@@ -2936,7 +2923,6 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 .portal-action-menu .portal-action-menu-trail {
   flex: 0 0 auto;
   margin-left: auto;
-  font-size: 1.1429rem;
   line-height: 1;
   color: var(--portal-detail-accent-color);
 }
@@ -2955,42 +2941,6 @@ body .portal-action-menu .portal-action-menu-item.color-destroy {
 .portal-action-menu.ui-menu .ui-menu-list {
   padding: 0;
   margin: 0;
-}
-.portal-action-menu.ui-menu .ui-menuitem-link {
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  gap: 0.3571rem;
-  width: 100%;
-  min-height: 3.1429rem;
-  padding: 0 var(--portal-detail-subcard-padding);
-  margin: 0;
-  float: none;
-  clear: none;
-  font-size: var(--portal-detail-font-size);
-  font-weight: 400;
-  line-height: 1.2;
-  text-align: left;
-  color: var(--portal-detail-value-color);
-  border-top: 1px solid var(--portal-action-menu-divider-color);
-}
-.portal-action-menu.ui-menu .ui-menuitem:first-child .ui-menuitem-link {
-  border-top: none;
-}
-.portal-action-menu.ui-menu .ui-menuitem-icon {
-  flex: 0 0 auto;
-  width: 1.1429rem;
-  height: 1.1429rem;
-  font-size: 1.1429rem;
-  line-height: 1;
-  margin: 0;
-}
-.portal-action-menu.ui-menu .ui-menuitem-text {
-  flex: 1 1 auto;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .portal-action-menu.ui-menu .ui-divider.separator {
   display: none;
