@@ -23,6 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addSubstitute: Ajouter un substitut
     deputies: Remplaçant
     description: Veuillez inscrire vos vacances, maladies ou autres obligations extérieures conduisant à une absence.
+    disableAbsencesInThePast: Masquer les absences passées
     editAbsence: Editer les absences
     editSubstitute: Modifier le substitut
     from: Du
@@ -773,7 +774,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       GeneralInfo: 'Gérez les fichiers de configuration de Portal sous la forme d''un package ZIP portable. Utilisez Exporter pour télécharger tous les fichiers de configuration JSON actuels regroupés dans une seule archive ZIP, ou utilisez Importer pour charger un package ZIP et appliquer ses configurations — en remplaçant les configurations existantes.'
       ExportTitle: Exporter
       ExportDescription: Exportez les fichiers de configuration de Portal sous forme de package ZIP. Seuls les fichiers contenant des données existantes sont disponibles à la sélection.
-      ExportNote: Seuls les fichiers non vides sont inclus dans le package.
       ExportButton: Exporter
       ImportTitle: Importer
       ImportDescription: Téléchargez un fichier ZIP contenant les fichiers JSON requis. Les noms de fichiers doivent respecter le modèle ci-dessus.
@@ -815,6 +815,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins et modifier l'ordre des éléments de navigation.
       DoNotSupportMobile: La configuration du tableau de bord n'est pas prise en charge pour les appareils mobiles.
       EditPrivateDashboards: Modifier vos tableaux de bord privés
+      EditLayout: Modifier la mise en page
       PrivateTabInfo: 'Créez et gérez vos tableaux de bord personnels.<ul><li>Ils ne sont visibles que par vous</li><li>Ils apparaissent sous l''icône Dashboard dans la barre latérale</li></ul>'
       PublicTabInfo: 'Gérez les tableaux de bord pour tous les utilisateurs. Définissez la visibilité:<ul><li><b>Barre latérale</b> — apparaît comme élément principal dans le menu latéral</li><li><b>Sous-menu</b> — apparaît sous l''icône Dashboard</li><li><b>Masqué</b> — non visible pour les utilisateurs</li></ul>'
       Visibility: Visibilité
@@ -845,7 +846,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AddItem: Ajouter un élément
       Label: Libellé
       Source: Source
-      Target: Cible
+      Target: Lien vers
       Dashboard: Tableau de bord
       MenuManagement: Gestion des menus
       MenuManagementTabInfo: 'Gérez les éléments de navigation de la barre latérale. Vous pouvez:<ul><li>Ajouter de nouveaux éléments de menu (tableaux de bord, liens externes, processus Ivy)</li><li>Réorganiser les éléments par glisser-déposer</li><li>Modifier ou supprimer des éléments de menu existants</li></ul>'
@@ -1485,10 +1486,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Voir la liste complète des tâches
     sort: Trier
   taskWarning:
-    createdTaskLeave: '<div>Vous êtes sur le point de quitter cette page.<br/>  Choisissez l&apos;&apos;une des options suivantes :</div> <UL><LI>Quitter : abandonnez vos modifications et allez à la page choisie. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
+    createdTaskLeave: Si vous quittez maintenant, vous ne pourrez plus démarrer cette tâche.
     createdTaskLogout: '<div>Vous êtes sur le point de quitter cette page.<br/> Choisissez l&apos;&apos;une des options suivantes :</div> <UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
-    resetParkTaskBeforeLeave: '<div>Vous êtes sur le point de laisser une tâche en cours.<br/>Choisissez l&apos;&apos;une des options suivantes :</div><UL> <LI> Quitter : abandonnez vos modifications et allez à la page choisie. <LI> Enregistrer : abandonnez vos modifications et conservez la tâche dans
-      votre liste de tâches personnelles. Ensuite déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
+    leaveTaskHeader: Quitter cette tâche ?
+    resetParkTaskBeforeLeave: Cette tâche est en cours. Si vous la quittez maintenant, vous ne pourrez plus la redémarrer. Si vous la réservez, elle réapparaîtra dans votre liste de tâches.
     resetParkTaskBeforeLogout: '<div>Vous êtes sur le point de laisser une tâche en cours.</br> Choisissez l&apos;&apos;une des options suivantes : </div><UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Enregistrer : annulez vos modifications et conservez la tâche dans votre
       liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
     taskNotFound: cette tâche n'existe pas ou vous n'avez pas l'autorisation de la voir.

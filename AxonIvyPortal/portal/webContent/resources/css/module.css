@@ -3193,6 +3193,74 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   height: 100%;
 }
 
+/* Absences page header (icon + title + info circle), tabs and dynamic action button (IVYPORTAL-20781) */
+.absence-tabs-header-row {
+  position: relative;
+}
+
+.absence-tabs-header-row .absences-tabview .ui-tabs-nav {
+  padding-right: 9rem;
+}
+
+.absence-tabs-header-row .absences-tabview .ui-tabs-nav li.ui-tabs-header {
+  padding: 0.75rem 1rem;
+}
+
+.absence-tabs-header-row .absences-tabview .ui-tabs-nav li.ui-tabs-header.ui-state-active {
+  border-color: var(--dashboard-tab-active-color) !important;
+}
+
+.absence-tabs-header-row .absences-tabview .ui-tabs-nav li.ui-tabs-header.ui-state-active a {
+  color: var(--dashboard-tab-active-color) !important;
+}
+
+.absence-tab-actions {
+  position: absolute;
+  top: -0.5rem;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 40em) {
+  .absence-tabs-header-row .absences-tabview .ui-tabs-nav {
+    padding-right: 3rem;
+  }
+}
+
+/* Filters card grouping the user selection and toggle filters, matching the Portal Configuration sidebar card style */
+.filters-card {
+  background: var(--filters-card-bg-color);
+  border: 1px solid var(--filters-card-border-color);
+  border-radius: 15px;
+  box-sizing: border-box;
+  padding: 1rem 1.25rem;
+}
+
+.filters-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider {
+  background: var(--filters-toggle-checked-bg-color);
+}
+
+.filters-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider:before,
+.filters-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider .ui-toggleswitch-handler {
+  background: var(--filters-toggle-knob-color);
+}
+
+/* "Selected user" dropdown, styled to match Portal Configuration's sidebar-mode-select dropdown */
+.filters-card .absence-user-selection.ui-autocomplete input.ui-autocomplete-input {
+  background-color: var(--sidebar-mode-select-bg-color);
+  border-color: var(--sidebar-mode-select-border-color);
+  border-right: none;
+}
+
+/* Dropdown trigger button: same background as the input, no left border, so it reads as one connected control instead of two boxes */
+.filters-card .absence-user-selection.ui-autocomplete .ui-autocomplete-dropdown {
+  background-color: var(--sidebar-mode-select-bg-color);
+  border-color: var(--sidebar-mode-select-border-color);
+  border-left: none;
+  color: var(--text-color, #333);
+}
+
 .deputy-for-next-absence {
   width: inherit;
 }
@@ -3208,15 +3276,29 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   line-break: anywhere;
 }
 
+body .ui-button {
+  background: var(--button-primary-bg-color);
+  border-color: var(--button-primary-bg-color);
+  color: var(--button-primary-text-color);
+}
+
+body .ui-button:hover {
+  background: var(--button-primary-bg-color);
+  border-color: var(--button-primary-bg-color);
+  color: var(--button-primary-text-color);
+  opacity: 0.85;
+}
+
+/* Opt-in pale/light button style, kept for buttons that still need the older look */
 .ui-button.primary-color-light-button {
-  background: var(--portal-accessibility-bg-color); 
+  background: var(--portal-accessibility-bg-color);
   color: var(--portal-button-text-color);
   font-weight: 600;
   height: 3.25rem;
 }
 
 .ui-button.primary-color-light-button:hover {
-  background: hsla(var(--ivy-primary-light-color-h), var(--ivy-primary-light-color-s), 89%, 1); 
+  background: hsla(var(--ivy-primary-light-color-h), var(--ivy-primary-light-color-s), 89%, 1);
   color: var(--ivy-primary-color);
 }
 
@@ -3264,7 +3346,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .avatar-stack .avatar-stack-item .ui-avatar,
 .avatar-stack .avatar-stack-item img {
-  border: 2px solid #FFFFFF;
+  border: 2px solid var(--substituted-user-avatar-color);
   box-sizing: content-box;
 }
 
@@ -3681,7 +3763,7 @@ _:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
 
 .admin-settings-container>.card {
   min-height: 300px;
-  max-width: 1400px;
+  max-width: 1850px;
   margin: 0 auto;
 }
 
@@ -5529,7 +5611,7 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 
 /* Dashboard Configuration */
 .dashboard-configuration-page {
-  max-width: 1400px;
+  max-width: 1850px;
   margin: 10px auto;
 }
 
@@ -5560,7 +5642,7 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 
 .dashboard-type-list li.active {
   background-color: transparent;
-  border-color: var(--primary-color);
+  border-color: var(--dashboard-tab-active-color);
 }
 
 .dashboard-type-list li a {
@@ -5572,13 +5654,13 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 }
 
 .dashboard-type-list li.active a {
-  color: var(--primary-color);
+  color: var(--dashboard-tab-active-color);
   font-weight: 700;
   opacity: 1;
 }
 
 .dashboard-type-list li.active i {
-  color: var(--primary-color);
+  color: var(--dashboard-tab-active-color);
   opacity: 1;
 }
 

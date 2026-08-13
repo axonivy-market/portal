@@ -255,6 +255,7 @@
   --portal-button-text-color: var(--ivy-primary-color);
   /* Absences and Deputy */
   --substituted-user-text-color: var(--ivy-primary-color-black);
+  --substituted-user-avatar-color: var(--ivy-primary-color-white);
   /* Awesome Icon Selection */
   --content-link-change-awesome-icon-color: var(--primary-color);
   --select-awesome-icon-button-font-weight: bold;
@@ -432,4 +433,24 @@
   --portal-package-alert-warning-background-color: var(--ivy-tertinary-color-red-light);
   --portal-package-alert-warning-border-color: var(--ivy-tertinary-color-red-medium);
   --portal-package-alert-warning-text-color: var(--ivy-tertinary-color-red-medium);
+  
+  /* Portal Management */
+  --dashboard-icon-bg-color: var(--ivy-dashboard-icon-bg-light);
+  --dashboard-icon-border-color: var(--ivy-dashboard-icon-border-light);
+  --dashboard-action-menu-item-border-color: var(--ivy-dashboard-icon-bg-light);
+  --dashboard-action-menu-box-shadow: 0px 0px 15.6px 3px rgba(0, 0, 0, 0.15);
+  --sidebar-settings-card-bg-color: var(--ivy-portal-color-gray-spaces);
+  --sidebar-settings-card-border-color: var(--ivy-dashboard-icon-border-light);
+  --sidebar-mode-select-bg-color: var(--ivy-primary-color-white);
+  --sidebar-mode-select-border-color: var(--ivy-portal-color-gray-84);
+  --sidebar-toggle-checked-bg-color: var(--ivy-primary-color);
+  --sidebar-toggle-knob-color: var(--ivy-primary-color-white);
+  --button-primary-bg-color: var(--ivy-primary-color);
+  --button-primary-text-color: var(--ivy-primary-color-white);
+  --dashboard-tab-active-color: var(--primary-color);
+  --card-box-shadow: 0 0 27px 0 rgba(0, 0, 0, 0.05);
+  --filters-card-bg-color: var(--sidebar-settings-card-bg-color);
+  --filters-card-border-color: var(--sidebar-settings-card-border-color);
+  --filters-toggle-checked-bg-color: var(--ivy-primary-color);
+  --filters-toggle-knob-color: var(--ivy-primary-color-white);
 }

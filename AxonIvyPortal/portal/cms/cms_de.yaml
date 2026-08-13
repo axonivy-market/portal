@@ -23,6 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addSubstitute: Stellvertreter hinzufügen
     deputies: Stellvertreter
     description: Während meiner Abwesenheit werden Workflow Aufgaben automatisch den definierten Stellvertretern zugeteilt.
+    disableAbsencesInThePast: Vergangene Abwesenheiten ausblenden
     editAbsence: Abwesenheiten bearbeiten
     editSubstitute: Ersatz bearbeiten
     from: Von
@@ -775,7 +776,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       GeneralInfo: 'Verwalten Sie Portal-Konfigurationsdateien als portables ZIP-Paket. Verwenden Sie Exportieren, um alle aktuellen JSON-Konfigurationsdateien gebündelt in einem einzigen ZIP-Archiv herunterzuladen, oder verwenden Sie Importieren, um ein ZIP-Paket hochzuladen und dessen Konfigurationen anzuwenden — wodurch die bestehenden ersetzt werden.'
       ExportTitle: Exportieren
       ExportDescription: Exportieren Sie Portal-Konfigurationsdateien als ZIP-Paket. Nur Dateien mit vorhandenen Daten stehen zur Auswahl.
-      ExportNote: Nur nicht leere Dateien werden in das Paket aufgenommen.
       ExportButton: Exportieren
       ImportTitle: Importieren
       ImportDescription: Laden Sie eine ZIP-Datei hoch, die die erforderlichen JSON-Dateien enthält. Die Dateinamen müssen dem obigen Muster entsprechen.
@@ -817,6 +817,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       Description: In diesem Bereich können Sie die Dashboards nach Ihren Wünschen konfigurieren und die Reihenfolge der Navigationselemente ändern.
       DoNotSupportMobile: Die Dashboard-Konfiguration wird für mobile Geräte nicht unterstützt.
       EditPrivateDashboards: Private Dashboards bearbeiten
+      EditLayout: Layout bearbeiten
       PrivateTabInfo: 'Erstellen und verwalten Sie Ihre persönlichen Dashboards.<ul><li>Diese Dashboards sind nur für Sie sichtbar</li><li>Sie erscheinen unter dem Dashboard-Symbol in der Seitenleiste</li></ul>'
       PublicTabInfo: 'Verwalten Sie Dashboards für alle Benutzer. Steuern Sie die Sichtbarkeit:<ul><li><b>Seitenleiste</b> — erscheint als Haupteintrag im Seitenleistenmenü</li><li><b>Untermenü</b> — erscheint unter dem Dashboard-Symbol</li><li><b>Ausgeblendet</b> — für Benutzer nicht sichtbar</li></ul>'
       Visibility: Sichtbarkeit
@@ -847,7 +848,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AddItem: Eintrag hinzufügen
       Label: Bezeichnung
       Source: Quelle
-      Target: Ziel
+      Target: Link zu
       Dashboard: Dashboard
       MenuManagement: Menüverwaltung
       MenuManagementTabInfo: 'Verwalten Sie die Navigationselemente der Seitenleiste. Sie können:<ul><li>Neue Menüeinträge hinzufügen (Dashboards, externe Links, Ivy-Prozesse)</li><li>Einträge per Drag-and-Drop neu anordnen</li><li>Bestehende Menüeinträge bearbeiten oder entfernen</li></ul>'
@@ -1487,10 +1488,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Komplette Aufgabenliste anzeigen
     sort: Sortieren
   taskWarning:
-    createdTaskLeave: '<div>Sie verlassen die aktuelle Seite.<br/>  Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    createdTaskLeave: Wenn Sie jetzt verlassen, können Sie diese Aufgabe nicht erneut starten.
     createdTaskLogout: '<div>Sie verlassen die aktuelle Seite.<br/> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLeave: '<div>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>Abbrechen:
-      Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    leaveTaskHeader: Diese Aufgabe verlassen?
+    resetParkTaskBeforeLeave: Diese Aufgabe ist in Bearbeitung. Wenn Sie sie jetzt verlassen, können Sie sie nicht erneut starten. Wenn Sie sie reservieren, erscheint sie wieder in Ihrer Aufgabenliste.
     resetParkTaskBeforeLogout: '<div>Sie verlassen die aktuelle Aufgabe.</br> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben. Dann abmelden.<LI>Abbrechen:
       Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     taskNotFound: Die Aufgabe existiert nicht oder Sie haben ungenügende Rechte, um diese Aufgabe zu sehen.
