@@ -11,6 +11,8 @@
   margin-bottom: 0;
   overflow: hidden;
   border-radius: 16px;
+  width: 227px;
+  height: 264px;
 }
 
 @media screen and (max-width: 320px) {
@@ -29,6 +31,7 @@
 
 #user-setting-container .ui-menu-items {
   margin: 0;
+  height: 44px;
 }
 
 #user-setting-container .ui-menu-items > a {

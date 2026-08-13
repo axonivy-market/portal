@@ -2705,7 +2705,7 @@ body .dashboard-side-steps-menu-button {
 
 /* Dashboard Configuration and Icons */
 .dashboard-configuration-title {
-  font-size: 1.8rem;
+  font-size: calc(9 / 7 * 1rem);
   font-weight: 600;
   margin-bottom: 0.5rem;
 }

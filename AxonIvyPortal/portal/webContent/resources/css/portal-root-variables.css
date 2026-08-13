@@ -57,7 +57,7 @@
   --header-font-size: 2rem;
   --portal-icon-font-family: "tabler-icons";
   --portal-icon-font-size: 1em;
-  --portal-tabler-icon-size: 1.2em;
+  --portal-tabler-icon-size: calc(8 / 7 * 1rem);
   --portal-icon-line-height: 1;
   --portal-icon-ui-icon-font-size: 1.4rem;
   --default-font-style: normal;
