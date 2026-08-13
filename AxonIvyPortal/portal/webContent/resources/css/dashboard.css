@@ -2735,7 +2735,6 @@ body .dashboard-side-steps-menu-button {
 .portal-icon-container i {
   margin: 0;
   padding: 0;
-  font-size: 1.6rem;
   line-height: 1;
 }
 
@@ -2756,7 +2755,6 @@ body .dashboard-side-steps-menu-button {
   margin: 0 !important;
   padding: 0 !important;
   line-height: 1 !important;
-  font-size: 1.6rem !important;
   display: block;
 }
 
