@@ -23,6 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addSubstitute: Agregar sustituto
     deputies: Sustitutos
     description: Establezca sus vacaciones, enfermedades u otras obligaciones externas que lleven a cualquier ausencia.
+    disableAbsencesInThePast: Ocultar ausencias en el pasado
     editAbsence: Editar ausencia
     editSubstitute: Editar sustituto
     from: Del
@@ -773,7 +774,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       GeneralInfo: 'Gestione los archivos de configuración de Portal como un paquete ZIP portátil. Use Exportar para descargar todos los archivos de configuración JSON actuales agrupados en un único archivo ZIP, o use Importar para cargar un paquete ZIP y aplicar sus configuraciones, reemplazando las existentes.'
       ExportTitle: Exportar
       ExportDescription: Exporte los archivos de configuración de Portal como un paquete ZIP. Solo los archivos con datos existentes están disponibles para su selección.
-      ExportNote: Solo se incluyen en el paquete los archivos no vacíos.
       ExportButton: Exportar
       ImportTitle: Importar
       ImportDescription: Cargue un archivo ZIP que incluya los archivos JSON requeridos. Los nombres de archivo deben seguir el patrón anterior.
@@ -815,6 +815,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       Description: En esta sección puedes configurar los cuadros de mando según tus necesidades y modificar el orden de los elementos de navegación.
       DoNotSupportMobile: La configuración del panel de control no es compatible con los dispositivos móviles.
       EditPrivateDashboards: Editar tu cuadro de mando
+      EditLayout: Editar diseño
       PrivateTabInfo: 'Cree y gestione sus paneles personales.<ul><li>Estos paneles solo son visibles para usted</li><li>Aparecen bajo el icono del panel en la barra lateral</li></ul>'
       PublicTabInfo: 'Gestione paneles para todos los usuarios. Controle la visibilidad:<ul><li><b>Barra lateral</b> — aparece como elemento principal en el menú lateral</li><li><b>Submenú</b> — aparece bajo el icono del panel</li><li><b>Oculto</b> — no visible para los usuarios</li></ul>'
       Visibility: Visibilidad
@@ -845,7 +846,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AddItem: Agregar elemento
       Label: Etiqueta
       Source: Origen
-      Target: Destino
+      Target: Enlaza a
       Dashboard: Panel de control
       MenuManagement: Gestión de menús
       MenuManagementTabInfo: 'Gestione los elementos de navegación de la barra lateral. Puede:<ul><li>Agregar nuevas entradas de menú (paneles, enlaces externos, procesos Ivy)</li><li>Reordenar elementos arrastrando y soltando</li><li>Editar o eliminar entradas de menú existentes</li></ul>'
@@ -1486,10 +1487,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Mostrar lista de tareas completa
     sort: Ordenar
   taskWarning:
-    createdTaskLeave: '<div>Va a salir de esta página. Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
+    createdTaskLeave: Si sale ahora, no podrá iniciar esta tarea de nuevo.
     createdTaskLogout: '<div>Va a salir de esta página.<br/> Por favor selecione una de las siguientes opciones:</div><UL><LI> Cerrar sesión: No guardará sus cambios y se cerrará la sesión.<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
-    resetParkTaskBeforeLeave: '<div>Va a salir de esta página.<br/>Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Reservar: No guardará sus cambios y esta tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando
-      en esta tarea.</UL>'
+    leaveTaskHeader: ¿Salir de esta tarea?
+    resetParkTaskBeforeLeave: Esta tarea está en curso. Si sale ahora, no podrá iniciarla de nuevo. Si la reserva, volverá a aparecer en su lista de tareas.
     resetParkTaskBeforeLogout: '<div>Va a salir de esta página.</br> Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: no guardará sus cambios y volverá a la página anterior.<LI>Reservar: No guardará sus cambios, volverá a la página anterior pero la tarea quedara reservada para usted.<LI>Cancelar:
       Continue trabajando en esta tarea.</UL>'
     taskNotFound: La tarea no existe o no los tiene derechos suficientes para ver esta tarea.

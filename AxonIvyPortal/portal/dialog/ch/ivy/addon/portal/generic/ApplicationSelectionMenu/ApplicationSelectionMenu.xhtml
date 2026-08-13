@@ -82,8 +82,7 @@
   <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="warning-before-leaving-task-component" componentId="task-leave-warning-dialog"
     widgetVar="task-losing-confirmation-dialog" renderedDialog="#{data.isWorkingOnATask}" taskState="#{task.state}"
     leaveActionListener="#{logic.fireEventClickOnMenuItem()}" leaveOnComplete="leaveTask();"
-    reserveActionListener="#{logic.fireEventClickOnMenuItem()}" reserveOnComplete="reserveTask();"
-    cancelActionListener="#{logic.continueWorkingOnTask()}" cancelOnClick="PF('main-menu').restoreMenuState();">
+    reserveActionListener="#{logic.fireEventClickOnMenuItem()}" reserveOnComplete="reserveTask();">
     <f:facet name="event">
       <p:ajax event="close" listener="#{logic.continueWorkingOnTask}" global="false" immediate="true" />
     </f:facet>
