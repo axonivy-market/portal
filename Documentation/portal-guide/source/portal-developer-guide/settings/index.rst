@@ -469,7 +469,8 @@ Data model:
 .. code-block:: javascript
 
    {
-     "third-party-application": [
+     "version": "14.0.0",
+     "items": [
       {
          "id": "284352a58c7a48a2b64be8a946857c7a",
          "displayName": "{\"de\":\"AxonIvy ger\",\"en\":\"AxonIvy\"}",
@@ -730,7 +731,8 @@ Data model:
 .. code-block:: javascript
 
    {
-     "external-link": [
+     "version": "14.0.0",
+     "items": [
       {
          "id": "01322912db224658a222804802844a7b",
          "version": "10.0.9",

@@ -36,6 +36,7 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
  * This class provides method to convert Business entity object into JSON value and reverse
  */
 public class BusinessEntityConverter {
+  public static final String DEFAULT_LIST_WRAPPER_VERSION = "14.0.0";
   
   public static ObjectMapper objectMapper;
 
@@ -285,7 +286,7 @@ public class BusinessEntityConverter {
 
   }
 
-  public static final String DEFAULT_LIST_WRAPPER_VERSION = "1.0";
+
 
   /**
    * Serializes a list of entities using the canonical

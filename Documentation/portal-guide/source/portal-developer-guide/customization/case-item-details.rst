@@ -41,7 +41,8 @@ How to Configure Widgets in Case Details
    .. code-block:: javascript
       
          {
-           "case-details": [
+           "version": "14.0.0",
+           "items": [
             {
                "id": "default-case-detail",
                "widgets": [
@@ -207,7 +208,8 @@ The following two steps are necessary to add new custom panels:
       .. code-block:: javascript
 
          {
-           "case-details": [
+           "version": "14.0.0",
+           "items": [
             {
                "id": "default-case-detail",
                "widgets": [
@@ -302,7 +304,8 @@ The following two steps are necessary to add new custom panels:
       .. code-block:: javascript
 
          {
-           "case-details": [
+           "version": "14.0.0",
+           "items": [
             {
                "id": "case-detail",
                "widgets": [
@@ -346,7 +349,8 @@ The following two steps are necessary to add new custom panels:
       .. code-block:: javascript
 
          {
-           "case-details": [
+           "version": "14.0.0",
+           "items": [
             {
                "id": "case-detail",
                "widgets": [

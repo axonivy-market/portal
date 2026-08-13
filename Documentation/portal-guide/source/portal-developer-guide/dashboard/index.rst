@@ -15,7 +15,8 @@ Below is a comprehensive JSON example configuring a dashboard with a task widget
 .. code-block:: javascript
 
    {
-     "dashboard": [
+     "version": "14.0.0",
+     "items": [
       {
          "id": "1",
          "version": "12.0.0",
