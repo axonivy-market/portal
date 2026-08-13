@@ -470,6 +470,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     back: 戻る
     backToCaseMap: ケースマップに戻る
     backgroundColor: 背景色
+    bulkSelection: 一括選択
     cancel: キャンセル
     cancelContext: '{0}をキャンセル'
     case: ケース
@@ -481,6 +482,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     close: 閉じる
     closeContext: '{0}を閉じる'
     cockpit: コックピット
+    collapse: 縮小
     collapseWidgetContext: '{0}ウィジェットを縮小'
     colors: 色
     comment: コメント
@@ -525,6 +527,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: Web サイトのコンテンツを更新できませんでした
     escalationTaskHeaderText: エスカレーションのトリガー
     escalationTaskMessage: 有効期限が現在に設定されているため、タスクは期限切れになります。よろしいですか？
+    expand: 展開
     expandWidgetContext: '{0}ウィジェットを展開'
     filter:
       from: 開始
@@ -540,6 +543,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     generalInformation: 一般情報
     globalSearch: 検索...
     goToDetail: 詳細へ移動
+    gridView: グリッド表示
     growlMessage:
       PROCESS_VIEWER: プロセスビューアを閉じました。
       TASK_FINISHED: タスクを正常に完了しました
@@ -555,6 +559,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     leave: 離れる
     leaveAndReserve: 休暇と予約
     linkToCaseDetails: 詳細は、<a href="{0}" >ここ</a>をクリックしてください。
+    listView: リスト表示
     loading: 読み込み中
     loginLogo: ログインロゴ
     logos: ロゴ
@@ -602,7 +607,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     requiredFieldMessage: このフィールドは必須です
     reserve: 保持
     reset: リセット
-    resetFilters: フィルターをリセット
+    resetFilters: すべてリセット
     resetSettingHeaderText: 設定をリセットしますか？
     resetTaskHeaderText: このタスクをリセットしますか？
     resetToDefaultMessage: この操作は元に戻せません。初期設定にリセットしてもよろしいですか?
@@ -795,6 +800,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ImportCompleteMessage: すべてのファイルが正常にインポートされました。
       ImportIncompleteMessage: 一部のファイルをインポートできませんでした。詳細はサーバーログを確認してください。
   dashboard:
+    CanWorkOnAsUser: ユーザーとして作業できるタスクのみを表示
     CaseQueryType:
       info: ケースウィジェットに表示するケースタイプを設定します。デフォルトはビジネスケースのみ、技術サブケースは技術サブケースのみ、すべてはビジネスケースと技術サブケースの両方を表示します。
       label: ケースタイプ
@@ -861,11 +867,23 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidget: 外部ページ
     ExternalPageWidgetIntroduction: このウィジェットは外部Webページを表示できます。
     Filter:
+      AddCondition: 条件を追加
+      ApplyFilters: フィルターを適用
+      DefaultFiltersDescription: ウィジェット設定でデフォルトとして設定されたフィルターです。
+      DefaultFiltersTitle: デフォルトフィルター
+      EmptyFilterValidationError: 保存する前に少なくとも1つのフィルター条件を定義してください。
+      FilterConditionsTitle: フィルター条件
       FilterOptionHeader: フィルターオプション
       FilterOptionHeaderTooltip: 一部のフィルターフィールドや演算子は管理者によって無効化されている場合があります。無効なフィールドまたは演算子を使用しているフィルターは自動的に削除されます。詳細については管理者にお問い合わせください。
       FilterPanelHeader: フィルターパネル
       ManageWidgetFilterHeader: ウィジェットフィルター管理
+      NewFilterConditionsDescription: 次のすべての条件を満たすタスクを表示します。
+      NewFilterConditionsTitle: 新しいフィルター条件
       NotFound: フィルターが見つかりません
+      SaveFilterDescription: これらのフィルター条件を保存して後で再利用できます。
+      SaveFilterNamePlaceholder: フィルター名を入力
+      SaveFilterOptional: （任意）
+      SetFilterHeader: フィルターを設定
       WidgetNameColumn: ウィジェット名
       WrongDateFormat: 日付が無効です
     FilterTasksByCurrentCaseOwner: 現在のケース所有者でタスクをフィルタリングする
@@ -1029,7 +1047,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreDefaultMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。標準設定が適用されます。
     select: 選択
     selectEditAction: どのアクションを実行しますか?
+    showAllCases: すべてのケースを表示
+    showAllTasks: すべてのタスクを表示
     showFullWidget: ウィジェット全体を表示
+    showPinnedCases: ピン留めされたケースを表示
+    showPinnedTasks: ピン留めされたタスクを表示
     statisticChartIntroduction: このウィジェットには、使用可能な統計チャートが表示されます。
     statisticChartWidget: 統計チャート
     statisticWidgets: 統計ウィジェット
