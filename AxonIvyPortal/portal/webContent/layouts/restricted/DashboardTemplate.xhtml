@@ -315,7 +315,7 @@
             onShow="loadAllWidgetSavedFilters();">
             <h:form id="delete-saved-filter-form" styleClass="ui-g">
               <div class="ui-g-12">
-                <p:dataTable id="quick-filter-table" value="#{dashboardBean.widgetFilters}" var="quickFilter"
+                <p:dataTable cellNavigation="false" id="quick-filter-table" value="#{dashboardBean.widgetFilters}" var="quickFilter"
                   widgetVar="quick-filter-table" scrollHeight="300" scrollable="true" reflow="true"
                   selection="#{dashboardBean.deleteFilters}" rowKey="#{quickFilter.id}"
                   emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/EmptyFilterMessage')}" lazy="false">

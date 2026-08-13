@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import java.util.List;
 
-import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
@@ -447,17 +447,19 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
       SelenideElement toElement = findAll.get(toIndex)
           .$(".process-start-list-item").shouldBe(clickable(), DEFAULT_TIMEOUT);
 
-      // Center both rows in the viewport first: a native Actions move computes an absolute on-screen point
-      // (here the target's position plus a 50,20 offset), and that throws MoveTargetOutOfBoundsException if
-      // the row sits near the bottom/edge of a short viewport instead of being scrolled into comfortable view.
+      // Center each row in the viewport right before the action that needs it, not both up front: a native
+      // Actions move computes an absolute on-screen point (here the target's position plus a 50,20 offset),
+      // which throws MoveTargetOutOfBoundsException if the row sits near the bottom/edge of a short viewport.
+      // Scrolling both rows into view up front doesn't work when they're far apart (e.g. index 0 to 6) — the
+      // second scroll (to the target) can push the first row (already grabbed) back out of view before the
+      // move step reads its position. The mouse-down state persists across separate perform() calls on the
+      // same driver, so it's safe to scroll again between grabbing and moving.
       fromElement.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
+      WebDriver driver = WebDriverRunner.getWebDriver();
+      new Actions(driver).clickAndHold(fromElement).pause(500).build().perform();
       toElement.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
-      Actions builder = new Actions(WebDriverRunner.getWebDriver());
-      Action dragAndDrop = builder.clickAndHold(fromElement).pause(500)
-          .moveToElement(toElement, 50, 20).pause(500).release(toElement)
-          .pause(500)
-          .build();
-      dragAndDrop.perform();
+      new Actions(driver).moveToElement(toElement, 50, 20).pause(500).release(toElement).pause(500).build()
+          .perform();
     }
   }
 
@@ -557,7 +559,8 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     return getConfigurationFilterContainer().$("span[id$='fullscreen-mode-group']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='fullscreen-option']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-chkbox-box']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span");
   }
 
   public void clickOnExpandModeCheckbox() {

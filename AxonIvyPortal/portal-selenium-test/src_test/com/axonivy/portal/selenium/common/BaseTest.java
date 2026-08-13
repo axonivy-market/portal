@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -34,7 +35,14 @@ public class BaseTest {
   private final static String LOGIN_URL_PATTERN =
       "/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
   protected final static String PORTAL_HOME_PAGE_URL = "/portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
-  protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
+  protected final static Duration DEFAULT_TIMEOUT = WaitHelper.DEFAULT_TIMEOUT;
+
+  static {
+    // Selenide's own implicit wait (used by any bare element call with no explicit Condition+timeout,
+    // e.g. scrollIntoView()) defaults to 4s regardless of our DEFAULT_TIMEOUT constant. Align it here so
+    // every wait in the suite, explicit or implicit, uses the same 15s value.
+    Configuration.timeout = DEFAULT_TIMEOUT.toMillis();
+  }
 
   public BaseTest() {}
 

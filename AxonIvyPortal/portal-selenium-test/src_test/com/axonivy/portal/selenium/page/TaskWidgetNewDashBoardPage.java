@@ -112,6 +112,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     getTaskWidgetHeader().$(".widget__filter-sidebar-link").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(getTaskWidgetHeader().$(".widget__filter-sidebar-link"));
+    WaitHelper.waitPageNoAnimation();
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -680,10 +681,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public boolean isExpandButtonAppear() {
+    WaitHelper.waitPageNoAjaxAndAnimation();
     return getTaskWidgetHeader().$(".expand-link").isDisplayed();
   }
-  
+
   public boolean isWidgetInfomationIconAppear() {
+    WaitHelper.waitPageNoAjaxAndAnimation();
     return getTaskWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
   }
   

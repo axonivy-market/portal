@@ -7,10 +7,10 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import org.openqa.selenium.WebElement;
 import java.util.List;
 
-import com.axonivy.portal.selenium.common.WaitHelper;
+import org.openqa.selenium.WebElement;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
@@ -105,7 +105,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public DashboardConfigurationPage backToConfigurationPage() {
-    WaitHelper.waitForNavigation(() -> clickByJavaScript($("[id='back-to-configuration']")));
+    clickByJavaScript($("[id='back-to-configuration']"));
+    $("#configuration-group").shouldBe(appear, DEFAULT_TIMEOUT);
     return new DashboardConfigurationPage();
   }
 

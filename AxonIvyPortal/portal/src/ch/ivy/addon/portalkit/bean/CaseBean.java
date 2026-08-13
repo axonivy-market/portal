@@ -11,6 +11,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.inject.Named;
 import jakarta.faces.view.ViewScoped;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
@@ -121,7 +122,7 @@ public class CaseBean implements Serializable {
   public String getAriaLabel(ICase icase, List<CaseColumnModel> columns) {
     List<String> displayTexts = new ArrayList<>();
     for (CaseColumnModel col : columns) {
-      if (col.getVisible()) {
+      if (BooleanUtils.isNotFalse(col.getVisible())) {
         if (DashboardStandardCaseColumn.STATE.getField().equalsIgnoreCase(col.getField())) {
           displayTexts.add(col.getHeaderText() + ": " + getState(icase));
         } else if (DashboardStandardCaseColumn.CREATED.getField().equalsIgnoreCase(col.getField())) {

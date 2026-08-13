@@ -11,6 +11,8 @@ import org.openqa.selenium.interactions.Actions;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ScrollIntoViewOptions;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
@@ -203,6 +205,8 @@ public class DashboardModificationPage extends TemplatePage {
     ElementsCollection targets = $("[id='task-task_1:task-component:dashboard-tasks:dashboard-tasks-columns:3']")
         .$$(".ui-column-resizer.ui-draggable.ui-draggable-handle");
 
+    elements.get(0).scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
+    targets.get(0).scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
     new Actions(driver)
         .dragAndDrop(elements.get(0), targets.get(0))
         .perform();

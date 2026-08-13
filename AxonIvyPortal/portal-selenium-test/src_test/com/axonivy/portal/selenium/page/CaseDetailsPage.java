@@ -340,6 +340,8 @@ public class CaseDetailsPage extends TemplatePage {
         DEFAULT_TIMEOUT);
     SelenideElement destinationElement =
         $(String.format("[id='case-details-%s-panel']", destinationName)).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    sourceElement.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
+    destinationElement.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
     Actions actions = new Actions(getDriver());
     Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
     moveWidget.perform();
@@ -666,7 +668,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void clickRelatedTaskColumnCheckbox(int columnIndex) {
     SelenideElement columnCheckbox = $(By.xpath(String.format(
-        "//*[contains(@id,\":task-widget:task-columns-configuration:select-columns-form:columns-checkbox\")]/tbody/tr[%s]/td/div/div[2]",
+        "//*[contains(@id,\":task-widget:task-columns-configuration:select-columns-form:columns-checkbox\")]/div[%s]/div/div/div[2]",
         columnIndex)));
     columnCheckbox.shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
   }
@@ -1003,7 +1005,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void clickRelatedCaseColumnCheckbox(int columnIndex) {
     String xpath = String.format(
-        "//*[contains(@id,\":related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox\")]/tbody/tr[%s]/td/div/div[2]",
+        "//*[contains(@id,\":related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox\")]/div[%s]/div/div/div[2]",
         columnIndex);
     waitForElementClickableThenClick($(By.xpath(xpath)));
   }

@@ -262,7 +262,7 @@
         </h:panelGroup>
 
         <h:panelGroup styleClass="field" layout="block">
-          <p:dataTable id="users-of-role-table" widgetVar="users-of-role-table"
+          <p:dataTable cellNavigation="false" id="users-of-role-table" widgetVar="users-of-role-table"
             value="#{roleManagementBean.userAssignmentModel}" var="user"
             paginator="true" rows="5"
             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"

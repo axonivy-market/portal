@@ -20,7 +20,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebElementCondition;
 
 public class ComplexFilterHelper {
-  protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
+  protected final static Duration DEFAULT_TIMEOUT = WaitHelper.DEFAULT_TIMEOUT;
 
   public static SelenideElement getNewFilter(int filterIndex) {
     String latestFilter = String.format("div[id$=':%s:filter-component:filter-selection-panel']", filterIndex);
@@ -114,8 +114,10 @@ public class ComplexFilterHelper {
     WaitHelper.waitPageNoAnimation();
     for (int i = 0; i < values.length; i++) {
       getValueOfCheckBox(String.valueOf(values[i])).shouldBe(getClickableCondition()).click();
+      WaitHelper.waitPageNoAjaxAndAnimation();
     }
     getCloseCheckBox().shouldBe(getClickableCondition()).click();
+    WaitHelper.waitPageNoAjaxAndAnimation();
   }
 
   private static void handleFilterText(SelenideElement filterElement, Object... values) {
@@ -219,12 +221,15 @@ public class ComplexFilterHelper {
     var dateInput = filterElement.$$(".date-picker-panel input")
         .shouldHave(CollectionCondition.sizeGreaterThanOrEqual(values.length));
     for (int i = 0; i < dateInput.size(); i++) {
-      dateInput.get(i).clear();
-      dateInput.get(i).shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[i]));
-      WaitHelper.waitPageNoAnimation();
-
-      filterElement.$("span button").$("span[class*='ui-icon-calendar']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+      setDateInputValue(dateInput.get(i), String.valueOf(values[i]));
     }
+  }
+
+  private static void setDateInputValue(SelenideElement input, String value) {
+    input.shouldBe(Condition.editable);
+    Selenide.executeJavaScript(
+        "arguments[0].value=arguments[1];arguments[0].dispatchEvent(new Event('input',{bubbles:true}));",
+        input, value);
   }
 
   private static void handleFilterNumberBetween(SelenideElement filterElement, Object... values) {
@@ -240,17 +245,11 @@ public class ComplexFilterHelper {
   }
 
   private static void handleFilterDateBetween(SelenideElement filterElement, Object... values) {
-    var fromInput = filterElement.$("div[id$=':between-dates-panel-from']").$("input[id$=':from-date_input']")
-        .shouldBe(Condition.editable);
-    fromInput.clear();
-    fromInput.sendKeys(String.valueOf(values[0]));
+    var fromInput = filterElement.$("div[id$=':between-dates-panel-from']").$("input[id$=':from-date_input']");
+    setDateInputValue(fromInput, String.valueOf(values[0]));
 
-    var toInput = filterElement.$("div[id$=':between-dates-panel-to']").$("input[id$=':to-date_input']")
-        .shouldBe(Condition.editable);
-    toInput.clear();
-    toInput.sendKeys(String.valueOf(values[1]));
-    WaitHelper.waitPageNoAnimation();
-    filterElement.$("div[id$=':between-dates-panel-to']").$("button").$("span[class*='ui-icon-calendar']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    var toInput = filterElement.$("div[id$=':between-dates-panel-to']").$("input[id$=':to-date_input']");
+    setDateInputValue(toInput, String.valueOf(values[1]));
   }
 
   private static SelenideElement getValueOfCheckBox(String value) {

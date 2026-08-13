@@ -40,7 +40,7 @@
       </div>
 
       <div class="ui-g-12 u-padding-0">
-        <p:dataTable id="case-details-documents" rendered="#{not empty data.documents}" var="document"
+        <p:dataTable cellNavigation="false" id="case-details-documents" rendered="#{not empty data.documents}" var="document"
           value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" pageLinks="3" rows="5"
           rowsPerPageTemplate="5,10,20,50" paginatorPosition="bottom"
           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"

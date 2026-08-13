@@ -174,6 +174,8 @@ public class TaskDetailsPage extends TemplatePage {
     SelenideElement destinationElement =
         $(By.cssSelector(String.format("[id$=':task-detail-%s-container']", destinationName))).shouldBe(appear,
             DEFAULT_TIMEOUT);
+    sourceElement.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
+    destinationElement.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
     Actions actions = new Actions(WebDriverRunner.getWebDriver());
     Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
     moveWidget.perform();

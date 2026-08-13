@@ -130,6 +130,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     $$("div.table-widget-panel").filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
         .$(".widget__filter-sidebar-link")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -432,10 +433,12 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public boolean isExpandButtonAppear() {
+    WaitHelper.waitPageNoAjaxAndAnimation();
     return getCaseWidgetHeader().$(".expand-link").isDisplayed();
   }
-  
+
   public boolean isWidgetInfomationIconAppear() {
+    WaitHelper.waitPageNoAjaxAndAnimation();
     return getCaseWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
   }
 

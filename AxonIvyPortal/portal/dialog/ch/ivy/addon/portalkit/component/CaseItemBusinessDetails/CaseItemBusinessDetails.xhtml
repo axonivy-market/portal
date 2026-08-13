@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="Separator" />
-    <p:dataTable id="additional-case-detail-table"
+    <p:dataTable cellNavigation="false" id="additional-case-detail-table"
       value="#{case.customFields().all()}" var="item"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
       reflow="true" lazy="false">
