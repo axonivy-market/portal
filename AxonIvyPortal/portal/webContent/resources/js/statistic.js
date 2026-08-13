@@ -1006,6 +1006,7 @@ class ClientNumberChart extends ClientChart {
     let chartContainer = $(this.chart);
     chartContainer.attr('tabindex', '0');
     chartContainer.attr('aria-label', this.buildNumberChartAriaLabel(getFormatedTitle(config.names), result));
+    chartContainer.css('--card-count', Math.max(result.length, 1));
     chartContainer.html(multipleKPI);
     
     if (this.canDrillDown()) {

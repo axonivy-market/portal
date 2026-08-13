@@ -90,7 +90,7 @@
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
   --widget-filter-background-color: var(--ivy-primary-color-grey-dark);
 
-  --wdiget-filter-save-filter-button-background-color: var(--ivy-portal-color-gray-69);
+  --widget-filter-save-filter-button-background-color: var(--ivy-portal-color-gray-69);
   --widget-filter-condition-accent-border-color: hsla(0, 0%, 49%, 1);
   --widget-filter-add-condition-background-color: hsla(0, 0%, 100%, 1);
   --widget-filter-and-badge-background-color: hsla(0, 0%, 15%, 1);
@@ -269,6 +269,7 @@
   --portal-button-text-color: var(--ivy-primary-color);
   /* Absences and Deputy */
   --substituted-user-text-color: var(--ivy-primary-color-black);
+  --substituted-user-avatar-color: var(--ivy-portal-color-gray-17);
   /* Awesome Icon Selection */
   --content-link-change-awesome-icon-color: var(--primary-color);
   --select-awesome-icon-button-font-weight: bold;
@@ -381,7 +382,7 @@
   --image-process-header-background-color: hsla(0, 0%, 96%, 1);
   --image-process-header-background-color-hover: hsla(0, 0%, 86%, 1);
   --image-process-header-color: hsla(0, 0%, 49%, 1);
-  --process-action-button-color: hsla(0, 0%, 0%, 0.56);
+  --process-action-button-color: var(--widget-button-background-color);
   /* Process information page */
   --process-info-step-icon-font-color: var(--primary-color);
   /* Widget header */
@@ -446,4 +447,25 @@
   --portal-package-alert-warning-background-color: var(--ivy-tertinary-color-yellow-light);
   --portal-package-alert-warning-border-color: var(--ivy-tertinary-color-yellow-medium);
   --portal-package-alert-warning-text-color: var(--ivy-tertinary-color-yellow-dark);
+  
+  --dashboard-icon-bg-color: var(--ivy-dashboard-icon-bg-dark);
+  --dashboard-icon-border-color: var(--ivy-dashboard-icon-border-dark);
+  --dashboard-action-menu-item-border-color: var(--ivy-dashboard-icon-bg-dark);
+  --dashboard-action-menu-box-shadow: 0px 0px 15.6px 3px rgba(0, 0, 0, 0.3);
+
+  --sidebar-settings-card-bg-color: var(--ivy-portal-color-gray-20);
+  --sidebar-settings-card-border-color: var(--ivy-dashboard-icon-border-dark);
+  --sidebar-mode-select-bg-color: var(--ivy-portal-color-gray-17);
+  --sidebar-mode-select-border-color: var(--ivy-portal-color-gray-13);
+  --sidebar-toggle-checked-bg-color: var(--ivy-portal-color-slate-light);
+  --sidebar-toggle-knob-color: var(--ivy-primary-color-black);
+  --button-primary-bg-color: var(--ivy-primary-color-white);
+  --button-primary-text-color: var(--ivy-primary-color-black);
+  --dashboard-tab-active-color: var(--ivy-primary-color-white);
+
+  --card-box-shadow: 0 0 27px 0 rgba(0, 0, 0, 0.4);
+  --filters-card-bg-color: var(--sidebar-settings-card-bg-color);
+  --filters-card-border-color: var(--sidebar-settings-card-border-color);
+  --filters-toggle-checked-bg-color: hsla(0, 0%, 100%, 1);
+  --filters-toggle-knob-color: var(--ivy-primary-color-black);
 }

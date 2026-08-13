@@ -5,6 +5,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="actionLinkId" />
   <cc:attribute name="actionLinkStyleClass" />
+  <cc:attribute name="buttonStyleClass" />
   <cc:attribute name="panelWidgetVar" />
   <cc:attribute name="stepsPanelStyleClass" />
   <cc:attribute name="taskId" default="0" shortDescription="Id is added as a param in the adhoc link" />
@@ -34,7 +35,7 @@
 
   <p:commandLink id="#{cc.attrs.actionLinkId}" onclick="event.stopPropagation(); return false;"
     ariaLabel="#{not empty cc.attrs.ariaLabel ? cc.attrs.ariaLabel : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-    styleClass="#{isPreviewMode ? '' : cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link portal-icon ui-sidestep-action portal-icon-btn-round" disabled="#{cc.attrs.readOnly or isPreviewMode}">
+    styleClass="#{isPreviewMode ? '' : cc.attrs.actionLinkStyleClass} #{cc.attrs.buttonStyleClass} #{cc.attrs.taskId} action-link portal-icon ui-sidestep-action portal-icon-btn-round" disabled="#{cc.attrs.readOnly or isPreviewMode}">
     <i class="ti ti-dots" />
   </p:commandLink>
 

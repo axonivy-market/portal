@@ -7,6 +7,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.inject.Named;
 import jakarta.faces.view.ViewScoped;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.dto.UserMenu;
@@ -21,6 +22,7 @@ public class UserMenuConfigurableBean implements Serializable {
 
   private static final long serialVersionUID = 2602764633968843419L;
   private List<UserMenu> menus;
+  private static final String DEFAULT_USER_MENU_ICON = "ti ti-link";
   
   @PostConstruct
   public void initConfigration() {
@@ -42,6 +44,11 @@ public class UserMenuConfigurableBean implements Serializable {
         }
       }
       return true;
+    });
+    userMenus.forEach(userMenu -> {
+      if (StringUtils.isBlank(userMenu.getIcon())) {
+        userMenu.setIcon(DEFAULT_USER_MENU_ICON);
+      }
     });
     return userMenus;
   }

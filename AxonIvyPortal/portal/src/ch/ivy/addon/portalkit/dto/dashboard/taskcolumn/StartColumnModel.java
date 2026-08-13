@@ -27,7 +27,7 @@ public class StartColumnModel extends TaskColumnModel {
 
   @Override
   protected int getDefaultColumnWidth() {
-    return TINY_WIDTH;
+    return SMALL_WIDTH;
   }
 
   @Override
