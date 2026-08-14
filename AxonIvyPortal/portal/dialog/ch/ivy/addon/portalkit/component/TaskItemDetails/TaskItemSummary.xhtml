@@ -22,22 +22,19 @@
         </div>
       </div>
       <h:panelGroup id="task-detail-action-group" class="task-details-action-container action-container task-detail-header-actions flex align-items-center" layout="block">
-        <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task) or readOnly}"
-          styleClass="task-action-item start-task-action task-action-item-position portal-pill-btn portal-pill-btn-accent" rendered="#{task.state != 'RESUMED'}"
+        <p:commandButton id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task) or readOnly}"
+          styleClass="start-task-action task-action-item-position portal-pill-btn portal-pill-btn-accent" rendered="#{task.state != 'RESUMED'}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
-          actionListener="#{logic.openTask()}" oncomplete="resetPortalLeftMenuState()">
-          <i class="ti ti-player-play icon-compact-mode" />
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
-        </p:commandLink>
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" icon="ti ti-player-play"
+          actionListener="#{logic.openTask()}" oncomplete="resetPortalLeftMenuState()" />
 
-        <p:commandLink id="resume-task-detail-start-command" disabled="#{!taskActionBean.canResume(task) or readOnly}"
+        <p:commandButton id="resume-task-detail-start-command" disabled="#{!taskActionBean.canResume(task) or readOnly}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
-          styleClass="task-action-item start-task-action task-action-item-position portal-pill-btn portal-pill-btn-accent" rendered="#{task.state == 'RESUMED'}">
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" icon="ti ti-player-play" type="button"
+          styleClass="start-task-action task-action-item-position portal-pill-btn portal-pill-btn-accent" rendered="#{task.state == 'RESUMED'}">
           <p:ajax event="click" listener="#{logic.validate(task)}" onstart="event.stopPropagation();"
             oncomplete="if (args &amp;&amp; !args.validationFailed) PF('reset-task-dialog').show()" />
-          <i class="ti ti-player-play icon-compact-mode" />
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
-        </p:commandLink>
+        </p:commandButton>
 
         <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" buttonStyleClass="task-action-item-position portal-icon-btn-round"
           actionLinkId="task-detail-more-step" panelWidgetVar="task-details-side-steps-panel"

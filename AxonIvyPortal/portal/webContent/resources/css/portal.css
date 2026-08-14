@@ -2159,6 +2159,22 @@ body .case-list .ui-sidestep-action.portal-icon-btn-round .ti {
   font-size: var(--portal-icon-size-lg) !important;
 }
 
+/* min-height must be overridden too, it beats height on the base pill */
+.portal-pill-btn.portal-pill-btn-sm.ui-button,
+.portal-pill-btn.portal-pill-btn-sm {
+  height: var(--portal-icon-btn-size-sm);
+  min-height: var(--portal-icon-btn-size-sm);
+  padding: 0 0.7143rem;
+}
+.portal-pill-btn.portal-pill-btn-sm .ti,
+.portal-pill-btn.portal-pill-btn-sm .tif {
+  font-size: var(--portal-tabler-icon-size) !important;
+}
+body .ui-button.portal-pill-btn.start-task-action,
+.portal-pill-btn.start-task-action {
+  font-weight: 400;
+}
+
 /* Shared: pill button on a `p:commandButton` ----------------------------------------*/
 body .ui-button.portal-pill-btn .ui-button-text {
   padding: 0;
@@ -2182,6 +2198,10 @@ body .portal-pill-btn:not(.ui-state-disabled):hover {
   background: var(--widget-button-hover-background-color);
   border-color: var(--widget-button-border-color);
   color: var(--portal-detail-value-color);
+}
+
+.action-container {
+  gap: 0.5rem;
 }
 body .ui-button.portal-pill-btn.portal-pill-btn-accent,
 body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-focus,

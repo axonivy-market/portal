@@ -3,23 +3,20 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui">
   <div id="action-cell-#{rowIndex}" class="task-header-action-cell">
     <div class="action-container">
-      <p:commandLink id="task-action-component" actionListener="#{logic.openTask(task,dataModel)}"
+      <p:commandButton id="task-action-component" actionListener="#{logic.openTask(task,dataModel)}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
-        disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task) or cc.attrs.inFrame}" rendered="#{task.state != 'RESUMED' and !cc.attrs.readOnly}" onstart="event.stopPropagation();"
-        styleClass="task-action-item start-task-action" oncomplete="resetPortalLeftMenuState()">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label ui-sm-hidden" />
-        <i class="ti ti-chevron-right icon-compact-mode" />
-      </p:commandLink>
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" icon="ti ti-player-play"
+        disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task) or cc.attrs.inFrame}" rendered="#{task.state != 'RESUMED' and !cc.attrs.readOnly}" onclick="event.stopPropagation();"
+        styleClass="start-task-action portal-pill-btn portal-pill-btn-accent portal-pill-btn-sm" oncomplete="resetPortalLeftMenuState()" />
 
-      <p:commandLink id="resume-task-action-component" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task) or cc.attrs.inFrame}"
+      <p:commandButton id="resume-task-action-component" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task) or cc.attrs.inFrame}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
-        rendered="#{task.state == 'RESUMED' and !cc.attrs.readOnly}" styleClass="task-action-item start-task-action">
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" icon="ti ti-player-play" type="button"
+        rendered="#{task.state == 'RESUMED' and !cc.attrs.readOnly}" styleClass="start-task-action portal-pill-btn portal-pill-btn-accent portal-pill-btn-sm">
         <f:setPropertyActionListener value="#{task.id}" target="#{taskWidgetBean.selectedTaskItemId}"/>
         <p:ajax event="click" listener="#{logic.validate(task, dataModel)}" onstart="event.stopPropagation();"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('reset-task-dialog').show();}" />
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label ui-sm-hidden" />
-        <i class="ti ti-chevron-right icon-compact-mode" />
-      </p:commandLink>
+      </p:commandButton>
 
       <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"
         isDisabled="#{cc.attrs.readOnly or cc.attrs.inFrame}" inFrame="#{inFrame}"
