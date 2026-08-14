@@ -20,6 +20,8 @@
   <cc:attribute name="titleRequired" type="java.lang.Boolean" default="true"/>
   <cc:attribute name="dynamic" type="java.lang.Boolean" default="false" />
   <cc:attribute name="useInputText" type="java.lang.Boolean" default="true" shortDescription="if true uses render input text, otherwise uses text area"/>
+  <cc:attribute name="dialogWidgetVar" default="multiple-languages-dialog" shortDescription="id and widgetVar of the dialog; override to host more than one instance on a page"/>
+  <cc:attribute name="onModifyComplete" default="" shortDescription="extra JS run after the changes are applied, e.g. to refresh a preview"/>
 </cc:interface>
 
 <cc:implementation>
@@ -30,7 +32,7 @@
 
   <p:dialog rendered="#{cc.attrs.rendered}" appendTo="@(body)" width="500" fitViewport="true" closeOnEscape="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')}" resizable="false"
-    id="multiple-languages-dialog" widgetVar="multiple-languages-dialog" modal="true" responsive="true"
+    id="#{cc.attrs.dialogWidgetVar}" widgetVar="#{cc.attrs.dialogWidgetVar}" modal="true" responsive="true"
     dynamic="#{cc.attrs.dynamic}" styleClass="dialog-responsive">
     <h:form id="add-language-detail-form">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
@@ -80,12 +82,12 @@
       <div class="u-dialog-footer-actions-group">
         <p:commandLink id="multi-language-cancel-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')])}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('multiple-languages-dialog').hide(); return false;" />
+          onclick="PF('#{cc.attrs.dialogWidgetVar}').hide(); return false;" />
         <p:spacer width="15px" rendered="#{!titles.isEmpty()}" />
         <p:commandButton id="multi-language-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/okContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')])}"
           update="#{cc.attrs.componentToUpdateOnCreate}, #{cc.attrs.componentToUpdateOnModify}, @form" process="@form"
-          oncomplete="PF('multiple-languages-dialog').hide();"
+          oncomplete="PF('#{cc.attrs.dialogWidgetVar}').hide(); #{cc.attrs.onModifyComplete}"
           actionListener="#{cc.attrs.updateCurrentLanguage}"
           validateClient="true"
           rendered="#{!titles.isEmpty()}" />

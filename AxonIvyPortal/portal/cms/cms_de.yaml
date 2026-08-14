@@ -949,19 +949,19 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeConfigurationDescription: Sie können Ihr Widget in diesem Konfigurationsbereich konfigurieren. Legen Sie den Begrüßungstext und das zu verwendende Bild fest.
       WelcomeWidget:
         AdvancedSettings: Erweiterte Einstellungen
+        ChangeImage: Bild ändern
+        DarkMode: Dunkler Modus
+        ImagePreview: Bildvorschau
+        LightMode: Heller Modus
+        ConfigurationHeader: Konfiguration des Willkommens-Widgets
         ChooseAFit: Wählen Sie eine Passform
-        DisplayedText: '{0} anzeigetext'
+        DisplayText: Anzeigetext
         Greeting:
           Afternoon: Guten Tag
           Evening: Guten Abend
           Morning: Guten Morgen
-        Image: Bild
-        ImageDarkMode: Bild für den dunklen Modus
         ImageInlineStyle: Bild Inline-Stil
-        ImageLightMode: Bild für den hellen Modus
         ImageStyleClass: Bildstilklasse
-        PreviewDarkMode: Vorschau für den dunklen Modus
-        PreviewLightMode: Vorschau für den hellen Modus
         PreviewTooltip: Diese Vorschau kann nicht alle Einstellungen wiedergeben, sondern soll nur einen Eindruck vermitteln, wie das endgültige Widget aussehen wird. Bildgröße, Ausrichtung und einige CSS-Einstellungen werden hier nicht angezeigt.
         ShowGreeting: Gruß anzeigen
         TextColorDarkMode: Farbe für den dunklen Modus
