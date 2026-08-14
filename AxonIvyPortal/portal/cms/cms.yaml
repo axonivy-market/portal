@@ -672,6 +672,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     editMode: Edit mode
     editWidget: Edit widget
     existingField: The {0} field has already been existing
+    exitEditMode: Exit edit mode
     expiryFrom: Expiry From
     expiryTo: Expiry To
     field: Field

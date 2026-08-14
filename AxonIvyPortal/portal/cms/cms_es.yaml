@@ -1002,6 +1002,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadZipFileExplanation: Si el número de elementos a exportar supera el límite de filas de Excel, los datos se dividirán en varios archivos Excel y, a continuación, se comprimirán en un archivo ZIP para su descarga.
     editWidget: Editar widget
     existingField: El campo {0} ya existe
+    exitEditMode: Salir del modo de edición
     expiryFrom: Caducidad desde
     expiryTo: Fecha de caducidad hasta
     export:

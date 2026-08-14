@@ -176,7 +176,8 @@
 }
 
 .dashboard__edit-mode-label {
-  font-size: 1.15rem;
+  font-size: 1rem;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--ivy-primary-color-grey-medium);
@@ -210,9 +211,17 @@
 }
 
 .dashboard__title-container {
-  padding-top: 0;
   padding-left: 0;
   margin-left: 1rem;
+}
+
+.dashboard-header__action {
+  padding-right: 0;
+  margin-right: 1rem;
+}
+
+.dashboard__title-container, .dashboard-header__action {
+  padding: 0.5rem 0;
 }
 
 .dashboard__title-container--flex {
@@ -226,10 +235,16 @@
   display: inline-flex;
 }
 
-.dashboard-header__action {
-  padding-right: 0;
-  padding-top: 0;
-  margin-right: 1rem;
+/* Exit edit mode button: colors come from .ui-button-widget (module.css) */
+body .dashboard__exit-edit-button {
+  border-radius: 30px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+body .dashboard__exit-edit-button .ui-button-icon-left {
+  margin-right: 0.5rem;
 }
 
 .dashboard__body {
@@ -849,14 +864,18 @@ body .ui-button.dashboard-tasks__start-button > .ui-button-icon-left {
   margin-top: -6px !important;
 }
 
-body .ui-button.dashboard-tasks__start-button {
+body .ui-button.dashboard-tasks__start-button,
+body .ui-button.dashboard__add-widget-button {
   border-radius: 100px;
   border: 1px solid var(--start-btn-border-color);
   background: var(--start-btn-bg);
   color: var(--start-btn-text-color);
-  height: 2.143rem !important;
   display: flex !important;
   align-items: center !important;
+}
+
+body .ui-button.dashboard-tasks__start-button {
+  height: 2.143rem !important;
 }
 
 body .dashboard-tasks__start-container {
@@ -865,13 +884,15 @@ body .dashboard-tasks__start-container {
   justify-content: center;
 }
 
-body .ui-button.dashboard-tasks__start-button.ui-state-disabled {
+body .ui-button.dashboard-tasks__start-button.ui-state-disabled,
+body .ui-button.dashboard__add-widget-button.ui-state-disabled {
   background: var(--start-btn-disabled-bg);
   border-color: var(--start-btn-disabled-border-color);
   color: var(--start-btn-disabled-text-color);
 }
 
-body .ui-button.dashboard-tasks__start-button:not(.ui-state-disabled):hover {
+body .ui-button.dashboard-tasks__start-button:not(.ui-state-disabled):hover,
+body .ui-button.dashboard__add-widget-button:not(.ui-state-disabled):hover {
   background: var(--start-btn-hover-bg);
   color: var(--start-btn-text-color);
 }
@@ -1730,7 +1751,8 @@ a.saved-filter__manage-filter {
 }
 
 .restore-button-group {
-  padding: 10px 0;
+  display: inline-flex;
+  align-items: center;
 }
 
 .restore-dashboard-tooltip {
