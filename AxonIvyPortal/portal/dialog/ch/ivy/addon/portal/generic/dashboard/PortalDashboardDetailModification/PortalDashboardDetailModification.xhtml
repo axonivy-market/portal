@@ -14,14 +14,17 @@
     <ui:define name="headerTitle">
       <c:forEach var="dashboard" items="#{dashboardDetailModificationBean.dashboards}" varStatus="dashboardStatus">
         <c:set value="#{dashboardDetailModificationBean.currentDashboardIndex == dashboardStatus.index}" var="isSelectedItem"/>
+        <span class="portal-icon-container">
+          <i class="#{empty dashboard.iconClass ? 'ti ti-layout-dashboard' : dashboard.iconClass}" />
+        </span>
         <p:commandLink id="dashboard-title-#{dashboardStatus.index}" ariaLabel="#{dashboard.title}"
           actionListener="#{dashboardDetailModificationBean.onDashboardChange(dashboardStatus.index)}"
           update="grid-stack dashboard-title-container" process="@this"
           oncomplete="loadGrid();dashboardToolKit.responsive();initStatistics();"
           styleClass="dashboard__title #{isSelectedItem ? 'dashboard__title--active':''}">
-          <h:outputText styleClass="#{dashboard.getIconClass()}" />
-          <span>#{dashboard.title}</span>
+          <span class="dashboard__title-text">#{dashboard.title}</span>
         </p:commandLink>
+        <span class="dashboard__edit-mode-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editMode')}</span>
       </c:forEach>
     </ui:define>
 
