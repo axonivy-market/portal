@@ -3193,6 +3193,74 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   height: 100%;
 }
 
+/* Absences page header (icon + title + info circle), tabs and dynamic action button (IVYPORTAL-20781) */
+.absence-tabs-header-row {
+  position: relative;
+}
+
+.absence-tabs-header-row .absences-tabview .ui-tabs-nav {
+  padding-right: 9rem;
+}
+
+.absence-tabs-header-row .absences-tabview .ui-tabs-nav li.ui-tabs-header {
+  padding: 0.75rem 1rem;
+}
+
+.absence-tabs-header-row .absences-tabview .ui-tabs-nav li.ui-tabs-header.ui-state-active {
+  border-color: var(--dashboard-tab-active-color) !important;
+}
+
+.absence-tabs-header-row .absences-tabview .ui-tabs-nav li.ui-tabs-header.ui-state-active a {
+  color: var(--dashboard-tab-active-color) !important;
+}
+
+.absence-tab-actions {
+  position: absolute;
+  top: -0.5rem;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 40em) {
+  .absence-tabs-header-row .absences-tabview .ui-tabs-nav {
+    padding-right: 3rem;
+  }
+}
+
+/* Filters card grouping the user selection and toggle filters, matching the Portal Configuration sidebar card style */
+.filters-card {
+  background: var(--filters-card-bg-color);
+  border: 1px solid var(--filters-card-border-color);
+  border-radius: 15px;
+  box-sizing: border-box;
+  padding: 1rem 1.25rem;
+}
+
+.filters-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider {
+  background: var(--filters-toggle-checked-bg-color);
+}
+
+.filters-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider:before,
+.filters-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider .ui-toggleswitch-handler {
+  background: var(--filters-toggle-knob-color);
+}
+
+/* "Selected user" dropdown, styled to match Portal Configuration's sidebar-mode-select dropdown */
+.filters-card .absence-user-selection.ui-autocomplete input.ui-autocomplete-input {
+  background-color: var(--sidebar-mode-select-bg-color);
+  border-color: var(--sidebar-mode-select-border-color);
+  border-right: none;
+}
+
+/* Dropdown trigger button: same background as the input, no left border, so it reads as one connected control instead of two boxes */
+.filters-card .absence-user-selection.ui-autocomplete .ui-autocomplete-dropdown {
+  background-color: var(--sidebar-mode-select-bg-color);
+  border-color: var(--sidebar-mode-select-border-color);
+  border-left: none;
+  color: var(--text-color, #333);
+}
+
 .deputy-for-next-absence {
   width: inherit;
 }
@@ -3208,15 +3276,29 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   line-break: anywhere;
 }
 
+body .ui-button {
+  background: var(--button-primary-bg-color);
+  border-color: var(--button-primary-bg-color);
+  color: var(--button-primary-text-color);
+}
+
+body .ui-button:hover {
+  background: var(--button-primary-bg-color);
+  border-color: var(--button-primary-bg-color);
+  color: var(--button-primary-text-color);
+  opacity: 0.85;
+}
+
+/* Opt-in pale/light button style, kept for buttons that still need the older look */
 .ui-button.primary-color-light-button {
-  background: var(--portal-accessibility-bg-color); 
+  background: var(--portal-accessibility-bg-color);
   color: var(--portal-button-text-color);
   font-weight: 600;
   height: 3.25rem;
 }
 
 .ui-button.primary-color-light-button:hover {
-  background: hsla(var(--ivy-primary-light-color-h), var(--ivy-primary-light-color-s), 89%, 1); 
+  background: hsla(var(--ivy-primary-light-color-h), var(--ivy-primary-light-color-s), 89%, 1);
   color: var(--ivy-primary-color);
 }
 
@@ -3264,7 +3346,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .avatar-stack .avatar-stack-item .ui-avatar,
 .avatar-stack .avatar-stack-item img {
-  border: 2px solid #FFFFFF;
+  border: 2px solid var(--substituted-user-avatar-color);
   box-sizing: content-box;
 }
 
@@ -3399,13 +3481,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
   }
-}
-
-.grid-view-form .process-action-group {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 0.7rem;
 }
 
 .edit-process-dialog {
@@ -3688,7 +3763,7 @@ _:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
 
 .admin-settings-container>.card {
   min-height: 300px;
-  max-width: 1400px;
+  max-width: 1850px;
   margin: 0 auto;
 }
 
@@ -4987,7 +5062,18 @@ border-top: 0.14rem dashed;
 
 .process-action-group .ui-button.icon-more-menu-button {
   margin: 0;
-  min-width: 2.357rem;
+}
+
+.process-action-group .ui-button.process-action-button {
+  width: 2.711rem; /* 38px */
+  height: 2.357rem !important; /* 33px */
+  border-color: var(--widget-button-border-color) !important;
+  color: var(--widget-header-icon);
+}
+
+.process-action-group .ui-button.process-action-button:hover {
+  background-color: var(--widget-button-hover-background-color) !important;
+  color: var(--widget-header-icon);
 }
 
 .image-view-form {
@@ -5020,6 +5106,8 @@ border-top: 0.14rem dashed;
 
 .grid-view-form .process-action-group {
   position: absolute;
+  right: 0;
+  top: 0;
   padding: 9px;
   width: auto;
   display: inline-flex;
@@ -5030,6 +5118,28 @@ border-top: 0.14rem dashed;
 .process-action-button {
   background-color: var(--process-action-button-color) !important;
   backdrop-filter: blur(2px);
+}
+
+body .ui-button.process-start-action {
+  border-radius: 100px;
+  border: 1px solid var(--start-btn-border-color);
+  background: var(--start-btn-bg);
+  color: var(--start-btn-text-color);
+  height: 2.143rem !important;
+  min-width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+body .ui-button.process-start-action.ui-state-disabled {
+  background: var(--start-btn-disabled-bg);
+  border-color: var(--start-btn-disabled-border-color);
+  color: var(--start-btn-disabled-text-color);
+}
+
+body .ui-button.process-start-action:not(.ui-state-disabled):hover {
+  background: var(--start-btn-hover-bg);
+  color: var(--start-btn-text-color);
 }
 
 .process-group.grid-process-container .process-grid__header {
@@ -5094,11 +5204,6 @@ body .process-compact-mode > .ui-fieldset-content {
   width: 100%;
   text-align: end;
   padding: 2px;
-}
-
-.image-view-form .start-process > button > span, .image-process-actions > button > span{
-  color: var(--primary-color);
-  font-weight: 500;
 }
 
 .image-view-form .start-process-image-widget {
@@ -5506,7 +5611,7 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 
 /* Dashboard Configuration */
 .dashboard-configuration-page {
-  max-width: 1400px;
+  max-width: 1850px;
   margin: 10px auto;
 }
 
@@ -5537,7 +5642,7 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 
 .dashboard-type-list li.active {
   background-color: transparent;
-  border-color: var(--primary-color);
+  border-color: var(--dashboard-tab-active-color);
 }
 
 .dashboard-type-list li a {
@@ -5549,13 +5654,13 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 }
 
 .dashboard-type-list li.active a {
-  color: var(--primary-color);
+  color: var(--dashboard-tab-active-color);
   font-weight: 700;
   opacity: 1;
 }
 
 .dashboard-type-list li.active i {
-  color: var(--primary-color);
+  color: var(--dashboard-tab-active-color);
   opacity: 1;
 }
 

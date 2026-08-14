@@ -23,6 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addSubstitute: Add substitute
     deputies: Substitutes
     description: Set up your vacations, illnesses or other external obligations that leads to any absence.
+    disableAbsencesInThePast: Disable absences in the past
     editAbsence: Edit absence
     editSubstitute: Edit substitute
     from: From
@@ -468,6 +469,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     back: Back
     backToCaseMap: Back to case map
     backgroundColor: Background color
+    bulkSelection: Bulk selection
     cancel: Cancel
     cancelContext: Cancel {0}
     case: Case
@@ -479,6 +481,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     close: Close
     closeContext: Close {0}
     cockpit: Cockpit
+    collapse: Collapse
     collapseWidgetContext: Collapse {0} widget
     colors: Colors
     comment: Comment
@@ -523,6 +526,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: Failed to update website content
     escalationTaskHeaderText: Trigger Escalation
     escalationTaskMessage: Expiry is set to now, thus the task expires. Are you sure?
+    expand: Expand
     expandWidgetContext: Expand {0} widget
     filter:
       from: from
@@ -538,6 +542,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     generalInformation: General information
     globalSearch: Search ...
     goToDetail: Go to detail
+    gridView: Grid view
     growlMessage:
       PROCESS_VIEWER: You closed the process viewer.
       TASK_FINISHED: You have finished the task successfully
@@ -553,6 +558,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     leave: Leave
     leaveAndReserve: Leave and reserve
     linkToCaseDetails: Click <a href="{0}" >here</a> for details.
+    listView: List view
     loading: Loading
     loginLogo: Login logo
     logos: Logos
@@ -600,7 +606,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     requiredFieldMessage: This field is required
     reserve: Reserve
     reset: Reset
-    resetFilters: Reset filters
+    resetFilters: Reset all
     resetSettingHeaderText: Reset setting?
     resetTaskHeaderText: Reset this task?
     resetToDefaultMessage: This operation cannot be undone. Are you sure you want to reset to default settings?
@@ -766,7 +772,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       GeneralInfo: 'Manage Portal configuration files as a portable zip package. Use Export to download all current JSON configuration files bundled into a single zip archive, or use Import to upload a zip package and apply its configurations — replacing the existing ones.'
       ExportTitle: Export
       ExportDescription: Export Portal configuration files as a zip package. Only files with existing data are available for selection.
-      ExportNote: Only non-empty files are included in the package.
       ExportButton: Export
       ImportTitle: Import
       ImportDescription: Upload a zip file which includes the required JSON files. File names must follow the pattern above.
@@ -794,6 +799,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ImportCompleteMessage: All files were imported successfully.
       ImportIncompleteMessage: Some files could not be imported. Check the server log for details.
   dashboard:
+    CanWorkOnAsUser: Only show me the tasks I can work on as a user
     CaseQueryType:
       info: Configure which case types are shown in the Case Widget. Default shows business cases only, Sub Cases shows technical subcases only, and All shows both business cases and technical subcases.
       label: Case Type
@@ -807,6 +813,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       Description: In this area, you can configure the dashboards according to your requirements and modify the order of the navigation elements.
       DoNotSupportMobile: Dashboard configuration is not supported for mobile devices.
       EditPrivateDashboards: Edit your private dashboards
+      EditLayout: Edit Layout
       PrivateTabInfo: 'Create and manage your personal dashboards.<ul><li>These dashboards are only visible to you</li><li>They appear under the Dashboard icon in the sidebar</li></ul>'
       PublicTabInfo: 'Manage dashboards for all users. Control where each dashboard appears:<ul><li><b>Sidebar</b> — appears as a top-level item in the sidebar menu</li><li><b>Submenu</b> — appears under the Dashboard icon</li><li><b>Hidden</b> — not visible to users</li></ul>'
       Visibility: Visibility
@@ -837,7 +844,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AddItem: Add item
       Label: Label
       Source: Source
-      Target: Target
+      Target: Links to
       MenuManagement: Menu management
       MenuManagementTabInfo: 'Manage the top-level sidebar navigation items. You can:<ul><li>Add new menu entries (dashboards, external links, Ivy processes)</li><li>Reorder items by drag and drop</li><li>Edit or remove existing menu entries</li></ul>'
       PrivateDashboard: Private dashboards
@@ -859,26 +866,38 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidget: External Page
     ExternalPageWidgetIntroduction: This widget can display an external webpage.
     Filter:
+      AddCondition: Add condition
+      ApplyFilters: Apply filters
+      DefaultFiltersDescription: Filters that have been set in the widget configuration as default.
+      DefaultFiltersTitle: Default filters
+      EmptyFilterValidationError: Define at least one filter condition before saving.
+      FilterConditionsTitle: Filter conditions
       FilterOptionHeader: Filter options
-      FilterOptionHeaderTooltip: Some filter fields and operators may be disabled by your administrator. Filters using disabled fields or operators will be automatically removed. Please contact your administrator for more information.
+      FilterOptionHeaderTooltip: Some filter fields and operators may be disabled by your administrator. Filters using disabled fields or operators will be removed automatically. Please contact your administrator for more information.
       FilterPanelHeader: Filter panel
       ManageWidgetFilterHeader: Widget filter management
+      NewFilterConditionsDescription: Show tasks that match all of the following conditions.
+      NewFilterConditionsTitle: New filter conditions
       NotFound: No filter found
+      SaveFilterDescription: Save those filter conditions for future use.
+      SaveFilterNamePlaceholder: Enter filter name
+      SaveFilterOptional: (optional)
+      SetFilterHeader: Set Filter
       WidgetNameColumn: Widget name
       WrongDateFormat: The date is invalid
     FilterTasksByCurrentCaseOwner: Filter tasks by current case owner
-    ManageFilter: Manage filters
+    ManageFilter: Manage saved filters
     NoColumnsEnabledForQuickSearch: No columns are enabled for quick search
     NoData: No data
-    NoSavedFilterMessage: No saved filter found. Try to create a new by click on Save Filter button
+    NoSavedFilterMessage: No saved filters
     NoWidgetAvailable: There are no widgets.
     QuickSearch: Quick search
     QuickSearchInfo: You can customize the Quick Search's scope in the widgets column management. It searches based on "contains", but be mindful of performance when adding numerous columns.
     QuickSearchScope: 'Search Scope: {0}'
     RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Save a new widget filter
-    SavedFilterHeader: Saved filters
-    SearchForFilter: Search for filter
+    SavedFilterHeader: Saved Filters
+    SearchForFilter: Search for a filter
     ShareThisDashboard: Share this dashboard
     ShowPinnedToggle: Show 'Pinned Items' Toggle
     StandardWidgets: Standard Widgets
@@ -1028,7 +1047,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreDefaultMessage: If you proceed, you will loose all widgets created by yourself. The standard settings will be applied.
     select: Select
     selectEditAction: Which action do you want to procced?
+    showAllCases: Show all cases
+    showAllTasks: Show all tasks
     showFullWidget: Show full widget
+    showPinnedCases: Show pinned cases
+    showPinnedTasks: Show pinned tasks
     statisticChartIntroduction: This widget displays available statistic charts.
     statisticChartWidget: Statistic chart
     statisticWidgets: Statistic Widgets
@@ -1462,10 +1485,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Show full task list
     sort: Sort
   taskWarning:
-    createdTaskLeave: '<div>You are about to leave this page.<br/> Please choose one of the following options:</div><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Cancel: Continue working this task.</UL>'
+    createdTaskLeave: You'll not be able to start this task again if you leave it now.
     createdTaskLogout: '<div>You are about to leave this page.<br/> Please choose one of the following options:</div><UL><LI>Logout: Discard your changes and logout.<LI>Cancel: Continue working this task.</UL>'
-    resetParkTaskBeforeLeave: '<div>You are about to leave a task In progress.<br/>Please choose one of the following options:</div><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Reserve: Discard your changes and keep the task in your task list.<LI>Cancel: Continue working this
-      task.</UL>'
+    leaveTaskHeader: Leave this task?
+    resetParkTaskBeforeLeave: This task is in progress, if you leave it now you'll not be able to start it again. If you reserve it will reappear in your task list.
     resetParkTaskBeforeLogout: '<div>You are about to leave a task in progress.</br> Please choose one of the following options:</div><UL><LI> Logout: Discard your changes and logout.<LI> Reserve: Discard your changes and keep the task in your personal task list. Then logout.<LI> Cancel: Continue working
       this task.</UL>'
     taskNotFound: The task does not exist or you have insufficient rights to see this task.
