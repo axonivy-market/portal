@@ -35,8 +35,9 @@ jobs:
 
       - name: Revert PO header
         if: ${{ env.LOCALE_DIFF != '' }}
+        working-directory: Documentation/portal-guide
         run: |
-          for po in locale/*/LC_MESSAGES/*.po; do
+          for po in weblate/locale/*/LC_MESSAGES/*.po; do
             if git show HEAD:"$po" > /dev/null 2>&1; then
               old_header_end=$(git show HEAD:"$po" | grep -n '^$' | head -1 | cut -d: -f1)
               new_header_end=$(grep -n '^$' "$po" | head -1 | cut -d: -f1)
