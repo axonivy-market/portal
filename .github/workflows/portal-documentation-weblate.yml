@@ -23,7 +23,7 @@ jobs:
         working-directory: Documentation/portal-guide
         run: |
           docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
-            generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=ja
+            generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=ja O="--line-width -1"
 
       - name: Check Locale Diff
         id: locale-diff
@@ -32,6 +32,20 @@ jobs:
           echo "LOCALE_DIFF<<EOF" >> $GITHUB_ENV
           git --no-pager status -s weblate/locale/* >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
+
+      - name: Revert PO header
+        if: ${{ env.LOCALE_DIFF != '' }}
+        run: |
+          for po in locale/*/LC_MESSAGES/*.po; do
+            if git show HEAD:"$po" > /dev/null 2>&1; then
+              old_header_end=$(git show HEAD:"$po" | grep -n '^$' | head -1 | cut -d: -f1)
+              new_header_end=$(grep -n '^$' "$po" | head -1 | cut -d: -f1)
+              git show HEAD:"$po" | head -$((old_header_end - 1)) > /tmp/old_header
+              tail -n +$new_header_end "$po" > /tmp/body
+              cat /tmp/old_header /tmp/body > "$po"
+            fi
+            sed -i -z 's/\n$//' "$po"  # remove empty line at end of file if exists
+          done
 
       - name: Create branch name
         working-directory: .
