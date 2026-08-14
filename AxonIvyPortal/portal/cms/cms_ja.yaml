@@ -946,19 +946,19 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeConfigurationDescription: この設定領域でウィジェットを設定できます。使用するウェルカムテキストと画像を定義してください。
       WelcomeWidget:
         AdvancedSettings: 詳細設定
+        ChangeImage: 画像を変更
+        DarkMode: ダークモード
+        ImagePreview: 画像プレビュー
+        LightMode: ライトモード
+        ConfigurationHeader: ウェルカムウィジェットの設定
         ChooseAFit: フィットを選択
-        DisplayedText: '{0}テキストを表示'
+        DisplayText: 表示テキスト
         Greeting:
           Afternoon: こんにちは
           Evening: こんばんは
           Morning: おはようございます
-        Image: 画像
-        ImageDarkMode: ダークモードの画像
         ImageInlineStyle: 画像のインラインスタイル
-        ImageLightMode: ライトモードの画像
         ImageStyleClass: 画像のスタイルクラス
-        PreviewDarkMode: ダークモードのプレビュー
-        PreviewLightMode: ライトモードのプレビュー
         PreviewTooltip: このプレビューではすべての設定をレンダリングすることはできませんが、最終的なウィジェットがどのように見えるかイメージを掴めます。画像のサイズ、表示位置、一部の CSS 設定はプレビュー出来ません。
         ShowGreeting: 挨拶を表示
         TextColorDarkMode: ダークモードのテキストの色
