@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-08-14 04:07+0000\n"
 "PO-Revision-Date: 2026-08-14 04:49+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
 "Language: ja\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/portal-le/doc/portal-doc-user-guide/ja/>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2411,7 +2411,7 @@ msgstr "ポータルの設定"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:7
 msgid "**Access Requirements**: The :guilabel:`Portal Configuration` menu item is visible to users with at least one of the following permissions: :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`, :ref:`🔑DashboardWritePublic <DashboardWritePublic>`, :ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>`, or :ref:`🔑PortalPackageManagement <PortalPackageManagement>`. Each tab within the page is independently gated by its own permission — see the table below."
-msgstr "**アクセス要件**: 「:guilabel:`」ポータル設定` のメニュー項目は、以下の権限のうち少なくとも1つを持つユーザーに表示されます：:ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` 、:ref:`🔑DashboardWritePublic <DashboardWritePublic>` 、:ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>` 、または:ref:`🔑PortalPackageManagement <PortalPackageManagement>` 。ページ内の各タブは、それぞれ独自の権限によって個別にアクセスが制限されています。詳細は以下の表を参照してください。"
+msgstr "**アクセス要件**: :guilabel:`ポータル設定` のメニュー項目は、以下の権限のうち少なくとも1つを持つユーザーに表示されます：:ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` 、:ref:`🔑DashboardWritePublic <DashboardWritePublic>` 、:ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>` 、または :ref:`🔑PortalPackageManagement <PortalPackageManagement>` 。ページ内の各タブは、それぞれ独自の権限によって個別にアクセスが制限されています。詳細は以下の表を参照してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:9
 msgid "Portal Configuration provides centralized management of your personal and organization-wide dashboards, as well as the sidebar navigation menu. Access it through the :guilabel:`Portal Configuration` user menu item."
@@ -2968,7 +2968,7 @@ msgstr "サイドバーの設定"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:280
 msgid "**Access Requirements**: The :guilabel:`Sidebar` tab is only accessible to users with the :ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>` permission."
-msgstr "**アクセス要件**: 「:guilabel:`」のサイドバーにある「` 」タブにアクセスできるのは、「:ref:`」🔑PortalSidebarConfiguration <PortalSidebarConfiguration>` 権限を持つユーザーのみです。"
+msgstr "**アクセス要件**：:guilabel:`サイドバー` タブにアクセスできるのは、:ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>` 権限を持つユーザーのみです。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:282
 msgid "The tab :guilabel:`Sidebar` allows portal administrators to manage the sidebar menu items and configure sidebar behaviour for all users."
@@ -3172,11 +3172,11 @@ msgstr "パッケージ管理の設定"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:382
 msgid "**Access Requirements**: The :guilabel:`Package Management` tab is only accessible to users with the :ref:`🔑PortalPackageManagement <PortalPackageManagement>` permission."
-msgstr "**アクセス要件**: 「:guilabel:`」の「Package Management」` タブにアクセスできるのは、「:ref:`」🔑「PortalPackageManagement」 <PortalPackageManagement>` 権限を持つユーザーのみです。"
+msgstr "**アクセス要件**：:guilabel:`パッケージ管理` タブにアクセスできるのは、:ref:`🔑PortalPackageManagement <PortalPackageManagement>` 権限を持つユーザーのみです。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:384
 msgid "The tab :guilabel:`Package Management` allows you to export the current Portal configuration into a single zip package, or import a zip package to apply its configuration."
-msgstr "「:guilabel:`」タブの「Package Management」` では、現在のポータル設定を単一の ZIP パッケージとしてエクスポートしたり、ZIP パッケージをインポートしてその設定を適用したりすることができます。"
+msgstr ":guilabel:`」タブの「Package Management」` では、現在のポータル設定を単一の ZIP パッケージとしてエクスポートしたり、ZIP パッケージをインポートしてその設定を適用したりすることができます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:386
 msgid "|package-management-configuration|"
