@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
   xmlns:ui="jakarta.faces.facelets" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="primefaces" xmlns:c="jakarta.tags.core"
-  xmlns:pe="primefaces.extensions" xmlns:pc="jakarta.faces.composite/components" >
+  xmlns:pe="primefaces.extensions" xmlns:pc="jakarta.faces.composite/components"
+  xmlns:pt="jakarta.faces.passthrough" >
 <!-- abstractTaskTemplateBean: ch.ivy.addon.portal.generic.bean.AbstractTaskTemplateBean -->
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
@@ -49,29 +50,33 @@
         <c:set var="isCaseViewable" value="#{!caseWidgetBean.isHiddenCase(case) and caseWidgetBean.isCaseFound(case)}" scope="request" />
         <ui:insert name="breadCrumb" />
         <p:inputText id="application-name-for-title" value="#{masterDataBean.applicationName}" type="hidden"/>
-        <h:panelGroup id="header-container" layout="block" styleClass="task-header-container js-task-header-container #{processChainDirection eq 'VERTICAL' ? '' : 'task-template-title-horizontal-container'}">
+        <c:set var="isHeaderEmpty" value="#{isHideTaskName and empty steps and isHideCaseInfo and isHideTaskAction}" />
+        <c:set var="isVerticalProcessChain" value="#{processChainDirection eq 'VERTICAL'}" />
+        <h:panelGroup id="header-container" layout="block" styleClass="task-header-container js-task-header-container #{isHeaderEmpty ? '' : 'task-template-title-horizontal-container align-items-center justify-content-between'}">
           <h:panelGroup id="task-template-title" layout="block" rendered="#{currentTask ne null}"
-            styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain js-task-name-vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
+            styleClass="task-template-title #{isVerticalProcessChain ? 'js-task-name-vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
             <ui:insert name="taskName">
               <ui:fragment rendered="#{!isHideTaskName}">
-                <span class="#{taskIcon} task-template-title-icon" />
-                <h:outputText id="title" title="#{currentTask.names().current()}" value="#{not empty taskName ? taskName : currentTask.names().current()}" styleClass="task-title" />
+                <span class="task-template-title-icon-box portal-icon-container">
+                  <span class="#{taskIcon} task-template-title-icon" aria-hidden="true" />
+                </span>
+                <h:outputText id="title" title="#{currentTask.names().current()}" value="#{not empty taskName ? taskName : currentTask.names().current()}"
+                  styleClass="task-title u-truncate-text" pt:role="heading" pt:aria-level="1" />
               </ui:fragment>
             </ui:insert>
             
-            <h:panelGroup id="vertical-task-template-tasks-command" class="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection eq 'VERTICAL'}">
-              <p:commandButton id="vertical-case-info" type="button" styleClass="rounded-button ui-button-outlined"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="ti ti-folder-search"
+            <h:panelGroup id="vertical-task-template-tasks-command" class="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and isVerticalProcessChain}">
+              <p:commandButton id="vertical-case-info" type="button" styleClass="portal-icon-btn-round portal-icon-btn-lg"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="ti ti-folders"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}"
                 onclick="openCaseInfo()" rendered="#{!isHideCaseInfo}"
                 global="false" />
-              <p:spacer width="10" />
-              <p:commandButton id="vertical-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="rounded-button ui-button-outlined"
+              <p:commandButton id="vertical-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="portal-icon-btn-round portal-icon-btn-lg"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ti ti-menu-2" />
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ti ti-list-search" />
             </h:panelGroup>
             
-            <h:form id="vertical-task-action-form" rendered="#{processChainDirection eq 'VERTICAL'}">
+            <h:form id="vertical-task-action-form" rendered="#{isVerticalProcessChain}">
               <p:menu id="vertical-task-action-menu" overlay="true" trigger="vertical-task-actions" my="right top" at="right bottom"
                 styleClass="action-steps-panel task-actions-menu">
 
@@ -89,30 +94,29 @@
             </h:form>
           </h:panelGroup>
   
-          <h:panelGroup layout="block"
-            styleClass="process-chain-container #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain-container' : 'horizontal-process-chain-container'} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
+          <h:panelGroup layout="block" rendered="#{!isVerticalProcessChain}"
+            styleClass="process-chain-container horizontal-process-chain-container #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
             <ui:insert name="processChainArea">
               <ic:com.axonivy.portal.components.ProcessChain id="process-chain-component"
                 startMethod="start" componentId="process-chain-component-id"
                 shape="#{processChainShape eq 'LINE' ? 'LINE' : 'CIRCLE'}"
-                direction="#{processChainDirection eq 'VERTICAL' ? 'VERTICAL' : 'HORIZONTAL'}" 
+                direction="HORIZONTAL"
                 isShowAllSteps="#{isShowAllSteps}"
                 actualStepIndex="#{actualStepIndex}" steps="#{steps}" stepIndexes="#{stepIndexes}"
                 currentIndex="#{abstractTaskTemplateBean.getIndexOfCurrentStage(case)}"
                 stages="#{abstractTaskTemplateBean.getStagesBaseOnCurrentStage(case, steps)}" />
             </ui:insert>
           </h:panelGroup>
-  
-          <h:panelGroup id="horizontal-task-template-tasks-command" styleClass="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection ne 'VERTICAL'}">
-            <p:commandButton id="horizontal-case-info" type="button" styleClass="rounded-button ui-button-outlined"
+
+          <h:panelGroup id="horizontal-task-template-tasks-command" styleClass="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and !isVerticalProcessChain}">
+            <p:commandButton id="horizontal-case-info" type="button" styleClass="portal-icon-btn-round portal-icon-btn-lg"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}"
-              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="ti ti-folder-search"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="ti ti-folders"
               onclick="openCaseInfo()" rendered="#{!isHideCaseInfo}"
               global="false" />
-            <p:spacer width="10" />
-            <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="rounded-button ui-button-outlined"
+            <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="portal-icon-btn-round portal-icon-btn-lg"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ti ti-menu-2" />
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ti ti-list-search" />
           
             <h:form id="horizontal-task-action-form">
               <p:menu id="horizontal-task-action-menu" overlay="true" trigger="horizontal-task-actions" my="right top" at="right bottom"
@@ -142,9 +146,25 @@
             </h:form>
           </h:panelGroup>
         </h:panelGroup>
-        
-        <h:panelGroup id="content-container" layout="block" 
-          styleClass="task-template-content #{contentContainerStyleClass} #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
+
+        <!-- DEPRECATED: only used by processChainDirection VERTICAL, which is deprecated since 14.0.
+             The vertical chain floats beside the content, so it stays outside the header card.
+             This wrapper always renders so that getDataFromIFrame can update it over AJAX. -->
+        <h:panelGroup id="vertical-process-chain-container" layout="block"
+          styleClass="#{isVerticalProcessChain ? 'process-chain-container vertical-process-chain-container' : ''} #{isVerticalProcessChain and processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
+          <ic:com.axonivy.portal.components.ProcessChain id="vertical-process-chain-component"
+            rendered="#{isVerticalProcessChain}"
+            startMethod="start" componentId="process-chain-component-id"
+            shape="#{processChainShape eq 'LINE' ? 'LINE' : 'CIRCLE'}"
+            direction="VERTICAL"
+            isShowAllSteps="#{isShowAllSteps}"
+            actualStepIndex="#{actualStepIndex}" steps="#{steps}" stepIndexes="#{stepIndexes}"
+            currentIndex="#{abstractTaskTemplateBean.getIndexOfCurrentStage(case)}"
+            stages="#{abstractTaskTemplateBean.getStagesBaseOnCurrentStage(case, steps)}" />
+        </h:panelGroup>
+
+        <h:panelGroup id="content-container" layout="block"
+          styleClass="task-template-content #{contentContainerStyleClass} #{isVerticalProcessChain ? 'vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
           <ui:insert name="content">
             <ui:insert name="taskForm" /> <!-- DEPRECATED -->
           </ui:insert>

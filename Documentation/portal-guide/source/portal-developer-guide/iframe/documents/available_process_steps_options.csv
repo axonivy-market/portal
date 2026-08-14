@@ -2,5 +2,5 @@ Variable,Description
 currentProcessStep,current process step
 processSteps,list of process steps
 isShowAllSteps,"shows all of steps on large screens, false (default) or true"
-processChainDirection,HORIZONTAL (default) or VERTICAL
+processChainDirection,"HORIZONTAL (default) or VERTICAL. Deprecated since 14.0: VERTICAL will be removed, only HORIZONTAL puts the chain inside the task header bar"
 processChainShape,CIRCLE (default) or LINE

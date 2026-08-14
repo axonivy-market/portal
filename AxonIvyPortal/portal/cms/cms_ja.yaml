@@ -552,7 +552,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     inactive: 非アクティブ
     information: 情報
     leave: 離れる
-    leaveAndReserve: 休暇と予約
+    leaveAndReserve: 離れて保持
     linkToCaseDetails: 詳細は、<a href="{0}" >ここ</a>をクリックしてください。
     loading: 読み込み中
     loginLogo: ログインロゴ
@@ -1462,10 +1462,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: タスクリスト全体を表示
     sort: 並べ替え
   taskWarning:
-    createdTaskLeave: このページを離れようとしています。次のいずれかのオプションを選択してください：<UL><LI>&nbsp; &nbsp; 離れる：変更を破棄し、選択したページに移動します。<LI>&nbsp; &nbsp; キャンセル：このタスクの作業を続けます。</UL>
-    createdTaskLogout: このページを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>&nbsp;ログアウ：変更を破棄してログアウトします。<LI>&nbsp;キャンセル：このタスクの作業を続けます。</UL>
-    resetParkTaskBeforeLeave: 進行中のタスクを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>離れる：変更を破棄して選択したページに移動します。<LI>保持：変更を破棄してタスクをタスクリストに保持します。<LI>キャンセル：このタスクの作業を続けます。</UL>
-    resetParkTaskBeforeLogout: 進行中のタスクを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>&nbsp; &nbsp; ログアウト：変更を破棄してログアウトします。<LI>&nbsp; &nbsp; 保持：変更を破棄してタスクを個人用タスクリストに保持します。その後ログアウトします。<LI>&nbsp; &nbsp; キャンセル：このタスクの作業を続けます。</UL>
+    createdTaskLeave: このタスクは進行中です。今離れると、作業内容が失われます。
+    createdTaskLogout: このタスクは進行中です。今ログアウトすると、作業内容が失われます。
+    leaveTaskTitle: このタスクを離れますか？
+    resetParkTaskBeforeLeave: このタスクは進行中です。今離れると、作業内容が失われます。保持した場合は、タスクリストに再表示されます。
+    resetParkTaskBeforeLogout: このタスクは進行中です。今ログアウトすると、作業内容が失われます。保持した場合は、タスクリストに再表示されます。
     taskNotFound: タスクが存在しないか、このタスクを表示する権限がありません。
   userProfile:
     myProfileTitle: マイプロフィール

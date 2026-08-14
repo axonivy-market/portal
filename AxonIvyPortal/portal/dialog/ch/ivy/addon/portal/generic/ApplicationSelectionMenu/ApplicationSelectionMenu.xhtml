@@ -83,7 +83,7 @@
     widgetVar="task-losing-confirmation-dialog" renderedDialog="#{data.isWorkingOnATask}" taskState="#{task.state}"
     leaveActionListener="#{logic.fireEventClickOnMenuItem()}" leaveOnComplete="leaveTask();"
     reserveActionListener="#{logic.fireEventClickOnMenuItem()}" reserveOnComplete="reserveTask();"
-    cancelActionListener="#{logic.continueWorkingOnTask()}" cancelOnClick="PF('main-menu').restoreMenuState();">
+    cancelOnClick="PF('main-menu').restoreMenuState();">
     <f:facet name="event">
       <p:ajax event="close" listener="#{logic.continueWorkingOnTask}" global="false" immediate="true" />
     </f:facet>

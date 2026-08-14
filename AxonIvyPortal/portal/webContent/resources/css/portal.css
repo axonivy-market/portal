@@ -497,6 +497,71 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
 .line-process-chain .line-vertical-process-step {
   font-size: var(--small-font-size); }
 
+/*Style for the circle + horizontal process chain inside the task header card ------------------------------------
+  Scoped to .task-template-title-horizontal-container so the VERTICAL and LINE chains keep their current look. */
+.task-template-title-horizontal-container .circle-process-chain {
+  /* 35px circle + 2x1px border, inside a 140px wide step (see module.css) */
+  --task-header-step-size: 37px;
+  --task-header-step-width: 140px;
+  --task-header-step-arrow-size: 0.4286rem; }
+
+.task-template-title-horizontal-container .circle-process-chain .circle-horizontal-process-step.current .circle-horizontal-step-container {
+  background-color: var(--task-header-step-current-background-color);
+  border: solid 1px var(--task-header-step-current-border-color); }
+
+.task-template-title-horizontal-container .circle-process-chain .circle-horizontal-process-step.current .cicrle-step-container {
+  color: var(--task-header-step-current-number-color); }
+
+/* Visited: same subtle outline as the current step but without the filled background, so the
+   current step stays the most prominent one. */
+.task-template-title-horizontal-container .circle-process-chain .circle-horizontal-process-step.visited .circle-horizontal-step-container {
+  background-color: var(--task-header-step-visited-background-color);
+  border: solid 1px var(--task-header-step-visited-border-color); }
+
+.task-template-title-horizontal-container .circle-process-chain .circle-horizontal-process-step.visited .cicrle-step-container {
+  color: var(--task-header-step-visited-number-color); }
+
+.task-template-title-horizontal-container .circle-process-chain .circle-horizontal-process-step.waiting .circle-horizontal-step-container {
+  background-color: var(--task-header-step-waiting-background-color);
+  border: solid 1px var(--task-header-step-waiting-border-color); }
+
+.task-template-title-horizontal-container .circle-process-chain .circle-horizontal-process-step.waiting .cicrle-step-container {
+  color: var(--task-header-step-waiting-number-color); }
+
+.task-template-title-horizontal-container .circle-process-chain .circle-horizontal-step-title {
+  font-size: 0.8839rem;
+  color: var(--task-header-step-title-color); }
+
+.task-template-title-horizontal-container .circle-process-chain .circle-horizontal-process-step .cicrle-step-container {
+  font-size: 1.2375rem; }
+
+@media (min-width: 1025px) {
+  /* Connector line: starts at the right edge of this circle and deliberately overshoots into the
+     next circle, whose opaque background hides the overshoot. That keeps the line independent of
+     the whitespace between the inline-block steps. */
+  .task-template-title-horizontal-container .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
+    left: 100%;
+    top: calc(var(--task-header-step-size) / 2);
+    width: calc(var(--task-header-step-width) - var(--task-header-step-size) + 8px);
+    margin: 0;
+    transform: none;
+    border-top: 1px solid var(--task-header-step-connector-color); }
+
+  /* Arrow head: anchored to the left edge of its own circle, so it always lands just before it. */
+  .task-template-title-horizontal-container .circle-horizontal-process-step:not(:first-child) .circle-horizontal-step-container .step-number-container:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: calc(var(--task-header-step-size) / 2 - var(--task-header-step-arrow-size) / 2 - 1px);
+    width: var(--task-header-step-arrow-size);
+    height: var(--task-header-step-arrow-size);
+    margin: 0;
+    border: 0;
+    border-top: 1px solid var(--task-header-step-connector-color);
+    border-right: 1px solid var(--task-header-step-connector-color);
+    transform: translateX(calc(-1 * var(--task-header-step-arrow-size) - 4px)) rotate(45deg); }
+}
+
 /*Style for announcement*/
 .announcement-message-customizable {
   background-color: var(--announcement-background-color);
@@ -741,6 +806,50 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 .not-display-result-tab-view {
   font-size: var(--default-font-size); }
   
+/* ============== SHARED BUTTON ATOMS ============================
+   Only the variants used by the task template header are defined here. Part 2 (IVYPORTAL-20779)
+   ships the same class names with the same values plus the accent / sm / pill variants.
+   TODO: dedupe after Part 2 is merged - keep names and values in sync. */
+body .ui-button.ui-button-icon-only.portal-icon-btn-round,
+body .portal-icon-btn-round {
+  box-sizing: border-box;
+  width: 2.7114rem;
+  min-width: 2.7114rem;
+  height: 2.7114rem;
+  min-height: 2.7114rem;
+  flex: 0 0 auto;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.237px solid var(--widget-button-border-color);
+  background: var(--widget-button-background-color);
+  color: var(--text-color); }
+
+body .ui-button.ui-button-icon-only.portal-icon-btn-round .ui-icon {
+  font-size: 1.4739rem;
+  margin-top: -0.737rem;
+  margin-left: -0.737rem; }
+
+body .ui-button.ui-button-icon-only.portal-icon-btn-round:not(.ui-state-disabled):hover,
+body .portal-icon-btn-round:hover {
+  background: var(--widget-button-hover-background-color); }
+
+body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-lg,
+body .portal-icon-btn-round.portal-icon-btn-lg {
+  width: 3.0696rem;
+  min-width: 3.0696rem;
+  height: 3.0696rem;
+  min-height: 3.0696rem; }
+
+body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-lg .ui-icon {
+  font-size: 1.8321rem;
+  margin-top: -0.9161rem;
+  margin-left: -0.9161rem; }
+/* ====END OF==== SHARED BUTTON ATOMS ============================ */
+
 /** Style for Task Template * --------------------------------------*/
 .task-template-title {
   font-size: var(--large-font-size);
@@ -750,8 +859,9 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   font-size: var(--large-font-size);
   font-weight: var(--output-label-task-template-title-font-weight); }
 
-.task-template-content .task-actions-button:focus {
-  outline: var(--task-template-action-button-focus); }
+.task-template-tasks-command .ui-button:focus-visible {
+  outline: var(--task-template-action-button-focus);
+  outline-offset: 2px; }
 
 /** Style for Line Horizontal  --------------------------------------*/
 .line-process-chain .line-horizontal-process-step {
@@ -1337,6 +1447,38 @@ color: var(--button-text-color);
   color: var(--ivy-tertinary-color-red-medium);
 }
 
+.portal-dialog-icon-circle {
+  box-sizing: border-box;
+  width: var(--portal-dialog-icon-circle-size);
+  height: var(--portal-dialog-icon-circle-size);
+  margin: 0 auto 1.0714rem auto;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portal-dialog-icon-circle > i {
+  font-size: 2.7634rem;
+  line-height: 1;
+}
+
+.portal-dialog-icon-circle.portal-dialog-icon-circle-warning {
+  background-color: var(--portal-dialog-warning-icon-circle-background-color);
+}
+
+.portal-dialog-icon-circle.portal-dialog-icon-circle-warning > i.portal-dialog-warning-icon {
+  color: var(--portal-dialog-warning-icon-circle-color);
+}
+
+.warning-before-leaving-task .ui-confirm-dialog-message {
+  display: block;
+  text-align: center;
+  font-size: 1.1429rem;
+  line-height: 1.4;
+  color: var(--text-color);
+}
+
 .portal-remove-button {
   background-color: var(--ivy-tertinary-color-red-medium) !important;
   border-color: var(--ivy-tertinary-color-red-medium) !important;
@@ -1899,9 +2041,12 @@ body.dark .focused {
   border: 1px solid var(--ui-leave-button-color) !important;
 }
 .ui-leave-button,
-.ui-reserve-task-button,
-.ui-cancel-button {
+.ui-reserve-task-button {
   font-weight: 600;
+}
+.warning-before-leaving-task .ui-leave-button,
+.warning-before-leaving-task .ui-reserve-task-button {
+  font-weight: 500;
 }
 /* ====END OF==== DIALOG FOOTER - CONFIRMATION DIALOG ============================  **/
 
