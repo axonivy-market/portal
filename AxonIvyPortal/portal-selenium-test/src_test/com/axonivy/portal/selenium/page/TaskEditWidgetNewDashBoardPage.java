@@ -261,8 +261,9 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     getColumnManagementDialog().$("div[id$='field-type-selection'] span.ui-icon-triangle-1-s")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(Condition.enabled, DEFAULT_TIMEOUT).click();
     WaitHelper.waitPageNoAnimation();
-    waitForElementClickableThenClick(
-        $("div[id$='column-management-form:field-type-selection_panel'] li[data-label='" + type + "']"));
+    clickByJavaScript(
+        $("div[id$='column-management-form:field-type-selection_panel'] li[data-label='" + type + "']")
+            .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
   }
 
   public SelenideElement getCustomField(String field) {

@@ -127,7 +127,7 @@ public class NewAbsencePage extends TemplatePage {
     String panelSelector = inputCssSelector.replace("input", "div").replace("']", "_panel']");
     SelenideElement panel = $(panelSelector);
     if (panel.exists() && panel.isDisplayed()) {
-      $(inputCssSelector).sendKeys(Keys.ESCAPE);
+      $("div[class*='absence-dialog-header']").click();
     }
   }
 

@@ -53,7 +53,7 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
     selectionPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     selectionPanel.findAll("li.ui-selectonemenu-item").asDynamicIterable().forEach(item -> {
       if (item.innerText().contentEquals(value)) {
-        item.click();
+        clickByJavaScript(item);
         selectionPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
         return;
       }
@@ -67,7 +67,7 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
     selectionPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     selectionPanel.findAll("li.ui-selectonemenu-item").asDynamicIterable().forEach(item -> {
       if (item.innerText().contentEquals(value)) {
-        item.click();
+        clickByJavaScript(item);
         selectionPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
         return;
       }

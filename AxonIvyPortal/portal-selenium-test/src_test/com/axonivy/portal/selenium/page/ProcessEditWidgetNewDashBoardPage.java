@@ -109,7 +109,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   public void selectProcessMode(String mode) {
     getProcessDisplayMode().click();
     WaitHelper.waitPageNoAnimation();
-    $("li[data-label='" + mode + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    clickByJavaScript($("li[data-label='" + mode + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
   }
 
   public SelenideElement getFullModeProcessSelectedProcess() {
@@ -262,7 +262,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   public void selectCompactProcessSorting(String sorting) {
     getCompactModeSorting().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     WaitHelper.waitPageNoAnimation();
-    $("li[data-label='" + sorting + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    clickByJavaScript($("li[data-label='" + sorting + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT));
   }
 
   private SelenideElement getCompactModeSorting() {

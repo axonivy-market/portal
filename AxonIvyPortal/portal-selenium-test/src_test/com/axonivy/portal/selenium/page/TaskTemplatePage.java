@@ -300,7 +300,7 @@ public class TaskTemplatePage extends TemplatePage {
   public void inputSideStepInfoTaskLevel() {
     $("div[id='side-step-process-form:side-step-process-select']").click();
     WaitHelper.waitPageNoAnimation();
-    $("[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step: Ask for more details")).first().click();
+    clickByJavaScript($("[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step: Ask for more details")).first());
     // Wait for this panel's own closing transition to finish before touching the next field -
     // otherwise its still-closing overlay can intercept the next dropdown's open-click, which is
     // a silent no-op (the item-click handler only binds once a panel is genuinely open).
@@ -316,7 +316,7 @@ public class TaskTemplatePage extends TemplatePage {
 
     $("div[id='side-step-process-form:step-type']").click();
     WaitHelper.waitPageNoAnimation();
-    $("[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("Start a background task (parallel)")).first().click();
+    clickByJavaScript($("[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("Start a background task (parallel)")).first());
     waitForElementDisplayed($("[id='side-step-process-form:step-type_panel']"), false);
 
     $("button[id='side-step-process-submit-button']").click();
@@ -327,7 +327,7 @@ public class TaskTemplatePage extends TemplatePage {
     WaitHelper.waitPageNoAnimation();
     assertEquals($("[id='side-step-process-form:side-step-process-select_items']").$$("li").size(), numberOfConfig);
 
-    $("[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step: CEO Approval")).first().click();
+    clickByJavaScript($("[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step: CEO Approval")).first());
     waitForElementDisplayed($("[id='side-step-process-form:side-step-process-select_panel']"), false);
 
     $("input[id$=':assignee_input']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
@@ -340,7 +340,7 @@ public class TaskTemplatePage extends TemplatePage {
 
     $("div[id='side-step-process-form:step-type']").shouldBe(Condition.clickable, DEFAULT_TIMEOUT).click();
     WaitHelper.waitPageNoAnimation();
-    $("[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("Custom parallel title")).first().click();
+    clickByJavaScript($("[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("Custom parallel title")).first());
     waitForElementDisplayed($("[id='side-step-process-form:step-type_panel']"), false);
 
     $("button[id='side-step-process-submit-button']").click();

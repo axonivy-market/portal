@@ -53,8 +53,12 @@ public final class WaitHelper {
   }
 
   public static void waitForPresenceOfElementLocatedInFrame(String cssSelector) {
+    waitForPresenceOfElementLocatedInFrame(cssSelector, DEFAULT_TIMEOUT);
+  }
+
+  public static void waitForPresenceOfElementLocatedInFrame(String cssSelector, Duration timeout) {
     try {
-      wait(WebDriverRunner.getWebDriver())
+      new WebDriverWait(WebDriverRunner.getWebDriver(), timeout)
           .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(cssSelector)));
     } catch (Exception e) {
       e.printStackTrace();

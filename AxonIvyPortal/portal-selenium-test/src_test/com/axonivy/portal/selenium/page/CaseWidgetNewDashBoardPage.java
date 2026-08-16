@@ -428,7 +428,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void waitTableLoaded() {
-    $(getLoadedLocator()).shouldHave(Condition.cssClass("hidden"), DEFAULT_TIMEOUT);
     $(getLoadedLocator()).shouldNotHave(Condition.cssClass("hidden"), DEFAULT_TIMEOUT);
   }
   

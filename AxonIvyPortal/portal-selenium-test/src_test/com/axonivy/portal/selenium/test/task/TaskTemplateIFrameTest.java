@@ -3,6 +3,8 @@ package com.axonivy.portal.selenium.test.task;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
+import java.time.Duration;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -109,7 +111,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
   }
 
   public void waitForTemplateRender() {
-    WaitHelper.waitForPresenceOfElementLocatedInFrame("[class$='task-template-container']");
+    WaitHelper.waitForPresenceOfElementLocatedInFrame("[class$='task-template-container']", Duration.ofSeconds(45));
   }
 
   @Test

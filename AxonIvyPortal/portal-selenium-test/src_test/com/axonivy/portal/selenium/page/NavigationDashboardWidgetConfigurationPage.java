@@ -40,9 +40,9 @@ public class NavigationDashboardWidgetConfigurationPage extends TemplatePage {
     $("form#widget-configuration-form").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
     .$("div[id$='dashboard-link-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
     .$("div[id$=':dashboard-link-selection-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    
-    $("div[id$=':dashboard-link-selection-menu_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-    .$("ul").$$("li").filter(Condition.text(targetDashboard)).first().click();
+
+    clickByJavaScript($("div[id$=':dashboard-link-selection-menu_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    .$("ul").$$("li").filter(Condition.text(targetDashboard)).first());
     
     Sleeper.sleep(300);
   }

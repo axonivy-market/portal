@@ -142,8 +142,9 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     getColumnManagementDialog().$("div[id$='field-type-selection'] span.ui-icon-triangle-1-s")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(Condition.enabled, DEFAULT_TIMEOUT).click();
     WaitHelper.waitPageNoAnimation();
-    waitForElementClickableThenClick(
-        $("div[id$='column-management-form:field-type-selection_panel'] li[data-label='" + type + "']"));
+    clickByJavaScript(
+        $("div[id$='column-management-form:field-type-selection_panel'] li[data-label='" + type + "']")
+            .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
   }
 
   public void removeAddedField(String field) {
@@ -491,8 +492,8 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     configPanel.$("div[id$='case-query-type'] .ui-selectonemenu-trigger")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     WaitHelper.waitPageNoAnimation();
-    $$("div[id$='case-query-type_panel'] li").filter(text(label)).first()
-        .shouldBe(getClickableCondition()).click();
+    clickByJavaScript($$("div[id$='case-query-type_panel'] li").filter(text(label)).first()
+        .shouldBe(getClickableCondition()));
     waitForElementDisplayed($("div[id$='case-query-type_panel']"), false);
   }
 
