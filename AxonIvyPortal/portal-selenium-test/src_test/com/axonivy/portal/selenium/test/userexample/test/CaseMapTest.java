@@ -38,7 +38,7 @@ public class CaseMapTest extends BaseTest {
   public void testCaseMapApprovalWorkflow() {
     caseMapPage = new CaseMapPage();
     caseMapPage.switchToIFrameOfTask();
-    caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
+    caseMapPage.inputFields("John", "Jack", "01.01.2019", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitRequestButton();
     NavigationHelper.navigateToTaskList();
     startTaskByTaskName(VERIFY_PERSONAL_DATA);
@@ -78,7 +78,7 @@ public class CaseMapTest extends BaseTest {
   public void testCaseMapRejectedWorkflow() {
     caseMapPage = new CaseMapPage();
     caseMapPage.switchToIFrameOfTask();
-    caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
+    caseMapPage.inputFields("John", "Jack", "01.01.2019", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitRequestButton();
     NavigationHelper.navigateToTaskList();
     startTaskByTaskName(VERIFY_PERSONAL_DATA);

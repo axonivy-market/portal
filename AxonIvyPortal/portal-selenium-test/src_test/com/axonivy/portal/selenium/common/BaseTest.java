@@ -211,6 +211,9 @@ public class BaseTest {
   public void launchBrowserAndLogoutInDesigner() {
     try {
       open(UrlHelpers.getLogoutLink());
+      if ($("body.exception-body").exists()) {
+        open(UrlHelpers.getLogoutLink());
+      }
     } catch (Exception e) {
       throw new PortalGUITestException(e);
     }
