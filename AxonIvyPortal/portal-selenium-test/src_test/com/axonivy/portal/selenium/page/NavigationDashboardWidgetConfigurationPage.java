@@ -3,7 +3,6 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.axonivy.portal.selenium.common.FileHelper;
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -41,10 +40,12 @@ public class NavigationDashboardWidgetConfigurationPage extends TemplatePage {
     .$("div[id$='dashboard-link-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
     .$("div[id$=':dashboard-link-selection-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
 
-    clickByJavaScript($("div[id$=':dashboard-link-selection-menu_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-    .$("ul").$$("li").filter(Condition.text(targetDashboard)).first());
-    
-    Sleeper.sleep(300);
+    SelenideElement panel = $("div[id$=':dashboard-link-selection-menu_panel']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
+    panel.$("ul").$$("li").filter(Condition.text(targetDashboard)).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    panel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
   
   public void selectVisualType(String visualType) {
