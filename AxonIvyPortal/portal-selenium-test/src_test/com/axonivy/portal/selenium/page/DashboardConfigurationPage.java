@@ -531,7 +531,7 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public void cancelCreateDashboard() {
     $("div[id$='dashboard-creation-details-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).
-    $("div[class*='ui-corner-top']").shouldBe(appear, DEFAULT_TIMEOUT).$$("a").filter(Condition.attribute("aria-label", "Close")).first().click();
+    $("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     closeAddDashboardDialog();
   }
 
@@ -575,7 +575,7 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public void cancelImportDashboard() {
     $("div[id$='dashboard-import-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).
-    $("div[class*='ui-corner-top']").shouldBe(appear, DEFAULT_TIMEOUT).$$("a").filter(Condition.attribute("aria-label", "Close")).first().click();
+    $("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     closeAddDashboardDialog();
   }
 
