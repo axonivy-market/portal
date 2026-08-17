@@ -607,8 +607,48 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   justify-content: flex-start;
 }
 
-.field-add-fieldset__custom-field-type-container, .field-add-fieldset__number-pattern-container {
-  padding: 0;
+.field-add-fieldset.ui-fieldset {
+  background: var(--field-add-fieldset-bg);
+}
+
+.field-add-fieldset .ui-messages:empty {
+  display: none;
+}
+
+.field-add-fieldset__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* Three cells per row; further cells wrap and stay aligned to the same columns */
+.field-add-fieldset__row > .field-add-fieldset__field {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 calc((100% - 2 * 15px) / 3);
+  min-width: 0;
+}
+
+.field-add-fieldset__field > .field-add-fieldset__label {
+  align-self: flex-start;
+  gap: 0.35rem;
+  margin-bottom: 5px;
+}
+
+.field-add-fieldset__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+@media screen and (max-width: 40em) {
+  .field-add-fieldset__row {
+    flex-direction: column;
+  }
+
+  .field-add-fieldset__row > .field-add-fieldset__field {
+    flex-basis: auto;
+  }
 }
 
 .ui-dialog.filter-dialog .ui-dialog-content {
@@ -968,6 +1008,11 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 .column-management-datatable.ui-datatable tbody.ui-datatable-data > tr > td {
   height: 50px;
   vertical-align: middle;
+}
+
+.column-management-datatable {
+  width: fit-content;
+  max-width: 80vw;
 }
 
 .dashboard-tasks__id,
@@ -1896,12 +1941,14 @@ a.saved-filter__manage-filter {
   min-width: 0;
 }
 
-.welcome-config__advanced.ui-fieldset {
+.welcome-config__advanced.ui-fieldset,
+.field-add-fieldset.ui-fieldset {
   border: 1px solid var(--surface-border);
   border-radius: 10px;
 }
 
-.welcome-config__advanced.ui-fieldset > .ui-fieldset-legend {
+.welcome-config__advanced.ui-fieldset > .ui-fieldset-legend,
+.field-add-fieldset.ui-fieldset > .ui-fieldset-legend {
   border: 1px solid var(--welcome-config-accent-color);
   border-radius: 100px;
   background: transparent;
@@ -1909,12 +1956,14 @@ a.saved-filter__manage-filter {
   color: var(--welcome-config-accent-color);
 }
 
-.welcome-config__advanced.ui-fieldset > .ui-fieldset-legend .ui-fieldset-legend-text {
+.welcome-config__advanced.ui-fieldset > .ui-fieldset-legend .ui-fieldset-legend-text,
+.field-add-fieldset.ui-fieldset > .ui-fieldset-legend .ui-fieldset-legend-text {
   color: var(--welcome-config-accent-color);
   font-weight: 600;
 }
 
-.welcome-config__advanced.ui-fieldset > .ui-fieldset-legend .ui-fieldset-toggler {
+.welcome-config__advanced.ui-fieldset > .ui-fieldset-legend .ui-fieldset-toggler,
+.field-add-fieldset.ui-fieldset > .ui-fieldset-legend .ui-fieldset-toggler {
   background: none;
   color: var(--welcome-config-accent-color);
   width: auto;
@@ -1924,21 +1973,29 @@ a.saved-filter__manage-filter {
   line-height: 1;
 }
 
-.welcome-config__advanced.ui-fieldset > .ui-fieldset-legend .ui-fieldset-toggler::before {
+.welcome-config__advanced.ui-fieldset > .ui-fieldset-legend .ui-fieldset-toggler::before,
+.field-add-fieldset.ui-fieldset > .ui-fieldset-legend .ui-fieldset-toggler::before {
   content: "+";
   font-family: inherit;
 }
 
-.welcome-config__advanced.ui-fieldset > .ui-fieldset-legend a[aria-expanded="true"] .ui-fieldset-toggler::before {
+.welcome-config__advanced.ui-fieldset > .ui-fieldset-legend a[aria-expanded="true"] .ui-fieldset-toggler::before,
+.field-add-fieldset.ui-fieldset > .ui-fieldset-legend a[aria-expanded="true"] .ui-fieldset-toggler::before {
   content: "\2212";
 }
 
 .welcome-config__advanced.ui-fieldset > .ui-fieldset-legend:hover,
+.field-add-fieldset.ui-fieldset > .ui-fieldset-legend:hover,
 .welcome-config__advanced.ui-fieldset > .ui-fieldset-legend.ui-state-hover,
+.field-add-fieldset.ui-fieldset > .ui-fieldset-legend.ui-state-hover,
 .welcome-config__advanced.ui-fieldset > .ui-fieldset-legend.ui-state-focus,
+.field-add-fieldset.ui-fieldset > .ui-fieldset-legend.ui-state-focus,
 .welcome-config__advanced.ui-fieldset > .ui-fieldset-legend a:hover,
+.field-add-fieldset.ui-fieldset > .ui-fieldset-legend a:hover,
 .welcome-config__advanced.ui-fieldset > .ui-fieldset-legend a.ui-state-hover,
-.welcome-config__advanced.ui-fieldset > .ui-fieldset-legend a.ui-state-focus {
+.field-add-fieldset.ui-fieldset > .ui-fieldset-legend a.ui-state-hover,
+.welcome-config__advanced.ui-fieldset > .ui-fieldset-legend a.ui-state-focus,
+.field-add-fieldset.ui-fieldset > .ui-fieldset-legend a.ui-state-focus {
   background: var(--welcome-config-accent-hover-bg);
   background-image: none;
   border-color: var(--welcome-config-accent-color);
@@ -1946,9 +2003,13 @@ a.saved-filter__manage-filter {
 }
 
 .welcome-config__advanced.ui-fieldset > .ui-fieldset-legend:hover .ui-fieldset-legend-text,
+.field-add-fieldset.ui-fieldset > .ui-fieldset-legend:hover .ui-fieldset-legend-text,
 .welcome-config__advanced.ui-fieldset > .ui-fieldset-legend.ui-state-hover .ui-fieldset-legend-text,
+.field-add-fieldset.ui-fieldset > .ui-fieldset-legend.ui-state-hover .ui-fieldset-legend-text,
 .welcome-config__advanced.ui-fieldset > .ui-fieldset-legend:hover .ui-fieldset-toggler,
-.welcome-config__advanced.ui-fieldset > .ui-fieldset-legend.ui-state-hover .ui-fieldset-toggler {
+.field-add-fieldset.ui-fieldset > .ui-fieldset-legend:hover .ui-fieldset-toggler,
+.welcome-config__advanced.ui-fieldset > .ui-fieldset-legend.ui-state-hover .ui-fieldset-toggler,
+.field-add-fieldset.ui-fieldset > .ui-fieldset-legend.ui-state-hover .ui-fieldset-toggler {
   color: var(--welcome-config-accent-color);
 }
 

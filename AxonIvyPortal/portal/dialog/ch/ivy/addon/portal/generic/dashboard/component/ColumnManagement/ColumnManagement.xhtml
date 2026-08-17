@@ -10,7 +10,7 @@
 <cc:implementation>
   <f:event listener="#{columnManagementBean.preRender(cc.attrs.widget)}" type="preRenderComponent" />
   <p:dialog id="column-management-dialog" widgetVar="column-management-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/columnManagement')}"
-    appendTo="@(body)" fitViewport="true" width="870" closeOnEscape="true" draggable="false" dynamic="true"
+    appendTo="@(body)" fitViewport="true" height="65vh" closeOnEscape="true" draggable="false" dynamic="true"
     responsive="true" modal="true" styleClass="dialog-responsive">
     <h:form id="column-management-form">
       <p:remoteCommand name="updateColumnTable" update="column-management-datatable" global="false" />
