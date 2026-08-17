@@ -28,7 +28,7 @@
   --start-btn-bg: var(--ivy-portal-color-grey-800);
   --start-btn-border-color: var(--ivy-portal-color-grey-600);
   --start-btn-text-color: var(--ivy-primary-color-white);
-  --start-btn-hover-bg: hsla(0, 0%, 40%, 1);
+  --start-btn-hover-bg: var(--ivy-portal-color-grey-700 );
   --start-btn-disabled-bg: var(--ivy-portal-color-grey-850);
   --start-btn-disabled-border-color: var(--ivy-portal-color-grey-750);
   --start-btn-disabled-text-color: var(--ivy-portal-color-grey-500);
@@ -36,6 +36,9 @@
   /* Welcome widget configuration - Advanced settings pill & Change image link accent */
   --welcome-config-accent-color: hsla(0, 0%, 98%, 1);
   --welcome-config-accent-hover-bg: hsla(0, 0%, 100%, 0.10);
+
+  /* Column management - Add new field fieldset */
+  --field-add-fieldset-bg: var(--ivy-portal-color-grey-850);
 
   /* Color and border radius of context button,  it only affects when button has attribute styleClass="context-button" */
   --context-button-border-radius: 0px;
