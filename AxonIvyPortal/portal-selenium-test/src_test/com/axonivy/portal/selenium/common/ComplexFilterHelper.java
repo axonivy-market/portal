@@ -228,11 +228,13 @@ public class ComplexFilterHelper {
   private static void setDateInputValue(SelenideElement input, String value) {
     input.shouldBe(Condition.editable);
     Selenide.executeJavaScript(
-        "arguments[0].value=arguments[1];"
-            + "arguments[0].dispatchEvent(new Event('input',{bubbles:true}));"
-            + "arguments[0].dispatchEvent(new Event('change',{bubbles:true}));"
-            + "arguments[0].blur();",
+        "arguments[0].value=arguments[1];arguments[0].dispatchEvent(new Event('input',{bubbles:true}));",
         input, value);
+    SelenideElement trigger = input.parent().$("button.ui-datepicker-trigger").shouldBe(getClickableCondition());
+    trigger.click();
+    WaitHelper.waitPageNoAnimation();
+    trigger.click();
+    WaitHelper.waitPageNoAjaxAndAnimation();
   }
 
   private static void handleFilterNumberBetween(SelenideElement filterElement, Object... values) {
