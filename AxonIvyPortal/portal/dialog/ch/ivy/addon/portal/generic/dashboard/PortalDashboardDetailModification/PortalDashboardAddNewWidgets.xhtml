@@ -99,7 +99,7 @@
 
 <p:dialog id="new-widget-configuration-dialog" widgetVar="new-widget-configuration-dialog"
   styleClass="new-widget-configuration-dialog" closable="true"
-  header="#{dashboardDetailModificationBean.newWidgetHeader}"
+  header="#{dashboardDetailModificationBean.newWidgetHeader}" showHeader="#{!(dashboardDetailModificationBean.widget.type eq 'TASK' || dashboardDetailModificationBean.widget.type eq 'CASE')}"
   appendTo="@(body)" closeOnEscape="true"
   fitViewport="true" responsive="true" modal="true"
   resizable="false" draggable="false">
