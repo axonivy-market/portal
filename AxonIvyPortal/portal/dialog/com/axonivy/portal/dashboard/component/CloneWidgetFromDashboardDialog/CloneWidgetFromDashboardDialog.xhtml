@@ -75,7 +75,7 @@
         disabled="#{cc.attrs.managedBean.cloneFromWidget eq null}"
         actionListener="#{cc.attrs.managedBean.cloneWidget()}"
         process="clone-widget-form"
-        update="load-grid-after-added-new-widget-cmd"
+        update="@([id$='load-grid-after-added-new-widget-cmd'])"
         partialSubmit="true"
         oncomplete="loadGridAfterAddedNewWidget(); initStatistics(); PF('new-widget-dialog').hide(); PF('clone-widget-dialog').hide();" />
       </h:panelGroup>
