@@ -111,7 +111,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
   }
 
   public void waitForTemplateRender() {
-    WaitHelper.waitForPresenceOfElementLocatedInFrame("[class$='task-template-container']", Duration.ofSeconds(45));
+    WaitHelper.waitForPresenceOfElementLocatedInFrame(".task-template-container:not(.u-invisibility)",
+        Duration.ofSeconds(45));
   }
 
   @Test
