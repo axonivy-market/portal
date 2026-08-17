@@ -38,7 +38,6 @@ public class CaseMapTest extends BaseTest {
   public void testCaseMapApprovalWorkflow() {
     caseMapPage = new CaseMapPage();
     caseMapPage.switchToIFrameOfTask();
-    caseMapPage.inputFields("John", "Jack", "01.01.2019", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitRequestButton();
     NavigationHelper.navigateToTaskList();
     startTaskByTaskName(VERIFY_PERSONAL_DATA);
@@ -78,7 +77,6 @@ public class CaseMapTest extends BaseTest {
   public void testCaseMapRejectedWorkflow() {
     caseMapPage = new CaseMapPage();
     caseMapPage.switchToIFrameOfTask();
-    caseMapPage.inputFields("John", "Jack", "01.01.2019", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitRequestButton();
     NavigationHelper.navigateToTaskList();
     startTaskByTaskName(VERIFY_PERSONAL_DATA);
@@ -112,9 +110,9 @@ public class CaseMapTest extends BaseTest {
   }
 
   private void assertInputData() {
-    caseMapPage.getCustomerLastName().shouldHave(Condition.value("John"), DEFAULT_TIMEOUT);
-    caseMapPage.getCustomerFirstName().shouldHave(Condition.value("Jack"), DEFAULT_TIMEOUT);
-    caseMapPage.getCountry().shouldHave(Condition.value("VN"), DEFAULT_TIMEOUT);
+    caseMapPage.getCustomerLastName().shouldHave(Condition.value("Doe"), DEFAULT_TIMEOUT);
+    caseMapPage.getCustomerFirstName().shouldHave(Condition.value("John"), DEFAULT_TIMEOUT);
+    caseMapPage.getCountry().shouldHave(Condition.value("USA"), DEFAULT_TIMEOUT);
     caseMapPage.getAmount().shouldHave(Condition.value("20000"), DEFAULT_TIMEOUT);
     caseMapPage.getReason().shouldHave(Condition.value("To buy a new car"), DEFAULT_TIMEOUT);
     caseMapPage.getSalary().shouldHave(Condition.value("80000"), DEFAULT_TIMEOUT);
