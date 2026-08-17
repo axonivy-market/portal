@@ -17,6 +17,7 @@ import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
@@ -213,6 +214,16 @@ public class BaseTest {
       open(UrlHelpers.getLogoutLink());
       if ($("body.exception-body").exists()) {
         open(UrlHelpers.getLogoutLink());
+      }
+    } catch (Exception e) {
+      throw new PortalGUITestException(e);
+    }
+  }
+
+  public void logoutViaUserMenu() {
+    try {
+      if ($("#user-settings-menu").exists()) {
+        new NewDashboardPage().clickOnLogout();
       }
     } catch (Exception e) {
       throw new PortalGUITestException(e);
