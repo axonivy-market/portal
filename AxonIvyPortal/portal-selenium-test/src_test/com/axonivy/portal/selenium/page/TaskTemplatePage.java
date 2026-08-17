@@ -316,8 +316,11 @@ public class TaskTemplatePage extends TemplatePage {
 
     $("div[id='side-step-process-form:step-type']").click();
     WaitHelper.waitPageNoAnimation();
-    clickByJavaScript($("[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("Start a background task (parallel)")).first());
-    waitForElementDisplayed($("[id='side-step-process-form:step-type_panel']"), false);
+    SelenideElement stepTypePanel = $("[id='side-step-process-form:step-type_panel']")
+        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
+    stepTypePanel.$$("li").filter(Condition.text("Start a background task (parallel)")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForElementDisplayed(stepTypePanel, false);
 
     $("button[id='side-step-process-submit-button']").click();
   }
@@ -340,8 +343,11 @@ public class TaskTemplatePage extends TemplatePage {
 
     $("div[id='side-step-process-form:step-type']").shouldBe(Condition.clickable, DEFAULT_TIMEOUT).click();
     WaitHelper.waitPageNoAnimation();
-    clickByJavaScript($("[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("Custom parallel title")).first());
-    waitForElementDisplayed($("[id='side-step-process-form:step-type_panel']"), false);
+    SelenideElement stepTypePanel = $("[id='side-step-process-form:step-type_panel']")
+        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
+    stepTypePanel.$$("li").filter(Condition.text("Custom parallel title")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForElementDisplayed(stepTypePanel, false);
 
     $("button[id='side-step-process-submit-button']").click();
   }
