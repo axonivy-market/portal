@@ -94,7 +94,9 @@ function highlightAddExternalDialogItem() {
   appendStepAnnotation(translateDescription, "7", -5, translateDescription.width());
   
   var visibility = $("label[for$='add-external-link-form:external-link-type-radio']");
-  appendStepAnnotation(visibility, "8", -5, visibility.width());
+  if (visibility.length) {
+    appendStepAnnotation(visibility, "8", -5, visibility.width());
+  }
   
   var icon = $("[id$='add-external-link-form:external-link-icon:awesome-icon-selection']");
   appendStepAnnotation(icon, "9", -10, icon.width());

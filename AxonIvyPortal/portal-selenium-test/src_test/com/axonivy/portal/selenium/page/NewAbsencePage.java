@@ -145,9 +145,10 @@ public class NewAbsencePage extends TemplatePage {
 
   public void closeAddAbsenceDialog() {
     $("div[class*='absence-dialog-header']").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    $("div[id*='absence-dialog']").$("span.ui-icon-closethick").shouldBe(appear, DEFAULT_TIMEOUT)
+    $("button[class*='absence-page-close-button']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='absence-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("[id$='absence-dialog_modal']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void enterCommentForAbsence(String comment) {
