@@ -158,4 +158,19 @@ public class NewAbsencePage extends TemplatePage {
     WebElement commentInput = $("textarea[id*='comment']");
     commentInput.sendKeys(comment);
   }
+
+  public void selectTodayFromDatePicker(String inputCssSelector) {
+    SelenideElement input = $(inputCssSelector).shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement trigger = input.parent().$("button");
+    clickByJavaScript(trigger.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
+
+    String panelSelector = inputCssSelector.replace("input", "div").replace("']", "_panel']");
+    $(panelSelector).shouldBe(appear, DEFAULT_TIMEOUT);
+
+    SelenideElement todayCell = $(panelSelector).$("td.ui-datepicker-today a, td.ui-datepicker-today span")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    clickByJavaScript(todayCell);
+
+    closeDatePickerPanel(inputCssSelector); // reuse the existing helper — this panel needs an explicit click-away, not disappear()
+  }
 }
