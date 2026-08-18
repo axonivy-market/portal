@@ -13,7 +13,7 @@
     appendTo="@(body)" fitViewport="true" height="65vh" closeOnEscape="true" draggable="false" dynamic="true"
     responsive="true" modal="true" styleClass="dialog-responsive">
     <h:form id="column-management-form">
-      <p:remoteCommand name="updateColumnTable" update="column-management-datatable" global="false" />
+      <p:remoteCommand name="updateColumnTable" update="column-management-datatable" />
       <ui:include src="FieldAdd.xhtml" />
 
       <p:dataTable id="column-management-datatable" value="#{columnManagementBean.columnsBeforeSave}" var="column"
@@ -72,8 +72,6 @@
                 itemValue="#{operator}" itemLabel="#{operator.label}"
                 itemDisabled="#{not columnManagementBean.isOperatorGloballyEnabled(operator)}" />
               <p:ajax event="change" listener="#{columnManagementBean.onOperatorSelectionChange(column)}"
-                process="@this" global="false" />
-              <p:ajax event="toggleSelect" listener="#{columnManagementBean.onOperatorSelectionChange(column)}"
                 process="@this" global="false" />
             </p:selectCheckboxMenu>
           </h:panelGroup>
