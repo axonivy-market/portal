@@ -522,7 +522,7 @@
           function handlePreviewChart(xhr, status, args) {
             if (args.jsonResponse) {
               const parsed = JSON.parse(args.jsonResponse);
-              const data = parsed.StatisticResponse;   // unwrap the Jackson root value here
+              const data = parsed;   // no root wrapper anymore — was: parsed.StatisticResponse
               previewChart(data, "#{localeBean.locale}", "#{dateTimePatternBean.datePattern}", "#{ivy.session.contentLocale}");
             }
           }
