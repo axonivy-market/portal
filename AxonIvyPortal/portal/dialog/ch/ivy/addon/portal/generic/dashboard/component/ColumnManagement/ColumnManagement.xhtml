@@ -18,12 +18,12 @@
 
       <p:dataTable id="column-management-datatable" value="#{columnManagementBean.columnsBeforeSave}" var="column"
         draggableRows="true" rowDragSelector="i.ti-grip-vertical" lazy="false"
-        styleClass="column-management-datatable">
+        tableStyleClass="column-management-datatable__table" styleClass="column-management-datatable">
         <p:ajax event="rowReorder" global="false" />
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" width="70" styleClass="text-center column-management-datatable__reorder">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" width="48" styleClass="text-center column-management-datatable__reorder">
           <i class="ti ti-grip-vertical" />
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}" width="70" styleClass="text-center">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}" width="56" styleClass="text-center">
           <p:commandLink id="toggle-visibility" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget #{columnManagementBean.isEnableHideCaseCreator(column) ? 'ui-disable' : ''}" process="@this"
             actionListener="#{columnManagementBean.handleVisibility(column)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}"
             update="column-management-datatable" partialSubmit="true" immediate="true" global="false" >
@@ -32,14 +32,14 @@
             </h:panelGroup>
           </p:commandLink>
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')}">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')}" width="200">
           #{column.field}
         </p:column>
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}" width="200">
           #{column.headerText}
         </p:column>
         <p:column
-          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filterLabel')}" width="50" styleClass="text-center">
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filterLabel')}" width="56" styleClass="text-center">
           <p:commandLink id="toggle-filter" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget" process="@this"
             rendered="#{column.canFilter()}"
             disabled="#{columnManagementBean.isFilterToggleDisabled(column)}"
@@ -51,7 +51,7 @@
             </h:panelGroup>
           </p:commandLink>
         </p:column>
-        <p:column width="120" styleClass="text-center">
+        <p:column width="100" styleClass="text-center">
           <f:facet name="header">
             <h:panelGroup styleClass="column-management-operator-header inline-flex align-items-center">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/operators')}" />
@@ -78,7 +78,7 @@
             </p:selectCheckboxMenu>
           </h:panelGroup>
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" width="90" styleClass="text-center">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" width="72" styleClass="text-center">
           <h:panelGroup layout="block" id="quick-search-checkbox-panel"
             rendered="#{column.canQuickSearch()}">
             <p:commandLink id="toggle-quick-search" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget" process="@this"
@@ -91,7 +91,7 @@
             </p:commandLink>
           </h:panelGroup>
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}" width="70" styleClass="text-center js-column-field-#{column.field}">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}" width="48" styleClass="text-center js-column-field-#{column.field}">
           <p:commandLink id="remove-link" actionListener="#{columnManagementBean.remove(column)}" global="false" process="@this" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
             update="column-management-datatable #{cc.clientId}:column-management-form:standard-field-selection #{cc.clientId}:column-management-form:custom-field-selection">
             <i class="ti ti-trash" />

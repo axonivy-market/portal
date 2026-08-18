@@ -1012,8 +1012,18 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 }
 
 .column-management-datatable {
-  width: fit-content;
+  width: 100%;
   max-width: 80vw;
+}
+
+.column-management-datatable__table {
+  table-layout: fixed;
+}
+
+.column-management-datatable.ui-datatable th.text-center .ui-column-title,
+.column-management-datatable.ui-datatable th.column-management-datatable__reorder .ui-column-title {
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 .dashboard-tasks__id,
