@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import java.time.Duration;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 
 import com.codeborne.selenide.CollectionCondition;
@@ -98,9 +99,10 @@ public class DashboardModificationPage extends TemplatePage {
 
   public void selectDashboardDisplayType(DashboardDisplayType type) {
     String label = displayTypeLabel(type);
-    $("div.create-public-dashboard-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    SelenideElement panel = $("[id$='dashboard-display-menu_panel']")
+    SelenideElement menu = $("div.create-public-dashboard-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    menu.click();
+    SelenideElement panel = $(By.id(menu.getAttribute("id") + "_panel"))
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
     panel.$$("li").filter(Condition.text(label)).first()
