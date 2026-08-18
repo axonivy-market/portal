@@ -6,11 +6,14 @@ import static com.codeborne.selenide.Selenide.$$;
 import java.time.Duration;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ScrollIntoViewOptions;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
@@ -96,10 +99,15 @@ public class DashboardModificationPage extends TemplatePage {
 
   public void selectDashboardDisplayType(DashboardDisplayType type) {
     String label = displayTypeLabel(type);
-    $("div.create-public-dashboard-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("ul[id$='dashboard-display-menu_items']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li")
-        .filter(Condition.text(label)).first().click();
+    SelenideElement menu = $("div.create-public-dashboard-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    menu.click();
+    SelenideElement panel = $(By.id(menu.getAttribute("id") + "_panel"))
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
+    panel.$$("li").filter(Condition.text(label)).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    panel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   private static String displayTypeLabel(DashboardDisplayType type) {
@@ -203,6 +211,8 @@ public class DashboardModificationPage extends TemplatePage {
     ElementsCollection targets = $("[id='task-task_1:task-component:dashboard-tasks:dashboard-tasks-columns:3']")
         .$$(".ui-column-resizer.ui-draggable.ui-draggable-handle");
 
+    elements.get(0).scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
+    targets.get(0).scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
     new Actions(driver)
         .dragAndDrop(elements.get(0), targets.get(0))
         .perform();

@@ -24,7 +24,7 @@
     <h:panelGroup rendered="#{not empty projectVersionBean.customersProjects}">
       <ui:repeat id="application-list" value="#{projectVersionBean.customersProjects.entrySet().toArray()}" var="entry">
         <div class="ui-g-12 pl-0">
-          <p:dataTable id="application-project-version-table" value="#{entry.value}" var="pmv" styleClass="project-version-table"
+          <p:dataTable cellNavigation="false" id="application-project-version-table" value="#{entry.value}" var="pmv" styleClass="project-version-table"
             reflow="true" lazy="false">
             <f:facet name="header">
               <h:outputText id="application-name" value="#{entry.key}" />

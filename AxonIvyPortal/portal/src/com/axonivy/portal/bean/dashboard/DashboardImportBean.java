@@ -7,12 +7,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.application.FacesMessage;
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.faces.context.FacesContext;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -36,6 +30,11 @@ import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @ViewScoped
 @Named
@@ -249,12 +248,12 @@ public class DashboardImportBean extends DashboardModificationBean {
   }
 
   private void displayedMessage(String validateMessage) {
-    FacesContext.getCurrentInstance().addMessage("import-dashboard-form:import-dashboard-dialog-message",
+    FacesContext.getCurrentInstance().addMessage(null,
         FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, validateMessage, null));
   }
 
   private void displayWarningMessage(String message) {
-    FacesContext.getCurrentInstance().addMessage("import-dashboard-form:import-dashboard-dialog-message",
+    FacesContext.getCurrentInstance().addMessage(null,
         FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN, message, null));
   }
 

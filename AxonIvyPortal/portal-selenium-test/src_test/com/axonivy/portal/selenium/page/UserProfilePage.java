@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 public class UserProfilePage extends TemplatePage {
@@ -33,7 +34,9 @@ public class UserProfilePage extends TemplatePage {
 
   public void selectLanguage(int newLanguage) {
     $(LANGUAGE_SELECTION_SELECTOR).shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
     $("li[id$='language-selection_" + newLanguage + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $(LANGUAGE_SELECTION_SELECTOR).shouldBe(Condition.appear);
   }
 
   public NewDashboardPage save() {
@@ -65,7 +68,15 @@ public class UserProfilePage extends TemplatePage {
     SelenideElement formattingLanguage = findElementByCssSelector(
         "[id$='my-profile-form:format-language-selection_input']");
     formattingLanguage.clear();
-    formattingLanguage.sendKeys(newLanguage);
+    typeIntoAutoComplete(formattingLanguage, newLanguage);
+  }
+
+  private void typeIntoAutoComplete(SelenideElement input, String text) {
+    Selenide.executeJavaScript(
+        "var kd=new KeyboardEvent('keydown',{key:'a',bubbles:true});arguments[0].dispatchEvent(kd);"
+            + "arguments[0].value=arguments[1];"
+            + "arguments[0].dispatchEvent(new Event('input',{bubbles:true}));",
+        input, text);
   }
 
   public void clickFormattingLanguageDropdownButton() {
@@ -84,6 +95,7 @@ public class UserProfilePage extends TemplatePage {
   public void changeNewDashboardPageToCase() {
     String newdashboardpageLabel = "my-profile-form:homepage_label";
     $("[id='" + newdashboardpageLabel + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
     String caseItemCssSelector = "li.ui-selectonemenu-item[data-label='Cases']";
     $(caseItemCssSelector).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='" + newdashboardpageLabel + "']").shouldBe(appear, DEFAULT_TIMEOUT).shouldHave(Condition.text("Cases"),
@@ -102,7 +114,7 @@ public class UserProfilePage extends TemplatePage {
   public void restoreDefaultNotificationSettings() {
     $("[id='my-profile-form:restore-to-default-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     clickByJavaScript($("[id='my-profile-form:restore-to-default-button']"));
-    waitPageLoaded();
+    WaitHelper.waitPageNoAjaxAndAnimation();
   }
 
   public void unsubscribeAllChannels() {
@@ -115,7 +127,7 @@ public class UserProfilePage extends TemplatePage {
         isUnsubcribed = checkboxElem.$("span.ui-chkbox-icon").has(Condition.cssClass("ui-icon-closethick"));
         if (!isUnsubcribed) {
           checkboxElem.click();
-          waitForPageLoad();
+          WaitHelper.waitPageNoAjaxAndAnimation();
         }
       }
     });
@@ -131,7 +143,7 @@ public class UserProfilePage extends TemplatePage {
         isSubcribed = checkboxElem.$("span.ui-chkbox-icon").has(Condition.cssClass("ui-icon-check"));
         if (!isSubcribed) {
           checkboxElem.click();
-          waitForPageLoad();
+          WaitHelper.waitPageNoAjaxAndAnimation();
         }
       }
     });

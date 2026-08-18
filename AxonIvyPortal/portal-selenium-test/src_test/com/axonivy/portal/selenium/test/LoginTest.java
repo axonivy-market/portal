@@ -27,7 +27,7 @@ public class LoginTest extends BaseTest {
     redirectToNewDashBoard();
     Selenide.webdriver().driver().getProxy().addResponseFilter(LoginStatus.LOGIN, LoginStatus);
     if (!SystemProperties.isInServerMode()) {
-      launchBrowserAndLogoutInDesigner();
+      logoutViaUserMenu();
     }
   }
 

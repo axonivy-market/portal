@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import org.openqa.selenium.Keys;
 
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -103,10 +104,12 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public boolean isExpandButtonAppear() {
+    WaitHelper.waitPageNoAjaxAndAnimation();
     return getProcessWidgetHeader().$(".expand-link").isDisplayed();
   }
 
   public boolean isWidgetInfoIconAppear() {
+    WaitHelper.waitPageNoAjaxAndAnimation();
     return getProcessWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
   }
 }

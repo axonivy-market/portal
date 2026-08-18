@@ -117,7 +117,7 @@
         </h:panelGroup>
 
         <div class="deputy-selection-scroll-wrapper">
-        <p:dataTable id="selected-deputy-panel" styleClass="deputy-selection"
+        <p:dataTable cellNavigation="false" id="selected-deputy-panel" styleClass="deputy-selection"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           value="#{absenceManagementBean.selectedDeputies}" var="deputy">
           <p:column>

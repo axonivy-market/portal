@@ -18,7 +18,7 @@
       styleClass="ui-g-12 u-no-padding-left">
       <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SidebarTopLevelDashboards')}</h5>
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SidebarTopLevelDashboardsDescription')}</span>
-      <p:dataTable id="top-menu-dashboard-table" lazy="false"
+      <p:dataTable cellNavigation="false" id="top-menu-dashboard-table" lazy="false"
         value="#{dashboardModificationBean.topMenuDashboards}" var="topDashboard"
         styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
@@ -90,7 +90,7 @@
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SubMenuDashboardsDescription')}</span>
     </h:panelGroup>
 
-    <p:dataTable id="dashboard-table" lazy="false" draggableRows="true" rowDragSelector="i.ti-menu-2"
+    <p:dataTable cellNavigation="false" id="dashboard-table" lazy="false" draggableRows="true" rowDragSelector="i.ti-menu-2"
       value="#{dashboardModificationBean.dashboards}" var="dashboard"
       styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
@@ -169,7 +169,7 @@
       styleClass="u-padding-top-10">
       <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Hidden')}</h5>
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/HiddenDashboardsDescription')}</span>
-      <p:dataTable id="hidden-dashboard-table" lazy="false"
+      <p:dataTable cellNavigation="false" id="hidden-dashboard-table" lazy="false"
         value="#{dashboardModificationBean.hiddenDashboards}" var="hiddenDashboard"
         styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">

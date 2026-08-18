@@ -41,7 +41,7 @@
             <f:selectItem value="#{null}" noSelectionOption="true" />
             <f:selectItems value="#{cloneWidgetBean.availableDashboards}" var="dashboard"
               itemLabel="#{dashboard.title}" itemValue="#{dashboard}" />
-            <p:ajax process="@(this)" update="#{p:resolveFirstComponentWithId('clone-to-footer-panel', view).clientId}" />
+            <p:ajax process="@this" update="#{p:resolveFirstComponentWithId('clone-to-footer-panel', view).clientId}" />
           </p:selectOneMenu>
         </div>
       </h:panelGroup>

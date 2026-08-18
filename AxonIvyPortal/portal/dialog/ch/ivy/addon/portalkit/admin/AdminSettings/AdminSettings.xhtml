@@ -37,7 +37,7 @@
             update=":#{p:resolveFirstComponentWithId('resetConfirmationDialog', view).clientId}" />
         </h:panelGroup>
 
-        <p:dataTable id="settingTable" styleClass="admin-table global-setting-table" value="#{data.settingList}"
+        <p:dataTable cellNavigation="false" id="settingTable" styleClass="admin-table global-setting-table" value="#{data.settingList}"
           filteredValue="#{data.filteredSettingList}" var="setting" widgetVar="settingTable"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
           reflow="true" scrollHeight="500" lazy="false">
@@ -103,7 +103,7 @@
           <div class="announcement-information">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/information")}</div>
         </h:panelGroup>
 
-        <p:dataTable id="announcement-table"
+        <p:dataTable cellNavigation="false" id="announcement-table"
           styleClass="announcement-table ui-g-12 u-padding-0"
           value="#{data.announcement.contents}"
           var="announcement"

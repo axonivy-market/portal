@@ -166,7 +166,7 @@
 
                 <!-- Menu Items Table -->
                 <h:panelGroup layout="block" id="menu-table-container" styleClass="col-12 u-padding-top-10">
-                <p:dataTable value="#{menuManagementBean.menuDefinitions}" var="menu" id="menu-table"
+                <p:dataTable cellNavigation="false" value="#{menuManagementBean.menuDefinitions}" var="menu" id="menu-table"
                   styleClass="menu-management-table"
                   emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                   draggableRows="true" rowDragSelector="i.ti-menu-2">

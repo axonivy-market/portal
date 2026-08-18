@@ -48,7 +48,7 @@
             </p:commandLink>
           </div>
           <div class="ui-g-12">
-            <p:dataTable id="notes-table" widgetVar="notesTable" var="history" sortBy="#{caseTaskNoteHistoryBean.caseHistorySortByTimestamp}"
+            <p:dataTable cellNavigation="false" id="notes-table" widgetVar="notesTable" var="history" sortBy="#{caseTaskNoteHistoryBean.caseHistorySortByTimestamp}"
               value="#{data.histories}" filteredValue="#{data.filteredHistories}"
               emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
               reflow="true" lazy="false">

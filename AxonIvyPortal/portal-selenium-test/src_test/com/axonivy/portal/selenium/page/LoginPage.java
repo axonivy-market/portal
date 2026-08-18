@@ -31,7 +31,7 @@ public class LoginPage extends TemplatePage {
   public void login(boolean shouldBeSuccess) {
     usernameTextField.sendKeys(testAccount.getUsername());
     passwordField.sendKeys(testAccount.getPassword());
-    waitForElementClickableThenClick(loginButton);
+    clickByJavaScript(loginButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
     if (shouldBeSuccess) {
       waitForElementDisplayed(By.id("left-menu"), true, LOGIN_TIMEOUT);
     } else {
@@ -42,7 +42,7 @@ public class LoginPage extends TemplatePage {
   public void login(String username, String password, boolean shouldBeSuccess) {
     usernameTextField.sendKeys(username);
     passwordField.sendKeys(password);
-    waitForElementClickableThenClick(loginButton);
+    clickByJavaScript(loginButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
     if (shouldBeSuccess) {
       waitForElementDisplayed(By.id("left-menu"), true, LOGIN_TIMEOUT);
     } else {

@@ -19,6 +19,7 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -278,7 +279,7 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
       waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
       responsibleElement = $(By.cssSelector("input[id$='group-activator-select_input']"));
       responsibleElement.click();
-      responsibleElement.sendKeys(responsibleName);
+      typeIntoAutoComplete(responsibleElement, responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
       ElementsCollection foundRoles = $$("span[id$='group-activator-select_panel'] .gravatar");
       waitForElementClickableThenClick(foundRoles.get(0));
@@ -286,13 +287,21 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
       waitForElementDisplayed(By.cssSelector("input[id$='user-activator-select_input']"), true);
       responsibleElement = $(By.cssSelector("input[id$='user-activator-select_input']"));
       responsibleElement.click();
-      responsibleElement.sendKeys(responsibleName);
+      typeIntoAutoComplete(responsibleElement, responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
       ElementsCollection foundUsers = $$("span[id$='user-activator-select_panel'] .name-after-avatar");
       waitForElementClickableThenClick(foundUsers.get(0));
     }
     waitForElementClickableThenClick(By.cssSelector("button[id$='proceed-task-delegate-command']"));
     waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), false);
+  }
+
+  private void typeIntoAutoComplete(SelenideElement input, String text) {
+    Selenide.executeJavaScript(
+        "var kd=new KeyboardEvent('keydown',{key:'a',bubbles:true});arguments[0].dispatchEvent(kd);"
+            + "arguments[0].value=arguments[1];"
+            + "arguments[0].dispatchEvent(new Event('input',{bubbles:true}));",
+        input, text);
   }
 
   public CaseDetailsPage openRelatedCaseOfTask() {

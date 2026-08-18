@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.Sleeper;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -158,7 +159,8 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public void clickOnHomeLogo() {
-    $("span[class*='ti ti-home']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    WaitHelper.waitForNavigation(() -> $("span[class*='ti ti-home']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click());
   }
 
   public void setGlobalFooterInfo() {

@@ -135,6 +135,9 @@ function scrollToWidget(widgetId) {
   let widgetClass = ".js-dashboard-widget-" + widgetId;
   let $container = $("#dashboard-body");
   let $scrollTo = $(widgetClass);
+  if ($scrollTo.length === 0) {
+    return;
+  }
   $container.scrollTop(
     $scrollTo.offset().top - $container.offset().top + $container.scrollTop() - 10
   );

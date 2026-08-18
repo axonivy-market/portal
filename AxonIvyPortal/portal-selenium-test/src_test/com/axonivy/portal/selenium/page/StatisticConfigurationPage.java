@@ -11,6 +11,7 @@ import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.Sleeper;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -28,39 +29,54 @@ public class StatisticConfigurationPage extends TemplatePage {
 
   public void changeChartTarget(String chartTargetName) {
     $("div[id$='config-form:target'] div.ui-selectonemenu-trigger").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
     $$("li[id^='config-form:target_']").filter(text(chartTargetName)).first().shouldBe(getClickableCondition()).click();
+    // Wait for this panel's own closing transition to finish before the next dropdown interaction
+    // touches the page - otherwise its still-closing overlay can intercept the next open-click,
+    // which is a silent no-op (the item-click handler only binds once a panel is genuinely open).
+    waitForElementDisplayed($("div[id$='config-form:target_panel']"), false);
   }
 
   public void changeChartType(String chartTypeName) {
     $("div[id$='config-form:type'] div.ui-selectonemenu-trigger").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
     $$("li[id^='config-form:type_']").filter(text(chartTypeName)).first().shouldBe(getClickableCondition()).click();
+    waitForElementDisplayed($("div[id$='config-form:type_panel']"), false);
   }
-  
+
   public void changeKPIField(String kpiFieldName) {
     $("div[id$='config-form:kpi-custom-fields'] div.ui-selectonemenu-trigger")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
     $$("li[id^='config-form:kpi-custom-fields_']").filter(text(kpiFieldName)).first().shouldBe(getClickableCondition())
         .click();
+    waitForElementDisplayed($("div[id$='config-form:kpi-custom-fields_panel']"), false);
   }
 
   public void changeAggregationMethod(String aggMethod) {
     $("div[id$='config-form:kpi-aggregation-method'] div.ui-selectonemenu-trigger")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
     $$("li[id^='config-form:kpi-aggregation-method_']").filter(text(aggMethod)).first()
         .shouldBe(getClickableCondition())
         .click();
+    waitForElementDisplayed($("div[id$='config-form:kpi-aggregation-method_panel']"), false);
   }
-  
+
   public void changeCustomFieldGroupBy(String customField) {
     $("div[id$='config-form:aggregates-custom-fields'] div.ui-selectonemenu-trigger")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
     $$("li[id^='config-form:aggregates-custom-fields_']").filter(text(customField)).first()
         .shouldBe(getClickableCondition()).click();
+    waitForElementDisplayed($("div[id$='config-form:aggregates-custom-fields_panel']"), false);
   }
 
   public void changeGroupBy(String groupByName) {
     $("div[id$='config-form:aggregates'] div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
+    WaitHelper.waitPageNoAnimation();
     $$("li[id^='config-form:aggregates_']").filter(text(groupByName)).first().shouldBe(getClickableCondition()).click();
+    waitForElementDisplayed($("div[id$='config-form:aggregates_panel']"), false);
   }
 
   public ElementsCollection getPermissions() {
@@ -148,8 +164,10 @@ public class StatisticConfigurationPage extends TemplatePage {
     $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$=':filter-container']").$$("span[id$=':field-selection_label']").filter(text(filterLabel)).first().shouldBe(appear, DEFAULT_TIMEOUT);
 
     $(typeInput).shouldBe(getClickableCondition()).$("span[id$=':operator-selection_label']").click();
+    WaitHelper.waitPageNoAnimation();
 
     $$("li").filter(text(operator.getValue())).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForElementDisplayed($("[id$=':operator-selection_panel']"), false);
   }
   
   public void toggleConditionBasedColoring() {
@@ -181,7 +199,9 @@ public class StatisticConfigurationPage extends TemplatePage {
   
   public void selectColoringScope(String scope) {
     $("div[id$='config-form:coloring-option'] div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
+    WaitHelper.waitPageNoAnimation();
     $$("li[id^='config-form:coloring-option_']").filter(text(scope)).first().shouldBe(getClickableCondition()).click();
+    waitForElementDisplayed($("div[id$='config-form:coloring-option_panel']"), false);
   }
   
   public WebElement getColoringScope() {
@@ -194,24 +214,28 @@ public class StatisticConfigurationPage extends TemplatePage {
     String thresholdPrefix = String.format("div[id$='config-form:condition-background-color-list:%d:threshold-component:threshold-panel']", index);
     
     $(thresholdPrefix).$(".threshold-operator-value div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
+    WaitHelper.waitPageNoAnimation();
     $$("li").filter(text(operator)).first().shouldBe(getClickableCondition()).click();
-    
+    // Wait for the panel's own closing transition (checked via the global animation flag, since
+    // this panel has no stable id to scope a per-panel wait to) before touching the next field.
+    WaitHelper.waitPageNoAnimation();
     $(thresholdPrefix).$(".threshold-input-value input").shouldBe(appear, DEFAULT_TIMEOUT).clear();
     $(thresholdPrefix).$(".threshold-input-value input").sendKeys(value);
-    
     $(thresholdPrefix).$("input.threshold-color-value").shouldBe(appear, DEFAULT_TIMEOUT).clear();
     $(thresholdPrefix).$("input.threshold-color-value").sendKeys(color);
   }
-  
   public void configureThresholdWithCategory(int index, String operator, String value, String color, String category) {
     String thresholdPrefix = String.format("div[id$='config-form:condition-background-color-list:%d:threshold-component:threshold-panel']", index);
-    
     $(thresholdPrefix).$(".threshold-category-data div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
+    WaitHelper.waitPageNoAnimation();
     $$("li").filter(text(category)).first().shouldBe(getClickableCondition()).click();
-    
+    // Wait for that panel to finish closing before opening the next one - same reasoning as above.
+    WaitHelper.waitPageNoAnimation();
     $(thresholdPrefix).$(".threshold-operator-value div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
+    WaitHelper.waitPageNoAnimation();
     $$("li").filter(text(operator)).first().shouldBe(getClickableCondition()).click();
-    
+    WaitHelper.waitPageNoAnimation();
+
     $(thresholdPrefix).$(".threshold-input-value input").shouldBe(appear, DEFAULT_TIMEOUT).clear();
     $(thresholdPrefix).$(".threshold-input-value input").sendKeys(value);
     
@@ -237,7 +261,9 @@ public class StatisticConfigurationPage extends TemplatePage {
   
   public void selectCustomField(String customFieldName) {
     $("div[id$='config-form:aggregates-custom-fields'] div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
+    WaitHelper.waitPageNoAnimation();
     $$("li").filter(text(customFieldName)).first().shouldBe(getClickableCondition()).click();
+    waitForElementDisplayed($("div[id$='config-form:aggregates-custom-fields_panel']"), false);
   }
   
   public void verifyCustomFieldSelectionVisible() {

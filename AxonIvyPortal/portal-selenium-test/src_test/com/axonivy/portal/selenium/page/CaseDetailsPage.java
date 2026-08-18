@@ -32,6 +32,7 @@ import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.ScrollIntoViewOptions.Behavior;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 import com.codeborne.selenide.ScrollIntoViewOptions.Inline;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
@@ -339,6 +340,8 @@ public class CaseDetailsPage extends TemplatePage {
         DEFAULT_TIMEOUT);
     SelenideElement destinationElement =
         $(String.format("[id='case-details-%s-panel']", destinationName)).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    sourceElement.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
+    destinationElement.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
     Actions actions = new Actions(getDriver());
     Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
     moveWidget.perform();
@@ -465,7 +468,11 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getLatestHistoryContent() {
-    return caseItem.findElement(By.cssSelector(LATEST_HISTORY_LIST_CSS_SELECTOR)).getText();
+    // The renaming/upload action's own "done" signal (dialog closed) doesn't guarantee the
+    // case-histories table has finished its separate ajax refresh with the new row yet. A raw
+    // WebElement#findElement() has no retry at all, so it can throw NoSuchElementException on a
+    // row that's a moment away from rendering; use a real Selenide poll instead.
+    return caseItem.$(LATEST_HISTORY_LIST_CSS_SELECTOR).shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
   public boolean isBusinessCaseInformationSectionDisplayed() {
@@ -661,7 +668,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void clickRelatedTaskColumnCheckbox(int columnIndex) {
     SelenideElement columnCheckbox = $(By.xpath(String.format(
-        "//*[contains(@id,\":task-widget:task-columns-configuration:select-columns-form:columns-checkbox\")]/tbody/tr[%s]/td/div/div[2]",
+        "//*[contains(@id,\":task-widget:task-columns-configuration:select-columns-form:columns-checkbox\")]/div[%s]/div/div/div[2]",
         columnIndex)));
     columnCheckbox.shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
   }
@@ -830,21 +837,31 @@ public class CaseDetailsPage extends TemplatePage {
       waitForElementEnabled(By.cssSelector("[id$=':task-delegate-form:activator-type-select:1']"), true);
       waitForElementClickableThenClick($("[for$=':task-delegate-form:activator-type-select:1']"));
       waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
-      $(By.cssSelector("input[id$='group-activator-select_input']")).click();
-      $(By.cssSelector("input[id$='group-activator-select_input']")).sendKeys(responsibleName);
+      SelenideElement groupActivatorInput = $(By.cssSelector("input[id$='group-activator-select_input']"));
+      groupActivatorInput.click();
+      typeIntoAutoComplete(groupActivatorInput, responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
       ElementsCollection foundRoles = $$("span[id$='group-activator-select_panel'] .name-after-avatar");
       foundRoles.get(0).click();
     } else {
       waitForElementDisplayed(By.cssSelector("input[id$='user-activator-select_input']"), true);
-      $(By.cssSelector("input[id$='user-activator-select_input']")).click();
-      $(By.cssSelector("input[id$='user-activator-select_input']")).sendKeys(responsibleName);
+      SelenideElement userActivatorInput = $(By.cssSelector("input[id$='user-activator-select_input']"));
+      userActivatorInput.click();
+      typeIntoAutoComplete(userActivatorInput, responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
       ElementsCollection foundUsers = $$("span[id$='user-activator-select_panel'] .name-after-avatar");
       foundUsers.get(0).click();
     }
     waitForElementClickableThenClick($(By.cssSelector("button[id$='proceed-task-delegate-command']")));
     waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), false);
+  }
+
+  private void typeIntoAutoComplete(SelenideElement input, String text) {
+    Selenide.executeJavaScript(
+        "var kd=new KeyboardEvent('keydown',{key:'a',bubbles:true});arguments[0].dispatchEvent(kd);"
+            + "arguments[0].value=arguments[1];"
+            + "arguments[0].dispatchEvent(new Event('input',{bubbles:true}));",
+        input, text);
   }
 
   public boolean isDelegateTypeSelectAvailable() {
@@ -988,7 +1005,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void clickRelatedCaseColumnCheckbox(int columnIndex) {
     String xpath = String.format(
-        "//*[contains(@id,\":related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox\")]/tbody/tr[%s]/td/div/div[2]",
+        "//*[contains(@id,\":related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox\")]/div[%s]/div/div/div[2]",
         columnIndex);
     waitForElementClickableThenClick($(By.xpath(xpath)));
   }

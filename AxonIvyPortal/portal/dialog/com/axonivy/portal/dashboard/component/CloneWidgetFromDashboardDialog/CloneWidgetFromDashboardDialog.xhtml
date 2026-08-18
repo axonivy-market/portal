@@ -48,7 +48,7 @@
           <f:selectItem value="#{null}" noSelectionOption="true" />
           <f:selectItems value="#{cc.attrs.managedBean.cloneFromDashboard.widgets}"
             var="widget" itemLabel="#{cc.attrs.managedBean.generateCloneWidgetName(widget)}" itemValue="#{widget}" />
-            <p:ajax process="@(this)" update="#{p:resolveFirstComponentWithId('clone-footer-panel', view).clientId}"
+            <p:ajax process="@this" update="#{p:resolveFirstComponentWithId('clone-footer-panel', view).clientId}"
               global="false" partialSubmit="true" />
         </p:selectOneMenu>
       </h:panelGroup>
@@ -75,7 +75,7 @@
         disabled="#{cc.attrs.managedBean.cloneFromWidget eq null}"
         actionListener="#{cc.attrs.managedBean.cloneWidget()}"
         process="clone-widget-form"
-        update="load-grid-after-added-new-widget-cmd"
+        update="@([id$='load-grid-after-added-new-widget-cmd'])"
         partialSubmit="true"
         oncomplete="loadGridAfterAddedNewWidget(); initStatistics(); PF('new-widget-dialog').hide(); PF('clone-widget-dialog').hide();" />
       </h:panelGroup>

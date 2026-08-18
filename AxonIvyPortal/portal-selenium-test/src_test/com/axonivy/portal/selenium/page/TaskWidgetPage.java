@@ -93,6 +93,14 @@ public class TaskWidgetPage extends TemplatePage {
     Selenide.executeJavaScript("arguments[0].style.display = 'none'", element);
   }
 
+  private void typeIntoAutoComplete(SelenideElement input, String text) {
+    Selenide.executeJavaScript(
+        "var kd=new KeyboardEvent('keydown',{key:'a',bubbles:true});arguments[0].dispatchEvent(kd);"
+            + "arguments[0].value=arguments[1];"
+            + "arguments[0].dispatchEvent(new Event('input',{bubbles:true}));",
+        input, text);
+  }
+
   public ElementsCollection countTasks() {
     return $$("div[id$='task-widget:task-view-container'] ul li");
   }
@@ -692,7 +700,7 @@ public class TaskWidgetPage extends TemplatePage {
       waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
       responsibleElement = $(By.cssSelector("input[id$='group-activator-select_input']"));
       responsibleElement.click();
-      responsibleElement.sendKeys(responsibleName);
+      typeIntoAutoComplete(responsibleElement, responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
       ElementsCollection foundRoles = $$("span[id$='group-activator-select_panel'] .gravatar");
       waitForElementClickableThenClick(foundRoles.get(0));
@@ -700,7 +708,7 @@ public class TaskWidgetPage extends TemplatePage {
       waitForElementDisplayed(By.cssSelector("input[id$='user-activator-select_input']"), true);
       responsibleElement = $(By.cssSelector("input[id$='user-activator-select_input']"));
       responsibleElement.click();
-      responsibleElement.sendKeys(responsibleName);
+      typeIntoAutoComplete(responsibleElement, responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
       ElementsCollection foundUsers = $$("span[id$='user-activator-select_panel'] .name-after-avatar");
       waitForElementClickableThenClick(foundUsers.get(0));

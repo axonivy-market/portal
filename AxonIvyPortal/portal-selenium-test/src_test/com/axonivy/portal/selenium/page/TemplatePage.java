@@ -240,7 +240,7 @@ public abstract class TemplatePage extends AbstractPage {
     return new LoginPage();
   }
 
-  private void clickUserMenuItem(String menuItemSelector) {
+  private void clickUserMenuItem(String menuItemSelector, boolean navigatesAway) {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
     try {
       clickByJavaScript(findElementById("user-settings-menu"));
@@ -249,8 +249,12 @@ public abstract class TemplatePage extends AbstractPage {
       clickByJavaScript(findElementById("user-settings-menu"));
     }
     waitForElementDisplayed(By.id(menuItemSelector), true);
-    clickByJavaScript(findElementById(menuItemSelector));
-    waitForPageLoad();
+    if (navigatesAway) {
+      WaitHelper.waitForNavigation(() -> clickByJavaScript(findElementById(menuItemSelector)));
+    } else {
+      clickByJavaScript(findElementById(menuItemSelector));
+      waitForPageLoad();
+    }
   }
 
   public SelenideElement findElementById(String selector) {
@@ -375,7 +379,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public NewDashboardPage goToHomeFromBreadcrumb() {
     waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
-    waitForElementClickableThenClick($(By.cssSelector(HOME_BREADCRUMB_SELECTOR)));
+    WaitHelper.waitForNavigation(() -> waitForElementClickableThenClick($(By.cssSelector(HOME_BREADCRUMB_SELECTOR))));
     return new NewDashboardPage();
   }
 
@@ -433,27 +437,28 @@ public abstract class TemplatePage extends AbstractPage {
 
   public AdminSettingsPage openAdminSettings() {
     openUserSettingMenu();
-    clickByJavaScript($("[id='adminui-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
+    WaitHelper.waitForNavigation(
+        () -> clickByJavaScript($("[id='adminui-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)));
     return new AdminSettingsPage();
   }
 
   public ChangePasswordPage openChangePasswordPage() {
-    clickUserMenuItem("change-password-menu-item");
+    clickUserMenuItem("change-password-menu-item", false);
     return new ChangePasswordPage();
   }
 
   public ProjectVersionPage openProjectVersionPage() {
-    clickUserMenuItem("project-info-menu-item");
+    clickUserMenuItem("project-info-menu-item", false);
     return new ProjectVersionPage();
   }
 
   public UserProfilePage openMyProfilePage() {
-    clickUserMenuItem("user-profile");
+    clickUserMenuItem("user-profile", true);
     return new UserProfilePage();
   }
 
   public AbsencePage openAbsencePage() {
-    clickUserMenuItem("absence-menu-item");
+    clickUserMenuItem("absence-menu-item", true);
     return new AbsencePage();
   }
 
@@ -496,7 +501,8 @@ public abstract class TemplatePage extends AbstractPage {
 
 
   public ChatPage getChat() {
-    waitForElementDisplayed(By.id("toggle-chat-panel-command"), true, 5);
+    $(By.id("toggle-chat-panel-command")).shouldBe(appear, Duration.ofSeconds(5));
+    WaitHelper.waitPageNoAjaxAndAnimation();
     waitForElementClickableThenClick("[id$='toggle-chat-panel-command']");
     return new ChatPage();
   }
@@ -505,8 +511,8 @@ public abstract class TemplatePage extends AbstractPage {
     waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
     waitForElementClickableThenClick(By.cssSelector(HOME_BREADCRUMB_SELECTOR));
     waitForElementDisplayed(By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"), true);
-    waitForElementClickableThenClick(
-        By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"));
+    WaitHelper.waitForNavigation(() -> waitForElementClickableThenClick(
+        By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button")));
     return new NewDashboardPage();
   }
 

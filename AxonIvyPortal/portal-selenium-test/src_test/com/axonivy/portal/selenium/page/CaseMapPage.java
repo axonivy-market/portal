@@ -16,13 +16,13 @@ public class CaseMapPage extends TaskTemplatePage {
   }
 
   public void clickSubmitRequestButton() {
-    $("button[id$='submit-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    clickByJavaScript($("button[id$='submit-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
     switchBackToParent();
   }
 
   public void clickSubmitButtonAndBackToTaskList() {
-    $("button[id$='submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    clickByJavaScript($("button[id$='submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT));
     switchBackToParent();
   }
 
