@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
-  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:cc="jakarta.faces.composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions" xmlns:cc="jakarta.faces.composite"
   xmlns:jsf="jakarta.faces" xmlns:c="jakarta.tags.core"
   xmlns:fn="jakarta.tags.functions" xmlns:pt="jakarta.faces.passthrough">
 <!-- dashboardWelcomeWidgetConfigurationBean: ch.ivy.addon.portalkit.bean.DashboardWelcomeWidgetConfigurationBean -->
@@ -50,21 +50,9 @@
           for="image-upload-panel" styleClass="welcome-text-label" />
       </div>
       <div class="w-full">
-        <p:fileUpload id="image-upload-panel"
-          widgetVar="ImageLightUpload"
-          listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUpload}"
-          chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" 
-          auto="true"
-          update="preview-panel config-welcome-widget-message" 
-          allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
-          accept=".png,.jpg,.jpeg,.svg"
-          label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
-          invalidSizeMessage="#{dashboardWelcomeWidgetConfigurationBean.getFileUploadInvalidSizeMessage()}"
-          invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
-          sizeLimit="#{dashboardWelcomeWidgetConfigurationBean.uploadFileLimit}"
-          oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();" 
-          process="welcome-text-input-container"
-          />
+        <p:fileUpload id="image-upload-panel" widgetVar="ImageLightUpload" listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUpload}" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" auto="true" update="preview-panel config-welcome-widget-message" accept=".png,.jpg,.jpeg,.svg" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();" process="welcome-text-input-container">
+          <p:validateFile sizeLimit="#{dashboardWelcomeWidgetConfigurationBean.uploadFileLimit}" allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i" />
+        </p:fileUpload>
       </div>
 
       <div class="ui-g-3 ui-md-4">
@@ -101,21 +89,9 @@
           for="image-dark-mode-upload-panel" styleClass="welcome-text-label" />
       </div>
       <div class="w-full">
-        <p:fileUpload id="image-dark-mode-upload-panel" 
-          widgetVar="ImageDarkUpload"
-          listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUploadDarkMode}"
-          chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" 
-          auto="true"
-          update="preview-panel-dark-mode config-welcome-widget-message" 
-          allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i" 
-          accept=".png,.jpg,.jpeg,.svg"
-          label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
-          invalidSizeMessage="#{dashboardWelcomeWidgetConfigurationBean.getFileUploadInvalidSizeMessage()}"
-          invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
-          sizeLimit="#{dashboardWelcomeWidgetConfigurationBean.uploadFileLimit}"
-          oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();" 
-          process="welcome-text-input-container"
-          />
+        <p:fileUpload id="image-dark-mode-upload-panel" widgetVar="ImageDarkUpload" listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUploadDarkMode}" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" auto="true" update="preview-panel-dark-mode config-welcome-widget-message" accept=".png,.jpg,.jpeg,.svg" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();" process="welcome-text-input-container">
+          <p:validateFile sizeLimit="#{dashboardWelcomeWidgetConfigurationBean.uploadFileLimit}" allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i" />
+        </p:fileUpload>
       </div>
 
       <div class="ui-g-3 ui-md-4">
@@ -261,7 +237,7 @@
               <p:commandButton styleClass="app-setting-button" icon="ti ti-language" id="add-language-button"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                 actionListener="#{dashboardWelcomeWidgetConfigurationBean.updateAltTextByLocale()}" process="text-alt-class" partialSubmit="true"
-                update="#{cc.clientId}:title-language-config:multiple-languages-dialog" oncomplete="PF('multiple-languages-dialog').show();"
+                update=":#{cc.clientId}:title-language-config:multiple-languages-dialog" oncomplete="PF('multiple-languages-dialog').show();"
                 global="false" />
             </div>
           </div>

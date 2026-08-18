@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
   xmlns:ui="jakarta.faces.facelets" xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="jakarta.tags.core">
+  xmlns:p="primefaces" xmlns:pe="primefaces.extensions" xmlns:c="jakarta.tags.core">
 <!-- dashboardProcessBean: ch.ivy.addon.portalkit.bean.DashboardProcessBean -->
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="index" required="true" />
@@ -24,8 +24,8 @@
       <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
       <ui:param name="widgetContentStyleClass" value="process-widget" />
       <ui:param name="componentToProcessOnApplyFilter" value="filter-container" />
-      <ui:param name="componentToUpdateOnApplyFilter" value="#{cc.clientId}:widget-content" />
-      <ui:param name="componentToUpdateOnResetFilter" value="#{cc.clientId}:widget-content" />
+      <ui:param name="componentToUpdateOnApplyFilter" value=":#{cc.clientId}:widget-content" />
+      <ui:param name="componentToUpdateOnResetFilter" value=":#{cc.clientId}:widget-content" />
       <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
       <ui:param name="isRenderInfo" value="#{widget.isShowWidgetInfo()}" />
     

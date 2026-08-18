@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
-  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:cc="jakarta.faces.composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions" xmlns:cc="jakarta.faces.composite"
   xmlns:jsf="jakarta.faces" xmlns:c="jakarta.tags.core" 
   xmlns:fn="jakarta.tags.functions" xmlns:pt="jakarta.faces.passthrough">
 
@@ -31,7 +31,7 @@
             <h:panelGroup styleClass="add-external-link-command">
               <p:commandLink id="add-external-link-command" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addExternalLink')}"
                 actionListener="#{externalLinkBean.addNewExternalLink(cc.clientId)}"
-                update="#{cc.clientId}:add-external-link-dialog" oncomplete="PF('add-external-link-dialog').show()">
+                update=":#{cc.clientId}:add-external-link-dialog" oncomplete="PF('add-external-link-dialog').show()">
                 <i class="ti ti-link" aria-hidden="true" />
                 <span class="process-widget-header-link">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addExternalLink')}</span>
               </p:commandLink>
@@ -43,7 +43,7 @@
               <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewMode')}" for="view-mode-selection" styleClass="view-mode-text"/>
               <p:selectOneButton value="#{processWidgetBean.viewMode}" unselectable="false" id="view-mode-selection" widgetVar="view-mode-selection">
                 <f:selectItems value="#{processWidgetBean.processViewModes}"  var="mode" itemValue="#{mode}" itemLabel="#{mode.label}" />
-                <p:ajax update="process-view-mode #{cc.clientId}:process-list"
+                <p:ajax update="process-view-mode :#{cc.clientId}:process-list"
                   oncomplete="processWidget.setup(); processWidget.hideLoadingText(); addMissingAttr('.ui-selectonebutton .ui-button', 'role', 'radio'); return false;" />
               </p:selectOneButton>
             </h:form>
@@ -79,10 +79,10 @@
                   ableToEdit="#{!processWidgetBean.isIvyProcess(process) and process.getProcess().ableToEdit}"
                   showInformationLink="#{processWidgetBean.isShowInformationLink(process)}"
                   oncompleteEditProcess="PF('edit-process-dialog').show();"
-                  componentToUpdateOnEditProcess="#{cc.clientId}:edit-process-dialog"
+                  componentToUpdateOnEditProcess=":#{cc.clientId}:edit-process-dialog"
                   editActionListener="#{processWidgetBean.setEditedProcess(process)}"
                   oncompleteRemoveProcess="PF('remove-process-workflow-dialog').show();"
-                  componentToUpdateOnRemoveProcess="#{cc.clientId}:remove-process-workflow-dialog"
+                  componentToUpdateOnRemoveProcess=":#{cc.clientId}:remove-process-workflow-dialog"
                   removeActionListener="#{processWidgetBean.setDeletedProcess(process)}"
                   processStyleClass="js-process-start-list-item ui-g-2 ui-xl-2 ui-lg-3 ui-md-6 ui-sm-12" />
               </ui:fragment>

@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
   xmlns:ui="jakarta.faces.facelets" xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="jakarta.tags.core"
+  xmlns:p="primefaces" xmlns:pe="primefaces.extensions" xmlns:c="jakarta.tags.core"
   xmlns:pc="jakarta.faces.composite/components">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="detailDialogId" required="true" />
@@ -44,7 +44,7 @@
             actionListener="#{managedBean.updateDashboardTitleByLocale()}"
             process="dashboard-title"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-            update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+            update=":#{cc.clientId}:title-language-config:multiple-languages-dialog"
             oncomplete="PF('multiple-languages-dialog').show();">
             <f:param name="skipValidator" value="true" />
           </p:commandButton>
