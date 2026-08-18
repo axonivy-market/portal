@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.service.impl.ProcessService;
@@ -40,7 +40,6 @@ public class GlobalSearchService {
 
   private static GlobalSearchService instance;
   private static final int PAGE_SIZE = 3;
-  private static final int MINIMUM_KEYWORD_LENGTH = 3;
 
   public static GlobalSearchService getInstance() {
     if (instance == null) {
@@ -112,17 +111,21 @@ public class GlobalSearchService {
     return new GlobalSearchResponse(results, processes.size());
   }
   
+  public static int getMinimumKeywordLength() {
+    return NumberUtils.toInt(Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_MINIMUM_KEYWORD_LENGTH.getKey()), 0);
+  }
+
   public static boolean isKeywordTooShort(String keyword) {
-    if (!BooleanUtils
-        .toBoolean(Ivy.var().get(GlobalVariable.ENABLE_GLOBAL_SEARCH_MINIMUM_KEYWORD_LENGTH.getKey()))) {
+    int minimumLength = getMinimumKeywordLength();
+    if (minimumLength <= 0) {
       return false;
     }
-    return StringUtils.length(StringUtils.trim(keyword)) < MINIMUM_KEYWORD_LENGTH;
+    return StringUtils.length(StringUtils.trim(keyword)) < minimumLength;
   }
 
   public static String getMinimumKeywordMessage() {
     return Ivy.cms().co("/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/minimumKeywordText",
-        List.of(String.valueOf(MINIMUM_KEYWORD_LENGTH)));
+        List.of(String.valueOf(getMinimumKeywordLength())));
   }
 
   private static GlobalSearchResponse tooShortKeywordResponse() {

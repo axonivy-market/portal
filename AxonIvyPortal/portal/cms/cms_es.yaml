@@ -259,7 +259,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. También hace disponible el filtro "Filtrar tareas por propietario actual del caso" en el widget de tareas, que está oculto de forma predeterminada.
       enableDeepLTranslation: Establezca esta propiedad en true para activar la traducción de DeepL
       enableDocumentPreview: 'Establecer en "true" para habilitar la vista previa de documentos para ciertos tipos de archivos. Los tipos de archivos compatibles son: pdf, png, jpeg, jpg, txt, log.'
-      enableGlobalSearchMinimumKeywordLengthNote: Cambiar a "true" para requerir al menos 3 caracteres antes de que la búsqueda global consulte tareas y casos. Una palabra clave más corta coincide con casi todas las filas y no puede usar un índice, por lo que la búsqueda se omite en lugar de ejecutarse.
       enableGroupChat: Cambie esta propiedad a "true" para activar el chat de grupos
       enablePinCase: Establece esta propiedad en true para habilitar la función de fijar casos.
       enablePinTask: Establece esta propiedad en true para habilitar la función de fijar tareas.
@@ -267,6 +266,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableProcessViewer: Defina esta propiedad como true para habilitar la opción de visor de procesos en las acciones de Tarea/Caso
       enableScriptCheckingForUploadedDocumentNote: 'Cambiar a "True" para activar el control de anexos permitidos. De momento se pueden controlar archivos en PDF, word y excel. '
       enableVirusScannerForUploadedDocumentNote: Cambiar a "true" para habilitar el escáner de virus para el documento cargado. Actualmente esta función utiliza la API VIRUSTOTAL.
+      globalSearchMinimumKeywordLengthNote: Número mínimo de caracteres necesario antes de que se ejecute la búsqueda global. Cambiar a 0 para desactivar la comprobación. Una palabra clave más corta coincide con casi todas las filas y no puede usar un índice, por lo que la búsqueda se omite en lugar de ejecutarse.
       hideCaseCreator: |-
         Establecer a true para ocultar el creador de casos en la lista de casos, widget de casos y detalles de casos.
         Este ajuste afecta a todas las consultas de casos, por ejemplo, para la lista de casos, la búsqueda global o la estadística.

@@ -259,7 +259,6 @@ ch.ivy.addon.portalkit.ui.jsf:
         par propriétaire actuel du dossier" dans le widget de tâches, qui est masqué par défaut.
       enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer la prise en charge de la traduction de DeepL.
       enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents pour certains types de fichiers. Les types de fichiers pris en charge sont : pdf, png, jpeg, jpg, txt, log.'
-      enableGlobalSearchMinimumKeywordLengthNote: Définie sur true pour exiger au moins 3 caractères avant que la recherche globale n'interroge les tâches et les cas. Un mot-clé plus court correspond à presque toutes les lignes et ne peut pas utiliser d'index, la recherche est donc ignorée au lieu d'être exécutée.
       enableGroupChat: Définissez cette propriété sur true pour activer la fonction de chat de groupe
       enablePinCase: Définissez cette propriété sur true pour activer la possibilité d’épingler des cas.
       enablePinTask: Définissez cette propriété sur true pour activer la possibilité d’épingler des tâches.
@@ -267,6 +266,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableProcessViewer: Définissez cette propriété à true pour activer l'option de visualisation de processus dans les actions de Task/Case.
       enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la vérification de PDF, Excel, Word.
       enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
+      globalSearchMinimumKeywordLengthNote: Nombre minimal de caractères requis avant l'exécution de la recherche globale. Définir sur 0 pour désactiver la vérification. Un mot-clé plus court correspond à presque toutes les lignes et ne peut pas utiliser d'index, la recherche est donc ignorée au lieu d'être exécutée.
       hideCaseCreator: |-
         La valeur "true" permet de masquer le créateur du dossier dans la liste des dossiers, le widget du dossier et les détails du dossier.
         Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
