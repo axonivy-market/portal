@@ -17,9 +17,12 @@
       <ui:include src="FieldAdd.xhtml" />
 
       <p:dataTable id="column-management-datatable" value="#{columnManagementBean.columnsBeforeSave}" var="column"
-        draggableRows="true" rowDragSelector="i.ti-arrows-vertical" lazy="false"
+        draggableRows="true" rowDragSelector="i.ti-grip-vertical" lazy="false"
         styleClass="column-management-datatable">
         <p:ajax event="rowReorder" global="false" />
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" width="70" styleClass="text-center column-management-datatable__reorder">
+          <i class="ti ti-grip-vertical" />
+        </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}" width="70" styleClass="text-center">
           <p:commandLink id="toggle-visibility" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget #{columnManagementBean.isEnableHideCaseCreator(column) ? 'ui-disable' : ''}" process="@this"
             actionListener="#{columnManagementBean.handleVisibility(column)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}"
@@ -87,9 +90,6 @@
               </h:panelGroup>
             </p:commandLink>
           </h:panelGroup>
-        </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" width="70" styleClass="text-center column-management-datatable__reorder">
-          <i class="ti ti-arrows-vertical" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}" width="70" styleClass="text-center js-column-field-#{column.field}">
           <p:commandLink id="remove-link" actionListener="#{columnManagementBean.remove(column)}" global="false" process="@this" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
