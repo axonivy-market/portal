@@ -46,11 +46,11 @@ public class LazyRoleTreeNode extends DefaultTreeNode<RoleHolder> {
     setType(DEFAULT_ROLE_TYPE);
   }
 
-  // @Override
-  // public TreeNodeChildren getChildren() {
-  //   ensureChildrenFetched();
-  //   return super.getChildren();
-  // }
+  @Override
+  public TreeNodeChildren<RoleHolder> getChildren() {
+    ensureChildrenFetched();
+    return super.getChildren();
+  }
 
   @Override
   public int getChildCount() {
