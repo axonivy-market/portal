@@ -164,8 +164,7 @@ public class AbsenceTest extends BaseTest {
     assertEquals(1, absencePage.getAbsenceRowCount());
 
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
-    newAbsencePage.input(TODAY, TODAY, "Overlapping");
-    newAbsencePage.proceed();
+    newAbsencePage.selectTodayFromDatePicker("input[id*='absence-start-date']");
 
     assertTrue(newAbsencePage.isAbsenceErrorMessageDisplayed());
   }

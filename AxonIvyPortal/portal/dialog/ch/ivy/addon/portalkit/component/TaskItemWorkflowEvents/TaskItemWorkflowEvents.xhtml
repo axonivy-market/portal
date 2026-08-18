@@ -18,7 +18,7 @@
     appendTo="@(body)"
     modal="true" responsive="true" fitViewport="true"
     styleClass="workflow-events-dialog">
-    <p:dataTable id="events-table" widgetVar="events-table" var="event" value="#{data.workflowEvents}"
+    <p:dataTable cellNavigation="false" id="events-table" widgetVar="events-table" var="event" value="#{data.workflowEvents}"
       sortBy="#{taskBean.taskWorkflowEventSortByTimestamp}"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
       reflow="true" lazy="false" styleClass="ui-g-12">

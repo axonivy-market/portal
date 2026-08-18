@@ -10,6 +10,7 @@ import java.util.Set;
 
 import jakarta.inject.Named;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.SortMeta;
 
@@ -117,7 +118,7 @@ public class TaskBean implements Serializable {
   public String getAriaLabel(ITask task, List<TaskColumnModel> columns) {
     List<String> displayTexts = new ArrayList<>();
     for (TaskColumnModel col : columns) {
-      if (!col.getVisible()) {
+      if (BooleanUtils.isFalse(col.getVisible())) {
         continue;
       }
       String text = ariaLabelFor(task, col);

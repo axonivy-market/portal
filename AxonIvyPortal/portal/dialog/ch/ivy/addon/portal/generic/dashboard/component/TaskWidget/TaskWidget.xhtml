@@ -51,7 +51,7 @@
           <p:resetInput target="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" />
         </p:commandLink>
       </h:panelGroup>
-      <p:dataTable id="dashboard-tasks" widgetVar="#{cc.attrs.taskWidgetVar}-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task"
+      <p:dataTable cellNavigation="false" id="dashboard-tasks" widgetVar="#{cc.attrs.taskWidgetVar}-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task"
         lazy="true" scrollRows="25"
         selectionDisabled="#{isPreviewMode or bulkActionBean.isInBulkMode(taskWidget)}"
         liveScroll="true" scrollable="true" sortBy="#{isResizing ? null : taskWidget.sortBy}"

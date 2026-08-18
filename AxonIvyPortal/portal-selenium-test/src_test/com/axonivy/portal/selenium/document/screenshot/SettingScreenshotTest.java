@@ -119,7 +119,7 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(absencePage.getAddAbsenceDialog(),
         ScreenshotUtils.SETTINGS_FOLDER + "add-absence-dialog", new ScreenshotMargin(20));
-    newAbsencePage.proceed();
+    newAbsencePage.closeAddAbsenceDialog();
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "Vacation", absencePage);
     absencePage.waitForAbsenceTableChange(1);
 

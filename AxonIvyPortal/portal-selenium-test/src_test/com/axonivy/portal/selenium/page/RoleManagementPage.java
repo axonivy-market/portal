@@ -14,6 +14,7 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 public class RoleManagementPage extends TemplatePage {
@@ -66,7 +67,7 @@ public class RoleManagementPage extends TemplatePage {
     var parentRoleInput =
         $(By.cssSelector("[id$=':manage-role-details-form:parent-role:parent-role-selection_input']"));
     parentRoleInput.clear();
-    parentRoleInput.sendKeys(parentRole);
+    typeIntoAutoComplete(parentRoleInput, parentRole);
     waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:parent-role:parent-role-selection_panel']"),
         true);
     var roleSelectionPanel =
@@ -194,7 +195,7 @@ public class RoleManagementPage extends TemplatePage {
           .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
       usersAssignmentInput.click();
       usersAssignmentInput.clear();
-      usersAssignmentInput.sendKeys(userName);
+      typeIntoAutoComplete(usersAssignmentInput, userName);
       waitForElementDisplayed(
           By.cssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel"), true);
       var userSelectionPanel = $("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel")
@@ -208,6 +209,14 @@ public class RoleManagementPage extends TemplatePage {
       $(By.cssSelector("button[id$=':manage-role-details-form:add-new-user']")).shouldBe(Condition.disabled,
           DEFAULT_TIMEOUT);
     }
+  }
+
+  private void typeIntoAutoComplete(SelenideElement input, String text) {
+    Selenide.executeJavaScript(
+        "var kd=new KeyboardEvent('keydown',{key:'a',bubbles:true});arguments[0].dispatchEvent(kd);"
+            + "arguments[0].value=arguments[1];"
+            + "arguments[0].dispatchEvent(new Event('input',{bubbles:true}));",
+        input, text);
   }
 
   public void clickOnCloseAssignUsersButton() {

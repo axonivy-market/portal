@@ -128,7 +128,7 @@
                     <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</h5>
                   </div>
                   <div class="w-full">
-                    <p:dataTable paginator="true" rows="10" paginatorPosition="bottom" paginatorAlwaysVisible="false" var="event"
+                    <p:dataTable cellNavigation="false" paginator="true" rows="10" paginatorPosition="bottom" paginatorAlwaysVisible="false" var="event"
                       value="#{userProfileBean.events}" id="notification-Channels-Table" rowIndexVar="rowIndex" lazy="false" styleClass="ui-fluid">
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/event')}" sortBy="#{event.displayName}">
                         <h:outputText id="event" value="#{event.displayName}" />

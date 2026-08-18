@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 public class CustomWidgetNewDashBoardPage extends TemplatePage {
@@ -71,7 +72,9 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
 
   public void inputUserField(int index, String value) {
     String fieldId = String.format(CUSTOM_USER_SELECTION_INPUT_PATTERN, index);
-    $("[id='" + fieldId + "']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT).sendKeys(value);
+    SelenideElement userInput = $("[id='" + fieldId + "']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable,
+        DEFAULT_TIMEOUT);
+    typeIntoAutoComplete(userInput, value);
 
     String dialogId = String.format(CUSTOM_USER_SELECTION_DIALOG_PATTERN, index);
     $("[id='" + dialogId + "']").shouldBe(appear, DEFAULT_TIMEOUT).$$("td").get(0)
@@ -105,6 +108,14 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
 
   private void unfocusInput() {
     $("[id='new-widget-configuration-dialog_title']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
+
+  private void typeIntoAutoComplete(SelenideElement input, String text) {
+    Selenide.executeJavaScript(
+        "var kd=new KeyboardEvent('keydown',{key:'a',bubbles:true});arguments[0].dispatchEvent(kd);"
+            + "arguments[0].value=arguments[1];"
+            + "arguments[0].dispatchEvent(new Event('input',{bubbles:true}));",
+        input, text);
   }
 
   public SelenideElement processParam() {
