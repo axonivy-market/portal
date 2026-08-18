@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
@@ -39,6 +40,7 @@ public class GlobalSearchService {
 
   private static GlobalSearchService instance;
   private static final int PAGE_SIZE = 3;
+  private static final int MINIMUM_KEYWORD_LENGTH = 3;
 
   public static GlobalSearchService getInstance() {
     if (instance == null) {
@@ -48,6 +50,9 @@ public class GlobalSearchService {
   }
 
   public GlobalSearchResponse searchTasks(SearchPayload payload) {
+    if (isKeywordTooShort(payload.getQuery())) {
+      return tooShortKeywordResponse();
+    }
     TaskSearchCriteria criteria = buildTaskCriteria(payload);
     IvyTaskResultDTO iTasks = TaskService.newInstance().findGlobalSearchTasksByCriteria(criteria, 0, PAGE_SIZE);
     List<TaskData> results = iTasks.getTasks().stream().map(TaskData::new).toList();
@@ -55,6 +60,9 @@ public class GlobalSearchService {
   }
 
   public GlobalSearchResponse searchCases(SearchPayload payload) {
+    if (isKeywordTooShort(payload.getQuery())) {
+      return tooShortKeywordResponse();
+    }
     CaseSearchCriteria criteria = buildCaseCriteria(payload);
     IvyCaseResultDTO iCases = CaseService.newInstance().findGlobalSearchCasesByCriteria(criteria, 0, PAGE_SIZE);
     boolean canAccessBusinessDetails = CaseBehaviorUtils.canAccessBusinessDetails();
@@ -91,6 +99,9 @@ public class GlobalSearchService {
   }
 
   public GlobalSearchResponse searchProcesses(SearchPayload payload) {
+    if (isKeywordTooShort(payload.getQuery())) {
+      return tooShortKeywordResponse();
+    }
     String keyword = payload.getQuery().toLowerCase();
     List<IWebStartable> startableProcesses = ProcessService.getInstance().findProcesses();
     List<ProcessData> processes = startableProcesses.stream()
@@ -101,6 +112,25 @@ public class GlobalSearchService {
     return new GlobalSearchResponse(results, processes.size());
   }
   
+  public static boolean isKeywordTooShort(String keyword) {
+    if (!BooleanUtils
+        .toBoolean(Ivy.var().get(GlobalVariable.ENABLE_GLOBAL_SEARCH_MINIMUM_KEYWORD_LENGTH.getKey()))) {
+      return false;
+    }
+    return StringUtils.length(StringUtils.trim(keyword)) < MINIMUM_KEYWORD_LENGTH;
+  }
+
+  public static String getMinimumKeywordMessage() {
+    return Ivy.cms().co("/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/minimumKeywordText",
+        List.of(String.valueOf(MINIMUM_KEYWORD_LENGTH)));
+  }
+
+  private static GlobalSearchResponse tooShortKeywordResponse() {
+    GlobalSearchResponse response = new GlobalSearchResponse(List.of(), 0);
+    response.setNoResultsText(getMinimumKeywordMessage());
+    return response;
+  }
+
   public boolean isShowGlobalSearchByProcesses() {
     boolean isShowFullProcessList = PermissionUtils.checkAccessFullProcessListPermission();
     String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());

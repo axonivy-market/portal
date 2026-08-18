@@ -259,6 +259,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         par propriétaire actuel du dossier" dans le widget de tâches, qui est masqué par défaut.
       enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer la prise en charge de la traduction de DeepL.
       enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents pour certains types de fichiers. Les types de fichiers pris en charge sont : pdf, png, jpeg, jpg, txt, log.'
+      enableGlobalSearchMinimumKeywordLengthNote: Définie sur true pour exiger au moins 3 caractères avant que la recherche globale n'interroge les tâches et les cas. Un mot-clé plus court correspond à presque toutes les lignes et ne peut pas utiliser d'index, la recherche est donc ignorée au lieu d'être exécutée.
       enableGroupChat: Définissez cette propriété sur true pour activer la fonction de chat de groupe
       enablePinCase: Définissez cette propriété sur true pour activer la possibilité d’épingler des cas.
       enablePinTask: Définissez cette propriété sur true pour activer la possibilité d’épingler des tâches.
@@ -1423,6 +1424,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: Voir tous les résultats
+              minimumKeywordText: Saisissez au moins {0} caractères pour lancer la recherche.
               noResultsText: Il n'y a pas de résultats.
             dashboard:
               PortalDashboardConfiguration:

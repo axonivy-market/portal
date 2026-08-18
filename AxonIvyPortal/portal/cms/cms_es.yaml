@@ -259,6 +259,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. También hace disponible el filtro "Filtrar tareas por propietario actual del caso" en el widget de tareas, que está oculto de forma predeterminada.
       enableDeepLTranslation: Establezca esta propiedad en true para activar la traducción de DeepL
       enableDocumentPreview: 'Establecer en "true" para habilitar la vista previa de documentos para ciertos tipos de archivos. Los tipos de archivos compatibles son: pdf, png, jpeg, jpg, txt, log.'
+      enableGlobalSearchMinimumKeywordLengthNote: Cambiar a "true" para requerir al menos 3 caracteres antes de que la búsqueda global consulte tareas y casos. Una palabra clave más corta coincide con casi todas las filas y no puede usar un índice, por lo que la búsqueda se omite en lugar de ejecutarse.
       enableGroupChat: Cambie esta propiedad a "true" para activar el chat de grupos
       enablePinCase: Establece esta propiedad en true para habilitar la función de fijar casos.
       enablePinTask: Establece esta propiedad en true para habilitar la función de fijar tareas.
@@ -1422,6 +1423,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: Ver todos los resultados
+              minimumKeywordText: Introduzca al menos {0} caracteres para buscar.
               noResultsText: No hay resultados.
             dashboard:
               PortalDashboardConfiguration:

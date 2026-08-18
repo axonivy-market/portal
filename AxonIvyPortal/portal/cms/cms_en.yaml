@@ -257,6 +257,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic. It also makes the "Filter tasks by current case owner" filter available in the task widget, which is hidden by default.
       enableDeepLTranslation: Set this property to true to enable the DeepL translation support
       enableDocumentPreview: 'Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
+      enableGlobalSearchMinimumKeywordLengthNote: Set to true to require at least 3 characters before the global search queries tasks and cases. A shorter keyword matches nearly every row and cannot use an index, so the search is skipped rather than run.
       enableGroupChat: Set this property to true to enable group chat function
       enablePinCase: Set this property to true to enable the ability to pin cases.
       enablePinTask: Set this property to true to enable the ability to pin tasks.
@@ -1420,6 +1421,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: View all results
+              minimumKeywordText: Enter at least {0} characters to search.
               noResultsText: There are no results.
             dashboard:
               PortalDashboardConfiguration:

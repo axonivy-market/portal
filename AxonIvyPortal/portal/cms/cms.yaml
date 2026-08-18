@@ -185,6 +185,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayMessageAfterFinishOrLeaveTask: A feedback message will be displayed after user finishes or leaves a task.
       embedInFrame: Set to true to start a process/task in IFrame mode
       enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic. It also makes the "Filter tasks by current case owner" filter available in the task widget, which is hidden by default.
+      enableGlobalSearchMinimumKeywordLengthNote: Set to true to require at least 3 characters before the global search queries tasks and cases. A shorter keyword matches nearly every row and cannot use an index, so the search is skipped rather than run.
       enableGroupChat: Set this property to true to enable group chat function
       enablePrivateChat: Set this property to true to enable private chat function
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
@@ -1093,6 +1094,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: View all results
+              minimumKeywordText: Enter at least {0} characters to search.
               noResultsText: There are no results.
             dashboard:
               PortalDashboardConfiguration:

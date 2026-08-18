@@ -258,6 +258,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。デフォルトでは非表示になっているタスクウィジェットで、「現在のケース所有者でタスクをフィルタする」フィルタも利用可能になります。
       enableDeepLTranslation: DeepL翻訳サポートを有効にするには、このプロパティーを true に設定してください。
       enableDocumentPreview: '特定のファイルタイプのドキュメントプレビューを有効にするには、trueに設定してください。サポートされているファイルタイプ：pdf、png、txt、log。'
+      enableGlobalSearchMinimumKeywordLengthNote: グローバル検索がタスクとケースを照会する前に 3 文字以上を必須にするには true に設定してください。短いキーワードはほぼすべての行に一致し、インデックスを使用できないため、検索は実行されずにスキップされます。
       enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
       enablePinCase: 'ケースをピン留めする機能を有効にするには、このプロパティをtrueに設定してください。'
       enablePinTask: 'タスクをピン留めする機能を有効にするには、このプロパティをtrueに設定してください。'
@@ -1419,6 +1420,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: すべての結果を表示
+              minimumKeywordText: 検索するには {0} 文字以上入力してください。
               noResultsText: 結果はありません。
             dashboard:
               PortalDashboardConfiguration:

@@ -257,6 +257,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …Außerdem wird der Filter "Aufgaben nach aktuellem Fallinhaber filtern" im Aufgaben-Widget verfügbar gemacht, der standardmäßig ausgeblendet ist.
       enableDeepLTranslation: Setzen Sie diese Eigenschaft auf true, um die DeepL Übersetzungsunterstützung zu aktivieren.
       enableDocumentPreview: 'Auf "true" setzen, um die Vorschau von Dokumenten für bestimmte Dateitypen zu aktivieren. Unterstützte Dateitypen sind: pdf, png, jpeg, jpg, txt, log.'
+      enableGlobalSearchMinimumKeywordLengthNote: Auf true setzen, um mindestens 3 Zeichen zu verlangen, bevor die globale Suche Aufgaben und Fälle abfragt. Ein kürzeres Schlüsselwort trifft auf nahezu jede Zeile zu und kann keinen Index nutzen, daher wird die Suche übersprungen statt ausgeführt.
       enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
       enablePinCase: Setzen Sie diese Eigenschaft auf „true“, um das Anheften von Fällen zu ermöglichen.
       enablePinTask: Setzen Sie diese Eigenschaft auf „true“, um das Anheften von Aufgaben zu ermöglichen.
@@ -1420,6 +1421,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: Alle Ergebnisse anzeigen
+              minimumKeywordText: Geben Sie mindestens {0} Zeichen ein, um zu suchen.
               noResultsText: Es liegen keine Ergebnisse vor.
             dashboard:
               PortalDashboardConfiguration:

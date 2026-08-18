@@ -18,7 +18,7 @@
     <ui:param name="dataModel" value="#{data.dataModel}" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResults')}</ui:define>
     <ui:define name="pageContent">
-      <c:set var="isShowResultTabView" value="#{compactProcessWidgetBean.displayShowAllProcessesLink or taskWidgetBean.showFullTaskList or caseWidgetBean.showFullCaseList}"></c:set>
+      <c:set var="isShowResultTabView" value="#{(compactProcessWidgetBean.displayShowAllProcessesLink or taskWidgetBean.showFullTaskList or caseWidgetBean.showFullCaseList) and not dataModel.keywordTooShort}"></c:set>
       <h:form id="global-search-form-in-page">
         <div id="global-search-container-in-page" class="global-search ui-lg-hidden ui-xl-hidden js-global-search ui-fluid">
           <span class="ui-input-icon-left">
@@ -34,8 +34,11 @@
         <p:remoteCommand autoRun="true" delay="1" global="false" process="@none"
           onstart="if(PrimeFaces.widgets['search-results-tabview']) { PF('search-results-tabview').select(#{data.activeTabIndex}) }" />
       </h:form>
-      <c:if test="#{!isShowResultTabView}" >
+      <c:if test="#{!isShowResultTabView and not dataModel.keywordTooShort}" >
       	<h:outputText styleClass="not-display-result-tab-view" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/notDisplayResultTabView')}."/>
+      </c:if>
+      <c:if test="#{dataModel.keywordTooShort}" >
+        <h:outputText styleClass="not-display-result-tab-view" value="#{dataModel.minimumKeywordMessage}"/>
       </c:if>
       <div id="search-results-tabview-container" class="search-results-tabview-container js-search-results-tabview-container">
         <p:tabView id="search-results-tabview" widgetVar="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview js-search-results-tabview"
