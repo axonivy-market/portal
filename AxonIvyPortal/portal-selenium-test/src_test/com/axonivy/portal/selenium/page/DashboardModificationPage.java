@@ -100,8 +100,12 @@ public class DashboardModificationPage extends TemplatePage {
     String label = displayTypeLabel(type);
     $("div.create-public-dashboard-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("[id$='dashboard-display-menu_items']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li")
-        .filter(Condition.text(label)).first().click();
+    SelenideElement panel = $("[id$='dashboard-display-menu_panel']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
+    panel.$$("li").filter(Condition.text(label)).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    panel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   private static String displayTypeLabel(DashboardDisplayType type) {

@@ -261,8 +261,12 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectCompactProcessSorting(String sorting) {
     getCompactModeSorting().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    WaitHelper.waitPageNoAnimation();
-    clickByJavaScript($("li[data-label='" + sorting + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT));
+    SelenideElement panel = $("div[id$=':processes-sorting_panel']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
+    panel.$("li[data-label='" + sorting + "']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    panel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   private SelenideElement getCompactModeSorting() {

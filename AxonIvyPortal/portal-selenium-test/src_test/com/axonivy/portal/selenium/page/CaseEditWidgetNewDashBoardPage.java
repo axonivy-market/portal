@@ -491,10 +491,12 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     SelenideElement configPanel = getWidgetConfigurationPanel();
     configPanel.$("div[id$='case-query-type'] .ui-selectonemenu-trigger")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    WaitHelper.waitPageNoAnimation();
-    clickByJavaScript($$("div[id$='case-query-type_panel'] li").filter(text(label)).first()
-        .shouldBe(getClickableCondition()));
-    waitForElementDisplayed($("div[id$='case-query-type_panel']"), false);
+    SelenideElement panel = $("div[id$='case-query-type_panel']")
+        .shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
+    panel.$$("li").filter(text(label)).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    panel.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public String getCaseQueryTypeLabel() {

@@ -348,8 +348,12 @@ public class DashboardConfigurationPage extends TemplatePage {
   public void selectDashboardDisplayType(DashboardDisplayType type, SelenideElement createDashboardDialog) {
     String label = displayTypeLabel(type);
     createDashboardDialog.$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    WaitHelper.waitPageNoAnimation();
-    $("[id$='dashboard-display-menu_items']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li").filter(Condition.text(label)).first().click();
+    SelenideElement panel = $("[id$='dashboard-display-menu_panel']")
+        .shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
+    panel.$$("li").filter(Condition.text(label)).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    panel.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   private static String displayTypeLabel(DashboardDisplayType type) {
