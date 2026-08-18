@@ -226,6 +226,9 @@ if (document) {
     } else {
       $(viewAllLink).addClass('hidden');
       $(noResults).removeClass('hidden');
+      if (data && data.noResultsText) {
+        $(noResults).text(data.noResultsText);
+      }
     }
     initConfirmDialog()
   }
@@ -297,37 +300,28 @@ if (document) {
       }, err => handleError(err));
   }
 
+  // Runs after every search response, so it must not hit the server.
+  // GlobalSearch.xhtml renders the WarningBeforeLeavingTask component with
+  // rendered="#{isWorkingOnATask}", so this widget exists exactly when the user is
+  // working on a task. Reading it is equivalent to asking the server for that boolean,
+  // which is what this function used to do via portalGlobalSearchUpdateParams().
   function initConfirmDialog() {
-    let isWorkingOnATask = true;
-
-    portalGlobalSearchUpdateParams().then(function(responseData){
-      isWorkingOnATask = responseData.jqXHR.pfArgs.isWorkingOnATask;
-
-      if (isWorkingOnATask == false ) {
-        return;
-      }
-      if (PrimeFaces.widgets['search-task-losing-confirmation-dialog']) {
-        $("a.search-task-list-item").off('click').on('click', e => {
-          PF('search-task-losing-confirmation-dialog').show();
-          let id = $(e.target).closest('.search-task-list-item').find('.search-item-result').attr("data-id");
-          rcUpdateCurrentItemId([{name: 'id', value: id}, {name: 'type', value: 'TASK'}]);
-          return false;
-        });
-        $("a.search-case-list-item").off('click').on('click', e => {
-          PF('search-task-losing-confirmation-dialog').show();
-          let id = $(e.target).closest('.search-case-list-item').find('.search-item-result').attr("data-id");
-          rcUpdateCurrentItemId([{name: 'id', value: id}, {name: 'type', value: 'CASE'}]);
-          return false;
-        });
-        $("a.search-process-list-item").off('click').on('click', e => {
-          PF('search-task-losing-confirmation-dialog').show();
-          let id = $(e.target).closest('.search-process-list-item').find('.search-item-result').attr("data-id");
-          rcUpdateCurrentItemId([{name: 'id', value: id}, {name: 'type', value: 'PROCESS'}]);
-          return false;
-        });
-      }
-    }).catch(function(error) {
-      console.error(error);  
+    const listItemTypes = [
+      {selector: "a.search-task-list-item", type: "TASK"},
+      {selector: "a.search-case-list-item", type: "CASE"},
+      {selector: "a.search-process-list-item", type: "PROCESS"}
+    ];
+    listItemTypes.forEach(item => {
+      $(document).off('click.searchConfirm', item.selector).on('click.searchConfirm', item.selector, e => {
+        if (!PrimeFaces.widgets['search-task-losing-confirmation-dialog']) {
+          return;
+        }
+        e.preventDefault();
+        e.stopPropagation();
+        PF('search-task-losing-confirmation-dialog').show();
+        let id = $(e.currentTarget).find('.search-item-result').attr("data-id");
+        rcUpdateCurrentItemId([{name: 'id', value: id}, {name: 'type', value: item.type}]);
+      });
     });
   }
 

@@ -198,6 +198,11 @@ Variables:
       ByCaseFields: NAME,DESCRIPTION,CUSTOM
     # Defining the types that the global search will search for
     GlobalSearchScopeCategories: PROCESSES,TASKS,CASES
+    GlobalSearch:
+      # Minimum number of characters required before the global search runs. 0 disables the check.
+      # A shorter keyword matches nearly every row and the query cannot use an index, so the search is
+      # skipped entirely rather than run.
+      MinimumKeywordLength: "0"
     # Additional menu items for the main menu of Portal. Could be an Ivy process or an external link.
     # [file: json]
     CustomMenuItems: ""

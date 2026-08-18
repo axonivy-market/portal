@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.service.impl.ProcessService;
@@ -48,6 +49,9 @@ public class GlobalSearchService {
   }
 
   public GlobalSearchResponse searchTasks(SearchPayload payload) {
+    if (isKeywordTooShort(payload.getQuery())) {
+      return tooShortKeywordResponse();
+    }
     TaskSearchCriteria criteria = buildTaskCriteria(payload);
     IvyTaskResultDTO iTasks = TaskService.newInstance().findGlobalSearchTasksByCriteria(criteria, 0, PAGE_SIZE);
     List<TaskData> results = iTasks.getTasks().stream().map(TaskData::new).toList();
@@ -55,6 +59,9 @@ public class GlobalSearchService {
   }
 
   public GlobalSearchResponse searchCases(SearchPayload payload) {
+    if (isKeywordTooShort(payload.getQuery())) {
+      return tooShortKeywordResponse();
+    }
     CaseSearchCriteria criteria = buildCaseCriteria(payload);
     IvyCaseResultDTO iCases = CaseService.newInstance().findGlobalSearchCasesByCriteria(criteria, 0, PAGE_SIZE);
     boolean canAccessBusinessDetails = CaseBehaviorUtils.canAccessBusinessDetails();
@@ -72,6 +79,7 @@ public class GlobalSearchService {
     boolean isAdminQuery = PermissionUtils.checkReadAllTasksPermission();
     criteria.setAdminQuery(isAdminQuery);
     criteria.extendStatesQueryByPermission(isAdminQuery);
+    criteria.setGlobalSearch(true);
     criteria.setSearchScopeTaskFields(getSearchScopeTaskFields());
     return criteria;
   }
@@ -79,18 +87,20 @@ public class GlobalSearchService {
   private CaseSearchCriteria buildCaseCriteria(SearchPayload payload) {
     CaseSearchCriteria criteria = new CaseSearchCriteria();
     criteria.setKeyword(payload.getQuery());
+    criteria.setGlobalSearch(true);
     criteria.setSearchScopeCaseFields(getSearchScopeCaseFields());
     criteria.setBusinessCase(true);
     criteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
     boolean isAdminQuery = PermissionUtils.checkReadAllTasksPermission();
     criteria.setAdminQuery(isAdminQuery);
     criteria.extendStatesQueryByPermission(isAdminQuery);
-    boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
-    criteria.setAdminQuery(hasReadAllTasksPermisson);
     return criteria;
   }
 
   public GlobalSearchResponse searchProcesses(SearchPayload payload) {
+    if (isKeywordTooShort(payload.getQuery())) {
+      return tooShortKeywordResponse();
+    }
     String keyword = payload.getQuery().toLowerCase();
     List<IWebStartable> startableProcesses = ProcessService.getInstance().findProcesses();
     List<ProcessData> processes = startableProcesses.stream()
@@ -101,6 +111,29 @@ public class GlobalSearchService {
     return new GlobalSearchResponse(results, processes.size());
   }
   
+  public static int getMinimumKeywordLength() {
+    return NumberUtils.toInt(Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_MINIMUM_KEYWORD_LENGTH.getKey()), 0);
+  }
+
+  public static boolean isKeywordTooShort(String keyword) {
+    int minimumLength = getMinimumKeywordLength();
+    if (minimumLength <= 0) {
+      return false;
+    }
+    return StringUtils.length(StringUtils.trim(keyword)) < minimumLength;
+  }
+
+  public static String getMinimumKeywordMessage() {
+    return Ivy.cms().co("/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/minimumKeywordText",
+        List.of(String.valueOf(getMinimumKeywordLength())));
+  }
+
+  private static GlobalSearchResponse tooShortKeywordResponse() {
+    GlobalSearchResponse response = new GlobalSearchResponse(List.of(), 0);
+    response.setNoResultsText(getMinimumKeywordMessage());
+    return response;
+  }
+
   public boolean isShowGlobalSearchByProcesses() {
     boolean isShowFullProcessList = PermissionUtils.checkAccessFullProcessListPermission();
     String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());
