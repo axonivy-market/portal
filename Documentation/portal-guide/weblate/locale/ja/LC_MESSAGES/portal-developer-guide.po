@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-08-14 04:07+0000\n"
-"PO-Revision-Date: 2026-07-01 10:47+0000\n"
-"Last-Translator: Thinh Nguyen <nht.8299@gmail.com>\n"
+"PO-Revision-Date: 2026-08-14 04:49+0000\n"
+"Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
 "Language: ja\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/portal-le/doc/portal-doc-developer-guide/ja/>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
 msgid "Architecture"
@@ -11883,33 +11884,28 @@ msgid "Grant to users who need to **create external links shared with other user
 msgstr "**他のユーザーやロールと共有する外部リンクを作成する必要があるユーザーに権限を付与してください。** プライベートリンクだけでなく、例えばコラボレーションやプロセスへのガイド付きアクセスなどの目的で。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1290
-#, fuzzy
 msgid ":ref:`🔑PortalPackageManagement <PortalPackageManagement>`"
-msgstr ":ref:`🔑RoleManagement <RoleManagement>`"
+msgstr ":ref:`🔑PortalPackageManagement <PortalPackageManagement>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1298
 msgid "Allows a user to **access the Package Management tab** in the **Portal Configuration** page, to export or import Portal JSON files."
-msgstr ""
+msgstr "ユーザーは、**から「パッケージ管理」タブ** にアクセスし、**ポータル設定** ページで、ポータル JSON ファイルをエクスポートまたはインポートできます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1302
-#, fuzzy
 msgid "Grant to **selected administrators** who are responsible for **migrating or backing up Portal configuration** across environments."
-msgstr "システム内の動的なロールを **作成および維持** する責任を持つ、 **選択した管理者** に付与します。"
+msgstr "環境間の **ポータル設定の移行またはバックアップ** を担当する **選定された管理者** に付与します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1311
-#, fuzzy
 msgid ":ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>`"
-msgstr ":ref:`🔑PasswordValidation <PasswordValidation>`"
+msgstr ":ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>`"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1319
-#, fuzzy
 msgid "Allows a user to **access the Sidebar tab** in the **Portal Configuration** page, to manage sidebar menu items and sidebar behaviour."
-msgstr "ユーザーが**にアクセスし、**管理設定** ページ内のパスワード検証** タブで、パスワードの複雑さと検証ルールを設定できるようにします。"
+msgstr "ユーザーが **「ポータル設定」** ページ内の **「サイドバー」タブ** にアクセスし、サイドバーのメニュー項目や動作を管理できるようにします。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1323
-#, fuzzy
 msgid "Grant to **selected administrators** who are responsible for **maintaining the sidebar navigation menu** without needing full admin rights."
-msgstr "**に、**の管理責任を負う選択された管理者** を付与し、不要になった動的役割** を削除する権限を付与します。"
+msgstr "**サイドバーのナビゲーションメニューの維持管理** を担当する **選定された管理者** に対し、完全な管理者権限を必要とせずに権限を付与します。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:1333
 msgid "Portal Absence And Substitute Permissions"

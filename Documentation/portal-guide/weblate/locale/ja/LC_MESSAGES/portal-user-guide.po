@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-08-14 04:07+0000\n"
-"PO-Revision-Date: 2026-07-01 10:47+0000\n"
-"Last-Translator: Thinh Nguyen <nht.8299@gmail.com>\n"
+"PO-Revision-Date: 2026-08-14 04:49+0000\n"
+"Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
 "Language: ja\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/portal-le/doc/portal-doc-user-guide/ja/>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:4
 msgid "Accessibility"
@@ -2410,7 +2411,7 @@ msgstr "ポータルの設定"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:7
 msgid "**Access Requirements**: The :guilabel:`Portal Configuration` menu item is visible to users with at least one of the following permissions: :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`, :ref:`🔑DashboardWritePublic <DashboardWritePublic>`, :ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>`, or :ref:`🔑PortalPackageManagement <PortalPackageManagement>`. Each tab within the page is independently gated by its own permission — see the table below."
-msgstr ""
+msgstr "**アクセス要件**: :guilabel:`ポータル設定` のメニュー項目は、以下の権限のうち少なくとも1つを持つユーザーに表示されます：:ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` 、:ref:`🔑DashboardWritePublic <DashboardWritePublic>` 、:ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>` 、または :ref:`🔑PortalPackageManagement <PortalPackageManagement>` 。ページ内の各タブは、それぞれ独自の権限によって個別にアクセスが制限されています。詳細は以下の表を参照してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:9
 msgid "Portal Configuration provides centralized management of your personal and organization-wide dashboards, as well as the sidebar navigation menu. Access it through the :guilabel:`Portal Configuration` user menu item."
@@ -2432,9 +2433,8 @@ msgid "Overview"
 msgstr "概要"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:17
-#, fuzzy
 msgid "The Portal Configuration page has four tabs:"
-msgstr "「ポータル設定」ページには、3つのタブがあります："
+msgstr "「ポータル設定」ページには、4つのタブがあります："
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:23
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:462
@@ -2477,29 +2477,25 @@ msgstr "**サイドバー**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:31
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:474
-#, fuzzy
 msgid ":ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>`"
-msgstr ":ref:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`"
+msgstr ":ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>`"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:31
-#, fuzzy
 msgid "Configure sidebar menu items and sidebar behaviour"
-msgstr "サイドバーのメニュー項目と動作の設定（管理者専用）"
+msgstr "サイドバーのメニュー項目と動作の設定"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:34
-#, fuzzy
 msgid "**Package Management**"
-msgstr "**ロール管理**"
+msgstr "**パッケージ管理**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:34
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:476
-#, fuzzy
 msgid ":ref:`🔑PortalPackageManagement <PortalPackageManagement>`"
-msgstr ":ref:`🔑RoleManagement <RoleManagement>`"
+msgstr ":ref:`🔑PortalPackageManagement <PortalPackageManagement>`"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:34
 msgid "Export or import Portal configuration as a JSON package"
-msgstr ""
+msgstr "Portalの設定をJSONパッケージとしてエクスポートまたはインポートする"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:39
 msgid "Private dashboards configuration"
@@ -2971,9 +2967,8 @@ msgid "Sidebar configuration"
 msgstr "サイドバーの設定"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:280
-#, fuzzy
 msgid "**Access Requirements**: The :guilabel:`Sidebar` tab is only accessible to users with the :ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>` permission."
-msgstr "**管理者権限が必要**: 「:guilabel:`」のサイドバーにある「` 」タブにアクセスできるのは、``AXONIVY_PORTAL_ADMIN`` ロールを持つユーザーのみです。"
+msgstr "**アクセス要件**：:guilabel:`サイドバー` タブにアクセスできるのは、:ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>` 権限を持つユーザーのみです。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:282
 msgid "The tab :guilabel:`Sidebar` allows portal administrators to manage the sidebar menu items and configure sidebar behaviour for all users."
@@ -3172,197 +3167,176 @@ msgid "When either Sidebar Setting is changed, the page automatically reloads to
 msgstr "サイドバーの設定のいずれかが変更されると、変更を反映するためにページが自動的に再読み込みされます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:379
-#, fuzzy
 msgid "Package Management configuration"
-msgstr "ケースリスト設定"
+msgstr "パッケージ管理の設定"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:382
-#, fuzzy
 msgid "**Access Requirements**: The :guilabel:`Package Management` tab is only accessible to users with the :ref:`🔑PortalPackageManagement <PortalPackageManagement>` permission."
-msgstr "**管理者権限が必要**: 「:guilabel:`」のサイドバーにある「` 」タブにアクセスできるのは、``AXONIVY_PORTAL_ADMIN`` ロールを持つユーザーのみです。"
+msgstr "**アクセス要件**：:guilabel:`パッケージ管理` タブにアクセスできるのは、:ref:`🔑PortalPackageManagement <PortalPackageManagement>` 権限を持つユーザーのみです。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:384
 msgid "The tab :guilabel:`Package Management` allows you to export the current Portal configuration into a single zip package, or import a zip package to apply its configuration."
-msgstr ""
+msgstr ":guilabel:`」タブの「Package Management」` では、現在のポータル設定を単一の ZIP パッケージとしてエクスポートしたり、ZIP パッケージをインポートしてその設定を適用したりすることができます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:386
-#, fuzzy
 msgid "|package-management-configuration|"
-msgstr "|case-list-widget-configuration|"
+msgstr "|package-management-configuration|"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:513
-#, fuzzy
 msgid "Package management configuration tab"
-msgstr "サイドバーナビゲーションの設定タブ"
+msgstr "パッケージ管理の設定タブ"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:389
-#, fuzzy
 msgid "Exportable configuration files"
-msgstr "ポータル設定メニュー"
+msgstr "エクスポート可能な設定ファイル"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:391
 msgid "A package contains the following JSON files. Only files with existing data are included in an export."
-msgstr ""
+msgstr "パッケージには以下の JSON ファイルが含まれています。エクスポートには、データが存在するファイルのみが含まれます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:397
-#, fuzzy
 msgid "File"
-msgstr "フィルター"
+msgstr "ファイル"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:399
-#, fuzzy
 msgid "``Portal_Dashboard.json``"
-msgstr "ポータルのダッシュボード画面"
+msgstr "``Portal_Dashboard.json``"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:399
-#, fuzzy
 msgid "Dashboard widget layouts and configurations for all Portal dashboards"
-msgstr "ダッシュボードのタスクウィジェットの設定パネル"
+msgstr "すべてのポータルダッシュボードにおけるダッシュボードウィジェットのレイアウトと設定"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:401
 msgid "``Portal_CustomStatistic.json``"
-msgstr ""
+msgstr "``Portal_CustomStatistic.json``"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:401
 msgid "Custom statistic chart definitions displayed on Portal dashboards"
-msgstr ""
+msgstr "ポータルのダッシュボードに表示されるカスタム統計チャートの定義"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:403
-#, fuzzy
 msgid "``Portal_UserMenu.json``"
-msgstr "Portal.UserMenu.ShowQRCode"
+msgstr "``Portal_UserMenu.json``"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:403
 msgid "Custom items and links added to the default user menu"
-msgstr ""
+msgstr "デフォルトのユーザーメニューに追加されたカスタム項目およびリンク"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:405
-#, fuzzy
 msgid "``Portal_CaseDetails.json``"
-msgstr "Portal.CaseDetails.HideDocument"
+msgstr "``Portal_CaseDetails.json``"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:405
 msgid "Configuration of built-in widgets or custom panels on the case details page"
-msgstr ""
+msgstr "ケース詳細ページにおける組み込みウィジェットまたはカスタムパネルの設定"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:407
-#, fuzzy
 msgid "``Portal_ThirdPartyApplications.json``"
-msgstr "Portal.ApplicationName"
+msgstr "``Portal_ThirdPartyApplications.json``"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:407
 msgid "Third-party application links integrated into the Portal menu"
-msgstr ""
+msgstr "ポータルメニューに統合されたサードパーティ製アプリケーションへのリンク"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:409
 msgid "``Portal_CustomMenuItems.json``"
-msgstr ""
+msgstr "``Portal_CustomMenuItems.json``"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:409
 msgid "Custom items added to the left-side navigation menu"
-msgstr ""
+msgstr "左側のナビゲーションメニューに追加されたカスタム項目"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:411
 msgid "``Portal_ExternalLinks.json``"
-msgstr ""
+msgstr "``Portal_ExternalLinks.json``"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:411
 msgid "External link processes displayed in the left-side navigation or process list page"
-msgstr ""
+msgstr "左側のナビゲーションまたはプロセス一覧ページに表示される外部リンクの処理"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:413
 msgid "``Portal_MenuOrder.json``"
-msgstr ""
+msgstr "``Portal_MenuOrder.json``"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:413
 msgid "Custom ordering of the main navigation menu items in the sidebar"
-msgstr ""
+msgstr "サイドバーのメインナビゲーションメニュー項目の順序をカスタマイズする"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:417
-#, fuzzy
 msgid "HowTo: export a Portal package"
-msgstr "ハウツー：タスク履歴のエクスポート方法"
+msgstr "ハウツー：ポータルパッケージのエクスポート"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:419
-#, fuzzy
 msgid "Select :guilabel:`Export` button."
-msgstr ":guilabel:`新規ダッシュボードを追加` ボタンを選択します。"
+msgstr ":guilabel:`の「` 」エクスポートボタンを選択してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:421
 msgid "The package is downloaded as ``Portal_Package.zip``."
-msgstr ""
+msgstr "このパッケージは、``Portal_Package.zip`` からダウンロードできます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:424
-#, fuzzy
 msgid "HowTo: import a Portal package"
-msgstr "ハウツー：ポータル設定を更新する"
+msgstr "ハウツー：ポータルパッケージのインポート"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:426
-#, fuzzy
 msgid "Select :guilabel:`Import` button."
-msgstr ":guilabel:`新規ダッシュボードを追加` ボタンを選択します。"
+msgstr ":guilabel:`の「` 」ボタンをクリックしてインポートしてください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:428
-#, fuzzy
 msgid "The :guilabel:`Import Portal Package` dialog is opened."
-msgstr ":guilabel:`公開用ダッシュボードをインポート` ダイアログが開きます。"
+msgstr "「:guilabel:`」のインポートポータルパッケージ「` 」ダイアログが開きます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:430
-#, fuzzy
 msgid "Drag and drop, or click :guilabel:`browse files` to select the zip file containing the Portal package you want to import."
-msgstr "ドラッグ＆ドロップするか、 :guilabel:`ここにアップロード` リンクをクリックして、インポートしたいダッシュボードを含む JSON ファイルを選択します。"
+msgstr "ドラッグ＆ドロップするか、:guilabel:`をクリックしてファイルを参照し、` から、インポートしたい Portal パッケージを含む ZIP ファイルを選択してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:432
-#, fuzzy
 msgid "|import-portal-package-dialog|"
-msgstr "|portal-password-change-dialog|"
+msgstr "|import-portal-package-dialog|"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:515
-#, fuzzy
 msgid "Import Portal package dialog"
-msgstr "公開用ダッシュボードのインポートダイアログ"
+msgstr "Portal パッケージのインポートダイアログ"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:434
 msgid "The dialog previews the recognized and unrecognized files found in the uploaded zip:"
-msgstr ""
+msgstr "このダイアログでは、アップロードされたzipファイル内に見つかった、認識されたファイルと認識されなかったファイルをプレビュー表示します："
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:436
 msgid "Recognized files are marked valid and will be imported."
-msgstr ""
+msgstr "認識されたファイルは有効とマークされ、インポートされます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:437
 msgid "Unrecognized files are skipped and will not be imported."
-msgstr ""
+msgstr "認識されないファイルはスキップされ、インポートされません。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:439
-#, fuzzy
 msgid "|import-portal-package-preview|"
-msgstr "|portal-process-image-view-page|"
+msgstr "|import-portal-package-preview|"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:517
 msgid "Import Portal package preview with valid and invalid files"
-msgstr ""
+msgstr "有効なファイルと無効なファイルを含む Portal パッケージのプレビューをインポートする"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:441
-#, fuzzy
 msgid "Select :guilabel:`Import` button to apply the package."
-msgstr ":guilabel:`をクリックし、` を保存して変更を適用してください。"
+msgstr "「:guilabel:`」を選択し、「` 」ボタンをクリックしてパッケージを適用してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:443
 msgid "The dialog shows the result for each file: imported successfully, skipped (unrecognized), or failed."
-msgstr ""
+msgstr "ダイアログには、各ファイルの結果（インポート成功、スキップ（認識不可）、失敗）が表示されます。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:447
 msgid "Importing a package **replaces** the existing configuration for each recognized file type. This action cannot be undone."
-msgstr ""
+msgstr "**パッケージをインポートすると、** 各認識されたファイルタイプに対する既存の設定が置き換えられます。この操作は元に戻すことができません。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:448
 msgid "File names must match exactly as listed above for a file to be recognized on import."
-msgstr ""
+msgstr "インポート時にファイルが認識されるためには、ファイル名は上記にリストされているものと完全に一致している必要があります。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:451
 msgid "Only ``.zip`` files are accepted. If the uploaded file cannot be read, or contains no recognized Portal configuration files, an error message is shown and nothing is imported."
-msgstr ""
+msgstr "``.zip`` 形式のファイルのみ受け付けます。アップロードされたファイルが読み取れない場合、または認識可能なポータル設定ファイルが含まれていない場合は、エラーメッセージが表示され、何もインポートされません。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:454
 #: ../../source/portal-user-guide/full-case-list/index.rst:359
@@ -3421,9 +3395,8 @@ msgid "**Manage sidebar navigation**"
 msgstr "**サイドバーのナビゲーションを管理する**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:476
-#, fuzzy
 msgid "**Export/import Portal package**"
-msgstr "**外部ページ**"
+msgstr "**Portal パッケージのエクスポート/インポート**"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:4
 msgid "Demo Processes"
