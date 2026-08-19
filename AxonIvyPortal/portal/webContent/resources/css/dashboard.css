@@ -207,7 +207,7 @@
   width: 100%;
   background-color: var(--dashboard-header-card-bg-color);
   border-radius: 8px;
-  box-shadow: var(--card-box-shadow);
+  margin-left: 0.5rem;
 }
 
 .dashboard__title-container {
@@ -686,6 +686,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 .ui-dialog.widget-configuration-filter-dialog {
   border-radius: 10px;
   box-shadow: var(--widget-filter-dialog-box-shadow);
+  min-height: fit-content;
 }
 
 .ui-dialog.widget-configuration-filter-dialog::before {
@@ -700,22 +701,25 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 0 20px;
+  padding: 0;
 }
 
 .widget-configuration-filter-dialog .filter-dialog__body {
-  overflow: auto;
+  padding: 0 20px;
+  min-height: 40vh;
+  overflow: visible;
 }
 
 .widget-configuration-filter-dialog .dashboard-widget-filter__options {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 7px;
 }
 
 .widget-configuration-filter-dialog .footer-buttons-container {
   gap: 20px;
-  padding-bottom: 20px;
+  padding: 0 20px 20px 20px;
 }
 
 .filter-dialog .filter-form {
@@ -763,8 +767,8 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 body .ui-divider.ui-divider-horizontal {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 body .ui-divider.ui-divider-horizontal::before {
@@ -781,6 +785,8 @@ body .ui-divider.ui-divider-horizontal::before {
 .filter-section--conditions {
   flex: 1 1 auto;
   min-height: 0;
+  height: fit-content;
+  max-height: 40vh;
 }
 
 .process-filter {
@@ -2429,6 +2435,8 @@ a.saved-filter__manage-filter {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 7px;
+  overflow: auto;
 }
 
 .dashboard-widget-filter__main-panel .dashboard-widget-filter__condition {
