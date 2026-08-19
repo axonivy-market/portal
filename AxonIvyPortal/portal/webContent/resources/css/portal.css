@@ -1873,7 +1873,7 @@ body.dark .focused {
   padding: 0.2em;
 }
 .chart-border {
-  border: 1px solid var(--ivy-portal-color-gray-light);
+  border: 1px solid var(--ivy-portal-color-grey-200);
   height: 75%;
 }
 

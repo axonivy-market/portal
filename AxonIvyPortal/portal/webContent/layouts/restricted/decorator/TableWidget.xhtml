@@ -116,7 +116,7 @@
      </p:commandButton>
     </h:panelGroup>
 
-    <h:panelGroup id="view-toggle-panel-#{index}" layout="block" rendered="#{widget.type.name() eq 'TASK' and isReadOnlyMode}"
+    <h:panelGroup id="view-toggle-panel-#{index}" layout="block" rendered="false"
         styleClass="widget-view-toggle table-widget-view-toggle">
       <!-- View toggle - List -->
       <p:commandButton id="view-toggle-list-#{index}" type="button" icon="ti ti-list"

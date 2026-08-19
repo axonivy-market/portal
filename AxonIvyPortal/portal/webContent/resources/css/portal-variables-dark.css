@@ -25,13 +25,17 @@
   --button-secondary-text-color: var(--primary-color);
 
   /* Start button (task widget start column) */
-  --start-btn-bg: var(--ivy-portal-color-gray-25);
-  --start-btn-border-color: var(--ivy-portal-color-gray-45);
+  --start-btn-bg: var(--ivy-portal-color-grey-800);
+  --start-btn-border-color: var(--ivy-portal-color-grey-600);
   --start-btn-text-color: var(--ivy-primary-color-white);
   --start-btn-hover-bg: hsla(0, 0%, 40%, 1);
-  --start-btn-disabled-bg: var(--ivy-portal-color-gray-20);
-  --start-btn-disabled-border-color: var(--ivy-portal-color-gray-29);
-  --start-btn-disabled-text-color: var(--ivy-portal-color-gray-medium);
+  --start-btn-disabled-bg: var(--ivy-portal-color-grey-850);
+  --start-btn-disabled-border-color: var(--ivy-portal-color-grey-750);
+  --start-btn-disabled-text-color: var(--ivy-portal-color-grey-500);
+
+  /* Welcome widget configuration - Advanced settings pill & Change image link accent */
+  --welcome-config-accent-color: hsla(0, 0%, 98%, 1);
+  --welcome-config-accent-hover-bg: hsla(0, 0%, 100%, 0.10);
 
   /* Color and border radius of context button,  it only affects when button has attribute styleClass="context-button" */
   --context-button-border-radius: 0px;
@@ -70,9 +74,9 @@
 
   /* Statistic widget */
   --statistic-filter-accordion-panel-border: var(--ivy-primary-color-grey-light);
-  --chart-container-background-color: var(--ivy-portal-color-gray-17);
+  --chart-container-background-color: var(--ivy-portal-color-grey-900);
   --chart-container-number-color: var(--ivy-primary-color);
-  --chart-container-number-border-color: var(--ivy-portal-color-gray-spaces);
+  --chart-container-number-border-color: var(--ivy-portal-color-grey-50);
   
   /* Filter Widget */
   --advanced-filter-error-color: var(--ivy-tertinary-color-red-medium);
@@ -90,7 +94,7 @@
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
   --widget-filter-background-color: var(--ivy-primary-color-grey-dark);
 
-  --widget-filter-save-filter-button-background-color: var(--ivy-portal-color-gray-69);
+  --widget-filter-save-filter-button-background-color: var(--ivy-portal-color-grey-450);
   --widget-filter-condition-accent-border-color: hsla(0, 0%, 49%, 1);
   --widget-filter-add-condition-background-color: hsla(0, 0%, 100%, 1);
   --widget-filter-and-badge-background-color: hsla(0, 0%, 15%, 1);
@@ -269,11 +273,11 @@
   --portal-button-text-color: var(--ivy-primary-color);
   /* Absences and Deputy */
   --substituted-user-text-color: var(--ivy-primary-color-black);
-  --substituted-user-avatar-color: var(--ivy-portal-color-gray-17);
+  --substituted-user-avatar-color: var(--ivy-portal-color-grey-900);
   /* Awesome Icon Selection */
   --content-link-change-awesome-icon-color: var(--primary-color);
   --select-awesome-icon-button-font-weight: bold;
-  --selected-icon-bg-color: var(--ivy-portal-color-gray-dark);
+  --selected-icon-bg-color: var(--ivy-portal-color-grey-700);
   --icon-color: var(--ivy-primary-color-white);
   /* Start Notification */
   --notification-content-background-color: var(--ivy-tertinary-color-red-dark);
@@ -355,7 +359,7 @@
   --ui-data-picker-header-color: var(--ivy-primary-color-grey-pale);
   --ui-data-picker-title-border-color: var(--ivy-primary-color-grey-pale);
   --ui-data-picker-title-background-color: var(--ivy-primary-color-grey-pale);
-  --ui-fileupload-buttonbar-background-color: var(--ivy-portal-color-gray-20);
+  --ui-fileupload-buttonbar-background-color: var(--ivy-portal-color-grey-850);
   --ui-transparent-button-hover-background-color: transparent;
   --menu-item-link-color: var(--ivy-primary-color-black);
   --menu-item-link-hover-background-color: var(--ivy-primary-color-grey-pale);
@@ -366,7 +370,7 @@
   --text-tab-default-color: var(--ivy-primary-color-grey-medium);
   --no-item-icon-color: hsl(0, 0%, 46%);
   --no-item-icon-background-color: hsl(0, 0%, 22%);
-  --user-menu-items-border-color: var(--ivy-portal-color-gray-dark);
+  --user-menu-items-border-color: var(--ivy-portal-color-grey-700);
 
   /* Portal breadcrumb */
   --breadcrumb-background-color: transparent;
@@ -389,12 +393,12 @@
   --widget-filter-noti-background-color: var(--ivy-tertinary-color-red-medium);
   --widget-filter-noti-color: var(--ivy-primary-color-white);
   --widget-header-icon: var(--ivy-primary-color-white);
-  --widget-button-border-color: var(--ivy-portal-color-gray-dark);
-  --widget-button-background-color: var(--ivy-portal-color-gray-20);
+  --widget-button-border-color: var(--ivy-portal-color-grey-700);
+  --widget-button-background-color: var(--ivy-portal-color-grey-850);
   --widget-button-hover-background-color: hsla(0, 0%, 38%, 1);
   --widget-view-toggle-bg: hsla(0, 0%, 22%, 1);
   --widget-view-toggle-active-bg: hsla(0, 0%, 100%, 1);
-  --widget-view-toggle-icon: var(--ivy-portal-color-gray-dark);
+  --widget-view-toggle-icon: var(--ivy-portal-color-grey-700);
   --widget-view-toggle-border: transparent;
   /* New Dashboard */
   --dashboard-table-column-small-screen-description-color: var(--ivy-primary-color-grey-medium);
@@ -448,15 +452,15 @@
   --portal-package-alert-warning-border-color: var(--ivy-tertinary-color-yellow-medium);
   --portal-package-alert-warning-text-color: var(--ivy-tertinary-color-yellow-dark);
   
-  --dashboard-icon-bg-color: var(--ivy-dashboard-icon-bg-dark);
-  --dashboard-icon-border-color: var(--ivy-dashboard-icon-border-dark);
-  --dashboard-action-menu-item-border-color: var(--ivy-dashboard-icon-bg-dark);
+  --dashboard-icon-bg-color: var(--ivy-portal-color-grey-850);
+  --dashboard-icon-border-color: var(--ivy-portal-color-grey-750);
+  --dashboard-action-menu-item-border-color: var(--ivy-portal-color-grey-850);
   --dashboard-action-menu-box-shadow: 0px 0px 15.6px 3px rgba(0, 0, 0, 0.3);
 
-  --sidebar-settings-card-bg-color: var(--ivy-portal-color-gray-20);
-  --sidebar-settings-card-border-color: var(--ivy-dashboard-icon-border-dark);
-  --sidebar-mode-select-bg-color: var(--ivy-portal-color-gray-17);
-  --sidebar-mode-select-border-color: var(--ivy-portal-color-gray-13);
+  --sidebar-settings-card-bg-color: var(--ivy-portal-color-grey-850);
+  --sidebar-settings-card-border-color: var(--ivy-portal-color-grey-750);
+  --sidebar-mode-select-bg-color: var(--ivy-portal-color-grey-900);
+  --sidebar-mode-select-border-color: var(--ivy-portal-color-grey-950);
   --sidebar-toggle-checked-bg-color: var(--ivy-portal-color-slate-light);
   --sidebar-toggle-knob-color: var(--ivy-primary-color-black);
   --button-primary-bg-color: var(--ivy-primary-color-white);
