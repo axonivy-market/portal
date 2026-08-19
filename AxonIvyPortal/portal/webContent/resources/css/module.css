@@ -6126,6 +6126,11 @@ body .ui-button.ui-button-outlined.ui-button-widget:hover, .ui-button.ui-widget.
   background-color: var(--widget-button-hover-background-color);
 }
 
+body .ui-button.ui-button-danger.widget-icon-button {
+  background-color: var(--widget-button-danger-background-color);
+  border-color: var(--widget-button-danger-border-color);
+}
+
 body .ui-button.ui-widget.ui-button-widget {
   color: var(--widget-header-icon);
 }
