@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
-  xmlns:ui="jakarta.faces.facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="jakarta.tags.core" xmlns:jsf="jakarta.faces"
+  xmlns:ui="jakarta.faces.facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions" xmlns:c="jakarta.tags.core" xmlns:jsf="jakarta.faces"
   xmlns:pc="jakarta.faces.composite/components">
 <!-- portalComponentAvatarBean: com.axonivy.portal.components.bean.PortalComponentAvatarBean -->
 <h:body>
@@ -93,7 +93,7 @@
                     <div class="w-full pl-0 absence-management">
                       <p:tooltip globalSelector="i"/>
                       <p:tooltip globalSelector=".deputy-avatar-stack-item" trackMouse="true"/>
-                      <p:dataTable id="absence-table" styleClass="absence-table pl-0"
+                      <p:dataTable cellNavigation="false" id="absence-table" styleClass="absence-table pl-0"
                           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                           reflow="true" value="#{absenceManagementBean.displayedAbsences}" var="absence" paginator="true" rows="4"
                           paginatorAlwaysVisible="false" paginatorPosition="bottom" pageLinks="3"
@@ -219,7 +219,7 @@
                           : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myDeputies')}</h3>
                       </div>
                       <div class="w-full pl-0">
-                        <p:dataTable id="substitute-table"
+                        <p:dataTable cellNavigation="false" id="substitute-table"
                           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/noSubstitutesDefined')}"
                           styleClass="substitute-table" reflow="true"
                           value="#{absenceManagementBean.filteredDeputyRoleList}" var="deputyRole"
@@ -285,7 +285,7 @@
                         : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}</h3>
                     </div>
                     <div class="w-full pl-0">
-                      <p:dataTable id="substitution-table"
+                      <p:dataTable cellNavigation="false" id="substitution-table"
                         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/notSubstitutingAnybody')}"
                         styleClass="substitution-table w-full pl-0"
                         reflow="true" value="#{absenceManagementBean.substitutions}"

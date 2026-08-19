@@ -15,11 +15,12 @@ import java.util.Arrays;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebElementCondition;
 
 public class ComplexFilterHelper {
-  protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
+  protected final static Duration DEFAULT_TIMEOUT = WaitHelper.DEFAULT_TIMEOUT;
 
   public static SelenideElement getNewFilter(int filterIndex) {
     String latestFilter = String.format("div[id$=':%s:filter-component:filter-selection-panel']", filterIndex);
@@ -29,6 +30,7 @@ public class ComplexFilterHelper {
   public static void selectFilterColumnName(String columnName, int filterIndex) {
     var filterElement = getNewFilter(filterIndex);
     filterElement.$("div[id$=':filter-component:field-selection']").shouldBe(getClickableCondition()).click();
+    WaitHelper.waitPageNoAnimation();
     String columnSelection = String.format("div[id$=':%s:filter-component:field-selection_panel'][style*='display: block']", filterIndex);
     $(columnSelection).$$("ul li").filter(text(columnName)).first().click();
   }
@@ -36,8 +38,9 @@ public class ComplexFilterHelper {
   public static void selectFilterOperator(FilterOperator operator, int filterIndex) {
     var filterElement = getNewFilter(filterIndex);
     filterElement.$("div[id$=':operator-selection']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    WaitHelper.waitPageNoAnimation();
     WaitHelper.waitForActionComplete(".dashboard-widget-filter__main-panel",
-        () -> $("div[id$=':operator-selection_panel'] ul[id$=':operator-selection_items']").$$("li")
+        () -> $("div[id$=':operator-selection_panel'] [id$=':operator-selection_items']").$$("li")
             .filter(text(operator.getValue())).first().click());
   }
 
@@ -108,10 +111,13 @@ public class ComplexFilterHelper {
 
   private static void handleFilterState(SelenideElement filterElement, Object... values) {
     filterElement.$("div[id$=':states']").shouldBe(getClickableCondition()).click();
+    WaitHelper.waitPageNoAnimation();
     for (int i = 0; i < values.length; i++) {
       getValueOfCheckBox(String.valueOf(values[i])).shouldBe(getClickableCondition()).click();
+      WaitHelper.waitPageNoAjaxAndAnimation();
     }
     getCloseCheckBox().shouldBe(getClickableCondition()).click();
+    WaitHelper.waitPageNoAjaxAndAnimation();
   }
 
   private static void handleFilterText(SelenideElement filterElement, Object... values) {
@@ -144,6 +150,7 @@ public class ComplexFilterHelper {
     numberPeriodInput.shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[0]));
 
     $("div[id$=':period-type-panel']").shouldBe(getClickableCondition()).click();
+    WaitHelper.waitPageNoAnimation();
 
     $$("li").filter(text(String.valueOf(values[1]))).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
@@ -152,6 +159,7 @@ public class ComplexFilterHelper {
   private static void handleFilterDateCurrent(SelenideElement filterElement, Object... values) {
     var date_current = filterElement.$("[id$=':current-period-selection']").shouldBe(getClickableCondition());
     date_current.click();
+    WaitHelper.waitPageNoAnimation();
     var selectPanel = $("div[id$=':current-period-selection_panel']").shouldBe(appear);
     selectPanel.$$("ul li").filter(text(String.valueOf(values[0]))).first().shouldBe(getClickableCondition())
         .click();
@@ -166,7 +174,7 @@ public class ComplexFilterHelper {
     var creatorInput = filterElement.$("div[id$=':creators']").$("input").shouldBe(appear);
     for (int i = 0; i < values.length; i++) {
       creatorInput.clear();
-      creatorInput.sendKeys(String.valueOf(values[i]));
+      typeIntoAutoComplete(creatorInput, String.valueOf(values[i]));
       var selectPanel = $("span[id$=':creators_panel'][style*='display: block']").shouldBe(appear);
       selectPanel.$(".ui-avatar-text").shouldBe(appear);
       selectPanel.shouldBe(getClickableCondition()).click();
@@ -174,12 +182,12 @@ public class ComplexFilterHelper {
       filterElement.$("div[id$=':creators']").$("ul li.ui-helper-hidden").should(disappear);
     }
   }
-  
+
   private static void handleFilterResponsible(SelenideElement filterElement, Object... values) {
     var creatorInput = filterElement.$("div[id$=':responsibles']").$("input").shouldBe(appear);
     for (int i = 0; i < values.length; i++) {
       creatorInput.clear();
-      creatorInput.sendKeys(String.valueOf(values[i]));
+      typeIntoAutoComplete(creatorInput, String.valueOf(values[i]));
       var selectPanel = $("span[id$=':responsibles_panel'][style*='display: block']").shouldBe(appear);
       selectPanel.$(".ui-avatar-text").shouldBe(appear);
       selectPanel.shouldBe(getClickableCondition()).click();
@@ -187,12 +195,12 @@ public class ComplexFilterHelper {
       filterElement.$("div[id$=':responsibles']").$("ul li.ui-helper-hidden").should(disappear);
     }
   }
-  
+
   private static void handleFilterWorker(SelenideElement filterElement, Object... values) {
     var workerInput = filterElement.$("div[id$=':workers-dropdown']").$("input").shouldBe(appear);
     for (int i = 0; i < values.length; i++) {
       workerInput.clear();
-      workerInput.sendKeys(String.valueOf(values[i]));
+      typeIntoAutoComplete(workerInput, String.valueOf(values[i]));
       var selectPanel = $("span[id$=':workers-dropdown_panel'][style*='display: block']").shouldBe(appear);
       selectPanel.$(".ui-avatar-text").shouldBe(appear);
       selectPanel.shouldBe(getClickableCondition()).click();
@@ -201,16 +209,32 @@ public class ComplexFilterHelper {
     }
   }
 
+  private static void typeIntoAutoComplete(SelenideElement input, String text) {
+    Selenide.executeJavaScript(
+        "var kd=new KeyboardEvent('keydown',{key:'a',bubbles:true});arguments[0].dispatchEvent(kd);"
+            + "arguments[0].value=arguments[1];"
+            + "arguments[0].dispatchEvent(new Event('input',{bubbles:true}));",
+        input, text);
+  }
+
   private static void handleFilterDate(SelenideElement filterElement, Object... values) {
     var dateInput = filterElement.$$(".date-picker-panel input")
         .shouldHave(CollectionCondition.sizeGreaterThanOrEqual(values.length));
     for (int i = 0; i < dateInput.size(); i++) {
-      dateInput.get(i).clear();
-      dateInput.get(i).shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[i]));
-      WaitHelper.waitPageNoAnimation();
-
-      filterElement.$("span button").$("span[class*='ui-icon-calendar']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+      setDateInputValue(dateInput.get(i), String.valueOf(values[i]));
     }
+  }
+
+  private static void setDateInputValue(SelenideElement input, String value) {
+    input.shouldBe(Condition.editable);
+    Selenide.executeJavaScript(
+        "arguments[0].value=arguments[1];arguments[0].dispatchEvent(new Event('input',{bubbles:true}));",
+        input, value);
+    SelenideElement trigger = input.parent().$("button.ui-datepicker-trigger").shouldBe(getClickableCondition());
+    trigger.click();
+    WaitHelper.waitPageNoAnimation();
+    trigger.click();
+    WaitHelper.waitPageNoAjaxAndAnimation();
   }
 
   private static void handleFilterNumberBetween(SelenideElement filterElement, Object... values) {
@@ -226,17 +250,11 @@ public class ComplexFilterHelper {
   }
 
   private static void handleFilterDateBetween(SelenideElement filterElement, Object... values) {
-    var fromInput = filterElement.$("div[id$=':between-dates-panel-from']").$("input[id$=':from-date_input']")
-        .shouldBe(Condition.editable);
-    fromInput.clear();
-    fromInput.sendKeys(String.valueOf(values[0]));
+    var fromInput = filterElement.$("div[id$=':between-dates-panel-from']").$("input[id$=':from-date_input']");
+    setDateInputValue(fromInput, String.valueOf(values[0]));
 
-    var toInput = filterElement.$("div[id$=':between-dates-panel-to']").$("input[id$=':to-date_input']")
-        .shouldBe(Condition.editable);
-    toInput.clear();
-    toInput.sendKeys(String.valueOf(values[1]));
-    WaitHelper.waitPageNoAnimation();
-    filterElement.$("div[id$=':between-dates-panel-to']").$("button").$("span[class*='ui-icon-calendar']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    var toInput = filterElement.$("div[id$=':between-dates-panel-to']").$("input[id$=':to-date_input']");
+    setDateInputValue(toInput, String.valueOf(values[1]));
   }
 
   private static SelenideElement getValueOfCheckBox(String value) {
@@ -254,6 +272,7 @@ public class ComplexFilterHelper {
 
   private static void filterCategories(SelenideElement filterEl, String... categories) {
     filterEl.$("[id$=':widget-filter-category']").shouldBe(getClickableCondition()).click();
+    WaitHelper.waitPageNoAnimation();
     var categoriesPanel = $("[id$=':widget-filter-category-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
     categoriesPanel.$("[id$=':widget-category-filter-tree']").$$(".ui-chkbox").first().shouldBe(getClickableCondition())
         .click();

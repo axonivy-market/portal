@@ -4,6 +4,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
 
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -48,7 +49,7 @@ public class ProcessInformationPage extends TemplatePage {
   }
 
   public void startProcess() {
-    waitForElementClickableThenClick("[id$='start-process-button']");
+    WaitHelper.waitForNavigation(() -> waitForElementClickableThenClick("[id$='start-process-button']"));
   }
 
   public void back() {

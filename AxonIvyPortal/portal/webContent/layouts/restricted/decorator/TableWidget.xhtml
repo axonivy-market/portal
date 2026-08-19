@@ -1,5 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
-  xmlns:ui="jakarta.faces.facelets" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces" xmlns:pe="primefaces.extensions"
   xmlns:c="jakarta.tags.core" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:pt="jakarta.faces.passthrough">
 
 <!-- DASHBOARD WIDGET DECORATOR: uses for displaying the widget in Dashboard page.
@@ -82,7 +82,7 @@
         styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1' } widget-header-show-pin"
         rendered="#{dashboardBean.canShowPinnedItemToggle(widget)}">
         <h:form id="show-pin-form">
-            <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
+            <c:set var="widgetContentId" value=":#{cc.clientId}:widget-content" />
             <h:panelGroup layout="block" styleClass="flex align-items-center justify-content-between gap-2">
                 <h:outputText value="#{dashboardBean.showPinnedItemToggleLable(widget)}"
                     styleClass="text-base font-semibold text-left"/>
@@ -98,7 +98,7 @@
       styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1'} widget-header-quick-search"
       rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch()}">
       <h:form id="quick-search-form" onkeydown="if (isPressedSpecialKeys(event) == true) { return false; }">
-      <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
+      <c:set var="widgetContentId" value=":#{cc.clientId}:widget-content" />
       <p:inputText id="quick-search-input-#{index}" value="#{widget.quickSearchKeyword}"
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}"
         onkeydown="handleKeyDown(event)" disabled="#{!isReadOnlyMode}">
@@ -167,7 +167,7 @@
       <!-- remote-command to apply widget filter -->
       <p:remoteCommand id="apply-widget-filter-command-#{index}"
         name="applyWidgetFilterCommand#{index}" onstart="PF('applyButton#{index}').disable();"
-        update="#{componentToUpdateOnApplyFilter} #{cc.clientId}:widget-header-actions"
+        update="#{componentToUpdateOnApplyFilter} :#{cc.clientId}:widget-header-actions"
         oncomplete="PF('filter-overlay-panel-#{index}').hide();"
         global="false" process="@this" partialSubmit="true" immediate="true"
         rendered="#{renderFilter}"/>
@@ -301,7 +301,7 @@
                 <ui:param name="widget" value="#{widget}" />
                 <ui:param name="index" value="#{index}" />
                 <ui:param name="isExpand" value="false" />
-                <ui:param name="widgetFilterContentId" value="#{cc.clientId}:filter-form-#{index}:widget-filter-content" />
+                <ui:param name="widgetFilterContentId" value=":#{cc.clientId}:filter-form-#{index}:widget-filter-content" />
               </ui:include>
               </div>
             </h:panelGroup>
@@ -375,7 +375,7 @@
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetFilters')}"
                   styleClass="u-mar-right-5 flex reset-button" partialSubmit="true"
                   process="filter-form-#{index}"
-                  update="#{componentToUpdateOnResetFilter} #{cc.clientId}:widget-header-actions"
+                  update="#{componentToUpdateOnResetFilter} :#{cc.clientId}:widget-header-actions"
                   oncomplete="PF('filter-overlay-panel-#{index}').hide(); initWidgetFilterHtml('#{widget.id}');"
                   actionListener="#{widget.onResetUserFilters()}"
                   resetValues="true">

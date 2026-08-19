@@ -35,6 +35,7 @@ public class AnnouncementTest extends BaseTest {
     UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
     userProfilePage.selectLanguage(3);
     userProfilePage.save();
+    newDashboardPage = new NewDashboardPage();
     assertEquals("lies mich", newDashboardPage.getAnnouncementMessage());
 
     userProfilePage = newDashboardPage.openMyProfilePage();

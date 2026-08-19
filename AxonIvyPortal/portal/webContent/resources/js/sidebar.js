@@ -25,7 +25,7 @@ var SidebarClickMode = (function () {
       if (this.mode === 'CLICK') {
         this._toggling = false;
         this.observeAndBlockHover();
-        if ($.cookie(COOKIE_MENU_STATIC)) {
+        if (getCookie(COOKIE_MENU_STATIC)) {
           this._isExpanded = true;
           $(SEL_TOGGLE_BTN).attr('aria-expanded', 'true');
           $(SEL_TOGGLE_ICON).removeClass(CLS_ICON_EXPAND).addClass(CLS_ICON_COLLAPSE);

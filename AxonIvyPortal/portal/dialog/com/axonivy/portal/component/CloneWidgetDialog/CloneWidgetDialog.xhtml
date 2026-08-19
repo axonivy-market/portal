@@ -4,8 +4,8 @@
   xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite"
   xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions"
   xmlns:c="jakarta.tags.core"
   xmlns:pc="jakarta.faces.composite/components"
   xmlns:jsf="jakarta.faces">
@@ -41,7 +41,7 @@
             <f:selectItem value="#{null}" noSelectionOption="true" />
             <f:selectItems value="#{cloneWidgetBean.availableDashboards}" var="dashboard"
               itemLabel="#{dashboard.title}" itemValue="#{dashboard}" />
-            <p:ajax process="@(this)" update="#{p:resolveFirstComponentWithId('clone-to-footer-panel', view).clientId}" />
+            <p:ajax process="@this" update="#{p:resolveFirstComponentWithId('clone-to-footer-panel', view).clientId}" />
           </p:selectOneMenu>
         </div>
       </h:panelGroup>

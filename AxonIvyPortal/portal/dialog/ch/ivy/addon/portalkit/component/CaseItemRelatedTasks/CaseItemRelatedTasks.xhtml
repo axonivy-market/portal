@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:p="primefaces" xmlns:pe="primefaces.extensions"
   xmlns:c="jakarta.tags.core" xmlns:jsf="jakarta.faces"
   xmlns:pc="jakarta.faces.composite/components">
 
@@ -46,14 +46,14 @@
 
         <div id="related-task-column-config" class="related-task-column-config">
           <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="task-columns-configuration"
-            updatedComponent="#{cc.clientId}:related-tasks #{cc.clientId}:related-task-actions"
+            updatedComponent="#{p:resolveFirstComponentWithId('related-tasks', view).clientId} #{p:resolveFirstComponentWithId('related-task-actions', view).clientId}"
             dataModel="#{data.dataModel}" oncomplete="PF('task-config-columns-panel').hide()"
             configButtonId="task-config-command" overlayPanelId="task-config-columns-panel" />
         </div>
       </h:panelGroup>
     </div>
     <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0 case-details-related-task-table" id="case-details-related-task-table">
-      <p:dataTable id="related-tasks" widgetVar="related-tasks-table" lazy="true" value="#{data.dataModel}" var="task" paginator="true" rows="5"
+      <p:dataTable cellNavigation="false" id="related-tasks" widgetVar="related-tasks-table" lazy="true" value="#{data.dataModel}" var="task" paginator="true" rows="5"
         paginatorPosition="bottom" paginatorAlwaysVisible="false" 
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" sortBy="#{caseDetailsBean.sortById}"
@@ -146,7 +146,7 @@
             <ui:param name="onWorkflowEventComplete" value="initWorkflowEventData()" />
             <ui:param name="onCustomFieldsDialogComplete" value="initCustomFieldTaskListData()" />
             <ui:param name="inFrame" value="#{cc.attrs.inFrame}" />
-            <ui:param name="destroyTaskDialogComponent" value="#{cc.clientId}:destroy-task-confirmation-dialog" />
+            <ui:param name="destroyTaskDialogComponent" value="#{p:resolveFirstComponentWithId('destroy-task-confirmation-dialog', view).clientId}" />
           </ui:include>
         </p:column>
       </p:dataTable>
@@ -214,7 +214,7 @@
         styleClass="portal-remove-button w-full"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
         actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
-        oncomplete="PF('destroy-task-dialog').hide()" update="#{cc.clientId}:related-tasks" process="@this" />
+        oncomplete="PF('destroy-task-dialog').hide()" update="#{p:resolveFirstComponentWithId('related-tasks', view).clientId}" process="@this" />
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         onclick="PF('destroy-task-dialog').hide();" styleClass="pt-3 flex justify-content-center" />
@@ -240,7 +240,7 @@
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
         icon="#{visibilityBean.generateButtonIcon('ti ti-check')}"
         actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
-        oncomplete="PF('escalation-task-dialog').hide()" update="#{cc.clientId}:related-tasks #{cc.attrs.componentToUpdateTrigger}" process="@this" />
+        oncomplete="PF('escalation-task-dialog').hide()" update="#{p:resolveFirstComponentWithId('related-tasks', view).clientId} #{cc.attrs.componentToUpdateTrigger}" process="@this" />
     </ui:define>
   </ui:decorate>
 

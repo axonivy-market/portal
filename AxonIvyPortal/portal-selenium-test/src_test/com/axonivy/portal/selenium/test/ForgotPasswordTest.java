@@ -21,7 +21,7 @@ public class ForgotPasswordTest extends BaseTest {
   public void setup() {
     redirectToNewDashBoard();
     if (!SystemProperties.isInServerMode()) {
-      launchBrowserAndLogoutInDesigner();
+      logoutViaUserMenu();
     }
     LoginPage loginPage = new LoginPage();
     loginPage.forgotPassword();

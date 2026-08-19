@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
-  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="jakarta.tags.core"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions" xmlns:c="jakarta.tags.core"
   xmlns:jsf="jakarta.faces">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
@@ -120,10 +120,10 @@
                       <div class="flex align-items-center gap-2">
                         <p:outputLabel for="disable-sidebar-switch" styleClass="white-space-nowrap"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/DisableSidebar')}" />
-                        <p:inputSwitch id="disable-sidebar-switch" value="#{menuManagementBean.sidebarDisabled}">
+                        <p:toggleSwitch id="disable-sidebar-switch" value="#{menuManagementBean.sidebarDisabled}">
                           <p:ajax event="change" listener="#{menuManagementBean.saveSidebarMode}"
                             update="sidebar-settings-form" />
-                        </p:inputSwitch>
+                        </p:toggleSwitch>
                       </div>
                       <h:panelGroup id="sidebar-behaviour-panel" layout="block" rendered="#{not menuManagementBean.sidebarDisabled}"
                         styleClass="flex align-items-center gap-2">
@@ -166,7 +166,7 @@
 
                 <!-- Menu Items Table -->
                 <h:panelGroup layout="block" id="menu-table-container" styleClass="col-12 u-padding-top-10">
-                <p:dataTable value="#{menuManagementBean.menuDefinitions}" var="menu" id="menu-table"
+                <p:dataTable cellNavigation="false" value="#{menuManagementBean.menuDefinitions}" var="menu" id="menu-table"
                   styleClass="menu-management-table"
                   emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                   draggableRows="true" rowDragSelector="i.ti-menu-2">

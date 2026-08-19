@@ -214,8 +214,8 @@ var MainMenu = {
   highlightMenuItem : function() {
     let $currentPageMenu = this.getMenuItemByCurrentPage();
     let activeMenuItemList = this.getActiveMenu();
-    let selectedMainDashboardId = $("#user-menu-required-login").attr("data-selected-menu");
     if ($currentPageMenu.length == 0 && window.location.pathname.indexOf("PortalMainDashboard.xhtml") > -1) {
+      let selectedMainDashboardId = $("#user-menu-required-login").attr("data-selected-menu");
       $currentPageMenu = $("li[id$='" + selectedMainDashboardId + "-main-dashboard'] > a");
       if ($currentPageMenu.length == 0) {
         $currentPageMenu = $(".layout-menu").find('li[role="menuitem"] a.DASHBOARD');
@@ -230,9 +230,6 @@ var MainMenu = {
               deactivateMenuItemOnLeftMenu(menuItem.id);
             }
         });
-        if (selectedMainDashboardId) {
-          highlightDashboardItem(selectedMainDashboardId);
-        }
         return;
       }
 
@@ -364,7 +361,7 @@ function fireEventClickOnMenuItem(menuItem, prevMenuItemId) {
 }
 
 function resetPortalLeftMenuState() {
-  $.removeCookie('freya_expandeditems', {path: '/'});
+  deleteCookie('freya_expandeditems');
   if (typeof resetSelectedMenuItems === "function") {
     resetSelectedMenuItems();
   }

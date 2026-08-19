@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:p="primefaces" xmlns:pe="primefaces.extensions"
   xmlns:c="jakarta.tags.core" xmlns:jsf="jakarta.faces">
 
 <cc:interface componentType="IvyComponent">
@@ -43,7 +43,7 @@
     </div>
 
     <h:panelGroup id="task-history-content-container" styleClass="ui-g-12">
-      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" widgetVar="task-note-table"
+      <p:dataTable cellNavigation="false" value="#{data.notes}" var="note" id="task-note-table" paginator="true" widgetVar="task-note-table"
         pageLinks="3" rows="#{cc.attrs.historyWidget.rowPerPage}" rowsPerPageTemplate="5,10,20,50"
         paginatorPosition="bottom" rendered="#{not empty data.notes}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" paginatorAlwaysVisible="false"
@@ -120,7 +120,7 @@
           icon="#{visibilityBean.generateButtonIcon('ti ti-device-floppy')}" partialSubmit="true"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           process="task-detail-note-content #{p:resolveFirstComponentWithId('show-system-notes-checkbox', view).clientId}"
-          update="task-detail-note-content task-detail-create-note-msg #{cc.clientId}:task-history-content-container"
+          update="task-detail-note-content task-detail-create-note-msg #{p:resolveFirstComponentWithId('task-history-content-container', view).clientId}"
           actionListener="#{logic.createNote()}" oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.clientId}:addNewNoteDialog').hide();handleTaskDetailsTables()}" />
       </h:panelGroup>
     </h:form>

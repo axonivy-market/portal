@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
   xmlns:ui="jakarta.faces.facelets" xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="jakarta.tags.core"
+  xmlns:p="primefaces" xmlns:pe="primefaces.extensions" xmlns:c="jakarta.tags.core"
   xmlns:pc="jakarta.faces.composite/components">
 
 <cc:interface componentType="IvyComponent">
@@ -8,14 +8,14 @@
 </cc:interface>
 
 <cc:implementation>
-  <p:remoteCommand name="initCustomFieldCaseListData" actionListener="#{logic.getCustomFieldsData(cc.attrs.case)}" oncomplete="PF('case-custom-fields-dialog').show()" update="#{cc.clientId}:case-custom-fields-dialog" global="false"/>
+  <p:remoteCommand name="initCustomFieldCaseListData" actionListener="#{logic.getCustomFieldsData(cc.attrs.case)}" oncomplete="PF('case-custom-fields-dialog').show()" update="@composite" global="false"/>
   <p:dialog id="case-custom-fields-dialog" widgetVar="case-custom-fields-dialog" 
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/customFieldsDialog', [cc.attrs.case.id])}"
     dynamic="true" closable="true" closeOnEscape="true"
     appendTo="@(body)"
     modal="true" responsive="true" fitViewport="true"
     styleClass="case-custom-fields-dialog">
-  <p:dataTable id="customFieldsTable" var="field" value="#{data.customFieldList}" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" >
+  <p:dataTable cellNavigation="false" id="customFieldsTable" var="field" value="#{data.customFieldList}" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" >
     <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" styleClass="field-name">
       <h:outputText id="customFieldLabel" value="#{field.name()}" styleClass="custom-field-tooltip-target" title="#{field.name()}"/>
     </p:column>

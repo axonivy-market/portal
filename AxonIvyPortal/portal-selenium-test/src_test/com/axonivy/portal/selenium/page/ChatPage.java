@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.refresh;
@@ -14,8 +15,11 @@ import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.Responsible;
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 
 public class ChatPage extends TemplatePage {
 
@@ -26,10 +30,9 @@ public class ChatPage extends TemplatePage {
 
   public void openFirstGroupChat() {
     ElementsCollection chatNames =
-        $("[id='chat-form:group-chat-container']").shouldBe(appear, DEFAULT_TIMEOUT).$$(".js-group-card-name");
-    if (!chatNames.isEmpty()) {
-      chatNames.get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
-    }
+        $("[id='chat-form:group-chat-container']").shouldBe(exist, DEFAULT_TIMEOUT).$$(".js-group-card-name");
+    chatNames.shouldBe(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+    chatNames.get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 
   public void addUserToChatGroup(List<Responsible> responsibles) {
@@ -42,13 +45,13 @@ public class ChatPage extends TemplatePage {
   public void chooseResponsible(String responsible, boolean isGroup) {
     if (isGroup) {
       selectRoleAssigneeCheckbox();
-      $(By.cssSelector("input[id$='selection_input']")).sendKeys(responsible);
+      typeIntoAutoComplete($(By.cssSelector("input[id$='selection_input']")), responsible);
       waitForElementDisplayed(
           By.id("chat-assignee-selection-form:chat-role-selection-component:chat-role-selection_panel"), true);
       waitForElementClickableThenClick(
           "span[id='chat-assignee-selection-form:chat-role-selection-component:chat-role-selection_panel'] .gravatar");
     } else {
-      $(By.cssSelector("input[id$='selection_input']")).sendKeys(responsible);
+      typeIntoAutoComplete($(By.cssSelector("input[id$='selection_input']")), responsible);
       waitForElementDisplayed(By.cssSelector("span[id$='chat-user-selection_panel']"), true);
       $(By.xpath(
           "//*[@id='chat-assignee-selection-form:chat-user-selection-component:chat-user-selection_panel']/table/tbody/tr"))
@@ -62,6 +65,14 @@ public class ChatPage extends TemplatePage {
     waitForElementClickableThenClick(
         $(By.xpath(String.format("//label[@for='%s']", "chat-assignee-selection-form:chat-assignee-type:1"))));
     waitForElementDisplayed(By.cssSelector("input[id$='role-selection_input']"), true);
+  }
+
+  private void typeIntoAutoComplete(SelenideElement input, String text) {
+    Selenide.executeJavaScript(
+        "var kd=new KeyboardEvent('keydown',{key:'a',bubbles:true});arguments[0].dispatchEvent(kd);"
+            + "arguments[0].value=arguments[1];"
+            + "arguments[0].dispatchEvent(new Event('input',{bubbles:true}));",
+        input, text);
   }
 
   public void sendMessage(String chatMessage) {
@@ -81,8 +92,9 @@ public class ChatPage extends TemplatePage {
   public int refreshAndCountGroupChat() {
     refresh();
     getChat();
-    waitForElementDisplayed(By.id("chat-form:group-chat-container"), true);
+    waitForElementExisted(By.id("chat-form:group-chat-container"), true);
     ElementsCollection chatGroups = findElementById("chat-form:group-chat-container").findAll(".js-group-card-name");
+    chatGroups.shouldBe(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
     return chatGroups.size();
   }
 

@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
   xmlns:ui="jakarta.faces.facelets" xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="jakarta.tags.core">
+  xmlns:p="primefaces" xmlns:pe="primefaces.extensions" xmlns:c="jakarta.tags.core">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="nameId" default="task-name" />
@@ -17,12 +17,9 @@
 <cc:implementation>
   <f:event listener="#{taskDetailsBean.init()}" type="preRenderComponent"/>
   <c:set var="task" value="#{data.task}" />
-  <c:set var="generalContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('InformationWidget')}:task-detail-general-container" />
-  <c:set var="informationWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('InformationWidget') gt -1 ? generalContainerID:''} #{cc.clientId}:task-status-banner" />
-  <c:set var="documentsContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('DocumentWidget')}:task-documents:task-details-documents" />
-  <c:set var="documentWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('DocumentWidget') gt -1 ? documentsContainerID:''}" />
-  <c:set var="noteContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('HistoryWidget')}:task-detail-note-container" />
-  <c:set var="historyWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('HistoryWidget') gt -1 ? noteContainerID:''}" />
+  <c:set var="informationWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('InformationWidget') gt -1 ? p:resolveFirstComponentWithId('task-detail-general-container', view).clientId : ''} :#{cc.clientId}:task-status-banner" />
+  <c:set var="documentWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('DocumentWidget') gt -1 ? p:resolveFirstComponentWithId('task-details-documents', view).clientId : ''}" />
+  <c:set var="historyWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('HistoryWidget') gt -1 ? p:resolveFirstComponentWithId('task-detail-note-container', view).clientId : ''}" />
   <div class="ui-g">
     <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}"
       styleClass="u-truncate-text task-detail-container ui-g-12 u-no-padding-bottom">
@@ -176,7 +173,7 @@
   </h:panelGroup>
 
   <h:form>
-    <p:remoteCommand name="saveConfigurationCommand" update="#{cc.clientId}:task-details-actions" actionListener="#{taskDetailsBean.save()}"
+    <p:remoteCommand name="saveConfigurationCommand" update=":#{cc.clientId}:task-details-actions" actionListener="#{taskDetailsBean.save()}"
       global="false" />
   </h:form>
 
