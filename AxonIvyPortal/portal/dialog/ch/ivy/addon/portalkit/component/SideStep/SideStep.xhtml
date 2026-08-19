@@ -35,23 +35,24 @@
   <c:set var="isShowInTaskList" value="#{empty cc.attrs.showInTaskList ? true : cc.attrs.showInTaskList}" />
   <f:event listener="#{data.setCurrentPortalPage(cc.attrs.currentPortalPage)}" type="preRenderComponent" />
 
-  <p:commandButton id="#{cc.attrs.actionLinkId}" disabled="#{cc.attrs.isDisabled or cc.attrs.isPreviewMode}" onclick="event.stopPropagation(); return false;"
+  <p:commandButton id="#{cc.attrs.actionLinkId}" type="button" disabled="#{cc.attrs.isDisabled or cc.attrs.isPreviewMode}"
+    onclick="event.stopPropagation(); return false;"
     ariaLabel="#{not empty cc.attrs.ariaLabel ? cc.attrs.ariaLabel : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ti ti-dots"
     styleClass="#{cc.attrs.buttonStyleClass} rounded-button ui-button-widget ui-button-outlined">
   </p:commandButton>
 
   <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" appendTo="@(body)"
-    styleClass="options-panel #{cc.attrs.sideStepsPanelStyleClass}" dynamic="true" rendered="#{!cc.attrs.isDisabled}"
-    my="left top" at="bottom right" showCloseIcon="true" dismissable="false" cache="false" collision="flip"
+    styleClass="portal-action-menu options-panel #{cc.attrs.sideStepsPanelStyleClass}" dynamic="true" rendered="#{!cc.attrs.isDisabled}"
+    my="right top" at="right bottom" showCloseIcon="false" dismissable="true" cache="false" collision="flip"
     onShow="focusFirstVisibleElementInPanel('#{cc.attrs.panelWidgetVar}', 'a')"
     pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}">
 
-    <p:commandLink id="task-open-detail-command" styleClass="option-item ui-menu-items"
+    <p:commandLink id="task-open-detail-command" styleClass="portal-action-menu-item option-item ui-menu-items"
                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}"
                    actionListener="#{logic.openDetails(task, dataModel, cc.attrs.inFrame)}"
                    rendered="#{cc.attrs.showDetailOption}">
-      <i class="option-action-icon ti ti-info-circle" />
-      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}</span>
+      <i class="portal-action-menu-icon option-action-icon ti ti-info-circle" />
+      <span class="portal-action-menu-label option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}</span>
     </p:commandLink>
 
     <p:commandLink id="task-pin" disabled="#{!taskActionBean.canPin(task)}" rendered="#{visibilityBean.enablePinTask}"
@@ -59,101 +60,102 @@
                    styleClass="#{taskActionBean.getPinnedStyleClass(task)}" actionListener="#{taskActionBean.markTaskAsPinned(task)}"
                    update="@parent #{cc.attrs.componentToUpdate}" process="@this">
       <i class="#{taskActionBean.getPinnedIcon(task)}" />
-      <span class="option-item-label">#{taskActionBean.getPinnedLabel(task)}</span>
+      <span class="portal-action-menu-label option-item-label">#{taskActionBean.getPinnedLabel(task)}</span>
     </p:commandLink>
 
     <p:commandLink id="task-reset-command" onstart="event.stopPropagation();" rendered="#{taskActionBean.showResetTask}" disabled="#{!taskActionBean.canReset(task)}"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
-      styleClass="option-item ui-menu-items" actionListener="#{logic.resetTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
-      <i class="option-action-icon ti ti-arrow-back-up" />
-      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}</span>
+      styleClass="portal-action-menu-item option-item ui-menu-items" actionListener="#{logic.resetTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
+      <i class="portal-action-menu-icon option-action-icon ti ti-arrow-back-up" />
+      <span class="portal-action-menu-label option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}</span>
     </p:commandLink>
 
     <p:commandLink id="task-delegate-command" disabled="#{!taskActionBean.canDelegate(task)}" rendered="#{taskActionBean.showDelegateTask}"
-      styleClass="option-item ui-menu-items" onstart="event.stopPropagation();"
+      styleClass="portal-action-menu-item option-item ui-menu-items" onstart="event.stopPropagation();"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"
       oncomplete="#{cc.attrs.onDelegateComplete}" global="false"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
       update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-delegate-dialog)" process="@this">
-      <i class="option-action-icon ti ti-users" />
-      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}</span>
+      <i class="portal-action-menu-icon option-action-icon ti ti-users" />
+      <span class="portal-action-menu-label option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}</span>
     </p:commandLink>
 
     <p:commandLink id="task-reserve-command" disabled="#{!taskActionBean.canPark(task)}" rendered="#{taskActionBean.showReserveTask}" onstart="event.stopPropagation();"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
-      styleClass="option-item ui-menu-items" actionListener="#{logic.parkTask(task)}" update="@parent #{cc.attrs.componentToUpdate}" process="@this">
-      <i class="option-action-icon ti ti-calendar-event" />
-      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}</span>
+      styleClass="portal-action-menu-item option-item ui-menu-items" actionListener="#{logic.parkTask(task)}" update="@parent #{cc.attrs.componentToUpdate}" process="@this">
+      <i class="portal-action-menu-icon option-action-icon ti ti-calendar-event" />
+      <span class="portal-action-menu-label option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}</span>
     </p:commandLink>
     
     <p:commandLink id="task-clear-delay-command" disabled="#{!taskActionBean.canChangeDelayTimestamp(task)}" rendered="#{taskActionBean.showClearDelayTime(task)}"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/clearDelay')}"
-      styleClass="option-item ui-menu-items" actionListener="#{logic.clearDelay(task)}" update="@parent #{cc.attrs.componentToUpdate}">
-      <i class="option-action-icon ti ti-refresh" />
-      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/clearDelay')}</span>
+      styleClass="portal-action-menu-item option-item ui-menu-items" actionListener="#{logic.clearDelay(task)}" update="@parent #{cc.attrs.componentToUpdate}">
+      <i class="portal-action-menu-icon option-action-icon ti ti-refresh" />
+      <span class="portal-action-menu-label option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/clearDelay')}</span>
     </p:commandLink>
     
     <p:commandLink id="task-clear-expiry-command" disabled="#{!taskActionBean.canChangeExpiry(task)}" rendered="#{taskActionBean.showClearExpiryTime(task)}"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/clearExpiry')}"
-      styleClass="option-item ui-menu-items" actionListener="#{logic.clearExpiryTime(task)}" update="@parent #{cc.attrs.componentToUpdate}">
-      <i class="option-action-icon ti ti-refresh" />
-      <span class="option-item-label option-item-long-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/clearExpiry')}</span>
+      styleClass="portal-action-menu-item option-item ui-menu-items" actionListener="#{logic.clearExpiryTime(task)}" update="@parent #{cc.attrs.componentToUpdate}">
+      <i class="portal-action-menu-icon option-action-icon ti ti-refresh" />
+      <span class="portal-action-menu-label option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/clearExpiry')}</span>
     </p:commandLink>
     
     <p:commandLink id="task-trigger-escalation-command" disabled="#{!taskActionBean.canExpiry(task)}"
-      styleClass="option-item ui-menu-items" update="@parent #{cc.attrs.componentToUpdate}"
+      styleClass="portal-action-menu-item option-item ui-menu-items" update="@parent #{cc.attrs.componentToUpdate}"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/triggerEscalation')}"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
       oncomplete="#{cc.attrs.onEscalationComplete}" process="@this" global="false">
-      <i class="option-action-icon ti ti-clock" />
-      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/triggerEscalation')}</span>
+      <i class="portal-action-menu-icon option-action-icon ti ti-clock" />
+      <span class="portal-action-menu-label option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/triggerEscalation')}</span>
     </p:commandLink>
     
     <p:commandLink id="task-workflow-event-command" disabled="#{!taskActionBean.canReadWorkflowEventTask()}" rendered="#{taskActionBean.showReadWorkflowEvent}"
-      styleClass="option-item ui-menu-items" onstart="event.stopPropagation();" process="@this"
+      styleClass="portal-action-menu-item option-item ui-menu-items" onstart="event.stopPropagation();" process="@this"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/events')}"
       update="@parent #{cc.attrs.componentToUpdate} @widgetVar(workflow-events-dialog)"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
       oncomplete="#{cc.attrs.onWorkflowEventComplete}" global="false" >
-      <i class="option-action-icon ti ti-contract" />
-      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/events')}</span>
+      <i class="portal-action-menu-icon option-action-icon ti ti-contract" />
+      <span class="portal-action-menu-label option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/events')}</span>
     </p:commandLink>
     
     <p:commandLink id="task-custom-fields-command" rendered="#{taskActionBean.showCustomFieldsAction}"
-      styleClass="option-item ui-menu-items" onstart="event.stopPropagation();" process="@this"
+      styleClass="portal-action-menu-item option-item ui-menu-items" onstart="event.stopPropagation();" process="@this"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/customFieldsDialog', [task.id])}"
       update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-custom-fields-dialog)"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
       oncomplete="#{cc.attrs.onCustomFieldsDialogComplete}" global="false" >
-      <i class="option-action-icon ti ti-settings-cog" />
-      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/customFields')}</span>
+      <i class="portal-action-menu-icon option-action-icon ti ti-settings-cog" />
+      <span class="portal-action-menu-label option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/customFields')}</span>
     </p:commandLink>
 
     <p:link id="show-process-viewer-link" target="_blank"
-      styleClass="show-process-viewer-link option-item"
+      styleClass="portal-action-menu-item show-process-viewer-link option-item"
       href="#{taskActionBean.getProcessViewerPageUri(task)}"
       rendered="#{taskActionBean.showProcessViewer(task)}">
-      <i class="option-action-icon ti ti-sitemap" />
-      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText')}</span>
+      <i class="portal-action-menu-icon option-action-icon ti ti-sitemap" />
+      <span class="portal-action-menu-label option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText')}</span>
+      <i class="portal-action-menu-trail ti ti-external-link" aria-hidden="true" />
     </p:link>
 
     <p:commandLink id="task-destroy-command" disabled="#{!taskActionBean.canDestroyTask(task)}" rendered="#{taskActionBean.showDestroyTask}"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
-      styleClass="option-item color-destroy ui-menu-items" update="@parent #{cc.attrs.componentToUpdate} #{cc.attrs.destroyTaskDialogComponent}"
+      styleClass="portal-action-menu-item option-item color-destroy ui-menu-items" update="@parent #{cc.attrs.componentToUpdate} #{cc.attrs.destroyTaskDialogComponent}"
       actionListener="#{taskWidgetBean.updateSelectedTask(isShowInTaskList, task)}"
       oncomplete="#{cc.attrs.onDestroyComplete};" process="@this">
-      <i class="option-action-icon pi pi-trash" />
-      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
+      <i class="portal-action-menu-icon option-action-icon ti ti-trash" />
+      <span class="portal-action-menu-label option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
     </p:commandLink>
 
     <h:panelGroup id="task-additional-actions" styleClass="task-additional-actions-panel" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">
       <f:event listener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId())}" type="preRenderComponent" />
-      <h:outputText rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" styleClass="option-item  pointer-event-none" />
+      <h:outputText rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" styleClass="portal-action-menu-item option-item pointer-event-none" />
       <ui:repeat var="sideStep" value="#{sideStepBean.currentSideSteps}">
-  
-        <p:commandLink id="option-item" styleClass="option-item" global="false" ariaLabel="#{sideStep.name}"
+
+        <p:commandLink id="option-item" styleClass="portal-action-menu-item option-item" global="false" ariaLabel="#{sideStep.name}"
           actionListener="#{sideStepBean.startSideStep(sideStep)}" process="@this">
-          <span class="option-item-label" >#{sideStep.name}</span>
+          <span class="portal-action-menu-label option-item-label" >#{sideStep.name}</span>
         </p:commandLink>  
       </ui:repeat>
     </h:panelGroup>

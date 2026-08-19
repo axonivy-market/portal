@@ -36,6 +36,7 @@ How to configure widgets in task details
       [
          {
             "id": "default-task-detail",
+            "version": "14.0.0",
             "filters": {
                "categories" : ["support"],
                "states" : ["DONE", "OPEN"]
@@ -46,28 +47,28 @@ How to configure widgets in task details
                   "id": "information",
                   "type": "information",
                   "layout": {
-                     "x": 0, "y": 0, "w": 6, "h": 6
+                     "x": 0, "y": 0, "w": 6, "h": 30
                   }
                },
                {
                   "id": "history",
                   "type": "history",
                   "layout": {
-                     "x": 6, "y": 6, "w": 6, "h": 6
+                     "x": 6, "y": 30, "w": 6, "h": 30
                   }
                },
                {
                   "id": "document",
                   "type": "document",
                   "layout": {
-                     "x": 6, "y": 0, "w": 6, "h": 6
+                     "x": 6, "y": 0, "w": 6, "h": 30
                   }
                },
                {
                   "id": "custom",
                   "type": "custom",
                   "layout": {
-                     "x": 0, "y": 6, "w": 6, "h": 6
+                     "x": 0, "y": 30, "w": 6, "h": 30
                   },
                   "data" : {
                      "processPath": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
@@ -97,13 +98,16 @@ How to configure widgets in task details
 
    ``type``: Supported values: ``information``, ``document``, ``history``, ``custom``
 
-   ``x``: HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``
+   ``x``: column index. HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``
 
-   ``y``: HTML DOM Style ``top`` will be calculated by formula ``y / 12 * 100%``
+   ``y``: row index. HTML DOM Style ``top`` will be calculated by formula ``y * 20px``
 
-   ``w``: HTML DOM Style ``width`` will be calculated by formula ``60 * w + 20 * (w - 1)``
+   ``w``: width in columns. HTML DOM Style ``width`` will be calculated by formula ``w / 12 * 100%``
 
-   ``h``: HTML DOM Style ``height`` will be calculated by formula ``60 * h + 20 * (h - 1)``
+   ``h``: height in rows. HTML DOM Style ``height`` will be calculated by formula ``h * 20px``
+
+   The grid is 12 columns wide and one row is 20 pixels high. Each widget is then inset by
+   10 pixels on every side, so two neighbours end up 20 pixels apart.
 
    ``styleClass`` (optional): add CSS Classes to HTML DOM
 
@@ -169,30 +173,31 @@ There are **two steps** for adding new custom panels.
       [
          {
             "id": "default-task-detail",
+            "version": "14.0.0",
             "widgets": 
                [
                   {
                      "type": "information",
                      "layout": {
-                        "x": 0, "y": 4, "w": 6, "h": 12
+                        "x": 0, "y": 20, "w": 6, "h": 60
                      }
                   },
                   {
                      "type": "document",
                      "layout": {
-                        "x": 6, "y": 4, "w": 6, "h": 6
+                        "x": 6, "y": 20, "w": 6, "h": 30
                      }
                   },
                   {
                      "type": "history",
                      "layout": {
-                        "x": 6, "y": 10, "w": 6, "h": 6
+                        "x": 6, "y": 50, "w": 6, "h": 30
                      }
                   },
                   {
                      "type": "custom",
                      "layout": {
-                        "x": 0, "y": 0, "w": 12, "h": 4
+                        "x": 0, "y": 0, "w": 12, "h": 20
                      },
                      "data" : {
                         "type": "taskItemDetailCustomPanelTop"
@@ -201,7 +206,7 @@ There are **two steps** for adding new custom panels.
                   {
                      "type": "custom",
                      "layout": {
-                        "x": 0, "y": 16, "w": 6, "h": 4
+                        "x": 0, "y": 80, "w": 6, "h": 20
                      },
                      "data" : {
                         "type": "taskItemDetailCustomPanelBottom"
@@ -228,17 +233,18 @@ There are **two steps** for adding new custom panels.
          [
             {
                "id": "task-detail",
+               "version": "14.0.0",
                "widgets": [
                   {
                      "type": "information",
                      "layout": {
-                     "x": 0, "y": 0, "w": 4, "h": 12
+                     "x": 0, "y": 0, "w": 4, "h": 60
                      }
                   },
                   {
                      "type": "custom",
                      "layout": {
-                     "x": 6, "y": 0, "w": 8, "h": 6
+                     "x": 6, "y": 0, "w": 8, "h": 30
                      },
                      "data" : {
                      "url": "https://www.lucide.dev/"
@@ -259,23 +265,24 @@ There are **two steps** for adding new custom panels.
             [
                {
                   "id": "task-detail",
+                  "version": "14.0.0",
                   "widgets": [
                      {
                         "type": "information",
                         "layout": {
-                        "x": 0, "y": 0, "w": 6, "h": 12
+                        "x": 0, "y": 0, "w": 6, "h": 60
                         }
                      },
                      {
                         "type": "history",
                         "layout": {
-                        "x": 6, "y": 6, "w": 6, "h": 6
+                        "x": 6, "y": 30, "w": 6, "h": 30
                         }
                      },
                      {
                         "type": "custom",
                         "layout": {
-                        "x": 0, "y": 6, "w": 6, "h": 6
+                        "x": 0, "y": 30, "w": 6, "h": 30
                         },
                         "data" : {
                            "processPath": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",

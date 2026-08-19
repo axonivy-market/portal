@@ -1,0 +1,133 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui">
+  <div class="task-detail-header-card">
+    <div class="task-detail-section-title task-detail-header-row u-padding-0 flex align-items-center justify-content-between flex-wrap">
+      <div class="task-detail-identity" role="heading" aria-level="1">
+        <div class="flex flex-column u-truncate-text">
+          <span class="task-detail-eyebrow">#{ivy.cms.co('/Labels/Task')}</span>
+          <div class="task-detail-name-row">
+            <span class="task-detail-name u-truncate-text">#{task.names().current()}</span>
+            <ui:fragment rendered="#{taskBean.isPinnedTask(task)}">
+              <i class="ti ti-pin task-detail-pin-indicator" />
+            </ui:fragment>
+          </div>
+          <span class="task-detail-subtitle">
+            #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')} #{task.getId()}
+            <h:outputText rendered="#{not empty task.startTimestamp}" value=" &#183; #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')} " />
+            <h:outputText rendered="#{not empty task.startTimestamp}" value="#{task.startTimestamp}">
+              <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
+            </h:outputText>
+          </span>
+        </div>
+      </div>
+      <h:panelGroup id="task-detail-action-group" class="task-details-action-container action-container task-detail-header-actions flex align-items-center" layout="block">
+        <p:commandButton id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task) or readOnly}"
+          styleClass="start-task-action task-action-item-position portal-pill-btn portal-pill-btn-accent" rendered="#{task.state != 'RESUMED'}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" icon="ti ti-player-play"
+          actionListener="#{logic.openTask()}" oncomplete="resetPortalLeftMenuState()" />
+
+        <p:commandButton id="resume-task-detail-start-command" disabled="#{!taskActionBean.canResume(task) or readOnly}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" icon="ti ti-player-play" type="button"
+          styleClass="start-task-action task-action-item-position portal-pill-btn portal-pill-btn-accent" rendered="#{task.state == 'RESUMED'}">
+          <p:ajax event="click" listener="#{logic.validate(task)}" onstart="event.stopPropagation();"
+            oncomplete="if (args &amp;&amp; !args.validationFailed) PF('reset-task-dialog').show()" />
+        </p:commandButton>
+
+        <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" buttonStyleClass="task-action-item-position portal-icon-btn-round"
+          actionLinkId="task-detail-more-step" panelWidgetVar="task-details-side-steps-panel"
+          renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}" task="#{task}"
+          isDisabled="#{taskActionBean.noActionAvailable(task) or readOnly}" destroyTaskDialogComponent="#{destroyTaskDialogComponent}"
+          componentToUpdate="#{informationWidgetComponent} #{historyWidgetComponent} #{componentToUpdate}" onDestroyComplete="PF('destroy-task-dialog').show()"
+          onEscalationComplete="PF('escalation-task-dialog').show()" onCustomFieldsDialogComplete="initCustomFieldTaskListData()"
+          showInTaskList="false" onDelegateComplete="initDataToDelegate()" onWorkflowEventComplete="initWorkflowEventData()" />
+      </h:panelGroup>
+    </div>
+
+    <p:divider styleClass="separator-task-detail" />
+
+    <div id="general-information" class="general-information task-detail-attr-strip">
+      <!-- Priority -->
+      <div class="task-detail-attr">
+        <h:outputText styleClass="portal-detail-column-title"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY')}" />
+        <div class="task-detail-attr-value">
+          <h:panelGroup styleClass="task-details-priority">
+            <ui:fragment rendered="#{taskActionBean.canChangePriority(task)}">
+              <h:form id="priority-form" styleClass="task-priority-form">
+                <p:inplace id="edit-priority-inplace" effectSpeed="fast" styleClass="edit-priority-inplace portal-edit-inplace"
+                  disabled="#{readOnly}"
+                  saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+                  cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" editor="true">
+                  <f:facet name="output">
+                    <h:panelGroup id="priority-icon">
+                      <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority
+                        id="task-priority-component" priority="#{task.priority}"
+                        showIconWithText="true" showEditIcon="#{!readOnly}"/>
+                    </h:panelGroup>
+                  </f:facet>
+                  <p:ajax event="save" update="priority-form" />
+                  <p:selectOneMenu id="priority-select-menu" value="#{task.originalPriority}"
+                    styleClass="task-details-priority" rendered="#{!task.isExpired()}">
+                    <f:selectItems value="#{task.getPriority().values()}" var="priority"
+                      itemLabel="#{taskBean.getPriority(priority)}" itemValue="#{priority}" />
+                  </p:selectOneMenu>
+                  <p:selectOneMenu id="expiry-priority-select-menu" value="#{task.expiryPriority}"
+                    styleClass="task-details-priority" rendered="#{task.isExpired()}">
+                    <f:selectItems value="#{task.getPriority().values()}" var="priority"
+                      itemLabel="#{taskBean.getPriority(priority)}" itemValue="#{priority}" />
+                  </p:selectOneMenu>
+                </p:inplace>
+              </h:form>
+            </ui:fragment>
+            <ui:fragment rendered="#{not taskActionBean.canChangePriority(task)}">
+              <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority
+                priority="#{task.priority}" showIconWithText="true" />
+            </ui:fragment>
+          </h:panelGroup>
+        </div>
+      </div>
+
+      <!-- State -->
+      <div class="task-detail-attr">
+        <h:outputText styleClass="portal-detail-column-title"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
+        <div class="task-detail-attr-value">
+          <h:panelGroup id="task-detail-state">
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskState
+              state="#{task.businessState}" showIndicatorBesideText="true" responsiveStyleClass="" />
+          </h:panelGroup>
+          <p:tooltip rendered="#{task.state == 'FAILED' or task.state == 'JOIN_FAILED'}" for="task-detail-state"
+            value="#{taskBean.getTaskFailedReason(task)}" trackMouse="true" hideEvent="mouseleave click" />
+        </div>
+      </div>
+
+      <!-- Due -->
+      <div class="task-detail-attr">
+        <h:outputText styleClass="portal-detail-column-title"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/dueDate')}" />
+        <div class="task-detail-attr-value">
+          <i class="ti ti-calendar" />
+          <h:outputText id="due-date" value="#{formattingNullWrapperBean.format(task.expiryTimestamp)}" />
+        </div>
+      </div>
+
+      <!-- Workflow -->
+      <div class="task-detail-attr">
+        <h:outputText styleClass="portal-detail-column-title" rendered="#{taskActionBean.showReadWorkflowEvent}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/events')}" />
+        <div class="task-detail-attr-value">
+          <p:commandLink id="workflow-event-link" onstart="event.stopPropagation();"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/seeDetail')}"
+            disabled="#{!taskActionBean.canReadWorkflowEventTask()}" rendered="#{taskActionBean.showReadWorkflowEvent}"
+            oncomplete="initWorkflowEventData()" global="false">
+            <i class="ti ti-external-link" />
+            <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/seeDetail')}</span>
+          </p:commandLink>
+        </div>
+      </div>
+    </div>
+  </div>
+</ui:composition>

@@ -2,7 +2,7 @@
 :root {
   --default-body-font-size: 1.4rem;
   --large-font-size: 120%;
-  --small-font-size: 80%;
+  --small-font-size: 90%;
   --default-font-size: 1rem;
   --priority-font-size: 1.4rem;
 
@@ -60,6 +60,12 @@
   --portal-tabler-icon-size: calc(8 / 7 * 1rem);
   --portal-icon-line-height: 1;
   --portal-icon-ui-icon-font-size: 1.4rem;
+  --portal-icon-size-lg: 1.4286rem;
+  --portal-icon-size-xl: 1.8571rem;
+  --portal-icon-btn-size-sm: 2.1429rem;
+  --portal-icon-btn-size-md: 2.7143rem;
+  --portal-icon-btn-size-lg: 3.0714rem;
+  --portal-icon-btn-border-width: 1px;
   --default-font-style: normal;
   --login-logo-height: 50px;
   --home-logo-height: 42px;
@@ -72,6 +78,7 @@
   --case-task-state-done-or-resume-green: #4eb41c;
   --box-shadow-color: hsla(0, 0%, 15%, 0.2);
   --portal-border-radius: 5px;
+  --portal-pill-btn-border-radius: 100px;
   --item-background-hover: rgba(144, 221, 233, 0.24);
   --item-border-hover: 1px solid #90DDE9;
 
@@ -94,7 +101,7 @@
   --task-state-reserved-font-size: 1.8rem;
   --task-state-system-font-size: 1.8rem;
   --portal-dialog-icon-font-size: 5rem;
-  --widget-header-font-size: 1.15rem;
+  --widget-header-font-size: 1.1429rem;
   --widget-header-font-weight: 600;
   --process-warning-icon-font-weight: bold;
   --process-icon-font-size: 1.5rem;
@@ -105,10 +112,8 @@
   --process-edit-name-font-weight: 700;
   --process-grid-header-color: var(--text-color);
 
-  --case-item-name-font-weight: bold;
   --case-item-description-font-weight: 400;
   --case-item-description-font-style: normal;
-  --case-item-description-font-size: 1.4.rem;
   --case-item-description-font-size: var(--small-font-size);
   --case-item-description-line-height: 1.6rem;
   --case-item-name-line-height: 2rem;
@@ -118,7 +123,7 @@
   --task-item-description-line-height: 1.6rem;
   --task-item-name-line-height: 2rem;
   --task-item-name-font-weight: 700;
-  --task-state-border-radius: 10px;
+  --task-state-border-radius: var(--portal-pill-btn-border-radius);
   --task-state-font-size: 1rem;
   --task-state-line-height: 1.6rem;
 
@@ -133,8 +138,10 @@
 
   --delete-deputy-icon-font-size: var(--large-font-size);
 
-  --no-item-icon-font-size: 8rem;
-  --no-item-header-font-size: 2rem;
+  --no-item-icon-font-size: 3.7857rem;
+  --no-item-icon-container-size: 7.1429rem;
+  --no-item-header-font-size: var(--widget-header-font-size);
+  --no-item-detail-font-size: var(--default-font-size);
   --breadcrumb-font-size: 1.2rem;
   --breadcrumb-home-icon-font-size: 2rem;
   
@@ -151,7 +158,7 @@
   --dashboard-table-column-small-screen-name-font-weight: bold;
   --dashboard-table-column-small-screen-description-font-weight: 400;
   --dashboard-table-column-small-screen-description-font-style: normal;
-  --dashboard-table-column-small-screen-description-font-size: 1.4.rem;
+  --dashboard-table-column-small-screen-description-font-size: inherit;
 
   --new-widget-dialog-description-font-weight: 400;
   --new-widget-dialog-description-font-style: normal;
@@ -181,10 +188,18 @@
   --notification-label-font-size: 12px;
   --notification-label-item-font-size: 0.75em;
   --notifications-title-header-font-weight: bold;
-  --notification-indicator-size: 0.65rem
+  --notification-indicator-size: 0.65rem;
 
   /* Chatbot */
   --candidate-question-header-font-size: 1.5rem;
+
+  /* Detail pages (Task Details, Case Details) - theme independent geometry */
+  --portal-detail-card-radius: 1.0714rem;
+  --portal-detail-card-gap: 1.4286rem;
+  --portal-detail-card-padding: 1.4286rem;
+  --portal-detail-subcard-padding: 1.0714rem;
+  --portal-detail-grid-inset: 10px;
+  --portal-action-menu-radius: 10px;
 
   /* Dashboard Icons */
   --ivy-dashboard-icon-bg-light: hsl(0, 0%, 97.25%);

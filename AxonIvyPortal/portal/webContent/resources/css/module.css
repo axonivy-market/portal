@@ -605,31 +605,6 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   box-sizing: border-box;
 }
 
-.action-steps-panel {
-  white-space: nowrap;
-}
-
-.action-steps-panel .action-icon {
-  margin-right: 5px;
-  float: left;
-}
-
-.action-steps-panel .action-step-item {
-  clear: both;
-  float: left;
-  padding: 10px;
-  margin: 0;
-  line-height: 1.4rem;
-  box-sizing: content-box;
-  text-align: left;
-  color: var(--text-color);
-  min-width: 260px;
-}
-
-.action-steps-panel.ui-menu{
-  width: auto;
-}
-
 .case-detail-header {
   display: flex;
   float: left;
@@ -660,31 +635,6 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   .case-info-dialog.ui-dialog {
     width: 90vw !important;
   }
-}
-
-.case-details-back-btn, .task-details-back-btn {
-  flex: 0 0 110px;
-  text-align: right;
-}
-
-@media (min-width: 768px) {
-  .case-details-back-btn, .task-details-back-btn {
-    text-align: left;
-  }
-
-  .iframe-body .task-details-back-btn, .iframe-body .case-details-back-btn {
-    text-align: right;
-  }
-}
-
-.case-detail-title-header-container {
-  padding: 0 !important;
-  display: flex;
-  line-height: 38px;
-}
-
-.case-details-back-btn, .task-details-back-btn, .case-detail-title-header-container .case-detail-header {
-  align-self: center;
 }
 
 .no-case-found {
@@ -882,7 +832,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   white-space: nowrap;
   box-sizing: border-box;
   width: fit-content;
-  padding: 0 8px;
+  padding: 0.1429rem 0.7143rem;
 }
 
 .state-column .case-state.ellipsis-state, 
@@ -1522,17 +1472,6 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   display: none;
 }
 
-.has-breadcrumb .task-detail-container, .has-breadcrumb .case-detail-header-container,
-.ms-teams-layout .task-detail-container, .ms-teams-layout .case-detail-header-container {
-  width: 50%;
-}
-
-.has-breadcrumb .switch-and-reset-buttons-area,
-.ms-teams-layout .switch-and-reset-buttons-area {
-  width: 50%;
-  white-space: nowrap;
-}
-
 .filter-container .widget-title-mobile .top-header-main-title {
   width: 100%;
   overflow: hidden;
@@ -1887,10 +1826,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   justify-content: flex-end;
 }
 
-.options-panel .option-action-icon {
-  margin-right: 5px;
-}
-
 .note-content-textarea {
   width: calc(100% - 2px);
 }
@@ -1919,27 +1854,8 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   width: 80px;
 }
 
-.action-steps-panel .ui-overlaypanel-content,
-.options-panel.ui-overlaypanel .ui-overlaypanel-content {
-  display: grid;
-}
-
-.options-panel.ui-overlaypanel .ui-overlaypanel-content,
 .ui-overlaypanel .ui-overlaypanel-content{
   padding: 1rem 0 !important;
-}
-
-.options-panel .option-item  {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  clear: both;
-  float: left;
-  padding: 10px 18px 10px 10px;
-  margin: 0;
-  width: 160px;
-  box-sizing: content-box;
-  color: var(--text-color);
 }
 
  .options-panel .option-item:hover .option-item-label {
@@ -2048,32 +1964,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding: 15px;
 }
 
-.no-item-panel {
-  margin-top: 4%;
-}
-
-.no-item-panel .ti,
-.no-item-panel .tif,
-.no-item-panel .si {
-  display: block;
-  text-align: center;
-}
-
-.no-item-panel .no-item-header,
-.no-item-panel .no-item-detail {
-  text-align: center;
-  display: block;
-  width: 100%;
-}
-
-.no-item-panel .no-item-header {
-  margin-top: 20px;
-}
-
-.no-item-panel .no-item-detail {
-  margin-top: 10px;
-}
-
 .task-details-document-download-icon,
 .case-document-name .document-name,
 .task-document-name .document-name {
@@ -2174,11 +2064,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 .case-description-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save {
   margin-right: 5px;
   margin-top: 3px;
-}
-
-.case-detail-header-container {
-  display: flex;
-  flex: 1 0;
 }
 
 .case-details-separator {
@@ -3878,7 +3763,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .config-columns-panel {
   min-width: 250px;
-  padding: 10px 6px !important;
+  padding: 10px !important;
 }
 
 .config-columns-panel .ui-button.ui-widget {
@@ -4211,12 +4096,6 @@ _:-ms-fullscreen, :root .content-link-history {
 /* =================== END ADD CHAT ============================= */
 
 /*  =================== TASK DETAIL PAGE ========================= */
-.task-detail-header {
-  line-height: 38px;
-  display: flex;
-  width: 100% !important;
-}
-
 .task-detail-general-card {
   min-height: 890px;
 }
@@ -4281,10 +4160,6 @@ _:-ms-fullscreen, :root .content-link-history {
   text-overflow: ellipsis;
   max-width: 85%;
   overflow: hidden;
-}
-
-.content-field-after-escalation .has-avatar {
-  max-width: 80% !important;
 }
 
 .separator-task-detail::before {
@@ -4399,26 +4274,8 @@ _:-ms-fullscreen, :root .content-link-history {
   text-overflow: ellipsis;
 }
 
-.task-detail-header .task-name {
-  display: block;
-}
-
-.has-breadcrumb .task-detail-header .task-name,
-.ms-teams-layout .task-detail-header .task-name {
-  display: none;
-}
-
 .task-name {
   width: 100%;
-}
-
-.task-details-back-btn, .case-details-back-btn {
-  flex: 0;
-  margin-right: 5px !important;
-  display: inline-flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: flex-end;
 }
 
 .task-note-dialog .ui-dialog-content.ui-widget-content {
@@ -4461,8 +4318,8 @@ _:-ms-fullscreen, :root .content-link-history {
   min-height: 40px;
 }
 
-.case-upload-dialog, .case-view-note-dialog, .document-upload-dialog, .task-note-dialog,
-.task-upload-dialog, .document-renaming-dialog {
+.case-view-note-dialog, .document-upload-dialog, .task-note-dialog,
+.document-renaming-dialog {
   min-width: 50vw;
 }
 
@@ -4470,7 +4327,7 @@ _:-ms-fullscreen, :root .content-link-history {
   .case-details {
     padding: 0 !important;
   }
-  .case-upload-dialog, .case-view-note-dialog, .task-upload-dialog, .document-upload-dialog, .task-note-dialog {
+  .case-view-note-dialog, .document-upload-dialog, .task-note-dialog {
     min-width: 70vw;
     max-width: 96vw;
   }
@@ -4490,10 +4347,6 @@ _:-ms-fullscreen, :root .content-link-history {
     word-break: break-all;
     margin-top: 0.2em;
   }
-}
-
-.note-show-more-link-icon, .note-show-more-link {
-  margin-left: 5px;
 }
 
 /*  =================== END TASK TEMPLATE PAGE ========================= */
@@ -4816,18 +4669,6 @@ border-top: 0.14rem dashed;
 }
 
 /** Case information iframe ---- end-----**/
-.time-information .content-field {
-  padding: 0;
-}
-
-.task-and-case-information .content-field {
-  padding: 0;
-}
-
-.role-and-user-information .content-field {
-  padding: 0;
-}
-
 .task-details-panel-title {
   font-size: 16px;
 }
@@ -4867,7 +4708,6 @@ border-top: 0.14rem dashed;
 .case-item-body-container,
 .task-item-body-container {
   display: block;
-  margin: 7px -3px;
 }
 
 .task-detail-general-container {
@@ -4889,24 +4729,8 @@ border-top: 0.14rem dashed;
   padding: 7px 0 !important;
 }
 
-.reset-details-settings-button {
-  margin-left: 5px;
-}
-
 .task-details-widgets .task-action-item-position {
   display: inline-flex;
-}
-
-.task-detail-container {
-  text-align: left;
-  flex: 1 0;
-}
-
-.switch-and-reset-buttons-area {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex: 0 0;
 }
 
 .icon-more-link, .icon-less-link {
@@ -4918,16 +4742,6 @@ border-top: 0.14rem dashed;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-box-pack: end;
-}
-
-@media screen and (max-width: 40em) {
-  .task-detail-container.ui-g-6 {
-    width: 100%
-  }
-
-  .switch-and-reset-buttons-area.ui-g-6 {
-    width: 100%
-  }
 }
 
 .task-detail-description .pointer-event-none {
@@ -6058,20 +5872,6 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
     min-width: 85vw;
     max-width: 35rem;
   }	
-}
-
-/* =================== SHARE DIALOG ====================== */
-
-.share-dialog{
-  min-width: 40%;
-  max-width: 60%;
-}
-
-@media screen and (max-width: 40em) {
-  .share-dialog {
-    min-width: 85vw;
-    max-width: 95%;
-  }	 
 }
 
 /* =================== SKELETON ====================== */
