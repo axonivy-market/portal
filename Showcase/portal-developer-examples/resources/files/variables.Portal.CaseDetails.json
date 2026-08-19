@@ -2,10 +2,16 @@
     "id": "default-case-detail",
     "version": "14.0.0",
     "widgets": [{
+        "type": "summary",
+        "id": "summary",
+        "layout": {
+          "x": 0, "y": 0, "w": 6, "h": 12
+        }
+      }, {
         "type": "information",
         "id": "information",
         "layout": {
-          "x": 0, "y": 0, "w": 6, "h": 40
+          "x": 0, "y": 12, "w": 6, "h": 28
         }
       }, {
         "type": "document",
@@ -40,10 +46,16 @@
       "states": ["DESTROYED"]
     },
     "widgets": [{
+        "type": "summary",
+        "id": "summary",
+        "layout": {
+          "x": 0, "y": 0, "w": 6, "h": 12
+        }
+      }, {
         "type": "information",
         "id": "information",
         "layout": {
-          "x": 0, "y": 0, "w": 6, "h": 40
+          "x": 0, "y": 12, "w": 6, "h": 28
         }
       }, {
         "type": "custom",
@@ -84,10 +96,16 @@
       "categories": ["customWidget"]
     },
     "widgets": [{
+        "type": "summary",
+        "id": "summary",
+        "layout": {
+          "x": 0, "y": 0, "w": 6, "h": 12
+        }
+      }, {
         "type": "information",
         "id": "information",
         "layout": {
-          "x": 0, "y": 0, "w": 6, "h": 40
+          "x": 0, "y": 12, "w": 6, "h": 28
         }
       }, {
         "type": "custom",

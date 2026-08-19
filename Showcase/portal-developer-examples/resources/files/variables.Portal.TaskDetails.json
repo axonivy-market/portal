@@ -2,10 +2,16 @@
     "id": "default-task-detail",
     "version": "14.0.0",
     "widgets": [{
+        "type": "summary",
+        "id": "summary",
+        "layout": {
+          "x": 0, "y": 0, "w": 6, "h": 12
+        }
+      }, {
         "type": "information",
         "id": "information",
         "layout": {
-          "x": 0, "y": 0, "w": 6, "h": 60
+          "x": 0, "y": 12, "w": 6, "h": 48
         }
       }, {
         "type": "document",
@@ -37,10 +43,16 @@
           "type": "taskItemDetailCustomPanelTop"
         }
       }, {
+        "type": "summary",
+        "id": "summary",
+        "layout": {
+          "x": 0, "y": 20, "w": 6, "h": 12
+        }
+      }, {
         "type": "information",
         "id": "information",
         "layout": {
-          "x": 0, "y": 20, "w": 6, "h": 60
+          "x": 0, "y": 32, "w": 6, "h": 48
         }
       }, {
         "type": "custom",
@@ -69,10 +81,16 @@
       "categories": ["manage"]
     },
     "widgets": [{
+        "type": "summary",
+        "id": "summary",
+        "layout": {
+          "x": 0, "y": 0, "w": 6, "h": 12
+        }
+      }, {
         "type": "information",
         "id": "information",
         "layout": {
-          "x": 0, "y": 0, "w": 6, "h": 60
+          "x": 0, "y": 12, "w": 6, "h": 48
         }
       }, {
         "type": "custom",
