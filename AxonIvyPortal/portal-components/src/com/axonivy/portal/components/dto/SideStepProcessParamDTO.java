@@ -3,7 +3,6 @@ package com.axonivy.portal.components.dto;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonRootName;
 /**
  * This class stores information about side step task.
  * When side step task is created, Portal stores information input by user to this class, parse to JSON and send to the selected process.
@@ -15,7 +14,6 @@ import com.fasterxml.jackson.annotation.JsonRootName;
  * </pre>
  */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@JsonRootName(value = "sideStepProcessParamDTO")
 public class SideStepProcessParamDTO implements Serializable {
   private static final long serialVersionUID = -4988849644631374542L;
   private String version;
