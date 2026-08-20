@@ -164,9 +164,8 @@ class TestProjectVersionService {
     return fake(Project.class, stubs);
   }
 
-  @SuppressWarnings("unchecked")
   private static <T> T fake(Class<T> type, Map<String, Object> stubs) {
-    return (T) Proxy.newProxyInstance(type.getClassLoader(), new Class<?>[] {type}, (proxy, method, args) -> {
+    return type.cast(Proxy.newProxyInstance(type.getClassLoader(), new Class<?>[] {type}, (proxy, method, args) -> {
       switch (method.getName()) {
         case "equals":
           return proxy == args[0];
@@ -185,6 +184,6 @@ class TestProjectVersionService {
         return stub;
       }
       throw new UnsupportedOperationException(type.getSimpleName() + "#" + method.getName());
-    });
+    }));
   }
 }
