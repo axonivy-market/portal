@@ -5926,6 +5926,15 @@ body .ui-button.ui-button-outlined.ui-button-widget:hover, .ui-button.ui-widget.
   background-color: var(--widget-button-hover-background-color);
 }
 
+body .ui-button.ui-button-danger.widget-icon-button {
+  background-color: var(--widget-button-danger-background-color);
+  border-color: var(--widget-button-danger-border-color);
+}
+
+body .ui-button.ui-button-danger.widget-icon-button:hover {
+  background-color: var(--widget-button-danger-background-color-hover);
+}
+
 body .ui-button.ui-widget.ui-button-widget {
   color: var(--widget-header-icon);
 }
@@ -5944,6 +5953,23 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-butto
   color: var(--widget-header-icon);
 }
 /* =================== PORTAL BUTTON END ====================== */
+
+/* =================== PORTAL CHECKBOX ====================== */
+body .ui-chkbox .ui-chkbox-box.ui-state-active {
+  background-color: var(--checkbox-checked-background-color);
+  border-color: var(--checkbox-border-color);
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
+  color: var(--checkbox-checked-icon-color);
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active:hover,
+body .ui-chkbox .ui-chkbox-box.ui-state-active.ui-state-hover {
+  background-color: var(--checkbox-checked-hover-background-color);
+  border-color: var(--checkbox-checked-hover-background-color);
+}
+/* =================== PORTAL CHECKBOX END ====================== */
 
 /* AI logo */
 .layout-topbar-light .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li > a:hover img.topbar-item-image {

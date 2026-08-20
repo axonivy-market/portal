@@ -14,19 +14,15 @@
 <h:outputScript library="js" name="sidebar-widget-configuration.js" />
 
 <!-- Table configuration -->
-<h:panelGroup id="widget-preview" styleClass="card table-configuration u-hidden-sm-down" layout="block">
+<h:panelGroup id="widget-preview" styleClass="table-configuration u-hidden-sm-down" layout="block">
   <div class="ui-g">
-    <div class="ui-g-12 widget-preview__header">
-      <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/tableConfiguration')}</h4>
-    </div>
-    
-    <h:panelGroup id="widget-title-group"
-      styleClass="ui-g-8 u-padding-0 ui-fluid flex align-items-center">
-      <div class="ui-g-3 w-14rem">
+    <h:panelGroup id="widget-title-group" layout="block"
+      styleClass="ui-g-8 u-padding-0 ui-fluid widget-header-group">
+      <div class="ui-g-8">
         <p:outputLabel for="widget-title"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
       </div>
-      <div class="ui-g-5 ui-inputgroup">
+      <div class="ui-inputgroup ui-g-8">
         <p:inputText id="widget-title"
           styleClass="widget-configuration__input-text"
           value="#{widget.name}" />
@@ -42,14 +38,14 @@
         </div>
     </h:panelGroup>  
     
-    <div class="ui-g-4 flex justify-content-end">
+    <div class="ui-g-4 flex align-self-end justify-content-end">
       <p:commandButton id="widget-configuration-button" 
-        styleClass="mr-2" type="button" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/configuration')}"
+        styleClass="mr-2 ui-button-widget" type="button" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/configuration')}"
         icon="ti ti-settings-cog" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/configuration')}"  
         onclick="PF('widgetConfigurationPanel').show();"/>
       <p:commandButton id="manage-column"
         icon="ti ti-cube" 
-        styleClass="mr-2"
+        styleClass="mr-2 ui-button-widget"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
         update="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" 
@@ -58,7 +54,7 @@
         global="false" >
         <p:resetInput target="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" />
       </p:commandButton>
-      <p:commandButton id="show-filter" styleClass="mr-2" icon="ti ti-filter" 
+      <p:commandButton id="show-filter" styleClass="mr-2 ui-button-widget" icon="ti ti-filter" 
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
         type="button" onclick="PF('widget-configuration-filter-dialog').show();"/>
@@ -183,16 +179,14 @@
   <p:dialog id="widget-filter-content" widgetVar="widget-configuration-filter-dialog"
       styleClass="widget-configuration-filter-dialog"
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/SetFilterHeader')}"
-      modal="false" closable="true" closeOnEscape="true"
-      draggable="false" resizable="false" dynamic="false" fitViewport="true" width="900">
+      modal="false" closable="true" closeOnEscape="true" responsive="true"
+      draggable="false" resizable="false" dynamic="false" fitViewport="true">
       <p:remoteCommand id="updateComponentOnPreviewCmd" name="updateComponentOnPreviewCmd"
         process="@none" update="#{componentToUpdateOnPreview}" />
 
       <h:panelGroup layout="block" styleClass="filter-dialog__body flex flex-column flex-1 min-h-0">
         <ui:insert name="widgetFilterContent" />
       </h:panelGroup>
-
-      <p:divider layout="horizontal" />
 
       <div class="flex align-items-center justify-content-end footer-buttons-container">
         <p:commandLink id="reset-filter" styleClass="flex align-items-center reset-button"

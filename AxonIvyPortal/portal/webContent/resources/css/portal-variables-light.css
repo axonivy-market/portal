@@ -33,9 +33,8 @@
   --start-btn-disabled-border-color: var(--ivy-portal-color-grey-200);
   --start-btn-disabled-text-color: var(--ivy-portal-color-grey-500);
 
-  /* Welcome widget configuration - Advanced settings pill & Change image link accent */
+  /* Welcome widget configuration - Change image link accent */
   --welcome-config-accent-color: var(--ivy-portal-blue-dark);
-  --welcome-config-accent-hover-bg: hsla(195, 100%, 29%, 0.08);
 
   /* Color and border radius of context button, it only affects when button has attribute styleClass="context-button" */
   --context-button-border-radius: 0px;
@@ -109,6 +108,21 @@
   --widget-filter-add-condition-background-color: var(--ivy-portal-blue-pale);
   --widget-filter-and-badge-background-color: var(--ivy-portal-blue-pale);
   --widget-filter-and-badge-text-color: var(--primary-color);
+
+  --checkbox-checked-background-color: var(--ivy-portal-blue-pale);
+  --checkbox-checked-icon-color: var(--primary-color);
+  --checkbox-checked-hover-background-color: var(--ivy-portal-blue-muted);
+  --checkbox-border-color: var(--ivy-portal-blue-muted);
+
+  /* Fieldset box */
+  --portal-fieldset-background-color: var(--ivy-portal-color-grey-50);
+  --portal-fieldset-border-color: var(--ivy-portal-color-grey-200);
+
+  /* Fieldset legend pill */
+  --portal-fieldset-legend-color: var(--ivy-portal-blue-dark);
+  --portal-fieldset-legend-background-color: var(--ivy-portal-blue-pale);
+  --portal-fieldset-legend-border-color: var(--ivy-portal-blue-muted);
+  --portal-fieldset-legend-hover-background-color: hsla(195, 100%, 29%, 0.08);
   --widget-filter-subtle-surface-color: var(--ivy-portal-color-grey-50);
   --widget-filter-subtle-border-color: var(--ivy-portal-color-grey-200);
   --widget-filter-chip-border-color: var(--ivy-portal-color-grey-200);
@@ -257,9 +271,9 @@
   --task-state-done-color: hsla(137, 47%, 32%, 1);
   --task-state-parked-border: hsla(136, 52%, 81%, 1);
   --task-state-parked-background: hsla(135, 50%, 95%, 1);
-  --task-state-failed-background: hsla(0, 77%, 95%, 1);
+  --task-state-failed-background: var(--ivy-portal-color-red-100);
   --task-state-failed-text-color: hsla(358, 83%, 30%, 1);
-  --task-state-failed-border: hsla(358, 79%, 79%, 1);
+  --task-state-failed-border: var(--ivy-portal-color-red-300);
   --task-state-delayed-background: hsla(25, 95%, 53%, 0.1);
   --task-state-delayed-border-color: hsla(25, 95%, 53%, 0.25);
   --task-state-delayed-color: hsla(25, 95%, 53%, 1);
@@ -405,6 +419,9 @@
   --widget-button-border-color: var(--ivy-portal-color-grey-200);
   --widget-button-background-color: var(--ivy-portal-color-grey-50);
   --widget-button-hover-background-color: hsla(0, 0%, 94%, 1);
+  --widget-button-danger-background-color: var(--ivy-portal-color-red-100);
+  --widget-button-danger-border-color: var(--ivy-portal-color-red-300);
+  --widget-button-danger-background-color-hover: hsla(0, 84%, 60%, 0.25);
   --widget-view-toggle-bg: hsla(0, 0%, 97%, 1);
   --widget-view-toggle-active-bg: hsla(0, 0%, 100%, 1);
   --widget-view-toggle-icon: var(--ivy-portal-color-grey-500);
@@ -475,6 +492,7 @@
   --button-primary-bg-color: var(--ivy-primary-color);
   --button-primary-text-color: var(--ivy-primary-color-white);
   --dashboard-tab-active-color: var(--primary-color);
+  --dashboard-header-card-bg-color: var(--ivy-primary-color-white);
   --card-box-shadow: 0 0 27px 0 rgba(0, 0, 0, 0.05);
   --filters-card-bg-color: var(--sidebar-settings-card-bg-color);
   --filters-card-border-color: var(--sidebar-settings-card-border-color);

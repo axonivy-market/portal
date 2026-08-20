@@ -56,7 +56,7 @@
       <p:commandButton id="edit-widget-#{index}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
         icon="ti ti-pencil"
-        styleClass="rounded-button ui-button-outlined u-hidden-sm-down u-mar-right-5 widget-icon-button"
+        styleClass="rounded-button ui-button-outlined ui-button-widget u-hidden-sm-down u-mar-right-5 widget-icon-button"
         oncomplete="PF('new-widget-configuration-dialog').show()"
         global="false"
         actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
@@ -68,7 +68,7 @@
         hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}"/>
 
       <p:commandButton id="clone-widget-#{index}" type="button" icon="ti ti-copy"
-        styleClass="rounded-button ui-button-outlined u-mar-right-5 widget-icon-button"
+        styleClass="rounded-button ui-button-outlined ui-button-widget u-mar-right-5 widget-icon-button"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CloneWidget')}"
         rendered="#{!isReadOnlyMode}">
         <p:ajax event="click" listener="#{cloneWidgetBean.setCloneWidget(widget)}"
