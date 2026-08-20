@@ -54,12 +54,12 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.util.RequestUtils;",
             "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
             "import org.apache.commons.lang3.StringUtils;",
             "import jakarta.faces.context.ExternalContext;",
             "import jakarta.faces.context.FacesContext;",
             "import jakarta.servlet.http.HttpServletRequest;",
-            "import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;",
             "import java.net.URLDecoder;",
             "",
             "HttpServletRequest request = null;",
@@ -70,8 +70,7 @@
             "",
             "String url = URLDecoder.decode(in.callbackUrl, \"UTF-8\");",
             "",
-            "// TODO Migrate to RequestUtils.isSafeRedirectUrl to remove the dependency on ch.ivyteam.ivy.request internals.",
-            "if (request != null && StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityUtil.isValid(url, request)){  ",
+            "if (RequestUtils.isSafeRedirectUrl(url, request)){  ",
             "  context.redirect(url);",
             "} else {",
             "  PortalNavigatorAPI.navigateToPortalHome();",
