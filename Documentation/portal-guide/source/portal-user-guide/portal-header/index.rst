@@ -165,8 +165,11 @@ Info
 ^^^^
 
 The menu entry :guilabel:`Info` provides you with detailed information about the
-Axon Ivy Engine, the Axon Ivy Portal and your company's application. You
-might be asked for this information in case you issue a support request.
+Axon Ivy Engine and Portal versions, and every version of your company's
+applications, including its release state, activity state, and open/done
+case counts. Click a version to see the projects deployed in it, along with
+each project's state, Maven version, and last change. You might be asked for
+this information in case you issue a support request.
 
 |portal-version-information|
 

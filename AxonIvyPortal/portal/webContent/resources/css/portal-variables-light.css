@@ -377,4 +377,17 @@
   --portal-package-alert-warning-background-color: var(--ivy-tertinary-color-red-light);
   --portal-package-alert-warning-border-color: var(--ivy-tertinary-color-red-medium);
   --portal-package-alert-warning-text-color: var(--ivy-tertinary-color-red-medium);
+
+  /* Project info status badges (sampled from the Axon Ivy cockpit design) */
+  --project-info-success-bg: hsl(136, 50%, 95%);
+  --project-info-success-text: hsl(136, 47%, 32%);
+  --project-info-danger-bg: hsl(0, 50%, 95%);
+  --project-info-danger-text: hsl(0, 47%, 32%);
+  --project-info-warning-bg: hsl(45, 50%, 95%);
+  --project-info-warning-text: hsl(45, 47%, 32%);
+  --project-info-info-bg: hsl(195, 50%, 95%);
+  --project-info-info-text: hsl(195, 47%, 32%);
+  --project-info-neutral-bg: hsl(0, 0%, 95%);
+  --project-info-neutral-text: hsl(0, 0%, 32%);
+  --project-info-selected-row-bg: hsl(0, 0%, 97.3%);
 }
