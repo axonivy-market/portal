@@ -10,8 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.enums.GlobalSearchScopeCategory;
-import com.axonivy.portal.enums.SearchScopeCaseField;
-import com.axonivy.portal.enums.SearchScopeTaskField;
 import com.axonivy.portal.payload.SearchPayload;
 import com.axonivy.portal.response.CaseData;
 import com.axonivy.portal.response.GlobalSearchResponse;
@@ -19,6 +17,7 @@ import com.axonivy.portal.response.ProcessData;
 import com.axonivy.portal.response.TaskData;
 import com.axonivy.portal.util.BusinessDetailsUtils;
 import com.axonivy.portal.util.CaseBehaviorUtils;
+import com.axonivy.portal.util.SearchScopeUtils;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
@@ -73,7 +72,7 @@ public class GlobalSearchService {
     criteria.setAdminQuery(isAdminQuery);
     criteria.extendStatesQueryByPermission(isAdminQuery);
     criteria.setGlobalSearch(true);
-    criteria.setSearchScopeTaskFields(getSearchScopeTaskFields());
+    criteria.setSearchScopeTaskFields(SearchScopeUtils.getSearchScopeTaskFields());
     return criteria;
   }
 
@@ -81,7 +80,7 @@ public class GlobalSearchService {
     CaseSearchCriteria criteria = new CaseSearchCriteria();
     criteria.setKeyword(payload.getQuery());
     criteria.setGlobalSearch(true);
-    criteria.setSearchScopeCaseFields(getSearchScopeCaseFields());
+    criteria.setSearchScopeCaseFields(SearchScopeUtils.getSearchScopeCaseFields());
     criteria.setBusinessCase(true);
     criteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
     boolean isAdminQuery = PermissionUtils.checkReadAllTasksPermission();
@@ -152,38 +151,6 @@ public class GlobalSearchService {
     return isShowFullTaskList && isHasSearchScope;
   }
   
-  private List<SearchScopeTaskField> getSearchScopeTaskFields() {
-    String searchScopeTaskFieldsString = Ivy.var().get(GlobalVariable.SEARCH_SCOPE_BY_TASK_FIELDS.getKey());
-    if (StringUtils.isNotBlank(searchScopeTaskFieldsString)) {
-      List<SearchScopeTaskField> searchScopeTaskFields = new ArrayList<>();
-      String[] fieldArray = searchScopeTaskFieldsString.split(",");
-      for (String field : fieldArray) {
-        SearchScopeTaskField fieldEnum = SearchScopeTaskField.valueOf(field.toUpperCase());
-        if (fieldEnum != null) {
-          searchScopeTaskFields.add(fieldEnum);
-        }
-      }
-      return searchScopeTaskFields;
-    }
-    return List.of(SearchScopeTaskField.NAME, SearchScopeTaskField.DESCRIPTION);
-  }
-
-  private List<SearchScopeCaseField> getSearchScopeCaseFields() {
-    String searchScopeCaseFieldsString = Ivy.var().get(GlobalVariable.SEARCH_SCOPE_BY_CASE_FIELDS.getKey());
-    if (StringUtils.isNotBlank(searchScopeCaseFieldsString)) {
-      List<SearchScopeCaseField> searchScopeCaseFields = new ArrayList<>();
-      String[] fieldArray = searchScopeCaseFieldsString.split(",");
-      for (String field : fieldArray) {
-        SearchScopeCaseField fieldEnum = SearchScopeCaseField.valueOf(field.toUpperCase());
-        if (fieldEnum != null) {
-          searchScopeCaseFields.add(fieldEnum);
-        }
-      }
-      return searchScopeCaseFields;
-    }
-    return List.of(SearchScopeCaseField.NAME, SearchScopeCaseField.DESCRIPTION, SearchScopeCaseField.CUSTOM);
-  }
-
   private String buildCaseDataLink(ICase caze, boolean canAccessBusinessDetails) {
     if (canAccessBusinessDetails) {
       return BusinessDetailsUtils.getAdditionalCaseDetailsPageUri(caze);
