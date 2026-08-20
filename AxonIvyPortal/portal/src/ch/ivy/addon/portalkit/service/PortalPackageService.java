@@ -21,7 +21,6 @@ import org.primefaces.model.StreamedContent;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
-import com.axonivy.portal.dto.GenericJsonListWrapper;
 import com.axonivy.portal.dto.JsonListWrapper;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.menu.MenuOrder;
@@ -92,7 +91,7 @@ public class PortalPackageService {
       return;
     }
     dashboards.forEach(this::prepareDashboardForExport);
-    GenericJsonListWrapper<Dashboard> wrapper = new GenericJsonListWrapper<>(DashboardJsonVersion.LATEST_VERSION.getValue(), dashboards);
+    JsonListWrapper<Dashboard> wrapper = new JsonListWrapper<>(DashboardJsonVersion.LATEST_VERSION.getValue(), dashboards);
     writeEntry(zos, PortalPackageFile.DASHBOARD.getFilename(), BusinessEntityConverter.entityToJsonValue(wrapper));
   }
 

@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.dto.GenericJsonListWrapper;
 import com.axonivy.portal.dto.JsonListWrapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -74,7 +73,7 @@ public class BusinessEntityConverter {
    */
   private static Object wrapIfList(Object entity) {
     if (entity instanceof List<?> list) {
-      return new GenericJsonListWrapper<>(DEFAULT_LIST_WRAPPER_VERSION, list);
+      return new JsonListWrapper<>(DEFAULT_LIST_WRAPPER_VERSION, list);
     }
     return entity;
   }
@@ -134,8 +133,8 @@ public class BusinessEntityConverter {
       // Canonical shape: {"version": "...", "items": [...]}
       if (isListWrapper(rootNode)) {
         JavaType wrapperType = mapper.getTypeFactory()
-            .constructParametricType(GenericJsonListWrapper.class, classType);
-        GenericJsonListWrapper<T> wrapper = mapper.convertValue(rootNode, wrapperType);
+            .constructParametricType(JsonListWrapper.class, classType);
+        JsonListWrapper<T> wrapper = mapper.convertValue(rootNode, wrapperType);
         return Optional.ofNullable(wrapper.getItems()).orElseGet(ArrayList::new);
       }
 
@@ -285,7 +284,7 @@ public class BusinessEntityConverter {
    * {@code {"version": "...", "items": [...]}} wrapper shape.
    */
   public static <T> String entityToJsonValue(List<T> entities, String version) {
-    GenericJsonListWrapper<T> wrapper = new GenericJsonListWrapper<>(version, entities);
+    JsonListWrapper<T> wrapper = new JsonListWrapper<>(version, entities);
     try {
       return getObjectMapper().writeValueAsString(wrapper);
     } catch (JsonProcessingException e) {

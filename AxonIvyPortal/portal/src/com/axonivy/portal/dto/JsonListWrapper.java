@@ -23,7 +23,7 @@ import java.util.Objects;
  *
  * @param <T> the type of elements in the wrapped list
  */
-public abstract class JsonListWrapper<T> {
+public class JsonListWrapper<T> {
 
   public static final String VERSION_FIELD_NAME = "version";
   public static final String ITEMS_FIELD_NAME = "items";
@@ -31,10 +31,10 @@ public abstract class JsonListWrapper<T> {
   private String version;
   private List<T> items;
 
-  protected JsonListWrapper() {
+  public JsonListWrapper() {
   }
 
-  protected JsonListWrapper(String version, List<T> items) {
+  public JsonListWrapper(String version, List<T> items) {
     this.version = version;
     this.items = items;
   }
