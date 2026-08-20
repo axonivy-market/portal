@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-08-14 04:07+0000\n"
-"PO-Revision-Date: 2026-07-01 10:33+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"PO-Revision-Date: 2026-08-14 04:49+0000\n"
+"Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
 "Language: ja\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/portal-le/doc/portal-doc-components/ja/>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 #: ../../source/portal-components/document-table/index.rst:4
 msgid "Document Table"
@@ -500,22 +501,20 @@ msgid "If Portal setting is not available, default value is ``doc,docx,xls,xlsx,
 msgstr "ポータルの設定がない場合、デフォルト値は ``doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png`` となる。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "uploadSubFolder"
-msgstr "uploadRendered"
+msgstr "uploadSubFolder"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "Defines the subfolder path to upload documents."
-msgstr "ドキュメントをアップロードするボタンを表示するかどうかを定義します。"
+msgstr "サブフォルダパスを定義して文書をアップロードします."
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "displaySubFolderList"
-msgstr ""
+msgstr "displaySubFolderList"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Defines the list of subfolder paths to display documents, separated by commas."
-msgstr ""
+msgstr "サブフォルダパスのリストを定義して、コンマで区切った文書を表示します."
 
 #: ../../source/portal-components/document-table/index.rst:24
 msgid "Virus scanning"
