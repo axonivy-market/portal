@@ -398,6 +398,7 @@
   --widget-button-hover-background-color: hsla(0, 0%, 94%, 1);
   --widget-button-danger-background-color: var(--ivy-portal-color-red-100);
   --widget-button-danger-border-color: var(--ivy-portal-color-red-300);
+  --widget-button-danger-background-color-hover: hsla(0, 84%, 60%, 0.25);
   --widget-view-toggle-bg: hsla(0, 0%, 97%, 1);
   --widget-view-toggle-active-bg: hsla(0, 0%, 100%, 1);
   --widget-view-toggle-icon: var(--ivy-portal-color-grey-500);

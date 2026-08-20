@@ -179,12 +179,12 @@
   <p:dialog id="widget-filter-content" widgetVar="widget-configuration-filter-dialog"
       styleClass="widget-configuration-filter-dialog"
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/SetFilterHeader')}"
-      modal="false" closable="true" closeOnEscape="true"
-      draggable="false" resizable="false" dynamic="false" fitViewport="true" width="900">
+      modal="false" closable="true" closeOnEscape="true" responsive="true"
+      draggable="false" resizable="false" dynamic="false" fitViewport="true">
       <p:remoteCommand id="updateComponentOnPreviewCmd" name="updateComponentOnPreviewCmd"
         process="@none" update="#{componentToUpdateOnPreview}" />
 
-      <h:panelGroup layout="block" styleClass="filter-dialog__body flex flex-column flex-1">
+      <h:panelGroup layout="block" styleClass="filter-dialog__body flex flex-column flex-1 min-h-0">
         <ui:insert name="widgetFilterContent" />
       </h:panelGroup>
 

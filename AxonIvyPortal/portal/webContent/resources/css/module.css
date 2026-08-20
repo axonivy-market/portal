@@ -6131,6 +6131,10 @@ body .ui-button.ui-button-danger.widget-icon-button {
   border-color: var(--widget-button-danger-border-color);
 }
 
+body .ui-button.ui-button-danger.widget-icon-button:hover {
+  background-color: var(--widget-button-danger-background-color-hover);
+}
+
 body .ui-button.ui-widget.ui-button-widget {
   color: var(--widget-header-icon);
 }

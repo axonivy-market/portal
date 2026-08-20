@@ -687,6 +687,8 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   border-radius: 10px;
   box-shadow: var(--widget-filter-dialog-box-shadow);
   min-height: fit-content;
+  top: 45px !important;
+  width: 80% !important;
 }
 
 .ui-dialog.widget-configuration-filter-dialog::before {
@@ -706,8 +708,6 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 
 .widget-configuration-filter-dialog .filter-dialog__body {
   padding: 0 20px;
-  min-height: 40vh;
-  overflow: visible;
 }
 
 .widget-configuration-filter-dialog .dashboard-widget-filter__options {
