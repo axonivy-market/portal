@@ -56,6 +56,14 @@ public class CaseTaskNoteHistoryBean implements Serializable {
     return PortalNavigator.buildUrlByKeyword("showCaseNoteHistory.ivp", SHOW_CASE_NOTE_HISTORY_FRIENDLY_REQUEST_PATH, params);
   }
 
+  public void navigateToTaskDetails(ITask task) {
+    PortalNavigator.navigateToPortalTaskDetails(task.uuid());
+  }
+
+  public void navigateToCaseDetails(ICase iCase) {
+    PortalNavigator.navigateToPortalCaseDetails(iCase.uuid());
+  }
+
   public String getCaseNoteContent(History history) {
     String content = history.getContent();
     if (history.getType() == HistoryType.TASK) {

@@ -641,20 +641,14 @@ $(document).ready(function () {
         collapseWidgetBtn.click();
       }
 
-      var caseSideActionCloseBtn = $('[id*="action-steps-panel"]:visible').find('.ui-overlaypanel-close');
-      if (caseSideActionCloseBtn.length > 0) {
-        caseSideActionCloseBtn.click();
-
+      if (hidePortalActionPanels('action-steps-panel')) {
         if (focusedCaseEl) {
           focusedCaseEl.addClass('focused');
           focusedCaseEl.focus();
         }
       }
 
-      var taskSideActionCloseBtn = $('[id*="side-steps-panel"]:visible').find('.ui-overlaypanel-close');
-      if (taskSideActionCloseBtn.length > 0) {
-        taskSideActionCloseBtn.click();
-      }
+      hidePortalActionPanels('side-steps-panel');
       return;
     }
 
@@ -868,6 +862,25 @@ function focusFirstVisibleElementInPanel(widgetVar, selector) {
   if (first.length) {
     first.focus();
   }
+}
+
+/**
+ * Hides every visible action overlay panel whose id ends with the given suffix.
+ * These panels render without a close icon, so they are hidden through their widget.
+ * @param {string} idSuffix - 'action-steps-panel' or 'side-steps-panel'.
+ * @returns {boolean} true if at least one panel was hidden.
+ */
+function hidePortalActionPanels(idSuffix) {
+  var hidden = false;
+  for (var widgetVar in PrimeFaces.widgets) {
+    var widget = PrimeFaces.widgets[widgetVar];
+    if (widget && widget.jq && typeof widget.hide === 'function'
+        && widget.jq.is('[id$="' + idSuffix + '"]') && widget.jq.is(':visible')) {
+      widget.hide();
+      hidden = true;
+    }
+  }
+  return hidden;
 }
 
 function updateMainMenuAriaLabel() {

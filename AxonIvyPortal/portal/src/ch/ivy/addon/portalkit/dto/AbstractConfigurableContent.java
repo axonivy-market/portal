@@ -28,6 +28,14 @@ public abstract class AbstractConfigurableContent implements Serializable {
     this.id = id;
   }
 
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
   /**
    * Add @JsonSerialize annotation and refer to sub class
    * e.g: @JsonSerialize(as = SubClass.class)

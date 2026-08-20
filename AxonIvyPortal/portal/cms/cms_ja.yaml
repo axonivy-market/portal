@@ -336,6 +336,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: ファイルをアップロードするには、ドラッグ＆ドロップするか、ファイルを選択してください
     addNoteHelpText: ここにテキストを入力してください。
     businessDetailsTitle: ビジネスの詳細
+    caseDetails: ケースの詳細
     customFields: カスタムフィールド
     customFieldsDialog: ケース#{0}のカスタムフィールド
     deleteFile: ファイル削除
@@ -1342,6 +1343,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldsDialog: タスク#{0}のカスタムフィールド
     delayedUntil: この日まで延期
     deleteFile: ファイルを削除
+    dueDate: 期限
     documents: ドキュメント
     duration: 所要時間
     events: ワークフローイベント
@@ -1506,7 +1508,6 @@ Dialogs:
     TaskDetail:
       DataDescription: データと説明
       restoreToDefaultSettings: 初期設定に戻す
-      switchToEditMode: 編集
       switchToViewMode: 保存
   agileBPM:
     define_WF:
@@ -1938,6 +1939,7 @@ Labels:
   CreateNewDashboard: 新しいダッシュボードを作成
   Description: 説明
   EditDescription: 説明を編集
+  EditLayout: レイアウトを編集
   EnterFromValue: 値から入力
   EnterToValue: 値を入力してください
   EnterValue: 値を入力してください

@@ -4,6 +4,9 @@ handleDisplayIconMoreLink();
 function showWidgetDescriptionInplaceEditor() {
   $(".js-case-description-output").hide();
   $(".js-case-description-inplace").show();
+  if ($descriptionContentContainer && $descriptionContentContainer.length > 0) {
+    $descriptionContentContainer.removeClass("short-description").addClass("long-description");
+  }
   hideIconLessLink();
   hideIconMoreLink();
   PF('widget-description-inplace').show();

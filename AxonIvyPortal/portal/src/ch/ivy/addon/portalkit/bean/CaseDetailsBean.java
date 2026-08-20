@@ -17,8 +17,11 @@ import org.primefaces.model.SortMeta;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
+import com.axonivy.portal.migration.casedetails.migrator.JsonCaseDetailsMigrator;
 import com.axonivy.portal.util.BusinessDetailsUtils;
 import com.axonivy.portal.util.CaseBehaviorUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -33,6 +36,7 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
@@ -256,6 +260,13 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   @Override
   public String getVariableKey() {
     return PortalVariable.CASE_DETAIL.key;
+  }
+
+  @Override
+  protected List<CaseDetails> convertToLatestVersion(String configurationJson)
+      throws JsonMappingException, JsonProcessingException {
+    JsonCaseDetailsMigrator migrator = new JsonCaseDetailsMigrator(mapper.readTree(configurationJson));
+    return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), CaseDetails.class);
   }
 
   @Override
