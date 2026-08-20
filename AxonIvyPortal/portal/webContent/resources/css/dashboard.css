@@ -652,7 +652,6 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   padding: 0;
   display: flex;
   flex-direction: column;
-  min-height: 548px;
 }
 
 .ui-widget-content.info-overlay-panel>.ui-overlaypanel-content {
@@ -660,9 +659,14 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .statistic-filter-accordion-panel.widget-info-panel,
-.ui-dialog.filter-dialog .ui-dialog-content .filter-dialog__content,
 .ui-dialog.filter-dialog .ui-dialog-content .saved-filter__content {
   max-height: 50vh;
+  overflow: auto;
+}
+
+.ui-dialog.filter-dialog .ui-dialog-content .filter-dialog__content {
+  flex: 1 1 auto;
+  max-height: 40vh;
   overflow: auto;
 }
 
@@ -677,18 +681,21 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .ui-dialog.filter-dialog {
-  width: 1036px !important;
-  min-height: 548px;
+  width: 80dvw !important;
+  height: 100dvh !important;
+  max-height: fit-content;
   border-radius: 15px;
   box-shadow: var(--widget-filter-dialog-box-shadow);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .ui-dialog.widget-configuration-filter-dialog {
   border-radius: 10px;
   box-shadow: var(--widget-filter-dialog-box-shadow);
   min-height: fit-content;
-  top: 45px !important;
-  width: 80% !important;
+  max-height: calc(100dvh - 2rem);
+  width: 80dvw !important;
 }
 
 .ui-dialog.widget-configuration-filter-dialog::before {
@@ -787,6 +794,29 @@ body .ui-divider.ui-divider-horizontal::before {
   min-height: 0;
   height: fit-content;
   max-height: 40vh;
+  overflow: visible;
+}
+
+@media (max-width: 80em) { 
+  .ui-dialog.widget-configuration-filter-dialog > .ui-widget-header {
+    padding: 0.5rem 0.5rem 0 0.5rem;
+  }
+
+  .widget-configuration-filter-dialog .footer-buttons-container {
+    padding: 0 0.5rem 0.5rem 0.5rem;
+  }
+
+  .dashboard-widget-filter__main-panel > .ui-divider-horizontal {
+    display: none;
+  }
+
+  .filter-section__header, .filter-dialog__save-section-header {
+    flex-direction: row;
+  }
+
+  .filter-dialog__panels > .flex.flex-column, .filter-dialog__panels > .saved-filter{
+    padding: 0.5rem;
+  }
 }
 
 .process-filter {
@@ -1203,7 +1233,6 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .new-widget-configuration-dialog .ui-dialog-content.ui-widget-content {
-  max-height: calc(90vh - 100px) !important;
   transition: all .3s;
 }
 
