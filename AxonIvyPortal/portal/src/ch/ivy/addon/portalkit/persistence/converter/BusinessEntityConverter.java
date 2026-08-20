@@ -85,7 +85,7 @@ public class BusinessEntityConverter {
 
   private static String prettyPrintObjectEntityToJsonValue(Object entity) {
     try {
-      return getObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(entity);
+      return getObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(wrapIfList(entity));
     } catch (JsonProcessingException e) {
       throw new PortalException(e);
     }
@@ -121,14 +121,6 @@ public class BusinessEntityConverter {
         .map(BeanPropertyDefinition::getName)
         .collect(Collectors.toSet());
     return knownProperties.contains(onlyField.getKey()) ? rootNode : onlyField.getValue();
-  }
-
-  public static <T> T inputStreamToEntity(InputStream inputStream, Class<T> classType) {
-    try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
-      return getObjectMapper().readValue(reader, classType);
-    } catch (IOException e) {
-      throw new PortalException(e);
-    }
   }
 
   public static <T> List<T> jsonValueToEntities(String jsonValue, Class<T> classType) {

@@ -1,28 +1,8 @@
-package com.axonivy.portal.dto;
+package com.axonivy.portal.userexamples.dto;
 
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Generic wrapper for a versioned list of objects, used across Portal for the
- * root-level JSON object shape:
- *
- * <pre>{@code
- * { "version": "...", "items": [ ... ] }
- * }</pre>
- *
- * This replaces ad-hoc root-array JSON files and Jackson's
- * {@code SerializationFeature.WRAP_ROOT_VALUE} (which does not respect
- * {@code @JsonRootName} on list elements and instead wraps under the runtime
- * container class name, e.g. {@code ArrayList}).
- *
- * Abstract so that Portal entity types can declare a small, self-documenting
- * concrete subclass (e.g. {@code DashboardListWrapper}) when static typing is
- * useful. For call sites where the element type is only known at runtime via
- * a {@code Class<T>}, use {@link GenericJsonListWrapper} instead.
- *
- * @param <T> the type of elements in the wrapped list
- */
 public abstract class JsonListWrapper<T> {
 
   public static final String VERSION_FIELD_NAME = "version";

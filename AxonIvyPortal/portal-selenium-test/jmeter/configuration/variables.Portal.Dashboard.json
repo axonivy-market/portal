@@ -1,5 +1,7 @@
 {
-  "dashboard": [ {
+  "version": "14.0.0",
+  "items": [ 
+    {
     "id" : "20d3372910e84aba85bd3e4402903c7b",
     "version": "14.0.0",
     "templateId" : "default-portal-dashboard-template",
@@ -473,5 +475,6 @@
       "Everybody"
     ],
     "dashboardDisplayType": "top_menu"
-  } ]
+  } 
+]
 }
