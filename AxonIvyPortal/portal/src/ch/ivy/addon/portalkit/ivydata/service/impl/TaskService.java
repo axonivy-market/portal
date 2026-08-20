@@ -208,18 +208,6 @@ public class TaskService {
     });
   }
 
-//  private TaskCategoryStatistic createTaskCategoryStatistic(Recordset recordSet) {
-//    TaskCategoryStatistic taskCategoryStatistic = new TaskCategoryStatistic();
-//    taskCategoryStatistic.setNumberOfTasksByCategory(new HashMap<>());
-//    if (recordSet != null) {
-//      recordSet.getRecords().forEach(record -> {
-//        long numberOfTasks = ((Number)(record.getField("COUNT"))).longValue();
-//        taskCategoryStatistic.getNumberOfTasksByCategory().put(record.getField("CATEGORY").toString(), numberOfTasks);
-//      });
-//    }
-//    return taskCategoryStatistic;
-//  }
-
   private ExpiryStatistic createExpiryTimeStampToCountMap(Recordset recordSet) throws ParseException {
       ExpiryStatistic expiryStatistic = new ExpiryStatistic();
       Map<Date, Long> numberOfTasksByExpiryTime = new HashMap<>();
@@ -306,6 +294,11 @@ public class TaskService {
 
   public ITask findTaskById(long taskId) {
     return Sudo.get(() -> {
+      if (PermissionUtils.checkSkipPermission()) {
+        return Ivy.wf().getGlobalContext().getTaskQueryExecutor()
+            .createTaskQuery().where().taskId().isEqual(taskId).executor()
+            .firstResult();
+      }
       TaskQuery taskQuery = TaskQuery.create().where().taskId().isEqual(taskId);
       if (PermissionUtils.checkReadAllTasksPermission()) {
         EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE,
@@ -327,6 +320,11 @@ public class TaskService {
   
   public ITask findTaskByUUID(String uuid) {
     return Sudo.get(() -> {
+      if (PermissionUtils.checkSkipPermission()) {
+        return Ivy.wf().getGlobalContext().getTaskQueryExecutor()
+            .createTaskQuery().where().uuid().isEqual(uuid).executor()
+            .firstResult();
+      }
       TaskQuery taskQuery = TaskQuery.create().where().uuid().isEqual(uuid);
       if (PermissionUtils.checkReadAllTasksPermission()) {
         EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE,
