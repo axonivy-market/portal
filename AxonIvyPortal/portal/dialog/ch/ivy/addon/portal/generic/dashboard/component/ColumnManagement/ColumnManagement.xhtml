@@ -90,7 +90,7 @@
           </h:panelGroup>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}" width="48" styleClass="text-center js-column-field-#{column.field}">
-          <p:commandLink id="remove-link" actionListener="#{columnManagementBean.remove(column)}" global="false" process="@this" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+          <p:commandLink id="remove-link" styleClass="portal-command-link-color" actionListener="#{columnManagementBean.remove(column)}" global="false" process="@this" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
             update="column-management-datatable #{cc.clientId}:column-management-form:standard-field-selection #{cc.clientId}:column-management-form:custom-field-selection">
             <i class="ti ti-trash" />
           </p:commandLink>
@@ -98,7 +98,7 @@
       </p:dataTable>
     </h:form>
     <f:facet name="footer">
-      <p:link id="column-management-cancel-link" styleClass="u-mar-right-10" href="#"
+      <p:link id="column-management-cancel-link" styleClass="u-mar-right-10 portal-command-link-color" href="#"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         onclick="PF('column-management-dialog').hide()" />
 

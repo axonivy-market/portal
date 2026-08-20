@@ -266,7 +266,7 @@
           onfocus="this.select()" maxlength="#{portalComponentUtilsBean.filenameMaxLength}" styleClass="w-full"
           required="true" requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/FilenameEmpty')}"/>
         <h:panelGroup layout="block" styleClass="mt-4 flex gap-3 align-items-center justify-content-end">
-          <p:commandLink id="document-rename-cancel-button"
+          <p:commandLink styleClass="portal-command-link-color" id="document-rename-cancel-button"
             value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Cancel')}"
             ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/CancelContext', [cc.attrs.renameTitle])}"
             onclick="PF('document-renaming-dialog').hide(); return false;" />

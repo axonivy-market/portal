@@ -234,7 +234,7 @@
                     styleClass="MarLeft10" />
                 </div>
                 <div class="ui-g-12">
-                  <p:link id="apple-download-link" href="#{userMenuBean.getAppleStoreDownloadLink()}" target="_blank">
+                  <p:link styleClass="portal-command-link-color" id="apple-download-link" href="#{userMenuBean.getAppleStoreDownloadLink()}" target="_blank">
                     <p:graphicImage styleClass="platform-image" id="apple-download-image" cache="true"
                       library="ivy-cms" name="#{userMenuBean.appleStoreImageLink}"
                       alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/AppleStoreDownload')}" />
@@ -257,7 +257,7 @@
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/QRCodeDownloadDescription')}" styleClass="MarLeft10" />
                 </div>
                 <div class="ui-g-12">
-                  <p:link id="google-download-link" href="#{userMenuBean.getGooglePlayDownloadLink()}" target="_blank">
+                  <p:link styleClass="portal-command-link-color" id="google-download-link" href="#{userMenuBean.getGooglePlayDownloadLink()}" target="_blank">
                     <p:graphicImage styleClass="platform-image" id="google-download-image" cache="true"
                       library="ivy-cms" name="#{userMenuBean.googlePlayImageLink}"
                       alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/GooglePlayDownload')}" />

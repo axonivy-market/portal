@@ -93,7 +93,7 @@
         </h:panelGroup>
 
         <h:panelGroup id="delegate-action-panel" layout="block" styleClass="text-right">
-          <p:link id="cancel-multiple-task-delegate-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          <p:link styleClass="portal-command-link-color" id="cancel-multiple-task-delegate-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             href="#" onclick="PF('multiple-task-delegate-dialog-#{widgetIndex}').hide(); return false;" />
           <p:spacer width="15px" />
           <p:commandButton id="proceed-multiple-task-delegate-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"

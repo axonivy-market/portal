@@ -33,7 +33,7 @@
       <h:panelGroup id="case-detail-name" styleClass="js-case-name-details hidden" layout="block" />
 
       <p:link id="back-to-cases" href="#" rendered="#{showItemBackButton}"
-        onclick="backToPrevPage(#{!isTaskStartedInDetails})" styleClass="portal-detail-toolbar-back">
+        onclick="backToPrevPage(#{!isTaskStartedInDetails})" styleClass="portal-detail-toolbar-back portal-command-link-color">
         <i class="ti ti-chevron-left" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
       </p:link>
@@ -199,7 +199,7 @@
           oncomplete="backToPrevPage(#{caseWidgetBean.willNavigateBack()});" />
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('destroy-case-dialog').hide();" styleClass="pt-3 flex justify-content-center" />
+          onclick="PF('destroy-case-dialog').hide();" styleClass="pt-3 flex justify-content-center portal-command-link-color" />
         </h:panelGroup>
     </ui:define>
   </ui:decorate>
@@ -217,7 +217,7 @@
       <h:form id="reset-to-default-case-form">
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('reset-to-default-case-dialog').hide();" styleClass="u-mar-right-15" type="button" ajax="false" />
+          onclick="PF('reset-to-default-case-dialog').hide();" styleClass="u-mar-right-15 portal-command-link-color" type="button" ajax="false" />
         <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('ti ti-refresh')}"

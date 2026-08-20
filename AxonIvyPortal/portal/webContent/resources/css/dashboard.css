@@ -1037,8 +1037,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 }
 
 .column-management-datatable__reorder i,
-.column-management-operator-info-icon,
-.column-management-datatable .ui-commandlink i.ti {
+.column-management-operator-info-icon {
   color: var(--widget-header-icon);
 }
 
@@ -1609,10 +1608,6 @@ body.dark .apply-filter-button.ui-button:hover,
 body.dark .widget-configuration-filter-dialog .preview-button.ui-button:hover {
   background: var(--widget-filter-apply-button-hover-background-color);
   border-color: var(--widget-filter-apply-button-hover-background-color);
-}
-
-a.reset-button {
-  color: var(--widget-filter-reset-button-text-color);
 }
 
 a.saved-filter__manage-filter {

@@ -30,13 +30,10 @@
                          icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
                          styleClass="task-details-document-add-link portal-icon-btn-round portal-icon-btn-accent u-mar-right-10"
                          oncomplete="PF('document-upload-dialog').show()"/>
-          <p:link id="show-more-doc-link" rendered="#{caseTaskDocumentBean.showMoreDocument}"
-            styleClass="portal-detail-show-more-btn portal-pill-btn"
+          <p:button id="show-more-doc-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" rendered="#{caseTaskDocumentBean.showMoreDocument}"
+            styleClass="portal-detail-show-more-btn portal-pill-btn" icon="ti ti-external-link"
             href="#{caseTaskDocumentBean.getTaskDocumentsLink(task)}" target="_blank">
-            <span class="ti ti-external-link" />
-            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
-            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
-          </p:link>
+          </p:button>
         </h:panelGroup>
       </div>
 
@@ -118,7 +115,7 @@
           <p:commandLink id="add-document-command-empty" global="false"
                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
                          rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
-                         styleClass="task-details-document-add-link no-item-action-link"
+                         styleClass="task-details-document-add-link no-item-action-link portal-command-link-color"
                          oncomplete="PF('document-upload-dialog').show()">
             <i class="ti ti-circle-plus" />
             <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
@@ -164,7 +161,7 @@
             <span class="ui-document-upload-file-label"> 
             <i class="ti ti-file-upload" id="ui-document-upload-file-icon" />
               <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}">
-                <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadHere')}"
+                <p:link styleClass="portal-command-link-color" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadHere')}"
                   onclick="PF('documentUpload').show();return false" />
               </p:outputLabel>
             </span>
@@ -234,7 +231,7 @@
         id="preview-encrypted-document-button" actionListener="#{logic.previewEncryptedDocument}" 
         oncomplete="PF('preview-document-confirmation-dialog').hide(); if (args &amp;&amp; !args.validationFailed) {PF('preview-document-dialog').show();}" />
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/confirmation')])}" styleClass="pt-3 flex justify-content-center"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/confirmation')])}" styleClass="pt-3 flex justify-content-center portal-command-link-color"
         id="preview-document-confirmation-close-button" onclick="PF('preview-document-confirmation-dialog').hide();" />
     </ui:define>
   </ui:decorate>
@@ -252,7 +249,7 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocument')])}"
           onclick="PF('document-renaming-dialog').hide(); return false;"
-          styleClass="u-mar-right-15" />
+          styleClass="u-mar-right-15 portal-command-link-color" />
         <p:commandButton id="document-rename-save-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocument')])}"
@@ -283,7 +280,7 @@
       <p:commandLink id="document-deletion-cancellation-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteDocumentHeaderText')])}"
                      process="@this" onsuccess="PF('document-deletion-dialog').hide()"
-                     styleClass="pt-3 flex justify-content-center"/>
+                     styleClass="pt-3 flex justify-content-center portal-command-link-color"/>
     </ui:define>
   </ui:decorate>
   <script type="text/javascript">

@@ -87,7 +87,7 @@
   <f:facet name="footer">
     <h:panelGroup layout="block" styleClass="pt-3">
       <p:commandLink id="new-widget-close-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        styleClass="new-widget-dialog__close-button "
+        styleClass="new-widget-dialog__close-button portal-command-link-color"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         onclick="PF('new-widget-dialog').hide()"
         process="@this"
@@ -171,7 +171,7 @@
   <f:facet name="footer">
   <div class="widget-configuration-footer-panel">
     <p:commandLink id="task-configuration-cancel-link-welcome-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-      styleClass="u-mar-right-10" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      styleClass="u-mar-right-10 portal-command-link-color" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       rendered="#{widgetType eq 'WELCOME'}"
       global="false"
       oncomplete="PF('new-widget-configuration-dialog').hide()"
@@ -180,7 +180,7 @@
     </p:commandLink>
 
     <p:commandLink id="task-configuration-cancel-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-      styleClass="u-mar-right-10" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      styleClass="u-mar-right-10 portal-command-link-color" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       rendered="#{widgetType ne 'WELCOME'}"
       onclick="PF('new-widget-configuration-dialog').hide();">
       <p:resetInput target="widget-configuration-form" />
@@ -219,7 +219,7 @@
       update="statistic-widget-fieldset"
       oncomplete="PF('remove-statistic-widget-dialog').hide();" />
     <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-      onclick="PF('remove-statistic-widget-dialog').hide();" styleClass="ui-button-flat pt-3 flex justify-content-center" />
+      onclick="PF('remove-statistic-widget-dialog').hide();" styleClass="ui-button-flat pt-3 flex justify-content-center portal-command-link-color" />
     </div>
   </ui:define>
 </ui:decorate>

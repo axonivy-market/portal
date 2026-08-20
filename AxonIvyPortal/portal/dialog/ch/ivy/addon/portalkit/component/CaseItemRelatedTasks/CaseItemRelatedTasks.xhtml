@@ -164,7 +164,7 @@
       <h:form id="reset-task-form">
         <p:commandLink onclick="PF('reset-task-dialog').hide()"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15 portal-command-link-color" />
         <p:commandButton actionListener="#{logic.resetAndOpenTask(data.currentPortalPage, taskWidgetBean.selectedTaskItemId)}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
@@ -187,7 +187,7 @@
       <h:form id="reset-task-confirmation-form">
         <p:commandLink onclick="PF('reset-task-confirmation-dialog').hide()"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15 portal-command-link-color" />
         <p:commandButton actionListener="#{logic.resetAndOpenTask(data.currentPortalPage, caseDetailsBean.selectedTask.id)}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
@@ -215,7 +215,7 @@
         oncomplete="PF('destroy-task-dialog').hide()" update="#{cc.clientId}:related-tasks" process="@this" />
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        onclick="PF('destroy-task-dialog').hide();" styleClass="pt-3 flex justify-content-center" />
+        onclick="PF('destroy-task-dialog').hide();" styleClass="pt-3 flex justify-content-center portal-command-link-color" />
       </h:panelGroup>
     </ui:define>
   </ui:decorate>

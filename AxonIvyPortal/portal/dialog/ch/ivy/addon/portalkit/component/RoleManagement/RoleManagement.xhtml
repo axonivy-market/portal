@@ -318,7 +318,7 @@
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           process="@this"
           update="@this"
-          styleClass="u-mar-right-15"
+          styleClass="u-mar-right-15 portal-command-link-color"
           global="false"
           onclick="if (#{canModifyUserAssignment}) {PF('users-of-role-table').unselectAllRows();PF('users-of-role-table').clearFilters();}"
           oncomplete="PF('role-details-dialog').hide()"/>
@@ -361,7 +361,7 @@
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         onclick="PF('delete-role-dialog').hide();"
-        styleClass="u-mar-right-15" />
+        styleClass="u-mar-right-15 portal-command-link-color" />
       <p:commandButton id="yes-button"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"

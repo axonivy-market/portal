@@ -269,8 +269,11 @@ a.compact-task-start-link .task-start-list-item {
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
   background-color: var(--item-widget-background-color); }
 
-.process-grid__header.ui-commandlink {
-  color: var(--process-grid-header-color); }
+.ui-commandlink.portal-command-link-color, .ui-link.portal-command-link-color {
+  color: var(--portal-command-link-color); }
+
+.ui-commandlink.portal-command-link-color:hover, .ui-link.portal-command-link-color:hover {
+  color: var(--portal-command-link-color-hover); }
 
 .process-grid__header.ui-commandlink:hover {
   text-decoration: none; }
@@ -935,10 +938,6 @@ body .ui-inputfield.case-detail-name-input {
 .process-item-action-container .tif,
 .process-item-action-container .si {
   font-size: var(--large-font-size); }
-
-.process-start-list-item .ui-commandlink.process-item:hover {
-  color: var(--process-item-color-hover);
-}
 
 /* Task Widget --------------------------------**/
 .filter-selection-form label,
@@ -2343,7 +2342,6 @@ body a.portal-detail-toolbar-back:focus,
   display: inline-flex;
   align-items: center;
   gap: 0.2143rem;
-  color: var(--portal-detail-accent-color);
   font-size: var(--default-font-size);
   font-weight: 500;
   margin-top: 0.3571rem;
@@ -2475,7 +2473,6 @@ body a.portal-detail-toolbar-back:focus,
   display: inline-flex;
   align-items: center;
   gap: 0.4286rem;
-  color: var(--primary-color);
   font-size: var(--default-font-size);
   font-weight: 500;
   line-height: 1;
@@ -2488,10 +2485,6 @@ body a.portal-detail-toolbar-back:focus,
   vertical-align: middle;
 }
 
-.task-and-case-information .content-field .task-business-case,
-.task-and-case-information .content-field .ti-external-link {
-  color: var(--primary-color);
-}
 .task-and-case-information .content-field .task-business-case {
   display: inline-flex !important;
   align-items: center;
@@ -2538,11 +2531,6 @@ body a.portal-detail-toolbar-back:focus,
   line-height: 1.2143rem;
   min-width: 0;
   overflow: hidden;
-}
-/* "See details" (Workflow) is a primary-colored link, not a plain value */
-.task-detail-attr .task-detail-attr-value a[id$=":workflow-event-link"],
-.task-detail-attr .task-detail-attr-value a[id$=":workflow-event-link"] .ti {
-  color: var(--primary-color);
 }
 
 .portal-detail-body .separator-task-detail.ui-divider,

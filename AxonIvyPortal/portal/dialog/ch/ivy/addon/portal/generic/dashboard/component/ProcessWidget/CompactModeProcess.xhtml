@@ -16,7 +16,7 @@
           <p:commandLink ariaLabel="#{compactDashboardProcessBean.buildAriaLabel(process)}"
               actionListener="#{compactDashboardProcessBean.startProcessWithCompactMode(process, cc.attrs.isAIResult)}"
               target="#{dashboardProcessBean.targetToStartProcess(process)}"
-              ajax="#{!dashboardProcessBean.isExternalLink(process)}" styleClass="process-item">
+              ajax="#{!dashboardProcessBean.isExternalLink(process)}" styleClass="process-item portal-command-link-color">
               <h:panelGroup layout="block" class="process-start-list-item-icon">
                 <span class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())}" />
               </h:panelGroup>
@@ -54,7 +54,7 @@
         <span class="process-start-list-item"> 
           <p:commandLink ariaLabel="#{process.name}"
             actionListener="#{compactDashboardProcessBean.startProcessWithCompactMode(process)}" disabled="true"
-            target="#{dashboardProcessBean.targetToStartProcess(process)}" styleClass="process-item">
+            target="#{dashboardProcessBean.targetToStartProcess(process)}" styleClass="process-item portal-command-link-color">
             <h:panelGroup layout="block" class="process-start-list-item-icon">
               <span class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())}" />
             </h:panelGroup>
