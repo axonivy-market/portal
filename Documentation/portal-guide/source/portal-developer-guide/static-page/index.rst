@@ -96,7 +96,9 @@ Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable:
 
 .. code-block:: json
 
-    [
+    {
+      "version": "14.0.0",
+      "items": [
         {
             "menuKind": "STATIC_PAGE",
             "link": "Portal/faces/view/portal-components-examples/help/user-guide.xhtml",
@@ -114,6 +116,7 @@ Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable:
             "version": "12.0.0"
         }
     ]
+    }
 
 **Configuration Properties:**
 
@@ -196,7 +199,9 @@ Add static pages to the user menu (accessed via user avatar in top-right corner)
 
 .. code-block:: json
 
-    [
+    {
+      "version": "14.0.0",
+      "items": [
         {
             "id": "userGuide",
             "menuKind": "STATIC_PAGE",
@@ -225,6 +230,7 @@ Add static pages to the user menu (accessed via user avatar in top-right corner)
             "url": "Portal/faces/view/portal-components-examples/documentation/api-reference.xhtml"
         }
     ]
+    }
 
 **Configuration Properties:**
 

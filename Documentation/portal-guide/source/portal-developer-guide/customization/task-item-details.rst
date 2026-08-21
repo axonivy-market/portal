@@ -33,7 +33,9 @@ How to configure widgets in task details
 
    .. code-block:: javascript
 
-      [
+      {
+        "version": "14.0.0",
+        "items": [
          {
             "id": "default-task-detail",
             "filters": {
@@ -82,6 +84,7 @@ How to configure widgets in task details
             ]
          }
       ]
+      }
 
    ..
 
@@ -166,7 +169,9 @@ There are **two steps** for adding new custom panels.
    
    .. code-block:: javascript
 
-      [
+      {
+        "version": "14.0.0",
+        "items": [
          {
             "id": "default-task-detail",
             "widgets": 
@@ -225,7 +230,9 @@ There are **two steps** for adding new custom panels.
 
       .. code-block:: javascript
 
-         [
+         {
+           "version": "14.0.0",
+           "items": [
             {
                "id": "task-detail",
                "widgets": [
@@ -247,6 +254,7 @@ There are **two steps** for adding new custom panels.
                ]
             }
          ]
+         }
 
       Result
 
@@ -256,7 +264,9 @@ There are **two steps** for adding new custom panels.
 
       .. code-block:: javascript
 
-            [
+            {
+              "version": "14.0.0",
+              "items": [
                {
                   "id": "task-detail",
                   "widgets": [
@@ -290,6 +300,7 @@ There are **two steps** for adding new custom panels.
                   ]
                }
             ]
+            }
 
       Provide task custom field
 

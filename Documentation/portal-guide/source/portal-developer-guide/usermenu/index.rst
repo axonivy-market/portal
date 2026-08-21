@@ -37,7 +37,9 @@ Below is a comprehensive JSON example showing both external link and Ivy process
 
 .. code-block:: javascript
 
-  [
+  {
+    "version": "14.0.0",
+    "items": [
       {
           "id" : "axon-ivy",
           "title" : "Axon Ivy",
@@ -63,6 +65,7 @@ Below is a comprehensive JSON example showing both external link and Ivy process
           }
       }
   ]
+  }
 
 ..
 
