@@ -939,9 +939,9 @@ body .ui-button.dashboard-tasks__start-button > .ui-button-icon-left {
 body .ui-button.dashboard-tasks__start-button,
 body .ui-button.dashboard__add-widget-button {
   border-radius: 100px;
-  border: 1px solid var(--start-btn-border-color);
-  background: var(--start-btn-bg);
-  color: var(--start-btn-text-color);
+  border: 1px solid var(--accent-btn-border);
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
   display: flex !important;
   align-items: center !important;
 }
@@ -958,15 +958,15 @@ body .dashboard-tasks__start-container {
 
 body .ui-button.dashboard-tasks__start-button.ui-state-disabled,
 body .ui-button.dashboard__add-widget-button.ui-state-disabled {
-  background: var(--start-btn-disabled-bg);
-  border-color: var(--start-btn-disabled-border-color);
-  color: var(--start-btn-disabled-text-color);
+  background: var(--accent-btn-disabled-bg);
+  border-color: var(--accent-btn-disabled-border);
+  color: var(--accent-btn-disabled-text);
 }
 
 body .ui-button.dashboard-tasks__start-button:not(.ui-state-disabled):hover,
 body .ui-button.dashboard__add-widget-button:not(.ui-state-disabled):hover {
-  background: var(--start-btn-hover-bg);
-  color: var(--start-btn-text-color);
+  background: var(--accent-btn-hover-bg);
+  color: var(--accent-btn-text);
 }
 
 body .widget__content .ui-datatable thead th,
@@ -2523,8 +2523,8 @@ a.saved-filter__manage-filter {
 }
 
 .dashboard-widget-filter__main-panel .add-condition-button.ui-button:hover {
-  background: var(--start-btn-hover-bg);
-  color: var(--start-btn-text-color);
+  background: var(--accent-btn-hover-bg);
+  color: var(--accent-btn-text);
 }
 
 .dashboard-widget-filter__main-panel .add-condition-button.ui-button .ui-button-text {

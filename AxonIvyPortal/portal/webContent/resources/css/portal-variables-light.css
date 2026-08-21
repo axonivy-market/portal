@@ -25,13 +25,13 @@
   --button-secondary-text-color: var(--primary-color);
 
   /* Start button (task widget start column) */
-  --start-btn-bg: var(--ivy-portal-blue-pale);
-  --start-btn-border-color: var(--ivy-portal-blue-muted);
-  --start-btn-text-color: var(--ivy-portal-blue-dark);
-  --start-btn-hover-bg: hsla(195, 42%, 80%, 1);
-  --start-btn-disabled-bg: var(--ivy-portal-color-grey-50);
-  --start-btn-disabled-border-color: var(--ivy-portal-color-grey-200);
-  --start-btn-disabled-text-color: var(--ivy-portal-color-grey-500);
+  --accent-btn-bg: var(--ivy-portal-blue-pale);
+  --accent-btn-border: var(--ivy-portal-blue-muted);
+  --accent-btn-text: var(--ivy-portal-blue-dark);
+  --accent-btn-hover-bg: hsla(195, 42%, 80%, 1);
+  --accent-btn-disabled-bg: var(--ivy-portal-color-grey-50);
+  --accent-btn-disabled-border: var(--ivy-portal-color-grey-200);
+  --accent-btn-disabled-text: var(--ivy-portal-color-grey-500);
 
   /* Welcome widget configuration - Change image link accent */
   --welcome-config-accent-color: var(--ivy-portal-blue-dark);
@@ -240,8 +240,8 @@
   --portal-detail-table-row-border-color: hsl(0, 0%, 91%);
   --portal-detail-strip-divider-color: var(--portal-detail-table-row-border-color);
   /* Text */
-  --portal-detail-value-color: var(--text-color, var(--ivy-primary-color-black));
-  --portal-detail-label-color: hsl(0, 0%, 46%);
+  --portal-detail-value-color: var(--ivy-primary-color-black);
+  --portal-detail-label-color: var(--ivy-portal-color-grey-600);
   --portal-detail-eyebrow-color: var(--portal-detail-label-color);
   /* Accent (Primary ramp) */
   --portal-detail-accent-color: var(--primary-color, var(--ivy-portal-blue-dark));
