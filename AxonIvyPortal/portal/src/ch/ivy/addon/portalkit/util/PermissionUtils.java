@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -14,6 +15,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 
 public class PermissionUtils {
   private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
+  private static final String SKIP_PERMISSION_VARIABLE_KEY = "Portal.SkipPermissionCheck";
 
   private PermissionUtils() {}
 
@@ -234,5 +236,10 @@ public class PermissionUtils {
    */
   public static boolean checkNoteReadAllCaseTaskDetailsPermission() {
     return hasPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
+  }
+  
+  public static boolean checkSkipPermission() {
+    return Optional.ofNullable(Ivy.var().get(SKIP_PERMISSION_VARIABLE_KEY))
+        .map(Boolean::parseBoolean).orElseGet(() -> false);
   }
 }

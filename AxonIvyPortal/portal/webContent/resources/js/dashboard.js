@@ -233,6 +233,7 @@ function expandFullscreen(index, widgetId) {
     $(widget.get(0)).closest('.js-dashboard__body').addClass('expand-fullscreen');
     $(widget.get(0)).closest('.js-layout-content').addClass('expand-fullscreen');
   }
+  updateTableBodiesOfWidget(widget);
 }
 
 function getReservedHeightForTableBody(tableBody) {
@@ -243,40 +244,113 @@ function getReservedHeightForTableBody(tableBody) {
   return widgetHeader + scrollableHeader + scrollableFooter;
 }
 
+// Live scroll only loads the next chunk of rows when the scrollable body fires a scroll event.
+// On tall viewports (zoomed out browser, 4K screens, fullscreen mode) the initially loaded rows
+// can be shorter than the body, so the body never overflows, never scrolls and never loads more.
+// These helpers keep loading chunks until the body actually overflows again.
+const LIVE_SCROLL_FILL_DELAY = 100;
+const LIVE_SCROLL_FILL_MAX_ATTEMPTS = 10;
+const liveScrollFillingBodies = new WeakSet();
+
+function hasVerticalOverflow(element) {
+  return element.scrollHeight > element.clientHeight;
+}
+
+function getTableWidgetOf(tableBody) {
+  const widgetName = tableBody.parents('.grid-stack-item').find('.js-table-widget-var').val();
+  return widgetName ? PF(widgetName) : undefined;
+}
+
+// allLoadedLiveScroll is not reliable after a refresh of the widget, it is recomputed from the chunk
+// size instead of the loaded rows, so use the same check as Primefaces does in loadLiveRows
+function hasChunkToLoad(widget) {
+  return widget.scrollOffset + widget.cfg.scrollStep <= widget.cfg.scrollLimit;
+}
+
+function fillLiveScrollUntilOverflow(tableBody, widget) {
+  const body = tableBody.get(0);
+  if (!body || !widget || !widget.cfg || !widget.cfg.liveScroll) {
+    return;
+  }
+  if (liveScrollFillingBodies.has(body)) {
+    return;
+  }
+
+  let attempts = 0;
+  const loadNextChunkIfNeeded = function() {
+    // A body without height is not laid out yet, a later resize restarts the filling
+    if (!body.isConnected || body.clientHeight <= 0 || !widget.shouldLiveScroll || widget.allLoadedLiveScroll
+        || !hasChunkToLoad(widget) || hasVerticalOverflow(body) || attempts >= LIVE_SCROLL_FILL_MAX_ATTEMPTS) {
+      liveScrollFillingBodies.delete(body);
+      return;
+    }
+
+    // Wait for the chunk which is currently on the wire before requesting the next one
+    if (!widget.liveScrollActive && !widget.loadingLiveScroll) {
+      attempts++;
+      widget.loadLiveRows();
+    }
+    setTimeout(loadNextChunkIfNeeded, LIVE_SCROLL_FILL_DELAY);
+  };
+
+  liveScrollFillingBodies.add(body);
+  loadNextChunkIfNeeded();
+}
+
+function updateTableBodyHeight(tableBody) {
+  let parentHeight = tableBody.closest('.grid-stack-item-content.card.dashboard-card').height();
+  if (!parentHeight) {
+    return;
+  }
+
+  let targetHeight = Math.max(0, Math.round(parentHeight - getReservedHeightForTableBody(tableBody)));
+  if (Math.round(tableBody.height()) !== targetHeight) {
+    tableBody.height(targetHeight);
+  }
+  const widget = getTableWidgetOf(tableBody);
+  if (widget) {
+    widget.cfg.scrollHeight = tableBody.parents('.ui-datatable-scrollable').height().toString();
+    // init/refresh reset the live scroll offset to 0 while the already loaded rows stay in the DOM,
+    // so keep the offset to avoid requesting chunks which are displayed already
+    const scrollOffset = widget.scrollOffset;
+    if (tableBody.parents('.js-resizing').length > 0) {
+      widget.init(widget.cfg);
+    }
+    widget.refresh(widget.cfg);
+    if (widget.cfg.liveScroll && scrollOffset > 0) {
+      widget.scrollOffset = scrollOffset;
+    }
+    fillLiveScrollUntilOverflow(tableBody, widget);
+  }
+}
+
+// The resize observer only reacts on the scrollable body itself, a widget which does not change its
+// box when it is expanded or collapsed has to update its tables explicitly
+function updateTableBodiesOfWidget(widget) {
+  requestAnimationFrame(() => {
+    widget.find('.ui-datatable-scrollable-body').each(function() {
+      updateTableBodyHeight($(this));
+    });
+  });
+}
+
 let resizeObserver;
 function resizeTableBody() {
   if (!resizeObserver) {
     resizeObserver = new ResizeObserver(entries => {
       requestAnimationFrame(() => {
-        entries.forEach(entry => {
-          let tableBody = $(entry.target);
-          let parentHeight = tableBody.closest('.grid-stack-item-content.card.dashboard-card').height();
-          if (!parentHeight) {
-            return;
-          }
-
-          let targetHeight = Math.max(0, Math.round(parentHeight - getReservedHeightForTableBody(tableBody)));
-          if (Math.round(tableBody.height()) !== targetHeight) {
-            tableBody.height(targetHeight);
-          }
-          const widgetName = tableBody.parents('.grid-stack-item').find('.js-table-widget-var').val();
-          if (!widgetName) return;
-
-          const widget = PF(widgetName);
-          if (widget) {
-            widget.cfg.scrollHeight = tableBody.parents('.ui-datatable-scrollable').height().toString();
-            if (tableBody.parents('.js-resizing').length > 0) {
-              widget.init(widget.cfg);
-            }
-            widget.refresh(widget.cfg);
-          }
-        });
-
+        entries.forEach(entry => updateTableBodyHeight($(entry.target)));
       });
     });
   }
   document.querySelectorAll('.ui-datatable-scrollable-body').forEach(sb => {
-    resizeObserver.observe(sb)
+    resizeObserver.observe(sb);
+    // The rows can be re-rendered without a resize of the body, e.g. by a filter or a sort,
+    // so check here as well whether the loaded rows still fill the body
+    requestAnimationFrame(() => {
+      let tableBody = $(sb);
+      fillLiveScrollUntilOverflow(tableBody, getTableWidgetOf(tableBody));
+    });
   });
 
 }
@@ -297,6 +371,7 @@ function collapseFullscreen(index, widgetId) {
   // Hide dashboard overlay panel is opening
   hideAllDashboardOverlayPanels();
   resizeTableBody();
+  updateTableBodiesOfWidget(widget);
 }
 
 function loadWidgetFirstTime(loadingClass, widgetClass) {
