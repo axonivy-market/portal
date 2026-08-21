@@ -20,7 +20,7 @@
             <c:set var="selectedDashboardTypeStyleClass" value="#{isPublicDashboard ? 'js-public-dashboard':'js-private-dashboard'}" scope="request"/>
             <div class="ui-g-12 u-no-padding-top u-no-padding-bottom">
               <div class="ui-g-12 dashboard-configuration__header">
-                <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}</h2>
+                <p class="text-style-h2">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}</p>
                 <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Description')}</span>
               </div>
 
