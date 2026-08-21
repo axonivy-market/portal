@@ -71,6 +71,9 @@ ch.ivy.addon.portalkit.ui.jsf:
   CaseDocuments:
     CaseDocumentsPageTitle: Documentos del caso
   Enums:
+    ActivityState:
+      ACTIVE: Activo
+      INACTIVE: Inactivo
     BasicDocumentType:
       CONTRACT: Contrato
       DOCUMENTATION: Documentación
@@ -130,8 +133,18 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPACT_MODE: Modo compacto
       FULL_MODE: Modo completo
       IMAGE_MODE: Modo de imagen
+    ProjectMode:
+      MISSING: Falta
+      OK: OK
+      OUTDATED: Desactualizado
+      TOO_NEW: Demasiado nuevo
+      TOO_OLD: Demasiado antiguo
+      UNKNOWN: Desconocido
     ReleaseState:
+      ARCHIVED: Archivado
+      CREATED: Creado
       DEPRECATED: Depreciado
+      PREPARED: Preparado
       RELEASED: Publicado
     SortDirection:
       ASC: Orden ascendente
@@ -1267,12 +1280,20 @@ ch.ivy.addon.portalkit.ui.jsf:
     startLink: Enlace de inicio
     webLinkExample: Ej. http://www.ejemplo.com
   projectInfo:
+    activityState: Estado de actividad
     applicationProjectVersion: Proyectos de aplicación y versiones
+    doneCases: Casos terminados
     engineVersion: Versión de motor
     header: Información de versión Axon Ivy
     info: Info
+    lastChange: Último cambio
+    mavenVersion: Versión de Maven
+    openCases: Casos abiertos
     portalVersion: Versión de portal
     projectName: Nombre de proyecto
+    projectsOfVersion: Proyectos Versión
+    releaseState: Estado de publicación
+    state: Estado
     version: Versión
   searchResult:
     case: Caso
