@@ -27,6 +27,15 @@
  *
  */
 
+/* Must stay above every .container p override below: the Freya theme's bare
+   `p:last-child { margin-bottom: 0 }` rule ties this on specificity (:where()
+   contributes none), so source order decides — container-specific overrides
+   further down this cascade (e.g. .header-process-name p, .dashboard-configuration__header p)
+   need to win that tie, not this default. */
+p:where(.text-style-h1, .text-style-h2, .text-style-h3, .text-style-h4, .text-style-h5, .text-style-h6):last-child {
+  margin-bottom: 1rem;
+}
+
 .portal-edit-inplace span.ui-inplace-editor {
   display: inline-block;
 }
@@ -3143,7 +3152,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   height: 100%;
 }
 
-.dashboard-configuration__header h2,
+.dashboard-configuration__header p,
 .my-profile-container .setting-header h2 {
   padding: 0;
   margin-bottom: .5rem;
@@ -5456,7 +5465,7 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   align-items: center;
 }
 
-.header-process-name h2 {
+.header-process-name p {
   margin: 0;
 }
 
@@ -5726,7 +5735,36 @@ a.dashboard-action-container label {
 .role-management-title {
   margin: auto;
   font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
 }
+
+/* =================== HEADING-REPLICA TEXT STYLES ======================
+   Used on <p> elements that replaced a former heading tag (h1-h6) so that
+   text keeps the exact size/weight/spacing the heading tag used to have,
+   per the theme's base heading rule:
+   h1,h2,h3,h4,h5,h6 { margin:1.5rem 0 1rem 0; font-weight:600; line-height:1.2; }
+   h1..h6:first-child { margin-top:0; }
+   h1 2.5rem / h2 2rem / h3 1.75rem / h4 1.5rem / h5 1.25rem / h6 1rem
+*/
+.text-style-h1, .text-style-h2, .text-style-h3,
+.text-style-h4, .text-style-h5, .text-style-h6 {
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1.2;
+  color: inherit;
+  margin: 1.5rem 0 1rem 0;
+}
+.text-style-h1:first-child, .text-style-h2:first-child, .text-style-h3:first-child,
+.text-style-h4:first-child, .text-style-h5:first-child, .text-style-h6:first-child {
+  margin-top: 0;
+}
+.text-style-h1 { font-size: 2.5rem; }
+.text-style-h2 { font-size: 2rem; }
+.text-style-h3 { font-size: 1.75rem; }
+.text-style-h4 { font-size: 1.5rem; }
+.text-style-h5 { font-size: 1.25rem; }
+.text-style-h6 { font-size: 1rem; }
 
 .role-details-header {
   font-size: large;

@@ -23,7 +23,7 @@
           <!-- Absences setting card -->
           <div class="portal-section-container card w-full">
             <div class="setting-header w-full mb-2">
-              <h2 id="absence">#{ivy.cms.co(absenceManagementBean.supervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/allAbsences' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myAbsences')}</h2>
+              <p id="absence" class="text-style-h2">#{ivy.cms.co(absenceManagementBean.supervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/allAbsences' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myAbsences')}</p>
             </div>
             <p:tabView id="absences-tabview" dynamic="true" cache="false" styleClass="w-full" >
               <p:tab id="request-absences-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}">
@@ -215,8 +215,8 @@
                   <div id="deputy-management" class="w-full" jsf:rendered="#{absenceManagementBean.canReadSubstitute(absenceManagementBean.selectedAbsenceUser)}">
                     <div id="username-deputy" class="w-full your-deputy">
                       <div class="setting-header w-full">
-                        <h3 class="mb-0">#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/definedDeputies'
-                          : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myDeputies')}</h3>
+                        <p class="mb-0 text-style-h3">#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/definedDeputies'
+                          : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myDeputies')}</p>
                       </div>
                       <div class="w-full pl-0">
                         <p:dataTable cellNavigation="false" id="substitute-table"
@@ -281,8 +281,8 @@
                   <!-- Deputy-For setting-->
                   <div id="deputy-for-container" class="w-full your-deputy-for" jsf:rendered="#{absenceManagementBean.substitutionCapable}">
                     <div class="setting-header w-full">
-                      <h3 class="mb-0">#{ivy.cms.co(absenceManagementBean.supervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedDeputyFor'
-                        : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}</h3>
+                      <p class="mb-0 text-style-h3">#{ivy.cms.co(absenceManagementBean.supervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedDeputyFor'
+                        : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}</p>
                     </div>
                     <div class="w-full pl-0">
                       <p:dataTable cellNavigation="false" id="substitution-table"

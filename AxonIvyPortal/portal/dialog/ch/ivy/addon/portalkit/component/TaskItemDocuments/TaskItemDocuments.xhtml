@@ -135,9 +135,9 @@
           <div style="display: none;" id="error-message" />
         </div>
        <div class="w-full">
-        <h6 class="import-header-title">
+        <p class="import-header-title text-style-h6">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/supportFileTypes',[masterDataBean.allowedUploadFileType])}" />
-        </h6>
+        </p>
         </div>
         <div class="w-full">
           <p:fileUpload id="document-upload-panel" listener="#{logic.uploadDocument}" mode="advanced" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" style="display: none;" dragDrop="true" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true" multiple="true" update="#{p:resolveFirstComponentWithId('task-document-form', view).clientId} #{cc.attrs.componentToUpdate} @form" oncomplete="handleTaskDetailsTables()" onvalidationfailure="handleUploadFileFail('documentUpload');" dropZone="document-upload-file-panel" widgetVar="documentUpload">
