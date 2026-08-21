@@ -871,7 +871,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 240px;
 }
 
-.case-detail-body .case-details-related-task-table .related-task-responsible-column {
+.case-detail-body .case-details-related-task-table .related-task-responsible-column,
+.case-detail-body .case-details-related-task-table .related-task-worker-column {
   width: 150px;
 }
 
@@ -880,6 +881,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-detail-body .case-details-related-task-table .related-task-id-column,
+.case-detail-body .case-details-related-task-table .related-task-business-case-id-column,
+.case-detail-body .case-details-related-task-table .related-task-technical-case-id-column,
 .case-detail-body .case-details-related-task-table .related-task-created-column,
 .case-detail-body .case-details-related-task-table .related-task-expiry-column {
   width: 130px;
@@ -958,7 +961,10 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   .case-detail-body .case-details-related-task-table .priority-column,
   .case-detail-body .case-details-related-task-table .related-task-description-column,
   .case-detail-body .case-details-related-task-table .related-task-id-column,
+  .case-detail-body .case-details-related-task-table .related-task-business-case-id-column,
+  .case-detail-body .case-details-related-task-table .related-task-technical-case-id-column,
   .case-detail-body .case-details-related-task-table .related-task-responsible-column,
+  .case-detail-body .case-details-related-task-table .related-task-worker-column,
   .case-detail-body .case-details-related-task-table .related-task-created-column,
   .case-detail-body .case-details-related-task-table .related-task-expiry-column,
   .case-detail-body .case-details-related-task-table .related-task-complete-on-column {
