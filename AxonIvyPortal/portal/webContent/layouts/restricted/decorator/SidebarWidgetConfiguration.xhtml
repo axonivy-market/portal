@@ -17,7 +17,7 @@
 <h:panelGroup id="widget-preview" styleClass="card table-configuration u-hidden-sm-down" layout="block">
   <div class="ui-g">
     <div class="ui-g-12 widget-preview__header">
-      <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/tableConfiguration')}</h4>
+      <p class="text-style-h4">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/tableConfiguration')}</p>
     </div>
     
     <h:panelGroup id="widget-title-group"
@@ -67,7 +67,7 @@
     <p:overlayPanel id="widget-configuration-panel" for="widget-configuration-button" 
       styleClass="widget-configuration-overlaypanel" widgetVar="widgetConfigurationPanel"
       appendTo="@(body)" my="right top" at="right bottom">
-      <h4 class="widget-configuration-section-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/displaySettings')}</h4>
+      <p class="widget-configuration-section-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/displaySettings')}</p>
       <h:panelGroup id="quick-search-group" layout="block"
         rendered="#{managedBean.canEnableQuickSearch()}"
         styleClass="widget-configuration-group-item ui-fluid flex">
@@ -152,7 +152,7 @@
       
       <!-- Case Query Type Selector (Case Widget only) -->
       <h:panelGroup rendered="#{widget.type.name() == 'CASE'}">
-        <h4 class="widget-configuration-section-header separator-top">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dataSettings')}</h4>
+        <p class="widget-configuration-section-header separator-top">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dataSettings')}</p>
       </h:panelGroup>
       <h:panelGroup id="case-query-type-group"
         rendered="#{widget.type.name() == 'CASE'}"
@@ -183,7 +183,7 @@
   <h:panelGroup id="widget-filter-content" layout="block" styleClass="filter-panel js-filter-panel" >
       <div class="ui-g ui-g-12 MarTop20 filter-panel-header">
         <div class="ui-g-4 ui-md-5">
-          <h4 class="filter-panel-title">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters")}</h4>
+          <p class="filter-panel-title text-style-h4">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters")}</p>
         </div>
         <div class="ui-g-8 ui-md-7">
           <p:remoteCommand id="updateComponentOnPreviewCmd" name="updateComponentOnPreviewCmd"

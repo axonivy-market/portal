@@ -174,19 +174,19 @@
               </c:forEach>
             </c:if>
             <h:panelGroup rendered="#{managedBean.selectedDashboard == null and managedBean.isEditMode}">
-              <h1 class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noDashboard')}</h1>
+              <p class="ui-g-12 text-style-h1" role="status">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noDashboard')}</p>
             </h:panelGroup>
             <h:panelGroup rendered="#{managedBean.selectedDashboard == null and not managedBean.isEditMode}">
-              <h1 class="ui-g-12">
+              <p class="ui-g-12 text-style-h1" role="status">
                 <h:outputText rendered="#{managedBean.noDashboardAvailable}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noDashboardAvailable')}" />
                 <h:outputText rendered="#{not managedBean.noDashboardAvailable}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noPermission')}" />
-              </h1>
+              </p>
             </h:panelGroup>
             <h:panelGroup
               rendered="#{managedBean.selectedDashboard != null and empty managedBean.selectedDashboard.widgets}">
-              <h1 class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noWidget')}</h1>
+              <p class="ui-g-12 text-style-h1" role="status">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noWidget')}</p>
             </h:panelGroup>
             <ui:insert name="dashboardContent" />
           </h:panelGroup>

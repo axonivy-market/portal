@@ -16,7 +16,7 @@
 
     <h:panelGroup layout="block" rendered="#{isPublicDashboard}"
       styleClass="ui-g-12 u-no-padding-left">
-      <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SidebarTopLevelDashboards')}</h5>
+      <p class="text-style-h5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SidebarTopLevelDashboards')}</p>
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SidebarTopLevelDashboardsDescription')}</span>
       <p:dataTable cellNavigation="false" id="top-menu-dashboard-table" lazy="false"
         value="#{dashboardModificationBean.topMenuDashboards}" var="topDashboard"
@@ -86,7 +86,7 @@
 
     <h:panelGroup layout="block" rendered="#{isPublicDashboard}"
       styleClass="ui-g-12 u-no-padding-left u-padding-top-10">
-      <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SubMenuDashboards')}</h5>
+      <p class="text-style-h5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SubMenuDashboards')}</p>
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SubMenuDashboardsDescription')}</span>
     </h:panelGroup>
 
@@ -167,7 +167,7 @@
 
     <h:panelGroup layout="block" rendered="#{isPublicDashboard}"
       styleClass="u-padding-top-10">
-      <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Hidden')}</h5>
+      <p class="text-style-h5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Hidden')}</p>
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/HiddenDashboardsDescription')}</span>
       <p:dataTable cellNavigation="false" id="hidden-dashboard-table" lazy="false"
         value="#{dashboardModificationBean.hiddenDashboards}" var="hiddenDashboard"
