@@ -40,18 +40,18 @@
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
         </p:commandLink>
         <p:commandButton id="share-page-button-mobile" rendered="#{taskDetailsBean.isShowShareButton}"
-		  onclick="PF('share-task-details-dialog').show()" type="button"
-	      icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
+          onclick="PF('share-task-details-dialog').show()" type="button"
+          icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
           ariaLabel="#{ivy.cms.co('/Labels/Share')}"
-	      title="#{ivy.cms.co('/Labels/Share')}"
-	      styleClass="ui-sm-hidden-op portal-icon-btn-round portal-icon-btn-lg portal-detail-toolbar-share-mobile"/>
+          title="#{ivy.cms.co('/Labels/Share')}"
+          styleClass="ui-sm-hidden-op portal-icon-btn-round portal-icon-btn-lg portal-detail-toolbar-share-mobile"/>
       </h:form>
     </h:panelGroup>
     <h:panelGroup id="task-details-actions"
       rendered="#{not cc.attrs.readOnly and cc.attrs.showItemDetailsHeader}"
       styleClass="portal-detail-toolbar-actions ui-sm-hidden">
       <p:commandButton id="share-page-button" rendered="#{taskDetailsBean.isShowShareButton}"
-     	onclick="PF('share-task-details-dialog').show()" type="button"
+     	  onclick="PF('share-task-details-dialog').show()" type="button"
         icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
         ariaLabel="#{ivy.cms.co('/Labels/Share')}"
         title="#{ivy.cms.co('/Labels/Share')}" styleClass="portal-icon-btn-round portal-icon-btn-lg"/>
@@ -60,7 +60,7 @@
         value="#{ivy.cms.co('/Labels/EditLayout')}" actionListener="#{taskDetailsBean.switchToEditMode()}"
         icon="#{visibilityBean.generateButtonIcon('ti ti-pencil')}" update="task-item-body task-details-actions"
         oncomplete="loadTaskDetailsGrid(); disableAllIFrameWhenEditLayout(); PortalLayout.hideHorizontalScrollOnLayoutContent();"
-        styleClass="portal-pill-btn portal-pill-btn-lg" />
+        styleClass="portal-pill-btn portal-pill-btn-lg switch-to-edit-mode-btn" />
       <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         rendered="#{taskDetailsBean.configuration.changed and not taskDetailsBean.readOnlyMode}" ajax="false" type="button"

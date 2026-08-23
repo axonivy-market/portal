@@ -1589,7 +1589,7 @@ body .ui-button.ui-widget.filter-dialog__save-button {
 }
 
 body .ui-button.ui-widget.filter-dialog__save-button:hover {
-  background: var(--widget-button-hover-background-color);
+  background: var(--secondary-btn-hover-bg);
 }
 
 body .ui-button.ui-widget.filter-dialog__save-button .ui-button-text {
@@ -2862,7 +2862,7 @@ body .actions-menu-panel {
 }
 
 .actions-menu-panel .actions-menu-item-bordered {
-  border-bottom: 1px solid var(--widget-button-border-color) !important;
+  border-bottom: 1px solid var(--secondary-btn-border) !important;
 }
 
 .actions-menu-panel .actions-menu-item-bordered:last-child {

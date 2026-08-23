@@ -32,14 +32,15 @@
             update="case-details-related-task-table" oncomplete="correctNavigatorWhenFilteringOpenTasks()" />
         </p:selectBooleanCheckbox>
         <h:form id="task-export-to-excel-form" styleClass="related-task-export-to-excel ui-sm-hidden">
-          <p:commandLink ajax="false" id="related-task-export-to-excel"
-            styleClass="portal-icon-btn-round"
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
-            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
-            onclick="PrimeFaces.monitorDownload(startRelatedTaskExportToExcel, stopRelatedTaskExportToExcel);">
-            <i class="ti ti-file-type-xls" />
-            <p:fileDownload value="#{logic.getExportedFile(caseWidgetBean.getRelatedTaskColumns(data.dataModel))}" />
-          </p:commandLink>
+          <p:commandButton id="related-task-export-to-excel"
+              ajax="false"
+              styleClass="portal-icon-btn-round"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
+              icon="ti ti-file-type-xls"
+              onclick="PrimeFaces.monitorDownload(startRelatedTaskExportToExcel, stopRelatedTaskExportToExcel);">
+              <p:fileDownload value="#{logic.getExportedFile(caseWidgetBean.getRelatedTaskColumns(data.dataModel))}" />
+          </p:commandButton>
         </h:form>
 
         <div id="related-task-column-config" class="related-task-column-config">

@@ -400,16 +400,16 @@
   --image-process-header-background-color: hsla(0, 0%, 96%, 1);
   --image-process-header-background-color-hover: hsla(0, 0%, 86%, 1);
   --image-process-header-color: hsla(0, 0%, 49%, 1);
-  --process-action-button-color: var(--widget-button-background-color);
+  --process-action-button-color: var(--secondary-btn-bg);
   /* Process information page */
   --process-info-step-icon-font-color: var(--primary-color);
   /* Widget header */
   --widget-filter-noti-background-color: var(--ivy-tertinary-color-red-medium);
   --widget-filter-noti-color: var(--ivy-primary-color-white);
   --widget-header-icon: var(--ivy-primary-color-white);
-  --widget-button-border-color: var(--ivy-portal-color-grey-700);
-  --widget-button-background-color: var(--ivy-portal-color-grey-850);
-  --widget-button-hover-background-color: hsla(0, 0%, 38%, 1);
+  --secondary-btn-border: var(--ivy-portal-color-grey-700);
+  --secondary-btn-bg: var(--ivy-portal-color-grey-850);
+  --secondary-btn-hover-bg: hsla(0, 0%, 38%, 1);
   --widget-button-danger-background-color: hsla(0, 84%, 60%, 0.25);
   --widget-button-danger-background-color-hover: var(--ivy-portal-color-red-300);
   --widget-button-danger-border-color: hsla(0, 84%, 60%, 0.25);

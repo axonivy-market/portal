@@ -54,7 +54,7 @@
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{caseDetailsBean.readOnlyMode}"
         ariaLabel="#{ivy.cms.co('/Labels/EditLayout')}"
         value="#{ivy.cms.co('/Labels/EditLayout')}" actionListener="#{caseDetailsBean.switchToEditMode()}"
-        icon="#{visibilityBean.generateButtonIcon('ti ti-pencil')}" styleClass="portal-pill-btn portal-pill-btn-lg"
+        icon="#{visibilityBean.generateButtonIcon('ti ti-pencil')}" styleClass="portal-pill-btn portal-pill-btn-lg switch-to-edit-mode-btn"
         update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid();PortalLayout.hideHorizontalScrollOnLayoutContent()" />
       <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
