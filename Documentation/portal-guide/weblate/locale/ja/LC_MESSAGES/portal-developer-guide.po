@@ -8,18 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-29 10:12+0000\n"
+"POT-Creation-Date: 2026-08-24 09:34+0000\n"
 "PO-Revision-Date: 2026-06-30 03:00+0000\n"
 "Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
-"portal-12/doc/portal-developer-guide/ja/>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
+"portal/portal-12/doc/portal-developer-guide/ja/>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
-"X-Generator: Weblate 2026.7.dev0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
 msgid "Architecture"
@@ -3725,9 +3724,8 @@ msgid ""
 "project specific UIs, then refer to this documentation :dev-"
 "url:`/doc/12.0/designer-guide/how-to/overrides.html`"
 msgstr ""
-"IFrame を使用しており、プロジェクト固有の UI の色をカスタマイズしたい場合は、"
-"こちらのドキュメントを参照してください:dev-url:`/doc/12.0/designer-guide/how-"
-"to/overrides.html`"
+"IFrame を使用しており、プロジェクト固有の UI の色をカスタマイズしたい場合は、こちらのドキュメントを参照してください:dev-"
+"url:`/doc/12.0/designer-guide/how-to/overrides.html`"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:122
 msgid ""
@@ -4485,10 +4483,9 @@ msgid ""
 "api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` to check for "
 "available task business states."
 msgstr ""
-"フィルタタイプ ``` `states`` については、すべてのタスクビジネス状態をサポート"
-"しています。利用可能なタスクビジネス状態については、:dev-url:`Task Business "
-"States </doc/12.0/public-api/ch/ivyteam/ivy/workflow/task/"
-"TaskBusinessState.html>` を参照してください。"
+"フィルタタイプ ``` `states`` については、すべてのタスクビジネス状態をサポートしています。利用可能なタスクビジネス状態については"
+"、:dev-url:`Task Business States </doc/12.0/public-"
+"api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:140
 msgid "Show Custom Panels (Widgets)"
@@ -7412,9 +7409,7 @@ msgstr "``\"BY_ALPHABETICALLY\"``"
 msgid ""
 "Sort order: ``\"BY_ALPHABETICALLY\"`` or ``\"BY_INDEX\"`` (requires "
 "custom field)"
-msgstr ""
-"並べ替え順序： ``\"BY_ALPHABETICALLY\"`` または ``\"BY_INDEX\"`` （"
-"カスタムフィールドが必要です）"
+msgstr "並べ替え順序： ``\"BY_ALPHABETICALLY\"`` または ``\"BY_INDEX\"`` （カスタムフィールドが必要です）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:196
 msgid "Enable quick search textbox for process names"
@@ -7818,17 +7813,13 @@ msgstr "``actions`` - アクションボタン（詳細、リセット、委任�
 msgid ""
 "``businessCaseId`` - Business Case ID (hidden by default; sortable; quick"
 " search supported)"
-msgstr ""
-"``businessCaseId`` - ビジネスケースID（デフォルトでは非表示、ソート可能、"
-"クイック検索対応）"
+msgstr "``businessCaseId`` - ビジネスケースID（デフォルトでは非表示、ソート可能、クイック検索対応）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:190
 msgid ""
 "``technicalCaseId`` - Technical Case ID (hidden by default; sortable; "
 "quick search supported)"
-msgstr ""
-"``technicalCaseId`` - 技術ケースID（デフォルトでは非表示、ソート可能、"
-"クイック検索対応）"
+msgstr "``technicalCaseId`` - 技術ケースID（デフォルトでは非表示、ソート可能、クイック検索対応）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:192
 msgid "``visible`` (string, default: ``\"true\"``)"
@@ -7932,10 +7923,9 @@ msgid ""
 "available filter operators are ``in``, ``not_in`` and ``current_user``. "
 "The ``current_user`` operator does not require value field."
 msgstr ""
-"これらの列では、タスクの担当ユーザー名または作業ユーザー名のフィルタ条件とし"
-"て、ロール名またはユーザー名のリストのみを受け付けます。使用可能なフィルタ演"
-"算子は ``in``、 ``not_in``、 ``current_user`` です。 ``current_user`` 演算子では、"
-"valueフィールドは不要です。"
+"これらの列では、タスクの担当ユーザー名または作業ユーザー名のフィルタ条件として、ロール名またはユーザー名のリストのみを受け付けます。使用可能なフィルタ演算子は"
+" ``in``、 ``not_in``、 ``current_user`` です。 ``current_user`` "
+"演算子では、valueフィールドは不要です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:388
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:417
@@ -7979,9 +7969,8 @@ msgid ""
 "api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` for available "
 "task business states."
 msgstr ""
-"利用可能なタスクのビジネス状態については、:dev-url:`Task Business States </"
-"doc/12.0/public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` を"
-"参照してください。"
+"利用可能なタスクのビジネス状態については、:dev-url:`Task Business States </doc/12.0/public-"
+"api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:479
 msgid ""
@@ -8016,19 +8005,17 @@ msgid ""
 "This is consistent with how the task ``id`` filter works. The only "
 "available filter operator is ``contains``."
 msgstr ""
-"これらの列には、それぞれタスクに関連付けられたケースのビジネスケースIDと"
-"テクニカルケースIDが表示されます。``contains`` 演算子は、数値IDの文字列表現に"
-"対して部分文字列の一致チェックを行います。これは、タスクの``id`` フィルターの"
-"動作と一貫しています。利用可能なフィルター演算子は、``contains`` のみです。"
+"これらの列には、それぞれタスクに関連付けられたケースのビジネスケースIDとテクニカルケースIDが表示されます。``contains`` "
+"演算子は、数値IDの文字列表現に対して部分文字列の一致チェックを行います。これは、タスクの``id`` "
+"フィルターの動作と一貫しています。利用可能なフィルター演算子は、``contains`` のみです。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:585
 msgid ""
 "These columns support sorting and quick search (quick search is disabled "
 "by default; set ``quickSearch: \"true\"`` on the column to enable it)."
 msgstr ""
-"これらの列は、並べ替えとクイック検索に対応しています（クイック検索は"
-"デフォルトで無効になっています。有効にするには、列に対して ``` `quickSearch: "
-"\"true\"`` を設定してください）。"
+"これらの列は、並べ替えとクイック検索に対応しています（クイック検索はデフォルトで無効になっています。有効にするには、列に対して ``` "
+"`quickSearch: \"true\"`` を設定してください）。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:587
 msgid "Custom Field Column :"
@@ -8534,8 +8521,8 @@ msgid ""
 "For comprehensive deployment information, refer to the :dev-url:`Axon Ivy"
 " deployment guidelines </doc/12.0/engine-guide/deployment/index.html>`."
 msgstr ""
-"包括的なデプロイ情報については、:dev-url:`のAxon Ivyデプロイガイドライン </"
-"doc/12.0/engine-guide/deployment/index.html>` を参照してください。"
+"包括的なデプロイ情報については、:dev-url:`のAxon Ivyデプロイガイドライン </doc/12.0/engine-"
+"guide/deployment/index.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:16
 msgid "Deployment Architecture"
@@ -8635,11 +8622,11 @@ msgid ""
 "url:`configuration </doc/12.0/engine-guide/deployment/prepare"
 "/application-configuration/index.html>` with your projects."
 msgstr ""
-"本番環境へのデプロイには .zip ファイルを使用してください。これには、:dev-"
-"url:`のブランディング </doc/12.0/designer-guide/user-interface/branding/"
-"branding-engine.html>` 、変数、データベース、および REST クライアント:dev-"
-"url:`の設定 </doc/12.0/engine-guide/deployment/prepare/application-"
-"configuration/index.html>` がプロジェクトにバンドルされています。"
+"本番環境へのデプロイには .zip ファイルを使用してください。これには、:dev-url:`のブランディング </doc/12.0"
+"/designer-guide/user-interface/branding/branding-engine.html>` "
+"、変数、データベース、および REST クライアント:dev-url:`の設定 </doc/12.0/engine-"
+"guide/deployment/prepare/application-configuration/index.html>` "
+"がプロジェクトにバンドルされています。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:74
 msgid "Prepare Deployment Packages"
@@ -8847,10 +8834,9 @@ msgid ""
 "or the :dev-url:`Engine Cockpit UI </doc/12.0/engine-guide/reference"
 "/engine-cockpit>`."
 msgstr ""
-"設定は、:dev-url:`のデプロイメントファイル（ </doc/12.0/engine-guide/"
-"deployment/prepare/application-configuration/index.html>` ）または:dev-"
-"url:`Engine Cockpit UI（ </doc/12.0/engine-guide/reference/engine-cockpit>` "
-"）を通じて行うことができます。"
+"設定は、:dev-url:`のデプロイメントファイル（ </doc/12.0/engine-guide/deployment/prepare"
+"/application-configuration/index.html>` ）または:dev-url:`Engine Cockpit UI（ "
+"</doc/12.0/engine-guide/reference/engine-cockpit>` ）を通じて行うことができます。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:188
 #: ../../source/portal-developer-guide/installation/index.rst:95
@@ -16141,14 +16127,16 @@ msgstr "アプリケーションのビューディレクトリからの静的ペ
 
 #: ../../source/portal-developer-guide/static-page/index.rst:126
 #: ../../source/portal-developer-guide/static-page/index.rst:256
-#, python-brace-format
-msgid "Format: ``{pmv-name}/faces/view/{path-to-file}.xhtml``"
+#, fuzzy, python-brace-format
+msgid ""
+"Format: ``<application>/faces/view/<process model>/{path-to-file in "
+"webContent/view}.xhtml``"
 msgstr "フォーマット:``{pmv-name}/faces/view/{path-to-file}.xhtml``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:127
 #: ../../source/portal-developer-guide/static-page/index.rst:257
-#: ../../source/portal-developer-guide/static-page/index.rst:270
-msgid "Example: ``portal-components-examples/faces/view/help/user-guide.xhtml``"
+#, fuzzy
+msgid "Example: ``Portal/faces/view/portal-components-examples/static.xhtml``"
 msgstr "例:``portal-components-examples/faces/view/help/user-guide.xhtml``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:129
@@ -16338,6 +16326,13 @@ msgstr "**変換プロセス：**"
 msgid "**Input Format**: Relative path from application view directory"
 msgstr "**入力形式**: アプリケーションビューディレクトリからの相対パス"
 
+#: ../../source/portal-developer-guide/static-page/index.rst:270
+#, fuzzy
+msgid ""
+"Example: ``Portal/faces/view/portal-components-examples/help/user-"
+"guide.xhtml``"
+msgstr "例:``portal-components-examples/faces/view/help/user-guide.xhtml``"
+
 #: ../../source/portal-developer-guide/static-page/index.rst:272
 msgid "**Conversion**: Portal uses ``StaticPageUtils.buildUrl()`` method"
 msgstr "**変換方法：**: Portal は ``StaticPageUtils.buildUrl()`` の方法を使用します。"
@@ -16362,9 +16357,10 @@ msgid ""
 msgstr "テンプレート:``{baseUrl}?relativeUrl=/{applicationName}/faces/view/{PM}/{staticPage}``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:280
+#, fuzzy
 msgid ""
-"Example: ``https://server/ivy/pro/portal/?relativeUrl=/portal-components-"
-"examples/faces/view/help/user-guide.xhtml``"
+"Example: ``https://server/ivy/pro/portal/?relativeUrl=/Portal/faces/view"
+"/portal-components-examples/help/user-guide.xhtml``"
 msgstr ""
 "例:``https://server/ivy/pro/portal/?relativeUrl=/portal-components-"
 "examples/faces/view/help/user-guide.xhtml``"
@@ -20231,3 +20227,4 @@ msgstr "Portal.UserMenu変数の変更は即時反映されます。更新内容
 #~ "関連タスクを表示するには: :bdg-ref-"
 #~ "warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` または"
 #~ " :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`"
+
