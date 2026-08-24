@@ -7,9 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-
 import org.primefaces.model.SortMeta;
 
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
@@ -33,6 +30,8 @@ import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @ViewScoped
 @Named
@@ -130,7 +129,7 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   @Override
   protected List<TaskDetails> convertToLatestVersion(String configurationJson)
       throws JsonMappingException, JsonProcessingException {
-    JsonTaskDetailsMigrator migrator = new JsonTaskDetailsMigrator(mapper.readTree(configurationJson));
+    JsonTaskDetailsMigrator migrator = new JsonTaskDetailsMigrator(BusinessEntityConverter.getObjectMapper().readTree(configurationJson));
     return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), TaskDetails.class);
   }
 

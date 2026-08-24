@@ -21,7 +21,7 @@ import org.primefaces.model.StreamedContent;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
-import com.axonivy.portal.dto.JsonListWrapper;
+import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.menu.MenuOrder;
 import com.axonivy.portal.util.ImageUploadUtils;
