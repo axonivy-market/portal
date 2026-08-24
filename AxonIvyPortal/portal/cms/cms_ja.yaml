@@ -1002,6 +1002,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadZipFileExplanation: エクスポートするアイテム数が Excel の行数の制限を超える場合、データは複数の Excel ファイルに分割され、ZIP ファイルに圧縮されてダウンロードされます。
     editWidget: ウィジェットの編集
     existingField: '{0} フィールドは既に存在します'
+    exitEditMode: 編集モードを終了
     expiryFrom: 有効期限：開始
     expiryTo: 有効期限：終了
     export:

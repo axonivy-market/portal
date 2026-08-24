@@ -56,7 +56,7 @@
       <p:commandButton id="edit-widget-#{index}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
         icon="ti ti-pencil"
-        styleClass="rounded-button ui-button-outlined u-hidden-sm-down u-mar-right-5 widget-icon-button"
+        styleClass="rounded-button ui-button-outlined ui-button-widget u-hidden-sm-down u-mar-right-5 widget-icon-button"
         oncomplete="PF('new-widget-configuration-dialog').show()"
         global="false"
         actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
@@ -68,7 +68,7 @@
         hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}"/>
 
       <p:commandButton id="clone-widget-#{index}" type="button" icon="ti ti-copy"
-        styleClass="rounded-button ui-button-outlined u-mar-right-5 widget-icon-button"
+        styleClass="rounded-button ui-button-outlined ui-button-widget u-mar-right-5 widget-icon-button"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CloneWidget')}"
         rendered="#{!isReadOnlyMode}">
         <p:ajax event="click" listener="#{cloneWidgetBean.setCloneWidget(widget)}"
@@ -107,7 +107,7 @@
 
         <div class="ui-g-12 card-widget-info-overlay-panel__footer u-padding-0">
           <div class="ui-g-12">
-            <p:commandLink styleClass="Fright info-overlay-panel__close-link"
+            <p:commandLink styleClass="Fright info-overlay-panel__close-link portal-link"
               onclick="PF('info-overlay-panel-#{index}').hide();"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')])}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"

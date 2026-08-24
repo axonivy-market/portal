@@ -4881,12 +4881,12 @@ border-top: 0.14rem dashed;
 .process-action-group .ui-button.process-action-button {
   width: 2.711rem; /* 38px */
   height: 2.357rem !important; /* 33px */
-  border-color: var(--widget-button-border-color) !important;
+  border-color: var(--secondary-btn-border) !important;
   color: var(--widget-header-icon);
 }
 
 .process-action-group .ui-button.process-action-button:hover {
-  background-color: var(--widget-button-hover-background-color) !important;
+  background-color: var(--secondary-btn-hover-bg) !important;
   color: var(--widget-header-icon);
 }
 
@@ -4936,9 +4936,9 @@ border-top: 0.14rem dashed;
 
 body .ui-button.process-start-action {
   border-radius: 100px;
-  border: 1px solid var(--start-btn-border-color);
-  background: var(--start-btn-bg);
-  color: var(--start-btn-text-color);
+  border: 1px solid var(--accent-btn-border);
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
   height: 2.143rem !important;
   min-width: fit-content;
   display: flex;
@@ -4946,14 +4946,14 @@ body .ui-button.process-start-action {
 }
 
 body .ui-button.process-start-action.ui-state-disabled {
-  background: var(--start-btn-disabled-bg);
-  border-color: var(--start-btn-disabled-border-color);
-  color: var(--start-btn-disabled-text-color);
+  background: var(--accent-btn-disabled-bg);
+  border-color: var(--accent-btn-disabled-border);
+  color: var(--accent-btn-disabled-text);
 }
 
 body .ui-button.process-start-action:not(.ui-state-disabled):hover {
-  background: var(--start-btn-hover-bg);
-  color: var(--start-btn-text-color);
+  background: var(--accent-btn-hover-bg);
+  color: var(--accent-btn-text);
 }
 
 .process-group.grid-process-container .process-grid__header {
@@ -5918,12 +5918,21 @@ body .ui-link.ui-sidestep-action, .action-container > .ui-sidestep-action {
 }
 
 body .ui-button.ui-button-outlined.ui-button-widget, .ui-button.ui-widget.ui-button-widget {
-  background-color: var(--widget-button-background-color);
-  border-color: var(--widget-button-border-color);
+  background-color: var(--secondary-btn-bg);
+  border-color: var(--secondary-btn-border);
 }
 
 body .ui-button.ui-button-outlined.ui-button-widget:hover, .ui-button.ui-widget.ui-button-widget:hover {
-  background-color: var(--widget-button-hover-background-color);
+  background-color: var(--secondary-btn-hover-bg);
+}
+
+body .ui-button.ui-button-danger.widget-icon-button {
+  background-color: var(--widget-button-danger-background-color);
+  border-color: var(--widget-button-danger-border-color);
+}
+
+body .ui-button.ui-button-danger.widget-icon-button:hover {
+  background-color: var(--widget-button-danger-background-color-hover);
 }
 
 body .ui-button.ui-widget.ui-button-widget {
@@ -5944,6 +5953,23 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-butto
   color: var(--widget-header-icon);
 }
 /* =================== PORTAL BUTTON END ====================== */
+
+/* =================== PORTAL CHECKBOX ====================== */
+body .ui-chkbox .ui-chkbox-box.ui-state-active {
+  background-color: var(--checkbox-checked-background-color);
+  border-color: var(--checkbox-border-color);
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
+  color: var(--checkbox-checked-icon-color);
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active:hover,
+body .ui-chkbox .ui-chkbox-box.ui-state-active.ui-state-hover {
+  background-color: var(--checkbox-checked-hover-background-color);
+  border-color: var(--checkbox-checked-hover-background-color);
+}
+/* =================== PORTAL CHECKBOX END ====================== */
 
 /* AI logo */
 .layout-topbar-light .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li > a:hover img.topbar-item-image {

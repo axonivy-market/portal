@@ -195,7 +195,7 @@
           </h:panelGroup>
           <f:facet name="footer">
             <h:form id="chat-group-join-form" rendered="#{chatAssigneeBean.doesGroupChatExist()}">
-              <p:commandLink id="chat-group-cancel-button"
+              <p:commandLink styleClass="portal-link" id="chat-group-cancel-button"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 onclick="PF('chat-assignee-dialog').hide()" />
@@ -310,7 +310,7 @@
                 update="side-step-process-form"
                 form="side-step-process-form" />
               <div class="w-full flex justify-content-center mt-2">
-                <p:commandLink id="side-step-process-cancel-button"
+                <p:commandLink styleClass="portal-link" id="side-step-process-cancel-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   onclick="PF('side-step-process-dialog').hide();resetDataSideStep();" >
@@ -335,7 +335,7 @@
           <ui:define name="dialogFooter">
             <h:form prependId="false">
               <h:panelGroup styleClass="ui-dialog-buttonpane">
-                <p:commandLink id="side-step-start-cancel" onclick="PF('sidestep-task-reset-confirmation-dialog').hide()"
+                <p:commandLink styleClass="portal-link" id="side-step-start-cancel" onclick="PF('sidestep-task-reset-confirmation-dialog').hide()"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
                 <p:spacer width="15px" />
