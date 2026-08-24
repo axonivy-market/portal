@@ -1452,7 +1452,7 @@ body.in-dialog .ui-widget-overlay {
 .login-footer p.text-style-h6 {
   line-height: 17px;
   margin: 0;
-  color: rgba(41, 50, 65, 0.5);
+  color: var(--login-footer-copyright-color);
   font-weight: 500;
 }
 

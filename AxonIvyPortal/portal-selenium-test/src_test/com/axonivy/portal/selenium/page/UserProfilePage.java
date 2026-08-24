@@ -78,7 +78,7 @@ public class UserProfilePage extends TemplatePage {
   }
 
   public String getLanguageSettingTitle() {
-    return findElementByCssSelector("h5[id$='language-setting-title']").getText();
+    return findElementByCssSelector("[id$='language-setting-title']").getText();
   }
 
   public void changeNewDashboardPageToCase() {

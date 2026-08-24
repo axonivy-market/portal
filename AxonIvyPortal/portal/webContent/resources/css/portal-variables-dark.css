@@ -363,4 +363,7 @@
   
     /* Leave task warning message*/
   --warning-before-leave-task: var(--ivy-primary-color-grey-medium);
+
+  /* Login footer copyright text */
+  --login-footer-copyright-color: #BFC2C6;
 }
