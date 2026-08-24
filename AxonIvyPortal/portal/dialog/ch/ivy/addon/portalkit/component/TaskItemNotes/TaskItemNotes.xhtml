@@ -28,9 +28,12 @@
                        title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
                        icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
                        oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()" actionListener="#{data.setTask(task)}"/>
-        <p:button id="show-more-note-link" styleClass="portal-detail-show-more-btn portal-pill-btn" target="_blank"
-          href="#{caseTaskNoteHistoryBean.getTaskNoteHistoryLink(task)}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" icon="ti ti-external-link" rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
-        </p:button>
+        <p:link id="show-more-note-link" styleClass="portal-detail-show-more-btn portal-pill-btn" target="_blank"
+          href="#{caseTaskNoteHistoryBean.getTaskNoteHistoryLink(task)}" rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
+          <span class="ti ti-external-link" />
+          <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
+          <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
+        </p:link>
       </h:panelGroup>
     </div>
 
@@ -73,7 +76,7 @@
           <i class="ti ti-edit" />
           <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noNoteAvailable')}" />
           <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddNote')}" />
-          <p:commandLink id="add-note-command-empty" styleClass="task-details-document-add-link no-item-action-link portal-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}" global="false"
+          <p:commandLink id="add-note-command-empty" styleClass="task-details-document-add-link no-item-action-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}" global="false"
                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
                          oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()" actionListener="#{data.setTask(task)}">
             <i class="ti ti-circle-plus" />
@@ -109,7 +112,7 @@
       </h:panelGroup>
 
       <h:panelGroup layout="block" styleClass="text-right MarTop10">
-        <p:commandLink styleClass="portal-link" id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}" global="false"
+        <p:commandLink id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}" global="false"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onsuccess="PF('#{cc.clientId}:addNewNoteDialog').hide()" update="task-detail-note-content task-detail-create-note-msg" />

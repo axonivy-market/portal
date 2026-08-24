@@ -44,17 +44,15 @@
       <ui:fragment>
         <h:outputStylesheet library="css" name="dashboard.css" />
         <div class="dashboard__header js-dashboard__header ui-g">
-          <div class="dashboard__header-card">
-            <h:panelGroup id="dashboard-title-container" rendered="#{!managedBean.isReadOnlyMode}"
-              styleClass="u-hidden-sm-down dashboard__title-container--flex dashboard__title-container">
-              <ui:insert name="headerTitle" />
-            </h:panelGroup>
+          <h:panelGroup id="dashboard-title-container" rendered="#{!managedBean.isReadOnlyMode}"
+            styleClass="u-hidden-sm-down dashboard__title-container--flex ui-lg-4 ui-md-5 ui-sm-12 dashboard__title-container">
+            <ui:insert name="headerTitle" />
+          </h:panelGroup>
 
-            <h:panelGroup id="dashboard-header-action" rendered="#{!managedBean.isReadOnlyMode}"
-              class="dashboard-header__action flex-1">
-              <ui:insert name="headerAction" />
-            </h:panelGroup>
-          </div>
+          <h:panelGroup id="dashboard-header-action" rendered="#{!managedBean.isReadOnlyMode}"
+            class="dashboard-header__action ui-lg-8 ui-md-7 ui-sm-12">
+            <ui:insert name="headerAction" />
+          </h:panelGroup>
         </div>
 
         <h:form id="dashboard-remote-command-form" prependId="false">
@@ -213,7 +211,7 @@
                update="grid-stack dashboard-title-container" />
               <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                onclick="PF('destroy-task-dialog').hide();" styleClass="mt-3 mx-auto w-max flex portal-link" />
+                onclick="PF('destroy-task-dialog').hide();" styleClass="mt-3 mx-auto w-max flex" />
                </h:panelGroup>
             </ui:define>
            </ui:decorate>
@@ -273,7 +271,7 @@
                 update="grid-stack dashboard-title-container" />
               <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                onclick="PF('destroy-case-dialog').hide();" styleClass="pt-3 flex justify-content-center portal-link"/>
+                onclick="PF('destroy-case-dialog').hide();" styleClass="pt-3 flex justify-content-center"/>
             </h:panelGroup>
            </ui:define>
           </ui:decorate>

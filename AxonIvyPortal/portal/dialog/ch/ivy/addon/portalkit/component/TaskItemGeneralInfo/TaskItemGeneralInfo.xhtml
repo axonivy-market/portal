@@ -32,7 +32,7 @@
     <div id="role-and-user-information" class="role-and-user-information portal-detail-inner-card">
       <div class="portal-detail-subcard-title flex align-items-center justify-content-between">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/RoleUserInformation')}" styleClass="text-ellipsis" />
-        <p:commandLink id="delegate-task-command" styleClass="task-detail-delegate-link portal-link" global="false"
+        <p:commandLink id="delegate-task-command" styleClass="task-detail-delegate-link" global="false"
           rendered="#{taskActionBean.showDelegateTask}" disabled="#{!taskActionBean.canDelegate(task) or cc.attrs.readOnly}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
           onstart="event.stopPropagation();"
@@ -241,7 +241,7 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/businessCase')}" />
         </div>
         <div class="portal-detail-kv-value u-truncate-text">
-          <p:commandLink id="related-case" styleClass="task-business-case portal-link" disabled="#{cc.attrs.readOnly}"
+          <p:commandLink id="related-case" styleClass="task-business-case" disabled="#{cc.attrs.readOnly}"
             ariaLabel="#{taskBean.displayCaseName(task)}"
             actionListener="#{logic.navigateToRelatedCase(task.getCase().getBusinessCase())}">
             <i class="ti ti-external-link" />

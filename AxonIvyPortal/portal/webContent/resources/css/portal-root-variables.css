@@ -50,12 +50,8 @@
   --ivy-portal-color-grey-750: hsla(0, 0%, 29%, 1);
   --ivy-portal-color-grey-800: hsla(0, 0%, 25%, 1);
   --ivy-portal-color-grey-850: hsla(0, 0%, 20%, 1);
-  --ivy-portal-color-grey-900: hsla(0, 0%, 15%, 1);
+  --ivy-portal-color-grey-900: hsla(0, 0%, 17%, 1);
   --ivy-portal-color-grey-950: hsla(0, 0%, 13%, 1);
-
-  /* Portal red palette */
-  --ivy-portal-color-red-100: hsla(0, 77%, 95%, 1);
-  --ivy-portal-color-red-300: hsla(358, 79%, 79%, 1);
 
   /* Default Portal styles */
   --header-font-size: 2rem;
@@ -64,11 +60,11 @@
   --portal-tabler-icon-size: calc(8 / 7 * 1rem);
   --portal-icon-line-height: 1;
   --portal-icon-ui-icon-font-size: 1.4rem;
-  --portal-icon-size-lg: 1.4286rem; /* 20px */
-  --portal-icon-size-xl: 1.8571rem; /* 26px */
-  --portal-icon-btn-size-sm: 2.1429rem; /* 30px */
-  --portal-icon-btn-size-md: 2.7143rem; /* 38px */
-  --portal-icon-btn-size-lg: 3.0714rem; /* 43px */
+  --portal-icon-size-lg: 1.4286rem;
+  --portal-icon-size-xl: 1.8571rem;
+  --portal-icon-btn-size-sm: 2.1429rem;
+  --portal-icon-btn-size-md: 2.7143rem;
+  --portal-icon-btn-size-lg: 3.0714rem;
   --portal-icon-btn-border-width: 1px;
   --default-font-style: normal;
   --login-logo-height: 50px;

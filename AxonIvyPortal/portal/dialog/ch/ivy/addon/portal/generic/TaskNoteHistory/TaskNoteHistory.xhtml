@@ -66,14 +66,12 @@
                 #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskHistoryPageTitle')}
               </div>
               <h:panelGroup layout="block" styleClass="portal-detail-widget-header-actions">
-                  <p:commandButton id="export-to-excel"
-                    ajax="false"
-                    styleClass="portal-icon-btn-round"
-                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
-                    title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
-                    icon="ti ti-file-type-xls">
+                <p:commandLink id="export-to-excel" ajax="false" styleClass="portal-icon-btn-round"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
+                  title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
+                  <i class="ti ti-file-type-xls" aria-hidden="true" />
                   <p:fileDownload value="#{caseTaskNoteHistoryBean.getExportedFileOfTaskNoteHistory(data.filteredNotes, data.exportedFileName)}" />
-                </p:commandButton>
+                </p:commandLink>
               </h:panelGroup>
             </h:panelGroup>
               <p:dataTable id="notes-table" widgetVar="notesTable" var="note" sortBy="#{caseTaskNoteHistoryBean.taskHistorySortByCreationTimestamp}"

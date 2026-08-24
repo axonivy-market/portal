@@ -44,7 +44,6 @@ public enum DashboardWidgetType {
   public Optional<String> getConfigurationHeader() {
     return switch (this) {
       case WELCOME -> Optional.of(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ConfigurationHeader"));
-      case TASK, CASE -> Optional.of(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/tableConfiguration"));
       default -> Optional.empty();
     };
   }

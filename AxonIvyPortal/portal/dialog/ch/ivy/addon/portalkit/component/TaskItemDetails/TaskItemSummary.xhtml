@@ -119,7 +119,7 @@
         <h:outputText styleClass="portal-detail-column-title" rendered="#{taskActionBean.showReadWorkflowEvent}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/events')}" />
         <div class="task-detail-attr-value">
-          <p:commandLink id="workflow-event-link" onstart="event.stopPropagation();" styleClass="portal-link"
+          <p:commandLink id="workflow-event-link" onstart="event.stopPropagation();"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/seeDetail')}"
             disabled="#{!taskActionBean.canReadWorkflowEventTask()}" rendered="#{taskActionBean.showReadWorkflowEvent}"
             oncomplete="initWorkflowEventData()" global="false">
