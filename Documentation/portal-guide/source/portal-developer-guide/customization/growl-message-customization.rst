@@ -22,8 +22,8 @@ Implementation
 ``setCustomMessage(String summary, String detail)``
    Sets a summary text together with a detail line shown below the summary.
 
-Add a script element that calls one of these methods **before** the task ends, i.e. before the task end or html
-dialog end element of your process:
+Add a script element that calls one of these methods **right before the task ends**, i.e. as the last step in front
+of the task end or html dialog end element of your process:
 
    .. code-block:: java
 
@@ -35,8 +35,8 @@ dialog end element of your process:
       // Summary + detail
       PortalGrowlMessageAPI.setCustomMessage("Order submitted.", "Order #12345 is now in progress.");
 
-Portal stores the message for the current session and displays it in the global growl right after the task ends,
-instead of the default message.
+Portal stores the message in the session of the current user, reads it right after the task ended and displays it in
+the global growl instead of the default message.
 
 Example
 -------
@@ -52,4 +52,8 @@ finish or cancel the task. The global growl shows the customized message instead
      displayed, it is cleared automatically so subsequent tasks show the default message again unless you set it again.
    - If no customized message is set, Portal falls back to its default growl feedback.
    - The customized message follows the global variable ``Portal.DisplayMessageAfterFinishTask``. When growl feedback
-     is turned off, no message is shown at all, not even a customized one.
+     is turned off, no message is shown at all, not even a customized one. The stored message is still cleared, so it
+     is not displayed later.
+   - The message is stored per session, not per task or per browser tab. If a user works on several tasks of the same
+     session in parallel, the message is consumed by whichever task ends first - one more reason to set it directly
+     before the task ends.
