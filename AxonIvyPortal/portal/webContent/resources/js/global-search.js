@@ -25,6 +25,14 @@ if (document) {
     }
   }
 
+  function showSearchLoading() {
+    $('#global-search-loading').removeClass('hidden');
+  }
+
+  function hideSearchLoading() {
+    $('#global-search-loading').addClass('hidden');
+  }
+
   $(document).ready(function () {
     $(eleSearchId).val('');
 
@@ -213,6 +221,7 @@ if (document) {
   }
 
   function handleError(err) {
+    hideSearchLoading();
     console.log(err);
   }
 
@@ -238,9 +247,11 @@ if (document) {
       keyword = keyword.slice(keyword.indexOf(':') + 1);
     }
     let body = JSON.stringify({"query": keyword})
+    showSearchLoading();
     fetch(baseURL + searchProcessesURL, requestInit(body))
       .then((response) => {
         response.json().then(data => {
+          hideSearchLoading();
           let $resultsContainer = $("#process-search-results");
           $resultsContainer.html("");
           if (data) {
@@ -259,9 +270,11 @@ if (document) {
       keyword = keyword.slice(keyword.indexOf(':') + 1);
     }
     let body = JSON.stringify({"query": keyword})
+    showSearchLoading();
     fetch(baseURL + searchTasksURL, requestInit(body))
       .then((response) => {
         response.json().then(data => {
+          hideSearchLoading();
           let promise = new Promise((resolve, reject) => {
             let $resultsContainer = $("#task-search-results");
             $resultsContainer.html("");
@@ -285,9 +298,11 @@ if (document) {
       keyword = keyword.slice(keyword.indexOf(':') + 1);
     }
     let body = JSON.stringify({"query": keyword})
+    showSearchLoading();
     fetch(baseURL + searchCasesURL, requestInit(body))
       .then((response) => {
         response.json().then(data => {
+          hideSearchLoading();
           let $resultsContainer = $("#case-search-results");
           $resultsContainer.html("");
           if (data) {
