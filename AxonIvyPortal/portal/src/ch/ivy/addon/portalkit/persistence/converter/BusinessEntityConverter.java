@@ -98,24 +98,6 @@ public class BusinessEntityConverter {
     }
   }
 
-  private static JsonNode unwrapIfNeeded(JsonNode rootNode, Class<?> classType, ObjectMapper mapper) {
-    // A wrapper looks like {"someRootKey": {...actual object...}} — exactly one field,
-    // whose value is itself an object, and whose name isn't one of the target class's own properties.
-    if (!rootNode.isObject() || rootNode.size() != 1) {
-      return rootNode;
-    }
-    Map.Entry<String, JsonNode> onlyField = rootNode.properties().iterator().next();
-    if (!onlyField.getValue().isObject()) {
-      return rootNode;
-    }
-    Set<String> knownProperties = mapper.getSerializationConfig()
-        .introspect(mapper.constructType(classType))
-        .findProperties().stream()
-        .map(BeanPropertyDefinition::getName)
-        .collect(Collectors.toSet());
-    return knownProperties.contains(onlyField.getKey()) ? rootNode : onlyField.getValue();
-  }
-
   public static <T> List<T> jsonValueToEntities(String jsonValue, Class<T> classType) {
     if (StringUtils.isBlank(jsonValue)) {
       return new ArrayList<>();
