@@ -1,9 +1,6 @@
 package ch.ivy.addon.portalkit.persistence.converter;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -95,10 +92,7 @@ public class BusinessEntityConverter {
       return null;
     }
     try {
-      ObjectMapper mapper = getObjectMapper();
-      JsonNode rootNode = mapper.readTree(jsonValue);
-      JsonNode targetNode = unwrapIfNeeded(rootNode, classType, mapper);
-      return mapper.treeToValue(targetNode, classType);
+      return getObjectMapper().readValue(jsonValue, classType);
     } catch (IOException e) {
       throw new PortalException(e);
     }
@@ -180,31 +174,9 @@ public class BusinessEntityConverter {
 
       JsonNode nodeToConvert = jsonNode;
 
-      // Legacy shapes below, kept for files/values migrated before this change.
-      // Handle root-wrapped format {"ArrayList": [...]} produced by the old WRAP_ROOT_VALUE.
-      // Only unwrap if the first field contains an array whose elements are objects
-      // (i.e. real entity nodes), not primitive/string arrays like "permissions":["Everybody"].
-      if (nodeToConvert.isObject()) {
-        JsonNode candidateArray = null;
-        if (nodeToConvert.fieldNames().hasNext()) {
-          String rootName = nodeToConvert.fieldNames().next();
-          JsonNode firstValue = nodeToConvert.get(rootName);
-          if (firstValue != null && firstValue.isArray()
-              && firstValue.size() > 0 && firstValue.get(0).isObject()) {
-            candidateArray = firstValue;
-          }
-        } else {
-          // Empty object {} — treated as empty configuration, not a single entity
-          return new ArrayList<>();
-        }
-        if (candidateArray != null) {
-          nodeToConvert = candidateArray;
-        } else {
-          // Single-entity ObjectNode (plain Dashboard or primitive-valued wrapper) — wrap in a list
-          List<T> result = new ArrayList<>();
-          result.add(getObjectMapper().treeToValue(nodeToConvert, classType));
-          return result;
-        }
+      // Handle empty node like {}
+      if (nodeToConvert.isObject() && !nodeToConvert.fieldNames().hasNext()) {
+        return new ArrayList<>();
       }
 
       // Handle array that may contain nested arrays (corrupted format [[{...}], {...}])
