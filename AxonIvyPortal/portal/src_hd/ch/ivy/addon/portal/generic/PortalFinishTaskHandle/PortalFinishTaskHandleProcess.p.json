@@ -47,23 +47,8 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.GrowlMessageService;",
-            "import ch.ivy.addon.portalkit.enums.GrowlMessageType;",
-            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
-            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
             "",
-            "if (!GrowlMessageService.getInstance().displayCustomMessageIfPresent()) {",
-            "  String growlMessageType = SecurityServiceUtils.getSessionAttribute(SessionAttribute.GROWL_MESSAGE_TYPE.toString()).toString();",
-            "  if (#growlMessageType is initialized) {",
-            "    if (GrowlMessageType.PROCESS_VIEWER.name() == growlMessageType) {",
-            "      GrowlMessageService.getInstance().addFeedbackMessageProcessViewer();",
-            "    } else {",
-            "      GrowlMessageService.getInstance().addFeedbackMessage(in.isTaskFinished, in.caze);",
-            "    }",
-            "    SecurityServiceUtils.removeSessionAttribute(SessionAttribute.GROWL_MESSAGE_TYPE.toString());",
-            "  } else {",
-            "    GrowlMessageService.getInstance().addFeedbackMessage(in.isTaskFinished, in.caze);",
-            "  }",
-            "}"
+            "GrowlMessageService.getInstance().addTaskEndFeedbackMessage(in.isTaskFinished, in.caze);"
           ]
         }
       },
