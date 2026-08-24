@@ -190,7 +190,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
-      globalSearchMinimumKeywordLengthNote: Minimum number of characters required before the global search runs. Set to 0 to disable the check. A shorter keyword matches nearly every row and cannot use an index, so the search is skipped rather than run.
+      globalSearchMinimumKeywordLengthNote: Minimum number of characters required before the global search runs. Set to 0 to disable the check. A shorter keyword matches nearly every row, which can be slow, so the search is skipped rather than run.
       hideCaseDocument: Set to true, the document section in case detail page will be hidden, otherwise it will be shown.
       hideChangePasswordButtonNote: Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
       hideLogoutButtonNote: If true, the logout button on top menu will be hidden, otherwise it will be shown.

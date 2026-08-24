@@ -266,7 +266,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableProcessViewer: Définissez cette propriété à true pour activer l'option de visualisation de processus dans les actions de Task/Case.
       enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la vérification de PDF, Excel, Word.
       enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
-      globalSearchMinimumKeywordLengthNote: Nombre minimal de caractères requis avant l'exécution de la recherche globale. Définir sur 0 pour désactiver la vérification. Un mot-clé plus court correspond à presque toutes les lignes et ne peut pas utiliser d'index, la recherche est donc ignorée au lieu d'être exécutée.
+      globalSearchMinimumKeywordLengthNote: Nombre minimal de caractères requis avant l'exécution de la recherche globale. Définir sur 0 pour désactiver la vérification. Un mot-clé plus court correspond à presque toutes les lignes, ce qui peut être lent, la recherche est donc ignorée au lieu d'être exécutée.
       hideCaseCreator: |-
         La valeur "true" permet de masquer le créateur du dossier dans la liste des dossiers, le widget du dossier et les détails du dossier.
         Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
