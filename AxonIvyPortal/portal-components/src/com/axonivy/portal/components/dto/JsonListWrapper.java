@@ -1,4 +1,4 @@
-package com.axonivy.portal.dto;
+package com.axonivy.portal.components.dto;
 
 import java.util.List;
 import java.util.Objects;

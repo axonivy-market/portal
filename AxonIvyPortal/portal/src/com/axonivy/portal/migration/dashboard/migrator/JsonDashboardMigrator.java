@@ -7,7 +7,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
-import com.axonivy.portal.dto.JsonListWrapper;
+import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.dashboard.converter.JsonDashboardConverterFactory;
 import com.fasterxml.jackson.databind.JsonNode;

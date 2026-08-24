@@ -8,7 +8,7 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.dto.JsonListWrapper;
+import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
@@ -88,7 +88,14 @@ public class BusinessEntityConverter {
       return null;
     }
     try {
-      return getObjectMapper().readValue(jsonValue, classType);
+      ObjectMapper mapper = getObjectMapper();
+      JsonNode rootNode = mapper.readTree(jsonValue);
+      if (rootNode.isArray() || isListWrapper(rootNode)) {
+        throw new PortalException(
+            "Expected a single " + classType.getSimpleName() + " JSON object, but got a list/array shape.");
+      }
+      return mapper.treeToValue(rootNode, classType);
+      //return getObjectMapper().readValue(jsonValue, classType);
     } catch (IOException e) {
       throw new PortalException(e);
     }
