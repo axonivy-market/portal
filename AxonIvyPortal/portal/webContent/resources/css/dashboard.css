@@ -2042,13 +2042,29 @@ a.saved-filter__manage-filter {
   line-height: 2rem;
   cursor: default;
   border-radius: 100px;
-  background: hsla(0, 0%, 100%, 0.2);
-  -webkit-backdrop-filter: blur(4px) saturate(150%);
-  backdrop-filter: blur(4px) saturate(150%);
-  border: 1px solid hsla(0, 0%, 100%, 0.3);
-  box-shadow: 0 4px 24px hsla(0, 0%, 0%, 0.15),
-    inset 1px 1px 1px hsla(0, 0%, 100%, 0.45),
-    inset -1px -1px 1px hsla(0, 0%, 100%, 0.1);
+  background: hsla(0, 0%, 100%, 0.1);
+  -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(108%);
+  backdrop-filter: blur(24px) saturate(180%) brightness(108%);
+  box-shadow: 0 8px 32px hsla(0, 0%, 0%, 0.18),
+    inset 0 1px 1px hsla(0, 0%, 100%, 0.55),
+    inset 0 -1px 1px hsla(0, 0%, 100%, 0.12);
+}
+
+/* Refractive rim: bright where light enters (top left), dim at the opposite edge */
+.welcome-text::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  border-radius: inherit;
+  background: linear-gradient(135deg, hsla(0, 0%, 100%, 0.65), hsla(0, 0%, 100%, 0.12)) border-box;
+  -webkit-mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  -webkit-mask-clip: padding-box, border-box;
+  mask-clip: padding-box, border-box;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .welcome-text.preview-text {
