@@ -1,5 +1,6 @@
 package com.axonivy.portal.util.filter.operator.caze.customfield;
 
+import static com.axonivy.portal.util.CaseQueryUtils.initCaseQuery;
 import java.util.Date;
 
 import com.axonivy.portal.components.service.DateTimeGlobalSettingService;
@@ -26,7 +27,7 @@ public class CustomTimestampIsOperatorHandler {
     Date fromDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getStartOfMinute(filter.getFromDate()) : PortalDateUtils.getStartOfDate(filter.getFromDate());
     Date endDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getFromDate()) : PortalDateUtils.getEndOfDate(filter.getFromDate());
 
-    return CaseQuery.create().where().customField().timestampField(filter.getField())
+    return initCaseQuery(filter.getFilterType()).where().customField().timestampField(filter.getField())
         .isGreaterOrEqualThan(fromDate)
         .and().customField().timestampField(filter.getField()).isLowerOrEqualThan(endDate);
   }
@@ -39,7 +40,7 @@ public class CustomTimestampIsOperatorHandler {
     Date fromDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getStartOfMinute(filter.getFromDate()) : PortalDateUtils.getStartOfDate(filter.getFromDate());
     Date endDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getFromDate()) : PortalDateUtils.getEndOfDate(filter.getFromDate());
 
-    return CaseQuery.create().where().customField().timestampField(filter.getField())
+    return initCaseQuery(filter.getFilterType()).where().customField().timestampField(filter.getField())
         .isGreaterThan(endDate)
         .or().customField().timestampField(filter.getField()).isLowerThan(fromDate);
   }
