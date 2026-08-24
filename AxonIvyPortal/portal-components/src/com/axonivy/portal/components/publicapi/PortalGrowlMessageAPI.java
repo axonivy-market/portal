@@ -42,6 +42,8 @@ public final class PortalGrowlMessageAPI {
     Ivy.session().setAttribute(SessionAttribute.CUSTOM_GROWL_MESSAGE.name(), summary);
     if (StringUtils.isNotBlank(detail)) {
       Ivy.session().setAttribute(SessionAttribute.CUSTOM_GROWL_MESSAGE_DETAIL.name(), detail);
+    } else {
+      Ivy.session().removeAttribute(SessionAttribute.CUSTOM_GROWL_MESSAGE_DETAIL.name());
     }
   }
 }
