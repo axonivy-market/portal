@@ -9,16 +9,17 @@ msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-08-24 09:34+0000\n"
-"PO-Revision-Date: 2026-06-30 03:00+0000\n"
+"PO-Revision-Date: 2026-08-24 09:40+0000\n"
 "Last-Translator: Thang Huynh Huu Quyet <hhqthang@axonactive.com>\n"
 "Language: ja\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
-"portal/portal-12/doc/portal-developer-guide/ja/>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-12/doc/portal-developer-guide/ja/>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
 msgid "Architecture"
@@ -16127,17 +16128,18 @@ msgstr "アプリケーションのビューディレクトリからの静的ペ
 
 #: ../../source/portal-developer-guide/static-page/index.rst:126
 #: ../../source/portal-developer-guide/static-page/index.rst:256
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "Format: ``<application>/faces/view/<process model>/{path-to-file in "
 "webContent/view}.xhtml``"
-msgstr "フォーマット:``{pmv-name}/faces/view/{path-to-file}.xhtml``"
+msgstr ""
+"フォーマット: ``<application>/faces/view/<process model>/{path-to-file in "
+"webContent/view}.xhtml``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:127
 #: ../../source/portal-developer-guide/static-page/index.rst:257
-#, fuzzy
 msgid "Example: ``Portal/faces/view/portal-components-examples/static.xhtml``"
-msgstr "例:``portal-components-examples/faces/view/help/user-guide.xhtml``"
+msgstr "例: ``Portal/faces/view/portal-components-examples/static.xhtml``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:129
 msgid "``label`` (string, required)"
@@ -16327,11 +16329,11 @@ msgid "**Input Format**: Relative path from application view directory"
 msgstr "**入力形式**: アプリケーションビューディレクトリからの相対パス"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:270
-#, fuzzy
 msgid ""
 "Example: ``Portal/faces/view/portal-components-examples/help/user-"
 "guide.xhtml``"
-msgstr "例:``portal-components-examples/faces/view/help/user-guide.xhtml``"
+msgstr ""
+"例: ``Portal/faces/view/portal-components-examples/help/user-guide.xhtml``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:272
 msgid "**Conversion**: Portal uses ``StaticPageUtils.buildUrl()`` method"
@@ -16357,13 +16359,12 @@ msgid ""
 msgstr "テンプレート:``{baseUrl}?relativeUrl=/{applicationName}/faces/view/{PM}/{staticPage}``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:280
-#, fuzzy
 msgid ""
 "Example: ``https://server/ivy/pro/portal/?relativeUrl=/Portal/faces/view"
 "/portal-components-examples/help/user-guide.xhtml``"
 msgstr ""
-"例:``https://server/ivy/pro/portal/?relativeUrl=/portal-components-"
-"examples/faces/view/help/user-guide.xhtml``"
+"例: ``https://server/ivy/pro/portal/?relativeUrl=/Portal/faces/view/portal-"
+"components-examples/help/user-guide.xhtml``"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:286
 msgid "Examples"
@@ -20227,4 +20228,3 @@ msgstr "Portal.UserMenu変数の変更は即時反映されます。更新内容
 #~ "関連タスクを表示するには: :bdg-ref-"
 #~ "warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` または"
 #~ " :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`"
-
