@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="jakarta.faces"
+  xmlns:p="primefaces" xmlns:pe="primefaces.extensions" xmlns:jsf="jakarta.faces"
   xmlns:c="jakarta.tags.core">
 
 <cc:interface componentType="IvyComponent">
@@ -48,7 +48,7 @@
           </h:form>
 
           <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="case-columns-configuration"
-            updatedComponent="#{cc.clientId}:case-view #{cc.clientId}:widget-column-header #{cc.clientId}:hidden-case-count #{cc.clientId}:case-list-actions"
+            updatedComponent=":#{cc.clientId}:case-view :#{cc.clientId}:widget-column-header :#{cc.clientId}:hidden-case-count :#{cc.clientId}:case-list-actions"
             dataModel="#{data.dataModel}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();"
             configButtonId="case-config-button" overlayPanelId="case-config-columns-panel" />
         </h:panelGroup>

@@ -20,25 +20,28 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-          engineNames = ['master', '12', '10', '8', 'performance-master', 'performance-12', 'performance-10', 'performance-8']
+          engineNames = ['master', '12', '10', 'performance-master-new', 'performance-12', 'performance-10']
           for (engineName in engineNames) {
             sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
           }
           sh """
-            docker compose -f ${ivyDir}/${engineNames[4]}/docker-compose.yml up -d
+            docker compose -f ${ivyDir}/${engineNames[3]}/docker-compose.yml up -d
             #Workaround because PMV Portal starts slow
             sleep 100
           """
 
           docker.build('build-portal-modules', '-f build/Dockerfile.python .').inside('-v /var/tools/maven-cache:/home/build/') {
-            def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal']
             def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty('build.plugin.version')
             def utils = load 'build/common/utils.groovy'
             utils.updatePortalDependenciesAsRangeVersion()
             def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':9000' + '/'
-            for (module in modules) {
-              maven cmd: "clean install -f ${module}/pom.xml"
-              maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${deploymentPom} -Divy.deploy.file=${deployZip} -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.test.users=true -Divy.deploy.engine.app.version=released"            }
+
+            maven cmd: "clean install -f pom.xml -pl AxonIvyPortal/portal-components,AxonIvyPortal/portal,AxonIvyPortal/PortalKitTestHelper"
+
+            def deployPom = 'build/performance-test/deploy-pom.xml'
+            maven cmd: "clean package -f ${deployPom}"
+            def deployFile = sh(returnStdout: true, script: "find \${PWD}/build/performance-test/target -name '*.zip' | head -1").trim()
+            maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${deployPom} -Divy.deploy.file=${deployFile} -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.test.users=true -Divy.deploy.engine.app.version=released"
           }
         }
       }
@@ -50,20 +53,20 @@ pipeline {
           resultDir = "/var/tools/performance-result/${env.engineVersion}/${today}"
           fileOperations([folderCreateOperation(folderPath: "${resultDir}")])
 
-          echo '====================Test one admin user===================='
+          echo '====================Test one user===================='
           updateConfigFile('data/single_admin_user_server.csv', '1')
           // First executing takes more time, so not record the result of first time
           executeJMeter('../tmp.jtl')
 
-          executeJMeter('result_1_admin_user.jtl')
-
-          echo '====================Test for one normal user===================='
-          updateConfigFile('data/single_normal_user_server.csv', '1')
-          executeJMeter('result_1_normal_user.jtl')
+          executeJMeter('result_1_user.jtl')
 
           echo '====================Test ten users===================='
           updateConfigFile('data/users_server.csv', '10')
           executeJMeter('result_10_users.jtl')
+
+          echo '====================Test twenty users===================='
+          updateConfigFile('data/users_20_server.csv', '20')
+          executeJMeter('result_20_users.jtl')
         }
       }
     }

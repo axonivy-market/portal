@@ -1,6 +1,5 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
-import static com.axonivy.portal.selenium.common.WaitHelper.SHORT_TIMEOUT;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -191,10 +190,10 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     String caseItemSelector = ".dashboard-cases__name";
     int numberOfCases = $$(caseItemSelector).size();
     caseWidget.destroyCase(0);
-    $$(caseItemSelector).shouldHave(size(numberOfCases - 1), SHORT_TIMEOUT);
+    $$(caseItemSelector).shouldHave(size(numberOfCases - 1), DEFAULT_TIMEOUT);
     caseWidget.scrollToCaseWidget();
     caseWidget.destroyCase(1);
-    $$(caseItemSelector).shouldHave(size(numberOfCases - 2), SHORT_TIMEOUT);
+    $$(caseItemSelector).shouldHave(size(numberOfCases - 2), DEFAULT_TIMEOUT);
     caseWidget.openFilterWidget();
     caseWidget.addFilter("Name", null);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "TestCase");

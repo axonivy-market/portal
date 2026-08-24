@@ -11,6 +11,8 @@ import org.openqa.selenium.interactions.Actions;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ScrollIntoViewOptions;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -146,9 +148,9 @@ public class PortalConfigurationPage extends TemplatePage {
   public void selectMenuType(String menuKindLabel) {
     $("[id$='menu-configuration-form:menu-type']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    $("[id$='menu-type_panel']").shouldBe(appear, DEFAULT_TIMEOUT)
+    clickByJavaScript($("[id$='menu-type_panel']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("li").filter(Condition.text(menuKindLabel)).first()
-        .shouldBe(getClickableCondition()).click();
+        .shouldBe(getClickableCondition()));
     $("[id$='menu-configuration-form']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -263,6 +265,11 @@ public class PortalConfigurationPage extends TemplatePage {
   public void reorderMenu(String fromMenuTitle, String toMenuTitle) {
     SelenideElement fromHandle = findMenuRowByTitle(fromMenuTitle).$("i.ti-menu-2");
     SelenideElement toHandle = findMenuRowByTitle(toMenuTitle).$("i.ti-menu-2");
+    // Center both rows in the viewport first: a native Actions move computes an absolute on-screen point
+    // (here the target's position plus a 50,20 offset), and that throws MoveTargetOutOfBoundsException if
+    // the row sits near the bottom/edge of a short viewport instead of being scrolled into comfortable view.
+    fromHandle.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
+    toHandle.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
     Actions builder = new Actions(WebDriverRunner.getWebDriver());
     Action dragAndDrop = builder.clickAndHold(fromHandle).pause(500)
         .moveToElement(toHandle, 50, 20).pause(500).release(toHandle)

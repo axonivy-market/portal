@@ -345,8 +345,10 @@
   }
 }
 
+/* 100%: the content is already reduced by the widget header, capping it below that clips the
+   bottom of the table because the table widget content has overflow-y hidden */
 .expand-fullscreen .widget__content {
-   max-height: 95%;
+   max-height: 100%;
 }
 
 .widget__filter-sidebar,

@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
-
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -17,12 +16,13 @@ import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.Sleeper;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
-import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
+import com.codeborne.selenide.SelenideElement;
 
 public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
@@ -94,7 +94,8 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public CaseDetailsPage openDetailsCase(String caseName) {
-    getCasesOfCaseWidgetHasName(caseName).first().shouldBe(getClickableCondition()).click();
+    WaitHelper.waitForNavigation(
+        () -> getCasesOfCaseWidgetHasName(caseName).first().shouldBe(getClickableCondition()).click());
     return new CaseDetailsPage();
   }
 
@@ -107,7 +108,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public CaseDetailsPage openDetailsFirstCase() {
-    getCaseOfCaseWidgetHasIndex(0).shouldBe(getClickableCondition()).click();
+    WaitHelper.waitForNavigation(() -> getCaseOfCaseWidgetHasIndex(0).shouldBe(getClickableCondition()).click());
     return new CaseDetailsPage();
   }
 
@@ -129,6 +130,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     $$("div.table-widget-panel").filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
         .$(".widget__filter-sidebar-link")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -227,8 +229,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     clickOnCaseActionLink(index);
     String openDetailsCommandButton = String.format("[id$=':case-item-open-detail-link']", index);
     waitForElementDisplayed(By.cssSelector(openDetailsCommandButton), true);
-    findElementByCssSelector(openDetailsCommandButton).click();
-    waitForElementDisplayed(By.cssSelector(openDetailsCommandButton), false);
+    WaitHelper.waitForNavigation(() -> findElementByCssSelector(openDetailsCommandButton).click());
     return new CaseDetailsPage();
   }
 
@@ -296,6 +297,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
         .$$("span[id$=':field-selection_label']").filter(text(filterLabel)).first().shouldBe(appear, DEFAULT_TIMEOUT);
 
     $(typeInput).shouldBe(getClickableCondition()).$("span[id$=':operator-selection_label']").click();
+    WaitHelper.waitPageNoAnimation();
 
     $$("li").filter(text(operator.getValue())).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
@@ -426,15 +428,17 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void waitTableLoaded() {
-    $(getLoadedLocator()).shouldHave(Condition.cssClass("hidden"), DEFAULT_TIMEOUT);
+    WaitHelper.waitPageNoAjaxAndAnimation();
     $(getLoadedLocator()).shouldNotHave(Condition.cssClass("hidden"), DEFAULT_TIMEOUT);
   }
   
   public boolean isExpandButtonAppear() {
+    WaitHelper.waitPageNoAjaxAndAnimation();
     return getCaseWidgetHeader().$(".expand-link").isDisplayed();
   }
-  
+
   public boolean isWidgetInfomationIconAppear() {
+    WaitHelper.waitPageNoAjaxAndAnimation();
     return getCaseWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
   }
 

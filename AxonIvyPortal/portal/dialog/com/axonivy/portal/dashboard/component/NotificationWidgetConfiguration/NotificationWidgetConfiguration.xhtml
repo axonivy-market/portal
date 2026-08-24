@@ -4,8 +4,8 @@
   xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite"
   xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions"
   xmlns:c="jakarta.tags.core">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="widget" />
@@ -43,7 +43,7 @@
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
             actionListener="#{managedBean.updateWidgetNameByLocale()}"
             process="widget-title"
-            update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+            update=":#{cc.clientId}:title-language-config:multiple-languages-dialog"
             oncomplete="PF('multiple-languages-dialog').show();" />
         </div>
       </h:panelGroup>

@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
   xmlns:ui="jakarta.faces.facelets" xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="jakarta.tags.core">
+  xmlns:p="primefaces" xmlns:pe="primefaces.extensions" xmlns:c="jakarta.tags.core">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="index" required="true" />
   <cc:attribute name="widget" required="true" />
@@ -23,9 +23,9 @@
     <ui:param name="onStatisticTabShow" value="handleFilterCategoryHeight(this);" />
     <ui:param name="componentToProcessOnApplyFilter" value="filter-container" />
     <ui:param name="componentToUpdateOnApplyFilter"
-      value="#{cc.clientId}:case-component:dashboard-cases #{cc.clientId}:case-component:empty-message-container" />
+      value=":#{cc.clientId}:case-component:dashboard-cases :#{cc.clientId}:case-component:empty-message-container" />
     <ui:param name="componentToUpdateOnResetFilter"
-      value="#{cc.clientId}:case-component:dashboard-cases #{cc.clientId}:case-component:empty-message-container" />
+      value=":#{cc.clientId}:case-component:dashboard-cases :#{cc.clientId}:case-component:empty-message-container" />
     <ui:param name="onCompleteApplyFilters" value="PF('dashboard-cases-#{widget.id}').filter()" />
     <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
     <ui:param name="isRenderInfo" value="#{widget.isShowWidgetInfo()}" />

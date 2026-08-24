@@ -7,10 +7,11 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import org.openqa.selenium.WebElement;
 import java.util.List;
 
+import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
@@ -106,6 +107,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public DashboardConfigurationPage backToConfigurationPage() {
     clickByJavaScript($("[id='back-to-configuration']"));
+    $("#configuration-group").shouldBe(appear, DEFAULT_TIMEOUT);
     return new DashboardConfigurationPage();
   }
 
@@ -279,12 +281,14 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public void fillCloneWidgetDialog(String dashboardName, String widgetName) {
     $("[id $= 'clone-widget-from-dashboard:clone-widget-form:clone-dashboard']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
     $("[id $= 'clone-widget-from-dashboard:clone-widget-form:clone-dashboard_items']")
         .shouldBe(appear, DEFAULT_TIMEOUT).$$("li")
         .filter(Condition.text(dashboardName)).get(0).click();
 
     $("[id $= 'clone-widget-from-dashboard:clone-widget-form:clone-widget']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
 
     $("[id $= 'clone-widget-from-dashboard:clone-widget-form:clone-widget_items']")
         .shouldBe(appear, DEFAULT_TIMEOUT).$$("li")
@@ -355,10 +359,11 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
     $("[id$='clone-widget-component:clone-widget-form:clone-dashboard']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
 
-    $("[id$='clone-widget-component:clone-widget-form:clone-dashboard_items']")
+    clickByJavaScript($("[id$='clone-widget-component:clone-widget-form:clone-dashboard_items']")
         .shouldBe(appear, DEFAULT_TIMEOUT).$$("li")
-        .filter(Condition.text(dashboardName)).get(0).click();
+        .filter(Condition.text(dashboardName)).get(0));
   }
 
   public void openWelcomeWidgetActionMenu(String widgetId) {

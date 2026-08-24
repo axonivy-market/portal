@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.faces.context.FacesContext;
-
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
@@ -48,6 +44,9 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.caze.owner.CaseOwner;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @Named
 @ViewScoped
@@ -247,7 +246,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   public String getHistoryWidgetComponentId(String clientId) {
     int widgetPosition = getWidgetPositionByType("HistoryWidget");
     if (widgetPosition > -1) {
-      return clientId + ":widgets:" + widgetPosition +":history-container";
+      return clientId + ":widgets:" + widgetPosition + ":history-container";
     }
     return "";
   }

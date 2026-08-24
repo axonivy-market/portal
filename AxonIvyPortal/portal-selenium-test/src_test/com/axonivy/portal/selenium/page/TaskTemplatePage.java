@@ -18,6 +18,7 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 public class TaskTemplatePage extends TemplatePage {
@@ -251,7 +252,8 @@ public class TaskTemplatePage extends TemplatePage {
   public void joinProcessChatAlreadyCreated() {
     waitForElementDisplayed(By.id("chat-group-join-form:chat-group-join-button"), true);
     waitForElementClickableThenClick($(By.id("chat-group-join-form:chat-group-join-button")));
-    waitForElementDisplayed(By.id("chat-form:group-chat-container"), true);
+    $("[id='chat-assignee-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("[id='chat-assignee-dialog_modal']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   // moved
@@ -287,41 +289,65 @@ public class TaskTemplatePage extends TemplatePage {
     $("button[id='side-step-process-submit-button']").shouldBe(clickable(), DEFAULT_TIMEOUT);
   }
 
+  private void typeIntoAutoComplete(SelenideElement input, String text) {
+    Selenide.executeJavaScript(
+        "var kd=new KeyboardEvent('keydown',{key:'a',bubbles:true});arguments[0].dispatchEvent(kd);"
+            + "arguments[0].value=arguments[1];"
+            + "arguments[0].dispatchEvent(new Event('input',{bubbles:true}));",
+        input, text);
+  }
+
   public void inputSideStepInfoTaskLevel() {
     $("div[id='side-step-process-form:side-step-process-select']").click();
-    $("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step: Ask for more details")).first().click();
-
+    WaitHelper.waitPageNoAnimation();
+    clickByJavaScript($("[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step: Ask for more details")).first());
+    // Wait for this panel's own closing transition to finish before touching the next field -
+    // otherwise its still-closing overlay can intercept the next dropdown's open-click, which is
+    // a silent no-op (the item-click handler only binds once a panel is genuinely open).
+    waitForElementDisplayed($("[id='side-step-process-form:side-step-process-select_panel']"), false);
 
     $("input[id$=':assignee_input']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
-    $("input[id$=':assignee_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).clear();
-    $("input[id$=':assignee_input']").sendKeys("Portal Demo User");
+    SelenideElement assigneeInput = $("input[id$=':assignee_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    assigneeInput.clear();
+    typeIntoAutoComplete(assigneeInput, "Portal Demo User");
     ElementsCollection selectionItems = $("span[id$=':assignee_panel']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).findAll(".ui-autocomplete-item");
     selectionItems.get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
 
-
     $("div[id='side-step-process-form:step-type']").click();
-    $("ul[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("Start a background task (parallel)")).first().click();
+    WaitHelper.waitPageNoAnimation();
+    SelenideElement stepTypePanel = $("[id='side-step-process-form:step-type_panel']")
+        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
+    stepTypePanel.$$("li").filter(Condition.text("Start a background task (parallel)")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForElementDisplayed(stepTypePanel, false);
 
     $("button[id='side-step-process-submit-button']").click();
   }
 
   public void inputSideStepInfoCaseLevel(int numberOfConfig) {
     $("div[id='side-step-process-form:side-step-process-select']").click();
-    assertEquals($("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").size(), numberOfConfig);
+    WaitHelper.waitPageNoAnimation();
+    assertEquals($("[id='side-step-process-form:side-step-process-select_items']").$$("li").size(), numberOfConfig);
 
-    $("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step: CEO Approval")).first().click();
-
+    clickByJavaScript($("[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step: CEO Approval")).first());
+    waitForElementDisplayed($("[id='side-step-process-form:side-step-process-select_panel']"), false);
 
     $("input[id$=':assignee_input']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
-    $("input[id$=':assignee_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).clear();
-    $("input[id$=':assignee_input']").sendKeys("Portal Admin User");
+    SelenideElement assigneeInput = $("input[id$=':assignee_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    assigneeInput.clear();
+    typeIntoAutoComplete(assigneeInput, "Portal Admin User");
     ElementsCollection selectionItems = $("span[id$=':assignee_panel']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).findAll(".ui-autocomplete-item");
     selectionItems.get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
 
     $("div[id='side-step-process-form:step-type']").shouldBe(Condition.clickable, DEFAULT_TIMEOUT).click();
-    $("ul[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("Custom parallel title")).first().click();
+    WaitHelper.waitPageNoAnimation();
+    SelenideElement stepTypePanel = $("[id='side-step-process-form:step-type_panel']")
+        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
+    stepTypePanel.$$("li").filter(Condition.text("Custom parallel title")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForElementDisplayed(stepTypePanel, false);
 
     $("button[id='side-step-process-submit-button']").click();
   }
@@ -339,17 +365,25 @@ public class TaskTemplatePage extends TemplatePage {
 
   public int getNumberOfConfigForSideStep() {
     $("div[id='side-step-process-form:side-step-process-select']").click();
-    return $("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").size();
+    WaitHelper.waitPageNoAnimation();
+    return $("[id='side-step-process-form:side-step-process-select_items']").$$("li").size();
   }
 
   public void inputLeaveRequestInfo() {
     driver.switchTo().frame("iFrame");
 
     $("div[id='leave-request:approver']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
-    $("ul[id='leave-request:approver_items']").$$("li").filter(Condition.text("Portal Admin User")).first().click();
+    WaitHelper.waitPageNoAnimation();
+    $("[id='leave-request:approver_items']").$$("li").filter(Condition.text("Portal Admin User")).first().click();
+    // Wait for this panel's own closing transition to finish before touching the next field -
+    // otherwise its still-closing overlay can intercept the next dropdown's open-click, which is
+    // a silent no-op (the item-click handler only binds once a panel is genuinely open).
+    waitForElementDisplayed($("[id='leave-request:approver_panel']"), false);
 
     $("div[id='leave-request:leave-type']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
-    $("ul[id='leave-request:leave-type_items']").$$("li").filter(Condition.text("Maternity Leave")).first().click();
+    WaitHelper.waitPageNoAnimation();
+    $("[id='leave-request:leave-type_items']").$$("li").filter(Condition.text("Maternity Leave")).first().click();
+    waitForElementDisplayed($("[id='leave-request:leave-type_panel']"), false);
 
     $("textarea[id='leave-request:requester-comment']").sendKeys("Requester comment");
     $("button[id='leave-request:button-submit']").click();

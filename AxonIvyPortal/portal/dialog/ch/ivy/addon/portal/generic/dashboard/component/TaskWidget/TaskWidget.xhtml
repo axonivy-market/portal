@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
-  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions"
   xmlns:cc="jakarta.faces.composite" xmlns:jsf="jakarta.faces"
   xmlns:c="jakarta.tags.core" xmlns:fn="jakarta.tags.functions"
   xmlns:pt="jakarta.faces.passthrough">
@@ -51,9 +51,9 @@
           <p:resetInput target="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" />
         </p:commandLink>
       </h:panelGroup>
-      <p:dataTable id="dashboard-tasks" widgetVar="#{cc.attrs.taskWidgetVar}-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task"
+      <p:dataTable cellNavigation="false" id="dashboard-tasks" widgetVar="#{cc.attrs.taskWidgetVar}-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task"
         lazy="true" scrollRows="25"
-        disabledSelection="#{isPreviewMode or bulkActionBean.isInBulkMode(taskWidget)}"
+        selectionDisabled="#{isPreviewMode or bulkActionBean.isInBulkMode(taskWidget)}"
         liveScroll="true" scrollable="true" sortBy="#{isResizing ? null : taskWidget.sortBy}"
         showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode and not bulkActionBean.isInBulkMode(taskWidget)}" selectionMode="single"

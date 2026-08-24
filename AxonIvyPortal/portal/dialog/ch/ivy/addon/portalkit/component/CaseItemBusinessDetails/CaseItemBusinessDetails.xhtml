@@ -4,8 +4,8 @@
   xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite"
   xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions"
   xmlns:c="jakarta.tags.core">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
@@ -27,7 +27,7 @@
         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/businessDetailsTitle')}
       </div>
     </div>
-    <p:dataTable id="additional-case-detail-table" styleClass="case-details-business-details-table"
+    <p:dataTable cellNavigation="false" id="additional-case-detail-table" styleClass="case-details-business-details-table"
       value="#{case.customFields().all()}" var="item"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
       lazy="false">

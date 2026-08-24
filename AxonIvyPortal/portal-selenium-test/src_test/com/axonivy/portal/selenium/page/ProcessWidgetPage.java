@@ -13,6 +13,7 @@ import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 public class ProcessWidgetPage extends TemplatePage {
@@ -39,6 +40,14 @@ public class ProcessWidgetPage extends TemplatePage {
   @Override
   protected String getLoadedLocator() {
     return "[id$=':process-list']";
+  }
+
+  private void typeIntoAutoComplete(WebElement input, String text) {
+    Selenide.executeJavaScript(
+        "var kd=new KeyboardEvent('keydown',{key:'a',bubbles:true});arguments[0].dispatchEvent(kd);"
+            + "arguments[0].value=arguments[1];"
+            + "arguments[0].dispatchEvent(new Event('input',{bubbles:true}));",
+        input, text);
   }
 
   public class AddNewExternalLinkDialog {
@@ -82,7 +91,7 @@ public class ProcessWidgetPage extends TemplatePage {
     public void selectExternalLinkRolePermission(String rolePermission) {
       SelenideElement rolePermissionInput = findDisplayedElementByCssSelector(
           "[id$='process-widget:add-external-link-form:role-autocomplete-for-creating-external-link_input");
-      rolePermissionInput.sendKeys(rolePermission);
+      typeIntoAutoComplete(rolePermissionInput, rolePermission);
       waitForElementDisplayed(
           By.cssSelector(
               "span[id$='process-widget:add-external-link-form:role-autocomplete-for-creating-external-link_panel']"),
@@ -274,7 +283,7 @@ public class ProcessWidgetPage extends TemplatePage {
           && processItem.getAttribute("class").endsWith(processGroupCharacter));
     }
     ElementsCollection indexGroup =
-        $$(By.xpath("//legend[@class='ui-fieldset-legend ui-corner-all ui-state-default']"));
+        $$(By.xpath("//legend[contains(@class, 'ui-fieldset-legend')]"));
     return indexGroup.asFixedIterable().stream().anyMatch(item -> processGroupCharacter.equals(item.getText()));
   }
 
@@ -326,7 +335,7 @@ public class ProcessWidgetPage extends TemplatePage {
         "span[id='process-widget:edit-process-form:role-permissions-editor-for-external-link_display'] a.ti.ti-pencil"));
     WebElement rolePermissionInput = findDisplayedElementByCssSelector(
         "[id$='process-widget:edit-process-form:role-autocomplete-for-editing-external-link_input']");
-    rolePermissionInput.sendKeys(rolePermission);
+    typeIntoAutoComplete(rolePermissionInput, rolePermission);
     waitForElementDisplayed(By.cssSelector(
         "span[id$='process-widget:edit-process-form:role-autocomplete-for-editing-external-link_panel']"), true);
     rolePermissionInput.sendKeys(Keys.DOWN);
