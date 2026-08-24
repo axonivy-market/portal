@@ -223,7 +223,7 @@
       <p:commandButton id="edit-widget-#{index}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
         icon="ti ti-pencil"
-        styleClass="rounded-button ui-button-outlined ui-button-widget u-hidden-sm-down u-mar-right-5 widget-icon-button"
+        styleClass="rounded-button ui-button-outlined u-hidden-sm-down u-mar-right-5 widget-icon-button"
         oncomplete="PF('new-widget-configuration-dialog').show()"
         global="false"
         actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
@@ -236,7 +236,7 @@
 
       <!-- Clone widget button (copy) -->
       <p:commandButton id="clone-widget-#{index}" type="button" icon="ti ti-copy"
-        styleClass="rounded-button ui-button-outlined ui-button-widget u-mar-right-5 widget-icon-button"
+        styleClass="rounded-button ui-button-outlined u-mar-right-5 widget-icon-button"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CloneWidget')}"
         rendered="#{!isReadOnlyMode}">
         <p:ajax event="click" listener="#{cloneWidgetBean.setCloneWidget(widget)}"
@@ -288,7 +288,7 @@
           <div class="ui-g-12">
             <ui:insert name="statisticPanelOtherAction" />
             <!-- Close link -->
-            <p:commandLink styleClass="Fright info-overlay-panel__close-link portal-link"
+            <p:commandLink styleClass="Fright info-overlay-panel__close-link"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')])}"
               onclick="PF('info-overlay-panel-#{index}').hide();"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
@@ -392,7 +392,7 @@
               <div class="flex align-items-center justify-content-end footer-buttons-container">
                 <p:commandLink id="reset-button"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetFilters')}"
-                  styleClass="flex align-items-center reset-button portal-link" partialSubmit="true"
+                  styleClass="flex align-items-center reset-button" partialSubmit="true"
                   process="filter-form-#{index}"
                   update="#{componentToUpdateOnResetFilter} #{cc.clientId}:widget-header-actions #{cc.clientId}:actions-button-panel-#{index}"
                   oncomplete="PF('filter-dialog-#{index}').hide(); initWidgetFilterHtml('#{widget.id}');"

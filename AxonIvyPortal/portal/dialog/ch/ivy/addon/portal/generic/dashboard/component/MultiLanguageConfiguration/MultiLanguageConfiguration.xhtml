@@ -63,7 +63,7 @@
              for="#{cc.attrs.useInputText ? 'title-input' : 'title-textarea'}" appendTo="@(body)" my="right top" at="right bottom"
              id="overlay-panel-input"
              styleClass="filter-name-overlay-panel" dynamic="false" dismissable="true" showCloseIcon="true">
-              <p:commandLink styleClass="portal-link" id="tranlate-link" actionListener="#{managedBean.applyTranslatedText(title)}" update="@form" process="@this"
+              <p:commandLink id="tranlate-link" actionListener="#{managedBean.applyTranslatedText(title)}" update="@form" process="@this"
                              partialSubmit="true" disabled="#{not empty managedBean.warningText}"
                              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/AutoTranslation')}">
                 <span class="ti ti-language language-icon-padding-right"/>
@@ -80,7 +80,7 @@
       </h:dataTable>
     </h:panelGroup>
       <div class="u-dialog-footer-actions-group">
-        <p:commandLink styleClass="portal-link" id="multi-language-cancel-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')])}"
+        <p:commandLink id="multi-language-cancel-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')])}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('#{cc.attrs.dialogWidgetVar}').hide(); return false;" />
         <p:spacer width="15px" rendered="#{!titles.isEmpty()}" />
