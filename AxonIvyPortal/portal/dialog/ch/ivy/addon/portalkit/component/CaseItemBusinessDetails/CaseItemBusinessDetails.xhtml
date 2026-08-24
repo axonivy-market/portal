@@ -21,18 +21,16 @@
 
   <h:panelGroup id="case-item-additional-details" layout="block"
     rendered="#{data.hasPermission and empty data.url}">
-    <div class="case-detail-section-title ui-g-12">
-      <div class="ui-g-3 u-truncate-text u-padding-0 task-details-panel-title"
+    <div class="case-detail-section-title portal-detail-widget-header ui-g-12 flex align-items-center justify-content-between">
+      <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title portal-detail-widget-header-title"
         role="heading" aria-level="1">
-        <i class="ti ti-clipboard-check" />
         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/businessDetailsTitle')}
       </div>
     </div>
-    <div class="Separator" />
-    <p:dataTable cellNavigation="false" id="additional-case-detail-table"
+    <p:dataTable cellNavigation="false" id="additional-case-detail-table" styleClass="case-details-business-details-table"
       value="#{case.customFields().all()}" var="item"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-      reflow="true" lazy="false">
+      lazy="false">
       <p:column
         headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}">
         <h:outputText id="name" value="#{item.name()}" />

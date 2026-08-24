@@ -45,13 +45,14 @@ How to Configure Widgets in Case Details
            "items": [
             {
                "id": "default-case-detail",
+               "version": "14.0.0",
                "widgets": [
                   {
                      "type": "information",
                      "id": "information",
                      "layout": {
                         "w": 6,
-                        "h": 8,
+                        "h": 40,
                         "x": 0,
                         "y": 0
                      }
@@ -61,7 +62,7 @@ How to Configure Widgets in Case Details
                      "id": "document",
                      "layout": {
                         "w": 6,
-                        "h": 8,
+                        "h": 40,
                         "x": 6,
                         "y": 0
                      }
@@ -71,9 +72,9 @@ How to Configure Widgets in Case Details
                      "id": "technicalCase",
                      "layout": {
                         "w": 12,
-                        "h": 6,
+                        "h": 30,
                         "x": 0,
-                        "y": 8
+                        "y": 40
                      }
                   },
                   {
@@ -81,9 +82,9 @@ How to Configure Widgets in Case Details
                      "id": "relatedTask",
                      "layout": {
                         "w": 12,
-                        "h": 6,
+                        "h": 30,
                         "x": 0,
-                        "y": 14
+                        "y": 70
                      }
                   },
                   {
@@ -91,9 +92,9 @@ How to Configure Widgets in Case Details
                      "id": "history",
                      "layout": {
                         "w": 12,
-                        "h": 6,
+                        "h": 30,
                         "x": 0,
-                        "y": 20
+                        "y": 100
                      }
                   }
                ]
@@ -131,13 +132,16 @@ How to Configure Widgets in Case Details
 
       ``layout``: defines the UI styling of the widget.
 
-         ``x``: HTML DOM Style ``left`` is computed as ``x / 12 * 100%``.
+         ``x``: column index. HTML DOM Style ``left`` is computed as ``x / 12 * 100%``.
 
-         ``y``: HTML DOM Style ``top`` is computed as ``y / 12 * 100%``.
+         ``y``: row index. HTML DOM Style ``top`` is computed as ``y * 20px``.
 
-         ``w``: HTML DOM Style ``width`` is computed as ``60 * w + 20 * (width - 1)``.
+         ``w``: width in columns. HTML DOM Style ``width`` is computed as ``w / 12 * 100%``.
 
-         ``h``: HTML DOM Style ``height`` is computed as ``60 * h + 20 * (height - 1)``.
+         ``h``: height in rows. HTML DOM Style ``height`` is computed as ``h * 20px``.
+
+         The grid is 12 columns wide and one row is 20 pixels high. Each widget is then
+         inset by 10 pixels on every side, so two neighbours end up 20 pixels apart.
 
          ``styleClass`` (optional): add CSS Classes to HTML DOM.
 
@@ -212,13 +216,14 @@ The following two steps are necessary to add new custom panels:
            "items": [
             {
                "id": "default-case-detail",
+               "version": "14.0.0",
                "widgets": [
                   {
                      "type": "information",
                      "id": "information",
                      "layout": {
                         "w": 6,
-                        "h": 8,
+                        "h": 40,
                         "x": 0,
                         "y": 0
                      }
@@ -228,7 +233,7 @@ The following two steps are necessary to add new custom panels:
                      "id": "document",
                      "layout": {
                         "w": 6,
-                        "h": 8,
+                        "h": 40,
                         "x": 6,
                         "y": 0
                      }
@@ -238,9 +243,9 @@ The following two steps are necessary to add new custom panels:
                      "id": "history",
                      "layout": {
                         "w": 12,
-                        "h": 6,
+                        "h": 30,
                         "x": 0,
-                        "y": 8
+                        "y": 40
                      }
                   },
                   {
@@ -248,9 +253,9 @@ The following two steps are necessary to add new custom panels:
                      "id": "customTop",
                      "layout": {
                         "x": 0,
-                        "y": 14,
+                        "y": 70,
                         "w": 12,
-                        "h": 6
+                        "h": 30
                      },
                      "data": {
                         "type": "caseItemDetailCustomTop"
@@ -261,9 +266,9 @@ The following two steps are necessary to add new custom panels:
                      "id": "customMiddle",
                      "layout": {
                         "x": 0,
-                        "y": 20,
+                        "y": 100,
                         "w": 12,
-                        "h": 6
+                        "h": 30
                      },
                      "data": {
                         "type": "caseItemDetailCustomMiddle"
@@ -274,9 +279,9 @@ The following two steps are necessary to add new custom panels:
                      "id": "customBottom",
                      "layout": {
                         "x": 0,
-                        "y": 26,
+                        "y": 130,
                         "w": 12,
-                        "h": 6
+                        "h": 30
                      },
                      "data": {
                         "type": "caseItemDetailCustomBottom"
@@ -308,6 +313,7 @@ The following two steps are necessary to add new custom panels:
            "items": [
             {
                "id": "case-detail",
+               "version": "14.0.0",
                "widgets": [
                   {
                   "type": "information",
@@ -316,7 +322,7 @@ The following two steps are necessary to add new custom panels:
                      "x": 0,
                      "y": 0,
                      "w": 6,
-                     "h": 8
+                     "h": 40
                   }
                   },
                   {
@@ -326,7 +332,7 @@ The following two steps are necessary to add new custom panels:
                      "x": 6,
                      "y": 0,
                      "w": 6,
-                     "h": 8
+                     "h": 40
                   },
                   "data": {
                      "url": "https://www.lucide.dev/"
@@ -353,6 +359,7 @@ The following two steps are necessary to add new custom panels:
            "items": [
             {
                "id": "case-detail",
+               "version": "14.0.0",
                "widgets": [
                   {
                      "type": "information",
@@ -361,7 +368,7 @@ The following two steps are necessary to add new custom panels:
                         "x": 0,
                         "y": 0,
                         "w": 6,
-                        "h": 8
+                        "h": 40
                   }
                   },
                   {
@@ -371,7 +378,7 @@ The following two steps are necessary to add new custom panels:
                         "x": 6,
                         "y": 0,
                         "w": 6,
-                        "h": 8
+                        "h": 40
                   }
                   },
                   {
@@ -379,9 +386,9 @@ The following two steps are necessary to add new custom panels:
                   "id": "customIvyProcess",
                   "layout": {
                      "x": 0,
-                     "y": 6,
+                     "y": 30,
                      "w": 12,
-                     "h": 8
+                     "h": 40
                   },
                   "data": {
                      "processPath": "Start Processes/CaseDetailsCustomWidgetExample/startReview.ivp",

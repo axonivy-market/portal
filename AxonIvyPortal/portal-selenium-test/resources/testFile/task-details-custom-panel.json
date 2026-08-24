@@ -1,61 +1,54 @@
 {
+  "id": "default-task-detail",
   "version": "14.0.0",
-  "items": [
-    {
-      "id": "default-task-detail",
-      "widgets": [
-        {
-          "type": "information",
-          "layout": {
-            "x": 0,
-            "y": 4,
-            "w": 6,
-            "h": 12
-          }
-        },
-        {
-          "type": "document",
-          "layout": {
-            "x": 6,
-            "y": 4,
-            "w": 6,
-            "h": 6
-          }
-        },
-        {
-          "type": "history",
-          "layout": {
-            "x": 6,
-            "y": 10,
-            "w": 6,
-            "h": 6
-          }
-        },
-        {
-          "type": "custom",
-          "layout": {
-            "x": 0,
-            "y": 0,
-            "w": 12,
-            "h": 4
-          },
-          "data": {
-            "type": "taskItemDetailCustomPanelTop"
-          }
-        },
-        {
-          "type": "custom",
-          "layout": {
-            "x": 0,
-            "y": 16,
-            "w": 12,
-            "h": 6
-          },
-          "data": {
-            "type": "taskItemDetailCustomPanelBottom"
-          }
-        }
-      ]
+  "widgets":
+  [{
+      "type": "information",
+      "layout": {
+        "x": 0,
+        "y": 20,
+        "w": 6,
+        "h": 60
+      }
+    }, {
+      "type": "document",
+      "layout": {
+        "x": 6,
+        "y": 20,
+        "w": 6,
+        "h": 30
+      }
+    }, {
+      "type": "history",
+      "layout": {
+        "x": 6,
+        "y": 50,
+        "w": 6,
+        "h": 30
+      }
+    }, {
+      "type": "custom",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 20
+      },
+      "data": {
+        "type": "taskItemDetailCustomPanelTop"
+      }
+    }, {
+      "type": "custom",
+      "layout": {
+        "x": 0,
+        "y": 80,
+        "w": 12,
+        "h": 30
+      },
+      "data": {
+        "type": "taskItemDetailCustomPanelBottom"
+      }
     }
   ]
 }
+

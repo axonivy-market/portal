@@ -82,6 +82,14 @@ public class CaseTaskDocumentBean implements Serializable {
         params);
   }
 
+  public void navigateToTaskDetails(ITask task) {
+    PortalNavigator.navigateToPortalTaskDetails(task.uuid());
+  }
+
+  public void navigateToCaseDetails(ICase iCase) {
+    PortalNavigator.navigateToPortalCaseDetails(iCase.uuid());
+  }
+
   public SortMeta getDocumentSortByCreationTimestamp() {
     return SortFieldUtil.buildSortMeta("creation.timestamp", true);
   }

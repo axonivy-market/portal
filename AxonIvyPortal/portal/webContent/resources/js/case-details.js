@@ -13,7 +13,7 @@ function loadCaseDetailsGrid() {
 function initCaseDetailsGrid() {
   caseDetailsGrid = GridStack.init({
     column: 12,
-    cellHeight: 100,
+    cellHeight: 20,
     resizable: {
       handles: "e, se, s, sw, w"
     },
@@ -55,8 +55,15 @@ function saveCaseDetailsGrid() {
 }
 
 function getCaseDetailsWidgetType(caseDetailsWidgetName) {
+  const knownTypes = ["summary", "information", "document", "technicalCase",
+    "businessDetails", "relatedTask", "history", "custom"];
+  if (knownTypes.includes(caseDetailsWidgetName)) {
+    return caseDetailsWidgetName;
+  }
+
   let type = "";
   switch (caseDetailsWidgetName) {
+    case "SummaryWidget": type = "summary"; break;
     case "InformationWidget": type = "information"; break;
     case "DocumentWidget": type = "document"; break;
     case "TechnicalCaseWidget": type = "technicalCase"; break;

@@ -1,132 +1,89 @@
 {
   "version": "14.0.0",
   "items": [
-    {
-      "id": "default-case-detail",
-      "widgets": [
-        {
-          "type": "information",
-          "id": "information",
-          "layout": {
-            "w": 6,
-            "h": 8,
-            "x": 0,
-            "y": 0
-          }
-        },
-        {
-          "type": "document",
-          "id": "document",
-          "layout": {
-            "w": 6,
-            "h": 8,
-            "x": 6,
-            "y": 0
-          }
-        },
-        {
-          "type": "technicalCase",
-          "id": "technicalCase",
-          "layout": {
-            "w": 12,
-            "h": 6,
-            "x": 0,
-            "y": 8
-          }
-        },
-        {
-          "type": "relatedTask",
-          "id": "relatedTask",
-          "layout": {
-            "w": 12,
-            "h": 6,
-            "x": 0,
-            "y": 14
-          }
-        },
-        {
-          "type": "history",
-          "id": "history",
-          "layout": {
-            "w": 12,
-            "h": 6,
-            "x": 0,
-            "y": 20
-          }
+  {
+    "id": "default-case-detail",
+    "version": "14.0.0",
+    "widgets": [{
+        "type": "information",
+        "id": "information",
+        "layout": {
+          "w": 6, "h": 40, "x": 0, "y": 0
         }
-      ]
+      }, {
+        "type": "document",
+        "id": "document",
+        "layout": {
+          "w": 6, "h": 40, "x": 6, "y": 0
+        }
+      }, {
+        "type": "technicalCase",
+        "id": "technicalCase",
+        "layout": {
+          "w": 12, "h": 30, "x": 0, "y": 40
+        }
+      }, {
+        "type": "relatedTask",
+        "id": "relatedTask",
+        "layout": {
+          "w": 12, "h": 30, "x": 0, "y": 70
+        }
+      }, {
+        "type": "history",
+        "id": "history",
+        "layout": {
+          "w": 12, "h": 30, "x": 0, "y": 100
+        }
+      }
+    ]
+  }, {
+    "id": "done-case-detail",
+    "version": "14.0.0",
+    "filters": {
+      "states": ["DESTROYED"]
     },
-    {
-      "id": "done-case-detail",
-      "filters": {
-        "states": [
-          "DESTROYED"
-        ]
-      },
-      "widgets": [
-        {
-          "type": "information",
-          "id": "information",
-          "layout": {
-            "w": 6,
-            "h": 8,
-            "x": 0,
-            "y": 0
-          }
-        },
-        {
-          "type": "document",
-          "id": "document",
-          "layout": {
-            "w": 6,
-            "h": 8,
-            "x": 6,
-            "y": 0
-          }
-        },
-        {
-          "type": "history",
-          "id": "history",
-          "layout": {
-            "w": 12,
-            "h": 6,
-            "x": 0,
-            "y": 8
-          }
+    "widgets": [{
+        "type": "information",
+        "id": "information",
+        "layout": {
+          "w": 6, "h": 40, "x": 0, "y": 0
         }
-      ]
+      }, {
+        "type": "document",
+        "id": "document",
+        "layout": {
+          "w": 6, "h": 40, "x": 6, "y": 0
+        }
+      }, {
+        "type": "history",
+        "id": "history",
+        "layout": {
+          "w": 12, "h": 30, "x": 0, "y": 40
+        }
+      }
+    ]
+  }, {
+    "id": "custom-case-detail",
+    "version": "14.0.0",
+    "filters": {
+      "categories": ["customWidget"]
     },
-    {
-      "id": "custom-case-detail",
-      "filters": {
-        "categories": [
-          "customWidget"
-        ]
-      },
-      "widgets": [
-        {
-          "type": "information",
-          "id": "information",
-          "layout": {
-            "w": 6,
-            "h": 6,
-            "x": 0,
-            "y": 0
-          }
-        },
-        {
-          "type": "custom",
-          "layout": {
-            "x": 6,
-            "y": 0,
-            "w": 6,
-            "h": 4
-          },
-          "data": {
-            "url": "https://www.lucide.dev/"
-          }
+    "widgets": [{
+        "type": "information",
+        "id": "information",
+        "layout": {
+          "w": 6, "h": 30, "x": 0, "y": 0
         }
-      ]
-    }
+      }, {
+        "type": "custom",
+        "layout": {
+          "x": 6, "y": 0, "w": 6, "h": 20
+        },
+        "data": {
+          "url": "https://www.lucide.dev/"
+        }
+      }
+    ]
+  }
   ]
 }

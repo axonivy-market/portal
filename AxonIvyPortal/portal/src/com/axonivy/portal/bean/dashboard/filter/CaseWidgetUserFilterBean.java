@@ -10,6 +10,7 @@ import jakarta.faces.view.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.util.filter.DefaultFilterChipLabelBuilder;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
@@ -19,6 +20,8 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 @Named
 @ViewScoped
 public class CaseWidgetUserFilterBean extends AbstractCaseWidgetFilterBean {
+
+  private static final String CASE_WIDGET_TYPE = "case";
 
   private static final long serialVersionUID = 7812171996900852992L;
 
@@ -68,5 +71,10 @@ public class CaseWidgetUserFilterBean extends AbstractCaseWidgetFilterBean {
 
   public void onCancelUserFilters() {
     widget.setUserFilters(originalUserFilters);
+  }
+
+  public List<String> getDefaultFilterChipLabels() {
+    return widget == null ? List.of()
+        : DefaultFilterChipLabelBuilder.build(widget.getFilters(), CASE_WIDGET_TYPE);
   }
 }

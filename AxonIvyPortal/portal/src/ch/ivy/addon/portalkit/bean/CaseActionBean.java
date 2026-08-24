@@ -90,7 +90,7 @@ public class CaseActionBean implements Serializable {
   }
 
   public String getPinnedStyleClass(ICase caze) {
-    return "aadditional-case-details-link action-step-item ui-menu-items"
+    return "portal-action-menu-item action-step-item ui-menu-items"
         + (CaseUtils.isPinnedCase(caze) ? " color-destroy" : "");
   }
 
@@ -99,7 +99,8 @@ public class CaseActionBean implements Serializable {
   }
 
   public String getPinnedIcon(ICase caze) {
-    return CaseUtils.isPinnedCase(caze) ? "option-action-icon tif tif-pin" : "option-action-icon ti ti-pin";
+    return CaseUtils.isPinnedCase(caze) ? "portal-action-menu-icon option-action-icon tif tif-pin"
+        : "portal-action-menu-icon option-action-icon ti ti-pin";
   }
 
   public String getPinnedLabel(ICase caze) {

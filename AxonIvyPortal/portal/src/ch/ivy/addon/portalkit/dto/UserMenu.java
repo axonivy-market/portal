@@ -31,6 +31,8 @@ public class UserMenu extends AbstractConfiguration implements Serializable {
 
   private Map<String, String> params;
 
+  private String icon;
+
   public String getTitle() {
     return LanguageUtils.getLocalizedName(titles, title);
   }
@@ -79,6 +81,14 @@ public class UserMenu extends AbstractConfiguration implements Serializable {
 
   public void setParams(Map<String, String> params) {
     this.params = params;
+  }
+
+  public String getIcon() {
+    return icon;
+  }
+
+  public void setIcon(String icon) {
+    this.icon = icon;
   }
 
   @Override

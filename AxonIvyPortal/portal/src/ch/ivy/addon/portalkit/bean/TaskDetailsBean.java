@@ -14,12 +14,16 @@ import org.primefaces.model.SortMeta;
 
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.service.DateTimeGlobalSettingService;
+import com.axonivy.portal.migration.taskdetails.migrator.JsonTaskDetailsMigrator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetails;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.jsf.Attrs;
+import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
@@ -121,6 +125,13 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   @Override
   public String getVariableKey() {
     return PortalVariable.TASK_DETAIL.key;
+  }
+
+  @Override
+  protected List<TaskDetails> convertToLatestVersion(String configurationJson)
+      throws JsonMappingException, JsonProcessingException {
+    JsonTaskDetailsMigrator migrator = new JsonTaskDetailsMigrator(mapper.readTree(configurationJson));
+    return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), TaskDetails.class);
   }
 
   @Override

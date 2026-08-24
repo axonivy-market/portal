@@ -14,7 +14,7 @@ function loadTaskDetailsGrid() {
 function initTaskDetailsGrid() {
   taskDetailsGrid = GridStack.init({
     column: 12,
-    cellHeight: 100,
+    cellHeight: 20,
     resizable: {
       handles: "e, se, s, sw, w"
     },
@@ -33,8 +33,14 @@ function initTaskDetailsGrid() {
 }
 
 function getTaskDetailsWidgetType(taskDetailsWidgetName) {
+  const knownTypes = ["summary", "information", "document", "history", "custom"];
+  if (knownTypes.includes(taskDetailsWidgetName)) {
+    return taskDetailsWidgetName;
+  }
+
   let type = "";
   switch (taskDetailsWidgetName) {
+    case "SummaryWidget": type = "summary"; break;
     case "InformationWidget": type = "information"; break;
     case "DocumentWidget": type = "document"; break;
     case "HistoryWidget": type = "history"; break;

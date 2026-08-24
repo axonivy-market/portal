@@ -1,9 +1,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces" xmlns:pe="primefaces.extensions" xmlns:jsf="jakarta.faces">
 
-<h:panelGroup id="filter-container" layout="block" styleClass="widget-filter-panel">
-  <ui:repeat id="filter-columns" var="field" value="#{widget.filterableColumns}">
-    <div class="ui-g">
+<h:panelGroup id="filter-container" layout="block" styleClass="widget-filter-panel process-filter">
+  <ui:repeat id="filter-columns" var="field" value="#{widget.filterableColumns}" varStatus="status">
+    <div class="process-filter__field">
       <h:panelGroup rendered="#{field.field eq 'type'}">
         <div class="ui-g-4 ui-sm-12">
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processType')}" for="process-types"/>
@@ -15,9 +15,9 @@
           </p:selectCheckboxMenu>
         </div>
       </h:panelGroup>
-    
+
       <ic:ch.ivy.addon.portalkit.component.dashboard.widget.TextFilterColumn field="#{field}"
-        focusOnTextField="true"
+        focusOnTextField="#{status.first}"
         inputTextValue="#{field.userFilter}"
         selectedTexts="#{field.userFilterList}" selectOptions="#{field.userFilterListOptions}"/>
 
@@ -26,7 +26,7 @@
         categoryTree="#{field.userCategoryTree}" categoryNodeSelection="#{field.userSelectionCategoryNodes}"
         containerStyleClass="process-category" inputCategoryStyleClass="process-category__input-text"
         overlayCategoryStyleClass="process-category-panel" showUnselectableCheckbox="true"/>
-        
+
       <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{field}"
         selectedApps="#{field.userFilterList}"
         appOptions="#{field.userFilterListOptions}"/>

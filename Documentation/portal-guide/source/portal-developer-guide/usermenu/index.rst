@@ -45,6 +45,7 @@ Below is a comprehensive JSON example showing both external link and Ivy process
           "title" : "Axon Ivy",
           "permissions": ["#demo"],
           "url" : "https://www.axonivy.com/"
+          "icon" : "ti ti-background"
       },
       {
           "id" : "re-order-dashboard",
@@ -126,6 +127,12 @@ Each user menu item in the JSON array supports the following properties:
         - **Key:** Parameter name expected by the Ivy process
         - **Value:** Predefined value passed to the process
         - Example: ``"params": {"dashboardId": "123", "mode": "edit"}``
+
+    ``icon`` (string)
+        Menu item icon
+        
+        - Supports Tabler Icons (e.g., ``"ti-player-play"``, ``"ti-dashboard"``)
+
 
 .. tip::
    **Permission Configuration Best Practices:**
