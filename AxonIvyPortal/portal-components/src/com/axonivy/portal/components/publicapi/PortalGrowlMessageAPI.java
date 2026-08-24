@@ -2,53 +2,46 @@ package com.axonivy.portal.components.publicapi;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.enums.SessionAttribute;
+
 import ch.ivyteam.ivy.environment.Ivy;
 
 /**
- * Public API for setting a custom Portal growl message from within a task.
+ * Public API to override the default Portal growl message shown after a task ends.
  *
- * <p>Call one of the {@code setCustomMessage} methods <b>before</b> the task completes
- * (before proceed / cancel). Portal will display the message in the global growl
- * instead of the default task-finished or task-left feedback.</p>
- *
- * <p>Works for both IFrame and dialog tasks.</p>
+ * <p>Call {@code setCustomMessage} <b>before</b> the task completes, i.e. before proceed or
+ * cancel. Portal then displays the given message in the global growl instead of the default
+ * task-finished or task-left feedback. It applies to both IFrame and dialog tasks, and is
+ * cleared once displayed.</p>
  *
  * <pre>
- * // Summary only
- * PortalGrowlMessageAPI.setCustomMessage("Order submitted successfully.");
- *
- * // Summary + detail
+ * PortalGrowlMessageAPI.setCustomMessage("Order submitted.");
  * PortalGrowlMessageAPI.setCustomMessage("Order submitted.", "Order #12345 is now in progress.");
  * </pre>
  */
 public final class PortalGrowlMessageAPI {
 
-  /** Session attribute key — must stay in sync with {@code SessionAttribute.CUSTOM_GROWL_MESSAGE}. */
-  private static final String ATTR_SUMMARY = "CUSTOM_GROWL_MESSAGE";
-  /** Session attribute key — must stay in sync with {@code SessionAttribute.CUSTOM_GROWL_MESSAGE_DETAIL}. */
-  private static final String ATTR_DETAIL  = "CUSTOM_GROWL_MESSAGE_DETAIL";
-
   private PortalGrowlMessageAPI() {}
 
   /**
-   * Sets a custom summary message to show in the Portal growl after the task finishes.
+   * Sets the summary text of the growl message shown after the task ends.
    *
-   * @param summary the summary text of the growl message; must not be blank
+   * @param summary the summary (title) text
    */
   public static void setCustomMessage(String summary) {
     setCustomMessage(summary, null);
   }
 
   /**
-   * Sets a custom growl message with a summary and optional detail line.
+   * Sets the summary and detail text of the growl message shown after the task ends.
    *
-   * @param summary the summary (title) text of the growl message; must not be blank
-   * @param detail  an optional detail line shown below the summary; may be {@code null} or empty
+   * @param summary the summary (title) text
+   * @param detail an optional detail line shown below the summary; blank values are ignored
    */
   public static void setCustomMessage(String summary, String detail) {
-    Ivy.session().setAttribute(ATTR_SUMMARY, summary);
+    Ivy.session().setAttribute(SessionAttribute.CUSTOM_GROWL_MESSAGE.name(), summary);
     if (StringUtils.isNotBlank(detail)) {
-      Ivy.session().setAttribute(ATTR_DETAIL, detail);
+      Ivy.session().setAttribute(SessionAttribute.CUSTOM_GROWL_MESSAGE_DETAIL.name(), detail);
     }
   }
 }

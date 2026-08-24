@@ -39,9 +39,11 @@ public class GlobalGrowlTest extends BaseTest {
       "portal-developer-examples/16A7BB2ADC9580A8/customizedMessage.ivp?embedInFrame";
   private static final String GROWL_CUSTOMIZED_SKIP_TASK_LIST_MESSAGE_URL =
       "portal-developer-examples/16A7BB2ADC9580A8/customizedMessageWithSkipTaskList.ivp?embedInFrame";
-  private static final String CUSTOMIZED_GROWL_MESSAGE = "Task is completed";
-  private static final String CUSTOMIZED_GROWL_SKIP_TASK_LIST_MESSAGE =
+  private static final String CUSTOMIZED_FINISH_MESSAGE = "Task is completed";
+  private static final String CUSTOMIZED_FINISH_MESSAGE_WITH_SKIP_TASK_LIST =
       "Task with skip task list is completed";
+  private static final String CUSTOMIZED_CANCEL_MESSAGE =
+      "Task is cancelled. This is a growl message customization.";
 
   @Override
   @BeforeEach
@@ -51,7 +53,7 @@ public class GlobalGrowlTest extends BaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440)); // resize the width to prevent jittering on server
   }
 
-  
+
   @Test
   public void testDisplayDefaultGrowlAfterFinishTaskWithoutIFrame() {
     redirectToRelativeLink(createTestingTasksUrl);
@@ -66,7 +68,7 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(taskWidgetPage, FINISH_MESSAGE_WITH_DETAILS);
   }
 
-  
+
   @Test
   public void testDisplayDefaultGrowlAfterFinishTaskWithIFrame() {
     redirectToRelativeLink(GROWL_STANDARD_MESSAGE_URL);
@@ -84,22 +86,22 @@ public class GlobalGrowlTest extends BaseTest {
 
   @Test
   public void testDisplayCustomizedGrowlAfterFinishTaskWithIFrame() {
-    redirectToRelativeLink(GROWL_CUSTOMIZED_MESSAGE_URL);
-    new TaskTemplateIFramePage().switchToIFrameOfTask();
-    GlobalGrowlIframeTemplatePage taskPage = new GlobalGrowlIframeTemplatePage();
-    NewDashboardPage taskWidgetPage = taskPage.clickProceed();
-    assertGrowlMessage(taskWidgetPage, CUSTOMIZED_GROWL_MESSAGE);
+    GlobalGrowlIframeTemplatePage taskPage = startCustomizedGrowlTask(GROWL_CUSTOMIZED_MESSAGE_URL);
+    assertGrowlMessage(taskPage.clickProceed(), CUSTOMIZED_FINISH_MESSAGE);
+  }
+
+  @Test
+  public void testDisplayCustomizedGrowlAfterCancelTaskWithIFrame() {
+    GlobalGrowlIframeTemplatePage taskPage = startCustomizedGrowlTask(GROWL_CUSTOMIZED_MESSAGE_URL);
+    assertGrowlMessage(taskPage.clickCancel(), CUSTOMIZED_CANCEL_MESSAGE);
   }
 
   @Test
   public void testDisplayCustomizedGrowlAfterFinishTaskWithIFrameAndSkipTaskList() {
-    redirectToRelativeLink(GROWL_CUSTOMIZED_SKIP_TASK_LIST_MESSAGE_URL);
-    new TaskTemplateIFramePage().switchToIFrameOfTask();
-    GlobalGrowlIframeTemplatePage taskPage = new GlobalGrowlIframeTemplatePage();
+    GlobalGrowlIframeTemplatePage taskPage = startCustomizedGrowlTask(GROWL_CUSTOMIZED_SKIP_TASK_LIST_MESSAGE_URL);
     taskPage.clickProceedToNextTask();
-    taskPage = new GlobalGrowlIframeTemplatePage();
-    NewDashboardPage taskWidgetPage = taskPage.clickProceed();
-    assertGrowlMessage(taskWidgetPage, CUSTOMIZED_GROWL_SKIP_TASK_LIST_MESSAGE);
+    assertGrowlMessage(new GlobalGrowlIframeTemplatePage().clickProceed(),
+        CUSTOMIZED_FINISH_MESSAGE_WITH_SKIP_TASK_LIST);
   }
 
   @Test
@@ -107,7 +109,7 @@ public class GlobalGrowlTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     NewDashboardPage taskWidgetPage = newDashboardPage.openTaskList();
-    
+
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.waitForPageLoad();
     TaskIFrameTemplatePage taskTemplatePage = taskWidget.startTaskIFrameByIndex(0);
@@ -138,7 +140,7 @@ public class GlobalGrowlTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     NewDashboardPage taskWidgetPage = newDashboardPage.openTaskList();
-    
+
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.waitForPageLoad();
     taskWidget.openTaskProcessViewer(0);
@@ -149,9 +151,15 @@ public class GlobalGrowlTest extends BaseTest {
     taskWidgetPage = new NewDashboardPage();
     assertGrowlMessage(taskWidgetPage, CLOSE_PROCESS_VIEWER_MESSAGE);
   }
-  
+
   public void waitForTemplateRender() {
     WaitHelper.waitForPresenceOfElementLocatedInFrame("[class$='task-template-container']");
+  }
+
+  private GlobalGrowlIframeTemplatePage startCustomizedGrowlTask(String taskUrl) {
+    redirectToRelativeLink(taskUrl);
+    new TaskTemplateIFramePage().switchToIFrameOfTask();
+    return new GlobalGrowlIframeTemplatePage();
   }
 
   private void assertGrowlMessage(TemplatePage templatePage, String message) {
