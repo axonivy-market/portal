@@ -951,9 +951,24 @@ body .ui-button.dashboard-tasks__start-button {
 }
 
 body .dashboard-tasks__start-container {
-  width: 5.4rem;
+  width: 100%;
   display: inline-flex;
   justify-content: center;
+  container-type: inline-size;
+}
+
+@container (max-width: 5rem) {
+    body .ui-button.dashboard-tasks__start-button > span.ui-button-text {
+      display: none;
+    }
+
+    body .ui-button.dashboard-tasks__start-button {
+      width: 75%;
+    }
+
+    body .ui-button.dashboard-tasks__start-button > .ui-button-icon-left {
+      padding-left: 0.5rem;
+    }
 }
 
 body .ui-button.dashboard-tasks__start-button.ui-state-disabled,
@@ -975,6 +990,12 @@ body .dashboard__table--edit.ui-datatable-resizable thead th,
 body .dashboard__table--edit.ui-datatable-resizable tbody td, .ui-datatable-resizable tfoot td {
   white-space: normal;
 }
+
+body .ui-datatable:not(.ui-datatable-gridlines) thead th:first-child:before,
+body .ui-treetable:not(.ui-treetable-gridlines) thead th:first-child:before {
+  content: none;
+}
+
 
 body .ui-datatable tbody tr td.dashboard-tasks__state,
 body .ui-datatable tbody tr td.dashboard-cases__state {

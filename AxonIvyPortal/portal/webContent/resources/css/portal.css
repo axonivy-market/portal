@@ -2427,13 +2427,6 @@ body a.portal-detail-toolbar-back:focus,
   font-weight: 500;
   line-height: 1;
 }
-/* .task-detail-delegate-link .ti,
-.task-business-case .ti,
-.task-detail-attr .task-detail-attr-value .ti,
-.portal-pill-btn .ti {
-  line-height: 1;
-  vertical-align: middle;
-} */
 
 .task-and-case-information .content-field .task-business-case {
   display: inline-flex !important;
