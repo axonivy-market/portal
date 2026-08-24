@@ -25,13 +25,13 @@
   --button-secondary-text-color: var(--primary-color);
 
   /* Start button (task widget start column) */
-  --start-btn-bg: var(--ivy-portal-blue-pale);
-  --start-btn-border-color: var(--ivy-portal-blue-muted);
-  --start-btn-text-color: var(--ivy-portal-blue-dark);
-  --start-btn-hover-bg: hsla(195, 42%, 80%, 1);
-  --start-btn-disabled-bg: var(--ivy-portal-color-grey-50);
-  --start-btn-disabled-border-color: var(--ivy-portal-color-grey-200);
-  --start-btn-disabled-text-color: var(--ivy-portal-color-grey-500);
+  --accent-btn-bg: var(--ivy-portal-blue-pale);
+  --accent-btn-border: var(--ivy-portal-blue-muted);
+  --accent-btn-text: var(--ivy-portal-blue-dark);
+  --accent-btn-hover-bg: hsla(195, 42%, 80%, 1);
+  --accent-btn-disabled-bg: var(--ivy-portal-color-grey-50);
+  --accent-btn-disabled-border: var(--ivy-portal-color-grey-200);
+  --accent-btn-disabled-text: var(--ivy-portal-color-grey-500);
 
   /* Welcome widget configuration - Change image link accent */
   --welcome-config-accent-color: var(--ivy-portal-blue-dark);
@@ -167,7 +167,7 @@
   --process-list-item-border-color: hsl(0,0%,92.2%);
   --process-list-widget-item-background-color:  var(--ivy-primary-color-grey-pale);
   --process-list-item-text: var(--ivy-primary-color-black);
-  --process-action-button-color: var(--widget-button-background-color);
+  --process-action-button-color: var(--secondary-btn-bg);
 
   /* Case Detail */
   --case-related-task-color: var(--ivy-primary-color-black);
@@ -240,8 +240,8 @@
   --portal-detail-table-row-border-color: hsl(0, 0%, 91%);
   --portal-detail-strip-divider-color: var(--portal-detail-table-row-border-color);
   /* Text */
-  --portal-detail-value-color: var(--text-color, var(--ivy-primary-color-black));
-  --portal-detail-label-color: hsl(0, 0%, 46%);
+  --portal-detail-value-color: var(--ivy-primary-color-black);
+  --portal-detail-label-color: var(--ivy-portal-color-grey-600);
   --portal-detail-eyebrow-color: var(--portal-detail-label-color);
   /* Accent (Primary ramp) */
   --portal-detail-accent-color: var(--primary-color, var(--ivy-portal-blue-dark));
@@ -416,9 +416,9 @@
   --widget-filter-noti-background-color: var(--ivy-tertinary-color-red-medium);
   --widget-filter-noti-color: var(--ivy-primary-color-white);
   --widget-header-icon: var(--ivy-primary-color-black);
-  --widget-button-border-color: var(--ivy-portal-color-grey-200);
-  --widget-button-background-color: var(--ivy-portal-color-grey-50);
-  --widget-button-hover-background-color: hsla(0, 0%, 94%, 1);
+  --secondary-btn-border: var(--ivy-portal-color-grey-200);
+  --secondary-btn-bg: var(--ivy-portal-color-grey-50);
+  --secondary-btn-hover-bg: hsla(0, 0%, 94%, 1);
   --widget-button-danger-background-color: var(--ivy-portal-color-red-100);
   --widget-button-danger-border-color: var(--ivy-portal-color-red-300);
   --widget-button-danger-background-color-hover: hsla(0, 84%, 60%, 0.25);
@@ -448,9 +448,10 @@
   --state-active: var(--case-state-done-color);
   --state-inactive: var(--task-state-failed-color);
 
-  /* Dashboard commandlink hover */
-  --ivy-primary-color-command-link-hover: var(--ivy-primary-color);
-  
+  /* Portal link */
+  --portal-link-color: var(--ivy-primary-color);
+  --portal-link-color-hover: var(--ivy-primary-color-dark);
+
   /* Dashboard widgets empty message*/
   --dashboard-widget-empty-message: var(--ivy-primary-color-grey-dark);
   
