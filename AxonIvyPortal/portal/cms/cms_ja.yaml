@@ -1280,6 +1280,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     defaultColumns:
       ACTIVATOR: 責任者
       APPLICATION: アプリケーション
+      BUSINESS_CASE_ID: ビジネスケースID
       CATEGORY: カテゴリー
       COMPLETED: 完了日
       COMPLETED_ON: 完了日
@@ -1291,6 +1292,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY: 優先度
       STATE: 状態
       TASK_FOR_UNAVAILABLE_ACTIVATOR: アクティベーターがありません
+      TECHNICAL_CASE_ID: テクニカルケースID
+      WORKER: 作業中ユーザー
       abbreviation:
         PRIORITY: 優先度
     defaultFilter: フィルターの初期値

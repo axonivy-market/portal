@@ -960,6 +960,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     default: Default
     defaultColumns:
       ACTIVATOR: Responsible
+      BUSINESS_CASE_ID: Business Case ID
       CATEGORY: Category
       COMPLETED: Completed on
       COMPLETED_ON: Completed on
@@ -970,6 +971,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY: Priority
       STATE: State
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Missing activator
+      TECHNICAL_CASE_ID: Technical Case ID
+      WORKER: Working user
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Default filter
