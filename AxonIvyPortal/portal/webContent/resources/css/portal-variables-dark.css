@@ -439,9 +439,9 @@
   --state-active: var(--case-state-done-color);
   --state-inactive: var(--task-state-failed-color);
 
-  /* Command link */
-  --portal-command-link-color: var(--ivy-primary-color-white);
-  --portal-command-link-color-hover: var(--ivy-portal-color-grey-200);
+  /* Portal link */
+  --portal-link-color: var(--ivy-primary-color-white);
+  --portal-link-color-hover: var(--ivy-portal-color-grey-200);
 
     /* Dashboard widgets empty message*/
   --dashboard-widget-empty-message: var(--ivy-primary-color-grey-pale);

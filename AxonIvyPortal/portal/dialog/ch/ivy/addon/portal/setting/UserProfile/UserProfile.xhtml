@@ -161,7 +161,7 @@
                       global="false" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}"
                       actionListener="#{userProfileBean.resetAllChannel}"
                       update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
-                      styleClass="ui-button-flat setting-tab-action-buttons font-medium portal-command-link-color"
+                      styleClass="ui-button-flat setting-tab-action-buttons font-medium portal-link"
                       rendered="#{userProfileBean.hasNotificationChannelsSettingPermission()}" >
                         <i class="ti ti-arrow-back-up"/>
                         <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}</span>
@@ -171,7 +171,7 @@
                 </h:panelGroup>
 
                 <div class="user-profile-footer w-full">
-                  <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15 portal-command-link-color"
+                  <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15 portal-link"
                     actionListener="#{logic.backToHome}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
                   <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
                     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"

@@ -201,7 +201,7 @@
       <h:form id="reset-task-confirmation-form" rendered="#{!isPreviewMode}">
         <p:commandLink onclick="PF('reset-task-confirmation-dialog').hide()"
                        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15 portal-command-link-color" />
+                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15 portal-link" />
         <p:commandButton actionListener="#{dashboardTaskWidgetBean.resetAndOpenTask}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"

@@ -288,7 +288,7 @@
           <div class="ui-g-12">
             <ui:insert name="statisticPanelOtherAction" />
             <!-- Close link -->
-            <p:commandLink styleClass="Fright info-overlay-panel__close-link portal-command-link-color"
+            <p:commandLink styleClass="Fright info-overlay-panel__close-link portal-link"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')])}"
               onclick="PF('info-overlay-panel-#{index}').hide();"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
@@ -392,7 +392,7 @@
               <div class="flex align-items-center justify-content-end footer-buttons-container">
                 <p:commandLink id="reset-button"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetFilters')}"
-                  styleClass="flex align-items-center reset-button portal-command-link-color" partialSubmit="true"
+                  styleClass="flex align-items-center reset-button portal-link" partialSubmit="true"
                   process="filter-form-#{index}"
                   update="#{componentToUpdateOnResetFilter} #{cc.clientId}:widget-header-actions #{cc.clientId}:actions-button-panel-#{index}"
                   oncomplete="PF('filter-dialog-#{index}').hide(); initWidgetFilterHtml('#{widget.id}');"

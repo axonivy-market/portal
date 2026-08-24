@@ -105,7 +105,7 @@
 
         <ui:define name="dialogFooter">
           <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('restore-confirm-dialog').hide();"
-            styleClass="u-mar-right-15 cancel-reset-dashboard-link portal-command-link-color" />
+            styleClass="u-mar-right-15 cancel-reset-dashboard-link portal-link" />
           <p:commandButton id="reset-dashboard-button" widgetVar="reset-dashboard-button"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
@@ -135,7 +135,7 @@
               process="@this" styleClass="w-full portal-remove-button"
               oncomplete="PF('remove-widget-dialog').hide(); updateDashboardWidget(); return false;"/>
             <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('remove-widget-dialog').hide();"
-              styleClass="pt-3 flex justify-content-center portal-command-link-color" />
+              styleClass="pt-3 flex justify-content-center portal-link" />
            </h:panelGroup>
         </ui:define>
       </ui:decorate>

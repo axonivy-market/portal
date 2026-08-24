@@ -269,11 +269,11 @@ a.compact-task-start-link .task-start-list-item {
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
   background-color: var(--item-widget-background-color); }
 
-.ui-commandlink.portal-command-link-color, .ui-link.portal-command-link-color {
-  color: var(--portal-command-link-color); }
+.ui-commandlink.portal-link, .ui-link.portal-link {
+  color: var(--portal-link-color); }
 
-.ui-commandlink.portal-command-link-color:hover, .ui-link.portal-command-link-color:hover {
-  color: var(--portal-command-link-color-hover); }
+.ui-commandlink.portal-link:hover, .ui-link.portal-link:hover {
+  color: var(--portal-link-color-hover); }
 
 .process-grid__header.ui-commandlink:hover {
   text-decoration: none; }
