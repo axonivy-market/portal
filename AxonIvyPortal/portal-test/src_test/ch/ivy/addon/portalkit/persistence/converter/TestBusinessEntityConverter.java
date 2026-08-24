@@ -32,7 +32,7 @@ class TestBusinessEntityConverter {
   void entityToJsonValue_list_usesVersionItemsWrapperShape() {
     List<SampleEntity> entities = List.of(new SampleEntity("a", 1), new SampleEntity("b", 2));
     String json = BusinessEntityConverter.entityToJsonValue(entities);
-    assertThat(json).contains("\"version\":\"1.0\"").contains("\"items\":[");
+    assertThat(json).contains("\"version\":\"14.0.0\"").contains("\"items\":[");
   }
 
   @Test
@@ -62,15 +62,6 @@ class TestBusinessEntityConverter {
     assertThat(result.get(0).name).isEqualTo("a");
   }
 
-  @Test
-  void jsonValueToEntities_legacyWrapRootValueShape_stillReadable() {
-    // Shape previously produced by Jackson's SerializationFeature.WRAP_ROOT_VALUE,
-    // e.g. {"ArrayList": [...]} - no longer written, but must still be readable.
-    String json = "{\"ArrayList\":[{\"name\":\"a\",\"value\":1},{\"name\":\"b\",\"value\":2}]}";
-    List<SampleEntity> result = BusinessEntityConverter.jsonValueToEntities(json, SampleEntity.class);
-    assertThat(result).hasSize(2);
-    assertThat(result.get(0).name).isEqualTo("a");
-  }
 
   @Test
   void jsonValueToEntities_blankInput_returnsEmptyList() {
@@ -80,7 +71,7 @@ class TestBusinessEntityConverter {
 
   @Test
   void convertJsonNodeToList_wrapperShape_returnsItems() throws Exception {
-    String json = "{\"version\":\"1.0\",\"items\":[{\"name\":\"a\",\"value\":1}]}";
+    String json = "{\"version\":\"14.0.0\",\"items\":[{\"name\":\"a\",\"value\":1}]}";
     var node = BusinessEntityConverter.getObjectMapper().readTree(json);
     List<SampleEntity> result = BusinessEntityConverter.convertJsonNodeToList(node, SampleEntity.class);
     assertThat(result).hasSize(1);

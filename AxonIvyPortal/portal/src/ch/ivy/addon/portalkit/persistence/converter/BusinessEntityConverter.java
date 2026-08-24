@@ -118,12 +118,6 @@ public class BusinessEntityConverter {
       if (rootNode.isArray()) {
         return mapper.readValue(jsonValue, getListOfJavaType(classType));
       }
-      if (rootNode.isObject() && !rootNode.isEmpty()) {
-        // e.g. {"ArrayList": [...]} / {"dashboards": [...]} produced by the
-        // old WRAP_ROOT_VALUE-based serialization.
-        String rootName = rootNode.fieldNames().next();
-        return mapper.readValue(rootNode.get(rootName).toString(), getListOfJavaType(classType));
-      }
       return new ArrayList<>();
     } catch (IOException e) {
       throw new PortalException(e);
