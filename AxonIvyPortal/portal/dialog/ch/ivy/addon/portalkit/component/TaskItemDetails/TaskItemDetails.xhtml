@@ -35,23 +35,23 @@
         <p:commandLink id="back-to-previous-page"
           actionListener="#{taskActionBean.backToPrevPage(cc.attrs.task, cc.attrs.isFromTaskList, cc.attrs.isTaskStartedInDetails)}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
-          styleClass="portal-detail-toolbar-back" process="@this">
+          styleClass="portal-detail-toolbar-back portal-link" process="@this">
           <i class="ti ti-chevron-left" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
         </p:commandLink>
         <p:commandButton id="share-page-button-mobile" rendered="#{taskDetailsBean.isShowShareButton}"
-		  onclick="PF('share-task-details-dialog').show()" type="button"
-	      icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
+          onclick="PF('share-task-details-dialog').show()" type="button"
+          icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
           ariaLabel="#{ivy.cms.co('/Labels/Share')}"
-	      title="#{ivy.cms.co('/Labels/Share')}"
-	      styleClass="ui-sm-hidden-op portal-icon-btn-round portal-icon-btn-lg portal-detail-toolbar-share-mobile"/>
+          title="#{ivy.cms.co('/Labels/Share')}"
+          styleClass="ui-sm-hidden-op portal-icon-btn-round portal-icon-btn-lg portal-detail-toolbar-share-mobile"/>
       </h:form>
     </h:panelGroup>
     <h:panelGroup id="task-details-actions"
       rendered="#{not cc.attrs.readOnly and cc.attrs.showItemDetailsHeader}"
       styleClass="portal-detail-toolbar-actions ui-sm-hidden">
       <p:commandButton id="share-page-button" rendered="#{taskDetailsBean.isShowShareButton}"
-     	onclick="PF('share-task-details-dialog').show()" type="button"
+     	  onclick="PF('share-task-details-dialog').show()" type="button"
         icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
         ariaLabel="#{ivy.cms.co('/Labels/Share')}"
         title="#{ivy.cms.co('/Labels/Share')}" styleClass="portal-icon-btn-round portal-icon-btn-lg"/>
@@ -60,7 +60,7 @@
         value="#{ivy.cms.co('/Labels/EditLayout')}" actionListener="#{taskDetailsBean.switchToEditMode()}"
         icon="#{visibilityBean.generateButtonIcon('ti ti-pencil')}" update="task-item-body task-details-actions"
         oncomplete="loadTaskDetailsGrid(); disableAllIFrameWhenEditLayout(); PortalLayout.hideHorizontalScrollOnLayoutContent();"
-        styleClass="portal-pill-btn portal-pill-btn-lg" />
+        styleClass="portal-pill-btn portal-pill-btn-lg switch-to-edit-mode-btn" />
       <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         rendered="#{taskDetailsBean.configuration.changed and not taskDetailsBean.readOnlyMode}" ajax="false" type="button"
@@ -176,7 +176,7 @@
       <h:form id="reset-task-form">
         <p:commandLink onclick="PF('reset-task-dialog').hide()" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          styleClass="u-mar-right-15" />
+          styleClass="u-mar-right-15 portal-link" />
         <p:commandButton actionListener="#{logic.resetAndOpenTask}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('ti ti-arrow-back-up')}" onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
@@ -201,7 +201,7 @@
           oncomplete="PF('destroy-task-dialog').hide()" update="#{informationWidgetComponent}" process="@this" />
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('destroy-task-dialog').hide();"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          styleClass="pt-3 flex justify-content-center" />
+          styleClass="pt-3 flex justify-content-center portal-link" />
       </h:panelGroup>
     </ui:define>
   </ui:decorate>
@@ -239,7 +239,7 @@
       <h:form id="reset-to-default-task-form">
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('reset-to-default-task-dialog').hide();" styleClass="u-mar-right-15" ajax="false" type="button" />
+          onclick="PF('reset-to-default-task-dialog').hide();" styleClass="u-mar-right-15 portal-link" ajax="false" type="button" />
         <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('ti ti-refresh')}"

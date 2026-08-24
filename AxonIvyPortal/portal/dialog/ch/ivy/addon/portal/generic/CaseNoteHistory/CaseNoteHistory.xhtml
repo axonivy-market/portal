@@ -68,12 +68,15 @@
                 #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/caseHistoryPageTitle')}
               </div>
               <h:panelGroup layout="block" styleClass="portal-detail-widget-header-actions">
-                <p:commandLink id="export-to-excel" ajax="false" styleClass="portal-icon-btn-round"
-                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
-                  title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
-                  <i class="ti ti-file-type-xls" aria-hidden="true" />
-                  <p:fileDownload value="#{caseTaskNoteHistoryBean.getStreamedContentOfCaseNoteHistory(data.filteredHistories, data.ivyCase, data.exportedFileName)}" />
-                </p:commandLink>
+                  <p:commandButton
+                    id="export-to-excel"
+                    ajax="false"
+                    styleClass="portal-icon-btn-round"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
+                    title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
+                    icon="ti ti-file-type-xls">
+                    <p:fileDownload value="#{caseTaskNoteHistoryBean.getStreamedContentOfCaseNoteHistory(data.filteredHistories, data.ivyCase, data.exportedFileName)}" />
+                  </p:commandButton>
               </h:panelGroup>
             </h:panelGroup>
             <p:dataTable id="notes-table" widgetVar="notesTable" var="history" sortBy="#{caseTaskNoteHistoryBean.caseHistorySortByTimestamp}"

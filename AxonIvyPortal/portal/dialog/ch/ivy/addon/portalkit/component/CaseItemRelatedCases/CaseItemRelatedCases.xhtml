@@ -24,14 +24,14 @@
       </div>
       <h:panelGroup layout="block" styleClass="related-case-section-header-actions portal-detail-widget-header-actions flex align-items-center" id="related-case-actions">
         <h:form id="related-cases-form" styleClass="related-case-export-to-excel ui-sm-hidden">
-          <p:commandLink ajax="false" id="related-case-export-to-excel"
-            styleClass="portal-icon-btn-round"
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
-            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
-            onclick="PrimeFaces.monitorDownload(startRelatedCaseExportToExcel, stopRelatedCaseExportToExcel);" >
-            <i class="ti ti-file-type-xls" />
-            <p:fileDownload value="#{logic.getExportedFile(caseDetailsBean.getColumns(data.caseLazyDataModel))}" />
-          </p:commandLink>
+          <p:commandButton id="related-case-export-to-excel" ajax="false"
+              styleClass="portal-icon-btn-round"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
+              icon="ti ti-file-type-xls"
+              onclick="PrimeFaces.monitorDownload(startRelatedCaseExportToExcel, stopRelatedCaseExportToExcel);">
+              <p:fileDownload value="#{logic.getExportedFile(caseDetailsBean.getColumns(data.caseLazyDataModel))}" />
+          </p:commandButton>
         </h:form>
 
         <div  id="related-case-column-config" class="related-case-column-config">
@@ -141,7 +141,7 @@
     <ui:define name="dialogFooter">
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        onclick="PF('destroy-related-case-dialog').hide();" styleClass="u-mar-right-15" />
+        onclick="PF('destroy-related-case-dialog').hide();" styleClass="u-mar-right-15 portal-link" />
       <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
         icon="#{visibilityBean.generateButtonIcon('ti ti-x')}"

@@ -64,11 +64,11 @@
   --portal-tabler-icon-size: calc(8 / 7 * 1rem);
   --portal-icon-line-height: 1;
   --portal-icon-ui-icon-font-size: 1.4rem;
-  --portal-icon-size-lg: 1.4286rem;
-  --portal-icon-size-xl: 1.8571rem;
-  --portal-icon-btn-size-sm: 2.1429rem;
-  --portal-icon-btn-size-md: 2.7143rem;
-  --portal-icon-btn-size-lg: 3.0714rem;
+  --portal-icon-size-lg: 1.4286rem; /* 20px */
+  --portal-icon-size-xl: 1.8571rem; /* 26px */
+  --portal-icon-btn-size-sm: 2.1429rem; /* 30px */
+  --portal-icon-btn-size-md: 2.7143rem; /* 38px */
+  --portal-icon-btn-size-lg: 3.0714rem; /* 43px */
   --portal-icon-btn-border-width: 1px;
   --default-font-style: normal;
   --login-logo-height: 50px;
