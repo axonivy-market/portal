@@ -266,6 +266,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableProcessViewer: Defina esta propiedad como true para habilitar la opción de visor de procesos en las acciones de Tarea/Caso
       enableScriptCheckingForUploadedDocumentNote: 'Cambiar a "True" para activar el control de anexos permitidos. De momento se pueden controlar archivos en PDF, word y excel. '
       enableVirusScannerForUploadedDocumentNote: Cambiar a "true" para habilitar el escáner de virus para el documento cargado. Actualmente esta función utiliza la API VIRUSTOTAL.
+      globalSearchMinimumKeywordLengthNote: Número mínimo de caracteres necesario antes de que se ejecute la búsqueda global. Cambiar a 0 para desactivar la comprobación. Una palabra clave más corta coincide con casi todas las filas, lo que puede ser lento, por lo que la búsqueda se omite en lugar de ejecutarse.
       hideCaseCreator: |-
         Establecer a true para ocultar el creador de casos en la lista de casos, widget de casos y detalles de casos.
         Este ajuste afecta a todas las consultas de casos, por ejemplo, para la lista de casos, la búsqueda global o la estadística.
@@ -1425,6 +1426,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: Ver todos los resultados
+              minimumKeywordText: Introduzca al menos {0} caracteres para buscar.
               noResultsText: No hay resultados.
             dashboard:
               PortalDashboardConfiguration:
