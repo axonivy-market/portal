@@ -1,5 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
-  xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces" xmlns:pe="primefaces.extensions"
   xmlns:c="jakarta.tags.core" xmlns:pc="jakarta.faces.composite/components">
 <cc:interface componentType="IvyComponent">
 </cc:interface>
@@ -19,7 +19,7 @@
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/CreateRole')}"
         actionListener="#{roleManagementBean.prepareAddingNewRole()}"
         oncomplete="PF('role-details-dialog').show()"
-        update="@(.manage-role-details-form) #{cc.clientId}:role-details-dialog"
+        update="@(.manage-role-details-form) :#{cc.clientId}:role-details-dialog"
         process="@this" global="false"
         resetValues="true"
         title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/CreateRole')}"
@@ -132,7 +132,7 @@
                 actionListener="#{roleManagementBean.setSelectedRole(role)}"
                 styleClass="action-column-icon-button"
                 oncomplete="PF('delete-role-dialog').show()"
-                update="#{cc.clientId}:delete-role-dialog"
+                update=":#{cc.clientId}:delete-role-dialog"
                 disabled="#{!role.dynamic or !roleManagementBean.canDeleteRole}"
                 process="@this">
                 <i class="ti ti-trash" />
@@ -262,7 +262,7 @@
         </h:panelGroup>
 
         <h:panelGroup styleClass="field" layout="block">
-          <p:dataTable id="users-of-role-table" widgetVar="users-of-role-table"
+          <p:dataTable cellNavigation="false" id="users-of-role-table" widgetVar="users-of-role-table"
             value="#{roleManagementBean.userAssignmentModel}" var="user"
             paginator="true" rows="5"
             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
@@ -294,7 +294,7 @@
                 <p:commandLink id="delete-user-link" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                   styleClass="action-column-icon-button"
-                  update="users-of-role-table #{cc.clientId}:manage-role-details-form:user-assignment-group"
+                  update="users-of-role-table :#{cc.clientId}:manage-role-details-form:user-assignment-group"
                   process="@this" partialSubmit="true"
                   actionListener="#{roleManagementBean.removeUserOutOfRole(user)}"
                   disabled="#{showInheritedMembership}">
@@ -327,7 +327,7 @@
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           process="manage-role-details-form"
-          update="manage-role-details-form #{cc.clientId}:role-management-form:role-tree-table"
+          update="manage-role-details-form :#{cc.clientId}:role-management-form:role-tree-table"
           actionListener="#{roleManagementBean.createOrUpdateRole()}"
           onclick="if (#{canModifyUserAssignment}) {PF('users-of-role-table').clearFilters();}"
           oncomplete="if(!args.validationFailed) {PF('role-tree-table').clearFilters();PF('role-details-dialog').hide();} PF('role-details-dialog').initPosition()"
@@ -339,7 +339,7 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
           icon="ti ti-x"
           process="@this"
-          update="#{cc.clientId}:role-management-form:role-tree-table"
+          update=":#{cc.clientId}:role-management-form:role-tree-table"
           global="false"
           onclick="PF('users-of-role-table').unselectAllRows();PF('users-of-role-table').clearFilters();"
           actionListener="#{roleManagementBean.closeUserAssignmentSection()}"

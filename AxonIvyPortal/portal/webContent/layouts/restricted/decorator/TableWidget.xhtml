@@ -1,5 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
-  xmlns:ui="jakarta.faces.facelets" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces" xmlns:pe="primefaces.extensions"
   xmlns:c="jakarta.tags.core" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:pt="jakarta.faces.passthrough">
 
 <!-- DASHBOARD WIDGET DECORATOR: uses for displaying the widget in Dashboard page.
@@ -84,7 +84,7 @@
       styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1'} widget-header-quick-search"
       rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch()}">
       <h:form id="quick-search-form" onkeydown="if (isPressedSpecialKeys(event) == true) { return false; }">
-      <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
+      <c:set var="widgetContentId" value=":#{cc.clientId}:widget-content" />
       <span class="ui-input-icon-right">
         <i class="ti ti-search" />
         <p:inputText id="quick-search-input-#{index}" value="#{widget.quickSearchKeyword}"
@@ -209,7 +209,7 @@
       <!-- remote-command to apply widget filter -->
       <p:remoteCommand id="apply-widget-filter-command-#{index}"
         name="applyWidgetFilterCommand#{index}" onstart="PF('applyButton#{index}').disable();"
-        update="#{componentToUpdateOnApplyFilter} #{cc.clientId}:widget-header-actions #{cc.clientId}:actions-button-panel-#{index}"
+        update="#{componentToUpdateOnApplyFilter} :#{cc.clientId}:widget-header-actions :#{cc.clientId}:actions-button-panel-#{index}"
         oncomplete="PF('filter-dialog-#{index}').hide();"
         global="false" process="@this" partialSubmit="true" immediate="true"
         rendered="#{renderFilter}"/>
@@ -319,7 +319,7 @@
                 <ui:param name="widget" value="#{widget}" />
                 <ui:param name="index" value="#{index}" />
                 <ui:param name="isExpand" value="false" />
-                <ui:param name="widgetFilterContentId" value="#{cc.clientId}:filter-form-#{index}:widget-filter-content" />
+                <ui:param name="widgetFilterContentId" value=":#{cc.clientId}:filter-form-#{index}:widget-filter-content" />
               </ui:include>
               </div>
             </h:panelGroup>
@@ -394,7 +394,7 @@
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetFilters')}"
                   styleClass="flex align-items-center reset-button portal-link" partialSubmit="true"
                   process="filter-form-#{index}"
-                  update="#{componentToUpdateOnResetFilter} #{cc.clientId}:widget-header-actions #{cc.clientId}:actions-button-panel-#{index}"
+                  update="#{componentToUpdateOnResetFilter} :#{cc.clientId}:widget-header-actions :#{cc.clientId}:actions-button-panel-#{index}"
                   oncomplete="PF('filter-dialog-#{index}').hide(); initWidgetFilterHtml('#{widget.id}');"
                   actionListener="#{widget.onResetUserFilters()}"
                   resetValues="true">

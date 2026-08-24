@@ -155,7 +155,7 @@ public class MenuHighlightTest extends BaseTest {
     NavigationHelper.navigateToTaskList();
     taskDetailsPage = taskWidgetPage.openDashboardTaskDetails("Alpha Company");
     taskDetailsPage.clickStartTaskWithoutDialog();
-    getActiveMenuItems().shouldBe(size(0));
+    assertMenuHighlighted(DEFAULT_TASK_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
     clickLogo();
   }
 

@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+  xmlns:p="primefaces" xmlns:pe="primefaces.extensions">
 
 <cc:interface componentType="IvyComponent">
 </cc:interface>
@@ -24,7 +24,7 @@
     <h:panelGroup rendered="#{not empty projectVersionBean.customersProjects}">
       <ui:repeat id="application-list" value="#{projectVersionBean.customersProjects.entrySet().toArray()}" var="entry">
         <div class="ui-g-12 pl-0">
-          <p:dataTable id="application-project-version-table" value="#{entry.value}" var="pmv" styleClass="project-version-table"
+          <p:dataTable cellNavigation="false" id="application-project-version-table" value="#{entry.value}" var="pmv" styleClass="project-version-table"
             reflow="true" lazy="false">
             <f:facet name="header">
               <h:outputText id="application-name" value="#{entry.key}" />

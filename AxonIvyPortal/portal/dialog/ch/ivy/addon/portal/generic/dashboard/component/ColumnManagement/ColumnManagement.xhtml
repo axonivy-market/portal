@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+  xmlns:p="primefaces" xmlns:pe="primefaces.extensions">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="widget" type="ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget" required="true" />
   <cc:attribute name="componentToUpdate" />
@@ -16,7 +16,7 @@
       <p:remoteCommand name="updateColumnTable" update="column-management-datatable" />
       <ui:include src="FieldAdd.xhtml" />
 
-      <p:dataTable id="column-management-datatable" value="#{columnManagementBean.columnsBeforeSave}" var="column"
+      <p:dataTable cellNavigation="false" id="column-management-datatable" value="#{columnManagementBean.columnsBeforeSave}" var="column"
         draggableRows="true" rowDragSelector="i.ti-grip-vertical" lazy="false"
         tableStyleClass="column-management-datatable__table" styleClass="column-management-datatable">
         <p:ajax event="rowReorder" global="false" />
@@ -91,7 +91,7 @@
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}" width="48" styleClass="text-center js-column-field-#{column.field}">
           <p:commandLink id="remove-link" styleClass="portal-link" actionListener="#{columnManagementBean.remove(column)}" global="false" process="@this" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
-            update="column-management-datatable #{cc.clientId}:column-management-form:standard-field-selection #{cc.clientId}:column-management-form:custom-field-selection">
+            update="column-management-datatable :#{cc.clientId}:column-management-form:standard-field-selection :#{cc.clientId}:column-management-form:custom-field-selection">
             <i class="ti ti-trash" />
           </p:commandLink>
         </p:column>

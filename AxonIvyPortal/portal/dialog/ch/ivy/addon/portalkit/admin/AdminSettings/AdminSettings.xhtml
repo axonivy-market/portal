@@ -1,8 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
 	xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
 	xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-	xmlns:p="http://primefaces.org/ui" xmlns:c="jakarta.tags.core"
-	xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pc="jakarta.faces.composite/components">
+	xmlns:p="primefaces" xmlns:c="jakarta.tags.core"
+	xmlns:pe="primefaces.extensions" xmlns:pc="jakarta.faces.composite/components">
 
 <cc:interface componentType="IvyComponent">
 </cc:interface>
@@ -37,7 +37,7 @@
             update=":#{p:resolveFirstComponentWithId('resetConfirmationDialog', view).clientId}" />
         </h:panelGroup>
 
-        <p:dataTable id="settingTable" styleClass="admin-table global-setting-table" value="#{data.settingList}"
+        <p:dataTable cellNavigation="false" id="settingTable" styleClass="admin-table global-setting-table" value="#{data.settingList}"
           filteredValue="#{data.filteredSettingList}" var="setting" widgetVar="settingTable"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
           reflow="true" scrollHeight="500" lazy="false">
@@ -103,7 +103,7 @@
           <div class="announcement-information">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/information")}</div>
         </h:panelGroup>
 
-        <p:dataTable id="announcement-table"
+        <p:dataTable cellNavigation="false" id="announcement-table"
           styleClass="announcement-table ui-g-12 u-padding-0"
           value="#{data.announcement.contents}"
           var="announcement"
@@ -126,7 +126,7 @@
             <p:toggleSwitch id="announcement-toggle-switch" value="#{data.isAnnouncementActivated}" styleClass="flex align-items-center justify-content-center" widgetVar="announcementToggleSwitch" />
           </div>
           <p:commandButton id="save-changes-announcement" process="announcement-form" actionListener="#{logic.saveChangesAnnouncement()}"
-            update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
+            update=":#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}">
           </p:commandButton>

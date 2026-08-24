@@ -1,13 +1,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
-  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="jakarta.tags.core"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions" xmlns:c="jakarta.tags.core"
   xmlns:pc="jakarta.faces.composite/components">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="viewName" value="STATISTIC_CONFIGURATION" />
     <ui:define name="head">
-      <h:outputScript library="primefaces" name="chartjs/chartjs.js" />
+      <h:outputScript library="primefaces" name="chart/chart.js" />
       <h:outputScript name="statistic.js" library="js" />
       <h:outputStylesheet library="css" name="dashboard.css" />
     </ui:define>

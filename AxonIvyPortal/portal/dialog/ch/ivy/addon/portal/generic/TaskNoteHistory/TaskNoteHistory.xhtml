@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
-  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pc="jakarta.faces.composite/components">
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions" xmlns:pc="jakarta.faces.composite/components">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="isNotRequiredLogin" value="false" />
@@ -76,7 +76,7 @@
                 </p:commandButton>
               </h:panelGroup>
             </h:panelGroup>
-              <p:dataTable id="notes-table" widgetVar="notesTable" var="note" sortBy="#{caseTaskNoteHistoryBean.taskHistorySortByCreationTimestamp}"
+              <p:dataTable cellNavigation="false" id="notes-table" widgetVar="notesTable" var="note" sortBy="#{caseTaskNoteHistoryBean.taskHistorySortByCreationTimestamp}"
                 value="#{data.notes}" filteredValue="#{data.filteredNotes}"
                 emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                 reflow="true" scrollable="true" lazy="false">

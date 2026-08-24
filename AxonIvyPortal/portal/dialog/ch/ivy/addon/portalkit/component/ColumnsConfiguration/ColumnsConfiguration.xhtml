@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:p="primefaces" xmlns:pe="primefaces.extensions"
   xmlns:c="jakarta.tags.core" xmlns:pt="jakarta.faces.passthrough">
 
 <cc:interface componentType="IvyComponent">
@@ -14,7 +14,7 @@
 
 <cc:implementation>
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
-  <h:panelGroup id="config-columns-container" layout="block" styleClass="config-columns-button u-hidden-md-down">
+  <h:panelGroup id="config-columns-container-#{cc.attrs.configButtonId}" layout="block" styleClass="config-columns-button u-hidden-md-down">
     <p:commandLink id="#{cc.attrs.configButtonId}"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
       styleClass="config-columns portal-link" global="false">
@@ -27,7 +27,7 @@
 
   <p:overlayPanel id="#{cc.attrs.overlayPanelId}" widgetVar="#{cc.attrs.overlayPanelId}" appendTo="@(body)"
     styleClass="advanced-filter-panel filter-add-panel config-columns-panel" dismissable="true"
-    for="#{cc.clientId}:#{cc.attrs.configButtonId}" my="left top" at="left bottom"
+    for="#{p:resolveFirstComponentWithId(cc.attrs.configButtonId, view).clientId}" my="left top" at="left bottom"
     pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}">
     <h:form id="select-columns-form">
       <div class="config-checkbox-container">
@@ -37,7 +37,7 @@
         </p:selectBooleanCheckbox>
       </div>
       <h:panelGroup id="custom-columns-container">
-        <p:selectManyCheckbox id="columns-checkbox" value="#{dataModel.selectedColumns}" layout="grid" columns="1"
+        <p:selectManyCheckbox id="columns-checkbox" value="#{dataModel.selectedColumns}" layout="responsive" columns="1"
           disabled="#{dataModel.isDisableSelectionCheckboxes()}">
           <f:selectItems value="#{dataModel.allColumns}" var="column" itemLabel="#{dataModel.getColumnLabel(column)}"
             itemDisabled="#{dataModel.getPortalRequiredColumns().contains(column) or column eq 'NAME'}" />
@@ -47,7 +47,7 @@
           <p:commandLink styleClass="portal-link" id="cancel-command" process="@this" global="false"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')])}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-            update="#{cc.clientId}:config-columns-container #{cc.clientId}:#{cc.attrs.overlayPanelId}" resetValues="true"
+            update="#{p:resolveFirstComponentWithId('config-columns-container-'.concat(cc.attrs.configButtonId), view).clientId} #{p:resolveFirstComponentWithId(cc.attrs.overlayPanelId, view).clientId}" resetValues="true"
             oncomplete="PF('#{cc.attrs.overlayPanelId}').hide()"
             actionListener="#{dataModel.setDisableSelectionCheckboxes(dataModel.autoHideColumns)}" />
           <p:spacer width="15" />
@@ -56,7 +56,7 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/applyContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')])}"
             actionListener="#{dataModel.saveColumnsConfiguration()}"
-            update="#{cc.clientId}:config-columns-container @form #{cc.attrs.updatedComponent}"
+            update="#{p:resolveFirstComponentWithId('config-columns-container-'.concat(cc.attrs.configButtonId), view).clientId} @form #{cc.attrs.updatedComponent}"
             oncomplete="#{cc.attrs.oncomplete}">
           </p:commandButton>
         </h:panelGroup>

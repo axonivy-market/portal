@@ -3,6 +3,8 @@ package com.axonivy.portal.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.BooleanUtils;
+
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
@@ -21,7 +23,8 @@ public class ExportUtils {
   public static List<String> buildVisibleColumns(List<ColumnModel> columns){
     List<String> visibleColumns = new ArrayList<>();
     for (ColumnModel column : columns) {
-      if (column.getVisible() && !column.getField().contentEquals(DashboardStandardCaseColumn.ACTIONS.getField())) {
+      if (BooleanUtils.isNotFalse(column.getVisible())
+          && !column.getField().contentEquals(DashboardStandardCaseColumn.ACTIONS.getField())) {
         if (column.getType() == DashboardColumnType.CUSTOM || column.getType() == DashboardColumnType.CUSTOM_CASE
             || column.getType() == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
           visibleColumns.add(

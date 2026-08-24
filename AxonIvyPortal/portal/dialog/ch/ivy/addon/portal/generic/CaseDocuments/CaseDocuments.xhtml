@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
-  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="jakarta.tags.core"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions" xmlns:c="jakarta.tags.core"
   xmlns:pc="jakarta.faces.composite/components">
 <!-- portalComponentUtilsBean: com.axonivy.portal.components.bean.PortalComponentUtilsBean -->
 <h:body>
@@ -72,7 +72,7 @@
                 #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/documents')}
               </div>
             </h:panelGroup>
-          <p:dataTable id="docs-table" widgetVar="docs-table"
+          <p:dataTable cellNavigation="false" id="docs-table" widgetVar="docs-table"
             sortBy="#{caseTaskDocumentBean.documentSortByCreationTimestamp}"
             value="#{data.documents}" var="document"
             filteredValue="#{data.filteredDocuments}"

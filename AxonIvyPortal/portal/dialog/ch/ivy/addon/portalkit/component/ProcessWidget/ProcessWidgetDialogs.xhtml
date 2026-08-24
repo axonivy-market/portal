@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
-  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="jakarta.faces"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions" xmlns:jsf="jakarta.faces"
   xmlns:c="jakarta.tags.core"
   xmlns:pc="jakarta.faces.composite/components">
 
@@ -60,8 +60,8 @@
               <p:commandButton id="edit-name-language-button"  icon="ti ti-language" 
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                 actionListener="#{processWidgetBean.updateNameByLocale()}"
-                process="#{cc.clientId}:edit-process-form:external-link-name"
-                update="#{cc.clientId}:edit-name-language-config:multiple-languages-dialog"
+                process=":#{cc.clientId}:edit-process-form:external-link-name"
+                update=":#{cc.clientId}:edit-name-language-config:multiple-languages-dialog"
                 oncomplete="PF('multiple-languages-dialog').show();" />
             </div>
           </p:inplace>
@@ -96,8 +96,8 @@
             <p:commandButton id="edit-description-language-button" icon="ti ti-language" 
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
               actionListener="#{processWidgetBean.updateDescriptionByLocale()}"
-              process="#{cc.clientId}:edit-process-form:external-description"
-              update="#{cc.clientId}:edit-description-language-config:multiple-languages-dialog"
+              process=":#{cc.clientId}:edit-process-form:external-description"
+              update=":#{cc.clientId}:edit-description-language-config:multiple-languages-dialog"
               oncomplete="PF('multiple-languages-dialog').show();" />
             </div>
           </p:inplace>
@@ -152,18 +152,9 @@
 
           <h:panelGroup id="file-upload-panel" layout="block"
             styleClass="#{empty processWidgetBean.editedExternalLink.imageLocation ? 'ui-g-12' : 'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
-            <p:fileUpload id="editing-external-link-image-upload" style="display: none;"
-              rendered="#{empty processWidgetBean.editedExternalLink.imageLocation}"
-              listener="#{processWidgetBean.handleExternalLinkImageUpload}"
-              chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
-              dragDropSupport="true" auto="true" widgetVar="editExternalLinkUpload"
-              update="file-upload-panel edit-external-link-error-message" 
-              allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
-              sizeLimit="#{processWidgetBean.uploadFileLimit}"
-              invalidSizeMessage="#{processWidgetBean.getFileUploadInvalidSizeMessage()}"
-              accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFailOnEditExternalLink('editExternalLinkUpload');"
-              label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" oncomplete="hideExtendLinkPreviewLabel();"
-              invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" dropZone="edit-external-link-preview-image-panel"/>
+            <p:fileUpload id="editing-external-link-image-upload" style="display: none;" rendered="#{empty processWidgetBean.editedExternalLink.imageLocation}" listener="#{processWidgetBean.handleExternalLinkImageUpload}" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" dragDrop="true" auto="true" widgetVar="editExternalLinkUpload" update="file-upload-panel edit-external-link-error-message" accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFailOnEditExternalLink('editExternalLinkUpload');" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" oncomplete="hideExtendLinkPreviewLabel();" dropZone="edit-external-link-preview-image-panel" mode="advanced">
+              <p:validateFile sizeLimit="#{processWidgetBean.uploadFileLimit}" allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i" />
+            </p:fileUpload>
               <p:outputPanel id="edit-external-link-preview-image-panel" styleClass="ui-external-link-preview-image-panel" >
                 <h:panelGroup rendered="#{empty processWidgetBean.editedExternalLink.imageLocation}" class="ui-external-link-preview-image-label">
                 <i class="ti ti-file-upload" id="ui-external-link-preview-image-icon" />
@@ -198,9 +189,9 @@
     <f:facet name="footer">
       <p:commandButton id="save-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-        process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" styleClass="w-full" validateClient="true"
-        update="#{cc.clientId}:edit-process-form:edit-external-link-error-message #{cc.clientId}:process-list #{cc.clientId}"
-        oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); processWidget.setup(); processWidget.hideLoadingText();}" form="#{cc.clientId}:edit-process-form"/>
+        process=":#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" styleClass="w-full" validateClient="true"
+        update=":#{cc.clientId}:edit-process-form:edit-external-link-error-message :#{cc.clientId}:process-list #{cc.clientId}"
+        oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); processWidget.setup(); processWidget.hideLoadingText();}" form=":#{cc.clientId}:edit-process-form"/>
     </f:facet>
   </p:dialog>
   <!-- End Edit Process -->
@@ -225,7 +216,7 @@
     
     <ui:define name="dialogFooter">
       <h:form id="delete-process-workflow-form" styleClass="flex flex-column">
-        <p:commandButton id="remove-process-command" process="@this" update="#{cc.clientId}:process-list #{cc.clientId}"
+        <p:commandButton id="remove-process-command" process="@this" update=":#{cc.clientId}:process-list #{cc.clientId}"
           styleClass="w-full portal-remove-button"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
           actionListener="#{processWidgetBean.deleteProcessWorkflow()}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
@@ -260,8 +251,8 @@
         <p:commandButton id="add-name-language-button"  icon="ti ti-language" 
           actionListener="#{externalLinkBean.updateNameByLocale()}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-          process="#{cc.clientId}:add-external-link-form:external-link-name"
-          update="#{cc.clientId}:name-language-config:multiple-languages-dialog"
+          process=":#{cc.clientId}:add-external-link-form:external-link-name"
+          update=":#{cc.clientId}:name-language-config:multiple-languages-dialog"
           oncomplete="PF('multiple-languages-dialog').show();" />
       </div>
 
@@ -287,8 +278,8 @@
         <p:commandButton id="add-description-language-button" icon="ti ti-language" 
           actionListener="#{externalLinkBean.updateDescriptionByLocale()}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-          process="#{cc.clientId}:add-external-link-form:external-description"
-          update="#{cc.clientId}:description-language-config:multiple-languages-dialog"
+          process=":#{cc.clientId}:add-external-link-form:external-description"
+          update=":#{cc.clientId}:description-language-config:multiple-languages-dialog"
           oncomplete="PF('multiple-languages-dialog').show();" />
       </div>
 
@@ -355,19 +346,9 @@
       </div>
       <h:panelGroup id="file-upload-panel" layout="block"
         styleClass="#{empty externalLinkBean.externalLink.imageLocation ? 'ui-g-12 ':'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
-        <p:fileUpload id="external-link-image-upload"
-          style="display: none;"
-          widgetVar="externalLinkUpload"
-          rendered="#{empty externalLinkBean.externalLink.imageLocation}"
-          listener="#{externalLinkBean.handleImageUpload}"
-          chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
-          dragDropSupport="true" auto="true" update="file-upload-panel external-link-dialog-message"
-          allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
-          accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('externalLinkUpload');"
-          sizeLimit="#{externalLinkBean.uploadFileLimit}"
-          invalidSizeMessage="#{externalLinkBean.getFileUploadInvalidSizeMessage()}"
-          invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
-          dropZone="external-link-preview-image-panel" oncomplete="hideExtendLinkPreviewLabel();"/>
+        <p:fileUpload id="external-link-image-upload" style="display: none;" widgetVar="externalLinkUpload" rendered="#{empty externalLinkBean.externalLink.imageLocation}" listener="#{externalLinkBean.handleImageUpload}" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" dragDrop="true" auto="true" update="file-upload-panel external-link-dialog-message" accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('externalLinkUpload');" dropZone="external-link-preview-image-panel" oncomplete="hideExtendLinkPreviewLabel();" mode="advanced">
+          <p:validateFile sizeLimit="#{externalLinkBean.uploadFileLimit}" allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i" />
+        </p:fileUpload>
           
         <p:outputPanel id="external-link-preview-image-panel" styleClass="ui-external-link-preview-image-panel" >
             <span class="ui-external-link-preview-image-label">
@@ -399,10 +380,10 @@
 
     <f:facet name="footer">
       <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addLink')}"
-        process="#{cc.clientId}:add-external-link-form"
+        process=":#{cc.clientId}:add-external-link-form"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addLink')}"
-        form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink()}"
-        update="#{cc.clientId}:add-external-link-form #{cc.clientId}:process-list #{cc.clientId}" styleClass="w-full" validateClient="true"
+        form=":#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink()}"
+        update=":#{cc.clientId}:add-external-link-form :#{cc.clientId}:process-list #{cc.clientId}" styleClass="w-full" validateClient="true"
         oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); processWidget.setup(); processWidget.hideLoadingText()}" />
     </f:facet>
   </p:dialog>
@@ -411,26 +392,26 @@
   <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
     managedBean="#{externalLinkBean}"
     id="name-language-config" titles="#{externalLinkBean.externalLink.names}"
-    componentToUpdateOnCreate="#{cc.clientId}:add-external-link-form:external-link-name" 
-    componentToUpdateOnModify="#{cc.clientId}:add-external-link-form:external-link-name"/>
+    componentToUpdateOnCreate=":#{cc.clientId}:add-external-link-form:external-link-name" 
+    componentToUpdateOnModify=":#{cc.clientId}:add-external-link-form:external-link-name"/>
     
   <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
     managedBean="#{processWidgetBean}"
     id="edit-name-language-config" titles="#{processWidgetBean.editedExternalLink.names}"
-    componentToUpdateOnCreate="#{cc.clientId}:edit-process-form:external-link-name"
-    componentToUpdateOnModify="#{cc.clientId}:edit-process-form:external-link-name"/>
+    componentToUpdateOnCreate=":#{cc.clientId}:edit-process-form:external-link-name"
+    componentToUpdateOnModify=":#{cc.clientId}:edit-process-form:external-link-name"/>
     
   <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
     managedBean="#{externalLinkBean}" useInputText="false"
     id="description-language-config" titles="#{externalLinkBean.externalLink.descriptions}"
-    componentToUpdateOnCreate="#{cc.clientId}:add-external-link-form:external-description" 
-    componentToUpdateOnModify="#{cc.clientId}:add-external-link-form:external-description"/>
+    componentToUpdateOnCreate=":#{cc.clientId}:add-external-link-form:external-description" 
+    componentToUpdateOnModify=":#{cc.clientId}:add-external-link-form:external-description"/>
     
   <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
     managedBean="#{processWidgetBean}" useInputText="false"
     id="edit-description-language-config" titles="#{processWidgetBean.editedExternalLink.descriptions}"
-    componentToUpdateOnCreate="#{cc.clientId}:edit-process-form:external-description" 
-    componentToUpdateOnModify="#{cc.clientId}:edit-process-form:external-description"/>
+    componentToUpdateOnCreate=":#{cc.clientId}:edit-process-form:external-description" 
+    componentToUpdateOnModify=":#{cc.clientId}:edit-process-form:external-description"/>
     
 </ui:composition>
 </html>

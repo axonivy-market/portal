@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
-  xmlns:ui="jakarta.faces.facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:cc="jakarta.faces.composite" xmlns:jsf="jakarta.faces"
+  xmlns:ui="jakarta.faces.facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions" xmlns:cc="jakarta.faces.composite" xmlns:jsf="jakarta.faces"
   xmlns:c="jakarta.tags.core" xmlns:fn="jakarta.tags.functions" xmlns:pt="jakarta.faces.passthrough">
 
 <cc:interface componentType="IvyComponent">
@@ -57,7 +57,7 @@
             icon="ti ti-language" id="add-language-button"
             actionListener="#{managedBean.updateWidgetNameByLocale()}"
             process="widget-title"
-            update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+            update=":#{cc.clientId}:title-language-config:multiple-languages-dialog"
             oncomplete="PF('multiple-languages-dialog').show();">
           </p:commandButton>
         </div>
@@ -121,7 +121,7 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}" 
             styleClass="Fright preview-button" icon="ti ti-search" 
             actionListener="#{dashboardProcessBeanHandler.preview()}"
-            update="#{cc.clientId}:preview-process #{cc.clientId}:widget-preview" 
+            update=":#{cc.clientId}:preview-process :#{cc.clientId}:widget-preview" 
             process="user-filter widget-title-group" oncomplete="PF('new-widget-configuration-dialog').initPosition();"/>
         </div>
       </div>
@@ -132,11 +132,11 @@
           <h:panelGroup layout="block" id="compact-filter-columns">
             <ui:repeat var="field" value="#{widget.filterableColumns}">
               <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{field}"
-                selectedApps="#{field.filterList}" updateComponent="#{cc.clientId}:compact-filter-columns #{cc.clientId}:processes-list"
+                selectedApps="#{field.filterList}" updateComponent=":#{cc.clientId}:compact-filter-columns :#{cc.clientId}:processes-list"
                 appOptions="#{field.applications}" widget="#{widget}"/>
 
               <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn field="#{field}"
-                displaySelectedCategories="#{field.displayCategories}" configurationMode="true" updateComponent="#{cc.clientId}:processes-list"
+                displaySelectedCategories="#{field.displayCategories}" configurationMode="true" updateComponent=":#{cc.clientId}:processes-list"
                 categoryTree="#{field.categoryTree}" categoryNodeSelection="#{field.selectionCategoryNodes}"
                 containerStyleClass="process-category" inputCategoryStyleClass="process-category__input-text"
                 overlayCategoryStyleClass="process-category-panel" showUnselectableCheckbox="true"/>
@@ -169,7 +169,7 @@
         <h:panelGroup id="full-filter" rendered="#{isFull}">
           <ui:repeat var="field" value="#{widget.filterableColumns}">
             <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{field}"
-            selectedApps="#{field.filterList}" updateComponent="#{cc.clientId}:selected-full-process"
+            selectedApps="#{field.filterList}" updateComponent=":#{cc.clientId}:selected-full-process"
             appOptions="#{field.applications}" widget="#{widget}"/>
           </ui:repeat>
             
@@ -193,7 +193,7 @@
         <h:panelGroup id="combined-filter" rendered="#{isCombined}">
           <ui:repeat var="field" value="#{widget.filterableColumns}">
             <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{field}"
-            selectedApps="#{field.filterList}" updateComponent="#{cc.clientId}:selected-combined-process"
+            selectedApps="#{field.filterList}" updateComponent=":#{cc.clientId}:selected-combined-process"
             appOptions="#{field.applications}" widget="#{widget}"/>
           </ui:repeat>
             
@@ -218,7 +218,7 @@
         <h:panelGroup id="image-filter" rendered="#{isImage}">
           <ui:repeat var="field" value="#{widget.filterableColumns}">
             <ic:ch.ivy.addon.portalkit.component.dashboard.widget.ApplicationFilterColumn field="#{field}"
-            selectedApps="#{field.filterList}" updateComponent="#{cc.clientId}:selected-image-process"
+            selectedApps="#{field.filterList}" updateComponent=":#{cc.clientId}:selected-image-process"
             appOptions="#{field.applications}" widget="#{widget}"/>
           </ui:repeat>
           <div class="ui-g-4">

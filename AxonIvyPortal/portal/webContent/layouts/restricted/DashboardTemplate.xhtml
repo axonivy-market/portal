@@ -1,12 +1,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
-  xmlns:ui="jakarta.faces.facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="jakarta.tags.functions" xmlns:jsf="jakarta.faces"
+  xmlns:ui="jakarta.faces.facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions" xmlns:fn="jakarta.tags.functions" xmlns:jsf="jakarta.faces"
   xmlns:c="jakarta.tags.core">
 <!-- htmlSanitizerBean: com.axonivy.portal.components.bean.HtmlSanitizerBean -->
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="head">
-      <h:outputScript library="primefaces" name="chartjs/chartjs.js" />
+      <h:outputScript library="primefaces" name="chart/chart.js" />
       <h:outputScript name="statistic.js" library="js" />
     </ui:define>
 
@@ -285,12 +285,12 @@
             onShow="loadAllWidgetSavedFilters();">
             <h:form id="delete-saved-filter-form" styleClass="ui-g">
               <div class="ui-g-12">
-                <p:dataTable id="quick-filter-table" value="#{dashboardBean.widgetFilters}" var="quickFilter"
+                <p:dataTable cellNavigation="false" id="quick-filter-table" value="#{dashboardBean.widgetFilters}" var="quickFilter"
                   widgetVar="quick-filter-table" scrollHeight="300" scrollable="true" reflow="true"
                   selection="#{dashboardBean.deleteFilters}" rowKey="#{quickFilter.id}"
                   emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/EmptyFilterMessage')}" lazy="false">
                   
-                  <p:column selectionMode="multiple" styleClass="saved-filter-selection-column text-center" width="20"/>
+                  <p:column selectionBox="true" styleClass="saved-filter-selection-column text-center" width="20"/>
 
                   <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" width="200"
                     filterBy="#{quickFilter.name}" sortBy="#{quickFilter.name}" filterMatchMode="contains">

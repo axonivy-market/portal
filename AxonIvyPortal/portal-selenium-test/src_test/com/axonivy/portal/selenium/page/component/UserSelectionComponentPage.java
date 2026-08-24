@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.axonivy.portal.selenium.page.TemplatePage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 public class UserSelectionComponentPage extends TemplatePage {
@@ -70,17 +71,27 @@ public class UserSelectionComponentPage extends TemplatePage {
   }
 
   public void openSelectionPanelForAjaxEventUserSelectionComponent(String keyword) {
-    $("input[id$='item-select-event-for-user-selection_input']").clear();
-    $("input[id$='item-select-event-for-user-selection_input']").sendKeys(keyword);
+    SelenideElement input = $("input[id$='item-select-event-for-user-selection_input']");
+    input.clear();
+    typeIntoAutoComplete(input, keyword);
     $("span[id$='item-select-event-for-user-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).hover();
   }
 
   private SelenideElement selectUserComponent(String componentId, String keyword) {
-    $("input[id$='" + componentId + "_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).clear();
-    $("input[id$='" + componentId + "_input']").sendKeys(keyword);
+    SelenideElement input = $("input[id$='" + componentId + "_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    input.clear();
+    typeIntoAutoComplete(input, keyword);
     ElementsCollection selectionItems = $("span[id$='" + componentId + "_panel']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).findAll(".ui-autocomplete-item");
     return selectionItems.get(0);
+  }
+
+  private void typeIntoAutoComplete(SelenideElement input, String text) {
+    Selenide.executeJavaScript(
+        "var kd=new KeyboardEvent('keydown',{key:'a',bubbles:true});arguments[0].dispatchEvent(kd);"
+            + "arguments[0].value=arguments[1];"
+            + "arguments[0].dispatchEvent(new Event('input',{bubbles:true}));",
+        input, text);
   }
 
 }

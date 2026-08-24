@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:p="primefaces" xmlns:pe="primefaces.extensions"
   xmlns:c="jakarta.tags.core">
 
 <cc:interface componentType="IvyComponent">
@@ -71,7 +71,7 @@
       </h:panelGroup>
     </f:facet>
     <h:form>
-      <p:remoteCommand name="updateCopyButton" actionListener="#{data.setIsCopied(false)}" update="#{cc.clientId}:exception-handler-command"
+      <p:remoteCommand name="updateCopyButton" actionListener="#{data.setIsCopied(false)}" update=":#{cc.clientId}:exception-handler-command"
         immediate="true" partialSubmit="true" global="false" delay="1500" process="@this"/>
     </h:form>
   </p:dialog>

@@ -270,7 +270,8 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   public void joinProcessChatAlreadyCreated() {
     waitForElementDisplayed(By.id("chat-group-join-form:chat-group-join-button"), true);
     waitForElementClickableThenClick($(By.id("chat-group-join-form:chat-group-join-button")));
-    waitForElementDisplayed(By.id("chat-form:group-chat-container"), true);
+    $("[id='chat-assignee-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("[id='chat-assignee-dialog_modal']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   // moved
@@ -301,6 +302,7 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   
   public void clickOnHomeLogo() {
     switchBackToParent();
-    $("span[class*='ti ti-home']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    WaitHelper.waitForNavigation(() -> $("span[class*='ti ti-home']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click());
   }
 }

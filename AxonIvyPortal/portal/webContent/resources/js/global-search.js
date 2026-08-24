@@ -75,9 +75,9 @@ if (document) {
     } else {
       $(eleSearchId).removeClass('global-large-search-bar').addClass('global-small-search-bar');
     }
-    let processTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].process-tab-title-global").length;
-    let taskTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].task-tab-title-global").length;
-    let caseTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].case-tab-title-global").length;
+    let processTab = $("li.ui-tabs-header.search-bar.process-tab-title-global:has(a[aria-selected='true'])").length;
+    let taskTab = $("li.ui-tabs-header.search-bar.task-tab-title-global:has(a[aria-selected='true'])").length;
+    let caseTab = $("li.ui-tabs-header.search-bar.case-tab-title-global:has(a[aria-selected='true'])").length;
     if (processTab) {
       search(e.target.value, PROCESS_TAB);
     } else if (taskTab) {
@@ -105,7 +105,7 @@ if (document) {
   }
 
   function getTabActiveIndex() {
-    let activeTab = $("li.ui-tabs-header.search-bar[aria-selected='true']");
+    let activeTab = $("li.ui-tabs-header.search-bar:has(a[aria-selected='true'])");
     return activeTab.attr('data-index') * 1;
   }
 
@@ -155,7 +155,7 @@ if (document) {
   }
 
   function analyzeInputSearch(input) {
-    let activeTab = $("li.ui-tabs-header.search-bar[aria-selected='true']");
+    let activeTab = $("li.ui-tabs-header.search-bar:has(a[aria-selected='true'])");
     let tabIndex = activeTab.attr('data-index') * 1;
     let keyword = input;
     let explicit = false;
@@ -187,9 +187,9 @@ if (document) {
       let activeTab = $("li.ui-tabs-header.search-bar[data-index='" + tabIndex + "']");
       activeTab.click();
     } else {
-      let processTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].process-tab-title-global").length;
-      let taskTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].task-tab-title-global").length;
-      let caseTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].case-tab-title-global").length;
+      let processTab = $("li.ui-tabs-header.search-bar.process-tab-title-global:has(a[aria-selected='true'])").length;
+      let taskTab = $("li.ui-tabs-header.search-bar.task-tab-title-global:has(a[aria-selected='true'])").length;
+      let caseTab = $("li.ui-tabs-header.search-bar.case-tab-title-global:has(a[aria-selected='true'])").length;
       if (processTab) {
         search(keyword.trim(), PROCESS_TAB);
       } else if (taskTab) {

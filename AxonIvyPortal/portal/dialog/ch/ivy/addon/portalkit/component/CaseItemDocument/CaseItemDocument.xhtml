@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:p="primefaces" xmlns:pe="primefaces.extensions"
   xmlns:jsf="jakarta.faces" xmlns:c="jakarta.tags.core"
   xmlns:pc="jakarta.faces.composite/components">
 
@@ -35,7 +35,7 @@
       </div>
 
       <div class="ui-g-12 u-padding-0 portal-detail-widget-body">
-        <p:dataTable id="case-details-documents" rendered="#{not empty data.documents}" var="document"
+        <p:dataTable cellNavigation="false" id="case-details-documents" rendered="#{not empty data.documents}" var="document"
           value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" pageLinks="3" rows="5"
           rowsPerPageTemplate="5,10,20,50" paginatorPosition="bottom"
           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -60,7 +60,7 @@
                 <p:tooltip for="download" trackMouse="true" hideEvent="mouseleave click" value="#{document.relativePath}" />
               </p:commandLink>
               <p:commandLink id="preview-file" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
-                process="@this" update="#{cc.clientId}:preview-document-dialog"
+                process="@this" update="#{p:resolveFirstComponentWithId('preview-document-dialog', view).clientId}"
                 styleClass="ti ti-eye Fright document-preview ui-sm-hidden"
                 actionListener="#{logic.previewDocument(document)}"
                 rendered="#{data.isDocumentPreviewEnabled and caseTaskDocumentBean.isSupportedPreviewType(document)}"
@@ -72,7 +72,7 @@
                 styleClass="ti ti-pencil Fright document-renaming ui-sm-hidden"
                 rendered="#{caseTaskDocumentBean.canWriteDocument(case)}"
                 actionListener="#{data.setDocument(document)}"
-                update="#{cc.clientId}:document-renaming-dialog"
+                update="#{p:resolveFirstComponentWithId('document-renaming-dialog', view).clientId}"
                 oncomplete="PF('document-renaming-dialog').show()">
                 <p:tooltip for="edit-filename" trackMouse="true" hideEvent="mouseleave click"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')} #{document.name}" />
@@ -144,18 +144,9 @@
         </h6>
         </div>
         <div class="w-full">
-          <p:fileUpload id="document-upload-panel"
-            listener="#{logic.uploadDocument}" mode="advanced"
-            chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
-            style="display: none;" dragDropSupport="true"
-            label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
-            auto="true" multiple="true"
-            sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
-            invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
-            update="#{cc.clientId}:document-upload-form:upload-messages #{cc.attrs.componentToUpdate} #{cc.clientId}:case-document-form @form"
-            oncomplete="handleCaseDetailsTable()"
-            onvalidationfailure="handleUploadFileFail('documentUpload');"
-            dropZone="document-upload-file-panel" widgetVar="documentUpload" />
+          <p:fileUpload id="document-upload-panel" listener="#{logic.uploadDocument}" mode="advanced" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" style="display: none;" dragDrop="true" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true" multiple="true" update="#{p:resolveFirstComponentWithId('upload-messages', view).clientId} #{cc.attrs.componentToUpdate} #{p:resolveFirstComponentWithId('case-document-form', view).clientId} @form" oncomplete="handleCaseDetailsTable()" onvalidationfailure="handleUploadFileFail('documentUpload');" dropZone="document-upload-file-panel" widgetVar="documentUpload">
+            <p:validateFile sizeLimit="#{masterDataBean.fileUploadSizeLimit}" />
+          </p:fileUpload>
         </div>
         <div class="ui-g-12">
           <p:outputPanel id="document-upload-file-panel" styleClass="ui-document-upload-file-panel">
@@ -177,7 +168,7 @@
       </div>
       <p:ajax event="close" global="false"
         listener="#{logic.resetDataUploadDialog()}"
-        update="#{cc.clientId}:document-upload-form:upload-messages @this" />
+        update="#{p:resolveFirstComponentWithId('upload-messages', view).clientId} @this" />
     </div>
   </p:dialog>
   
@@ -228,7 +219,7 @@
 
     <ui:define name="dialogFooter">
       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/continue')}"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/continue')}" styleClass="w-full" update="#{cc.clientId}:preview-document-dialog"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/continue')}" styleClass="w-full" update="#{p:resolveFirstComponentWithId('preview-document-dialog', view).clientId}"
         id="preview-encrypted-document-button" actionListener="#{logic.previewEncryptedDocument}"
         oncomplete="PF('preview-document-confirmation-dialog').hide(); if (args &amp;&amp; !args.validationFailed) {PF('preview-document-dialog').show();}" />
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
@@ -256,7 +247,7 @@
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocument')])}"
           icon="#{visibilityBean.generateButtonIcon('ti ti-device-floppy')}"
           actionListener="#{logic.renameDocument}"
-          update="#{cc.clientId}:case-details-documents #{cc.attrs.componentToUpdate} #{cc.clientId}:document-renaming-form:renaming-file-messages"
+          update="#{p:resolveFirstComponentWithId('case-details-documents', view).clientId} #{cc.attrs.componentToUpdate} #{p:resolveFirstComponentWithId('renaming-file-messages', view).clientId}"
           oncomplete="if (document.querySelector('.ui-messages-info')) PF('document-renaming-dialog').hide(); ResponsiveTable.init(':case-details-documents')"
         />
       </h:panelGroup>
@@ -275,7 +266,7 @@
       <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
         process="@this"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteDocumentHeaderText')])}"
-        update="#{cc.attrs.componentToUpdate} #{cc.clientId}:case-document-global-messages #{cc.clientId}:case-document-form"
+        update="#{cc.attrs.componentToUpdate} #{p:resolveFirstComponentWithId('case-document-global-messages', view).clientId} #{p:resolveFirstComponentWithId('case-document-form', view).clientId}"
         actionListener="#{logic.deleteDocument}" styleClass="w-full portal-remove-button"
         oncomplete="PF('document-deletion-dialog').hide();handleCaseDetailsTable();" />
       <p:commandLink id="document-deletion-cancellation-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
