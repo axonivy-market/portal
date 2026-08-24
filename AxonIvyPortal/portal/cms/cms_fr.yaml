@@ -23,6 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addSubstitute: Ajouter un substitut
     deputies: Remplaçant
     description: Veuillez inscrire vos vacances, maladies ou autres obligations extérieures conduisant à une absence.
+    disableAbsencesInThePast: Masquer les absences passées
     editAbsence: Editer les absences
     editSubstitute: Modifier le substitut
     from: Du
@@ -336,6 +337,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocumentHelpText: Pour ajouter des fichiers, glissez-les ou sélectionnez-les
     addNoteHelpText: Ecrivez votre texte ici
     businessDetailsTitle: Détails de l'entreprise
+    caseDetails: Détails du cas
     customFields: Champs personnalisés
     customFieldsDialog: 'Champs personnalisés du cas #{0}'
     deleteFile: Supprimer le fichier
@@ -470,6 +472,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     back: Retour
     backToCaseMap: Retour à la carte des cas
     backgroundColor: Couleur de fond
+    bulkSelection: Sélection multiple
     cancel: Annuler
     cancelContext: Annuler {0}
     case: Dossier
@@ -481,6 +484,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     close: Fermer
     closeContext: Fermer {0}
     cockpit: Cockpit
+    collapse: Réduire
     collapseWidgetContext: Réduire le widget {0}
     colors: Couleur
     comment: Commentaire
@@ -525,6 +529,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorXhr: N'a pas réussi à mettre à jour le contenu du site Web
     escalationTaskHeaderText: Escalader
     escalationTaskMessage: L'expiration est fixée à maintenant, donc la tâche expire. Etes-vous sûr?
+    expand: Développer
     expandWidgetContext: Agrandir le widget {0}
     filter:
       from: du
@@ -540,6 +545,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     generalInformation: Informations générales
     globalSearch: Recherche ...
     goToDetail: Aller au détail
+    gridView: Vue en grille
     growlMessage:
       PROCESS_VIEWER: Vous avez fermé le visualiseur de processus.
       TASK_FINISHED: Vous avez terminé la tâche avec succès
@@ -555,6 +561,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     leave: Quitter
     leaveAndReserve: Quitter et réserve
     linkToCaseDetails: Cliquez sur <a href="{0}" >ici</a> pour plus de détails.
+    listView: Vue en liste
     loading: Chargement
     loginLogo: Logo login
     logos: Logos
@@ -602,7 +609,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     requiredFieldMessage: Ce champ est obligatoire
     reserve: Enregistrer
     reset: Réinitialiser
-    resetFilters: Réinitialiser les filtres
+    resetFilters: Tout réinitialiser
     resetSettingHeaderText: Rétablir le réglage ?
     resetTaskHeaderText: Réinitialiser cette tâche ?
     resetToDefaultMessage: Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir rétablir les paramètres par défaut ?
@@ -768,7 +775,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       GeneralInfo: 'Gérez les fichiers de configuration de Portal sous la forme d''un package ZIP portable. Utilisez Exporter pour télécharger tous les fichiers de configuration JSON actuels regroupés dans une seule archive ZIP, ou utilisez Importer pour charger un package ZIP et appliquer ses configurations — en remplaçant les configurations existantes.'
       ExportTitle: Exporter
       ExportDescription: Exportez les fichiers de configuration de Portal sous forme de package ZIP. Seuls les fichiers contenant des données existantes sont disponibles à la sélection.
-      ExportNote: Seuls les fichiers non vides sont inclus dans le package.
       ExportButton: Exporter
       ImportTitle: Importer
       ImportDescription: Téléchargez un fichier ZIP contenant les fichiers JSON requis. Les noms de fichiers doivent respecter le modèle ci-dessus.
@@ -796,6 +802,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ImportCompleteMessage: Tous les fichiers ont été importés avec succès.
       ImportIncompleteMessage: Certains fichiers n'ont pas pu être importés. Consultez le journal du serveur pour plus de détails.
   dashboard:
+    CanWorkOnAsUser: N'afficher que les tâches sur lesquelles je peux travailler en tant qu'utilisateur
     CaseQueryType:
       info: Configurez les types de cas affichés dans le widget de cas. Par défaut, seuls les cas métier sont affichés, Sous-cas techniques affiche uniquement les sous-cas techniques, et Tous affiche à la fois les cas métier et les sous-cas techniques.
       label: Type de cas
@@ -809,6 +816,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins et modifier l'ordre des éléments de navigation.
       DoNotSupportMobile: La configuration du tableau de bord n'est pas prise en charge pour les appareils mobiles.
       EditPrivateDashboards: Modifier vos tableaux de bord privés
+      EditLayout: Modifier la mise en page
       PrivateTabInfo: 'Créez et gérez vos tableaux de bord personnels.<ul><li>Ils ne sont visibles que par vous</li><li>Ils apparaissent sous l''icône Dashboard dans la barre latérale</li></ul>'
       PublicTabInfo: 'Gérez les tableaux de bord pour tous les utilisateurs. Définissez la visibilité:<ul><li><b>Barre latérale</b> — apparaît comme élément principal dans le menu latéral</li><li><b>Sous-menu</b> — apparaît sous l''icône Dashboard</li><li><b>Masqué</b> — non visible pour les utilisateurs</li></ul>'
       Visibility: Visibilité
@@ -839,7 +847,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AddItem: Ajouter un élément
       Label: Libellé
       Source: Source
-      Target: Cible
+      Target: Lien vers
       Dashboard: Tableau de bord
       MenuManagement: Gestion des menus
       MenuManagementTabInfo: 'Gérez les éléments de navigation de la barre latérale. Vous pouvez:<ul><li>Ajouter de nouveaux éléments de menu (tableaux de bord, liens externes, processus Ivy)</li><li>Réorganiser les éléments par glisser-déposer</li><li>Modifier ou supprimer des éléments de menu existants</li></ul>'
@@ -861,11 +869,23 @@ ch.ivy.addon.portalkit.ui.jsf:
     ExternalPageWidget: Page externe
     ExternalPageWidgetIntroduction: Ce widget peut afficher une page web externe.
     Filter:
+      AddCondition: Ajouter une condition
+      ApplyFilters: Appliquer les filtres
+      DefaultFiltersDescription: Filtres définis comme valeurs par défaut dans la configuration du widget.
+      DefaultFiltersTitle: Filtres par défaut
+      EmptyFilterValidationError: Définissez au moins une condition de filtre avant d'enregistrer.
+      FilterConditionsTitle: Conditions de filtre
       FilterOptionHeader: Options de filtre
       FilterOptionHeaderTooltip: Certains champs de filtre et opérateurs peuvent être désactivés par votre administrateur. Les filtres utilisant des champs ou des opérateurs désactivés seront automatiquement supprimés. Veuillez contacter votre administrateur pour plus d'informations.
       FilterPanelHeader: Panneau de filtre
       ManageWidgetFilterHeader: Gestion des filtres des widgets
+      NewFilterConditionsDescription: Afficher les tâches qui correspondent à toutes les conditions suivantes.
+      NewFilterConditionsTitle: Nouvelles conditions de filtre
       NotFound: Aucun filtre trouvé
+      SaveFilterDescription: Enregistrez ces conditions de filtre pour les réutiliser plus tard.
+      SaveFilterNamePlaceholder: Entrez le nom du filtre
+      SaveFilterOptional: (facultatif)
+      SetFilterHeader: Définir le filtre
       WidgetNameColumn: Nom du widget
       WrongDateFormat: La date n'est pas valide
     FilterTasksByCurrentCaseOwner: Filtrer les tâches par propriétaire actuel du dossier
@@ -928,19 +948,19 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeConfigurationDescription: Vous pouvez configurer votre widget dans cette zone de configuration. Veuillez définir le texte de bienvenue et l'image à utiliser.
       WelcomeWidget:
         AdvancedSettings: Paramètres avancés
+        ChangeImage: Changer l'image
+        DarkMode: Mode sombre
+        ImagePreview: Aperçu de l'image
+        LightMode: Mode clair
+        ConfigurationHeader: Configuration du widget de bienvenue
         ChooseAFit: Choisissez un ajustement
-        DisplayedText: '{0} afficher le texte'
+        DisplayText: Texte d'affichage
         Greeting:
           Afternoon: Bonne journée
           Evening: Bonsoir
           Morning: Bonjour
-        Image: Image
-        ImageDarkMode: Image pour le mode sombre
         ImageInlineStyle: Style d'image en ligne
-        ImageLightMode: Image pour le mode clair
         ImageStyleClass: Classe de style d'image
-        PreviewDarkMode: Aperçu pour le mode sombre
-        PreviewLightMode: Aperçu pour le mode clair
         PreviewTooltip: Cet aperçu ne peut pas rendre tous les paramètres mais devrait donner une idée de ce à quoi ressemblera le widget final. La taille de l'image, l'orientation et certains paramètres CSS ne seront pas affichés ici.
         ShowGreeting: Afficher les salutations
         TextColorDarkMode: Couleur pour le mode sombre
@@ -1029,7 +1049,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreDefaultMessage: Si vous procédez ainsi, vous perdrez tous les widgets créés par vous-même. Les paramètres standard seront appliqués.
     select: Sélectionnez
     selectEditAction: Quelle action voulez-vous effectuer ?
+    showAllCases: Afficher tous les dossiers
+    showAllTasks: Afficher toutes les tâches
     showFullWidget: Afficher le widget complet
+    showPinnedCases: Afficher les dossiers épinglés
+    showPinnedTasks: Afficher les tâches épinglées
     statisticChartIntroduction: Ce widget affiche les graphiques statistiques disponibles.
     statisticChartWidget: Graphique de statistiques
     statisticWidgets: Widgets Statistiques
@@ -1319,6 +1343,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldsDialog: 'Champs personnalisés de la tâche #{0}'
     delayedUntil: Retardé jusqu'au
     deleteFile: Supprimer le fichier
+    dueDate: Échéance
     documents: Documents
     duration: Durée
     events: Événements relatifs au flux de travail
@@ -1463,10 +1488,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Voir la liste complète des tâches
     sort: Trier
   taskWarning:
-    createdTaskLeave: '<div>Vous êtes sur le point de quitter cette page.<br/>  Choisissez l&apos;&apos;une des options suivantes :</div> <UL><LI>Quitter : abandonnez vos modifications et allez à la page choisie. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
+    createdTaskLeave: Si vous quittez maintenant, vous ne pourrez plus démarrer cette tâche.
     createdTaskLogout: '<div>Vous êtes sur le point de quitter cette page.<br/> Choisissez l&apos;&apos;une des options suivantes :</div> <UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
-    resetParkTaskBeforeLeave: '<div>Vous êtes sur le point de laisser une tâche en cours.<br/>Choisissez l&apos;&apos;une des options suivantes :</div><UL> <LI> Quitter : abandonnez vos modifications et allez à la page choisie. <LI> Enregistrer : abandonnez vos modifications et conservez la tâche dans
-      votre liste de tâches personnelles. Ensuite déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
+    leaveTaskHeader: Quitter cette tâche ?
+    resetParkTaskBeforeLeave: Cette tâche est en cours. Si vous la quittez maintenant, vous ne pourrez plus la redémarrer. Si vous la réservez, elle réapparaîtra dans votre liste de tâches.
     resetParkTaskBeforeLogout: '<div>Vous êtes sur le point de laisser une tâche en cours.</br> Choisissez l&apos;&apos;une des options suivantes : </div><UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Enregistrer : annulez vos modifications et conservez la tâche dans votre
       liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
     taskNotFound: cette tâche n'existe pas ou vous n'avez pas l'autorisation de la voir.
@@ -1484,7 +1509,6 @@ Dialogs:
     TaskDetail:
       DataDescription: Données et description
       restoreToDefaultSettings: Rétablir les paramètres par défaut
-      switchToEditMode: Editer
       switchToViewMode: Enregistrer
   agileBPM:
     define_WF:
@@ -1928,6 +1952,7 @@ Labels:
   CreateNewDashboard: Créer un nouveau tableau de bord
   Description: Description
   EditDescription: Editer la description
+  EditLayout: Modifier la mise en page
   EnterFromValue: Saisir la valeur initiale
   EnterToValue: |
     Saisir la valeur finale

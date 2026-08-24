@@ -11,8 +11,6 @@
   <cc:attribute name="reserveActionListener" required="true" />
   <cc:attribute name="reserveOnComplete" default="" />
   <cc:attribute name="taskState" required="true" />
-  <cc:attribute name="cancelActionListener" />
-  <cc:attribute name="cancelOnClick" default="" />
 </cc:interface>
 <cc:implementation>
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
@@ -21,11 +19,16 @@
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="iconClass" value="ti ti-alert-triangle" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
-    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/leaveTaskHeader')}" />
     <ui:param name="maxWidth" value="610px" />
     <ui:param name="styleClass" value="warning-before-leaving-task" />
-    
+
     <ui:define name="dialogContentSection">
+      <div class="text-center warning-before-leaving-task-icon-wrapper">
+        <span class="warning-before-leaving-task-icon">
+          <i class="ti ti-alert-triangle" />
+        </span>
+      </div>
       <cc:insertFacet name="event" />
       <h:outputText escape="false"
         value="#{htmlSanitizerBean.sanitize(ivy.cms.co(cc.attrs.taskState == 'CREATED' ? '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLeave' : '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLeave'))}"
@@ -47,14 +50,6 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
             styleClass="w-6 mx-0 ui-reserve-task-button" oncomplete="#{cc.attrs.reserveOnComplete}" />
-        </div>
-        <div class="w-full flex justify-content-center mt-2">
-          <p:commandLink id="cancel-button"
-            onclick="PF('#{cc.attrs.widgetVar}').hide();#{cc.attrs.cancelOnClick}"
-            actionListener="#{cc.attrs.cancelActionListener}"
-            styleClass="ui-confirmdialog-yes w-full mx-0 text-center"
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"/>
         </div>
       </h:form>
     </ui:define>

@@ -1,53 +1,67 @@
 [{
     "id": "default-case-detail",
+    "version": "14.0.0",
     "widgets": [{
+        "type": "summary",
+        "id": "summary",
+        "layout": {
+          "x": 0, "y": 0, "w": 6, "h": 12
+        }
+      }, {
         "type": "information",
         "id": "information",
         "layout": {
-          "x": 0, "y": 0, "w": 6, "h": 8
+          "x": 0, "y": 12, "w": 6, "h": 28
         }
       }, {
         "type": "document",
         "id": "document",
         "layout": {
-          "x": 6, "y": 0, "w": 6, "h": 8
+          "x": 6, "y": 0, "w": 6, "h": 40
         }
       }, {
         "type": "technicalCase",
         "id": "technicalCase",
         "layout": {
-          "x": 0, "y": 8, "w": 12, "h": 6
+          "x": 0, "y": 40, "w": 12, "h": 30
         }
       }, {
         "type": "relatedTask",
         "id": "relatedTask",
         "layout": {
-          "x": 0, "y": 14, "w": 12, "h": 6
+          "x": 0, "y": 70, "w": 12, "h": 30
         }
       }, {
         "type": "history",
         "id": "history",
         "layout": {
-          "x": 0, "y": 20, "w": 12, "h": 6
+          "x": 0, "y": 100, "w": 12, "h": 30
         }
       }
     ]
   }, {
     "id": "destroyed-case-detail",
+    "version": "14.0.0",
     "filters": {
       "states": ["DESTROYED"]
     },
     "widgets": [{
+        "type": "summary",
+        "id": "summary",
+        "layout": {
+          "x": 0, "y": 0, "w": 6, "h": 12
+        }
+      }, {
         "type": "information",
         "id": "information",
         "layout": {
-          "x": 0, "y": 0, "w": 6, "h": 8
+          "x": 0, "y": 12, "w": 6, "h": 28
         }
       }, {
         "type": "custom",
         "id": "custom-top",
         "layout": {
-          "x": 6, "y": 0, "w": 6, "h": 5
+          "x": 6, "y": 0, "w": 6, "h": 25
         },
         "data": {
           "type": "caseItemDetailCustomTop"
@@ -56,13 +70,13 @@
         "type": "history",
         "id": "history",
         "layout": {
-          "x": 0, "y": 8, "w": 6, "h": 8
+          "x": 0, "y": 40, "w": 6, "h": 40
         }
       }, {
         "type": "custom",
         "id": "custom-url",
         "layout": {
-          "x": 6, "y": 8, "w": 6, "h": 11
+          "x": 6, "y": 40, "w": 6, "h": 55
         },
         "data": {
           "url": "https://www.example.com"
@@ -71,26 +85,33 @@
         "type": "businessDetails",
         "id": "businessDetails",
         "layout": {
-          "x": 0, "y": 19, "w": 12, "h": 6
+          "x": 0, "y": 95, "w": 12, "h": 30
         }
       }
     ]
   }, {
     "id": "custom-case-detail",
+    "version": "14.0.0",
     "filters": {
       "categories": ["customWidget"]
     },
     "widgets": [{
+        "type": "summary",
+        "id": "summary",
+        "layout": {
+          "x": 0, "y": 0, "w": 6, "h": 12
+        }
+      }, {
         "type": "information",
         "id": "information",
         "layout": {
-          "x": 0, "y": 0, "w": 6, "h": 8
+          "x": 0, "y": 12, "w": 6, "h": 28
         }
       }, {
         "type": "custom",
         "id": "custom-ivy-process",
         "layout": {
-          "x": 6, "y": 0, "w": 6, "h": 8
+          "x": 6, "y": 0, "w": 6, "h": 40
         },
         "data": {
           "processPath": "Start Processes/CaseDetailsCustomWidgetExample/startReview.ivp",
@@ -105,7 +126,7 @@
         "type": "custom",
         "id": "custom-middle",
         "layout": {
-          "x": 0, "y": 8, "w": 6, "h": 5
+          "x": 0, "y": 40, "w": 6, "h": 25
         },
         "data": {
           "type": "caseItemDetailCustomMiddle"
@@ -114,7 +135,7 @@
         "type": "custom",
         "id": "custom-bottom",
         "layout": {
-          "x": 6, "y": 8, "w": 6, "h": 5
+          "x": 6, "y": 40, "w": 6, "h": 25
         },
         "data": {
           "type": "caseItemDetailCustomBottom"

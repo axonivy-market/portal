@@ -904,7 +904,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
         setWidget(editWidget);
       }
     }
-    newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/editWidgetHeader");
+    newWidgetHeader = widget.getType().getConfigurationHeader().orElse(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/editWidgetHeader"));
     isEditWidget = true;
   }
 

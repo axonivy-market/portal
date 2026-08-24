@@ -49,6 +49,7 @@ public class NoteHistoryExporter {
   public StreamedContent getStreamedContentOfCaseNoteHistory(List<History> caseNoteHistory, ICase iCase, String fileName) {
     List<List<Object>> caseNoteRows = generateDataForCaseNoteHistory(caseNoteHistory, iCase.isBusinessCase());
     List<List<Object>> generateDataForCaseInfo = generateDataForCaseInfo(iCase);
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
     try {
       // first sheet for note history
@@ -63,13 +64,13 @@ public class NoteHistoryExporter {
       caseInfoSheet.setRows(generateDataForCaseInfo);
       caseInfoSheet.setSheetName("case-info");
       List<ExcelExportSheet> sheets = Arrays.asList(caseNoteHistorySheet, caseInfoSheet);
-      ExcelExport.exportListAsExcel(sheets, new ByteArrayOutputStream());
+      ExcelExport.exportListAsExcel(sheets, outputStream);
     } catch (IOException e) {
       Ivy.log().error(e);
     }
     return DefaultStreamedContent
         .builder()
-        .stream(() -> new ByteArrayInputStream(new ByteArrayOutputStream().toByteArray()))
+        .stream(() -> new ByteArrayInputStream(outputStream.toByteArray()))
         .contentType("application/xlsx")
         .name(fileName)
         .build();

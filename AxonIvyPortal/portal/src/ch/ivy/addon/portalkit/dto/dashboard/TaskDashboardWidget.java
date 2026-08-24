@@ -170,6 +170,15 @@ public class TaskDashboardWidget extends DashboardWidget {
     return this.dataModel.getCriteria().getColumns();
   }
 
+  @JsonIgnore
+  public String getFirstVisibleColumnField() {
+    return getColumns().stream()
+        .filter(column -> BooleanUtils.isTrue(column.getVisible()))
+        .map(TaskColumnModel::getField)
+        .findFirst()
+        .orElse(null);
+  }
+
   public void setColumns(List<TaskColumnModel> columns) {
     this.dataModel.getCriteria().setColumns(columns);
     buildFilterableColumns(columns);

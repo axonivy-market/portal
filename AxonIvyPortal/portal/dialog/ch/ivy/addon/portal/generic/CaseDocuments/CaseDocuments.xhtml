@@ -9,44 +9,85 @@
     <ui:param name="isWorkingOnATask" value="false" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseDocuments/CaseDocumentsPageTitle')}</ui:define>
     <ui:define name="pageContent">
-      <div id="case-documents" class="ui-g">
+      <h:panelGroup layout="block" id="case-documents" styleClass="ui-g">
         <p:growl id="case-document-global-messages" escape="false" />
-        <h:panelGrid columns="2"
-          columnClasses="text-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4, text-left ui-g-10 ui-lg-11 ui-md-8 ui-sm-8"
-          styleClass="ui-g-12 u-no-padding-bottom">
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" />
-          <h:outputText id="case-name" value="#{data.selectedCase.names().current()}" />
 
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
-          <h:outputText id="case-id" value="#{data.selectedCase.id}" />
+        <h:form id="case-doc-toolbar-form" onsubmit="return false;" styleClass="portal-detail-toolbar">
+          <h:panelGroup layout="block" styleClass="portal-detail-toolbar-start u-truncate-text">
+            <p:commandLink id="back-to-case-details" process="@this"
+              actionListener="#{caseTaskDocumentBean.navigateToCaseDetails(data.selectedCase)}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
+              styleClass="portal-detail-toolbar-back">
+              <i class="ti ti-chevron-left" aria-hidden="true" />
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
+            </p:commandLink>
+          </h:panelGroup>
+        </h:form>
 
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
-          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="case-creator"
-            securityMember="#{data.selectedCase.creatorUser}" securityMemberName="#{data.selectedCase.creatorUserName}" />
+        <h:panelGroup layout="block" styleClass="portal-detail-body portal-detail-page-content">
+          <h:panelGroup layout="block" styleClass="card case-detail-card">
+            <h:panelGroup layout="block" id="general-information" styleClass="case-detail-attr-strip">
+              <div class="case-detail-attr">
+                <h:outputText styleClass="portal-detail-column-title"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" />
+                <div class="case-detail-attr-value u-truncate-text">
+                  <h:outputText id="case-name" value="#{data.selectedCase.names().current()}" />
+                </div>
+              </div>
 
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
-          <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{data.selectedCase}"
-            showIndicatorBesideText="true" responsiveStyleClass="" />
-        </h:panelGrid>
+              <div class="case-detail-attr">
+                <h:outputText styleClass="portal-detail-column-title"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
+                <div class="case-detail-attr-value">
+                  <h:outputText id="case-id" value="#{data.selectedCase.id}" />
+                </div>
+              </div>
 
-        <h:form id="case-doc-form" styleClass="document-container ui-g-12 u-no-padding-top">
-          <f:event listener="#{logic.initData}" type="preRenderComponent"/>
+              <h:panelGroup layout="block" styleClass="case-detail-attr" rendered="#{!visibilityBean.hideCaseCreator}">
+                <h:outputText styleClass="portal-detail-column-title"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
+                <div class="case-detail-attr-value u-truncate-text">
+                  <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="case-creator"
+                    securityMember="#{data.selectedCase.creatorUser}" securityMemberName="#{data.selectedCase.creatorUserName}" />
+                </div>
+              </h:panelGroup>
+
+              <div class="case-detail-attr">
+                <h:outputText styleClass="portal-detail-column-title"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
+                <div class="case-detail-attr-value">
+                  <h:panelGroup id="case-state" styleClass="case-header-default-cell">
+                    <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{data.selectedCase}"
+                      showIndicatorBesideText="true" responsiveStyleClass="" />
+                  </h:panelGroup>
+                </div>
+              </div>
+            </h:panelGroup>
+          </h:panelGroup>
+
+          <h:form id="case-doc-form" styleClass="card case-detail-card">
+            <f:event listener="#{logic.initData}" type="preRenderComponent"/>
+            <h:panelGroup layout="block" styleClass="portal-detail-widget-header">
+              <div class="portal-detail-widget-header-title u-truncate-text" role="heading" aria-level="2">
+                #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/documents')}
+              </div>
+            </h:panelGroup>
           <p:dataTable cellNavigation="false" id="docs-table" widgetVar="docs-table"
             sortBy="#{caseTaskDocumentBean.documentSortByCreationTimestamp}"
             value="#{data.documents}" var="document"
             filteredValue="#{data.filteredDocuments}"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
             reflow="true" scrollable="true"
-            styleClass="ui-g-12" lazy="false">
+            lazy="false">
 
             <p:column id="document-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}"
               sortBy="#{document.name}"
               filterBy="#{document.name}" filterMatchMode="contains"
-              styleClass="u-truncate-text ui-sm-12" width="65%">
+              styleClass="u-truncate-text">
               <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="case-document-name">
                 <p:commandLink ajax="false" id="download"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}"
-                  styleClass="download-command case-document-name-text u-truncate-text">
+                  styleClass="case-document-name-text u-truncate-text">
                   <p:fileDownload value="#{logic.downloadDocument(document)}" />
                   <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}"
                     fileSize="#{masterDataBean.getReadableFileSize(document.size)}"
@@ -75,31 +116,25 @@
 
             <c:set var="documentAuthorName" value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(document.creation.user, document.creation.user.name)}"/>
             <p:column id="document-author" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
-              styleClass="case-document-author u-truncate-text ui-sm-hidden ui-lg-2 ui-md-4"
+              styleClass="u-truncate-text u-hidden-sm-down"
               sortBy="#{documentAuthorName}"
-              filterBy="#{documentAuthorName}" filterMatchMode="contains">
+              filterBy="#{documentAuthorName}" filterMatchMode="contains" width="200px">
               <pc:securityMemberNameAndAvatar
                 displayName="#{documentAuthorName}" securityMember="#{document.creation.user}" />
             </p:column>
 
             <p:column id="document-creation"
               headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}"
-              styleClass="case-history-date u-truncate-text ui-sm-hidden ui-lg-2 ui-md-4"
-              sortBy="#{document.creation.timestamp}">
+              styleClass="u-truncate-text u-hidden-sm-down"
+              sortBy="#{document.creation.timestamp}" width="150px">
               <h:outputText value="#{document.creation.timestamp}">
                 <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
               </h:outputText>
             </p:column>
           </p:dataTable>
-
-          <div class="ui-g-12 text-right">
-            <p:commandButton actionListener="#{logic.close}"
-              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-              icon="#{visibilityBean.generateButtonIcon('ti ti-x')}"/>
-          </div>
-        </h:form>
-      </div>
+          </h:form>
+        </h:panelGroup>
+      </h:panelGroup>
 
       <p:dialog id="document-renaming-dialog" widgetVar="document-renaming-dialog" appendTo="@(body)"
         header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocument')}" modal="true" resizable="false" showEffect="fade" hideEffect="fade"

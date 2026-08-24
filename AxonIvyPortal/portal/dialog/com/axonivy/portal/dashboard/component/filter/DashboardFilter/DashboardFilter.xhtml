@@ -21,7 +21,7 @@
   <c:set var="readOnly" value="#{cc.attrs.readOnly}" />
   <c:set var="effectiveOperators" value="#{cc.attrs.managedBean.resolveEffectiveOperatorsByPolicy(filter)}" />
 
-  <div class="ui-g-12 dashboard-widget-filter__filter-wrapper">
+  <div class="dashboard-widget-filter__filter-wrapper">
     <h:panelGroup id="filter-selection-panel" layout="block" styleClass="dashboard-widget-filter__filter-panel filter-selection-panel">
       <div class="ui-fluid filter-selection-panel">
         <p:selectOneMenu id="field-selection" value="#{filter.filterField}" disabled="#{readOnly}" converter="pojoConverter" 
@@ -131,16 +131,14 @@
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{effectiveOperators}" />
       </h:panelGroup>
   
-      <div class="remove-filter-panel">
-        <p:commandButton id="remove-filter" icon="ti ti-minus" rendered="#{!readOnly}"
-          styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger dashboard-widget-filter__remove-filter"
+        <p:commandButton id="remove-filter" icon="ti ti-trash" rendered="#{!readOnly}"
+          styleClass="dashboard-widget-filter__remove-filter"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
           actionListener="#{cc.attrs.managedBean.removeFilter(widget,filter)}"
           update="#{cc.attrs.componentToUpdateWhenRemoveFilter} #{cc.attrs.componentToUpdate}" global="false"
           oncomplete="#{cc.attrs.onCompleteRemoveFilter}" immediate="true" partialSubmit="true">
           <f:param name="skipValidator" value="true" />
         </p:commandButton>
-      </div>
     </h:panelGroup>
   </div>
 </cc:implementation>

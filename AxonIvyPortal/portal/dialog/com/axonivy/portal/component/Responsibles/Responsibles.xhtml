@@ -16,22 +16,35 @@
   <c:set var="responsibleSize" value="#{responsibleBean.getResponsiblesSize(cc.attrs.responsibles)}" />
   <c:set var="responsibles" value="#{cc.attrs.responsibles}" />
   
-  <pc:securityMemberNameAndAvatar displayName="#{responsibleSize gt 1 ? ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple') : responsibleBean.getFirstDisplayName(responsibles)}" 
+  <pc:securityMemberNameAndAvatar displayName="#{responsibleSize gt 1 ? (cc.attrs.isShowAvatar ? null : ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple')) : responsibleBean.getFirstDisplayName(responsibles)}"
     securityMember="#{responsibleSize gt 1 ? null : responsibleBean.getFirstResponsible(responsibles)}"
-    containerStyleClass="responsibles #{responsibleBean.isSubstituteForTask(responsibles) ? 'has-deputy-info' : ''}" 
-    representName="#{responsibleSize gt 1 ? ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple') : null}" 
-    isShowTechnicalDisplayNameOnTooltip="#{responsibleSize gt 1 ? false : null}"> 
+    containerStyleClass="responsibles #{responsibleBean.isSubstituteForTask(responsibles) ? 'has-deputy-info' : ''}"
+    representName="#{responsibleSize gt 1 ? (cc.attrs.isShowAvatar ? null : ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple')) : null}"
+    isShowTechnicalDisplayNameOnTooltip="#{responsibleSize gt 1 ? false : null}">
     <f:facet name="afterName">
       <h:panelGroup rendered="#{responsibles != null and responsibleSize gt 1}"> 
         <h:panelGroup id="all-responsibles" styleClass="ml-1" >
-          <p:commandLink onclick="#{cc.attrs.onClick}" rendered="#{cc.attrs.popupLink}" ariaLabel="#{responsibleSize}">
+          <p:avatarGroup styleClass="responsibles-avatar-group" rendered="#{cc.attrs.isShowAvatar}">
+            <p:tooltip globalSelector=".ui-avatar"/>
+            <ui:repeat value="#{responsibleBean.getResponsibleLimit10(responsibles)}" var="responsible" varStatus="s">
+              <pc:avatar securityMember="#{responsible.get()}"
+                rendered="#{responsible.get() != null and s.index lt 3}"
+                renderedAvatar="true"
+                title="#{responsibleBean.getDisplayName(responsible.get())}" />
+            </ui:repeat>
+            <p:avatar id="responsibles-more" styleClass="responsibles-more" shape="circle" rendered="#{responsibleSize gt 3}">
+              <h:outputText value="+#{responsibleSize - 3}" />
+            </p:avatar>
+          </p:avatarGroup>
+          <p:commandLink onclick="#{cc.attrs.onClick}" rendered="#{cc.attrs.popupLink and !cc.attrs.isShowAvatar}" ariaLabel="#{responsibleSize}">
             (<i class="mr-1 ti ti-users" /><h:outputText value="#{responsibleSize}" />)
           </p:commandLink>
-          <h:panelGroup rendered="#{!cc.attrs.popupLink}">
+          <h:panelGroup rendered="#{!cc.attrs.popupLink and !cc.attrs.isShowAvatar}">
             (<i class="mr-1 ti ti-users" /><h:outputText value="#{responsibleSize}" />)
           </h:panelGroup>
         </h:panelGroup>
-        <p:tooltip for="all-responsibles" position="top" autoHide="false">
+        <p:tooltip for="#{cc.attrs.isShowAvatar ? 'responsibles-more' : 'all-responsibles'}" position="top" autoHide="false"
+          rendered="#{cc.attrs.isShowAvatar ? responsibleSize gt 3 : true}">
           <div class="py-1">
             <ui:repeat id="task-responsibles" value="#{responsibleBean.getResponsibleLimit10(responsibles)}" var="responsible">
               <div class="py-1">

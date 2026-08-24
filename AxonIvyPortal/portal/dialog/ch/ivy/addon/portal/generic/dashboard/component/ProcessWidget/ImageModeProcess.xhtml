@@ -57,7 +57,7 @@
 
         <!-- Start process -->
         <div class="ui-g-12 image-process-actions" id="process-actions">
-          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')}" styleClass="ui-no-rounded-button-process-page"
+          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')}" styleClass="process-start-action"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')} #{widget.process.name}"
             id="start-button" actionListener="#{dashboardProcessBean.startProcess(process)}" icon="ti ti-chevron-right"
             ajax="#{!isExternalLink}" iconPos="right"
