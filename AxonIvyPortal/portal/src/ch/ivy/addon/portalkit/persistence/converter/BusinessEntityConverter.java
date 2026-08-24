@@ -148,8 +148,17 @@ public class BusinessEntityConverter {
       JsonNode nodeToConvert = jsonNode;
 
       // Handle empty node like {}
-      if (nodeToConvert.isObject() && !nodeToConvert.fieldNames().hasNext()) {
-        return new ArrayList<>();
+      if (nodeToConvert.isObject()) {
+        if (!nodeToConvert.fieldNames().hasNext()){
+          return new ArrayList<>();
+        } else {
+          // NEW: a single JSON object (not the wrapper, not an array) is one entity —
+          // treat it as a one-element list instead of forcing it through treeToValue
+          // as a List<T>, which requires a JSON array token and throws otherwise.        
+          List<T> result = new ArrayList<>();
+          result.add(getObjectMapper().treeToValue(nodeToConvert, classType));
+          return result;
+        }      
       }
 
       // Handle array that may contain nested arrays (corrupted format [[{...}], {...}])
