@@ -147,6 +147,21 @@
   outline: 3px solid var(--ivy-primary-light-color);
 }
 
+.grid-stack-item:has(> .dashed-outline) {
+  --dashed-outline-width: 1px;
+  --dashed-outline-gap: 10px;
+}
+
+.grid-stack-item:has(> .dashed-outline)::before {
+  content: "";
+  position: absolute;
+  inset: calc(var(--dashed-outline-gap) - var(--dashed-outline-width));
+  border-radius: 15px;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='15' ry='15' stroke='%23B0B0B0FF' stroke-width='2' stroke-dasharray='10%2c 11' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+}
+
 .ui-draggable:not(.ui-draggable-disabled)>.ui-draggable-handle {
   cursor: move;
 }
