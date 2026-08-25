@@ -64,6 +64,7 @@
   --portal-tabler-icon-size: calc(8 / 7 * 1rem);
   --portal-icon-line-height: 1;
   --portal-icon-ui-icon-font-size: 1.4rem;
+  --portal-icon-size-md: 1.2857rem; /* 18px */
   --portal-icon-size-lg: 1.4286rem; /* 20px */
   --portal-icon-size-xl: 1.8571rem; /* 26px */
   --portal-icon-btn-size-sm: 2.1429rem; /* 30px */

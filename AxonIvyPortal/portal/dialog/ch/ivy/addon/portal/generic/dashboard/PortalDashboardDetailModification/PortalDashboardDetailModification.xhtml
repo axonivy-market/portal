@@ -39,7 +39,7 @@
       <c:set var="showRestoreButton" value="#{dashboardDetailModificationBean.foundTemplate.isPresent()}"/>
       <h:panelGroup id="restore-button-group" styleClass="restore-button-group">
         <p:commandButton id="restore-button"
-          styleClass="rounded-button ui-button-outlined ui-button-widget dashboard__restore-button"
+          styleClass="rounded-button ui-button-outlined ui-button-widget dashboard__restore-button ui-button-icon-only"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
           type="button" icon="ti ti-refresh"
           onclick="PF('restore-confirm-dialog').show()"
@@ -56,7 +56,7 @@
       </h:panelGroup>
 
       <p:commandButton id="clone-from" type="button" icon="ti ti-copy"
-        styleClass="rounded-button ui-button-outlined ui-button-widget u-hidden-md-down"
+        styleClass="rounded-button ui-button-outlined ui-button-widget u-hidden-md-down ui-button-icon-only"
         ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/PortalDashboardDetailModification/CloneWidget')}">
           <p:ajax event="click" listener="#{dashboardDetailModificationBean.initCloneWidgetDialog()}"
             global="false" update="clone-widget-from-dashboard:clone-widget-dialog"

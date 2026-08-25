@@ -2032,8 +2032,6 @@ canvas#preview-statistic-chart {
   font-weight: normal;
 }
 
-/* Detail-page UI redesign (IVYPORTAL-20779) — Task Detail + Case Detail ----------------------------------------*/
-
 /* Shared: round icon button ----------------------------------------*/
 body .ui-button.ui-button-icon-only.portal-icon-btn-round {
   box-sizing: border-box;
