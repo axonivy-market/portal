@@ -241,7 +241,7 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/businessCase')}" />
         </div>
         <div class="portal-detail-kv-value u-truncate-text">
-          <p:commandLink id="related-case" styleClass="task-business-case" disabled="#{cc.attrs.readOnly}"
+          <p:commandLink id="related-case" styleClass="task-business-case" disabled="#{cc.attrs.readOnly or not caseWidgetBean.isCaseFound(task.getCase().getBusinessCase())}"
             ariaLabel="#{taskBean.displayCaseName(task)}"
             actionListener="#{logic.navigateToRelatedCase(task.getCase().getBusinessCase())}">
             <i class="ti ti-external-link" />
@@ -262,7 +262,7 @@
             actionListener="#{logic.navigateToRelatedCase(task.getCase())}"
             rendered="#{task.getCase().getId() != task.getCase().getBusinessCase().getId()}"
             styleClass="task-business-case"
-            disabled="#{cc.attrs.readOnly}">
+            disabled="#{cc.attrs.readOnly or not caseWidgetBean.isCaseFound(task.getCase())}">
             <i class="ti ti-external-link" />
             <h:outputText value="#{taskBean.getTechnicalCaseDisplayName(task)}" />
           </p:commandLink>
