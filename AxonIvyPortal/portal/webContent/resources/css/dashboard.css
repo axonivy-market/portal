@@ -699,7 +699,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   border-radius: 10px;
   box-shadow: var(--widget-filter-dialog-box-shadow);
   min-height: fit-content;
-  max-height: calc(100dvh - 2rem);
+  max-height: 80dvh;
   width: 80dvw !important;
 }
 
@@ -969,11 +969,11 @@ body .dashboard-tasks__start-container {
     }
 
     body .ui-button.dashboard-tasks__start-button {
-      width: 75%;
+      width: 100%;
     }
 
     body .ui-button.dashboard-tasks__start-button > .ui-button-icon-left {
-      padding-left: 0.5rem;
+      margin: 0.5rem;
     }
 }
 
@@ -2506,6 +2506,10 @@ a.saved-filter__manage-filter {
   overflow: auto;
 }
 
+.widget-configuration-filter-dialog .dashboard-widget-filter__main-panel .dashboard-widget-filter__list {
+  max-height: 60dvh;
+}
+
 .dashboard-widget-filter__main-panel .dashboard-widget-filter__condition {
   display: flex;
   align-items: flex-start;
@@ -3058,6 +3062,11 @@ body .dashboard-side-steps-menu-button {
   color: var(--text-color, #333) !important;
   margin: 0;
   padding: 0;
+}
+
+body .portal-circle-icon:hover,
+body .portal-circle-icon:focus {
+  background-color: var(--secondary-btn-hover-bg) !important;
 }
 
 .portal-circle-icon i,
