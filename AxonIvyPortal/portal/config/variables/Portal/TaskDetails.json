@@ -1,24 +1,31 @@
-[{
-    "id": "default-task-detail",
-    "widgets": [{
-        "type": "information",
-        "id": "information",
-        "layout": {
-          "x": 0, "y": 0, "w": 6, "h": 8
-        }
-      }, {
-        "type": "document",
-        "id": "document",
-        "layout": {
-          "x": 6, "y": 0, "w": 6, "h": 4
-        }
-      }, {
-        "type": "history",
-        "id": "history",
-        "layout": {
-          "x": 6, "y": 4, "w": 6, "h": 4
-        }
+{
+  "id": "default-task-detail",
+  "version": "14.0.0",
+  "widgets": [{
+      "type": "summary",
+      "id": "summary",
+      "layout": {
+        "x": 0, "y": 0, "w": 6, "h": 12
       }
-    ]
-  }
-]
+    }, {
+      "type": "information",
+      "id": "information",
+      "layout": {
+        "x": 0, "y": 12, "w": 6, "h": 43
+      }
+    }, {
+      "type": "document",
+      "id": "document",
+      "layout": {
+        "x": 6, "y": 0, "w": 6, "h": 28
+      }
+    }, {
+      "type": "history",
+      "id": "history",
+      "layout": {
+        "x": 6, "y": 28, "w": 6, "h": 27
+      }
+    }
+  ]
+}
+

@@ -1,7 +1,9 @@
-[
+{
+  "version": "14.0.0",
+  "items": [
   {
     "id": "1",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "templateId": "default-portal-dashboard-template",
     "titles": [
       {
@@ -60,50 +62,43 @@
         },
         "enableQuickSearch": true,
         "columns": [
-          {
-            "field": "start",
-            "width": "65"
-          },
-          {
-            "field": "priority",
-            "width": "65"
-          },
-          {
-            "field": "id",
-            "visible": false
-          },
-          {
-            "field": "name",
-            "width": "315"
-          },
-          {
-            "field": "description",
-            "visible": false
-          },
-          {
-            "field": "activator",
-            "width": "120"
-          },
-          {
-            "field": "state",
-            "visible": false
-          },
-          {
-            "field": "startTimestamp",
-            "visible": false
-          },
-          {
-            "field": "expiryTimestamp"
-          },
-          {
-            "field": "category",
-            "visible": false
-          },
-          {
-            "field": "actions",
-            "width": "78"
-          }
-        ],
+            {
+              "field": "id",
+              "visible": false
+            },
+            {
+              "field": "name",
+              "width": "185"
+            },
+            {
+              "field": "description",
+              "visible": false
+            },
+            {
+              "field": "activator",
+              "width": "85"
+            },
+            {
+              "field": "state",
+              "width": "60"
+            },
+            {
+              "field": "expiryTimestamp",
+              "width": "80"
+            },
+            {
+              "field": "category",
+              "visible": false
+            },
+            {
+              "field": "start",
+              "width": "70"
+            },
+            {
+              "field": "actions",
+              "width": "65"
+            }
+          ],
         "sortDescending": true,
         "sortField": "startTimestamp",
         "canWorkOn": true,
@@ -287,6 +282,7 @@
           "x": 8,
           "y": 2
         },
+        "showFullscreenMode": false,
         "chartId": "10"
       },
       {
@@ -298,6 +294,7 @@
           "x": 10,
           "y": 2
         },
+        "showFullscreenMode": false,
         "chartId": "11"
       },
       {
@@ -309,6 +306,7 @@
           "x": 0,
           "y": 11
         },
+        "showFullscreenMode": false,
         "chartId": "7"
       },
       {
@@ -351,7 +349,7 @@
   },
   {
     "id": "default-task-list-dashboard",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "templateId": "create-from-scratch",
     "titles": [
       {
@@ -471,7 +469,7 @@
   },
   {
     "id": "default-case-list-dashboard",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "templateId": "create-from-scratch",
     "titles": [
       {
@@ -580,4 +578,5 @@
     ],
     "dashboardDisplayType": "top_menu"
   }
-]
+  ]
+}

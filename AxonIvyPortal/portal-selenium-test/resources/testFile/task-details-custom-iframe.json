@@ -1,25 +1,26 @@
-[{
-    "id": "default-task-detail",
-    "widgets": [{
-        "type": "information",
-        "layout": {
-          "x": 0,
-          "y": 0,
-          "w": 6,
-          "h": 7
-        }
-      }, {
-        "type": "custom",
-        "layout": {
-          "x": 6,
-          "y": 0,
-          "w": 6,
-          "h": 5
-        },
-        "data": {
-          "url": "https://www.lucide.dev/"
-        }
+{
+  "id": "default-task-detail",
+  "version": "14.0.0",
+  "widgets": [{
+      "type": "information",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 6,
+        "h": 35
       }
-    ]
-  }
-]
+    }, {
+      "type": "custom",
+      "layout": {
+        "x": 6,
+        "y": 0,
+        "w": 6,
+        "h": 25
+      },
+      "data": {
+        "url": "https://www.lucide.dev/"
+      }
+    }
+  ]
+}
+

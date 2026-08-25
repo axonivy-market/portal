@@ -1,20 +1,20 @@
 {
   "names": [
     {
-    "locale": "en",
-    "value": "Dashboard Test EN"
+      "locale": "en",
+      "value": "Dashboard Test EN"
     },
     {
-    "locale": "fr",
-    "value": "Dashboard Test FR"
+      "locale": "fr",
+      "value": "Dashboard Test FR"
     },
     {
-    "locale": "de",
-    "value": "Dashboard Test DE"
+      "locale": "de",
+      "value": "Dashboard Test DE"
     },
     {
-    "locale": "es",
-    "value": "Dashboard Test ES"
+      "locale": "es",
+      "value": "Dashboard Test ES"
     }
   ],
   "icon": "ti ti-file-pencil"

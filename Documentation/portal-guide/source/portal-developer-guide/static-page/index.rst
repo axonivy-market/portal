@@ -96,7 +96,9 @@ Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable:
 
 .. code-block:: json
 
-    [
+    {
+      "version": "14.0.0",
+      "items": [
         {
             "menuKind": "STATIC_PAGE",
             "link": "Portal/faces/view/portal-components-examples/help/user-guide.xhtml",
@@ -114,6 +116,7 @@ Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable:
             "version": "12.0.0"
         }
     ]
+    }
 
 **Configuration Properties:**
 
@@ -196,7 +199,9 @@ Add static pages to the user menu (accessed via user avatar in top-right corner)
 
 .. code-block:: json
 
-    [
+    {
+      "version": "14.0.0",
+      "items": [
         {
             "id": "userGuide",
             "menuKind": "STATIC_PAGE",
@@ -223,8 +228,10 @@ Add static pages to the user menu (accessed via user avatar in top-right corner)
             "title": "API Reference",
             "permissions": ["Developer", "AXONIVY_PORTAL_ADMIN"],
             "url": "Portal/faces/view/portal-components-examples/documentation/api-reference.xhtml"
+            "icon": "ti ti-file-text"
         }
     ]
+    }
 
 **Configuration Properties:**
 
@@ -255,6 +262,12 @@ Add static pages to the user menu (accessed via user avatar in top-right corner)
         
         - Format: ``<application>/faces/view/<process model>/{path-to-file in webContent/view}.xhtml``
         - Example: ``Portal/faces/view/portal-components-examples/static.xhtml``
+
+    ``icon`` (string, optional)
+        Menu item icon
+        
+        - Supports Tabler Icons (e.g., ``"ti-player-play"``, ``"ti-dashboard"``)
+
 
 .. _static-page-url-conversion:
 

@@ -605,31 +605,6 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   box-sizing: border-box;
 }
 
-.action-steps-panel {
-  white-space: nowrap;
-}
-
-.action-steps-panel .action-icon {
-  margin-right: 5px;
-  float: left;
-}
-
-.action-steps-panel .action-step-item {
-  clear: both;
-  float: left;
-  padding: 10px;
-  margin: 0;
-  line-height: 1.4rem;
-  box-sizing: content-box;
-  text-align: left;
-  color: var(--text-color);
-  min-width: 260px;
-}
-
-.action-steps-panel.ui-menu{
-  width: auto;
-}
-
 .case-detail-header {
   display: flex;
   float: left;
@@ -660,31 +635,6 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   .case-info-dialog.ui-dialog {
     width: 90vw !important;
   }
-}
-
-.case-details-back-btn, .task-details-back-btn {
-  flex: 0 0 110px;
-  text-align: right;
-}
-
-@media (min-width: 768px) {
-  .case-details-back-btn, .task-details-back-btn {
-    text-align: left;
-  }
-
-  .iframe-body .task-details-back-btn, .iframe-body .case-details-back-btn {
-    text-align: right;
-  }
-}
-
-.case-detail-title-header-container {
-  padding: 0 !important;
-  display: flex;
-  line-height: 38px;
-}
-
-.case-details-back-btn, .task-details-back-btn, .case-detail-title-header-container .case-detail-header {
-  align-self: center;
 }
 
 .no-case-found {
@@ -882,7 +832,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   white-space: nowrap;
   box-sizing: border-box;
   width: fit-content;
-  padding: 0 8px;
+  padding: 0.1429rem 0.7143rem;
 }
 
 .state-column .case-state.ellipsis-state, 
@@ -1522,17 +1472,6 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   display: none;
 }
 
-.has-breadcrumb .task-detail-container, .has-breadcrumb .case-detail-header-container,
-.ms-teams-layout .task-detail-container, .ms-teams-layout .case-detail-header-container {
-  width: 50%;
-}
-
-.has-breadcrumb .switch-and-reset-buttons-area,
-.ms-teams-layout .switch-and-reset-buttons-area {
-  width: 50%;
-  white-space: nowrap;
-}
-
 .filter-container .widget-title-mobile .top-header-main-title {
   width: 100%;
   overflow: hidden;
@@ -1887,10 +1826,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   justify-content: flex-end;
 }
 
-.options-panel .option-action-icon {
-  margin-right: 5px;
-}
-
 .note-content-textarea {
   width: calc(100% - 2px);
 }
@@ -1919,27 +1854,8 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   width: 80px;
 }
 
-.action-steps-panel .ui-overlaypanel-content,
-.options-panel.ui-overlaypanel .ui-overlaypanel-content {
-  display: grid;
-}
-
-.options-panel.ui-overlaypanel .ui-overlaypanel-content,
 .ui-overlaypanel .ui-overlaypanel-content{
   padding: 1rem 0 !important;
-}
-
-.options-panel .option-item  {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  clear: both;
-  float: left;
-  padding: 10px 18px 10px 10px;
-  margin: 0;
-  width: 160px;
-  box-sizing: content-box;
-  color: var(--text-color);
 }
 
  .options-panel .option-item:hover .option-item-label {
@@ -2048,32 +1964,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding: 15px;
 }
 
-.no-item-panel {
-  margin-top: 4%;
-}
-
-.no-item-panel .ti,
-.no-item-panel .tif,
-.no-item-panel .si {
-  display: block;
-  text-align: center;
-}
-
-.no-item-panel .no-item-header,
-.no-item-panel .no-item-detail {
-  text-align: center;
-  display: block;
-  width: 100%;
-}
-
-.no-item-panel .no-item-header {
-  margin-top: 20px;
-}
-
-.no-item-panel .no-item-detail {
-  margin-top: 10px;
-}
-
 .task-details-document-download-icon,
 .case-document-name .document-name,
 .task-document-name .document-name {
@@ -2174,11 +2064,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 .case-description-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save {
   margin-right: 5px;
   margin-top: 3px;
-}
-
-.case-detail-header-container {
-  display: flex;
-  flex: 1 0;
 }
 
 .case-details-separator {
@@ -3255,6 +3140,74 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   height: 100%;
 }
 
+/* Absences page header (icon + title + info circle), tabs and dynamic action button (IVYPORTAL-20781) */
+.absence-tabs-header-row {
+  position: relative;
+}
+
+.absence-tabs-header-row .absences-tabview .ui-tabs-nav {
+  padding-right: 9rem;
+}
+
+.absence-tabs-header-row .absences-tabview .ui-tabs-nav li.ui-tabs-header {
+  padding: 0.75rem 1rem;
+}
+
+.absence-tabs-header-row .absences-tabview .ui-tabs-nav li.ui-tabs-header.ui-state-active {
+  border-color: var(--dashboard-tab-active-color) !important;
+}
+
+.absence-tabs-header-row .absences-tabview .ui-tabs-nav li.ui-tabs-header.ui-state-active a {
+  color: var(--dashboard-tab-active-color) !important;
+}
+
+.absence-tab-actions {
+  position: absolute;
+  top: -0.5rem;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 40em) {
+  .absence-tabs-header-row .absences-tabview .ui-tabs-nav {
+    padding-right: 3rem;
+  }
+}
+
+/* Filters card grouping the user selection and toggle filters, matching the Portal Configuration sidebar card style */
+.filters-card {
+  background: var(--filters-card-bg-color);
+  border: 1px solid var(--filters-card-border-color);
+  border-radius: 15px;
+  box-sizing: border-box;
+  padding: 1rem 1.25rem;
+}
+
+.filters-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider {
+  background: var(--filters-toggle-checked-bg-color);
+}
+
+.filters-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider:before,
+.filters-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider .ui-toggleswitch-handler {
+  background: var(--filters-toggle-knob-color);
+}
+
+/* "Selected user" dropdown, styled to match Portal Configuration's sidebar-mode-select dropdown */
+.filters-card .absence-user-selection.ui-autocomplete input.ui-autocomplete-input {
+  background-color: var(--sidebar-mode-select-bg-color);
+  border-color: var(--sidebar-mode-select-border-color);
+  border-right: none;
+}
+
+/* Dropdown trigger button: same background as the input, no left border, so it reads as one connected control instead of two boxes */
+.filters-card .absence-user-selection.ui-autocomplete .ui-autocomplete-dropdown {
+  background-color: var(--sidebar-mode-select-bg-color);
+  border-color: var(--sidebar-mode-select-border-color);
+  border-left: none;
+  color: var(--text-color, #333);
+}
+
 .deputy-for-next-absence {
   width: inherit;
 }
@@ -3270,15 +3223,29 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   line-break: anywhere;
 }
 
+body .ui-button {
+  background: var(--button-primary-bg-color);
+  border-color: var(--button-primary-bg-color);
+  color: var(--button-primary-text-color);
+}
+
+body .ui-button:hover {
+  background: var(--button-primary-bg-color);
+  border-color: var(--button-primary-bg-color);
+  color: var(--button-primary-text-color);
+  opacity: 0.85;
+}
+
+/* Opt-in pale/light button style, kept for buttons that still need the older look */
 .ui-button.primary-color-light-button {
-  background: var(--portal-accessibility-bg-color); 
+  background: var(--portal-accessibility-bg-color);
   color: var(--portal-button-text-color);
   font-weight: 600;
   height: 3.25rem;
 }
 
 .ui-button.primary-color-light-button:hover {
-  background: hsla(var(--ivy-primary-light-color-h), var(--ivy-primary-light-color-s), 89%, 1); 
+  background: hsla(var(--ivy-primary-light-color-h), var(--ivy-primary-light-color-s), 89%, 1);
   color: var(--ivy-primary-color);
 }
 
@@ -3309,24 +3276,24 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding-top: 24px;
 }
 
-.deputy-avatar-stack {
+.avatar-stack {
   display: inline-flex;
   align-items: center;
   padding: 0.25rem 0;
 }
 
-.deputy-avatar-stack .deputy-avatar-stack-item {
+.avatar-stack .avatar-stack-item {
   display: inline-flex;
   align-items: center;
 }
 
-.deputy-avatar-stack .deputy-avatar-stack-item + .deputy-avatar-stack-item {
+.avatar-stack .avatar-stack-item + .avatar-stack-item {
   margin-left: -10px;
 }
 
-.deputy-avatar-stack .deputy-avatar-stack-item .ui-avatar,
-.deputy-avatar-stack .deputy-avatar-stack-item img {
-  border: 2px solid var(--surface-0, #fff);
+.avatar-stack .avatar-stack-item .ui-avatar,
+.avatar-stack .avatar-stack-item img {
+  border: 2px solid var(--substituted-user-avatar-color);
   box-sizing: content-box;
 }
 
@@ -3461,13 +3428,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
   }
-}
-
-.grid-view-form .process-action-group {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 0.7rem;
 }
 
 .edit-process-dialog {
@@ -3750,7 +3710,7 @@ _:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
 
 .admin-settings-container>.card {
   min-height: 300px;
-  max-width: 1400px;
+  max-width: 1850px;
   margin: 0 auto;
 }
 
@@ -3865,7 +3825,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .config-columns-panel {
   min-width: 250px;
-  padding: 10px 6px !important;
+  padding: 10px !important;
 }
 
 .config-columns-panel .ui-button.ui-widget {
@@ -4193,12 +4153,6 @@ _:-ms-fullscreen, :root .content-link-history {
 /* =================== END ADD CHAT ============================= */
 
 /*  =================== TASK DETAIL PAGE ========================= */
-.task-detail-header {
-  line-height: 38px;
-  display: flex;
-  width: 100% !important;
-}
-
 .task-detail-general-card {
   min-height: 890px;
 }
@@ -4263,10 +4217,6 @@ _:-ms-fullscreen, :root .content-link-history {
   text-overflow: ellipsis;
   max-width: 85%;
   overflow: hidden;
-}
-
-.content-field-after-escalation .has-avatar {
-  max-width: 80% !important;
 }
 
 .separator-task-detail::before {
@@ -4381,26 +4331,8 @@ _:-ms-fullscreen, :root .content-link-history {
   text-overflow: ellipsis;
 }
 
-.task-detail-header .task-name {
-  display: block;
-}
-
-.has-breadcrumb .task-detail-header .task-name,
-.ms-teams-layout .task-detail-header .task-name {
-  display: none;
-}
-
 .task-name {
   width: 100%;
-}
-
-.task-details-back-btn, .case-details-back-btn {
-  flex: 0;
-  margin-right: 5px !important;
-  display: inline-flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: flex-end;
 }
 
 .task-note-dialog .ui-dialog-content.ui-widget-content {
@@ -4443,8 +4375,8 @@ _:-ms-fullscreen, :root .content-link-history {
   min-height: 40px;
 }
 
-.case-upload-dialog, .case-view-note-dialog, .document-upload-dialog, .task-note-dialog,
-.task-upload-dialog, .document-renaming-dialog {
+.case-view-note-dialog, .document-upload-dialog, .task-note-dialog,
+.document-renaming-dialog {
   min-width: 50vw;
 }
 
@@ -4452,7 +4384,7 @@ _:-ms-fullscreen, :root .content-link-history {
   .case-details {
     padding: 0 !important;
   }
-  .case-upload-dialog, .case-view-note-dialog, .task-upload-dialog, .document-upload-dialog, .task-note-dialog {
+  .case-view-note-dialog, .document-upload-dialog, .task-note-dialog {
     min-width: 70vw;
     max-width: 96vw;
   }
@@ -4472,10 +4404,6 @@ _:-ms-fullscreen, :root .content-link-history {
     word-break: break-all;
     margin-top: 0.2em;
   }
-}
-
-.note-show-more-link-icon, .note-show-more-link {
-  margin-left: 5px;
 }
 
 /*  =================== END TASK TEMPLATE PAGE ========================= */
@@ -4798,18 +4726,6 @@ border-top: 0.14rem dashed;
 }
 
 /** Case information iframe ---- end-----**/
-.time-information .content-field {
-  padding: 0;
-}
-
-.task-and-case-information .content-field {
-  padding: 0;
-}
-
-.role-and-user-information .content-field {
-  padding: 0;
-}
-
 .task-details-panel-title {
   font-size: 16px;
 }
@@ -4849,7 +4765,6 @@ border-top: 0.14rem dashed;
 .case-item-body-container,
 .task-item-body-container {
   display: block;
-  margin: 7px -3px;
 }
 
 .task-detail-general-container {
@@ -4871,24 +4786,8 @@ border-top: 0.14rem dashed;
   padding: 7px 0 !important;
 }
 
-.reset-details-settings-button {
-  margin-left: 5px;
-}
-
 .task-details-widgets .task-action-item-position {
   display: inline-flex;
-}
-
-.task-detail-container {
-  text-align: left;
-  flex: 1 0;
-}
-
-.switch-and-reset-buttons-area {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex: 0 0;
 }
 
 .icon-more-link, .icon-less-link {
@@ -4900,16 +4799,6 @@ border-top: 0.14rem dashed;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-box-pack: end;
-}
-
-@media screen and (max-width: 40em) {
-  .task-detail-container.ui-g-6 {
-    width: 100%
-  }
-
-  .switch-and-reset-buttons-area.ui-g-6 {
-    width: 100%
-  }
 }
 
 .task-detail-description .pointer-event-none {
@@ -5044,7 +4933,18 @@ border-top: 0.14rem dashed;
 
 .process-action-group .ui-button.icon-more-menu-button {
   margin: 0;
-  min-width: 2.357rem;
+}
+
+.process-action-group .ui-button.process-action-button {
+  width: 2.711rem; /* 38px */
+  height: 2.357rem !important; /* 33px */
+  border-color: var(--widget-button-border-color) !important;
+  color: var(--widget-header-icon);
+}
+
+.process-action-group .ui-button.process-action-button:hover {
+  background-color: var(--widget-button-hover-background-color) !important;
+  color: var(--widget-header-icon);
 }
 
 .image-view-form {
@@ -5077,6 +4977,8 @@ border-top: 0.14rem dashed;
 
 .grid-view-form .process-action-group {
   position: absolute;
+  right: 0;
+  top: 0;
   padding: 9px;
   width: auto;
   display: inline-flex;
@@ -5087,6 +4989,28 @@ border-top: 0.14rem dashed;
 .process-action-button {
   background-color: var(--process-action-button-color) !important;
   backdrop-filter: blur(2px);
+}
+
+body .ui-button.process-start-action {
+  border-radius: 100px;
+  border: 1px solid var(--start-btn-border-color);
+  background: var(--start-btn-bg);
+  color: var(--start-btn-text-color);
+  height: 2.143rem !important;
+  min-width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+body .ui-button.process-start-action.ui-state-disabled {
+  background: var(--start-btn-disabled-bg);
+  border-color: var(--start-btn-disabled-border-color);
+  color: var(--start-btn-disabled-text-color);
+}
+
+body .ui-button.process-start-action:not(.ui-state-disabled):hover {
+  background: var(--start-btn-hover-bg);
+  color: var(--start-btn-text-color);
 }
 
 .process-group.grid-process-container .process-grid__header {
@@ -5151,11 +5075,6 @@ body .process-compact-mode > .ui-fieldset-content {
   width: 100%;
   text-align: end;
   padding: 2px;
-}
-
-.image-view-form .start-process > button > span, .image-process-actions > button > span{
-  color: var(--primary-color);
-  font-weight: 500;
 }
 
 .image-view-form .start-process-image-widget {
@@ -5563,7 +5482,7 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 
 /* Dashboard Configuration */
 .dashboard-configuration-page {
-  max-width: 1400px;
+  max-width: 1850px;
   margin: 10px auto;
 }
 
@@ -5594,7 +5513,7 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 
 .dashboard-type-list li.active {
   background-color: transparent;
-  border-color: var(--primary-color);
+  border-color: var(--dashboard-tab-active-color);
 }
 
 .dashboard-type-list li a {
@@ -5606,13 +5525,13 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 }
 
 .dashboard-type-list li.active a {
-  color: var(--primary-color);
+  color: var(--dashboard-tab-active-color);
   font-weight: 700;
   opacity: 1;
 }
 
 .dashboard-type-list li.active i {
-  color: var(--primary-color);
+  color: var(--dashboard-tab-active-color);
   opacity: 1;
 }
 
@@ -6012,20 +5931,6 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
   }	
 }
 
-/* =================== SHARE DIALOG ====================== */
-
-.share-dialog{
-  min-width: 40%;
-  max-width: 60%;
-}
-
-@media screen and (max-width: 40em) {
-  .share-dialog {
-    min-width: 85vw;
-    max-width: 95%;
-  }	 
-}
-
 /* =================== SKELETON ====================== */
 .process-widget-loading-description {
   height: 10rem;
@@ -6070,7 +5975,12 @@ body .ui-link.ui-sidestep-action, .action-container > .ui-sidestep-action {
 }
 
 body .ui-button.ui-button-outlined.ui-button-widget, .ui-button.ui-widget.ui-button-widget {
-  border-color: var(--widget-header-icon);
+  background-color: var(--widget-button-background-color);
+  border-color: var(--widget-button-border-color);
+}
+
+body .ui-button.ui-button-outlined.ui-button-widget:hover, .ui-button.ui-widget.ui-button-widget:hover {
+  background-color: var(--widget-button-hover-background-color);
 }
 
 body .ui-button.ui-widget.ui-button-widget {

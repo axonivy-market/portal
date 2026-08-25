@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.constant;
 
 public class WidgetType {
+  public static final String SUMMARY = "summary";
   public static final String INFORMATION = "information";
   public static final String DOCUMENT = "document";
   public static final String RELATED_TASK = "relatedTask";

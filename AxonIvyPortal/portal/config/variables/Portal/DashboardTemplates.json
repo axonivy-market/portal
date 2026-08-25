@@ -1,6 +1,8 @@
-[
+{
+  "version": "14.0.0",
+  "items": [
   {
-    "version": "13.1.0",
+    "version": "14.0.0",
     "id": "default-portal-dashboard-template",
     "titles": [
       {
@@ -86,14 +88,6 @@
           "canWorkOn": true,
           "columns": [
             {
-              "field": "start",
-              "width": "53"
-            },
-            {
-              "field": "priority",
-              "width": "50"
-            },
-            {
               "field": "id",
               "visible": false
             },
@@ -114,16 +108,16 @@
               "width": "60"
             },
             {
-              "field": "startTimestamp",
-              "width": "80"
-            },
-            {
               "field": "expiryTimestamp",
               "width": "80"
             },
             {
               "field": "category",
               "visible": false
+            },
+            {
+              "field": "start",
+              "width": "70"
             },
             {
               "field": "actions",
@@ -312,6 +306,7 @@
             "x": 8,
             "y": 2
           },
+          "showFullscreenMode": false,
           "chartId": "10"
         },
         {
@@ -323,6 +318,7 @@
             "x": 10,
             "y": 2
           },
+          "showFullscreenMode": false,
           "chartId": "11"
         },
         {
@@ -334,6 +330,7 @@
             "x": 0,
             "y": 11
           },
+          "showFullscreenMode": false,
           "chartId": "7"
         },
         {
@@ -376,7 +373,7 @@
     }
   },
   {
-    "version": "13.1.0",
+    "version": "14.0.0",
     "id": "two-task-widget-dashboard-template",
     "titles": [
       {
@@ -595,7 +592,7 @@
     }
   },
   {
-    "version": "13.1.0",
+    "version": "14.0.0",
     "id": "accessibility-dashboard-template",
     "titles": [
       {
@@ -889,7 +886,7 @@
     }
   },
   {
-    "version": "13.1.0",
+    "version": "14.0.0",
     "id": "full-task-list-dashboard-template",
     "titles": [
       {
@@ -1040,7 +1037,7 @@
     }
   },
   {
-    "version": "13.1.0",
+    "version": "14.0.0",
     "id": "full-case-list-dashboard-template",
     "titles": [
       {
@@ -1177,4 +1174,5 @@
       ]
     }
   }
-]
+  ]
+}

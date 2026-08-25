@@ -90,6 +90,25 @@ public class TestPortalPackageService {
   }
 
   @Test
+  void exportPackage_ExcludeEmptyVariables_wrapperShapeWithNoItems() throws IOException {
+    String json = "{\"version\":\"1.0\",\"items\":[]}";
+    Ivy.var().set(PortalPackageFile.USER_MENU.getVariableKey(), json);
+    StreamedContent content = service.exportPackage();
+    List<String> names = zipEntryNames(content);
+    assertFalse(names.contains(PortalPackageFile.USER_MENU.getFilename()));
+  }
+
+  @Test
+  void exportPackage_IncludesWrapperShapeWithItems() throws IOException {
+    UserMenu userMenu = buildUserMenu("menu-1", "My Menu", "https://example.com");
+    String json = toJson(List.of(userMenu));
+    Ivy.var().set(PortalPackageFile.USER_MENU.getVariableKey(), json);
+    StreamedContent content = service.exportPackage();
+    List<String> names = zipEntryNames(content);
+    assertThat(names).contains(PortalPackageFile.USER_MENU.getFilename());
+  }
+
+  @Test
   void exportPackage_packageContentType_isZipType() throws IOException {
     StreamedContent content = service.exportPackage();
     assertThat(content.getContentType().equals("application/zip"));
