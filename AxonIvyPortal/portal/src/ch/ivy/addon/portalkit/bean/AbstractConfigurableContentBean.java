@@ -44,7 +44,6 @@ import jakarta.faces.context.FacesContext;
 public abstract class AbstractConfigurableContentBean<T extends AbstractConfigurableContent> implements Serializable {
 
   private static final long serialVersionUID = -5019885123920232407L;
-  // protected static ObjectMapper mapper;
   protected static GlobalSettingService globalSettingService;
   protected boolean isReadOnlyMode = true;
   protected boolean isReseted;
@@ -57,14 +56,6 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
   protected abstract Class<T> getConfigurationType();
 
   public void initConfig() {
-    // if (mapper == null) {
-    //   mapper = JsonMapper
-    //       .builder()
-    //       .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-    //       .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
-    //       .build();
-    // }
-
     globalSettingService = GlobalSettingService.getInstance();
     isShowNotAvailableData = PermissionUtils.isSessionUserHasAdminRole();
   }
