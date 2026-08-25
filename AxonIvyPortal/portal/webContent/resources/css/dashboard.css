@@ -205,8 +205,11 @@
   flex-wrap: wrap;
   align-items: center;
   width: 100%;
+  position: relative;
+  z-index: 995;
   background-color: var(--dashboard-header-card-bg-color);
   border-radius: 8px;
+  box-shadow: var(--dashboard-header-card-shadow);
   margin-left: 0.5rem;
 }
 
