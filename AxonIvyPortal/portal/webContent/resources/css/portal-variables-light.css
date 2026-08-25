@@ -373,4 +373,7 @@
   
   /* Leave task warning message*/
   --warning-before-leave-task: #757575;
+
+  /* Login footer copyright text */
+  --login-footer-copyright-color: rgba(41, 50, 65, 0.5);
 }
