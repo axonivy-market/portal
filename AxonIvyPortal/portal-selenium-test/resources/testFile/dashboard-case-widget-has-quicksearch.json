@@ -1,98 +1,101 @@
-[
-  {
-    "id": "1",
-    "version": "13.1.0",
-    "templateId": "default-portal-dashboard-template",
-    "titles": [
-      {
-        "locale": "en",
-        "value": "Dashboard"
-      },
-      {
-        "locale": "fr",
-        "value": "Dashboard"
-      },
-      {
-        "locale": "de",
-        "value": "Dashboard"
-      },
-      {
-        "locale": "es",
-        "value": "Dashboard"
-      }
-    ],
-    "icon": "ti-report-analytics",
-    "widgets": [
-      {
-        "type": "case",
-        "id": "case_1",
-        "names": [
-          {
-            "locale": "en",
-            "value": "Your Cases"
-          },
-          {
-            "locale": "de",
-            "value": "Your Cases"
-          }
-        ],
-        "layout": {
-          "w": 10,
-          "h": 6,
-          "x": 0,
-          "y": 4
+{
+  "version": "14.0.0",
+  "items": [
+    {
+      "id": "1",
+      "version": "14.0.0",
+      "templateId": "default-portal-dashboard-template",
+      "titles": [
+        {
+          "locale": "en",
+          "value": "Dashboard"
         },
-        "rowsPerPage": 5,
-        "sortDescending": true,
-        "sortField": "startTimestamp",
-        "enableQuickSearch": "true",
-        "columns": [
-          {
-            "field": "id"
+        {
+          "locale": "fr",
+          "value": "Dashboard"
+        },
+        {
+          "locale": "de",
+          "value": "Dashboard"
+        },
+        {
+          "locale": "es",
+          "value": "Dashboard"
+        }
+      ],
+      "icon": "ti-report-analytics",
+      "widgets": [
+        {
+          "type": "case",
+          "id": "case_1",
+          "names": [
+            {
+              "locale": "en",
+              "value": "Your Cases"
+            },
+            {
+              "locale": "de",
+              "value": "Your Cases"
+            }
+          ],
+          "layout": {
+            "w": 10,
+            "h": 6,
+            "x": 0,
+            "y": 4
           },
-          {
-            "field": "name"
-          },
-          {
-            "field": "description",
-            "visible": false,
-            "quickSearch": false
-          },
-          {
-            "field": "state"
-          },
-          {
-            "field": "creator"
-          },
-          {
-            "field": "startTimestamp"
-          },
-          {
-            "field": "endTimestamp",
-            "visible": false
-          },
-          {
-            "field": "category",
-            "visible": false
-          },
-          {
-            "field": "actions"
-          },
-          {
-            "headers": [
-              {
-                "locale": "en",
-                "value": "Product"
-              }
-            ],
-            "field": "Product",
-            "visible": true,
-            "quickSearch": true,
-            "sortable": true,
-            "type": "custom"
-          }
-        ]
-      }
-    ]
-  }
-]
+          "rowsPerPage": 5,
+          "sortDescending": true,
+          "sortField": "startTimestamp",
+          "enableQuickSearch": "true",
+          "columns": [
+            {
+              "field": "id"
+            },
+            {
+              "field": "name"
+            },
+            {
+              "field": "description",
+              "visible": false,
+              "quickSearch": false
+            },
+            {
+              "field": "state"
+            },
+            {
+              "field": "creator"
+            },
+            {
+              "field": "startTimestamp"
+            },
+            {
+              "field": "endTimestamp",
+              "visible": false
+            },
+            {
+              "field": "category",
+              "visible": false
+            },
+            {
+              "field": "actions"
+            },
+            {
+              "headers": [
+                {
+                  "locale": "en",
+                  "value": "Product"
+                }
+              ],
+              "field": "Product",
+              "visible": true,
+              "quickSearch": true,
+              "sortable": true,
+              "type": "custom"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

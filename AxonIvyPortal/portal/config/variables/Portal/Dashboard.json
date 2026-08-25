@@ -1,7 +1,9 @@
-[
+{
+  "version": "14.0.0",
+  "items": [
   {
     "id": "1",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "templateId": "default-portal-dashboard-template",
     "titles": [
       {
@@ -347,7 +349,7 @@
   },
   {
     "id": "default-task-list-dashboard",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "templateId": "create-from-scratch",
     "titles": [
       {
@@ -467,7 +469,7 @@
   },
   {
     "id": "default-case-list-dashboard",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "templateId": "create-from-scratch",
     "titles": [
       {
@@ -576,4 +578,5 @@
     ],
     "dashboardDisplayType": "top_menu"
   }
-]
+  ]
+}

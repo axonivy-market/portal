@@ -1,40 +1,40 @@
-[{
-    "id": "default-task-detail",
-    "version": "14.0.0",
-    "widgets": [{
-        "type": "information",
-        "layout": {
-          "x": 0,
-          "y": 0,
-          "w": 6,
-          "h": 60
-        }
-      }, {
-        "type": "history",
-        "layout": {
-          "x": 6,
-          "y": 30,
-          "w": 6,
-          "h": 30
-        }
-      }, {
-        "type": "custom",
-        "layout": {
-          "x": 6,
-          "y": 0,
-          "w": 6,
-          "h": 30
-        },
-        "data": {
-          "processPath": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
-          "params": {
-            "startedTaskId": "task.id",
-            "startedTaskCategory": "task.category",
-            "invoiceId": "000001573",
-            "invoiceDescription": "task.customFields.invoiceDescription"
-          }
+{
+  "id": "default-task-detail",
+  "version": "14.0.0",
+  "widgets": [{
+      "type": "information",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 6,
+        "h": 60
+      }
+    }, {
+      "type": "history",
+      "layout": {
+        "x": 6,
+        "y": 30,
+        "w": 6,
+        "h": 30
+      }
+    }, {
+      "type": "custom",
+      "layout": {
+        "x": 6,
+        "y": 0,
+        "w": 6,
+        "h": 30
+      },
+      "data": {
+        "processPath": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
+        "params": {
+          "startedTaskId": "task.id",
+          "startedTaskCategory": "task.category",
+          "invoiceId": "000001573",
+          "invoiceDescription": "task.customFields.invoiceDescription"
         }
       }
-    ]
-  }
-]
+    }
+  ]
+}
+

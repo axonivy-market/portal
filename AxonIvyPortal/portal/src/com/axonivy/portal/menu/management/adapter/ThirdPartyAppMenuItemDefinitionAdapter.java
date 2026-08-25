@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.axonivy.portal.dto.menu.ExternalLinkMenuItemDefinition;
 import com.axonivy.portal.menu.management.enums.MenuSource;
 import com.axonivy.portal.util.MenuUtils;
@@ -42,6 +44,9 @@ public class ThirdPartyAppMenuItemDefinitionAdapter
   }
 
   private List<DisplayName> jsonToDisplayNames(String displayName) {
+    if (StringUtils.isEmpty(displayName)) {
+      return List.of();
+    }
     Map<String, String> displayNames = DisplayNameConvertor.parseJson(displayName).getDisplayNameAsMap();
     List<DisplayName> titles = LanguageService.getInstance().getIvyLanguageOfUser().getSupportedLanguages().stream()
         .map(lang -> new DisplayName(Locale.forLanguageTag(lang), displayNames.get(lang))).collect(Collectors.toList());

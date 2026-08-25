@@ -7,6 +7,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.StatisticJsonVersion;
+import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.statistic.converter.JsonStatisticConverterFactory;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -46,9 +47,24 @@ public class JsonStatisticMigrator {
 
   public JsonNode migrate() {
     Ivy.log().info("Converting Portal original statistic json: " + node.toString());
-    removeDefaultChartsFromClientStatistic((ArrayNode) node);
-    node.elements().forEachRemaining(template -> migrate(template));
+    if (isListWrapper(node)) {
+      // Canonical shape: {"version": "...", "items": [...]}. The wrapper-level
+      // "version" tracks the JSON collection format, not any single chart's
+      // migration version, so only the items are migrated, not the wrapper itself.
+      ArrayNode items = (ArrayNode) node.get(JsonListWrapper.ITEMS_FIELD_NAME);
+      removeDefaultChartsFromClientStatistic(items);
+      items.elements().forEachRemaining(template -> migrate(template));
+    } else {
+      removeDefaultChartsFromClientStatistic((ArrayNode) node);
+      node.elements().forEachRemaining(template -> migrate(template));
+    }
     return node;
+  }
+
+  private static boolean isListWrapper(JsonNode node) {
+    return node.isObject()
+        && node.has(JsonListWrapper.ITEMS_FIELD_NAME)
+        && node.get(JsonListWrapper.ITEMS_FIELD_NAME).isArray();
   }
 
   private void migrate(JsonNode chart) {

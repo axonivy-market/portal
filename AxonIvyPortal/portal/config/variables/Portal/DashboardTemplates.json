@@ -1,6 +1,8 @@
-[
+{
+  "version": "14.0.0",
+  "items": [
   {
-    "version": "13.1.0",
+    "version": "14.0.0",
     "id": "default-portal-dashboard-template",
     "titles": [
       {
@@ -371,7 +373,7 @@
     }
   },
   {
-    "version": "13.1.0",
+    "version": "14.0.0",
     "id": "two-task-widget-dashboard-template",
     "titles": [
       {
@@ -590,7 +592,7 @@
     }
   },
   {
-    "version": "13.1.0",
+    "version": "14.0.0",
     "id": "accessibility-dashboard-template",
     "titles": [
       {
@@ -884,7 +886,7 @@
     }
   },
   {
-    "version": "13.1.0",
+    "version": "14.0.0",
     "id": "full-task-list-dashboard-template",
     "titles": [
       {
@@ -1035,7 +1037,7 @@
     }
   },
   {
-    "version": "13.1.0",
+    "version": "14.0.0",
     "id": "full-case-list-dashboard-template",
     "titles": [
       {
@@ -1172,4 +1174,5 @@
       ]
     }
   }
-]
+  ]
+}

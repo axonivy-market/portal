@@ -24,6 +24,7 @@ import jakarta.faces.view.ViewScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.ActionEvent;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
@@ -380,7 +381,8 @@ public class MenuView implements Serializable {
   }
 
   private String getLocalizedTitle(Dashboard board, String currentLanguage, String defaultTitle) {
-    return board.getTitles().stream()
+    return CollectionUtils.emptyIfNull(board.getTitles())
+        .stream()
         .filter(name -> Strings.CI.equals(name.getLocale().toString(), currentLanguage)
             && StringUtils.isNotBlank(name.getValue()))
         .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
