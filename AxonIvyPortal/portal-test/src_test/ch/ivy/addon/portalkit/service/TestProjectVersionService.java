@@ -10,6 +10,8 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import com.axonivy.portal.bo.ApplicationInfo;
 import com.axonivy.portal.service.ProjectVersionService;
@@ -97,41 +99,47 @@ class TestProjectVersionService {
     assertThat(appInfo.getProjects()).extracting(Project::name).containsExactly("v2-project");
   }
 
-  @Test
-  void releaseState_mapsToExpectedStyleAndIcon() {
-    assertThat(service.getReleaseStateStyle(fakeApplication(1, ReleaseState.RELEASED, ActivityState.ACTIVE))).isEqualTo("released");
-    assertThat(service.getReleaseStateIcon(fakeApplication(1, ReleaseState.RELEASED, ActivityState.ACTIVE))).isEqualTo("pi-check-circle");
+  @ParameterizedTest(name = "releaseState_mapsToStyleAndIcon_for_{0}")
+  @CsvSource({
+      "RELEASED,   released,   pi-check-circle",
+      "DEPRECATED, deprecated, pi-times-circle",
+      "CREATED,    created,    pi-clock",
+      "PREPARED,   prepared,   pi-clock",
+      "ARCHIVED,   archived,   pi-question-circle"
+  })
+  void releaseState_mapsToExpectedStyleAndIcon(ReleaseState state, String style, String icon) {
+    Application version = fakeApplication(1, state, ActivityState.ACTIVE);
 
-    assertThat(service.getReleaseStateStyle(fakeApplication(1, ReleaseState.DEPRECATED, ActivityState.ACTIVE))).isEqualTo("deprecated");
-    assertThat(service.getReleaseStateIcon(fakeApplication(1, ReleaseState.DEPRECATED, ActivityState.ACTIVE))).isEqualTo("pi-times-circle");
-
-    assertThat(service.getReleaseStateStyle(fakeApplication(1, ReleaseState.CREATED, ActivityState.ACTIVE))).isEqualTo("created");
-    assertThat(service.getReleaseStateIcon(fakeApplication(1, ReleaseState.CREATED, ActivityState.ACTIVE))).isEqualTo("pi-clock");
-
-    assertThat(service.getReleaseStateStyle(fakeApplication(1, ReleaseState.PREPARED, ActivityState.ACTIVE))).isEqualTo("prepared");
-    assertThat(service.getReleaseStateIcon(fakeApplication(1, ReleaseState.PREPARED, ActivityState.ACTIVE))).isEqualTo("pi-clock");
-
-    assertThat(service.getReleaseStateStyle(fakeApplication(1, ReleaseState.ARCHIVED, ActivityState.ACTIVE))).isEqualTo("archived");
-    assertThat(service.getReleaseStateIcon(fakeApplication(1, ReleaseState.ARCHIVED, ActivityState.ACTIVE))).isEqualTo("pi-question-circle");
+    assertThat(service.getReleaseStateStyle(version)).isEqualTo(style);
+    assertThat(service.getReleaseStateIcon(version)).isEqualTo(icon);
   }
 
-  @Test
-  void activityState_mapsToExpectedStyleAndIcon() {
-    assertThat(service.getActivityStateStyle(fakeApplication(1, ReleaseState.RELEASED, ActivityState.ACTIVE))).isEqualTo("active");
-    assertThat(service.getActivityStateIcon(fakeApplication(1, ReleaseState.RELEASED, ActivityState.ACTIVE))).isEqualTo("pi-play");
+  @ParameterizedTest(name = "activityState_mapsToStyleAndIcon_for_{0}")
+  @CsvSource({
+      "ACTIVE,   active,   pi-play",
+      "INACTIVE, inactive, pi-exclamation-triangle"
+  })
+  void activityState_mapsToExpectedStyleAndIcon(ActivityState state, String style, String icon) {
+    Application version = fakeApplication(1, ReleaseState.RELEASED, state);
 
-    assertThat(service.getActivityStateStyle(fakeApplication(1, ReleaseState.RELEASED, ActivityState.INACTIVE))).isEqualTo("inactive");
-    assertThat(service.getActivityStateIcon(fakeApplication(1, ReleaseState.RELEASED, ActivityState.INACTIVE))).isEqualTo("pi-exclamation-triangle");
+    assertThat(service.getActivityStateStyle(version)).isEqualTo(style);
+    assertThat(service.getActivityStateIcon(version)).isEqualTo(icon);
   }
 
-  @Test
-  void projectMode_mapsToExpectedIcon() {
-    assertThat(service.getProjectModeIcon(fakeProject("p", "id", "1.0", ProjectMode.OK))).isEqualTo("pi-check-circle");
-    assertThat(service.getProjectModeIcon(fakeProject("p", "id", "1.0", ProjectMode.MISSING))).isEqualTo("pi-exclamation-triangle");
-    assertThat(service.getProjectModeIcon(fakeProject("p", "id", "1.0", ProjectMode.OUTDATED))).isEqualTo("pi-exclamation-triangle");
-    assertThat(service.getProjectModeIcon(fakeProject("p", "id", "1.0", ProjectMode.TOO_OLD))).isEqualTo("pi-exclamation-triangle");
-    assertThat(service.getProjectModeIcon(fakeProject("p", "id", "1.0", ProjectMode.TOO_NEW))).isEqualTo("pi-exclamation-triangle");
-    assertThat(service.getProjectModeIcon(fakeProject("p", "id", "1.0", ProjectMode.UNKNOWN))).isEqualTo("pi-question-circle");
+  @ParameterizedTest(name = "projectMode_mapsToStyleAndIcon_for__{0}")
+  @CsvSource({
+      "OK,       ok,       pi-check-circle",
+      "MISSING,  missing,  pi-exclamation-triangle",
+      "OUTDATED, outdated, pi-exclamation-triangle",
+      "TOO_OLD,  too_old,  pi-exclamation-triangle",
+      "TOO_NEW,  too_new,  pi-exclamation-triangle",
+      "UNKNOWN,  unknown,  pi-question-circle"
+  })
+  void projectMode_mapsToExpectedStyleAndIcon(ProjectMode mode, String style, String icon) {
+    Project project = fakeProject("p", "id", "1.0", mode);
+
+    assertThat(service.getProjectModeStyle(project)).isEqualTo(style);
+    assertThat(service.getProjectModeIcon(project)).isEqualTo(icon);
   }
 
   @Test
