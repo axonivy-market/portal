@@ -3889,11 +3889,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   display: none;
 }
 
-.project-version-container {
-  max-height: 80vh;
-  overflow: auto;
-}
-
 .project-version-container .project-info-table.ui-datatable-reflow .ui-column-title {
   width: 120px;
 }

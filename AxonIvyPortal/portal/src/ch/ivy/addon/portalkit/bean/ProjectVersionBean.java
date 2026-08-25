@@ -5,8 +5,9 @@ import java.util.List;
 
 import org.primefaces.event.SelectEvent;
 
-import ch.ivy.addon.portalkit.service.ProjectVersionService;
-import ch.ivy.addon.portalkit.service.ProjectVersionService.ApplicationInfo;
+import com.axonivy.portal.bo.ApplicationInfo;
+import com.axonivy.portal.service.ProjectVersionService;
+
 import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.application.app.state.ActivityState;
 import ch.ivyteam.ivy.application.app.state.ReleaseState;

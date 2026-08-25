@@ -1,13 +1,14 @@
-package ch.ivy.addon.portalkit.service;
+package com.axonivy.portal.service;
 
 import static ch.ivy.addon.portalkit.constant.PortalConstants.PORTAL_LIBRARY_ID;
 
-import java.io.Serializable;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.Strings;
+
+import com.axonivy.portal.bo.ApplicationInfo;
 
 import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.application.app.ApplicationRepository;
@@ -85,88 +86,38 @@ public class ProjectVersionService {
   }
 
   public String getReleaseStateIcon(Application version) {
-    return iconFor(getReleaseStateStyle(version));
+    return iconFor(version.state().releaseState());
   }
 
   public String getActivityStateIcon(Application version) {
-    return iconFor(getActivityStateStyle(version));
+    return iconFor(version.state().activityState());
   }
 
   public String getProjectModeIcon(Project project) {
-    return iconFor(getProjectModeStyle(project));
+    return iconFor(project.state().mode());
   }
 
-  private String iconFor(String styleKey) {
-    switch (styleKey) {
-      case "released":
-      case "ok":
-        return "pi-check-circle";
-      case "active":
-      case "started":
-        return "pi-play";
-      case "deprecated":
-      case "stopped":
-      case "failed":
-        return "pi-times-circle";
-      case "inactive":
-      case "starting":
-      case "stopping":
-      case "missing":
-      case "outdated":
-      case "too_old":
-      case "too_new":
-        return "pi-exclamation-triangle";
-      case "created":
-      case "prepared":
-        return "pi-clock";
-      default:
-        return "pi-question-circle";
-    }
+  private String iconFor(ReleaseState state) {
+    return switch (state) {
+      case RELEASED -> "pi-check-circle";
+      case DEPRECATED -> "pi-times-circle";
+      case CREATED, PREPARED -> "pi-clock";
+      case ARCHIVED -> "pi-question-circle";
+    };
   }
 
-  public static class ApplicationInfo implements Serializable {
+  private String iconFor(ActivityState state) {
+    return switch (state) {
+      case ACTIVE -> "pi-play";
+      case INACTIVE -> "pi-exclamation-triangle";
+    };
+  }
 
-    private static final long serialVersionUID = 1L;
-
-    private final String name;
-    private final List<Application> versions;
-    private Application selectedVersion;
-
-    public ApplicationInfo(String name, List<Application> versions) {
-      this.name = name;
-      this.versions = versions.stream()
-          .sorted(Comparator.comparingInt(Application::version).reversed())
-          .collect(Collectors.toList());
-      this.selectedVersion = this.versions.stream()
-          .filter(version -> version.state().releaseState() == ReleaseState.RELEASED)
-          .findFirst()
-          .orElse(this.versions.isEmpty() ? null : this.versions.get(0));
-    }
-
-    public String getName() {
-      return name;
-    }
-
-    public List<Application> getVersions() {
-      return versions;
-    }
-
-    public Application getSelectedVersion() {
-      return selectedVersion;
-    }
-
-    public void setSelectedVersion(Application selectedVersion) {
-      this.selectedVersion = selectedVersion;
-    }
-
-    public List<Project> getProjects() {
-      if (selectedVersion == null) {
-        return List.of();
-      }
-      return selectedVersion.projects().all()
-          .filter(project -> !PORTAL_LIBRARY_ID.equals(project.mavenCoordinates().id()))
-          .sorted((p1, p2) -> Strings.CI.compare(p1.name(), p2.name()))
-          .collect(Collectors.toList());
-    }
+  private String iconFor(ProjectMode mode) {
+    return switch (mode) {
+      case OK -> "pi-check-circle";
+      case MISSING, OUTDATED, TOO_OLD, TOO_NEW -> "pi-exclamation-triangle";
+      case UNKNOWN -> "pi-question-circle";
+    };
   }
 }

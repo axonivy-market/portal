@@ -11,8 +11,10 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
+import com.axonivy.portal.bo.ApplicationInfo;
+import com.axonivy.portal.service.ProjectVersionService;
+
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import ch.ivy.addon.portalkit.service.ProjectVersionService.ApplicationInfo;
 import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.application.app.state.ActivityState;
 import ch.ivyteam.ivy.application.app.state.AppState;
