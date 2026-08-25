@@ -227,6 +227,9 @@ if (document) {
     } else {
       $(viewAllLink).addClass('hidden');
       $(noResults).removeClass('hidden');
+      if (data && data.noResultsText) {
+        $(noResults).text(data.noResultsText);
+      }
     }
     initConfirmDialog()
   }
