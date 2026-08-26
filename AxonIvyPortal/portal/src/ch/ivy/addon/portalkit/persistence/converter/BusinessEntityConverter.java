@@ -90,12 +90,15 @@ public class BusinessEntityConverter {
     try {
       ObjectMapper mapper = getObjectMapper();
       JsonNode rootNode = mapper.readTree(jsonValue);
-      if (rootNode.isArray() || isListWrapper(rootNode)) {
+      // Only reject array/list-wrapper shapes when classType itself expects a single object.
+      // When classType is an array type (e.g. WidgetLayout[].class, used by
+      // DashboardWidgetUtils.getWidgetLayoutFromRequest to deserialize the "nodes" request param),
+      // a JSON array root node is exactly the correct, expected shape - not an error.
+      if (!classType.isArray() && (rootNode.isArray() || isListWrapper(rootNode))) {
         throw new PortalException(
             "Expected a single " + classType.getSimpleName() + " JSON object, but got a list/array shape.");
       }
       return mapper.treeToValue(rootNode, classType);
-      //return getObjectMapper().readValue(jsonValue, classType);
     } catch (IOException e) {
       throw new PortalException(e);
     }

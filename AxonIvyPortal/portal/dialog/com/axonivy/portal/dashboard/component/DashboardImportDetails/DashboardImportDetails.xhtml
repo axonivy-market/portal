@@ -31,7 +31,7 @@
       <h:panelGroup id="dashboard-upload-panel" layout="block"
         styleClass="ui-g">
         <div class="ui-g-12">
-          <h5 class="import-header-title"><h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardImportDetails/chooseAJsonFile')}" /></h5>
+          <p class="import-header-title text-style-h5"><h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardImportDetails/chooseAJsonFile')}" /></p>
         </div>
         <div class="ui-g-12">
           <p:fileUpload id="dashboard-upload" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-hand-finger')}" dragDrop="true" widgetVar="dashboardUpload" style="display: none;" onvalidationfailure="handleUploadFileFail('dashboardUpload');" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" styleClass="dashboard-upload" mode="advanced" listener="#{managedBean.loadImportedFile}" update="import-dashboard-form import-dashboard-dialog-message #{p:resolveFirstComponentWithId('footer-button-container', view).clientId}" value="#{managedBean.importFile}" auto="true" dropZone="dashboard-upload-file-panel" requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" oncomplete="PF('#{cc.attrs.importDialogId}').initPosition();">

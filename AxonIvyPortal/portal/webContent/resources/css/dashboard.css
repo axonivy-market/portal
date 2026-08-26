@@ -940,8 +940,8 @@ body .ui-divider.ui-divider-horizontal::before {
   align-self: flex-start;
 }
 
-.filter-container__header h2,
-.widget-preview__header h2 {
+.filter-container__header p.text-style-h2,
+.widget-preview__header p.text-style-h2 {
   margin: auto;
 }
 
@@ -1343,6 +1343,7 @@ body .ui-widget.new-widget-dialog__introduction {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
   font-weight: 600;
+  line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--text-color);

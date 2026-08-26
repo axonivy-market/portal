@@ -18,7 +18,7 @@
             alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}" />
         </div>
         <p:focus for="username" />
-        <h4>#{cc.attrs.title}</h4>
+        <p class="text-style-h4">#{cc.attrs.title}</p>
 
         <p:messages id="login-message" showIcon="false"/>
 
@@ -58,8 +58,8 @@
         </div>
       </div>
       <h:panelGroup layout="block" class="login-footer" rendered="#{visibilityBean.showLoginFooter}">
-        <h4>#{ivy.cms.co('/Labels/Login/CompanyName')}</h4>
-        <h6>#{ivy.cms.co('/Labels/Login/Copyright')}</h6>
+        <p class="text-style-h4">#{ivy.cms.co('/Labels/Login/CompanyName')}</p>
+        <p class="text-style-h6">#{ivy.cms.co('/Labels/Login/Copyright')}</p>
       </h:panelGroup>
     </div>
   </h:form>

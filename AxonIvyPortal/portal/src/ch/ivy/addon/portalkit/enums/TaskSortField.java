@@ -12,7 +12,10 @@ public enum TaskSortField {
   COMPLETED_ON,
   STATE,
   CATEGORY,
-  APPLICATION;
+  APPLICATION,
+  WORKER,
+  BUSINESS_CASE_ID,
+  TECHNICAL_CASE_ID;
 
   public String getLabel() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/" + name());
