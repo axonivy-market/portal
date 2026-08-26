@@ -264,6 +264,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option in Aufgaben-/Vorgang-Aktionen zu aktivieren
       enableScriptCheckingForUploadedDocumentNote: 'Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt. '
       enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
+      globalSearchMinimumKeywordLengthNote: Mindestanzahl an Zeichen, die erforderlich ist, bevor die globale Suche ausgeführt wird. Auf 0 setzen, um die Prüfung zu deaktivieren. Ein kürzeres Schlüsselwort trifft auf nahezu jede Zeile zu, was langsam sein kann, daher wird die Suche übersprungen statt ausgeführt.
       hideCaseCreator: |
         Auf true setzen, um den Fallersteller in der Fallliste, dem Fall-Widget und den Falldetails auszublenden.
         Diese Einstellung wirkt sich auf alle Fallabfragen aus, z. B. für Fallliste, globale Suche, Statistik.
@@ -1281,6 +1282,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     defaultColumns:
       ACTIVATOR: Verantwortlich
       APPLICATION: Anwendung
+      BUSINESS_CASE_ID: Business-Fall-ID
       CATEGORY: Kategorie
       COMPLETED: Erledigt am
       COMPLETED_ON: Erledigt am
@@ -1292,6 +1294,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY: Priorität
       STATE: Status
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Fehlender Aktivator
+      TECHNICAL_CASE_ID: Technische Fall-ID
+      WORKER: Bearbeiter
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Standard-Filter
@@ -1420,6 +1424,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: Alle Ergebnisse anzeigen
+              minimumKeywordText: Geben Sie mindestens {0} Zeichen ein, um zu suchen.
               noResultsText: Es liegen keine Ergebnisse vor.
             dashboard:
               PortalDashboardConfiguration:

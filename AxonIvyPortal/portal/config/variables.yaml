@@ -85,6 +85,11 @@ Variables:
       # Set this property to true to enable the ability to pin tasks.
       EnablePinnedTask: false
 
+      # Query strategy for the related case subquery built by task widget case custom field filters.
+      # LEGACY uses CaseQuery.create(), SPLIT uses businessCases()/subCases(). Has no effect on the case widget.
+      # [enum: LEGACY, SPLIT]
+      RelatedCaseQueryStrategy: LEGACY
+
     # You can configure the look and feel for task details according to your needs via this json file.
     # This setting will be taken over for all other task details.
     # [file: json]
@@ -193,11 +198,18 @@ Variables:
       ByCaseFields: NAME,DESCRIPTION,CUSTOM
     # Defining the types that the global search will search for
     GlobalSearchScopeCategories: PROCESSES,TASKS,CASES
+    GlobalSearch:
+      # Minimum number of characters required before the global search runs. 0 disables the check.
+      # A shorter keyword matches nearly every row, which can be slow, so the search is skipped
+      # entirely rather than run.
+      MinimumKeywordLength: "0"
     # Additional menu items for the main menu of Portal. Could be an Ivy process or an external link.
     # [file: json]
     CustomMenuItems: ""
     # Global footer info that is displayed in bottom right corner can be set in the portal admin settings.
     GlobalFooterInfo: ""
+    # This variable is HIGH RISK. Please contact the Portal team before enabling it.
+    SkipPermissionCheck: false
     # Support the translation from English to the other languages or from German to the other languages (German, English, French, Spanish)
     DeepL:
       # DeepL Authentication Key (should end with :fx)

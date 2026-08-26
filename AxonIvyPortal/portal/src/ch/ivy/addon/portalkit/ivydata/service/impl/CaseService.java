@@ -450,6 +450,11 @@ public class CaseService{
   
   public ICase findCaseByUUID(String uuid) {
     return Sudo.get(() -> {
+      if (PermissionUtils.checkSkipPermission()) {
+        return Ivy.wf().getGlobalContext().getCaseQueryExecutor()
+            .createCaseQuery().where().uuid().isEqual(uuid).executor()
+            .firstResult();
+      }
       CaseQuery caseQuery = CaseQuery.create().where().uuid().isEqual(uuid);
       if (PermissionUtils.checkReadAllCasesPermission()) {
         EnumSet<CaseState> ADVANCE_STATES = EnumSet.of(CREATED, RUNNING, DONE, DESTROYED);

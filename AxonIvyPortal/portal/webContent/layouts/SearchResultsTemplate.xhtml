@@ -18,7 +18,7 @@
     <ui:param name="dataModel" value="#{data.dataModel}" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResults')}</ui:define>
     <ui:define name="pageContent">
-      <c:set var="isShowResultTabView" value="#{compactProcessWidgetBean.displayShowAllProcessesLink or taskWidgetBean.showFullTaskList or caseWidgetBean.showFullCaseList}"></c:set>
+      <c:set var="isShowResultTabView" value="#{(compactProcessWidgetBean.displayShowAllProcessesLink or taskWidgetBean.showFullTaskList or caseWidgetBean.showFullCaseList) and not dataModel.keywordTooShort}"></c:set>
       <h:form id="global-search-form-in-page">
         <div id="global-search-container-in-page" class="global-search ui-lg-hidden ui-xl-hidden js-global-search ui-fluid">
           <span class="ui-input-icon-left">
@@ -30,14 +30,17 @@
           </span>
         </div>
         <p:remoteCommand name="portalGlobalSearchInPage" actionListener="#{dataModel.search}"
-          update="#{p:resolveFirstComponentWithId('search-results-tabview', view).clientId}" oncomplete="processWidget.filter();" />
+          update="#{p:resolveFirstComponentWithId('search-results-content', view).clientId}" oncomplete="processWidget.filter();" />
         <p:remoteCommand autoRun="true" delay="1" global="false" process="@none"
           onstart="if(PrimeFaces.widgets['search-results-tabview']) { PF('search-results-tabview').select(#{data.activeTabIndex}) }" />
       </h:form>
-      <c:if test="#{!isShowResultTabView}" >
-      	<h:outputText styleClass="not-display-result-tab-view" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/notDisplayResultTabView')}."/>
-      </c:if>
-      <div id="search-results-tabview-container" class="search-results-tabview-container js-search-results-tabview-container">
+      <h:panelGroup id="search-results-content" layout="block"
+        styleClass="search-results-tabview-container js-search-results-tabview-container">
+        <h:outputText styleClass="not-display-result-tab-view"
+          rendered="#{!isShowResultTabView and not dataModel.keywordTooShort}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/notDisplayResultTabView')}."/>
+        <h:outputText styleClass="not-display-result-tab-view" rendered="#{dataModel.keywordTooShort}"
+          value="#{dataModel.minimumKeywordMessage}"/>
         <p:tabView id="search-results-tabview" widgetVar="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview js-search-results-tabview"
           rendered="#{isShowResultTabView}" activeIndex="#{data.activeTabIndex}" >
           <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title"
@@ -152,7 +155,7 @@
           <ui:insert name="custom-search"></ui:insert>
           
         </p:tabView>
-      </div>
+      </h:panelGroup>
       <script>
        $(function(){
           $('#global-search-component\\:global-search-data').val($('.js-filter-process-widget-list-item').val());

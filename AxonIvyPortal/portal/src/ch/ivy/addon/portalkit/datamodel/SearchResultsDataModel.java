@@ -11,6 +11,7 @@ import com.axonivy.portal.enums.SearchScopeCaseField;
 import com.axonivy.portal.enums.SearchScopeTaskField;
 import com.axonivy.portal.enums.GlobalSearchScopeCategory;
 import com.axonivy.portal.util.SearchScopeUtils;
+import com.axonivy.portal.service.GlobalSearchService;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
@@ -29,6 +30,7 @@ public class SearchResultsDataModel implements Serializable {
   protected List<SearchScopeTaskField> searchScopeTaskFields;
   protected List<SearchScopeCaseField> searchScopeCaseFields;
   protected List<GlobalSearchScopeCategory> globalSearchScopeCategories;
+  protected boolean keywordTooShort;
 
   private static final String SEARCH_TASK_PREFIX = "task: ";
   private static final String SEARCH_CASE_PREFIX = "case: ";
@@ -82,6 +84,7 @@ public class SearchResultsDataModel implements Serializable {
   public void setKeyword(String keyword) {
     this.keyword = keyword;
     analyzeKeyword(keyword.toLowerCase());
+    this.keywordTooShort = GlobalSearchService.isKeywordTooShort(this.keyword);
     this.taskDataModel.getCriteria().setKeyword(this.keyword);
     this.caseDataModel.getCriteria().setKeyword(this.keyword);
 
@@ -116,6 +119,14 @@ public class SearchResultsDataModel implements Serializable {
       this.keyword = StringUtils.substringAfter(keyword, SEARCH_CASE_PREFIX);
     }
 
+  }
+
+  public boolean isKeywordTooShort() {
+    return keywordTooShort;
+  }
+
+  public String getMinimumKeywordMessage() {
+    return GlobalSearchService.getMinimumKeywordMessage();
   }
 
   public TaskLazyDataModel getTaskDataModel() {

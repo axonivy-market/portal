@@ -77,6 +77,8 @@ public enum GlobalVariable {
       getSearchScopeCaseFields(), "SearchScopeCaseFields", getSearchScopeCaseFields()),
   GLOBAL_SEARCH_SCOPE_BY_CATEGORIES("Portal.GlobalSearchScopeCategories", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS,
           getGlobalSearchScopeCategories(), "GlobalSearchScopeCategoriesNote", getGlobalSearchScopeCategories()),
+  GLOBAL_SEARCH_MINIMUM_KEYWORD_LENGTH("Portal.GlobalSearch.MinimumKeywordLength", GlobalVariableType.NUMBER, "0",
+      "globalSearchMinimumKeywordLengthNote"),
   GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo", GlobalVariableType.TEXT, "GlobalFooterInfo"),
   DEEPL_AUTH_KEY("Portal.DeepL.AuthKey", GlobalVariableType.PASSWORD, "", "deepLAuthKey"), ENABLE_DEEPL_TRANSLATION(
       "Portal.DeepL.Enable", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableDeepLTranslation"),

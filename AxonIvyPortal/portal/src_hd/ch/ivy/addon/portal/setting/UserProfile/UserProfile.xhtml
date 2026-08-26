@@ -23,7 +23,7 @@
                 <!-- General Setting -->
                 <h:panelGroup layout="block" class="w-full my-profile-block">
                   <div class="setting-header">
-                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/General')}</h5>
+                    <p class="text-style-h5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/General')}</p>
                   </div>
                   <p:outputLabel for="homepage" styleClass="user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage')}</p:outputLabel >
                   <div class="ui-fluid">
@@ -36,7 +36,7 @@
                 <!-- Process List Setting -->
                 <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{userProfileBean.canAccessProcessList()}">
                   <div class="setting-header">
-                    <h5 for="process-mode-selection" class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/ProcessList')}</h5>
+                    <p for="process-mode-selection" class="text-style-h5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/ProcessList')}</p>
                   </div>
                   <p:outputLabel for="process-mode-selection" styleClass="user-profile-setting-title">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultViewMode")}</p:outputLabel>
                   <div class="ui-fluid">
@@ -49,7 +49,7 @@
                 <!-- Task Widget Setting -->
                  <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{visibilityBean.enablePinTask}">
                   <div class="setting-header">
-                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/TaskList')}</h5>
+                    <p class="text-style-h5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/TaskList')}</p>
                   </div>
                     <p:commandButton value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedTasks')}"
                       ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedTasks')}"
@@ -60,7 +60,7 @@
               <!-- Case Widget Setting -->
                  <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{visibilityBean.enablePinCase}">
                   <div class="setting-header">
-                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/CaseList')}</h5>
+                    <p class="text-style-h5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/CaseList')}</p>
                   </div>
                     <p:commandButton value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedCases')}"
                       ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedCases')}"
@@ -71,7 +71,7 @@
               <!-- Accessibility Setting -->
               <h:panelGroup id="accessibility-panel" layout="block" styleClass="my-profile-block col-12 p-0">
                   <div class="setting-header">
-                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Accessibility')}</h5>
+                    <p class="text-style-h5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Accessibility')}</p>
                   </div>
                   <div class="flex align-items-center">
                     <div class="col-8 p-0">
@@ -91,7 +91,7 @@
               <div class="ui-g-6 pl-5 ui-sm-12 relative user-profile-card-right justify-content-between grid">
                 <h:panelGroup id="language-setting-container" layout="block" styleClass="w-full my-profile-block">
                   <div class="setting-header">
-                    <h5 id="language-setting-title" class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</h5>
+                    <p id="language-setting-title" class="text-style-h5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</p>
                   </div>
                   <!-- Language Setting -->
                   <div class="language-selection w-full">
@@ -124,7 +124,7 @@
                     </p:growl>
                   </div>
                   <div class="setting-header">
-                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</h5>
+                    <p class="text-style-h5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</p>
                   </div>
                   <div class="w-full">
                     <p:dataTable paginator="true" rows="10" paginatorPosition="bottom" paginatorAlwaysVisible="false" var="event"
