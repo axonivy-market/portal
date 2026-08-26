@@ -34,7 +34,7 @@
     rendered="#{data.isWorkingOnATask}" responsive="true"  closable="false" styleClass="warning-before-leaving-task">
     <f:facet name="message">
       <div class="text-center">
-        <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}</h2>
+        <p class="text-style-h2">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}</p>
       </div>
       <h:panelGroup layout="block">
         <h:outputText rendered="#{task.state != 'CREATED'}"

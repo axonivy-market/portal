@@ -16,12 +16,12 @@
       <div class="error-container container">
         <div class="message card">
           <ui:fragment rendered="#{data.errorCode eq '404'}">
-            <div class="message-header"><h3>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/404')}</h3></div>
+            <div class="message-header"><p class="text-style-h3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/404')}</p></div>
             <div class="message-container"><p>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/404Message')}</p></div>
           </ui:fragment>
 
           <ui:fragment rendered="#{data.errorCode eq '500'}">
-            <div class="message-header"><h3>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/500')}</h3></div>
+            <div class="message-header"><p class="text-style-h3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/500')}</p></div>
             <div class="message-container"><p>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/500Message')}</p></div>
           </ui:fragment>
 

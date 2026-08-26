@@ -28,7 +28,7 @@
             </div>
               <h:panelGroup id="config-panel" layout="block" class="col-6 grid m-0 p-0 w-full">
                 <div class="col-12 pt-0">
-                  <h3 class="mb-0 text-4xl">#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/StatisticConfiguration')}</h3>
+                  <p class="mb-0 text-4xl font-semibold" style="line-height:1.2">#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/StatisticConfiguration')}</p>
                 </div>
 
                 <h:panelGroup id="task-status-banner" layout="block">
@@ -39,7 +39,7 @@
                 </h:panelGroup> 
 
                 <div class="field col-12">
-                  <h4 class="mb-0 mt-3">#{ivy.cms.co('/Labels/General')}</h4>
+                  <p class="mb-0 mt-3 text-style-h4">#{ivy.cms.co('/Labels/General')}</p>
                 </div>
 
                 <div class="field col-12">
@@ -110,7 +110,7 @@
                 </div>
 
                 <div class="field col-12">
-                  <h4 class="mb-0 mt-3">#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartConfiguration')}</h4>
+                  <p class="mb-0 mt-3 text-style-h4">#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartConfiguration')}</p>
                 </div>
 
                 <h:panelGroup styleClass="field col-12 mb-3" id="chart-aggregation">
@@ -221,7 +221,7 @@
                 </h:panelGroup>
 
                 <div class="field col-12">
-                  <h4 class="mb-0 mt-3">#{ivy.cms.co('/Labels/Filters')}</h4>
+                  <p class="mb-0 mt-3 text-style-h4">#{ivy.cms.co('/Labels/Filters')}</p>
                 </div>
 
                 <!--  FILTERS FOR STATISTIC -->
@@ -456,7 +456,7 @@
               <div class="col-6 grid statistic-configuration__preview w-full">
                 <div class="col-12 flex grid-nogutter p-0">
                   <div class="col-6">
-                    <h4 class="mb-0">#{ivy.cms.co('/Labels/Preview')}</h4>
+                    <p class="mb-0 text-style-h4">#{ivy.cms.co('/Labels/Preview')}</p>
                   </div>
                   <div class="col-6 ml-3 text-right">
                     <p:commandButton widgetVar="previewButton" id="generate-statistic-chart"
