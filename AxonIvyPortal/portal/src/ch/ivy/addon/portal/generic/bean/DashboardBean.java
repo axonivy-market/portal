@@ -152,9 +152,13 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
     selectedDashboard = dashboards.get(currentDashboardIndex);
 
-    String selectedDashboardName = selectedDashboard.getTitles().stream()
-        .filter(displayName -> displayName.getLocale().equals(LanguageService.getInstance().getUserLocale())).findFirst()
-        .orElseGet(() -> selectedDashboard.getTitles().get(0)).getValue();
+    String selectedDashboardName = "";
+    if (CollectionUtils.isNotEmpty(selectedDashboard.getTitles())) {
+      selectedDashboardName = selectedDashboard.getTitles()
+          .stream()
+          .filter(displayName -> displayName.getLocale().equals(LanguageService.getInstance().getUserLocale())).findFirst()
+          .orElseGet(() -> selectedDashboard.getTitles().get(0)).getValue();
+    }
     setSelectedDashboardName(selectedDashboardName);
     initShareDashboardLink(selectedDashboard);
   }

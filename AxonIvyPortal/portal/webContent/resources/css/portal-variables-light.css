@@ -33,8 +33,9 @@
   --accent-btn-disabled-border: var(--ivy-portal-color-grey-200);
   --accent-btn-disabled-text: var(--ivy-portal-color-grey-500);
 
-  /* Welcome widget configuration - Change image link accent */
+  /* Welcome widget configuration - Advanced settings pill & Change image link accent */
   --welcome-config-accent-color: var(--ivy-portal-blue-dark);
+  --welcome-config-accent-hover-bg: hsla(195, 100%, 29%, 0.08);
 
   /* Color and border radius of context button, it only affects when button has attribute styleClass="context-button" */
   --context-button-border-radius: 0px;

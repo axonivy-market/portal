@@ -7,6 +7,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
+import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.dashboard.converter.JsonDashboardConverterFactory;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -46,13 +47,28 @@ public class JsonDashboardMigrator {
   public JsonNode migrate() {
     if (node.isArray()) {
       node.elements().forEachRemaining(dashboard -> migrate(dashboard));
+    } else if (isListWrapper(node)) {
+      // Canonical shape: {"version": "...", "items": [...]}. The wrapper-level
+      // "version" tracks the JSON collection format, not any single dashboard's
+      // migration version, so only the items are migrated, not the wrapper itself.
+      node.get(JsonListWrapper.ITEMS_FIELD_NAME).elements().forEachRemaining(dashboard -> migrate(dashboard));
     } else {
       migrate(node);
     }
     return node;
   }
 
+  private static boolean isListWrapper(JsonNode node) {
+    return node.isObject()
+        && node.has(JsonListWrapper.ITEMS_FIELD_NAME)
+        && node.get(JsonListWrapper.ITEMS_FIELD_NAME).isArray();
+  }
+
   private void migrate(JsonNode dashboard) {
+    if (dashboard.isArray()) {
+      dashboard.elements().forEachRemaining(dashboardNode -> migrate(dashboardNode));
+      return;
+    }
     var converters = JsonDashboardConverterFactory.getConverters(readVersion(dashboard)).stream()
         .filter(conv -> conv.version().compareTo(version) <= 0)
         .collect(Collectors.toList());

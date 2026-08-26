@@ -28,9 +28,12 @@
                        title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
                        icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
                        oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()" actionListener="#{data.setTask(task)}"/>
-        <p:button id="show-more-note-link" styleClass="portal-detail-show-more-btn portal-pill-btn" target="_blank"
-          href="#{caseTaskNoteHistoryBean.getTaskNoteHistoryLink(task)}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" icon="ti ti-external-link" rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
-        </p:button>
+        <p:link id="show-more-note-link" styleClass="portal-detail-show-more-btn portal-pill-btn" target="_blank"
+          href="#{caseTaskNoteHistoryBean.getTaskNoteHistoryLink(task)}" rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
+          <span class="ti ti-external-link" />
+          <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
+          <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
+        </p:link>
       </h:panelGroup>
     </div>
 

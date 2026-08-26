@@ -1,4 +1,7 @@
-[{
+{
+  "version": "14.0.0",
+  "items": [
+  {
     "id": "default-case-detail",
     "version": "14.0.0",
     "widgets": [{
@@ -92,4 +95,5 @@
       }
     ]
   }
-]
+  ]
+}

@@ -30,10 +30,13 @@
                          icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
                          styleClass="task-details-document-add-link portal-icon-btn-round portal-icon-btn-accent u-mar-right-10"
                          oncomplete="PF('document-upload-dialog').show()"/>
-          <p:button id="show-more-doc-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" rendered="#{caseTaskDocumentBean.showMoreDocument}"
-            styleClass="portal-detail-show-more-btn portal-pill-btn" icon="ti ti-external-link"
+          <p:link id="show-more-doc-link" rendered="#{caseTaskDocumentBean.showMoreDocument}"
+            styleClass="portal-detail-show-more-btn portal-pill-btn"
             href="#{caseTaskDocumentBean.getTaskDocumentsLink(task)}" target="_blank">
-          </p:button>
+            <span class="ti ti-external-link" />
+            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
+            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
+          </p:link>
         </h:panelGroup>
       </div>
 

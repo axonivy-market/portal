@@ -2032,11 +2032,17 @@ canvas#preview-statistic-chart {
   font-weight: normal;
 }
 
+/* Detail-page UI redesign (IVYPORTAL-20779) — Task Detail + Case Detail ----------------------------------------*/
+
 /* Shared: round icon button ----------------------------------------*/
-body .ui-button.ui-button-icon-only.portal-icon-btn-round {
+body .ui-button.ui-button-icon-only.portal-icon-btn-round,
+body a.portal-icon-btn-round,
+body .portal-icon-btn-round {
   box-sizing: border-box;
   width: var(--portal-icon-btn-size-md);
+  min-width: var(--portal-icon-btn-size-md);
   height: var(--portal-icon-btn-size-md);
+  min-height: var(--portal-icon-btn-size-md);
   flex: 0 0 auto;
   padding: 0;
   margin: 0;
@@ -2048,7 +2054,11 @@ body .ui-button.ui-button-icon-only.portal-icon-btn-round {
   background: var(--secondary-btn-bg);
   color: var(--portal-detail-value-color);
 }
-
+body .ui-button.ui-button-icon-only.portal-icon-btn-round .ui-icon {
+  font-size: var(--portal-icon-size-lg);
+  margin-top: -0.7143rem;
+  margin-left: -0.7143rem;
+}
 body .ui-button.ui-button-icon-only.portal-icon-btn-round:not(.ui-state-disabled):hover,
 body a.portal-icon-btn-round:hover,
 body .portal-icon-btn-round:hover {
@@ -2064,18 +2074,38 @@ body .ui-button.portal-icon-btn-round.portal-icon-btn-accent:not(.ui-state-disab
 body .portal-icon-btn-round.portal-icon-btn-accent:hover {
   background: var(--accent-btn-hover-bg);
 }
+body a.portal-icon-btn-round,
+body a.portal-icon-btn-round:hover,
+body a.portal-icon-btn-round:focus,
+body a.portal-pill-btn,
+body a.portal-pill-btn:hover,
+body a.portal-pill-btn:focus {
+  text-decoration: none;
+}
 
 /* Shared: pill button ----------------------------------------*/
-body .ui-button.portal-pill-btn, body .ui-button.portal-pill-btn-accent {
+.portal-pill-btn.ui-button,
+.portal-pill-btn {
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--portal-pill-btn-border-radius);
+  border: var(--portal-icon-btn-border-width) solid var(--secondary-btn-border);
+  background: var(--secondary-btn-bg);
+  color: var(--portal-detail-value-color);
+  padding: 0.5714rem 1.0714rem;
   min-height: var(--portal-icon-btn-size-md);
+  gap: 0.2143rem;
   font-size: var(--default-font-size);
   font-weight: 500;
   line-height: 1;
+}
+
+.portal-pill-btn .ti,
+.portal-pill-btn .tif {
+  line-height: 1 !important;
+  margin: 0;
 }
 
 body .ui-button.portal-pill-btn {
@@ -2122,6 +2152,14 @@ body .ui-button.portal-pill-btn-accent:not(.ui-state-disabled):hover {
   color: var(--accent-btn-text);
 }
 
+.portal-pill-btn.portal-pill-btn-accent.ui-button,
+.portal-pill-btn.portal-pill-btn-accent {
+  border-color: var(--accent-btn-border);
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
+}
+
+/* Shared: "Show more" link of the note / history / document widgets ----------------------------------------*/
 .portal-detail-show-more-btn {
   font-weight: var(--details-document-add-link-font-weight);
 }
@@ -2135,18 +2173,42 @@ body .portal-icon-btn-round.portal-icon-btn-lg {
   height: var(--portal-icon-btn-size-lg);
   min-height: var(--portal-icon-btn-size-lg);
 }
+body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-lg .ui-icon {
+  font-size: var(--portal-icon-size-xl);
+  margin-top: -0.9286rem;
+  margin-left: -0.9286rem;
+}
 
 /* Shared: table-size variant of the round icon button ----------------------------------------*/
 body .ui-datatable .ui-sidestep-action.portal-icon-btn-round,
 body .task-start-list .ui-sidestep-action.portal-icon-btn-round,
 body .case-list .ui-sidestep-action.portal-icon-btn-round {
   width: var(--portal-icon-btn-size-sm);
+  min-width: var(--portal-icon-btn-size-sm);
   height: var(--portal-icon-btn-size-sm);
+  min-height: var(--portal-icon-btn-size-sm);
+}
+body .ui-datatable .ui-sidestep-action.portal-icon-btn-round .ti,
+body .task-start-list .ui-sidestep-action.portal-icon-btn-round .ti,
+body .case-list .ui-sidestep-action.portal-icon-btn-round .ti {
+  font-size: var(--portal-tabler-icon-size);
 }
 
+.portal-pill-btn.portal-pill-btn-lg.ui-button,
+.portal-pill-btn.portal-pill-btn-lg {
+  height: var(--portal-icon-btn-size-lg);
+  padding: 0 1.0714rem;
+}
+.portal-pill-btn.portal-pill-btn-lg .ti,
+.portal-pill-btn.portal-pill-btn-lg .tif {
+  font-size: var(--portal-icon-size-lg) !important;
+}
+
+/* min-height must be overridden too, it beats height on the base pill */
 .portal-pill-btn.portal-pill-btn-sm.ui-button,
 .portal-pill-btn.portal-pill-btn-sm {
   height: var(--portal-icon-btn-size-sm);
+  min-height: var(--portal-icon-btn-size-sm);
   padding: 0 0.7143rem;
 }
 .portal-pill-btn.portal-pill-btn-sm .ti,
@@ -2158,10 +2220,35 @@ body .ui-button.portal-pill-btn.start-task-action,
   font-weight: 400;
 }
 
+/* Shared: pill button on a `p:commandButton` ----------------------------------------*/
+body .ui-button.portal-pill-btn .ui-button-text {
+  padding: 0;
+}
+body .ui-button.ui-button-text-icon-left.portal-pill-btn .ui-icon {
+  position: static;
+  top: auto;
+  left: auto;
+  margin: 0;
+}
+
 .action-container {
   gap: 0.5rem;
 }
 
+body .ui-button.portal-pill-btn.portal-pill-btn-accent,
+body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-focus,
+body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-active,
+body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-down {
+  background: var(--accent-btn-bg);
+  border-color: var(--accent-btn-border);
+  color: var(--accent-btn-text);
+}
+body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-hover,
+body .portal-pill-btn.portal-pill-btn-accent:not(.ui-state-disabled):hover {
+  background: var(--accent-btn-hover-bg);
+  border-color: var(--accent-btn-border);
+  color: var(--accent-btn-text);
+}
 body .portal-pill-btn.ui-state-disabled,
 body .portal-pill-btn.portal-pill-btn-accent.ui-state-disabled,
 body .ui-button.portal-pill-btn.ui-state-disabled,
@@ -2233,6 +2320,9 @@ body a.portal-detail-toolbar-back:focus,
   height: 3.071rem;
 }
 
+/* Shared: empty-state block (task & case documents/notes) ----------------------------------------*/
+/* Flex chain from the gridstack card down to .no-item-panel, so the empty state can center on both
+   axes. flex-shrink stays 0: a table taller than the card must keep scrolling, not get clipped. */
 .portal-detail-widget-card {
   display: flex;
   flex-direction: column;
@@ -2290,6 +2380,7 @@ body a.portal-detail-toolbar-back:focus,
   display: inline-flex;
   align-items: center;
   gap: 0.2143rem;
+  color: var(--portal-detail-accent-color);
   font-size: var(--default-font-size);
   font-weight: 500;
   margin-top: 0.3571rem;
@@ -2421,11 +2512,23 @@ body a.portal-detail-toolbar-back:focus,
   display: inline-flex;
   align-items: center;
   gap: 0.4286rem;
+  color: var(--primary-color);
   font-size: var(--default-font-size);
   font-weight: 500;
   line-height: 1;
 }
+.task-detail-delegate-link .ti,
+.task-business-case .ti,
+.task-detail-attr .task-detail-attr-value .ti,
+.portal-pill-btn .ti {
+  line-height: 1;
+  vertical-align: middle;
+}
 
+.task-and-case-information .content-field .task-business-case,
+.task-and-case-information .content-field .ti-external-link {
+  color: var(--primary-color);
+}
 .task-and-case-information .content-field .task-business-case {
   display: inline-flex !important;
   align-items: center;
@@ -2472,6 +2575,11 @@ body a.portal-detail-toolbar-back:focus,
   line-height: 1.2143rem;
   min-width: 0;
   overflow: hidden;
+}
+/* "See details" (Workflow) is a primary-colored link, not a plain value */
+.task-detail-attr .task-detail-attr-value a[id$=":workflow-event-link"],
+.task-detail-attr .task-detail-attr-value a[id$=":workflow-event-link"] .ti {
+  color: var(--primary-color);
 }
 
 .portal-detail-body .separator-task-detail.ui-divider,

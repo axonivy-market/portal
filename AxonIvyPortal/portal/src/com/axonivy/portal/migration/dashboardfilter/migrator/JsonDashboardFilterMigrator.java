@@ -7,6 +7,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
+import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.dashboardfilter.converter.JsonDashboardFilterConverterFactory;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -44,8 +45,23 @@ public class JsonDashboardFilterMigrator {
   }
 
   public JsonNode migrate() {
-    node.elements().forEachRemaining(config -> migrate(config));
+    if (node.isArray()) {
+      node.elements().forEachRemaining(config -> migrate(config));
+    } else if (isListWrapper(node)) {
+      // Canonical shape: {"version": "...", "items": [...]}. The wrapper-level
+      // "version" tracks the JSON collection format, not any single config's
+      // migration version, so only the items are migrated, not the wrapper itself.
+      node.get(JsonListWrapper.ITEMS_FIELD_NAME).elements().forEachRemaining(config -> migrate(config));
+    } else {
+      migrate(node);
+    }
     return node;
+  }
+
+  private static boolean isListWrapper(JsonNode node) {
+    return node.isObject()
+        && node.has(JsonListWrapper.ITEMS_FIELD_NAME)
+        && node.get(JsonListWrapper.ITEMS_FIELD_NAME).isArray();
   }
 
   private void migrate(JsonNode node) {

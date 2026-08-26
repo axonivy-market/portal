@@ -448,7 +448,7 @@ public class DashboardUtils {
           dashboards = jsonToDashboards(dashboardJson);
           setDashboardAsPublic(dashboards);
         } catch (Exception e) {
-          Ivy.log().error("Cannot load Public Dashboards {0}", e.getMessage());
+          Ivy.log().error("Cannot load public dashboards {0}", e.getMessage(), e.getStackTrace());
         }
         portalPublicDashboardWrapper = new PortalPublicDashboardWrapper(dashboards);
         cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_PUBLIC_DASHBOARDS, sessionUserId,
@@ -487,7 +487,7 @@ public class DashboardUtils {
           String dashboardInUserProperty = readDashboardBySessionUser();
           dashboards = jsonToDashboards(dashboardInUserProperty);
         } catch (Exception e) {
-          Ivy.log().error("Cannot load Public Dashboards {0}", e.getMessage());
+          Ivy.log().error("Cannot load private dashboards {0}", e.getMessage(), e);
         }
         portalPrivateDashboardWrapper = new PortalPrivateDashboardWrapper(dashboards);
         cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARDS, sessionUserId,
