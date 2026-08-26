@@ -21,11 +21,14 @@ import org.primefaces.model.StreamedContent;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
+import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.menu.MenuOrder;
 import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
@@ -88,7 +91,32 @@ public class PortalPackageService {
       return;
     }
     dashboards.forEach(this::prepareDashboardForExport);
-    writeEntry(zos, PortalPackageFile.DASHBOARD.getFilename(), BusinessEntityConverter.entityToJsonValue(dashboards));
+    JsonListWrapper<Dashboard> wrapper = new JsonListWrapper<>(DashboardJsonVersion.LATEST_VERSION.getValue(), dashboards);
+    writeEntry(zos, PortalPackageFile.DASHBOARD.getFilename(), BusinessEntityConverter.entityToJsonValue(wrapper));
+  }
+
+  private void writeRawVariable(ZipOutputStream zos, PortalPackageFile file) throws IOException {
+    String json = Ivy.var().get(file.getVariableKey());
+    if (StringUtils.isBlank(json) || isEmptyJsonCollection(json)) {
+      return;
+    }
+    writeEntry(zos, file.getFilename(), wrapAsVersionedItems(json));
+  }
+
+  /**
+   * Wraps a raw JSON array into the canonical {"version": ..., "items": [...]}. If the
+   * content is already in that shape (e.g. re-exporting an already-migrated variable),
+   * it's passed through unchanged.
+   */
+  private String wrapAsVersionedItems(String json) throws IOException {
+    JsonNode node = BusinessEntityConverter.getObjectMapper().readTree(json.trim());
+    if (node.isObject() && node.has(JsonListWrapper.ITEMS_FIELD_NAME)) {
+      return json;
+    }
+    ObjectNode wrapped = BusinessEntityConverter.getObjectMapper().createObjectNode();
+    wrapped.put("version", DashboardJsonVersion.LATEST_VERSION.getValue());
+    wrapped.set(JsonListWrapper.ITEMS_FIELD_NAME, node);
+    return BusinessEntityConverter.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(wrapped);
   }
 
   private void prepareDashboardForExport(Dashboard dashboard) {
@@ -126,16 +154,29 @@ public class PortalPackageService {
     link.setImageLocation(null);
   }
 
-  private void writeRawVariable(ZipOutputStream zos, PortalPackageFile file) throws IOException {
-    String json = Ivy.var().get(file.getVariableKey());
-    if (StringUtils.isNotBlank(json) && !"[]".equals(json.trim()) && !"{}".equals(json.trim())) {
-      writeEntry(zos, file.getFilename(), json);
-    }
-  }
-
   private boolean isRawVariableEmpty(PortalPackageFile file) {
     String json = Ivy.var().get(file.getVariableKey());
-    return StringUtils.isBlank(json) || "[]".equals(json.trim()) || "{}".equals(json.trim());
+    return StringUtils.isBlank(json) || isEmptyJsonCollection(json);
+  }
+
+  /**
+   * Treats "[]", "{}", and the canonical {@code {"version": "...", "items": []}}
+   * wrapper (empty or missing items) as an empty collection.
+   */
+  private boolean isEmptyJsonCollection(String json) {
+    String trimmed = json.trim();
+    if ("[]".equals(trimmed) || "{}".equals(trimmed)) {
+      return true;
+    }
+    try {
+      JsonNode node = BusinessEntityConverter.getObjectMapper().readTree(trimmed);
+      if (node.isObject() && node.has(JsonListWrapper.ITEMS_FIELD_NAME)) {
+        return node.get(JsonListWrapper.ITEMS_FIELD_NAME).isEmpty();
+      }
+    } catch (IOException e) {
+      // Not parseable JSON - treat as non-empty raw content rather than fail export/import.
+    }
+    return false;
   }
 
   private void writeEntry(ZipOutputStream zos, String name, String content) throws IOException {

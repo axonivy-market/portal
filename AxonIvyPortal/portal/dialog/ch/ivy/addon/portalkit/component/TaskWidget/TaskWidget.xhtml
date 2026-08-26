@@ -273,7 +273,7 @@
   <h:form id="update-task-count-rc-form">
     <p:remoteCommand id="update-task-count-remote-cmd" name="updateTaskCount" update=":#{cc.clientId}:task-widget-title" global="false" process="@this" immediate="true" />
   </h:form>
-  <p:dialog modal="true" id="status-dialog" widgetVar="status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false" responsive="true">
+  <p:dialog modal="true" id="status-dialog" widgetVar="status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false" responsive="true" styleClass="export-status-dialog">
     <div class="p-2">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/waitingDownloadMessage")}</div>
     <div class="p-2">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/downloadZipFileExplanation')}</div>
   </p:dialog>

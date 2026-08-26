@@ -80,7 +80,7 @@ Variables:
     Tasks:
       # For switch behaviours (run the task or access task details) when clicking on a task in task widget of dashboard and task list in case details page.
       # [enum: ACCESS_TASK_DETAILS, RUN_TASK]
-      BehaviourWhenClickingOnLineInTaskList: RUN_TASK
+      BehaviourWhenClickingOnLineInTaskList: ACCESS_TASK_DETAILS
       # Set this property to true to enable the ability to pin tasks.
       EnablePinnedTask: "true"
       MaximumSelectedTasks: "20"

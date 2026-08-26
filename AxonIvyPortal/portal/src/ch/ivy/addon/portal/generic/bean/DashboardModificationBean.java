@@ -403,14 +403,12 @@ public class DashboardModificationBean extends DashboardBean {
   }
 
   public StreamedContent exportToJsonFile(Dashboard dashboard) {
-    List<Dashboard> dashboardList = new ArrayList<>();
     prepareDashboardForExport(dashboard);
-    dashboardList.add(dashboard);
 
     return DefaultStreamedContent
         .builder()
         .stream(() -> new ByteArrayInputStream(
-            BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboardList).getBytes(StandardCharsets.UTF_8)))
+            BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboard).getBytes(StandardCharsets.UTF_8)))
         .contentType(MediaType.APPLICATION_JSON)
         .name(getFileName(dashboard.getTitle()))
         .build();

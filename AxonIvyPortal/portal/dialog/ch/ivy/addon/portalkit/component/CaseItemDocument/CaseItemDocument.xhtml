@@ -13,33 +13,31 @@
 <cc:implementation>
   <c:set value="#{cc.attrs.case}" var="case" />
   <f:event listener="#{logic.initData(case)}" type="preRenderComponent" />
-  <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass} ui-g">
+  <div id="#{cc.clientId}" class="case-details-item portal-detail-widget #{cc.attrs.styleClass} ui-g">
     <p:growl id="case-document-global-messages" escape="false" />
-    <h:form id="case-document-form" prependId="false" styleClass="ui-g-12 u-padding-0">
-      <div class="case-detail-section-title ui-g-12">
-        <div class="ui-g-5 u-truncate-text u-padding-0 task-details-panel-title" role="heading" aria-level="1">
-          <i class="ti ti-file-text" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/documents')}
+    <h:form id="case-document-form" prependId="false" styleClass="ui-g-12 u-padding-0 portal-detail-widget-form">
+      <div class="case-detail-section-title portal-detail-widget-header ui-g-12 flex align-items-center justify-content-between">
+        <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="1">
+          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/documents')}
         </div>
-        <h:panelGroup layout="block" styleClass="document-case-detail-section-header-actions ui-g-7 u-padding-0">
-          <p:commandLink id="add-document-command" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
-            styleClass="case-details-document-add-link u-mar-right-10"
+        <h:panelGroup layout="block" styleClass="document-case-detail-section-header-actions portal-detail-widget-header-actions u-padding-0 flex align-items-center">
+          <p:commandButton id="add-document-command" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
+            styleClass="case-details-document-add-link portal-icon-btn-round portal-icon-btn-accent"
             rendered="#{caseTaskDocumentBean.canWriteDocument(case)}"
-            onclick="PF('document-upload-dialog').show()">
-            <span class="ti ti-file-plus" />
-            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
-            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
-          </p:commandLink>
+            icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
+            onclick="PF('document-upload-dialog').show()" type="button" />
           <p:link id="show-more-doc-link" rendered="#{caseTaskDocumentBean.showMoreDocument}"
-            styleClass="case-details-document-add-link doc-show-more-link"
+            styleClass="portal-detail-show-more-btn portal-pill-btn"
             href="#{caseTaskDocumentBean.getCaseDocumentsLink(case)}" target="_blank">
-            <span class="ti ti-queue-pop-out doc-show-more-link-icon" />
+            <span class="ti ti-external-link" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
         </h:panelGroup>
       </div>
 
-      <div class="ui-g-12 u-padding-0">
+      <div class="ui-g-12 u-padding-0 portal-detail-widget-body">
         <p:dataTable cellNavigation="false" id="case-details-documents" rendered="#{not empty data.documents}" var="document"
           value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" pageLinks="3" rows="5"
           rowsPerPageTemplate="5,10,20,50" paginatorPosition="bottom"
@@ -114,10 +112,18 @@
         </p:dataTable>
 
         <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{empty data.documents}">
-          <i class="ti ti-info-circle" />
+          <i class="ti ti-file-text" />
           <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noDocumentAvailable')}" />
           <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddDocument')}"
             rendered="#{caseTaskDocumentBean.canWriteDocument(case)}" />
+          <p:commandLink id="add-document-command-empty" global="false"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
+            rendered="#{caseTaskDocumentBean.canWriteDocument(case)}"
+            styleClass="case-details-document-add-link no-item-action-link"
+            onclick="PF('document-upload-dialog').show()">
+            <i class="ti ti-circle-plus" />
+            <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
+          </p:commandLink>
         </h:panelGroup>
       </div>
     </h:form>

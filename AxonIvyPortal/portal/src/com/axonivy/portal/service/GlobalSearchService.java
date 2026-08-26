@@ -84,7 +84,7 @@ public class GlobalSearchService {
     criteria.setSearchScopeCaseFields(getSearchScopeCaseFields());
     criteria.setBusinessCase(true);
     criteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
-    boolean isAdminQuery = PermissionUtils.checkReadAllTasksPermission();
+    boolean isAdminQuery = PermissionUtils.checkReadAllCasesPermission();
     criteria.setAdminQuery(isAdminQuery);
     criteria.extendStatesQueryByPermission(isAdminQuery);
     return criteria;

@@ -13,53 +13,64 @@
   actionListener="#{widget.searchSavedFilters()}" partialSubmit="true" global="false"
   process="@this search-saved-filter-input" update="widget-saved-filters-items"/>
 
-<div class="ui-g-12 filter-overlay-panel__header pt-3">
-  <strong class="ui-g-12 u-no-padding-left">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/SavedFilterHeader')}</strong>
-</div>
-<div class="ui-g-12 ui-fluid">
-  <div class="ui-g-12 saved-filter--search-container">
-    <span class="ui-input-icon-left">
-     <i class="saved-filter__search-icon ti ti-search" />
-     <p:inputText id="search-saved-filter-input"
-        placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/SearchForFilter')}"
-        styleClass="saved-filter__search" value="#{widget.searchSavedFilterKeyword}"
-        onfocus="#{widget.type == 'PROCESS'} ? preventFocus() : 'false' "
-        onclick="retrieveFocus()"
-        valueChangeListener="#{widget.searchSavedFilters()}">
-        <p:ajax event="keyup" delay="50" partialSubmit="true" global="false" process="@this"
-          onstart="searchWigetFilter#{index}()" />
-        <p:ajax event="change" partialSubmit="true" global="false" process="@this" onstart="searchWigetFilter#{index}()" />
-      </p:inputText>
-    </span>
-  </div>
-  <h:outputText styleClass="js-loading-widget-filters-#{widget.id} ui-g-12"
-    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
+
+<div class="saved-filter__header">
+  <strong>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/SavedFilterHeader')}</strong>
 </div>
 
-<div class="hidden js-widget-filters-items-#{widget.id}">
-  <h:panelGroup id="widget-saved-filters-items" layout="block"
-    styleClass="ui-g-12 saved-filter__content ui-fluid u-padding-0">
-    <div class="ui-g-12 u-no-padding-bottom">
-      <h:outputText rendered="#{empty widget.savedFilters}"
-        styleClass="ui-g-12 u-no-padding-bottom saved-filter--not-found"
-        value="#{widget.searchFilterMessage}">
-      </h:outputText>
-    </div>
+<div class="saved-filter__body">
   
-    <h:panelGroup styleClass="saved-filter__items" layout="block" rendered="#{not empty widget.savedFilters}">
-      <ui:repeat id="saved-filter-#{index}" value="#{widget.savedFilters}" var="filter" varStatus="filterStatus">
-        <h:panelGroup id="saved-filter-node" layout="block"
-          styleClass="saved-filter-node #{widget.isSavedFilterSelected(filter) ? 'selected' : ''}" pt:tabindex="0">
-          <h:outputText value="#{filter.name}" styleClass="saved-filter-node__text"/>
-          <p:ajax event="click" partialSubmit="true" process="@this" immediate="true"
-            update="saved-filter-node #{widgetFilterContentId}"
-            listener="#{dashboardBean.onClickSavedFilterItem(filter, widget)}" />
+  <span class="saved-filter--search-container ui-input-icon-left">
+   <i class="ti ti-search" />
+   <p:inputText id="search-saved-filter-input"
+      placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/SearchForFilter')}"
+      styleClass="saved-filter__search w-full" value="#{widget.searchSavedFilterKeyword}"
+      onfocus="#{widget.type == 'PROCESS'} ? preventFocus() : 'false' "
+      onclick="retrieveFocus()"
+      valueChangeListener="#{widget.searchSavedFilters()}">
+      <p:ajax event="keyup" delay="50" partialSubmit="true" global="false" process="@this"
+        onstart="searchWigetFilter#{index}()" />
+      <p:ajax event="change" partialSubmit="true" global="false" process="@this" onstart="searchWigetFilter#{index}()" />
+    </p:inputText>
+  </span>
+
+  <div class="saved-filter__middle">
+    <h:outputText styleClass="js-loading-widget-filters-#{widget.id}"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
+
+    <div class="hidden js-widget-filters-items-#{widget.id} saved-filter__items-wrapper">
+      <h:panelGroup id="widget-saved-filters-items" layout="block" styleClass="saved-filter__content">
+        
+        <h:panelGroup layout="block" styleClass="saved-filter--not-found" rendered="#{empty widget.savedFilters}">
+          <i class="saved-filter--not-found__icon ti ti-filter" />
+          <h:outputText value="#{widget.searchFilterMessage}" />
         </h:panelGroup>
-        <!-- note: to handle for long saved-filter name -->
-        <p:tooltip for="saved-filter-node" trackMouse="true" value="#{filter.name}" />
-      </ui:repeat>
-    </h:panelGroup>
-  </h:panelGroup>
+
+        <h:panelGroup styleClass="saved-filter__items" layout="block" rendered="#{not empty widget.savedFilters}">
+          <ui:repeat id="saved-filter-#{index}" value="#{widget.savedFilters}" var="filter" varStatus="filterStatus">
+            <h:panelGroup id="saved-filter-node" layout="block"
+              styleClass="saved-filter-node #{widget.isSavedFilterSelected(filter) ? 'selected' : ''}" pt:tabindex="0">
+              <h:outputText value="#{filter.name}" styleClass="saved-filter-node__text"/>
+              <p:ajax event="click" partialSubmit="true" process="@this" immediate="true"
+                update="saved-filter-node #{widgetFilterContentId}"
+                listener="#{dashboardBean.onClickSavedFilterItem(filter, widget)}" />
+            </h:panelGroup>
+            
+            <p:tooltip for="saved-filter-node" trackMouse="true" value="#{filter.name}" />
+          </ui:repeat>
+        </h:panelGroup>
+      </h:panelGroup>
+    </div>
+  </div>
+
+  <div>
+    <p:commandLink ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ManageFilter')}"
+        styleClass="saved-filter__manage-filter ui-button-flat" global="false"
+        onclick="hideAllDashboardOverlayPanels(); openManageFilterDialog('#{index}');">
+      <i class="pr-1 pt-1 ti ti-pencil" />
+      <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ManageFilter')}</span>
+    </p:commandLink>
+  </div>
 </div>
 <script type="text/javascript">
     function initWidgetFilterHtml(widgetId, hideContent) {

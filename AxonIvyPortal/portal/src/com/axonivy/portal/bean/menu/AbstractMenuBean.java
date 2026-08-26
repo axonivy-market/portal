@@ -30,15 +30,9 @@ public abstract class AbstractMenuBean implements Serializable {
 
   private static final long serialVersionUID = 6836359211082018597L;
 
-  /**
-   * Menu items are a portal-wide configuration but the configuration page itself is
-   * reachable with dashboard-write-own permission only. The admin-only rendering of the
-   * Sidebar tab is not enough: JSF actions can be posted directly, so every state-changing
-   * action must re-check the admin role server-side before writing.
-   */
   protected void verifySidebarManagementPermission() {
-    if (!PermissionUtils.isSessionUserHasAdminRole()) {
-      throw new PortalException("Sidebar menu management requires the portal admin role");
+    if (!PermissionUtils.hasPortalSidebarConfigurationPermission()) {
+      throw new PortalException("Sidebar menu management requires the Portal sidebar configuration permission");
     }
   }
 

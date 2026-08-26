@@ -18,6 +18,7 @@ pipeline {
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
     ''')
     booleanParam(name: 'deployToRepo', defaultValue: true, description: 'Should deploy artifacts to repo? If true, deployable modules are deployed to Nexus snapshots. If false, only local install.')
+    booleanParam(name: 'skipDocumentationCheck', defaultValue: true, description: 'Should skip waiting for and verifying the documentation workflow result? The documentation workflow is still triggered, but its outcome does not fail this build.')
 }
 
   environment {
@@ -58,6 +59,9 @@ pipeline {
               def docWorkflowRunId = dispatchData.workflow_run_id
               echo "Documentation workflow triggered. Run ID: ${docWorkflowRunId}"
 
+              if (params.skipDocumentationCheck) {
+                echo "⏭️ Skipping documentation build check (skipDocumentationCheck=true). Follow the run at https://github.com/axonivy-market/portal/actions/runs/${docWorkflowRunId}"
+              } else {
               sleep(time: 3, unit: 'MINUTES')
               def completed = false
               for (int i = 0; i < 6; i++) {
@@ -79,6 +83,7 @@ pipeline {
               }
               if (!completed) {
                 error("Documentation workflow did not complete within the timeout period.")
+              }
               }
             }
           }

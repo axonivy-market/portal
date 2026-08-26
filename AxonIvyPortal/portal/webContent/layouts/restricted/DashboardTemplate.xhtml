@@ -276,41 +276,9 @@
            </ui:define>
           </ui:decorate>
           
-          <p:dialog id="save-widget-filter-dialog" widgetVar="save-widget-filter-dialog" appendTo="@(body)"
-            header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/SaveNewWidgetFilterHeader')}"
-            modal="true" width="450" fitViewport="true" dynamic="true" closable="false" responsive="true" styleClass="dialog-responsive">
-            <h:form id="save-filter-form" styleClass="ui-g">
-              <p:messages styleClass="ui-g-12" redisplay="false" for="save-filter-form"/>
-              <h:outputLabel styleClass="ui-g-12" for="save-filter-name"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/WidgetFilterName')}" />
-              <div class="ui-fluid ui-g-12">
-                <p:inputText id="save-filter-name" value="#{widgetFilterHelperBean.saveFilter.name}" required="true" 
-                  maxlength="30"
-                  requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"/>
-                <p:message for="save-filter-name"/>
-              </div>
-              <div class="ui-g-12 text-right">
-                <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                  oncomplete="PF('save-widget-filter-dialog').hide();" styleClass="u-mar-right-10"
-                  process="@this" update="save-filter-form" resetValues="true"
-                  partialSubmit="true" immediate="true"
-                  global="false"/>
-                <p:commandButton id="save-widget-filter-button"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-                  actionListener="#{widgetFilterHelperBean.saveNewWidgetFilter()}"
-                  icon="#{visibilityBean.generateButtonIcon('ti ti-device-floppy')}"
-                  oncomplete="if (!args.validationFailed) { #{widgetFilterHelperBean.loadWidgetFilters}; PF('save-widget-filter-dialog').hide();}"
-                  update="save-filter-form"
-                  process="save-filter-form"/>
-              </div>
-            </h:form>
-          </p:dialog>
-
           <p:dialog id="manage-filter-dialog" widgetVar="manage-filter-dialog"
             header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/ManageWidgetFilterHeader')}"
-            modal="true" fitViewport="true" styleClass="manage-filter-dialog"
+            modal="true" fitViewport="true" styleClass="manage-filter-dialog" onHide="reloadManageFilterDialogOpenerWidget();"
             dynamic="true" appendTo="@(body)" closable="true" closeOnEscape="true"
             onShow="loadAllWidgetSavedFilters();">
             <h:form id="delete-saved-filter-form" styleClass="ui-g">
@@ -387,7 +355,7 @@
             }
         </script>
 
-        <p:dialog modal="true" id="download-status-dialog" widgetVar="download-status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false" responsive="true">
+        <p:dialog modal="true" id="download-status-dialog" widgetVar="download-status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false" responsive="true" styleClass="export-status-dialog">
           <div class="p-2">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/waitingDownloadMessage")}</div>
           <div class="p-2">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/downloadZipFileExplanation')}</div>
         </p:dialog>
