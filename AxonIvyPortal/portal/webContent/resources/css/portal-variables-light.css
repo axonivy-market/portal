@@ -495,7 +495,6 @@
   --dashboard-tab-active-color: var(--primary-color);
   --dashboard-header-card-bg-color: var(--ivy-primary-color-white);
   --dashboard-header-card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  /* Dashed outline around widgets in dashboard edit mode */
   --dashboard-widget-dashed-outline-color: var(--ivy-portal-color-grey-450);
   --card-box-shadow: 0 0 27px 0 rgba(0, 0, 0, 0.05);
   --filters-card-bg-color: var(--sidebar-settings-card-bg-color);
