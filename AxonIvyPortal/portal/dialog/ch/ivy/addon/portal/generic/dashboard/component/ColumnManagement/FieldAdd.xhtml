@@ -13,8 +13,8 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/type')}" />
         <p:selectOneMenu id="field-type-selection" value="#{columnManagementBean.selectedFieldType}" styleClass="field-add-fieldset__input">
           <f:selectItems value="#{columnManagementBean.fieldTypes}" var="type" itemLabel="#{type.label}"/>
-          <p:ajax listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
-          <p:ajax event="change" listener="#{columnManagementBean.onSelectType}" update="field-add-fieldset" />
+          <p:ajax listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" resetValues="true" />
+          <p:ajax event="change" listener="#{columnManagementBean.onSelectType}" update="field-add-fieldset" resetValues="true" />
         </p:selectOneMenu>
       </div>
 
@@ -31,8 +31,8 @@
           styleClass="field-add-fieldset__input"
           cache="true" dynamic="true" dropdown="true"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}">
-          <p:ajax listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
-          <p:ajax event="clear" listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
+          <p:ajax listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" resetValues="true" />
+          <p:ajax event="clear" listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" resetValues="true" />
         </p:autoComplete>
       </h:panelGroup>
 
@@ -44,8 +44,8 @@
           styleClass="field-add-fieldset__input"
           cache="true" dynamic="true" dropdown="true"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}">
-          <p:ajax listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
-          <p:ajax event="clear" listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
+          <p:ajax listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" resetValues="true" />
+          <p:ajax event="clear" listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" resetValues="true" />
         </p:autoComplete>
       </h:panelGroup>
 
@@ -56,8 +56,8 @@
           value="#{columnManagementBean.selectedCustomFieldCategory}" completeMethod="#{columnManagementBean.completeCategoriesSelection}"
           styleClass="field-add-fieldset__input"
           cache="false" dynamic="true" dropdown="true" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}">
-          <p:ajax listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
-          <p:ajax event="clear" listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
+          <p:ajax listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" resetValues="true" />
+          <p:ajax event="clear" listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" resetValues="true" />
         </p:autoComplete>
       </h:panelGroup>
 
@@ -75,7 +75,7 @@
             <f:attribute name="existingFields" value="#{columnManagementBean.existingFields}" />
             <f:selectItems value="#{columnManagementBean.fields}" var="field" itemValue="#{field}" itemLabel="#{field}" />
             <f:selectItem noSelectionOption="true" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"/>
-            <p:ajax listener="#{columnManagementBean.onSelectStandardField()}" process="@this" update="field-add-fieldset"/>
+            <p:ajax listener="#{columnManagementBean.onSelectStandardField()}" process="@this" update="field-add-fieldset" resetValues="true"/>
           </p:selectOneMenu>
         </ui:fragment>
 
@@ -87,7 +87,7 @@
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}" scrollHeight="500">
             <f:attribute name="existingFields" value="#{columnManagementBean.existingFields}" />
             <f:attribute name="selectedFieldType" value="#{columnManagementBean.selectedFieldType}" />
-            <p:ajax listener="#{columnManagementBean.onSelectCustomField()}" process="@this" update="field-add-fieldset"/>
+            <p:ajax listener="#{columnManagementBean.onSelectCustomField()}" process="@this" update="field-add-fieldset" resetValues="true"/>
           </p:autoComplete>
         </ui:fragment>
 
@@ -99,7 +99,7 @@
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}" scrollHeight="500">
             <f:attribute name="existingFields" value="#{columnManagementBean.existingFields}" />
             <f:attribute name="selectedFieldType" value="#{columnManagementBean.selectedFieldType}" />
-            <p:ajax listener="#{columnManagementBean.onSelectCustomField()}" process="@this" update="field-add-fieldset"/>
+            <p:ajax listener="#{columnManagementBean.onSelectCustomField()}" process="@this" update="field-add-fieldset" resetValues="true"/>
           </p:autoComplete>
         </ui:fragment>
 
@@ -110,7 +110,7 @@
             validator="duplicateFieldValidator" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}">
             <f:attribute name="existingFields" value="#{columnManagementBean.existingFields}" />
             <f:attribute name="selectedFieldType" value="#{columnManagementBean.selectedFieldType}" />
-            <p:ajax listener="#{columnManagementBean.onSelectCustomField()}" process="@this" update="field-add-fieldset" />
+            <p:ajax listener="#{columnManagementBean.onSelectCustomField()}" process="@this" update="field-add-fieldset" resetValues="true" />
           </p:autoComplete>
         </ui:fragment>
       </div>

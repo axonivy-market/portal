@@ -264,7 +264,7 @@ body .dashboard__exit-edit-button {
 }
 
 body .dashboard__exit-edit-button .ui-button-icon-left {
-  margin-right: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .dashboard__body {
@@ -2532,7 +2532,7 @@ a.saved-filter__manage-filter {
 }
 
 .widget-configuration-filter-dialog .dashboard-widget-filter__main-panel .dashboard-widget-filter__list {
-  max-height: 60dvh;
+  max-height: 40dvh;
 }
 
 .dashboard-widget-filter__main-panel .dashboard-widget-filter__condition {
@@ -2659,6 +2659,11 @@ body .dashboard-widget-filter__main-panel .dashboard-widget-filter__remove-filte
 .dashboard-tasks--table table tbody td.dashboard-tasks__first-column {
   padding-left: 1.428rem;
 }
+
+.dashboard-tasks--table table thead th.dashboard-tasks__first-column::before {
+  background: transparent !important;
+}
+
 
 body .ui-button.ui-widget.ui-deselect-all-button {
   background: var(--widget-filter-background-color);
@@ -2963,13 +2968,13 @@ body .actions-menu-panel .ui-menuitem-link {
   border-radius: 50%;
 }
 
-body .widget-header-default-actions .ui-button.ui-button-icon-only > .ui-icon, body .dashboard-header__action .ui-button.ui-button-icon-only > .ui-icon {
+body .widget-header-default-actions .ui-button.ui-button-icon-only > .ui-icon, body .dashboard-header__action .ui-button.ui-button-icon-only > .ui-icon, body .widget__header .ui-button.ui-button-icon-only > .ui-icon  {
   font-size: var(--portal-icon-size-md);
   position: static;
   margin: 0;
 }
 
-body .widget-header-default-actions .ui-button.ui-button-icon-only, body .dashboard-header__action .ui-button.ui-button-icon-only {
+body .widget-header-default-actions .ui-button.ui-button-icon-only, body .dashboard-header__action .ui-button.ui-button-icon-only, body .widget__header .ui-button.ui-button-icon-only {
   display: inline-flex;
   align-items: center;
   justify-content: center;
