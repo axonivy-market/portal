@@ -15,9 +15,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.portal.selenium.common.Sleeper;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -47,6 +49,7 @@ public class AbsencePage extends TemplatePage {
     SelenideElement tabHeader = $(ABSENCES_TAB_HEADER);
     if (tabHeader.exists() && !isTabActive(tabHeader)) {
       tabHeader.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      WaitHelper.waitPageNoAjaxAndAnimation();
     }
     assertAbsencesTabActive();
   }
@@ -60,11 +63,11 @@ public class AbsencePage extends TemplatePage {
   }
 
   public void assertAbsencesTabActive() {
-    $(ABSENCES_TAB_HEADER).shouldHave(Condition.attribute("aria-selected", "true"), DEFAULT_TIMEOUT);
+    $(ABSENCES_TAB_HEADER).$("a").shouldHave(Condition.attribute("aria-selected", "true"), DEFAULT_TIMEOUT);
   }
 
   public void assertSubstitutesTabActive() {
-    $(SUBSTITUTES_TAB_HEADER).shouldHave(Condition.attribute("aria-selected", "true"), DEFAULT_TIMEOUT);
+    $(SUBSTITUTES_TAB_HEADER).$("a").shouldHave(Condition.attribute("aria-selected", "true"), DEFAULT_TIMEOUT);
   }
 
   public boolean isAbsencesTabActive() {
@@ -76,7 +79,7 @@ public class AbsencePage extends TemplatePage {
   }
 
   private boolean isTabActive(SelenideElement tabHeader) {
-    return "true".equals(tabHeader.getAttribute("aria-selected"));
+    return "true".equals(tabHeader.$("a").getAttribute("aria-selected"));
   }
 
   public void countAbsences(int expectedSize) {
@@ -189,7 +192,7 @@ public class AbsencePage extends TemplatePage {
   }
 
   public void openAddSubstituteDialog() {
-    waitForElementClickableThenClick("button[id$='absences-management-form:absences-tabview:add-substitute']");
+    waitForElementClickableThenClick("button[id$='absences-management-form:add-substitute']");
     $(By.id("choose-deputy-dialog")).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -233,7 +236,7 @@ public class AbsencePage extends TemplatePage {
   private void selectDeputy(String responsible) {
     SelenideElement element = $(By.id("deputy-selection-form:user-selection-component:user-selection_input"));
     element.clear();
-    element.sendKeys(responsible);
+    typeIntoAutoComplete(element, responsible);
     String panelSelector = "[id$='deputy-selection-form:user-selection-component:user-selection_panel']";
     $(panelSelector).shouldBe(appear, DEFAULT_TIMEOUT);
     String itemSelector = panelSelector + " tr[data-item-label*='" + responsible + "']";
@@ -251,7 +254,8 @@ public class AbsencePage extends TemplatePage {
     String selectedUserInput = "input[id$='user-absence-absences_input']";
     SelenideElement input = $(selectedUserInput).shouldBe(appear, DEFAULT_TIMEOUT);
     input.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    input.setValue(selectedUser);
+    input.clear();
+    typeIntoAutoComplete(input, selectedUser);
     String panelSelector = isAbsencesTabActive()
         ? "span[id$='user-absence-absences_panel'] tbody tr"
         : "span[id$='user-absence-substitutes_panel'] tbody tr";
@@ -259,11 +263,19 @@ public class AbsencePage extends TemplatePage {
     rows.first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
+  private void typeIntoAutoComplete(SelenideElement input, String text) {
+    Selenide.executeJavaScript(
+        "var kd=new KeyboardEvent('keydown',{key:'a',bubbles:true});arguments[0].dispatchEvent(kd);"
+            + "arguments[0].value=arguments[1];"
+            + "arguments[0].dispatchEvent(new Event('input',{bubbles:true}));",
+        input, text);
+  }
+
   public void setSelectedUserInSubstitutesTab(String substitutedUser) {
     String selectedUserInput = "input[id$='user-absence-substitutes_input']";
     SelenideElement substituted = $(selectedUserInput).shouldBe(appear, DEFAULT_TIMEOUT);
     substituted.clear();
-    substituted.sendKeys(substitutedUser);
+    typeIntoAutoComplete(substituted, substitutedUser);
     waitForElementClickableThenClick("[id$='user-absence-substitutes_panel']");
   }
 
@@ -290,7 +302,7 @@ public class AbsencePage extends TemplatePage {
     for (String fullName : fullNames) {
       SelenideElement input = $(By.id("absence-form:user-selection-component:user-selection_input"));
       input.clear();
-      input.sendKeys(fullName);
+      typeIntoAutoComplete(input, fullName);
       SelenideElement panel = $(By.id("absence-form:user-selection-component:user-selection_panel"));
       panel.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
       panel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
@@ -357,7 +369,7 @@ public class AbsencePage extends TemplatePage {
   public void waitForAbsencesGrowlMessageDisplay() {
     SelenideElement growlMessage = $("div[id$='absences-management-form:absences-management-info_container']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
-    $(growlMessage.findElement(By.className("ui-growl-item-container"))).shouldBe(appear, DEFAULT_TIMEOUT);
+    growlMessage.$(By.className("ui-growl-item-container")).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void waitForAbsencesGrowlMessageHide() {
@@ -365,7 +377,7 @@ public class AbsencePage extends TemplatePage {
     if (!growlMessage.exists()) {
       return;
     }
-    SelenideElement growlItem = $(growlMessage.findElement(By.className("ui-growl-item-container")));
+    SelenideElement growlItem = growlMessage.$(By.className("ui-growl-item-container"));
     if (growlItem.exists() && growlItem.isDisplayed()) {
       growlItem.shouldBe(disappear, DEFAULT_TIMEOUT);
     }

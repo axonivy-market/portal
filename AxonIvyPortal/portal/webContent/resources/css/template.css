@@ -311,21 +311,6 @@ a.left-sidebar-menu-icon {
   flex-wrap: wrap;
 }
 
-.note-history-export-button {
-  margin-top: 10px;
-  margin-bottom: 60px;
-}
-
-.note-history-container {
-  padding: .5em;
-  padding-bottom: 60px;
-}
-
-.note-history-container .note-history-state {
-  width: 100%;
-  float: none;
-}
-
 .case-template-content .case-details, .task-template-content .case-details {
   margin: 0 !important;
 }
@@ -345,7 +330,34 @@ a.left-sidebar-menu-icon {
 
 .warning-before-leaving-task .ui-dialog-content.ui-widget-content {
   padding-top: 0;
+  display: flex;
+  flex-direction: column;
 }
+
+.warning-before-leaving-task-icon-wrapper {
+  order: -1;
+  margin-bottom: 1rem;
+}
+
+.warning-before-leaving-task-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--ivy-tertinary-color-orange-light);
+}
+
+.warning-before-leaving-task-icon i {
+  font-size: 22px;
+  color: var(--ivy-tertinary-color-orange-dark);
+}
+
+.warning-before-leaving-task .ui-confirm-dialog-message {
+  text-align: center;
+}
+
 /******** CHAT ********/
 .chat-add-assignee-button-grid, .chat-action-container {
   text-align: right;

@@ -48,7 +48,7 @@ var CaseRelatedTask = {
     var relatedTaskTableMarginBottom = parseInt($('.case-related-task-table').css('margin-bottom'), 0);
 
     var taskList = $('[id$="related-tasks:tasks"]');
-    var taskListBody = taskList.find('.ui-datascroller-content.ui-widget-content.ui-corner-all');
+    var taskListBody = taskList.find('.ui-datascroller-content.ui-widget-content');
     var scrollHeightForTasks = 0;
     if (relatedTaskSize > maxItems) {
       scrollHeightForTasks = tasksPanel + spaceToExpandTasksList;
@@ -71,7 +71,7 @@ var CaseRelatedTask = {
       return;
     }
     var caseList = $('[id$="related-tasks:cases"]');
-    var caseListBody = caseList.find('.ui-datascroller-content.ui-widget-content.ui-corner-all');
+    var caseListBody = caseList.find('.ui-datascroller-content.ui-widget-content');
     var scrollHeightForCases = 0;
     if (technicalCaseSize > maxItems) {
       scrollHeightForCases = casesPanel + spaceToExpandCasesList;

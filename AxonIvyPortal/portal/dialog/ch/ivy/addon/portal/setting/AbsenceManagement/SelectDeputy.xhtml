@@ -48,7 +48,7 @@
       </div>
 
       <p:fieldset id="selected-deputy-fieldset" styleClass="selected-deputy-panel m-0">
-        <p:dataTable id="selected-deputy-panel" styleClass="deputy-selection"
+        <p:dataTable cellNavigation="false" id="selected-deputy-panel" styleClass="deputy-selection"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           value="#{absenceManagementBean.selectedDeputies}" var="deputy">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/SelectedSubtitutes')}">

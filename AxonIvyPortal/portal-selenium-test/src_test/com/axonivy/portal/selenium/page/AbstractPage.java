@@ -12,14 +12,14 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
 public abstract class AbstractPage {
 
   protected final Log log;
-  // protected static final long DEFAULT_TIMEOUT = 45000;
-  protected static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
+  protected static final Duration DEFAULT_TIMEOUT = WaitHelper.DEFAULT_TIMEOUT;
 
   /**
    * This abstract method is used to determine identity of a page.

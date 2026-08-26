@@ -26,11 +26,11 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.GrowlMessageService;
+import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.dialog.execution.api.DialogInstance;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -153,7 +153,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean {
     if (context != null) {
       request = (HttpServletRequest) context.getRequest();
     }
-    if (StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityUtil.isValid(url, request)) {
+    if (RequestUtils.isSafeRedirectUrl(url, request)) {
       FacesContext.getCurrentInstance().getExternalContext().redirect(url);
     }
   }

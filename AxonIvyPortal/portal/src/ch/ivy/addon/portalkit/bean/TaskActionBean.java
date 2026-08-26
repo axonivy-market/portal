@@ -389,11 +389,13 @@ public class TaskActionBean implements Serializable {
   }
 
   public String getPinnedIcon(ITask task) {
-    return TaskUtils.isPinnedTask(task) ? "option-action-icon tif tif-pin" : "option-action-icon ti ti-pin";
+    return TaskUtils.isPinnedTask(task) ? "portal-action-menu-icon option-action-icon tif tif-pin"
+        : "portal-action-menu-icon option-action-icon ti ti-pin";
   }
 
   public String getPinnedStyleClass(ITask task) {
-    return "option-item ui-menu-items" + (TaskUtils.isPinnedTask(task) ? " color-destroy" : "");
+    return "portal-action-menu-item option-item ui-menu-items"
+        + (TaskUtils.isPinnedTask(task) ? " color-destroy" : "");
   }
 
   public void markTaskAsPinned(ITask task) {

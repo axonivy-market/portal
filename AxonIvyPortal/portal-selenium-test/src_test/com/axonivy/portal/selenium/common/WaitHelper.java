@@ -22,8 +22,7 @@ import com.codeborne.selenide.WebDriverRunner;
 
 public final class WaitHelper {
 
-  protected static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
-  public static final Duration SHORT_TIMEOUT = Duration.ofSeconds(15);
+  public static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
 
   public static void waitForNavigation(Runnable navigationAcion) {
     String viewState = $("input[name='jakarta.faces.ViewState'][id$='jakarta.faces.ViewState:1']").getAttribute("value");
@@ -54,8 +53,12 @@ public final class WaitHelper {
   }
 
   public static void waitForPresenceOfElementLocatedInFrame(String cssSelector) {
+    waitForPresenceOfElementLocatedInFrame(cssSelector, DEFAULT_TIMEOUT);
+  }
+
+  public static void waitForPresenceOfElementLocatedInFrame(String cssSelector, Duration timeout) {
     try {
-      wait(WebDriverRunner.getWebDriver())
+      new WebDriverWait(WebDriverRunner.getWebDriver(), timeout)
           .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(cssSelector)));
     } catch (Exception e) {
       e.printStackTrace();

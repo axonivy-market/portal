@@ -9,39 +9,79 @@
     <ui:param name="isWorkingOnATask" value="false" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/TaskDocuments/TaskDocumentsPageTitle')}</ui:define>
     <ui:define name="pageContent">
-      <div id="task-documents" class="ui-g">
+      <h:panelGroup layout="block" id="task-documents" styleClass="ui-g">
         <p:growl id="task-document-global-messages" for="task-document-global-messages" />
 
-        <h:panelGrid columns="2"
-          columnClasses="text-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4, text-left ui-g-10 ui-lg-11 ui-md-8 ui-sm-8"
-          styleClass="ui-g-12 u-no-padding-bottom">
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" />
-          <h:outputText id="task-name" value="#{data.task.names().current()}" />
+        <h:form id="task-doc-toolbar-form" onsubmit="return false;" styleClass="portal-detail-toolbar">
+          <h:panelGroup layout="block" styleClass="portal-detail-toolbar-start u-truncate-text">
+            <p:commandLink id="back-to-task-details" process="@this"
+              actionListener="#{caseTaskDocumentBean.navigateToTaskDetails(data.task)}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
+              styleClass="portal-detail-toolbar-back">
+              <i class="ti ti-chevron-left" aria-hidden="true" />
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
+            </p:commandLink>
+          </h:panelGroup>
+        </h:form>
 
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}" />
-          <h:outputText id="task-id" value="#{data.task.id}" />
+        <h:panelGroup layout="block" styleClass="portal-detail-body portal-detail-page-content">
+          <h:panelGroup layout="block" styleClass="card task-detail-card">
+            <h:panelGroup layout="block" id="general-information" styleClass="task-detail-attr-strip">
+              <div class="task-detail-attr">
+                <h:outputText styleClass="portal-detail-column-title"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" />
+                <div class="task-detail-attr-value u-truncate-text">
+                  <h:outputText id="task-name" value="#{data.task.names().current()}" />
+                </div>
+              </div>
 
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
-          <ic:com.axonivy.portal.component.Responsibles responsibles="#{data.task.responsibles()}" />
+              <div class="task-detail-attr">
+                <h:outputText styleClass="portal-detail-column-title"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}" />
+                <div class="task-detail-attr-value">
+                  <h:outputText id="task-id" value="#{data.task.id}" />
+                </div>
+              </div>
 
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
-          <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state" state="#{data.task.businessState}"
-            showIndicatorBesideText="true" responsiveStyleClass="" />
-        </h:panelGrid>
+              <div class="task-detail-attr">
+                <h:outputText styleClass="portal-detail-column-title"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
+                <div class="task-detail-attr-value u-truncate-text">
+                  <ic:com.axonivy.portal.component.Responsibles responsibles="#{data.task.responsibles()}" />
+                </div>
+              </div>
 
-        <h:form id="task-doc-form" styleClass="document-container ui-g-12 u-no-padding-top">
-          <f:event listener="#{logic.initData}" type="preRenderComponent"/>
-          <p:dataTable id="docs-table" widgetVar="docs-table"
+              <div class="task-detail-attr">
+                <h:outputText styleClass="portal-detail-column-title"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
+                <div class="task-detail-attr-value">
+                  <h:panelGroup id="task-state-cell" styleClass="state-cell default-task-cell">
+                    <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state" state="#{data.task.businessState}"
+                      showIndicatorBesideText="true" responsiveStyleClass="" />
+                  </h:panelGroup>
+                </div>
+              </div>
+            </h:panelGroup>
+          </h:panelGroup>
+
+          <h:form id="task-doc-form" styleClass="card task-detail-card">
+            <f:event listener="#{logic.initData}" type="preRenderComponent"/>
+            <h:panelGroup layout="block" styleClass="portal-detail-widget-header">
+              <div class="portal-detail-widget-header-title u-truncate-text" role="heading" aria-level="2">
+                #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/documents')}
+              </div>
+            </h:panelGroup>
+          <p:dataTable cellNavigation="false" id="docs-table" widgetVar="docs-table"
             sortBy="#{caseTaskDocumentBean.documentSortByCreationTimestamp}"
             value="#{data.documents}" var="document"
             filteredValue="#{data.filteredDocuments}"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
             reflow="true" scrollable="true"
-            styleClass="ui-g-12" lazy="false">
-  
+            lazy="false">
+
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}"
               sortBy="#{document.name}"
-              styleClass="u-truncate-text ui-sm-12" width="65%"
+              styleClass="u-truncate-text"
               filterBy="#{document.name}" filterMatchMode="contains">
               <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="task-document-name">
                 <p:commandLink ajax="false" id="download" styleClass="task-document-name-text u-truncate-text" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
@@ -73,31 +113,25 @@
 
             <c:set var="documentAuthorName" value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(document.creation.user, document.creation.user.name)}"/>
             <p:column id="document-author" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
-              styleClass="task-document-author u-truncate-text ui-sm-hidden"
-              width="15%"
+              styleClass="u-truncate-text u-hidden-sm-down"
+              width="200px"
               sortBy="#{documentAuthorName}"
               filterBy="#{documentAuthorName}" filterMatchMode="contains">
               <pc:securityMemberNameAndAvatar
                 displayName="#{documentAuthorName}" securityMember="#{document.creation.user}" />
             </p:column>
-  
+
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}"
-              styleClass="task-history-date u-truncate-text ui-sm-hidden" width="20%"
+              styleClass="u-truncate-text u-hidden-sm-down" width="150px"
               sortBy="#{document.creation.timestamp}">
               <h:outputText value="#{document.creation.timestamp}">
                 <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
               </h:outputText>
             </p:column>
           </p:dataTable>
-
-          <div class="ui-g-12 text-right">
-            <p:commandButton actionListener="#{logic.close}"
-              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-              icon="#{visibilityBean.generateButtonIcon('ti ti-x')}"/>
-          </div>
-        </h:form>
-      </div>
+          </h:form>
+        </h:panelGroup>
+      </h:panelGroup>
 
       <p:dialog id="document-renaming-dialog" widgetVar="document-renaming-dialog" appendTo="@(body)"
         header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocument')}" modal="true" resizable="false" showEffect="fade" hideEffect="fade"

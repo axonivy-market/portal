@@ -12,7 +12,7 @@
     <ui:define name="pageContent">
       <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/businessDetailsTitle')}</div>
       <div class="Separator" />
-      <p:dataTable 
+      <p:dataTable cellNavigation="false" 
         id="additional-case-detail-table" 
         value="#{data.selectedCase.customFields().all()}" 
         var="item"

@@ -15,8 +15,7 @@ RUN mv apache-jmeter-${JMETER_VERSION}/* /opt/apache-jmeter-${JMETER_VERSION}
 RUN rm -r /opt/apache-jmeter-${JMETER_VERSION}/apache-jmeter-${JMETER_VERSION}
 
 # Download JDK
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-&& apt-get update \
+RUN apt-get update \
 && apt-get install -y --no-install-recommends \
 openjdk-8-jre-headless
 

@@ -71,9 +71,10 @@
             hideEvent="mouseleave click" />
         </div>
         <!-- Start process -->
-        <div class="ui-g-12 MarTop10 u-no-padding-left u-no-padding-right" id="start-button-container">
+        <div class="ui-g-12 MarTop10 u-no-padding-left u-no-padding-right flex justify-content-center align-items-center " id="start-button-container">
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')}" id="start-button"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')} #{widget.process.name}"
+            styleClass="process-start-action white-space-nowrap"
             actionListener="#{dashboardProcessBean.startProcess(widget.process)}" icon="ti ti-chevron-right"
             disabled="#{!isReadOnlyMode or isInConfiguration}" process="process-item" partialSubmit="true" />
         </div>

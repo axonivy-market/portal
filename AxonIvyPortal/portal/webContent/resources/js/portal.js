@@ -214,8 +214,8 @@ var MainMenu = {
   highlightMenuItem : function() {
     let $currentPageMenu = this.getMenuItemByCurrentPage();
     let activeMenuItemList = this.getActiveMenu();
-    let selectedMainDashboardId = $("#user-menu-required-login").attr("data-selected-menu");
     if ($currentPageMenu.length == 0 && window.location.pathname.indexOf("PortalMainDashboard.xhtml") > -1) {
+      let selectedMainDashboardId = $("#user-menu-required-login").attr("data-selected-menu");
       $currentPageMenu = $("li[id$='" + selectedMainDashboardId + "-main-dashboard'] > a");
       if ($currentPageMenu.length == 0) {
         $currentPageMenu = $(".layout-menu").find('li[role="menuitem"] a.DASHBOARD');
@@ -230,9 +230,6 @@ var MainMenu = {
               deactivateMenuItemOnLeftMenu(menuItem.id);
             }
         });
-        if (selectedMainDashboardId) {
-          highlightDashboardItem(selectedMainDashboardId);
-        }
         return;
       }
 
@@ -462,25 +459,10 @@ function isPressedSpecialKeys(event) {
 
 function showQuickSearchInput(index) {
   var widgetHeaderQuickSearch = "div[id$='widget-header-quick-search-" + index + "']";
-  var widgetHeaderActions = "div[id$='process-panel-group-" + index + "'] div[id$='widget-header-actions']";
   var quickSearchInput = "input[id$='quick-search-input-" + index + "']";
-  if ($(widgetHeaderActions).css("display") == "none") {
-    showWidgetHeaderActions();
-  } else {
-    hideWidgetHeaderActions();
-  }
+
+  $(widgetHeaderQuickSearch).toggleClass("widget-header-quick-search-show");
   changeQuickSearchIconButton(index);
-
-  function showWidgetHeaderActions() {
-    $(widgetHeaderActions).css("display","inline-flex");
-    $(widgetHeaderQuickSearch).removeClass("widget-header-quick-search-show");
-  }
-
-  function hideWidgetHeaderActions() {
-    $(widgetHeaderActions).css("display","none");
-    $(widgetHeaderQuickSearch).addClass("widget-header-quick-search-show");
-    $(quickSearchInput).css("width","100%");
-  }
 
   function changeQuickSearchIconButton(index) {
     var spanEl = "button[id$='quick-search-icon-" + index + "'] > span";
@@ -656,20 +638,14 @@ $(document).ready(function () {
         collapseWidgetBtn.click();
       }
 
-      var caseSideActionCloseBtn = $('[id*="action-steps-panel"]:visible').find('.ui-overlaypanel-close');
-      if (caseSideActionCloseBtn.length > 0) {
-        caseSideActionCloseBtn.click();
-
+      if (hidePortalActionPanels('action-steps-panel')) {
         if (focusedCaseEl) {
           focusedCaseEl.addClass('focused');
           focusedCaseEl.focus();
         }
       }
 
-      var taskSideActionCloseBtn = $('[id*="side-steps-panel"]:visible').find('.ui-overlaypanel-close');
-      if (taskSideActionCloseBtn.length > 0) {
-        taskSideActionCloseBtn.click();
-      }
+      hidePortalActionPanels('side-steps-panel');
       return;
     }
 
@@ -883,6 +859,25 @@ function focusFirstVisibleElementInPanel(widgetVar, selector) {
   if (first.length) {
     first.focus();
   }
+}
+
+/**
+ * Hides every visible action overlay panel whose id ends with the given suffix.
+ * These panels render without a close icon, so they are hidden through their widget.
+ * @param {string} idSuffix - 'action-steps-panel' or 'side-steps-panel'.
+ * @returns {boolean} true if at least one panel was hidden.
+ */
+function hidePortalActionPanels(idSuffix) {
+  var hidden = false;
+  for (var widgetVar in PrimeFaces.widgets) {
+    var widget = PrimeFaces.widgets[widgetVar];
+    if (widget && widget.jq && typeof widget.hide === 'function'
+        && widget.jq.is('[id$="' + idSuffix + '"]') && widget.jq.is(':visible')) {
+      widget.hide();
+      hidden = true;
+    }
+  }
+  return hidden;
 }
 
 function updateMainMenuAriaLabel() {

@@ -49,29 +49,21 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
   public void selectTextSize(String value) {
     var configDialog = $("#new-widget-configuration-dialog");
     configDialog.find("[id $= ':welcome-text-size']").click();
-    var selectionPanel = $("[id $= ':welcome-text-size_panel']");
-    selectionPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    selectionPanel.findAll("li.ui-selectonemenu-item").asDynamicIterable().forEach(item -> {
-      if (item.innerText().contentEquals(value)) {
-        item.click();
-        selectionPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
-        return;
-      }
-    });
+    selectOverlayItem($("[id $= ':welcome-text-size_panel']"), value);
   }
 
   public void selectTextPosition(String value) {
     var configDialog = $("#new-widget-configuration-dialog");
     configDialog.find("[id $= ':welcome-text-position']").click();
-    var selectionPanel = $("[id $= ':welcome-text-position_panel']");
-    selectionPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    selectionPanel.findAll("li.ui-selectonemenu-item").asDynamicIterable().forEach(item -> {
-      if (item.innerText().contentEquals(value)) {
-        item.click();
-        selectionPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
-        return;
-      }
-    });
+    selectOverlayItem($("[id $= ':welcome-text-position_panel']"), value);
+  }
+
+  private void selectOverlayItem(SelenideElement selectionPanel, String value) {
+    selectionPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
+    selectionPanel.findAll("li.ui-selectonemenu-item").filter(Condition.exactText(value)).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    selectionPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void save() {

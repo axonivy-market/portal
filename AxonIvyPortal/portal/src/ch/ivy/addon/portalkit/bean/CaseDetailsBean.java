@@ -5,21 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.faces.context.FacesContext;
-
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.SortMeta;
-import org.primefaces.util.ComponentTraversalUtils;
 
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
+import com.axonivy.portal.migration.casedetails.migrator.JsonCaseDetailsMigrator;
 import com.axonivy.portal.util.BusinessDetailsUtils;
 import com.axonivy.portal.util.CaseBehaviorUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -34,6 +32,7 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
@@ -45,6 +44,9 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.caze.owner.CaseOwner;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @Named
 @ViewScoped
@@ -244,8 +246,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   public String getHistoryWidgetComponentId(String clientId) {
     int widgetPosition = getWidgetPositionByType("HistoryWidget");
     if (widgetPosition > -1) {
-      var component = ComponentTraversalUtils.firstWithId("history-container", FacesContext.getCurrentInstance().getViewRoot());
-      return component != null ? component.getClientId() : "";
+      return clientId + ":widgets:" + widgetPosition + ":history-container";
     }
     return "";
   }
@@ -258,6 +259,13 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   @Override
   public String getVariableKey() {
     return PortalVariable.CASE_DETAIL.key;
+  }
+
+  @Override
+  protected List<CaseDetails> convertToLatestVersion(String configurationJson)
+      throws JsonMappingException, JsonProcessingException {
+    JsonCaseDetailsMigrator migrator = new JsonCaseDetailsMigrator(BusinessEntityConverter.getObjectMapper().readTree(configurationJson));
+    return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), CaseDetails.class);
   }
 
   @Override

@@ -5,7 +5,6 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -13,19 +12,13 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import jakarta.faces.context.FacesContext;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import ch.ivy.addon.portalkit.constant.WidgetType;
 import ch.ivy.addon.portalkit.dto.AbstractConfigurableContent;
@@ -38,17 +31,19 @@ import ch.ivy.addon.portalkit.dto.widget.DocumentWidget;
 import ch.ivy.addon.portalkit.dto.widget.HistoryWidget;
 import ch.ivy.addon.portalkit.dto.widget.InformationWidget;
 import ch.ivy.addon.portalkit.dto.widget.RelatedTaskWidget;
+import ch.ivy.addon.portalkit.dto.widget.SummaryWidget;
 import ch.ivy.addon.portalkit.dto.widget.TechnicalCaseWidget;
+import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
+import jakarta.faces.context.FacesContext;
 
 public abstract class AbstractConfigurableContentBean<T extends AbstractConfigurableContent> implements Serializable {
 
   private static final long serialVersionUID = -5019885123920232407L;
-  protected static ObjectMapper mapper;
   protected static GlobalSettingService globalSettingService;
   protected boolean isReadOnlyMode = true;
   protected boolean isReseted;
@@ -61,14 +56,6 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
   protected abstract Class<T> getConfigurationType();
 
   public void initConfig() {
-    if (mapper == null) {
-      mapper = JsonMapper
-          .builder()
-          .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-          .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
-          .build();
-    }
-
     globalSettingService = GlobalSettingService.getInstance();
     isShowNotAvailableData = PermissionUtils.isSessionUserHasAdminRole();
   }
@@ -189,7 +176,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
         result = loadGlobalConfigurations();
       }
       else {
-        result = parseConfigurationJson(userConfigurationJson);
+        result = convertToLatestVersion(userConfigurationJson);
       }
     } catch (IOException e) {
       Ivy.log().debug("ParseUserConfiguration error: " + e);
@@ -199,15 +186,16 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
     return result;
   }
 
-  private List<T> parseConfigurationJson(String configurationJson) throws JsonMappingException, JsonProcessingException {
-    return mapper.readValue(configurationJson, mapper.getTypeFactory().constructCollectionType(List.class, getConfigurationType()));
+  protected List<T> convertToLatestVersion(String configurationJson) throws JsonMappingException, JsonProcessingException {
+    return BusinessEntityConverter.jsonValueToEntities(configurationJson, getConfigurationType());
   }
+
 
   protected List<T> loadGlobalConfigurations() throws JsonMappingException, JsonProcessingException {
     var configurationJsonData = Ivy.var().get(getVariableKey());
     if (StringUtils.isNotBlank(configurationJsonData)) {
       try {
-        return parseConfigurationJson(configurationJsonData);
+        return convertToLatestVersion(configurationJsonData);
       } catch (IOException e) {
         Ivy.log().debug("ParseUserConfiguration error: " + e);
       }
@@ -222,6 +210,9 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
       }
       else if (widget instanceof DocumentWidget) {
         widget.setType(WidgetType.DOCUMENT);
+      }
+      else if (widget instanceof SummaryWidget) {
+        widget.setType(WidgetType.SUMMARY);
       }
       else if (widget instanceof InformationWidget) {
         widget.setType(WidgetType.INFORMATION);
@@ -258,7 +249,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
 
   protected List<T> loadDefaultGlobalConfigurations() throws JsonMappingException, JsonProcessingException {
     var configurationJsonData = Ivy.var().variable(getVariableKey()).defaultValue();
-    return parseConfigurationJson(configurationJsonData);
+    return convertToLatestVersion(configurationJsonData);
   }
   
   protected T getDefaultPortalConfig() throws JsonMappingException, JsonProcessingException {
@@ -278,14 +269,17 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
 
   public void save() throws IOException {
     this.isReadOnlyMode = true;
-    updateToConfiguration();
+    List<WidgetLayout> layouts = extractWidgetLayoutFromRequest();
+    if (CollectionUtils.isEmpty(layouts)) {
+      return;
+    }
+    updateToConfiguration(layouts);
     saveConfigurationsToUserProperty();
     this.isReseted = false;
   }
 
-  private List<AbstractWidget> getUpdatedWidgets() throws JsonMappingException, JsonProcessingException {
+  private List<AbstractWidget> getUpdatedWidgets(List<WidgetLayout> layouts) {
     var result = new ArrayList<AbstractWidget>();
-    List<WidgetLayout> layouts = extractWidgetLayoutFromRequest();
     CollectionUtils.emptyIfNull(layouts).forEach(layout -> {
       AbstractWidget currentWidget = widgets.stream()
                 .filter(widget -> Strings.CS.equals(widget.getId(), layout.getId()))
@@ -303,7 +297,10 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
   protected List<WidgetLayout> extractWidgetLayoutFromRequest() throws JsonProcessingException, JsonMappingException {
     Map<String, String> requestParamMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
     var nodes = Optional.ofNullable(requestParamMap.get("nodes")).orElse(EMPTY);
-    return Arrays.asList(mapper.readValue(nodes, WidgetLayout[].class));
+    if (StringUtils.isBlank(nodes)) {
+      return List.of();
+    }
+    return BusinessEntityConverter.jsonValueToEntities(nodes, WidgetLayout.class);
   }
 
   protected boolean doesWidgetExist(AbstractWidget widget) {
@@ -323,7 +320,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
   }
 
   private void saveConfigurationsToUserProperty() throws JsonProcessingException {
-    String configurationJson = mapper.writeValueAsString(configurationList);
+    String configurationJson = BusinessEntityConverter.prettyPrintEntityToJsonValue(configurationList);
     getSessionUser().setProperty(getVariableKey(), configurationJson);
   }
 
@@ -331,9 +328,9 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
     return config -> Strings.CS.equals(compareId, config.getId());
   }
 
-  protected void updateToConfiguration() throws JsonMappingException, JsonProcessingException {
+  protected void updateToConfiguration(List<WidgetLayout> layouts) throws JsonMappingException, JsonProcessingException {
     configuration.setChanged(!this.isReseted);
-    List<AbstractWidget> updateWidgets = getUpdatedWidgets();
+    List<AbstractWidget> updateWidgets = getUpdatedWidgets(layouts);
     if (CollectionUtils.isNotEmpty(this.widgets)) {
       for (AbstractWidget widget : updateWidgets) {
         if (doesWidgetExist(widget)) {

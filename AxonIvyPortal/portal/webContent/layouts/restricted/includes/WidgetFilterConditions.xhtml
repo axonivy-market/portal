@@ -1,0 +1,69 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
+  xmlns:pe="primefaces.extensions" xmlns:jsf="jakarta.faces"
+  xmlns:c="jakarta.tags.core">
+<!-- Shared "Set Filter" body for Task and Case dashboard widgets.
+     Required params:
+     - widget: ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget (Task/Case)
+     - index: widget index on the dashboard
+     - filterBean: the widget's user-filter bean (TaskWidgetUserFilterBean / CaseWidgetUserFilterBean) -->
+<h:panelGroup id="filter-container" layout="block" styleClass="widget-filter-panel">
+  <f:event listener="#{filterBean.preRender(widget)}" type="preRenderComponent" />
+
+  <div>
+    <p:messages id="filter-messages" globalOnly="true" />
+  </div>
+
+  <h:panelGroup layout="block" styleClass="filter-section filter-section--default" rendered="#{widget.filters.size() > 0}">
+    <div class="filter-section__header">
+      <strong>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/DefaultFiltersTitle')}</strong>
+      <div>
+        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/DefaultFiltersDescription')}
+      </div>
+    </div>
+    <h:panelGroup id="#{widget.id}-read-only-predefined-filters" layout="block" styleClass="dashboard-widget-filter__read-only-panel">
+      <ui:repeat id="predefined-filter-list" var="chipLabel" value="#{filterBean.defaultFilterChipLabels}">
+        <p:chip label="#{chipLabel}" styleClass="default-filter-chip" />
+      </ui:repeat>
+    </h:panelGroup>
+  </h:panelGroup>
+
+  <p:divider layout="horizontal" rendered="#{widget.filters.size() > 0}" />
+
+  <h:panelGroup layout="block" styleClass="filter-section filter-section--conditions">
+    <div class="filter-section__header">
+      <strong>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/NewFilterConditionsTitle')}</strong>
+      <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/NewFilterConditionsDescription')}</div>
+    </div>
+
+    <h:panelGroup id="#{widget.id}-user-filter" layout="block" styleClass="dashboard-widget-filter__main-panel">
+      <c:set var="filterComponentToUpdate" value="#{widget.id}-user-filter" />
+      <h:panelGroup layout="block" styleClass="dashboard-widget-filter__list" rendered="#{not empty widget.userFilters}">
+        <ui:repeat id="filter-list" var="filter" value="#{widget.userFilters}" varStatus="status">
+          <div class="dashboard-widget-filter__condition">
+            <div class="dashboard-widget-filter__connector">
+              <h:panelGroup layout="block" styleClass="filter-and-badge" rendered="#{status.index gt 0}">
+                #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/And')}
+              </h:panelGroup>
+            </div>
+            <ic:com.axonivy.portal.dashboard.component.filter.DashboardFilter id="filter-component" filter="#{filter}" widget="#{widget}"
+              managedBean="#{filterBean}" componentToUpdate="#{p:resolveFirstComponentWithId(filterComponentToUpdate, view).clientId}"
+              onCompleteRemoveFilter="loadSaveFilters#{index}()"
+              filterIndex="#{status.index}"/>
+          </div>
+        </ui:repeat>
+      </h:panelGroup>
+      <p:commandButton id="add-filter" icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
+        update="#{widget.id}-user-filter" process="#{widget.id}-user-filter" styleClass="add-condition-button dashboard-button-truncate"
+        actionListener="#{filterBean.addNewFilter(widget)}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/AddCondition')}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/AddCondition')}"
+        title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/AddCondition')}"
+        immediate="true" partialSubmit="true">
+        <f:param name="skipValidator" value="true" />
+      </p:commandButton>
+    </h:panelGroup>
+  </h:panelGroup>
+</h:panelGroup>
+</html>

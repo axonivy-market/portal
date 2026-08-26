@@ -13,7 +13,8 @@ import ch.ivy.addon.portalkit.constant.WidgetType;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type", visible = false)
-@JsonSubTypes({@Type(value = InformationWidget.class, name = WidgetType.INFORMATION),
+@JsonSubTypes({@Type(value = SummaryWidget.class, name = WidgetType.SUMMARY),
+    @Type(value = InformationWidget.class, name = WidgetType.INFORMATION),
     @Type(value = HistoryWidget.class, name = WidgetType.HISTORY),
     @Type(value = DocumentWidget.class, name = WidgetType.DOCUMENT),
     @Type(value = RelatedTaskWidget.class, name = WidgetType.RELATED_TASK),

@@ -67,7 +67,8 @@ public class DashboardBean implements Serializable, IMultiLanguage {
 
   private static final long serialVersionUID = -4224901891867040688L;
   private static final String ACCESSIBILITY_DASHBOARD_TEMPLATE_ID = "accessibility-dashboard-template";
-
+  private static final String DASHBOARD_CMS_BASE = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/";
+  
   protected List<Dashboard> dashboards;
   protected Dashboard selectedDashboard;
   protected String selectedDashboardId;
@@ -151,9 +152,13 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
     selectedDashboard = dashboards.get(currentDashboardIndex);
 
-    String selectedDashboardName = selectedDashboard.getTitles().stream()
-        .filter(displayName -> displayName.getLocale().equals(LanguageService.getInstance().getUserLocale())).findFirst()
-        .orElseGet(() -> selectedDashboard.getTitles().get(0)).getValue();
+    String selectedDashboardName = "";
+    if (CollectionUtils.isNotEmpty(selectedDashboard.getTitles())) {
+      selectedDashboardName = selectedDashboard.getTitles()
+          .stream()
+          .filter(displayName -> displayName.getLocale().equals(LanguageService.getInstance().getUserLocale())).findFirst()
+          .orElseGet(() -> selectedDashboard.getTitles().get(0)).getValue();
+    }
     setSelectedDashboardName(selectedDashboardName);
     initShareDashboardLink(selectedDashboard);
   }
@@ -622,15 +627,17 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   public void togglePinned(DashboardWidget widget) {
-    widget.setShowPinnedItem(isShowPinnedItem);
+    widget.setShowPinnedItem(!widget.getShowPinnedItem());
     widget.toggleShowPinned();
   }
 
-  public String showPinnedItemToggleLable(DashboardWidget widget) {
-    if (DashboardWidgetType.TASK.equals(widget.getType())) {
-      return Ivy.cms().co("/Labels/PinnedTasks");
-    }
-    return Ivy.cms().co("/Labels/PinnedCases");
+  public String showPinnedItemToggleLabel(DashboardWidget widget) {
+    String cmsKey = switch (widget.getType()) {
+      case TASK -> widget.getShowPinnedItem() ? "showAllTasks" : "showPinnedTasks";
+      case CASE -> widget.getShowPinnedItem() ? "showAllCases" : "showPinnedCases";
+      default -> StringUtils.EMPTY;
+    };
+    return StringUtils.isEmpty(cmsKey) ? StringUtils.EMPTY : Ivy.cms().co(DASHBOARD_CMS_BASE + cmsKey);
   }
 
   public boolean isTaskWidget(DashboardWidget widget) {

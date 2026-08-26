@@ -18,17 +18,18 @@
 
   <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
-    <div class="ui-g-12 case-details-related-case-header-section">
-      <div class="ui-g-7 u-truncate-text task-details-panel-title case-detail-section-title" role="heading" aria-level="1">
-        <i class="ti ti-file-pencil"/> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCases')}
+    <div class="ui-g-12 case-detail-section-title case-details-related-case-header-section portal-detail-widget-header flex align-items-center justify-content-between flex-wrap">
+      <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="1">
+        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCases')}
       </div>
-      <h:panelGroup layout="block" styleClass="ui-g-5 related-case-section-header-actions" id="related-case-actions">
+      <h:panelGroup layout="block" styleClass="related-case-section-header-actions portal-detail-widget-header-actions flex align-items-center" id="related-case-actions">
         <h:form id="related-cases-form" styleClass="related-case-export-to-excel ui-sm-hidden">
           <p:commandLink ajax="false" id="related-case-export-to-excel"
+            styleClass="portal-icon-btn-round"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
             onclick="PrimeFaces.monitorDownload(startRelatedCaseExportToExcel, stopRelatedCaseExportToExcel);" >
-            <i class="ti ti-file-type-xls u-mar-right-5" />
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
+            <i class="ti ti-file-type-xls" />
             <p:fileDownload value="#{logic.getExportedFile(caseDetailsBean.getColumns(data.caseLazyDataModel))}" />
           </p:commandLink>
         </h:form>
@@ -44,7 +45,7 @@
     
     <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0 related-cases-container" id="related-cases-container">
     
-      <p:dataTable id="related-cases" lazy="true" value="#{data.caseLazyDataModel}" var="case" paginator="true" rows="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
+      <p:dataTable cellNavigation="false" id="related-cases" lazy="true" value="#{data.caseLazyDataModel}" var="case" paginator="true" rows="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" sortMode="single"
         sortBy="#{caseDetailsBean.sortById}" styleClass="related-cases" rowHover="true" selectionMode="single"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
@@ -115,7 +116,7 @@
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="more-column">
           <div class="case-header-action-cell">
             <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu" destroyCaseDialogComponent="#{p:resolveFirstComponentWithId('destroy-related-case-confirmation-dialog', view).clientId}"
-              actionLinkStyleClass="ui-button-text-only" case="#{case}" inFrame="#{cc.attrs.inFrame}" onDestroyComplete="PF('destroy-related-case-dialog').show()"/>
+              case="#{case}" inFrame="#{cc.attrs.inFrame}" onDestroyComplete="PF('destroy-related-case-dialog').show()"/>
           </div>
         </p:column>
       </p:dataTable>
@@ -123,7 +124,7 @@
     
     
   </div>
-  <p:dialog modal="true" id="related-case-status-dialog" widgetVar="related-case-status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false" responsive="true">
+  <p:dialog modal="true" id="related-case-status-dialog" widgetVar="related-case-status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false" responsive="true" styleClass="export-status-dialog">
       <div class="p-2">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/waitingDownloadMessage")}</div>
       <div class="p-2">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/downloadZipFileExplanation')}</div>
   </p:dialog>

@@ -5,6 +5,14 @@
   max-width: 100vw;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  width: 227px;
+  height: 264px;
 }
 
 @media screen and (max-width: 320px) {
@@ -14,11 +22,45 @@
     left: 0 !important;
     right: 0 !important;
   }
-  
+
   #user-setting-container li {
     white-space: normal;
     word-wrap: break-word;
   }
+}
+
+#user-setting-container .ui-menu-items {
+  margin: 0;
+  height: 44px;
+}
+
+#user-setting-container .ui-menu-items > a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.95rem 1.1rem;
+  font-size: 1rem;
+}
+
+#user-setting-container .ui-menu-items:first-child > a {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+#user-setting-container .ui-menu-items:last-child > a {
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+#user-setting-container .ui-menu-items > a > i {
+  width: 1.25rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+#user-setting-container .ui-menu-items.color-destroy > a,
+#user-setting-container .ui-menu-items.color-destroy > a > i {
+  color: var(--ivy-tertinary-color-red-medium) !important;
 }
 
 .ti,
@@ -300,7 +342,6 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
 .grid-view-form .process-action-group {
   font-size: var(--small-font-size); }
 
-.task-detail-column-title,
 .edit-process-info-group .edit-process-detail-1st-cell {
   opacity: 0.65;
   font-size: var(--small-font-size); }
@@ -573,9 +614,6 @@ body .ui-inputfield.task-name-input {
   font-size: var(--large-font-size);
   font-weight: var(--task-name-input-font-weight); }
 
-.task-detail-header .task-name {
-  font-weight: var(--task-detail-header-font-weight); }
-
 .task-detail-section-title,
 .task-detail-section-title > i.si,
 .task-detail-section-title > div > i.si {
@@ -682,12 +720,6 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   color: var(--case-detail-name-text-color-hight-light);
   padding: 3px;
   border-radius: 2px; }
-
-.case-detail-header,
-.task-detail-header .task-name {
-  font-size: var(--widget-header-font-size);
-  font-weight: var(--widget-header-font-weight);
-  line-height: 26px;}
 
 .related-task-content .related-task,
 .case-related-running {
@@ -934,10 +966,6 @@ body .ui-inputfield.case-detail-name-input {
   background: var(--case-header-action-cell-button-background-color);
   outline: var(--case-header-action-cell-button-background-color); }
 
-.action-steps-panel .case-action-separator::before,
-.options-panel .task-action-separator::before {
-  border: 0.8px solid var(--case-action-separator-border-color); }
-
 .case-list-item {
   border-bottom: 1px solid var(--case-widget-column-header-border-bottom); }
 
@@ -946,18 +974,11 @@ body .ui-inputfield.case-detail-name-input {
   font-size: var(--case-item-description-font-size);
   line-height: var(--case-item-description-line-height); }
 
-.action-steps-panel {
-  font-size: var(--large-font-size); }
-
 .action-steps-panel.ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link.ui-state-disabled {
   color: var(--action-step-disabled-text-color); }
 
 .action-steps-panel a.action-step-item:hover {
   color: var(--menu-action-hover-text-color); }
-
-.action-steps-panel a.action-step-item:not(:last-child) {
-  border-bottom: 1px solid var(--option-item-border-color);
-}
 
 .case-state-in-progress {
   color: var(--case-state-in-progress-color); }
@@ -972,13 +993,6 @@ body .ui-inputfield.case-detail-name-input {
 .case-list .ui-datascroller,
 .case-list .ui-datascroller .ui-datascroller-content {
   background-color: var(--case-list-data-scroller-content-background-color); }
-
-.action-steps-panel .action-icon {
-  font-size: var(--large-font-size); }
-
-.action-steps-panel .separator::before {
-  border-top: 2px solid var(--action-step-separator-border-color);
-}
 
 .case-header-name-desc-cell .case-header-name-cell {
   font-weight: var(--case-item-name-font-weight);
@@ -1316,16 +1330,8 @@ ul.users-in-role {
   color: var(--menu-action-hover-text-color);
 }
 
-.options-panel .option-item:not(:last-child) {
-  border-bottom: 1px solid var(--option-item-border-color);
-}
-
 .options-panel .pointer-event-none {
   pointer-events: none;
-}
-
-.task-additional-actions-panel, .case-side-steps-panel {
-  border-top: 1px solid var(--ivy-primary-color-grey-light);
 }
 
 .process-widget-action .name-sort-command,
@@ -1413,17 +1419,6 @@ border-left-color: var(--primary-color);
 .process-first-breadcrumb{
 background-color:var(--primary-color);
 color: var(--button-text-color);
-}
-
-.no-item-panel .ti,
-.no-item-panel .tif,
-.no-item-panel .si {
-  font-size: var(--no-item-icon-font-size) !important;
-  color: var(--no-item-icon-color);
-}
-
-.no-item-panel .no-item-header {
-  font-size: var(--no-item-header-font-size);
 }
 
 /* Portal Global Ajax Status */
@@ -1616,11 +1611,6 @@ body.in-dialog .ui-widget-overlay {
 
 #reorder-button:hover {
   cursor: move;
-}
-
-.option-item-long-label {
-  max-width: 120px;
-  line-height: 1.2;
 }
 
 .axonivy-loader h5 {
@@ -1908,53 +1898,13 @@ i.dashboard-icon-drag-drop {
   width: 200px;
 }
 
-.filter-panel.active {
-  width: 35vw;
-  visibility: visible;
-  opacity: 1;
-  overflow: hidden;
-}
-
-.filter-panel {
-  background: var(--notification-panel-color);
-  position: fixed;
-  overflow:hidden;
-  width: 0;
-  opacity: 1;
-  transition: all .25s;
-  -ms-transition: all 0s;
-  box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
-}
-
-.filter-panel .filter-panel-header {
-  padding-bottom: 0;
-  align-items: center;
-}
-
-.filter-panel .filter-panel-header > div {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.filter-panel .filter-panel-header .filter-panel-title {
-  margin: 0;
-}
-
 .table-configuration {
   height: 70vh;
   width: 95vw;
   overflow: auto;
 }
 
-.filter-panel .filter-area {
-  height:90%;
-  overflow:auto;
-}
-
 @media (max-width: 1700px) {
-  .filter-panel.active {
-    width: 50vw;
-  }
   .table-configuration {
     height: 66vh;
   }
@@ -2057,9 +2007,8 @@ body.dark .focused {
 }
 
 .chart-number-container {
-  color: var(--chart-container-number-color);
-  background-color: var(--chart-container-background-color);
-  border-radius: 10px;
+  color: var(--chart-container-background-color);
+  -webkit-text-stroke: 1px var(--chart-container-number-border-color);
   width: fit-content;
   margin: auto;
   padding: 5px 5px;
@@ -2069,7 +2018,7 @@ body.dark .focused {
   padding: 0.2em;
 }
 .chart-border {
-  border: 1px solid var(--ivy-primary-color-grey-light);
+  border: 1px solid var(--ivy-portal-color-grey-200);
   height: 75%;
 }
 
@@ -2084,7 +2033,7 @@ body.dark .focused {
 }
 
 .chart-number-font-size {
-  font-weight: bolder;
+  font-weight: 800;
 }
 
 .chart-content-card .chart-label-container {
@@ -2102,7 +2051,7 @@ body.dark .focused {
 }
 
 .chart-content-card .chart-number-font-size {
-    font-size: max(4rem, 1.5rem + 10cqh);
+  font-size: clamp(1.5rem, min(1.5rem + 30cqh, 4.5rem / var(--card-count, 1) + 1.5rem, (100cqw - 30px * (var(--card-count, 1) - 1)) / var(--card-count, 1) * 0.8), 6rem);
 }
 
 @container (max-width: 200px) {
@@ -2129,7 +2078,7 @@ body.dark .focused {
   }
 
   .chart-content-card .chart-number-font-size {
-    font-size: max(3rem, 1.5rem + 10cqh);
+    font-size: clamp(1.5rem, min(1.5rem + 30cqh, 4.5rem / var(--card-count, 1) + 1.5rem, (100cqw - 30px * (var(--card-count, 1) - 1)) / var(--card-count, 1) * 0.8), 3rem);
   }
 }
 
@@ -2227,4 +2176,1003 @@ canvas#preview-statistic-chart {
 
 .login-body .login-wrapper .login-panel > button > span.ui-button-icon-left {
   font-weight: normal;
+}
+
+/* Detail-page UI redesign (IVYPORTAL-20779) — Task Detail + Case Detail ----------------------------------------*/
+
+/* Shared: round icon button ----------------------------------------*/
+body .ui-button.ui-button-icon-only.portal-icon-btn-round,
+body a.portal-icon-btn-round,
+body .portal-icon-btn-round {
+  box-sizing: border-box;
+  width: var(--portal-icon-btn-size-md);
+  min-width: var(--portal-icon-btn-size-md);
+  height: var(--portal-icon-btn-size-md);
+  min-height: var(--portal-icon-btn-size-md);
+  flex: 0 0 auto;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--portal-icon-btn-border-width) solid var(--widget-button-border-color);
+  background: var(--widget-button-background-color);
+  color: var(--portal-detail-value-color);
+}
+body .ui-button.ui-button-icon-only.portal-icon-btn-round .ui-icon {
+  font-size: var(--portal-icon-size-lg);
+  margin-top: -0.7143rem;
+  margin-left: -0.7143rem;
+}
+body .ui-button.ui-button-icon-only.portal-icon-btn-round:not(.ui-state-disabled):hover,
+body a.portal-icon-btn-round:hover,
+body .portal-icon-btn-round:hover {
+  background: var(--widget-button-hover-background-color);
+}
+body .ui-button.portal-icon-btn-round.portal-icon-btn-accent,
+body .portal-icon-btn-round.portal-icon-btn-accent {
+  border-color: var(--start-btn-border-color);
+  background: var(--start-btn-bg);
+  color: var(--start-btn-text-color);
+}
+body .ui-button.portal-icon-btn-round.portal-icon-btn-accent:not(.ui-state-disabled):hover,
+body .portal-icon-btn-round.portal-icon-btn-accent:hover {
+  background: var(--start-btn-hover-bg);
+}
+body a.portal-icon-btn-round,
+body a.portal-icon-btn-round:hover,
+body a.portal-icon-btn-round:focus,
+body a.portal-pill-btn,
+body a.portal-pill-btn:hover,
+body a.portal-pill-btn:focus {
+  text-decoration: none;
+}
+
+/* Shared: pill button ----------------------------------------*/
+.portal-pill-btn.ui-button,
+.portal-pill-btn {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--portal-pill-btn-border-radius);
+  border: var(--portal-icon-btn-border-width) solid var(--widget-button-border-color);
+  background: var(--widget-button-background-color);
+  color: var(--portal-detail-value-color);
+  padding: 0.5714rem 1.0714rem;
+  min-height: var(--portal-icon-btn-size-md);
+  gap: 0.2143rem;
+  font-size: var(--default-font-size);
+  font-weight: 500;
+  line-height: 1;
+}
+.portal-pill-btn .ti,
+.portal-pill-btn .tif {
+  line-height: 1 !important;
+  margin: 0;
+}
+.portal-pill-btn.portal-pill-btn-accent.ui-button,
+.portal-pill-btn.portal-pill-btn-accent {
+  border-color: var(--start-btn-border-color);
+  background: var(--start-btn-bg);
+  color: var(--start-btn-text-color);
+}
+
+/* Shared: "Show more" link of the note / history / document widgets ----------------------------------------*/
+.portal-detail-show-more-btn {
+  font-weight: var(--details-document-add-link-font-weight);
+}
+
+/* Shared: toolbar-size variants of the two atoms above ----------------------------------------*/
+body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-lg,
+body a.portal-icon-btn-round.portal-icon-btn-lg,
+body .portal-icon-btn-round.portal-icon-btn-lg {
+  width: var(--portal-icon-btn-size-lg);
+  min-width: var(--portal-icon-btn-size-lg);
+  height: var(--portal-icon-btn-size-lg);
+  min-height: var(--portal-icon-btn-size-lg);
+}
+body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-lg .ui-icon {
+  font-size: var(--portal-icon-size-xl);
+  margin-top: -0.9286rem;
+  margin-left: -0.9286rem;
+}
+
+/* Shared: table-size variant of the round icon button ----------------------------------------*/
+body .ui-datatable .ui-sidestep-action.portal-icon-btn-round,
+body .task-start-list .ui-sidestep-action.portal-icon-btn-round,
+body .case-list .ui-sidestep-action.portal-icon-btn-round {
+  width: var(--portal-icon-btn-size-sm);
+  min-width: var(--portal-icon-btn-size-sm);
+  height: var(--portal-icon-btn-size-sm);
+  min-height: var(--portal-icon-btn-size-sm);
+}
+body .ui-datatable .ui-sidestep-action.portal-icon-btn-round .ti,
+body .task-start-list .ui-sidestep-action.portal-icon-btn-round .ti,
+body .case-list .ui-sidestep-action.portal-icon-btn-round .ti {
+  font-size: var(--portal-tabler-icon-size);
+}
+
+.portal-pill-btn.portal-pill-btn-lg.ui-button,
+.portal-pill-btn.portal-pill-btn-lg {
+  height: var(--portal-icon-btn-size-lg);
+  padding: 0 1.0714rem;
+}
+.portal-pill-btn.portal-pill-btn-lg .ti,
+.portal-pill-btn.portal-pill-btn-lg .tif {
+  font-size: var(--portal-icon-size-lg) !important;
+}
+
+/* min-height must be overridden too, it beats height on the base pill */
+.portal-pill-btn.portal-pill-btn-sm.ui-button,
+.portal-pill-btn.portal-pill-btn-sm {
+  height: var(--portal-icon-btn-size-sm);
+  min-height: var(--portal-icon-btn-size-sm);
+  padding: 0 0.7143rem;
+}
+.portal-pill-btn.portal-pill-btn-sm .ti,
+.portal-pill-btn.portal-pill-btn-sm .tif {
+  font-size: var(--portal-tabler-icon-size) !important;
+}
+body .ui-button.portal-pill-btn.start-task-action,
+.portal-pill-btn.start-task-action {
+  font-weight: 400;
+}
+
+/* Shared: pill button on a `p:commandButton` ----------------------------------------*/
+body .ui-button.portal-pill-btn .ui-button-text {
+  padding: 0;
+}
+body .ui-button.ui-button-text-icon-left.portal-pill-btn .ui-icon {
+  position: static;
+  top: auto;
+  left: auto;
+  margin: 0;
+}
+body .ui-button.portal-pill-btn,
+body .ui-button.portal-pill-btn.ui-state-focus,
+body .ui-button.portal-pill-btn.ui-state-active,
+body .ui-button.portal-pill-btn.ui-state-down {
+  background: var(--widget-button-background-color);
+  border-color: var(--widget-button-border-color);
+  color: var(--portal-detail-value-color);
+}
+body .ui-button.portal-pill-btn.ui-state-hover,
+body .portal-pill-btn:not(.ui-state-disabled):hover {
+  background: var(--widget-button-hover-background-color);
+  border-color: var(--widget-button-border-color);
+  color: var(--portal-detail-value-color);
+}
+
+.action-container {
+  gap: 0.5rem;
+}
+body .ui-button.portal-pill-btn.portal-pill-btn-accent,
+body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-focus,
+body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-active,
+body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-down {
+  background: var(--start-btn-bg);
+  border-color: var(--start-btn-border-color);
+  color: var(--start-btn-text-color);
+}
+body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-hover,
+body .portal-pill-btn.portal-pill-btn-accent:not(.ui-state-disabled):hover {
+  background: var(--start-btn-hover-bg);
+  border-color: var(--start-btn-border-color);
+  color: var(--start-btn-text-color);
+}
+body .portal-pill-btn.ui-state-disabled,
+body .portal-pill-btn.portal-pill-btn-accent.ui-state-disabled,
+body .ui-button.portal-pill-btn.ui-state-disabled,
+body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-disabled,
+body .portal-icon-btn-round.ui-state-disabled,
+body .portal-icon-btn-round.portal-icon-btn-accent.ui-state-disabled,
+body .ui-button.portal-icon-btn-round.ui-state-disabled,
+body .ui-button.portal-icon-btn-round.portal-icon-btn-accent.ui-state-disabled {
+  background: var(--start-btn-disabled-bg);
+  border-color: var(--start-btn-disabled-border-color);
+  color: var(--start-btn-disabled-text-color);
+}
+
+/* Shared: detail-page toolbar (Back + layout actions) ----------------------------------------*/
+.portal-detail-toolbar {
+  box-sizing: border-box;
+  width: calc(100% - var(--portal-detail-grid-inset) * 2);
+  margin: 0 var(--portal-detail-grid-inset) var(--portal-detail-grid-inset);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8571rem;
+  padding: 0.8571rem 1.4286rem;
+  border-radius: var(--portal-detail-card-radius);
+  background: var(--portal-detail-card-bg);
+  box-shadow: var(--portal-detail-toolbar-shadow);
+}
+.portal-detail-toolbar-start,
+.portal-detail-toolbar-form {
+  display: flex;
+  align-items: center;
+  gap: 0.8571rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.portal-detail-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8571rem;
+  flex: 0 0 auto;
+}
+.portal-detail-toolbar-share-mobile {
+  margin-left: auto;
+}
+body a.portal-detail-toolbar-back,
+body a.portal-detail-toolbar-back:hover,
+body a.portal-detail-toolbar-back:focus,
+.portal-detail-toolbar-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5714rem;
+  flex: 0 0 auto;
+  height: var(--portal-icon-btn-size-md);
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--portal-detail-accent-color);
+  font-size: var(--default-font-size);
+  font-weight: 500;
+  line-height: normal;
+  text-decoration: none;
+}
+.portal-detail-toolbar-back .ti {
+  line-height: 1;
+}
+
+/* Shared: empty-state block (task & case documents/notes) ----------------------------------------*/
+/* Flex chain from the gridstack card down to .no-item-panel, so the empty state can center on both
+   axes. flex-shrink stays 0: a table taller than the card must keep scrolling, not get clipped. */
+.portal-detail-widget-card {
+  display: flex;
+  flex-direction: column;
+}
+.portal-detail-widget-card > .portal-detail-widget,
+.portal-detail-widget > .portal-detail-widget-form,
+.portal-detail-widget-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  width: 100%;
+}
+.portal-detail-widget-body > .no-item-panel {
+  flex: 1 0 auto;
+  padding: 1.1429rem;
+}
+
+.no-item-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.3571rem;
+  padding: 2.8571rem 1.1429rem;
+}
+.no-item-panel > .ti,
+.no-item-panel > .tif,
+.no-item-panel > .si {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--no-item-icon-container-size);
+  height: var(--no-item-icon-container-size);
+  border-radius: 50%;
+  background: var(--no-item-icon-background-color);
+  color: var(--no-item-icon-color);
+  font-size: var(--no-item-icon-font-size);
+  line-height: 1;
+  margin-bottom: 1.0714rem;
+}
+.no-item-panel .no-item-header {
+  font-size: var(--no-item-header-font-size);
+  font-weight: var(--widget-header-font-weight);
+  line-height: 1.4;
+  color: var(--portal-detail-value-color);
+}
+.no-item-panel .no-item-detail {
+  color: var(--portal-detail-label-color);
+  font-size: var(--no-item-detail-font-size);
+  font-weight: 400;
+  line-height: 1.2;
+}
+.no-item-panel .no-item-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2143rem;
+  color: var(--portal-detail-accent-color);
+  font-size: var(--default-font-size);
+  font-weight: 500;
+  margin-top: 0.3571rem;
+  line-height: 1;
+}
+.no-item-panel .no-item-action-link .ti {
+  line-height: 1;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+}
+.no-item-panel .no-item-action-link .ti-circle-plus {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  display: inline-flex !important;
+}
+
+/* Cards: outer widget card + inner sub-cards ----------------------------------------*/
+.portal-detail-body .card.task-detail-card,
+.portal-detail-body .card.case-detail-card {
+  border: none;
+  border-radius: var(--portal-detail-card-radius);
+  background: var(--portal-detail-card-bg);
+  box-shadow: var(--portal-detail-card-shadow);
+  padding: var(--portal-detail-card-padding);
+}
+/* Sub-card ("Role & User information", "Time Information", …) */
+.portal-detail-inner-card {
+  box-sizing: border-box;
+  border: 1px solid var(--portal-detail-subcard-border-color);
+  border-radius: var(--portal-detail-card-radius);
+  background: var(--portal-detail-subcard-bg);
+  padding: var(--portal-detail-subcard-padding);
+}
+
+/* Left-column cards: the "summary" widget and the "information" widget ----------------------------------------*/
+.task-detail-header-card,
+.case-detail-header-card,
+.portal-detail-details-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+.portal-detail-details-card {
+  display: flow-root;
+}
+
+.portal-detail-block-title,
+.portal-detail-widget-header-title {
+  font-weight: var(--widget-header-font-weight);
+  font-size: var(--widget-header-font-size);
+  line-height: 1.4;
+  color: var(--portal-detail-value-color);
+}
+.portal-detail-subcard-title,
+.task-description-title {
+  font-weight: var(--widget-header-font-weight);
+  font-size: var(--default-font-size);
+  color: var(--portal-detail-value-color);
+}
+.portal-detail-column-title {
+  color: var(--portal-detail-label-color);
+  font-size: var(--default-font-size);
+  font-weight: 400;
+  line-height: normal;
+}
+
+/* ---- Shared: summary card header (identity row) ---- */
+.portal-detail-body .task-detail-header-row,
+.portal-detail-body .case-detail-header-row {
+  display: flex !important;
+  align-items: center;
+  margin-bottom: 0;
+  justify-content: space-between;
+  gap: 1.1429rem;
+}
+.task-detail-header-row .task-detail-identity,
+.case-detail-header-row .case-detail-identity {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.task-detail-header-row .task-detail-header-actions.action-container,
+.case-detail-header-row .case-detail-header-actions.action-container {
+  flex: 0 0 auto;
+  justify-content: flex-end;
+}
+.task-detail-identity,
+.case-detail-identity {
+  display: flex;
+  align-items: center;
+  gap: 1.0714rem;
+}
+.task-detail-name-row,
+.case-detail-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4286rem;
+}
+.task-detail-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: var(--small-font-size);
+  font-weight: 500;
+  line-height: normal;
+  color: var(--portal-detail-eyebrow-color);
+}
+.task-detail-name {
+  font-weight: var(--widget-header-font-weight);
+  font-size: var(--widget-header-font-size);
+  color: var(--portal-detail-value-color);
+}
+.task-detail-pin-indicator {
+  color: var(--primary-color);
+}
+.task-detail-subtitle {
+  color: var(--portal-detail-label-color);
+  font-size: var(--small-font-size);
+  font-weight: 400;
+}
+.task-detail-header-actions .task-action-item-label {
+  font-size: var(--default-font-size);
+}
+.task-detail-header-actions .task-action-item.start-task-action .task-action-item-label {
+  font-weight: 400;
+}
+
+/* Delegate Task link in the Role & User sub-card header */
+.task-detail-delegate-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4286rem;
+  color: var(--primary-color);
+  font-size: var(--default-font-size);
+  font-weight: 500;
+  line-height: 1;
+}
+.task-detail-delegate-link .ti,
+.task-business-case .ti,
+.task-detail-attr .task-detail-attr-value .ti,
+.portal-pill-btn .ti {
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.task-and-case-information .content-field .task-business-case,
+.task-and-case-information .content-field .ti-external-link {
+  color: var(--primary-color);
+}
+.task-and-case-information .content-field .task-business-case {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.2857rem;
+  max-width: 100%;
+  vertical-align: middle;
+  font-size: var(--default-font-size);
+  font-weight: 400;
+}
+.task-and-case-information .content-field .task-business-case .ti-external-link {
+  flex: 0 0 auto;
+  font-size: var(--default-font-size);
+  line-height: 1;
+}
+
+/* Shared: action-menu trigger ("...") in the summary card header ----------------------------------------*/
+.task-detail-header-actions,
+.case-detail-header-actions {
+  gap: 0.7143rem;
+}
+.ui-sidestep-action.portal-icon-btn-round .ti {
+  font-size: var(--portal-icon-size-lg);
+  line-height: 1;
+}
+
+/* Attribute strip: Priority | State | Due | Workflow ----------------------------------------*/
+.task-detail-attr .portal-detail-column-title,
+.case-detail-attr .portal-detail-column-title {
+  font-size: var(--small-font-size);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.0714rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.task-detail-attr .task-detail-attr-value {
+  display: flex;
+  align-items: center;
+  gap: 0.4286rem;
+  color: var(--portal-detail-value-color);
+  font-size: var(--default-font-size);
+  font-weight: 500;
+  line-height: 1.2143rem;
+  min-width: 0;
+  overflow: hidden;
+}
+/* "See details" (Workflow) is a primary-colored link, not a plain value */
+.task-detail-attr .task-detail-attr-value a[id$=":workflow-event-link"],
+.task-detail-attr .task-detail-attr-value a[id$=":workflow-event-link"] .ti {
+  color: var(--primary-color);
+}
+
+.portal-detail-body .separator-task-detail.ui-divider,
+.portal-detail-body .separator-task-detail {
+  border-color: var(--portal-detail-divider-color);
+  margin: var(--portal-detail-card-gap) 0;
+  padding: 0;
+}
+body .portal-detail-body .separator-task-detail.ui-divider:before {
+  border-top-color: var(--portal-detail-divider-color);
+}
+
+/* Case Detail UI redesign (IVYPORTAL-20779) ----------------------------------------*/
+
+/* ---- Summary card: identity row -------------------------------------------- */
+.task-detail-identity > .flex-column,
+.case-detail-identity > .flex-column {
+  gap: 0.3571rem;
+}
+.case-detail-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: var(--small-font-size);
+  font-weight: 500;
+  line-height: normal;
+  color: var(--portal-detail-eyebrow-color);
+}
+/* Overrides module.css `.case-detail-name` (list/header styling) inside the card. */
+.portal-detail-body .case-detail-name {
+  font-weight: var(--widget-header-font-weight);
+  font-size: var(--widget-header-font-size);
+  line-height: normal;
+  color: var(--portal-detail-value-color);
+}
+.case-detail-pin-indicator {
+  color: var(--portal-detail-accent-color);
+}
+.case-detail-subtitle {
+  color: var(--portal-detail-label-color);
+  font-size: var(--small-font-size);
+  font-weight: 400;
+  line-height: normal;
+}
+
+/* Shared: summary-card attribute strip ----------------------------------------*/
+.case-detail-attr-strip,
+.task-detail-attr-strip {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  gap: 3.5714rem;
+  row-gap: 1.0714rem;
+  padding: 1.0714rem 3.5714rem;
+  min-height: 5.2857rem;
+  border: 1px solid var(--portal-detail-card-border-color);
+  border-radius: var(--portal-detail-card-radius);
+  background: var(--portal-detail-strip-bg);
+}
+.case-detail-attr-strip > .case-detail-attr,
+.task-detail-attr-strip > .task-detail-attr {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+}
+.case-detail-attr-strip > .case-detail-attr:not(:first-child)::before,
+.task-detail-attr-strip > .task-detail-attr:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  left: -1.7857rem;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2.1429rem;
+  border-left: 1px solid var(--portal-detail-strip-divider-color);
+}
+.case-detail-attr .case-detail-attr-value {
+  display: flex;
+  align-items: center;
+  gap: 0.4286rem;
+  color: var(--portal-detail-value-color);
+  font-size: var(--default-font-size);
+  font-weight: 500;
+  line-height: 1.2143rem;
+  min-width: 0;
+  overflow: hidden;
+}
+.case-detail-attr .case-detail-attr-value .case-header-default-cell,
+.case-detail-attr .case-detail-attr-value .state-with-indicator {
+  display: inline-flex;
+  align-items: center;
+}
+
+.task-detail-attr .task-detail-attr-value .ti,
+.task-detail-attr .task-detail-attr-value .tif,
+.case-detail-attr .case-detail-attr-value .ti,
+.case-detail-attr .case-detail-attr-value .tif {
+  flex: 0 0 auto;
+}
+
+/* `.priority-cell .priority-icon` floats (module.css), so it adds no height to the inline
+   `.ui-inplace-display`: its hover highlight would only paint a baseline-height strip under the row.
+   Un-float inside the strip and let the display box size itself to the content instead. */
+.task-detail-attr .task-detail-attr-value .task-details-priority .priority-cell,
+.task-detail-attr .task-detail-attr-value .task-details-priority .priority-cell .priority-icon {
+  float: none;
+  display: inline-flex;
+  align-items: center;
+}
+.task-detail-attr .task-detail-attr-value .task-details-priority .portal-edit-inplace .ui-inplace-display {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2857rem 0.4286rem;
+}
+.task-detail-attr .task-detail-attr-value .task-details-priority .edit-priority-inplace .ui-inplace-display {
+  margin-left: -0.4286rem;
+}
+
+/* ---- Details card: heading, description, sub-cards -------------------- */
+.portal-detail-details-card .portal-detail-details-heading {
+  margin-bottom: var(--portal-detail-card-gap);
+}
+/* Description */
+.portal-detail-details-card .case-details-description-title {
+  margin-bottom: 0.7143rem;
+}
+.portal-detail-details-card .case-details-description-title .portal-detail-subcard-title {
+  display: flex;
+  align-items: center;
+  gap: 0.7143rem;
+  padding: 0 !important;
+}
+.portal-detail-details-card .case-details-description-content {
+  padding: 0 !important;
+}
+.portal-detail-details-card .case-detail-description,
+.portal-detail-details-card .case-description-output {
+  font-size: var(--default-font-size);
+  font-weight: 400;
+  color: var(--portal-detail-value-color);
+}
+.portal-detail-details-card .case-detail-description {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+.portal-detail-details-card .case-detail-description > .scroll-panel {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.portal-detail-details-card .case-detail-description-input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Role & User information + Time Information side by side */
+.portal-detail-subcards-row {
+  display: flex;
+  align-items: stretch;
+  gap: var(--portal-detail-card-gap);
+  flex-wrap: wrap;
+}
+.portal-detail-subcards-row > .portal-detail-inner-card {
+  flex: 1 1 18rem;
+  min-width: 0;
+}
+/* Business case sub-card */
+.portal-detail-trailing-card {
+  margin-top: var(--portal-detail-card-gap);
+}
+
+/* Sub-card internals: title + key/value rows */
+.portal-detail-inner-card .portal-detail-subcard-title {
+  padding: 0 0 0.7143rem 0 !important;
+  border-bottom: 1px solid var(--portal-detail-divider-color);
+}
+.portal-detail-inner-card .portal-detail-subcard-title .text-ellipsis {
+  padding: 0;
+}
+.portal-detail-inner-card .content-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.1429rem;
+  min-height: 1.7857rem;
+  margin: 0;
+  padding: 0.5714rem 0;
+}
+.portal-detail-inner-card .content-field + .content-field {
+  border-top: 1px solid var(--portal-detail-divider-color);
+}
+.portal-detail-kv-label {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+.portal-detail-kv-value {
+  flex: 0 1 auto;
+  min-width: 0;
+  text-align: right;
+  font-size: var(--default-font-size);
+  font-weight: 400;
+  color: var(--portal-detail-value-color);
+}
+.portal-detail-kv-value.flex {
+  justify-content: flex-end;
+}
+/* Avatar + name inside a value cell (Creator) */
+.portal-detail-kv-value .ui-avatar,
+.portal-detail-kv-value .avatar,
+.portal-detail-kv-value img {
+  width: 1.7857rem;
+  height: 1.7857rem;
+  border-radius: 50%;
+}
+.portal-detail-body .business-case-information .case-detail-business-case {
+  color: var(--portal-detail-accent-color);
+  font-size: var(--default-font-size);
+  font-weight: 400;
+}
+
+/* Shared: widget-card header row (title + actions) ----------------------------------------*/
+.portal-detail-widget-header {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 !important;
+  padding-bottom: 1.1429rem !important;
+  border-bottom: 1px solid var(--portal-detail-divider-color);
+  margin-bottom: var(--portal-detail-card-gap);
+}
+.portal-detail-body .case-detail-header-card .case-detail-section-title,
+.portal-detail-body .task-detail-header-card .task-detail-section-title {
+  padding-bottom: 0 !important;
+  border-bottom: none;
+  margin-bottom: 0;
+}
+/* Gap between the header actions */
+.portal-detail-widget-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.7143rem;
+}
+.portal-detail-widget-header-actions .u-mar-right-10 {
+  margin-right: 0;
+}
+.related-task-section-header-actions .related-task-export-to-excel,
+.related-case-section-header-actions .related-case-export-to-excel {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Tables (Documents, Related tasks, Related cases, History) ----------------------------------------*/
+.portal-detail-body .ui-datatable thead th {
+  box-sizing: border-box;
+  height: 4.0714rem;
+  padding: 1.1429rem 0.8571rem;
+  background: var(--portal-detail-table-cell-bg);
+  border: none;
+  border-bottom: 1px solid var(--portal-detail-table-header-border-color);
+  font-size: var(--default-font-size);
+  font-weight: 400;
+  color: var(--portal-detail-value-color);
+}
+.portal-detail-body .ui-datatable tbody td {
+  box-sizing: border-box;
+  height: 4.0714rem;
+  padding: 1.1429rem 0.8571rem;
+  background: var(--portal-detail-table-cell-bg);
+  border: none;
+  border-bottom: 0.5px solid var(--portal-detail-table-row-border-color);
+  font-size: var(--default-font-size);
+  font-weight: 400;
+  color: var(--portal-detail-value-color);
+}
+/* No row striping — keep every row on the card background */
+.portal-detail-body .ui-datatable tbody tr.ui-datatable-even > td,
+.portal-detail-body .ui-datatable tbody tr.ui-datatable-odd > td {
+  background: var(--portal-detail-table-cell-bg);
+}
+.portal-detail-body .ui-datatable tbody td a,
+.portal-detail-body .ui-datatable tbody td .ui-commandlink {
+  font-weight: 500;
+}
+.portal-detail-body .ui-datatable tbody td .case-document-name-text,
+.portal-detail-body .ui-datatable tbody td .task-document-name-text {
+  color: var(--portal-detail-accent-color);
+}
+/* Avatar in a table cell */
+.portal-detail-body .ui-datatable tbody td .ui-avatar,
+.portal-detail-body .ui-datatable tbody td .avatar,
+.portal-detail-body .ui-datatable tbody td .has-avatar img {
+  width: 1.7857rem;
+  height: 1.7857rem;
+  border-radius: 50%;
+}
+.portal-detail-body .ui-datatable tbody td .name-after-avatar {
+  font-size: var(--small-font-size);
+  font-weight: 400;
+}
+.case-details-business-details-table {
+  clear: both;
+}
+.portal-detail-body .case-details-document-download-icon,
+.portal-detail-body .task-details-document-download-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0.3571rem;
+  border: var(--portal-icon-btn-border-width) solid var(--start-btn-border-color);
+  border-radius: 0.5rem;
+  background: var(--start-btn-bg);
+  color: var(--portal-detail-accent-color);
+  font-size: var(--default-font-size) !important;
+  line-height: 1 !important;
+}
+
+/* Shared: action popup menu ----------------------------------------*/
+.portal-action-menu.ui-overlaypanel,
+.portal-action-menu.ui-menu {
+  box-sizing: border-box;
+  min-width: 14rem;
+  width: max-content;
+  max-width: 22.8571rem;
+  padding: 0;
+  border: none;
+  border-radius: var(--portal-action-menu-radius);
+  background: var(--portal-detail-card-bg);
+  box-shadow: var(--portal-action-menu-shadow);
+  font-size: var(--default-font-size);
+  white-space: nowrap;
+}
+/* Freya draws the callout arrow with these; Figma has none. */
+.portal-action-menu.ui-overlaypanel::before,
+.portal-action-menu.ui-overlaypanel::after {
+  display: none;
+}
+.portal-action-menu.ui-overlaypanel .ui-overlaypanel-content {
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+.portal-action-menu .case-side-steps-panel,
+.portal-action-menu .task-additional-actions-panel {
+  display: contents;
+}
+
+.portal-action-menu .portal-action-menu-item,
+.portal-action-menu.ui-menu .ui-menuitem-link {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 0.3571rem;
+  width: 100%;
+  min-height: 3.1429rem;
+  padding: 0 var(--portal-detail-subcard-padding);
+  margin: 0;
+  float: none;
+  clear: none;
+  font-size: var(--default-font-size);
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: var(--portal-detail-value-color);
+  border-top: 1px solid var(--portal-action-menu-divider-color);
+}
+.portal-action-menu .portal-action-menu-item {
+  justify-content: space-between;
+}
+.portal-action-menu.ui-overlaypanel > .ui-overlaypanel-content > .portal-action-menu-item:first-child,
+.portal-action-menu.ui-menu .ui-menuitem:first-child .ui-menuitem-link {
+  border-top: none;
+}
+.portal-action-menu .case-side-steps-panel > .portal-action-menu-item:first-child,
+.portal-action-menu .task-additional-actions-panel > .portal-action-menu-item:first-child {
+  border-top-color: var(--ivy-primary-color-grey-light);
+}
+
+.portal-action-menu .portal-action-menu-icon,
+.portal-action-menu.ui-menu .ui-menuitem-icon {
+  flex: 0 0 auto;
+  width: 1.2rem;
+  height: 1.2rem;
+  line-height: 1;
+  margin: 0;
+}
+.portal-action-menu .portal-action-menu-label,
+.portal-action-menu.ui-menu .ui-menuitem-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.portal-action-menu .portal-action-menu-trail {
+  flex: 0 0 auto;
+  margin-left: auto;
+  line-height: 1;
+  color: var(--portal-detail-accent-color);
+}
+body .portal-action-menu .portal-action-menu-item.color-destroy {
+  color: var(--portal-action-menu-destroy-color) !important;
+}
+/* Let the icon follow the label instead of keeping the default text colour. */
+.portal-action-menu .color-destroy .portal-action-menu-icon {
+  color: inherit;
+}
+.portal-action-menu .additional-case-details-link {
+  margin-left: 0;
+  font-size: inherit;
+  font-weight: 400;
+}
+.portal-action-menu.ui-menu .ui-menu-list {
+  padding: 0;
+  margin: 0;
+}
+.portal-action-menu.ui-menu .ui-divider.separator {
+  display: none;
+}
+.portal-action-menu.ui-menu .ui-divider.separator + .ui-menuitem > .ui-menuitem-link,
+.portal-action-menu.ui-menu .ui-menuitem:has(> .ui-divider.separator) + .ui-menuitem > .ui-menuitem-link {
+  border-top-color: var(--ivy-primary-color-grey-light);
+}
+
+/* Shared: standalone detail pages (documents / note history) ----------------------------------------*/
+.portal-detail-page-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+  min-width: 0;
+  gap: var(--portal-detail-card-gap);
+  margin: var(--portal-detail-grid-inset);
+}
+.portal-detail-page-content > .card {
+  margin-bottom: 0;
+}
+
+/* Shared: mid-size dialogs (share link, Excel export status, add note) ----------------------------------------*/
+.share-dialog.ui-dialog,
+.export-status-dialog.ui-dialog,
+.portal-detail-note-dialog.ui-dialog {
+  min-width: min(50vw, 750px);
+  max-width: 750px;
+}
+@media screen and (max-width: 40em) {
+  .share-dialog.ui-dialog,
+  .export-status-dialog.ui-dialog,
+  .portal-detail-note-dialog.ui-dialog {
+    min-width: 85vw;
+    max-width: 96vw;
+  }
+}
+
+/* Responsive ----------------------------------------*/
+@media screen and (max-width: 960px) {
+  .case-detail-attr-strip,
+  .task-detail-attr-strip {
+    gap: 1.4286rem;
+    padding: 1.0714rem 1.4286rem;
+  }
+  .case-detail-attr-strip > .case-detail-attr:not(:first-child)::before,
+  .task-detail-attr-strip > .task-detail-attr:not(:first-child)::before {
+    left: -0.7143rem;
+  }
+}
+@media screen and (max-width: 640px) {
+  .case-detail-attr-strip > .case-detail-attr,
+  .task-detail-attr-strip > .task-detail-attr {
+    flex-basis: 100%;
+  }
+  .case-detail-attr-strip > .case-detail-attr::before,
+  .task-detail-attr-strip > .task-detail-attr::before {
+    display: none;
+  }
+  .portal-detail-subcards-row > .portal-detail-inner-card {
+    flex-basis: 100%;
+  }
+}
+
+.dashboard-configuration-page .card, .dashboard-configuration-page .ui-g > .card,
+.absences-management-page .card {
+  border-radius: 15px !important;
+  box-shadow: var(--card-box-shadow) !important;
 }
