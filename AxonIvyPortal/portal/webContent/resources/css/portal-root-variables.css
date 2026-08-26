@@ -206,6 +206,8 @@
   --portal-detail-grid-inset: 10px;
   --portal-action-menu-radius: 10px;
 
+  --dashboard-widget-dashed-outline-mask: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='15' ry='15' stroke='black' stroke-width='2' stroke-dasharray='10%2c 11' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+
   /* Dashboard Icons */
   --ivy-dashboard-icon-bg-light: hsl(0, 0%, 97.25%);
   --ivy-dashboard-icon-border-light: var(--ivy-portal-color-grey-200);

@@ -147,6 +147,23 @@
   outline: 3px solid var(--ivy-primary-light-color);
 }
 
+.grid-stack-item:has(> .dashed-outline) {
+  --dashed-outline-width: 1px;
+  --dashed-outline-gap: 10px;
+}
+
+.grid-stack-item:has(> .dashed-outline)::before {
+  content: "";
+  position: absolute;
+  inset: calc(var(--dashed-outline-gap) - var(--dashed-outline-width));
+  border-radius: 15px;
+  pointer-events: none;
+  z-index: 1;
+  background-color: var(--dashboard-widget-dashed-outline-color);
+  -webkit-mask-image: var(--dashboard-widget-dashed-outline-mask);
+  mask-image: var(--dashboard-widget-dashed-outline-mask);
+}
+
 .ui-draggable:not(.ui-draggable-disabled)>.ui-draggable-handle {
   cursor: move;
 }
