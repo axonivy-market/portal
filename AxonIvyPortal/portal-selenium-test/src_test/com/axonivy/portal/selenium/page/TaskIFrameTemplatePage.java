@@ -222,6 +222,10 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     new NewDashboardPage();
   }
 
+  public SelenideElement getEmployeeField() {
+    return $(By.id("leave-request:fullname")).shouldBe(Condition.appear);
+  }
+
   public void inputValue(String employee, String from, String to, String representation) {
     SelenideElement fullNameElement =
         $(By.id("leave-request:fullname")).shouldBe(Condition.appear).shouldBe(Condition.editable);
