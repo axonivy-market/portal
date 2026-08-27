@@ -25,18 +25,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import jakarta.inject.Singleton;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.container.AsyncResponse;
-import jakarta.ws.rs.container.Suspended;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -53,11 +41,22 @@ import ch.ivy.addon.portalkit.util.RedeploymentUtils;
 import ch.ivyteam.ivy.cluster.restricted.IClusterManager;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
-import ch.ivyteam.ivy.server.restricted.EngineMode;
+// import ch.ivyteam.ivy.server.restricted.EngineMode;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import io.swagger.v3.oas.annotations.Hidden;
+import jakarta.inject.Singleton;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.container.AsyncResponse;
+import jakarta.ws.rs.container.Suspended;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 /**
  * Chat service uses asynchronous REST communication:
@@ -97,7 +96,7 @@ public class ChatService {
   private Map<String, Integer> reachedLimitedConnectionCounters = new ConcurrentHashMap<>();
   /** Only necessary if in cluster */
   private static String nodeName;
-  public static final boolean IS_STANDARD_MODE = EngineMode.isNot(EngineMode.ENTERPRISE);
+  public static final boolean IS_STANDARD_MODE = true;//EngineMode.isNot(EngineMode.ENTERPRISE);
 
   @POST
   @Path("/messages/{clientId}/{lastResponseId}/{lastResponseStatus}")

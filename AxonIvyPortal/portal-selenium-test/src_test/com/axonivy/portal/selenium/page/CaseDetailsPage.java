@@ -398,8 +398,12 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   public void onClickHistoryIcon() {
-    $("a[id$=':case-histories:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).scrollIntoView(new ScrollIntoViewOptions(Behavior.instant, Block.end, Inline.end));
-    $("a[id$=':case-histories:add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    // The "Add note" trigger is no longer an "a" link (0 matches against the failure DOM snapshot with
+    // that tag); it's now rendered as a "button" with the same id suffix
+    // (class "... case-details-document-add-link portal-icon-btn-round portal-icon-btn-accent",
+    // aria-label "Add note"). Match by id suffix only, tag-agnostic, so it works regardless of element type.
+    $("[id$=':case-histories:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).scrollIntoView(new ScrollIntoViewOptions(Behavior.instant, Block.end, Inline.end));
+    $("[id$=':case-histories:add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void onClickDestroyCase() {
@@ -489,8 +493,15 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickRelatedCaseActionButton(int index) {
-    WebElement element = $$(".related-cases .more-column .action-link").get(index);
-    element.click();
+    // The related-cases "More" column no longer renders a plain "a.action-link" (0 matches against the
+    // failure DOM snapshot in that scoped form); the cell now renders a "case-header-action-cell" div
+    // with an icon-only button, id suffix "...:action-step-component:action-steps-menu" - same
+    // redesign as CaseWidgetNewDashBoardPage's Actions column. Target it directly by id suffix, the
+    // same way openCasesOfCasePageViaDetailsAction() below already does for the panel's own link.
+    String actionButton = String.format(
+        "[id$='related-cases-widget:related-cases:%d:action-step-component:action-steps-menu']", index);
+    waitForElementDisplayed(By.cssSelector(actionButton), true);
+    findElementByCssSelector(actionButton).click();
     String actionPanel =
         String.format("[id$='related-cases-widget:related-cases:%d:action-step-component:action-steps-panel']", index);
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
@@ -1029,7 +1040,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isAddNoteButtonDisplayed(boolean expected) {
-    return isElementDisplayed(By.cssSelector("a[id$='case-histories:add-note-command']"), expected);
+    // Same redesign as onClickHistoryIcon() above - the trigger is now a "button", not an "a".
+    return isElementDisplayed(By.cssSelector("[id$='case-histories:add-note-command']"), expected);
   }
 
   public boolean isShowMoreNoteButtonDisplayed(boolean expected) {
