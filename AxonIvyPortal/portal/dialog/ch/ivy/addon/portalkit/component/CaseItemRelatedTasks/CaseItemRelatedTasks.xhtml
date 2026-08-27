@@ -85,11 +85,29 @@
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldActivator)}">
           <ic:com.axonivy.portal.component.Responsibles responsibles="#{task.responsibles()}" />
         </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/WORKER')}"
+          styleClass="related-task-worker-column" field="WORKER" filterable="false" sortable="false"
+          visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldWorker)}">
+          <pc:securityMemberNameAndAvatar securityMember="#{task.getWorkerUser()}"
+            displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.getWorkerUser(), task.getWorkerUserName())}" />
+        </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}"
           styleClass="related-task-id-column u-truncate-text" field="ID" sortBy="#{ID}" filterable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldId)}">
           <h:outputText id="related-task-id-column" value="#{task.id}" />
           <p:tooltip for="related-task-id-column" value="#{task.id}" trackMouse="true" hideEvent="mouseleave click" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/BUSINESS_CASE_ID')}"
+          styleClass="related-task-business-case-id-column u-truncate-text" field="BUSINESS_CASE_ID" sortBy="#{BUSINESS_CASE_ID}" filterable="false"
+          visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldBusinessCaseId)}">
+          <h:outputText id="related-task-business-case-id" value="#{task.getCase() == null ? '' : task.getCase().getBusinessCase().getId()}" />
+          <p:tooltip for="related-task-business-case-id" value="#{task.getCase() == null ? '' : task.getCase().getBusinessCase().getId()}" trackMouse="true" hideEvent="mouseleave click" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/TECHNICAL_CASE_ID')}"
+          styleClass="related-task-technical-case-id-column u-truncate-text" field="TECHNICAL_CASE_ID" sortBy="#{TECHNICAL_CASE_ID}" filterable="false"
+          visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldTechnicalCaseId)}">
+          <h:outputText id="related-task-technical-case-id" value="#{task.getCase() == null ? '' : task.getCase().getId()}" />
+          <p:tooltip for="related-task-technical-case-id" value="#{task.getCase() == null ? '' : task.getCase().getId()}" trackMouse="true" hideEvent="mouseleave click" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME')}"
           styleClass="related-task-created-column u-truncate-text" field="CREATION_TIME" sortBy="#{CREATION_TIME}" filterable="false"

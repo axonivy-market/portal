@@ -18,7 +18,7 @@
         <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(data.selectedProcess.getIcon())} process-info-icon" />
       </div>
       <div id="header" class="ui-g-11 ui-xl-11 ui-lg-11 ui-md-10 ui-sm-9 text-left header-process-name">
-        <h2>#{data.selectedProcess.processName}</h2>
+        <p class="text-style-h2">#{data.selectedProcess.processName}</p>
       </div>
       <div class="ui-g-12 process-info-description" jsf:rendered="#{data.selectedProcess.description ne ''}">
         <h:outputText id="process-description" value="#{data.selectedProcess.description}" />

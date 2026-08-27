@@ -25,7 +25,7 @@
   </h:panelGroup>
 
   <div class="text-center">
-    <h3 id="#{not empty id ? id : widgetVar}-dialog-title">#{not empty headerText? headerText : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmationHeaderText')}</h3>
+    <p id="#{not empty id ? id : widgetVar}-dialog-title" class="text-style-h3">#{not empty headerText? headerText : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmationHeaderText')}</p>
   </div>
 
   <ui:insert name="dialogContentSection" />

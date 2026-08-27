@@ -1613,8 +1613,34 @@ body.in-dialog .ui-widget-overlay {
   cursor: move;
 }
 
-.axonivy-loader h5 {
+.option-item-long-label {
+  max-width: 120px;
+  line-height: 1.2;
+}
+
+.axonivy-loader p {
   color: var(--ajax-loader-color);
+  margin-top: 5px;
+  text-align: center;
+  font-size: 1em;
+}
+
+.login-body .login-wrapper .login-panel > p.text-style-h4 {
+  font-weight: 600;
+  margin: 1.5rem 0 1rem 0;
+  color: inherit;
+}
+
+.login-footer p.text-style-h4 {
+  line-height: 22px;
+  margin: 0 32px 0 0;
+}
+
+.login-footer p.text-style-h6 {
+  line-height: 17px;
+  margin: 0;
+  color: rgba(41, 50, 65, 0.5);
+  font-weight: 500;
 }
 
 .result-message__icon {

@@ -169,7 +169,7 @@
     <h:form id="manage-role-details-form" styleClass="manage-role-details-form MarTop5">
       <h:panelGroup styleClass="w-full" layout="block" rendered="#{roleManagementBean.canModifyRoleInformation}">
         <div class="field ">
-          <h5 class="role-management-title" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/RoleInformation')}</h5>
+          <p class="role-management-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/RoleInformation')}</p>
         </div>
 
         <div class="ui-g-12 u-no-padding-top u-no-padding-bottom">
@@ -221,7 +221,7 @@
 
       <h:panelGroup layout="block" styleClass="w-full" rendered="#{roleManagementBean.canModifyUserAssignment}">
         <h:panelGroup layout="block" styleClass="field mb-4 #{roleManagementBean.canModifyRoleInformation ? 'mt-5' : ''}">
-          <h5 class="role-management-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/UserAssignment')}</h5>
+          <p class="role-management-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/UserAssignment')}</p>
         </h:panelGroup>
 
         <h:panelGroup styleClass="field" layout="block">
