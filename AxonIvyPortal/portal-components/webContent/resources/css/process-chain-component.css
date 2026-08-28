@@ -113,7 +113,6 @@
   .process-chain-container.vertical-process-chain-container {
     display: none !important;
   }
-  .task-name-vertical-process-chain, .task-name-vertical-process-chain.vertical-chain-shape-line,
   .task-template-button.vertical-process-chain.vertical-chain-shape-line,
   .task-template-button.vertical-process-chain {
     margin-left: auto !important;
@@ -373,14 +372,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 .task-template-content.vertical-process-chain.vertical-chain-shape-line,
 .task-template-button.vertical-process-chain.vertical-chain-shape-line {
   width: calc(100% - 70px);
-}
-
-.task-name-vertical-process-chain {
-  margin-left: 140px;
-}
-
-.task-name-vertical-process-chain.vertical-chain-shape-line {
-  margin-left: 70px;
 }
 
 .line-process-chain.vertical-process-chain {
