@@ -947,11 +947,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Advanced settings
         ChangeImage: Change image
-        DarkMode: Dark mode
+        DarkMode: Dark
         ImagePreview: Image preview
-        LightMode: Light mode
+        LightMode: Light
         ConfigurationHeader: Welcome widget configuration
         ChooseAFit: Choose a fit
+        ChooseMode: Choose which mode you want to configure
         DisplayText: Display text
         Greeting:
           Afternoon: Good afternoon

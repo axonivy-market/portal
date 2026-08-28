@@ -951,9 +951,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Erweiterte Einstellungen
         ChangeImage: Bild ändern
-        DarkMode: Dunkler Modus
+        ChooseMode: Wählen Sie den Modus, den Sie konfigurieren möchten
+        DarkMode: Dunkel
         ImagePreview: Bildvorschau
-        LightMode: Heller Modus
+        LightMode: Hell
         ConfigurationHeader: Konfiguration des Willkommens-Widgets
         ChooseAFit: Wählen Sie eine Passform
         DisplayText: Anzeigetext
