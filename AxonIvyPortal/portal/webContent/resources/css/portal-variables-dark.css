@@ -451,6 +451,19 @@
   --portal-package-alert-warning-background-color: var(--ivy-tertinary-color-yellow-light);
   --portal-package-alert-warning-border-color: var(--ivy-tertinary-color-yellow-medium);
   --portal-package-alert-warning-text-color: var(--ivy-tertinary-color-yellow-dark);
+
+  /* Project info status badges (dark mode) */
+  --project-info-success-bg: hsl(136, 30%, 20%);
+  --project-info-success-text: hsl(136, 45%, 75%);
+  --project-info-danger-bg: hsl(0, 30%, 22%);
+  --project-info-danger-text: hsl(0, 55%, 78%);
+  --project-info-warning-bg: hsl(45, 30%, 20%);
+  --project-info-warning-text: hsl(45, 55%, 75%);
+  --project-info-info-bg: hsl(195, 30%, 20%);
+  --project-info-info-text: hsl(195, 55%, 78%);
+  --project-info-neutral-bg: hsl(0, 0%, 27%);
+  --project-info-neutral-text: hsl(0, 0%, 85%);
+  --project-info-selected-row-bg: hsla(0, 0%, 100%, 0.08);
   
   --dashboard-icon-bg-color: var(--ivy-portal-color-grey-850);
   --dashboard-icon-border-color: var(--ivy-portal-color-grey-750);

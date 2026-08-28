@@ -19,8 +19,13 @@ public class ProjectVersionPage extends TemplatePage {
     return $("[id='project-version:portal-version-label']").isDisplayed();
   }
 
+  public boolean isFirstVersionDisplayed() {
+    return $("[id='project-version:application-list:0:application-version-table:0:application-version']")
+        .isDisplayed();
+  }
+
   public boolean isFirstProjectDisplayed() {
-    return $("[id='project-version:application-list:0:application-project-version-table:0:project-name']")
+    return $("[id='project-version:application-list:0:application-project-table:0:project-name']")
         .isDisplayed();
   }
 
