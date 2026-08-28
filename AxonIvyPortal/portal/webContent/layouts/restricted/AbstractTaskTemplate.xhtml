@@ -49,7 +49,9 @@
         <c:set var="isCaseViewable" value="#{!caseWidgetBean.isHiddenCase(case) and caseWidgetBean.isCaseFound(case)}" scope="request" />
         <ui:insert name="breadCrumb" />
         <p:inputText id="application-name-for-title" value="#{masterDataBean.applicationName}" type="hidden"/>
-        <h:panelGroup id="header-container" layout="block" styleClass="task-header-container js-task-header-container task-template-title-horizontal-container card">
+        <c:set var="headerStages" value="#{abstractTaskTemplateBean.getStagesBaseOnCurrentStage(case, steps)}" scope="request" />
+        <c:set var="isHeaderEmpty" value="#{(isHideTaskName or currentTask eq null) and empty steps and empty headerStages and isHideCaseInfo and isHideTaskAction}" scope="request" />
+        <h:panelGroup id="header-container" layout="block" styleClass="task-header-container js-task-header-container #{isHeaderEmpty ? '' : 'task-template-title-horizontal-container card'}">
           <h:panelGroup id="task-template-title" layout="block" rendered="#{currentTask ne null}"
             styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'js-task-name-vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
             <ui:insert name="taskName">
@@ -70,7 +72,7 @@
                 isShowAllSteps="#{isShowAllSteps}"
                 actualStepIndex="#{actualStepIndex}" steps="#{steps}" stepIndexes="#{stepIndexes}"
                 currentIndex="#{abstractTaskTemplateBean.getIndexOfCurrentStage(case)}"
-                stages="#{abstractTaskTemplateBean.getStagesBaseOnCurrentStage(case, steps)}" />
+                stages="#{headerStages}" />
             </ui:insert>
           </h:panelGroup>
   
@@ -123,7 +125,7 @@
             isShowAllSteps="#{isShowAllSteps}"
             actualStepIndex="#{actualStepIndex}" steps="#{steps}" stepIndexes="#{stepIndexes}"
             currentIndex="#{abstractTaskTemplateBean.getIndexOfCurrentStage(case)}"
-            stages="#{abstractTaskTemplateBean.getStagesBaseOnCurrentStage(case, steps)}" />
+            stages="#{headerStages}" />
         </h:panelGroup>
 
         <h:panelGroup id="content-container" layout="block" 
