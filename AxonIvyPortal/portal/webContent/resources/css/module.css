@@ -4321,7 +4321,7 @@ _:-ms-fullscreen, :root .content-link-history {
 .task-title {
   flex: 1;
   min-width: 0;
-  font-size: calc(8 / 7 * 1rem);
+  font-size: 1.143rem;
   font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
