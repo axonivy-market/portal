@@ -1,16 +1,15 @@
 /*Style for stages process chain -----------------------------------------------------------------------------------*/
-.circle-process-chain .circle-horizontal-process-step.visited .circle-horizontal-step-container span:before {
-    border-color: var(--process-chain-menu-color);
-}
-
-.circle-process-chain .circle-horizontal-process-step.waiting .circle-horizontal-step-container {
-  border: solid 2px var(--process-chain-menu-color);
-  background-color: var(--process-chain-circle-horizontal-waiting-step-number-container-background-color);
-}
-
 .circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
-  background-color: var(--process-chain-menu-color);
-  border: solid 2px var(--process-chain-circle-step-container-border);
+  background-color: var(--process-chain-circle-horizontal-waiting-step-number-container-background-color);
+  border: solid 1px var(--dashboard-icon-border-color, hsla(0, 0%, 92%, 1));
+}
+
+.circle-process-chain .circle-horizontal-process-step.current .circle-horizontal-step-container,
+.circle-process-chain .circle-horizontal-process-step.visited .circle-horizontal-step-container,
+.process-chain-mobile-container .circle-horizontal-step-container {
+  background-color: var(--start-btn-bg, hsla(196, 43%, 93%, 1));
+  border-color: var(--start-btn-border-color, hsla(195, 42%, 71%, 1));
+  color: var(--start-btn-text-color, hsla(195, 100%, 29%, 1));
 }
 
 .circle-process-chain .circle-vertical-process-step.visited .circle-vertical-step-container span:before {
@@ -76,9 +75,8 @@
   font-weight: var(--process-chain-current-line-vertical-step-title-font-weight);
 }
 
-.current .cicrle-step-container, .visited .cicrle-step-container,
-.process-chain-mobile-container .circle-horizontal-process-step {
-    color: var(--process-chain-circle-step-number-color);
+.current .circle-vertical-step-container, .visited .circle-vertical-step-container {
+  color: var(--process-chain-circle-step-number-color);
 }
 
 .circle-horizontal-step-container:not(.right-steps) .step-number-container:after {
@@ -89,20 +87,12 @@
     border-top: 3px dashed var(--process-chain-circle-horizontal-step-number-container-border-top);
   }
 
-.circle-horizontal-step-container.last-step .step-number-container:after {
-  border-top: 3px dashed var(--process-chain-circle-horizontal-step-number-container-border-top);
-}
-  
 .circle-horizontal-step-container .step-number-container:before {
   border-top: 3px solid var(--process-chain-circle-horizontal-step-number-container-border-top-color);
 }
 
 .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
-  border-top: 3px solid var(--process-chain-circle-horizontal-step-number-container-border-top);
-}
-
-.circle-horizontal-process-step.visited .circle-horizontal-step-container .step-number-container:after {
-  color: var(--process-chain-circle-horizontal-step-number-container-border-top-color);
+  border-top: 1px solid var(--process-chain-circle-horizontal-step-number-container-border-top);
 }
 
 .circle-process-chain .circle-horizontal-process-step,
@@ -215,11 +205,24 @@
 
 .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
   position: absolute;
-  top: 15px;
+  top: 50%;
+  left: calc(100% + 8px);
   content: "";
-  width: 90px;
-  margin: 0 15px;
-  transform: translate(4px, 0);
+  width: 84px;
+  margin: 0;
+  transform: none;
+}
+
+.circle-process-chain .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 87px);
+  width: 5px;
+  height: 5px;
+  border-top: 1px solid var(--process-chain-circle-horizontal-step-number-container-border-top);
+  border-right: 1px solid var(--process-chain-circle-horizontal-step-number-container-border-top);
+  transform: translateY(-50%) rotate(45deg);
 }
 
 _:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
@@ -241,6 +244,11 @@ _:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle
   align-items: center;
   justify-content: center;
   position: relative;
+}
+
+.circle-process-chain .circle-horizontal-process-step .step-number-container {
+  font-size: 1.238rem;
+  line-height: 1;
 }
 
 .circle-process-chain .circle-horizontal-step-title {

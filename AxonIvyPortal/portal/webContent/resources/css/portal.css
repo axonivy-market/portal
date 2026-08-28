@@ -12,7 +12,7 @@
   overflow: hidden;
   border-radius: 16px;
   width: 227px;
-  height: fit-content;
+  height: 264px;
 }
 
 @media screen and (max-width: 320px) {
@@ -504,13 +504,6 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
   color: var(--stages-chain-current-icon-color); }
 
 /*Style for stages process chain -----------------------------------------------------------------------------------*/
-.circle-process-chain .circle-horizontal-process-step.visited .circle-horizontal-step-container span:before {
-  border-color: var(--process-chain-menu-color); }
-
-.circle-process-chain .circle-horizontal-process-step.waiting .circle-horizontal-step-container {
-  border: solid 2px var(--process-chain-menu-color);
-  background-color: var(--circle-horizontal-waiting-step-number-container-background-color); }
-
 .circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
   background-color: var(--process-chain-menu-color);
   border: solid 2px var(--circle-step-container-border); }
