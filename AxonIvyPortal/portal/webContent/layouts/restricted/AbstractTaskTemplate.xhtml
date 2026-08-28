@@ -49,7 +49,7 @@
         <c:set var="isCaseViewable" value="#{!caseWidgetBean.isHiddenCase(case) and caseWidgetBean.isCaseFound(case)}" scope="request" />
         <ui:insert name="breadCrumb" />
         <p:inputText id="application-name-for-title" value="#{masterDataBean.applicationName}" type="hidden"/>
-        <h:panelGroup id="header-container" layout="block" styleClass="task-header-container js-task-header-container #{processChainDirection eq 'VERTICAL' ? '' : 'task-template-title-horizontal-container'}">
+        <h:panelGroup id="header-container" layout="block" styleClass="task-header-container js-task-header-container #{processChainDirection eq 'VERTICAL' ? '' : 'task-template-title-horizontal-container card'}">
           <h:panelGroup id="task-template-title" layout="block" rendered="#{currentTask ne null}"
             styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain js-task-name-vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
             <ui:insert name="taskName">

@@ -254,6 +254,32 @@ a.left-sidebar-menu-icon {
   flex-wrap: wrap;
 }
 
+.task-template-title-horizontal-container.card {
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--portal-detail-card-gap);
+  padding-top: 0.884rem;
+  padding-bottom: 0.884rem;
+  margin-bottom: 10px;
+  border-radius: var(--portal-detail-card-radius);
+  box-shadow: var(--portal-detail-card-shadow);
+}
+
+.task-template-title-horizontal-container.card > .task-template-title,
+.task-template-title-horizontal-container.card > .task-template-tasks-command {
+  flex: 1 1 0;
+}
+
+.task-template-title-horizontal-container.card > .task-template-tasks-command {
+  justify-content: flex-end;
+  margin-left: 0;
+}
+
+.task-template-title-horizontal-container.card > .process-chain-container {
+  flex: 0 1 auto;
+  text-align: center;
+}
+
 .case-template-content .case-details, .task-template-content .case-details {
   margin: 0 !important;
 }
