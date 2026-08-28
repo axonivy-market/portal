@@ -97,6 +97,58 @@
   line-height: var(--portal-icon-line-height);
 }
 
+.portal-icon-container,
+.portal-circle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  box-sizing: border-box;
+}
+
+.portal-icon-container {
+  border-radius: 8px;
+  background-color: var(--dashboard-icon-bg-color);
+  color: var(--text-color, #333);
+  border: 1px solid var(--dashboard-icon-border-color);
+}
+
+.portal-icon-container.u-mar-right-10 {
+  margin-right: 10px !important;
+}
+
+.portal-icon-container i {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.portal-circle-icon {
+  border-radius: 50%;
+  background-color: var(--dashboard-icon-bg-color) !important;
+  border: 1px solid var(--dashboard-icon-border-color) !important;
+  color: var(--text-color, #333) !important;
+  margin: 0;
+  padding: 0;
+}
+
+.portal-circle-icon i,
+.portal-circle-icon.ui-button .ui-icon,
+.portal-circle-icon::before {
+  position: static !important;
+  transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  display: block;
+}
+
+.portal-circle-icon.ui-button .ui-button-text {
+  display: none;
+}
+
 .ui-button .ui-icon.ti,
 .ui-button .ui-icon.tif {
   overflow: visible;

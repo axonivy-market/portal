@@ -89,9 +89,15 @@ a.left-sidebar-menu-icon {
   flex: 1 0 auto;
 }
 
-.task-template-title-icon {
-  margin-right: 5px;
-  font-weight: bold !important;
+.task-template-title-icon.portal-icon-container {
+  width: var(--portal-icon-btn-size-lg);
+  height: var(--portal-icon-btn-size-lg);
+  border-radius: 0.884rem;
+  margin-right: 0.714rem;
+}
+
+.task-template-title-icon.portal-icon-container i {
+  font-size: var(--portal-icon-size-xl);
 }
 
 .task-template-content {
