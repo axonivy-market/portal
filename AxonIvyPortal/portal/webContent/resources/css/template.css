@@ -285,6 +285,10 @@ a.left-sidebar-menu-icon {
   margin-left: 0;
 }
 
+.task-template-title-horizontal-container.card > .task-template-tasks-command > .ui-button + .ui-button {
+  margin-left: 0.884rem;
+}
+
 .task-template-title-horizontal-container.card > .process-chain-container {
   flex: 0 1 auto;
   text-align: center;
