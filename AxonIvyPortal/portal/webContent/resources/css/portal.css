@@ -12,7 +12,7 @@
   overflow: hidden;
   border-radius: 16px;
   width: 227px;
-  height: 264px;
+  height: fit-content;
 }
 
 @media screen and (max-width: 320px) {
@@ -1336,7 +1336,7 @@ color: var(--button-text-color);
   box-sizing: border-box;
   width: var(--portal-dialog-icon-circle-size);
   height: var(--portal-dialog-icon-circle-size);
-  margin: 0 auto 1.0714rem auto;
+  margin: 0 auto 1.071rem auto;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1344,7 +1344,7 @@ color: var(--button-text-color);
 }
 
 .portal-dialog-icon-circle > i {
-  font-size: 2.7634rem;
+  font-size: 2.763rem;
   line-height: 1;
 }
 
@@ -1359,7 +1359,7 @@ color: var(--button-text-color);
 .warning-before-leaving-task .ui-confirm-dialog-message {
   display: block;
   text-align: center;
-  font-size: 1.1429rem;
+  font-size: 1.143rem;
   line-height: 1.4;
   color: var(--text-color);
 }
