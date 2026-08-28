@@ -393,10 +393,24 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void openCompactModeProcessFilterPanel() {
-    var processFilter = getCompactModeProcessFilterLink().shouldBe(Condition.appear);
-    waitUntilElementToBeClickable(processFilter);
-    clickByJavaScript(processFilter);
+    // Redesign (TableWidget.xhtml): the standalone "filter-sidebar-link-2" header button is gone. Filter
+    // is now reached via the "..." actions menu -> "Filters" menu item, same as Case/Task widgets.
+    SelenideElement actionsMenuPanel = openCompactModeProcessActionsMenu();
+    actionsMenuPanel.$$("a.ui-menuitem-link").filter(Condition.text("Filters")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     getCompactModeProcessFilterPanelSaveFilters().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement openCompactModeProcessActionsMenu() {
+    SelenideElement actionsMenuButton = getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    waitUntilElementToBeClickable(actionsMenuButton);
+    clickByJavaScript(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    return $("[id='" + menuId + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getCompactModeProcessActionsMenuButton() {
+    return $("[id$='actions-button-panel-2']").$("button[id$=':actions-menu-button_button']");
   }
 
   public void applyCompactModeProcessFilterPanel() {
@@ -420,18 +434,10 @@ public class NewDashboardPage extends TemplatePage {
     filterName.sendKeys(processName);
   }
 
-  public SelenideElement getCompactModeProcessFilterLink() {
-    String selector = String.format("[id$=':filter-sidebar-link-2']");
-    return $(selector);
-  }
-
-  public SelenideElement getCompactModeProcessInfoLink() {
-    String selector = String.format("[id$=':info-sidebar-link-2']");
-    return $(selector);
-  }
-
   public SelenideElement getCompactModeProcessFilterPanel() {
-    String selector = String.format("div[id$=':filter-overlay-panel-2']");
+    // Redesign (TableWidget.xhtml): renamed from "filter-overlay-panel-2" to a PrimeFaces p:dialog with
+    // id suffix "filter-dialog-2" (see CaseWidgetNewDashBoardPage/TaskWidgetNewDashBoardPage - same change).
+    String selector = String.format("div[id$=':filter-dialog-2']");
     return $(selector);
   }
 
@@ -518,10 +524,9 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void expandCompactModeProcess() {
-    SelenideElement filterLink = getCompactModeProcessFilterLink();
-    filterLink.shouldBe(Condition.appear);
-
-    getCompactModeProcessInfoLink().shouldBe(Condition.appear);
+    // Redesign: filter and info are no longer separate header links - both now sit behind the single
+    // "..." actions menu button (see openCompactModeProcessFilterPanel()/openCompactModeProcessInforPanel()).
+    getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear);
 
     getCompactModeProcessCollapseLink().shouldBe(disappear);
 
@@ -598,16 +603,14 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void saveCompactModeProcessFilter(String savedFilterName) {
-    getCompactModeProcessFilterPanelSaveButton().shouldBe(Condition.enabled).click();
-    SelenideElement saveWidgetFilterDialog = getSaveWidgetFilterDialog();
-    saveWidgetFilterDialog.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-
-    SelenideElement filterName = getSaveWidgetFilterDialogFilterName();
-    filterName.shouldBe(Condition.appear).clear();
+    // Redesign: the separate "save-widget-filter-dialog" popup is gone - saving a filter is now inline
+    // within the filter dialog itself (same as Case/Task widgets' "inline-save-filter" section).
+    SelenideElement filterDialog = getCompactModeProcessFilterPanel();
+    SelenideElement filterName = filterDialog.$("input[id$=':inline-save-filter-name']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    filterName.clear();
     filterName.sendKeys(savedFilterName);
-
-    getSaveWidgetFilterDialogSaveButton().shouldBe(Condition.enabled).click();
-    saveWidgetFilterDialog.shouldBe(disappear, DEFAULT_TIMEOUT);
+    filterDialog.$("button[id$=':inline-save-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public SelenideElement getSaveWidgetFilterDialog() {
@@ -731,7 +734,10 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void openCompactModeProcessInforPanel() {
-    getCompactModeProcessInfoLink().shouldBe(Condition.appear).click();
+    // Redesign: info is reached via the "..." actions menu -> "Widget Info" item now (id "info-menu-item-2"
+    // is declared directly on the p:menuitem, unlike Filter's custom-facet anchor, so select by id here).
+    SelenideElement actionsMenuPanel = openCompactModeProcessActionsMenu();
+    actionsMenuPanel.$("[id$=':info-menu-item-2']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     getCompactModeProcessInfoPanel().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 

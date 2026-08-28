@@ -86,7 +86,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <testFailureIgnore>true</testFailureIgnore>
-          <rerunFailingTestsCount>2</rerunFailingTestsCount>
           <argLine>
             -Dtest.engine.url=${test.engine.url}
             -Dtest.engine.app=demo-portal

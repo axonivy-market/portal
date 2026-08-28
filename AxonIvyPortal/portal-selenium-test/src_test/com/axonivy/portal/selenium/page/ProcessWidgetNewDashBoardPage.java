@@ -104,12 +104,18 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public boolean isExpandButtonAppear() {
+    // Redesign (TableWidget.xhtml): the standalone ".expand-link" header button is gone - expand/collapse
+    // is now a "toggle-fullscreen-item-N" menu item inside the "..." actions menu, only rendered at all
+    // (not merely hidden) when isRenderExpandCollapse is true. Check existence, not visibility, since a
+    // closed dropdown keeps its items in the DOM only when JSF actually rendered them.
     WaitHelper.waitPageNoAjaxAndAnimation();
-    return getProcessWidgetHeader().$(".expand-link").isDisplayed();
+    return getProcessWidgetHeader().$("[id*=':toggle-fullscreen-item-']").exists();
   }
 
   public boolean isWidgetInfoIconAppear() {
+    // Same redesign as isExpandButtonAppear(): ".widget__info-sidebar-link" is gone, replaced by an
+    // "info-menu-item-N" item inside the "..." actions menu.
     WaitHelper.waitPageNoAjaxAndAnimation();
-    return getProcessWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
+    return getProcessWidgetHeader().$("[id*=':info-menu-item-']").exists();
   }
 }
