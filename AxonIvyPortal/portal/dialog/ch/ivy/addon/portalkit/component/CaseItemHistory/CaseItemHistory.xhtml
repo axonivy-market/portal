@@ -42,14 +42,12 @@
           icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
           rendered="#{caseTaskNoteHistoryBean.showAddNote}" onclick="PF('add-note-dialog-#{case.id}').show()"
           actionListener="#{data.setCaze(case)}" />
-        <p:link id="show-more-note-link" disabled="#{empty data.histories}"
+        <p:button id="show-more-note-link" disabled="#{empty data.histories}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}"
+          icon="ti ti-external-link"
           styleClass="portal-detail-show-more-btn js-note-show-more-link portal-pill-btn" target="_blank"
           href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case.uuid())}"
-          rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
-          <span class="ti ti-external-link" />
-          <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
-          <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
-        </p:link>
+          rendered="#{caseTaskNoteHistoryBean.showMoreNote}" />
       </h:panelGroup>
     </div>
 

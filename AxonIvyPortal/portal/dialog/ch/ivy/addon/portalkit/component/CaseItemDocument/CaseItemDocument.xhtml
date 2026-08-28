@@ -27,13 +27,11 @@
             rendered="#{caseTaskDocumentBean.canWriteDocument(case)}"
             icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
             onclick="PF('document-upload-dialog').show()" type="button" />
-          <p:link id="show-more-doc-link" rendered="#{caseTaskDocumentBean.showMoreDocument}"
+          <p:button id="show-more-doc-link" rendered="#{caseTaskDocumentBean.showMoreDocument}"
             styleClass="portal-detail-show-more-btn portal-pill-btn"
-            href="#{caseTaskDocumentBean.getCaseDocumentsLink(case)}" target="_blank">
-            <span class="ti ti-external-link" />
-            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
-            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
-          </p:link>
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}"
+            icon="ti ti-external-link"
+            href="#{caseTaskDocumentBean.getCaseDocumentsLink(case)}" target="_blank" />
         </h:panelGroup>
       </div>
 

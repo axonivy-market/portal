@@ -1614,7 +1614,7 @@ Dialogs:
           Responsibles:
             Multiple: Multiple
           ShareLinkDialog:
-            CopyLink: Copier le lien
+            CopyLink: Copier
             Link: Lien
             LinkCopied: Lien copié
           ToolList:

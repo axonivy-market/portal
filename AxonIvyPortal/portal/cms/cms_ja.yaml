@@ -1612,7 +1612,7 @@ Dialogs:
           Responsibles:
             Multiple: 複数
           ShareLinkDialog:
-            CopyLink: リンクをコピー
+            CopyLink: コピー
             Link: リンク
             LinkCopied: リンクをコピーしました
           ToolList:
