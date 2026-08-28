@@ -68,8 +68,11 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openFilter() {
+    // Redesign: this "Set Filter" dialog is now a p:dialog with widgetVar/class
+    // "widget-configuration-filter-dialog" - the old ".filter-panel-header" class it used to wait for is
+    // gone (confirmed via the failure DOM snapshot). Wait for that dialog to actually be visible instead.
     $("button[id$=':show-filter']").shouldBe(getClickableCondition()).click();
-    $(".filter-panel-header").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div.widget-configuration-filter-dialog[style*='display: block']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void filterCaseName(String caseName) {
@@ -305,7 +308,10 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void resetFilter() {
-    $("button[id$=':reset-filter']").shouldBe(getClickableCondition()).click();
+    // The "Reset all" trigger is now an <a> ("...reset-filter", class "reset-button"), not a <button>
+    // (confirmed via the failure DOM snapshot) - same icon-link redesign as the live dashboard's filter
+    // dialog. Match tag-agnostically.
+    $("[id$=':reset-filter']").shouldBe(getClickableCondition()).click();
     countFilterSelect().shouldBe(CollectionCondition.size(0), DEFAULT_TIMEOUT);
   }
 

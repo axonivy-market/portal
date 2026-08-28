@@ -175,7 +175,12 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public SelenideElement destroyLink() {
-    return $("a[id$='destroy-case']");
+    // Tag-agnostic like the other case-details action triggers in this file (onClickHistoryIcon,
+    // clickRelatedCaseActionButton): the redesign has been replacing plain <a> action links with
+    // icon-only <button> triggers, so match on id suffix regardless of tag. Excludes the separate
+    // ":action-group:destroy-case" trigger used by onClickDestroyCase(), which also ends with
+    // "destroy-case" and would otherwise collide with this selector.
+    return $("[id$='destroy-case']:not([id*='action-group'])");
   }
 
   public void destroy() {
@@ -197,7 +202,9 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void openAdditionalCaseDetailsPage() {
-    $("a[id$=':show-additional-case-details-link']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+    // Tag-agnostic, same reasoning as the related-cases-widget version of this same link further below
+    // (which already dropped the "a" tag requirement).
+    $("[id$=':show-additional-case-details-link']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
   }
 
@@ -211,7 +218,9 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void openActionPanel() {
-    $("a[id$=':action-group:case-details-action-link']").shouldBe(appear, DEFAULT_TIMEOUT)
+    // Same trigger as openActionMenu() below, which already matches it tag-agnostically - the "a" tag
+    // requirement here is stale from before the icon-button redesign.
+    $("[id$=':action-group:case-details-action-link']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     $("div[id$=':action-group:action-steps-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -1053,7 +1062,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isShowDetailsDisplayed(boolean expected) {
-    return isElementDisplayed(By.cssSelector("a[id$='show-additional-case-details-link']"), expected);
+    return isElementDisplayed(By.cssSelector("[id$='show-additional-case-details-link']"), expected);
   }
 
   public boolean isAddDocumentLinkDisplayed(boolean expected) {
@@ -1129,7 +1138,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   public void clickShowCaseOwners() {
-    $("a[id$=':show-case-owner-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$=':show-case-owner-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
   
   public int countCaseOwners() {

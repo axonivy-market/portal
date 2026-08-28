@@ -60,7 +60,7 @@ public class DashboardModificationPage extends TemplatePage {
   public NewDashboardDetailsEditPage navigateToEditDashboardDetailsByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
     if (dashboardRow != null) {
-      clickButtonOnDashboardConfigurationActionMenu("Configuration", dashboardRow);
+      clickButtonOnDashboardConfigurationActionMenu("Edit Layout", dashboardRow);
       NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
       return newDashboardDetailsEditPage;
     }
