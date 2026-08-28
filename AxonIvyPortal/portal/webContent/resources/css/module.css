@@ -4320,8 +4320,12 @@ _:-ms-fullscreen, :root .content-link-history {
 /*  =================== TASK TEMPLATE PAGE ========================= */
 .task-title {
   flex: 1;
+  min-width: 0;
   font-size: calc(8 / 7 * 1rem);
   font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .task-actions-menu .ui-slidemenu-backward.ui-widget-header {

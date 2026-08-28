@@ -276,6 +276,10 @@ a.left-sidebar-menu-icon {
   flex: 1 1 0;
 }
 
+.task-template-title-horizontal-container.card > .task-template-title {
+  min-width: 0;
+}
+
 .task-template-title-horizontal-container.card > .task-template-tasks-command {
   justify-content: flex-end;
   margin-left: 0;
