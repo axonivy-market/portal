@@ -137,23 +137,11 @@ Process Steps
 ``isShowAllSteps`` (boolean, default: false)
    ``true`` = show all steps on large screens, ``false`` = compact view.
 
-``processChainDirection`` (string, default: HORIZONTAL)
+``processChainDirection`` (string)
    ``"VERTICAL"`` or ``"HORIZONTAL"``.
 
-``processChainShape`` (string, default: CIRCLE)
+``processChainShape`` (string)
    ``"LINE"`` or ``"CIRCLE"``.
-
-.. deprecated:: 14.0
-   ``processChainDirection="VERTICAL"`` is deprecated on the task template and will be removed in a
-   future version. It keeps working unchanged: the task header bar is still shown, and the chain
-   keeps its own column beside the task content, below the header bar. Only ``HORIZONTAL`` places
-   the process chain inside the header bar, next to the task name and the action buttons.
-
-   **Migration**: remove the attribute, or set it to ``HORIZONTAL``.
-
-   This applies to the task template only. The standalone
-   :ref:`Process Chain component <components-portal-components-process-chain>` continues to support
-   every direction and shape.
 
 Task Actions
 ^^^^^^^^^^^^
@@ -207,8 +195,8 @@ The recommended approach uses the Portal component for type-safe configuration:
                currentProcessStep="0"
                processSteps='["Create Investment Request", "Approve Investment Request"]'
                isShowAllSteps="true"
-               processChainDirection="HORIZONTAL"
-               processChainShape="CIRCLE"
+               processChainDirection="VERTICAL"
+               processChainShape="LINE"
                isHideTaskAction="false"
                isWorkingOnATask="true"
                announcementInvisible="false"
@@ -262,7 +250,7 @@ Configure Process Steps
       processSteps='["Create Request", "Manager Approval", "Finance Review", "Complete"]'
       isShowAllSteps="true"
       processChainDirection="HORIZONTAL"
-      processChainShape="CIRCLE"
+      processChainShape="LINE"
    />
 
 .. note::
@@ -309,7 +297,7 @@ Complete Configuration Example
                processSteps="#{portalComponentUtilsBean.convertToJSON(data.processSteps)}"
                isShowAllSteps="true"
                processChainDirection="HORIZONTAL"
-               processChainShape="CIRCLE"
+               processChainShape="LINE"
                isHideTaskAction="false"
                isWorkingOnATask="true"
                announcementInvisible="false"

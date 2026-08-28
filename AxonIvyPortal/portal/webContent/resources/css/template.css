@@ -105,63 +105,6 @@ a.left-sidebar-menu-icon {
   padding: 2px;
 }
 
-.task-header-container.task-template-title-horizontal-container {
-  box-sizing: border-box;
-  background-color: var(--task-header-card-background-color);
-  border-radius: 1.0714rem;
-  box-shadow: 0 0 27.225px 0 var(--task-header-card-shadow-color);
-  padding: 0.8839rem 1.7679rem;
-  gap: 0.8839rem;
-  margin-bottom: 1.7679rem;
-}
-
-.task-template-title-horizontal-container .task-template-title {
-  flex: 1 1 0;
-  min-width: 0;
-  gap: 0.7071rem;
-  color: var(--task-header-title-color);
-}
-
-.task-template-title-horizontal-container .task-title {
-  flex: 0 1 auto;
-  min-width: 0;
-}
-
-.task-template-title-horizontal-container .task-template-title-icon-box {
-  box-sizing: border-box;
-  flex: 0 0 auto;
-  width: 3.0696rem;
-  height: 3.0696rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1.237px solid var(--widget-button-border-color);
-  border-radius: 0.8839rem;
-  background-color: var(--widget-button-background-color);
-  color: var(--task-header-title-color);
-}
-
-.task-template-title-horizontal-container .task-template-title-icon-box .task-template-title-icon {
-  margin-right: 0;
-  font-size: 1.8321rem;
-  line-height: 1;
-}
-
-.task-template-title-horizontal-container .process-chain-container {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.task-template-title-horizontal-container .task-template-tasks-command {
-  flex: 1 1 0;
-  justify-content: flex-end;
-  gap: 0.8839rem;
-  margin-left: 0;
-}
-
 @media screen and (max-width: 40em) {
   .task-template-tasks-command {
     order: 1;

@@ -271,23 +271,9 @@
   --task-action-item-label-font-weight: normal;
   --task-start-action-font-weight: bold;
   /* Task Template */
-  --task-template-action-button-focus: 2px solid var(--ivy-portal-blue-dark);
+  --task-template-action-button-focus: transparent;
   --task-template-title-font-weight: bold;
   --output-label-task-template-title-font-weight: 400;
-  --task-header-card-background-color: var(--surface-card, var(--body-background-color));
-  --task-header-card-shadow-color: hsla(0, 0%, 0%, 0.05);
-  --task-header-title-color: var(--ivy-portal-color-gray-20);
-  --task-header-step-title-color: var(--ivy-portal-color-gray-20);
-  --task-header-step-connector-color: var(--ivy-portal-color-gray-light);
-  --task-header-step-current-background-color: var(--ivy-portal-blue-pale);
-  --task-header-step-current-border-color: var(--ivy-portal-blue-muted);
-  --task-header-step-current-number-color: var(--ivy-portal-blue-dark);
-  --task-header-step-visited-background-color: var(--task-header-card-background-color);
-  --task-header-step-visited-border-color: var(--ivy-portal-blue-muted);
-  --task-header-step-visited-number-color: var(--ivy-portal-blue-dark);
-  --task-header-step-waiting-background-color: var(--body-background-color);
-  --task-header-step-waiting-border-color: var(--ivy-portal-color-gray-light);
-  --task-header-step-waiting-number-color: var(--ivy-portal-color-gray-17);
   /* Admin Setting */
   --admin-setting-no-permission-message-color: #e53935;
   --user-setting-container-box-shadow: rgba(43, 59, 93, 0.6);
