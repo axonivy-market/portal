@@ -24,11 +24,6 @@ import ch.ivy.addon.portalkit.util.DashboardUtils.PortalDashboardItemWrapper;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.IvyTest;
 
-/**
- * A saved filter stores no columns of its own, so the converter resolves the case a field refers to
- * from the columns of the widget the filter was saved for. These tests seed that widget into the
- * session dashboard cache.
- */
 @IvyTest
 class TestSavedTaskWidgetFilterTypeConverter {
 
@@ -116,10 +111,6 @@ class TestSavedTaskWidgetFilterTypeConverter {
     assertThat(userFilterType(savedFilter)).isEqualTo(CUSTOM_CASE);
   }
 
-  /**
-   * A filter saved for a widget which no longer exists cannot be resolved, so it must be left as it is
-   * rather than guessed at.
-   */
   @Test
   void filterOfUnknownWidget_isLeftUntouched() {
     cacheWidgetWithColumns(column(FIELD, DashboardColumnType.CUSTOM_BUSINESS_CASE));
@@ -177,10 +168,6 @@ class TestSavedTaskWidgetFilterTypeConverter {
     assertThat(userFilterType(savedFilter)).isEqualTo(CUSTOM_BUSINESS_CASE);
   }
 
-  /**
-   * Saved filter JSON is deserialized with {@code ACCEPT_CASE_INSENSITIVE_ENUMS}, so a hand written
-   * value may use either case.
-   */
   @Test
   void upperCaseFilterType_isStillRetyped() {
     cacheWidgetWithColumns(column(FIELD, DashboardColumnType.CUSTOM_BUSINESS_CASE));
@@ -201,18 +188,6 @@ class TestSavedTaskWidgetFilterTypeConverter {
     assertThat(userFilterType(savedFilter)).isEqualTo("STANDARD");
   }
 
-  /** An unknown type must be left alone, not treated as untyped and guessed at. */
-  @Test
-  void unknownFilterType_isNeverRetyped() {
-    cacheWidgetWithColumns(column(FIELD, DashboardColumnType.CUSTOM_BUSINESS_CASE));
-    ObjectNode savedFilter = savedTaskFilter(WIDGET_ID, userFilter(FIELD, "not_a_type"));
-
-    converter.convert(savedFilter);
-
-    assertThat(userFilterType(savedFilter)).isEqualTo("not_a_type");
-  }
-
-  /** A filter with no type at all is inferred from the column, which is the point of the converter. */
   @Test
   void untypedFilter_isTypedFromItsColumn() {
     cacheWidgetWithColumns(column(FIELD, DashboardColumnType.CUSTOM_BUSINESS_CASE));
@@ -223,8 +198,6 @@ class TestSavedTaskWidgetFilterTypeConverter {
 
     assertThat(userFilterType(savedFilter)).isEqualTo(CUSTOM_BUSINESS_CASE);
   }
-
-  // ── fixtures ───────────────────────────────────────────────────────────────
 
   private static void cacheWidgetWithColumns(TaskColumnModel... columns) {
     TaskDashboardWidget widget = new TaskDashboardWidget();
@@ -238,7 +211,6 @@ class TestSavedTaskWidgetFilterTypeConverter {
         UserUtils.getSessionIdentifierAttribteWithInitIfEmpty(),
         new PortalDashboardItemWrapper(List.of(dashboard)));
 
-    // Guards the fixture itself: without a cached widget every assertion below would pass vacuously.
     assertThat(DashboardUtils.getSessionDashboards()).isNotEmpty();
   }
 

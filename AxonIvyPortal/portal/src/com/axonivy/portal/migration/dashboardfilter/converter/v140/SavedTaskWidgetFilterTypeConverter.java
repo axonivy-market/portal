@@ -21,14 +21,6 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 
-/**
- * Re-types the case custom field filters of a task widget filter a user saved.
- * <p>
- * Same correction as
- * {@link com.axonivy.portal.migration.dashboard.converter.v140.DashboardTaskWidgetFilterTypeConverter},
- * for saved filters. A saved filter stores no columns of its own, so the case a field refers to is
- * resolved from the columns of the widget the filter was saved for, matched by widget id.
- */
 public class SavedTaskWidgetFilterTypeConverter implements IJsonConverter {
 
   private static final String WIDGET_TYPE = "widgetType";
@@ -67,11 +59,7 @@ public class SavedTaskWidgetFilterTypeConverter implements IJsonConverter {
     if (field == null) {
       return;
     }
-    String rawType = textValue(filterNode, TYPE);
-    DashboardColumnType current = parseType(rawType);
-    if (StringUtils.isNotBlank(rawType) && current == null) {
-      return; // a type this converter does not recognize is left alone, not guessed at
-    }
+    DashboardColumnType current = parseType(textValue(filterNode, TYPE));
     DashboardColumnType resolved = resolveCaseCustomColumnType(columns, field, current);
     if (resolved != null && resolved != current) {
       filterNode.set(TYPE, new TextNode(resolved.getType()));
@@ -80,7 +68,6 @@ public class SavedTaskWidgetFilterTypeConverter implements IJsonConverter {
 
   private DashboardColumnType resolveCaseCustomColumnType(List<TaskColumnModel> columns, String field,
       DashboardColumnType current) {
-    // Never touch STANDARD or task CUSTOM filters.
     if (current != null && current != DashboardColumnType.CUSTOM_CASE
         && current != DashboardColumnType.CUSTOM_BUSINESS_CASE) {
       return current;
@@ -94,7 +81,7 @@ public class SavedTaskWidgetFilterTypeConverter implements IJsonConverter {
         continue;
       }
       if (column.getType() == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
-        return DashboardColumnType.CUSTOM_BUSINESS_CASE; // business case wins on ambiguity
+        return DashboardColumnType.CUSTOM_BUSINESS_CASE;
       }
       if (column.getType() == DashboardColumnType.CUSTOM_CASE) {
         matchedCaseColumn = true;

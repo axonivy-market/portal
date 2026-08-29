@@ -159,9 +159,6 @@ public class TaskFilterFieldFactory {
       }
     }
 
-    // A case custom field can be added to a task widget as a sub case column or as a business case
-    // column, so it gets a filter field per case scope. The filter field remembers which one it
-    // belongs to and stamps that type on the filters it initializes.
     CUSTOM_CASE_FILTER_FIELD.clear();
     CUSTOM_BUSINESS_CASE_FILTER_FIELD.clear();
     for (ICustomFieldMeta customCaseField : ICustomFieldMeta.cases()) {

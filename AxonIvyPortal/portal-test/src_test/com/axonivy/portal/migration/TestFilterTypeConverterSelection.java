@@ -14,21 +14,10 @@ import com.axonivy.portal.migration.dashboard.converter.v140.DashboardTaskWidget
 import com.axonivy.portal.migration.dashboardfilter.converter.JsonDashboardFilterConverterFactory;
 import com.axonivy.portal.migration.dashboardfilter.converter.v140.SavedTaskWidgetFilterTypeConverter;
 
-/**
- * A converter only runs when its version is newer than the version stamped on the configuration AND
- * not newer than {@link com.axonivy.portal.bo.jsonversion.AbstractJsonVersion#LATEST}. Getting
- * either side wrong makes the migration a silent no-op, which is invisible at runtime, so it is
- * pinned down here.
- */
 class TestFilterTypeConverterSelection {
 
   private static final String CORRECTION_VERSION = "14.0.0";
 
-  /**
-   * The migrators drop every converter newer than {@code LATEST}, so it must
-   * have moved with them. Asserted through the version objects rather than the constant itself, because
-   * a {@code static final String} is inlined at compile time and would compare against itself.
-   */
   @Test
   void latestVersion_coversTheFilterTypeCorrection() {
     assertThat(DashboardJsonVersion.LATEST_VERSION.getValue()).isEqualTo(CORRECTION_VERSION);
@@ -92,10 +81,6 @@ class TestFilterTypeConverterSelection {
     assertThat(converters).last().isEqualTo(DashboardTaskWidgetFilterTypeConverter.class);
   }
 
-  /**
-   * The same correction shipped on the 12.0 LTS line as JSON version 12.0.17. Reusing that string here
-   * would be a silent no-op, because versions compare part by part and 13 already beats 12.
-   */
   @Test
   void ltsVersionString_wouldNotHaveCoveredA13xConfiguration() {
     assertThat(new DashboardJsonVersion("13.2.0").isOlderThan(new DashboardJsonVersion("12.0.17")))

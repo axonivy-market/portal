@@ -9,18 +9,9 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.environment.IvyTest;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-/**
- * A task references both its own case and its business case, so an unscoped case query makes the
- * engine join and union both. Scoping the query to the case the filtered column refers to leaves a
- * single join.
- */
 @IvyTest
 class TestCaseQueryUtils {
 
-  /**
-   * Guards the assertions below: they compare rendered queries, which only distinguishes the scopes if
-   * the scope reaches the rendered query at all.
-   */
   @Test
   void theThreeCaseScopes_renderDifferentQueries() {
     assertThat(CaseQuery.businessCases().toString())
@@ -41,10 +32,6 @@ class TestCaseQueryUtils {
         .isEqualTo(CaseQuery.subCases().toString());
   }
 
-  /**
-   * The case widget types its filters {@code CUSTOM} and picks the scope on its root query instead, so
-   * it must keep the unscoped query.
-   */
   @Test
   void taskCustomColumn_staysUnscoped() {
     assertThat(initCaseQuery(DashboardColumnType.CUSTOM).toString())

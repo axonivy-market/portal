@@ -18,14 +18,6 @@ import com.fasterxml.jackson.databind.node.TextNode;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 
-/**
- * Re-types the predefined filters of a task widget which filter on a case custom field.
- * <p>
- * Until 14.0.0 every case custom field filter of a task widget was stored as
- * {@code custom_case}, no matter whether the column it was created from referred to the sub case or
- * to the business case. The type now decides which case the filter queries, so it is corrected from
- * the columns of the very same widget.
- */
 public class DashboardTaskWidgetFilterTypeConverter implements IJsonConverter {
 
   private static final String COLUMNS = "columns";
@@ -63,8 +55,6 @@ public class DashboardTaskWidgetFilterTypeConverter implements IJsonConverter {
       String field = textValue(filterNode, FIELD);
       String rawType = textValue(filterNode, TYPE);
       DashboardColumnType type = parseType(rawType);
-      // Only re-type filters which carry no type at all, or one of the two case custom types. Never
-      // touch STANDARD or task CUSTOM filters, nor a type this converter does not recognize.
       if (field == null || (StringUtils.isNotBlank(rawType) && type != DashboardColumnType.CUSTOM_CASE
           && type != DashboardColumnType.CUSTOM_BUSINESS_CASE)) {
         continue;
@@ -76,11 +66,6 @@ public class DashboardTaskWidgetFilterTypeConverter implements IJsonConverter {
     }
   }
 
-  /**
-   * Maps each case custom field of the widget to the case it refers to. A field which is added both
-   * as a sub case and as a business case column is ambiguous; the business case wins, because that is
-   * the case a task always has.
-   */
   private Map<String, DashboardColumnType> caseTypeByField(ArrayNode columns) {
     Map<String, DashboardColumnType> caseTypeByField = new HashMap<>();
     for (JsonNode column : columns) {
@@ -99,11 +84,6 @@ public class DashboardTaskWidgetFilterTypeConverter implements IJsonConverter {
     return caseTypeByField;
   }
 
-  /**
-   * Dashboard JSON is deserialized with {@code ACCEPT_CASE_INSENSITIVE_ENUMS}, and the task widget
-   * documentation spells column types upper case, so a hand written configuration may use either
-   * case. Parse the value instead of comparing the raw text.
-   */
   private static DashboardColumnType parseType(String type) {
     if (StringUtils.isBlank(type)) {
       return null;

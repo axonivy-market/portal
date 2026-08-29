@@ -41,8 +41,6 @@ public class CustomStringContainsOperatorHandler {
     });
 
     if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(filter.getField())) {
-      // Always a case custom field here, whichever widget the filter belongs to. The filter type
-      // selects the case to query, not the metadata to resolve the localized values against.
       List<String> keywordList = PortalCustomFieldUtils.getCmsValuesMatchingWithKeywordList(filter.getField(),
           DashboardColumnType.CUSTOM_CASE, filter.getValues());
       if (!keywordList.isEmpty()) {

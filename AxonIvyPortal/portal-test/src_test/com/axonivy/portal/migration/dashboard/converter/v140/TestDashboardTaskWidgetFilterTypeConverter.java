@@ -10,10 +10,6 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-/**
- * Until 14.0.0 a task widget stored every case custom field filter as {@code custom_case}, even when
- * the column it was created from referred to the business case. These tests pin the correction down.
- */
 class TestDashboardTaskWidgetFilterTypeConverter {
 
   private static final String CUSTOM_CASE = "custom_case";
@@ -65,11 +61,6 @@ class TestDashboardTaskWidgetFilterTypeConverter {
     assertThat(filterType(dashboard, 0)).isEqualTo(CUSTOM_BUSINESS_CASE);
   }
 
-  /**
-   * The same case custom field can be added twice, once per case scope. A single filter cannot query
-   * both, and every task has a business case while only some have a sub case, so the business case
-   * wins.
-   */
   @Test
   void fieldAddedAsBothColumns_resolvesToBusinessCase() {
     ObjectNode dashboard = dashboard(taskWidget(
@@ -103,10 +94,6 @@ class TestDashboardTaskWidgetFilterTypeConverter {
     assertThat(filterType(dashboard, 0)).isEqualTo("standard");
   }
 
-  /**
-   * A task custom field and a case custom field can share a name. A {@code custom} filter belongs to
-   * the task, so it must survive untouched even when a case column of the same name exists.
-   */
   @Test
   void taskCustomFilter_isNeverRetyped() {
     ObjectNode dashboard = dashboard(taskWidget(
@@ -142,10 +129,6 @@ class TestDashboardTaskWidgetFilterTypeConverter {
     assertThat(filterType(dashboard, 0)).isEqualTo(CUSTOM_CASE);
   }
 
-  /**
-   * A migrated dashboard is only written back on the next save, so the converter can run again on the
-   * same node.
-   */
   @Test
   void convert_isIdempotent() {
     ObjectNode dashboard = dashboard(taskWidget(
@@ -185,11 +168,6 @@ class TestDashboardTaskWidgetFilterTypeConverter {
     assertThat(dashboard.get("widgets")).isNull();
   }
 
-  /**
-   * Dashboard JSON is deserialized with {@code ACCEPT_CASE_INSENSITIVE_ENUMS}, and the task widget
-   * documentation spells column types upper case, so a hand written configuration may use either
-   * case for both the column and the filter.
-   */
   @Test
   void upperCaseColumnType_isStillRecognised() {
     ObjectNode dashboard = dashboard(taskWidget(
@@ -223,7 +201,6 @@ class TestDashboardTaskWidgetFilterTypeConverter {
     assertThat(filterType(dashboard, 0)).isEqualTo(CUSTOM_BUSINESS_CASE);
   }
 
-  /** An upper case standard filter must stay untouched just like a lower case one. */
   @Test
   void upperCaseStandardFilter_isNeverRetyped() {
     ObjectNode dashboard = dashboard(taskWidget(
@@ -246,7 +223,6 @@ class TestDashboardTaskWidgetFilterTypeConverter {
     assertThat(filterType(dashboard, 0)).isEqualTo("CUSTOM");
   }
 
-  /** An unknown type must be treated as "not a case custom filter", not as untyped. */
   @Test
   void unknownFilterType_isNeverRetyped() {
     ObjectNode dashboard = dashboard(taskWidget(
@@ -258,7 +234,6 @@ class TestDashboardTaskWidgetFilterTypeConverter {
     assertThat(filterType(dashboard, 0)).isEqualTo("not_a_type");
   }
 
-  /** The re-typed value is written in the canonical lower case form Portal itself writes. */
   @Test
   void retypedFilter_isWrittenInCanonicalLowerCase() {
     ObjectNode dashboard = dashboard(taskWidget(
@@ -269,8 +244,6 @@ class TestDashboardTaskWidgetFilterTypeConverter {
 
     assertThat(filterType(dashboard, 0)).isEqualTo("custom_business_case");
   }
-
-  // ── fixtures ───────────────────────────────────────────────────────────────
 
   private static ObjectNode dashboard(ObjectNode... widgets) {
     ObjectNode dashboard = JsonNodeFactory.instance.objectNode();
