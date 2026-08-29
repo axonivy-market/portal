@@ -280,6 +280,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableScriptCheckingForUploadedDocumentNote: アップロードされたドキュメントのスクリプトチェックを有効にするには、true に設定してください。現在、この機能は PDF、Excel、Word のチェックをサポートしています。
       enableTranslationService: このプロパティをtrueに設定すると、翻訳サービスのサポートが有効になります。
       enableVirusScannerForUploadedDocumentNote: アップロードされたドキュメントへのウイルススキャナーを有効にするには true に設定してください。現在、この機能は API VIRUSTOTAL を使用しています。
+      globalSearchMinimumKeywordLengthNote: グローバル検索を実行する前に必要な最小文字数です。チェックを無効にするには 0 を設定してください。短いキーワードはほぼすべての行に一致するため、処理が遅くなる可能性があり、検索は実行されずにスキップされます。
       hideCaseCreator: |-
         ケースリスト、ケースウィジェット、ケースの詳細でケースクリエイターを非表示にするには、true に設定してください。
         この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。
@@ -1557,6 +1558,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: すべての結果を表示
+              minimumKeywordText: 検索するには {0} 文字以上入力してください。
               noResultsText: 結果はありません。
             dashboard:
               PortalDashboardConfiguration:

@@ -75,6 +75,8 @@ public enum GlobalVariable {
       getSearchScopeCaseFields(), "SearchScopeCaseFields", getSearchScopeCaseFields()),
   GLOBAL_SEARCH_SCOPE_BY_CATEGORIES("Portal.GlobalSearchScopeCategories", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS,
           getGlobalSearchScopeCategories(), "GlobalSearchScopeCategoriesNote", getGlobalSearchScopeCategories()),
+  GLOBAL_SEARCH_MINIMUM_KEYWORD_LENGTH("Portal.GlobalSearch.MinimumKeywordLength", GlobalVariableType.NUMBER, "0",
+      "globalSearchMinimumKeywordLengthNote"),
   GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo", GlobalVariableType.TEXT, "GlobalFooterInfo"),
   ENABLE_TRANSLATION_SERVICE("Portal.TranslationService.Enable", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableTranslationService"),
   SHOW_QR_CODE("Portal.UserMenu.ShowQRCode", GlobalVariableType.SELECTION, Option.FALSE.toString(),

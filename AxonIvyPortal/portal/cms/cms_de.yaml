@@ -280,6 +280,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableScriptCheckingForUploadedDocumentNote: Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt.
       enableTranslationService: Setzen Sie diese Eigenschaft auf true, um den Übersetzungsdienst zu aktivieren
       enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
+      globalSearchMinimumKeywordLengthNote: Mindestanzahl an Zeichen, die erforderlich ist, bevor die globale Suche ausgeführt wird. Auf 0 setzen, um die Prüfung zu deaktivieren. Ein kürzeres Schlüsselwort trifft auf nahezu jede Zeile zu, was langsam sein kann, daher wird die Suche übersprungen statt ausgeführt.
       hideCaseCreator: |
         Auf true setzen, um den Fallersteller in der Fallliste, dem Fall-Widget und den Falldetails auszublenden.
         Diese Einstellung wirkt sich auf alle Fallabfragen aus, z. B. für Fallliste, globale Suche, Statistik.
@@ -1561,6 +1562,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: Alle Ergebnisse anzeigen
+              minimumKeywordText: Geben Sie mindestens {0} Zeichen ein, um zu suchen.
               noResultsText: Es liegen keine Ergebnisse vor.
             dashboard:
               PortalDashboardConfiguration:
