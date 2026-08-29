@@ -238,9 +238,7 @@ The ``filters`` array defines pre-configured filter conditions:
    Filter operator (see Filter Conditions section)
 
 ``type`` (string)
-   ``"standard"``, ``"custom"``, ``"custom_case"`` or ``"custom_business_case"``. It must match
-   the ``type`` of the column the filter refers to, because it decides where the value is looked
-   up: on the task, on the task's case or on the task's business case.
+   ``"standard"``, ``"custom"``, ``"custom_case"`` or ``"custom_business_case"``
 
 .. note::
    For detailed filter configuration, see the :ref:`Filter Conditions <configure-new-dashboard-task-widget-filter-structure>` section below.
@@ -611,12 +609,6 @@ Custom Field Column :
 
    - ``type`` field must be ``custom`` for Custom Field, ``custom_case`` for Custom Case Field
      and ``custom_business_case`` for Custom Business Case Field.
-
-   .. important::
-      Use the same ``type`` on the filter as on the column it refers to. A ``custom_case`` filter
-      only matches the task's own case and a ``custom_business_case`` filter only matches the
-      task's business case, so a mismatched ``type`` queries the wrong case: it returns no task
-      when that case holds no value, and the wrong tasks when it holds a matching one.
 
    .. code-block:: javascript
       

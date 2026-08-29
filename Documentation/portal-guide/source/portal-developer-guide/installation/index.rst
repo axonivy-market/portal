@@ -206,11 +206,6 @@ a **Custom Case Field** column filters the task's own case, a **Custom Business 
 task's business case. Previously both were stored as ``custom_case`` and queried both cases at once, which was
 slower and could return tasks whose value matched on the other case.
 
-   Existing dashboard configurations and saved filters are migrated silently the first time they are read.
-   The filter type is taken from the column of the same field in the same task widget; if a field was added
-   both as a Custom Case Field and as a Custom Business Case Field column, the business case wins.
-   You don't need to do anything, this is just for your information.
-
    Only hand-written configurations need attention: if you maintain a dashboard JSON yourself, make sure the
    ``type`` of each filter matches the ``type`` of the column it refers to. See
    :ref:`Task widget configuration <new-dashboard-task-list-widget>`.
@@ -570,8 +565,7 @@ Changes in 14.0.0
 -----------------
 
 - Improved the task widget query: a filter on a case custom field now queries only the case its column refers to,
-  instead of querying the task's case and business case at once. Existing configurations and saved filters are
-  migrated automatically, see :ref:`Migration Notes <installation-migration-notes>`.
+  instead of querying the task's case and business case at once.
 
 Changes in 13.2.0
 -----------------
