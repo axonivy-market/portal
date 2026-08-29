@@ -206,10 +206,6 @@ a **Custom Case Field** column filters the task's own case, a **Custom Business 
 task's business case. Previously both were stored as ``custom_case`` and queried both cases at once, which was
 slower and could return tasks whose value matched on the other case.
 
-   Only hand-written configurations need attention: if you maintain a dashboard JSON yourself, make sure the
-   ``type`` of each filter matches the ``type`` of the column it refers to. See
-   :ref:`Task widget configuration <new-dashboard-task-list-widget>`.
-
 Migrate 13.1 To 13.2
 --------------------
 

@@ -216,9 +216,7 @@ Each column object in the ``columns`` array:
    Multilingual column headers: ``[{"locale": "en", "value": "Header"}]``
 
 ``type`` (string, default: ``"STANDARD"``)
-   Column type: ``"STANDARD"``, ``"CUSTOM"`` (task custom field), ``"CUSTOM_CASE"``
-   (custom field of the task's case) or ``"CUSTOM_BUSINESS_CASE"`` (custom field of the
-   task's business case)
+   Column type: ``"STANDARD"``, ``"CUSTOM"``, ``"CUSTOM_CASE"`` or ``"CUSTOM_BUSINESS_CASE"``
 
 ``style`` (string, optional)
    Inline CSS for custom columns (e.g., ``"width: 110px"``)
