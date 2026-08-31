@@ -40,7 +40,13 @@ public class DashboardCaseWidgetConverter implements IJsonConverter {
         .type(DashboardWidgetType.CASE.name()).findWidgets();
 
     for (JsonNode caseWidget : caseWidgets) {
-      ArrayNode columns = Optional.ofNullable(caseWidget.get("columns")).filter(JsonNode::isArray).map(ArrayNode.class::cast).get();
+      ArrayNode columns = Optional.ofNullable(caseWidget.get("columns")).filter(JsonNode::isArray)
+          .map(ArrayNode.class::cast).orElse(null);
+      if (columns == null) {
+        // A widget with no configured columns omits the field entirely (see
+        // @JsonInclude(NON_EMPTY) on DashboardWidget) - nothing to migrate.
+        continue;
+      }
 
       columns.elements().forEachRemaining(col -> {
         DashboardStandardCaseColumn field = DashboardStandardCaseColumn.findBy(col.get("field").asText());

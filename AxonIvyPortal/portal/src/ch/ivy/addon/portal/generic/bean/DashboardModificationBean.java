@@ -29,7 +29,6 @@ import org.primefaces.event.UnselectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
-import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.dto.menu.MenuOrderEntry;
 import com.axonivy.portal.menu.management.enums.MenuSource;
 import com.axonivy.portal.service.MenuOrderService;
@@ -153,7 +152,7 @@ public class DashboardModificationBean extends DashboardBean {
     this.selectedDashboard.setPermissions(permissions);
     if (!this.dashboards.contains(selectedDashboard) && !topMenuDashboards.contains(selectedDashboard)
         && !hiddenDashboards.contains(selectedDashboard)) {
-      selectedDashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
+      // Versioning now lives on the export wrapper container, not on individual entities.
       this.dashboards.add(selectedDashboard);
     }
     
@@ -424,7 +423,7 @@ public class DashboardModificationBean extends DashboardBean {
 
   private void prepareDashboardForExport(Dashboard dashboard) {
     dashboard.setOldId(null);
-    dashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
+    // Versioning now lives on the export wrapper container, not on individual entities.
     if (!dashboard.getIsPublic()) {
       dashboard.setPermissions(null);
     }

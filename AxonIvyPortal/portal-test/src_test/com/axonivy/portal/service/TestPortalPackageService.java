@@ -26,6 +26,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.primefaces.model.StreamedContent;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.UserMenu;
@@ -33,6 +35,7 @@ import ch.ivy.addon.portalkit.dto.casedetails.CaseDetails;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPackageFile;
+import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.PortalPackageService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.environment.IvyTest;
@@ -154,6 +157,44 @@ public class TestPortalPackageService {
   }
 
   @Test
+  void writeDashboards_perItemVersionIsNeverPresentInExportedJson() throws IOException {
+    // TestPortalPackageUtils#buildDashboard() explicitly stamps a per-item version via
+    // Dashboard#setVersion() (leftover from before versioning moved to the wrapper container), but
+    // JsonListWrapper's constructor now strips it on every item it wraps - it belongs to the
+    // "version" field of the {"version": ..., "items": [...]} wrapper, not to individual entities.
+    Dashboard dashboard = buildDashboard("dashboard-1", "My Dashboard", "task_1", "Your Tasks");
+    Ivy.var().set(PortalPackageFile.DASHBOARD.getVariableKey(), toJson(List.of(dashboard)));
+
+    StreamedContent content = service.exportPackage();
+    String exportedJson = zipEntryContent(content, PortalPackageFile.DASHBOARD.getFilename());
+
+    JsonNode wrapper = BusinessEntityConverter.getObjectMapper().readTree(exportedJson);
+    assertThat(wrapper.get("version").asText()).isEqualTo("14.0.0");
+    assertThat(wrapper.get("items").get(0).has("version")).isFalse();
+  }
+
+  @Test
+  void exportThenImport_dashboardTaskWidgetWithoutConfiguredColumns_doesNotThrow() throws IOException {
+    // Regression coverage: once per-item versioning was removed from export, a re-imported dashboard
+    // has no per-item "version" field, so JsonDashboardMigrator.readVersion() falls back to
+    // OLDEST_VERSION and runs the FULL legacy converter chain (v112 through v140) - including the
+    // v113 task/case widget converters. Those converters used to call Optional.get() on a "columns"
+    // field that TaskDashboardWidget/CaseDashboardWidget omit entirely from JSON when empty (see
+    // @JsonInclude(NON_EMPTY) on DashboardWidget), throwing NoSuchElementException for any dashboard
+    // whose widget has no configured columns - the default, out-of-the-box state for a new widget.
+    Dashboard dashboard = buildDashboard("dashboard-1", "My Dashboard", "task_1", "Your Tasks");
+    Ivy.var().set(PortalPackageFile.DASHBOARD.getVariableKey(), toJson(List.of(dashboard)));
+    StreamedContent content = service.exportPackage();
+    String exportedJson = zipEntryContent(content, PortalPackageFile.DASHBOARD.getFilename());
+    byte[] zipBytes = buildZip(Map.of(PortalPackageFile.DASHBOARD.getFilename(), exportedJson));
+
+    Map<String, Boolean> results = service.importPackage(zipBytes);
+
+    assertThat(results).containsEntry(PortalPackageFile.DASHBOARD.getFilename(), true);
+    assertThat(Ivy.var().get(PortalPackageFile.DASHBOARD.getVariableKey())).isNotBlank();
+  }
+
+  @Test
   void importPackage_dashboard_malformedJson_doesNotUpdateVariable() throws IOException {
     byte[] zipBytes = buildZip(Map.of(PortalPackageFile.DASHBOARD.getFilename(), MALFORMED_JSON));
 
@@ -233,6 +274,25 @@ public class TestPortalPackageService {
 
     assertThat(results).containsEntry(PortalPackageFile.CUSTOM_STATISTIC.getFilename(), true);
     assertThat(Ivy.var().get(PortalPackageFile.CUSTOM_STATISTIC.getVariableKey())).isEqualTo(json);
+  }
+
+  @Test
+  void exportPackage_customStatistic_wrapperShapeWithLingeringPerItemVersion_stripsVersion() throws IOException {
+    // Reproduces data already stored in the canonical wrapper shape but with a stale per-item
+    // "version" - e.g. written before per-item versioning was removed, or by other code that still
+    // stamps one. The wrapper-shape passthrough must not re-export this unchanged; it has to detect
+    // and strip the lingering per-item version.
+    String json =
+        "{\"version\":\"14.0.0\",\"items\":[{\"id\":\"statistic-1\",\"version\":\"14.0.0\",\"name\":\"My Statistic\"}]}";
+    Ivy.var().set(PortalPackageFile.CUSTOM_STATISTIC.getVariableKey(), json);
+
+    StreamedContent content = service.exportPackage();
+    String exportedJson = zipEntryContent(content, PortalPackageFile.CUSTOM_STATISTIC.getFilename());
+
+    JsonNode wrapper = BusinessEntityConverter.getObjectMapper().readTree(exportedJson);
+    assertThat(wrapper.get("version").asText()).isEqualTo("14.0.0");
+    assertThat(wrapper.get("items").get(0).has("version")).isFalse();
+    assertThat(wrapper.get("items").get(0).get("id").asText()).isEqualTo("statistic-1");
   }
 
   @Test

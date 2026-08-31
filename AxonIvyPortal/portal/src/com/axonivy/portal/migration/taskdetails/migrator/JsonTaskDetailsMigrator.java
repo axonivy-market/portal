@@ -7,6 +7,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.TaskDetailsJsonVersion;
+import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.taskdetails.converter.JsonTaskDetailsConverterFactory;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -45,6 +46,11 @@ public class JsonTaskDetailsMigrator {
   public JsonNode migrate() {
     if (node.isArray()) {
       node.elements().forEachRemaining(this::migrate);
+    } else if (JsonListWrapper.isListWrapper(node)) {
+      // Canonical shape: {"version": "...", "items": [...]}. The wrapper-level "version"
+      // tracks the JSON collection format, not any single configuration's migration version,
+      // so only the items are migrated, not the wrapper itself.
+      node.get(JsonListWrapper.ITEMS_FIELD_NAME).elements().forEachRemaining(this::migrate);
     } else {
       migrate(node);
     }

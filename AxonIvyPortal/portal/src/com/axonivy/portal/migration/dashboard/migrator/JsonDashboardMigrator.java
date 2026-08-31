@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 
+import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class JsonDashboardMigrator {
@@ -47,7 +48,7 @@ public class JsonDashboardMigrator {
   public JsonNode migrate() {
     if (node.isArray()) {
       node.elements().forEachRemaining(dashboard -> migrate(dashboard));
-    } else if (isListWrapper(node)) {
+    } else if (JsonListWrapper.isListWrapper(node)) {
       // Canonical shape: {"version": "...", "items": [...]}. The wrapper-level
       // "version" tracks the JSON collection format, not any single dashboard's
       // migration version, so only the items are migrated, not the wrapper itself.
@@ -56,12 +57,6 @@ public class JsonDashboardMigrator {
       migrate(node);
     }
     return node;
-  }
-
-  private static boolean isListWrapper(JsonNode node) {
-    return node.isObject()
-        && node.has(JsonListWrapper.ITEMS_FIELD_NAME)
-        && node.get(JsonListWrapper.ITEMS_FIELD_NAME).isArray();
   }
 
   private void migrate(JsonNode dashboard) {
@@ -76,6 +71,21 @@ public class JsonDashboardMigrator {
       if (CollectionUtils.isNotEmpty(converters)) {
         converters.stream().forEachOrdered(converter -> run(converter, dashboard));
       }
+      ensureDisplayType(dashboard);
+  }
+
+  /**
+   * Safety net independent of version gating: DashboardConverter (13.1.0) is the only place that
+   * fills in "dashboardDisplayType", so a dashboard already stamped >= 13.1.0 skips it entirely. If
+   * the field is still missing for any reason (hand-edited JSON, a partial/interrupted migration),
+   * the Dashboard bean silently falls back to its constructor default instead of raising a migration
+   * error. Run this unconditionally and idempotently so a missing value always gets defaulted.
+   */
+  private void ensureDisplayType(JsonNode dashboard) {
+    if (!(dashboard instanceof ObjectNode objectNode) || objectNode.has("dashboardDisplayType")) {
+      return;
+    }
+    objectNode.put("dashboardDisplayType", DashboardDisplayType.SUB_MENU.getDashboardDisplayType());
   }
 
   private void run(IJsonConverter converter, JsonNode dashboard) {

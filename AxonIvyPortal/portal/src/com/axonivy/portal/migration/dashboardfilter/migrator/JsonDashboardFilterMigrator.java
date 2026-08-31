@@ -47,7 +47,7 @@ public class JsonDashboardFilterMigrator {
   public JsonNode migrate() {
     if (node.isArray()) {
       node.elements().forEachRemaining(config -> migrate(config));
-    } else if (isListWrapper(node)) {
+    } else if (JsonListWrapper.isListWrapper(node)) {
       // Canonical shape: {"version": "...", "items": [...]}. The wrapper-level
       // "version" tracks the JSON collection format, not any single config's
       // migration version, so only the items are migrated, not the wrapper itself.
@@ -56,12 +56,6 @@ public class JsonDashboardFilterMigrator {
       migrate(node);
     }
     return node;
-  }
-
-  private static boolean isListWrapper(JsonNode node) {
-    return node.isObject()
-        && node.has(JsonListWrapper.ITEMS_FIELD_NAME)
-        && node.get(JsonListWrapper.ITEMS_FIELD_NAME).isArray();
   }
 
   private void migrate(JsonNode node) {

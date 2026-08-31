@@ -34,18 +34,23 @@ public class JsonDashboardTemplateMigrator {
   /**
    * Read version
    * If version is null, assume that this dashboard is created since version 10.0.0 (oldest version)
-   * 
+   *
+   * <p>The version is stamped on the nested "dashboard" node (see updateVersion()/run()), not on the
+   * top-level template node, so it must be read from the same place - otherwise this always falls back
+   * to OLDEST_VERSION and every converter re-runs on every migration pass.
+   *
    * @return json version
    */
-  private static AbstractJsonVersion readVersion(JsonNode node) {
-    return Optional.ofNullable(node)
-        .map(template -> template.get(AbstractJsonVersion.VERSION_FIELD_NAME))
+  private static AbstractJsonVersion readVersion(JsonNode template) {
+    return Optional.ofNullable(template)
+        .map(t -> t.get("dashboard"))
+        .map(dashboard -> dashboard.get(AbstractJsonVersion.VERSION_FIELD_NAME))
         .map(field -> new DashboardTemplateJsonVersion(field.asText()))
         .orElse(DashboardTemplateJsonVersion.OLDEST_VERSION);
   }
 
   public JsonNode migrate() {
-    if (isListWrapper(node)) {
+    if (JsonListWrapper.isListWrapper(node)) {
       // Canonical shape: {"version": "...", "items": [...]}. The wrapper-level
       // "version" tracks the JSON collection format, not any single template's
       // migration version, so only the items are migrated, not the wrapper itself.
@@ -56,12 +61,6 @@ public class JsonDashboardTemplateMigrator {
       migrate(node);
     }
     return node;
-  }
-
-  private static boolean isListWrapper(JsonNode node) {
-    return node.isObject()
-        && node.has(JsonListWrapper.ITEMS_FIELD_NAME)
-        && node.get(JsonListWrapper.ITEMS_FIELD_NAME).isArray();
   }
 
   private void migrate(JsonNode template) {

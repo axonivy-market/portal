@@ -47,7 +47,7 @@ public class JsonStatisticMigrator {
 
   public JsonNode migrate() {
     Ivy.log().info("Converting Portal original statistic json: " + node.toString());
-    if (isListWrapper(node)) {
+    if (JsonListWrapper.isListWrapper(node)) {
       // Canonical shape: {"version": "...", "items": [...]}. The wrapper-level
       // "version" tracks the JSON collection format, not any single chart's
       // migration version, so only the items are migrated, not the wrapper itself.
@@ -59,12 +59,6 @@ public class JsonStatisticMigrator {
       node.elements().forEachRemaining(template -> migrate(template));
     }
     return node;
-  }
-
-  private static boolean isListWrapper(JsonNode node) {
-    return node.isObject()
-        && node.has(JsonListWrapper.ITEMS_FIELD_NAME)
-        && node.get(JsonListWrapper.ITEMS_FIELD_NAME).isArray();
   }
 
   private void migrate(JsonNode chart) {
