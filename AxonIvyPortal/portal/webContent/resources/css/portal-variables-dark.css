@@ -58,12 +58,14 @@
   /* Process chain */
   --process-chain-menu-color: var(--primary-color);
   --line-waiting-step-background-color: var(--ivy-primary-color-grey-light);
-  --circle-step-number-color: var(--ivy-primary-color-white);
+  --circle-step-number-color: var(--ivy-primary-color-black);
   --circle-horizontal-step-number-container-border-top-color: var(--primary-color);
   --circle-horizontal-step-number-container-border-top: var(--ivy-primary-color-grey-light);
   --circle-horizontal-last-step-number-container-border-top: var(--primary-color);
   --circle-horizontal-waiting-step-number-container-background-color: transparent;
-  --circle-step-container-border: transparent;
+  --circle-step-container-border: var(--ivy-portal-color-grey-750);
+  --circle-current-step-background-color: var(--ivy-primary-color-white);
+  --circle-current-step-border-color: var(--ivy-primary-color-white);
   --circle-vertical-step-number-container-border: var(--ivy-primary-color-grey-light);
   --circle-vertical-step-container-background-color: transparent;
   --stages-chain-current-icon-color: var(--primary-color);

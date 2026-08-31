@@ -1,15 +1,15 @@
 /*Style for stages process chain -----------------------------------------------------------------------------------*/
 .circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
   background-color: var(--process-chain-circle-horizontal-waiting-step-number-container-background-color);
-  border: solid 1px var(--dashboard-icon-border-color, hsla(0, 0%, 92%, 1));
+  border: solid 1px var(--circle-step-container-border, hsla(0, 0%, 92%, 1));
 }
 
 .circle-process-chain .circle-horizontal-process-step.current .circle-horizontal-step-container,
 .circle-process-chain .circle-horizontal-process-step.visited .circle-horizontal-step-container,
 .process-chain-mobile-container .circle-horizontal-step-container {
-  background-color: var(--start-btn-bg, hsla(196, 43%, 93%, 1));
-  border-color: var(--start-btn-border-color, hsla(195, 42%, 71%, 1));
-  color: var(--start-btn-text-color, hsla(195, 100%, 29%, 1));
+  background-color: var(--circle-current-step-background-color, hsla(196, 43%, 93%, 1));
+  border-color: var(--circle-current-step-border-color, hsla(195, 42%, 71%, 1));
+  color: var(--circle-step-number-color, hsla(195, 100%, 29%, 1));
 }
 
 .circle-process-chain .circle-vertical-process-step.visited .circle-vertical-step-container span:before {
