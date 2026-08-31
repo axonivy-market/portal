@@ -26,13 +26,13 @@
         "labelOffset" : { "x" : 31, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f2", "to" : "f1" }
+        { "id" : "f2", "to" : "f5" }
       ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 }
+        "at" : { "x" : 512, "y" : 64 }
       }
     }, {
       "id" : "f13",
@@ -132,6 +132,40 @@
       },
       "connect" : [
         { "id" : "f4", "to" : "f11", "color" : "default" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : [
+        "GROWL LEAK DEMO",
+        "park message + log slot"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.enums.SessionAttribute;",
+            "import com.axonivy.portal.components.publicapi.PortalGrowlMessageAPI;",
+            "",
+            "// GROWL LEAK DEMO (IVYPORTAL-20472 review) - revert before merging.",
+            "// The custom growl message lives in ONE session-wide slot and is not bound to the task",
+            "// that set it. This parks a message when task A's screen opens and logs the slot on every",
+            "// task screen, so the hand-over from task A to another task is visible in the engine log.",
+            "String slotKey = SessionAttribute.CUSTOM_GROWL_MESSAGE.name();",
+            "ivy.log.info(\"GROWL-LEAK-DEMO open   | task \" + ivy.task.getId() + \" '\" + ivy.task.getName() + \"' | session slot = \" + String.valueOf(ivy.session.getAttribute(slotKey)));",
+            "",
+            "if (\"Growl leak demo - task A\".equals(ivy.task.getName())) {",
+            "  PortalGrowlMessageAPI.setCustomMessage(\"Message parked by task \" + ivy.task.getId() + \" (task A)\");",
+            "  ivy.log.info(\"GROWL-LEAK-DEMO parked | task \" + ivy.task.getId() + \" | session slot = \" + String.valueOf(ivy.session.getAttribute(slotKey)));",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 64 },
+        "size" : { "width" : 176, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f1" }
       ]
     } ]
 }

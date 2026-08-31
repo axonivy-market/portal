@@ -335,5 +335,95 @@
       "connect" : [
         { "id" : "f67", "to" : "f61" }
       ]
+    }, {
+      "id" : "f70",
+      "type" : "RequestStart",
+      "name" : "growlLeakTaskA.ivp",
+      "config" : {
+        "signature" : "growlLeakTaskA",
+        "request" : {
+          "name" : "GROWL LEAK DEMO - task A (parks a customized message when its screen opens)"
+        },
+        "task" : {
+          "name" : "Growl leak demo - task A"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 624 },
+        "labelOffset" : { "x" : 62, "y" : 49 }
+      },
+      "connect" : [
+        { "id" : "f73", "to" : "f71" }
+      ]
+    }, {
+      "id" : "f71",
+      "type" : "DialogCall",
+      "name" : "GlobalGrowlIFrame",
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame:start(Boolean)",
+        "call" : {
+          "map" : {
+            "param.isCustomized" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 624 },
+        "size" : { "width" : 160, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f74", "to" : "f72" }
+      ]
+    }, {
+      "id" : "f72",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 528, "y" : 624 }
+      }
+    }, {
+      "id" : "f75",
+      "type" : "RequestStart",
+      "name" : "growlLeakTaskB.ivp",
+      "config" : {
+        "signature" : "growlLeakTaskB",
+        "request" : {
+          "name" : "GROWL LEAK DEMO - task B (unrelated task, must show the default message)"
+        },
+        "task" : {
+          "name" : "Growl leak demo - task B"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 728 },
+        "labelOffset" : { "x" : 62, "y" : 49 }
+      },
+      "connect" : [
+        { "id" : "f78", "to" : "f76" }
+      ]
+    }, {
+      "id" : "f76",
+      "type" : "DialogCall",
+      "name" : "GlobalGrowlIFrame",
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame:start(Boolean)",
+        "call" : {
+          "map" : {
+            "param.isCustomized" : "false"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 728 },
+        "size" : { "width" : 160, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f79", "to" : "f77" }
+      ]
+    }, {
+      "id" : "f77",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 528, "y" : 728 }
+      }
     } ]
 }
