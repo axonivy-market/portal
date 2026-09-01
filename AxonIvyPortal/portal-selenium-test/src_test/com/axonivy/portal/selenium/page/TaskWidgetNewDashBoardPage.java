@@ -148,7 +148,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void resetFilter() {
-    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("a[id$='reset-button']")
+    // Same redesign as applyFilter() above - "filter-overlay-panel__footer" is gone; the reset/apply
+    // buttons now sit together in "div.footer-buttons-container" (see TableWidget.xhtml's filter dialog).
+    $("div.footer-buttons-container").shouldBe(appear, DEFAULT_TIMEOUT).$$("a[id$='reset-button']")
         .filter(text("Reset")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 

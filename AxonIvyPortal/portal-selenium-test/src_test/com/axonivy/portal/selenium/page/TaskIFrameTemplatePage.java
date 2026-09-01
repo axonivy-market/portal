@@ -52,7 +52,7 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   public void addNewNote(String content) {
     $("div[id$='history-container']").shouldBe(appear, DEFAULT_TIMEOUT)
         .scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center));
-    waitForElementClickableThenClick("a[id$='add-note-command']");
+    waitForElementClickableThenClick("button[id$='add-note-command']");
     waitForElementDisplayed(By.cssSelector("div[id$='add-note-dialog']"), true);
     findElementByCssSelector("textarea[id$='note-content']").sendKeys(content);
     int beginCounts = countNoteItems();
@@ -163,8 +163,8 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   }
 
   public void openDocumentUploadingDialog() {
-    waitForElementDisplayed(By.cssSelector("a[id$='add-document-command']"), true);
-    clickByJavaScript($("a[id$='add-document-command']"));
+    waitForElementDisplayed(By.cssSelector("button[id$='add-document-command']"), true);
+    clickByJavaScript($("button[id$='add-document-command']"));
     waitForElementDisplayed(By.cssSelector("div[id$='document-upload-dialog']"), true);
   }
 
@@ -245,7 +245,7 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     clickOnSubmitButton();
     return new NewDashboardPage();
   }
-  
+
   public void addInputValueTaskPayment(String employee, String date) {
     SelenideElement fullNameElement =
         $(By.id("payment-request:fullname")).shouldBe(Condition.appear).shouldBe(Condition.editable);
@@ -264,7 +264,7 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     clickByJavaScript($("button[id$=':button-submit']"));
     switchBackToParent();
   }
-  
+
   public void clickOnCancelButton() {
     clickByJavaScript($("a[id$=':button-cancel']"));
     switchBackToParent();
@@ -303,7 +303,7 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   public void switchToCaseInfoIframe() {
     switchToIframeWithId("i-frame-case-details");
   }
-  
+
   public void clickOnHomeLogo() {
     switchBackToParent();
     WaitHelper.waitForNavigation(() -> $("span[class*='ti ti-home']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
