@@ -958,6 +958,10 @@ public class CaseDetailsPage extends TemplatePage {
     $("span[class$='ui-messages-info-summary']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("button[id$='document:document-upload-close-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
+    // See closeUploadDocumentDialog() - the dialog's "close" ajax listener is still in flight when this
+    // returns; callers that upload multiple files back-to-back (e.g. uploadDocumentAndCheckDocumentName())
+    // can otherwise race it on the next reopen. Wait for PrimeFaces' ajax queue to drain first.
+    WaitHelper.waitPageNoAjaxAndAnimation();
   }
   
   public void uploadDocument(String pathToFile) {
@@ -972,7 +976,10 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public SelenideElement getAddAttachmentDialog() {
-    $("a[id$='add-document-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    // Same redesign as onClickHistoryIcon()/add-note-command - CaseItemDocument.xhtml now renders this
+    // as a p:commandButton (a "button", styleClass "case-details-document-add-link ..."), not a p:commandLink
+    // ("a"). Match by id suffix only, tag-agnostic, so it works regardless of element type.
+    $("[id$='add-document-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("span[id$='document-upload-dialog_title']").shouldBe(appear, DEFAULT_TIMEOUT);
     return $("[id$='document:document-upload-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -989,6 +996,14 @@ public class CaseDetailsPage extends TemplatePage {
   public void closeUploadDocumentDialog() {
     $("button[id$='document-upload-close-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='document:document-upload-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    // The dialog's "close" event triggers its own async ajax listener (resetDataUploadDialog(), which
+    // re-renders the whole dialog incl. this close button) that is still in flight when the button click
+    // returns and the dialog visually disappears. Reopening the dialog (getAddAttachmentDialog()) right
+    // after - as uploadScriptDocumentAndGetError()/uploadUnsupportedFileType() do, back-to-back for several
+    // files - can race that pending response, which then lands on top of the freshly reopened dialog and
+    // wipes it, so "document-upload-close-command" is briefly missing on the next close attempt. Wait for
+    // PrimeFaces' ajax queue to drain before letting the next action proceed.
+    WaitHelper.waitPageNoAjaxAndAnimation();
   }
 
   public ElementsCollection findDocumentItemInCaseDetailsDocumentTable() {
@@ -1045,7 +1060,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isAddDocumentLinkNotDisplayed() {
-    return isElementDisplayed(By.cssSelector("a[id$='document:add-document-command']"), false);
+    // Same redesign as getAddAttachmentDialog() above - the trigger is now a "button", not an "a".
+    return isElementDisplayed(By.cssSelector("[id$='document:add-document-command']"), false);
   }
 
   public boolean isAddNoteButtonDisplayed(boolean expected) {
@@ -1066,7 +1082,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isAddDocumentLinkDisplayed(boolean expected) {
-    return isElementDisplayed(By.cssSelector("a[id$='document:add-document-command']"), expected);
+    // Same redesign as getAddAttachmentDialog() above - the trigger is now a "button", not an "a".
+    return isElementDisplayed(By.cssSelector("[id$='document:add-document-command']"), expected);
   }
 
   public boolean isDeleteDocumentButtonPresented(boolean expected) {
