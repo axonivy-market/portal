@@ -102,9 +102,11 @@ public class DashboardModificationPage extends TemplatePage {
     SelenideElement menu = $("div.create-public-dashboard-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     menu.click();
-    SelenideElement panel = $(By.id(menu.getAttribute("id") + "_panel"))
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
+    // See DashboardConfigurationPage.selectDashboardDisplayType() - waiting for a
+    // "ui-connected-overlay-enter-done" class on top of "appear" is unreliable (confirmed against captured
+    // failure DOM: the panel already satisfies "appear" while that class never gets added), so rely on
+    // "appear" alone before interacting with the list items below.
+    SelenideElement panel = $(By.id(menu.getAttribute("id") + "_panel")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     panel.$$("li").filter(Condition.text(label)).first()
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     panel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
