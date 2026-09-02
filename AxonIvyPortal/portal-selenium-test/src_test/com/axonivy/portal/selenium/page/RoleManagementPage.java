@@ -245,6 +245,15 @@ public class RoleManagementPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:users-of-role-table_data']"), true);
     if ($(By.cssSelector("a[id$=':delete-user-link']")).exists() && $$("a[id$=':delete-user-link']").size() > 0) {
       waitForElementClickableThenClick($$("a[id$=':delete-user-link']").get(index));
+      // delete-user-link's own p:ajax listener (removeUserOutOfRole) re-renders "users-of-role-table"
+      // asynchronously. Recursing immediately re-checks the DOM before that update lands: the stale
+      // exists()/size() check above can still see the about-to-be-removed link when this was the LAST
+      // remaining user, so it wrongly recurses - and the click that follows then waits out its full
+      // timeout for a link that never (re)appears, since the table has already gone to
+      // "No users own this role" by the time the ajax actually settles (confirmed via a captured failure
+      // snapshot showing exactly that empty-table state). Wait for the pending ajax/animation to finish
+      // before recursing so the next check reflects the real post-delete state.
+      WaitHelper.waitPageNoAjaxAndAnimation();
       removeUserOfRole(0);
     }
   }
