@@ -3,13 +3,16 @@
   "simpleName" : "GlobalSearchData",
   "namespace" : "ch.ivy.addon.portal.generic.GlobalSearch",
   "fields" : [ {
-    "name" : "keyword"
+    "name" : "keyword",
+    "modifiers" : [ ]
   }, {
     "name" : "isTaskFinished",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isWorkingOnTask",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "caze",
     "type" : "ch.ivyteam.ivy.workflow.ICase",
@@ -19,12 +22,16 @@
     "type" : "ch.ivyteam.ivy.workflow.ITask",
     "modifiers" : [ ]
   }, {
-    "name" : "taskId"
+    "name" : "taskId",
+    "modifiers" : [ ]
   }, {
-    "name" : "caseId"
+    "name" : "caseId",
+    "modifiers" : [ ]
   }, {
-    "name" : "processId"
+    "name" : "processId",
+    "modifiers" : [ ]
   }, {
-    "name" : "activeTabIndex"
+    "name" : "activeTabIndex",
+    "modifiers" : [ ]
   } ]
 }

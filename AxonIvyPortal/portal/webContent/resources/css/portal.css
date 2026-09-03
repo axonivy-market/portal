@@ -2253,6 +2253,15 @@ body .ui-button.portal-pill-btn.start-task-action,
 }
 
 /* Shared: pill button on a `p:commandButton` ----------------------------------------*/
+body .ui-button.portal-pill-btn .ui-button-text {
+  padding: 0;
+}
+body .ui-button.ui-button-text-icon-left.portal-pill-btn .ui-icon {
+  position: static;
+  top: auto;
+  left: auto;
+  margin: 0;
+}
 
 .action-container {
   gap: 0.5rem;

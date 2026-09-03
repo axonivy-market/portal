@@ -48,7 +48,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;",
-            "import org.apache.commons.beanutils.BeanUtils;",
+            "import org.apache.commons.beanutils2.BeanUtils;",
             "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
             "TaskQuery query = in.taskSearchCriteria.createQuery();",

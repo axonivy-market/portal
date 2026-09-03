@@ -4,7 +4,8 @@
   "namespace" : "ch.ivy.addon.portalkit.component.TaskExpiryActivatorSelection",
   "fields" : [ {
     "name" : "canChangeTaskActivator",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "users",
     "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
@@ -18,7 +19,8 @@
     "type" : "ch.ivyteam.ivy.security.ISecurityMember",
     "modifiers" : [ ]
   }, {
-    "name" : "queryAutoComplete"
+    "name" : "queryAutoComplete",
+    "modifiers" : [ ]
   }, {
     "name" : "task",
     "type" : "ch.ivyteam.ivy.workflow.ITask",
@@ -32,14 +34,18 @@
     "type" : "com.axonivy.portal.components.dto.RoleDTO",
     "modifiers" : [ ]
   }, {
-    "name" : "comment"
+    "name" : "comment",
+    "modifiers" : [ ]
   }, {
-    "name" : "notes"
+    "name" : "notes",
+    "modifiers" : [ ]
   }, {
     "name" : "isUserAssigned",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isDisabledAssignButton",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

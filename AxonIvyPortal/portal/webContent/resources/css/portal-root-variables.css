@@ -198,6 +198,9 @@
   /* Chatbot */
   --candidate-question-header-font-size: 1.5rem;
 
+  /* Project info dialog (theme-independent) */
+  --project-info-dialog-box-shadow-color: hsla(0, 0%, 0%, 0.15);
+  
   /* Detail pages (Task Details, Case Details) - theme independent geometry */
   --portal-detail-card-radius: 1.0714rem;
   --portal-detail-card-gap: 1.4286rem;

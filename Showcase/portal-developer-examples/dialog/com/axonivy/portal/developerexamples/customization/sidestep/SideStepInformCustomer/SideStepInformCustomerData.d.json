@@ -6,26 +6,26 @@
   "fields" : [ {
     "name" : "originalTaskUuid",
     "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "modifiers" : [ ]
   }, {
     "name" : "caseUuid",
     "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "modifiers" : [ ]
   }, {
     "name" : "leaveRequestData",
     "type" : "com.axonivy.portal.developerexamples.LeaveRequest",
-    "modifiers" : [ "PERSISTENT" ]
+    "modifiers" : [ ]
   }, {
     "name" : "comment",
     "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "modifiers" : [ ]
   }, {
     "name" : "informCustomer",
     "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "modifiers" : [ ]
   }, {
     "name" : "isParallel",
     "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "modifiers" : [ ]
   } ]
 }

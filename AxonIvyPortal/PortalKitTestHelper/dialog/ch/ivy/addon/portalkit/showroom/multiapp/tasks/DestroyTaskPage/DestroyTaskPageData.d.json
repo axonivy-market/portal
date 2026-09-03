@@ -4,6 +4,7 @@
   "namespace" : "ch.ivy.addon.portalkit.showroom.multiapp.tasks.DestroyTaskPage",
   "fields" : [ {
     "name" : "taskId",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   } ]
 }

@@ -3,11 +3,14 @@
   "simpleName" : "RedirectToCaseDetailsByUUIDExampleData",
   "namespace" : "com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToCaseDetailsByUUIDExample",
   "fields" : [ {
-    "name" : "uuid"
+    "name" : "uuid",
+    "modifiers" : [ ]
   }, {
-    "name" : "caseLink"
+    "name" : "caseLink",
+    "modifiers" : [ ]
   }, {
     "name" : "isLinkEnable",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

@@ -17,16 +17,19 @@
   }, {
     "name" : "isFromTaskList",
     "type" : "Boolean",
-    "comment" : "true: opened from TASK_LIST or SEARCH_RESULTS; false: back from Task Start page"
+    "comment" : "true: opened from TASK_LIST or SEARCH_RESULTS; false: back from Task Start page",
+    "modifiers" : [ ]
   }, {
     "name" : "isTaskStartedInDetails",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "dashboardDataModel",
     "type" : "ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel",
     "modifiers" : [ ]
   }, {
     "name" : "showItemDetailsHeader",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

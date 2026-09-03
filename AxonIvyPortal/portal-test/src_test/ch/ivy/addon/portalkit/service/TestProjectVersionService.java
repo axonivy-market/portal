@@ -1,0 +1,199 @@
+package ch.ivy.addon.portalkit.service;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.lang.reflect.Proxy;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+import com.axonivy.portal.bo.ApplicationInfo;
+import com.axonivy.portal.service.ProjectVersionService;
+
+import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivyteam.ivy.application.app.Application;
+import ch.ivyteam.ivy.application.app.state.ActivityState;
+import ch.ivyteam.ivy.application.app.state.AppState;
+import ch.ivyteam.ivy.application.app.state.ReleaseState;
+import ch.ivyteam.ivy.application.project.AppProjects;
+import ch.ivyteam.ivy.application.project.MavenCoordinates;
+import ch.ivyteam.ivy.application.project.Project;
+import ch.ivyteam.ivy.application.project.ProjectState;
+import ch.ivyteam.ivy.application.project.ProjectState.ProjectMode;
+import ch.ivyteam.ivy.environment.IvyTest;
+
+@IvyTest
+class TestProjectVersionService {
+
+  private final ProjectVersionService service = ProjectVersionService.getInstance();
+
+  @Test
+  void applicationInfo_sortsVersionsDescending() {
+    ApplicationInfo appInfo = new ApplicationInfo("Developer-portal", List.of(
+        fakeApplication(1, ReleaseState.RELEASED, ActivityState.ACTIVE),
+        fakeApplication(3, ReleaseState.ARCHIVED, ActivityState.ACTIVE),
+        fakeApplication(2, ReleaseState.CREATED, ActivityState.ACTIVE)));
+
+    assertThat(appInfo.getVersions()).extracting(Application::version).containsExactly(3, 2, 1);
+  }
+
+  @Test
+  void applicationInfo_defaultsToNewestReleasedVersion_notHighestVersionNumber() {
+    Application released = fakeApplication(1, ReleaseState.RELEASED, ActivityState.ACTIVE);
+    Application created = fakeApplication(2, ReleaseState.CREATED, ActivityState.ACTIVE);
+    Application archived = fakeApplication(3, ReleaseState.ARCHIVED, ActivityState.ACTIVE);
+
+    ApplicationInfo appInfo = new ApplicationInfo("Developer-portal", List.of(released, created, archived));
+
+    assertThat(appInfo.getSelectedVersion()).isEqualTo(released);
+  }
+
+  @Test
+  void applicationInfo_fallsBackToHighestVersion_whenNoneReleased() {
+    Application created = fakeApplication(1, ReleaseState.CREATED, ActivityState.ACTIVE);
+    Application archived = fakeApplication(2, ReleaseState.ARCHIVED, ActivityState.ACTIVE);
+
+    ApplicationInfo appInfo = new ApplicationInfo("Developer-portal", List.of(created, archived));
+
+    assertThat(appInfo.getSelectedVersion()).isEqualTo(archived);
+  }
+
+  @Test
+  void applicationInfo_hasNoSelectedVersionOrProjects_whenNoVersionsExist() {
+    ApplicationInfo appInfo = new ApplicationInfo("Empty-app", List.of());
+
+    assertThat(appInfo.getSelectedVersion()).isNull();
+    assertThat(appInfo.getProjects()).isEmpty();
+  }
+
+  @Test
+  void applicationInfo_getProjects_excludesPortalLibraryAndSortsByNameCaseInsensitively() {
+    Project zeta = fakeProject("zeta", "com.axonivy.portal:zeta", "1.0", ProjectMode.OK);
+    Project alpha = fakeProject("Alpha", "com.axonivy.portal:alpha", "1.0", ProjectMode.OK);
+    Project portalLib = fakeProject("portal", PortalConstants.PORTAL_LIBRARY_ID, "1.0", ProjectMode.OK);
+
+    Application version = fakeApplicationWithProjects(1, ReleaseState.RELEASED, ActivityState.ACTIVE,
+        List.of(zeta, alpha, portalLib));
+    ApplicationInfo appInfo = new ApplicationInfo("Developer-portal", List.of(version));
+
+    assertThat(appInfo.getProjects()).extracting(Project::name).containsExactly("Alpha", "zeta");
+  }
+
+  @Test
+  void applicationInfo_selectingAnotherVersion_switchesProjects() {
+    Project v1Project = fakeProject("v1-project", "id1", "1.0", ProjectMode.OK);
+    Project v2Project = fakeProject("v2-project", "id2", "2.0", ProjectMode.OK);
+    Application v1 = fakeApplicationWithProjects(1, ReleaseState.RELEASED, ActivityState.ACTIVE, List.of(v1Project));
+    Application v2 = fakeApplicationWithProjects(2, ReleaseState.CREATED, ActivityState.ACTIVE, List.of(v2Project));
+
+    ApplicationInfo appInfo = new ApplicationInfo("Developer-portal", List.of(v1, v2));
+    assertThat(appInfo.getProjects()).extracting(Project::name).containsExactly("v1-project");
+
+    appInfo.setSelectedVersion(v2);
+    assertThat(appInfo.getProjects()).extracting(Project::name).containsExactly("v2-project");
+  }
+
+  @ParameterizedTest(name = "releaseState_mapsToStyleAndIcon_for_{0}")
+  @CsvSource({
+      "RELEASED,   released,   pi-check-circle",
+      "DEPRECATED, deprecated, pi-times-circle",
+      "CREATED,    created,    pi-clock",
+      "PREPARED,   prepared,   pi-clock",
+      "ARCHIVED,   archived,   pi-question-circle"
+  })
+  void releaseState_mapsToExpectedStyleAndIcon(ReleaseState state, String style, String icon) {
+    Application version = fakeApplication(1, state, ActivityState.ACTIVE);
+
+    assertThat(service.getReleaseStateStyle(version)).isEqualTo(style);
+    assertThat(service.getReleaseStateIcon(version)).isEqualTo(icon);
+  }
+
+  @ParameterizedTest(name = "activityState_mapsToStyleAndIcon_for_{0}")
+  @CsvSource({
+      "ACTIVE,   active,   pi-play",
+      "INACTIVE, inactive, pi-exclamation-triangle"
+  })
+  void activityState_mapsToExpectedStyleAndIcon(ActivityState state, String style, String icon) {
+    Application version = fakeApplication(1, ReleaseState.RELEASED, state);
+
+    assertThat(service.getActivityStateStyle(version)).isEqualTo(style);
+    assertThat(service.getActivityStateIcon(version)).isEqualTo(icon);
+  }
+
+  @ParameterizedTest(name = "projectMode_mapsToStyleAndIcon_for__{0}")
+  @CsvSource({
+      "OK,       ok,       pi-check-circle",
+      "MISSING,  missing,  pi-exclamation-triangle",
+      "OUTDATED, outdated, pi-exclamation-triangle",
+      "TOO_OLD,  too_old,  pi-exclamation-triangle",
+      "TOO_NEW,  too_new,  pi-exclamation-triangle",
+      "UNKNOWN,  unknown,  pi-question-circle"
+  })
+  void projectMode_mapsToExpectedStyleAndIcon(ProjectMode mode, String style, String icon) {
+    Project project = fakeProject("p", "id", "1.0", mode);
+
+    assertThat(service.getProjectModeStyle(project)).isEqualTo(style);
+    assertThat(service.getProjectModeIcon(project)).isEqualTo(icon);
+  }
+
+  @Test
+  void translate_resolvesRealCmsKeys() {
+    assertThat(service.translateReleaseState(ReleaseState.RELEASED)).isEqualTo("Released");
+    assertThat(service.translateActivityState(ActivityState.ACTIVE)).isEqualTo("Active");
+    assertThat(service.translateProjectMode(ProjectMode.OK)).isEqualTo("OK");
+  }
+
+  private static Application fakeApplication(int version, ReleaseState releaseState, ActivityState activityState) {
+    return fakeApplicationWithProjects(version, releaseState, activityState, List.of());
+  }
+
+  private static Application fakeApplicationWithProjects(int version, ReleaseState releaseState,
+      ActivityState activityState, List<Project> projects) {
+    AppState state = fake(AppState.class, Map.of("releaseState", releaseState, "activityState", activityState));
+    AppProjects appProjects = fake(AppProjects.class, Map.of("all", (Supplier<Stream<Project>>) projects::stream));
+    Map<String, Object> stubs = new HashMap<>();
+    stubs.put("version", version);
+    stubs.put("state", state);
+    stubs.put("projects", appProjects);
+    return fake(Application.class, stubs);
+  }
+
+  private static Project fakeProject(String name, String mavenId, String mavenVersion, ProjectMode mode) {
+    MavenCoordinates coordinates = fake(MavenCoordinates.class, Map.of("id", mavenId, "version", mavenVersion));
+    ProjectState state = fake(ProjectState.class, Map.of("mode", mode));
+    Map<String, Object> stubs = new HashMap<>();
+    stubs.put("name", name);
+    stubs.put("mavenCoordinates", coordinates);
+    stubs.put("state", state);
+    return fake(Project.class, stubs);
+  }
+
+  private static <T> T fake(Class<T> type, Map<String, Object> stubs) {
+    return type.cast(Proxy.newProxyInstance(type.getClassLoader(), new Class<?>[] {type}, (proxy, method, args) -> {
+      switch (method.getName()) {
+        case "equals":
+          return proxy == args[0];
+        case "hashCode":
+          return System.identityHashCode(proxy);
+        case "toString":
+          return type.getSimpleName() + "@" + Integer.toHexString(System.identityHashCode(proxy));
+        default:
+          break;
+      }
+      Object stub = stubs.get(method.getName());
+      if (stub instanceof Supplier<?> supplier) {
+        return supplier.get();
+      }
+      if (stubs.containsKey(method.getName())) {
+        return stub;
+      }
+      throw new UnsupportedOperationException(type.getSimpleName() + "#" + method.getName());
+    }));
+  }
+}

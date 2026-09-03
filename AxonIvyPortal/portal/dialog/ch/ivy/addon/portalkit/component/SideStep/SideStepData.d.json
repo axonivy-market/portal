@@ -11,9 +11,11 @@
     "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel",
     "modifiers" : [ ]
   }, {
-    "name" : "currentPortalPage"
+    "name" : "currentPortalPage",
+    "modifiers" : [ ]
   }, {
     "name" : "inFrame",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

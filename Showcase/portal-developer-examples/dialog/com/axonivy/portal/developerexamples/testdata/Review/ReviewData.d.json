@@ -4,6 +4,7 @@
   "namespace" : "com.axonivy.portal.developerexamples.testdata.Review",
   "fields" : [ {
     "name" : "investmentRequest",
-    "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData"
+    "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData",
+    "modifiers" : [ ]
   } ]
 }

@@ -4,13 +4,17 @@
   "namespace" : "com.axonivy.portal.userexamples.InvestmentList",
   "fields" : [ {
     "name" : "investments",
-    "type" : "List<com.axonivy.portal.userexamples.dashboardcustomwidget.Investment>"
+    "type" : "List<com.axonivy.portal.userexamples.dashboardcustomwidget.Investment>",
+    "modifiers" : [ ]
   }, {
     "name" : "startDate",
-    "type" : "Date"
+    "type" : "Date",
+    "modifiers" : [ ]
   }, {
-    "name" : "name"
+    "name" : "name",
+    "modifiers" : [ ]
   }, {
-    "name" : "note"
+    "name" : "note",
+    "modifiers" : [ ]
   } ]
 }

@@ -8,20 +8,24 @@
     "modifiers" : [ ]
   }, {
     "name" : "totalTasks",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
     "name" : "loopCounter",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "maxResultNumberPerQuery",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "collectedTasksForExporting",
     "type" : "List<ch.ivyteam.ivy.workflow.ITask>",
     "modifiers" : [ ]
   }, {
     "name" : "columnsVisibility",
-    "type" : "List<String>"
+    "type" : "List<String>",
+    "modifiers" : [ ]
   }, {
     "name" : "exportedFile",
     "type" : "org.primefaces.model.StreamedContent",

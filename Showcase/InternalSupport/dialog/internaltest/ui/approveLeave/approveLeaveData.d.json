@@ -29,11 +29,14 @@
     "modifiers" : [ ]
   }, {
     "name" : "actualStepIndex",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ ]
   }, {
     "name" : "steps",
-    "type" : "List<String>"
+    "type" : "List<String>",
+    "modifiers" : [ ]
   }, {
-    "name" : "taskCategory"
+    "name" : "taskCategory",
+    "modifiers" : [ ]
   } ]
 }
