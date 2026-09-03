@@ -3,8 +3,10 @@
   "simpleName" : "StatisticConfigurationData",
   "namespace" : "com.axonivy.portal.page.StatisticConfiguration",
   "fields" : [ {
-    "name" : "id"
+    "name" : "id",
+    "modifiers" : [ ]
   }, {
-    "name" : "callbackDashboardId"
+    "name" : "callbackDashboardId",
+    "modifiers" : [ ]
   } ]
 }

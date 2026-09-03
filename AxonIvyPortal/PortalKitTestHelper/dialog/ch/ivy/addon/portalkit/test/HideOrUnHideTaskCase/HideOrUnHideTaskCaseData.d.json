@@ -4,9 +4,11 @@
   "namespace" : "ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase",
   "fields" : [ {
     "name" : "taskId",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
     "name" : "caseId",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   } ]
 }

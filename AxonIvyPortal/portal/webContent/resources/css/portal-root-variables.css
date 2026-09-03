@@ -53,6 +53,10 @@
   --ivy-portal-color-grey-900: hsla(0, 0%, 17%, 1);
   --ivy-portal-color-grey-950: hsla(0, 0%, 13%, 1);
 
+  /* Portal red palette */
+  --ivy-portal-color-red-100: hsla(0, 77%, 95%, 1);
+  --ivy-portal-color-red-300: hsla(358, 79%, 79%, 1);
+
   /* Default Portal styles */
   --header-font-size: 2rem;
   --portal-icon-font-family: "tabler-icons";
@@ -60,11 +64,12 @@
   --portal-tabler-icon-size: calc(8 / 7 * 1rem);
   --portal-icon-line-height: 1;
   --portal-icon-ui-icon-font-size: 1.4rem;
-  --portal-icon-size-lg: 1.4286rem;
-  --portal-icon-size-xl: 1.8571rem;
-  --portal-icon-btn-size-sm: 2.1429rem;
-  --portal-icon-btn-size-md: 2.7143rem;
-  --portal-icon-btn-size-lg: 3.0714rem;
+  --portal-icon-size-md: 1.2857rem; /* 18px */
+  --portal-icon-size-lg: 1.4286rem; /* 20px */
+  --portal-icon-size-xl: 1.8571rem; /* 26px */
+  --portal-icon-btn-size-sm: 2.1429rem; /* 30px */
+  --portal-icon-btn-size-md: 2.7143rem; /* 38px */
+  --portal-icon-btn-size-lg: 3.0714rem; /* 43px */
   --portal-icon-btn-border-width: 1px;
   --default-font-style: normal;
   --login-logo-height: 50px;
@@ -203,6 +208,8 @@
   --portal-detail-subcard-padding: 1.0714rem;
   --portal-detail-grid-inset: 10px;
   --portal-action-menu-radius: 10px;
+
+  --dashboard-widget-dashed-outline-mask: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='15' ry='15' stroke='black' stroke-width='2' stroke-dasharray='10%2c 11' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
 
   /* Dashboard Icons */
   --ivy-dashboard-icon-bg-light: hsl(0, 0%, 97.25%);

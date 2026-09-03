@@ -3,10 +3,12 @@
   "simpleName" : "TaskItemGeneralInfoData",
   "namespace" : "ch.ivy.addon.portalkit.component.TaskItemGeneralInfo",
   "fields" : [ {
-    "name" : "changeDeadlineNoteContent"
+    "name" : "changeDeadlineNoteContent",
+    "modifiers" : [ ]
   }, {
     "name" : "globalCaseId",
-    "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId"
+    "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedCase",
     "type" : "ch.ivyteam.ivy.workflow.ICase",
@@ -17,6 +19,7 @@
     "modifiers" : [ ]
   }, {
     "name" : "expiryTimestamp",
-    "type" : "java.util.Date"
+    "type" : "java.util.Date",
+    "modifiers" : [ ]
   } ]
 }

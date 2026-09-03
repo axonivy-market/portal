@@ -683,8 +683,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       removeDashboardHeader: Remove the "{0}" dashboard
       deleteMenuItemMessage: Are you sure you want to delete the "{0}" menu item?
     deleteWidget: Delete widget
+    editMode: Edit mode
     editWidget: Edit widget
     existingField: The {0} field has already been existing
+    exitEditMode: Exit edit mode
     expiryFrom: Expiry From
     expiryTo: Expiry To
     field: Field

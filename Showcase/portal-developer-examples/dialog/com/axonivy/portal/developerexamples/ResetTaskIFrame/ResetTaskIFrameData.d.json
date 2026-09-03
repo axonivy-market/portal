@@ -4,6 +4,7 @@
   "namespace" : "com.axonivy.portal.developerexamples.ResetTaskIFrame",
   "fields" : [ {
     "name" : "isCreatedAndPersistent",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

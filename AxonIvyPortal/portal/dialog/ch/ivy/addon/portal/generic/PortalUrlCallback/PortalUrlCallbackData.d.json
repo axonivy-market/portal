@@ -3,6 +3,7 @@
   "simpleName" : "PortalUrlCallbackData",
   "namespace" : "ch.ivy.addon.portal.generic.PortalUrlCallback",
   "fields" : [ {
-    "name" : "callbackUrl"
+    "name" : "callbackUrl",
+    "modifiers" : [ ]
   } ]
 }

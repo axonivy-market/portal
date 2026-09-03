@@ -25,16 +25,16 @@
   --button-secondary-text-color: var(--primary-color);
 
   /* Start button (task widget start column) */
-  --start-btn-bg: var(--ivy-portal-color-grey-800);
-  --start-btn-border-color: var(--ivy-portal-color-grey-600);
-  --start-btn-text-color: var(--ivy-primary-color-white);
-  --start-btn-hover-bg: hsla(0, 0%, 40%, 1);
-  --start-btn-disabled-bg: var(--ivy-portal-color-grey-850);
-  --start-btn-disabled-border-color: var(--ivy-portal-color-grey-750);
-  --start-btn-disabled-text-color: var(--ivy-portal-color-grey-500);
+  --accent-btn-bg: var(--ivy-portal-color-grey-800);
+  --accent-btn-border: var(--ivy-portal-color-grey-600);
+  --accent-btn-text: var(--ivy-primary-color-white);
+  --accent-btn-hover-bg: var(--ivy-portal-color-grey-700);
+  --accent-btn-disabled-bg: var(--ivy-portal-color-grey-850);
+  --accent-btn-disabled-border: var(--ivy-portal-color-grey-750);
+  --accent-btn-disabled-text: var(--ivy-portal-color-grey-500);
 
   /* Welcome widget configuration - Advanced settings pill & Change image link accent */
-  --welcome-config-accent-color: hsla(0, 0%, 98%, 1);
+  --welcome-config-accent-color: var(--ivy-portal-color-grey-50);
   --welcome-config-accent-hover-bg: hsla(0, 0%, 100%, 0.10);
 
   /* Color and border radius of context button,  it only affects when button has attribute styleClass="context-button" */
@@ -99,6 +99,21 @@
   --widget-filter-add-condition-background-color: hsla(0, 0%, 100%, 1);
   --widget-filter-and-badge-background-color: hsla(0, 0%, 15%, 1);
   --widget-filter-and-badge-text-color: hsla(0, 0%, 98%, 1);
+
+  --checkbox-checked-background-color: var(--ivy-portal-color-grey-900);
+  --checkbox-checked-icon-color: var(--ivy-portal-color-grey-50);
+  --checkbox-checked-hover-background-color: var(--ivy-portal-color-grey-700);
+  --checkbox-border-color: var(--ivy-portal-color-grey-600);
+
+  /* Fieldset box */
+  --portal-fieldset-background-color: var(--ivy-portal-color-grey-850);
+  --portal-fieldset-border-color: var(--ivy-portal-color-grey-750);
+
+  /* Fieldset legend pill */
+  --portal-fieldset-legend-color: var(--ivy-portal-color-grey-50);
+  --portal-fieldset-legend-background-color: var(--ivy-portal-color-grey-900);
+  --portal-fieldset-legend-border-color: var(--ivy-portal-color-grey-600);
+  --portal-fieldset-legend-hover-background-color: var(--ivy-portal-color-grey-700);
   --widget-filter-subtle-surface-color: hsla(0, 0%, 22%, 1);
   --widget-filter-subtle-border-color: var(--surface-d, rgb(84 91 103 / 50%));
   --widget-filter-chip-border-color: hsla(0, 0%, 29%, 1);
@@ -216,8 +231,8 @@
   --portal-detail-table-row-border-color: hsl(0, 0%, 31%);
   --portal-detail-strip-divider-color: var(--portal-detail-table-row-border-color);
   /* Text */
-  --portal-detail-value-color: var(--text-color, hsl(0, 0%, 100%));
-  --portal-detail-label-color: hsl(0, 0%, 64%);
+  --portal-detail-value-color: var(--ivy-primary-color-white);
+  --portal-detail-label-color: var(--ivy-portal-color-grey-500);
   --portal-detail-eyebrow-color: var(--portal-detail-label-color);
   /* Accent */
   --portal-detail-accent-color: var(--primary-color, hsl(0, 0%, 98%));
@@ -386,16 +401,19 @@
   --image-process-header-background-color: hsla(0, 0%, 96%, 1);
   --image-process-header-background-color-hover: hsla(0, 0%, 86%, 1);
   --image-process-header-color: hsla(0, 0%, 49%, 1);
-  --process-action-button-color: var(--widget-button-background-color);
+  --process-action-button-color: var(--secondary-btn-bg);
   /* Process information page */
   --process-info-step-icon-font-color: var(--primary-color);
   /* Widget header */
   --widget-filter-noti-background-color: var(--ivy-tertinary-color-red-medium);
   --widget-filter-noti-color: var(--ivy-primary-color-white);
   --widget-header-icon: var(--ivy-primary-color-white);
-  --widget-button-border-color: var(--ivy-portal-color-grey-700);
-  --widget-button-background-color: var(--ivy-portal-color-grey-850);
-  --widget-button-hover-background-color: hsla(0, 0%, 38%, 1);
+  --secondary-btn-border: var(--ivy-portal-color-grey-700);
+  --secondary-btn-bg: var(--ivy-portal-color-grey-850);
+  --secondary-btn-hover-bg: hsla(0, 0%, 38%, 1);
+  --widget-button-danger-background-color: hsla(0, 84%, 60%, 0.25);
+  --widget-button-danger-background-color-hover: var(--ivy-portal-color-red-300);
+  --widget-button-danger-border-color: hsla(0, 84%, 60%, 0.25);
   --widget-view-toggle-bg: hsla(0, 0%, 22%, 1);
   --widget-view-toggle-active-bg: hsla(0, 0%, 100%, 1);
   --widget-view-toggle-icon: var(--ivy-portal-color-grey-700);
@@ -422,9 +440,10 @@
   --state-active: var(--case-state-done-color);
   --state-inactive: var(--task-state-failed-color);
 
-  /* Dashboard commandlink hover */
-  --ivy-primary-color-command-link-hover: var(--ivy-primary-color-white);
-  
+  /* Portal link */
+  --portal-link-color: var(--ivy-primary-color-white);
+  --portal-link-color-hover: var(--ivy-portal-color-grey-200);
+
     /* Dashboard widgets empty message*/
   --dashboard-widget-empty-message: var(--ivy-primary-color-grey-pale);
   
@@ -479,6 +498,9 @@
   --button-primary-bg-color: var(--ivy-primary-color-white);
   --button-primary-text-color: var(--ivy-primary-color-black);
   --dashboard-tab-active-color: var(--ivy-primary-color-white);
+  --dashboard-header-card-bg-color: var(--ivy-portal-color-grey-850);
+  --dashboard-header-card-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --dashboard-widget-dashed-outline-color: var(--ivy-portal-color-grey-450);
 
   --card-box-shadow: 0 0 27px 0 rgba(0, 0, 0, 0.4);
   --filters-card-bg-color: var(--sidebar-settings-card-bg-color);

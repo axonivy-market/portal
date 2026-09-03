@@ -4,7 +4,8 @@
   "namespace" : "ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask",
   "fields" : [ {
     "name" : "isTaskFinished",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "caze",
     "type" : "ch.ivyteam.ivy.workflow.ICase",

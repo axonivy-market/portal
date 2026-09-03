@@ -4,6 +4,7 @@
   "namespace" : "ch.ivy.addon.portalkit.component.ExceptionDialog",
   "fields" : [ {
     "name" : "isCopied",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }
