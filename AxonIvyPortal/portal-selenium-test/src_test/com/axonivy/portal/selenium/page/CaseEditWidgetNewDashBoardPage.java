@@ -64,12 +64,12 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
         .shouldBe(getClickableCondition()).click();
     $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").$("span[id*='ui-icon-loading]").exists();
-    $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").shouldNotHave(Condition.attribute("disabled", "disabled"),DEFAULT_TIMEOUT);
+    $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").shouldNotHave(Condition.attribute("disabled", "disabled"), DEFAULT_TIMEOUT);
   }
 
   public void openFilter() {
     $("button[id$=':show-filter']").shouldBe(getClickableCondition()).click();
-    $(".filter-panel-header").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div.widget-configuration-filter-dialog[style*='display: block']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void filterCaseName(String caseName) {
@@ -100,7 +100,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     $(caseEditWidgetId).$("div[id$=':dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT);
     $(caseEditWidgetId).$(".case-dashboard-widget__loading-message").shouldHave(Condition.cssClass("hidden"), DEFAULT_TIMEOUT);
     $(caseEditWidgetId).$("div[id$=':dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT).shouldNotHave(Condition.cssClass("hidden"));
-    $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").shouldNotHave(Condition.attribute("disabled", "disabled"),DEFAULT_TIMEOUT);
+    $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").shouldNotHave(Condition.attribute("disabled", "disabled"), DEFAULT_TIMEOUT);
   }
 
   public void save() {
@@ -303,9 +303,9 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
       countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
     }
   }
-  
+
   public void resetFilter() {
-    $("button[id$=':reset-filter']").shouldBe(getClickableCondition()).click();
+    $("[id$=':reset-filter']").shouldBe(getClickableCondition()).click();
     countFilterSelect().shouldBe(CollectionCondition.size(0), DEFAULT_TIMEOUT);
   }
 
@@ -339,7 +339,6 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     }
     saveColumn();
   }
-  
 
   public void clickOnQuickSearchCheckBox() {
     getQuickSearchCheckBox().click();
@@ -419,7 +418,6 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     removeFilter(currentIndex);
     return isAvailable;
   }
-  
 
   public boolean isQuickSearchInputShow(String widgetIndex) {
     String taskWidgetIndex = String.format("div[id*='case-case_%s']", widgetIndex);
@@ -449,7 +447,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     return $("div[id$='empty-message-container'][class='empty-message-container ']").shouldBe(appear, DEFAULT_TIMEOUT)
         .isDisplayed();
   }
-  
+
   public SelenideElement getWidgetInfoIconCheckbox() {
     return getWidgetConfigurationPanel().$("div[id$='widget-info-icon-group']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
@@ -506,18 +504,18 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void resizeColumn() {
     ElementsCollection elements = $("[id=\"task-task_1:task-component:dashboard-tasks:dashboard-tasks-columns:1\"]")
-    .$$(".ui-column-resizer.ui-draggable.ui-draggable-handle");
+        .$$(".ui-column-resizer.ui-draggable.ui-draggable-handle");
     WebElement element = elements.get(0);
     new Actions(driver)
-    .clickAndHold(element)
-    .perform();
+        .clickAndHold(element)
+        .perform();
   }
-  
+
   public void clickOnCaseNameColumn() {
     $("div[id$='case-widget-preview:dashboard-cases']").shouldBe(appear, DEFAULT_TIMEOUT)
-    .$("th[id$='dashboard-cases-columns:1']").shouldBe(getClickableCondition()).click();
-  } 
-  
+        .$("th[id$='dashboard-cases-columns:1']").shouldBe(getClickableCondition()).click();
+  }
+
   public SelenideElement getFirstCaseOfCaseWidget() {
     $("div[id$='case-widget-preview:dashboard-cases']").shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr").get(0).shouldBe(appear,
         DEFAULT_TIMEOUT);

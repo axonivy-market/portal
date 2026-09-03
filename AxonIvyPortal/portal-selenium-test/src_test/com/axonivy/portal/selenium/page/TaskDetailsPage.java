@@ -34,8 +34,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void addNote(String noteContent) {
-    $("a[id$=':task-notes:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).scrollIntoCenter();
-    $("a[id$=':task-notes:add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("button[id$=':task-notes:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).scrollIntoCenter();
+    $("button[id$=':task-notes:add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$=':task-notes:add-new-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[id$=':task-notes:add-new-note-dialog']").find("textarea").sendKeys(noteContent);
     $("button[id$=':task-notes:task-add-new-note-form:save-add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -346,7 +346,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public TaskIFrameTemplatePage clickStartTask() {
-    WaitHelper.waitForNavigation(() ->  {
+    WaitHelper.waitForNavigation(() -> {
       findElementByCssSelector("[id$=':task-detail-start-command']").click();
     });
     switchToIFrameOfTask();
@@ -359,30 +359,28 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void changePriorityOfTask(int priorityValue) {
-    findElementByCssSelector("[id$=':general-information:priority-form:edit-priority-inplace_display']").click();
-    waitForElementDisplayed(By.cssSelector("[id$=':general-information:priority-form:priority-select-menu_label']"),
+    // task-detail-template:widgets:0:priority-form:edit-priority-inplace_display
+    findElementByCssSelector("[id$=':priority-form:edit-priority-inplace_display']").click();
+    waitForElementDisplayed(By.cssSelector("[id$=':priority-form:priority-select-menu_label']"),
         true);
-    findElementByCssSelector("[id$=':general-information:priority-form:priority-select-menu_label']").click();
+    findElementByCssSelector("[id$=':priority-form:priority-select-menu_label']").click();
     WaitHelper.waitPageNoAnimation();
     SelenideElement prioritySelectElement = findElementByCssSelector(
-        String.format("[id$=':general-information:priority-form:priority-select-menu_%d']", priorityValue));
+        String.format("[id$=':priority-form:priority-select-menu_%d']", priorityValue));
     waitForElementDisplayed(prioritySelectElement, true);
     prioritySelectElement.click();
-    // Wait for this panel's own closing transition to finish before clicking Save - otherwise its
-    // still-closing overlay can intercept that click, which is a silent no-op.
     waitForElementDisplayed(
-        $("[id$=':general-information:priority-form:priority-select-menu_panel']"), false);
-    clickByJavaScript($("[id$=':general-information:priority-form:edit-priority-inplace_editor'] .ui-inplace-save"));
+        $("[id$=':priority-form:priority-select-menu_panel']"), false);
+    clickByJavaScript($("[id$=':priority-form:edit-priority-inplace_editor'] .ui-inplace-save"));
     waitForElementDisplayed(
-        By.cssSelector("[id$=':general-information:priority-form:edit-priority-inplace_editor'] .ui-inplace-save"),
+        By.cssSelector("[id$=':priority-form:edit-priority-inplace_editor'] .ui-inplace-save"),
         false);
   }
 
   public String getTaskNameInDialog() {
-    waitForElementDisplayed(
-        By.cssSelector("span[id='task-detail-template:task-detail-title-form:task-name-edit-form']"), true);
-    return findElementByCssSelector("span[id='task-detail-template:task-detail-title-form:task-name-edit-form']")
-        .getText();
+    String eyebrow = $(".task-detail-eyebrow").shouldBe(appear, DEFAULT_TIMEOUT).getText();
+    String name = $(".task-detail-name").shouldBe(appear, DEFAULT_TIMEOUT).getText();
+    return eyebrow + ": " + name;
   }
 
   public String getTaskName() {
@@ -406,7 +404,7 @@ public class TaskDetailsPage extends TemplatePage {
   public SelenideElement getAllResponsible() {
     return $("[id$=':all-responsibles'] a");
   }
-  
+
   public SelenideElement getAllExpiryResponsible() {
     return $("[id$=':all-expiry-responsibles'] a");
   }
@@ -414,7 +412,7 @@ public class TaskDetailsPage extends TemplatePage {
   public SelenideElement getExpiryResponsibleDialog() {
     return $("[id$=':expiry-responsible-dialog']");
   }
-  
+
   public void clickOnSystemNotesCheckbox(boolean checkboxShouldBeChecked) {
     waitForElementDisplayed(By.cssSelector("[id$=':task-history-content-container']"), true);
     var systemNotesCheckbox = findElementByCssSelector("[id$=':task-notes:show-system-notes-checkbox']");
@@ -429,12 +427,12 @@ public class TaskDetailsPage extends TemplatePage {
       clickOnSystemNotesCheckbox(checkboxShouldBeChecked);
     }
   }
-  
+
   public void clickOnShowCustomFieldsDialog() {
     $("a[id$=':task-custom-fields-command']").shouldBe(getClickableCondition()).click();
     $("div[id$='task-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public SelenideElement getCustomFieldsDialog() {
     return $("div[id$='task-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -447,7 +445,7 @@ public class TaskDetailsPage extends TemplatePage {
         .map(SelenideElement::getText)
         .collect(Collectors.toList());
   }
-  
+
   public void openAfterEscalationDialog() {
     $(".task-expiry-activator-edit").shouldBe(getClickableCondition()).click();
   }

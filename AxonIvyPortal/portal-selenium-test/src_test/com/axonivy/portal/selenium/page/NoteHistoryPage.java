@@ -24,7 +24,7 @@ public class NoteHistoryPage extends TemplatePage {
   }
 
   public int countNotes() {
-    waitForElementDisplayed(By.cssSelector("div[id*='notes-table']"), true);
+    waitForElementDisplayed(By.cssSelector("div[id*=':notes-table']"), true);
     return WebDriverRunner.getWebDriver().findElements(By.cssSelector(TABLE_ROWS_PATH)).size();
   }
 
@@ -69,7 +69,7 @@ public class NoteHistoryPage extends TemplatePage {
   public void clickOnCheckboxShowSystemNotes() {
     $("[id$=':show-system-notes-checkbox']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
-  
+
   public boolean isTaskNoteTableVisible() {
     return findElementByCssSelector("[id$=':task-note-table']").isDisplayed();
   }

@@ -57,11 +57,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getColumnOfTaskHasActionIndex(int index, String columnName) {
-    return $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT)
-    .$$("table tbody tr").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(index))
-    .get(index).$$("td").shouldHave(containExactTextsCaseSensitive(columnName))
-    .filter(Condition.text(columnName)).first()
-    .$("span a");
+    return getCellByRowAndColumnName(index, columnName).$("button.dashboard-side-steps-menu-button");
   }
 
   public ElementsCollection expand() {
@@ -109,9 +105,13 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void openFilterWidget() {
     waitForGlobalGrowlDisappear();
-    getTaskWidgetHeader().$(".widget__filter-sidebar-link").shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
-    waitForElementClickableThenClick(getTaskWidgetHeader().$(".widget__filter-sidebar-link"));
+    SelenideElement actionsMenuButton = getTaskWidgetHeader().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    actionsMenuPanel.$$("a.ui-menuitem-link").filter(text("Filters")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     WaitHelper.waitPageNoAnimation();
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -128,13 +128,13 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void applyFilter() {
-    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
+    $("div.footer-buttons-container").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
-    $("div[id$='task-task_1:filter-overlay-panel-0']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("div[id$='task-task_1:filter-dialog-0']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void resetFilter() {
-    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("a[id$='reset-button']")
+    $("div.footer-buttons-container").shouldBe(appear, DEFAULT_TIMEOUT).$$("a[id$='reset-button']")
         .filter(text("Reset")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
