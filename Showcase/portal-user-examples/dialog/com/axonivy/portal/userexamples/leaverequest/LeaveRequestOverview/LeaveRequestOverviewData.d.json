@@ -4,12 +4,15 @@
   "namespace" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestOverview",
   "fields" : [ {
     "name" : "processSteps",
-    "type" : "java.util.List<com.axonivy.portal.userexamples.dto.ProcessStep>"
+    "type" : "java.util.List<com.axonivy.portal.userexamples.dto.ProcessStep>",
+    "modifiers" : [ ]
   }, {
     "name" : "userProcess",
-    "type" : "com.axonivy.portal.userexamples.dto.UserProcess"
+    "type" : "com.axonivy.portal.userexamples.dto.UserProcess",
+    "modifiers" : [ ]
   }, {
     "name" : "state",
-    "type" : "com.axonivy.portal.userexamples.enums.RequestState"
+    "type" : "com.axonivy.portal.userexamples.enums.RequestState",
+    "modifiers" : [ ]
   } ]
 }

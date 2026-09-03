@@ -3,6 +3,7 @@
   "simpleName" : "PageFooterData",
   "namespace" : "ch.ivy.addon.portalkit.component.PageFooter",
   "fields" : [ {
-    "name" : "content"
+    "name" : "content",
+    "modifiers" : [ ]
   } ]
 }

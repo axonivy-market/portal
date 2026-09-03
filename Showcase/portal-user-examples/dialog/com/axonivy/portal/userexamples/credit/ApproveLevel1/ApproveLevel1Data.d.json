@@ -4,6 +4,7 @@
   "namespace" : "com.axonivy.portal.userexamples.credit.ApproveLevel1",
   "fields" : [ {
     "name" : "dossier",
-    "type" : "com.axonivy.portal.userexamples.credit.CreditDossier"
+    "type" : "com.axonivy.portal.userexamples.credit.CreditDossier",
+    "modifiers" : [ ]
   } ]
 }

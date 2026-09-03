@@ -8,25 +8,30 @@
     "modifiers" : [ ]
   }, {
     "name" : "compactMode",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "expandedTask",
     "type" : "ch.ivyteam.ivy.workflow.ITask",
     "modifiers" : [ ]
   }, {
     "name" : "canUserResumeTask",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "callbackUrl",
-    "comment" : "Portal Task List url is used to be back after finish task"
+    "comment" : "Portal Task List url is used to be back after finish task",
+    "modifiers" : [ ]
   }, {
     "name" : "dataModel",
     "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel",
     "modifiers" : [ ]
   }, {
-    "name" : "currentPortalPage"
+    "name" : "currentPortalPage",
+    "modifiers" : [ ]
   }, {
     "name" : "inFrame",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

@@ -4,8 +4,10 @@
   "namespace" : "ch.ivy.addon.portalkit.test.GrantOrDenySpecificPermission",
   "fields" : [ {
     "name" : "isGrantPermission",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
-    "name" : "permission"
+    "name" : "permission",
+    "modifiers" : [ ]
   } ]
 }

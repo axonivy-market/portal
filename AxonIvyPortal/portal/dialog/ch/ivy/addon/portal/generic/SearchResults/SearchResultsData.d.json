@@ -5,9 +5,11 @@
   "fields" : [ {
     "name" : "dataModel",
     "type" : "ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel",
-    "comment" : "For customization: change this attribute's type to <YOUR_CUSTOMIZED_DATA_MODEL>, for example: CustomizedSearchResultsDataModel"
+    "comment" : "For customization: change this attribute's type to <YOUR_CUSTOMIZED_DATA_MODEL>, for example: CustomizedSearchResultsDataModel",
+    "modifiers" : [ ]
   }, {
     "name" : "activeTabIndex",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ ]
   } ]
 }

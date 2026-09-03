@@ -4,64 +4,86 @@
   "namespace" : "com.axonivy.portal.components.DocumentTable",
   "fields" : [ {
     "name" : "documents",
-    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>",
+    "modifiers" : [ ]
   }, {
     "name" : "event",
-    "type" : "org.primefaces.event.FileUploadEvent"
+    "type" : "org.primefaces.event.FileUploadEvent",
+    "modifiers" : [ ]
   }, {
     "name" : "fileLimit",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "ivyCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase"
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ ]
   }, {
-    "name" : "message"
+    "name" : "message",
+    "modifiers" : [ ]
   }, {
-    "name" : "messageComponentId"
+    "name" : "messageComponentId",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedDocument",
-    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument"
+    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument",
+    "modifiers" : [ ]
   }, {
     "name" : "streamedContent",
-    "type" : "org.primefaces.model.StreamedContent"
+    "type" : "org.primefaces.model.StreamedContent",
+    "modifiers" : [ ]
   }, {
     "name" : "typeColumnRendered",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "typeSelection",
-    "type" : "com.axonivy.portal.components.enums.DocumentType"
+    "type" : "com.axonivy.portal.components.enums.DocumentType",
+    "modifiers" : [ ]
   }, {
     "name" : "uploadDocumentCheckStatus",
-    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus"
+    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus",
+    "modifiers" : [ ]
   }, {
     "name" : "uploadedDocument",
-    "type" : "ch.ivyteam.ivy.workflow.document.IDocument"
+    "type" : "ch.ivyteam.ivy.workflow.document.IDocument",
+    "modifiers" : [ ]
   }, {
     "name" : "enableVirusScannerForUploadedDocument",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "enableScriptCheckingForUploadedDocument",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
-    "name" : "allowedUploadFileTypes"
+    "name" : "allowedUploadFileTypes",
+    "modifiers" : [ ]
   }, {
     "name" : "uploadedFile",
-    "type" : "org.primefaces.model.file.UploadedFile"
+    "type" : "org.primefaces.model.file.UploadedFile",
+    "modifiers" : [ ]
   }, {
     "name" : "sizeLimit",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
     "name" : "isImage",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isRenameDocumentSuccess",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
-    "name" : "renameDocumentMessage"
+    "name" : "renameDocumentMessage",
+    "modifiers" : [ ]
   }, {
-    "name" : "uploadSubFolder"
+    "name" : "uploadSubFolder",
+    "modifiers" : [ ]
   }, {
     "name" : "displaySubFolderList",
-    "type" : "List<String>"
+    "type" : "List<String>",
+    "modifiers" : [ ]
   } ]
 }
