@@ -175,13 +175,15 @@ public class TestPortalPackageService {
 
   @Test
   void exportThenImport_dashboardTaskWidgetWithoutConfiguredColumns_doesNotThrow() throws IOException {
-    // Regression coverage: once per-item versioning was removed from export, a re-imported dashboard
-    // has no per-item "version" field, so JsonDashboardMigrator.readVersion() falls back to
-    // OLDEST_VERSION and runs the FULL legacy converter chain (v112 through v140) - including the
-    // v113 task/case widget converters. Those converters used to call Optional.get() on a "columns"
-    // field that TaskDashboardWidget/CaseDashboardWidget omit entirely from JSON when empty (see
-    // @JsonInclude(NON_EMPTY) on DashboardWidget), throwing NoSuchElementException for any dashboard
-    // whose widget has no configured columns - the default, out-of-the-box state for a new widget.
+    // A re-imported dashboard is already in the canonical wrapper shape (no per-item "version"),
+    // so JsonDashboardMigrator.migrate() now short-circuits entirely for it - the per-item
+    // converter chain (v112 through v140) does not run at all here, so this no longer exercises
+    // the "columns" field NPE that v113's task/case widget converters used to hit when a widget had
+    // no configured columns (TaskDashboardWidget/CaseDashboardWidget omit "columns" entirely from
+    // JSON when empty, see @JsonInclude(NON_EMPTY) on DashboardWidget). That guard is still in
+    // place in v113 for genuinely legacy (unwrapped, unversioned) dashboards - see
+    // TestJsonDashboardMigrator for coverage of the legacy path itself. This test now only protects
+    // the general export-then-import round-trip.
     Dashboard dashboard = buildDashboard("dashboard-1", "My Dashboard", "task_1", "Your Tasks");
     Ivy.var().set(PortalPackageFile.DASHBOARD.getVariableKey(), toJson(List.of(dashboard)));
     StreamedContent content = service.exportPackage();

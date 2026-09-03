@@ -46,18 +46,16 @@ public class JsonStatisticMigrator {
   }
 
   public JsonNode migrate() {
-    Ivy.log().info("Converting Portal original statistic json: " + node.toString());
     if (JsonListWrapper.isListWrapper(node)) {
-      // Canonical shape: {"version": "...", "items": [...]}. The wrapper-level
-      // "version" tracks the JSON collection format, not any single chart's
-      // migration version, so only the items are migrated, not the wrapper itself.
-      ArrayNode items = (ArrayNode) node.get(JsonListWrapper.ITEMS_FIELD_NAME);
-      removeDefaultChartsFromClientStatistic(items);
-      items.elements().forEachRemaining(template -> migrate(template));
-    } else {
-      removeDefaultChartsFromClientStatistic((ArrayNode) node);
-      node.elements().forEachRemaining(template -> migrate(template));
+      // Canonical shape: {"version": "...", "items": [...]}. Once wrapped, the wrapper's own
+      // version is the sole gate - per-item version is never read again and items are not
+      // re-run through the per-item converter chain (including the legacy default-chart
+      // cleanup below).
+      return node;
     }
+    Ivy.log().info("Converting Portal original statistic json: " + node.toString());
+    removeDefaultChartsFromClientStatistic((ArrayNode) node);
+    node.elements().forEachRemaining(template -> migrate(template));
     return node;
   }
 

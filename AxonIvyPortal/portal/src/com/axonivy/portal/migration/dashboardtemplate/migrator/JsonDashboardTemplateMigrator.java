@@ -51,11 +51,12 @@ public class JsonDashboardTemplateMigrator {
 
   public JsonNode migrate() {
     if (JsonListWrapper.isListWrapper(node)) {
-      // Canonical shape: {"version": "...", "items": [...]}. The wrapper-level
-      // "version" tracks the JSON collection format, not any single template's
-      // migration version, so only the items are migrated, not the wrapper itself.
-      node.get(JsonListWrapper.ITEMS_FIELD_NAME).elements().forEachRemaining(template -> migrate(template));
-    } else if (node.isArray()) {
+      // Canonical shape: {"version": "...", "items": [...]}. Once wrapped, the wrapper's own
+      // version is the sole gate - per-item version is never read again and items are not
+      // re-run through the per-item converter chain.
+      return node;
+    }
+    if (node.isArray()) {
       node.elements().forEachRemaining(template -> migrate(template));
     } else {
       migrate(node);

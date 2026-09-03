@@ -46,13 +46,14 @@ public class JsonDashboardMigrator {
   }
 
   public JsonNode migrate() {
+    if (JsonListWrapper.isListWrapper(node)) {
+      // Canonical shape: {"version": "...", "items": [...]}. Once a collection is wrapped, the
+      // wrapper's own version is the sole gate for this collection format - per-item version is
+      // never read again, and items are NOT re-run through the per-item converter chain.
+      return node;
+    }
     if (node.isArray()) {
       node.elements().forEachRemaining(dashboard -> migrate(dashboard));
-    } else if (JsonListWrapper.isListWrapper(node)) {
-      // Canonical shape: {"version": "...", "items": [...]}. The wrapper-level
-      // "version" tracks the JSON collection format, not any single dashboard's
-      // migration version, so only the items are migrated, not the wrapper itself.
-      node.get(JsonListWrapper.ITEMS_FIELD_NAME).elements().forEachRemaining(dashboard -> migrate(dashboard));
     } else {
       migrate(node);
     }

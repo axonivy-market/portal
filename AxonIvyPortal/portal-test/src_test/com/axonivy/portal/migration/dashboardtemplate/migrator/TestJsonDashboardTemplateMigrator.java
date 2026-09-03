@@ -80,7 +80,13 @@ class TestJsonDashboardTemplateMigrator {
   }
 
   @Test
-  void migrate_wrapperShape_migratesEachItemButLeavesWrapperVersionUntouched() {
+  void migrate_wrapperShape_isReturnedCompletelyUnchanged() {
+    // Once a collection is wrapped, the wrapper's own version is the sole gate for this collection
+    // format - per-item version is never read again, and items are NOT re-run through the per-item
+    // converter chain, regardless of what their own nested "dashboard" node looks like. This is
+    // required, not optional: per-item version is stripped once wrapped (see JsonListWrapper), so
+    // without this short-circuit every read of already-current data would see an absent version,
+    // fall back to OLDEST, and re-run every converter unconditionally forever.
     ObjectNode wrapper = mapper.createObjectNode();
     wrapper.put("version", "1.0");
     ArrayNode items = wrapper.putArray("items");
@@ -91,8 +97,10 @@ class TestJsonDashboardTemplateMigrator {
 
     JsonNode firstDashboard = result.get("items").get(0).get("dashboard");
     JsonNode secondDashboard = result.get("items").get(1).get("dashboard");
-    assertThat(firstDashboard.get("dashboardDisplayType").asText()).isEqualTo("top_menu");
-    assertThat(secondDashboard.get("dashboardDisplayType").asText()).isEqualTo("top_menu");
+    assertThat(firstDashboard.has("dashboardDisplayType")).isFalse();
+    assertThat(firstDashboard.get("isTopMenu").asBoolean()).isTrue();
+    assertThat(secondDashboard.has("dashboardDisplayType")).isFalse();
+    assertThat(secondDashboard.has("version")).isFalse();
     // The wrapper-level "version" tracks the JSON collection format, not any one template's
     // migration version, so it must be left exactly as it was.
     assertThat(result.get("version").asText()).isEqualTo("1.0");
