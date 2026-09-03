@@ -175,11 +175,6 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public SelenideElement destroyLink() {
-    // Tag-agnostic like the other case-details action triggers in this file (onClickHistoryIcon,
-    // clickRelatedCaseActionButton): the redesign has been replacing plain <a> action links with
-    // icon-only <button> triggers, so match on id suffix regardless of tag. Excludes the separate
-    // ":action-group:destroy-case" trigger used by onClickDestroyCase(), which also ends with
-    // "destroy-case" and would otherwise collide with this selector.
     return $("[id$='destroy-case']:not([id*='action-group'])");
   }
 
@@ -202,8 +197,6 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void openAdditionalCaseDetailsPage() {
-    // Tag-agnostic, same reasoning as the related-cases-widget version of this same link further below
-    // (which already dropped the "a" tag requirement).
     $("[id$=':show-additional-case-details-link']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
   }
@@ -218,8 +211,6 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void openActionPanel() {
-    // Same trigger as openActionMenu() below, which already matches it tag-agnostically - the "a" tag
-    // requirement here is stale from before the icon-button redesign.
     $("[id$=':action-group:case-details-action-link']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     $("div[id$=':action-group:action-steps-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
@@ -405,10 +396,6 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void onClickHistoryIcon() {
-    // The "Add note" trigger is no longer an "a" link (0 matches against the failure DOM snapshot with
-    // that tag); it's now rendered as a "button" with the same id suffix
-    // (class "... case-details-document-add-link portal-icon-btn-round portal-icon-btn-accent",
-    // aria-label "Add note"). Match by id suffix only, tag-agnostic, so it works regardless of element type.
     $("[id$=':case-histories:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).scrollIntoView(new ScrollIntoViewOptions(Behavior.instant, Block.end, Inline.end));
     $("[id$=':case-histories:add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
@@ -479,10 +466,6 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getLatestHistoryContent() {
-    // The renaming/upload action's own "done" signal (dialog closed) doesn't guarantee the
-    // case-histories table has finished its separate ajax refresh with the new row yet. A raw
-    // WebElement#findElement() has no retry at all, so it can throw NoSuchElementException on a
-    // row that's a moment away from rendering; use a real Selenide poll instead.
     return caseItem.$(LATEST_HISTORY_LIST_CSS_SELECTOR).shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
@@ -500,11 +483,6 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickRelatedCaseActionButton(int index) {
-    // The related-cases "More" column no longer renders a plain "a.action-link" (0 matches against the
-    // failure DOM snapshot in that scoped form); the cell now renders a "case-header-action-cell" div
-    // with an icon-only button, id suffix "...:action-step-component:action-steps-menu" - same
-    // redesign as CaseWidgetNewDashBoardPage's Actions column. Target it directly by id suffix, the
-    // same way openCasesOfCasePageViaDetailsAction() below already does for the panel's own link.
     String actionButton = String.format(
         "[id$='related-cases-widget:related-cases:%d:action-step-component:action-steps-menu']", index);
     waitForElementDisplayed(By.cssSelector(actionButton), true);
@@ -956,9 +934,6 @@ public class CaseDetailsPage extends TemplatePage {
     $("span[class$='ui-messages-info-summary']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("button[id$='document:document-upload-close-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
-    // See closeUploadDocumentDialog() - the dialog's "close" ajax listener is still in flight when this
-    // returns; callers that upload multiple files back-to-back (e.g. uploadDocumentAndCheckDocumentName())
-    // can otherwise race it on the next reopen. Wait for PrimeFaces' ajax queue to drain first.
     WaitHelper.waitPageNoAjaxAndAnimation();
   }
 
@@ -974,9 +949,6 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public SelenideElement getAddAttachmentDialog() {
-    // Same redesign as onClickHistoryIcon()/add-note-command - CaseItemDocument.xhtml now renders this
-    // as a p:commandButton (a "button", styleClass "case-details-document-add-link ..."), not a p:commandLink
-    // ("a"). Match by id suffix only, tag-agnostic, so it works regardless of element type.
     $("[id$='add-document-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("span[id$='document-upload-dialog_title']").shouldBe(appear, DEFAULT_TIMEOUT);
     return $("[id$='document:document-upload-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
@@ -994,13 +966,6 @@ public class CaseDetailsPage extends TemplatePage {
   public void closeUploadDocumentDialog() {
     $("button[id$='document-upload-close-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='document:document-upload-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
-    // The dialog's "close" event triggers its own async ajax listener (resetDataUploadDialog(), which
-    // re-renders the whole dialog incl. this close button) that is still in flight when the button click
-    // returns and the dialog visually disappears. Reopening the dialog (getAddAttachmentDialog()) right
-    // after - as uploadScriptDocumentAndGetError()/uploadUnsupportedFileType() do, back-to-back for several
-    // files - can race that pending response, which then lands on top of the freshly reopened dialog and
-    // wipes it, so "document-upload-close-command" is briefly missing on the next close attempt. Wait for
-    // PrimeFaces' ajax queue to drain before letting the next action proceed.
     WaitHelper.waitPageNoAjaxAndAnimation();
   }
 
@@ -1058,12 +1023,10 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isAddDocumentLinkNotDisplayed() {
-    // Same redesign as getAddAttachmentDialog() above - the trigger is now a "button", not an "a".
     return isElementDisplayed(By.cssSelector("[id$='document:add-document-command']"), false);
   }
 
   public boolean isAddNoteButtonDisplayed(boolean expected) {
-    // Same redesign as onClickHistoryIcon() above - the trigger is now a "button", not an "a".
     return isElementDisplayed(By.cssSelector("[id$='case-histories:add-note-command']"), expected);
   }
 
@@ -1080,7 +1043,6 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isAddDocumentLinkDisplayed(boolean expected) {
-    // Same redesign as getAddAttachmentDialog() above - the trigger is now a "button", not an "a".
     return isElementDisplayed(By.cssSelector("[id$='document:add-document-command']"), expected);
   }
 
@@ -1173,8 +1135,6 @@ public class CaseDetailsPage extends TemplatePage {
       return;
     } else {
       systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
-      // Cannot identify when the ajax request of select checkbox is finished
-      // So we need to wait for Ajax Indicator disappear
       clickOnSystemNotesCheckbox(checkboxShouldBeChecked);
     }
   }

@@ -369,8 +369,6 @@ public class TaskDetailsPage extends TemplatePage {
         String.format("[id$=':priority-form:priority-select-menu_%d']", priorityValue));
     waitForElementDisplayed(prioritySelectElement, true);
     prioritySelectElement.click();
-    // Wait for this panel's own closing transition to finish before clicking Save - otherwise its
-    // still-closing overlay can intercept that click, which is a silent no-op.
     waitForElementDisplayed(
         $("[id$=':priority-form:priority-select-menu_panel']"), false);
     clickByJavaScript($("[id$=':priority-form:edit-priority-inplace_editor'] .ui-inplace-save"));
@@ -380,19 +378,6 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public String getTaskNameInDialog() {
-    // TaskItemDetails.xhtml's "#{cc.attrs.nameId}-edit-form" panelGroup (id suffix "task-name-edit-form")
-    // is an empty placeholder that is unconditionally styleClass="js-task-name-details hidden" - it has no
-    // value/child content and can never display the task name, so it's permanently hidden by design, not a
-    // stale selector to retarget within the same element.
-    // getTextOfCurrentBreadcrumb() (the breadcrumb, used by getTaskName() and the analogous
-    // TaskIFrameTemplatePage/CaseDetailsPage helpers) is NOT usable here either: this method's only caller
-    // opens the task via the "related task" link inside the case-info iframe, which loads
-    // PortalTaskItemDetailsInIFrame.xhtml - an iframe-embedded page (confirmed from a captured failure DOM:
-    // <body class="iframe-body">) that never renders the BasicTemplate topbar/breadcrumb at all.
-    // The actual current source of the task title is TaskItemSummary.xhtml's summary card, which no longer
-    // renders a single "Task: <name>" string but two stacked spans: ".task-detail-eyebrow" (the CMS label,
-    // "Task") and ".task-detail-name" (the task's name). Reconstruct the "Task: <name>" format from both -
-    // this also works in the non-iframe/standalone Task Details page, since it shares the same widget.
     String eyebrow = $(".task-detail-eyebrow").shouldBe(appear, DEFAULT_TIMEOUT).getText();
     String name = $(".task-detail-name").shouldBe(appear, DEFAULT_TIMEOUT).getText();
     return eyebrow + ": " + name;

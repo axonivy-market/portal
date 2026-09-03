@@ -57,10 +57,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getColumnOfTaskHasActionIndex(int index, String columnName) {
-    // The Actions cell no longer renders a plain text link ("Details"); it now renders an
-    // icon-only 3-dot button (class dashboard-side-steps-menu-button) that opens the actions menu.
-    // Resolve the cell by column position (like getCellByRowAndColumnName) instead of matching on
-    // cell text, since the cell has no visible text anymore.
     return getCellByRowAndColumnName(index, columnName).$("button.dashboard-side-steps-menu-button");
   }
 
@@ -109,12 +105,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void openFilterWidget() {
     waitForGlobalGrowlDisappear();
-    // The filter icon is no longer a standalone link in the widget header (".widget__filter-sidebar-link"
-    // is gone - confirmed 0 matches in the failure DOM snapshot). It now lives inside the "..." actions
-    // menu (a PrimeFaces ui-menubutton, icon class ti-dots) as a "Filters" menu item. Open that menu
-    // first, then click "Filters" within the specific menu panel that button opened (the panel id is
-    // derived from the button's own id, since other widgets share the same generic
-    // "actions-menu-panel" class/suffix naming).
     SelenideElement actionsMenuButton = getTaskWidgetHeader().$("button[id$=':actions-menu-button_button']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(actionsMenuButton);
@@ -138,18 +128,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void applyFilter() {
-    // The filter dialog footer is no longer "div.filter-overlay-panel__footer" (0 matches in the
-    // failure DOM snapshot - the whole "filter-overlay-panel" class/id naming is gone). The buttons now
-    // sit in "div.footer-buttons-container", and the dialog itself is a PrimeFaces p:dialog with id
-    // suffix "filter-dialog-0" (opened via PF('filter-dialog-0').show()), not "filter-overlay-panel-0".
     $("div.footer-buttons-container").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
     $("div[id$='task-task_1:filter-dialog-0']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void resetFilter() {
-    // Same redesign as applyFilter() above - "filter-overlay-panel__footer" is gone; the reset/apply
-    // buttons now sit together in "div.footer-buttons-container" (see TableWidget.xhtml's filter dialog).
     $("div.footer-buttons-container").shouldBe(appear, DEFAULT_TIMEOUT).$$("a[id$='reset-button']")
         .filter(text("Reset")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
