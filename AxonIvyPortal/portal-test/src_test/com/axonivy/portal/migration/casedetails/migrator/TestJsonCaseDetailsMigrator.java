@@ -69,6 +69,3 @@ class TestJsonCaseDetailsMigrator {
     assertThat(configuration.has("version")).isFalse();
   }
 }
- Required, not optional: per-item version is
-      // stripped once wrapped, so without this short-circuit every read would fall back to
-      // OLDEST and unconditionally re-run every converter on already-current data forever.
