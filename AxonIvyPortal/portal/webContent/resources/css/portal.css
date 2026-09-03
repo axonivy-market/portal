@@ -2082,8 +2082,8 @@ body .portal-icon-btn-round {
 }
 body .ui-button.ui-button-icon-only.portal-icon-btn-round .ui-icon {
   font-size: var(--portal-icon-size-md);
-  margin-top: -0.7143rem;
-  margin-left: -0.7143rem;
+  position: static;
+  margin: 0 !important;
 }
 body .ui-button.ui-button-icon-only.portal-icon-btn-round:not(.ui-state-disabled):hover,
 body a.portal-icon-btn-round:hover,
@@ -2189,6 +2189,16 @@ body .ui-button.portal-pill-btn-accent:not(.ui-state-disabled):hover {
   font-weight: var(--details-document-add-link-font-weight);
   max-width: 100%;
   min-width: 0;
+}
+
+.document-task-detail-section-header-actions button.portal-detail-show-more-btn,
+.note-task-detail-section-header-actions button.portal-detail-show-more-btn,
+.related-task-section-header-actions button.portal-detail-show-more-btn,
+.related-case-section-header-actions button.portal-detail-show-more-btn,
+.case-detail-history-section-header-actions button.portal-detail-show-more-btn,
+.document-case-detail-section-header-actions button.portal-detail-show-more-btn
+{
+  padding: 0.5rem;
 }
 
 /* Truncate the label with an ellipsis when the widget header is too narrow, keeping the icon visible */
@@ -2489,16 +2499,23 @@ body a.portal-detail-toolbar-back:focus,
   justify-content: space-between;
   gap: 1.1429rem;
 }
-.task-detail-header-row .task-detail-identity,
-.case-detail-header-row .case-detail-identity {
-  flex: 1 1 auto;
-  min-width: 0;
-}
+
 .task-detail-header-row .task-detail-header-actions.action-container,
 .case-detail-header-row .case-detail-header-actions.action-container {
   flex: 0 0 auto;
   justify-content: flex-end;
 }
+
+.task-detail-header-row .task-detail-header-actions.action-container,
+.case-detail-header-row .case-detail-header-actions.action-container {
+  flex: 0 0 auto;
+  justify-content: flex-end;
+}
+
+.task-detail-header-row .task-detail-header-actions.action-container button.start-task-action {
+  padding: 0.5rem;
+}
+
 .task-detail-identity,
 .case-detail-identity {
   display: flex;
