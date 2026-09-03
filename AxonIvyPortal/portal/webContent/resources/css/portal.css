@@ -2325,6 +2325,13 @@ body .ui-button.portal-icon-btn-round.portal-icon-btn-accent.ui-state-disabled {
   min-width: 0;
 }
 
+.portal-detail-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8571rem;
+  flex: 0 0 auto;
+}
+
 .portal-detail-toolbar-actions button.reset-details-settings-button, .portal-detail-toolbar-actions button.switch-view-mode-btn {
   padding: 1rem;
 }
