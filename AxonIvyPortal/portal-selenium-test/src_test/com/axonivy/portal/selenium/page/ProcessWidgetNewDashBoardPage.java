@@ -53,7 +53,7 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='delete-widget']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
-  
+
   public boolean isQuickSearchInputShow() {
     waitPageLoaded();
     return getQuickSearchForm().exists();
@@ -66,7 +66,7 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getQuickSearchForm() {
     return getProcessWidgetHeader().$("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
   }
-  
+
   private SelenideElement getProcessWidgetHeader() {
     return $$("div.table-widget-panel").filter(text(processWidgetName)).first();
   }
@@ -104,17 +104,11 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public boolean isExpandButtonAppear() {
-    // Redesign (TableWidget.xhtml): the standalone ".expand-link" header button is gone - expand/collapse
-    // is now a "toggle-fullscreen-item-N" menu item inside the "..." actions menu, only rendered at all
-    // (not merely hidden) when isRenderExpandCollapse is true. Check existence, not visibility, since a
-    // closed dropdown keeps its items in the DOM only when JSF actually rendered them.
     WaitHelper.waitPageNoAjaxAndAnimation();
     return getProcessWidgetHeader().$("[id*=':toggle-fullscreen-item-']").exists();
   }
 
   public boolean isWidgetInfoIconAppear() {
-    // Same redesign as isExpandButtonAppear(): ".widget__info-sidebar-link" is gone, replaced by an
-    // "info-menu-item-N" item inside the "..." actions menu.
     WaitHelper.waitPageNoAjaxAndAnimation();
     return getProcessWidgetHeader().$("[id*=':info-menu-item-']").exists();
   }

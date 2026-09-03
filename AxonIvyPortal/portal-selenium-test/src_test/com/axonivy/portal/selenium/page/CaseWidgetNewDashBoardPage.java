@@ -119,9 +119,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   private SelenideElement getColumnOfCaseHasActionIndex(int index, String columnName) {
     int startIndex = getIndexWidgetByColumnScrollable(columnName);
-    // The Actions cell no longer renders a plain "span a" - it's now an icon-only <button>
-    // ("...dashboard-case-side-steps-menu", class "dashboard-side-steps-menu-button") that opens the
-    // side-steps action panel (confirmed via the failure DOM snapshot).
     return getColumnOfTableWidget(index).get(startIndex).$("button[id$='dashboard-case-side-steps-menu']");
   }
 
@@ -130,10 +127,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openFilterWidget() {
-    // Same redesign as TaskWidgetNewDashBoardPage.openFilterWidget(): the filter icon is no longer a
-    // standalone link in the widget header (".widget__filter-sidebar-link" is gone) - it now lives inside
-    // the "..." actions menu as a "Filters" menu item. Open that menu first, then click "Filters" within
-    // the specific menu panel that button opened.
     SelenideElement actionsMenuButton = getCaseWidgetHeader().$("button[id$=':actions-menu-button_button']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(actionsMenuButton);
@@ -182,10 +175,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void applyFilter() {
-    // Redesign: the old ".filter-overlay-panel__footer" wrapper and "filter-overlay-panel-N" dialog id
-    // are gone. The dialog is now "div.filter-dialog" (id "...:filter-dialog-N"), and its footer is
-    // "div.footer-buttons-container" holding the "Reset all" link and "Apply filters" button (confirmed
-    // via WidgetFilterConditions/TableWidget.xhtml source and the live failure DOM).
     SelenideElement filterDialog = getConfigurationFilter();
     filterDialog.$("div.footer-buttons-container").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("button[id$='apply-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -198,10 +187,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void resetFilter() {
-    // Same redesign as applyFilter(): footer now lives at "div.footer-buttons-container" inside the
-    // "div.filter-dialog", and the reset trigger is an <a id="...:reset-button"> ("Reset all"). The old
-    // ".widget__filter-sidebar-link" post-condition is gone too - the equivalent "back to normal" signal
-    // is the widget's "..." actions menu button becoming clickable again.
     SelenideElement filterDialog = getConfigurationFilter();
     filterDialog.$("div.footer-buttons-container").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("a[id$='reset-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -217,23 +202,23 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void clickOnCaseActionLink(int caseIndex) {
     getColumnOfCaseHasActionIndex(caseIndex, "Actions").shouldBe(getClickableCondition()).click();
   }
-  
+
   public SelenideElement getActionsPanelOfCase() {
     return $("div[id$=':action-steps-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public void clickOnCustomFieldsLink() {
     getActionsPanelOfCase().$$("a").filter(text("Custom Fields"))
-      .first()
-      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
-      .click();
+        .first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
     waitForElementDisplayed(getCaseCustomFieldsDialog(), true);
   }
-  
+
   public SelenideElement getCaseCustomFieldsDialog() {
     return $("div[id$='case-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public List<String> getCaseCustomFieldNames() {
     return $$("span[id$='customFieldLabel']")
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
@@ -259,14 +244,16 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public ElementsCollection getActiveCaseActions(int caseIndex) {
     return getActiveCaseActions(caseIndex, "case_1");
   }
+
   public ElementsCollection getActiveCaseActionsInFullCaseListPage(int caseIndex) {
     return getActiveCaseActions(caseIndex, "default_case_list_dashboard_case_1");
   }
+
   private ElementsCollection getActiveCaseActions(int caseIndex, String widgetId) {
     clickOnCaseActionLink(caseIndex);
     return $$(String.format("div.js-case-side-steps-panel-" + widgetId
         + "-%d", caseIndex)).filter(appear).first()
-        .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='action-step-item']");
+            .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='action-step-item']");
   }
 
   public void destroyCase(int caseIndex) {
@@ -321,9 +308,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void saveFilter(String widgetFilterName) {
-    // The separate "save-widget-filter-dialog" popup is gone. Saving a filter is now inline within the
-    // Set Filter dialog itself: a "Save filter (optional)" section with input id "...:inline-save-filter-name"
-    // and button id "...:inline-save-filter" (confirmed via TableWidget.xhtml source).
     SelenideElement filterDialog = getConfigurationFilter();
     filterDialog.$("input[id$=':inline-save-filter-name']").shouldBe(appear, DEFAULT_TIMEOUT).setValue(widgetFilterName);
     filterDialog.$("button[id$=':inline-save-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -332,8 +316,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void searchFilter(String input) {
-    // The search field wrapper is a <span> ("saved-filter--search-container"), not a <div> - the old
-    // selector's tag never matched.
     $("[class*='saved-filter--search-container']").$("input[id$=':search-saved-filter-input']").setValue(input);
   }
 
@@ -344,9 +326,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openManageFiltersDialog() {
-    // "div#manage-filter" never matched anything in the current markup. The actual trigger is the
-    // "Manage saved filters" link (class "saved-filter__manage-filter") inside the currently open filter
-    // dialog's saved-filters panel (confirmed via WidgetFilter.xhtml source).
     getConfigurationFilter().$("a.saved-filter__manage-filter").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
     $("div[id='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
@@ -381,9 +360,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public Integer getFilterNotiNumber() {
-    // The widget-header badge ("widget__filter-noti-number") no longer exists. The active-filter count is
-    // now a p:tag rendered inside the "Filters" item of the "..." actions menu (rendered only when
-    // count != 0, per TableWidget.xhtml source). Open the menu to read it, then close it again.
     SelenideElement actionsMenuButton = getCaseWidgetHeader().$("button[id$=':actions-menu-button_button']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(actionsMenuButton);
@@ -395,24 +371,20 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     actionsMenuPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
     return Integer.parseInt(filterNotiNumber);
   }
-  
+
   public void removeFocusFilterDialog() {
     $("[id$=':widget-filter-content']").$("strong").click();
     $("[id$=':widget-filter-content']").scrollIntoView(ScrollIntoViewOptions.instant().block(Block.end));
   }
 
   public SelenideElement getConfigurationFilter() {
-    // Renamed from "filter-overlay-panel" to "filter-dialog" in the redesign (PrimeFaces p:dialog,
-    // appendTo="@(body)", so it's not nested under the widget - the currently visible one is found via
-    // its inline "display: block" style, same as before).
     return $("div.filter-dialog[style*='display: block']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public void clickOnFilterOperator() {
     $("div[id$='text-filter-operator-panel']").shouldBe(getClickableCondition()).click();
     Sleeper.sleep(300);
   }
-  
 
   public boolean isQuickSearchInputShow(String widgetIndex) {
     String taskWidgetIndex = String.format("div[id*='case-case_%s']", widgetIndex);
@@ -469,7 +441,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     WaitHelper.waitPageNoAjaxAndAnimation();
     $(getLoadedLocator()).shouldNotHave(Condition.cssClass("hidden"), DEFAULT_TIMEOUT);
   }
-  
+
   public boolean isExpandButtonAppear() {
     WaitHelper.waitPageNoAjaxAndAnimation();
     return getCaseWidgetHeader().$(".expand-link").isDisplayed();
@@ -495,6 +467,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     getActiveCaseActionsInFullCaseListPage(caseIndex).filter(text(actionName)).first().shouldBe(getClickableCondition())
         .click();
   }
+
   public String getCaseId(int caseIndex) {
     String elementIdSuffixForCaseId = caseIndex + ":dashboard-cases-columns:0:custom-column";
     return $("span[id$='" + elementIdSuffixForCaseId + "']").getText();
@@ -512,7 +485,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public ElementsCollection countFilterSelect() {
     return $$("[id$=':filter-component:field-selection_panel']");
   }
-  
+
   public void scrollToCaseWidget() {
     $(byText(YOUR_CASES_WIDGET)).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .scrollIntoView(ScrollIntoViewOptions.instant().block(Block.start));

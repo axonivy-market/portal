@@ -48,7 +48,7 @@ public class CaseDetailsTest extends BaseTest {
 
   private static final String TASK_DETAILS_TITLE = "Task Details - Portal - Axon Ivy";
   private static final String CASE_DETAILS_TITLE = "Case Details - Portal - Axon Ivy";
-  
+
   // NOTE CONTENT
   private static final String NOTE_TECHNICAL_CASE = "Note is added on Technical Case";
   private static final String NOTE_BUSINESS_CASE = "Note is added on Business Case";
@@ -72,7 +72,6 @@ public class CaseDetailsTest extends BaseTest {
   private static final String SICK_LEAVE_REQUEST_TASK = "Sick Leave Request";
   private static final String ANNUAL_LEAVE_REQUEST_TASK = "Annual Leave Request";
   private static final String CREATE_NOTES = "InternalSupport/14B2FC03D2E87141/processWithSystemNote.ivp";
-  
 
   @Override
   @BeforeEach
@@ -400,10 +399,6 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testHistoryAuthorIsUserFullName() {
     createTestingTask();
-    // Same responsive priority-column table issue as testShowRelatedCaseInfoByConfigInCaseHistory():
-    // confirmed via the failure DOM snapshot that the Author cell's own td carries
-    // "case-document-author js-column-priority-2 hidden" at the default test window width, since the
-    // History card only gets half the viewport in this page's 2-column dashboard grid. Same fix.
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     detailsPage.addNote("Sample case note");
     assertEquals(TestAccount.ADMIN_USER.getFullName(), detailsPage.getHistoryAuthor());
@@ -515,11 +510,11 @@ public class CaseDetailsTest extends BaseTest {
     relatedCaseDetailsPage.addNote("The first note of sub-case");
     relatedCaseDetailsPage.waitForPageLoad();
     refreshPage();
-    
+
     relatedCaseDetailsPage.addNote("The second note of sub-case");
     relatedCaseDetailsPage.waitForPageLoad();
     refreshPage();
-    
+
     String subCaseId = relatedCaseDetailsPage.getCaseId();
     String caseName = relatedCaseDetailsPage.getCaseName();
     relatedCaseDetailsPage.getNumberOfHistory().shouldHave(size(2), DEFAULT_TIMEOUT);
@@ -537,14 +532,6 @@ public class CaseDetailsTest extends BaseTest {
   public void testShowRelatedCaseInfoByConfigInCaseHistory() {
     updateGlobalVariable(Variable.HIDE_RELATED_CASE_INFO_FROM_HISTORY.getKey(), "false");
     createTestingCaseContainTechnicalCases();
-    // The history table is now a responsive priority-column table (confirmed via the failure DOM
-    // snapshot: "th.history-related-case" carries "js-column-priority-1 hidden" and the ajax callback
-    // re-runs "ResponsiveTable.init(...)"). Correction: 1920x1080 wasn't enough either - confirmed via a
-    // fresh screenshot that the History card only occupies half the viewport width in this page's 2-column
-    // dashboard grid, so it stays cramped even at 1920 regardless of window width. Use 2560x1440 instead -
-    // the same size already established in this test class for the identical class of issue (extra
-    // low-priority columns in a responsive table), see testRelatedTaskEnableAndDisableColumns() and
-    // CaseDetailsPage.openTasksOfCasePage().
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     assertTrue(detailsPage.isShowRelatedCaseCheckbox());
     detailsPage.clickOnRelatedCaseCheckbox(true);
@@ -556,7 +543,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage = casePage.openDetailsCase(ORDER_PIZZA);
     assertFalse(detailsPage.isShowRelatedCaseCheckbox());
   }
-  
+
   @Test
   public void testCaseOwnerCanDelegateRelatedTasks() {
     login(TestAccount.DEMO_USER);
@@ -637,7 +624,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.getNotesWithContent("System: create note").shouldHave(size(1));
 
   }
-  
+
   @Test
   public void testShowCustomFieldsDialogOnRelatedTask() {
     createTestingTask();
@@ -646,7 +633,7 @@ public class CaseDetailsTest extends BaseTest {
     List<String> customFieldNames = detailsPage.getCustomFieldNamesOnTaskCustomFieldsDialog();
     assertFalse(customFieldNames.isEmpty());
   }
-  
+
   @Test
   public void testShowCustomFieldsLinkWhenPermissionGranted() {
     redirectToRelativeLink(createTestingTasksUrl);
