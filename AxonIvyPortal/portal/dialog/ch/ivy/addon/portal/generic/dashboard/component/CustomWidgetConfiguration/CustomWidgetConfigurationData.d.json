@@ -4,6 +4,7 @@
   "namespace" : "ch.ivy.addon.portal.generic.dashboard.component.CustomWidgetConfiguration",
   "fields" : [ {
     "name" : "user",
-    "type" : "com.axonivy.portal.components.dto.UserDTO"
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ ]
   } ]
 }

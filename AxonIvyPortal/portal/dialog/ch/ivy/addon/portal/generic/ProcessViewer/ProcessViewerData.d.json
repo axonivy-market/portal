@@ -4,16 +4,19 @@
   "namespace" : "ch.ivy.addon.portal.generic.ProcessViewer",
   "fields" : [ {
     "name" : "caseId",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedCase",
     "type" : "ch.ivyteam.ivy.workflow.ICase",
     "modifiers" : [ ]
   }, {
-    "name" : "processId"
+    "name" : "processId",
+    "modifiers" : [ ]
   }, {
     "name" : "taskId",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedTask",
     "type" : "ch.ivyteam.ivy.workflow.ITask",

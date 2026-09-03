@@ -4,15 +4,19 @@
   "namespace" : "com.axonivy.portal.userexamples.credit.LendingOverview",
   "fields" : [ {
     "name" : "caseMapDetail",
-    "type" : "com.axonivy.portal.userexamples.dto.CaseMapDetail"
+    "type" : "com.axonivy.portal.userexamples.dto.CaseMapDetail",
+    "modifiers" : [ ]
   }, {
     "name" : "stageIndex",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "userProcess",
-    "type" : "com.axonivy.portal.userexamples.dto.UserProcess"
+    "type" : "com.axonivy.portal.userexamples.dto.UserProcess",
+    "modifiers" : [ ]
   }, {
     "name" : "state",
-    "type" : "com.axonivy.portal.userexamples.enums.RequestState"
+    "type" : "com.axonivy.portal.userexamples.enums.RequestState",
+    "modifiers" : [ ]
   } ]
 }

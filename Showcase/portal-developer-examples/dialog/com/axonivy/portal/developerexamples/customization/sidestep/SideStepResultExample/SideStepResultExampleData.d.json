@@ -6,6 +6,6 @@
   "fields" : [ {
     "name" : "visible",
     "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "modifiers" : [ ]
   } ]
 }

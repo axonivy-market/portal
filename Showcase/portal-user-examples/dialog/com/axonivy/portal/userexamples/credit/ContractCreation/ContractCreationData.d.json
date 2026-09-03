@@ -4,9 +4,11 @@
   "namespace" : "com.axonivy.portal.userexamples.credit.ContractCreation",
   "fields" : [ {
     "name" : "dossier",
-    "type" : "com.axonivy.portal.userexamples.credit.CreditDossier"
+    "type" : "com.axonivy.portal.userexamples.credit.CreditDossier",
+    "modifiers" : [ ]
   }, {
     "name" : "contractDate",
-    "type" : "java.util.Date"
+    "type" : "java.util.Date",
+    "modifiers" : [ ]
   } ]
 }

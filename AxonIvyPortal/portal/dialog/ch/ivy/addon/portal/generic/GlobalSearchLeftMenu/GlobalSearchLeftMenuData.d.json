@@ -3,8 +3,10 @@
   "simpleName" : "GlobalSearchLeftMenuData",
   "namespace" : "ch.ivy.addon.portal.generic.GlobalSearchLeftMenu",
   "fields" : [ {
-    "name" : "keyword"
+    "name" : "keyword",
+    "modifiers" : [ ]
   }, {
-    "name" : "activeTabIndex"
+    "name" : "activeTabIndex",
+    "modifiers" : [ ]
   } ]
 }

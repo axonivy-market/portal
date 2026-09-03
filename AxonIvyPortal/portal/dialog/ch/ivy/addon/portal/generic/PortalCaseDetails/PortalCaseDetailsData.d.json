@@ -8,10 +8,12 @@
     "modifiers" : [ ]
   }, {
     "name" : "isShowBackButton",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isTaskStartedInDetails",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "caseLazyDataModel",
     "type" : "ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel",

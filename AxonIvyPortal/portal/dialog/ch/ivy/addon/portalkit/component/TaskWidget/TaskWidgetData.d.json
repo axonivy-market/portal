@@ -4,81 +4,103 @@
   "namespace" : "ch.ivy.addon.portalkit.component.TaskWidget",
   "fields" : [ {
     "name" : "count",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "dataModel",
-    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel"
+    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel",
+    "modifiers" : [ ]
   }, {
     "name" : "expandedTaskId",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
-    "name" : "filterSetName"
+    "name" : "filterSetName",
+    "modifiers" : [ ]
   }, {
     "name" : "isFilterExisted",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
-    "name" : "keyword"
+    "name" : "keyword",
+    "modifiers" : [ ]
   }, {
     "name" : "latestTaskDate",
-    "type" : "java.util.Date"
+    "type" : "java.util.Date",
+    "modifiers" : [ ]
   }, {
     "name" : "latestTasks",
     "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
     "modifiers" : [ ]
   }, {
-    "name" : "selectedSort"
+    "name" : "selectedSort",
+    "modifiers" : [ ]
   }, {
     "name" : "newTaskSearchCriteria",
-    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria"
+    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria",
+    "modifiers" : [ ]
   }, {
     "name" : "numberOfNewTask",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
     "name" : "scrollPosition",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "sortDescending",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
-    "name" : "sortField"
+    "name" : "sortField",
+    "modifiers" : [ ]
   }, {
     "name" : "startIndex",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "tasks",
     "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
     "modifiers" : [ ]
   }, {
     "name" : "taskSearchCriteria",
-    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria"
+    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria",
+    "modifiers" : [ ]
   }, {
     "name" : "totalTasks",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedTask",
     "type" : "ch.ivyteam.ivy.workflow.ITask",
     "comment" : "Task is selected for reset or delegate",
     "modifiers" : [ ]
   }, {
-    "name" : "currentPortalPage"
+    "name" : "currentPortalPage",
+    "modifiers" : [ ]
   }, {
     "name" : "exportedFile",
-    "type" : "org.primefaces.model.StreamedContent"
+    "type" : "org.primefaces.model.StreamedContent",
+    "modifiers" : [ ]
   }, {
     "name" : "caseId",
-    "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId"
+    "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId",
+    "modifiers" : [ ]
   }, {
     "name" : "loopCounter",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "maxResultNumberPerQuery",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "collectedTasksForExporting",
     "type" : "List<ch.ivyteam.ivy.workflow.ITask>",
     "modifiers" : [ ]
   }, {
     "name" : "columnsVisibility",
-    "type" : "List<String>"
+    "type" : "List<String>",
+    "modifiers" : [ ]
   } ]
 }
