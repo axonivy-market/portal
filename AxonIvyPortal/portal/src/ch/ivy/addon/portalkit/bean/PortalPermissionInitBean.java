@@ -24,7 +24,7 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionGroupRepository;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
-// import ch.ivyteam.ivy.server.restricted.EngineMode;
+import ch.ivyteam.ivy.server.restricted.EngineMode;
 
 public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
 
@@ -51,7 +51,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
 
   private void initPermissions() {
     recreateAndGrantPermissions();
-    if (/*EngineMode.is(EngineMode.DEMO) &&*/ isIvySecuritySystem()) {
+    if (EngineMode.is(EngineMode.DEMO) && isIvySecuritySystem()) {
       PortalSecurity.INSTANCE.assignPermissionsToDefaultUsers();
     }
   }

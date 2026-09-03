@@ -8,7 +8,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
 import ch.ivyteam.ivy.process.extension.ProgramConfig;
-// import ch.ivyteam.ivy.server.restricted.EngineMode;
+import ch.ivyteam.ivy.server.restricted.EngineMode;
 
 public class PortalUserExamplesInitBean extends AbstractProcessStartEventBean {
   
@@ -23,10 +23,10 @@ public class PortalUserExamplesInitBean extends AbstractProcessStartEventBean {
   public void initialize(IProcessStartEventBeanRuntime eventRuntime, ProgramConfig configuration) {
     super.initialize(eventRuntime, configuration);
     getEventBeanRuntime().poll().disable();
-    //if (EngineMode.is(EngineMode.DEMO)) {
+    if (EngineMode.is(EngineMode.DEMO)) {
       initSampleConfig();
       Ivy.wf().signals().send(GENERATE_PROCUREMENT_DATA_SIGNAL_CODE);
-    //}
+    }
   }
 
   public static void initSampleConfig() {
