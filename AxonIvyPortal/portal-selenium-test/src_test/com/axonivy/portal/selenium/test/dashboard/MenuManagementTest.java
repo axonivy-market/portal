@@ -315,7 +315,7 @@ public class MenuManagementTest extends BaseTest {
     SelenideElement header = page.getMenuTableHeaderRow();
     header.shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th").filter(text("Label")).first().shouldBe(appear, DEFAULT_TIMEOUT);
-    header.$$("th").filter(text("Target")).first().shouldBe(appear, DEFAULT_TIMEOUT);
+    header.$$("th").filter(text("Links to")).first().shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th").filter(text("Permissions")).first().shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th").filter(text("Type")).first().shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th").filter(text("Source")).first().shouldBe(appear, DEFAULT_TIMEOUT);
@@ -340,7 +340,7 @@ public class MenuManagementTest extends BaseTest {
 
     SelenideElement submenuTable = page.getSubmenuDashboardTable();
     submenuTable.shouldBe(appear, DEFAULT_TIMEOUT);
-    submenuTable.$("i.ti-menu-2").shouldBe(appear, DEFAULT_TIMEOUT);
+    submenuTable.$("i.ti-grip-vertical").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -350,7 +350,7 @@ public class MenuManagementTest extends BaseTest {
 
     SelenideElement topMenuTable = page.getTopMenuDashboardTable();
     topMenuTable.shouldBe(appear, DEFAULT_TIMEOUT);
-    assertTrue(topMenuTable.$$("i.ti-menu-2").filter(visible).isEmpty());
+    assertTrue(topMenuTable.$$("i.ti-grip-vertical").filter(visible).isEmpty());
   }
 
   @Test

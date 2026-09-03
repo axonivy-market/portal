@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
@@ -68,7 +69,7 @@ public class PortalConfigurationPage extends TemplatePage {
   }
 
   public String getPageHeadingText() {
-    return $("div[id$='configuration-group'] .dashboard-configuration__header h2")
+    return $("div[id$='configuration-group'] .dashboard-configuration-title")
         .shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
@@ -287,7 +288,8 @@ public class PortalConfigurationPage extends TemplatePage {
   private SelenideElement openActionMenuForRow(SelenideElement row) {
     row.$("button[id$='menu-action-button']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    return $$("[id$='menu-configuration-action-menu']").filter(Condition.appear).first()
-        .shouldBe(appear, DEFAULT_TIMEOUT);
+    ElementsCollection actionMenus = $$("[id$='menu-configuration-action-menu']").filter(Condition.appear);
+    actionMenus.shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+    return actionMenus.first().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }

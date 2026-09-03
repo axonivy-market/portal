@@ -131,6 +131,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("div.footer-buttons-container").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
     $("div[id$='task-task_1:filter-dialog-0']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    WaitHelper.waitPageNoAjaxAndAnimation();
   }
 
   public void resetFilter() {
