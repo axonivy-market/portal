@@ -12,7 +12,7 @@
   overflow: hidden;
   border-radius: 16px;
   width: 227px;
-  height: 264px;
+  height: fit-content;
 }
 
 @media screen and (max-width: 320px) {
@@ -134,6 +134,11 @@
   padding: 0;
 }
 
+body .portal-circle-icon:hover,
+body .portal-circle-icon:focus {
+  background-color: var(--secondary-btn-hover-bg) !important;
+}
+
 .portal-circle-icon i,
 .portal-circle-icon.ui-button .ui-icon,
 .portal-circle-icon::before {
@@ -143,6 +148,7 @@
   padding: 0 !important;
   line-height: 1 !important;
   display: block;
+  font-size: var(--portal-icon-size-md);
 }
 
 .portal-circle-icon.ui-button .ui-button-text {
@@ -321,8 +327,11 @@ a.compact-task-start-link .task-start-list-item {
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
   background-color: var(--item-widget-background-color); }
 
-.process-grid__header.ui-commandlink {
-  color: var(--process-grid-header-color); }
+.ui-commandlink.portal-link, .ui-link.portal-link {
+  color: var(--portal-link-color); }
+
+.ui-commandlink.portal-link:hover, .ui-link.portal-link:hover {
+  color: var(--portal-link-color-hover); }
 
 .process-grid__header.ui-commandlink:hover {
   text-decoration: none; }
@@ -980,10 +989,6 @@ body .ui-inputfield.case-detail-name-input {
 .process-item-action-container .tif,
 .process-item-action-container .si {
   font-size: var(--large-font-size); }
-
-.process-start-list-item .ui-commandlink.process-item:hover {
-  color: var(--process-item-color-hover);
-}
 
 /* Task Widget --------------------------------**/
 .filter-selection-form label,
@@ -2157,8 +2162,8 @@ body .portal-icon-btn-round {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: var(--portal-icon-btn-border-width) solid var(--widget-button-border-color);
-  background: var(--widget-button-background-color);
+  border: var(--portal-icon-btn-border-width) solid var(--secondary-btn-border);
+  background: var(--secondary-btn-bg);
   color: var(--portal-detail-value-color);
 }
 body .ui-button.ui-button-icon-only.portal-icon-btn-round .ui-icon {
@@ -2169,17 +2174,17 @@ body .ui-button.ui-button-icon-only.portal-icon-btn-round .ui-icon {
 body .ui-button.ui-button-icon-only.portal-icon-btn-round:not(.ui-state-disabled):hover,
 body a.portal-icon-btn-round:hover,
 body .portal-icon-btn-round:hover {
-  background: var(--widget-button-hover-background-color);
+  background: var(--secondary-btn-hover-bg);
 }
 body .ui-button.portal-icon-btn-round.portal-icon-btn-accent,
 body .portal-icon-btn-round.portal-icon-btn-accent {
-  border-color: var(--start-btn-border-color);
-  background: var(--start-btn-bg);
-  color: var(--start-btn-text-color);
+  border-color: var(--accent-btn-border);
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
 }
 body .ui-button.portal-icon-btn-round.portal-icon-btn-accent:not(.ui-state-disabled):hover,
 body .portal-icon-btn-round.portal-icon-btn-accent:hover {
-  background: var(--start-btn-hover-bg);
+  background: var(--accent-btn-hover-bg);
 }
 body a.portal-icon-btn-round,
 body a.portal-icon-btn-round:hover,
@@ -2198,8 +2203,8 @@ body a.portal-pill-btn:focus {
   align-items: center;
   justify-content: center;
   border-radius: var(--portal-pill-btn-border-radius);
-  border: var(--portal-icon-btn-border-width) solid var(--widget-button-border-color);
-  background: var(--widget-button-background-color);
+  border: var(--portal-icon-btn-border-width) solid var(--secondary-btn-border);
+  background: var(--secondary-btn-bg);
   color: var(--portal-detail-value-color);
   padding: 0.5714rem 1.0714rem;
   min-height: var(--portal-icon-btn-size-md);
@@ -2208,16 +2213,62 @@ body a.portal-pill-btn:focus {
   font-weight: 500;
   line-height: 1;
 }
+
 .portal-pill-btn .ti,
 .portal-pill-btn .tif {
   line-height: 1 !important;
   margin: 0;
 }
+
+body .ui-button.portal-pill-btn {
+  border: var(--portal-icon-btn-border-width) solid var(--secondary-btn-border);
+  background: var(--secondary-btn-bg);
+  color: var(--portal-detail-value-color);
+}
+
+body .ui-button.portal-pill-btn,
+body .ui-button.portal-pill-btn.ui-state-focus,
+body .ui-button.portal-pill-btn.ui-state-active,
+body .ui-button.portal-pill-btn.ui-state-down {
+  background: var(--secondary-btn-bg);
+  border-color: var(--secondary-btn-border);
+  color: var(--portal-detail-value-color);
+}
+
+body .ui-button.portal-pill-btn.ui-state-hover,
+body .portal-pill-btn:not(.ui-state-disabled):hover {
+  background: var(--secondary-btn-hover-bg);
+  border-color: var(--secondary-btn-border);
+  color: var(--portal-detail-value-color);
+}
+
+body .ui-button.portal-pill-btn-accent {
+  border-color: var(--accent-btn-border);
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
+}
+
+body .ui-button.portal-pill-btn-accent,
+body .ui-button.portal-pill-btn-accent.ui-state-focus,
+body .ui-button.portal-pill-btn-accent.ui-state-active,
+body .ui-button.portal-pill-btn-accent.ui-state-down {
+  background: var(--accent-btn-bg);
+  border-color: var(--accent-btn-border);
+  color: var(--accent-btn-text);
+}
+
+body .ui-button.portal-pill-btn-accent.ui-state-hover,
+body .ui-button.portal-pill-btn-accent:not(.ui-state-disabled):hover {
+  background: var(--accent-btn-hover-bg);
+  border-color: var(--accent-btn-border);
+  color: var(--accent-btn-text);
+}
+
 .portal-pill-btn.portal-pill-btn-accent.ui-button,
 .portal-pill-btn.portal-pill-btn-accent {
-  border-color: var(--start-btn-border-color);
-  background: var(--start-btn-bg);
-  color: var(--start-btn-text-color);
+  border-color: var(--accent-btn-border);
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
 }
 
 /* Shared: "Show more" link of the note / history / document widgets ----------------------------------------*/
@@ -2291,37 +2342,24 @@ body .ui-button.ui-button-text-icon-left.portal-pill-btn .ui-icon {
   left: auto;
   margin: 0;
 }
-body .ui-button.portal-pill-btn,
-body .ui-button.portal-pill-btn.ui-state-focus,
-body .ui-button.portal-pill-btn.ui-state-active,
-body .ui-button.portal-pill-btn.ui-state-down {
-  background: var(--widget-button-background-color);
-  border-color: var(--widget-button-border-color);
-  color: var(--portal-detail-value-color);
-}
-body .ui-button.portal-pill-btn.ui-state-hover,
-body .portal-pill-btn:not(.ui-state-disabled):hover {
-  background: var(--widget-button-hover-background-color);
-  border-color: var(--widget-button-border-color);
-  color: var(--portal-detail-value-color);
-}
 
 .action-container {
   gap: 0.5rem;
 }
+
 body .ui-button.portal-pill-btn.portal-pill-btn-accent,
 body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-focus,
 body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-active,
 body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-down {
-  background: var(--start-btn-bg);
-  border-color: var(--start-btn-border-color);
-  color: var(--start-btn-text-color);
+  background: var(--accent-btn-bg);
+  border-color: var(--accent-btn-border);
+  color: var(--accent-btn-text);
 }
 body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-hover,
 body .portal-pill-btn.portal-pill-btn-accent:not(.ui-state-disabled):hover {
-  background: var(--start-btn-hover-bg);
-  border-color: var(--start-btn-border-color);
-  color: var(--start-btn-text-color);
+  background: var(--accent-btn-hover-bg);
+  border-color: var(--accent-btn-border);
+  color: var(--accent-btn-text);
 }
 body .portal-pill-btn.ui-state-disabled,
 body .portal-pill-btn.portal-pill-btn-accent.ui-state-disabled,
@@ -2331,9 +2369,9 @@ body .portal-icon-btn-round.ui-state-disabled,
 body .portal-icon-btn-round.portal-icon-btn-accent.ui-state-disabled,
 body .ui-button.portal-icon-btn-round.ui-state-disabled,
 body .ui-button.portal-icon-btn-round.portal-icon-btn-accent.ui-state-disabled {
-  background: var(--start-btn-disabled-bg);
-  border-color: var(--start-btn-disabled-border-color);
-  color: var(--start-btn-disabled-text-color);
+  background: var(--accent-btn-disabled-bg);
+  border-color: var(--accent-btn-disabled-border);
+  color: var(--accent-btn-disabled-text);
 }
 
 /* Shared: detail-page toolbar (Back + layout actions) ----------------------------------------*/
@@ -2387,6 +2425,11 @@ body a.portal-detail-toolbar-back:focus,
 }
 .portal-detail-toolbar-back .ti {
   line-height: 1;
+}
+
+.portal-detail-toolbar .portal-detail-toolbar-actions .switch-to-edit-mode-btn {
+  width: 8.785rem;
+  height: 3.071rem;
 }
 
 /* Shared: empty-state block (task & case documents/notes) ----------------------------------------*/
@@ -2962,9 +3005,9 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   justify-content: center;
   box-sizing: border-box;
   padding: 0.3571rem;
-  border: var(--portal-icon-btn-border-width) solid var(--start-btn-border-color);
+  border: var(--portal-icon-btn-border-width) solid var(--accent-btn-border);
   border-radius: 0.5rem;
-  background: var(--start-btn-bg);
+  background: var(--accent-btn-bg);
   color: var(--portal-detail-accent-color);
   font-size: var(--default-font-size) !important;
   line-height: 1 !important;
@@ -3137,3 +3180,62 @@ body .portal-action-menu .portal-action-menu-item.color-destroy {
   border-radius: 15px !important;
   box-shadow: var(--card-box-shadow) !important;
 }
+
+/* ======================= PORTAL FIELDSET LEGEND ========================== */
+.portal-fieldset.ui-fieldset {
+  background: var(--portal-fieldset-background-color);
+  border: 1px solid var(--portal-fieldset-border-color);
+  border-radius: 10px;
+}
+
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend {
+  border: 1px solid var(--portal-fieldset-legend-border-color);
+  color: var(--portal-fieldset-legend-color);
+  background-color: var(--portal-fieldset-legend-background-color);
+  border-radius: 100px;
+  padding: 0.4rem 0.9rem;
+}
+
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend .ui-fieldset-legend-text {
+  color: var(--portal-fieldset-legend-color);
+  font-weight: 600;
+}
+
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend .ui-fieldset-toggler {
+  background: none;
+  color: var(--portal-fieldset-legend-color);
+  width: auto;
+  height: auto;
+  text-indent: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend .ui-fieldset-toggler::before {
+  content: "+";
+  font-family: inherit;
+}
+
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend a[aria-expanded="true"] .ui-fieldset-toggler::before {
+  content: "\2212";
+}
+
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend:hover,
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend.ui-state-hover,
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend.ui-state-focus,
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend a:hover,
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend a.ui-state-hover,
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend a.ui-state-focus {
+  background: var(--portal-fieldset-legend-hover-background-color);
+  background-image: none;
+  border-color: var(--portal-fieldset-legend-border-color);
+  color: var(--portal-fieldset-legend-color);
+}
+
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend:hover .ui-fieldset-legend-text,
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend.ui-state-hover .ui-fieldset-legend-text,
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend:hover .ui-fieldset-toggler,
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend.ui-state-hover .ui-fieldset-toggler {
+  color: var(--portal-fieldset-legend-color);
+}
+/* ==================== PORTAL FIELDSET LEGEND END ======================== */

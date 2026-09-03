@@ -2611,41 +2611,103 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
 }
 
-.project-info-dialog {
-  width: 650px !important;
-  max-width: 100%;
-}
-
-@media screen and (max-width: 40em) {
-  .project-info-dialog {
-    width: 100% !important;
-  }
+.project-info-dialog.ui-dialog {
+  max-width: 1400px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 15.6px 3px var(--project-info-dialog-box-shadow-color);
+  overflow: hidden;
 }
 
 /******************************** PROJECT INFO DIALOG ******************************/
-.project-info-dialog .project-version-table .project-version {
-  width: 150px;
+
+.project-version-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.project-info-dialog .project-version-table .project-pmv {
-  text-align: center;
+.project-info-app, .project-info-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.project-info-dialog .project-version-table .project-state {
-  width: 100px;
+.project-info-app {
+  border-top: 1px solid var(--surface-border, #e9ecef);
+  padding-top: 20px;
 }
 
-@media screen and (max-width: 64.062em) {
-  .project-info-dialog .project-version-table .project-version {
-    width: auto;
-  }
-  .project-info-dialog .project-version-table .project-state {
-    width: 80px;
-  }
-  
-  .project-info-dialog .project-version-table .project-pmv {
-    text-align: inherit;
-  }
+.project-info-app:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.project-info-summary .project-info-label {
+  font-weight: 600;
+}
+
+.project-info-card__title, .project-info-card__subtitle {
+  font-size: var(--widget-header-font-size);
+  font-weight: var(--widget-header-font-weight);
+  margin: 0;
+}
+
+.project-info-table.ui-datatable .ui-datatable-data > tr {
+  cursor: pointer;
+}
+
+.project-info-table th, .project-info-table td {
+  padding: 0.75rem 1rem !important;
+}
+
+.project-info-table .ui-datatable-data > tr.project-info-row--selected,
+.project-info-table .ui-datatable-data > tr.project-info-row--selected > td {
+  background-color: var(--project-info-selected-row-bg) !important;
+}
+
+.project-info-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--task-state-border-radius);
+  font-size: var(--task-state-font-size);
+  line-height: var(--task-state-line-height);
+  white-space: nowrap;
+}
+
+.project-info-status .pi {
+  font-size: 1em;
+}
+
+.project-info-status--released, .project-info-status--active,
+.project-info-status--started, .project-info-status--ok {
+  background-color: var(--project-info-success-bg);
+  color: var(--project-info-success-text);
+}
+
+.project-info-status--deprecated, .project-info-status--stopped,
+.project-info-status--failed {
+  background-color: var(--project-info-danger-bg);
+  color: var(--project-info-danger-text);
+}
+
+.project-info-status--inactive, .project-info-status--starting,
+.project-info-status--stopping, .project-info-status--missing,
+.project-info-status--outdated, .project-info-status--too_old,
+.project-info-status--too_new {
+  background-color: var(--project-info-warning-bg);
+  color: var(--project-info-warning-text);
+}
+
+.project-info-status--unknown, .project-info-status--archived {
+  background-color: var(--project-info-neutral-bg);
+  color: var(--project-info-neutral-text);
+}
+
+.project-info-status--created, .project-info-status--prepared {
+  background-color: var(--project-info-info-bg);
+  color: var(--project-info-info-text);
 }
 /******************************** END PROJECT INFO DIALOG **************************/
 
@@ -3793,12 +3855,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   display: none;
 }
 
-.project-version-container {
-  max-height: 80vh;
-  overflow: auto;
-}
-
-.project-version-container .project-version-table.ui-datatable-reflow .ui-column-title {
+.project-version-container .project-info-table.ui-datatable-reflow .ui-column-title {
   width: 120px;
 }
 
@@ -4893,12 +4950,12 @@ border-top: 0.14rem dashed;
 .process-action-group .ui-button.process-action-button {
   width: 2.711rem; /* 38px */
   height: 2.357rem !important; /* 33px */
-  border-color: var(--widget-button-border-color) !important;
+  border-color: var(--secondary-btn-border) !important;
   color: var(--widget-header-icon);
 }
 
 .process-action-group .ui-button.process-action-button:hover {
-  background-color: var(--widget-button-hover-background-color) !important;
+  background-color: var(--secondary-btn-hover-bg) !important;
   color: var(--widget-header-icon);
 }
 
@@ -4948,9 +5005,9 @@ border-top: 0.14rem dashed;
 
 body .ui-button.process-start-action {
   border-radius: 100px;
-  border: 1px solid var(--start-btn-border-color);
-  background: var(--start-btn-bg);
-  color: var(--start-btn-text-color);
+  border: 1px solid var(--accent-btn-border);
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
   height: 2.143rem !important;
   min-width: fit-content;
   display: flex;
@@ -4958,14 +5015,14 @@ body .ui-button.process-start-action {
 }
 
 body .ui-button.process-start-action.ui-state-disabled {
-  background: var(--start-btn-disabled-bg);
-  border-color: var(--start-btn-disabled-border-color);
-  color: var(--start-btn-disabled-text-color);
+  background: var(--accent-btn-disabled-bg);
+  border-color: var(--accent-btn-disabled-border);
+  color: var(--accent-btn-disabled-text);
 }
 
 body .ui-button.process-start-action:not(.ui-state-disabled):hover {
-  background: var(--start-btn-hover-bg);
-  color: var(--start-btn-text-color);
+  background: var(--accent-btn-hover-bg);
+  color: var(--accent-btn-text);
 }
 
 .process-group.grid-process-container .process-grid__header {
@@ -5959,12 +6016,21 @@ body .ui-link.ui-sidestep-action, .action-container > .ui-sidestep-action {
 }
 
 body .ui-button.ui-button-outlined.ui-button-widget, .ui-button.ui-widget.ui-button-widget {
-  background-color: var(--widget-button-background-color);
-  border-color: var(--widget-button-border-color);
+  background-color: var(--secondary-btn-bg);
+  border-color: var(--secondary-btn-border);
 }
 
 body .ui-button.ui-button-outlined.ui-button-widget:hover, .ui-button.ui-widget.ui-button-widget:hover {
-  background-color: var(--widget-button-hover-background-color);
+  background-color: var(--secondary-btn-hover-bg);
+}
+
+body .ui-button.ui-button-danger.widget-icon-button {
+  background-color: var(--widget-button-danger-background-color);
+  border-color: var(--widget-button-danger-border-color);
+}
+
+body .ui-button.ui-button-danger.widget-icon-button:hover {
+  background-color: var(--widget-button-danger-background-color-hover);
 }
 
 body .ui-button.ui-widget.ui-button-widget {
@@ -5985,6 +6051,23 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-butto
   color: var(--widget-header-icon);
 }
 /* =================== PORTAL BUTTON END ====================== */
+
+/* =================== PORTAL CHECKBOX ====================== */
+body .ui-chkbox .ui-chkbox-box.ui-state-active {
+  background-color: var(--checkbox-checked-background-color);
+  border-color: var(--checkbox-border-color);
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
+  color: var(--checkbox-checked-icon-color);
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active:hover,
+body .ui-chkbox .ui-chkbox-box.ui-state-active.ui-state-hover {
+  background-color: var(--checkbox-checked-hover-background-color);
+  border-color: var(--checkbox-checked-hover-background-color);
+}
+/* =================== PORTAL CHECKBOX END ====================== */
 
 /* AI logo */
 .layout-topbar-light .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li > a:hover img.topbar-item-image {
