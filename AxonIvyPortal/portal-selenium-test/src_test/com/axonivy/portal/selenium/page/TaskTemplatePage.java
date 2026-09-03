@@ -301,9 +301,6 @@ public class TaskTemplatePage extends TemplatePage {
     $("div[id='side-step-process-form:side-step-process-select']").click();
     WaitHelper.waitPageNoAnimation();
     clickByJavaScript($("[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step: Ask for more details")).first());
-    // Wait for this panel's own closing transition to finish before touching the next field -
-    // otherwise its still-closing overlay can intercept the next dropdown's open-click, which is
-    // a silent no-op (the item-click handler only binds once a panel is genuinely open).
     waitForElementDisplayed($("[id='side-step-process-form:side-step-process-select_panel']"), false);
 
     $("input[id$=':assignee_input']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
@@ -314,10 +311,15 @@ public class TaskTemplatePage extends TemplatePage {
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).findAll(".ui-autocomplete-item");
     selectionItems.get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
 
-    $("div[id='side-step-process-form:step-type']").click();
+    SelenideElement stepTypeTrigger = $("div[id='side-step-process-form:step-type']");
+    SelenideElement stepTypePanel = $("[id='side-step-process-form:step-type_panel']");
+    stepTypeTrigger.click();
     WaitHelper.waitPageNoAnimation();
-    SelenideElement stepTypePanel = $("[id='side-step-process-form:step-type_panel']")
-        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
+    for (int attempt = 0; attempt < 3 && !stepTypePanel.is(Condition.visible); attempt++) {
+      stepTypeTrigger.click();
+      WaitHelper.waitPageNoAnimation();
+    }
+    waitForElementDisplayed(stepTypePanel, true);
     stepTypePanel.$$("li").filter(Condition.text("Start a background task (parallel)")).first()
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     waitForElementDisplayed(stepTypePanel, false);
@@ -341,10 +343,15 @@ public class TaskTemplatePage extends TemplatePage {
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).findAll(".ui-autocomplete-item");
     selectionItems.get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
 
-    $("div[id='side-step-process-form:step-type']").shouldBe(Condition.clickable, DEFAULT_TIMEOUT).click();
+    SelenideElement stepTypeTrigger2 = $("div[id='side-step-process-form:step-type']").shouldBe(Condition.clickable, DEFAULT_TIMEOUT);
+    SelenideElement stepTypePanel = $("[id='side-step-process-form:step-type_panel']");
+    stepTypeTrigger2.click();
     WaitHelper.waitPageNoAnimation();
-    SelenideElement stepTypePanel = $("[id='side-step-process-form:step-type_panel']")
-        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
+    for (int attempt = 0; attempt < 3 && !stepTypePanel.is(Condition.visible); attempt++) {
+      stepTypeTrigger2.click();
+      WaitHelper.waitPageNoAnimation();
+    }
+    waitForElementDisplayed(stepTypePanel, true);
     stepTypePanel.$$("li").filter(Condition.text("Custom parallel title")).first()
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     waitForElementDisplayed(stepTypePanel, false);
