@@ -449,7 +449,14 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnButtonExpandTaskWidget() {
-    getTaskWidgetHeader().$(".expand-link").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    waitForGlobalGrowlDisappear();
+    SelenideElement actionsMenuButton = getTaskWidgetHeader().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    actionsMenuPanel.$$("a.ui-menuitem-link").filter(text("Expand")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public ElementsCollection getExpandedTaskWidget() {
@@ -683,7 +690,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   
   public boolean isExpandButtonAppear() {
     WaitHelper.waitPageNoAjaxAndAnimation();
-    return getTaskWidgetHeader().$(".expand-link").isDisplayed();
+    return getTaskWidgetHeader().$("[id*=':toggle-fullscreen-item-']").exists();
   }
 
   public boolean isWidgetInfomationIconAppear() {

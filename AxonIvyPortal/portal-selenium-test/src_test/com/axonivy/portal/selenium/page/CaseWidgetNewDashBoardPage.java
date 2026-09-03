@@ -415,13 +415,20 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnButtonExpandCaseWidget() {
-    getCaseWidgetHeader().$(".expand-link").shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    clickOnToggleFullscreenMenuItem();
   }
 
   public void clickOnButtonCollapseCaseWidget() {
-    getCaseWidgetHeader().$(".collapse-link").shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    clickOnToggleFullscreenMenuItem();
+  }
+
+  private void clickOnToggleFullscreenMenuItem() {
+    SelenideElement actionsMenuButton = getCaseWidgetHeader().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    actionsMenuPanel.$("[id*=':toggle-fullscreen-item-']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public ElementsCollection countAllCases() {
@@ -444,7 +451,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public boolean isExpandButtonAppear() {
     WaitHelper.waitPageNoAjaxAndAnimation();
-    return getCaseWidgetHeader().$(".expand-link").isDisplayed();
+    return getCaseWidgetHeader().$("[id*=':toggle-fullscreen-item-']").exists();
   }
 
   public boolean isWidgetInfomationIconAppear() {
