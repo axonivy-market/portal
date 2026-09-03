@@ -55,25 +55,25 @@
         type="button"
         icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
         ariaLabel="#{ivy.cms.co('/Labels/Share')}"
-        title="#{ivy.cms.co('/Labels/Share')}" styleClass="portal-icon-btn-round portal-icon-btn-lg"/>
+        title="#{ivy.cms.co('/Labels/Share')}" styleClass="portal-icon-btn-round portal-icon-btn-lg mr-2"/>
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{taskDetailsBean.readOnlyMode}"
         ariaLabel="#{ivy.cms.co('/Labels/EditLayout')}"
         value="#{ivy.cms.co('/Labels/EditLayout')}" actionListener="#{taskDetailsBean.switchToEditMode()}"
         icon="#{visibilityBean.generateButtonIcon('ti ti-pencil')}" update="task-item-body task-details-actions"
         oncomplete="loadTaskDetailsGrid(); disableAllIFrameWhenEditLayout(); PortalLayout.hideHorizontalScrollOnLayoutContent();"
-        styleClass="portal-pill-btn portal-pill-btn-lg switch-to-edit-mode-btn" />
+        styleClass="portal-pill-btn portal-pill-btn-lg switch-to-edit-mode-btn mr-2" />
       <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         rendered="#{taskDetailsBean.configuration.changed and not taskDetailsBean.readOnlyMode}" ajax="false" type="button"
         icon="#{visibilityBean.generateButtonIcon('ti ti-refresh')}"
-        styleClass="reset-details-settings-button portal-pill-btn portal-pill-btn-lg"
+        styleClass="reset-details-settings-button portal-pill-btn portal-pill-btn-lg mr-2"
         immediate="true" onclick="PF('reset-to-default-task-dialog').show()" />
       <p:commandButton id="switch-to-view-mode-button" rendered="#{not taskDetailsBean.readOnlyMode}"
         ariaLabel="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}" onclick="saveTaskDetailsGrid()"
         icon="#{visibilityBean.generateButtonIcon('ti ti-device-floppy')}" update="task-item-body task-details-actions"
         oncomplete="loadTaskDetailsGrid(); enableAllIFrameWhenEditLayout();"
-        styleClass="portal-pill-btn portal-pill-btn-lg portal-pill-btn-accent"/>
+        styleClass="portal-pill-btn portal-pill-btn-lg portal-pill-btn-accent switch-view-mode-btn"/>
     </h:panelGroup>
   </h:panelGroup>
 

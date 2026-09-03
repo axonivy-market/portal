@@ -48,25 +48,25 @@
     <h:panelGroup id="case-details-actions" rendered="#{not isWorkingOnTask and not inFrame}"
       styleClass="portal-detail-toolbar-actions ui-sm-hidden">
       <p:commandButton id="share-page-button" rendered="#{caseDetailsBean.isShowShareButton}"
-          type="button"
-          icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
-          ariaLabel="#{ivy.cms.co('/Labels/Share')}"
-          title="#{ivy.cms.co('/Labels/Share')}" styleClass="portal-icon-btn-round portal-icon-btn-lg"/>
+        type="button"
+        icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
+        ariaLabel="#{ivy.cms.co('/Labels/Share')}"
+        title="#{ivy.cms.co('/Labels/Share')}" styleClass="mr-2 portal-icon-btn-round portal-icon-btn-lg"/>
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{caseDetailsBean.readOnlyMode}"
         ariaLabel="#{ivy.cms.co('/Labels/EditLayout')}"
         value="#{ivy.cms.co('/Labels/EditLayout')}" actionListener="#{caseDetailsBean.switchToEditMode()}"
-        icon="#{visibilityBean.generateButtonIcon('ti ti-pencil')}" styleClass="portal-pill-btn portal-pill-btn-lg switch-to-edit-mode-btn"
+        icon="#{visibilityBean.generateButtonIcon('ti ti-pencil')}" styleClass="portal-pill-btn portal-pill-btn-lg switch-to-edit-mode-btn mr-2"
         update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid();PortalLayout.hideHorizontalScrollOnLayoutContent()" />
       <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         rendered="#{caseDetailsBean.configuration.changed and not caseDetailsBean.readOnlyMode}" onclick="PF('reset-to-default-case-dialog').show()"
         icon="#{visibilityBean.generateButtonIcon('ti ti-refresh')}"
-        styleClass="reset-details-settings-button portal-pill-btn portal-pill-btn-lg" immediate="true" ajax="false" type="button" />
+        styleClass="reset-details-settings-button portal-pill-btn portal-pill-btn-lg mr-2" immediate="true" ajax="false" type="button" />
       <p:commandButton id="switch-to-view-mode-button" rendered="#{not caseDetailsBean.readOnlyMode}"
         ariaLabel="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}"
         icon="#{visibilityBean.generateButtonIcon('ti ti-device-floppy')}" onclick="saveCaseDetailsGrid()"
-        styleClass="portal-pill-btn portal-pill-btn-lg portal-pill-btn-accent"
+        styleClass="portal-pill-btn portal-pill-btn-lg portal-pill-btn-accent switch-view-mode-btn"
         update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid()" />
     </h:panelGroup>
   </h:panelGroup>

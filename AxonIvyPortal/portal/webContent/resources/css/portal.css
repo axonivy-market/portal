@@ -2058,8 +2058,6 @@ canvas#preview-statistic-chart {
   font-weight: normal;
 }
 
-/* Detail-page UI redesign (IVYPORTAL-20779) — Task Detail + Case Detail ----------------------------------------*/
-
 /* Shared: round icon button ----------------------------------------*/
 body .ui-button.ui-button-icon-only.portal-icon-btn-round,
 body a.portal-icon-btn-round,
@@ -2326,15 +2324,16 @@ body .ui-button.portal-icon-btn-round.portal-icon-btn-accent.ui-state-disabled {
   flex: 1 1 auto;
   min-width: 0;
 }
-.portal-detail-toolbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.8571rem;
-  flex: 0 0 auto;
+
+.portal-detail-toolbar-actions button.reset-details-settings-button, .portal-detail-toolbar-actions button.switch-view-mode-btn {
+  padding: 1rem;
 }
+
+.portal-detail-toolbar-actions 
 .portal-detail-toolbar-share-mobile {
   margin-left: auto;
 }
+
 body a.portal-detail-toolbar-back,
 body a.portal-detail-toolbar-back:hover,
 body a.portal-detail-toolbar-back:focus,
