@@ -4,6 +4,7 @@
   "namespace" : "ch.ivy.addon.portal.generic.dashboard.component.DashboardModification",
   "fields" : [ {
     "name" : "isPublicDashboard",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

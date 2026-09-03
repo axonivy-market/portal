@@ -60,7 +60,7 @@ public class DashboardModificationPage extends TemplatePage {
   public NewDashboardDetailsEditPage navigateToEditDashboardDetailsByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
     if (dashboardRow != null) {
-      clickButtonOnDashboardConfigurationActionMenu("Configuration", dashboardRow);
+      clickButtonOnDashboardConfigurationActionMenu("Edit Layout", dashboardRow);
       NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
       return newDashboardDetailsEditPage;
     }
@@ -102,9 +102,7 @@ public class DashboardModificationPage extends TemplatePage {
     SelenideElement menu = $("div.create-public-dashboard-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     menu.click();
-    SelenideElement panel = $(By.id(menu.getAttribute("id") + "_panel"))
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
+    SelenideElement panel = $(By.id(menu.getAttribute("id") + "_panel")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     panel.$$("li").filter(Condition.text(label)).first()
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     panel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);

@@ -4,18 +4,22 @@
   "namespace" : "ch.ivy.addon.portal.generic.ApplicationSelectionMenu",
   "fields" : [ {
     "name" : "isNotRequiredLogin",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isWorkingOnATask",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "workingTask",
     "type" : "ch.ivyteam.ivy.workflow.ITask",
     "modifiers" : [ ]
   }, {
-    "name" : "destinationBreadcrumbPage"
+    "name" : "destinationBreadcrumbPage",
+    "modifiers" : [ ]
   }, {
     "name" : "isClickOnBreadcrumb",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

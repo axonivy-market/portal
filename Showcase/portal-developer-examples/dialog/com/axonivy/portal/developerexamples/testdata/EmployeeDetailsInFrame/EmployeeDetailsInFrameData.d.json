@@ -4,9 +4,11 @@
   "namespace" : "com.axonivy.portal.developerexamples.testdata.EmployeeDetailsInFrame",
   "fields" : [ {
     "name" : "employee",
-    "type" : "com.axonivy.portal.developerexamples.Employee"
+    "type" : "com.axonivy.portal.developerexamples.Employee",
+    "modifiers" : [ ]
   }, {
     "name" : "employeeId",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   } ]
 }

@@ -3,6 +3,7 @@
   "simpleName" : "LoginData",
   "namespace" : "ch.ivy.addon.portal.generic.Login",
   "fields" : [ {
-    "name" : "callbackUrl"
+    "name" : "callbackUrl",
+    "modifiers" : [ ]
   } ]
 }

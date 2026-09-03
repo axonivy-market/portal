@@ -146,7 +146,7 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocument')])}"
               onclick="PF('document-renaming-dialog').hide(); return false;"
-              styleClass="u-mar-right-15" />
+              styleClass="u-mar-right-15 portal-link" />
             <p:commandButton id="document-rename-save-button"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocument')])}"
@@ -176,7 +176,7 @@
             oncomplete="PF('document-deletion-dialog').hide();" />
           <p:commandLink id="document-deletion-cancellation-command" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteDocumentHeaderText')])}"
              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-             process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="pt-3 flex justify-content-center"/>
+             process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="pt-3 flex justify-content-center portal-link"/>
         </ui:define>
       </ui:decorate>
     </ui:define>

@@ -81,7 +81,7 @@ public class MainMenuPage extends TemplatePage {
 
   public CaseWidgetNewDashBoardPage selectCaseMenu() {
     $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
-    WaitHelper.waitForNavigation(() -> $(By.cssSelector("li[id$='default-case-list-dashboard-main-dashboard']"))
+    WaitHelper.waitForNavigation(() -> $(By.cssSelector("li[id$=':main-menu__js__default-case-list-dashboard-main-dashboard']"))
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
     return new CaseWidgetNewDashBoardPage();
   }
@@ -174,21 +174,21 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public String getIconClassMainMenuEntryAsString() {
-	  return $("div[id='user-menu-required-login']").shouldBe(appear, DEFAULT_TIMEOUT)
-			  .$("li[id*='main-menu__js__DASHBOARD-parent-dashboard']").shouldBe(appear, DEFAULT_TIMEOUT)
-			  .$("a").shouldBe(appear, DEFAULT_TIMEOUT)
-			  .$("i").shouldBe(appear, DEFAULT_TIMEOUT)
-			  .getAttribute("class").toString();	  
+    return $("div[id='user-menu-required-login']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("li[id*='main-menu__js__DASHBOARD-parent-dashboard']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("a").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("i").shouldBe(appear, DEFAULT_TIMEOUT)
+        .getAttribute("class").toString();
   }
-  
+
   public String getMainMenuName() {
-	  return $("div[id='user-menu-required-login']").shouldBe(appear, DEFAULT_TIMEOUT)
-			  .$("li[id*='main-menu__js__DASHBOARD-parent-dashboard']").shouldBe(appear, DEFAULT_TIMEOUT)
-			  .$("a").shouldBe(appear, DEFAULT_TIMEOUT)
-			  .$("span").shouldBe(appear, DEFAULT_TIMEOUT)
-			  .getText();	  
+    return $("div[id='user-menu-required-login']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("li[id*='main-menu__js__DASHBOARD-parent-dashboard']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("a").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("span").shouldBe(appear, DEFAULT_TIMEOUT)
+        .getText();
   }
-  
+
   public void isSidebarAlwaysExpand() {
     $(".js-layout-wrapper").shouldHave(Condition.cssClass("layout-static"));
     $("#left-menu").$(".PROCESS_LIST").should(appear);

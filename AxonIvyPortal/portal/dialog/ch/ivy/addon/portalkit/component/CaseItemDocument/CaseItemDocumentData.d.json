@@ -20,37 +20,44 @@
     "modifiers" : [ ]
   }, {
     "name" : "isHideUploadDocumentForDoneCase",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
-    "name" : "name"
+    "name" : "name",
+    "modifiers" : [ ]
   }, {
     "name" : "streamedContent",
     "type" : "org.primefaces.model.StreamedContent",
     "modifiers" : [ ]
   }, {
-    "name" : "uploadDocumentCheckMessage"
+    "name" : "uploadDocumentCheckMessage",
+    "modifiers" : [ ]
   }, {
     "name" : "uploadDocumentCheckStatus",
     "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus",
     "modifiers" : [ ]
   }, {
-    "name" : "deleteDocumentMessage"
+    "name" : "deleteDocumentMessage",
+    "modifiers" : [ ]
   }, {
     "name" : "isImage",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isDocumentPreviewEnabled",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isRenameDocumentSuccess",
     "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "modifiers" : [ ]
   }, {
     "name" : "renameDocumentMessage",
     "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "modifiers" : [ ]
   }, {
     "name" : "isEncrypted",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

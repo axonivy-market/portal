@@ -3,9 +3,11 @@
   "simpleName" : "CancelApprovalRequestData",
   "namespace" : "internaltest.ui.CancelApprovalRequest",
   "fields" : [ {
-    "name" : "cancelReason"
+    "name" : "cancelReason",
+    "modifiers" : [ ]
   }, {
     "name" : "caseId",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   } ]
 }

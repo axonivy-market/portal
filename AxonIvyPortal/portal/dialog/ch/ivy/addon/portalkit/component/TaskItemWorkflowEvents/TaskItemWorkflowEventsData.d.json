@@ -4,7 +4,8 @@
   "namespace" : "ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents",
   "fields" : [ {
     "name" : "workflowEvents",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.bo.History>"
+    "type" : "java.util.List<ch.ivy.addon.portalkit.bo.History>",
+    "modifiers" : [ ]
   }, {
     "name" : "task",
     "type" : "ch.ivyteam.ivy.workflow.ITask",

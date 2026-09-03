@@ -4,58 +4,73 @@
   "namespace" : "ch.ivy.addon.portalkit.component.MultipleTaskItemsDelegate",
   "fields" : [ {
     "name" : "canDelegateTask",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "usersToDelegate",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
+    "modifiers" : [ ]
   }, {
     "name" : "rolesToDelegate",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"
+    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>",
+    "modifiers" : [ ]
   }, {
     "name" : "application",
     "type" : "ch.ivyteam.ivy.application.app.Application",
     "modifiers" : [ ]
   }, {
     "name" : "disabledDelegateButton",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isUserDelegated",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "delegatedSecurityMember",
     "type" : "ch.ivyteam.ivy.security.ISecurityMember",
     "modifiers" : [ ]
   }, {
-    "name" : "queryAutoComplete"
+    "name" : "queryAutoComplete",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedTasks",
     "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
     "modifiers" : [ ]
   }, {
     "name" : "selectedUser",
-    "type" : "com.axonivy.portal.components.dto.UserDTO"
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedRole",
-    "type" : "com.axonivy.portal.components.dto.RoleDTO"
+    "type" : "com.axonivy.portal.components.dto.RoleDTO",
+    "modifiers" : [ ]
   }, {
-    "name" : "taskDelegationComment"
+    "name" : "taskDelegationComment",
+    "modifiers" : [ ]
   }, {
     "name" : "isEmptyUsers",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isEmptyRoles",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "failedTasks",
-    "type" : "java.util.List<String>"
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   }, {
-    "name" : "widgetIndex"
+    "name" : "widgetIndex",
+    "modifiers" : [ ]
   }, {
     "name" : "taskWidget",
-    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget"
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget",
+    "modifiers" : [ ]
   }, {
     "name" : "numberOfSelectedTasks",
-    "type" : "java.lang.Integer"
+    "type" : "java.lang.Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "delegateComment",
     "modifiers" : [ ]

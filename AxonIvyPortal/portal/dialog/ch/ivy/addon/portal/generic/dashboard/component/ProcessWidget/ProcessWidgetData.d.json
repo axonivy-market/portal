@@ -27,7 +27,8 @@
     "type" : "ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel",
     "modifiers" : [ ]
   }, {
-    "name" : "currentPortalPage"
+    "name" : "currentPortalPage",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedTask",
     "type" : "ch.ivyteam.ivy.workflow.ITask",

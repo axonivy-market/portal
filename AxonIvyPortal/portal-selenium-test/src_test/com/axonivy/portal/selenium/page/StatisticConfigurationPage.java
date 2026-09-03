@@ -31,9 +31,6 @@ public class StatisticConfigurationPage extends TemplatePage {
     $("div[id$='config-form:target'] div.ui-selectonemenu-trigger").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     WaitHelper.waitPageNoAnimation();
     $$("li[id^='config-form:target_']").filter(text(chartTargetName)).first().shouldBe(getClickableCondition()).click();
-    // Wait for this panel's own closing transition to finish before the next dropdown interaction
-    // touches the page - otherwise its still-closing overlay can intercept the next open-click,
-    // which is a silent no-op (the item-click handler only binds once a panel is genuinely open).
     waitForElementDisplayed($("div[id$='config-form:target_panel']"), false);
   }
 
@@ -216,8 +213,6 @@ public class StatisticConfigurationPage extends TemplatePage {
     $(thresholdPrefix).$(".threshold-operator-value div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
     WaitHelper.waitPageNoAnimation();
     $$("li").filter(text(operator)).first().shouldBe(getClickableCondition()).click();
-    // Wait for the panel's own closing transition (checked via the global animation flag, since
-    // this panel has no stable id to scope a per-panel wait to) before touching the next field.
     WaitHelper.waitPageNoAnimation();
     $(thresholdPrefix).$(".threshold-input-value input").shouldBe(appear, DEFAULT_TIMEOUT).clear();
     $(thresholdPrefix).$(".threshold-input-value input").sendKeys(value);
@@ -229,7 +224,6 @@ public class StatisticConfigurationPage extends TemplatePage {
     $(thresholdPrefix).$(".threshold-category-data div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
     WaitHelper.waitPageNoAnimation();
     $$("li").filter(text(category)).first().shouldBe(getClickableCondition()).click();
-    // Wait for that panel to finish closing before opening the next one - same reasoning as above.
     WaitHelper.waitPageNoAnimation();
     $(thresholdPrefix).$(".threshold-operator-value div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
     WaitHelper.waitPageNoAnimation();
