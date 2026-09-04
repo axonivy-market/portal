@@ -41,7 +41,6 @@ import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
 import com.axonivy.portal.bo.ThresholdStatisticChart;
-import com.axonivy.portal.bo.jsonversion.StatisticJsonVersion;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
@@ -451,7 +450,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
       }
     }
     if (oldStatistic == null) {
-      statistic.setVersion(StatisticJsonVersion.LATEST_VERSION.getValue());
+      // Versioning now lives on the export wrapper container, not on individual entities.
       statistics.add(statistic);
     }
     StatisticService.getInstance().saveJsonToVariable(statistics);

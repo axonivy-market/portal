@@ -196,9 +196,17 @@ public class WelcomeWidgetUtils {
 
   public static void prepareWidgetForExport(WelcomeDashboardWidget welcomeWidget) {
     welcomeWidget.setImageType(getFileTypeOfImage(welcomeWidget.getImageType()));
-    welcomeWidget.setImageContent(encodeImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType()));
     welcomeWidget.setImageTypeDarkMode(getFileTypeOfImage(welcomeWidget.getImageTypeDarkMode()));
-    welcomeWidget.setImageContentDarkMode(encodeImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode()));
+    String content = encodeImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType());
+    if (StringUtils.isNotBlank(content)) {
+      welcomeWidget.setImageContent(content);
+      welcomeWidget.setImageLocation(null);
+    }
+    String contentDarkMode = encodeImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode());
+    if (StringUtils.isNotBlank(contentDarkMode)) {
+      welcomeWidget.setImageContentDarkMode(contentDarkMode);
+      welcomeWidget.setImageLocationDarkMode(null);
+    }
   }
 
   public static String encodeImage(String imageLocation, String imageType) {

@@ -1,4 +1,4 @@
-package com.axonivy.portal.migration.dashboard.converter.v131;
+package com.axonivy.portal.migration.dashboard.converter.v140;
 
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
@@ -9,6 +9,14 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 
+/**
+ * Same migration logic as {@link com.axonivy.portal.migration.dashboard.converter.v131.DashboardConverter},
+ * re-registered at 14.0.0 so that dashboards gate through an explicit converter for this version
+ * instead of relying only on {@link com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator}'s
+ * {@code updateVersion()} to bump them to the latest version. Running the same idempotent checks again
+ * for dashboards already migrated at 13.1.0 is harmless - every branch here only fills in a value that
+ * is still missing, it never overwrites data that's already correct.
+ */
 public class DashboardConverter implements IJsonConverter {
 
   private static final String SELECTED_DASHBOARD_DISPLAY_TYPE = "dashboardDisplayType";
@@ -17,7 +25,7 @@ public class DashboardConverter implements IJsonConverter {
 
   @Override
   public AbstractJsonVersion version() {
-    return new DashboardJsonVersion("13.1.0");
+    return new DashboardJsonVersion("14.0.0");
   }
 
   @Override

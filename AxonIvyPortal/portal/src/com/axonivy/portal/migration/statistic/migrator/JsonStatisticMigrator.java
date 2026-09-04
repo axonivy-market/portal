@@ -2,6 +2,7 @@ package com.axonivy.portal.migration.statistic.migrator;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -46,25 +47,17 @@ public class JsonStatisticMigrator {
   }
 
   public JsonNode migrate() {
-    Ivy.log().info("Converting Portal original statistic json: " + node.toString());
-    if (isListWrapper(node)) {
-      // Canonical shape: {"version": "...", "items": [...]}. The wrapper-level
-      // "version" tracks the JSON collection format, not any single chart's
-      // migration version, so only the items are migrated, not the wrapper itself.
-      ArrayNode items = (ArrayNode) node.get(JsonListWrapper.ITEMS_FIELD_NAME);
-      removeDefaultChartsFromClientStatistic(items);
-      items.elements().forEachRemaining(template -> migrate(template));
-    } else {
-      removeDefaultChartsFromClientStatistic((ArrayNode) node);
-      node.elements().forEachRemaining(template -> migrate(template));
+    if (JsonListWrapper.isListWrapper(node)) {
+      // Canonical shape: {"version": "...", "items": [...]}. Once wrapped, the wrapper's own
+      // version is the sole gate - per-item version is never read again and items are not
+      // re-run through the per-item converter chain (including the legacy default-chart
+      // cleanup below).
+      return node;
     }
+    Ivy.log().info("Converting Portal original statistic charts: " + collectChartIds((ArrayNode) node));
+    removeDefaultChartsFromClientStatistic((ArrayNode) node);
+    node.elements().forEachRemaining(template -> migrate(template));
     return node;
-  }
-
-  private static boolean isListWrapper(JsonNode node) {
-    return node.isObject()
-        && node.has(JsonListWrapper.ITEMS_FIELD_NAME)
-        && node.get(JsonListWrapper.ITEMS_FIELD_NAME).isArray();
   }
 
   private void migrate(JsonNode chart) {
@@ -83,6 +76,12 @@ public class JsonStatisticMigrator {
 
     converter.convert(chart);
     updateVersion(chart);
+  }
+
+  private String collectChartIds(ArrayNode nodes) {
+    return StreamSupport.stream(nodes.spliterator(), false)
+        .map(chart -> chart.path("id").asText())
+        .collect(Collectors.joining(", "));
   }
 
   private void removeDefaultChartsFromClientStatistic(ArrayNode nodes) {
