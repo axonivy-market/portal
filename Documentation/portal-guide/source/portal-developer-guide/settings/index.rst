@@ -464,6 +464,11 @@ the left menu.
 
 Filename: ``variables.Portal.ThirdPartyApplications.json``
 
+The file's value is a wrapper object: ``version`` identifies the format of the JSON collection
+itself, and ``items`` holds the list of third-party applications. This wrapper-level ``version`` is
+what Portal reads (and migrates) on import - individual applications do not carry their own
+``version`` field.
+
 Data model:
 
 .. code-block:: javascript
@@ -500,144 +505,151 @@ charts that can be used by the :ref:`Statistic widget <portal-statistic-widget>`
 
 Filename: ``variables.Portal.CustomStatistic.json``
 
-Data model:
+The file's value is a wrapper object: ``{"version": ..., "items": [...]}``, where ``version``
+identifies the format of the JSON collection itself and ``items`` holds the list of charts below.
+This wrapper-level ``version`` is what Portal reads (and migrates) on import - individual charts do
+not carry their own ``version`` field. Data model of a single chart entry in ``items``:
 
 .. code-block:: javascript
 
-  {
-    "id": "3e188e86a6534324b864167320ef3831",
-    "version": "13.1.0",
-    "statisticAggregation": {
-      "field": "state",
-      "type": "standard",
-      "kpiField": "InvoiceTotalAmount",
-      "aggregationMethod": "avg"
-    },
-    "filters": [
-      {
-        "field": "state",
-        "values": [
-          "DONE",
-          "IN_PROGRESS",
-          "OPEN"
-        ],
-        "operator": "in",
-        "type": "standard"
-      }
-    ],
-    "permissions": [
-      "Everybody"
-    ],
-    "chartTarget": "task",
-    "chartType": "bar",
-    "icon": "si-add-circle",
-    "refreshInterval": 300,
-    "names": [
-      {
-        "locale": "en",
-        "value": "New statistic"
-      },
-      {
-        "locale": "fr",
-        "value": "Nouvelle statistique"
-      },
-      {
-        "locale": "de",
-        "value": "Neue Statistik"
-      },
-      {
-        "locale": "ja",
-        "value": "新しい統計"
-      },
-      {
-        "locale": "es",
-        "value": "Nueva estadística"
-      }
-    ],
-    "descriptions": [
-      {
-        "locale": "en",
-        "value": "Demo new statistic"
-      },
-      {
-        "locale": "fr",
-        "value": "Démonstration d'une nouvelle statistique"
-      },
-      {
-        "locale": "de",
-        "value": "Neue Demo-Statistik"
-      },
-      {
-        "locale": "ja",
-        "value": "新しい統計のデモ"
-      },
-      {
-        "locale": "es",
-        "value": "Demo nueva estadística"
-      }
-    ],
-    "barChartConfig": {
-      "xTitles": [
-        {
-          "locale": "en",
-          "value": "State"
-        },
-        {
-          "locale": "fr",
-          "value": "État"
-        },
-        {
-          "locale": "de",
-          "value": "Status"
-        },
-        {
-          "locale": "ja",
-          "value": "状態"
-        },
-        {
-          "locale": "es",
-          "value": "Estatus"
-        }
-      ],
-      "yTitles": [
-        {
-          "locale": "en",
-          "value": "Number of tasks"
-        },
-        {
-          "locale": "fr",
-          "value": "Nombre de tâches"
-        },
-        {
-          "locale": "de",
-          "value": "Anzahl der Aufgaben"
-        },
-        {
-          "locale": "ja",
-          "value": "タスクの数"
-        },
-        {
-          "locale": "es",
-          "value": "Número de tareas"
-        }
-      ],
-      "backgroundColors": [
-        "#6299f7",
-        "#8dc261",
-        "#98bffa",
-        "#bee3cb",
-        "#c8befa",
-        "#f5bf9f",
-        "#f8da96",
-        "#f9908c"
-      ]
-    }
-  }
+   {
+      "version" : "14.0.0",
+      "items" : [ {
+         "id" : "21ef6b6842384c33a787b2a5912257e7",
+         "statisticAggregation" : {
+            "field" : "Item",
+            "type" : "custom",
+            "kpiField" : "SpendAmount",
+            "aggregationMethod" : "sum"
+         },
+         "permissions" : [ "Everybody" ],
+         "chartTarget" : "case",
+         "chartType" : "pie",
+         "icon" : "ti-chart-pie",
+         "names" : [ {
+            "locale" : "en",
+            "value" : "Distribution of Spend by Category"
+         }, {
+            "locale" : "fr",
+            "value" : "Répartition des dépenses par catégorie"
+         }, {
+            "locale" : "de",
+            "value" : "Aufteilung der Ausgaben nach Kategorien"
+         }, {
+            "locale" : "ja",
+            "value" : "支出のカテゴリー別内訳"
+         }, {
+            "locale" : "es",
+            "value" : "Distribución del gasto por categoría"
+         } ],
+         "descriptions" : [ {
+            "locale" : "en",
+            "value" : "Illustrates the proportion of total spend by purchase category (e.g. IT equipment, raw materials, services, etc.)."
+         }, {
+            "locale" : "fr",
+            "value" : "Illustre la proportion des dépenses totales par catégorie d'achat (par exemple, équipement informatique, matières premières, services, etc.)."
+         }, {
+            "locale" : "de",
+            "value" : "Veranschaulicht den Anteil der Gesamtausgaben nach Einkaufskategorie (z. B. IT-Ausrüstung, Rohstoffe, Dienstleistungen usw.)."
+         }, {
+            "locale" : "ja",
+            "value" : "購入カテゴリー別（例：IT機器、原材料、サービスなど）の総支出に占める割合を示します。"
+         }, {
+            "locale" : "es",
+            "value" : "Ilustra la proporción del gasto total por categoría de compra (por ejemplo, equipo informático, materias primas, servicios, etc.)."
+         } ],
+         "pieChartConfig" : {
+            "backgroundColors" : [ "#98bffa", "#f8da96", "#bee3cb", "#f9908c", "#c8befa", "#8dc261", "#6299f7", "#f5bf9f" ],
+            "conditionBasedColoringEnabled" : false
+         },
+         "conditionBasedColoringEnabled" : false,
+         "chartDrillDownEnabled" : true
+      }, {
+         "id" : "12159ba721b94ea7bc4a0c5e0b4c93d0",
+         "statisticAggregation" : {
+            "field" : "MonthYear",
+            "type" : "custom",
+            "interval" : "month"
+         },
+         "permissions" : [ "Everybody" ],
+         "chartTarget" : "case",
+         "chartType" : "line",
+         "icon" : "ti-chart-line",
+         "names" : [ {
+            "locale" : "en",
+            "value" : "Number of Purchase Requests / Orders per Month"
+         }, {
+            "locale" : "fr",
+            "value" : "Nombre de demandes d'achat / commandes par mois"
+         }, {
+            "locale" : "de",
+            "value" : "Anzahl der Kaufanfragen/Bestellungen pro Monat"
+         }, {
+            "locale" : "ja",
+            "value" : "月間購入依頼数／発注数"
+         }, {
+            "locale" : "es",
+            "value" : "Número de solicitudes de compra/pedidos por mes"
+         } ],
+         "descriptions" : [ {
+            "locale" : "en",
+            "value" : "Tracks procurement activity volume over time, useful for identifying seasonal or operational trends."
+         }, {
+            "locale" : "fr",
+            "value" : "Suivi du volume des activités d'approvisionnement au fil du temps, utile pour identifier les tendances saisonnières ou opérationnelles."
+         }, {
+            "locale" : "de",
+            "value" : "Verfolgt das Volumen der Beschaffungsaktivitäten im Zeitverlauf und ist nützlich, um saisonale oder betriebliche Trends zu erkennen."
+         }, {
+            "locale" : "ja",
+            "value" : "調達活動の量を経時的に追跡し、季節的または業務上の傾向を特定するのに有用である。"
+         }, {
+            "locale" : "es",
+            "value" : "Realiza un seguimiento del volumen de actividad de compras a lo largo del tiempo, lo que resulta útil para identificar tendencias estacionales u operativas."
+         } ],
+         "lineChartConfig" : {
+            "xTitles" : [ {
+            "locale" : "en",
+            "value" : "Month of year"
+            }, {
+            "locale" : "fr",
+            "value" : "Mois de l'année"
+            }, {
+            "locale" : "de",
+            "value" : "Monat des Jahres"
+            }, {
+            "locale" : "ja",
+            "value" : "年の月"
+            }, {
+            "locale" : "es",
+            "value" : "Mes del año"
+            } ],
+            "yTitles" : [ {
+            "locale" : "en",
+            "value" : "Number of orders"
+            }, {
+            "locale" : "fr",
+            "value" : "Nombre de commandes"
+            }, {
+            "locale" : "de",
+            "value" : "Anzahl der Bestellungen"
+            }, {
+            "locale" : "ja",
+            "value" : "注文数"
+            }, {
+            "locale" : "es",
+            "value" : "Número de pedidos"
+            } ],
+            "backgroundColors" : [ "#98bffa", "#f8da96", "#bee3cb", "#f9908c", "#c8befa", "#8dc261", "#6299f7", "#f5bf9f" ]
+         },
+         "defaultBackgroundColor" : "#8dc261",
+         "conditionBasedColoringEnabled" : false,
+         "chartDrillDownEnabled" : true
+      }]
+   }
 ..
 
 - ``id``: ID of the widget.
-
-- ``version``: current version of the widget.
 
 - ``statisticAggregation``: statistic's aggregation.
 
@@ -726,6 +738,10 @@ The standard external links in Portal are defined in the following file:
 
 Filename: ``variables.Portal.Processes.ExternalLinks.json``
 
+The file's value is a wrapper object: ``version`` identifies the format of the JSON collection
+itself, and ``items`` holds the list of external links. This wrapper-level ``version`` is what
+Portal reads (and migrates) on import - individual links do not carry their own ``version`` field.
+
 Data model:
 
 .. code-block:: javascript
@@ -735,7 +751,6 @@ Data model:
      "items": [
       {
          "id": "01322912db224658a222804802844a7b",
-         "version": "10.0.9",
          "name": "Download latest Axon Ivy",
          "link": "https://developer.axonivy.com/download",
          "creatorId": 2,
@@ -752,7 +767,6 @@ Data model:
    }
 
 - ``id``: the identification of a link, auto-generated by UUID
-- ``version``: the version of the json
 - ``name``: the display name of a link
 - ``link``: the URL of the link
 - ``creatorId``: the user id who create the link. This user can see and start the external link in any case
