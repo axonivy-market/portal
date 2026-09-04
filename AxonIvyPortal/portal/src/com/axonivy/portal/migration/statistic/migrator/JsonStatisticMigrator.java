@@ -2,6 +2,7 @@ package com.axonivy.portal.migration.statistic.migrator;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -53,7 +54,7 @@ public class JsonStatisticMigrator {
       // cleanup below).
       return node;
     }
-    Ivy.log().info("Converting Portal original statistic json: " + node.toString());
+    Ivy.log().info("Converting Portal original statistic charts: " + collectChartIds((ArrayNode) node));
     removeDefaultChartsFromClientStatistic((ArrayNode) node);
     node.elements().forEachRemaining(template -> migrate(template));
     return node;
@@ -75,6 +76,12 @@ public class JsonStatisticMigrator {
 
     converter.convert(chart);
     updateVersion(chart);
+  }
+
+  private String collectChartIds(ArrayNode nodes) {
+    return StreamSupport.stream(nodes.spliterator(), false)
+        .map(chart -> chart.path("id").asText())
+        .collect(Collectors.joining(", "));
   }
 
   private void removeDefaultChartsFromClientStatistic(ArrayNode nodes) {

@@ -251,10 +251,7 @@ public class PortalPackageService {
       if (widget instanceof WelcomeDashboardWidget welcomeWidget) {
         WelcomeWidgetUtils.prepareWidgetForExport(welcomeWidget);
       } else if (widget instanceof NavigationDashboardWidget navWidget) {
-        navWidget.setImageContent(ImageUploadUtils.imageToBase64(navWidget.getImageLocation(),
-            navWidget.getImageType(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
-        navWidget.setImageContentDarkMode(ImageUploadUtils.imageToBase64(navWidget.getImageLocationDarkMode(),
-            navWidget.getImageTypeDarkMode(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
+        NavigationWidgetUtils.prepareWidgetForExport(navWidget);
       }
       DashboardWidgetUtils.simplifyWidgetColumnData(widget);
     });
@@ -277,8 +274,13 @@ public class PortalPackageService {
     }
     String base64 = ImageUploadUtils.imageToBase64(link.getImageLocation(), link.getImageType(),
         ImageUploadUtils.EXTERNAL_LINK_IMAGE_DIRECTORY);
-    link.setImageContent(base64);
-    link.setImageLocation(null);
+    // imageToBase64 returns "" on any failure (missing CMS object, extension mismatch, etc.)
+    // without throwing - only clear the location once encoding actually produced something, so a
+    // failed conversion doesn't turn a broken-but-visible reference into no reference at all.
+    if (StringUtils.isNotBlank(base64)) {
+      link.setImageContent(base64);
+      link.setImageLocation(null);
+    }
   }
 
   private boolean isRawVariableEmpty(PortalPackageFile file) {

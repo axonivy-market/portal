@@ -36,7 +36,6 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.service.IvyTranslationService;
-import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -432,11 +431,7 @@ public class DashboardModificationBean extends DashboardBean {
         WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
         WelcomeWidgetUtils.prepareWidgetForExport(welcomeWidget);
       } else if (widget instanceof NavigationDashboardWidget) {
-        NavigationDashboardWidget navWid = (NavigationDashboardWidget) widget;
-        navWid.setImageContent(ImageUploadUtils.imageToBase64(navWid.getImageLocation(),
-            navWid.getImageType(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
-        navWid.setImageContentDarkMode(ImageUploadUtils.imageToBase64(navWid.getImageLocationDarkMode(),
-            navWid.getImageTypeDarkMode(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY));
+        NavigationWidgetUtils.prepareWidgetForExport((NavigationDashboardWidget) widget);
       }
     });
     Optional.ofNullable(dashboard.getWidgets()).orElse(Collections.emptyList())

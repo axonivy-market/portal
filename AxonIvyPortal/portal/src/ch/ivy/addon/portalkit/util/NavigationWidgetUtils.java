@@ -44,6 +44,21 @@ public class NavigationWidgetUtils {
     }
   }
   
+  public static void prepareWidgetForExport(NavigationDashboardWidget widget) {
+    String content = ImageUploadUtils.imageToBase64(widget.getImageLocation(), widget.getImageType(),
+        ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
+    if (StringUtils.isNotBlank(content)) {
+      widget.setImageContent(content);
+      widget.setImageLocation(null);
+    }
+    String contentDarkMode = ImageUploadUtils.imageToBase64(widget.getImageLocationDarkMode(),
+        widget.getImageTypeDarkMode(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
+    if (StringUtils.isNotBlank(contentDarkMode)) {
+      widget.setImageContentDarkMode(contentDarkMode);
+      widget.setImageLocationDarkMode(null);
+    }
+  }
+
   public static void cloneDarkModeImage(String extension, String oldImageLocation,
       NavigationDashboardWidget newWidget) throws IOException {
     cloneImage(extension, oldImageLocation, newWidget, true);
