@@ -3,7 +3,7 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
   xmlns:pe="primefaces.extensions" xmlns:fn="jakarta.tags.functions"
   xmlns:cc="jakarta.faces.composite" xmlns:jsf="jakarta.faces"
-  xmlns:c="jakarta.tags.core">
+  xmlns:c="jakarta.tags.core" xmlns:pt="jakarta.faces.passthrough">
 
 <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -41,7 +41,7 @@
 
   <h:panelGroup id="#{cc.attrs.componentId}"
     styleClass="#{isShapeCircle ? 'circle-process-chain' : 'line-process-chain'}">
-    <h:panelGroup styleClass="ui-sm-hidden ui-md-hidden #{isDirectionHorizontal ? 'horizontal-process-chain' : 'vertical-process-chain'}">
+    <h:panelGroup pt:role="list" styleClass="ui-sm-hidden ui-md-hidden #{isDirectionHorizontal ? 'horizontal-process-chain' : 'vertical-process-chain'}">
       <c:if test="#{empty cc.attrs.stepIndexes}">
         <c:forEach items="#{cc.attrs.steps}" var="stepName" varStatus="counter">
           <c:set var="isFirstStep" value="#{counter.index eq 0}" />
@@ -59,6 +59,7 @@
           <c:if test="#{isShapeCircle}">
             <h:panelGroup layout="block" id="step-info-#{counter.index}"
               rendered="#{isShowAllSteps or isDisplayedStep}"
+              pt:role="listitem" pt:aria-current="#{isCurrentStep ? 'step' : null}"
               styleClass="ui-sm-hidden ui-md-hidden #{isDirectionHorizontal ? 'circle-horizontal-process-step' : 'circle-vertical-process-step'} #{isHideNextSteps and !isShowAllSteps ? 'hide-steps' : ''} #{processStepTypeCssClass}">
               <c:if test="#{isDirectionHorizontal}">
                 <span class="circle-horizontal-step-title">${stepName}</span>
@@ -128,6 +129,7 @@
           <c:if test="#{isShapeCircle}">
             <h:panelGroup layout="block" id="step-info-#{counter.index}"
               rendered="#{isShowAllSteps or isDisplayedStep}"
+              pt:role="listitem" pt:aria-current="#{isCurrentStep ? 'step' : null}"
               styleClass="ui-sm-hidden ui-md-hidden #{isDirectionHorizontal ? 'circle-horizontal-process-step' : 'circle-vertical-process-step'} #{isHideNextSteps and !isShowAllSteps ? 'hide-steps' : ''} #{processStepTypeCssClass}">
               <c:if test="#{isDirectionHorizontal}">
                 <span class="circle-horizontal-step-title">${stepName}</span>

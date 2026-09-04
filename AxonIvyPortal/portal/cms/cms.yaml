@@ -1097,12 +1097,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Show full task list
     sort: Sort
   taskWarning:
-    createdTaskLeave: '<div>You are about to leave this page.<br/>  Please choose one of the following options:</div><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Cancel: Continue working this task.</UL>'
-    createdTaskLogout: '<div>You are about to leave this page.<br/> Please choose one of the following options:</div><UL><LI>Logout: Discard your changes and logout.<LI>Cancel: Continue working this task.</UL>'
-    resetParkTaskBeforeLeave: '<div>You are about to leave a task in progress.<br/>Please choose one of the following options:</div><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Reserve: Discard your changes and keep the task in your task list.<LI>Cancel: Continue working this
-      task.</UL>'
-    resetParkTaskBeforeLogout: '<div>You are about to leave a task in progress.</br> Please choose one of the following options:</div><UL><LI>Logout: Discard your changes and logout.<LI>Reserve: Discard your changes and keep the task in your personal task list. Then logout.<LI>Cancel: Continue working
-      this task.</UL>'
+    createdTaskLeave: This task is in progress, if you leave it now you'll lose what you've done.
+    createdTaskLogout: This task is in progress, if you log out now you'll lose what you've done.
+    leaveTaskTitle: Leave this task?
+    resetParkTaskBeforeLeave: This task is in progress, if you leave it now you'll lose what you've done. If you reserve it will reappear in your task list.
+    resetParkTaskBeforeLogout: This task is in progress, if you log out now you'll lose what you've done. If you reserve it will reappear in your task list.
     taskNotFound: The task does not exist or you have insufficient rights to see this task.
   userProfile:
     myProfileTitle: My profile

@@ -2276,7 +2276,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   .process-chain-container.vertical-process-chain-container {
     display: none !important;
   }
-  .task-name-vertical-process-chain, .task-name-vertical-process-chain.vertical-chain-shape-line,
   .task-template-button.vertical-process-chain.vertical-chain-shape-line,
   .task-template-button.vertical-process-chain {
     margin-left: auto !important;
@@ -2291,7 +2290,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   }
   .circle-process-chain .circle-horizontal-process-step {
     width: auto !important;
-    margin-top: 5px !important;
+    margin-top: 1px !important;
   }
   .circle-process-chain .circle-horizontal-step-title {
     margin-bottom: 2px !important;
@@ -2517,14 +2516,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 .task-template-content.vertical-process-chain.vertical-chain-shape-line,
 .task-template-button.vertical-process-chain.vertical-chain-shape-line {
   width: calc(100% - 70px);
-}
-
-.task-name-vertical-process-chain {
-  margin-left: 140px;
-}
-
-.task-name-vertical-process-chain.vertical-chain-shape-line {
-  margin-left: 70px;
 }
 
 .line-process-chain.vertical-process-chain {
@@ -4377,6 +4368,12 @@ _:-ms-fullscreen, :root .content-link-history {
 /*  =================== TASK TEMPLATE PAGE ========================= */
 .task-title {
   flex: 1;
+  min-width: 0;
+  font-size: 1.143rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .task-actions-menu .ui-slidemenu-backward.ui-widget-header {

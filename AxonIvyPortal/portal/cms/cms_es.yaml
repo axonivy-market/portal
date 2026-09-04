@@ -1515,12 +1515,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Mostrar lista de tareas completa
     sort: Ordenar
   taskWarning:
-    createdTaskLeave: Si sale ahora, no podrá iniciar esta tarea de nuevo.
-    createdTaskLogout: '<div>Va a salir de esta página.<br/> Por favor selecione una de las siguientes opciones:</div><UL><LI> Cerrar sesión: No guardará sus cambios y se cerrará la sesión.<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
-    leaveTaskHeader: ¿Salir de esta tarea?
-    resetParkTaskBeforeLeave: Esta tarea está en curso. Si sale ahora, no podrá iniciarla de nuevo. Si la reserva, volverá a aparecer en su lista de tareas.
-    resetParkTaskBeforeLogout: '<div>Va a salir de esta página.</br> Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: no guardará sus cambios y volverá a la página anterior.<LI>Reservar: No guardará sus cambios, volverá a la página anterior pero la tarea quedara reservada para usted.<LI>Cancelar:
-      Continue trabajando en esta tarea.</UL>'
+    createdTaskLeave: Esta tarea está en curso. Si sale ahora, perderá lo que ha hecho.
+    createdTaskLogout: Esta tarea está en curso. Si cierra la sesión ahora, perderá lo que ha hecho.
+    leaveTaskTitle: ¿Salir de esta tarea?
+    resetParkTaskBeforeLeave: Esta tarea está en curso. Si sale ahora, perderá lo que ha hecho. Si la reserva, volverá a aparecer en su lista de tareas.
+    resetParkTaskBeforeLogout: Esta tarea está en curso. Si cierra la sesión ahora, perderá lo que ha hecho. Si la reserva, volverá a aparecer en su lista de tareas.
     taskNotFound: La tarea no existe o no los tiene derechos suficientes para ver esta tarea.
   userProfile:
     myProfileTitle: Mi perfil

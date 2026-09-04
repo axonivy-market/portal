@@ -89,9 +89,15 @@ a.left-sidebar-menu-icon {
   flex: 1 0 auto;
 }
 
-.task-template-title-icon {
-  margin-right: 5px;
-  font-weight: bold !important;
+.task-template-title-icon.portal-icon-container {
+  width: var(--portal-icon-btn-size-lg);
+  height: var(--portal-icon-btn-size-lg);
+  border-radius: 0.884rem;
+  margin-right: 0.714rem;
+}
+
+.task-template-title-icon.portal-icon-container i {
+  font-size: var(--portal-icon-size-xl);
 }
 
 .task-template-content {
@@ -254,6 +260,40 @@ a.left-sidebar-menu-icon {
   flex-wrap: wrap;
 }
 
+.task-template-title-horizontal-container.card {
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--portal-detail-card-gap);
+  padding-top: 0.884rem;
+  padding-bottom: 0.884rem;
+  margin-bottom: 10px;
+  border-radius: var(--portal-detail-card-radius);
+  box-shadow: var(--portal-detail-card-shadow);
+}
+
+.task-template-title-horizontal-container.card > .task-template-title,
+.task-template-title-horizontal-container.card > .task-template-tasks-command {
+  flex: 1 1 0;
+}
+
+.task-template-title-horizontal-container.card > .task-template-title {
+  min-width: 0;
+}
+
+.task-template-title-horizontal-container.card > .task-template-tasks-command {
+  justify-content: flex-end;
+  margin-left: 0;
+}
+
+.task-template-title-horizontal-container.card > .task-template-tasks-command > .ui-button + .ui-button {
+  margin-left: 0.884rem;
+}
+
+.task-template-title-horizontal-container.card > .process-chain-container {
+  flex: 0 1 auto;
+  text-align: center;
+}
+
 .case-template-content .case-details, .task-template-content .case-details {
   margin: 0 !important;
 }
@@ -269,22 +309,6 @@ a.left-sidebar-menu-icon {
 .case-template-content .case-list-item {
   width: 100%;
   margin: 20px 0 0 0;
-}
-
-.ui-confirm-dialog-message li {
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--warning-before-leave-task);
-}
-
-.ui-confirm-dialog-message ul {
-  line-height: 19px;
-  margin-bottom: 0;
-}
-
-.ui-confirm-dialog-message div {
-  text-align: center;
-  font-size: 18px;
 }
 
 .warning-before-leaving-task .ui-dialog-content.ui-widget-content {

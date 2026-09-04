@@ -97,6 +97,64 @@
   line-height: var(--portal-icon-line-height);
 }
 
+.portal-icon-container,
+.portal-circle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  box-sizing: border-box;
+}
+
+.portal-icon-container {
+  border-radius: 8px;
+  background-color: var(--dashboard-icon-bg-color);
+  color: var(--text-color, #333);
+  border: 1px solid var(--dashboard-icon-border-color);
+}
+
+.portal-icon-container.u-mar-right-10 {
+  margin-right: 10px !important;
+}
+
+.portal-icon-container i {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.portal-circle-icon {
+  border-radius: 50%;
+  background-color: var(--dashboard-icon-bg-color) !important;
+  border: 1px solid var(--dashboard-icon-border-color) !important;
+  color: var(--text-color, #333) !important;
+  margin: 0;
+  padding: 0;
+}
+
+body .portal-circle-icon:hover,
+body .portal-circle-icon:focus {
+  background-color: var(--secondary-btn-hover-bg) !important;
+}
+
+.portal-circle-icon i,
+.portal-circle-icon.ui-button .ui-icon,
+.portal-circle-icon::before {
+  position: static !important;
+  transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  display: block;
+  font-size: var(--portal-icon-size-md);
+}
+
+.portal-circle-icon.ui-button .ui-button-text {
+  display: none;
+}
+
 .ui-button .ui-icon.ti,
 .ui-button .ui-icon.tif {
   overflow: visible;
@@ -455,13 +513,6 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
   color: var(--stages-chain-current-icon-color); }
 
 /*Style for stages process chain -----------------------------------------------------------------------------------*/
-.circle-process-chain .circle-horizontal-process-step.visited .circle-horizontal-step-container span:before {
-  border-color: var(--process-chain-menu-color); }
-
-.circle-process-chain .circle-horizontal-process-step.waiting .circle-horizontal-step-container {
-  border: solid 2px var(--process-chain-menu-color);
-  background-color: var(--circle-horizontal-waiting-step-number-container-background-color); }
-
 .circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
   background-color: var(--process-chain-menu-color);
   border: solid 2px var(--circle-step-container-border); }
@@ -1331,6 +1382,38 @@ color: var(--button-text-color);
   color: var(--ivy-tertinary-color-red-medium);
 }
 
+.portal-dialog-icon-circle {
+  box-sizing: border-box;
+  width: var(--portal-dialog-icon-circle-size);
+  height: var(--portal-dialog-icon-circle-size);
+  margin: 0 auto 1.071rem auto;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portal-dialog-icon-circle > i {
+  font-size: 2.763rem;
+  line-height: 1;
+}
+
+.portal-dialog-icon-circle.portal-dialog-icon-circle-warning {
+  background-color: var(--portal-dialog-warning-icon-circle-background-color);
+}
+
+.portal-dialog-icon-circle.portal-dialog-icon-circle-warning > i.portal-dialog-warning-icon {
+  color: var(--portal-dialog-warning-icon-circle-color);
+}
+
+.warning-before-leaving-task .ui-confirm-dialog-message {
+  display: block;
+  text-align: center;
+  font-size: 1.143rem;
+  line-height: 1.4;
+  color: var(--text-color);
+}
+
 .portal-remove-button {
   background-color: var(--ivy-tertinary-color-red-medium) !important;
   border-color: var(--ivy-tertinary-color-red-medium) !important;
@@ -1874,9 +1957,12 @@ body.dark .focused {
   border: 1px solid var(--ui-leave-button-color) !important;
 }
 .ui-leave-button,
-.ui-reserve-task-button,
-.ui-cancel-button {
+.ui-reserve-task-button {
   font-weight: 600;
+}
+.warning-before-leaving-task .ui-leave-button,
+.warning-before-leaving-task .ui-reserve-task-button {
+  font-weight: 500;
 }
 /* ====END OF==== DIALOG FOOTER - CONFIRMATION DIALOG ============================  **/
 

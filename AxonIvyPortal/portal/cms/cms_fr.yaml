@@ -572,7 +572,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     inactive: Désactivé
     information: Information
     leave: Quitter
-    leaveAndReserve: Quitter et réserve
+    leaveAndReserve: Quitter et réserver
     linkToCaseDetails: Cliquez sur <a href="{0}" >ici</a> pour plus de détails.
     listView: Vue en liste
     loading: Chargement
@@ -620,7 +620,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     removeSelection: Retirer la sélection
     reorder: Réorganiser
     requiredFieldMessage: Ce champ est obligatoire
-    reserve: Enregistrer
+    reserve: Réserver
     reset: Réinitialiser
     resetFilters: Tout réinitialiser
     resetSettingHeaderText: Rétablir le réglage ?
@@ -1514,12 +1514,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Voir la liste complète des tâches
     sort: Trier
   taskWarning:
-    createdTaskLeave: Si vous quittez maintenant, vous ne pourrez plus démarrer cette tâche.
-    createdTaskLogout: '<div>Vous êtes sur le point de quitter cette page.<br/> Choisissez l&apos;&apos;une des options suivantes :</div> <UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
-    leaveTaskHeader: Quitter cette tâche ?
-    resetParkTaskBeforeLeave: Cette tâche est en cours. Si vous la quittez maintenant, vous ne pourrez plus la redémarrer. Si vous la réservez, elle réapparaîtra dans votre liste de tâches.
-    resetParkTaskBeforeLogout: '<div>Vous êtes sur le point de laisser une tâche en cours.</br> Choisissez l&apos;&apos;une des options suivantes : </div><UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Enregistrer : annulez vos modifications et conservez la tâche dans votre
-      liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
+    createdTaskLeave: Cette tâche est en cours. Si vous la quittez maintenant, vous perdrez votre travail.
+    createdTaskLogout: Cette tâche est en cours. Si vous vous déconnectez maintenant, vous perdrez votre travail.
+    leaveTaskTitle: Quitter cette tâche ?
+    resetParkTaskBeforeLeave: Cette tâche est en cours. Si vous la quittez maintenant, vous perdrez votre travail. Si vous la réservez, elle réapparaîtra dans votre liste de tâches.
+    resetParkTaskBeforeLogout: Cette tâche est en cours. Si vous vous déconnectez maintenant, vous perdrez votre travail. Si vous la réservez, elle réapparaîtra dans votre liste de tâches.
     taskNotFound: cette tâche n'existe pas ou vous n'avez pas l'autorisation de la voir.
   userProfile:
     myProfileTitle: Mon profil
