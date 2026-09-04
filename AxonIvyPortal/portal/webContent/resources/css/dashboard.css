@@ -1775,7 +1775,9 @@ a.saved-filter__manage-filter {
 }
 
 .expand-link {
-  display: inline;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ui-widget.collapse-link {
@@ -1787,7 +1789,9 @@ a.saved-filter__manage-filter {
 }
 
 .expand-fullscreen .ui-widget.collapse-link {
-  display: inline;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .expand-fullscreen .table-widget-panel {
@@ -2005,6 +2009,44 @@ a.saved-filter__manage-filter {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.welcome-config__mode-selection.ui-selectonebutton {
+  display: inline-flex;
+  border: 1px solid var(--accent-btn-border);
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 0px !important;
+}
+
+.welcome-config__mode-selection.ui-selectonebutton .ui-button {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--ivy-portal-color-grey-500);
+  padding: 0.5rem;
+}
+
+.welcome-config__mode-selection.ui-selectonebutton .ui-button.ui-state-active {
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
+}
+
+body .welcome-config__mode-selection.ui-selectonebutton .ui-button.ui-state-active:hover {
+  background: var(--accent-btn-hover-bg);
+  color: var(--accent-btn-text);
+}
+
+body .welcome-config__mode-selection.ui-selectonebutton .ui-button:not(.ui-state-active):hover {
+  background: var(--accent-btn-hover-bg);
+}
+
+.welcome-config__mode-selection.ui-selectonebutton .ui-button .ui-button-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
 }
 
 .welcome-config .welcome-text-select-one-menu {
@@ -2975,7 +3017,7 @@ body .widget-header-default-actions .ui-button.ui-button-icon-only > .ui-icon, b
   margin: 0;
 }
 
-body .widget-header-default-actions .ui-button.ui-button-icon-only, body .dashboard-header__action .ui-button.ui-button-icon-only, body .widget__header .ui-button.ui-button-icon-only {
+body .widget-header-default-actions .ui-button.ui-button-icon-only, body .dashboard-header__action .ui-button.ui-button-icon-only, body .widget__header .ui-button.ui-button-icon-only:not(.expand-link):not(.collapse-link) {
   display: inline-flex;
   align-items: center;
   justify-content: center;

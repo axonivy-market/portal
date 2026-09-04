@@ -961,9 +961,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: 詳細設定
         ChangeImage: 画像を変更
-        DarkMode: ダークモード
+        ChooseMode: 設定するモードを選択してください
+        DarkMode: ダーク
         ImagePreview: 画像プレビュー
-        LightMode: ライトモード
+        LightMode: ライト
         ConfigurationHeader: ウェルカムウィジェットの設定
         ChooseAFit: フィットを選択
         DisplayText: 表示テキスト
@@ -1633,7 +1634,7 @@ Dialogs:
           Responsibles:
             Multiple: 複数
           ShareLinkDialog:
-            CopyLink: リンクをコピー
+            CopyLink: コピー
             Link: リンク
             LinkCopied: リンクをコピーしました
           ToolList:

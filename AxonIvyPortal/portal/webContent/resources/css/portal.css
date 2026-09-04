@@ -2058,8 +2058,6 @@ canvas#preview-statistic-chart {
   font-weight: normal;
 }
 
-/* Detail-page UI redesign (IVYPORTAL-20779) — Task Detail + Case Detail ----------------------------------------*/
-
 /* Shared: round icon button ----------------------------------------*/
 body .ui-button.ui-button-icon-only.portal-icon-btn-round,
 body a.portal-icon-btn-round,
@@ -2081,9 +2079,9 @@ body .portal-icon-btn-round {
   color: var(--portal-detail-value-color);
 }
 body .ui-button.ui-button-icon-only.portal-icon-btn-round .ui-icon {
-  font-size: var(--portal-icon-size-lg);
-  margin-top: -0.7143rem;
-  margin-left: -0.7143rem;
+  font-size: var(--portal-icon-size-md);
+  position: static;
+  margin: 0 !important;
 }
 body .ui-button.ui-button-icon-only.portal-icon-btn-round:not(.ui-state-disabled):hover,
 body a.portal-icon-btn-round:hover,
@@ -2120,7 +2118,6 @@ body a.portal-pill-btn:focus {
   border: var(--portal-icon-btn-border-width) solid var(--secondary-btn-border);
   background: var(--secondary-btn-bg);
   color: var(--portal-detail-value-color);
-  padding: 0.5714rem 1.0714rem;
   min-height: var(--portal-icon-btn-size-md);
   gap: 0.2143rem;
   font-size: var(--default-font-size);
@@ -2188,6 +2185,30 @@ body .ui-button.portal-pill-btn-accent:not(.ui-state-disabled):hover {
 /* Shared: "Show more" link of the note / history / document widgets ----------------------------------------*/
 .portal-detail-show-more-btn {
   font-weight: var(--details-document-add-link-font-weight);
+  max-width: 100%;
+  min-width: 0;
+}
+
+.document-task-detail-section-header-actions button.portal-detail-show-more-btn,
+.note-task-detail-section-header-actions button.portal-detail-show-more-btn,
+.related-task-section-header-actions button.portal-detail-show-more-btn,
+.related-case-section-header-actions button.portal-detail-show-more-btn,
+.case-detail-history-section-header-actions button.portal-detail-show-more-btn,
+.document-case-detail-section-header-actions button.portal-detail-show-more-btn
+{
+  padding: 0.5rem;
+}
+
+/* Truncate the label with an ellipsis when the widget header is too narrow, keeping the icon visible */
+.portal-detail-show-more-btn .ui-button-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.portal-detail-show-more-btn .ui-icon {
+  flex: none;
 }
 
 /* Shared: toolbar-size variants of the two atoms above ----------------------------------------*/
@@ -2200,9 +2221,7 @@ body .portal-icon-btn-round.portal-icon-btn-lg {
   min-height: var(--portal-icon-btn-size-lg);
 }
 body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-lg .ui-icon {
-  font-size: var(--portal-icon-size-xl);
-  margin-top: -0.9286rem;
-  margin-left: -0.9286rem;
+  font-size: var(--portal-icon-size-md);
 }
 
 /* Shared: table-size variant of the round icon button ----------------------------------------*/
@@ -2223,11 +2242,6 @@ body .case-list .ui-sidestep-action.portal-icon-btn-round .ti {
 .portal-pill-btn.portal-pill-btn-lg.ui-button,
 .portal-pill-btn.portal-pill-btn-lg {
   height: var(--portal-icon-btn-size-lg);
-  padding: 0 1.0714rem;
-}
-.portal-pill-btn.portal-pill-btn-lg .ti,
-.portal-pill-btn.portal-pill-btn-lg .tif {
-  font-size: var(--portal-icon-size-lg) !important;
 }
 
 /* min-height must be overridden too, it beats height on the base pill */
@@ -2310,15 +2324,23 @@ body .ui-button.portal-icon-btn-round.portal-icon-btn-accent.ui-state-disabled {
   flex: 1 1 auto;
   min-width: 0;
 }
+
 .portal-detail-toolbar-actions {
   display: flex;
   align-items: center;
   gap: 0.8571rem;
   flex: 0 0 auto;
 }
+
+.portal-detail-toolbar-actions button.reset-details-settings-button, .portal-detail-toolbar-actions button.switch-view-mode-btn {
+  padding: 1rem;
+}
+
+.portal-detail-toolbar-actions 
 .portal-detail-toolbar-share-mobile {
   margin-left: auto;
 }
+
 body a.portal-detail-toolbar-back,
 body a.portal-detail-toolbar-back:hover,
 body a.portal-detail-toolbar-back:focus,
@@ -2483,16 +2505,23 @@ body a.portal-detail-toolbar-back:focus,
   justify-content: space-between;
   gap: 1.1429rem;
 }
-.task-detail-header-row .task-detail-identity,
-.case-detail-header-row .case-detail-identity {
-  flex: 1 1 auto;
-  min-width: 0;
-}
+
 .task-detail-header-row .task-detail-header-actions.action-container,
 .case-detail-header-row .case-detail-header-actions.action-container {
   flex: 0 0 auto;
   justify-content: flex-end;
 }
+
+.task-detail-header-row .task-detail-header-actions.action-container,
+.case-detail-header-row .case-detail-header-actions.action-container {
+  flex: 0 0 auto;
+  justify-content: flex-end;
+}
+
+.task-detail-header-row .task-detail-header-actions.action-container button.start-task-action {
+  padding: 0.5rem;
+}
+
 .task-detail-identity,
 .case-detail-identity {
   display: flex;
@@ -3046,6 +3075,36 @@ body .portal-action-menu .portal-action-menu-item.color-destroy {
 .portal-detail-page-content > .card {
   margin-bottom: 0;
 }
+
+/* Share link panel ----------------------------------------*/
+.share-link-panel.ui-overlaypanel {
+  width: 30dvw;
+  padding: 0.5rem;
+  margin-top: 3rem;
+  border-radius: 10px;
+}
+
+.share-link-panel-content {
+  display: flex;
+  flex-direction: row;
+  gap: 0.8571rem;
+}
+
+.share-link-panel-title {
+  font-weight: 600; 
+}
+
+.share-link-panel-input-group {
+  margin: 0;
+  width: 100%;
+}
+
+.share-link-panel-input-group > input {
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+
 
 /* Shared: mid-size dialogs (share link, Excel export status, add note) ----------------------------------------*/
 .share-dialog.ui-dialog,
