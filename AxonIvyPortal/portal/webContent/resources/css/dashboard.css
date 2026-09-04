@@ -2491,6 +2491,7 @@ a.saved-filter__manage-filter {
 
 .dashboard-widget-filter__filter-panel > div:not(.and-text-panel) {
   margin-right: 0.5em;
+  margin-bottom: 0.5em;
   display: flex;
   align-items: flex-start;
   min-width: 20%;
@@ -2594,7 +2595,6 @@ a.saved-filter__manage-filter {
   border-radius: 100px;
   background-color: var(--widget-filter-add-condition-background-color);
   color: var(--widget-filter-add-condition-text-color);
-  margin: 0.5rem;
 }
 
 .dashboard-widget-filter__main-panel .add-condition-button.ui-button:hover {
