@@ -6,16 +6,22 @@ import com.axonivy.portal.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 
 public abstract class ColumnChartConfig {
+  @JsonProperty("xTitles")
   private List<DisplayName> xTitles;
+
   @JsonIgnore
   private String xTitle;
+
+  @JsonProperty("yTitles")
   private List<DisplayName> yTitles;
+
   @JsonIgnore
   private String yTitle;
   @JsonInclude(value = Include.NON_NULL)
