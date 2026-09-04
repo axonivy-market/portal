@@ -33,6 +33,7 @@ import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import ch.ivy.addon.portalkit.configuration.Application;
@@ -157,11 +158,38 @@ public class PortalPackageService {
       return BusinessEntityConverter.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(node);
     }
     JsonNode migrated = migrateRawVariable(file, node);
-    stripPerItemVersion(migrated);
+    JsonNode items = toItemsArray(file, migrated);
+    stripPerItemVersion(items);
     ObjectNode wrapped = BusinessEntityConverter.getObjectMapper().createObjectNode();
     wrapped.put("version", JsonListWrapper.FORMAT_VERSION);
-    wrapped.set(JsonListWrapper.ITEMS_FIELD_NAME, migrated);
+    wrapped.set(JsonListWrapper.ITEMS_FIELD_NAME, items);
     return BusinessEntityConverter.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(wrapped);
+  }
+
+  /**
+   * Normalizes a migrated raw-variable node into the array the wrapper's "items" field requires.
+   * The per-type migrators mutate their input in place and return it in whatever shape it was
+   * given, not necessarily an array: {@code JsonCaseDetailsMigrator}/{@code JsonTaskDetailsMigrator}
+   * return a single bare object unchanged for the shipped-default (single-configuration) legacy
+   * shape, and {@code JsonThirdPartyApplicationMigrator} returns the whole legacy dynamic-root-key
+   * object (e.g. {@code {"third-party-application": [...]}}) unchanged. Dropping either straight
+   * into "items" would produce a non-array items field - not just malformed, but silently
+   * undetectable as a wrapper on the next import (isListWrapper requires items to be an array), so
+   * the import would see no items and discard the entire configuration without any error.
+   */
+  private JsonNode toItemsArray(PortalPackageFile file, JsonNode migrated) {
+    if (migrated.isArray()) {
+      return migrated;
+    }
+    if (file == PortalPackageFile.THIRD_PARTY_APP && migrated.isObject() && migrated.size() == 1) {
+      JsonNode onlyValue = migrated.elements().next();
+      if (onlyValue.isArray()) {
+        return onlyValue;
+      }
+    }
+    ArrayNode array = BusinessEntityConverter.getObjectMapper().createArrayNode();
+    array.add(migrated);
+    return array;
   }
 
   /**

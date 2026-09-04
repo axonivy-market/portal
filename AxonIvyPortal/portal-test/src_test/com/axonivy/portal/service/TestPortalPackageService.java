@@ -94,7 +94,8 @@ public class TestPortalPackageService {
 
   @Test
   void exportPackage_ExcludeEmptyVariables_wrapperShapeWithNoItems() throws IOException {
-    String json = "{\"version\":\"1.0\",\"items\":[]}";
+    String json = """
+        {"version":"1.0","items":[]}""";
     Ivy.var().set(PortalPackageFile.USER_MENU.getVariableKey(), json);
     StreamedContent content = service.exportPackage();
     List<String> names = zipEntryNames(content);
@@ -284,8 +285,8 @@ public class TestPortalPackageService {
     // "version" - e.g. written before per-item versioning was removed, or by other code that still
     // stamps one. The wrapper-shape passthrough must not re-export this unchanged; it has to detect
     // and strip the lingering per-item version.
-    String json =
-        "{\"version\":\"14.0.0\",\"items\":[{\"id\":\"statistic-1\",\"version\":\"14.0.0\",\"name\":\"My Statistic\"}]}";
+    String json = """
+        {"version":"14.0.0","items":[{"id":"statistic-1","version":"14.0.0","name":"My Statistic"}]}""";
     Ivy.var().set(PortalPackageFile.CUSTOM_STATISTIC.getVariableKey(), json);
 
     StreamedContent content = service.exportPackage();
@@ -452,5 +453,65 @@ public class TestPortalPackageService {
     assertThat(results).containsEntry(PortalPackageFile.USER_MENU.getFilename(), true);
     assertThat(results).doesNotContainKey("testDirectory/");
     assertThat(Ivy.var().get(PortalPackageFile.USER_MENU.getVariableKey())).isEqualTo(validJson);
+  }
+
+  @Test
+  void exportThenImport_caseDetail_legacyBareObject_roundTripsWithoutDataLoss() throws IOException {
+    // Regression coverage: the shipped default CaseDetails.json is exactly this shape - a single
+    // bare object, not an array, not wrapped. JsonCaseDetailsMigrator.migrate() returns it
+    // unchanged (no array to iterate), so writeRawVariable's export path must itself normalize it
+    // into a one-element items array. Before that normalization, export produced
+    // {"version": ..., "items": {...}} - items as an object, not an array - which isListWrapper()
+    // (correctly) does not recognize as a wrapper on the next import, so the import silently
+    // discarded the whole configuration instead of failing loudly.
+    CaseDetails caseDetails = buildCaseDetails("default-case-detail");
+    String rawLegacyJson = BusinessEntityConverter.entityToJsonValue(caseDetails);
+    Ivy.var().set(PortalPackageFile.CASE_DETAIL.getVariableKey(), rawLegacyJson);
+
+    StreamedContent content = service.exportPackage();
+    String exportedJson = zipEntryContent(content, PortalPackageFile.CASE_DETAIL.getFilename());
+    JsonNode wrapper = BusinessEntityConverter.getObjectMapper().readTree(exportedJson);
+    assertThat(wrapper.get("items").isArray()).isTrue();
+    assertThat(wrapper.get("items")).hasSize(1);
+
+    Ivy.var().set(PortalPackageFile.CASE_DETAIL.getVariableKey(), "");
+    byte[] zipBytes = buildZip(Map.of(PortalPackageFile.CASE_DETAIL.getFilename(), exportedJson));
+    Map<String, Boolean> results = service.importPackage(zipBytes);
+
+    assertThat(results).containsEntry(PortalPackageFile.CASE_DETAIL.getFilename(), true);
+    JsonNode reimported =
+        BusinessEntityConverter.getObjectMapper().readTree(Ivy.var().get(PortalPackageFile.CASE_DETAIL.getVariableKey()));
+    assertThat(reimported.get("items")).hasSize(1);
+    assertThat(reimported.get("items").get(0).get("id").asText()).isEqualTo("default-case-detail");
+  }
+
+  @Test
+  void exportThenImport_thirdPartyApp_legacyDynamicRootKey_roundTripsWithoutDataLoss() throws IOException {
+    // Regression coverage: JsonThirdPartyApplicationMigrator.migrate() returns the legacy
+    // {"third-party-application": [...]} shape unchanged (only the nested applications are
+    // mutated in place). Exporting that shape directly as "items" produced
+    // {"version": ..., "items": {"third-party-application": [...]}} - items as an object wrapping
+    // the real array, not the array itself - which is silently discarded on the next import for
+    // the same reason as the CaseDetails case above.
+    Application application = buildApplication("app-1", "My App", "My App", "https://example.com");
+    String legacyJson = """
+        {"third-party-application":[%s]}""".formatted(BusinessEntityConverter.entityToJsonValue(application));
+    Ivy.var().set(PortalPackageFile.THIRD_PARTY_APP.getVariableKey(), legacyJson);
+
+    StreamedContent content = service.exportPackage();
+    String exportedJson = zipEntryContent(content, PortalPackageFile.THIRD_PARTY_APP.getFilename());
+    JsonNode wrapper = BusinessEntityConverter.getObjectMapper().readTree(exportedJson);
+    assertThat(wrapper.get("items").isArray()).isTrue();
+    assertThat(wrapper.get("items")).hasSize(1);
+
+    Ivy.var().set(PortalPackageFile.THIRD_PARTY_APP.getVariableKey(), "");
+    byte[] zipBytes = buildZip(Map.of(PortalPackageFile.THIRD_PARTY_APP.getFilename(), exportedJson));
+    Map<String, Boolean> results = service.importPackage(zipBytes);
+
+    assertThat(results).containsEntry(PortalPackageFile.THIRD_PARTY_APP.getFilename(), true);
+    JsonNode reimported = BusinessEntityConverter.getObjectMapper()
+        .readTree(Ivy.var().get(PortalPackageFile.THIRD_PARTY_APP.getVariableKey()));
+    assertThat(reimported.get("items")).hasSize(1);
+    assertThat(reimported.get("items").get(0).get("id").asText()).isEqualTo("app-1");
   }
 }
