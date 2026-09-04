@@ -532,7 +532,7 @@
             if (args.jsonResponse) {
               const parsed = JSON.parse(args.jsonResponse);
               const data = parsed;   // no root wrapper anymore — was: parsed.StatisticResponse
-              previewChart(data, "#{localeBean.locale}", "#{dateTimePatternBean.datePattern}", "#{ivy.session.contentLocale}");
+              previewChart(data, "#{statisticConfigurationBean.supportedUserLanguage}", "#{dateTimePatternBean.datePattern}", "#{ivy.session.contentLocale}");
             }
           }
         </script>
