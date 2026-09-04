@@ -27,6 +27,25 @@
       <p:messages id="config-welcome-widget-message" />
 
       <div class="welcome-config__image-group">
+        <div class="welcome-config__mode-toggle">
+          <div class="w-9">
+            <p:outputLabel styleClass="welcome-text-label" for="welcome-preview-mode-toggle"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ChooseMode')}">
+            </p:outputLabel>
+          </div>
+          <div>
+            <p:selectOneButton id="welcome-preview-mode-toggle" unselectable="false"
+              styleClass="welcome-config__mode-selection js-preview-mode-toggle"
+              value="#{dashboardWelcomeWidgetConfigurationBean.previewDarkMode}">
+              <f:selectItem itemValue="false" itemEscaped="false"
+                itemLabel="&lt;i class='ti ti-sun'&gt;&lt;/i&gt;#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/LightMode')}" />
+              <f:selectItem itemValue="true" itemEscaped="false"
+                itemLabel="&lt;i class='ti ti-moon'&gt;&lt;/i&gt;#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DarkMode')}" />
+              <p:ajax process="@this"
+                oncomplete="WelcomeWidgetConfiguration.togglePreviewMode();" />
+            </p:selectOneButton>
+          </div>
+        </div>
       <div class="welcome-config__preview-header">
         <p:outputLabel styleClass="welcome-text-label"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ImagePreview')}">
@@ -34,14 +53,6 @@
           <p:tooltip for="preview-icon"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/PreviewTooltip')}" />
         </p:outputLabel>
-        <div class="welcome-config__mode-toggle">
-          <p:outputLabel for="welcome-preview-mode-toggle" styleClass="welcome-text-label js-preview-mode-label"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/LightMode')}"
-            pt:data-label-light="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/LightMode')}"
-            pt:data-label-dark="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DarkMode')}" />
-          <p:toggleSwitch id="welcome-preview-mode-toggle" styleClass="js-preview-mode-toggle"
-            value="#{dashboardWelcomeWidgetConfigurationBean.previewDarkMode}" />
-        </div>
       </div>
 
       <div class="welcome-config__preview">
@@ -257,11 +268,6 @@
     <script type="text/javascript">
       $(document).ready(function() {
        updateAll();
-      });
-
-      $(document).off('change.welcomePreviewMode').on('change.welcomePreviewMode',
-        '[id $= "welcome-preview-mode-toggle_input"]', function() {
-        WelcomeWidgetConfiguration.togglePreviewMode();
       });
 
       function updateAll() {
