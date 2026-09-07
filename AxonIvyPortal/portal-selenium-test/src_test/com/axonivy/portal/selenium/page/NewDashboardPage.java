@@ -12,7 +12,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.LinkNavigator;
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -434,9 +433,6 @@ public class NewDashboardPage extends TemplatePage {
     SelenideElement filterName = getCompactModeProcessFilterPanelProcessName();
     filterName.shouldBe(Condition.appear).clear();
     filterName.sendKeys(processName);
-    // Typing here triggers a debounced ajax update of the filter columns (including the process-types
-    // dropdown below); give it time to settle before interacting with the next filter field.
-    Sleeper.sleep(300);
   }
 
   public SelenideElement getCompactModeProcessFilterPanel() {
@@ -481,9 +477,6 @@ public class NewDashboardPage extends TemplatePage {
         getCompactModeProcessFilterPanelProcessTypes().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     waitUntilElementToBeClickable(processTypesTrigger);
     clickByJavaScript(processTypesTrigger);
-    // This widget is a plain ui-selectcheckboxmenu-panel that toggles ui-helper-hidden on open/close;
-    // it never gets a "ui-connected-overlay-enter-done" class, so just wait for it to become visible
-    // (same condition the equivalent panels use in CaseWidgetNewDashBoardPage/CaseEditWidgetNewDashBoardPage).
     SelenideElement processTypesPanel = getCompactModeProcessProcessTypesPanel().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     processTypesPanel.$("li[data-item-value='" + processType + "'] label").shouldBe(Condition.appear).click();
     processTypesPanel.$(".ui-selectcheckboxmenu-close").click();
