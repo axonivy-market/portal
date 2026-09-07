@@ -395,12 +395,14 @@ public class NewDashboardPage extends TemplatePage {
 
   public void openCompactModeProcessFilterPanel() {
     SelenideElement actionsMenuPanel = openCompactModeProcessActionsMenu();
+
     actionsMenuPanel.$$("a.ui-menuitem-link").filter(Condition.text("Filters")).first()
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     getCompactModeProcessFilterPanelSaveFilters().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   private SelenideElement openCompactModeProcessActionsMenu() {
+    getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear).click();
     SelenideElement actionsMenuButton = getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     waitUntilElementToBeClickable(actionsMenuButton);
     clickByJavaScript(actionsMenuButton);
@@ -471,12 +473,14 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void filterCompactModeProcessProcessType(String processType) {
-    getCompactModeProcessFilterPanelProcessTypes().shouldBe(Condition.appear).click();
-    getCompactModeProcessProcessTypesPanel()
-        .shouldBe(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT)
-        .$("li[data-item-value='" + processType + "'] label").shouldBe(Condition.appear).click();
-    getCompactModeProcessProcessTypesPanel().$(".ui-selectcheckboxmenu-close").click();
-    getCompactModeProcessProcessTypesPanel().shouldBe(disappear, DEFAULT_TIMEOUT);
+    SelenideElement processTypesTrigger =
+        getCompactModeProcessFilterPanelProcessTypes().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    waitUntilElementToBeClickable(processTypesTrigger);
+    clickByJavaScript(processTypesTrigger);
+    SelenideElement processTypesPanel = getCompactModeProcessProcessTypesPanel().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    processTypesPanel.$("li[data-item-value='" + processType + "'] label").shouldBe(Condition.appear).click();
+    processTypesPanel.$(".ui-selectcheckboxmenu-close").click();
+    processTypesPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCompactModeProcessFilterPanelProcessTypes() {
@@ -521,29 +525,26 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void expandCompactModeProcess() {
-    getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear);
-
-    getCompactModeProcessCollapseLink().shouldBe(disappear);
+    getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear).click();
 
     SelenideElement expandLink = getCompactModeProcessExpandLink();
     expandLink.shouldBe(Condition.appear).click();
     expandLink.shouldBe(disappear, DEFAULT_TIMEOUT);
 
-    getCompactModeProcessCollapseLink().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void collapseCompactModeProcess() {
+    getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear).click();
     getCompactModeProcessCollapseLink().click();
     getCompactModeProcessCollapseLink().shouldBe(disappear, DEFAULT_TIMEOUT);
-    getCompactModeProcessExpandLink().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCompactModeProcessExpandLink() {
-    return $("[id$=':expand-link-2']");
+    return $("[id$=':toggle-fullscreen-item-2']");
   }
 
   public SelenideElement getCompactModeProcessCollapseLink() {
-    return $("[id$=':collapse-link-2']");
+    return $("[id$=':toggle-fullscreen-item-2']");
   }
 
   public SelenideElement getCompactModeProcessFilterPanelSaveButton() {
