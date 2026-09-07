@@ -527,8 +527,6 @@ public class NewDashboardPage extends TemplatePage {
   public void expandCompactModeProcess() {
     getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear).click();
 
-    // getCompactModeProcessCollapseLink().shouldBe(disappear);
-
     SelenideElement expandLink = getCompactModeProcessExpandLink();
     expandLink.shouldBe(Condition.appear).click();
     expandLink.shouldBe(disappear, DEFAULT_TIMEOUT);
