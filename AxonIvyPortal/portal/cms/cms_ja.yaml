@@ -896,6 +896,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: フィルターが見つかりません
       SaveFilterDescription: これらのフィルター条件を保存して後で再利用できます。
       SaveFilterNamePlaceholder: フィルター名を入力
+      SaveFilterNameRequired: フィルター名を入力してください。
       SaveFilterOptional: （任意）
       SetFilterHeader: フィルターを設定
       WidgetNameColumn: ウィジェット名
