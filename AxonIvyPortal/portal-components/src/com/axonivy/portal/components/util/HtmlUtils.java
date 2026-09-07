@@ -25,7 +25,7 @@ public class HtmlUtils {
     // special character
     // Use Jsoup.clean(text, Safelist.relaxed().addAttributes(":all", "style",
     // "class")) and customize it to allow relative path for href of tag a
-    return text == null ? null : Jsoup.clean(text, HTML_BASE_URI, Safelist.relaxed().addAttributes(":all", "style", "class").preserveRelativeLinks(true));
+    return text == null ? null : Jsoup.clean(text, BASE_URI, Safelist.relaxed().addAttributes(":all", "style", "class").preserveRelativeLinks(true));
   }
 
   public static String escapeForIcon(String input) {
