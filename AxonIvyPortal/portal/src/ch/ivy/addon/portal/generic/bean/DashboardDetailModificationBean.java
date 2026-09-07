@@ -900,6 +900,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
         };
         setWidget(clonedWidget);
       }
+      case WELCOME -> {
+        setWidget(new WelcomeDashboardWidget((WelcomeDashboardWidget) editWidget));
+      }
       default -> {
         setWidget(editWidget);
       }
