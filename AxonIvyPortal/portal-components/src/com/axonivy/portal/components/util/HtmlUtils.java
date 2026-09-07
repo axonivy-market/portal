@@ -8,7 +8,7 @@ import org.jsoup.safety.Safelist;
 
 public class HtmlUtils {
 
-  private static String HTML_BASE_URI = "http://dummy.local";
+  private static String HTML_BASE_URI = "http://localhost";
   private static final Pattern ICON_PATTERN = Pattern.compile("^(fa|si|ti|tif)\\s+(fa|si|ti|tif)-[a-zA-Z0-9\\-]+$");
 
   public static String parseTextFromHtml(String text) {
