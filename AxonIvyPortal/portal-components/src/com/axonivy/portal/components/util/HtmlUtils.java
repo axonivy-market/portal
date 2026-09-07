@@ -6,9 +6,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.safety.Safelist;
 
+import ch.ivyteam.ivy.environment.Ivy;
+
 public class HtmlUtils {
 
-  private static String HTML_BASE_URI = "http://localhost";
+  private static String BASE_URI = Ivy.html().baseLink().getAbsolute();
   private static final Pattern ICON_PATTERN = Pattern.compile("^(fa|si|ti|tif)\\s+(fa|si|ti|tif)-[a-zA-Z0-9\\-]+$");
 
   public static String parseTextFromHtml(String text) {
