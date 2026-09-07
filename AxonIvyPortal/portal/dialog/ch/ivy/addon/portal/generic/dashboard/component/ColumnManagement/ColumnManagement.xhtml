@@ -73,6 +73,7 @@
                 itemDisabled="#{not columnManagementBean.isOperatorGloballyEnabled(operator)}" />
               <p:ajax event="change" listener="#{columnManagementBean.onOperatorSelectionChange(column)}"
                 process="@this" global="false" />
+              <p:ajax event="toggleSelect" process="@this" global="false" />
             </p:selectCheckboxMenu>
           </h:panelGroup>
         </p:column>
