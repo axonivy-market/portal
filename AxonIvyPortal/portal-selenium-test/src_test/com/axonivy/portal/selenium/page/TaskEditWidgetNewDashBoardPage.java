@@ -16,8 +16,8 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
-import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
+import com.codeborne.selenide.SelenideElement;
 
 public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
@@ -108,7 +108,6 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public ElementsCollection countAllTasks() {
     return getAllTasksOfTaskWidget();
   }
-
 
   public void nextPageTable() {
     $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-preview']")
@@ -279,7 +278,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   private SelenideElement getCustomFieldSelection() {
     return getColumnManagementDialog().$("span[id$='custom-field-selection'] button");
   }
-  
+
   private SelenideElement getCustomCaseFieldSelection() {
     return getColumnManagementDialog().$("span[id$='custom-case-field-selection'] button");
   }
@@ -328,7 +327,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     WaitHelper.waitPageNoAnimation();
     return standardFieldPanel.$("li[data-label='" + field + "']");
   }
-  
+
   public void addCustomFields(String fieldName) {
     selectCustomType();
     getCustomFieldSelection().click();
@@ -339,7 +338,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     fieldElement.click();
     getColumnManagementDialog().$("button[id$='field-add-btn']").click();
   }
-  
+
   public void addCustomCaseFields(String fieldName) {
     selectCustomCaseType();
     getCustomCaseFieldSelection().click();
@@ -350,33 +349,33 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     fieldElement.click();
     getColumnManagementDialog().$("button[id$='field-add-btn']").click();
   }
-  
+
   public void saveAfterAddingCustomField() {
     saveColumn();
     save();
   }
-  
+
   public void openFilter() {
     $("div#new-widget-configuration-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-    .$("button[id$=':show-filter']").shouldBe(getClickableCondition()).click();
+        .$("button[id$=':show-filter']").shouldBe(getClickableCondition()).click();
     $("div[id$='widget-filter-content']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     waitForElementDisplayed($("div[id$='widget-filter-content']"), isDisplayed());
   }
-  
+
   public void addFilter(String columnName, FilterOperator operator) {
     ComplexFilterHelper.addFilter(columnName, operator);
   }
-  
+
   public void inputValueOnLatestFilter(FilterValueType type, Object... values) {
     ComplexFilterHelper.inputValueOnLatestFilter(type, values);
   }
-  
+
   public void applyFilter() {
     $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $(".filter-panel-header").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
-  
+
   public void removeFilter(int index) {
     int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
     if (currentIndex > 0) {
@@ -389,12 +388,12 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public ElementsCollection countFilterSelect() {
     return $$("[id$=':filter-component:field-selection_panel']");
   }
-  
+
   public void addCustomColumns(String... fieldNameList) {
     openColumnManagementDialog();
     selectCustomType();
 
-    for(String fieldName : fieldNameList) {
+    for (String fieldName : fieldNameList) {
       addCustomFields(fieldName);
     }
     $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
@@ -408,16 +407,16 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
         .click();
     getAddedFieldRemoveLink(fieldKey).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
-  
+
   public void closeFilter() {
     $("span[id$=':widget-title-group']").$("label").scrollIntoView(ScrollIntoViewOptions.instant().block(Block.start))
         .click();
     $("div[id$=':widget-filter-content']").shouldBe(disappear, DEFAULT_TIMEOUT);
     waitPreviewTableLoaded();
   }
-  
+
   public void resetFilter() {
-    $("button[id$=':reset-filter']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("a[id$=':reset-filter']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     countFilterSelect().shouldBe(CollectionCondition.size(0), DEFAULT_TIMEOUT);
   }
 
@@ -429,7 +428,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public void clickOnQuickSearchCheckBox() {
     getQuickSearchCheckBox().click();
   }
-  
+
   public boolean isQuickSearchClicked(String fieldName) {
     return getColumnManagementDialog().$("div[id$='column-management-datatable']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("table tbody").$$("tr").filter(text(fieldName)).first()
@@ -510,7 +509,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
   public boolean isFilterToggleDisabled(String fieldName) {
     SelenideElement filterToggle = getColumnRowByField(fieldName).$("a[id$='toggle-filter']")
-      .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     String classAttribute = filterToggle.getDomAttribute("class");
     String ariaDisabledAttribute = filterToggle.getDomAttribute("aria-disabled");
 
@@ -600,14 +599,14 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     // wait for Ajax rerender of the summary label before returning
     getOperatorSummaryElementByField(fieldName).shouldNotHave(text(summaryBefore), DEFAULT_TIMEOUT);
   }
-  
+
   public void clickOnQuickSearchByField(String fieldName) {
     var quickSeatchChkbox = getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("table tbody").$$("tr").filter(text(fieldName)).first().$("div[id$='quick-search-checkbox-panel']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     quickSeatchChkbox.click();
   }
-  
+
   public void clickOnVisibilityCheckBoxByField(String fieldName) {
     var visibilityCheckBox = getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("table tbody").$$("tr").filter(text(fieldName)).first().$("a[id$='toggle-visibility']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
@@ -616,18 +615,18 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void addCustomFieldByCustomTypeAndFieldName(String customType, String fieldName) {
     switch (customType) {
-    case (CUSTOM_FIELD):
-      customType = "custom-field";
-      selectCustomType();
-      getCustomFieldSelection().click();
-      break;
-    case (CUSTOM_CASE_FIELD):
-      customType = "custom-case-field";
-      selectCustomCaseType();
-      getCustomCaseFieldSelection().click();
-      break;
-    default:
-      break;
+      case (CUSTOM_FIELD):
+        customType = "custom-field";
+        selectCustomType();
+        getCustomFieldSelection().click();
+        break;
+      case (CUSTOM_CASE_FIELD):
+        customType = "custom-case-field";
+        selectCustomCaseType();
+        getCustomCaseFieldSelection().click();
+        break;
+      default:
+        break;
     }
     customType.toLowerCase();
     String spanId = String.format("span[id*='%s-selection_panel']", customType);
@@ -635,7 +634,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
         .filter(text(fieldName)).first().click();
     getColumnManagementDialog().$("button[id$='field-add-btn']").click();
   }
-  
+
   public SelenideElement getWidgetInfoIconCheckbox() {
     return getWidgetConfigurationPanel().$("div[id$='widget-info-icon-group']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
@@ -672,12 +671,12 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     }
     return panel;
   }
-  
+
   public void clickOnTaskNameColumn() {
     $("div[id$='task-widget-preview:dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("th[id$='dashboard-tasks-columns:3']").shouldBe(getClickableCondition()).click();
   }
-  
+
   public void clickOnTaskPriorityColumn() {
     $("div[id$='task-widget-preview:dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("th[id$='dashboard-tasks-columns:1']").shouldBe(getClickableCondition()).click();

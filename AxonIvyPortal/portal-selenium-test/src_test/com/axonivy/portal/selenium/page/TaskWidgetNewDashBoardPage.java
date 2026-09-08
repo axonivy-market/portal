@@ -83,18 +83,22 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void startFirstTask() {
-    $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
+    // The filter count badge used to render as span.widget__filter-noti-number and was a reliable
+    // signal that the filter-apply ajax call had landed; it now renders as a p:tag hidden inside the
+    // collapsed actions menu, so it's no longer usable as a visible precondition. Wait for any
+    // in-flight ajax/animation (including the row refresh from applying a filter) to settle instead.
+    WaitHelper.waitPageNoAjaxAndAnimation();
     WaitHelper.waitForNavigation(() -> getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
   }
 
   public void startFirstTaskAndWaitShowHomePageButton() {
-    $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitPageNoAjaxAndAnimation();
     getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
     // $("a>span.ti-home.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void startTask(int taskIndex) {
-    $$("span.widget__filter-noti-number").first().shouldBe(appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitPageNoAjaxAndAnimation();
     getCellByRowAndColumnName(taskIndex, "Start").shouldBe(getClickableCondition()).click();
   }
 
@@ -762,15 +766,14 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $(".delegation-action-bar").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public void selectBulkDelegation(int widgetIndex) {
-    $("button[id$=':actions-menu-button_button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id$=':bulk-delegate-toggle-button-0']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  public void clickBulkDelegateToggleButton(int widgetIndex) {
+    $("button[id$='bulk-delegate-toggle-button-" + widgetIndex + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $(".dashboard-tasks__selection-column").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void clickDelegateTasksButton(int widgetIndex) {
     $("button[id$='delegate-tasks-btn-" + widgetIndex + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("div[id$=':multiple-task-delegate-dialog-task_1']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div.task-delegate-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public ElementsCollection openBulkDelegateUserDropdownAndGetItems() {
@@ -820,5 +823,11 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void closeSavedFilterDialog() {
     $("a[id*='delete-saved-filter-form']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
+
+  public void selectBulkDelegation(int widgetIndex) {
+    $("button[id$=':actions-menu-button_button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$=':bulk-delegate-toggle-button-0']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(".dashboard-tasks__selection-column").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }
