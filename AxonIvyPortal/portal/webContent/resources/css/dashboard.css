@@ -2977,9 +2977,8 @@ body.dark .menu-type-static {
 
 body .actions-menu-panel {
   width: 16.143rem !important;
-  height: 15.714rem !important;
+  max-height: 15.714rem !important;
   overflow: hidden;
-  max-height: fit-content;
   right: auto !important;
 }
 
