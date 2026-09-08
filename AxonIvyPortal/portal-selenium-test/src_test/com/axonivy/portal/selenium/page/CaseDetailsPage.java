@@ -175,7 +175,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public SelenideElement destroyLink() {
-    return $("[id$='destroy-case']:not([id*='action-group'])");
+    return $("a[id$=':action-group:destroy-case']");
   }
 
   public void destroy() {

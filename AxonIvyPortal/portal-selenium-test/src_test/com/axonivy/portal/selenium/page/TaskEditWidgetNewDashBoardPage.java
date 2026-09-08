@@ -41,7 +41,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement widgetTitle() {
-    return $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("span[id$='widget-title-group']")
+    return $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("[id$='widget-title-group']")
         .$("input[id$='widget-title']");
   }
 
@@ -409,7 +409,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void closeFilter() {
-    $("span[id$=':widget-title-group']").$("label").scrollIntoView(ScrollIntoViewOptions.instant().block(Block.start))
+    $("[id$=':widget-title-group']").$("label").scrollIntoView(ScrollIntoViewOptions.instant().block(Block.start))
         .click();
     $("div[id$=':widget-filter-content']").shouldBe(disappear, DEFAULT_TIMEOUT);
     waitPreviewTableLoaded();
