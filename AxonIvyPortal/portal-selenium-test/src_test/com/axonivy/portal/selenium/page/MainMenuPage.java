@@ -75,8 +75,12 @@ public class MainMenuPage extends TemplatePage {
 
   public String getMenuItemsAsString() {
     expandMainMenu();
-    return String.join(",", $$(".layout-menu li[role='menuitem'] a span").asDynamicIterable().stream()
-        .map(SelenideElement::getText).collect(Collectors.toList()));
+    // Scoped to .sidebar-scroll-content: the pinned "Portal configuration" item at the bottom of the
+    // sidebar (in the sibling .sidebar-footer) also renders as a ".layout-menu li[role='menuitem']" and
+    // must not be counted among the regular, scrollable main menu items.
+    return String.join(",",
+        $$(".sidebar-scroll-content .layout-menu li[role='menuitem'] a span").asDynamicIterable().stream()
+            .map(SelenideElement::getText).collect(Collectors.toList()));
   }
 
   public CaseWidgetNewDashBoardPage selectCaseMenu() {

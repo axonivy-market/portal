@@ -1,5 +1,8 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Selenide.$;
+
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -204,8 +207,11 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     showNewDashboard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForCaseWidgetLoaded();
-    newDashboardPage.openUserSettingMenu();
+    // Portal configuration is pinned to the bottom of the sidebar; expand the sidebar and
+    // capture it directly instead of cropping to the top half of the page, which would cut it off.
+    var leftMenu = $("#left-menu").shouldBe(appear, DEFAULT_TIMEOUT).hover();
     ScreenshotUtils.executeDecorateJs("highlightDashboardConfiguration()");
-    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.SETTINGS_FOLDER + "dashboard-configuration");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(leftMenu,
+        ScreenshotUtils.SETTINGS_FOLDER + "dashboard-configuration", new ScreenshotMargin(10));
   }
 }

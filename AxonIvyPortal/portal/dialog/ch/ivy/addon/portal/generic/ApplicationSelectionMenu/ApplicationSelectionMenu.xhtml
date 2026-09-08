@@ -45,10 +45,10 @@
   </div>
 
   <!-- APPLICATION MENU -->
-  <h:panelGroup id="main-navigator-container" layout="block" styleClass="layout-menu-container">
-    <div id="#{cc.clientId}" class="sidebar-scroll-content" data-selected-menu="#{userMenuBean.getInfoToHighlightMenu()}">
-      <!-- Application menu -->
-      <h:form id="main-navigator">
+  <h:panelGroup id="main-navigator-container" layout="block" styleClass="layout-menu-container flex flex-column">
+    <h:form id="main-navigator" styleClass="layout-menu-form flex flex-column flex-1 min-h-0">
+      <div id="#{cc.clientId}" class="sidebar-scroll-content flex-1 min-h-0 overflow-y-auto overflow-x-hidden" data-selected-menu="#{userMenuBean.getInfoToHighlightMenu()}">
+        <!-- Application menu -->
         <!-- Portal Main Menu -->
         <pm:menu id="main-menu" widgetVar="main-menu" model="#{menuView.mainMenuModel}" />
 
@@ -73,8 +73,27 @@
           actionListener="#{logic.clickBreadcrumb('HOME')}" oncomplete="PF('task-losing-confirmation-dialog').show();" />
         <p:remoteCommand name="removeNavigationDashboardBackButton" id="removeNavigationDashboardBackButton"
           actionListener="#{navigationDashboardWidgetBean.removeNavigationDashboardBackButton()}" global="false"/>
-      </h:form>
-    </div>
+      </div>
+
+      <!-- Portal configuration: pinned to the bottom of the sidebar, outside the scrollable menu list above -->
+      <h:panelGroup layout="block" styleClass="sidebar-footer flex-shrink-0" rendered="#{userMenuBean.showDashboardConfigurationMenu}">
+        <ul class="layout-menu" role="menu">
+          <li id="dashboard-configuration-menuitem" role="menuitem">
+            <p:commandLink id="dashboard-configuration" process="@this" styleClass="PORTAL_CONFIGURATION no-underline"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}"
+              actionListener="#{userMenuBean.navigateToDashboardConfigurationOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}">
+              <i class="ti ti-adjustments-horizontal" />
+              <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}</span>
+            </p:commandLink>
+            <div class="layout-menu-tooltip">
+              <div class="layout-menu-tooltip-arrow" />
+              <div class="layout-menu-tooltip-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}</div>
+            </div>
+          </li>
+        </ul>
+      </h:panelGroup>
+    </h:form>
   </h:panelGroup>
 
 

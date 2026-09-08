@@ -555,4 +555,30 @@ public abstract class TemplatePage extends AbstractPage {
     $(".menu-wrapper").shouldNotBe(Condition.visible, DEFAULT_TIMEOUT);
     $(".layout-topbar-left").shouldNotBe(Condition.visible, DEFAULT_TIMEOUT);
   }
+
+  /**
+   * The sidebar-footer is the container pinned to the bottom of the sidebar, holding the "Portal
+   * configuration" menu item, sibling to (and outside of) the scrollable ".sidebar-scroll-content" menu
+   * list.
+   */
+  public SelenideElement getSidebarFooter() {
+    return $(".sidebar-footer");
+  }
+
+  /**
+   * The "Portal configuration" sidebar menu item (the &lt;li&gt; wrapper), pinned to the bottom of the
+   * sidebar. Use {@link #getSidebarFooter()} to assert it is positioned in the pinned footer area rather
+   * than in the regular, scrollable menu list.
+   */
+  public SelenideElement getPortalConfigurationMenuItem() {
+    return $("li#dashboard-configuration-menuitem");
+  }
+
+  public void assertPortalConfigurationMenuItemHighlighted() {
+    getPortalConfigurationMenuItem().shouldHave(Condition.cssClass("active-menuitem"), DEFAULT_TIMEOUT);
+  }
+
+  public void assertPortalConfigurationMenuItemNotHighlighted() {
+    getPortalConfigurationMenuItem().shouldNotHave(Condition.cssClass("active-menuitem"), DEFAULT_TIMEOUT);
+  }
 }

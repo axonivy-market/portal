@@ -194,7 +194,8 @@ var MainMenu = {
       ["CaseWidget.xhtml", "CASE"],
       ["PortalCaseDetails.xhtml", "CASE"],
       ["CaseItemDetails.xhtml", "CASE"],
-      ["PortalDashboard.xhtml", "DASHBOARD"]],
+      ["PortalDashboard.xhtml", "DASHBOARD"],
+      ["PortalDashboardConfiguration.xhtml", "PORTAL_CONFIGURATION"]],
 
   init : function(responsiveToolkit) {
     this.highlightMenuItem();
