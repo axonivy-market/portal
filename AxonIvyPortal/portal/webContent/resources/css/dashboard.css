@@ -2533,6 +2533,7 @@ body .welcome-config__mode-selection.ui-selectonebutton .ui-button:not(.ui-state
 
 .dashboard-widget-filter__filter-panel > div:not(.and-text-panel) {
   margin-right: 0.5em;
+  margin-bottom: 0.5em;
   display: flex;
   align-items: flex-start;
   min-width: 20%;
@@ -2636,7 +2637,6 @@ body .welcome-config__mode-selection.ui-selectonebutton .ui-button:not(.ui-state
   border-radius: 100px;
   background-color: var(--widget-filter-add-condition-background-color);
   color: var(--widget-filter-add-condition-text-color);
-  margin: 0.5rem;
 }
 
 .dashboard-widget-filter__main-panel .add-condition-button.ui-button:hover {
