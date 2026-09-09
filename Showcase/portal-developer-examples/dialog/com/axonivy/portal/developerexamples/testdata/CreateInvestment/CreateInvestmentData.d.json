@@ -4,9 +4,11 @@
   "namespace" : "com.axonivy.portal.developerexamples.testdata.CreateInvestment",
   "fields" : [ {
     "name" : "steps",
-    "type" : "java.util.List<String>"
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   }, {
     "name" : "investmentRequest",
-    "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData"
+    "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData",
+    "modifiers" : [ ]
   } ]
 }

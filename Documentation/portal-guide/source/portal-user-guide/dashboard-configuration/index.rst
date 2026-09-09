@@ -413,6 +413,12 @@ A package contains the following JSON files. Only files with existing data are i
    | ``Portal_MenuOrder.json``              | Custom ordering of the main navigation menu items in the sidebar                   |
    +----------------------------------------+------------------------------------------------------------------------------------+
 
+.. note::
+   Except for ``Portal_MenuOrder.json`` (a single configuration object, not a list), each file's
+   content is a wrapper object: ``{"version": "...", "items": [...]}``. The ``version`` field
+   identifies the format of the file itself and is used to migrate older exports on import -
+   individual entries in ``items`` do not carry their own ``version`` field.
+
 HowTo: export a Portal package
 --------------------------------
 

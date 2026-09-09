@@ -3,6 +3,7 @@
   "simpleName" : "CloneWidgetFromDashboardDialogData",
   "namespace" : "com.axonivy.portal.dashboard.component.CloneWidgetFromDashboardDialog",
   "fields" : [ {
-    "name" : "dashboardId"
+    "name" : "dashboardId",
+    "modifiers" : [ ]
   } ]
 }

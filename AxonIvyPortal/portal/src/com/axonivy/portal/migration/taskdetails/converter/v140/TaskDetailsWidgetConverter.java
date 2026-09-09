@@ -37,6 +37,9 @@ public class TaskDetailsWidgetConverter implements IJsonConverter {
     if (widgets == null) {
       return;
     }
+    if (indexOfType(widgets, WidgetType.SUMMARY) >= 0) {
+      return;
+    }
     widgets.forEach(TaskDetailsWidgetConverter::rescaleLayout);
     splitInformationWidget(widgets);
   }

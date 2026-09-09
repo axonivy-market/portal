@@ -4,7 +4,8 @@
   "namespace" : "ch.ivy.addon.portal.generic.PortalFinishTaskHandle",
   "fields" : [ {
     "name" : "isTaskFinished",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "caze",
     "type" : "ch.ivyteam.ivy.workflow.ICase",

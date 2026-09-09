@@ -48,7 +48,7 @@ public class CaseDetailsTest extends BaseTest {
 
   private static final String TASK_DETAILS_TITLE = "Task Details - Portal - Axon Ivy";
   private static final String CASE_DETAILS_TITLE = "Case Details - Portal - Axon Ivy";
-  
+
   // NOTE CONTENT
   private static final String NOTE_TECHNICAL_CASE = "Note is added on Technical Case";
   private static final String NOTE_BUSINESS_CASE = "Note is added on Business Case";
@@ -72,7 +72,6 @@ public class CaseDetailsTest extends BaseTest {
   private static final String SICK_LEAVE_REQUEST_TASK = "Sick Leave Request";
   private static final String ANNUAL_LEAVE_REQUEST_TASK = "Annual Leave Request";
   private static final String CREATE_NOTES = "InternalSupport/14B2FC03D2E87141/processWithSystemNote.ivp";
-  
 
   @Override
   @BeforeEach
@@ -400,6 +399,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testHistoryAuthorIsUserFullName() {
     createTestingTask();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     detailsPage.addNote("Sample case note");
     assertEquals(TestAccount.ADMIN_USER.getFullName(), detailsPage.getHistoryAuthor());
   }
@@ -510,11 +510,11 @@ public class CaseDetailsTest extends BaseTest {
     relatedCaseDetailsPage.addNote("The first note of sub-case");
     relatedCaseDetailsPage.waitForPageLoad();
     refreshPage();
-    
+
     relatedCaseDetailsPage.addNote("The second note of sub-case");
     relatedCaseDetailsPage.waitForPageLoad();
     refreshPage();
-    
+
     String subCaseId = relatedCaseDetailsPage.getCaseId();
     String caseName = relatedCaseDetailsPage.getCaseName();
     relatedCaseDetailsPage.getNumberOfHistory().shouldHave(size(2), DEFAULT_TIMEOUT);
@@ -532,6 +532,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testShowRelatedCaseInfoByConfigInCaseHistory() {
     updateGlobalVariable(Variable.HIDE_RELATED_CASE_INFO_FROM_HISTORY.getKey(), "false");
     createTestingCaseContainTechnicalCases();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     assertTrue(detailsPage.isShowRelatedCaseCheckbox());
     detailsPage.clickOnRelatedCaseCheckbox(true);
     detailsPage.getRelatedCaseInfoColumn().shouldBe(Condition.appear);
@@ -542,7 +543,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage = casePage.openDetailsCase(ORDER_PIZZA);
     assertFalse(detailsPage.isShowRelatedCaseCheckbox());
   }
-  
+
   @Test
   public void testCaseOwnerCanDelegateRelatedTasks() {
     login(TestAccount.DEMO_USER);
@@ -623,7 +624,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.getNotesWithContent("System: create note").shouldHave(size(1));
 
   }
-  
+
   @Test
   public void testShowCustomFieldsDialogOnRelatedTask() {
     createTestingTask();
@@ -632,7 +633,7 @@ public class CaseDetailsTest extends BaseTest {
     List<String> customFieldNames = detailsPage.getCustomFieldNamesOnTaskCustomFieldsDialog();
     assertFalse(customFieldNames.isEmpty());
   }
-  
+
   @Test
   public void testShowCustomFieldsLinkWhenPermissionGranted() {
     redirectToRelativeLink(createTestingTasksUrl);

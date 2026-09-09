@@ -2,12 +2,6 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 
-import jakarta.faces.application.FacesMessage;
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.faces.component.UIComponent;
-import jakarta.faces.context.FacesContext;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
@@ -15,9 +9,15 @@ import org.apache.commons.lang3.Strings;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.FilterColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivyteam.ivy.environment.Ivy;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @Named
 @ViewScoped
@@ -30,7 +30,7 @@ public class WidgetFilterHelperBean implements Serializable {
 
   public void saveInlineWidgetFilter(DashboardWidget widget) {
     WidgetFilterService.getInstance().prepareSaveFilter(widget);
-    if (saveFilter == null || CollectionUtils.isEmpty(saveFilter.getUserFilters())) {
+    if (saveFilter == null || !hasFilterCriteria(saveFilter)) {
       addSaveFilterError("/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/EmptyFilterValidationError");
       return;
     }
@@ -44,6 +44,20 @@ public class WidgetFilterHelperBean implements Serializable {
     WidgetFilterService.getInstance().save(saveFilter);
     setSaveFilter(null);
     newFilterName = null;
+  }
+
+  private boolean hasFilterCriteria(WidgetFilterModel filter) {
+    if (CollectionUtils.isNotEmpty(filter.getUserFilters())) {
+      return true;
+    }
+    return CollectionUtils.emptyIfNull(filter.getFilterableColumns()).stream().anyMatch(this::hasUserFilterValue);
+  }
+
+  private boolean hasUserFilterValue(FilterColumnModel column) {
+    return StringUtils.isNotBlank(column.getUserFilter())
+        || CollectionUtils.isNotEmpty(column.getUserFilterList())
+        || StringUtils.isNotBlank(column.getUserFilterFrom())
+        || StringUtils.isNotBlank(column.getUserFilterTo());
   }
 
   private void addSaveFilterError(String cmsUri) {

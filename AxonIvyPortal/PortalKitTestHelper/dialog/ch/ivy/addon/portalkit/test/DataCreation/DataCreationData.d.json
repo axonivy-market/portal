@@ -4,15 +4,19 @@
   "namespace" : "ch.ivy.addon.portalkit.test.DataCreation",
   "fields" : [ {
     "name" : "numOfCats",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "numOfSubCats",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "numOfCasesPerSubCat",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "attachToBusinessCase",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

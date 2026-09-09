@@ -4,9 +4,11 @@
   "namespace" : "com.axonivy.portal.developerexamples.showcase.PhotoLibraryOfDefaultProcessImageExample",
   "fields" : [ {
     "name" : "photoNames",
-    "type" : "java.util.ArrayList<com.axonivy.portal.developerexamples.enums.DefaultImage>"
+    "type" : "java.util.ArrayList<com.axonivy.portal.developerexamples.enums.DefaultImage>",
+    "modifiers" : [ ]
   }, {
     "name" : "photoName",
-    "type" : "com.axonivy.portal.developerexamples.enums.DefaultImage"
+    "type" : "com.axonivy.portal.developerexamples.enums.DefaultImage",
+    "modifiers" : [ ]
   } ]
 }

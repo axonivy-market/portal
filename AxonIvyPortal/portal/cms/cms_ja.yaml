@@ -896,6 +896,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: フィルターが見つかりません
       SaveFilterDescription: これらのフィルター条件を保存して後で再利用できます。
       SaveFilterNamePlaceholder: フィルター名を入力
+      SaveFilterNameRequired: フィルター名を入力してください。
       SaveFilterOptional: （任意）
       SetFilterHeader: フィルターを設定
       WidgetNameColumn: ウィジェット名
@@ -961,9 +962,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: 詳細設定
         ChangeImage: 画像を変更
-        DarkMode: ダークモード
+        ChooseMode: 設定するモードを選択してください
+        DarkMode: ダーク
         ImagePreview: 画像プレビュー
-        LightMode: ライトモード
+        LightMode: ライト
         ConfigurationHeader: ウェルカムウィジェットの設定
         ChooseAFit: フィットを選択
         DisplayText: 表示テキスト
@@ -1015,6 +1017,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadZipFileExplanation: エクスポートするアイテム数が Excel の行数の制限を超える場合、データは複数の Excel ファイルに分割され、ZIP ファイルに圧縮されてダウンロードされます。
     editWidget: ウィジェットの編集
     existingField: '{0} フィールドは既に存在します'
+    exitEditMode: 編集モードを終了
     expiryFrom: 有効期限：開始
     expiryTo: 有効期限：終了
     export:
@@ -1632,7 +1635,7 @@ Dialogs:
           Responsibles:
             Multiple: 複数
           ShareLinkDialog:
-            CopyLink: リンクをコピー
+            CopyLink: コピー
             Link: リンク
             LinkCopied: リンクをコピーしました
           ToolList:

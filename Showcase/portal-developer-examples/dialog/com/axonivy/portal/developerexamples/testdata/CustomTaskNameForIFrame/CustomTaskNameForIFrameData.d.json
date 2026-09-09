@@ -3,6 +3,7 @@
   "simpleName" : "CustomTaskNameForIFrameData",
   "namespace" : "com.axonivy.portal.developerexamples.testdata.CustomTaskNameForIFrame",
   "fields" : [ {
-    "name" : "taskName"
+    "name" : "taskName",
+    "modifiers" : [ ]
   } ]
 }

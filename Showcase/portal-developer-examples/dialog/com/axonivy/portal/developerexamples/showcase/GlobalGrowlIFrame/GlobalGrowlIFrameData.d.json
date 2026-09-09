@@ -3,9 +3,11 @@
   "simpleName" : "GlobalGrowlIFrameData",
   "namespace" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame",
   "fields" : [ {
-    "name" : "field"
+    "name" : "field",
+    "modifiers" : [ ]
   }, {
     "name" : "isCustomized",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

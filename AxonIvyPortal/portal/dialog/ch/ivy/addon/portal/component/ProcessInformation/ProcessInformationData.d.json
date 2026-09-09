@@ -7,7 +7,8 @@
     "type" : "java.util.List<ch.ivy.addon.portalkit.bo.ProcessStep>",
     "modifiers" : [ ]
   }, {
-    "name" : "processId"
+    "name" : "processId",
+    "modifiers" : [ ]
   }, {
     "name" : "userProcesses",
     "type" : "java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable>",
@@ -17,6 +18,7 @@
     "type" : "ch.ivy.addon.portalkit.configuration.UserProcess",
     "modifiers" : [ ]
   }, {
-    "name" : "portalProcessInformation"
+    "name" : "portalProcessInformation",
+    "modifiers" : [ ]
   } ]
 }

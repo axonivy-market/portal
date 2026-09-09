@@ -16,7 +16,8 @@
     "modifiers" : [ ]
   }, {
     "name" : "documentId",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
     "name" : "documents",
     "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>",
@@ -27,15 +28,18 @@
     "modifiers" : [ ]
   }, {
     "name" : "isHideUploadDocumentForDoneCase",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
-    "name" : "name"
+    "name" : "name",
+    "modifiers" : [ ]
   }, {
     "name" : "task",
     "type" : "ch.ivyteam.ivy.workflow.ITask",
     "modifiers" : [ ]
   }, {
-    "name" : "uploadDocumentCheckMessage"
+    "name" : "uploadDocumentCheckMessage",
+    "modifiers" : [ ]
   }, {
     "name" : "uploadDocumentCheckStatus",
     "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus",
@@ -45,23 +49,27 @@
     "type" : "ch.ivyteam.ivy.workflow.ICase",
     "modifiers" : [ ]
   }, {
-    "name" : "deleteDocumentMessage"
+    "name" : "deleteDocumentMessage",
+    "modifiers" : [ ]
   }, {
     "name" : "isImage",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isDocumentPreviewEnabled",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isRenameDocumentSuccess",
     "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "modifiers" : [ ]
   }, {
     "name" : "renameDocumentMessage",
     "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "modifiers" : [ ]
   }, {
     "name" : "isEncrypted",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

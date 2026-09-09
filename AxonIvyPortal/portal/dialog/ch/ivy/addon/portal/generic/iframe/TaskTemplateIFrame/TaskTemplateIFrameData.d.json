@@ -3,13 +3,15 @@
   "simpleName" : "TaskTemplateIFrameData",
   "namespace" : "ch.ivy.addon.portal.generic.iframe.TaskTemplateIFrame",
   "fields" : [ {
-    "name" : "url"
+    "name" : "url",
+    "modifiers" : [ ]
   }, {
     "name" : "task",
     "type" : "ch.ivyteam.ivy.workflow.ITask",
     "modifiers" : [ ]
   }, {
     "name" : "taskId",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ ]
   } ]
 }

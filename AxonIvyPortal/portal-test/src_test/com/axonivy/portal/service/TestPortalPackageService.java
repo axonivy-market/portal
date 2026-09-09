@@ -26,6 +26,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.primefaces.model.StreamedContent;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.UserMenu;
@@ -33,6 +35,7 @@ import ch.ivy.addon.portalkit.dto.casedetails.CaseDetails;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPackageFile;
+import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.PortalPackageService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.environment.IvyTest;
@@ -91,7 +94,8 @@ public class TestPortalPackageService {
 
   @Test
   void exportPackage_ExcludeEmptyVariables_wrapperShapeWithNoItems() throws IOException {
-    String json = "{\"version\":\"1.0\",\"items\":[]}";
+    String json = """
+        {"version":"1.0","items":[]}""";
     Ivy.var().set(PortalPackageFile.USER_MENU.getVariableKey(), json);
     StreamedContent content = service.exportPackage();
     List<String> names = zipEntryNames(content);
@@ -151,6 +155,46 @@ public class TestPortalPackageService {
 
     assertThat(results).containsEntry(PortalPackageFile.DASHBOARD.getFilename(), true);
     assertThat(Ivy.var().get(PortalPackageFile.DASHBOARD.getVariableKey())).isEqualTo(json);
+  }
+
+  @Test
+  void writeDashboards_perItemVersionIsNeverPresentInExportedJson() throws IOException {
+    // TestPortalPackageUtils#buildDashboard() explicitly stamps a per-item version via
+    // Dashboard#setVersion() (leftover from before versioning moved to the wrapper container), but
+    // JsonListWrapper's constructor now strips it on every item it wraps - it belongs to the
+    // "version" field of the {"version": ..., "items": [...]} wrapper, not to individual entities.
+    Dashboard dashboard = buildDashboard("dashboard-1", "My Dashboard", "task_1", "Your Tasks");
+    Ivy.var().set(PortalPackageFile.DASHBOARD.getVariableKey(), toJson(List.of(dashboard)));
+
+    StreamedContent content = service.exportPackage();
+    String exportedJson = zipEntryContent(content, PortalPackageFile.DASHBOARD.getFilename());
+
+    JsonNode wrapper = BusinessEntityConverter.getObjectMapper().readTree(exportedJson);
+    assertThat(wrapper.get("version").asText()).isEqualTo("14.0.0");
+    assertThat(wrapper.get("items").get(0).has("version")).isFalse();
+  }
+
+  @Test
+  void exportThenImport_dashboardTaskWidgetWithoutConfiguredColumns_doesNotThrow() throws IOException {
+    // A re-imported dashboard is already in the canonical wrapper shape (no per-item "version"),
+    // so JsonDashboardMigrator.migrate() now short-circuits entirely for it - the per-item
+    // converter chain (v112 through v140) does not run at all here, so this no longer exercises
+    // the "columns" field NPE that v113's task/case widget converters used to hit when a widget had
+    // no configured columns (TaskDashboardWidget/CaseDashboardWidget omit "columns" entirely from
+    // JSON when empty, see @JsonInclude(NON_EMPTY) on DashboardWidget). That guard is still in
+    // place in v113 for genuinely legacy (unwrapped, unversioned) dashboards - see
+    // TestJsonDashboardMigrator for coverage of the legacy path itself. This test now only protects
+    // the general export-then-import round-trip.
+    Dashboard dashboard = buildDashboard("dashboard-1", "My Dashboard", "task_1", "Your Tasks");
+    Ivy.var().set(PortalPackageFile.DASHBOARD.getVariableKey(), toJson(List.of(dashboard)));
+    StreamedContent content = service.exportPackage();
+    String exportedJson = zipEntryContent(content, PortalPackageFile.DASHBOARD.getFilename());
+    byte[] zipBytes = buildZip(Map.of(PortalPackageFile.DASHBOARD.getFilename(), exportedJson));
+
+    Map<String, Boolean> results = service.importPackage(zipBytes);
+
+    assertThat(results).containsEntry(PortalPackageFile.DASHBOARD.getFilename(), true);
+    assertThat(Ivy.var().get(PortalPackageFile.DASHBOARD.getVariableKey())).isNotBlank();
   }
 
   @Test
@@ -233,6 +277,25 @@ public class TestPortalPackageService {
 
     assertThat(results).containsEntry(PortalPackageFile.CUSTOM_STATISTIC.getFilename(), true);
     assertThat(Ivy.var().get(PortalPackageFile.CUSTOM_STATISTIC.getVariableKey())).isEqualTo(json);
+  }
+
+  @Test
+  void exportPackage_customStatistic_wrapperShapeWithLingeringPerItemVersion_stripsVersion() throws IOException {
+    // Reproduces data already stored in the canonical wrapper shape but with a stale per-item
+    // "version" - e.g. written before per-item versioning was removed, or by other code that still
+    // stamps one. The wrapper-shape passthrough must not re-export this unchanged; it has to detect
+    // and strip the lingering per-item version.
+    String json = """
+        {"version":"14.0.0","items":[{"id":"statistic-1","version":"14.0.0","name":"My Statistic"}]}""";
+    Ivy.var().set(PortalPackageFile.CUSTOM_STATISTIC.getVariableKey(), json);
+
+    StreamedContent content = service.exportPackage();
+    String exportedJson = zipEntryContent(content, PortalPackageFile.CUSTOM_STATISTIC.getFilename());
+
+    JsonNode wrapper = BusinessEntityConverter.getObjectMapper().readTree(exportedJson);
+    assertThat(wrapper.get("version").asText()).isEqualTo("14.0.0");
+    assertThat(wrapper.get("items").get(0).has("version")).isFalse();
+    assertThat(wrapper.get("items").get(0).get("id").asText()).isEqualTo("statistic-1");
   }
 
   @Test
@@ -390,5 +453,65 @@ public class TestPortalPackageService {
     assertThat(results).containsEntry(PortalPackageFile.USER_MENU.getFilename(), true);
     assertThat(results).doesNotContainKey("testDirectory/");
     assertThat(Ivy.var().get(PortalPackageFile.USER_MENU.getVariableKey())).isEqualTo(validJson);
+  }
+
+  @Test
+  void exportThenImport_caseDetail_legacyBareObject_roundTripsWithoutDataLoss() throws IOException {
+    // Regression coverage: the shipped default CaseDetails.json is exactly this shape - a single
+    // bare object, not an array, not wrapped. JsonCaseDetailsMigrator.migrate() returns it
+    // unchanged (no array to iterate), so writeRawVariable's export path must itself normalize it
+    // into a one-element items array. Before that normalization, export produced
+    // {"version": ..., "items": {...}} - items as an object, not an array - which isListWrapper()
+    // (correctly) does not recognize as a wrapper on the next import, so the import silently
+    // discarded the whole configuration instead of failing loudly.
+    CaseDetails caseDetails = buildCaseDetails("default-case-detail");
+    String rawLegacyJson = BusinessEntityConverter.entityToJsonValue(caseDetails);
+    Ivy.var().set(PortalPackageFile.CASE_DETAIL.getVariableKey(), rawLegacyJson);
+
+    StreamedContent content = service.exportPackage();
+    String exportedJson = zipEntryContent(content, PortalPackageFile.CASE_DETAIL.getFilename());
+    JsonNode wrapper = BusinessEntityConverter.getObjectMapper().readTree(exportedJson);
+    assertThat(wrapper.get("items").isArray()).isTrue();
+    assertThat(wrapper.get("items")).hasSize(1);
+
+    Ivy.var().set(PortalPackageFile.CASE_DETAIL.getVariableKey(), "");
+    byte[] zipBytes = buildZip(Map.of(PortalPackageFile.CASE_DETAIL.getFilename(), exportedJson));
+    Map<String, Boolean> results = service.importPackage(zipBytes);
+
+    assertThat(results).containsEntry(PortalPackageFile.CASE_DETAIL.getFilename(), true);
+    JsonNode reimported =
+        BusinessEntityConverter.getObjectMapper().readTree(Ivy.var().get(PortalPackageFile.CASE_DETAIL.getVariableKey()));
+    assertThat(reimported.get("items")).hasSize(1);
+    assertThat(reimported.get("items").get(0).get("id").asText()).isEqualTo("default-case-detail");
+  }
+
+  @Test
+  void exportThenImport_thirdPartyApp_legacyDynamicRootKey_roundTripsWithoutDataLoss() throws IOException {
+    // Regression coverage: JsonThirdPartyApplicationMigrator.migrate() returns the legacy
+    // {"third-party-application": [...]} shape unchanged (only the nested applications are
+    // mutated in place). Exporting that shape directly as "items" produced
+    // {"version": ..., "items": {"third-party-application": [...]}} - items as an object wrapping
+    // the real array, not the array itself - which is silently discarded on the next import for
+    // the same reason as the CaseDetails case above.
+    Application application = buildApplication("app-1", "My App", "My App", "https://example.com");
+    String legacyJson = """
+        {"third-party-application":[%s]}""".formatted(BusinessEntityConverter.entityToJsonValue(application));
+    Ivy.var().set(PortalPackageFile.THIRD_PARTY_APP.getVariableKey(), legacyJson);
+
+    StreamedContent content = service.exportPackage();
+    String exportedJson = zipEntryContent(content, PortalPackageFile.THIRD_PARTY_APP.getFilename());
+    JsonNode wrapper = BusinessEntityConverter.getObjectMapper().readTree(exportedJson);
+    assertThat(wrapper.get("items").isArray()).isTrue();
+    assertThat(wrapper.get("items")).hasSize(1);
+
+    Ivy.var().set(PortalPackageFile.THIRD_PARTY_APP.getVariableKey(), "");
+    byte[] zipBytes = buildZip(Map.of(PortalPackageFile.THIRD_PARTY_APP.getFilename(), exportedJson));
+    Map<String, Boolean> results = service.importPackage(zipBytes);
+
+    assertThat(results).containsEntry(PortalPackageFile.THIRD_PARTY_APP.getFilename(), true);
+    JsonNode reimported = BusinessEntityConverter.getObjectMapper()
+        .readTree(Ivy.var().get(PortalPackageFile.THIRD_PARTY_APP.getVariableKey()));
+    assertThat(reimported.get("items")).hasSize(1);
+    assertThat(reimported.get("items").get(0).get("id").asText()).isEqualTo("app-1");
   }
 }

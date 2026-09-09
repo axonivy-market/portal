@@ -4,24 +4,31 @@
   "namespace" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestCreation",
   "fields" : [ {
     "name" : "leaveRequestData",
-    "type" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequest"
+    "type" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequest",
+    "modifiers" : [ ]
   }, {
     "name" : "requester",
-    "type" : "com.axonivy.portal.components.dto.UserDTO"
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ ]
   }, {
     "name" : "approver",
-    "type" : "com.axonivy.portal.components.dto.UserDTO"
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ ]
   }, {
     "name" : "leaveTypes",
-    "type" : "java.util.List<com.axonivy.portal.userexamples.enums.LeaveType>"
+    "type" : "java.util.List<com.axonivy.portal.userexamples.enums.LeaveType>",
+    "modifiers" : [ ]
   }, {
     "name" : "approvers",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
+    "modifiers" : [ ]
   }, {
     "name" : "isValid",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "steps",
-    "type" : "java.util.List<String>"
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   } ]
 }

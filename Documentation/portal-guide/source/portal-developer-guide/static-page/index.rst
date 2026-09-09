@@ -92,7 +92,10 @@ Add static pages to the main left-side navigation menu using the ``Portal.Custom
 Configuration Method
 ^^^^^^^^^^^^^^^^^^^^
 
-Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable:
+Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable. The variable's
+value is a wrapper object: ``version`` identifies the format of the JSON collection itself, and
+``items`` holds the list of menu items - this wrapper-level ``version`` is what Portal reads (and
+migrates) on import, individual menu items do not carry their own ``version`` field.
 
 .. code-block:: json
 
@@ -104,16 +107,14 @@ Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable:
             "link": "Portal/faces/view/portal-components-examples/help/user-guide.xhtml",
             "label": "User Guide",
             "icon": "ti ti-book",
-            "index": 0,
-            "version": "12.0.0"
+            "index": 0
         },
         {
             "menuKind": "STATIC_PAGE",
             "link": "Portal/faces/view/portal-components-examples/static.xhtml",
             "label": "API Reference",
             "icon": "ti ti-file-text",
-            "index": 1,
-            "version": "12.0.0"
+            "index": 1
         }
     ]
     }
@@ -144,14 +145,9 @@ Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable:
 
     ``index`` (number, optional)
         Menu position order (lower numbers appear first)
-        
+
         - Default: 0
         - Use for controlling menu item order
-
-    ``version`` (string, optional)
-        Portal version for compatibility tracking
-        
-        - Recommended: Current Portal version (e.g., ``"12.0.0"``)
 
 Programmatic Method
 ^^^^^^^^^^^^^^^^^^^
@@ -197,6 +193,10 @@ Add static pages to the user menu (accessed via user avatar in top-right corner)
 
 **Configuration Example:**
 
+The variable's value is a wrapper object: ``version`` identifies the format of the JSON collection
+itself, and ``items`` holds the list of menu items - this wrapper-level ``version`` is what Portal
+reads (and migrates) on import, individual menu items do not carry their own ``version`` field.
+
 .. code-block:: json
 
     {
@@ -227,7 +227,7 @@ Add static pages to the user menu (accessed via user avatar in top-right corner)
             "menuKind": "STATIC_PAGE",
             "title": "API Reference",
             "permissions": ["Developer", "AXONIVY_PORTAL_ADMIN"],
-            "url": "Portal/faces/view/portal-components-examples/documentation/api-reference.xhtml"
+            "url": "Portal/faces/view/portal-components-examples/documentation/api-reference.xhtml",
             "icon": "ti ti-file-text"
         }
     ]

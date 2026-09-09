@@ -3,8 +3,10 @@
   "simpleName" : "redirectToStaticPageExampleData",
   "namespace" : "com.axonivy.portal.components.examples.redirectToStaticPageExample",
   "fields" : [ {
-    "name" : "staticLink"
+    "name" : "staticLink",
+    "modifiers" : [ ]
   }, {
-    "name" : "staticPagePath"
+    "name" : "staticPagePath",
+    "modifiers" : [ ]
   } ]
 }

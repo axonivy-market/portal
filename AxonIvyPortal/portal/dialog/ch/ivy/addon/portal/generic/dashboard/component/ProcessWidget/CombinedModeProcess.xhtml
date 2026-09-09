@@ -7,7 +7,7 @@
 
 <!-- Action -->
 <h:panelGroup id="process-action" rendered="#{!isReadOnlyMode}" styleClass="process-grid-item__action--combined">
-  <p:commandButton id="edit-widget" styleClass="rounded-button ui-button-outlined u-mar-right-5" global="false" icon="ti ti-pencil"
+  <p:commandButton id="edit-widget" styleClass="rounded-button ui-button-outlined ui-button-widget u-mar-right-5" global="false" icon="ti ti-pencil"
     actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
     process="@this" partialSubmit="true"
     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
@@ -17,7 +17,7 @@
     hideEvent="mouseleave click" />
 
   <p:commandButton id="clone-widget" type="button" icon="ti ti-copy"
-    styleClass="rounded-button ui-button-outlined u-mar-right-5"
+    styleClass="rounded-button ui-button-outlined ui-button-widget u-mar-right-5"
     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CloneWidget')}"
     rendered="#{!isReadOnlyMode}">
     <p:ajax event="click" listener="#{cloneWidgetBean.setCloneWidget(widget)}"

@@ -11,33 +11,42 @@
     "type" : "List<ch.ivy.addon.portalkit.bo.History>",
     "modifiers" : [ ]
   }, {
-    "name" : "noteContent"
+    "name" : "noteContent",
+    "modifiers" : [ ]
   }, {
     "name" : "note",
     "type" : "ch.ivyteam.ivy.workflow.note.Note",
     "modifiers" : [ ]
   }, {
     "name" : "taskId",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
-    "name" : "fullNote"
+    "name" : "fullNote",
+    "modifiers" : [ ]
   }, {
     "name" : "showSystemNotes",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "showSystemTasks",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "showSystemNotesChkbox",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "showSystemTasksChkbox",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "showRelatedCaseInfo",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "showRelatedCaseInfoCheckbox",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

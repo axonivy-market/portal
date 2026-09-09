@@ -4,8 +4,10 @@
   "namespace" : "ch.ivy.addon.portal.generic.dashboard.component.ProcessWidgetConfiguration",
   "fields" : [ {
     "name" : "taskWidget",
-    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget"
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget",
+    "modifiers" : [ ]
   }, {
-    "name" : "widgetId"
+    "name" : "widgetId",
+    "modifiers" : [ ]
   } ]
 }

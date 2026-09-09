@@ -29,6 +29,10 @@ How to configure widgets in task details
 -  Cockpit Administrator can configure widgets via variable **Portal.TaskDetails** on Cockpit settings page.
    |edit-variable-portal-task-details|
 
+-  The variable's value is a wrapper object: ``version`` identifies the format of the JSON collection
+   itself, and ``items`` holds the list of task detail layouts. This wrapper-level ``version`` is what
+   Portal reads (and migrates) on import - individual layouts do not carry their own ``version`` field.
+
 -  Default configuration includes 3 widgets.
 
    .. code-block:: javascript
@@ -38,7 +42,6 @@ How to configure widgets in task details
         "items": [
          {
             "id": "default-task-detail",
-            "version": "14.0.0",
             "filters": {
                "categories" : ["support"],
                "states" : ["DONE", "OPEN"]
@@ -178,8 +181,7 @@ There are **two steps** for adding new custom panels.
         "items": [
          {
             "id": "default-task-detail",
-            "version": "14.0.0",
-            "widgets": 
+            "widgets":
                [
                   {
                      "type": "information",
@@ -240,7 +242,6 @@ There are **two steps** for adding new custom panels.
            "items": [
             {
                "id": "task-detail",
-               "version": "14.0.0",
                "widgets": [
                   {
                      "type": "information",
@@ -275,7 +276,6 @@ There are **two steps** for adding new custom panels.
               "items": [
                {
                   "id": "task-detail",
-                  "version": "14.0.0",
                   "widgets": [
                      {
                         "type": "information",

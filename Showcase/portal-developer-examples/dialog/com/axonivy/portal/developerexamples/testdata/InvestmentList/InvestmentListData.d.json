@@ -4,13 +4,17 @@
   "namespace" : "com.axonivy.portal.developerexamples.testdata.InvestmentList",
   "fields" : [ {
     "name" : "investments",
-    "type" : "java.util.List<com.axonivy.portal.developerexamples.Investment>"
+    "type" : "java.util.List<com.axonivy.portal.developerexamples.Investment>",
+    "modifiers" : [ ]
   }, {
     "name" : "startDate",
-    "type" : "java.util.Date"
+    "type" : "java.util.Date",
+    "modifiers" : [ ]
   }, {
-    "name" : "name"
+    "name" : "name",
+    "modifiers" : [ ]
   }, {
-    "name" : "note"
+    "name" : "note",
+    "modifiers" : [ ]
   } ]
 }

@@ -3,12 +3,15 @@
   "simpleName" : "TaskColumnHeaderData",
   "namespace" : "ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader",
   "fields" : [ {
-    "name" : "field"
+    "name" : "field",
+    "modifiers" : [ ]
   }, {
     "name" : "isDescending",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "dataModel",
-    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel"
+    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel",
+    "modifiers" : [ ]
   } ]
 }

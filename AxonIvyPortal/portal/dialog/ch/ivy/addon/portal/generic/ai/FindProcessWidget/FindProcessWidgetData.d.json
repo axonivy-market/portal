@@ -4,6 +4,7 @@
   "namespace" : "ch.ivy.addon.portal.generic.ai.FindProcessWidget",
   "fields" : [ {
     "name" : "processWidget",
-    "type" : "ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget"
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget",
+    "modifiers" : [ ]
   } ]
 }

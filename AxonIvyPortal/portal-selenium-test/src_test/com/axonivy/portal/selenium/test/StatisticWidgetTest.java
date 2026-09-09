@@ -32,13 +32,12 @@ public class StatisticWidgetTest extends BaseTest {
     super.setup();
     this.newDashboardPage = new NewDashboardPage();
   }
-  
+
   @Test
   public void testNumberChart() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
     StatisticWidgetNewDashboardPage openTasksWidget = newDashboardPage.selectStatisticChartWidget("Open Tasks");
     StatisticWidgetNewDashboardPage runningCasesWidget = newDashboardPage.selectStatisticChartWidget("Running Cases");
@@ -48,11 +47,10 @@ public class StatisticWidgetTest extends BaseTest {
     openTasksWidget.getAllChartLabels().first().text().equals("Open");
     runningCasesWidget.getAllChartLabels().first().text().equals("Running");
   }
-  
+
   @Test
   public void testAddNewStatisticWidget() {
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
     var modificationPage = configurationPage.openEditPublicDashboardsPage();
@@ -68,7 +66,6 @@ public class StatisticWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -174,7 +171,6 @@ public class StatisticWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -287,13 +283,12 @@ public class StatisticWidgetTest extends BaseTest {
     openTasksWidget.getAllChartLabels().first().text().equals("Open");
     openTasksWidget.getAllChartNumbers().shouldHave(CollectionCondition.size(1));
   }
-  
+
   @Test
   public void testConditionBasedColoringFeatureForTask() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -302,7 +297,7 @@ public class StatisticWidgetTest extends BaseTest {
     ScreenshotUtils.maximizeBrowser();
     configurationPage.clickOnAddWidgetButton();
     StatisticConfigurationPage statisticConfigurationPage = configurationPage.clickOnCreateCustomStatisticWidgetButton();
-    
+
     // Configure basic chart settings
     statisticConfigurationPage.setChartName("Condition-Based Coloring Test Chart");
     statisticConfigurationPage.changeChartTarget("Task");
@@ -311,27 +306,27 @@ public class StatisticWidgetTest extends BaseTest {
 
     // Enable condition-based coloring
     statisticConfigurationPage.toggleConditionBasedColoring();
-    
+
     // Test "All Values" scope first
     statisticConfigurationPage.verifyColoringScopeVisible();
     statisticConfigurationPage.selectColoringScope("All values");
-    
+
     // Add threshold conditions for "All Values" scope
     statisticConfigurationPage.addNewCondition();
     statisticConfigurationPage.configureThreshold(0, "Greater than", "5", "#f76363");
-    
+
     statisticConfigurationPage.addNewCondition();
     statisticConfigurationPage.configureThreshold(1, "Greater than or equal to", "10", "#f76363");
 
     // Generate preview
     statisticConfigurationPage.clickGeneratePreviewChart();
     statisticConfigurationPage.chartCanvasVisible();
-    
+
     // Add threshold conditions for "Specific value" scope
     statisticConfigurationPage.selectColoringScope("Specific value");
     statisticConfigurationPage.addNewCondition();
     statisticConfigurationPage.configureThresholdWithCategory(0, "Greater than", "5", "#f76363", "Done");
-    
+
     // Generate preview
     statisticConfigurationPage.clickGeneratePreviewChart();
     statisticConfigurationPage.chartCanvasVisible();
@@ -342,7 +337,6 @@ public class StatisticWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -360,11 +354,11 @@ public class StatisticWidgetTest extends BaseTest {
 
     // Enable condition-based coloring
     statisticConfigurationPage.toggleConditionBasedColoring();
-    
+
     // Test "All Values" scope first
     statisticConfigurationPage.verifyColoringScopeVisible();
     statisticConfigurationPage.selectColoringScope("All values");
-    
+
     // Add threshold conditions for "All Values" scope
     statisticConfigurationPage.addNewCondition();
     statisticConfigurationPage.configureThreshold(0, "Greater than", "5", "#f76363");
@@ -375,23 +369,22 @@ public class StatisticWidgetTest extends BaseTest {
     // Generate preview
     statisticConfigurationPage.clickGeneratePreviewChart();
     statisticConfigurationPage.chartCanvasVisible();
-    
+
     // Add threshold conditions for "Specific value" scope
     statisticConfigurationPage.selectColoringScope("Specific value");
     statisticConfigurationPage.addNewCondition();
     statisticConfigurationPage.configureThresholdWithCategory(0, "Greater than", "5", "#f76363", "CaseGroup/Group1/TestCase0");
-    
+
     // Generate preview
     statisticConfigurationPage.clickGeneratePreviewChart();
     statisticConfigurationPage.chartCanvasVisible();
   }
-  
+
   @Test
   public void testConditionBasedColoringWhenNoDataAvailable() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -400,7 +393,7 @@ public class StatisticWidgetTest extends BaseTest {
     ScreenshotUtils.maximizeBrowser();
     configurationPage.clickOnAddWidgetButton();
     StatisticConfigurationPage statisticConfigurationPage = configurationPage.clickOnCreateCustomStatisticWidgetButton();
-    
+
     statisticConfigurationPage.setChartName("No Data Available Test Chart");
     statisticConfigurationPage.changeChartTarget("Case");
     statisticConfigurationPage.changeChartType("Bar");
@@ -409,17 +402,16 @@ public class StatisticWidgetTest extends BaseTest {
     statisticConfigurationPage.toggleConditionBasedColoring();
     statisticConfigurationPage.verifyColoringScopeVisible();
     statisticConfigurationPage.selectColoringScope("Specific value");
-    
+
     statisticConfigurationPage.verifyNoDataAvailableMessage();
   }
-  
+
   @Test
   public void testConditionBasedColoringWithCustomFields() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToRelativeLink(createCasesForCaseListCustomization);
-    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -428,7 +420,7 @@ public class StatisticWidgetTest extends BaseTest {
     ScreenshotUtils.maximizeBrowser();
     configurationPage.clickOnAddWidgetButton();
     StatisticConfigurationPage statisticConfigurationPage = configurationPage.clickOnCreateCustomStatisticWidgetButton();
-    
+
     statisticConfigurationPage.setChartName("No Data Available Test Chart");
     statisticConfigurationPage.changeChartTarget("Case");
     statisticConfigurationPage.changeChartType("Bar");
@@ -440,7 +432,7 @@ public class StatisticWidgetTest extends BaseTest {
     statisticConfigurationPage.selectColoringScope("Specific value");
     statisticConfigurationPage.addNewCondition();
     statisticConfigurationPage.configureThresholdWithCategory(0, "Greater than", "5", "#f76363", "Customer name 0");
-    
+
     // Generate preview
     statisticConfigurationPage.clickGeneratePreviewChart();
     statisticConfigurationPage.chartCanvasVisible();
@@ -452,7 +444,6 @@ public class StatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToRelativeLink(testCaseListPermission);
-    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -511,12 +502,11 @@ public class StatisticWidgetTest extends BaseTest {
     configurationPage.clickOnAddWidgetButton();
     configurationPage.addNewStatisticWidget("Custom statistic chart CASE with KPI field");
   }
-  
+
   @Test
   public void testEnableDrillDownOnStatisticConfiguration() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
-    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -541,7 +531,7 @@ public class StatisticWidgetTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     assertFalse(statisticWidget.isChartNumberElementClickable());
   }
-  
+
   @Test
   public void testCaseDrillDownDashboardAfterClickingOnElementOfNumberChart() {
     login(TestAccount.ADMIN_USER);
@@ -549,7 +539,6 @@ public class StatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(testCaseListPermission);
-    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -567,7 +556,7 @@ public class StatisticWidgetTest extends BaseTest {
     statisticConfigurationPage.addFilter("Created Date", FilterOperator.TODAY);
     statisticConfigurationPage.addFilter("Creator", FilterOperator.CURRENT_USER);
     statisticConfigurationPage.enableDrillDownFeature();
-    
+
     assertTrue(statisticConfigurationPage.isDrillDownFeatureEnabled());
     statisticConfigurationPage.clickCreateStatisticChart();
     configurationPage.clickOnAddWidgetButton();
@@ -590,7 +579,7 @@ public class StatisticWidgetTest extends BaseTest {
     newDashboardPage.waitForElementDisplayed(newDashboardPage.getWidgetByName("Case Number Chart"), true);
     assertTrue(newDashboardPage.getWidgetByName("Case Number Chart").exists());
   }
-  
+
   @Test
   public void testTaskDrillDownDashboardAfterClickingOnElementOfNumberChart() {
     login(TestAccount.ADMIN_USER);
@@ -598,7 +587,6 @@ public class StatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(testCaseListPermission);
-    redirectToRelativeLink(reloadSearchEngine);
     redirectToNewDashBoard();
 
     DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
@@ -615,7 +603,7 @@ public class StatisticWidgetTest extends BaseTest {
     statisticConfigurationPage.inputValueOnLatestFilter(FilterValueType.TEXT, "korea");
     statisticConfigurationPage.addFilter("Created Date", FilterOperator.TODAY);
     statisticConfigurationPage.enableDrillDownFeature();
-    
+
     assertTrue(statisticConfigurationPage.isDrillDownFeatureEnabled());
     statisticConfigurationPage.clickCreateStatisticChart();
     configurationPage.clickOnAddWidgetButton();

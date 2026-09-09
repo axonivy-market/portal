@@ -4,14 +4,18 @@
   "namespace" : "com.axonivy.portal.developerexamples.customization.sidestep.LeaveRequestBusinessDetailsPage",
   "fields" : [ {
     "name" : "leaveRequestData",
-    "type" : "com.axonivy.portal.developerexamples.LeaveRequest"
+    "type" : "com.axonivy.portal.developerexamples.LeaveRequest",
+    "modifiers" : [ ]
   }, {
     "name" : "approver",
-    "type" : "com.axonivy.portal.components.dto.UserDTO"
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ ]
   }, {
     "name" : "requester",
-    "type" : "com.axonivy.portal.components.dto.UserDTO"
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ ]
   }, {
-    "name" : "caseUuid"
+    "name" : "caseUuid",
+    "modifiers" : [ ]
   } ]
 }

@@ -12,26 +12,32 @@
     "modifiers" : [ ]
   }, {
     "name" : "isTaskFinished",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isWorkingOnTask",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "inFrame",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "caseSearchCriteria",
     "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria",
     "modifiers" : [ ]
   }, {
     "name" : "startIndex",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "count",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "totalCases",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
     "name" : "caseLazyDataModel",
     "type" : "ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel",
@@ -42,13 +48,16 @@
     "modifiers" : [ ]
   }, {
     "name" : "columnsVisibility",
-    "type" : "java.util.List<String>"
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   }, {
     "name" : "loopCounter",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "maxResultNumberPerQuery",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "collectedCasesForExporting",
     "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>",

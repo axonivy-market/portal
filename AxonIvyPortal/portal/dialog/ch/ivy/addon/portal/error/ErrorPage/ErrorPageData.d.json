@@ -3,6 +3,7 @@
   "simpleName" : "ErrorPageData",
   "namespace" : "ch.ivy.addon.portal.error.ErrorPage",
   "fields" : [ {
-    "name" : "errorCode"
+    "name" : "errorCode",
+    "modifiers" : [ ]
   } ]
 }

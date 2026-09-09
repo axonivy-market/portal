@@ -4,6 +4,7 @@
   "namespace" : "ch.ivy.addon.portalkit.test.CreateMultipleTestUsers",
   "fields" : [ {
     "name" : "numberOfUser",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   } ]
 }

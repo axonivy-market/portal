@@ -895,6 +895,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: No filter found
       SaveFilterDescription: Save those filter conditions for future use.
       SaveFilterNamePlaceholder: Enter filter name
+      SaveFilterNameRequired: Filter name must not be empty.
       SaveFilterOptional: (optional)
       SetFilterHeader: Set Filter
       WidgetNameColumn: Widget name
@@ -960,11 +961,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Advanced settings
         ChangeImage: Change image
-        DarkMode: Dark mode
+        DarkMode: Dark
         ImagePreview: Image preview
-        LightMode: Light mode
+        LightMode: Light
         ConfigurationHeader: Welcome widget configuration
         ChooseAFit: Choose a fit
+        ChooseMode: Choose which mode you want to configure
         DisplayText: Display text
         Greeting:
           Afternoon: Good afternoon
@@ -1014,6 +1016,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadZipFileExplanation: If the number of items to export exceeds the limit of Excel rows, data will be split to multiple Excel files, then compressed in a ZIP file to download.
     editWidget: Edit widget
     existingField: The {0} field has already been existing
+    exitEditMode: Exit edit mode
     expiryFrom: Expiry From
     expiryTo: Expiry To
     export:
@@ -1634,7 +1637,7 @@ Dialogs:
           Responsibles:
             Multiple: Multiple
           ShareLinkDialog:
-            CopyLink: Copy link
+            CopyLink: Copy
             Link: Link
             LinkCopied: Link copied
           ToolList:

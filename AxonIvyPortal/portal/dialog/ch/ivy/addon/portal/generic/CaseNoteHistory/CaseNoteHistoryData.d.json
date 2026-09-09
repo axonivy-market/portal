@@ -19,6 +19,7 @@
     "modifiers" : [ ]
   }, {
     "name" : "showRelatedCaseInfo",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

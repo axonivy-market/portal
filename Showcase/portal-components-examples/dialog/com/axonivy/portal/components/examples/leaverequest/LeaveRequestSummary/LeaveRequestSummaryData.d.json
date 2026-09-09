@@ -4,15 +4,19 @@
   "namespace" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequestSummary",
   "fields" : [ {
     "name" : "leaveRequestData",
-    "type" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequest"
+    "type" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequest",
+    "modifiers" : [ ]
   }, {
     "name" : "approver",
-    "type" : "com.axonivy.portal.components.dto.UserDTO"
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ ]
   }, {
     "name" : "requester",
-    "type" : "com.axonivy.portal.components.dto.UserDTO"
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ ]
   }, {
     "name" : "steps",
-    "type" : "java.util.List<String>"
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   } ]
 }
