@@ -230,7 +230,8 @@ Available Portal Variables
 **Portal.GlobalSearch.MinimumKeywordLength**
    Defines the minimum number of characters a keyword must have before global search runs.
    A shorter keyword matches nearly every row, which can be slow, so the search is skipped
-   rather than run. Set to ``0`` to disable the check (default).
+   rather than run. Defaults to ``3``; set to ``0`` to disable the check and search on any
+   keyword.
 
 .. tip::
    Configure these variables in :ref:`admin-settings` to optimize search performance for your Portal instance.

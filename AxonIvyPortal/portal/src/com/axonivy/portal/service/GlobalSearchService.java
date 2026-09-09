@@ -40,6 +40,7 @@ public class GlobalSearchService {
 
   private static GlobalSearchService instance;
   private static final int PAGE_SIZE = 3;
+  private static final int DEFAULT_MINIMUM_KEYWORD_LENGTH = 3;
 
   public static GlobalSearchService getInstance() {
     if (instance == null) {
@@ -112,7 +113,8 @@ public class GlobalSearchService {
   }
   
   public static int getMinimumKeywordLength() {
-    return NumberUtils.toInt(Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_MINIMUM_KEYWORD_LENGTH.getKey()), 0);
+    return NumberUtils.toInt(Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_MINIMUM_KEYWORD_LENGTH.getKey()),
+        DEFAULT_MINIMUM_KEYWORD_LENGTH);
   }
 
   public static boolean isKeywordTooShort(String keyword) {
