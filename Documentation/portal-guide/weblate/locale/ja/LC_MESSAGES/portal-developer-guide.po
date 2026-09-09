@@ -1356,7 +1356,7 @@ msgstr "edit-variable-portal-case-details"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:39
 msgid "The variable's value is a wrapper object: ``version`` identifies the format of the JSON collection itself, and ``items`` holds the list of case detail layouts. This wrapper-level ``version`` is what Portal reads (and migrates) on import - individual layouts do not carry their own ``version`` field."
-msgstr ""
+msgstr "この変数の値はラッパーオブジェクトです： ``version`` は JSON コレクション自体の形式を示し、``items`` はケースの詳細のレイアウトのリストを保持します。この Portal がインポート時に読み取る（および移行する）のは、このラッパーレベルの ``version`` であり、個々のレイアウトはそれぞれの ``version`` フィールドを持ちません。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:43
 msgid "The default configuration includes five widgets:"
@@ -1409,29 +1409,25 @@ msgid "``layout``: defines the UI styling of the widget."
 msgstr "``layout``：ウィジェットの UI のスタイル設定を定義します。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:138
-#, fuzzy
 msgid "``x``: column index. HTML DOM Style ``left`` is computed as ``x / 12 * 100%``."
-msgstr "``x``：HTML DOMスタイル ``left`` は ``x / 12 * 100%`` として計算されます。"
+msgstr "``x``：列インデックス。HTML DOM スタイル ``left`` は ``x / 12 * 100%`` として計算されます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:140
-#, fuzzy
 msgid "``y``: row index. HTML DOM Style ``top`` is computed as ``y * 20px``."
-msgstr "``y``：HTML DOMスタイル ``top`` は ``y / 12 * 100%`` として計算されます。"
+msgstr "``y``：行インデックス。HTML DOM スタイル ``top`` は ``y * 20px`` として計算されます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:142
-#, fuzzy
 msgid "``w``: width in columns. HTML DOM Style ``width`` is computed as ``w / 12 * 100%``."
-msgstr "``y``：HTML DOMスタイル ``top`` は ``y / 12 * 100%`` として計算されます。"
+msgstr "``w``：列数で表した幅。HTML DOM スタイル ``width`` は ``w / 12 * 100%`` として計算されます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:144
-#, fuzzy
 msgid "``h``: height in rows. HTML DOM Style ``height`` is computed as ``h * 20px``."
-msgstr "``h``：HTML DOMスタイル ``height`` は ``60 * h + 20 * (高さ - 1)`` として計算されます。"
+msgstr "``h``：行数で表した高さ。HTML DOM スタイル ``height`` は ``h * 20px`` として計算されます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:146
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:115
 msgid "The grid is 12 columns wide and one row is 20 pixels high. Each widget is then inset by 10 pixels on every side, so two neighbours end up 20 pixels apart."
-msgstr ""
+msgstr "グリッドは 12 列の幅で、1 行は 20 ピクセルの高さです。各ウィジェットは四辺それぞれ 10 ピクセルずつ内側にずらされるため、隣り合うウィジェット同士は 20 ピクセル離れます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:149
 msgid "``styleClass`` (optional): add CSS Classes to HTML DOM."
@@ -2577,7 +2573,7 @@ msgstr "以下は、Portal.CustomMenuItems 変数のカスタムメニュー項�
 
 #: ../../source/portal-developer-guide/customization/menu.rst:128
 msgid "The variable's value is a wrapper object: ``version`` identifies the format of the JSON collection itself, and ``items`` holds the list of custom menu items. This wrapper-level ``version`` is what Portal reads (and migrates) on import - individual menu items do not carry their own ``version`` field."
-msgstr ""
+msgstr "この変数の値はラッパーオブジェクトです： ``version`` は JSON コレクション自体の形式を示し、``items`` はカスタムメニュー項目のリストを保持します。この Portal がインポート時に読み取る（および移行する）のは、このラッパーレベルの ``version`` であり、個々のメニュー項目はそれぞれの ``version`` フィールドを持ちません。"
 
 #: ../../source/portal-developer-guide/customization/menu.rst:152
 msgid "The basic JSON structure of a custom menu item"
@@ -2907,40 +2903,35 @@ msgstr "``--task-state-suspended-background``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "hsla(217, 91%, 60%, 0.1)"
-msgstr ""
+msgstr "hsla(217, 91%, 60%, 0.1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Background of the suspended state indicator on the task, case list"
-msgstr "タスク、症例リストの中断状態インジケータの色"
+msgstr "タスク、ケースリストの中断状態インジケーターの背景色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--task-state-suspended-border-color``"
-msgstr "``--task-state-suspended-background``"
+msgstr "``--task-state-suspended-border-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "hsla(217, 91%, 60%, 0.25)"
-msgstr ""
+msgstr "hsla(217, 91%, 60%, 0.25)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Border color of the suspended state indicator on the task, case list"
-msgstr "タスク、症例リストの中断状態インジケータの色"
+msgstr "タスク、ケースリストの中断状態インジケーターの枠線の色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--task-state-suspended-color``"
-msgstr "``--task-state-suspended-background``"
+msgstr "``--task-state-suspended-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "hsla(217, 91%, 60%, 1)"
-msgstr ""
+msgstr "hsla(217, 91%, 60%, 1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Text color of the suspended state indicator on the task, case list"
-msgstr "タスク、症例リストの中断状態インジケータの色"
+msgstr "タスク、ケースリストの中断状態インジケーターの文字色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-state-resumed-background``"
@@ -2948,101 +2939,87 @@ msgstr "``--task-state-resumed-background``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "hsla(48, 96%, 53%, 0.1)"
-msgstr ""
+msgstr "hsla(48, 96%, 53%, 0.1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Background of the resumed state indicator on the task, case list"
-msgstr "タスク、ケースリスト上の再開状態インジケータの色"
+msgstr "タスク、ケースリストの再開状態インジケーターの背景色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--task-state-resumed-border``"
-msgstr "``--task-state-resumed-background``"
+msgstr "``--task-state-resumed-border``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "hsla(48, 96%, 53%, 0.25)"
-msgstr ""
+msgstr "hsla(48, 96%, 53%, 0.25)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Border color of the resumed state indicator on the task, case list"
-msgstr "タスク、ケースリスト上の再開状態インジケータの色"
+msgstr "タスク、ケースリストの再開状態インジケーターの枠線の色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--task-state-resumed-color``"
-msgstr "``--task-state-resumed-background``"
+msgstr "``--task-state-resumed-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "hsla(48, 85%, 29%, 1)"
-msgstr ""
+msgstr "hsla(48, 85%, 29%, 1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Text color of the resumed state indicator on the task, case list"
-msgstr "タスク、ケースリスト上の再開状態インジケータの色"
+msgstr "タスク、ケースリストの再開状態インジケーターの文字色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-state-done-background``"
 msgstr "``--task-state-done-background``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "hsla(135, 50%, 95%, 1)"
-msgstr "hsl(195,100%,29%)"
+msgstr "hsla(135, 50%, 95%, 1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Background of the done state indicator on the task, case list"
-msgstr "タスク、ケースリストの完了状態インジケータの色"
+msgstr "タスク、ケースリストの完了状態インジケーターの背景色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--task-state-done-border``"
-msgstr "``--task-state-done-background``"
+msgstr "``--task-state-done-border``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "hsla(136, 52%, 81%, 1)"
-msgstr ""
+msgstr "hsla(136, 52%, 81%, 1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Border color of the done state indicator on the task, case list"
-msgstr "タスク、ケースリストの完了状態インジケータの色"
+msgstr "タスク、ケースリストの完了状態インジケーターの枠線の色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--task-state-done-color``"
-msgstr "``--task-state-done-background``"
+msgstr "``--task-state-done-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "hsla(137, 47%, 32%, 1)"
-msgstr ""
+msgstr "hsla(137, 47%, 32%, 1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Text color of the done state indicator on the task, case list"
-msgstr "タスク、ケースリストの完了状態インジケータの色"
+msgstr "タスク、ケースリストの完了状態インジケーターの文字色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-state-parked-background``"
 msgstr "``--task-state-parked-background``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Background of the parked state indicator on the task, case list"
-msgstr "タスク、ケースリストの駐車状態インジケータの色"
+msgstr "タスク、ケースリストの保留状態インジケーターの背景色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--task-state-parked-border``"
-msgstr "``--task-state-parked-background``"
+msgstr "``--task-state-parked-border``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Border color of the parked state indicator on the task, case list"
-msgstr "タスク、ケースリストの駐車状態インジケータの色"
+msgstr "タスク、ケースリストの保留状態インジケーターの枠線の色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-state-failed-background``"
@@ -3050,26 +3027,23 @@ msgstr "``--task-state-failed-background``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "hsla(0, 77%, 95%, 1)"
-msgstr ""
+msgstr "hsla(0, 77%, 95%, 1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Background of the failed state indicator on the task, case list"
-msgstr "タスク、ケースリスト上の失敗状態インジケータの色"
+msgstr "タスク、ケースリストの失敗状態インジケーターの背景色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--task-state-failed-border``"
-msgstr "``--task-state-failed-background``"
+msgstr "``--task-state-failed-border``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "hsla(358, 79%, 79%, 1)"
-msgstr ""
+msgstr "hsla(358, 79%, 79%, 1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Border color of the failed state indicator on the task, case list"
-msgstr "タスク、ケースリスト上の失敗状態インジケータの色"
+msgstr "タスク、ケースリストの失敗状態インジケーターの枠線の色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-state-failed-text-color``"
@@ -3077,318 +3051,295 @@ msgstr "``--task-state-failed-text-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "hsla(358, 83%, 30%, 1)"
-msgstr ""
+msgstr "hsla(358, 83%, 30%, 1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Text color of the failed state indicator on the task, case list"
 msgstr "タスク、ケースリスト上の失敗状態インジケータのテキスト色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--task-state-delayed-background``"
-msgstr "``--task-state-parked-background``"
+msgstr "``--task-state-delayed-background``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "hsla(25, 95%, 53%, 0.1)"
-msgstr ""
+msgstr "hsla(25, 95%, 53%, 0.1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Background of the delayed state indicator on the task, case list"
-msgstr "タスク、ケースリストの駐車状態インジケータの色"
+msgstr "タスク、ケースリストの遅延状態インジケーターの背景色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--task-state-delayed-border-color``"
-msgstr "``--task-state-failed-text-color``"
+msgstr "``--task-state-delayed-border-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "hsla(25, 95%, 53%, 0.25)"
-msgstr ""
+msgstr "hsla(25, 95%, 53%, 0.25)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Border color of the delayed state indicator on the task, case list"
-msgstr "タスク、ケースリストの駐車状態インジケータの色"
+msgstr "タスク、ケースリストの遅延状態インジケーターの枠線の色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--task-state-delayed-color``"
-msgstr "``--task-state-failed-text-color``"
+msgstr "``--task-state-delayed-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "hsla(25, 95%, 53%, 1)"
-msgstr ""
+msgstr "hsla(25, 95%, 53%, 1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Text color of the delayed state indicator on the task, case list"
-msgstr "タスク、ケースリスト上の失敗状態インジケータのテキスト色"
+msgstr "タスク、ケースリストの遅延状態インジケーターの文字色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--task-state-destroyed-background``"
-msgstr "``--task-state-done-background``"
+msgstr "``--task-state-destroyed-background``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "hsla(0, 0%, 97%, 1)"
-msgstr "hsl(195,100%,29%)"
+msgstr "hsla(0, 0%, 97%, 1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Background of the destroyed state indicator on the task, case list"
-msgstr "タスク、ケースリストの完了状態インジケータの色"
+msgstr "タスク、ケースリストの破棄状態インジケーターの背景色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--task-state-destroyed-border-color``"
-msgstr "``--task-state-failed-text-color``"
+msgstr "``--task-state-destroyed-border-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "hsla(0, 0%, 92%, 1)"
-msgstr "hsl(195,100%,29%)"
+msgstr "hsla(0, 0%, 92%, 1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Border color of the destroyed state indicator on the task, case list"
-msgstr "タスク、ケースリストの完了状態インジケータの色"
+msgstr "タスク、ケースリストの破棄状態インジケーターの枠線の色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--task-state-destroyed-color``"
-msgstr "``--task-state-failed-text-color``"
+msgstr "``--task-state-destroyed-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "hsla(0, 0%, 46%, 1)"
-msgstr ""
+msgstr "hsla(0, 0%, 46%, 1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Text color of the destroyed state indicator on the task, case list"
-msgstr "タスク、ケースリスト上の失敗状態インジケータのテキスト色"
+msgstr "タスク、ケースリストの破棄状態インジケーターの文字色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--portal-pill-btn-border-radius``"
-msgstr ""
+msgstr "``--portal-pill-btn-border-radius``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "100px"
-msgstr ""
+msgstr "100px"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Border radius of pill-shaped buttons and of the task, case state indicator"
-msgstr ""
+msgstr "ピル型ボタン、およびタスク、ケースの状態インジケーターの境界線の半径"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--portal-icon-size-lg``"
-msgstr "``Portal UI Components``"
+msgstr "``--portal-icon-size-lg``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "1.4286rem"
-msgstr ""
+msgstr "1.4286rem"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Icon size inside a round icon button (for example the three-dots action button)"
-msgstr ""
+msgstr "円形アイコンボタン内のアイコンサイズ（例：3点アクションボタン）"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--portal-icon-size-xl``"
-msgstr "``Portal UI Components``"
+msgstr "``--portal-icon-size-xl``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "1.8571rem"
-msgstr ""
+msgstr "1.8571rem"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Icon size inside a round icon button on a page toolbar"
-msgstr ""
+msgstr "ページツールバー上の円形アイコンボタン内のアイコンサイズ"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--portal-icon-btn-size-sm``"
-msgstr ""
+msgstr "``--portal-icon-btn-size-sm``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "2.1429rem"
-msgstr ""
+msgstr "2.1429rem"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Diameter of a round icon button rendered inside a data table"
-msgstr ""
+msgstr "データテーブル内に表示される円形アイコンボタンの直径"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--portal-icon-btn-size-md``"
-msgstr ""
+msgstr "``--portal-icon-btn-size-md``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "2.7143rem"
-msgstr ""
+msgstr "2.7143rem"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Default diameter of a round icon button"
-msgstr ""
+msgstr "円形アイコンボタンのデフォルトの直径"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--portal-icon-btn-size-lg``"
-msgstr ""
+msgstr "``--portal-icon-btn-size-lg``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "3.0714rem"
-msgstr ""
+msgstr "3.0714rem"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Diameter of a round icon button on a page toolbar"
-msgstr ""
+msgstr "ページツールバー上の円形アイコンボタンの直径"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--portal-icon-btn-border-width``"
-msgstr ""
+msgstr "``--portal-icon-btn-border-width``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "1px"
-msgstr ""
+msgstr "1px"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Border width of round and pill-shaped buttons"
-msgstr ""
+msgstr "円形およびピル型ボタンの枠線の太さ"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--no-item-icon-font-size``"
-msgstr ""
+msgstr "``--no-item-icon-font-size``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "3.7857rem"
-msgstr ""
+msgstr "3.7857rem"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Icon size of the empty-state panel shown when a list or widget has no items"
-msgstr ""
+msgstr "リストまたはウィジェットに項目がない場合に表示される空状態パネルのアイコンサイズ"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--no-item-icon-container-size``"
-msgstr ""
+msgstr "``--no-item-icon-container-size``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "7.1429rem"
-msgstr ""
+msgstr "7.1429rem"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Diameter of the circle behind the empty-state icon"
-msgstr ""
+msgstr "空状態アイコンの背後にある円の直径"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--no-item-header-font-size``"
-msgstr ""
+msgstr "``--no-item-header-font-size``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "var(--widget-header-font-size)"
-msgstr ""
+msgstr "var(--widget-header-font-size)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Font size of the empty-state title"
-msgstr ""
+msgstr "空状態のタイトルのフォントサイズ"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--no-item-detail-font-size``"
-msgstr ""
+msgstr "``--no-item-detail-font-size``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "var(--default-font-size)"
-msgstr ""
+msgstr "var(--default-font-size)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Font size of the empty-state description"
-msgstr ""
+msgstr "空状態の説明のフォントサイズ"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--no-item-icon-color``"
-msgstr "``--task-normal-priority-color``"
+msgstr "``--no-item-icon-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "hsl(0, 0%, 75%)"
-msgstr "hsl(195,100%,29%)"
+msgstr "hsl(0, 0%, 75%)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Color of the empty-state icon"
-msgstr ""
+msgstr "空状態アイコンの色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--no-item-icon-background-color``"
-msgstr "``backgroundColors``"
+msgstr "``--no-item-icon-background-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "hsl(0, 0%, 97.3%)"
-msgstr "hsl(195,100%,29%)"
+msgstr "hsl(0, 0%, 97.3%)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Background color of the circle behind the empty-state icon"
-msgstr ""
+msgstr "空状態アイコンの背後にある円の背景色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--portal-detail-card-radius``"
-msgstr ""
+msgstr "``--portal-detail-card-radius``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "1.0714rem"
-msgstr ""
+msgstr "1.0714rem"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Border radius of the cards on the Task Details and Case Details pages"
-msgstr ""
+msgstr "タスクの詳細ページおよびケースの詳細ページのカードの境界線の半径"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--portal-detail-card-gap``"
-msgstr "``portal.iar``"
+msgstr "``--portal-detail-card-gap``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Gap between the cards on the Task Details and Case Details pages"
-msgstr ""
+msgstr "タスクの詳細ページおよびケースの詳細ページのカード間の間隔"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--portal-detail-card-padding``"
-msgstr ""
+msgstr "``--portal-detail-card-padding``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Inner padding of a card on the Task Details and Case Details pages"
-msgstr ""
+msgstr "タスクの詳細ページおよびケースの詳細ページのカードの内側の余白"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--portal-detail-subcard-padding``"
-msgstr ""
+msgstr "``--portal-detail-subcard-padding``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Inner padding of a sub-card on the Task Details and Case Details pages"
-msgstr ""
+msgstr "タスクの詳細ページおよびケースの詳細ページのサブカードの内側の余白"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--portal-detail-grid-inset``"
-msgstr "``PortalPermissions``"
+msgstr "``--portal-detail-grid-inset``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "10px"
-msgstr ""
+msgstr "10px"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Outer margin of the content grid on the Task Details and Case Details pages"
-msgstr ""
+msgstr "タスクの詳細ページおよびケースの詳細ページのコンテンツグリッドの外側の余白"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "``--portal-action-menu-radius``"
-msgstr "``portal-components.iar``"
+msgstr "``--portal-action-menu-radius``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "Border radius of the action popup menu of a task or case"
-msgstr ""
+msgstr "タスクまたはケースのアクションポップアップメニューの境界線の半径"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:96
 msgid "You can customize the Portal styles in ``custom.css``."
@@ -3846,7 +3797,7 @@ msgstr "edit-variable-portal-task-details"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:32
 msgid "The variable's value is a wrapper object: ``version`` identifies the format of the JSON collection itself, and ``items`` holds the list of task detail layouts. This wrapper-level ``version`` is what Portal reads (and migrates) on import - individual layouts do not carry their own ``version`` field."
-msgstr ""
+msgstr "この変数の値はラッパーオブジェクトです： ``version`` は JSON コレクション自体の形式を示し、``items`` はタスクの詳細のレイアウトのリストを保持します。この Portal がインポート時に読み取る（および移行する）のは、このラッパーレベルの ``version`` であり、個々のレイアウトはそれぞれの ``version`` フィールドを持ちません。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:36
 msgid "Default configuration includes 3 widgets."
@@ -3873,24 +3824,20 @@ msgid "``type``: Supported values: ``information``, ``document``, ``history``, `
 msgstr "``type``: サポートされる値: ``information``、``document``、``history``、``custom``"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:107
-#, fuzzy
 msgid "``x``: column index. HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``"
-msgstr "``x``：HTML DOM スタイル ``left`` は ``x / 12 * 100%`` で計算されます。"
+msgstr "``x``: column index. HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:109
-#, fuzzy
 msgid "``y``: row index. HTML DOM Style ``top`` will be calculated by formula ``y * 20px``"
-msgstr "``y``：HTML DOM スタイル ``top`` は ``y / 12 * 100%`` で計算されます。"
+msgstr "``y``: row index. HTML DOM Style ``top`` will be calculated by formula ``y * 20px``"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:111
-#, fuzzy
 msgid "``w``: width in columns. HTML DOM Style ``width`` will be calculated by formula ``w / 12 * 100%``"
-msgstr "``y``：HTML DOM スタイル ``top`` は ``y / 12 * 100%`` で計算されます。"
+msgstr "``w``: width in columns. HTML DOM Style ``width`` will be calculated by formula ``w / 12 * 100%``"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:113
-#, fuzzy
 msgid "``h``: height in rows. HTML DOM Style ``height`` will be calculated by formula ``h * 20px``"
-msgstr "``h``：HTML DOM スタイル ``height`` は ``60 * h + 20 * (h - 1)`` で計算されます。"
+msgstr "``h``: height in rows. HTML DOM Style ``height`` will be calculated by formula ``h * 20px``"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:118
 msgid "``styleClass`` (optional): add CSS Classes to HTML DOM"
@@ -4406,7 +4353,7 @@ msgstr "**のPortal.Dashboard** 変数を使用してカスタムダッシュボ
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:13
 msgid "The variable's value is a wrapper object: ``version`` identifies the format of the JSON collection itself, and ``items`` holds the list of dashboards. This wrapper-level ``version`` is what Portal reads (and migrates) on import - individual dashboards do not carry their own ``version`` field."
-msgstr ""
+msgstr "この変数の値はラッパーオブジェクトです： ``version`` は JSON コレクション自体の形式を示し、``items`` はダッシュボードのリストを保持します。この Portal がインポート時に読み取る（および移行する）のは、このラッパーレベルの ``version`` であり、個々のダッシュボードはそれぞれの ``version`` フィールドを持ちません。"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:15
 msgid "Below is a comprehensive JSON example configuring a dashboard with a task widget:"
@@ -13239,7 +13186,7 @@ msgstr "ファイル名： ``variables.Portal.ThirdPartyApplications.json``"
 
 #: ../../source/portal-developer-guide/settings/index.rst:467
 msgid "The file's value is a wrapper object: ``version`` identifies the format of the JSON collection itself, and ``items`` holds the list of third-party applications. This wrapper-level ``version`` is what Portal reads (and migrates) on import - individual applications do not carry their own ``version`` field."
-msgstr ""
+msgstr "このファイルの値はラッパーオブジェクトです： ``version`` は JSON コレクション自体の形式を示し、``items`` はサードパーティアプリケーションのリストを保持します。この Portal がインポート時に読み取る（および移行する）のは、このラッパーレベルの ``version`` であり、個々のアプリケーションはそれぞれの ``version`` フィールドを持ちません。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:490
 msgid "``id``: the identification number of a third-party application. It is an auto-generated UUID."
@@ -13280,7 +13227,7 @@ msgstr "ファイル名：``variables.Portal.CustomStatistic.json``"
 #: ../../source/portal-developer-guide/settings/index.rst:508
 #, python-brace-format
 msgid "The file's value is a wrapper object: ``{\"version\": ..., \"items\": [...]}``, where ``version`` identifies the format of the JSON collection itself and ``items`` holds the list of charts below. This wrapper-level ``version`` is what Portal reads (and migrates) on import - individual charts do not carry their own ``version`` field. Data model of a single chart entry in ``items``:"
-msgstr ""
+msgstr "このファイルの値はラッパーオブジェクトです： ``{\"version\": ..., \"items\": [...]}``。ここで ``version`` は JSON コレクション自体の形式を示し、``items`` は以下のチャートのリストを保持します。この Portal がインポート時に読み取る（および移行する）のは、このラッパーレベルの ``version`` であり、個々のチャートはそれぞれの ``version`` フィールドを持ちません。``items`` 内の単一のチャートエントリのデータモデル："
 
 #: ../../source/portal-developer-guide/settings/index.rst:652
 msgid "``id``: ID of the widget."
@@ -13460,7 +13407,7 @@ msgstr "ファイル名： ``variables.Portal.Processes.ExternalLinks.json``"
 
 #: ../../source/portal-developer-guide/settings/index.rst:741
 msgid "The file's value is a wrapper object: ``version`` identifies the format of the JSON collection itself, and ``items`` holds the list of external links. This wrapper-level ``version`` is what Portal reads (and migrates) on import - individual links do not carry their own ``version`` field."
-msgstr ""
+msgstr "このファイルの値はラッパーオブジェクトです： ``version`` は JSON コレクション自体の形式を示し、``items`` は外部リンクのリストを保持します。この Portal がインポート時に読み取る（および移行する）のは、このラッパーレベルの ``version`` であり、個々のリンクはそれぞれの ``version`` フィールドを持ちません。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:769
 msgid "``id``: the identification of a link, auto-generated by UUID"
@@ -13645,7 +13592,7 @@ msgstr "設定方法"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:95
 msgid "Add the following JSON configuration to the ``Portal.CustomMenuItems`` variable. The variable's value is a wrapper object: ``version`` identifies the format of the JSON collection itself, and ``items`` holds the list of menu items - this wrapper-level ``version`` is what Portal reads (and migrates) on import, individual menu items do not carry their own ``version`` field."
-msgstr ""
+msgstr "以下の JSON 設定を ``Portal.CustomMenuItems`` 変数に追加します。この変数の値はラッパーオブジェクトです： ``version`` は JSON コレクション自体の形式を示し、``items`` はメニュー項目のリストを保持します。この Portal がインポート時に読み取る（および移行する）のは、このラッパーレベルの ``version`` であり、個々のメニュー項目はそれぞれの ``version`` フィールドを持ちません。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:124
 #: ../../source/portal-developer-guide/static-page/index.rst:244
@@ -13774,7 +13721,7 @@ msgstr "静的ページはユーザーメニューのドロップダウンに表
 
 #: ../../source/portal-developer-guide/static-page/index.rst:196
 msgid "The variable's value is a wrapper object: ``version`` identifies the format of the JSON collection itself, and ``items`` holds the list of menu items - this wrapper-level ``version`` is what Portal reads (and migrates) on import, individual menu items do not carry their own ``version`` field."
-msgstr ""
+msgstr "この変数の値はラッパーオブジェクトです： ``version`` は JSON コレクション自体の形式を示し、``items`` はメニュー項目のリストを保持します。この Portal がインポート時に読み取る（および移行する）のは、このラッパーレベルの ``version`` であり、個々のメニュー項目はそれぞれの ``version`` フィールドを持ちません。"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:239
 #: ../../source/portal-developer-guide/usermenu/index.rst:81
@@ -13831,9 +13778,8 @@ msgstr "静的ページへの相対パス"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:267
 #: ../../source/portal-developer-guide/usermenu/index.rst:132
-#, fuzzy
 msgid "Menu item icon"
-msgstr "ユーザーメニューの統合"
+msgstr "メニュー項目のアイコン"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:275
 msgid "URL Conversion and Access"
