@@ -14,7 +14,12 @@
         readOnly="#{data.readOnly}" />
         <script type="text/javascript">
             function focusFirstVisibleElementInPanel(widgetVar, selector) {
-              var panel = PF(widgetVar).jq;  
+              var widget = widgetVar ? PF(widgetVar) : null;
+              if (!widget) {
+                return;
+              }
+              var panel = widget.jq;
+
               var first;
               var destructionWords = ['remove', 'destroy', 'delete', 'confirmation', 'confirm', 'deletion', 'reset'];
               

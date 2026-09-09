@@ -959,10 +959,6 @@ body .ui-divider.ui-divider-horizontal::before {
   margin-bottom: 0;
 }
 
-body .ui-button.dashboard-tasks__start-button > .ui-button-icon-left {
-  margin-top: -6px !important;
-}
-
 body .ui-button.dashboard-tasks__start-button,
 body .ui-button.dashboard__add-widget-button {
   border-radius: 100px;
@@ -971,30 +967,52 @@ body .ui-button.dashboard__add-widget-button {
   color: var(--accent-btn-text);
   display: flex !important;
   align-items: center !important;
+  justify-content: center;
 }
 
 body .ui-button.dashboard-tasks__start-button {
   height: 2.143rem !important;
+  max-width: 100%;
+  min-width: 0;
+}
+
+body .ui-button.dashboard-tasks__start-button > span.ui-button-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+body .ui-button.dashboard-tasks__start-button > .ui-button-icon-left {
+  flex: 0 0 auto;
 }
 
 body .dashboard-tasks__start-container {
   width: 100%;
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   container-type: inline-size;
 }
 
-@container (max-width: 5rem) {
-    body .ui-button.dashboard-tasks__start-button > span.ui-button-text {
-      display: none;
+@container (max-width: 6rem) {
+    body .ui-button.dashboard-tasks__start-button {
+      box-sizing: border-box;
+      width: 2.143rem;
+      min-width: 2.143rem;
+      padding: 0;
+      border-radius: 50%;
+      height: 2.143rem !important;
     }
 
-    body .ui-button.dashboard-tasks__start-button {
-      width: 100%;
+    body .ui-button.dashboard-tasks__start-button > span.ui-button-text {
+      padding: 0;
+      text-indent: -9999999px;
+      overflow: hidden;
     }
 
     body .ui-button.dashboard-tasks__start-button > .ui-button-icon-left {
-      margin: 0.5rem;
+      position: static;
+      margin: 0 !important;
     }
 }
 
@@ -2533,6 +2551,7 @@ body .welcome-config__mode-selection.ui-selectonebutton .ui-button:not(.ui-state
 
 .dashboard-widget-filter__filter-panel > div:not(.and-text-panel) {
   margin-right: 0.5em;
+  margin-bottom: 0.5em;
   display: flex;
   align-items: flex-start;
   min-width: 20%;
@@ -2636,7 +2655,6 @@ body .welcome-config__mode-selection.ui-selectonebutton .ui-button:not(.ui-state
   border-radius: 100px;
   background-color: var(--widget-filter-add-condition-background-color);
   color: var(--widget-filter-add-condition-text-color);
-  margin: 0.5rem;
 }
 
 .dashboard-widget-filter__main-panel .add-condition-button.ui-button:hover {
@@ -2977,9 +2995,8 @@ body.dark .menu-type-static {
 
 body .actions-menu-panel {
   width: 16.143rem !important;
-  height: 15.714rem !important;
+  max-height: 15.714rem !important;
   overflow: hidden;
-  max-height: fit-content;
   right: auto !important;
 }
 
