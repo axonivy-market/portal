@@ -1622,7 +1622,7 @@ body .ui-widget.new-widget-dialog__introduction {
   gap: 10px;
 }
 
-body .filter-dialog__save-input.ui-inputfield {
+body .filter-dialog__save-input.ui-inputfield:not(.ui-state-error) {
   flex: 1 1 auto;
   min-width: 0;
   background-color: var(--widget-filter-save-input-background-color);
