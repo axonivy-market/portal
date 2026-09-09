@@ -53,25 +53,6 @@
   --announcement-border-color: var(--ivy-tertinary-color-red-medium);
   --announcement-color: var(--primary-dark-color);
 
-  /* Process chain */
-  --process-chain-menu-color: var(--primary-color);
-  --line-waiting-step-background-color: var(--ivy-primary-color-grey-light);
-  --circle-step-number-color: var(--ivy-portal-blue-dark);
-  --circle-horizontal-step-number-container-border-top-color: var(--primary-color);
-  --circle-horizontal-step-number-container-border-top: var(--ivy-primary-color-grey-light);
-  --circle-horizontal-last-step-number-container-border-top: var(--primary-color);
-  --circle-horizontal-waiting-step-number-container-background-color: transparent;
-  --circle-step-container-border: var(--ivy-portal-color-grey-200);
-  --circle-current-step-background-color: var(--ivy-portal-blue-pale);
-  --circle-current-step-border-color: var(--ivy-portal-blue-muted);
-  --circle-vertical-step-number-container-border: var(--ivy-primary-color-grey-light);
-  --circle-vertical-step-container-background-color: transparent;
-  --stages-chain-current-icon-color: var(--primary-color);
-  --current-line-horizontal-step-title-font-weight: bold;
-  --current-line-vertical-step-title-font-weight: bold;
-  --current-circle-horizontal-step-title-font-weight: bold;
-  --current-circle-vertical-step-title-font-weight: bold;
-
   /* Statistic widget */
   --statistic-filter-accordion-panel-border: var(--ivy-primary-color-grey-light);
   --chart-container-background-color: #e6f1f5;
@@ -297,10 +278,6 @@
   --notification-content-action-hover-background-color: var(--ivy-primary-color-black);
   /* Login */
   --login-panel-header-background-color: var(--ivy-primary-color-grey-pale);
-  /* Stages breadcrumb */
-  --stages-chain-visited-color: var(--ivy-primary-color-grey-dark);
-  --stages-chain-waiting-color: var(--ivy-primary-color-grey-light);
-  --stages-chain-process-flow-visible-background-color: var(--ivy-primary-color-grey-light);
   /* Asterik Icon */
   --asterik-icon-color: #f03369;
   /* Error Page */

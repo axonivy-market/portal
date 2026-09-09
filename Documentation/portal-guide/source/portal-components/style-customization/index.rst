@@ -30,12 +30,12 @@ How to customize
 
       You have to place your css file in a ``<h:outputStylesheet />`` below the component to override defined styles.
 
-2. Within this file you can override default css variables of components. For example, the \--process-chain-item-background-color:
+2. Within this file you can override default css variables of components. For example, the \--process-chain-menu-color:
 
    .. code-block:: css
 
       :root {
-         --process-chain-item-background-color: lightblue;
+         --process-chain-menu-color: lightblue;
       }
 
 List of css variables that you can override

@@ -499,90 +499,6 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
 .ui-widget.ui-button.context-button.ui-state-focus {
   background-color: var(--context-button-state-hover-or-focus-background-color); }
 
-/*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
-.stages-chain .current i {
-  color: var(--stages-chain-current-icon-color); }
-
-/*Style for stages process chain -----------------------------------------------------------------------------------*/
-.circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
-  background-color: var(--process-chain-menu-color);
-  border: solid 2px var(--circle-step-container-border); }
-
-.circle-process-chain .circle-vertical-process-step.visited .circle-vertical-step-container span:before {
-  border-color: var(--process-chain-menu-color); }
-
-.circle-process-chain .circle-vertical-process-step.current .circle-vertical-step-title {
-  font-weight: var(--current-circle-vertical-step-title-font-weight); }
-
-.circle-process-chain .circle-vertical-process-step.waiting .circle-vertical-step-container {
-  border: solid 2px var(--process-chain-menu-color);
-  background-color: var(--circle-vertical-step-container-background-color); }
-
-.circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
-  background-color: var(--process-chain-menu-color);
-  border: solid 2px var(--circle-step-container-border); }
-
-.circle-process-chain .circle-vertical-process-step:not(:last-child) .circle-vertical-step-container .step-number-container:after {
-  border-left: 3px solid var(--circle-vertical-step-number-container-border); }
-
-.circle-process-chain .circle-horizontal-process-step.current .circle-horizontal-step-title {
-  font-weight: var(--current-circle-horizontal-step-title-font-weight); }
-
-.line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
-  background-color: var(--process-chain-menu-color); }
-
-.line-process-chain .line-horizontal-process-step.current .line-horizontal-step-title {
-  font-weight: var(--current-line-horizontal-step-title-font-weight); }
-
-.line-process-chain .line-horizontal-process-step.hide-left-steps {
-  background: repeating-linear-gradient(90deg, var(--process-chain-menu-color), var(--process-chain-menu-color) 10px, var(--body-background-color) 10px, var(--body-background-color) 20px); }
-
-.line-process-chain .line-horizontal-process-step.hide-right-steps {
-  background: repeating-linear-gradient(90deg, #e0e0e0, #e0e0e0 10px, var(--body-background-color) 10px, var(--body-background-color) 20px); }
-
-.line-process-chain .line-vertical-process-step .line-vertical-step-container {
-  background-color: var(--process-chain-menu-color); }
-
-.line-process-chain .line-vertical-process-step.hide-left-steps {
-  background: repeating-linear-gradient(180deg, var(--process-chain-menu-color), var(--process-chain-menu-color) 10px, var(--body-background-color) 10px, var(--body-background-color) 20px); }
-
-.line-process-chain .line-vertical-process-step.hide-right-steps {
-  background: repeating-linear-gradient(180deg, #e0e0e0, #e0e0e0 10px, var(--body-background-color) 10px, var(--body-background-color) 20px); }
-
-.line-process-chain .line-horizontal-process-step.waiting .line-horizontal-step-container,
-.line-process-chain .line-vertical-process-step.waiting .line-vertical-step-container {
-  background-color: var(--line-waiting-step-background-color); }
-
-.line-process-chain .line-vertical-process-step.current .line-vertical-step-title {
-  font-weight: var(--current-line-vertical-step-title-font-weight); }
-
-.current .cicrle-step-container, .visited .cicrle-step-container,
-.process-chain-mobile-container .circle-horizontal-process-step {
-  color: var(--circle-step-number-color); }
-
-.circle-horizontal-step-container:not(.right-steps) .step-number-container:after {
-  border-top-color: var(--circle-horizontal-step-number-container-border-top); }
-
-.circle-horizontal-step-container:not(.last-step) .step-number-container:after {
-  border-top: 3px dashed var(--circle-horizontal-step-number-container-border-top); }
-
-.circle-horizontal-step-container.last-step .step-number-container:after {
-  border-top: 3px dashed var(--circle-horizontal-last-step-number-container-border-top); }
-
-.circle-horizontal-step-container .step-number-container:before {
-  border-top: 3px solid var(--circle-horizontal-step-number-container-border-top-color); }
-
-.circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
-  border-top: 3px solid var(--circle-horizontal-step-number-container-border-top); }
-
-.circle-horizontal-process-step.visited .circle-horizontal-step-container .step-number-container:after {
-  color: var(--circle-horizontal-step-number-container-border-top-color); }
-
-.circle-process-chain .circle-horizontal-process-step,
-.circle-process-chain .circle-vertical-process-step,
-.line-process-chain .line-vertical-process-step {
-  font-size: var(--small-font-size); }
-
 /*Style for announcement*/
 .announcement-message-customizable {
   background-color: var(--announcement-background-color);
@@ -829,10 +745,6 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 
 .task-template-content .task-actions-button:focus {
   outline: var(--task-template-action-button-focus); }
-
-/** Style for Line Horizontal  --------------------------------------*/
-.line-process-chain .line-horizontal-process-step {
-  font-size: var(--small-font-size); }
 
 .compact-process-widget .toggle-processes-link,
 .compact-toggle-tasks-link {
@@ -1090,19 +1002,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .notification-content-action-close:hover:before, .notification-content-action-close:hover:after {
   background: var(--notification-content-action-hover-background-color); }
-
-/* Stages breadcrumb -------------------*/
-.stages-chain .visited i {
-  color: var(--stages-chain-visited-color); }
-
-.stages-chain .waiting i {
-  color: var(--stages-chain-waiting-color); }
-
-.stages-chain .process-flow .flow-txt .visible {
-  background: var(--stages-chain-process-flow-visible-background-color); }
-
-.stages-chain .process-step i {
-  font-size: 1.6rem; }
 
 /* Task Action Item-----------------------*/
 .task-action-item .task-action-item-label {
