@@ -5,9 +5,14 @@ permissions:
   checks: write
   contents: write
   pull-requests: write
+  copilot-requests: write
 
 on:
   workflow_dispatch:
+    inputs:
+      model:
+        type: string
+        default: "auto"
 
 jobs:
   build:
@@ -35,9 +40,8 @@ jobs:
 
       - name: Revert PO header
         if: ${{ env.LOCALE_DIFF != '' }}
-        working-directory: Documentation/portal-guide
         run: |
-          for po in weblate/locale/*/LC_MESSAGES/*.po; do
+          for po in Documentation/portal-guide/weblate/locale/*/LC_MESSAGES/*.po; do
             if git show HEAD:"$po" > /dev/null 2>&1; then
               old_header_end=$(git show HEAD:"$po" | grep -n '^$' | head -1 | cut -d: -f1)
               new_header_end=$(grep -n '^$' "$po" | head -1 | cut -d: -f1)
@@ -54,19 +58,57 @@ jobs:
           NEW_BRANCH="weblate/update-language-files-$(date +%Y%m%d-%H%M%S)"
           echo "WEBLATE_BRANCH=$NEW_BRANCH" >> $GITHUB_ENV
 
-      - name: Create Pull Request
+      - name: Commit update PO files
         if: ${{ env.LOCALE_DIFF != '' }}
-        working-directory: .
         run: |
-          echo "committing changes:\n ${{ env.LOCALE_DIFF }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
           git config user.name "${{ github.actor }}"
           git checkout -b ${{ env.WEBLATE_BRANCH }}
           git add Documentation/portal-guide/weblate/locale/*
-          git commit -m "update PO language files"
+          git commit -m "doc: update PO language files"
+
+      - uses: actions/setup-node@v7
+        if: ${{ env.LOCALE_DIFF != '' }}
+
+      - name: Install Copilot CLI
+        if: ${{ env.LOCALE_DIFF != '' }}
+        run: npm install -g @github/copilot
+
+      - name: Translate new strings with Copilot CLI
+        if: ${{ env.LOCALE_DIFF != '' }}
+        working-directory: Documentation/portal-guide
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          copilot -p "$(cat "$GITHUB_WORKSPACE/.github/prompts/translate-po-ja.md")" \
+            --allow-all-tools --no-ask-user --model "${{ inputs.model }}"
+
+      - name: Commit translations
+        id: translations
+        if: ${{ env.LOCALE_DIFF != '' }}
+        working-directory: Documentation/portal-guide
+        run: |
+          if git diff --quiet -- weblate/locale; then
+            echo "nothing was translated"
+            exit 0
+          fi
+          if git diff -- weblate/locale | grep -qE '^[-+]msgid'; then
+            echo "::error::Copilot changed source strings, discarding its edits"
+            git checkout -- weblate/locale
+            exit 0
+          fi
+          git --no-pager diff --stat -- weblate/locale
+          git add weblate/locale
+          git commit -m "doc: auto translation using copilot cli"
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Create Pull Request
+        if: ${{ env.LOCALE_DIFF != '' }}
+        working-directory: .
+        run: |
           git push -u -f origin ${{ env.WEBLATE_BRANCH }}
           gh pr create --title ":globe_with_meridians: Update PO files for weblate"\
-            --body "Update PO files"\
+            --body "Update PO files.${{ steps.translations.outputs.committed && ' New strings were translated by Copilot CLI -- review it before accepting.' || '' }}"\
             --label "i18n,skip-changelog"\
             --base master
 
