@@ -25,12 +25,16 @@ if (document) {
     }
   }
 
+  let pendingSearchRequests = 0;
+
   function showSearchLoading() {
+    pendingSearchRequests++;
     $('#global-search-loading').removeClass('hidden');
   }
 
   function hideSearchLoading() {
-    $('#global-search-loading').addClass('hidden');
+    pendingSearchRequests = Math.max(0, pendingSearchRequests - 1);
+    $('#global-search-loading').toggleClass('hidden', pendingSearchRequests === 0);
   }
 
   $(document).ready(function () {
