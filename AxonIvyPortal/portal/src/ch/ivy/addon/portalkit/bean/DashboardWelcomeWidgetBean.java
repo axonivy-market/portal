@@ -89,6 +89,9 @@ public class DashboardWelcomeWidgetBean implements Serializable {
     if (WelcomeWidgetUtils.isObsoleteImageData(widget.getImageLocation(), widget.getId())) {
       WelcomeWidgetUtils.migrateWelcomeWidget(widget.getId(), widget.getImageType(), widget.getImageLocation());
     }
+    if (StringUtils.isBlank(widget.getImageContent())) {
+      return WelcomeWidgetUtils.findImage(widget.getImageLocation(), widget.getImageType()).orElse(null);
+    }
     ContentObject imageContent = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
     removeImageContentOfWidget(imageContent, false);
     
@@ -98,6 +101,9 @@ public class DashboardWelcomeWidgetBean implements Serializable {
   public ContentObject renderImageDarkMode() {
     if (Optional.ofNullable(widget).map(WelcomeDashboardWidget::getImageLocationDarkMode).isEmpty()) {
       return null;
+    }
+    if (StringUtils.isBlank(widget.getImageContentDarkMode())) {
+      return WelcomeWidgetUtils.findImage(widget.getImageLocationDarkMode(), widget.getImageTypeDarkMode()).orElse(null);
     }
     ContentObject imageContent = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocationDarkMode(), widget.getImageTypeDarkMode());
     removeImageContentOfWidget(imageContent, true);
