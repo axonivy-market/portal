@@ -9,7 +9,6 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
 import com.axonivy.portal.migration.dashboardfilter.migrator.JsonDashboardFilterMigrator;
 import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemplateMigrator;
@@ -166,7 +165,7 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
         }
       }
     } else {
-      entity.setVersion(DashboardFilterJsonVersion.LATEST_VERSION.getValue());
+      // Versioning now lives on the export wrapper container, not on individual entities.
       entities.add(entity);
     }
   }

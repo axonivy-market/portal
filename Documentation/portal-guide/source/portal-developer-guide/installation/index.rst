@@ -198,8 +198,13 @@ Menu Management feature.
    future version.
 
 6. Operators can be restricted globally by admins and further narrowed per field in each widget via Column Management.
-Filters using disabled operators are automatically removed. 
+Filters using disabled operators are automatically removed.
 See :ref:`Restricting Filter Fields And Operators <restricting-filter-fields-and-operators>` for details.
+
+7. Filters on a case custom field of a task widget now query only the case the filtered column refers to:
+a **Custom Case Field** column filters the task's own case, a **Custom Business Case Field** column filters the
+task's business case. Previously both were stored as ``custom_case`` and queried both cases at once, which was
+slower and could return tasks whose value matched on the other case.
 
 Migrate 13.1 To 13.2
 --------------------
@@ -551,6 +556,12 @@ Release notes
 
 This part lists all relevant changes since the last official product
 releases of Axon Ivy.
+
+Changes in 14.0.0
+-----------------
+
+- Improved the task widget query: a filter on a case custom field now queries only the case its column refers to,
+  instead of querying the task's case and business case at once.
 
 Changes in 13.2.0
 -----------------

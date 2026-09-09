@@ -36,6 +36,10 @@ How to Configure Widgets in Case Details
 -  In the Engine Cockpit, an administrator can configure widgets in the variable **Portal.CaseDetails** on the Settings page.
    |edit-variable-portal-case-details|
 
+-  The variable's value is a wrapper object: ``version`` identifies the format of the JSON collection
+   itself, and ``items`` holds the list of case detail layouts. This wrapper-level ``version`` is what
+   Portal reads (and migrates) on import - individual layouts do not carry their own ``version`` field.
+
 -  The default configuration includes five widgets:
 
    .. code-block:: javascript
@@ -45,7 +49,6 @@ How to Configure Widgets in Case Details
            "items": [
             {
                "id": "default-case-detail",
-               "version": "14.0.0",
                "widgets": [
                   {
                      "type": "information",
@@ -216,7 +219,6 @@ The following two steps are necessary to add new custom panels:
            "items": [
             {
                "id": "default-case-detail",
-               "version": "14.0.0",
                "widgets": [
                   {
                      "type": "information",
@@ -313,7 +315,6 @@ The following two steps are necessary to add new custom panels:
            "items": [
             {
                "id": "case-detail",
-               "version": "14.0.0",
                "widgets": [
                   {
                   "type": "information",
@@ -359,7 +360,6 @@ The following two steps are necessary to add new custom panels:
            "items": [
             {
                "id": "case-detail",
-               "version": "14.0.0",
                "widgets": [
                   {
                      "type": "information",

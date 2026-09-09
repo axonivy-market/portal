@@ -3,11 +3,14 @@
   "simpleName" : "ConfirmationData",
   "namespace" : "ch.ivy.addon.portalkit.test.Confirmation",
   "fields" : [ {
-    "name" : "message"
+    "name" : "message",
+    "modifiers" : [ ]
   }, {
-    "name" : "title"
+    "name" : "title",
+    "modifiers" : [ ]
   }, {
     "name" : "approved",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

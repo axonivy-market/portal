@@ -8,22 +8,27 @@
     "modifiers" : [ ]
   }, {
     "name" : "isTaskFinished",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isWorkingOnTask",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "inFrame",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "task",
     "type" : "ch.ivyteam.ivy.workflow.ITask",
     "modifiers" : [ ]
   }, {
     "name" : "canUserResumeTask",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
-    "name" : "currentPortalPage"
+    "name" : "currentPortalPage",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedTask",
     "type" : "ch.ivyteam.ivy.workflow.ITask",
@@ -35,7 +40,8 @@
     "modifiers" : [ ]
   }, {
     "name" : "relatedTaskColumnsVisibility",
-    "type" : "java.util.List<String>"
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   }, {
     "name" : "exportedFile",
     "type" : "org.primefaces.model.StreamedContent",
@@ -46,28 +52,34 @@
     "modifiers" : [ ]
   }, {
     "name" : "totalTasks",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "loopCounter",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "maxResultNumberPerQuery",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "collectedTasksForExporting",
     "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
     "modifiers" : [ ]
   }, {
     "name" : "count",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "startIndex",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "tasks",
     "type" : "List<ch.ivyteam.ivy.workflow.ITask>",
     "modifiers" : [ ]
   }, {
-    "name" : "taskUUID"
+    "name" : "taskUUID",
+    "modifiers" : [ ]
   } ]
 }

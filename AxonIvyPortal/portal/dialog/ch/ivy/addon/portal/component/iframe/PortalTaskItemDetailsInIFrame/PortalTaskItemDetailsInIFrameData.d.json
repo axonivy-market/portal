@@ -8,7 +8,8 @@
     "modifiers" : [ ]
   }, {
     "name" : "isFromTaskList",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "portalPage",
     "type" : "ch.ivy.addon.portalkit.enums.PortalPage",
@@ -19,6 +20,7 @@
     "modifiers" : [ ]
   }, {
     "name" : "isTaskStartedInDetails",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

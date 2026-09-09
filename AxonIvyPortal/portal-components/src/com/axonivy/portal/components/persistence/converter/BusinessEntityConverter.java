@@ -43,7 +43,10 @@ public final class BusinessEntityConverter {
     try {
       ObjectMapper mapper = getObjectMapper();
       JsonNode rootNode = mapper.readTree(jsonValue);
-      if (rootNode.isArray() || isListWrapper(rootNode)) {
+      // Only reject array/list-wrapper shapes when classType itself expects a single object.
+      // When classType is an array type, a JSON array root node is exactly the correct, expected
+      // shape - not an error.
+      if (!classType.isArray() && (rootNode.isArray() || JsonListWrapper.isListWrapper(rootNode))) {
         throw new PortalException(
             "Expected a single " + classType.getSimpleName() + " JSON object, but got a list/array shape.");
       }
@@ -53,13 +56,6 @@ public final class BusinessEntityConverter {
       throw new PortalException(e);
     }
   }
-
-  private static boolean isListWrapper(JsonNode node) {
-    return node.isObject()
-        && node.has(JsonListWrapper.ITEMS_FIELD_NAME)
-        && node.get(JsonListWrapper.ITEMS_FIELD_NAME).isArray();
-  }
-
 
   public static String entityToJsonValue(Object entity) {
     try {
@@ -86,7 +82,7 @@ public final class BusinessEntityConverter {
       JsonNode rootNode = mapper.readTree(jsonValue);
 
       // Canonical shape: {"version": "...", "items": [...]}
-      if (isListWrapper(rootNode)) {
+      if (JsonListWrapper.isListWrapper(rootNode)) {
         JavaType wrapperType = mapper.getTypeFactory()
             .constructParametricType(JsonListWrapper.class, classType);
         JsonListWrapper<T> wrapper = mapper.convertValue(rootNode, wrapperType);

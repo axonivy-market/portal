@@ -3,7 +3,8 @@
   "simpleName" : "TaskNoteHistoryData",
   "namespace" : "ch.ivy.addon.portal.generic.TaskNoteHistory",
   "fields" : [ {
-    "name" : "exportedFileName"
+    "name" : "exportedFileName",
+    "modifiers" : [ ]
   }, {
     "name" : "filteredNotes",
     "type" : "List<ch.ivyteam.ivy.workflow.note.Note>",

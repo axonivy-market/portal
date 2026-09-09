@@ -4,6 +4,7 @@
   "namespace" : "ch.ivy.addon.portal.generic.ai.FindCaseWidget",
   "fields" : [ {
     "name" : "caseWidget",
-    "type" : "ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget"
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget",
+    "modifiers" : [ ]
   } ]
 }

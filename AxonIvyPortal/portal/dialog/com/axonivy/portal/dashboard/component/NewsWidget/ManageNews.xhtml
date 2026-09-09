@@ -47,7 +47,7 @@
                   id="overlay-panel-input"
                   styleClass="filter-name-overlay-panel #{isShowTranslation ? 'hidden' : ''}"
                   dynamic="false" dismissable="true" showCloseIcon="true">
-                  <p:commandLink id="tranlate-link" update="@form" process="@this" partialSubmit="true"
+                  <p:commandLink styleClass="portal-link" id="tranlate-link" update="@form" process="@this" partialSubmit="true"
                     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/AutoTranslation')}"
                     actionListener="#{newsWidgetBean.resetTranslation()}"
                     disabled="#{not empty newsWidgetBean.warningText}">
@@ -103,7 +103,7 @@
     <p:commandLink id="cancel-news-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [newsWidgetBean.manageNewsDialogTitle])}"
       onclick="PF('manage-news-dialog').hide()" immediate="true" global="false" process="@none" update="@none"
-      styleClass="u-mar-right-10" />
+      styleClass="u-mar-right-10 portal-link" />
     <p:commandButton id="publish-news-button"
       value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Publish')}"
       ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Publish')} #{newsWidgetBean.manageNewsDialogTitle}"
@@ -130,7 +130,7 @@
   </ui:define>
   <ui:define name="dialogFooter">
     <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-      onclick="PF('delete-news-dialog').hide();" styleClass="u-mar-right-15" />
+      onclick="PF('delete-news-dialog').hide();" styleClass="u-mar-right-15 portal-link" />
     <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
       actionListener="#{newsWidgetBean.deleteNews()}" icon="#{visibilityBean.generateButtonIcon('ti ti-circle-minus')}"

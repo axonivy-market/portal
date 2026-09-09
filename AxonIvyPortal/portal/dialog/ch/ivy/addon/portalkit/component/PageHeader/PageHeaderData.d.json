@@ -3,6 +3,7 @@
   "simpleName" : "PageHeaderData",
   "namespace" : "ch.ivy.addon.portalkit.component.PageHeader",
   "fields" : [ {
-    "name" : "content"
+    "name" : "content",
+    "modifiers" : [ ]
   } ]
 }

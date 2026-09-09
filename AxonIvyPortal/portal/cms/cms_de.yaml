@@ -72,6 +72,9 @@ ch.ivy.addon.portalkit.ui.jsf:
   CaseDocuments:
     CaseDocumentsPageTitle: Dokumente zum Fall
   Enums:
+    ActivityState:
+      ACTIVE: Aktiv
+      INACTIVE: Inaktiv
     BasicDocumentType:
       CONTRACT: Vertrag
       DOCUMENTATION: Dokumentation
@@ -131,8 +134,18 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPACT_MODE: Kompakt-Modus
       FULL_MODE: Voller Modus
       IMAGE_MODE: Bild-Modus
+    ProjectMode:
+      MISSING: Fehlt
+      OK: OK
+      OUTDATED: Veraltet
+      TOO_NEW: Zu neu
+      TOO_OLD: Zu alt
+      UNKNOWN: Unbekannt
     ReleaseState:
+      ARCHIVED: Archiviert
+      CREATED: Erstellt
       DEPRECATED: Verworfen
+      PREPARED: Vorbereitet
       RELEASED: Veröffentlicht
     SortDirection:
       ASC: Aufsteigend sortieren
@@ -886,6 +899,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: Kein Filter gefunden
       SaveFilterDescription: Speichern Sie diese Filterbedingungen zur späteren Verwendung.
       SaveFilterNamePlaceholder: Filternamen eingeben
+      SaveFilterNameRequired: Der Filtername darf nicht leer sein.
       SaveFilterOptional: (optional)
       SetFilterHeader: Filter festlegen
       WidgetNameColumn: Widget-Name
@@ -951,9 +965,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Erweiterte Einstellungen
         ChangeImage: Bild ändern
-        DarkMode: Dunkler Modus
+        ChooseMode: Wählen Sie den Modus, den Sie konfigurieren möchten
+        DarkMode: Dunkel
         ImagePreview: Bildvorschau
-        LightMode: Heller Modus
+        LightMode: Hell
         ConfigurationHeader: Konfiguration des Willkommens-Widgets
         ChooseAFit: Wählen Sie eine Passform
         DisplayText: Anzeigetext
@@ -1005,6 +1020,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadZipFileExplanation: Wenn die Anzahl der zu exportierenden Elemente die Anzahl der Excel-Zeilen übersteigt, werden die Daten in mehrere Excel-Dateien aufgeteilt und anschließend in einer ZIP-Datei zum Herunterladen komprimiert.
     editWidget: Widget bearbeiten
     existingField: Das Feld {0} ist bereits vorhanden
+    exitEditMode: Bearbeitungsmodus verlassen
     expiryFrom: Gültig von
     expiryTo: Ablauf bis
     export:
@@ -1292,12 +1308,20 @@ ch.ivy.addon.portalkit.ui.jsf:
     startLink: Startlink
     webLinkExample: z.B. http://www.example.com
   projectInfo:
+    activityState: Aktivitätsstatus
     applicationProjectVersion: Projekte und Versionen
+    doneCases: Erledigte Fälle
     engineVersion: Engine Version
     header: Axon Ivy Versionsinformationen
     info: Info
+    lastChange: Letzte Änderung
+    mavenVersion: Maven Version
+    openCases: Offene Fälle
     portalVersion: Portal Version
     projectName: Projekt Name
+    projectsOfVersion: Projekte Version
+    releaseState: Freigabestatus
+    state: Status
     version: Version
   searchResult:
     case: Vorgang
@@ -1614,7 +1638,7 @@ Dialogs:
           Responsibles:
             Multiple: Mehrere
           ShareLinkDialog:
-            CopyLink: Link kopieren
+            CopyLink: Kopieren
             Link: Link
             LinkCopied: Link kopiert
           ToolList:

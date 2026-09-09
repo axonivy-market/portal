@@ -3,11 +3,14 @@
   "simpleName" : "RedirectToTaskDetailsPageByUUIDExampleData",
   "namespace" : "com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToTaskDetailsPageByUUIDExample",
   "fields" : [ {
-    "name" : "uuid"
+    "name" : "uuid",
+    "modifiers" : [ ]
   }, {
-    "name" : "taskLink"
+    "name" : "taskLink",
+    "modifiers" : [ ]
   }, {
     "name" : "isLinkEnable",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

@@ -8,13 +8,16 @@
     "modifiers" : [ ]
   }, {
     "name" : "totalCases",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
     "name" : "loopCounter",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "maxResultNumberPerQuery",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "collectedCasesForExporting",
     "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>",
@@ -25,6 +28,7 @@
     "modifiers" : [ ]
   }, {
     "name" : "columnsVisibility",
-    "type" : "java.util.List<String>"
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   } ]
 }

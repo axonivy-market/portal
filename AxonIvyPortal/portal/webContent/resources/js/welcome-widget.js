@@ -108,7 +108,8 @@ updatePreviewImageFit : function() {
 
   togglePreviewMode : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
-    var isDarkMode = previewDialog.find('[id $= "welcome-preview-mode-toggle_input"]').is(':checked');
+    var selectedMode = previewDialog.find('.js-preview-mode-toggle input:radio:checked').val();
+    var isDarkMode = selectedMode === 'true';
     var lightElements = previewDialog.find('.js-preview-mode--light');
     var darkElements = previewDialog.find('.js-preview-mode--dark');
     if (isDarkMode) {
@@ -117,13 +118,6 @@ updatePreviewImageFit : function() {
     } else {
       darkElements.addClass('hidden');
       lightElements.removeClass('hidden');
-    }
-    var modeLabel = previewDialog.find('.js-preview-mode-label');
-    if (modeLabel.get(0) !== undefined) {
-      var labelText = isDarkMode ? modeLabel.attr('data-label-dark') : modeLabel.attr('data-label-light');
-      if (labelText !== undefined) {
-        modeLabel.text(labelText);
-      }
     }
   },
 

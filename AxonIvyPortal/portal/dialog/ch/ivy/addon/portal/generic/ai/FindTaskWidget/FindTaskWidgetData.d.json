@@ -4,6 +4,7 @@
   "namespace" : "ch.ivy.addon.portal.generic.ai.FindTaskWidget",
   "fields" : [ {
     "name" : "taskWidget",
-    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget"
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget",
+    "modifiers" : [ ]
   } ]
 }

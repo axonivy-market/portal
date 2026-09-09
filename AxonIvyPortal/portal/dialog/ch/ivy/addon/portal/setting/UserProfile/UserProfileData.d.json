@@ -4,30 +4,40 @@
   "namespace" : "ch.ivy.addon.portal.setting.UserProfile",
   "fields" : [ {
     "name" : "language",
-    "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage"
+    "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedHomepage",
-    "type" : "ch.addon.portal.generic.userprofile.homepage.Homepage"
+    "type" : "ch.addon.portal.generic.userprofile.homepage.Homepage",
+    "modifiers" : [ ]
   }, {
     "name" : "homepages",
-    "type" : "java.util.List<ch.addon.portal.generic.userprofile.homepage.Homepage>"
+    "type" : "java.util.List<ch.addon.portal.generic.userprofile.homepage.Homepage>",
+    "modifiers" : [ ]
   }, {
-    "name" : "selectedDateFormat"
+    "name" : "selectedDateFormat",
+    "modifiers" : [ ]
   }, {
     "name" : "dateFormats",
-    "type" : "java.util.List<String>"
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   }, {
     "name" : "processModes",
-    "type" : "java.util.List<String>"
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   }, {
-    "name" : "selectedProcessMode"
+    "name" : "selectedProcessMode",
+    "modifiers" : [ ]
   }, {
-    "name" : "queryLanguage"
+    "name" : "queryLanguage",
+    "modifiers" : [ ]
   }, {
     "name" : "formatLanguages",
-    "type" : "java.util.List<jakarta.faces.model.SelectItem>"
+    "type" : "java.util.List<jakarta.faces.model.SelectItem>",
+    "modifiers" : [ ]
   }, {
     "name" : "isShortcutEnabled",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

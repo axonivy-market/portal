@@ -3,6 +3,7 @@
   "simpleName" : "StaticPageTemplateIFrameData",
   "namespace" : "ch.ivy.addon.portal.generic.iframe.StaticPageTemplateIFrame",
   "fields" : [ {
-    "name" : "url"
+    "name" : "url",
+    "modifiers" : [ ]
   } ]
 }

@@ -3,9 +3,11 @@
   "simpleName" : "PortalDashboardDetailModificationData",
   "namespace" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardDetailModification",
   "fields" : [ {
-    "name" : "dashboardId"
+    "name" : "dashboardId",
+    "modifiers" : [ ]
   }, {
     "name" : "isPublicDashboard",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

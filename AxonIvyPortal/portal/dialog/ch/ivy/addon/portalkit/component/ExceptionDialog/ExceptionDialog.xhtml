@@ -55,7 +55,7 @@
     <f:facet name="footer">
       <h:panelGroup id="exception-handler-command" styleClass="exception-handler-command" layout="block">
         <p:link onclick="PF('#{cc.attrs.widgetVar}').hide(); return false;"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" href="#" styleClass="u-mar-right-15" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" href="#" styleClass="u-mar-right-15 portal-link" />
 
         <p:commandButton id="copy-error-detail-button"
           icon="#{visibilityBean.generateButtonIcon(data.isCopied ? 'ti ti-check' : 'ti ti-copy')}"

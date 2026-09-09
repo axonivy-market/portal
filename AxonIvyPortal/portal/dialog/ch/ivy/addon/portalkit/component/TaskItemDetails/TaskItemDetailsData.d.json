@@ -3,18 +3,22 @@
   "simpleName" : "TaskItemDetailsData",
   "namespace" : "ch.ivy.addon.portalkit.component.TaskItemDetails",
   "fields" : [ {
-    "name" : "oldName"
+    "name" : "oldName",
+    "modifiers" : [ ]
   }, {
-    "name" : "changeNameNoteContent"
+    "name" : "changeNameNoteContent",
+    "modifiers" : [ ]
   }, {
     "name" : "task",
     "type" : "ch.ivyteam.ivy.workflow.ITask",
     "modifiers" : [ ]
   }, {
     "name" : "canUserResumeTask",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
-    "name" : "callbackUrl"
+    "name" : "callbackUrl",
+    "modifiers" : [ ]
   }, {
     "name" : "dataModel",
     "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel",
@@ -26,6 +30,7 @@
     "modifiers" : [ ]
   }, {
     "name" : "isHideTaskDocument",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

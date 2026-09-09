@@ -10,6 +10,8 @@ Configure custom dashboards using the **Portal.Dashboard** variable. Dashboards 
 Configuration
 -------------
 
+The variable's value is a wrapper object: ``version`` identifies the format of the JSON collection itself, and ``items`` holds the list of dashboards. This wrapper-level ``version`` is what Portal reads (and migrates) on import - individual dashboards do not carry their own ``version`` field.
+
 Below is a comprehensive JSON example configuring a dashboard with a task widget:
 
 .. code-block:: javascript
@@ -19,7 +21,6 @@ Below is a comprehensive JSON example configuring a dashboard with a task widget
      "items": [
       {
          "id": "1",
-         "version": "12.0.0",
          "templateId": "default-portal-dashboard-template",
          "titles": [
             {
@@ -118,12 +119,6 @@ Each dashboard in the JSON array supports the following properties:
         
         - Must be unique across all dashboards
         - Used for internal tracking and configuration
-
-    ``version`` (string)
-        Portal version for compatibility
-        
-        - Current version: ``"12.0.0"``
-        - Used for migration and compatibility checks
 
     ``templateId`` (string)
         Reference to predefined dashboard template

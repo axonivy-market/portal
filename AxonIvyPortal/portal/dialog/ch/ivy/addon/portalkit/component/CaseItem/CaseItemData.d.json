@@ -8,6 +8,7 @@
     "modifiers" : [ ]
   }, {
     "name" : "inFrame",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

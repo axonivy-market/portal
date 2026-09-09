@@ -37,6 +37,9 @@ public class CaseDetailsWidgetConverter implements IJsonConverter {
     if (widgets == null) {
       return;
     }
+    if (indexOfType(widgets, WidgetType.SUMMARY) >= 0) {
+      return;
+    }
     widgets.forEach(CaseDetailsWidgetConverter::rescaleLayout);
     splitInformationWidget(widgets);
   }

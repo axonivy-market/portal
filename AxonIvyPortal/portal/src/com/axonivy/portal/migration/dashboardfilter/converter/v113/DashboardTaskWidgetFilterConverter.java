@@ -146,11 +146,9 @@ public class DashboardTaskWidgetFilterConverter implements IJsonConverter {
       return;
     }
 
-    filters.elements().forEachRemaining(filter -> {
-      if (filter.get("field").asText().contentEquals(field)) {
-        return;
-      }
-    });
+    if (hasFilterForField(filters, field)) {
+      return;
+    }
 
     DashboardColumnType type = dashboardColumnType == DashboardColumnType.STANDARD ? DashboardColumnType.STANDARD
         : dashboardColumnType;
@@ -174,11 +172,9 @@ public class DashboardTaskWidgetFilterConverter implements IJsonConverter {
     }
 
     // If the new complex filters has filter for the same field, skip migrate
-    filters.elements().forEachRemaining(filter -> {
-      if (filter.get("field").asText().contentEquals(field)) {
-        return;
-      }
-    });
+    if (hasFilterForField(filters, field)) {
+      return;
+    }
 
     DashboardColumnType type = dashboardColumnType == DashboardColumnType.STANDARD ? DashboardColumnType.STANDARD
         : dashboardColumnType;
@@ -197,11 +193,9 @@ public class DashboardTaskWidgetFilterConverter implements IJsonConverter {
     }
 
     // If the new complex filters has filter for the same field, skip migrate
-    filters.elements().forEachRemaining(filter -> {
-      if (filter.get("field").asText().contentEquals(field)) {
-        return;
-      }
-    });
+    if (hasFilterForField(filters, field)) {
+      return;
+    }
 
     ObjectNode newFilterNode = filters.addObject();
     newFilterNode.set("field", new TextNode(field));
@@ -227,11 +221,9 @@ public class DashboardTaskWidgetFilterConverter implements IJsonConverter {
     }
 
     // If the new complex filters has filter for the same field, skip migrate
-    filters.elements().forEachRemaining(filter -> {
-      if (filter.get("field").asText().contentEquals(field)) {
-        return;
-      }
-    });
+    if (hasFilterForField(filters, field)) {
+      return;
+    }
 
     DashboardColumnType type = isStandardField ? DashboardColumnType.STANDARD : DashboardColumnType.CUSTOM;
     ObjectNode newFilterNode = filters.addObject();
@@ -251,5 +243,18 @@ public class DashboardTaskWidgetFilterConverter implements IJsonConverter {
     convertDateFilters(filters, filterFrom, filterTo, field, type);
   }
 
-
+  /**
+   * The previous guard used {@code filters.elements().forEachRemaining(filter -> { ...; return; })},
+   * whose {@code return} only exits that lambda invocation - it never actually stopped a duplicate
+   * filter from being added afterwards. This actually reports whether a filter for the given field
+   * already exists, so callers can skip adding one.
+   */
+  private boolean hasFilterForField(ArrayNode filters, String field) {
+    for (JsonNode filter : filters) {
+      if (filter.get("field") != null && filter.get("field").asText().contentEquals(field)) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

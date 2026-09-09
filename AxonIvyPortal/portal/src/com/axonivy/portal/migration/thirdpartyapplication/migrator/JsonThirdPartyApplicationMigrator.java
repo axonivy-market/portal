@@ -45,13 +45,16 @@ public class JsonThirdPartyApplicationMigrator {
   }
 
   public JsonNode migrate() {
+    if (JsonListWrapper.isListWrapper(node)) {
+      // Canonical shape: {"version": "...", "items": [...]}. Checked before the legacy
+      // dynamic-root-key heuristic below, since the wrapper's own "version" field would
+      // otherwise be treated as a single application. Once wrapped, the wrapper's own version
+      // is the sole gate - per-item version is never read again and items are not re-run
+      // through the per-item converter chain.
+      return node;
+    }
     if (node.isArray()) {
       node.elements().forEachRemaining(application -> migrate(application));
-    } else if (isListWrapper(node)) {
-      // Canonical shape: {"version": "...", "items": [...]}. Checked before the
-      // legacy dynamic-root-key heuristic below, since the wrapper's own
-      // "version" field would otherwise be treated as a single application.
-      node.get(JsonListWrapper.ITEMS_FIELD_NAME).elements().forEachRemaining(application -> migrate(application));
     } else if (node.isObject()) {
       if (node.fieldNames().hasNext()) {
         String firstField = node.fieldNames().next();
@@ -68,12 +71,6 @@ public class JsonThirdPartyApplicationMigrator {
       // else: empty object {} — nothing to migrate
     }
     return node;
-  }
-
-  private static boolean isListWrapper(JsonNode node) {
-    return node.isObject()
-        && node.has(JsonListWrapper.ITEMS_FIELD_NAME)
-        && node.get(JsonListWrapper.ITEMS_FIELD_NAME).isArray();
   }
 
   private void migrate(JsonNode application) {

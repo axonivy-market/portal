@@ -4,9 +4,11 @@
   "namespace" : "com.axonivy.portal.userexamples.ExampleHomePage",
   "fields" : [ {
     "name" : "process",
-    "type" : "com.axonivy.portal.userexamples.dto.UserProcess"
+    "type" : "com.axonivy.portal.userexamples.dto.UserProcess",
+    "modifiers" : [ ]
   }, {
     "name" : "state",
-    "type" : "com.axonivy.portal.userexamples.enums.RequestState"
+    "type" : "com.axonivy.portal.userexamples.enums.RequestState",
+    "modifiers" : [ ]
   } ]
 }

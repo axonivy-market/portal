@@ -7,38 +7,87 @@
 </cc:interface>
 
 <cc:implementation>
-  <div id="#{cc.clientId}" class="ui-g project-version-container">
-    <div class="ui-g-3 ui-sm-6 pl-0">
-      <h:outputText id="engine-version-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/engineVersion')}:" />
-    </div>
-    <div class="ui-g-9 ui-sm-6 text-right pl-0">
-      <h:outputText id="engine-version" value="#{projectVersionBean.engineVersion}" />
-    </div>
-    <div class="ui-g-3 ui-sm-6 pl-0">
-      <h:outputText id="portal-version-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/portalVersion')}:" />
-    </div>
-    <div class="ui-g-9 ui-sm-6 text-right">
-      <h:outputText id="portal-version" value="#{projectVersionBean.portalVersion}" />
+  <div id="#{cc.clientId}" class="project-version-container">
+    <div class="project-info-summary">
+      <div class="ui-g">
+        <div class="ui-g-3 ui-sm-6 pl-0">
+          <h:outputText id="engine-version-label" styleClass="project-info-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/engineVersion')}" />
+        </div>
+        <div class="ui-g-9 ui-sm-6 text-right pl-0">
+          <h:outputText id="engine-version" value="#{projectVersionBean.engineVersion}" />
+        </div>
+        <div class="ui-g-3 ui-sm-6 pl-0">
+          <h:outputText id="portal-version-label" styleClass="project-info-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/portalVersion')}" />
+        </div>
+        <div class="ui-g-9 ui-sm-6 text-right">
+          <h:outputText id="portal-version" value="#{projectVersionBean.portalVersion}" />
+        </div>
+      </div>
     </div>
 
-    <h:panelGroup rendered="#{not empty projectVersionBean.customersProjects}">
-      <ui:repeat id="application-list" value="#{projectVersionBean.customersProjects.entrySet().toArray()}" var="entry">
-        <div class="ui-g-12 pl-0">
-          <p:dataTable cellNavigation="false" id="application-project-version-table" value="#{entry.value}" var="pmv" styleClass="project-version-table"
-            reflow="true" lazy="false">
-            <f:facet name="header">
-              <h:outputText id="application-name" value="#{entry.key}" />
-            </f:facet>
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/projectName')}">
+    <ui:repeat id="application-list" value="#{projectVersionBean.applications}" var="appInfo">
+      <h:panelGroup layout="block" id="application-panel" styleClass="project-info-app">
+        <h3 id="application-name" class="project-info-card__title">
+          <h:outputText value="#{appInfo.name}" />
+        </h3>
+
+        <p:dataTable cellNavigation="false" id="application-version-table" value="#{appInfo.versions}" var="ver"
+          styleClass="project-info-table" rowKey="#{ver.version()}" selectionMode="single" rowHover="true"
+          rowStyleClass="#{ver eq appInfo.selectedVersion ? 'project-info-row--selected' : ''}"
+          reflow="true" lazy="false">
+          <p:ajax event="rowSelect" listener="#{projectVersionBean.selectVersion}" update="@(#project-version)" />
+          <f:attribute name="appInfo" value="#{appInfo}" />
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}" width="10%">
+            <h:outputText id="application-version" value="#{ver.version()}" />
+          </p:column>
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/releaseState')}" width="20%">
+            <span class="project-info-status project-info-status--#{projectVersionBean.getReleaseStateStyle(ver)}">
+              <span class="pi #{projectVersionBean.getReleaseStateIcon(ver)}" aria-hidden="true" />
+              <h:outputText id="release-state" value="#{projectVersionBean.translateReleaseState(ver.state().releaseState())}" />
+            </span>
+          </p:column>
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/activityState')}" width="20%">
+            <span class="project-info-status project-info-status--#{projectVersionBean.getActivityStateStyle(ver)}">
+              <span class="pi #{projectVersionBean.getActivityStateIcon(ver)}" aria-hidden="true" />
+              <h:outputText id="activity-state" value="#{projectVersionBean.translateActivityState(ver.state().activityState())}" />
+            </span>
+          </p:column>
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/openCases')}" width="15%">
+            <h:outputText id="open-cases" value="#{projectVersionBean.getOpenCases(ver)}" />
+          </p:column>
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/doneCases')}" width="15%">
+            <h:outputText id="done-cases" value="#{projectVersionBean.getDoneCases(ver)}" />
+          </p:column>
+        </p:dataTable>
+
+        <h:panelGroup layout="block" styleClass="project-info-projects" rendered="#{appInfo.selectedVersion ne null}">
+          <h4 class="project-info-card__subtitle">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/projectsOfVersion')}" />
+            <h:outputText value=" #{appInfo.selectedVersion.version()}" />
+          </h4>
+          <p:dataTable cellNavigation="false" id="application-project-table" value="#{appInfo.projects}" var="pmv"
+            styleClass="project-info-table" reflow="true" lazy="false">
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/projectName')}" width="35%">
               <h:outputText id="project-name" value="#{pmv.name()}" />
             </p:column>
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}" styleClass="project-version" >
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/state')}" width="15%">
+              <span class="project-info-status project-info-status--#{projectVersionBean.getProjectModeStyle(pmv)}">
+                <span class="pi #{projectVersionBean.getProjectModeIcon(pmv)}" aria-hidden="true" />
+                <h:outputText id="project-state" value="#{projectVersionBean.translateProjectMode(pmv.state().mode())}" />
+              </span>
+            </p:column>
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/mavenVersion')}" width="20%">
               <h:outputText id="project-version" value="#{pmv.mavenCoordinates().version()}" />
             </p:column>
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/lastChange')}" width="20%">
+              <h:outputText id="project-last-change" value="#{pmv.lastChangeDate}">
+                <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}" />
+              </h:outputText>
+            </p:column>
           </p:dataTable>
-        </div>
-      </ui:repeat>
-    </h:panelGroup>
+        </h:panelGroup>
+      </h:panelGroup>
+    </ui:repeat>
   </div>
 </cc:implementation>
 </html>

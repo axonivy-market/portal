@@ -4,9 +4,11 @@
   "namespace" : "com.axonivy.portal.components.examples.ProcessChainExample",
   "fields" : [ {
     "name" : "actualCurrentIndex",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "steps",
-    "type" : "java.util.List<String>"
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   } ]
 }

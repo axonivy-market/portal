@@ -119,7 +119,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   private SelenideElement getColumnOfCaseHasActionIndex(int index, String columnName) {
     int startIndex = getIndexWidgetByColumnScrollable(columnName);
-    return getColumnOfTableWidget(index).get(startIndex).$("span a");
+    return getColumnOfTableWidget(index).get(startIndex).$("button[id$='dashboard-case-side-steps-menu']");
   }
 
   public SelenideElement stateOfFirstCase() {
@@ -127,8 +127,12 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openFilterWidget() {
-    $$("div.table-widget-panel").filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
-        .$(".widget__filter-sidebar-link")
+    SelenideElement actionsMenuButton = getCaseWidgetHeader().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    actionsMenuPanel.$$("a.ui-menuitem-link").filter(text("Filters")).first()
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     WaitHelper.waitPageNoAnimation();
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
@@ -171,9 +175,10 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void applyFilter() {
-    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
-        .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
-    $("[id$='case-case_1:filter-overlay-panel-1']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    SelenideElement filterDialog = getConfigurationFilter();
+    filterDialog.$("div.footer-buttons-container").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("button[id$='apply-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    filterDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void nextPageTable() {
@@ -182,13 +187,11 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void resetFilter() {
-    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("a[id$='reset-button']")
-        .filter(text("Reset")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("div.filter-overlay-panel__footer").shouldBe(disappear, DEFAULT_TIMEOUT);
-    waitForElementClickable($$("div.table-widget-panel")
-        .filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
-        .$(".widget__filter-sidebar-link"));
-    
+    SelenideElement filterDialog = getConfigurationFilter();
+    filterDialog.$("div.footer-buttons-container").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("a[id$='reset-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    filterDialog.shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitForElementClickable(getCaseWidgetHeader().$("button[id$=':actions-menu-button_button']"));
   }
 
   public void selectState(String state) {
@@ -199,23 +202,23 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void clickOnCaseActionLink(int caseIndex) {
     getColumnOfCaseHasActionIndex(caseIndex, "Actions").shouldBe(getClickableCondition()).click();
   }
-  
+
   public SelenideElement getActionsPanelOfCase() {
     return $("div[id$=':action-steps-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public void clickOnCustomFieldsLink() {
     getActionsPanelOfCase().$$("a").filter(text("Custom Fields"))
-      .first()
-      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
-      .click();
+        .first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
     waitForElementDisplayed(getCaseCustomFieldsDialog(), true);
   }
-  
+
   public SelenideElement getCaseCustomFieldsDialog() {
     return $("div[id$='case-custom-fields-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public List<String> getCaseCustomFieldNames() {
     return $$("span[id$='customFieldLabel']")
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT)
@@ -241,14 +244,16 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public ElementsCollection getActiveCaseActions(int caseIndex) {
     return getActiveCaseActions(caseIndex, "case_1");
   }
+
   public ElementsCollection getActiveCaseActionsInFullCaseListPage(int caseIndex) {
     return getActiveCaseActions(caseIndex, "default_case_list_dashboard_case_1");
   }
+
   private ElementsCollection getActiveCaseActions(int caseIndex, String widgetId) {
     clickOnCaseActionLink(caseIndex);
     return $$(String.format("div.js-case-side-steps-panel-" + widgetId
         + "-%d", caseIndex)).filter(appear).first()
-        .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='action-step-item']");
+            .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='action-step-item']");
   }
 
   public void destroyCase(int caseIndex) {
@@ -303,17 +308,15 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void saveFilter(String widgetFilterName) {
-    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='save-filter']")
-        .filter(text("Save filter")).first().shouldBe(getClickableCondition()).click();
-    $("div#save-widget-filter-dialog").$("input[id='save-filter-form:save-filter-name']")
-        .shouldBe(appear, DEFAULT_TIMEOUT).setValue(widgetFilterName);
-    $("button[id$=':save-widget-filter-button']").click();
-    $("div[id$=':widget-saved-filters-items']").$$("div.saved-filter__items").filter(text(widgetFilterName)).first()
+    SelenideElement filterDialog = getConfigurationFilter();
+    filterDialog.$("input[id$=':inline-save-filter-name']").shouldBe(appear, DEFAULT_TIMEOUT).setValue(widgetFilterName);
+    filterDialog.$("button[id$=':inline-save-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$=':widget-saved-filters-items']").$$("span.saved-filter-node__text").filter(text(widgetFilterName)).first()
         .shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void searchFilter(String input) {
-    $("div[class*='saved-filter--search-container']").$("input[id$=':search-saved-filter-input']").setValue(input);
+    $("[class*='saved-filter--search-container']").$("input[id$=':search-saved-filter-input']").setValue(input);
   }
 
   public void removeAllFilterItems() {
@@ -323,7 +326,9 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openManageFiltersDialog() {
-    $("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("a").shouldBe(getClickableCondition()).click();
+    getConfigurationFilter().$("a.saved-filter__manage-filter").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
+    $("div[id='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void closeManageFilterDialog() {
@@ -355,26 +360,31 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public Integer getFilterNotiNumber() {
-    String filterNotiNumber =
-        $$("div.table-widget-panel").filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
-            .$("div[id$=':widget-header-actions']").$("span[class*='widget__filter-noti-number']").getText();
+    SelenideElement actionsMenuButton = getCaseWidgetHeader().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement filtersMenuItem = actionsMenuPanel.$$("a.ui-menuitem-link").filter(text("Filters")).first();
+    String filterNotiNumber = filtersMenuItem.$("span.ui-tag").shouldBe(appear, DEFAULT_TIMEOUT).getText();
+    actionsMenuButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    actionsMenuPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
     return Integer.parseInt(filterNotiNumber);
   }
-  
+
   public void removeFocusFilterDialog() {
     $("[id$=':widget-filter-content']").$("strong").click();
     $("[id$=':widget-filter-content']").scrollIntoView(ScrollIntoViewOptions.instant().block(Block.end));
   }
 
   public SelenideElement getConfigurationFilter() {
-    return $("div[class*='filter-overlay-panel'][style*='display: block']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("div.filter-dialog[style*='display: block']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public void clickOnFilterOperator() {
     $("div[id$='text-filter-operator-panel']").shouldBe(getClickableCondition()).click();
     Sleeper.sleep(300);
   }
-  
 
   public boolean isQuickSearchInputShow(String widgetIndex) {
     String taskWidgetIndex = String.format("div[id*='case-case_%s']", widgetIndex);
@@ -431,7 +441,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     WaitHelper.waitPageNoAjaxAndAnimation();
     $(getLoadedLocator()).shouldNotHave(Condition.cssClass("hidden"), DEFAULT_TIMEOUT);
   }
-  
+
   public boolean isExpandButtonAppear() {
     WaitHelper.waitPageNoAjaxAndAnimation();
     return getCaseWidgetHeader().$(".expand-link").isDisplayed();
@@ -457,6 +467,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     getActiveCaseActionsInFullCaseListPage(caseIndex).filter(text(actionName)).first().shouldBe(getClickableCondition())
         .click();
   }
+
   public String getCaseId(int caseIndex) {
     String elementIdSuffixForCaseId = caseIndex + ":dashboard-cases-columns:0:custom-column";
     return $("span[id$='" + elementIdSuffixForCaseId + "']").getText();
@@ -474,7 +485,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public ElementsCollection countFilterSelect() {
     return $$("[id$=':filter-component:field-selection_panel']");
   }
-  
+
   public void scrollToCaseWidget() {
     $(byText(YOUR_CASES_WIDGET)).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .scrollIntoView(ScrollIntoViewOptions.instant().block(Block.start));

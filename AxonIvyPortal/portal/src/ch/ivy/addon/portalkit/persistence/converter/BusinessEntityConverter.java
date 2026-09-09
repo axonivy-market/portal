@@ -28,8 +28,7 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
  * This class provides method to convert Business entity object into JSON value and reverse
  */
 public class BusinessEntityConverter {
-  public static final String DEFAULT_LIST_WRAPPER_VERSION = "14.0.0";
-  
+
   public static ObjectMapper objectMapper;
 
   public BusinessEntityConverter() {}
@@ -66,7 +65,7 @@ public class BusinessEntityConverter {
    */
   private static Object wrapIfList(Object entity) {
     if (entity instanceof List<?> list) {
-      return new JsonListWrapper<>(DEFAULT_LIST_WRAPPER_VERSION, list);
+      return new JsonListWrapper<>(JsonListWrapper.FORMAT_VERSION, list);
     }
     return entity;
   }
@@ -94,7 +93,7 @@ public class BusinessEntityConverter {
       // When classType is an array type (e.g. WidgetLayout[].class, used by
       // DashboardWidgetUtils.getWidgetLayoutFromRequest to deserialize the "nodes" request param),
       // a JSON array root node is exactly the correct, expected shape - not an error.
-      if (!classType.isArray() && (rootNode.isArray() || isListWrapper(rootNode))) {
+      if (!classType.isArray() && (rootNode.isArray() || JsonListWrapper.isListWrapper(rootNode))) {
         throw new PortalException(
             "Expected a single " + classType.getSimpleName() + " JSON object, but got a list/array shape.");
       }
@@ -113,7 +112,7 @@ public class BusinessEntityConverter {
       JsonNode rootNode = mapper.readTree(jsonValue);
 
       // Canonical shape: {"version": "...", "items": [...]}
-      if (isListWrapper(rootNode)) {
+      if (JsonListWrapper.isListWrapper(rootNode)) {
         JavaType wrapperType = mapper.getTypeFactory()
             .constructParametricType(JsonListWrapper.class, classType);
         JsonListWrapper<T> wrapper = mapper.convertValue(rootNode, wrapperType);
@@ -131,12 +130,6 @@ public class BusinessEntityConverter {
     }
   }
 
-  private static boolean isListWrapper(JsonNode node) {
-    return node.isObject()
-        && node.has(JsonListWrapper.ITEMS_FIELD_NAME)
-        && node.get(JsonListWrapper.ITEMS_FIELD_NAME).isArray();
-  }
-
   public static <T> T convertValue(Object fromValue, Class<T> toValueType) {
     return getObjectMapper().convertValue(fromValue, toValueType);
   }
@@ -147,7 +140,7 @@ public class BusinessEntityConverter {
     }
     try {
       // Canonical shape: {"version": "...", "items": [...]}
-      if (isListWrapper(jsonNode)) {
+      if (JsonListWrapper.isListWrapper(jsonNode)) {
         List<T> result = new ArrayList<>();
         for (JsonNode element : jsonNode.get(JsonListWrapper.ITEMS_FIELD_NAME)) {
           result.add(getObjectMapper().treeToValue(element, classType));
@@ -258,7 +251,7 @@ public class BusinessEntityConverter {
 
   public static String entityToJsonValue(List<Dashboard> dashboards) {
     DashboardUtils.updatePropertiesToNullIfCurrentValueIsDefaultValue(dashboards);
-    return entityToJsonValue(dashboards, DEFAULT_LIST_WRAPPER_VERSION);
+    return entityToJsonValue(dashboards, JsonListWrapper.FORMAT_VERSION);
   }
 
   public static String prettyPrintEntityToJsonValue(List<Dashboard> dashboards) {

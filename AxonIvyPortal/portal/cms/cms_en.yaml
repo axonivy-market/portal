@@ -73,6 +73,9 @@ ch.ivy.addon.portalkit.ui.jsf:
   CaseDocuments:
     CaseDocumentsPageTitle: Case Documents
   Enums:
+    ActivityState:
+      ACTIVE: Active
+      INACTIVE: Inactive
     BasicDocumentType:
       CONTRACT: Contract
       DOCUMENTATION: Documentation
@@ -132,8 +135,18 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPACT_MODE: Compact mode
       FULL_MODE: Full mode
       IMAGE_MODE: Image mode
+    ProjectMode:
+      MISSING: Missing
+      OK: OK
+      OUTDATED: Outdated
+      TOO_NEW: Too new
+      TOO_OLD: Too old
+      UNKNOWN: Unknown
     ReleaseState:
+      ARCHIVED: Archived
+      CREATED: Created
       DEPRECATED: Deprecated
+      PREPARED: Prepared
       RELEASED: Released
     SortDirection:
       ASC: Sort ascending
@@ -882,6 +895,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: No filter found
       SaveFilterDescription: Save those filter conditions for future use.
       SaveFilterNamePlaceholder: Enter filter name
+      SaveFilterNameRequired: Filter name must not be empty.
       SaveFilterOptional: (optional)
       SetFilterHeader: Set Filter
       WidgetNameColumn: Widget name
@@ -947,11 +961,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Advanced settings
         ChangeImage: Change image
-        DarkMode: Dark mode
+        DarkMode: Dark
         ImagePreview: Image preview
-        LightMode: Light mode
+        LightMode: Light
         ConfigurationHeader: Welcome widget configuration
         ChooseAFit: Choose a fit
+        ChooseMode: Choose which mode you want to configure
         DisplayText: Display text
         Greeting:
           Afternoon: Good afternoon
@@ -1001,6 +1016,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadZipFileExplanation: If the number of items to export exceeds the limit of Excel rows, data will be split to multiple Excel files, then compressed in a ZIP file to download.
     editWidget: Edit widget
     existingField: The {0} field has already been existing
+    exitEditMode: Exit edit mode
     expiryFrom: Expiry From
     expiryTo: Expiry To
     export:
@@ -1289,12 +1305,20 @@ ch.ivy.addon.portalkit.ui.jsf:
     startLink: Start link
     webLinkExample: E.g. http://www.example.com
   projectInfo:
+    activityState: Activity state
     applicationProjectVersion: Application projects and versions
+    doneCases: Done cases
     engineVersion: Engine Version
     header: Axon Ivy version information
     info: Info
+    lastChange: Last change
+    mavenVersion: Maven Version
+    openCases: Open cases
     portalVersion: Portal Version
     projectName: Project Name
+    projectsOfVersion: Projects Version
+    releaseState: Release state
+    state: State
     version: Version
   searchResult:
     case: Case
@@ -1612,7 +1636,7 @@ Dialogs:
           Responsibles:
             Multiple: Multiple
           ShareLinkDialog:
-            CopyLink: Copy link
+            CopyLink: Copy
             Link: Link
             LinkCopied: Link copied
           ToolList:

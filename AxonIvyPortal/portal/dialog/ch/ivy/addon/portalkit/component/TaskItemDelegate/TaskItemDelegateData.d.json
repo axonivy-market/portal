@@ -4,7 +4,8 @@
   "namespace" : "ch.ivy.addon.portalkit.component.TaskItemDelegate",
   "fields" : [ {
     "name" : "canDelegateTask",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "usersToDelegate",
     "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
@@ -19,18 +20,22 @@
     "modifiers" : [ ]
   }, {
     "name" : "disabledDelegateButton",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isUserDelegated",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "delegatedSecurityMember",
     "type" : "ch.ivyteam.ivy.security.ISecurityMember",
     "modifiers" : [ ]
   }, {
-    "name" : "delegateComment"
+    "name" : "delegateComment",
+    "modifiers" : [ ]
   }, {
-    "name" : "queryAutoComplete"
+    "name" : "queryAutoComplete",
+    "modifiers" : [ ]
   }, {
     "name" : "task",
     "type" : "ch.ivyteam.ivy.workflow.ITask",
@@ -44,12 +49,15 @@
     "type" : "com.axonivy.portal.components.dto.RoleDTO",
     "modifiers" : [ ]
   }, {
-    "name" : "taskDelegationComment"
+    "name" : "taskDelegationComment",
+    "modifiers" : [ ]
   }, {
     "name" : "isEmptyUsers",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isEmptyRoles",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

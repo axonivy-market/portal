@@ -8,11 +8,14 @@
     "modifiers" : [ ]
   }, {
     "name" : "showBackButton",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "readOnly",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
-    "name" : "uuid"
+    "name" : "uuid",
+    "modifiers" : [ ]
   } ]
 }

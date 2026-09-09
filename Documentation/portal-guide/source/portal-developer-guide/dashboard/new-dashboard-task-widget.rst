@@ -216,7 +216,7 @@ Each column object in the ``columns`` array:
    Multilingual column headers: ``[{"locale": "en", "value": "Header"}]``
 
 ``type`` (string, default: ``"STANDARD"``)
-   Column type: ``"STANDARD"`` or ``"CUSTOM"``
+   Column type: ``"STANDARD"``, ``"CUSTOM"``, ``"CUSTOM_CASE"`` or ``"CUSTOM_BUSINESS_CASE"``
 
 ``style`` (string, optional)
    Inline CSS for custom columns (e.g., ``"width: 110px"``)
@@ -236,7 +236,7 @@ The ``filters`` array defines pre-configured filter conditions:
    Filter operator (see Filter Conditions section)
 
 ``type`` (string)
-   ``"standard"`` or ``"custom"``
+   ``"standard"``, ``"custom"``, ``"custom_case"`` or ``"custom_business_case"``
 
 .. note::
    For detailed filter configuration, see the :ref:`Filter Conditions <configure-new-dashboard-task-widget-filter-structure>` section below.
@@ -605,7 +605,8 @@ Custom Field Column :
       same operator as :ref:`Standard Column
       <configure-new-dashboard-task-widget-filter-structure>`.
 
-   - ``type`` field must be ``custom`` for Custom Field and ``custom_case`` for Custom Case Field.
+   - ``type`` field must be ``custom`` for Custom Field, ``custom_case`` for Custom Case Field
+     and ``custom_business_case`` for Custom Business Case Field.
 
    .. code-block:: javascript
       
