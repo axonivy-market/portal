@@ -6,6 +6,7 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.apache.commons.io.FileUtils;
@@ -96,6 +97,15 @@ public class WelcomeWidgetUtils {
     }
     return getApplicationCMS().child().folder(IMAGE_DIRECTORY).child()
         .file(fileName, fileExtension);
+  }
+
+  public static Optional<ContentObject> findImage(String imageLocation, String imageType) {
+    String fileName = getFileNameOfImage(imageLocation);
+    String fileExtension = getFileTypeOfImage(imageType);
+    if (StringUtils.isEmpty(fileName) || StringUtils.isEmpty(fileExtension)) {
+      return Optional.empty();
+    }
+    return getApplicationCMS().child().folder(IMAGE_DIRECTORY).child().get(fileName);
   }
 
   public static void removeWelcomeImage(String imageLocation, String imageType) {

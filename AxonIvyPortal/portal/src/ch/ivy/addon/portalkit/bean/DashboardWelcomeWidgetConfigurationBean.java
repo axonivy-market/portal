@@ -98,15 +98,10 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       }
     }
 
-    if (StringUtils.isNotBlank(widget.getImageLocation())) {
-      imageCMSObject = getWelcomeWidgetImageContentObject(false);
-    }
-    
-    if (StringUtils.isNotBlank(widget.getImageLocationDarkMode())) {
-      imageCMSObjectDarkMode = getWelcomeWidgetImageContentObjectDarkMode(false);
-    } else {
-      imageCMSObjectDarkMode = null;
-    }
+    imageCMSObject = WelcomeWidgetUtils.findImage(widget.getImageLocation(), widget.getImageType())
+        .orElse(null);
+    imageCMSObjectDarkMode = WelcomeWidgetUtils.findImage(widget.getImageLocationDarkMode(), widget.getImageTypeDarkMode())
+        .orElse(null);
   }
 
   public void handleFileUpload(FileUploadEvent event) {
