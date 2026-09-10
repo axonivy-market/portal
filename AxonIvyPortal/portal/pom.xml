@@ -64,8 +64,8 @@
       <artifactId>ivy-translation-service-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.axonivy.ivy.spi</groupId>
-      <artifactId>ivy-process-extension-spi</artifactId>
+      <groupId>com.axonivy.ivy.api.extension</groupId>
+      <artifactId>ivy-process-extension-api</artifactId>
     </dependency>
     <dependency>
       <groupId>com.google.code.gson</groupId>
