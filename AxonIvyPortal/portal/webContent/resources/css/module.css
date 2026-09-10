@@ -3199,10 +3199,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding: 1rem 1.25rem;
 }
 
-.filters-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider {
-  background: var(--filters-toggle-checked-bg-color);
-}
-
 .filters-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider:before,
 .filters-card .ui-toggleswitch.ui-toggleswitch-checked .ui-toggleswitch-slider .ui-toggleswitch-handler {
   background: var(--filters-toggle-knob-color);
@@ -3236,19 +3232,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .absences-management-container .substitution-table tbody.ui-datatable-data .substition-role-display-name {
   white-space: normal;
   line-break: anywhere;
-}
-
-body .ui-button {
-  background: var(--button-primary-bg-color);
-  border-color: var(--button-primary-bg-color);
-  color: var(--button-primary-text-color);
-}
-
-body .ui-button:hover {
-  background: var(--button-primary-bg-color);
-  border-color: var(--button-primary-bg-color);
-  color: var(--button-primary-text-color);
-  opacity: 0.85;
 }
 
 /* Opt-in pale/light button style, kept for buttons that still need the older look */
@@ -6054,23 +6037,6 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-butto
   color: var(--widget-header-icon);
 }
 /* =================== PORTAL BUTTON END ====================== */
-
-/* =================== PORTAL CHECKBOX ====================== */
-body .ui-chkbox .ui-chkbox-box.ui-state-active {
-  background-color: var(--checkbox-checked-background-color);
-  border-color: var(--checkbox-border-color);
-}
-
-body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
-  color: var(--checkbox-checked-icon-color);
-}
-
-body .ui-chkbox .ui-chkbox-box.ui-state-active:hover,
-body .ui-chkbox .ui-chkbox-box.ui-state-active.ui-state-hover {
-  background-color: var(--checkbox-checked-hover-background-color);
-  border-color: var(--checkbox-checked-hover-background-color);
-}
-/* =================== PORTAL CHECKBOX END ====================== */
 
 /* AI logo */
 .layout-topbar-light .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li > a:hover img.topbar-item-image {

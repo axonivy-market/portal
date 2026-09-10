@@ -1632,39 +1632,11 @@ body .ui-button.ui-widget.filter-dialog__save-button {
   height: 2.643rem; /* 37px */
   border-radius: 8px;
   padding: 10px 20px;
-  background: var(--widget-filter-save-filter-button-background-color);
-  color: var(--widget-filter-save-filter-button-text-color);
   border: none;
-}
-
-body .ui-button.ui-widget.filter-dialog__save-button:hover {
-  background: var(--secondary-btn-hover-bg);
 }
 
 body .ui-button.ui-widget.filter-dialog__save-button .ui-button-text {
   padding: 0;
-  color: var(--widget-filter-save-filter-button-text-color);
-}
-
-.apply-filter-button.ui-button,
-.widget-configuration-filter-dialog .preview-button.ui-button {
-  background: var(--widget-filter-apply-button-background-color);
-  border-color: var(--widget-filter-apply-button-background-color);
-  color: var(--widget-filter-apply-button-text-color);
-}
-
-body.dark .apply-filter-button.ui-button:hover,
-body.dark .widget-configuration-filter-dialog .preview-button.ui-button:hover {
-  background: var(--widget-filter-apply-button-hover-background-color);
-  border-color: var(--widget-filter-apply-button-hover-background-color);
-}
-
-a.reset-button {
-  color: var(--widget-filter-reset-button-text-color);
-}
-
-a.saved-filter__manage-filter {
-  color: var(--widget-filter-manage-filter-text-color);
 }
 
 .filter-dialog__title,
@@ -2602,10 +2574,7 @@ body .welcome-config__mode-selection.ui-selectonebutton .ui-button:not(.ui-state
   align-items: center;
   justify-content: center;
   height: 35px;
-  border: 1.24px solid var(--widget-filter-condition-accent-border-color);
   border-radius: 8px;
-  background-color: var(--widget-filter-and-badge-background-color);
-  color: var(--widget-filter-and-badge-text-color);
   font-size: 12px;
   text-transform: uppercase;
 }
@@ -2632,16 +2601,8 @@ body .welcome-config__mode-selection.ui-selectonebutton .ui-button:not(.ui-state
   width: 9.506rem;
   height: 2.143rem;
   padding: 2px 10px;
-  border: 1.24px solid var(--widget-filter-condition-accent-border-color);
   border-radius: 100px;
-  background-color: var(--widget-filter-add-condition-background-color);
-  color: var(--widget-filter-add-condition-text-color);
   margin: 0.5rem;
-}
-
-.dashboard-widget-filter__main-panel .add-condition-button.ui-button:hover {
-  background: var(--accent-btn-hover-bg);
-  color: var(--accent-btn-text);
 }
 
 .dashboard-widget-filter__main-panel .add-condition-button.ui-button .ui-button-text {

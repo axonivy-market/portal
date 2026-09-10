@@ -104,17 +104,6 @@
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
   --widget-filter-background-color: var(--ivy-primary-color-grey-pale);
 
-  --widget-filter-save-filter-button-background-color: var(--ivy-portal-color-grey-400);
-  --widget-filter-condition-accent-border-color: var(--ivy-portal-blue-muted);
-  --widget-filter-add-condition-background-color: var(--ivy-portal-blue-pale);
-  --widget-filter-and-badge-background-color: var(--ivy-portal-blue-pale);
-  --widget-filter-and-badge-text-color: var(--primary-color);
-
-  --checkbox-checked-background-color: var(--ivy-portal-blue-pale);
-  --checkbox-checked-icon-color: var(--primary-color);
-  --checkbox-checked-hover-background-color: var(--ivy-portal-blue-muted);
-  --checkbox-border-color: var(--ivy-portal-blue-muted);
-
   /* Fieldset box */
   --portal-fieldset-background-color: var(--ivy-portal-color-grey-50);
   --portal-fieldset-border-color: var(--ivy-portal-color-grey-200);
@@ -131,12 +120,6 @@
   --widget-filter-save-input-background-color: hsla(0, 0%, 97%, 1);
   --widget-filter-empty-icon-color: var(--ivy-portal-color-grey-450);
   --widget-filter-empty-icon-background-color: hsla(0, 0%, 97%, 1);
-  --widget-filter-apply-button-background-color: var(--primary-color);
-  --widget-filter-apply-button-text-color: var(--ivy-primary-color-white);
-  --widget-filter-add-condition-text-color: var(--primary-color);
-  --widget-filter-save-filter-button-text-color: var(--ivy-primary-color-black);
-  --widget-filter-reset-button-text-color: var(--primary-color);
-  --widget-filter-manage-filter-text-color: var(--primary-color);
   --widget-filter-saved-item-background-color: var(--widget-filter-background-color);
   --widget-filter-saved-item-active-background-color: var(--saved-filter-button-background-color);
   --widget-filter-saved-item-active-border: 2px solid var(--ivy-primary-color);
@@ -504,8 +487,6 @@
   --sidebar-mode-select-border-color: var(--ivy-primary-color-grey-pale);
   --sidebar-toggle-checked-bg-color: var(--ivy-primary-color);
   --sidebar-toggle-knob-color: var(--ivy-primary-color-white);
-  --button-primary-bg-color: var(--ivy-primary-color);
-  --button-primary-text-color: var(--ivy-primary-color-white);
   --dashboard-tab-active-color: var(--primary-color);
   --dashboard-header-card-bg-color: var(--ivy-primary-color-white);
   --dashboard-header-card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);

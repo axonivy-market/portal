@@ -2240,11 +2240,6 @@ body .case-list .ui-sidestep-action.portal-icon-btn-round .ti {
   font-size: var(--portal-tabler-icon-size);
 }
 
-.portal-pill-btn.portal-pill-btn-lg.ui-button,
-.portal-pill-btn.portal-pill-btn-lg {
-  height: var(--portal-icon-btn-size-lg);
-}
-
 /* min-height must be overridden too, it beats height on the base pill */
 .portal-pill-btn.portal-pill-btn-sm.ui-button,
 .portal-pill-btn.portal-pill-btn-sm {
@@ -2333,8 +2328,11 @@ body .ui-button.portal-icon-btn-round.portal-icon-btn-accent.ui-state-disabled {
   flex: 0 0 auto;
 }
 
-.portal-detail-toolbar-actions button.reset-details-settings-button, .portal-detail-toolbar-actions button.switch-view-mode-btn {
-  padding: 1rem;
+.portal-detail-toolbar-actions button.switch-view-mode-btn, .portal-detail-toolbar-actions button.reset-details-settings-button {
+  height: var(--portal-icon-btn-size-lg);
+  display: flex;
+  align-items: center;
+  border-radius: 100px;
 }
 
 .portal-detail-toolbar-actions 
@@ -2367,6 +2365,7 @@ body a.portal-detail-toolbar-back:focus,
 .portal-detail-toolbar .portal-detail-toolbar-actions .switch-to-edit-mode-btn {
   width: 8.785rem;
   height: 3.071rem;
+  border-radius: 100px;
 }
 
 /* Shared: empty-state block (task & case documents/notes) ----------------------------------------*/
