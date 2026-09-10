@@ -473,9 +473,9 @@ function reloadManageFilterDialogOpenerWidget() {
   if (manageFilterDialogOpenerWidgetIndex === undefined) {
     return;
   }
-  var reloadUserFilters = window['loadUserFilters' + manageFilterDialogOpenerWidgetIndex];
-  if (typeof reloadUserFilters === 'function') {
-    reloadUserFilters();
+  var reloadSavedFilters = window['loadSaveFilters' + manageFilterDialogOpenerWidgetIndex];
+  if (typeof reloadSavedFilters === 'function') {
+    reloadSavedFilters();
   }
 }
 
