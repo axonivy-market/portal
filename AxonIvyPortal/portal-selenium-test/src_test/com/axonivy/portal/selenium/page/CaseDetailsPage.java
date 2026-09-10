@@ -297,7 +297,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void waitForShowNoteHistory() {
-    $(".note-history-container").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    $("[id='form:notes-table']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
   }
 
   public void waitForIFrameWidgetLoad() {
