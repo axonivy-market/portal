@@ -151,10 +151,6 @@ p:where(.text-style-h1, .text-style-h2, .text-style-h3, .text-style-h4, .text-st
   padding-left: 2.4px;
 }
 
-_:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-widget-container .in-progress-task-checkbox {
-  margin-left: .1rem;
-}
-
 .task-widget .filter-add-container,
 .task-widget .filter-reset-action,
 .case-widget .filter-add-container,
@@ -2188,16 +2184,6 @@ _:-ms-input-placeholder, :root .case-details>* {
 
 .additional-case-details-link {
   margin-left: 10px;
-}
-/* override on IE */
-_:-ms-fullscreen, :root .additional-case-details-link {
-  display: inline !important;
-}
-
-@-moz-document url-prefix() {
-  .additional-case-details-link {
-    display: inline !important;
-  }
 }
 
 .case-detail-field-set {

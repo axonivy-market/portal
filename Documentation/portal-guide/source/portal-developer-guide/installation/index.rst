@@ -206,6 +206,16 @@ a **Custom Case Field** column filters the task's own case, a **Custom Business 
 task's business case. Previously both were stored as ``custom_case`` and queried both cases at once, which was
 slower and could return tasks whose value matched on the other case.
 
+   Existing dashboards are migrated automatically, taking each filter's type from the widget column
+   using the same field. Two cases cannot be resolved and need a check after upgrading:
+
+   - The field is not a column of that widget: the filter stays ``custom_case``, which now means the
+     task's own case only.
+   - The widget has both column types for that field: the filter becomes **Custom Business Case Field**.
+
+   Review these in the widget's filter configuration. A wrong type still returns results, just the
+   wrong case's.
+
 Migrate 13.1 To 13.2
 --------------------
 
