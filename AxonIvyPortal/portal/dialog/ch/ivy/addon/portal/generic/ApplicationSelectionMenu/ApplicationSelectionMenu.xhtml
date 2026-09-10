@@ -75,8 +75,10 @@
           actionListener="#{navigationDashboardWidgetBean.removeNavigationDashboardBackButton()}" global="false"/>
       </div>
 
-      <!-- Portal configuration: pinned to the bottom of the sidebar, outside the scrollable menu list above -->
-      <h:panelGroup layout="block" styleClass="sidebar-footer flex-shrink-0" rendered="#{userMenuBean.showDashboardConfigurationMenu}">
+      <!-- Portal configuration: pinned to the bottom of the sidebar, separated from the scrollable menu
+           list above by a divider so the gap below it reads as a distinct footer section rather than
+           stray whitespace. -->
+      <h:panelGroup layout="block" styleClass="sidebar-footer flex-shrink-0 border-top-1 surface-border pt-2" rendered="#{userMenuBean.showDashboardConfigurationMenu}">
         <ul class="layout-menu" role="menu">
           <li id="dashboard-configuration-menuitem" role="menuitem">
             <p:commandLink id="dashboard-configuration" process="@this" styleClass="PORTAL_CONFIGURATION no-underline"
