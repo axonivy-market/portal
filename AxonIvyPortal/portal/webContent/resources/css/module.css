@@ -3018,7 +3018,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 /********************************** CREATE NEW DASHBOARD DIALOG **********************************/
 .create-new-dashboard-dialog {
-  width: 500px !important;
+  width: 750px !important;
   max-width: 100%;
 }
 
@@ -5559,6 +5559,16 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   font-weight: bold;
 }
 
+.dashboard-template-selection__section-title {
+  font-size: var(--dashboard-template-selection-section-title-font-size);
+  font-weight: bold;
+  margin-bottom: .2857rem;
+}
+
+.dashboard-template-selection__section-title:not(:first-child) {
+  margin-top: 1rem;
+}
+
 .dashboard-configuration__export-button-form {
   display: inline;
 }
@@ -5621,6 +5631,26 @@ a.dashboard-action-container label {
 .dashboard-action-container-label,
 .dashboard-action-container-description {
   line-height: 1.5;
+}
+
+.create-new-dashboard-dialog .dashboard-action-container {
+  margin-bottom: .7143rem;
+  background-color: var(--dashboard-icon-bg-color);
+  border: 1px solid var(--dashboard-icon-border-color);
+}
+
+.create-new-dashboard-dialog .dashboard-action-container,
+.create-new-dashboard-dialog .dashboard-action__icon,
+.create-new-dashboard-dialog .dashboard-action__text {
+  padding: .7143rem;
+}
+
+.create-new-dashboard-dialog .dashboard-action-container span.ti {
+  font-size: var(--portal-icon-size-xl);
+}
+
+.create-new-dashboard-dialog .dashboard-action-container-label {
+  margin-bottom: .4286rem;
 }
 
 /* Process Viewer */

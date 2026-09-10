@@ -825,7 +825,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     CustomWidgets: Benutzerdefinierte Widgets
     DashboardConfiguration:
       CreateFromScratch: Von Grund auf neu erstellen
-      CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
+      CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard
       CreateNewPrivateDashboard: Neues privates Dashboard erstellen
       CreateNewPublicDashboard: Neues öffentliches Dashboard erstellen
       Description: In diesem Bereich können Sie die Dashboards nach Ihren Wünschen konfigurieren und die Reihenfolge der Navigationselemente ändern.
@@ -874,6 +874,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Öffentliche Dashboards neu anordnen
       SelectAction: Wählen Sie die Aktion
       SomeThingWentWrong: Etwas ist schief gelaufen
+      Start: Start
+      Templates: Vorlagen
       Title: Portal-Konfiguration
       PackageManagement: Package management
       PackageManagementTabInfoPanel: '<p><b>What can I do here?</b></p><p>Export the current Portal configuration as a single zip package, or import a previously exported package to replace it.</p><p><b>Export</b></p><p>Downloads a <code>Portal_Package.zip</code> containing one JSON file per configuration type. Only types with existing data are included.</p><p><b>Import</b></p><p>Upload a zip package to preview which files it contains before applying. Recognized files replace the matching configuration; unrecognized files are skipped. This action cannot be undone.</p>'

@@ -172,6 +172,7 @@
   --new-widget-dialog-title-font-weight: bold;
   --new-widget-dialog-title-font-style: normal;
   --new-widget-dialog-title-font-size: 1.1rem;
+  --dashboard-template-selection-section-title-font-size: 1.1429rem; /* 16px */
 
   /* News feed widget */
   --news-feed-item-border-radius: 1rem;

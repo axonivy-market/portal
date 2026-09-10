@@ -822,7 +822,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     CustomWidgets: カスタムウィジェット
     DashboardConfiguration:
       CreateFromScratch: 最初から作成
-      CreateFromScratchDescription: 最初から独自のダッシュボードを作成する
+      CreateFromScratchDescription: 独自のダッシュボードを作成
       CreateNewPrivateDashboard: 新しい個人用ダッシュボードを作成する
       CreateNewPublicDashboard: 新しい公開用ダッシュボードを作成する
       Description: この領域では、要件に応じてダッシュボードを構成し、ナビゲーション要素の順序を変更できます。
@@ -871,6 +871,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: 公開用ダッシュボードを並び替える
       SelectAction: アクションを選択してください
       SomeThingWentWrong: 問題が発生しました
+      Start: 開始
+      Templates: テンプレート
       Title: ポータル設定
       PackageManagement: Package management
       PackageManagementTabInfoPanel: '<p><b>What can I do here?</b></p><p>Export the current Portal configuration as a single zip package, or import a previously exported package to replace it.</p><p><b>Export</b></p><p>Downloads a <code>Portal_Package.zip</code> containing one JSON file per configuration type. Only types with existing data are included.</p><p><b>Import</b></p><p>Upload a zip package to preview which files it contains before applying. Recognized files replace the matching configuration; unrecognized files are skipped. This action cannot be undone.</p>'

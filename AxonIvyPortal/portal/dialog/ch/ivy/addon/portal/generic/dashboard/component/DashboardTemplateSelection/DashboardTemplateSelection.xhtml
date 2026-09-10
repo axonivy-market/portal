@@ -15,13 +15,16 @@
     <h:panelGroup id="create-new-dashboard-form" styleClass="ui-g">
       <h:panelGroup id="create-new-dashboard-section" layout="block" styleClass="ui-g-12 u-padding-0">
         <div class="ui-g ui-g-12 u-padding-0">
-          <div class="ui-g-12 ui-lg-12 ui-md-6 ui-sm-12">
+          <div class="ui-g-12 dashboard-template-selection__section-title">
+            #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Start')}
+          </div>
+          <div class="ui-g-6 ui-lg-6 ui-md-6 ui-sm-12">
             <p:commandLink id="create-from-scratch" styleClass="dashboard-action-container" oncomplete="PF('dashboard-creation-details-dialog').show()"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateFromScratch')}"
               actionListener="#{dashboardTemplateSelectionBean.createDashboardFromScratch(isPublicDashboard)}"
               update=":#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog" resetValues="true" global="false">
               <div class="dashboard-action__icon">
-                <span class="ti ti-file-plus dashboard-action-container-icon" />
+                <span class="ti ti-plus dashboard-action-container-icon" />
               </div>
               <div class="dashboard-action__text">
                 <p:outputLabel styleClass="dashboard-action-container-label"
@@ -31,12 +34,12 @@
               </div>
             </p:commandLink>
           </div>
-          <h:panelGroup styleClass="ui-g-12 ui-lg-12 ui-md-6 ui-sm-12" rendered="#{dashboardModificationBean.hasImportDashboardPermission(isPublicDashboard)}">
+          <h:panelGroup styleClass="ui-g-6 ui-lg-6 ui-md-6 ui-sm-12" rendered="#{dashboardModificationBean.hasImportDashboardPermission(isPublicDashboard)}">
             <p:commandLink id="import-dashboard" styleClass="dashboard-action-container" oncomplete="PF('dashboard-import-dialog').show()"
               actionListener="#{dashboardImportBean.importDashboard(isPublicDashboard)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/import')}"
               update=":#{cc.clientId}:dashboard-import-component:dashboard-import-dialog" resetValues="true" global="false">
               <div class="dashboard-action__icon">
-                <span class="ti ti-file-upload dashboard-action-container-icon"></span>
+                <span class="ti ti-upload dashboard-action-container-icon"></span>
               </div>
               <div class="dashboard-action__text">
                 <p:outputLabel styleClass="dashboard-action-container-label"
@@ -46,8 +49,11 @@
               </div>
             </p:commandLink>
           </h:panelGroup>
+          <div class="ui-g-12 dashboard-template-selection__section-title">
+            #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Templates')}
+          </div>
           <ui:repeat var="template" value="#{dashboardTemplateSelectionBean.dashboardTemplates}" varStatus="status">
-            <div class="ui-g-12 ui-lg-12 ui-md-6 ui-sm-12">
+            <div class="ui-g-6 ui-lg-6 ui-md-6 ui-sm-12">
               <p:commandLink id="template" styleClass="dashboard-action-container" ariaLabel="#{template.title}"
                 actionListener="#{dashboardTemplateSelectionBean.onSelectTemplate(template, isPublicDashboard)}"
                 oncomplete="PF('dashboard-creation-details-dialog').show()"

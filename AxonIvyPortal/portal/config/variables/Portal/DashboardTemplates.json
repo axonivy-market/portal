@@ -29,23 +29,23 @@
     "descriptions": [
       {
         "locale": "en",
-        "value": "Create a dashboard with a welcome widget, a task list, a case list, a process list widget, and some standard charts"
+        "value": "Welcome widget, task list, case list, process list and charts."
       },
       {
         "locale": "fr",
-        "value": "Créez un tableau de bord avec un widget d'accueil, une liste de tâches, une liste de cas et une liste de processus, ainsi que quelques graphiques standard."
+        "value": "Widget de bienvenue, liste de tâches, liste de dossiers, liste de processus et graphiques."
       },
       {
         "locale": "de",
-        "value": "Erstellen eines Dashboards mit einem Willkommens-Widget, einer Aufgabenliste, einer Fallliste und einer Prozessliste"
+        "value": "Willkommens-Widget, Aufgabenliste, Fallliste, Prozessliste und Diagramme."
       },
       {
         "locale": "es",
-        "value": "Crear un panel de control con un widget de bienvenida, una lista de tareas, una lista de casos y un widget de lista de procesos y algunos gráficos estándar."
+        "value": "Widget de bienvenida, lista de tareas, lista de casos, lista de procesos y gráficos."
       },
       {
         "locale": "ja",
-        "value": "ウェルカムウィジェット、タスクリスト、ケースリスト、プロセスリストウィジェット、及びいくつかの標準表示項目を備えたダッシュボードを作成します"
+        "value": "ウェルカムウィジェット、タスクリスト、ケースリスト、プロセスリスト、グラフ"
       }
     ],
     "icon": "ti-report-analytics",
@@ -381,45 +381,45 @@
     "titles": [
       {
         "locale": "en",
-        "value": "Two Task list dashboard"
+        "value": "Two task list"
       },
       {
         "locale": "fr",
-        "value": "Tableau de bord de deux listes de tâche"
+        "value": "Deux listes de tâches"
       },
       {
         "locale": "de",
-        "value": "Zwei Aufgabenlisten Dashboard"
+        "value": "Zwei Aufgabenlisten"
       },
       {
         "locale": "es",
-        "value": "Dos cuadros de mando de la lista de tareas"
+        "value": "Dos listas de tareas"
       },
       {
         "locale": "ja",
-        "value": "２つのタスクリストのダッシュボード"
+        "value": "２つのタスクリスト"
       }
     ],
     "descriptions": [
       {
         "locale": "en",
-        "value": "Create dashboard with 2 Task lists and 1 Process list"
+        "value": "2 task lists and 1 process list."
       },
       {
         "locale": "fr",
-        "value": "Créez un tableau de bord avec 2 listes de tâches et 1 liste de processus."
+        "value": "2 listes de tâches et 1 liste de processus."
       },
       {
         "locale": "de",
-        "value": "Dashboard mit 2 Aufgabenlisten und 1 Prozessliste erstellen"
+        "value": "2 Aufgabenlisten und 1 Prozessliste."
       },
       {
         "locale": "es",
-        "value": "Crear un cuadro de mando con 2 listas de tareas y 1 lista de procesos"
+        "value": "2 listas de tareas y 1 lista de procesos."
       },
       {
         "locale": "ja",
-        "value": "２つのタスクリストと１つのプロセスリストを含むダッシュボードを作成する"
+        "value": "２つのタスクリストと１つのプロセスリスト"
       }
     ],
     "icon": "ti-layout-dashboard",
@@ -600,45 +600,45 @@
     "titles": [
       {
         "locale": "en",
-        "value": "Accessibility dashboard"
+        "value": "Accessibility"
       },
       {
         "locale": "fr",
-        "value": "Tableau de bord d'accessibilité "
+        "value": "Accessibilité"
       },
       {
         "locale": "de",
-        "value": "Dashboard für Barrierefreiheit"
+        "value": "Barrierefreiheit"
       },
       {
         "locale": "es",
-        "value": "Panel de accesibilidad"
+        "value": "Accesibilidad"
       },
       {
         "locale": "ja",
-        "value": "アクセシビリティーダッシュボード"
+        "value": "アクセシビリティー"
       }
     ],
     "descriptions": [
       {
         "locale": "en",
-        "value": "Optimized reduced Dashboard for Accessibility Use"
+        "value": "Reduced dashboard for accessibility use"
       },
       {
         "locale": "fr",
-        "value": "Tableau de bord réduit optimisé pour une utilisation accessible"
+        "value": "Tableau de bord réduit pour l'accessibilité"
       },
       {
         "locale": "de",
-        "value": "Optimiertes, reduziertes Dashboard für die barrierefreie Nutzung"
+        "value": "Reduziertes Dashboard für Barrierefreiheit"
       },
       {
         "locale": "es",
-        "value": "Panel de control reducido optimizado para uso de accesibilidad"
+        "value": "Panel reducido para uso de accesibilidad"
       },
       {
         "locale": "ja",
-        "value": "アクセシビリティーのために最適化された縮小ダッシュボード"
+        "value": "アクセシビリティー用の縮小ダッシュボード"
       }
     ],
     "icon": "ti-accessible",
@@ -894,45 +894,45 @@
     "titles": [
       {
         "locale": "en",
-        "value": "Full Task list dashboard"
+        "value": "Full task list"
       },
       {
         "locale": "fr",
-        "value": "Tableau de bord complet de la liste des tâches"
+        "value": "Liste de tâches complète"
       },
       {
         "locale": "de",
-        "value": "Vollständiges Aufgabenlisten-Dashboard"
+        "value": "Vollständige Aufgabenliste"
       },
       {
         "locale": "es",
-        "value": "Panel de control completo de la lista de tareas"
+        "value": "Lista de tareas completa"
       },
       {
         "locale": "ja",
-        "value": "フルタスクリストダッシュボード"
+        "value": "フルタスクリスト"
       }
     ],
     "descriptions": [
       {
         "locale": "en",
-        "value": "Create dashboard having a single, full-width task widget."
+        "value": "Single full width task widget"
       },
       {
         "locale": "fr",
-        "value": "Créez un tableau de bord avec un seul widget de tâche en pleine largeur."
+        "value": "Widget de tâche unique en pleine largeur"
       },
       {
         "locale": "de",
-        "value": "Erstellen Sie ein Dashboard mit einem einzigen, vollformatigen Aufgaben-Widget."
+        "value": "Einzelnes Aufgaben-Widget in voller Breite"
       },
       {
         "locale": "es",
-        "value": "Crear un panel de control con un solo widget de tareas de ancho completo."
+        "value": "Widget de tareas único de ancho completo"
       },
       {
         "locale": "ja",
-        "value": "フル幅のタスクウィジェットを備えたダッシュボードを作成します"
+        "value": "フル幅のシングルタスクウィジェット"
       }
     ],
     "icon": "ti-checklist",
@@ -1045,45 +1045,45 @@
     "titles": [
       {
         "locale": "en",
-        "value": "Full Case list dashboard"
+        "value": "Full case list"
       },
       {
         "locale": "fr",
-        "value": "Tableau de bord complet de la liste des dossiers"
+        "value": "Liste de dossiers complète"
       },
       {
         "locale": "de",
-        "value": "Vollständiges Falllisten-Dashboard"
+        "value": "Vollständige Fallliste"
       },
       {
         "locale": "es",
-        "value": "Panel de control completo de la lista de casos"
+        "value": "Lista de casos completa"
       },
       {
         "locale": "ja",
-        "value": "フルケースリストダッシュボード"
+        "value": "フルケースリスト"
       }
     ],
     "descriptions": [
       {
         "locale": "en",
-        "value": "Create dashboard having a single, full-width case widget."
+        "value": "Single full width case widget"
       },
       {
         "locale": "fr",
-        "value": "Créez un tableau de bord avec un seul widget de dossier en pleine largeur."
+        "value": "Widget de dossier unique en pleine largeur"
       },
       {
         "locale": "de",
-        "value": "Erstellen Sie ein Dashboard mit einem einzigen, vollformatigen Fall-Widget."
+        "value": "Einzelnes Fall-Widget in voller Breite"
       },
       {
         "locale": "es",
-        "value": "Crear un panel de control con un solo widget de casos de ancho completo."
+        "value": "Widget de casos único de ancho completo"
       },
       {
         "locale": "ja",
-        "value": "フル幅のケースウィジェットを備えたダッシュボードを作成します"
+        "value": "フル幅のシングルケースウィジェット"
       }
     ],
     "icon": "ti-file-pencil",
