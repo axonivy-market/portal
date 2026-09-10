@@ -175,7 +175,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public SelenideElement destroyLink() {
-    return $("[id$='destroy-case']:not([id*='action-group'])");
+    return $("a[id$=':action-group:destroy-case']");
   }
 
   public void destroy() {
@@ -225,7 +225,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public SelenideElement getShareDialog() {
-    return $("div[id$=':share-case-details-dialog']");
+    return $("div[id$=':share-case-details-panel']");
   }
 
   public SelenideElement getGeneralInforBox() {
@@ -650,7 +650,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void showNoteHistory() {
-    findElementByCssSelector("a[id$='show-more-note-link']").click();
+    findElementByCssSelector("button[id$=':show-more-note-link']").click();
   }
 
   public int countRelatedDoneTasks() {
