@@ -310,22 +310,12 @@ a.left-sidebar-menu-icon {
   width: 70px;
 }
 
-.task-template-content.vertical-process-chain, .task-template-button.vertical-process-chain {
+.task-template-content.vertical-process-chain {
   width: calc(100% - 140px);
 }
 
-.task-template-content.vertical-process-chain.vertical-chain-shape-line,
-.task-template-button.vertical-process-chain.vertical-chain-shape-line {
+.task-template-content.vertical-process-chain.vertical-chain-shape-line {
   width: calc(100% - 70px);
-}
-
-.task-template-button {
-  min-height: 35px;
-  margin: auto;
-  margin-bottom: 15px;
-  float: right;
-  position: relative;
-  width: 100%;
 }
 
 @media (max-width: 1024px) {
@@ -335,12 +325,7 @@ a.left-sidebar-menu-icon {
   .process-chain-container.vertical-process-chain-container {
     display: none !important;
   }
-  .task-template-button.vertical-process-chain.vertical-chain-shape-line,
-  .task-template-button.vertical-process-chain {
-    margin-left: auto !important;
-  }
-  .task-template-content.vertical-process-chain, .task-template-content.vertical-process-chain.vertical-chain-shape-line,
-  .task-template-button.vertical-process-chain, .task-template-button.vertical-process-chain.vertical-chain-shape-line {
+  .task-template-content.vertical-process-chain, .task-template-content.vertical-process-chain.vertical-chain-shape-line {
     width: 100% !important;
   }
   .process-chain-container {
@@ -370,30 +355,6 @@ a.left-sidebar-menu-icon {
   padding-top: 0;
   display: flex;
   flex-direction: column;
-}
-
-.warning-before-leaving-task-icon-wrapper {
-  order: -1;
-  margin-bottom: 1rem;
-}
-
-.warning-before-leaving-task-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background-color: var(--ivy-tertinary-color-orange-light);
-}
-
-.warning-before-leaving-task-icon i {
-  font-size: 22px;
-  color: var(--ivy-tertinary-color-orange-dark);
-}
-
-.warning-before-leaving-task .ui-confirm-dialog-message {
-  text-align: center;
 }
 
 /******** CHAT ********/

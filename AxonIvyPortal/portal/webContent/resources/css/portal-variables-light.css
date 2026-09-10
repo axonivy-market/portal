@@ -440,7 +440,7 @@
   --accessibility-shortcut-text-color: var(--ivy-primary-color-black);
 
   /* Confirmation dialog footer button*/
-  --ui-leave-button-color: hsla(0, 0%, 91%, 1);
+  --ui-leave-button-color: var(--ivy-primary-color-grey-pale);
   --portal-dialog-icon-circle-size: 5.214rem;
   --portal-dialog-warning-icon-circle-background-color: hsla(27, 100%, 95%, 1);
   --portal-dialog-warning-icon-circle-color: hsla(25, 95%, 44%, 1);

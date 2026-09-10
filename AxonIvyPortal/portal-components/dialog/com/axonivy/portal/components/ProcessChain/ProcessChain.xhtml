@@ -81,12 +81,13 @@
             <c:set var="isHideRightSteps" value="#{isNextCurrentStep and isStepNeedMoreThreeSteps}" />
 
             <h:panelGroup rendered="#{isHideLeftSteps and !isShowAllSteps}" layout="block"
-              id="hide-steps-#{counter.index}"
+              id="hide-steps-#{counter.index}" pt:role="presentation"
               styleClass="ui-sm-hidden ui-md-hidden #{isDirectionHorizontal ? 'line-horizontal-process-step' : 'line-vertical-process-step'} hide-left-steps" />
 
             <c:if test="#{isDirectionHorizontal}">
               <h:panelGroup rendered="#{isShowAllSteps or isDisplayedStep}" layout="block"
                 id="step-info-#{counter.index}"
+                pt:role="listitem" pt:aria-current="#{isCurrentStep ? 'step' : null}"
                 styleClass="line-horizontal-process-step #{isCurrentStep ? 'current' : isVisitedStep ? 'visited' : 'waiting'}">
                 <span class="line-horizontal-step-title u-truncate-text">${stepName}</span>
                 <h:panelGroup layout="block" id="step-count-container-#{counter.index}"
@@ -96,6 +97,7 @@
             <c:if test="#{!isDirectionHorizontal}">
               <h:panelGroup rendered="#{isShowAllSteps or isDisplayedStep}" layout="block"
                 id="step-info-#{counter.index}"
+                pt:role="listitem" pt:aria-current="#{isCurrentStep ? 'step' : null}"
                 styleClass="line-vertical-process-step #{isCurrentStep ? 'current' : isVisitedStep ? 'visited' : 'waiting'}">
                 <h:panelGroup layout="block" id="step-count-container-#{counter.index}"
                   rendered="#{!isDirectionHorizontal}"
@@ -105,7 +107,7 @@
             </c:if>
 
             <h:panelGroup rendered="#{isHideRightSteps and !isShowAllSteps}" layout="block"
-              id="many-steps-#{counter.index}"
+              id="many-steps-#{counter.index}" pt:role="presentation"
               styleClass="#{isDirectionHorizontal ? 'line-horizontal-process-step' : 'line-vertical-process-step'} hide-right-steps" />
           </c:if>
           <p:tooltip for="step-info-#{counter.index}" value="#{stepName}" trackMouse="true" />
@@ -151,12 +153,13 @@
             <c:set var="isHideRightSteps" value="#{isNextCurrentStep and isStepNeedMoreThreeSteps}" />
 
             <h:panelGroup rendered="#{isHideLeftSteps and !isShowAllSteps}" layout="block"
-              id="hide-steps-#{counter.index}"
+              id="hide-steps-#{counter.index}" pt:role="presentation"
               styleClass="ui-sm-hidden ui-md-hidden #{isDirectionHorizontal ? 'line-horizontal-process-step' : 'line-vertical-process-step'} hide-left-steps" />
 
             <c:if test="#{isDirectionHorizontal}">
               <h:panelGroup rendered="#{isShowAllSteps or isDisplayedStep}" layout="block"
                 id="step-info-#{counter.index}"
+                pt:role="listitem" pt:aria-current="#{isCurrentStep ? 'step' : null}"
                 styleClass="line-horizontal-process-step #{isCurrentStep ? 'current' : isVisitedStep ? 'visited' : 'waiting'}">
                 <span class="line-horizontal-step-title u-truncate-text">${stepName}</span>
                 <h:panelGroup layout="block" id="step-count-container-#{counter.index}"
@@ -166,6 +169,7 @@
             <c:if test="#{!isDirectionHorizontal}">
               <h:panelGroup rendered="#{isShowAllSteps or isDisplayedStep}" layout="block"
                 id="step-info-#{counter.index}"
+                pt:role="listitem" pt:aria-current="#{isCurrentStep ? 'step' : null}"
                 styleClass="line-vertical-process-step #{isCurrentStep ? 'current' : isVisitedStep ? 'visited' : 'waiting'}">
                 <h:panelGroup layout="block" id="step-count-container-#{counter.index}"
                   rendered="#{!isDirectionHorizontal}"
@@ -175,7 +179,7 @@
             </c:if>
 
             <h:panelGroup rendered="#{isHideRightSteps and !isShowAllSteps}" layout="block"
-              id="many-steps-#{counter.index}"
+              id="many-steps-#{counter.index}" pt:role="presentation"
               styleClass="#{isDirectionHorizontal ? 'line-horizontal-process-step' : 'line-vertical-process-step'} hide-right-steps" />
           </c:if>
           <p:tooltip for="step-info-#{counter.index}" value="#{stepName}" trackMouse="true" />
@@ -183,7 +187,7 @@
       </c:if>
     </h:panelGroup>
 
-    <h:panelGroup styleClass="ui-lg-hidden ui-xl-hidden process-chain-mobile-container" 
+    <h:panelGroup pt:role="list" styleClass="ui-lg-hidden ui-xl-hidden process-chain-mobile-container" 
       rendered="#{not empty cc.attrs.steps}">
       <c:set var="currentIndex" value="#{cc.attrs.actualStepIndex}" />
       <c:set var="stepSize" value="#{cc.attrs.steps.size()}" />
@@ -193,6 +197,7 @@
 
       <c:if test="#{isShapeCircle}">
         <h:panelGroup layout="block" id="step-info-mobile-#{currentIndex}"
+          pt:role="listitem" pt:aria-current="step"
           styleClass="circle-horizontal-process-step #{isHideLeftSteps ? '':'left-steps'} #{isHideRightSteps ? '':'right-steps'}">
           <h:outputText value="${stepName}" styleClass="circle-horizontal-step-title ui-sm-hidden" />
           <h:panelGroup layout="block" id="step-count-mobile-container-#{currentIndex}"
@@ -206,9 +211,10 @@
 
       <c:if test="#{!isShapeCircle}">
         <h:panelGroup id="step-before" layout="block" rendered="#{!isHideLeftSteps}"
-          styleClass="line-horizontal-process-step hide-left-steps" />
+          pt:role="presentation" styleClass="line-horizontal-process-step hide-left-steps" />
 
         <h:panelGroup layout="block" id="step-info-mobile-#{currentIndex}"
+           pt:role="listitem" pt:aria-current="step"
            styleClass="line-horizontal-process-step">
           <h:outputText value="${stepName}" styleClass="line-horizontal-step-title u-truncate-text" />
           <h:panelGroup layout="block" id="step-count-mobile-container-#{currentIndex}"
@@ -216,7 +222,7 @@
         </h:panelGroup>
 
         <h:panelGroup id="step-after" layout="block" rendered="#{!isHideRightSteps}"
-          styleClass="line-horizontal-process-step hide-right-steps" />
+          pt:role="presentation" styleClass="line-horizontal-process-step hide-right-steps" />
       </c:if>
 
     </h:panelGroup>

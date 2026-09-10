@@ -1,5 +1,6 @@
 Variable,Default value,Description
 "\--process-chain-process-step-font-size",12px,Font size of the process step label.
+"\--process-chain-circle-step-number-font-size",1rem,Font size of the step number inside a circle horizontal step.
 "\--process-chain-menu-color","var(\--primary-color, hsl(195, 100%, 29%))",Main color of the process steps: fill of a circle step and of a line step. Follows the branding primary color.
 "\--process-chain-link-color","#D9DADA",Base color of the connectors between steps and of a waiting line step. Feeds the connector variables below.
 "\--process-chain-body-background-color","rgba(0,0,0,0)",Background color of the gaps in the striped bar that replaces hidden line steps.

@@ -231,7 +231,7 @@ _:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle
 }
 
 .circle-process-chain .circle-horizontal-process-step .step-number-container {
-  font-size: 1.238rem;
+  font-size: var(--process-chain-circle-step-number-font-size, 1rem);
   line-height: 1;
 }
 
