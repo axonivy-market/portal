@@ -38,7 +38,9 @@ public class PortalCustomFieldUtils {
   public static List<String> getCmsValuesMatchingWithKeywordList(String columnField, DashboardColumnType type,
       List<String> keywordList) {
     Set<ICustomFieldMeta> icustomFieldMetaList =
-        type == DashboardColumnType.CUSTOM_CASE ? ICustomFieldMeta.cases() : ICustomFieldMeta.tasks();
+        type == DashboardColumnType.CUSTOM_CASE || type == DashboardColumnType.CUSTOM_BUSINESS_CASE
+            ? ICustomFieldMeta.cases()
+            : ICustomFieldMeta.tasks();
     List<String> matchingValueList = new ArrayList<>();
 
     icustomFieldMetaList.stream()
