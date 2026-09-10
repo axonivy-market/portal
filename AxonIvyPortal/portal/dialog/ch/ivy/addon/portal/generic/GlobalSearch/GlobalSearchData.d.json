@@ -6,10 +6,6 @@
     "name" : "keyword",
     "modifiers" : [ ]
   }, {
-    "name" : "isTaskFinished",
-    "type" : "Boolean",
-    "modifiers" : [ ]
-  }, {
     "name" : "isWorkingOnTask",
     "type" : "Boolean",
     "modifiers" : [ ]

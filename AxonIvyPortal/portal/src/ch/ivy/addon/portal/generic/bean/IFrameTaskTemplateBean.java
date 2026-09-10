@@ -2,37 +2,30 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
-import jakarta.faces.application.FacesMessage;
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.faces.context.ExternalContext;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.context.Flash;
-import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import com.axonivy.portal.components.enums.SessionAttribute;
-import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
-import ch.ivy.addon.portalkit.service.GrowlMessageService;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.dialog.execution.api.DialogInstance;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Named(value = "iFrameTaskTemplateBean")
 @ViewScoped
@@ -67,14 +60,13 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean {
   private String processChainDirection;
   private String processChainShape;
   private boolean announcementInvisible = true;
-  //In Iframe, when initial loading the page we hide  
-  //3 items: task action, task name and case info to avoid blinking problem
+  // In Iframe, when initial loading the page we hide
+  // 3 items: task action, task name and case info to avoid blinking problem
   private boolean isHideTaskAction = true;
   private boolean isHideTaskName = true;
   private boolean isHideCaseInfo = true;
   private boolean isWorkingOnATask = true;
   private String taskName;
-  private Map<String, Object> overridePortalGrowlMap = new HashMap<>();
   private String taskIcon;
 
   private Long caseId = null;
@@ -86,7 +78,6 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean {
   }
 
   public void useTaskInIFrame() {
-    keepOverridePortalGrowl();
     Map<String, String> requestParamMap = getRequestParameterMap();
     String url = requestParamMap.get(URL_PARAM);
     if (StringUtils.isNotBlank(url)) {
@@ -95,7 +86,6 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean {
   }
 
   public void navigateToEndPage() {
-    keepOverridePortalGrowl();
     Map<String, String> requestParamMap = getRequestParameterMap();
     String taskId = requestParamMap.get(TASK_ID_PARAM);
     if (StringUtils.isNotBlank(taskId)) {
@@ -103,49 +93,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean {
     }
   }
 
-  private void keepOverridePortalGrowl() {
-    if (task != null) {
-      long taskId = task.getId();
-      Boolean overridePortalGrowl = (Boolean) overridePortalGrowlMap.get(GrowlMessageService.OVERRIDE_PORTAL_GROWL + taskId);
-      if (overridePortalGrowl != null && overridePortalGrowl) {
-        String portalGlobalGrowlMessage = String.valueOf(overridePortalGrowlMap.get(IFrameTaskTemplateBean.PORTAL_GROWL_MESSGE_PARAM + taskId));
-        FacesMessage message = FacesMessageUtils.sanitizedMessage(portalGlobalGrowlMessage, "");
-        FacesContext.getCurrentInstance().addMessage(GrowlMessageService.PORTAL_GLOBAL_GROWL_MESSAGE, message);
-
-        Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-        flash.put(GrowlMessageService.OVERRIDE_PORTAL_GROWL, overridePortalGrowl);
-        flash.setRedirect(true);
-        flash.setKeepMessages(true);
-
-        addFeedbackMessageForTask(taskId);
-
-        overridePortalGrowlMap.remove(GrowlMessageService.OVERRIDE_PORTAL_GROWL + taskId);
-        overridePortalGrowlMap.remove(IFrameTaskTemplateBean.PORTAL_GROWL_MESSGE_PARAM + taskId);
-      }
-    }
-  }
-
-  public void displayPortalGrowlMessage() {
-    Map<String, String> requestParamMap = getRequestParameterMap();
-    String taskId = requestParamMap.get(IFrameTaskTemplateBean.TASK_ID_PARAM);
-    Boolean overridePortalGrowl = Boolean.valueOf(requestParamMap.get(GrowlMessageService.OVERRIDE_PORTAL_GROWL));
-    if (overridePortalGrowl) {
-      String portalGlobalGrowlMessage = requestParamMap.get(IFrameTaskTemplateBean.PORTAL_GROWL_MESSGE_PARAM);
-      overridePortalGrowlMap.put(IFrameTaskTemplateBean.PORTAL_GROWL_MESSGE_PARAM + taskId, portalGlobalGrowlMessage);
-      overridePortalGrowlMap.put(GrowlMessageService.OVERRIDE_PORTAL_GROWL + taskId, overridePortalGrowl);
-    }
-  }
-
-  private void addFeedbackMessageForTask(Long taskId) {
-    ITask finishedTask = Ivy.wf().findTask(taskId);
-    if (finishedTask != null) {
-      boolean isTaskFinished = finishedTask.getEndTimestamp() != null;
-      GrowlMessageService.getInstance().addFeedbackMessage(isTaskFinished, finishedTask.getCase());
-    }
-  }
-
   public void navigateToUrl() throws IOException {
-    keepOverridePortalGrowl();
     Map<String, String> requestParamMap = getRequestParameterMap();
     String url = requestParamMap.get(URL_PARAM);
     HttpServletRequest request = null;
@@ -195,7 +143,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean {
         ? BusinessEntityConverter.convertJsonToListString(requestParamMap.get(PROCESS_STEPS_PARAM))
         : new ArrayList<>();
     stepIndexes = new ArrayList<>();
-    for (int i= 0; i < processSteps.size(); i++) {
+    for (int i = 0; i < processSteps.size(); i++) {
       stepIndexes.add(String.valueOf(i));
     }
     currentProcessStep = StringUtils.isBlank(currentProcessStepText) ? 0
@@ -243,7 +191,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean {
   public String getProcessChainShape() {
     return processChainShape;
   }
-  
+
   public boolean getAnnouncementInvisible() {
     return announcementInvisible;
   }
@@ -269,13 +217,13 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean {
     return StringUtils.defaultString(requestParamMap.get(VIEW_NAME));
   }
 
-public Long getCaseId() {
-	return caseId;
-}
+  public Long getCaseId() {
+    return caseId;
+  }
 
-public void setCaseId(Long caseId) {
-	this.caseId = caseId;
-}
+  public void setCaseId(Long caseId) {
+    this.caseId = caseId;
+  }
 
   public String getTaskName() {
     return taskName;

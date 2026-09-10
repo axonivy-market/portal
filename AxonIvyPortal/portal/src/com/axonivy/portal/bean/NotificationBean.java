@@ -217,7 +217,7 @@ public class NotificationBean implements Serializable {
     }
 
     if (task.getState() != TaskState.DONE) {
-      GrowlMessageService.getInstance().addFeedbackMessage(task.getState() == TaskState.DONE, task.getCase());
+      GrowlMessageService.getInstance().addTaskLeftFeedbackMessage(task.getCase());
     }
   }
 
