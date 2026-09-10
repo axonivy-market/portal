@@ -2195,6 +2195,8 @@ body .welcome-config__mode-selection.ui-selectonebutton .ui-button:not(.ui-state
 
 .welcome-text-container .welcome-image {
   flex: auto;
+  width: 100%;
+  height: 100%;
 }
 
 .layout-topbar-light .welcome-text-container .default-welcome-image,
@@ -2262,6 +2264,7 @@ body .welcome-config__mode-selection.ui-selectonebutton .ui-button:not(.ui-state
 
 .welcome-widget-panel {
   overflow: hidden;
+  height: 100%;
 }
 
 .quick-search-input-tooltip {
