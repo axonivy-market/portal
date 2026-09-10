@@ -831,4 +831,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void closeSavedFilterDialog() {
     $("a[id*='delete-saved-filter-form']").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
+
+  public void selectBulkDelegation(int widgetIndex) {
+    $("button[id$=':actions-menu-button_button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$=':bulk-delegate-toggle-button-0']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(".dashboard-tasks__selection-column").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 }
