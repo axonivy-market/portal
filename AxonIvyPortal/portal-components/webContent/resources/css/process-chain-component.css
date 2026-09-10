@@ -375,16 +375,11 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 /*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
-.stages-chain {
-  margin-top: 20px;
-  float: right;
-  clear: both;
-}
-
 .stages-chain .process-step {
-  width: 85px;
-  height: 50px;
+  width: 110px;
+  height: auto;
   display: inline-block;
+  vertical-align: top;
   margin: 0px;
   text-align: center;
 }
@@ -406,16 +401,17 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .stages-chain .process-flow {
-  width: 45px;
-  height: 50px;
+  width: 60px;
+  height: auto;
   display: inline-block;
-  margin-left: -25px;
-  margin-right: -25px;
+  vertical-align: top;
+  margin-left: -20px;
+  margin-right: -20px;
 }
 
 .stages-chain .process-flow .flow-txt {
   position: relative;
-  margin-top: -10px !important;
+  margin-top: calc((1.6rem - 2px) / 2);
   float: left;
   width: 100%;
   text-align: center;
@@ -434,7 +430,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .stage-title {
   position: relative;
-  margin-top: -18px !important;
+  margin-top: 0;
   float: left;
   width: 100%;
   text-align: center;

@@ -263,9 +263,9 @@ a.left-sidebar-menu-icon {
 .task-template-title-horizontal-container.card {
   align-items: center;
   justify-content: space-between;
-  gap: var(--portal-detail-card-gap);
-  padding-top: 0.884rem;
-  padding-bottom: 0.884rem;
+  min-height: 81px;
+  padding-top: 0.714rem;
+  padding-bottom: 0.714rem;
   margin-bottom: 10px;
   border-radius: var(--portal-detail-card-radius);
   box-shadow: var(--portal-detail-card-shadow);
@@ -318,7 +318,7 @@ a.left-sidebar-menu-icon {
   width: calc(100% - 70px);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 840px) {
   .process-chain-container.horizontal-process-chain-container {
     order: 2;
   }
