@@ -895,6 +895,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: No filter found
       SaveFilterDescription: Save those filter conditions for future use.
       SaveFilterNamePlaceholder: Enter filter name
+      SaveFilterNameRequired: Filter name must not be empty.
       SaveFilterOptional: (optional)
       SetFilterHeader: Set Filter
       WidgetNameColumn: Widget name

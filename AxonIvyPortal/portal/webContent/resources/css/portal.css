@@ -13,6 +13,7 @@
   border-radius: 16px;
   width: 227px;
   height: fit-content;
+  box-shadow: 0px 0px 15.6px 3px hsla(0, 0%, 0%, 0.15);
 }
 
 @media screen and (max-width: 320px) {
@@ -31,7 +32,6 @@
 
 #user-setting-container .ui-menu-items {
   margin: 0;
-  height: 44px;
 }
 
 #user-setting-container .ui-menu-items > a {
@@ -40,6 +40,7 @@
   gap: 0.75rem;
   padding: 0.95rem 1.1rem;
   font-size: 1rem;
+  height: 44px;
 }
 
 #user-setting-container .ui-menu-items:first-child > a {
