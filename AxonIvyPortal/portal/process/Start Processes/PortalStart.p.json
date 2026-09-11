@@ -579,8 +579,7 @@
             "output" : {
               "code" : [
                 "import ch.ivy.addon.portalkit.util.PermissionUtils;",
-                "in.isAuthorized = PermissionUtils.hasDashboardWriteOwnPermission()",
-                "  || PermissionUtils.hasDashboardWritePublicPermission();"
+                "in.isAuthorized = PermissionUtils.hasDashboardWriteOwnPermission() || PermissionUtils.hasDashboardWritePublicPermission() || PermissionUtils.hasPortalSidebarConfigurationPermission() || PermissionUtils.hasPortalPackageManagementPermission();"
               ]
             }
           },

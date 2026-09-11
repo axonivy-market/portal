@@ -3,16 +3,15 @@ package ch.ivy.addon.portal.generic.bean;
 import java.io.Serializable;
 import java.util.Optional;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.faces.context.FacesContext;
-
 import com.axonivy.portal.bean.menu.MenuManagementBean;
 
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @Named
 @ViewScoped
@@ -38,10 +37,16 @@ public class DashboardConfigurationBean implements Serializable {
     initPermissions();
     resetAllIndicators();
     String isPublicDashboardString = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", String.class);
-    isPublicDashboard = Optional.ofNullable(isPublicDashboardString).map(Boolean::parseBoolean).orElse(false);
-    isSelectingAction = true;
-    this.isEditingDashboard = true;
-    this.isPublicDashboard = false;
+    boolean requestedPublicDashboard = Optional.ofNullable(isPublicDashboardString).map(Boolean::parseBoolean).orElse(false);
+    if (canEditPrivateDashboard || canEditPublicDashboard) {
+      isSelectingAction = true;
+      isEditingDashboard = true;
+      isPublicDashboard = requestedPublicDashboard ? canEditPublicDashboard : !canEditPrivateDashboard;
+    } else if (canManageSidebarNavigation) {
+      accessToMenuManagement();
+    } else if (canManagePackages) {
+      accessToPackageManagement();
+    }
   }
 
   private void initPermissions() {
