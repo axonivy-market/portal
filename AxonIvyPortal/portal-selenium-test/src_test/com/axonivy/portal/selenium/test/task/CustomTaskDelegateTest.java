@@ -108,7 +108,7 @@ public class CustomTaskDelegateTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
 
     // Toggle selection mode
-    taskWidget.clickBulkDelegateToggleButton(0);
+    taskWidget.selectBulkDelegation(0);
 
     // Select both tasks
     taskWidget.selectTaskByName(MATERNITY_LEAVE_REQUEST);
@@ -151,7 +151,7 @@ public class CustomTaskDelegateTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
 
     // Toggle selection mode
-    taskWidget.clickBulkDelegateToggleButton(0);
+    taskWidget.selectBulkDelegation(0);
 
     // Select both tasks
     taskWidget.selectTaskByName(MATERNITY_LEAVE_REQUEST);
@@ -198,7 +198,7 @@ public class CustomTaskDelegateTest extends BaseTest {
     dashboardPage.waitForCaseWidgetLoaded();
 
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
-    taskWidget.clickBulkDelegateToggleButton(0);
+    taskWidget.selectBulkDelegation(0);
     taskWidget.selectTaskByName(MATERNITY_LEAVE_REQUEST);
     taskWidget.selectTaskByName(SICK_LEAVE_REQUEST);
 
