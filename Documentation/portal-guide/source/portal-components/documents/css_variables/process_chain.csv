@@ -1,9 +1,23 @@
 Variable,Default value,Description
-"\--process-chain-process-step-font-size",12px,Size of process step in of process chain component.
-"\--process-chain-body-background-color","rgba(0,0,0,0)",Background color of waiting circle process steps.
-"\--process-chain-menu-color","var(\--primary-color, hsl(195, 100%, 29%))",Color of process steps.
-"\--process-chain-link-color","#D9DADA",Link color between process steps.
-"\--process-chain-current-circle-horizontal-step-title-font-weight",bold,Font weight of circle horizontal process step title.
-"\--process-chain-current-circle-vertical-step-title-font-weight",bold,Font weight of circle vertical process step title.
-"\--process-chain-current-line-horizontal-step-title-font-weight",bold,Font weight of line horizontal process step title.
-"\--process-chain-current-line-vertical-step-title-font-weight",bold,Font weight of line vertical process step title.
+"\--process-chain-process-step-font-size",12px,Font size of the process step label.
+"\--process-chain-circle-step-number-font-size",1rem,Font size of the step number inside a circle horizontal step.
+"\--process-chain-menu-color","var(\--primary-color, hsl(195, 100%, 29%))",Main color of the process steps: fill of a circle step and of a line step. Follows the branding primary color.
+"\--process-chain-link-color","#D9DADA",Base color of the connectors between steps and of a waiting line step. Feeds the connector variables below.
+"\--process-chain-body-background-color","rgba(0,0,0,0)",Background color of the gaps in the striped bar that replaces hidden line steps.
+"\--process-chain-circle-step-border-color","var(\--primary-color, hsl(195, 100%, 29%))",Border color of a circle step container in both directions.
+"\--process-chain-circle-step-number-color","var(\--primary-text-color, hsl(0, 0%, 100%))",Color of the step number of the current and visited circle steps.
+"\--process-chain-circle-horizontal-waiting-step-background-color","rgba(0,0,0,0)",Background color of a waiting circle horizontal step.
+"\--process-chain-circle-vertical-waiting-step-background-color","rgba(0,0,0,0)",Background color of a waiting circle vertical step.
+"\--process-chain-circle-horizontal-connector-color","var(\--process-chain-link-color, #D9DADA)",Color of the connector line between circle horizontal steps.
+"\--process-chain-circle-horizontal-connector-visited-color","var(\--primary-color, hsl(195, 100%, 29%))",Color of the connector line of a visited circle horizontal step.
+"\--process-chain-circle-vertical-connector-color","var(\--process-chain-link-color, #D9DADA)",Color of the connector line between circle vertical steps.
+"\--process-chain-line-waiting-step-background-color","var(\--process-chain-link-color, #D9DADA)",Background color of a waiting line step.
+"\--process-chain-line-hidden-steps-background-color","hsl(0, 0%, 88%)",Color of the striped bar that replaces the hidden line steps on the right.
+"\--process-chain-current-circle-horizontal-step-title-font-weight",bold,Font weight of the current circle horizontal process step title.
+"\--process-chain-current-circle-vertical-step-title-font-weight",bold,Font weight of the current circle vertical process step title.
+"\--process-chain-current-line-horizontal-step-title-font-weight",bold,Font weight of the current line horizontal process step title.
+"\--process-chain-current-line-vertical-step-title-font-weight",bold,Font weight of the current line vertical process step title.
+"\--process-chain-stage-current-icon-color","var(\--primary-color, hsl(195, 100%, 29%))",Color of the current stage icon on the case map stage breadcrumb.
+"\--process-chain-stage-visited-icon-color","hsl(0, 0%, 29%)",Color of a visited stage icon on the case map stage breadcrumb.
+"\--process-chain-stage-waiting-icon-color","hsl(0, 0%, 88%)",Color of a waiting stage icon on the case map stage breadcrumb.
+"\--process-chain-stage-flow-line-background-color","hsl(0, 0%, 88%)",Color of the flow line between stages on the case map stage breadcrumb.

@@ -1,11 +1,5 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,9 +14,14 @@ import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.text;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 
 public class TaskWidgetNewDashBoardPage extends TemplatePage {
@@ -83,22 +82,18 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void startFirstTask() {
-    // The filter count badge used to render as span.widget__filter-noti-number and was a reliable
-    // signal that the filter-apply ajax call had landed; it now renders as a p:tag hidden inside the
-    // collapsed actions menu, so it's no longer usable as a visible precondition. Wait for any
-    // in-flight ajax/animation (including the row refresh from applying a filter) to settle instead.
-    WaitHelper.waitPageNoAjaxAndAnimation();
+    $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
     WaitHelper.waitForNavigation(() -> getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
   }
 
   public void startFirstTaskAndWaitShowHomePageButton() {
-    WaitHelper.waitPageNoAjaxAndAnimation();
+    $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
     getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
     // $("a>span.ti-home.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void startTask(int taskIndex) {
-    WaitHelper.waitPageNoAjaxAndAnimation();
+    $$("span.widget__filter-noti-number").first().shouldBe(appear, DEFAULT_TIMEOUT);
     getCellByRowAndColumnName(taskIndex, "Start").shouldBe(getClickableCondition()).click();
   }
 
@@ -188,7 +183,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnManageFilterLink() {
-    $("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("a").shouldBe(getClickableCondition()).click();
+    $("a[class*='saved-filter__manage-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -522,8 +517,18 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void setInputForQuickSearch(String input) {
+    openQuickSearchInputIfHidden();
     getQuickSearchForm().$("input").sendKeys(input);
     waitPageLoaded();
+  }
+
+  private void openQuickSearchInputIfHidden() {
+    SelenideElement quickSearchPanel = getTaskWidgetHeader().$("div[class*='widget-header-quick-search']");
+    if (!quickSearchPanel.isDisplayed()) {
+      getTaskWidgetHeader().$("button[id*='quick-search-icon']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+          .click();
+      quickSearchPanel.shouldBe(appear, DEFAULT_TIMEOUT);
+    }
   }
 
   private SelenideElement getQuickSearchForm() {
@@ -531,6 +536,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clearQuickSearchInput() {
+    openQuickSearchInputIfHidden();
     getQuickSearchForm().$("input").clear();
     waitPageLoaded();
   }
@@ -628,7 +634,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getFilterOverlayPanel(Integer index) {
-    String widgetIndex = String.format("div[id$='filter-overlay-panel-%d']", index);
+    String widgetIndex = String.format("div[id$='filter-dialog-%d']", index);
     return $(widgetIndex).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 

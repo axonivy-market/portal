@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "ContractCreationData",
   "namespace" : "com.axonivy.portal.userexamples.credit.ContractCreation",
   "fields" : [ {

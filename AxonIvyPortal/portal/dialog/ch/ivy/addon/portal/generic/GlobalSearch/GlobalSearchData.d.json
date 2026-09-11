@@ -1,13 +1,9 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "GlobalSearchData",
   "namespace" : "ch.ivy.addon.portal.generic.GlobalSearch",
   "fields" : [ {
     "name" : "keyword",
-    "modifiers" : [ ]
-  }, {
-    "name" : "isTaskFinished",
-    "type" : "Boolean",
     "modifiers" : [ ]
   }, {
     "name" : "isWorkingOnTask",
