@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/process.json",
   "id" : "163AFDE4C30836BD",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -35,8 +35,8 @@
       "id" : "f8",
       "type" : "Script",
       "name" : [
-        "Display message after",
-        "finish or leave task"
+        "Display message",
+        "after leaving task"
       ],
       "config" : {
         "output" : {
@@ -45,7 +45,7 @@
             "import ch.ivy.addon.portalkit.service.GrowlMessageService;",
             "",
             "if(in.isWorkingOnTask) {",
-            "  GrowlMessageService.getInstance().addFeedbackMessage(in.isTaskFinished, in.caze);",
+            "  GrowlMessageService.getInstance().addTaskLeftFeedbackMessage(in.caze);",
             "}",
             "",
             "PrimeFaces.current().ajax().addCallbackParam(\"isWorkingOnATask\", in.isWorkingOnTask);"

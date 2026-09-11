@@ -1,10 +1,12 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "GlobalSearchLeftMenuData",
   "namespace" : "ch.ivy.addon.portal.generic.GlobalSearchLeftMenu",
   "fields" : [ {
-    "name" : "keyword"
+    "name" : "keyword",
+    "modifiers" : [ ]
   }, {
-    "name" : "activeTabIndex"
+    "name" : "activeTabIndex",
+    "modifiers" : [ ]
   } ]
 }

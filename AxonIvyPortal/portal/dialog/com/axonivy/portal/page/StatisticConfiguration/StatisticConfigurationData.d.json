@@ -1,10 +1,12 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "StatisticConfigurationData",
   "namespace" : "com.axonivy.portal.page.StatisticConfiguration",
   "fields" : [ {
-    "name" : "id"
+    "name" : "id",
+    "modifiers" : [ ]
   }, {
-    "name" : "callbackDashboardId"
+    "name" : "callbackDashboardId",
+    "modifiers" : [ ]
   } ]
 }

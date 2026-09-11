@@ -198,8 +198,8 @@ function setupScrollbar() {
       if (container.outerHeight() > availableHeight && !isMobileDevices()) {
         PortalLayout.removeLayoutContentPaddingBottom();
         $dashboardWrapper.css('margin-right', '-' + PortalLayout.getPaddingRightLayoutContent());
-        $dashboardHeader.css('padding-right', PortalLayout.getPaddingRightLayoutContent());
-        container.css('padding-right', PortalLayout.getPaddingRightLayoutContent());
+        $dashboardHeader.css('margin-right', PortalLayout.getPaddingRightLayoutContent());
+        container.css('margin-right', PortalLayout.getPaddingRightLayoutContent());
       } else {
         $dashboardWrapper.removeAttr('style');
         $dashboardHeader.removeAttr('style');
@@ -473,9 +473,9 @@ function reloadManageFilterDialogOpenerWidget() {
   if (manageFilterDialogOpenerWidgetIndex === undefined) {
     return;
   }
-  var reloadUserFilters = window['loadUserFilters' + manageFilterDialogOpenerWidgetIndex];
-  if (typeof reloadUserFilters === 'function') {
-    reloadUserFilters();
+  var reloadSavedFilters = window['loadSaveFilters' + manageFilterDialogOpenerWidgetIndex];
+  if (typeof reloadSavedFilters === 'function') {
+    reloadSavedFilters();
   }
 }
 

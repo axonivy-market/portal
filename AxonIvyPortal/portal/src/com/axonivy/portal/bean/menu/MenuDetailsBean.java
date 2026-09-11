@@ -24,7 +24,6 @@ import org.apache.commons.lang3.Strings;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
-import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.service.impl.ProcessService;
@@ -537,7 +536,7 @@ public class MenuDetailsBean extends AbstractMenuBean implements IMultiLanguage 
     updateTitlesByLocale(selectedMenuDefinition);
     menu.setIcon(selectedIcon);
     menu.setIndex(lastIndex + 1);
-    menu.setVersion(AbstractJsonVersion.LATEST);
+    // Versioning now lives on the export wrapper container, not on individual entities.
 
     switch (menu.getType()) {
       case MAIN_DASHBOARD -> {

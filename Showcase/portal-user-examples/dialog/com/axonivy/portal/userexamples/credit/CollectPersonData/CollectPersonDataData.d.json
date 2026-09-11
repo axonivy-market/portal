@@ -1,9 +1,10 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "CollectPersonDataData",
   "namespace" : "com.axonivy.portal.userexamples.credit.CollectPersonData",
   "fields" : [ {
     "name" : "dossier",
-    "type" : "com.axonivy.portal.userexamples.credit.CreditDossier"
+    "type" : "com.axonivy.portal.userexamples.credit.CreditDossier",
+    "modifiers" : [ ]
   } ]
 }

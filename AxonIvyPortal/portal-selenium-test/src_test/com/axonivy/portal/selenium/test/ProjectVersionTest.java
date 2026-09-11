@@ -24,7 +24,8 @@ public class ProjectVersionTest extends BaseTest {
     ProjectVersionPage projectVersionPage = newDashboardPage.openProjectVersionPage();
     assertTrue(projectVersionPage.isEngineVersionDisplayed(), "Engine version not displayed");
     assertTrue(projectVersionPage.isPortalVersionDisplayed(), "Portal version not displayed");
-    assertTrue(projectVersionPage.isFirstProjectDisplayed(), "First project version not displayed");
+    assertTrue(projectVersionPage.isFirstVersionDisplayed(), "First application version not displayed");
+    assertTrue(projectVersionPage.isFirstProjectDisplayed(), "Projects of the selected version not displayed");
   }
 
 }

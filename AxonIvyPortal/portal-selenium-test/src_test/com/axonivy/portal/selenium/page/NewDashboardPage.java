@@ -1,10 +1,5 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -15,7 +10,11 @@ import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
 import com.codeborne.selenide.ElementsCollection;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -52,7 +51,7 @@ public class NewDashboardPage extends TemplatePage {
   public void waitForAbsencesGrowlMessageDisplay() {
     $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public Boolean isTaskListDisplayed() {
     return $("div[id*='task-default_task_list_dashboard_task_1']").isDisplayed();
   }
@@ -137,12 +136,13 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement waitAndGetStatisticChart(int index) {
     var widget =
         $$("[id^='statistic-client_statistic']").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
-        .get(index)
-        .shouldBe(appear, DEFAULT_TIMEOUT);
+            .get(index)
+            .shouldBe(appear, DEFAULT_TIMEOUT);
     widget.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
     waitForWidgetLoadedByExpandThenCollapse(widget);
     return widget.ancestor(".grid-stack-item");
   }
+
   public WebElement waitAndGetNewsWidget(int index) {
     var widget = $$(".news-widget").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT).get(index)
         .shouldBe(appear, DEFAULT_TIMEOUT);
@@ -152,9 +152,20 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   private void waitForWidgetLoadedByExpandThenCollapse(SelenideElement widget) {
-    widget.$(".expand-link").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    widget.$(".collapse-link").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    widget.$(".expand-link").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement gridStackItem = widget.ancestor(".grid-stack-item");
+    clickToggleFullscreenMenuItem(widget);
+    gridStackItem.shouldHave(Condition.cssClass("expand-fullscreen"), DEFAULT_TIMEOUT);
+    clickToggleFullscreenMenuItem(widget);
+    gridStackItem.shouldNotHave(Condition.cssClass("expand-fullscreen"), DEFAULT_TIMEOUT);
+  }
+
+  private void clickToggleFullscreenMenuItem(SelenideElement widget) {
+    SelenideElement actionsMenuButton = widget.$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT).$("[id*=':toggle-fullscreen-item-']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public WelcomeEditWidgetNewDashboardPage editWelcomeWidgetConfiguration(String widgetId) {
@@ -189,7 +200,7 @@ public class NewDashboardPage extends TemplatePage {
   public ProcessEditWidgetNewDashBoardPage editImageModeProcess() {
     if (!$("[id$=':image-process-action-component:process-action-menu']").isDisplayed()) {
       $("button[id$='image-process-action-component:process-action-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-      .click();
+          .click();
     }
     $("[id$=':image-process-action-component:process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("span.ti-pencil").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
@@ -225,11 +236,11 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement getDisabledMoreInformationLink() {
     return getProcessActionMenu().$$("span[class$='ui-menuitem-text']").filter(Condition.text("More Information")).first();
   }
-  
+
   private SelenideElement getProcessActionMenu() {
     if (!$("[id$=':process-action-menu']").isDisplayed()) {
       $("button[id$=':process-action-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-      .click();
+          .click();
     }
     return $("div[id$='process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
@@ -351,7 +362,7 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement getCompactModeProcessDisplayedDisabledFirstProcessItemName() {
     return $(
         ".compact-processes-container .ui-commandlink.process-item span[id$=':process-name-process-item']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+            .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void startCompactModeProcessByProcessName(String processName) {
@@ -393,10 +404,24 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void openCompactModeProcessFilterPanel() {
-    var processFilter = getCompactModeProcessFilterLink().shouldBe(Condition.appear);
-    waitUntilElementToBeClickable(processFilter);
-    clickByJavaScript(processFilter);
+    SelenideElement actionsMenuPanel = openCompactModeProcessActionsMenu();
+
+    actionsMenuPanel.$$("a.ui-menuitem-link").filter(Condition.text("Filters")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     getCompactModeProcessFilterPanelSaveFilters().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement openCompactModeProcessActionsMenu() {
+    getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear).click();
+    SelenideElement actionsMenuButton = getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    waitUntilElementToBeClickable(actionsMenuButton);
+    clickByJavaScript(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    return $("[id='" + menuId + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getCompactModeProcessActionsMenuButton() {
+    return $("[id$='actions-button-panel-2']").$("button[id$=':actions-menu-button_button']");
   }
 
   public void applyCompactModeProcessFilterPanel() {
@@ -420,18 +445,8 @@ public class NewDashboardPage extends TemplatePage {
     filterName.sendKeys(processName);
   }
 
-  public SelenideElement getCompactModeProcessFilterLink() {
-    String selector = String.format("[id$=':filter-sidebar-link-2']");
-    return $(selector);
-  }
-
-  public SelenideElement getCompactModeProcessInfoLink() {
-    String selector = String.format("[id$=':info-sidebar-link-2']");
-    return $(selector);
-  }
-
   public SelenideElement getCompactModeProcessFilterPanel() {
-    String selector = String.format("div[id$=':filter-overlay-panel-2']");
+    String selector = String.format("div[id$=':filter-dialog-2']");
     return $(selector);
   }
 
@@ -468,12 +483,14 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void filterCompactModeProcessProcessType(String processType) {
-    getCompactModeProcessFilterPanelProcessTypes().shouldBe(Condition.appear).click();
-    getCompactModeProcessProcessTypesPanel()
-        .shouldBe(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT)
-        .$("li[data-item-value='" + processType + "'] label").shouldBe(Condition.appear).click();
-    getCompactModeProcessProcessTypesPanel().$(".ui-selectcheckboxmenu-close").click();
-    getCompactModeProcessProcessTypesPanel().shouldBe(disappear, DEFAULT_TIMEOUT);
+    SelenideElement processTypesTrigger =
+        getCompactModeProcessFilterPanelProcessTypes().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    waitUntilElementToBeClickable(processTypesTrigger);
+    clickByJavaScript(processTypesTrigger);
+    SelenideElement processTypesPanel = getCompactModeProcessProcessTypesPanel().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    processTypesPanel.$("li[data-item-value='" + processType + "'] label").shouldBe(Condition.appear).click();
+    processTypesPanel.$(".ui-selectcheckboxmenu-close").click();
+    processTypesPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCompactModeProcessFilterPanelProcessTypes() {
@@ -518,32 +535,26 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void expandCompactModeProcess() {
-    SelenideElement filterLink = getCompactModeProcessFilterLink();
-    filterLink.shouldBe(Condition.appear);
-
-    getCompactModeProcessInfoLink().shouldBe(Condition.appear);
-
-    getCompactModeProcessCollapseLink().shouldBe(disappear);
+    getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear).click();
 
     SelenideElement expandLink = getCompactModeProcessExpandLink();
     expandLink.shouldBe(Condition.appear).click();
     expandLink.shouldBe(disappear, DEFAULT_TIMEOUT);
 
-    getCompactModeProcessCollapseLink().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void collapseCompactModeProcess() {
+    getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear).click();
     getCompactModeProcessCollapseLink().click();
     getCompactModeProcessCollapseLink().shouldBe(disappear, DEFAULT_TIMEOUT);
-    getCompactModeProcessExpandLink().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCompactModeProcessExpandLink() {
-    return $("[id$=':expand-link-2']");
+    return $("[id$=':toggle-fullscreen-item-2']");
   }
 
   public SelenideElement getCompactModeProcessCollapseLink() {
-    return $("[id$=':collapse-link-2']");
+    return $("[id$=':toggle-fullscreen-item-2']");
   }
 
   public SelenideElement getCompactModeProcessFilterPanelSaveButton() {
@@ -598,16 +609,12 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void saveCompactModeProcessFilter(String savedFilterName) {
-    getCompactModeProcessFilterPanelSaveButton().shouldBe(Condition.enabled).click();
-    SelenideElement saveWidgetFilterDialog = getSaveWidgetFilterDialog();
-    saveWidgetFilterDialog.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-
-    SelenideElement filterName = getSaveWidgetFilterDialogFilterName();
-    filterName.shouldBe(Condition.appear).clear();
+    SelenideElement filterDialog = getCompactModeProcessFilterPanel();
+    SelenideElement filterName = filterDialog.$("input[id$=':inline-save-filter-name']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    filterName.clear();
     filterName.sendKeys(savedFilterName);
-
-    getSaveWidgetFilterDialogSaveButton().shouldBe(Condition.enabled).click();
-    saveWidgetFilterDialog.shouldBe(disappear, DEFAULT_TIMEOUT);
+    filterDialog.$("button[id$=':inline-save-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public SelenideElement getSaveWidgetFilterDialog() {
@@ -710,7 +717,7 @@ public class NewDashboardPage extends TemplatePage {
   private void testRemoveCompactModeProcessFilter() {
     removeCompactModeProcessFilter(MY_FILTER);
     getManageWidgetFilterDialogFirstSavedFilter().$("td:nth-child(2)")
-    .shouldBe(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME), DEFAULT_TIMEOUT);
+        .shouldBe(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME), DEFAULT_TIMEOUT);
   }
 
   public void removeCompactModeProcessFilter(String filterName) {
@@ -731,7 +738,8 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void openCompactModeProcessInforPanel() {
-    getCompactModeProcessInfoLink().shouldBe(Condition.appear).click();
+    SelenideElement actionsMenuPanel = openCompactModeProcessActionsMenu();
+    actionsMenuPanel.$("[id$=':info-menu-item-2']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     getCompactModeProcessInfoPanel().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -794,7 +802,7 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement getCaseWidgetTable() {
     return getCaseWidgetContainer().$("div[id$='dashboard-cases']");
   }
-  
+
   public SelenideElement getCaseWidget() {
     return $("div[class*='js-dashboard-widget-case_1']");
   }
@@ -818,10 +826,10 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement getTaskWidgetTable() {
     return getTaskWidgetContainer().$("div[id$='dashboard-tasks']");
   }
-  
+
   public SelenideElement getTaskWidget() {
     return $("div[class*='js-dashboard-widget-task_1']");
-  } 
+  }
 
   public SelenideElement getTaskWidgetEmptyMessageWhenNotFilter() {
     return getTaskWidgetContainer().$("div[id$='empty-message-when-not-filter']");
@@ -858,26 +866,41 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void openWidgetFilter(int index) {
-    $("[id$='filter-sidebar-link-" + index + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement actionsMenuButton = getCaseWidget().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    actionsMenuPanel.$$("a.ui-menuitem-link").filter(Condition.text("Filters")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
+    $("[id$=':widget-saved-filters-items']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public SelenideElement getWidgetFilter(int index) {
-    var result = $("div[id$=':filter-overlay-panel-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    var result = $("div[id$=':filter-dialog-content-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
     result.$("[class*='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);
-    result.$(".filter-overlay-panel__header").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    result.$(".filter-dialog__title").shouldBe(appear, DEFAULT_TIMEOUT).click();
     return result;
   }
 
   public void closeWidgetFilter(int index) {
-    var widgetFilterPanel = $("div[id$=':filter-overlay-panel-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
-    widgetFilterPanel.$("div[id*='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[class*='filter-overlay-panel__header']").shouldBe(appear, DEFAULT_TIMEOUT).$("button[id*='filter-form-" + index + "']").should(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    var widgetFilterPanel = $("div[id$=':filter-dialog-content-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    widgetFilterPanel.$("button[id$=':widget-filter-cancel-button']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     widgetFilterPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public WebElement openWidgetInformation(int index) {
-    String widgetInfo = String.format("button[id$=':info-sidebar-link-%d']", index);
-    $(widgetInfo).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    SelenideElement actionsMenuButton = getDashboardWidget(index).$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    String infoMenuItemId = actionsMenuButton.getAttribute("id").replace("actions-menu-button_button",
+        "info-menu-item-" + index);
+    actionsMenuPanel.$("[id='" + infoMenuItemId + "']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
 
     String infoPanel = String.format("div[id$='info-overlay-panel-%d']", index);
     $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT).$(".widget-info--type")
@@ -886,14 +909,24 @@ public class NewDashboardPage extends TemplatePage {
     return $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  private SelenideElement getDashboardWidget(int index) {
+    if (index == 0) {
+      return getTaskWidget();
+    }
+    if (index == 1) {
+      return getCaseWidget();
+    }
+    throw new IllegalArgumentException("Unsupported dashboard widget index: " + index);
+  }
+
   public void startTask(int index) {
     String cssSelector =
-        String.format("a[id$=':task-component:dashboard-tasks:%d:dashboard-tasks-columns:0:start-task']", index);
+        String.format("button[id*=':task-component:dashboard-tasks:%d:'][id$=':start-task']", index);
     $(cssSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void waitForTaskStartButtonDisplay(int index) {
-    String cssSelector = String.format("a[id*='task-component:dashboard-tasks:%d']", index);
+    String cssSelector = String.format("button[id*='task-component:dashboard-tasks:%d']", index);
     $(cssSelector).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -915,7 +948,7 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement hideNotificationsIcon() {
     return $("[id='topbar-unread-notifications']").shouldBe(disappear);
   }
-  
+
   public SelenideElement showNotificationsIcon() {
     return $("[id='topbar-unread-notifications']").shouldBe(appear);
   }
@@ -1003,44 +1036,45 @@ public class NewDashboardPage extends TemplatePage {
     $("button[id$=':notification-more-option_button']").shouldBe(getClickableCondition()).click();
     $("[id$=':notification-setting']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
-  
+
   public void waitForUserProfileDisplay() {
     $("div[id='my-profile-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public void clickNotificationFullPage() {
     $("button[id$=':notification-more-option_button']").shouldBe(getClickableCondition()).click();
     $("[id$=':notification-full-page']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
+
   public void waitForNotificationFullpageDisplay() {
     $("form[id='notification-full-form']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public NotificationCompactPage openNotificationPanel() {
     $("[id='open-notifications-panel']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='notification-compact-form:notifications-scroller:0:notification-mark-as-read']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     return new NotificationCompactPage();
   }
-  
+
   public void clickOnManageFilterLink() {
-    $("div[class*='filter-overlay-panel__footer']").shouldBe(appear, DEFAULT_TIMEOUT).$("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("a[class*='saved-filter__manage-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("a[class*='saved-filter__manage-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public SelenideElement getManageFilterDialog() {
     return $("[id$='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public ElementsCollection getTotalSavedFilterInManageFilterDialog() {
     var deleteSavedFilterForm = $("#delete-saved-filter-form").shouldBe(appear, DEFAULT_TIMEOUT);
     return deleteSavedFilterForm.$(".ui-datatable-data").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$(".saved-filter-selection-column");
   }
-  
+
   public void closeManageFilterDialog() {
     $("div[id*='manage-filter-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-    .$("div[class*='ui-widget-header']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-    .$("a[class*='ui-dialog-titlebar-close']").shouldBe(getClickableCondition()).click();
+        .$("div[class*='ui-widget-header']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("a[class*='ui-dialog-titlebar-close']").shouldBe(getClickableCondition()).click();
     $("[id$='manage-filter-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
@@ -1057,7 +1091,7 @@ public class NewDashboardPage extends TemplatePage {
     $("a[id$='user-settings-menu']").shouldBe(appear).click();
     $("ul[id='user-setting-container']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
-  
+
   public StatisticWidgetNewDashboardPage selectStatisticChartWidget(String chartName) {
     return new StatisticWidgetNewDashboardPage(chartName);
   }
@@ -1065,7 +1099,7 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement getGlobalQuickSearchPanel() {
     return $("[id='global-search-component:global-search-form']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public SelenideElement getProcessWidgetTable() {
     return getProcessWidgetContainer().$("div[id$='process-list']");
   }
@@ -1082,25 +1116,25 @@ public class NewDashboardPage extends TemplatePage {
     checkDisplayedCompactModeProcessContainer();
     getProcessWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
-  
+
   public void clickOnFirstTaskAction() {
     $$("[id$='dashboard-task-side-steps-menu']")
-    .get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
-    .click();
+        .get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
 
     $("[id$='dashboard-actions-task-task_1:side-steps-panel']")
-    .shouldBe(appear, DEFAULT_TIMEOUT);
+        .shouldBe(appear, DEFAULT_TIMEOUT);
     focusByJavascript($("[id$=':task-open-detail-command']"));
     $("[id$=':task-open-detail-command']").sendKeys(Keys.TAB);
   }
 
   public void clickOnFirstCaseAction() {
     $$("[id$='dashboard-case-side-steps-menu']")
-    .get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
-    .click();
+        .get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
 
     $("[id$=':action-steps-panel']")
-    .shouldBe(appear, DEFAULT_TIMEOUT);
+        .shouldBe(appear, DEFAULT_TIMEOUT);
     focusByJavascript($("[id$=':case-item-open-detail-link']"));
     $("[id$=':case-item-open-detail-link']").sendKeys(Keys.TAB);
   }
@@ -1117,25 +1151,24 @@ public class NewDashboardPage extends TemplatePage {
         .filter(widgetTitle -> widgetTitle.is(Condition.text(name))).findFirst()
         .isPresent();
   }
-  
+
   public SelenideElement getNavigationDashboardWidgetDialog() {
     return $("div[class*='navigation-dashboard-widget-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
-  
+
   public Boolean isBackButtonAppear() {
     return getBackButton().isDisplayed();
   }
-  
+
   public void clickOnBackButton() {
     getBackButton().click();
   }
 
   private SelenideElement getBackButton() {
-    return $("span#breadcrumb-container").shouldBe(Condition.appear, DEFAULT_TIMEOUT).
-    $("form#navigation-dashboard-back-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).
-    $("a[id$=':back-to-previous-dashboard-page']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("span#breadcrumb-container").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("form#navigation-dashboard-back-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a[id$=':back-to-previous-dashboard-page']").shouldBe(Condition.appear,
+        DEFAULT_TIMEOUT);
   }
-  
+
   public ElementsCollection collectAvailableWidgets() {
     return $$("div.widget__header");
   }

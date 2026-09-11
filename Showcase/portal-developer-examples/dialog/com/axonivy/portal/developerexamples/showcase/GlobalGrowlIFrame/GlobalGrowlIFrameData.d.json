@@ -1,11 +1,13 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "GlobalGrowlIFrameData",
   "namespace" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame",
   "fields" : [ {
-    "name" : "field"
+    "name" : "field",
+    "modifiers" : [ ]
   }, {
     "name" : "isCustomized",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

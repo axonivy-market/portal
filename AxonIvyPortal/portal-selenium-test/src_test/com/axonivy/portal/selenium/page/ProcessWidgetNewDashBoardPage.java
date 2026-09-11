@@ -53,7 +53,7 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='delete-widget']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
-  
+
   public boolean isQuickSearchInputShow() {
     waitPageLoaded();
     return getQuickSearchForm().exists();
@@ -66,7 +66,7 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getQuickSearchForm() {
     return getProcessWidgetHeader().$("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
   }
-  
+
   private SelenideElement getProcessWidgetHeader() {
     return $$("div.table-widget-panel").filter(text(processWidgetName)).first();
   }
@@ -105,11 +105,11 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
 
   public boolean isExpandButtonAppear() {
     WaitHelper.waitPageNoAjaxAndAnimation();
-    return getProcessWidgetHeader().$(".expand-link").isDisplayed();
+    return getProcessWidgetHeader().$("[id*=':toggle-fullscreen-item-']").exists();
   }
 
   public boolean isWidgetInfoIconAppear() {
     WaitHelper.waitPageNoAjaxAndAnimation();
-    return getProcessWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
+    return getProcessWidgetHeader().$("[id*=':info-menu-item-']").exists();
   }
 }

@@ -1,10 +1,12 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "redirectToStaticPageExampleData",
   "namespace" : "com.axonivy.portal.components.examples.redirectToStaticPageExample",
   "fields" : [ {
-    "name" : "staticLink"
+    "name" : "staticLink",
+    "modifiers" : [ ]
   }, {
-    "name" : "staticPagePath"
+    "name" : "staticPagePath",
+    "modifiers" : [ ]
   } ]
 }

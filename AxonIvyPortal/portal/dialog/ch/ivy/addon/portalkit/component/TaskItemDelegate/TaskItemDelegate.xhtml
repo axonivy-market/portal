@@ -79,7 +79,7 @@
         </h:panelGroup>
 
         <h:panelGroup id="delegate-action-panel" layout="block" styleClass="text-right">
-          <p:link id="cancel-task-delegate-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          <p:link styleClass="portal-link" id="cancel-task-delegate-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancelContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')])}"
             href="#" onclick="PF('task-delegate-dialog').hide(); return false;" />
           <p:spacer width="15px" />

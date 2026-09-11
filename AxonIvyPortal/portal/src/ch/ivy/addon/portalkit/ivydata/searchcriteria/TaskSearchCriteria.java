@@ -280,7 +280,8 @@ public class TaskSearchCriteria {
     }
     
     private void appendSortByBusinessCaseIdIfSet(TaskSearchCriteria criteria) {
-      if (DashboardStandardTaskColumn.BUSINESS_CASE_ID.getField().equalsIgnoreCase(criteria.getSortField())) {
+      if (DashboardStandardTaskColumn.BUSINESS_CASE_ID.getField().equalsIgnoreCase(criteria.getSortField())
+          || TaskSortField.BUSINESS_CASE_ID.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().businessCaseId().descending();
         } else {
@@ -290,7 +291,8 @@ public class TaskSearchCriteria {
     }
 
     private void appendSortByTechnicalCaseIdIfSet(TaskSearchCriteria criteria) {
-      if (DashboardStandardTaskColumn.TECHNICAL_CASE_ID.getField().equalsIgnoreCase(criteria.getSortField())) {
+      if (DashboardStandardTaskColumn.TECHNICAL_CASE_ID.getField().equalsIgnoreCase(criteria.getSortField())
+          || TaskSortField.TECHNICAL_CASE_ID.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().caseId().descending();
         } else {

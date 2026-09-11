@@ -16,7 +16,7 @@
 
     <h:panelGroup layout="block" rendered="#{isPublicDashboard}"
       styleClass="ui-g-12 u-no-padding-left">
-      <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SidebarTopLevelDashboards')}</h5>
+      <p class="text-style-h5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SidebarTopLevelDashboards')}</p>
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SidebarTopLevelDashboardsDescription')}</span>
       <p:dataTable cellNavigation="false" id="top-menu-dashboard-table" lazy="false"
         value="#{dashboardModificationBean.topMenuDashboards}" var="topDashboard"
@@ -44,7 +44,7 @@
             <h:panelGroup layout="block">
               <p:commandButton id="top-dashboard-action-button" icon="ti ti-dots"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                styleClass="rounded-button portal-circle-icon ui-button-flat ui-button-plain" type="button" />
+                styleClass="rounded-button portal-circle-icon ui-button-icon-only ui-button-flat ui-button-plain" type="button" />
               <p:menu id="top-dashboard-action-menu" styleClass="w-auto dashboard-action-menu" overlay="true" trigger="top-dashboard-action-button"
                 my="right top" at="right bottom">
                 <p:menuitem id="top-edit" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(topDashboard)}"
@@ -87,7 +87,7 @@
 
     <h:panelGroup layout="block" rendered="#{isPublicDashboard}"
       styleClass="ui-g-12 u-no-padding-left u-padding-top-10">
-      <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SubMenuDashboards')}</h5>
+      <p class="text-style-h5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SubMenuDashboards')}</p>
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SubMenuDashboardsDescription')}</span>
     </h:panelGroup>
 
@@ -169,7 +169,7 @@
 
     <h:panelGroup layout="block" rendered="#{isPublicDashboard}"
       styleClass="ui-g-12 u-no-padding-left">
-      <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Hidden')}</h5>
+      <p class="text-style-h5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Hidden')}</p>
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/HiddenDashboardsDescription')}</span>
       <p:dataTable cellNavigation="false" id="hidden-dashboard-table" lazy="false"
         value="#{dashboardModificationBean.hiddenDashboards}" var="hiddenDashboard"
@@ -274,7 +274,7 @@
         <p:link href="#"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('export-referenced-dialog').hide();"
-          styleClass="ui-button-flat mt-3 mx-auto w-max flex" />
+          styleClass="ui-button-flat mt-3 mx-auto w-max flex portal-link" />
       </div>
     </ui:define>
   </ui:decorate>
@@ -311,7 +311,7 @@
         update="dashboard-modification-container"
         oncomplete="PF('remove-dashboard-dialog').hide();" />
       <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        onclick="PF('remove-dashboard-dialog').hide();" styleClass="ui-button-flat mt-3 mx-auto w-max flex" />
+        onclick="PF('remove-dashboard-dialog').hide();" styleClass="ui-button-flat mt-3 mx-auto w-max flex portal-link" />
       </div>
     </ui:define>
   </ui:decorate>

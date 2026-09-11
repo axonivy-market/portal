@@ -1,9 +1,10 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "CreateMultipleTestUsersData",
   "namespace" : "ch.ivy.addon.portalkit.test.CreateMultipleTestUsers",
   "fields" : [ {
     "name" : "numberOfUser",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   } ]
 }

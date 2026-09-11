@@ -23,7 +23,7 @@ import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class SampleDashboardScreenshotTest extends ScreenshotBaseTest {
-  
+
   private final String SAMPLE_STATISTIC_DASHBOARD_MENU = "KPI Procurement Overview";
   private final String INIT_SAMPLE_STATISTIC_CONFIG_PROCESS = "Init sample dashboard (UPDATE PORTAL DASHBOARD AND STATISTIC VARIABLES)";
 
@@ -51,7 +51,7 @@ public class SampleDashboardScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage dashboardPage = new NewDashboardPage();
     DashboardConfigurationPage dashboardConfigurationPage = dashboardPage.openDashboardConfigurationPage();
     dashboardConfigurationPage.openEditPublicDashboardsPage();
-    dashboardConfigurationPage.clickButtonOnDashboardConfigurationActionMenu("Configuration", 0);
+    dashboardConfigurationPage.clickButtonOnDashboardConfigurationActionMenu("Edit Layout", 0);
     NewDashboardDetailsEditPage dashboardConfigPage = new NewDashboardDetailsEditPage();
     dashboardConfigPage.addWidget();
     dashboardConfigPage.filterStatisticWidgets();
@@ -62,9 +62,9 @@ public class SampleDashboardScreenshotTest extends ScreenshotBaseTest {
 
   private void scrollToExampleStatisticInAddWidgetDialog() {
     $$("a.new-widget-dialog__item-content")
-      .findBy(Condition.text("Total Procurement Spend per Department"))
-      .shouldBe(Condition.visible, DEFAULT_TIMEOUT)
-      .scrollIntoCenter();
+        .findBy(Condition.text("Total Procurement Spend per Department"))
+        .shouldBe(Condition.visible, DEFAULT_TIMEOUT)
+        .scrollIntoCenter();
   }
 
   private void waitForDashboardLoaded() {

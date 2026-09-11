@@ -48,7 +48,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void addNewNote(String content) {
-    waitForElementClickableThenClick("a[id$='add-note-command']");
+    waitForElementClickableThenClick("button[id$='add-note-command']");
     waitForElementDisplayed(By.cssSelector("div[id$='add-note-dialog']"), true);
     findElementByCssSelector("textarea[id$='note-content']").sendKeys(content);
     int beginCounts = countNoteItems();
@@ -158,8 +158,8 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void openDocumentUploadingDialog() {
-    waitForElementDisplayed(By.cssSelector("a[id$='add-document-command']"), true);
-    clickByJavaScript($("a[id$='add-document-command']"));
+    waitForElementDisplayed(By.cssSelector("button[id$='add-document-command']"), true);
+    clickByJavaScript($("button[id$='add-document-command']"));
     waitForElementDisplayed(By.cssSelector("div[id$='document-upload-dialog']"), true);
   }
 
@@ -231,7 +231,7 @@ public class TaskTemplatePage extends TemplatePage {
     clickOnSubmitButton();
     return new NewDashboardPage();
   }
-  
+
   public NewDashboardPage clickReserveButton() {
     clickByJavaScript($("button[id$=':reserve-task-button']"));
     switchBackToParent();
@@ -283,7 +283,7 @@ public class TaskTemplatePage extends TemplatePage {
     waitForPageLoad();
     return new CaseDetailsPage();
   }
-  
+
   public void startSideStep() {
     clickByJavaScript($("a[id$='horizontal-task-action-form:side-steps-process']"));
     $("button[id='side-step-process-submit-button']").shouldBe(clickable(), DEFAULT_TIMEOUT);

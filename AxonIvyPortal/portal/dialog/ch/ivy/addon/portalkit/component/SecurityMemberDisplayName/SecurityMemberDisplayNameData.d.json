@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "SecurityMemberDisplayNameData",
   "namespace" : "ch.ivy.addon.portalkit.component.SecurityMemberDisplayName",
   "fields" : [ {
@@ -7,14 +7,18 @@
     "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
     "modifiers" : [ ]
   }, {
-    "name" : "roleName"
+    "name" : "roleName",
+    "modifiers" : [ ]
   }, {
-    "name" : "keyword"
+    "name" : "keyword",
+    "modifiers" : [ ]
   }, {
-    "name" : "usersInTooltips"
+    "name" : "usersInTooltips",
+    "modifiers" : [ ]
   }, {
     "name" : "isRenderUserOfRole",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "securityMember",
     "type" : "ch.ivyteam.ivy.security.ISecurityMember",

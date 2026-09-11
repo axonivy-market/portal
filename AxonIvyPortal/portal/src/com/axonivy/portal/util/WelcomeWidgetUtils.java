@@ -6,6 +6,7 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.apache.commons.io.FileUtils;
@@ -96,6 +97,15 @@ public class WelcomeWidgetUtils {
     }
     return getApplicationCMS().child().folder(IMAGE_DIRECTORY).child()
         .file(fileName, fileExtension);
+  }
+
+  public static Optional<ContentObject> findImage(String imageLocation, String imageType) {
+    String fileName = getFileNameOfImage(imageLocation);
+    String fileExtension = getFileTypeOfImage(imageType);
+    if (StringUtils.isEmpty(fileName) || StringUtils.isEmpty(fileExtension)) {
+      return Optional.empty();
+    }
+    return getApplicationCMS().child().folder(IMAGE_DIRECTORY).child().get(fileName);
   }
 
   public static void removeWelcomeImage(String imageLocation, String imageType) {
@@ -196,9 +206,17 @@ public class WelcomeWidgetUtils {
 
   public static void prepareWidgetForExport(WelcomeDashboardWidget welcomeWidget) {
     welcomeWidget.setImageType(getFileTypeOfImage(welcomeWidget.getImageType()));
-    welcomeWidget.setImageContent(encodeImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType()));
     welcomeWidget.setImageTypeDarkMode(getFileTypeOfImage(welcomeWidget.getImageTypeDarkMode()));
-    welcomeWidget.setImageContentDarkMode(encodeImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode()));
+    String content = encodeImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType());
+    if (StringUtils.isNotBlank(content)) {
+      welcomeWidget.setImageContent(content);
+      welcomeWidget.setImageLocation(null);
+    }
+    String contentDarkMode = encodeImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode());
+    if (StringUtils.isNotBlank(contentDarkMode)) {
+      welcomeWidget.setImageContentDarkMode(contentDarkMode);
+      welcomeWidget.setImageLocationDarkMode(null);
+    }
   }
 
   public static String encodeImage(String imageLocation, String imageType) {

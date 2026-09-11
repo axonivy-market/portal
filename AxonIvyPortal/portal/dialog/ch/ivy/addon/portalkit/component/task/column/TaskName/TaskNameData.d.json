@@ -1,14 +1,16 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "TaskNameData",
   "namespace" : "ch.ivy.addon.portalkit.component.task.column.TaskName",
   "fields" : [ {
-    "name" : "oldName"
+    "name" : "oldName",
+    "modifiers" : [ ]
   }, {
     "name" : "task",
     "type" : "ch.ivyteam.ivy.workflow.ITask",
     "modifiers" : [ ]
   }, {
-    "name" : "changeNameNoteContent"
+    "name" : "changeNameNoteContent",
+    "modifiers" : [ ]
   } ]
 }

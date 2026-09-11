@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/process.json",
   "id" : "156A1AA176DE2A21",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -149,11 +149,11 @@
             "import ch.ivy.addon.portalkit.service.GrowlMessageService;",
             "",
             "try {",
-            "  GrowlMessageService.getInstance().addFeedbackMessage(false, (in.#workingTask != null ? in.workingTask : ivy.task).getCase());",
+            "  GrowlMessageService.getInstance().addTaskLeftFeedbackMessage((in.#workingTask != null ? in.workingTask : ivy.task).getCase());",
             "} catch (Exception e) {",
             "  // Could be Error calling method getCase() on an object of class ch.ivyteam.ivy.workflow.internal.Task.",
             "  // Due to PersistentObjectDeletedException of ch.ivyteam.ivy.workflow.internal.data.TaskData",
-            "  GrowlMessageService.getInstance().addFeedbackMessage(false);",
+            "  GrowlMessageService.getInstance().addTaskLeftFeedbackMessage();",
             "}"
           ]
         }

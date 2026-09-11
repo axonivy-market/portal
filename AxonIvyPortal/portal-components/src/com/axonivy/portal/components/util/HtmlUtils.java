@@ -6,9 +6,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.safety.Safelist;
 
+import ch.ivyteam.ivy.environment.Ivy;
+
 public class HtmlUtils {
 
-  private static String HTML_PROTOCOL = "http:";
+  private static String BASE_URI = Ivy.html().baseLink().getAbsolute();
   private static final Pattern ICON_PATTERN = Pattern.compile("^(fa|si|ti|tif)\\s+(fa|si|ti|tif)-[a-zA-Z0-9\\-]+$");
 
   public static String parseTextFromHtml(String text) {
@@ -23,7 +25,7 @@ public class HtmlUtils {
     // special character
     // Use Jsoup.clean(text, Safelist.relaxed().addAttributes(":all", "style",
     // "class")) and customize it to allow relative path for href of tag a
-    return text == null ? null : Jsoup.clean(text, HTML_PROTOCOL, Safelist.relaxed().addAttributes(":all", "style", "class").preserveRelativeLinks(true));
+    return text == null ? null : Jsoup.clean(text, BASE_URI, Safelist.relaxed().addAttributes(":all", "style", "class").preserveRelativeLinks(true));
   }
 
   public static String escapeForIcon(String input) {

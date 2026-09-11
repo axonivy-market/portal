@@ -1,12 +1,14 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "ProcessChainExampleData",
   "namespace" : "com.axonivy.portal.components.examples.ProcessChainExample",
   "fields" : [ {
     "name" : "actualCurrentIndex",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "steps",
-    "type" : "java.util.List<String>"
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   } ]
 }

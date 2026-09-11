@@ -1,12 +1,14 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "TemplateExampleInFrameData",
   "namespace" : "com.axonivy.portal.developerexamples.testdata.TemplateExampleInFrame",
   "fields" : [ {
     "name" : "steps",
-    "type" : "List<String>"
+    "type" : "List<String>",
+    "modifiers" : [ ]
   }, {
     "name" : "investmentRequest",
-    "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData"
+    "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData",
+    "modifiers" : [ ]
   } ]
 }

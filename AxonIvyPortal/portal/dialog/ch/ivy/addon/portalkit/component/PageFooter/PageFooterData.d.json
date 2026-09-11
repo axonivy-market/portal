@@ -1,8 +1,9 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "PageFooterData",
   "namespace" : "ch.ivy.addon.portalkit.component.PageFooter",
   "fields" : [ {
-    "name" : "content"
+    "name" : "content",
+    "modifiers" : [ ]
   } ]
 }

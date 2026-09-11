@@ -1,29 +1,37 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "RoleSelectionExampleData",
   "namespace" : "com.axonivy.portal.components.examples.RoleSelectionExample",
   "fields" : [ {
     "name" : "selectedRoleForDefinedRoles",
-    "type" : "com.axonivy.portal.components.dto.RoleDTO"
+    "type" : "com.axonivy.portal.components.dto.RoleDTO",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedRoleForReadOnlyField",
-    "type" : "com.axonivy.portal.components.dto.RoleDTO"
+    "type" : "com.axonivy.portal.components.dto.RoleDTO",
+    "modifiers" : [ ]
   }, {
-    "name" : "selectedRoleForExcludingRoles"
+    "name" : "selectedRoleForExcludingRoles",
+    "modifiers" : [ ]
   }, {
     "name" : "excludedRoleNames",
-    "type" : "List<String>"
+    "type" : "List<String>",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedRoleForInsertChildren",
-    "type" : "com.axonivy.portal.components.dto.RoleDTO"
+    "type" : "com.axonivy.portal.components.dto.RoleDTO",
+    "modifiers" : [ ]
   }, {
     "name" : "selectedRole",
-    "type" : "com.axonivy.portal.components.dto.RoleDTO"
+    "type" : "com.axonivy.portal.components.dto.RoleDTO",
+    "modifiers" : [ ]
   }, {
     "name" : "definedRoleNames",
-    "type" : "List<String>"
+    "type" : "List<String>",
+    "modifiers" : [ ]
   }, {
     "name" : "emptyRoleNames",
-    "type" : "List<String>"
+    "type" : "List<String>",
+    "modifiers" : [ ]
   } ]
 }

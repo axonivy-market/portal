@@ -1,23 +1,23 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "LeaveRequestApprovalData",
   "namespace" : "com.axonivy.portal.developerexamples.customization.sidestep.LeaveRequestApproval",
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "leaveRequestData",
     "type" : "com.axonivy.portal.developerexamples.LeaveRequest",
-    "modifiers" : [ "PERSISTENT" ]
+    "modifiers" : [ ]
   }, {
     "name" : "requester",
     "type" : "com.axonivy.portal.components.dto.UserDTO",
-    "modifiers" : [ "PERSISTENT" ]
+    "modifiers" : [ ]
   }, {
     "name" : "approver",
     "type" : "com.axonivy.portal.components.dto.UserDTO",
-    "modifiers" : [ "PERSISTENT" ]
+    "modifiers" : [ ]
   }, {
     "name" : "steps",
     "type" : "java.util.List<String>",
-    "modifiers" : [ "PERSISTENT" ]
+    "modifiers" : [ ]
   } ]
 }

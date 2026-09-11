@@ -12,7 +12,8 @@
   overflow: hidden;
   border-radius: 16px;
   width: 227px;
-  height: 264px;
+  height: fit-content;
+  box-shadow: 0px 0px 15.6px 3px hsla(0, 0%, 0%, 0.15);
 }
 
 @media screen and (max-width: 320px) {
@@ -31,7 +32,6 @@
 
 #user-setting-container .ui-menu-items {
   margin: 0;
-  height: 44px;
 }
 
 #user-setting-container .ui-menu-items > a {
@@ -40,6 +40,7 @@
   gap: 0.75rem;
   padding: 0.95rem 1.1rem;
   font-size: 1rem;
+  height: 44px;
 }
 
 #user-setting-container .ui-menu-items:first-child > a {
@@ -95,6 +96,64 @@
 .portal-icon-container .ui-icon.si {
   font-size: var(--portal-icon-ui-icon-font-size);
   line-height: var(--portal-icon-line-height);
+}
+
+.portal-icon-container,
+.portal-circle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  box-sizing: border-box;
+}
+
+.portal-icon-container {
+  border-radius: 8px;
+  background-color: var(--dashboard-icon-bg-color);
+  color: var(--text-color, #333);
+  border: 1px solid var(--dashboard-icon-border-color);
+}
+
+.portal-icon-container.u-mar-right-10 {
+  margin-right: 10px !important;
+}
+
+.portal-icon-container i {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.portal-circle-icon {
+  border-radius: 50%;
+  background-color: var(--dashboard-icon-bg-color) !important;
+  border: 1px solid var(--dashboard-icon-border-color) !important;
+  color: var(--text-color, #333) !important;
+  margin: 0;
+  padding: 0;
+}
+
+body .portal-circle-icon:hover,
+body .portal-circle-icon:focus {
+  background-color: var(--secondary-btn-hover-bg) !important;
+}
+
+.portal-circle-icon i,
+.portal-circle-icon.ui-button .ui-icon,
+.portal-circle-icon::before {
+  position: static !important;
+  transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  display: block;
+  font-size: var(--portal-icon-size-md);
+}
+
+.portal-circle-icon.ui-button .ui-button-text {
+  display: none;
 }
 
 .ui-button .ui-icon.ti,
@@ -269,8 +328,11 @@ a.compact-task-start-link .task-start-list-item {
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
   background-color: var(--item-widget-background-color); }
 
-.process-grid__header.ui-commandlink {
-  color: var(--process-grid-header-color); }
+.ui-commandlink.portal-link, .ui-link.portal-link {
+  color: var(--portal-link-color); }
+
+.ui-commandlink.portal-link:hover, .ui-link.portal-link:hover {
+  color: var(--portal-link-color-hover); }
 
 .process-grid__header.ui-commandlink:hover {
   text-decoration: none; }
@@ -446,97 +508,6 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
 .ui-widget.ui-button.context-button.ui-state-hover,
 .ui-widget.ui-button.context-button.ui-state-focus {
   background-color: var(--context-button-state-hover-or-focus-background-color); }
-
-/*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
-.stages-chain .current i {
-  color: var(--stages-chain-current-icon-color); }
-
-/*Style for stages process chain -----------------------------------------------------------------------------------*/
-.circle-process-chain .circle-horizontal-process-step.visited .circle-horizontal-step-container span:before {
-  border-color: var(--process-chain-menu-color); }
-
-.circle-process-chain .circle-horizontal-process-step.waiting .circle-horizontal-step-container {
-  border: solid 2px var(--process-chain-menu-color);
-  background-color: var(--circle-horizontal-waiting-step-number-container-background-color); }
-
-.circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
-  background-color: var(--process-chain-menu-color);
-  border: solid 2px var(--circle-step-container-border); }
-
-.circle-process-chain .circle-vertical-process-step.visited .circle-vertical-step-container span:before {
-  border-color: var(--process-chain-menu-color); }
-
-.circle-process-chain .circle-vertical-process-step.current .circle-vertical-step-title {
-  font-weight: var(--current-circle-vertical-step-title-font-weight); }
-
-.circle-process-chain .circle-vertical-process-step.waiting .circle-vertical-step-container {
-  border: solid 2px var(--process-chain-menu-color);
-  background-color: var(--circle-vertical-step-container-background-color); }
-
-.circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
-  background-color: var(--process-chain-menu-color);
-  border: solid 2px var(--circle-step-container-border); }
-
-.circle-process-chain .circle-vertical-process-step:not(:last-child) .circle-vertical-step-container .step-number-container:after {
-  border-left: 3px solid var(--circle-vertical-step-number-container-border); }
-
-.circle-process-chain .circle-horizontal-process-step.current .circle-horizontal-step-title {
-  font-weight: var(--current-circle-horizontal-step-title-font-weight); }
-
-.line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
-  background-color: var(--process-chain-menu-color); }
-
-.line-process-chain .line-horizontal-process-step.current .line-horizontal-step-title {
-  font-weight: var(--current-line-horizontal-step-title-font-weight); }
-
-.line-process-chain .line-horizontal-process-step.hide-left-steps {
-  background: repeating-linear-gradient(90deg, var(--process-chain-menu-color), var(--process-chain-menu-color) 10px, var(--body-background-color) 10px, var(--body-background-color) 20px); }
-
-.line-process-chain .line-horizontal-process-step.hide-right-steps {
-  background: repeating-linear-gradient(90deg, #e0e0e0, #e0e0e0 10px, var(--body-background-color) 10px, var(--body-background-color) 20px); }
-
-.line-process-chain .line-vertical-process-step .line-vertical-step-container {
-  background-color: var(--process-chain-menu-color); }
-
-.line-process-chain .line-vertical-process-step.hide-left-steps {
-  background: repeating-linear-gradient(180deg, var(--process-chain-menu-color), var(--process-chain-menu-color) 10px, var(--body-background-color) 10px, var(--body-background-color) 20px); }
-
-.line-process-chain .line-vertical-process-step.hide-right-steps {
-  background: repeating-linear-gradient(180deg, #e0e0e0, #e0e0e0 10px, var(--body-background-color) 10px, var(--body-background-color) 20px); }
-
-.line-process-chain .line-horizontal-process-step.waiting .line-horizontal-step-container,
-.line-process-chain .line-vertical-process-step.waiting .line-vertical-step-container {
-  background-color: var(--line-waiting-step-background-color); }
-
-.line-process-chain .line-vertical-process-step.current .line-vertical-step-title {
-  font-weight: var(--current-line-vertical-step-title-font-weight); }
-
-.current .cicrle-step-container, .visited .cicrle-step-container,
-.process-chain-mobile-container .circle-horizontal-process-step {
-  color: var(--circle-step-number-color); }
-
-.circle-horizontal-step-container:not(.right-steps) .step-number-container:after {
-  border-top-color: var(--circle-horizontal-step-number-container-border-top); }
-
-.circle-horizontal-step-container:not(.last-step) .step-number-container:after {
-  border-top: 3px dashed var(--circle-horizontal-step-number-container-border-top); }
-
-.circle-horizontal-step-container.last-step .step-number-container:after {
-  border-top: 3px dashed var(--circle-horizontal-last-step-number-container-border-top); }
-
-.circle-horizontal-step-container .step-number-container:before {
-  border-top: 3px solid var(--circle-horizontal-step-number-container-border-top-color); }
-
-.circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
-  border-top: 3px solid var(--circle-horizontal-step-number-container-border-top); }
-
-.circle-horizontal-process-step.visited .circle-horizontal-step-container .step-number-container:after {
-  color: var(--circle-horizontal-step-number-container-border-top-color); }
-
-.circle-process-chain .circle-horizontal-process-step,
-.circle-process-chain .circle-vertical-process-step,
-.line-process-chain .line-vertical-process-step {
-  font-size: var(--small-font-size); }
 
 /*Style for announcement*/
 .announcement-message-customizable {
@@ -785,10 +756,6 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 .task-template-content .task-actions-button:focus {
   outline: var(--task-template-action-button-focus); }
 
-/** Style for Line Horizontal  --------------------------------------*/
-.line-process-chain .line-horizontal-process-step {
-  font-size: var(--small-font-size); }
-
 .compact-process-widget .toggle-processes-link,
 .compact-toggle-tasks-link {
   font-weight: var(--widget-header-font-weight); }
@@ -936,10 +903,6 @@ body .ui-inputfield.case-detail-name-input {
 .process-item-action-container .si {
   font-size: var(--large-font-size); }
 
-.process-start-list-item .ui-commandlink.process-item:hover {
-  color: var(--process-item-color-hover);
-}
-
 /* Task Widget --------------------------------**/
 .filter-selection-form label,
 .filter-selection-form a.ui-commandlink,
@@ -1045,19 +1008,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .notification-content-action-close:hover:before, .notification-content-action-close:hover:after {
   background: var(--notification-content-action-hover-background-color); }
-
-/* Stages breadcrumb -------------------*/
-.stages-chain .visited i {
-  color: var(--stages-chain-visited-color); }
-
-.stages-chain .waiting i {
-  color: var(--stages-chain-waiting-color); }
-
-.stages-chain .process-flow .flow-txt .visible {
-  background: var(--stages-chain-process-flow-visible-background-color); }
-
-.stages-chain .process-step i {
-  font-size: 1.6rem; }
 
 /* Task Action Item-----------------------*/
 .task-action-item .task-action-item-label {
@@ -1332,6 +1282,38 @@ color: var(--button-text-color);
   color: var(--ivy-tertinary-color-red-medium);
 }
 
+.portal-dialog-icon-circle {
+  box-sizing: border-box;
+  width: var(--portal-dialog-icon-circle-size);
+  height: var(--portal-dialog-icon-circle-size);
+  margin: 0 auto 1.071rem auto;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portal-dialog-icon-circle > i {
+  font-size: 2.763rem;
+  line-height: 1;
+}
+
+.portal-dialog-icon-circle.portal-dialog-icon-circle-warning {
+  background-color: var(--portal-dialog-warning-icon-circle-background-color);
+}
+
+.portal-dialog-icon-circle.portal-dialog-icon-circle-warning > i.portal-dialog-warning-icon {
+  color: var(--portal-dialog-warning-icon-circle-color);
+}
+
+.warning-before-leaving-task .ui-confirm-dialog-message {
+  display: block;
+  text-align: center;
+  font-size: 1.143rem;
+  line-height: 1.4;
+  color: var(--text-color);
+}
+
 .portal-remove-button {
   background-color: var(--ivy-tertinary-color-red-medium) !important;
   border-color: var(--ivy-tertinary-color-red-medium) !important;
@@ -1471,8 +1453,34 @@ body.in-dialog .ui-widget-overlay {
   cursor: move;
 }
 
-.axonivy-loader h5 {
+.option-item-long-label {
+  max-width: 120px;
+  line-height: 1.2;
+}
+
+.axonivy-loader p {
   color: var(--ajax-loader-color);
+  margin-top: 5px;
+  text-align: center;
+  font-size: 1em;
+}
+
+.login-body .login-wrapper .login-panel > p.text-style-h4 {
+  font-weight: 600;
+  margin: 1.5rem 0 1rem 0;
+  color: inherit;
+}
+
+.login-footer p.text-style-h4 {
+  line-height: 22px;
+  margin: 0 32px 0 0;
+}
+
+.login-footer p.text-style-h6 {
+  line-height: 17px;
+  margin: 0;
+  color: rgba(41, 50, 65, 0.5);
+  font-weight: 500;
 }
 
 .result-message__icon {
@@ -1849,9 +1857,12 @@ body.dark .focused {
   border: 1px solid var(--ui-leave-button-color) !important;
 }
 .ui-leave-button,
-.ui-reserve-task-button,
-.ui-cancel-button {
+.ui-reserve-task-button {
   font-weight: 600;
+}
+.warning-before-leaving-task .ui-leave-button,
+.warning-before-leaving-task .ui-reserve-task-button {
+  font-weight: 500;
 }
 /* ====END OF==== DIALOG FOOTER - CONFIRMATION DIALOG ============================  **/
 
@@ -2033,8 +2044,6 @@ canvas#preview-statistic-chart {
   font-weight: normal;
 }
 
-/* Detail-page UI redesign (IVYPORTAL-20779) — Task Detail + Case Detail ----------------------------------------*/
-
 /* Shared: round icon button ----------------------------------------*/
 body .ui-button.ui-button-icon-only.portal-icon-btn-round,
 body a.portal-icon-btn-round,
@@ -2051,29 +2060,29 @@ body .portal-icon-btn-round {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: var(--portal-icon-btn-border-width) solid var(--widget-button-border-color);
-  background: var(--widget-button-background-color);
+  border: var(--portal-icon-btn-border-width) solid var(--secondary-btn-border);
+  background: var(--secondary-btn-bg);
   color: var(--portal-detail-value-color);
 }
 body .ui-button.ui-button-icon-only.portal-icon-btn-round .ui-icon {
-  font-size: var(--portal-icon-size-lg);
-  margin-top: -0.7143rem;
-  margin-left: -0.7143rem;
+  font-size: var(--portal-icon-size-md);
+  position: static;
+  margin: 0 !important;
 }
 body .ui-button.ui-button-icon-only.portal-icon-btn-round:not(.ui-state-disabled):hover,
 body a.portal-icon-btn-round:hover,
 body .portal-icon-btn-round:hover {
-  background: var(--widget-button-hover-background-color);
+  background: var(--secondary-btn-hover-bg);
 }
 body .ui-button.portal-icon-btn-round.portal-icon-btn-accent,
 body .portal-icon-btn-round.portal-icon-btn-accent {
-  border-color: var(--start-btn-border-color);
-  background: var(--start-btn-bg);
-  color: var(--start-btn-text-color);
+  border-color: var(--accent-btn-border);
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
 }
 body .ui-button.portal-icon-btn-round.portal-icon-btn-accent:not(.ui-state-disabled):hover,
 body .portal-icon-btn-round.portal-icon-btn-accent:hover {
-  background: var(--start-btn-hover-bg);
+  background: var(--accent-btn-hover-bg);
 }
 body a.portal-icon-btn-round,
 body a.portal-icon-btn-round:hover,
@@ -2092,31 +2101,100 @@ body a.portal-pill-btn:focus {
   align-items: center;
   justify-content: center;
   border-radius: var(--portal-pill-btn-border-radius);
-  border: var(--portal-icon-btn-border-width) solid var(--widget-button-border-color);
-  background: var(--widget-button-background-color);
+  border: var(--portal-icon-btn-border-width) solid var(--secondary-btn-border);
+  background: var(--secondary-btn-bg);
   color: var(--portal-detail-value-color);
-  padding: 0.5714rem 1.0714rem;
   min-height: var(--portal-icon-btn-size-md);
   gap: 0.2143rem;
   font-size: var(--default-font-size);
   font-weight: 500;
   line-height: 1;
 }
+
 .portal-pill-btn .ti,
 .portal-pill-btn .tif {
   line-height: 1 !important;
   margin: 0;
 }
+
+body .ui-button.portal-pill-btn {
+  border: var(--portal-icon-btn-border-width) solid var(--secondary-btn-border);
+  background: var(--secondary-btn-bg);
+  color: var(--portal-detail-value-color);
+}
+
+body .ui-button.portal-pill-btn,
+body .ui-button.portal-pill-btn.ui-state-focus,
+body .ui-button.portal-pill-btn.ui-state-active,
+body .ui-button.portal-pill-btn.ui-state-down {
+  background: var(--secondary-btn-bg);
+  border-color: var(--secondary-btn-border);
+  color: var(--portal-detail-value-color);
+}
+
+body .ui-button.portal-pill-btn.ui-state-hover,
+body .portal-pill-btn:not(.ui-state-disabled):hover {
+  background: var(--secondary-btn-hover-bg);
+  border-color: var(--secondary-btn-border);
+  color: var(--portal-detail-value-color);
+}
+
+body .ui-button.portal-pill-btn-accent {
+  border-color: var(--accent-btn-border);
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
+}
+
+body .ui-button.portal-pill-btn-accent,
+body .ui-button.portal-pill-btn-accent.ui-state-focus,
+body .ui-button.portal-pill-btn-accent.ui-state-active,
+body .ui-button.portal-pill-btn-accent.ui-state-down {
+  background: var(--accent-btn-bg);
+  border-color: var(--accent-btn-border);
+  color: var(--accent-btn-text);
+}
+
+body .ui-button.portal-pill-btn-accent.ui-state-hover,
+body .ui-button.portal-pill-btn-accent:not(.ui-state-disabled):hover {
+  background: var(--accent-btn-hover-bg);
+  border-color: var(--accent-btn-border);
+  color: var(--accent-btn-text);
+}
+
 .portal-pill-btn.portal-pill-btn-accent.ui-button,
 .portal-pill-btn.portal-pill-btn-accent {
-  border-color: var(--start-btn-border-color);
-  background: var(--start-btn-bg);
-  color: var(--start-btn-text-color);
+  border-color: var(--accent-btn-border);
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
 }
 
 /* Shared: "Show more" link of the note / history / document widgets ----------------------------------------*/
 .portal-detail-show-more-btn {
   font-weight: var(--details-document-add-link-font-weight);
+  max-width: 100%;
+  min-width: 0;
+}
+
+.document-task-detail-section-header-actions button.portal-detail-show-more-btn,
+.note-task-detail-section-header-actions button.portal-detail-show-more-btn,
+.related-task-section-header-actions button.portal-detail-show-more-btn,
+.related-case-section-header-actions button.portal-detail-show-more-btn,
+.case-detail-history-section-header-actions button.portal-detail-show-more-btn,
+.document-case-detail-section-header-actions button.portal-detail-show-more-btn
+{
+  padding: 0.5rem;
+}
+
+/* Truncate the label with an ellipsis when the widget header is too narrow, keeping the icon visible */
+.portal-detail-show-more-btn .ui-button-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.portal-detail-show-more-btn .ui-icon {
+  flex: none;
 }
 
 /* Shared: toolbar-size variants of the two atoms above ----------------------------------------*/
@@ -2129,9 +2207,7 @@ body .portal-icon-btn-round.portal-icon-btn-lg {
   min-height: var(--portal-icon-btn-size-lg);
 }
 body .ui-button.ui-button-icon-only.portal-icon-btn-round.portal-icon-btn-lg .ui-icon {
-  font-size: var(--portal-icon-size-xl);
-  margin-top: -0.9286rem;
-  margin-left: -0.9286rem;
+  font-size: var(--portal-icon-size-md);
 }
 
 /* Shared: table-size variant of the round icon button ----------------------------------------*/
@@ -2152,11 +2228,6 @@ body .case-list .ui-sidestep-action.portal-icon-btn-round .ti {
 .portal-pill-btn.portal-pill-btn-lg.ui-button,
 .portal-pill-btn.portal-pill-btn-lg {
   height: var(--portal-icon-btn-size-lg);
-  padding: 0 1.0714rem;
-}
-.portal-pill-btn.portal-pill-btn-lg .ti,
-.portal-pill-btn.portal-pill-btn-lg .tif {
-  font-size: var(--portal-icon-size-lg) !important;
 }
 
 /* min-height must be overridden too, it beats height on the base pill */
@@ -2185,37 +2256,24 @@ body .ui-button.ui-button-text-icon-left.portal-pill-btn .ui-icon {
   left: auto;
   margin: 0;
 }
-body .ui-button.portal-pill-btn,
-body .ui-button.portal-pill-btn.ui-state-focus,
-body .ui-button.portal-pill-btn.ui-state-active,
-body .ui-button.portal-pill-btn.ui-state-down {
-  background: var(--widget-button-background-color);
-  border-color: var(--widget-button-border-color);
-  color: var(--portal-detail-value-color);
-}
-body .ui-button.portal-pill-btn.ui-state-hover,
-body .portal-pill-btn:not(.ui-state-disabled):hover {
-  background: var(--widget-button-hover-background-color);
-  border-color: var(--widget-button-border-color);
-  color: var(--portal-detail-value-color);
-}
 
 .action-container {
   gap: 0.5rem;
 }
+
 body .ui-button.portal-pill-btn.portal-pill-btn-accent,
 body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-focus,
 body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-active,
 body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-down {
-  background: var(--start-btn-bg);
-  border-color: var(--start-btn-border-color);
-  color: var(--start-btn-text-color);
+  background: var(--accent-btn-bg);
+  border-color: var(--accent-btn-border);
+  color: var(--accent-btn-text);
 }
 body .ui-button.portal-pill-btn.portal-pill-btn-accent.ui-state-hover,
 body .portal-pill-btn.portal-pill-btn-accent:not(.ui-state-disabled):hover {
-  background: var(--start-btn-hover-bg);
-  border-color: var(--start-btn-border-color);
-  color: var(--start-btn-text-color);
+  background: var(--accent-btn-hover-bg);
+  border-color: var(--accent-btn-border);
+  color: var(--accent-btn-text);
 }
 body .portal-pill-btn.ui-state-disabled,
 body .portal-pill-btn.portal-pill-btn-accent.ui-state-disabled,
@@ -2225,9 +2283,9 @@ body .portal-icon-btn-round.ui-state-disabled,
 body .portal-icon-btn-round.portal-icon-btn-accent.ui-state-disabled,
 body .ui-button.portal-icon-btn-round.ui-state-disabled,
 body .ui-button.portal-icon-btn-round.portal-icon-btn-accent.ui-state-disabled {
-  background: var(--start-btn-disabled-bg);
-  border-color: var(--start-btn-disabled-border-color);
-  color: var(--start-btn-disabled-text-color);
+  background: var(--accent-btn-disabled-bg);
+  border-color: var(--accent-btn-disabled-border);
+  color: var(--accent-btn-disabled-text);
 }
 
 /* Shared: detail-page toolbar (Back + layout actions) ----------------------------------------*/
@@ -2252,15 +2310,23 @@ body .ui-button.portal-icon-btn-round.portal-icon-btn-accent.ui-state-disabled {
   flex: 1 1 auto;
   min-width: 0;
 }
+
 .portal-detail-toolbar-actions {
   display: flex;
   align-items: center;
   gap: 0.8571rem;
   flex: 0 0 auto;
 }
+
+.portal-detail-toolbar-actions button.reset-details-settings-button, .portal-detail-toolbar-actions button.switch-view-mode-btn {
+  padding: 1rem;
+}
+
+.portal-detail-toolbar-actions 
 .portal-detail-toolbar-share-mobile {
   margin-left: auto;
 }
+
 body a.portal-detail-toolbar-back,
 body a.portal-detail-toolbar-back:hover,
 body a.portal-detail-toolbar-back:focus,
@@ -2281,6 +2347,11 @@ body a.portal-detail-toolbar-back:focus,
 }
 .portal-detail-toolbar-back .ti {
   line-height: 1;
+}
+
+.portal-detail-toolbar .portal-detail-toolbar-actions .switch-to-edit-mode-btn {
+  width: 8.785rem;
+  height: 3.071rem;
 }
 
 /* Shared: empty-state block (task & case documents/notes) ----------------------------------------*/
@@ -2420,16 +2491,23 @@ body a.portal-detail-toolbar-back:focus,
   justify-content: space-between;
   gap: 1.1429rem;
 }
-.task-detail-header-row .task-detail-identity,
-.case-detail-header-row .case-detail-identity {
-  flex: 1 1 auto;
-  min-width: 0;
-}
+
 .task-detail-header-row .task-detail-header-actions.action-container,
 .case-detail-header-row .case-detail-header-actions.action-container {
   flex: 0 0 auto;
   justify-content: flex-end;
 }
+
+.task-detail-header-row .task-detail-header-actions.action-container,
+.case-detail-header-row .case-detail-header-actions.action-container {
+  flex: 0 0 auto;
+  justify-content: flex-end;
+}
+
+.task-detail-header-row .task-detail-header-actions.action-container button.start-task-action {
+  padding: 0.5rem;
+}
+
 .task-detail-identity,
 .case-detail-identity {
   display: flex;
@@ -2856,9 +2934,9 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   justify-content: center;
   box-sizing: border-box;
   padding: 0.3571rem;
-  border: var(--portal-icon-btn-border-width) solid var(--start-btn-border-color);
+  border: var(--portal-icon-btn-border-width) solid var(--accent-btn-border);
   border-radius: 0.5rem;
-  background: var(--start-btn-bg);
+  background: var(--accent-btn-bg);
   color: var(--portal-detail-accent-color);
   font-size: var(--default-font-size) !important;
   line-height: 1 !important;
@@ -2984,6 +3062,36 @@ body .portal-action-menu .portal-action-menu-item.color-destroy {
   margin-bottom: 0;
 }
 
+/* Share link panel ----------------------------------------*/
+.share-link-panel.ui-overlaypanel {
+  width: 30dvw;
+  padding: 0.5rem;
+  margin-top: 3rem;
+  border-radius: 10px;
+}
+
+.share-link-panel-content {
+  display: flex;
+  flex-direction: row;
+  gap: 0.8571rem;
+}
+
+.share-link-panel-title {
+  font-weight: 600; 
+}
+
+.share-link-panel-input-group {
+  margin: 0;
+  width: 100%;
+}
+
+.share-link-panel-input-group > input {
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+
+
 /* Shared: mid-size dialogs (share link, Excel export status, add note) ----------------------------------------*/
 .share-dialog.ui-dialog,
 .export-status-dialog.ui-dialog,
@@ -3031,3 +3139,62 @@ body .portal-action-menu .portal-action-menu-item.color-destroy {
   border-radius: 15px !important;
   box-shadow: var(--card-box-shadow) !important;
 }
+
+/* ======================= PORTAL FIELDSET LEGEND ========================== */
+.portal-fieldset.ui-fieldset {
+  background: var(--portal-fieldset-background-color);
+  border: 1px solid var(--portal-fieldset-border-color);
+  border-radius: 10px;
+}
+
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend {
+  border: 1px solid var(--portal-fieldset-legend-border-color);
+  color: var(--portal-fieldset-legend-color);
+  background-color: var(--portal-fieldset-legend-background-color);
+  border-radius: 100px;
+  padding: 0.4rem 0.9rem;
+}
+
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend .ui-fieldset-legend-text {
+  color: var(--portal-fieldset-legend-color);
+  font-weight: 600;
+}
+
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend .ui-fieldset-toggler {
+  background: none;
+  color: var(--portal-fieldset-legend-color);
+  width: auto;
+  height: auto;
+  text-indent: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend .ui-fieldset-toggler::before {
+  content: "+";
+  font-family: inherit;
+}
+
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend a[aria-expanded="true"] .ui-fieldset-toggler::before {
+  content: "\2212";
+}
+
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend:hover,
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend.ui-state-hover,
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend.ui-state-focus,
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend a:hover,
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend a.ui-state-hover,
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend a.ui-state-focus {
+  background: var(--portal-fieldset-legend-hover-background-color);
+  background-image: none;
+  border-color: var(--portal-fieldset-legend-border-color);
+  color: var(--portal-fieldset-legend-color);
+}
+
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend:hover .ui-fieldset-legend-text,
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend.ui-state-hover .ui-fieldset-legend-text,
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend:hover .ui-fieldset-toggler,
+.portal-fieldset.ui-fieldset > .ui-fieldset-legend.ui-state-hover .ui-fieldset-toggler {
+  color: var(--portal-fieldset-legend-color);
+}
+/* ==================== PORTAL FIELDSET LEGEND END ======================== */

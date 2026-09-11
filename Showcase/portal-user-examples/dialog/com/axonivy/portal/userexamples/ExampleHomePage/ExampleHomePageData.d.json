@@ -1,12 +1,14 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "ExampleHomePageData",
   "namespace" : "com.axonivy.portal.userexamples.ExampleHomePage",
   "fields" : [ {
     "name" : "process",
-    "type" : "com.axonivy.portal.userexamples.dto.UserProcess"
+    "type" : "com.axonivy.portal.userexamples.dto.UserProcess",
+    "modifiers" : [ ]
   }, {
     "name" : "state",
-    "type" : "com.axonivy.portal.userexamples.enums.RequestState"
+    "type" : "com.axonivy.portal.userexamples.enums.RequestState",
+    "modifiers" : [ ]
   } ]
 }

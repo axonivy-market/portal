@@ -40,7 +40,7 @@ public class ProcessInformationPage extends TemplatePage {
 
   public String getProcessName() {
     waitForElementDisplayed(By.cssSelector("[id$='header']"), true);
-    return findElementByCssSelector("[id='header'] > h2 ").getText();
+    return findElementByCssSelector("[id='header'] > p").getText();
   }
 
   public String getProcessDescription() {

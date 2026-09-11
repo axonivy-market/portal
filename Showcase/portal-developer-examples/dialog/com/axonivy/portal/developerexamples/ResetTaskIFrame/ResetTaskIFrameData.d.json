@@ -1,9 +1,10 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "ResetTaskIFrameData",
   "namespace" : "com.axonivy.portal.developerexamples.ResetTaskIFrame",
   "fields" : [ {
     "name" : "isCreatedAndPersistent",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

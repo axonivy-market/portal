@@ -1,17 +1,21 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "LeaveRequestFormData",
   "namespace" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
   "fields" : [ {
     "name" : "treeNode",
-    "type" : "org.primefaces.model.TreeNode"
+    "type" : "org.primefaces.model.TreeNode",
+    "modifiers" : [ ]
   }, {
     "name" : "steps",
-    "type" : "List<String>"
+    "type" : "List<String>",
+    "modifiers" : [ ]
   }, {
     "name" : "actualStepIndex",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ ]
   }, {
-    "name" : "homeCaseId"
+    "name" : "homeCaseId",
+    "modifiers" : [ ]
   } ]
 }

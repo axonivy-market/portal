@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process-1.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/process.json",
   "id" : "1549F58C18A6C562",
   "config" : {
     "data" : "ch.ivy.addon.portal.generic.PortalStartData"
@@ -4298,14 +4298,13 @@
     }, {
       "id" : "f295",
       "type" : "Script",
-      "name" : "Set session attribute for process view",
+      "name" : "Set process viewer growl message",
       "config" : {
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.enums.GrowlMessageType;",
-            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
-            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
-            "SecurityServiceUtils.setSessionAttribute(SessionAttribute.GROWL_MESSAGE_TYPE.toString(), GrowlMessageType.PROCESS_VIEWER);"
+            "import com.axonivy.portal.components.publicapi.PortalGrowlMessageAPI;",
+            "PortalGrowlMessageAPI.setCustomMessage(GrowlMessageType.PROCESS_VIEWER.message());"
           ]
         }
       },

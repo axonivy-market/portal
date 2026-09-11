@@ -72,6 +72,9 @@ ch.ivy.addon.portalkit.ui.jsf:
   CaseDocuments:
     CaseDocumentsPageTitle: Dokumente zum Fall
   Enums:
+    ActivityState:
+      ACTIVE: Aktiv
+      INACTIVE: Inaktiv
     BasicDocumentType:
       CONTRACT: Vertrag
       DOCUMENTATION: Dokumentation
@@ -131,8 +134,18 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPACT_MODE: Kompakt-Modus
       FULL_MODE: Voller Modus
       IMAGE_MODE: Bild-Modus
+    ProjectMode:
+      MISSING: Fehlt
+      OK: OK
+      OUTDATED: Veraltet
+      TOO_NEW: Zu neu
+      TOO_OLD: Zu alt
+      UNKNOWN: Unbekannt
     ReleaseState:
+      ARCHIVED: Archiviert
+      CREATED: Erstellt
       DEPRECATED: Verworfen
+      PREPARED: Vorbereitet
       RELEASED: Veröffentlicht
     SortDirection:
       ASC: Aufsteigend sortieren
@@ -887,6 +900,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: Kein Filter gefunden
       SaveFilterDescription: Speichern Sie diese Filterbedingungen zur späteren Verwendung.
       SaveFilterNamePlaceholder: Filternamen eingeben
+      SaveFilterNameRequired: Der Filtername darf nicht leer sein.
       SaveFilterOptional: (optional)
       SetFilterHeader: Filter festlegen
       WidgetNameColumn: Widget-Name
@@ -952,9 +966,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Erweiterte Einstellungen
         ChangeImage: Bild ändern
-        DarkMode: Dunkler Modus
+        ChooseMode: Wählen Sie den Modus, den Sie konfigurieren möchten
+        DarkMode: Dunkel
         ImagePreview: Bildvorschau
-        LightMode: Heller Modus
+        LightMode: Hell
         ConfigurationHeader: Konfiguration des Willkommens-Widgets
         ChooseAFit: Wählen Sie eine Passform
         DisplayText: Anzeigetext
@@ -1006,6 +1021,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadZipFileExplanation: Wenn die Anzahl der zu exportierenden Elemente die Anzahl der Excel-Zeilen übersteigt, werden die Daten in mehrere Excel-Dateien aufgeteilt und anschließend in einer ZIP-Datei zum Herunterladen komprimiert.
     editWidget: Widget bearbeiten
     existingField: Das Feld {0} ist bereits vorhanden
+    exitEditMode: Bearbeitungsmodus verlassen
     expiryFrom: Gültig von
     expiryTo: Ablauf bis
     export:
@@ -1293,12 +1309,20 @@ ch.ivy.addon.portalkit.ui.jsf:
     startLink: Startlink
     webLinkExample: z.B. http://www.example.com
   projectInfo:
+    activityState: Aktivitätsstatus
     applicationProjectVersion: Projekte und Versionen
+    doneCases: Erledigte Fälle
     engineVersion: Engine Version
     header: Axon Ivy Versionsinformationen
     info: Info
+    lastChange: Letzte Änderung
+    mavenVersion: Maven Version
+    openCases: Offene Fälle
     portalVersion: Portal Version
     projectName: Projekt Name
+    projectsOfVersion: Projekte Version
+    releaseState: Freigabestatus
+    state: Status
     version: Version
   searchResult:
     case: Vorgang
@@ -1398,6 +1422,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     defaultColumns:
       ACTIVATOR: Verantwortlich
       APPLICATION: Anwendung
+      BUSINESS_CASE_ID: Business-Fall-ID
       CATEGORY: Kategorie
       COMPLETED: Erledigt am
       COMPLETED_ON: Erledigt am
@@ -1409,6 +1434,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY: Priorität
       STATE: Status
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Fehlender Aktivator
+      TECHNICAL_CASE_ID: Technische Fall-ID
+      WORKER: Bearbeiter
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Standard-Filter
@@ -1491,12 +1518,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Komplette Aufgabenliste anzeigen
     sort: Sortieren
   taskWarning:
-    createdTaskLeave: Wenn Sie jetzt verlassen, können Sie diese Aufgabe nicht erneut starten.
-    createdTaskLogout: '<div>Sie verlassen die aktuelle Seite.<br/> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    leaveTaskHeader: Diese Aufgabe verlassen?
-    resetParkTaskBeforeLeave: Diese Aufgabe ist in Bearbeitung. Wenn Sie sie jetzt verlassen, können Sie sie nicht erneut starten. Wenn Sie sie reservieren, erscheint sie wieder in Ihrer Aufgabenliste.
-    resetParkTaskBeforeLogout: '<div>Sie verlassen die aktuelle Aufgabe.</br> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben. Dann abmelden.<LI>Abbrechen:
-      Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    createdTaskLeave: Diese Aufgabe wird gerade bearbeitet. Wenn Sie sie jetzt verlassen, geht Ihre bisherige Arbeit verloren.
+    createdTaskLogout: Diese Aufgabe wird gerade bearbeitet. Wenn Sie sich jetzt abmelden, geht Ihre bisherige Arbeit verloren.
+    leaveTaskTitle: Diese Aufgabe verlassen?
+    resetParkTaskBeforeLeave: Diese Aufgabe wird gerade bearbeitet. Wenn Sie sie jetzt verlassen, geht Ihre bisherige Arbeit verloren. Wenn Sie sie reservieren, erscheint sie wieder in Ihrer Aufgabenliste.
+    resetParkTaskBeforeLogout: Diese Aufgabe wird gerade bearbeitet. Wenn Sie sich jetzt abmelden, geht Ihre bisherige Arbeit verloren. Wenn Sie sie reservieren, erscheint sie wieder in Ihrer Aufgabenliste.
     taskNotFound: Die Aufgabe existiert nicht oder Sie haben ungenügende Rechte, um diese Aufgabe zu sehen.
   userProfile:
     myProfileTitle: Mein Profil
@@ -1614,7 +1640,7 @@ Dialogs:
           Responsibles:
             Multiple: Mehrere
           ShareLinkDialog:
-            CopyLink: Link kopieren
+            CopyLink: Kopieren
             Link: Link
             LinkCopied: Link kopiert
           ToolList:

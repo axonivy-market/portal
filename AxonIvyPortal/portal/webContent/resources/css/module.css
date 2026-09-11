@@ -27,6 +27,15 @@
  *
  */
 
+/* Must stay above every .container p override below: the Freya theme's bare
+   `p:last-child { margin-bottom: 0 }` rule ties this on specificity (:where()
+   contributes none), so source order decides — container-specific overrides
+   further down this cascade (e.g. .header-process-name p, .dashboard-configuration__header p)
+   need to win that tie, not this default. */
+p:where(.text-style-h1, .text-style-h2, .text-style-h3, .text-style-h4, .text-style-h5, .text-style-h6):last-child {
+  margin-bottom: 1rem;
+}
+
 .portal-edit-inplace span.ui-inplace-editor {
   display: inline-block;
 }
@@ -140,10 +149,6 @@
 
 .task-widget .in-progress-task-checkbox, .case-widget-container .in-progress-task-checkbox {
   padding-left: 2.4px;
-}
-
-_:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-widget-container .in-progress-task-checkbox {
-  margin-left: .1rem;
 }
 
 .task-widget .filter-add-container,
@@ -783,7 +788,8 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   width: 240px;
 }
 
-.case-detail-body .case-details-related-task-table .related-task-responsible-column {
+.case-detail-body .case-details-related-task-table .related-task-responsible-column,
+.case-detail-body .case-details-related-task-table .related-task-worker-column {
   width: 150px;
 }
 
@@ -792,6 +798,8 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 }
 
 .case-detail-body .case-details-related-task-table .related-task-id-column,
+.case-detail-body .case-details-related-task-table .related-task-business-case-id-column,
+.case-detail-body .case-details-related-task-table .related-task-technical-case-id-column,
 .case-detail-body .case-details-related-task-table .related-task-created-column,
 .case-detail-body .case-details-related-task-table .related-task-expiry-column {
   width: 130px;
@@ -870,7 +878,10 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   .case-detail-body .case-details-related-task-table .priority-column,
   .case-detail-body .case-details-related-task-table .related-task-description-column,
   .case-detail-body .case-details-related-task-table .related-task-id-column,
+  .case-detail-body .case-details-related-task-table .related-task-business-case-id-column,
+  .case-detail-body .case-details-related-task-table .related-task-technical-case-id-column,
   .case-detail-body .case-details-related-task-table .related-task-responsible-column,
+  .case-detail-body .case-details-related-task-table .related-task-worker-column,
   .case-detail-body .case-details-related-task-table .related-task-created-column,
   .case-detail-body .case-details-related-task-table .related-task-expiry-column,
   .case-detail-body .case-details-related-task-table .related-task-complete-on-column {
@@ -2174,16 +2185,6 @@ _:-ms-input-placeholder, :root .case-details>* {
 .additional-case-details-link {
   margin-left: 10px;
 }
-/* override on IE */
-_:-ms-fullscreen, :root .additional-case-details-link {
-  display: inline !important;
-}
-
-@-moz-document url-prefix() {
-  .additional-case-details-link {
-    display: inline !important;
-  }
-}
 
 .case-detail-field-set {
   margin-bottom: 30px;
@@ -2248,317 +2249,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 /********************************** END CASE VIEW **********************************/
 
-/********************************** PROCESS CHAIN **********************************/
-.process-chain-container {
-  flex: 1 0 auto;
-  text-align: right;
-}
-
-@media (max-width: 1024px) {
-  .process-chain-container.horizontal-process-chain-container {
-    order: 2;
-  }
-  .process-chain-container.vertical-process-chain-container {
-    display: none !important;
-  }
-  .task-name-vertical-process-chain, .task-name-vertical-process-chain.vertical-chain-shape-line,
-  .task-template-button.vertical-process-chain.vertical-chain-shape-line,
-  .task-template-button.vertical-process-chain {
-    margin-left: auto !important;
-  }
-  .task-template-content.vertical-process-chain, .task-template-content.vertical-process-chain.vertical-chain-shape-line,
-  .task-template-button.vertical-process-chain, .task-template-button.vertical-process-chain.vertical-chain-shape-line {
-    width: 100% !important;
-  }
-  .process-chain-container {
-    flex: 1 0 100% !important;
-    text-align: center !important;
-  }
-  .circle-process-chain .circle-horizontal-process-step {
-    width: auto !important;
-    margin-top: 5px !important;
-  }
-  .circle-process-chain .circle-horizontal-step-title {
-    margin-bottom: 2px !important;
-  }
-  .circle-horizontal-step-container .step-number-container:after,
-  .circle-horizontal-step-container .step-number-container:before {
-    display: inline-block;
-    content: "";
-    width: 20px;
-    line-height: 0;
-    margin-right: -20px;
-  }
-  _:-ms-fullscreen, :root .circle-horizontal-step-container .step-number-container:after,
-    .circle-horizontal-step-container .step-number-container:before {
-    margin: 0;
-    margin-left: -3px;
-  }
-  .circle-horizontal-step-container .step-number-container:after {
-    transform: translate(30px, -6px);
-    border-top-style: dashed;
-  }
-  .circle-horizontal-step-container .step-number-container:before {
-    transform: translate(-30px, -2px);
-    border-top-style: dashed;
-  }
-  _:-ms-fullscreen, :root .circle-horizontal-step-container .step-number-container:before {
-    margin-left: -18px;
-    -ms-transform: translateX(-150%);
-  }
-}
-
-@media (max-width: 1024px) {
-  .circle-process-chain .circle-horizontal-step-title {
-    margin-bottom: 2px !important;
-  }
-  .circle-horizontal-process-step.left-steps {
-    padding-right: 5px;
-  }
-  .circle-horizontal-step-container .step-number-container:after,
-  .circle-horizontal-step-container.right-steps .step-number-container:after,
-  .circle-horizontal-step-container.left-steps .step-number-container:before {
-    margin: 0;
-    position: absolute;
-    display: inline-block;
-    content: "";
-    width: 20px;
-  }
-  .circle-horizontal-step-container .step-number-container:after,
-  .circle-horizontal-step-container.right-steps .step-number-container:after {
-    top: 20px;
-  }
-  .circle-horizontal-step-container.left-steps .step-number-container:before {
-    top: 15px;
-  }
-  .circle-horizontal-step-container:not(.right-steps) .step-number-container:after {
-    width: 0 !important;
-  }
-  .circle-horizontal-step-container .step-number-container:before {
-    transform: translate(20px, 5px);
-    border-top-style: dashed;
-  }
-  .circle-horizontal-step-container .step-number-container:before {
-    transform: translate(-49px, -1px);
-    border-top-style: dashed;
-  }
-}
-
-/* CIRCLE HONRIZONTAL***/
-.circle-process-chain .circle-horizontal-process-step, .circle-process-chain .circle-vertical-process-step {
-  width: 140px;
-  display: inline-block;
-  margin: -2px;
-  text-align: center;
-}
-
-.circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
-  position: absolute;
-  top: 15px;
-  content: "";
-  width: 102px;
-  margin: 0 10px;
-  transform: translate(4px, 0);
-}
-
-_:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
-  top: 1.5rem !important;
-  margin-left: 0.6em;
-}
-
-.circle-process-chain .circle-horizontal-process-step.hide-steps:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
-  border-top-style: dashed;
-}
-
-.circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container,
-.circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.circle-process-chain .circle-horizontal-step-title {
-  margin-bottom: 4px;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100%;
-}
-
-/** CIRCLE VERTICAL */
-.circle-process-chain.vertical-process-chain {
-  position: relative;
-  top: 20px;
-  right: 20px;
-  clear: both;
-  float: left;
-}
-
-.circle-process-chain .circle-vertical-process-step {
-  height: 100px;
-  overflow: hidden;
-  word-break: break-all;
-}
-
-.circle-process-chain .circle-vertical-process-step:not(:last-child) .circle-vertical-step-container .step-number-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.circle-process-chain .circle-vertical-process-step:not(:last-child) .circle-vertical-step-container .step-number-container:after {
-  position: absolute;
-  display: block;
-  content: "";
-  height: 50px;
-  top: 40px;
-}
-
-_:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(:last-child) .circle-vertical-step-container .step-number-container:after {
-  margin-left: 2px; 
-}
-
-.circle-process-chain .circle-vertical-process-step.hide-steps:not(:last-child) .circle-vertical-step-container .step-number-container:after {
-  border-left-style: dashed;
-}
-
-.circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
-  float: left;
-}
-
-.circle-process-chain .circle-vertical-step-title {
-  padding-top: 10px;
-  padding-left: 5px;
-  display: flex;
-  width: calc(100% - 50px);
-  text-align: left;
-}
-
-/** LINE HORIZONTAL*/
-@media screen and (max-width: 40em) {
-  .line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
-    width: 80% !important;
-    margin: auto;
-  }
-  .line-process-chain .line-horizontal-step-title {
-    margin-bottom: 2px !important;
-  }
-  .line-process-chain .line-horizontal-process-step.hide-left-steps {
-    width: 50px !important;
-  }
-}
-
-.line-process-chain .line-horizontal-process-step {
-  width: 130px;
-  display: inline-block;
-  text-align: center;
-  vertical-align: bottom !important;
-}
-
-.line-process-chain .line-horizontal-process-step.hide-right-steps,
-.line-process-chain .line-horizontal-process-step.hide-left-steps {
-  width: 50px;
-  height: 10px;
-  margin: 0 10px;
-  vertical-align: bottom !important;
-}
-
-.line-process-chain .line-horizontal-process-step.hide-right-steps {
-  margin: 0px 0px 0px 10px !important;
-}
-
-.line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
-  height: 10px;
-  width: 99%;
-}
-
-.line-process-chain .line-horizontal-step-title {
-  margin-bottom: 5px;
-  display: block;
-  overflow: hidden;
-}
-
-/** LINE VERTICAL*/
-.vertical-process-chain-container {
-  display: inline-block;
-  width: 140px;
-  float: left;
-}
-
-.vertical-process-chain-container.vertical-chain-shape-line {
-  width: 70px;
-}
-
-.task-template-content.vertical-process-chain, .task-template-button.vertical-process-chain {
-  width: calc(100% - 140px);
-}
-
-.task-template-content.vertical-process-chain.vertical-chain-shape-line,
-.task-template-button.vertical-process-chain.vertical-chain-shape-line {
-  width: calc(100% - 70px);
-}
-
-.task-name-vertical-process-chain {
-  margin-left: 140px;
-}
-
-.task-name-vertical-process-chain.vertical-chain-shape-line {
-  margin-left: 70px;
-}
-
-.line-process-chain.vertical-process-chain {
-  float: left;
-}
-
-.line-process-chain .line-vertical-process-step {
-  width: 70px;
-  height: 120px;
-  text-align: center;
-}
-
-.line-process-chain .line-vertical-process-step.hide-left-steps {
-  width: 10px;
-  height: 40px;
-  margin: 9px 0px 0px 0px;
-}
-
-.line-process-chain .line-vertical-process-step.hide-right-steps {
-  width: 10px;
-  height: 40px;
-  margin: 9px 0px 0px 0px;
-}
-
-.line-process-chain .line-vertical-process-step .line-vertical-step-container {
-  height: 99%;
-  width: 10px;
-  float: left;
-  width: 10px;
-}
-
-.line-process-chain .line-vertical-step-title {
-  margin-bottom: 10px;
-  display: block;
-  overflow: hidden;
-  padding-top: 49px;
-}
-
-.task-template-button {
-  min-height: 35px;
-  margin: auto;
-  margin-bottom: 15px;
-  float: right;
-  position: relative;
-  width: 100%;
-}
-
-/********************************** END PROCESS CHAIN **********************************/
-
 /********************************** ALL TASKS **********************************/
 .task-list-header {
   margin-left: 5px;
@@ -2605,41 +2295,103 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
 }
 
-.project-info-dialog {
-  width: 650px !important;
-  max-width: 100%;
-}
-
-@media screen and (max-width: 40em) {
-  .project-info-dialog {
-    width: 100% !important;
-  }
+.project-info-dialog.ui-dialog {
+  max-width: 1400px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 15.6px 3px var(--project-info-dialog-box-shadow-color);
+  overflow: hidden;
 }
 
 /******************************** PROJECT INFO DIALOG ******************************/
-.project-info-dialog .project-version-table .project-version {
-  width: 150px;
+
+.project-version-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.project-info-dialog .project-version-table .project-pmv {
-  text-align: center;
+.project-info-app, .project-info-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.project-info-dialog .project-version-table .project-state {
-  width: 100px;
+.project-info-app {
+  border-top: 1px solid var(--surface-border, #e9ecef);
+  padding-top: 20px;
 }
 
-@media screen and (max-width: 64.062em) {
-  .project-info-dialog .project-version-table .project-version {
-    width: auto;
-  }
-  .project-info-dialog .project-version-table .project-state {
-    width: 80px;
-  }
-  
-  .project-info-dialog .project-version-table .project-pmv {
-    text-align: inherit;
-  }
+.project-info-app:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.project-info-summary .project-info-label {
+  font-weight: 600;
+}
+
+.project-info-card__title, .project-info-card__subtitle {
+  font-size: var(--widget-header-font-size);
+  font-weight: var(--widget-header-font-weight);
+  margin: 0;
+}
+
+.project-info-table.ui-datatable .ui-datatable-data > tr {
+  cursor: pointer;
+}
+
+.project-info-table th, .project-info-table td {
+  padding: 0.75rem 1rem !important;
+}
+
+.project-info-table .ui-datatable-data > tr.project-info-row--selected,
+.project-info-table .ui-datatable-data > tr.project-info-row--selected > td {
+  background-color: var(--project-info-selected-row-bg) !important;
+}
+
+.project-info-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--task-state-border-radius);
+  font-size: var(--task-state-font-size);
+  line-height: var(--task-state-line-height);
+  white-space: nowrap;
+}
+
+.project-info-status .pi {
+  font-size: 1em;
+}
+
+.project-info-status--released, .project-info-status--active,
+.project-info-status--started, .project-info-status--ok {
+  background-color: var(--project-info-success-bg);
+  color: var(--project-info-success-text);
+}
+
+.project-info-status--deprecated, .project-info-status--stopped,
+.project-info-status--failed {
+  background-color: var(--project-info-danger-bg);
+  color: var(--project-info-danger-text);
+}
+
+.project-info-status--inactive, .project-info-status--starting,
+.project-info-status--stopping, .project-info-status--missing,
+.project-info-status--outdated, .project-info-status--too_old,
+.project-info-status--too_new {
+  background-color: var(--project-info-warning-bg);
+  color: var(--project-info-warning-text);
+}
+
+.project-info-status--unknown, .project-info-status--archived {
+  background-color: var(--project-info-neutral-bg);
+  color: var(--project-info-neutral-text);
+}
+
+.project-info-status--created, .project-info-status--prepared {
+  background-color: var(--project-info-info-bg);
+  color: var(--project-info-info-text);
 }
 /******************************** END PROJECT INFO DIALOG **************************/
 
@@ -3028,7 +2780,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   height: 100%;
 }
 
-.dashboard-configuration__header h2,
+.dashboard-configuration__header p,
 .my-profile-container .setting-header h2 {
   padding: 0;
   margin-bottom: .5rem;
@@ -3692,66 +3444,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   top: auto !important;
 }
 
-/*Style for Stages breadcrumb-------------------------------------*/
-.stages-chain {
-  position: relative;
-  float: right;
-  top: 20px;
-  right: 20px;
-  left: -10px;
-  clear: both;
-}
-
-.stages-chain .process-step {
-  width: 85px;
-  height: 50px;
-  display: inline-block;
-  margin: 0px;
-  text-align: center;
-}
-
-.stages-chain .process-flow {
-  width: 45px;
-  height: 50px;
-  display: inline-block;
-  margin-left: -25px;
-  margin-right: -25px;
-}
-
-.stages-chain .process-flow .flow-txt {
-  position: relative;
-  margin-top: -10px !important;
-  float: left;
-  width: 100%;
-  text-align: center;
-}
-
-.stages-chain .process-flow .flow-txt .visible {
-  width: 100%;
-  height: 2px;
-  margin: 0 auto;
-}
-
-.stages-chain .process-flow .flow-txt .none {
-  display: none;
-}
-
-.stage-title {
-  position: relative;
-  margin-top: -18px !important;
-  float: left;
-  width: 100%;
-  text-align: center;
-}
-
-.stage-title .stage-name {
-  margin: 0 auto;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .change-password-column input, 
 .change-password-column button {
   width: 100%;
@@ -3787,12 +3479,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   display: none;
 }
 
-.project-version-container {
-  max-height: 80vh;
-  overflow: auto;
-}
-
-.project-version-container .project-version-table.ui-datatable-reflow .ui-column-title {
+.project-version-container .project-info-table.ui-datatable-reflow .ui-column-title {
   width: 120px;
 }
 
@@ -4305,6 +3992,12 @@ _:-ms-fullscreen, :root .content-link-history {
 /*  =================== TASK TEMPLATE PAGE ========================= */
 .task-title {
   flex: 1;
+  min-width: 0;
+  font-size: 1.143rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .task-actions-menu .ui-slidemenu-backward.ui-widget-header {
@@ -4881,12 +4574,12 @@ border-top: 0.14rem dashed;
 .process-action-group .ui-button.process-action-button {
   width: 2.711rem; /* 38px */
   height: 2.357rem !important; /* 33px */
-  border-color: var(--widget-button-border-color) !important;
+  border-color: var(--secondary-btn-border) !important;
   color: var(--widget-header-icon);
 }
 
 .process-action-group .ui-button.process-action-button:hover {
-  background-color: var(--widget-button-hover-background-color) !important;
+  background-color: var(--secondary-btn-hover-bg) !important;
   color: var(--widget-header-icon);
 }
 
@@ -4936,9 +4629,9 @@ border-top: 0.14rem dashed;
 
 body .ui-button.process-start-action {
   border-radius: 100px;
-  border: 1px solid var(--start-btn-border-color);
-  background: var(--start-btn-bg);
-  color: var(--start-btn-text-color);
+  border: 1px solid var(--accent-btn-border);
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
   height: 2.143rem !important;
   min-width: fit-content;
   display: flex;
@@ -4946,14 +4639,14 @@ body .ui-button.process-start-action {
 }
 
 body .ui-button.process-start-action.ui-state-disabled {
-  background: var(--start-btn-disabled-bg);
-  border-color: var(--start-btn-disabled-border-color);
-  color: var(--start-btn-disabled-text-color);
+  background: var(--accent-btn-disabled-bg);
+  border-color: var(--accent-btn-disabled-border);
+  color: var(--accent-btn-disabled-text);
 }
 
 body .ui-button.process-start-action:not(.ui-state-disabled):hover {
-  background: var(--start-btn-hover-bg);
-  color: var(--start-btn-text-color);
+  background: var(--accent-btn-hover-bg);
+  color: var(--accent-btn-text);
 }
 
 .process-group.grid-process-container .process-grid__header {
@@ -5375,7 +5068,7 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
   align-items: center;
 }
 
-.header-process-name h2 {
+.header-process-name p {
   margin: 0;
 }
 
@@ -5645,7 +5338,36 @@ a.dashboard-action-container label {
 .role-management-title {
   margin: auto;
   font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
 }
+
+/* =================== HEADING-REPLICA TEXT STYLES ======================
+   Used on <p> elements that replaced a former heading tag (h1-h6) so that
+   text keeps the exact size/weight/spacing the heading tag used to have,
+   per the theme's base heading rule:
+   h1,h2,h3,h4,h5,h6 { margin:1.5rem 0 1rem 0; font-weight:600; line-height:1.2; }
+   h1..h6:first-child { margin-top:0; }
+   h1 2.5rem / h2 2rem / h3 1.75rem / h4 1.5rem / h5 1.25rem / h6 1rem
+*/
+.text-style-h1, .text-style-h2, .text-style-h3,
+.text-style-h4, .text-style-h5, .text-style-h6 {
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1.2;
+  color: inherit;
+  margin: 1.5rem 0 1rem 0;
+}
+.text-style-h1:first-child, .text-style-h2:first-child, .text-style-h3:first-child,
+.text-style-h4:first-child, .text-style-h5:first-child, .text-style-h6:first-child {
+  margin-top: 0;
+}
+.text-style-h1 { font-size: 2.5rem; }
+.text-style-h2 { font-size: 2rem; }
+.text-style-h3 { font-size: 1.75rem; }
+.text-style-h4 { font-size: 1.5rem; }
+.text-style-h5 { font-size: 1.25rem; }
+.text-style-h6 { font-size: 1rem; }
 
 .role-details-header {
   font-size: large;
@@ -5918,12 +5640,21 @@ body .ui-link.ui-sidestep-action, .action-container > .ui-sidestep-action {
 }
 
 body .ui-button.ui-button-outlined.ui-button-widget, .ui-button.ui-widget.ui-button-widget {
-  background-color: var(--widget-button-background-color);
-  border-color: var(--widget-button-border-color);
+  background-color: var(--secondary-btn-bg);
+  border-color: var(--secondary-btn-border);
 }
 
 body .ui-button.ui-button-outlined.ui-button-widget:hover, .ui-button.ui-widget.ui-button-widget:hover {
-  background-color: var(--widget-button-hover-background-color);
+  background-color: var(--secondary-btn-hover-bg);
+}
+
+body .ui-button.ui-button-danger.widget-icon-button {
+  background-color: var(--widget-button-danger-background-color);
+  border-color: var(--widget-button-danger-border-color);
+}
+
+body .ui-button.ui-button-danger.widget-icon-button:hover {
+  background-color: var(--widget-button-danger-background-color-hover);
 }
 
 body .ui-button.ui-widget.ui-button-widget {
@@ -5944,6 +5675,23 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-butto
   color: var(--widget-header-icon);
 }
 /* =================== PORTAL BUTTON END ====================== */
+
+/* =================== PORTAL CHECKBOX ====================== */
+body .ui-chkbox .ui-chkbox-box.ui-state-active {
+  background-color: var(--checkbox-checked-background-color);
+  border-color: var(--checkbox-border-color);
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
+  color: var(--checkbox-checked-icon-color);
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active:hover,
+body .ui-chkbox .ui-chkbox-box.ui-state-active.ui-state-hover {
+  background-color: var(--checkbox-checked-hover-background-color);
+  border-color: var(--checkbox-checked-hover-background-color);
+}
+/* =================== PORTAL CHECKBOX END ====================== */
 
 /* AI logo */
 .layout-topbar-light .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li > a:hover img.topbar-item-image {

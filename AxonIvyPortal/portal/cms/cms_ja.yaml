@@ -72,6 +72,9 @@ ch.ivy.addon.portalkit.ui.jsf:
   CaseDocuments:
     CaseDocumentsPageTitle: ケースドキュメント
   Enums:
+    ActivityState:
+      ACTIVE: アクティブ
+      INACTIVE: 非アクティブ
     BasicDocumentType:
       CONTRACT: 契約
       DOCUMENTATION: ドキュメント化
@@ -132,8 +135,18 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPACT_MODE: コンパクト モード
       FULL_MODE: フル モード
       IMAGE_MODE: イメージ モード
+    ProjectMode:
+      MISSING: 見つかりません
+      OK: OK
+      OUTDATED: 古い
+      TOO_NEW: 新しすぎる
+      TOO_OLD: 古すぎる
+      UNKNOWN: 不明
     ReleaseState:
+      ARCHIVED: アーカイブ済み
+      CREATED: 作成済み
       DEPRECATED: 非推奨
+      PREPARED: 準備済み
       RELEASED: リリース済み
     SortDirection:
       ASC: 昇順で並べ替え
@@ -559,7 +572,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     inactive: 非アクティブ
     information: 情報
     leave: 離れる
-    leaveAndReserve: 休暇と予約
+    leaveAndReserve: 離れて保持
     linkToCaseDetails: 詳細は、<a href="{0}" >ここ</a>をクリックしてください。
     listView: リスト表示
     loading: 読み込み中
@@ -884,6 +897,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: フィルターが見つかりません
       SaveFilterDescription: これらのフィルター条件を保存して後で再利用できます。
       SaveFilterNamePlaceholder: フィルター名を入力
+      SaveFilterNameRequired: フィルター名を入力してください。
       SaveFilterOptional: （任意）
       SetFilterHeader: フィルターを設定
       WidgetNameColumn: ウィジェット名
@@ -949,9 +963,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: 詳細設定
         ChangeImage: 画像を変更
-        DarkMode: ダークモード
+        ChooseMode: 設定するモードを選択してください
+        DarkMode: ダーク
         ImagePreview: 画像プレビュー
-        LightMode: ライトモード
+        LightMode: ライト
         ConfigurationHeader: ウェルカムウィジェットの設定
         ChooseAFit: フィットを選択
         DisplayText: 表示テキスト
@@ -1003,6 +1018,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadZipFileExplanation: エクスポートするアイテム数が Excel の行数の制限を超える場合、データは複数の Excel ファイルに分割され、ZIP ファイルに圧縮されてダウンロードされます。
     editWidget: ウィジェットの編集
     existingField: '{0} フィールドは既に存在します'
+    exitEditMode: 編集モードを終了
     expiryFrom: 有効期限：開始
     expiryTo: 有効期限：終了
     export:
@@ -1290,12 +1306,20 @@ ch.ivy.addon.portalkit.ui.jsf:
     startLink: 開始リンク
     webLinkExample: 例：http://www.example.com
   projectInfo:
+    activityState: アクティビティ状態
     applicationProjectVersion: アプリケーションプロジェクトとバージョン
+    doneCases: 完了ケース
     engineVersion: エンジンバージョン
     header: Axon Ivy のバージョン情報
     info: 情報
+    lastChange: 最終変更
+    mavenVersion: Maven バージョン
+    openCases: 未処理ケース
     portalVersion: ポータルバージョン
     projectName: プロジェクト名
+    projectsOfVersion: プロジェクト バージョン
+    releaseState: リリース状態
+    state: 状態
     version: バージョン
   searchResult:
     case: ケース
@@ -1395,6 +1419,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     defaultColumns:
       ACTIVATOR: 責任者
       APPLICATION: アプリケーション
+      BUSINESS_CASE_ID: ビジネスケースID
       CATEGORY: カテゴリー
       COMPLETED: 完了日
       COMPLETED_ON: 完了日
@@ -1406,6 +1431,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY: 優先度
       STATE: 状態
       TASK_FOR_UNAVAILABLE_ACTIVATOR: アクティベーターがありません
+      TECHNICAL_CASE_ID: テクニカルケースID
+      WORKER: 作業中ユーザー
       abbreviation:
         PRIORITY: 優先度
     defaultFilter: フィルターの初期値
@@ -1488,11 +1515,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: タスクリスト全体を表示
     sort: 並べ替え
   taskWarning:
-    createdTaskLeave: 今離れると、このタスクを再度開始できなくなります。
-    createdTaskLogout: このページを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>&nbsp;ログアウ：変更を破棄してログアウトします。<LI>&nbsp;キャンセル：このタスクの作業を続けます。</UL>
-    leaveTaskHeader: このタスクを離れますか？
-    resetParkTaskBeforeLeave: このタスクは進行中です。今離れると再度開始できなくなります。保持すると、タスクリストに再表示されます。
-    resetParkTaskBeforeLogout: 進行中のタスクを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>&nbsp; &nbsp; ログアウト：変更を破棄してログアウトします。<LI>&nbsp; &nbsp; 保持：変更を破棄してタスクを個人用タスクリストに保持します。その後ログアウトします。<LI>&nbsp; &nbsp; キャンセル：このタスクの作業を続けます。</UL>
+    createdTaskLeave: このタスクは進行中です。今離れると、作業内容が失われます。
+    createdTaskLogout: このタスクは進行中です。今ログアウトすると、作業内容が失われます。
+    leaveTaskTitle: このタスクを離れますか？
+    resetParkTaskBeforeLeave: このタスクは進行中です。今離れると、作業内容が失われます。保持した場合は、タスクリストに再表示されます。
+    resetParkTaskBeforeLogout: このタスクは進行中です。今ログアウトすると、作業内容が失われます。保持した場合は、タスクリストに再表示されます。
     taskNotFound: タスクが存在しないか、このタスクを表示する権限がありません。
   userProfile:
     myProfileTitle: マイプロフィール
@@ -1610,7 +1637,7 @@ Dialogs:
           Responsibles:
             Multiple: 複数
           ShareLinkDialog:
-            CopyLink: リンクをコピー
+            CopyLink: コピー
             Link: リンク
             LinkCopied: リンクをコピーしました
           ToolList:

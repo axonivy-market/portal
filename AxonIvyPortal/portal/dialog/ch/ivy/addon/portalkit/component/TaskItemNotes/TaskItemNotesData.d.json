@@ -1,18 +1,21 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "TaskItemNotesData",
   "namespace" : "ch.ivy.addon.portalkit.component.TaskItemNotes",
   "fields" : [ {
     "name" : "excludeSystemNotes",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
-    "name" : "fullNote"
+    "name" : "fullNote",
+    "modifiers" : [ ]
   }, {
     "name" : "note",
     "type" : "ch.ivyteam.ivy.workflow.note.Note",
     "modifiers" : [ ]
   }, {
-    "name" : "noteContent"
+    "name" : "noteContent",
+    "modifiers" : [ ]
   }, {
     "name" : "notes",
     "type" : "List<ch.ivyteam.ivy.workflow.note.Note>",
@@ -23,9 +26,11 @@
     "modifiers" : [ ]
   }, {
     "name" : "showSystemNotes",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "showSystemNotesChkbox",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   } ]
 }

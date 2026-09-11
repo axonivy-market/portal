@@ -65,8 +65,20 @@ public class MasterDataBean implements Serializable {
     return TaskSortField.ACTIVATOR.toString();
   }
 
+  public String getTaskSortFieldWorker() {
+    return TaskSortField.WORKER.toString();
+  }
+
   public String getTaskSortFieldId() {
     return TaskSortField.ID.toString();
+  }
+
+  public String getTaskSortFieldBusinessCaseId() {
+    return TaskSortField.BUSINESS_CASE_ID.toString();
+  }
+
+  public String getTaskSortFieldTechnicalCaseId() {
+    return TaskSortField.TECHNICAL_CASE_ID.toString();
   }
 
   public String getTaskSortFieldCreationTime() {

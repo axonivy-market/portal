@@ -1,11 +1,13 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "GrantOrDenySpecificPermissionData",
   "namespace" : "ch.ivy.addon.portalkit.test.GrantOrDenySpecificPermission",
   "fields" : [ {
     "name" : "isGrantPermission",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
-    "name" : "permission"
+    "name" : "permission",
+    "modifiers" : [ ]
   } ]
 }

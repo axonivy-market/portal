@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "CaseDashboardWidgetData",
   "namespace" : "ch.ivy.addon.portal.generic.dashboard.component.CaseDashboardWidget",
   "fields" : [ {
@@ -8,13 +8,16 @@
     "modifiers" : [ ]
   }, {
     "name" : "totalCases",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   }, {
     "name" : "loopCounter",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "maxResultNumberPerQuery",
-    "type" : "Integer"
+    "type" : "Integer",
+    "modifiers" : [ ]
   }, {
     "name" : "collectedCasesForExporting",
     "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>",
@@ -25,6 +28,7 @@
     "modifiers" : [ ]
   }, {
     "name" : "columnsVisibility",
-    "type" : "java.util.List<String>"
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   } ]
 }

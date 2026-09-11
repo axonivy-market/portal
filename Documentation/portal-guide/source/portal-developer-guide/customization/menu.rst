@@ -125,24 +125,29 @@ Besides the callable subprocess approach, you can also define custom menu items 
 
 Here's an example of custom menu items in the Portal.CustomMenuItems variable.
 
+The variable's value is a wrapper object: ``version`` identifies the format of the JSON collection
+itself, and ``items`` holds the list of custom menu items. This wrapper-level ``version`` is what
+Portal reads (and migrates) on import - individual menu items do not carry their own ``version`` field.
+
    .. code-block:: javascript
 
-        [
-            {
-                "index": 0,
-                "link": "https://your_external_page.com",
-                "label": "External link",
-                "isExternal": "true",
-                "icon": "ti ti-bulb",
-                "version": "11.2.0"
-            }, {
-                "index": 1,
-                "link": "/designer/pro/portal-user-examples/17236DB1D3DA14C0/userExampleGuide.ivp",
-                "label": "Guideline Ivy process",
-                "isExternal": "false",
-                "version": "11.2.0"
-            }
-        ]
+        {
+            "version": "14.0.0",
+            "items": [
+                {
+                    "index": 0,
+                    "link": "https://your_external_page.com",
+                    "label": "External link",
+                    "isExternal": "true",
+                    "icon": "ti ti-bulb"
+                }, {
+                    "index": 1,
+                    "link": "/designer/pro/portal-user-examples/17236DB1D3DA14C0/userExampleGuide.ivp",
+                    "label": "Guideline Ivy process",
+                    "isExternal": "false"
+                }
+            ]
+        }
 
 The basic JSON structure of a custom menu item
 
@@ -156,8 +161,6 @@ The basic JSON structure of a custom menu item
 
     ``openInNewTab``: for external links, set to ``false`` to open the link in the same tab.
     When omitted, external links open in a new tab.
-
-    ``version``: version of the menu.
 
 .. _customization-menu-hide-default-menu-item:
 

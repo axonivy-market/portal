@@ -43,7 +43,12 @@ public class DashboardTaskWidgetConverter implements IJsonConverter {
 
     for (JsonNode taskWidget : taskWidgets) {
       ArrayNode columns = Optional.ofNullable(taskWidget.get("columns")).filter(JsonNode::isArray)
-          .map(ArrayNode.class::cast).get();
+          .map(ArrayNode.class::cast).orElse(null);
+      if (columns == null) {
+        // A widget with no configured columns omits the field entirely (see
+        // @JsonInclude(NON_EMPTY) on DashboardWidget) - nothing to migrate.
+        continue;
+      }
 
       columns.elements().forEachRemaining(col -> {
         DashboardStandardTaskColumn field = DashboardStandardTaskColumn.findBy(col.get("field").asText());

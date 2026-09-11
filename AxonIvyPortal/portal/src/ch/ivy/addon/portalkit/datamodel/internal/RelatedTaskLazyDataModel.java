@@ -52,6 +52,14 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
         TaskSortField.CREATION_TIME.name(), TaskSortField.EXPIRY_TIME.name(),TaskSortField.COMPLETED_ON.name(), TaskSortField.STATE.name());
   }
 
+  @Override
+  public void initColumnsConfiguration() {
+    super.initColumnsConfiguration();
+    allColumns.add(TaskSortField.WORKER.name());
+    allColumns.add(TaskSortField.BUSINESS_CASE_ID.name());
+    allColumns.add(TaskSortField.TECHNICAL_CASE_ID.name());
+  }
+
   private void updateCriteria() {
     criteria = new TaskSearchCriteria();
     criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));

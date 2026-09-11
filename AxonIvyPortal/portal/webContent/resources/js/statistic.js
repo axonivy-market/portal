@@ -774,6 +774,9 @@ class ClientCartesianChart extends ClientCanvasChart {
       }
 
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : undefined;
+      // Axis titles are omitted from the JSON when not configured, so default them to empty
+      let yTitles = chartTypeConfig?.yTitles ?? [];
+      let xTitles = chartTypeConfig?.xTitles ?? [];
       let labels = data.map(bucket => this.formatChartLabel(bucket.displayKey));
       let values = data.map(bucket => bucket.count);
       let ariaLabel = this.buildChartAriaLabel(labels, values);
@@ -827,8 +830,8 @@ class ClientCartesianChart extends ClientCanvasChart {
             y: {
               beginAtZero: true,
               title: {
-                text: getFormatedTitle(chartTypeConfig.yTitles),
-                display: chartTypeConfig.yTitles.length > 0,
+                text: getFormatedTitle(yTitles),
+                display: yTitles.length > 0,
                 color: CHART_TEXT_COLOR
               },
               ticks: {
@@ -842,8 +845,8 @@ class ClientCartesianChart extends ClientCanvasChart {
             },
             x: {
               title: {
-                text: getFormatedTitle(chartTypeConfig.xTitles),
-                display: chartTypeConfig.xTitles.length > 0,
+                text: getFormatedTitle(xTitles),
+                display: xTitles.length > 0,
                 color: CHART_TEXT_COLOR
               },
               ticks: {

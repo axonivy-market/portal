@@ -1,18 +1,24 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "CustomWidgetNoteData",
   "namespace" : "com.axonivy.portal.userexamples.CustomWidgetNote",
   "fields" : [ {
-    "name" : "note"
+    "name" : "note",
+    "modifiers" : [ ]
   }, {
-    "name" : "noteEN"
+    "name" : "noteEN",
+    "modifiers" : [ ]
   }, {
-    "name" : "noteDE"
+    "name" : "noteDE",
+    "modifiers" : [ ]
   }, {
-    "name" : "noteES"
+    "name" : "noteES",
+    "modifiers" : [ ]
   }, {
-    "name" : "noteFR"
+    "name" : "noteFR",
+    "modifiers" : [ ]
   }, {
-    "name" : "noteJP"
+    "name" : "noteJP",
+    "modifiers" : [ ]
   } ]
 }

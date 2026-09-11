@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "PortalCaseDetailsData",
   "namespace" : "ch.ivy.addon.portal.generic.PortalCaseDetails",
   "fields" : [ {
@@ -8,10 +8,12 @@
     "modifiers" : [ ]
   }, {
     "name" : "isShowBackButton",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "isTaskStartedInDetails",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "caseLazyDataModel",
     "type" : "ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel",

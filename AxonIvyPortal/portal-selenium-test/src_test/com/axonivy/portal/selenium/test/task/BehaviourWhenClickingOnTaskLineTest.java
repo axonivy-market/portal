@@ -19,8 +19,8 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
-import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.Condition;
@@ -49,8 +49,8 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.clickOnTaskName(TASK_MATERNITY_LEAVE_REQUEST);
-    new TaskTemplatePage().getStartedTaskTemplateTitle()
-        .shouldHave(Condition.attribute("title", TASK_MATERNITY_LEAVE_REQUEST));
+    TaskIFrameTemplatePage taskTemplatePage = new TaskDetailsPage().clickStartTask();
+    taskTemplatePage.getEmployeeField().should(Condition.appear);
   }
 
   @Test
@@ -62,8 +62,8 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     CaseWidgetNewDashBoardPage caseWidgetPage = mainMenu.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase(CASE_LEAVE_REQUEST);
     caseDetailsPage.openTaskWithRunTheTaskBehaviour(TASK_MATERNITY_LEAVE_REQUEST);
-    new TaskTemplatePage().getStartedTaskTemplateTitle()
-        .shouldHave(Condition.attribute("title", TASK_MATERNITY_LEAVE_REQUEST));
+    TaskIFrameTemplatePage taskTemplatePage = new TaskDetailsPage().clickStartTask();
+    taskTemplatePage.getEmployeeField().should(Condition.appear);
   }
 
   @Test
@@ -86,8 +86,8 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidgetNewDashBoardPage = new NewDashboardPage().selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidgetNewDashBoardPage.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidgetNewDashBoardPage.openTask(TASK_MATERNITY_LEAVE_REQUEST);
-    new TaskTemplatePage().getStartedTaskTemplateTitle()
-        .shouldHave(Condition.attribute("title", TASK_MATERNITY_LEAVE_REQUEST));
+    TaskIFrameTemplatePage taskTemplatePage = new TaskDetailsPage().clickStartTask();
+    taskTemplatePage.getEmployeeField().should(Condition.appear);
   }
 
   @Test

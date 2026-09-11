@@ -72,6 +72,9 @@ ch.ivy.addon.portalkit.ui.jsf:
   CaseDocuments:
     CaseDocumentsPageTitle: Documents de cas
   Enums:
+    ActivityState:
+      ACTIVE: Actif
+      INACTIVE: Inactif
     BasicDocumentType:
       CONTRACT: Contrat
       DOCUMENTATION: Documentation
@@ -131,8 +134,18 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPACT_MODE: Mode compact
       FULL_MODE: Mode complet
       IMAGE_MODE: Mode image
+    ProjectMode:
+      MISSING: Manquant
+      OK: OK
+      OUTDATED: Obsolète
+      TOO_NEW: Trop récent
+      TOO_OLD: Trop ancien
+      UNKNOWN: Inconnu
     ReleaseState:
+      ARCHIVED: Archivé
+      CREATED: Créé
       DEPRECATED: Déclassé
+      PREPARED: Préparé
       RELEASED: Publié
     SortDirection:
       ASC: Trier par ordre croissant
@@ -560,7 +573,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     inactive: Désactivé
     information: Information
     leave: Quitter
-    leaveAndReserve: Quitter et réserve
+    leaveAndReserve: Quitter et réserver
     linkToCaseDetails: Cliquez sur <a href="{0}" >ici</a> pour plus de détails.
     listView: Vue en liste
     loading: Chargement
@@ -608,7 +621,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     removeSelection: Retirer la sélection
     reorder: Réorganiser
     requiredFieldMessage: Ce champ est obligatoire
-    reserve: Enregistrer
+    reserve: Réserver
     reset: Réinitialiser
     resetFilters: Tout réinitialiser
     resetSettingHeaderText: Rétablir le réglage ?
@@ -885,6 +898,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: Aucun filtre trouvé
       SaveFilterDescription: Enregistrez ces conditions de filtre pour les réutiliser plus tard.
       SaveFilterNamePlaceholder: Entrez le nom du filtre
+      SaveFilterNameRequired: Le nom du filtre ne doit pas être vide.
       SaveFilterOptional: (facultatif)
       SetFilterHeader: Définir le filtre
       WidgetNameColumn: Nom du widget
@@ -950,9 +964,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Paramètres avancés
         ChangeImage: Changer l'image
-        DarkMode: Mode sombre
+        ChooseMode: Choisissez le mode que vous souhaitez configurer
+        DarkMode: Sombre
         ImagePreview: Aperçu de l'image
-        LightMode: Mode clair
+        LightMode: Clair
         ConfigurationHeader: Configuration du widget de bienvenue
         ChooseAFit: Choisissez un ajustement
         DisplayText: Texte d'affichage
@@ -1004,6 +1019,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadZipFileExplanation: Si le nombre d'éléments à exporter dépasse la limite des lignes Excel, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
     editWidget: Modifier le widget
     existingField: Le champ {0} a déjà été créé
+    exitEditMode: Quitter le mode édition
     expiryFrom: Expiration du
     expiryTo: Date d'expiration
     export:
@@ -1291,12 +1307,20 @@ ch.ivy.addon.portalkit.ui.jsf:
     startLink: Lien de démarrage
     webLinkExample: 'Par exemple : http://www.example.com'
   projectInfo:
+    activityState: État d'activité
     applicationProjectVersion: Projects et versions
+    doneCases: Dossiers terminés
     engineVersion: Version de l'engine
     header: Axon Ivy information de la version
     info: Info
+    lastChange: Dernière modification
+    mavenVersion: Version Maven
+    openCases: Dossiers ouverts
     portalVersion: Version du portail
     projectName: Nom de project
+    projectsOfVersion: Projets Version
+    releaseState: État de publication
+    state: État
     version: Version
   searchResult:
     case: Dossier
@@ -1396,6 +1420,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     defaultColumns:
       ACTIVATOR: Responsable
       APPLICATION: Application
+      BUSINESS_CASE_ID: ID du cas métier
       CATEGORY: 'Catégorie '
       COMPLETED: Fini le
       COMPLETED_ON: Fini le
@@ -1407,6 +1432,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY: Priorité
       STATE: Etat
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Activateur manquant
+      TECHNICAL_CASE_ID: ID du cas technique
+      WORKER: Gestionnaire
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Filtre par défaut
@@ -1489,12 +1516,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Voir la liste complète des tâches
     sort: Trier
   taskWarning:
-    createdTaskLeave: Si vous quittez maintenant, vous ne pourrez plus démarrer cette tâche.
-    createdTaskLogout: '<div>Vous êtes sur le point de quitter cette page.<br/> Choisissez l&apos;&apos;une des options suivantes :</div> <UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
-    leaveTaskHeader: Quitter cette tâche ?
-    resetParkTaskBeforeLeave: Cette tâche est en cours. Si vous la quittez maintenant, vous ne pourrez plus la redémarrer. Si vous la réservez, elle réapparaîtra dans votre liste de tâches.
-    resetParkTaskBeforeLogout: '<div>Vous êtes sur le point de laisser une tâche en cours.</br> Choisissez l&apos;&apos;une des options suivantes : </div><UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Enregistrer : annulez vos modifications et conservez la tâche dans votre
-      liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
+    createdTaskLeave: Cette tâche est en cours. Si vous la quittez maintenant, vous perdrez votre travail.
+    createdTaskLogout: Cette tâche est en cours. Si vous vous déconnectez maintenant, vous perdrez votre travail.
+    leaveTaskTitle: Quitter cette tâche ?
+    resetParkTaskBeforeLeave: Cette tâche est en cours. Si vous la quittez maintenant, vous perdrez votre travail. Si vous la réservez, elle réapparaîtra dans votre liste de tâches.
+    resetParkTaskBeforeLogout: Cette tâche est en cours. Si vous vous déconnectez maintenant, vous perdrez votre travail. Si vous la réservez, elle réapparaîtra dans votre liste de tâches.
     taskNotFound: cette tâche n'existe pas ou vous n'avez pas l'autorisation de la voir.
   userProfile:
     myProfileTitle: Mon profil
@@ -1612,7 +1638,7 @@ Dialogs:
           Responsibles:
             Multiple: Multiple
           ShareLinkDialog:
-            CopyLink: Copier le lien
+            CopyLink: Copier
             Link: Lien
             LinkCopied: Lien copié
           ToolList:

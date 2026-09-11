@@ -17,7 +17,7 @@ public class DashboardConverter implements IJsonConverter {
 
   @Override
   public AbstractJsonVersion version() {
-    return new DashboardJsonVersion("14.0.0");
+    return new DashboardJsonVersion("13.1.0");
   }
 
   @Override
@@ -37,10 +37,14 @@ public class DashboardConverter implements IJsonConverter {
 
       objectNode.put(SELECTED_DASHBOARD_DISPLAY_TYPE, displayType);
       objectNode.remove(IS_TOP_MENU);
-    } else if (isTopMenuNode == null && isDefaultTaskOrCaseList) {
-      objectNode.put(SELECTED_DASHBOARD_DISPLAY_TYPE, DashboardDisplayType.TOP_MENU.getDashboardDisplayType());
-    } else {
-      objectNode.put(SELECTED_DASHBOARD_DISPLAY_TYPE, DashboardDisplayType.SUB_MENU.getDashboardDisplayType());
+    } else if (!objectNode.has(SELECTED_DASHBOARD_DISPLAY_TYPE)) {
+      // Only fill in a default when the field is genuinely missing (true legacy data). If it's
+      // already present - e.g. this converter runs again on data that was already migrated, or the
+      // user explicitly chose a display type through the UI - leave it untouched instead of
+      // clobbering it back to a default on every re-migration.
+      String defaultDisplayType = isDefaultTaskOrCaseList ? DashboardDisplayType.TOP_MENU.getDashboardDisplayType()
+          : DashboardDisplayType.SUB_MENU.getDashboardDisplayType();
+      objectNode.put(SELECTED_DASHBOARD_DISPLAY_TYPE, defaultDisplayType);
     }
 
     if (isDefaultTaskOrCaseList && objectNode.has("widgets")) {

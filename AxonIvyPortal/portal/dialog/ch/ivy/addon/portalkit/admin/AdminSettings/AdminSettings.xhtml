@@ -16,7 +16,7 @@
   <h:panelGroup styleClass="w-full pt-2 pb-2 mb-4" layout="block">
     <div class="flex justify-content-between flex-wrap">
       <div class="flex align-items-center justify-content-center admin-setting-header">
-         <h3>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}</h3>
+         <p class="text-style-h3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}</p>
       </div>
     </div>
   </h:panelGroup>
@@ -247,7 +247,7 @@
       </c:if>
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        onclick="PF('resetConfirmation').hide()" styleClass="text-center block pt-3 w-full"/>
+        onclick="PF('resetConfirmation').hide()" styleClass="text-center block pt-3 w-full portal-link"/>
     </ui:define>
   </ui:decorate>
 </cc:implementation>

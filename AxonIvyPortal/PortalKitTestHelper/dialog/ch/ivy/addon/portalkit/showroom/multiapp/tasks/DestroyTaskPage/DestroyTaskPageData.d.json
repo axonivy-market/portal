@@ -1,9 +1,10 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "DestroyTaskPageData",
   "namespace" : "ch.ivy.addon.portalkit.showroom.multiapp.tasks.DestroyTaskPage",
   "fields" : [ {
     "name" : "taskId",
-    "type" : "Long"
+    "type" : "Long",
+    "modifiers" : [ ]
   } ]
 }

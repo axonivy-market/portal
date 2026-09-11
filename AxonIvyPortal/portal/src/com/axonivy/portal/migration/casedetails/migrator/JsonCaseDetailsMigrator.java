@@ -7,6 +7,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.CaseDetailsJsonVersion;
+import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.migration.casedetails.converter.JsonCaseDetailsConverterFactory;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -43,6 +44,12 @@ public class JsonCaseDetailsMigrator {
   }
 
   public JsonNode migrate() {
+    if (JsonListWrapper.isListWrapper(node)) {
+      // Canonical shape: {"version": "...", "items": [...]}. Once wrapped, the wrapper's own
+      // version is the sole gate - per-item version is never read again and items are not
+      // re-run through the per-item converter chain.
+      return node;
+    }
     if (node.isArray()) {
       node.elements().forEachRemaining(this::migrate);
     } else {

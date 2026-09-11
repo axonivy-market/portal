@@ -1,9 +1,10 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
   "simpleName" : "PortalManagementData",
   "namespace" : "ch.ivy.addon.portal.setting.PortalManagement",
   "fields" : [ {
     "name" : "selectedDashboard",
-    "type" : "ch.ivy.addon.portalkit.dto.dashboard.Dashboard"
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.Dashboard",
+    "modifiers" : [ ]
   } ]
 }

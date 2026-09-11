@@ -367,6 +367,13 @@ function resetPortalLeftMenuState() {
   }
 }
 
+function restorePortalLeftMenuState() {
+  let pfMainMenu = PF('main-menu');
+  if (pfMainMenu) {
+    pfMainMenu.restoreMenuState();
+  }
+}
+
 function hideDashboardOverlayPanels() {
   $(".js-dashboard-overlay-panel").each(function(){
     if ($(this).hasClass("ui-overlay-visible")) {
@@ -846,7 +853,12 @@ function setAltForAvatar() {
  * @param {string} selector - The jQuery selector for the element(s) to focus.
  */
 function focusFirstVisibleElementInPanel(widgetVar, selector) {
-  var panel = PF(widgetVar).jq;  
+  var widget = widgetVar ? PF(widgetVar) : null;
+  if (!widget) {
+    return;
+  }
+  var panel = widget.jq;
+ 
   var first;
   var destructionWords = ['remove', 'destroy', 'delete', 'confirmation', 'confirm', 'deletion', 'reset'];
   
