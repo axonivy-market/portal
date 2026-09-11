@@ -37,12 +37,12 @@ msgid "Shortcut"
 msgstr "ショートカット"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:17
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:462
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:468
 #: ../../source/portal-user-guide/full-case-list/index.rst:367
 #: ../../source/portal-user-guide/full-process-list/index.rst:200
 #: ../../source/portal-user-guide/full-task-list/index.rst:70
 #: ../../source/portal-user-guide/full-task-list/index.rst:321
-#: ../../source/portal-user-guide/portal-header/index.rst:242
+#: ../../source/portal-user-guide/portal-header/index.rst:245
 msgid "Action"
 msgstr "アクション"
 
@@ -2421,7 +2421,7 @@ msgstr "「ポータル設定」では、個人および組織全体のダッシ
 msgid "|portal-configuration|"
 msgstr "|portal-configuration|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:481
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:487
 msgid "Portal configuration menu"
 msgstr "ポータル設定メニュー"
 
@@ -2437,11 +2437,11 @@ msgid "The Portal Configuration page has four tabs:"
 msgstr "「ポータル設定」ページには、4つのタブがあります："
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:23
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:462
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:468
 #: ../../source/portal-user-guide/full-case-list/index.rst:367
 #: ../../source/portal-user-guide/full-process-list/index.rst:200
 #: ../../source/portal-user-guide/full-task-list/index.rst:321
-#: ../../source/portal-user-guide/portal-header/index.rst:242
+#: ../../source/portal-user-guide/portal-header/index.rst:245
 msgid "Required Permission"
 msgstr "必要な許可"
 
@@ -2450,7 +2450,7 @@ msgid "**Private Dashboards**"
 msgstr "**プライベートダッシュボード**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:25
-#: ../../source/portal-user-guide/portal-header/index.rst:246
+#: ../../source/portal-user-guide/portal-header/index.rst:249
 msgid ":ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
 msgstr ":ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`"
 
@@ -2463,7 +2463,7 @@ msgid "**Public Dashboards**"
 msgstr "**公開ダッシュボード**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:28
-#: ../../source/portal-user-guide/portal-header/index.rst:249
+#: ../../source/portal-user-guide/portal-header/index.rst:252
 msgid ":ref:`🔑DashboardWritePublic <DashboardWritePublic>`"
 msgstr ":ref:`🔑DashboardWritePublic <DashboardWritePublic>`"
 
@@ -2476,7 +2476,7 @@ msgid "**Sidebar**"
 msgstr "**サイドバー**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:31
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:474
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:480
 msgid ":ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>`"
 msgstr ":ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>`"
 
@@ -2489,7 +2489,7 @@ msgid "**Package Management**"
 msgstr "**パッケージ管理**"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:34
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:476
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:482
 msgid ":ref:`🔑PortalPackageManagement <PortalPackageManagement>`"
 msgstr ":ref:`🔑PortalPackageManagement <PortalPackageManagement>`"
 
@@ -2509,7 +2509,7 @@ msgstr "「:guilabel:`個人用ダッシュボードの設定` 」タブでは�
 msgid "|private-dashboard-configuration|"
 msgstr "|private-dashboard-configuration|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:483
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:489
 msgid "Private dashboard configuration"
 msgstr "個人用ダッシュボードの設定"
 
@@ -2554,7 +2554,7 @@ msgstr "ダッシュボードリストに戻ると、新しい個人用ダッシ
 msgid "|create-private-dashboard-dialog|"
 msgstr "|create-private-dashboard-dialog|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:485
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:491
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:55
 msgid "Create private dashboard dialog"
 msgstr "個人用ダッシュボードの作成ダイアログ"
@@ -2579,7 +2579,7 @@ msgstr ":guilabel:`Default Template`、:guilabel:`Two Task list dashboard` テ�
 msgid "|dashboard-templates|"
 msgstr "|dashboard-templates|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:499
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:505
 msgid "Dashboard template selection dialog"
 msgstr "ダッシュボードのテンプレートの選択ダイアログ"
 
@@ -2638,7 +2638,7 @@ msgstr "ダッシュボードリストに戻ると、新しい個人用ダッシ
 msgid "|import-private-dashboard-dialog|"
 msgstr "|import-private-dashboard-dialog|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:503
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:509
 msgid "Import private dashboard dialog"
 msgstr "個人用ダッシュボードのインポートダイアログ"
 
@@ -2713,7 +2713,7 @@ msgstr "trash-icon"
 msgid "|edit-private-dashboards|"
 msgstr "|edit-private-dashboards|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:487
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:493
 msgid "Edit private dashboard dialog"
 msgstr "個人用ダッシュボードの編集ダイアログ"
 
@@ -2733,7 +2733,7 @@ msgstr "reorder-dashboard-icon"
 msgid "|reorder-your-dashboards|"
 msgstr "|reorder-your-dashboards|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:489
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:495
 msgid "Reorder private dashboards"
 msgstr "個人用ダッシュボードを並べ替える"
 
@@ -2773,7 +2773,7 @@ msgstr "**非表示の** — ダッシュボードはサイドバーに表示さ
 msgid "|public-dashboard-configuration|"
 msgstr "|public-dashboard-configuration|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:491
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:497
 msgid "Public dashboard configuration"
 msgstr "公開用ダッシュボードの設定"
 
@@ -2830,7 +2830,7 @@ msgstr "ダッシュボードリストに戻り、新しい公開用ダッシュ
 msgid "|create-public-dashboard-dialog|"
 msgstr "|create-public-dashboard-dialog|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:493
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:499
 msgid "Create public dashboard dialog"
 msgstr "公開用ダッシュボードの作成ダイアログ"
 
@@ -2862,7 +2862,7 @@ msgstr "ダッシュボードリストに戻り、新しい公開用ダッシュ
 msgid "|import-public-dashboard-dialog|"
 msgstr "|import-public-dashboard-dialog|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:501
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:507
 msgid "Import public dashboard dialog"
 msgstr "公開用ダッシュボードのインポートダイアログ"
 
@@ -2906,7 +2906,7 @@ msgstr "|trash-icon| **削除**: 公開ダッシュボードを削除します"
 msgid "|edit-public-dashboards|"
 msgstr "|edit-public-dashboards|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:495
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:501
 msgid "Edit public dashboard dialog"
 msgstr "公開用ダッシュボードの編集ダイアログ"
 
@@ -2934,7 +2934,7 @@ msgstr "公開用ダッシュボードのリンクを生成するには、ダッ
 msgid "|share-public-dashboards|"
 msgstr "|share-public-dashboards|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:505
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:511
 msgid "Share dashboard dialog"
 msgstr "ダッシュボードの共有ダイアログ"
 
@@ -2954,7 +2954,7 @@ msgstr "**のサブメニュー「** 」セクション内では、|reorder-dash
 msgid "|reorder-public-dashboards|"
 msgstr "|reorder-public-dashboards|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:497
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:503
 msgid "Reorder public dashboards"
 msgstr "公開用ダッシュボードを並び替える"
 
@@ -2978,7 +2978,7 @@ msgstr "「:guilabel:`」タブの「` 」では、ポータル管理者がサ�
 msgid "|sidebar-navigation-configuration|"
 msgstr "|sidebar-navigation-configuration|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:507
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:513
 msgid "Sidebar navigation configuration tab"
 msgstr "サイドバーナビゲーションの設定タブ"
 
@@ -3026,7 +3026,7 @@ msgstr ":guilabel:`の「Add Item」` をクリックして、「:guilabel:`Add 
 msgid "|add-menu-item-dialog|"
 msgstr "|add-menu-item-dialog|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:509
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:515
 msgid "Add menu item dialog"
 msgstr "メニュー項目の追加ダイアログ"
 
@@ -3126,7 +3126,7 @@ msgstr "メニュー項目の一覧の下にある「**サイドバー設定」*
 msgid "|sidebar-settings-panel|"
 msgstr "|sidebar-settings-panel|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:511
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:517
 msgid "Sidebar settings panel"
 msgstr "サイドバーの設定パネル"
 
@@ -3182,7 +3182,7 @@ msgstr ":guilabel:`」タブの「Package Management」` では、現在のポ�
 msgid "|package-management-configuration|"
 msgstr "|package-management-configuration|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:513
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:519
 msgid "Package management configuration tab"
 msgstr "パッケージ管理の設定タブ"
 
@@ -3263,138 +3263,143 @@ msgid "Custom ordering of the main navigation menu items in the sidebar"
 msgstr "サイドバーのメインナビゲーションメニュー項目の順序をカスタマイズする"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:417
+#, python-brace-format
+msgid "Except for ``Portal_MenuOrder.json`` (a single configuration object, not a list), each file's content is a wrapper object: ``{\"version\": \"...\", \"items\": [...]}``. The ``version`` field identifies the format of the file itself and is used to migrate older exports on import - individual entries in ``items`` do not carry their own ``version`` field."
+msgstr ""
+
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:423
 msgid "HowTo: export a Portal package"
 msgstr "ハウツー：ポータルパッケージのエクスポート"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:419
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:425
 msgid "Select :guilabel:`Export` button."
 msgstr ":guilabel:`の「` 」エクスポートボタンを選択してください。"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:421
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:427
 msgid "The package is downloaded as ``Portal_Package.zip``."
 msgstr "このパッケージは、``Portal_Package.zip`` からダウンロードできます。"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:424
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:430
 msgid "HowTo: import a Portal package"
 msgstr "ハウツー：ポータルパッケージのインポート"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:426
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:432
 msgid "Select :guilabel:`Import` button."
 msgstr ":guilabel:`の「` 」ボタンをクリックしてインポートしてください。"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:428
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:434
 msgid "The :guilabel:`Import Portal Package` dialog is opened."
 msgstr "「:guilabel:`」のインポートポータルパッケージ「` 」ダイアログが開きます。"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:430
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:436
 msgid "Drag and drop, or click :guilabel:`browse files` to select the zip file containing the Portal package you want to import."
 msgstr "ドラッグ＆ドロップするか、:guilabel:`をクリックしてファイルを参照し、` から、インポートしたい Portal パッケージを含む ZIP ファイルを選択してください。"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:432
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:438
 msgid "|import-portal-package-dialog|"
 msgstr "|import-portal-package-dialog|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:515
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:521
 msgid "Import Portal package dialog"
 msgstr "Portal パッケージのインポートダイアログ"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:434
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:440
 msgid "The dialog previews the recognized and unrecognized files found in the uploaded zip:"
 msgstr "このダイアログでは、アップロードされたzipファイル内に見つかった、認識されたファイルと認識されなかったファイルをプレビュー表示します："
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:436
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:442
 msgid "Recognized files are marked valid and will be imported."
 msgstr "認識されたファイルは有効とマークされ、インポートされます。"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:437
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:443
 msgid "Unrecognized files are skipped and will not be imported."
 msgstr "認識されないファイルはスキップされ、インポートされません。"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:439
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:445
 msgid "|import-portal-package-preview|"
 msgstr "|import-portal-package-preview|"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:517
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:523
 msgid "Import Portal package preview with valid and invalid files"
 msgstr "有効なファイルと無効なファイルを含む Portal パッケージのプレビューをインポートする"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:441
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:447
 msgid "Select :guilabel:`Import` button to apply the package."
 msgstr "「:guilabel:`」を選択し、「` 」ボタンをクリックしてパッケージを適用してください。"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:443
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:449
 msgid "The dialog shows the result for each file: imported successfully, skipped (unrecognized), or failed."
 msgstr "ダイアログには、各ファイルの結果（インポート成功、スキップ（認識不可）、失敗）が表示されます。"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:447
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:453
 msgid "Importing a package **replaces** the existing configuration for each recognized file type. This action cannot be undone."
 msgstr "**パッケージをインポートすると、** 各認識されたファイルタイプに対する既存の設定が置き換えられます。この操作は元に戻すことができません。"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:448
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:454
 msgid "File names must match exactly as listed above for a file to be recognized on import."
 msgstr "インポート時にファイルが認識されるためには、ファイル名は上記にリストされているものと完全に一致している必要があります。"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:451
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:457
 msgid "Only ``.zip`` files are accepted. If the uploaded file cannot be read, or contains no recognized Portal configuration files, an error message is shown and nothing is imported."
 msgstr "``.zip`` 形式のファイルのみ受け付けます。アップロードされたファイルが読み取れない場合、または認識可能なポータル設定ファイルが含まれていない場合は、エラーメッセージが表示され、何もインポートされません。"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:454
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:460
 #: ../../source/portal-user-guide/full-case-list/index.rst:359
 #: ../../source/portal-user-guide/full-process-list/index.rst:192
 #: ../../source/portal-user-guide/full-task-list/index.rst:313
-#: ../../source/portal-user-guide/portal-header/index.rst:234
+#: ../../source/portal-user-guide/portal-header/index.rst:237
 msgid "Permission Reference"
 msgstr "権限リファレンス"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:456
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:462
 msgid "Different Portal Configuration actions require specific permissions:"
 msgstr "ポータルの各種設定操作には、それぞれ特定の権限が必要です："
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:464
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:470
 msgid "**Import private dashboard**"
 msgstr "**プライベートダッシュボードをインポート**"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:464
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:470
 msgid ":ref:`🔑DashboardImportOwn <DashboardImportOwn>`"
 msgstr ":ref:`🔑DashboardImportOwn <DashboardImportOwn>`"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:466
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:472
 msgid "**Export private dashboard**"
 msgstr "**非公開ダッシュボードのエクスポート**"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:466
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:472
 msgid ":ref:`🔑DashboardExportOwn <DashboardExportOwn>`"
 msgstr ":ref:`🔑DashboardExportOwn <DashboardExportOwn>`"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:468
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:474
 msgid "**Import public dashboard**"
 msgstr "**公開ダッシュボードのインポート**"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:468
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:474
 msgid ":ref:`🔑DashboardImportPublic <DashboardImportPublic>`"
 msgstr ":ref:`🔑DashboardImportPublic <DashboardImportPublic>`"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:470
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:476
 msgid "**Export public dashboard**"
 msgstr "**公開ダッシュボードのエクスポート**"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:470
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:476
 msgid ":ref:`🔑DashboardExportPublic <DashboardExportPublic>`"
 msgstr ":ref:`🔑DashboardExportPublic <DashboardExportPublic>`"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:472
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:478
 msgid "**Share public dashboard link**"
 msgstr "**公開ダッシュボードのリンクを共有する**"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:472
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:478
 msgid ":ref:`🔑ShareDashboardLink <ShareDashboardLink>`"
 msgstr ":ref:`🔑ShareDashboardLink <ShareDashboardLink>`"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:474
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:480
 msgid "**Manage sidebar navigation**"
 msgstr "**サイドバーのナビゲーションを管理する**"
 
-#: ../../source/portal-user-guide/dashboard-configuration/index.rst:476
+#: ../../source/portal-user-guide/dashboard-configuration/index.rst:482
 msgid "**Export/import Portal package**"
 msgstr "**Portal パッケージのエクスポート/インポート**"
 
@@ -3786,7 +3791,7 @@ msgstr "状態"
 #: ../../source/portal-user-guide/full-case-list/index.rst:42
 #: ../../source/portal-user-guide/full-case-list/index.rst:300
 #: ../../source/portal-user-guide/full-task-list/index.rst:49
-#: ../../source/portal-user-guide/portal-header/index.rst:197
+#: ../../source/portal-user-guide/portal-header/index.rst:200
 msgid "Category"
 msgstr "カテゴリー"
 
@@ -6747,7 +6752,7 @@ msgstr "search-icon"
 msgid "|portal-header|"
 msgstr "|portal-header|"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:270
+#: ../../source/portal-user-guide/portal-header/index.rst:273
 msgid "Portal header items"
 msgstr "ポータルのヘッダーの項目"
 
@@ -6859,7 +6864,7 @@ msgstr ":guilabel:`Absences` メニューエントリは、あなたの不在を
 msgid "|portal-absences|"
 msgstr "|portal-absences|"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:272
+#: ../../source/portal-user-guide/portal-header/index.rst:275
 msgid "Absences page"
 msgstr "不在ページ"
 
@@ -6935,7 +6940,7 @@ msgstr "ご不在の確認には、 :guilabel:`保存` ボタンをクリック�
 msgid "|how-to-add-an-absence|"
 msgstr "|how-to-add-an-absence|"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:274
+#: ../../source/portal-user-guide/portal-header/index.rst:277
 msgid "Absences page: Add new absence dialog"
 msgstr "不在ページ：新しい不在の追加ダイアログ"
 
@@ -6947,7 +6952,7 @@ msgstr "置換タブ"
 msgid "|substitute-tab|"
 msgstr "|substitute-tab|"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:278
+#: ../../source/portal-user-guide/portal-header/index.rst:281
 msgid "Absences page: Set deputy section"
 msgstr "不在ページ：代行者の設定セクション"
 
@@ -7023,7 +7028,7 @@ msgstr ":guilabel:`Save` ボタンで確認"
 msgid "|how-to-add-deputy-dialog|"
 msgstr "|how-to-add-deputy-dialog|"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:276
+#: ../../source/portal-user-guide/portal-header/index.rst:279
 msgid "Absences page: Add deputy dialog"
 msgstr "Absences ページ: 代理人追加ダイアログ"
 
@@ -7055,7 +7060,7 @@ msgstr "次に、選択したユーザーの不在と置換を追加、編集、
 msgid "|select-user|"
 msgstr "|select-user|"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:280
+#: ../../source/portal-user-guide/portal-header/index.rst:283
 msgid "Absences page: Select absence user option"
 msgstr "Absences ページ: 不在ユーザオプションを選択"
 
@@ -7071,7 +7076,7 @@ msgstr ":guilabel:`パスワードの変更` メニュー項目から、新し�
 msgid "|portal-password-change-dialog|"
 msgstr "|portal-password-change-dialog|"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:282
+#: ../../source/portal-user-guide/portal-header/index.rst:285
 msgid "Change password dialog"
 msgstr "パスワードの変更ダイアログ"
 
@@ -7084,186 +7089,187 @@ msgid "Info"
 msgstr "情報"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:167
-msgid "The menu entry :guilabel:`Info` provides you with detailed information about the Axon Ivy Engine, the Axon Ivy Portal and your company's application. You might be asked for this information in case you issue a support request."
+#, fuzzy
+msgid "The menu entry :guilabel:`Info` provides you with detailed information about the Axon Ivy Engine and Portal versions, and every version of your company's applications, including its release state, activity state, and open/done case counts. Click a version to see the projects deployed in it, along with each project's state, Maven version, and last change. You might be asked for this information in case you issue a support request."
 msgstr ":guilabel:`情報` メニューエントリには、Axon Ivy Engine、Axon Ivy Portal、会社のアプリケーションに関する詳細情報が表示されます。サポートリクエストを発行する場合、この情報が求められることがあります。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:171
+#: ../../source/portal-user-guide/portal-header/index.rst:174
 msgid "|portal-version-information|"
 msgstr "|portal-version-information|"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:284
+#: ../../source/portal-user-guide/portal-header/index.rst:287
 msgid "Version information dialog"
 msgstr "バージョン情報ダイアログ"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:174
+#: ../../source/portal-user-guide/portal-header/index.rst:177
 msgid "Logout"
 msgstr "ログアウト"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:176
+#: ../../source/portal-user-guide/portal-header/index.rst:179
 msgid "The menu entry :guilabel:`Logout` will terminate your session in the Axon Ivy Portal. You'll be routed back to the login page of the Axon Ivy Portal."
 msgstr "メニュー項目「:guilabel:`Logout` 」を選択すると、Axon Ivy Portalのセッションが終了します。Axon Ivy Portalのログインページに戻ります。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:181
+#: ../../source/portal-user-guide/portal-header/index.rst:184
 msgid "The Axon Ivy Portal will automatically log you out after a period of inactivity."
 msgstr "Axon Ivy Portalでは、一定時間操作がない場合、自動的にログアウトされます。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:184
+#: ../../source/portal-user-guide/portal-header/index.rst:187
 msgid "Global Search"
 msgstr "グローバル検索"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:186
+#: ../../source/portal-user-guide/portal-header/index.rst:189
 msgid "Global Search provides a convenient way to look up information across the entire Portal. You can search for any keyword, and Portal will search across multiple categories."
 msgstr "グローバル検索は、ポータル全体にわたる情報を検索する便利な方法を提供します。任意のキーワードを検索すると、ポータルが複数のカテゴリを横断して検索を行います。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:189
+#: ../../source/portal-user-guide/portal-header/index.rst:192
 msgid "Default Search Scope"
 msgstr "デフォルトの検索範囲"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:191
+#: ../../source/portal-user-guide/portal-header/index.rst:194
 msgid "By default, Portal searches the following categories:"
 msgstr "デフォルトでは、Portalは以下のカテゴリを検索します："
 
-#: ../../source/portal-user-guide/portal-header/index.rst:197
+#: ../../source/portal-user-guide/portal-header/index.rst:200
 msgid "Searchable Fields"
 msgstr "検索可能なフィールド"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:199
+#: ../../source/portal-user-guide/portal-header/index.rst:202
 msgid "**Processes**"
 msgstr "**プロセス**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:199
+#: ../../source/portal-user-guide/portal-header/index.rst:202
 msgid "Name, description"
 msgstr "名前、説明"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:201
+#: ../../source/portal-user-guide/portal-header/index.rst:204
 msgid "**Cases**"
 msgstr "**大文字小文字の区別**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:201
+#: ../../source/portal-user-guide/portal-header/index.rst:204
 msgid "ID, name, description"
 msgstr "ID、名前、説明"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:203
+#: ../../source/portal-user-guide/portal-header/index.rst:206
 msgid "**Tasks**"
 msgstr "**タスク**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:203
+#: ../../source/portal-user-guide/portal-header/index.rst:206
 msgid "ID, name, description, and all custom string fields"
 msgstr "ID、名前、説明、およびすべてのカスタム文字列フィールド"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:207
+#: ../../source/portal-user-guide/portal-header/index.rst:210
 msgid "Search Results"
 msgstr "検索結果"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:209
+#: ../../source/portal-user-guide/portal-header/index.rst:212
 msgid "When you enter a keyword and confirm your search, Portal routes you to the **Global Search Results** page. Each category has its own tab displaying the matching results."
 msgstr "キーワードを入力し検索を確認すると、Portalは **グローバル検索結果ページ** へ遷移します。各カテゴリには対応する結果を表示する専用タブが設けられています。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:211
+#: ../../source/portal-user-guide/portal-header/index.rst:214
 msgid "|portal-global-search-result-page|"
 msgstr "|portal-global-search-result-page|"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:286
+#: ../../source/portal-user-guide/portal-header/index.rst:289
 msgid "Global search results page"
 msgstr "グローバル検索結果ページ"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:214
+#: ../../source/portal-user-guide/portal-header/index.rst:217
 msgid "HowTo: Configure Search Scope"
 msgstr "ハウツー：検索範囲の設定方法"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:216
+#: ../../source/portal-user-guide/portal-header/index.rst:219
 msgid "As an administrator, you can limit the fields that Global Search uses to improve performance and relevance."
 msgstr "管理者として、グローバル検索のパフォーマンスと関連性を向上させるため、検索に使用するフィールドを制限することができます。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:219
+#: ../../source/portal-user-guide/portal-header/index.rst:222
 msgid "Available Portal Variables"
 msgstr "利用可能なポータル変数"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:221
+#: ../../source/portal-user-guide/portal-header/index.rst:224
 msgid "**Portal.SearchScope.ByCaseFields**"
 msgstr "**Portal.SearchScope.ByCaseFields**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:222
+#: ../../source/portal-user-guide/portal-header/index.rst:225
 msgid "Defines the fields that global search uses to find matching cases besides case ID (can influence performance)."
 msgstr "グローバル検索がケースID以外に一致するケースを見つけるために使用するフィールドを定義します（パフォーマンスに影響を与える可能性があります）。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:224
+#: ../../source/portal-user-guide/portal-header/index.rst:227
 msgid "**Portal.SearchScope.ByTaskFields**"
 msgstr "**Portal.SearchScope.ByTaskFields**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:225
+#: ../../source/portal-user-guide/portal-header/index.rst:228
 msgid "Defines the fields that global search uses to find matching tasks besides task ID (can influence performance)."
 msgstr "グローバル検索がタスクID以外に一致するタスクを見つけるために使用するフィールドを定義します（パフォーマンスに影響を与える可能性があります）。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:227
+#: ../../source/portal-user-guide/portal-header/index.rst:230
 msgid "**Portal.GlobalSearchScopeCategories**"
 msgstr "**Portal.GlobalSearchScopeCategories**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:228
+#: ../../source/portal-user-guide/portal-header/index.rst:231
 msgid "Defines the categories that global search will search (can influence performance)."
 msgstr "グローバル検索の対象となるカテゴリを定義します（パフォーマンスに影響を与える可能性があります）。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:231
+#: ../../source/portal-user-guide/portal-header/index.rst:234
 msgid "Configure these variables in :ref:`admin-settings` to optimize search performance for your Portal instance."
 msgstr ":ref:`admin-settings` 内のこれらの変数を設定し、ポータルインスタンスの検索パフォーマンスを最適化してください。"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:236
+#: ../../source/portal-user-guide/portal-header/index.rst:239
 msgid "Different header features require specific permissions:"
 msgstr "ヘッダーの機能ごとに必要な権限が異なります："
 
-#: ../../source/portal-user-guide/portal-header/index.rst:244
+#: ../../source/portal-user-guide/portal-header/index.rst:247
 msgid "**Access admin settings**"
 msgstr "**管理設定にアクセスする**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:244
+#: ../../source/portal-user-guide/portal-header/index.rst:247
 msgid "Role ``AXONIVY_PORTAL_ADMIN``"
 msgstr "``AXONIVY_PORTAL_ADMIN``"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:246
+#: ../../source/portal-user-guide/portal-header/index.rst:249
 msgid "**Manage own dashboards**"
 msgstr "**ご自身のダッシュボードを管理してください。**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:249
+#: ../../source/portal-user-guide/portal-header/index.rst:252
 msgid "**Manage public dashboards**"
 msgstr "**公開ダッシュボードの管理**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:252
+#: ../../source/portal-user-guide/portal-header/index.rst:255
 msgid "**Create own absences**"
 msgstr "**独自の欠席処理を作成してください**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:252
+#: ../../source/portal-user-guide/portal-header/index.rst:255
 msgid ":ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`"
 msgstr ":ref:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>`"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:255
+#: ../../source/portal-user-guide/portal-header/index.rst:258
 msgid "**Create public absences**"
 msgstr "**公開欠席を作成します**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:255
+#: ../../source/portal-user-guide/portal-header/index.rst:258
 msgid ":ref:`🔑UserCreateAbsence <UserCreateAbsence>`"
 msgstr ":ref:`🔑UserCreateAbsence <UserCreateAbsence>`"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:258
+#: ../../source/portal-user-guide/portal-header/index.rst:261
 msgid "**Create own substitutes**"
 msgstr "**独自の置換語を作成してください。**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:258
+#: ../../source/portal-user-guide/portal-header/index.rst:261
 msgid ":ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`"
 msgstr ":ref:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>`"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:261
+#: ../../source/portal-user-guide/portal-header/index.rst:264
 msgid "**Create all substitutes**"
 msgstr "**すべての置換を作成してください。**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:261
+#: ../../source/portal-user-guide/portal-header/index.rst:264
 msgid ":ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`"
 msgstr ":ref:`🔑UserCreateSubstitute <UserCreateSubstitute>`"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:264
+#: ../../source/portal-user-guide/portal-header/index.rst:267
 msgid "**Change own password**"
 msgstr "**ご自身のパスワードを変更する**"
 
-#: ../../source/portal-user-guide/portal-header/index.rst:264
+#: ../../source/portal-user-guide/portal-header/index.rst:267
 msgid "🔑UserSetOwnPassword"
 msgstr "🔑UserSetOwnPassword"
 
