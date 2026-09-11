@@ -207,8 +207,6 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     showNewDashboard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForCaseWidgetLoaded();
-    // Portal configuration is pinned to the bottom of the sidebar; expand the sidebar and
-    // capture it directly instead of cropping to the top half of the page, which would cut it off.
     var leftMenu = $("#left-menu").shouldBe(appear, DEFAULT_TIMEOUT).hover();
     ScreenshotUtils.executeDecorateJs("highlightDashboardConfiguration()");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(leftMenu,

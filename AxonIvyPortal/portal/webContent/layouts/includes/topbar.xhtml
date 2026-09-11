@@ -106,9 +106,6 @@
              </p:commandLink>
              </li>
 
-            <!-- The sidebar is the primary entry point for Portal configuration (pinned to its bottom).
-                 This one is only rendered as a fallback when the sidebar itself is hidden entirely
-                 (sidebarMode == HIDDEN), so the feature stays reachable. -->
             <li class="ui-menu-items" jsf:rendered="#{userMenuBean.showDashboardConfigurationMenu and masterDataBean.sidebarMode == 'HIDDEN'}">
               <p:commandLink id="dashboard-configuration"
                 process="@this"

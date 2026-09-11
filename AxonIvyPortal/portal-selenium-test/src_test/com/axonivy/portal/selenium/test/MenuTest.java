@@ -241,11 +241,6 @@ public class MenuTest extends BaseTest {
     dashboardPage.isSidebarHidden();
   }
 
-  /**
-   * The "Portal configuration" sidebar item must only be rendered for users who have at least one of the
-   * dashboard/portal-configuration permissions. login() grants both dashboard write permissions by
-   * default, so both are explicitly denied here to reproduce a user without any of them.
-   */
   @Test
   public void testPortalConfigurationMenuItemHiddenWithoutPermission() {
     login(TestAccount.DEMO_USER);
@@ -260,10 +255,6 @@ public class MenuTest extends BaseTest {
     newDashboardPage.getPortalConfigurationMenuItem().shouldNotBe(Condition.exist);
   }
 
-  /**
-   * Reverse of {@link #testPortalConfigurationMenuItemHiddenWithoutPermission()}: once the user is granted
-   * a dashboard/portal-configuration permission, the sidebar item must appear.
-   */
   @Test
   public void testPortalConfigurationMenuItemVisibleWithPermission() {
     login(TestAccount.DEMO_USER);
@@ -275,10 +266,6 @@ public class MenuTest extends BaseTest {
     newDashboardPage.getPortalConfigurationMenuItem().shouldBe(Condition.exist).shouldBe(Condition.visible);
   }
 
-  /**
-   * The "Portal configuration" item lives in the sidebar-footer, pinned below the scrollable menu list
-   * (Dashboard/Processes/Tasks/Cases/...), not inside that scrollable list itself.
-   */
   @Test
   public void testPortalConfigurationMenuItemPinnedAtBottomOfSidebar() {
     login(TestAccount.DEMO_USER);
@@ -290,14 +277,9 @@ public class MenuTest extends BaseTest {
     newDashboardPage.getSidebarFooter().shouldBe(Condition.visible);
     newDashboardPage.getSidebarFooter().$("#dashboard-configuration-menuitem").shouldBe(Condition.exist)
         .shouldBe(Condition.visible);
-    // it must not be one of the regular, scrollable main menu items
     $(".sidebar-scroll-content #dashboard-configuration-menuitem").shouldNotBe(Condition.exist);
   }
 
-  /**
-   * The item must follow the same icon-only (collapsed) vs icon+label (expanded) behavior as every other
-   * sidebar menu item.
-   */
   @Test
   public void testPortalConfigurationMenuItemFollowsSidebarCollapseExpandBehavior() {
     updatePortalSetting(Variable.SIDEBAR_MODE.getKey(), "CLICK");
@@ -307,16 +289,13 @@ public class MenuTest extends BaseTest {
     MainMenuPage mainMenuPage = new MainMenuPage();
     var regularItemLabel = $(".layout-menu li[role='menuitem'] a.PROCESS_LIST span");
 
-    // anchor: the item must actually be rendered before asserting on its visual state
     mainMenuPage.getPortalConfigurationMenuItem().shouldBe(Condition.exist);
 
-    // Collapsed: icon shown, label hidden - same as a regular sidebar item (e.g. Processes)
     mainMenuPage.isSidebarClickModeCollapsed();
     mainMenuPage.getPortalConfigurationMenuItem().$("i").shouldBe(Condition.visible);
     mainMenuPage.getPortalConfigurationMenuItem().$("a span").shouldNotBe(Condition.visible);
     regularItemLabel.shouldNotBe(Condition.visible);
 
-    // Expanded: icon and label both shown - same as a regular sidebar item
     mainMenuPage.clickSidebarToggleButton();
     mainMenuPage.isSidebarClickModeExpanded();
     mainMenuPage.getPortalConfigurationMenuItem().$("i").shouldBe(Condition.visible);
@@ -324,9 +303,6 @@ public class MenuTest extends BaseTest {
     regularItemLabel.shouldBe(Condition.visible);
   }
 
-  /**
-   * Clicking the sidebar "Portal configuration" item navigates to the Portal Configuration page.
-   */
   @Test
   public void testClickPortalConfigurationMenuItemNavigatesToConfigurationPage() {
     login(TestAccount.DEMO_USER);

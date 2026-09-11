@@ -132,13 +132,6 @@ public class MenuHighlightTest extends BaseTest {
     assertMenuHighlighted(DEFAULT_CASE_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
   }
 
-  /**
-   * The pinned "Portal configuration" sidebar item must get the "active-menuitem" highlight while its page
-   * is open, and lose it again (in favor of the item being navigated to) once the user leaves that page -
-   * exactly like the regular Dashboard/Processes/Tasks/Cases sidebar items. Covers both the main "Dashboard"
-   * parent item and a sub-dashboard (Task list dashboard, reached via ".../PortalMainDashboard.xhtml"),
-   * since those two are highlighted through different branches of MainMenu.highlightMenuItem().
-   */
   @Test
   public void testHighlightPortalConfigurationMenuItem() {
     login(TestAccount.DEMO_USER);
