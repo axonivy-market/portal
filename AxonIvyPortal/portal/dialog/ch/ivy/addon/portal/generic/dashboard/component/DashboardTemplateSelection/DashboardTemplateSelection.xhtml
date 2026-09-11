@@ -19,14 +19,14 @@
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Start')}
           </div>
           <div class="ui-g-6 ui-lg-6 ui-md-6 ui-sm-12">
-            <p:commandLink id="create-from-scratch" styleClass="dashboard-action-container" oncomplete="PF('dashboard-creation-details-dialog').show()"
+            <p:commandLink id="create-from-scratch" styleClass="dashboard-action-container pt-2 pb-1 px-2" oncomplete="PF('dashboard-creation-details-dialog').show()"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateFromScratch')}"
               actionListener="#{dashboardTemplateSelectionBean.createDashboardFromScratch(isPublicDashboard)}"
               update=":#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog" resetValues="true" global="false">
-              <div class="dashboard-action__icon">
+              <div class="dashboard-action__icon pt-2 pb-1 px-2">
                 <span class="ti ti-plus dashboard-action-container-icon" />
               </div>
-              <div class="dashboard-action__text">
+              <div class="dashboard-action__text pt-2 pb-1 px-2">
                 <p:outputLabel styleClass="dashboard-action-container-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateFromScratch')}" />
                 <p:outputLabel styleClass="dashboard-action-container-description"
@@ -35,13 +35,13 @@
             </p:commandLink>
           </div>
           <h:panelGroup styleClass="ui-g-6 ui-lg-6 ui-md-6 ui-sm-12" rendered="#{dashboardModificationBean.hasImportDashboardPermission(isPublicDashboard)}">
-            <p:commandLink id="import-dashboard" styleClass="dashboard-action-container" oncomplete="PF('dashboard-import-dialog').show()"
+            <p:commandLink id="import-dashboard" styleClass="dashboard-action-container pt-2 pb-1 px-2" oncomplete="PF('dashboard-import-dialog').show()"
               actionListener="#{dashboardImportBean.importDashboard(isPublicDashboard)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/import')}"
               update=":#{cc.clientId}:dashboard-import-component:dashboard-import-dialog" resetValues="true" global="false">
-              <div class="dashboard-action__icon">
+              <div class="dashboard-action__icon pt-2 pb-1 px-2">
                 <span class="ti ti-upload dashboard-action-container-icon"></span>
               </div>
-              <div class="dashboard-action__text">
+              <div class="dashboard-action__text pt-2 pb-1 px-2">
                 <p:outputLabel styleClass="dashboard-action-container-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/import')}" />
                 <p:outputLabel styleClass="dashboard-action-container-description"
@@ -54,14 +54,14 @@
           </div>
           <ui:repeat var="template" value="#{dashboardTemplateSelectionBean.dashboardTemplates}" varStatus="status">
             <div class="ui-g-6 ui-lg-6 ui-md-6 ui-sm-12">
-              <p:commandLink id="template" styleClass="dashboard-action-container" ariaLabel="#{template.title}"
+              <p:commandLink id="template" styleClass="dashboard-action-container pt-2 pb-1 px-2" ariaLabel="#{template.title}"
                 actionListener="#{dashboardTemplateSelectionBean.onSelectTemplate(template, isPublicDashboard)}"
                 oncomplete="PF('dashboard-creation-details-dialog').show()"
                 update=":#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog" resetValues="true" global="false">
-                <div class="dashboard-action__icon">
+                <div class="dashboard-action__icon pt-2 pb-1 px-2">
                   <span class="ti #{template.icon} dashboard-action-container-icon" />
                 </div>
-                <div class="dashboard-action__text">
+                <div class="dashboard-action__text pt-2 pb-1 px-2">
                   <p:outputLabel styleClass="dashboard-action-container-label" value="#{template.title}" />
                   <p:outputLabel styleClass="dashboard-action-container-description" value="#{template.description}" />
                 </div>

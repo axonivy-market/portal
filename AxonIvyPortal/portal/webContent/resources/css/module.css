@@ -5566,7 +5566,11 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 }
 
 .dashboard-template-selection__section-title:not(:first-child) {
-  margin-top: 1rem;
+  margin-top: .5rem;
+}
+
+.create-new-dashboard-dialog .ui-dialog-title {
+  padding-left: .5rem;
 }
 
 .dashboard-configuration__export-button-form {
@@ -5621,6 +5625,10 @@ a.dashboard-action-container label {
   font-weight: bold;
 }
 
+.dashboard-action-container-description {
+  display: block;
+}
+
 .dashboard-action-container span.ti,
 .dashboard-action-container span.tif,
 .dashboard-action-container span.si {
@@ -5634,15 +5642,10 @@ a.dashboard-action-container label {
 }
 
 .create-new-dashboard-dialog .dashboard-action-container {
-  margin-bottom: .7143rem;
+  align-items: flex-start;
+  margin-bottom: .5rem;
   background-color: var(--dashboard-icon-bg-color);
   border: 1px solid var(--dashboard-icon-border-color);
-}
-
-.create-new-dashboard-dialog .dashboard-action-container,
-.create-new-dashboard-dialog .dashboard-action__icon,
-.create-new-dashboard-dialog .dashboard-action__text {
-  padding: .7143rem;
 }
 
 .create-new-dashboard-dialog .dashboard-action-container span.ti {
@@ -5651,6 +5654,10 @@ a.dashboard-action-container label {
 
 .create-new-dashboard-dialog .dashboard-action-container-label {
   margin-bottom: .4286rem;
+}
+
+.create-new-dashboard-dialog .ui-dialog-content {
+  padding-bottom: 1rem;
 }
 
 /* Process Viewer */
