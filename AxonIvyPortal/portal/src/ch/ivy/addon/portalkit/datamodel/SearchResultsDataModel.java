@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.enums.SearchScopeCaseField;
 import com.axonivy.portal.enums.SearchScopeTaskField;
 import com.axonivy.portal.enums.GlobalSearchScopeCategory;
+import com.axonivy.portal.util.SearchScopeUtils;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
@@ -43,37 +44,9 @@ public class SearchResultsDataModel implements Serializable {
     caseDataModel = initCaseDataModel();
     caseDataModel.setIsAdminQuery(hasReadAllCasesPermission);
 
-    initSearchScopeTaskFields();
-    initSearchScopeCaseFields();
+    searchScopeTaskFields = SearchScopeUtils.getSearchScopeTaskFields();
+    searchScopeCaseFields = SearchScopeUtils.getSearchScopeCaseFields();
     initGlobalSearchScopeCategories();
-  }
-
-  private void initSearchScopeTaskFields() {
-    String searchScopeTaskFieldsString = Ivy.var().get(GlobalVariable.SEARCH_SCOPE_BY_TASK_FIELDS.getKey());
-    if (StringUtils.isNotBlank(searchScopeTaskFieldsString)) {
-      searchScopeTaskFields = new ArrayList<>();
-      String[] fieldArray = searchScopeTaskFieldsString.split(",");
-      for(String field : fieldArray) {
-        SearchScopeTaskField fieldEnum = SearchScopeTaskField.valueOf(field.toUpperCase());
-        if (fieldEnum != null) {
-          searchScopeTaskFields.add(fieldEnum);
-        }
-      }
-    }
-  }
-
-  private void initSearchScopeCaseFields() {
-    String searchScopeCaseFieldsString = Ivy.var().get(GlobalVariable.SEARCH_SCOPE_BY_CASE_FIELDS.getKey());
-    if (StringUtils.isNotBlank(searchScopeCaseFieldsString)) {
-      searchScopeCaseFields = new ArrayList<>();
-      String[] fieldArray = searchScopeCaseFieldsString.split(",");
-      for(String field : fieldArray) {
-        SearchScopeCaseField fieldEnum = SearchScopeCaseField.valueOf(field.toUpperCase());
-        if (fieldEnum != null) {
-          searchScopeCaseFields.add(fieldEnum);
-        }
-      }
-    }
   }
 
   private void initGlobalSearchScopeCategories() {
@@ -115,13 +88,8 @@ public class SearchResultsDataModel implements Serializable {
     this.taskDataModel.getCriteria().setGlobalSearch(true);
     this.caseDataModel.getCriteria().setGlobalSearch(true);
 
-    if (CollectionUtils.isNotEmpty(searchScopeTaskFields)) {
-      this.taskDataModel.getCriteria().setSearchScopeTaskFields(searchScopeTaskFields);
-    }
-
-    if (CollectionUtils.isNotEmpty(searchScopeCaseFields)) {
-      this.caseDataModel.getCriteria().setSearchScopeCaseFields(searchScopeCaseFields);
-    }
+    this.taskDataModel.getCriteria().setSearchScopeTaskFields(searchScopeTaskFields);
+    this.caseDataModel.getCriteria().setSearchScopeCaseFields(searchScopeCaseFields);
 
     if (CollectionUtils.isNotEmpty(globalSearchScopeCategories)) {
       this.caseDataModel.getCriteria().setGlobalSearchScope(globalSearchScopeCategories.contains(GlobalSearchScopeCategory.CASES));
