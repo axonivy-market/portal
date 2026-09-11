@@ -123,7 +123,8 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public void clickMainMenuItem(String name) {
-    $("[title='" + name + "']").click();
+    $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
+    $("[title='" + name + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void assertNavigateToExternalLink(String url) {

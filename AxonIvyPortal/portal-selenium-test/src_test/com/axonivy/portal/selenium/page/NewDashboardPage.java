@@ -1,10 +1,5 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -15,7 +10,11 @@ import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
 import com.codeborne.selenide.ElementsCollection;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -153,9 +152,20 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   private void waitForWidgetLoadedByExpandThenCollapse(SelenideElement widget) {
-    widget.$(".expand-link").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    widget.$(".collapse-link").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    widget.$(".expand-link").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement gridStackItem = widget.ancestor(".grid-stack-item");
+    clickToggleFullscreenMenuItem(widget);
+    gridStackItem.shouldHave(Condition.cssClass("expand-fullscreen"), DEFAULT_TIMEOUT);
+    clickToggleFullscreenMenuItem(widget);
+    gridStackItem.shouldNotHave(Condition.cssClass("expand-fullscreen"), DEFAULT_TIMEOUT);
+  }
+
+  private void clickToggleFullscreenMenuItem(SelenideElement widget) {
+    SelenideElement actionsMenuButton = widget.$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT).$("[id*=':toggle-fullscreen-item-']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public WelcomeEditWidgetNewDashboardPage editWelcomeWidgetConfiguration(String widgetId) {
@@ -856,27 +866,41 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void openWidgetFilter(int index) {
-    $("[id$='filter-sidebar-link-" + index + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement actionsMenuButton = getCaseWidget().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    actionsMenuPanel.$$("a.ui-menuitem-link").filter(Condition.text("Filters")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
+    $("[id$=':widget-saved-filters-items']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getWidgetFilter(int index) {
-    var result = $("div[id$=':filter-overlay-panel-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    var result = $("div[id$=':filter-dialog-content-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
     result.$("[class*='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);
-    result.$(".filter-overlay-panel__header").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    result.$(".filter-dialog__title").shouldBe(appear, DEFAULT_TIMEOUT).click();
     return result;
   }
 
   public void closeWidgetFilter(int index) {
-    var widgetFilterPanel = $("div[id$=':filter-overlay-panel-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
-    widgetFilterPanel.$("div[id*='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[class*='filter-overlay-panel__header']").shouldBe(appear, DEFAULT_TIMEOUT).$("button[id*='filter-form-" + index + "']")
-        .should(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    var widgetFilterPanel = $("div[id$=':filter-dialog-content-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    widgetFilterPanel.$("button[id$=':widget-filter-cancel-button']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     widgetFilterPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public WebElement openWidgetInformation(int index) {
-    String widgetInfo = String.format("button[id$=':info-sidebar-link-%d']", index);
-    $(widgetInfo).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    SelenideElement actionsMenuButton = getDashboardWidget(index).$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    String infoMenuItemId = actionsMenuButton.getAttribute("id").replace("actions-menu-button_button",
+        "info-menu-item-" + index);
+    actionsMenuPanel.$("[id='" + infoMenuItemId + "']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
 
     String infoPanel = String.format("div[id$='info-overlay-panel-%d']", index);
     $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT).$(".widget-info--type")
@@ -885,14 +909,24 @@ public class NewDashboardPage extends TemplatePage {
     return $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  private SelenideElement getDashboardWidget(int index) {
+    if (index == 0) {
+      return getTaskWidget();
+    }
+    if (index == 1) {
+      return getCaseWidget();
+    }
+    throw new IllegalArgumentException("Unsupported dashboard widget index: " + index);
+  }
+
   public void startTask(int index) {
     String cssSelector =
-        String.format("a[id$=':task-component:dashboard-tasks:%d:dashboard-tasks-columns:0:start-task']", index);
+        String.format("button[id*=':task-component:dashboard-tasks:%d:'][id$=':start-task']", index);
     $(cssSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void waitForTaskStartButtonDisplay(int index) {
-    String cssSelector = String.format("a[id*='task-component:dashboard-tasks:%d']", index);
+    String cssSelector = String.format("button[id*='task-component:dashboard-tasks:%d']", index);
     $(cssSelector).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -1023,7 +1057,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void clickOnManageFilterLink() {
-    $("div[class*='filter-overlay-panel__footer']").shouldBe(appear, DEFAULT_TIMEOUT).$("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("a[class*='saved-filter__manage-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("a[class*='saved-filter__manage-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
