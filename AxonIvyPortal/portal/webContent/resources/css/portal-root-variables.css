@@ -41,6 +41,7 @@
 
   /* Portal grey palette */
   --ivy-portal-color-grey-50: hsla(0, 0%, 98%, 1);
+  --ivy-portal-color-grey-100: hsla(0, 0%, 97%, 1);
   --ivy-portal-color-grey-200: hsla(0, 0%, 92%, 1);
   --ivy-portal-color-grey-400: hsla(0, 0%, 75%, 1);
   --ivy-portal-color-grey-450: hsla(0, 0%, 69%, 1);
@@ -172,6 +173,7 @@
   --new-widget-dialog-title-font-weight: bold;
   --new-widget-dialog-title-font-style: normal;
   --new-widget-dialog-title-font-size: 1.1rem;
+  --dashboard-template-selection-section-title-font-size: 1.1429rem; /* 16px */
 
   /* News feed widget */
   --news-feed-item-border-radius: 1rem;

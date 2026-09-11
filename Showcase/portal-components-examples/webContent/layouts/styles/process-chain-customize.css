@@ -1,0 +1,7 @@
+:root {
+  --process-chain-menu-color: var(--primary-color, hsl(195, 100%, 29%));
+  --process-chain-link-color: orange;
+  --process-chain-circle-step-number-color: var(--primary-text-color, hsl(0, 0%, 100%));
+  --process-chain-circle-step-border-color: var(--primary-color, hsl(195, 100%, 29%));
+  --process-chain-line-waiting-step-background-color: var(--process-chain-link-color);
+}

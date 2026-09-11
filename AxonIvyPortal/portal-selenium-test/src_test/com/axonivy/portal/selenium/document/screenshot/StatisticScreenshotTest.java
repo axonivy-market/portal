@@ -16,12 +16,12 @@ import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
-import com.axonivy.portal.selenium.page.StatisticWidgetNewDashboardPage;
-import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CustomStatisticConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.StatisticConfigurationPage;
+import com.axonivy.portal.selenium.page.StatisticWidgetNewDashboardPage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -51,7 +51,7 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
         ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "statistic-widget-list", new ScreenshotMargin(20));
   }
-  
+
   @Test
   public void screenshotStatisticStandardDemo() throws IOException {
     redirectToRelativeLink(createDataCreatedDate);
@@ -74,22 +74,20 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     StatisticWidgetNewDashboardPage tasksExpireTheEndOfWeek = newDashboardPage.selectStatisticChartWidget("Tasks that expire by the end of the week");
     StatisticWidgetNewDashboardPage openTasksWidget = newDashboardPage.selectStatisticChartWidget("Open Tasks");
 
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-by-prior-pie-chart", new ScreenshotMargin(5, 5));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(topPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "top-prior-chart", new ScreenshotMargin(5, 5));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(runningCasesWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "running-cases-chart", new ScreenshotMargin(5, 5));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newCasesWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "new-cases-chart", new ScreenshotMargin(5, 5));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(avgRuntimeWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "avg-runtime-chart", new ScreenshotMargin(5, 5));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dueTodayWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "due-today-chart", new ScreenshotMargin(5, 5));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(completedCasesPerDayWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "completed-cases-chart", new ScreenshotMargin(5, 5));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksExpireTheEndOfWeek.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-expire-end-week-chart", new ScreenshotMargin(5, 5));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(openTasksWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "open-tasks-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(), ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-by-prior-pie-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(topPriorWidget.getWidget(), ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "top-prior-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(runningCasesWidget.getWidget(), ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "running-cases-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newCasesWidget.getWidget(), ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "new-cases-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(avgRuntimeWidget.getWidget(), ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "avg-runtime-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dueTodayWidget.getWidget(), ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "due-today-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(completedCasesPerDayWidget.getWidget(), ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "completed-cases-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksExpireTheEndOfWeek.getWidget(), ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-expire-end-week-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(openTasksWidget.getWidget(), ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "open-tasks-chart", new ScreenshotMargin(5, 5));
   }
-  
+
   @Test
   public void screenshotBarChart() throws IOException {
-    redirectToRelativeLink(createDataCreatedDate);
     redirectToRelativeLink(createDataForStatisticWidget);
-    redirectToRelativeLink(createDataFinishedDate);
     redirectToRelativeLink(createCasesForCaseListCustomization);
     createJSonFile("dashboard-has-one-bar-chart.json", PortalVariable.DASHBOARD.key);
     redirectToNewDashBoard();
@@ -97,14 +95,12 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitStatisticChartLoaded();
     StatisticWidgetNewDashboardPage tasksByPriorWidget = newDashboardPage.selectStatisticChartWidget("Tasks By Priority");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-by-prior-bar-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(), ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-by-prior-bar-chart", new ScreenshotMargin(5, 5));
   }
-  
+
   @Test
   public void screenshotNumberChart() throws IOException {
-    redirectToRelativeLink(createDataCreatedDate);
     redirectToRelativeLink(createDataForStatisticWidget);
-    redirectToRelativeLink(createDataFinishedDate);
     redirectToRelativeLink(createCasesForCaseListCustomization);
     createJSonFile("dashboard-has-one-number-chart.json", PortalVariable.DASHBOARD.key);
     redirectToNewDashBoard();
@@ -112,9 +108,9 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitStatisticChartLoaded();
     StatisticWidgetNewDashboardPage tasksByPriorWidget = newDashboardPage.selectStatisticChartWidget("Tasks By Priority");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-by-prior-number-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(), ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-by-prior-number-chart", new ScreenshotMargin(5, 5));
   }
-  
+
   @Test
   public void screenshotCreateNewCustomStatistic() throws IOException {
     showNewDashboard();
@@ -140,9 +136,9 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     statisticConfigurationPage.addNewCondition();
     statisticConfigurationPage.configureThreshold(0, "Greater than", "5", "#6299f7");
     ScreenshotUtils.maximizeBrowser();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(customStatisticConfigurationPage.getAdvancedSettings(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "advanced-settings", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(customStatisticConfigurationPage.getAdvancedSettings(), ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "advanced-settings", new ScreenshotMargin(5, 5));
   }
-  
+
   @Test
   public void screenshotChartDrillDownDashboard() throws IOException {
     login(TestAccount.ADMIN_USER);
@@ -162,7 +158,7 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     statisticConfigurationPage.changeChartType(ChartType.NUMBER.getName());
     statisticConfigurationPage.addFilter("Created Date", FilterOperator.TODAY);
     statisticConfigurationPage.enableDrillDownFeature();
-    
+
     assertTrue(statisticConfigurationPage.isDrillDownFeatureEnabled());
     statisticConfigurationPage.clickCreateStatisticChart();
     configurationPage.clickOnAddWidgetButton();

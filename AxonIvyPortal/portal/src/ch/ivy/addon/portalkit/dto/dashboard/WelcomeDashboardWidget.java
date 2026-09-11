@@ -1,7 +1,10 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -50,6 +53,35 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   private String internalId;
   @JsonIgnore
   private String altText;
+
+  public WelcomeDashboardWidget() {}
+
+  public WelcomeDashboardWidget(WelcomeDashboardWidget widget) {
+    super(widget);
+    imageLocation = widget.imageLocation;
+    imageType = widget.imageType;
+    imageLocationDarkMode = widget.imageLocationDarkMode;
+    imageTypeDarkMode = widget.imageTypeDarkMode;
+    welcomeTextPosition = widget.welcomeTextPosition;
+    welcomeTextSize = widget.welcomeTextSize;
+    welcomeTextColor = widget.welcomeTextColor;
+    welcomeTextColorDarkMode = widget.welcomeTextColorDarkMode;
+    welcomeTexts = CollectionUtils.emptyIfNull(widget.welcomeTexts).stream()
+        .map(name -> new DisplayName(name.getLocale(), name.getValue()))
+        .collect(Collectors.toCollection(ArrayList::new));
+    isGreeting = widget.isGreeting;
+    welcomeTextStyleClass = widget.welcomeTextStyleClass;
+    imageStyleClass = widget.imageStyleClass;
+    welcomeImageFit = widget.welcomeImageFit;
+    imageInlineStyle = widget.imageInlineStyle;
+    imageContent = widget.imageContent;
+    imageContentDarkMode = widget.imageContentDarkMode;
+    altTexts = CollectionUtils.emptyIfNull(widget.altTexts).stream()
+        .map(name -> new DisplayName(name.getLocale(), name.getValue()))
+        .collect(Collectors.toCollection(ArrayList::new));
+    welcomeText = widget.welcomeText;
+    altText = widget.altText;
+  }
 
   @JsonIgnore
   public static WelcomeDashboardWidget buildDefaultWidget(String id, String name) {

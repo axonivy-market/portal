@@ -201,6 +201,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
+      globalSearchMinimumKeywordLengthNote: Minimum number of characters required before the global search runs. Defaults to 3; set to 0 to disable the check. A shorter keyword matches nearly every row, which can be slow, so the search is skipped rather than run.
       hideCaseDocument: Set to true, the document section in case detail page will be hidden, otherwise it will be shown.
       hideChangePasswordButtonNote: Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
       hideLogoutButtonNote: If true, the logout button on top menu will be hidden, otherwise it will be shown.
@@ -1098,12 +1099,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Show full task list
     sort: Sort
   taskWarning:
-    createdTaskLeave: '<div>You are about to leave this page.<br/>  Please choose one of the following options:</div><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Cancel: Continue working this task.</UL>'
-    createdTaskLogout: '<div>You are about to leave this page.<br/> Please choose one of the following options:</div><UL><LI>Logout: Discard your changes and logout.<LI>Cancel: Continue working this task.</UL>'
-    resetParkTaskBeforeLeave: '<div>You are about to leave a task in progress.<br/>Please choose one of the following options:</div><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Reserve: Discard your changes and keep the task in your task list.<LI>Cancel: Continue working this
-      task.</UL>'
-    resetParkTaskBeforeLogout: '<div>You are about to leave a task in progress.</br> Please choose one of the following options:</div><UL><LI>Logout: Discard your changes and logout.<LI>Reserve: Discard your changes and keep the task in your personal task list. Then logout.<LI>Cancel: Continue working
-      this task.</UL>'
+    createdTaskLeave: This task is in progress, if you leave it now you'll lose what you've done.
+    createdTaskLogout: This task is in progress, if you log out now you'll lose what you've done.
+    leaveTaskTitle: Leave this task?
+    resetParkTaskBeforeLeave: This task is in progress, if you leave it now you'll lose what you've done. If you reserve it will reappear in your task list.
+    resetParkTaskBeforeLogout: This task is in progress, if you log out now you'll lose what you've done. If you reserve it will reappear in your task list.
     taskNotFound: The task does not exist or you have insufficient rights to see this task.
   userProfile:
     myProfileTitle: My profile
@@ -1141,6 +1141,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: View all results
+              minimumKeywordText: Enter at least {0} characters to search.
               noResultsText: There are no results.
             dashboard:
               PortalDashboardConfiguration:

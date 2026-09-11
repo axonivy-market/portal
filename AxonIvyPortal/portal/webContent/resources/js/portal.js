@@ -194,7 +194,8 @@ var MainMenu = {
       ["CaseWidget.xhtml", "CASE"],
       ["PortalCaseDetails.xhtml", "CASE"],
       ["CaseItemDetails.xhtml", "CASE"],
-      ["PortalDashboard.xhtml", "DASHBOARD"]],
+      ["PortalDashboard.xhtml", "DASHBOARD"],
+      ["PortalDashboardConfiguration.xhtml", "PORTAL_CONFIGURATION"]],
 
   init : function(responsiveToolkit) {
     this.highlightMenuItem();
@@ -364,6 +365,13 @@ function resetPortalLeftMenuState() {
   deleteCookie('freya_expandeditems');
   if (typeof resetSelectedMenuItems === "function") {
     resetSelectedMenuItems();
+  }
+}
+
+function restorePortalLeftMenuState() {
+  let pfMainMenu = PF('main-menu');
+  if (pfMainMenu) {
+    pfMainMenu.restoreMenuState();
   }
 }
 

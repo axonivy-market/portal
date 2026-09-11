@@ -24,34 +24,6 @@
         "at" : { "x" : 632, "y" : 120 }
       }
     }, {
-      "id" : "f109",
-      "type" : "Script",
-      "name" : "Reindex",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivyteam.ivy.searchengine.ISearchEngineManager;",
-            "import ch.ivyteam.ivy.searchengine.client.IndexName;",
-            "import ch.ivyteam.ivy.searchengine.index.IndexInfo;",
-            "",
-            "for (int i = 0; i < ISearchEngineManager.instance().indicesCount(); i++) {",
-            "  ",
-            "  IndexInfo indexInfo = ISearchEngineManager.instance().indices(0, 1000).get(i);",
-            "  ivy.log.info(\"Reindexing STARTED for: \" + indexInfo.indexName().toString());",
-            "  ISearchEngineManager.instance().reindexSync(indexInfo.indexName());",
-            "  ivy.log.info(\"Reindexing DONE for: \" + indexInfo.indexName().toString());",
-            "  ",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 448, "y" : 120 }
-      },
-      "connect" : [
-        { "id" : "f9", "to" : "f8" }
-      ]
-    }, {
       "id" : "S10",
       "type" : "EmbeddedProcess",
       "name" : [
@@ -1187,7 +1159,7 @@
         "at" : { "x" : 240, "y" : 120 }
       },
       "connect" : [
-        { "id" : "f7", "to" : "f109" }
+        { "id" : "f7", "to" : "f8" }
       ]
     }, {
       "id" : "S40",
@@ -1916,34 +1888,6 @@
         "at" : { "x" : 624, "y" : 248 }
       }
     }, {
-      "id" : "f4",
-      "type" : "Script",
-      "name" : "Reindex",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivyteam.ivy.searchengine.ISearchEngineManager;",
-            "import ch.ivyteam.ivy.searchengine.client.IndexName;",
-            "import ch.ivyteam.ivy.searchengine.index.IndexInfo;",
-            "",
-            "for (int i = 0; i < ISearchEngineManager.instance().indicesCount(); i++) {",
-            "  ",
-            "  IndexInfo indexInfo = ISearchEngineManager.instance().indices(0, 1000).get(i);",
-            "  ivy.log.info(\"Reindexing STARTED for: \" + indexInfo.indexName().toString());",
-            "  ISearchEngineManager.instance().reindexSync(indexInfo.indexName());",
-            "  ivy.log.info(\"Reindexing DONE for: \" + indexInfo.indexName().toString());",
-            "  ",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 440, "y" : 248 }
-      },
-      "connect" : [
-        { "id" : "f6", "to" : "f1" }
-      ]
-    }, {
       "id" : "S31",
       "type" : "EmbeddedProcess",
       "name" : [
@@ -2249,7 +2193,7 @@
         "at" : { "x" : 240, "y" : 248 }
       },
       "connect" : [
-        { "id" : "f5", "to" : "f4" }
+        { "id" : "f5", "to" : "f1" }
       ]
     } ]
 }

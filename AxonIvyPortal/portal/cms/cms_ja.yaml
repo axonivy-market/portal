@@ -280,6 +280,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableScriptCheckingForUploadedDocumentNote: アップロードされたドキュメントのスクリプトチェックを有効にするには、true に設定してください。現在、この機能は PDF、Excel、Word のチェックをサポートしています。
       enableTranslationService: このプロパティをtrueに設定すると、翻訳サービスのサポートが有効になります。
       enableVirusScannerForUploadedDocumentNote: アップロードされたドキュメントへのウイルススキャナーを有効にするには true に設定してください。現在、この機能は API VIRUSTOTAL を使用しています。
+      globalSearchMinimumKeywordLengthNote: グローバル検索を実行する前に必要な最小文字数です。既定値は 3 です。チェックを無効にするには 0 を設定してください。短いキーワードはほぼすべての行に一致するため、処理が遅くなる可能性があり、検索は実行されずにスキップされます。
       hideCaseCreator: |-
         ケースリスト、ケースウィジェット、ケースの詳細でケースクリエイターを非表示にするには、true に設定してください。
         この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。
@@ -571,7 +572,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     inactive: 非アクティブ
     information: 情報
     leave: 離れる
-    leaveAndReserve: 休暇と予約
+    leaveAndReserve: 離れて保持
     linkToCaseDetails: 詳細は、<a href="{0}" >ここ</a>をクリックしてください。
     listView: リスト表示
     loading: 読み込み中
@@ -822,7 +823,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     CustomWidgets: カスタムウィジェット
     DashboardConfiguration:
       CreateFromScratch: 最初から作成
-      CreateFromScratchDescription: 最初から独自のダッシュボードを作成する
+      CreateFromScratchDescription: 独自のダッシュボードを作成
       CreateNewPrivateDashboard: 新しい個人用ダッシュボードを作成する
       CreateNewPublicDashboard: 新しい公開用ダッシュボードを作成する
       Description: この領域では、要件に応じてダッシュボードを構成し、ナビゲーション要素の順序を変更できます。
@@ -871,6 +872,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: 公開用ダッシュボードを並び替える
       SelectAction: アクションを選択してください
       SomeThingWentWrong: 問題が発生しました
+      Start: 開始
+      Templates: テンプレート
       Title: ポータル設定
       PackageManagement: Package management
       PackageManagementTabInfoPanel: '<p><b>What can I do here?</b></p><p>Export the current Portal configuration as a single zip package, or import a previously exported package to replace it.</p><p><b>Export</b></p><p>Downloads a <code>Portal_Package.zip</code> containing one JSON file per configuration type. Only types with existing data are included.</p><p><b>Import</b></p><p>Upload a zip package to preview which files it contains before applying. Recognized files replace the matching configuration; unrecognized files are skipped. This action cannot be undone.</p>'
@@ -1514,11 +1517,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: タスクリスト全体を表示
     sort: 並べ替え
   taskWarning:
-    createdTaskLeave: 今離れると、このタスクを再度開始できなくなります。
-    createdTaskLogout: このページを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>&nbsp;ログアウ：変更を破棄してログアウトします。<LI>&nbsp;キャンセル：このタスクの作業を続けます。</UL>
-    leaveTaskHeader: このタスクを離れますか？
-    resetParkTaskBeforeLeave: このタスクは進行中です。今離れると再度開始できなくなります。保持すると、タスクリストに再表示されます。
-    resetParkTaskBeforeLogout: 進行中のタスクを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>&nbsp; &nbsp; ログアウト：変更を破棄してログアウトします。<LI>&nbsp; &nbsp; 保持：変更を破棄してタスクを個人用タスクリストに保持します。その後ログアウトします。<LI>&nbsp; &nbsp; キャンセル：このタスクの作業を続けます。</UL>
+    createdTaskLeave: このタスクは進行中です。今離れると、作業内容が失われます。
+    createdTaskLogout: このタスクは進行中です。今ログアウトすると、作業内容が失われます。
+    leaveTaskTitle: このタスクを離れますか？
+    resetParkTaskBeforeLeave: このタスクは進行中です。今離れると、作業内容が失われます。保持した場合は、タスクリストに再表示されます。
+    resetParkTaskBeforeLogout: このタスクは進行中です。今ログアウトすると、作業内容が失われます。保持した場合は、タスクリストに再表示されます。
     taskNotFound: タスクが存在しないか、このタスクを表示する権限がありません。
   userProfile:
     myProfileTitle: マイプロフィール
@@ -1560,6 +1563,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: すべての結果を表示
+              minimumKeywordText: 検索するには {0} 文字以上入力してください。
               noResultsText: 結果はありません。
             dashboard:
               PortalDashboardConfiguration:

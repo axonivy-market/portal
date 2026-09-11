@@ -10,6 +10,8 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.enums.SearchScopeCaseField;
 import com.axonivy.portal.enums.SearchScopeTaskField;
 import com.axonivy.portal.enums.GlobalSearchScopeCategory;
+import com.axonivy.portal.service.GlobalSearchService;
+import com.axonivy.portal.util.SearchScopeUtils;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
@@ -28,6 +30,7 @@ public class SearchResultsDataModel implements Serializable {
   protected List<SearchScopeTaskField> searchScopeTaskFields;
   protected List<SearchScopeCaseField> searchScopeCaseFields;
   protected List<GlobalSearchScopeCategory> globalSearchScopeCategories;
+  protected boolean keywordTooShort;
 
   private static final String SEARCH_TASK_PREFIX = "task: ";
   private static final String SEARCH_CASE_PREFIX = "case: ";
@@ -43,37 +46,9 @@ public class SearchResultsDataModel implements Serializable {
     caseDataModel = initCaseDataModel();
     caseDataModel.setIsAdminQuery(hasReadAllCasesPermission);
 
-    initSearchScopeTaskFields();
-    initSearchScopeCaseFields();
+    searchScopeTaskFields = SearchScopeUtils.getSearchScopeTaskFields();
+    searchScopeCaseFields = SearchScopeUtils.getSearchScopeCaseFields();
     initGlobalSearchScopeCategories();
-  }
-
-  private void initSearchScopeTaskFields() {
-    String searchScopeTaskFieldsString = Ivy.var().get(GlobalVariable.SEARCH_SCOPE_BY_TASK_FIELDS.getKey());
-    if (StringUtils.isNotBlank(searchScopeTaskFieldsString)) {
-      searchScopeTaskFields = new ArrayList<>();
-      String[] fieldArray = searchScopeTaskFieldsString.split(",");
-      for(String field : fieldArray) {
-        SearchScopeTaskField fieldEnum = SearchScopeTaskField.valueOf(field.toUpperCase());
-        if (fieldEnum != null) {
-          searchScopeTaskFields.add(fieldEnum);
-        }
-      }
-    }
-  }
-
-  private void initSearchScopeCaseFields() {
-    String searchScopeCaseFieldsString = Ivy.var().get(GlobalVariable.SEARCH_SCOPE_BY_CASE_FIELDS.getKey());
-    if (StringUtils.isNotBlank(searchScopeCaseFieldsString)) {
-      searchScopeCaseFields = new ArrayList<>();
-      String[] fieldArray = searchScopeCaseFieldsString.split(",");
-      for(String field : fieldArray) {
-        SearchScopeCaseField fieldEnum = SearchScopeCaseField.valueOf(field.toUpperCase());
-        if (fieldEnum != null) {
-          searchScopeCaseFields.add(fieldEnum);
-        }
-      }
-    }
   }
 
   private void initGlobalSearchScopeCategories() {
@@ -109,19 +84,15 @@ public class SearchResultsDataModel implements Serializable {
   public void setKeyword(String keyword) {
     this.keyword = keyword;
     analyzeKeyword(keyword.toLowerCase());
+    this.keywordTooShort = GlobalSearchService.isKeywordTooShort(this.keyword);
     this.taskDataModel.getCriteria().setKeyword(this.keyword);
     this.caseDataModel.getCriteria().setKeyword(this.keyword);
 
     this.taskDataModel.getCriteria().setGlobalSearch(true);
     this.caseDataModel.getCriteria().setGlobalSearch(true);
 
-    if (CollectionUtils.isNotEmpty(searchScopeTaskFields)) {
-      this.taskDataModel.getCriteria().setSearchScopeTaskFields(searchScopeTaskFields);
-    }
-
-    if (CollectionUtils.isNotEmpty(searchScopeCaseFields)) {
-      this.caseDataModel.getCriteria().setSearchScopeCaseFields(searchScopeCaseFields);
-    }
+    this.taskDataModel.getCriteria().setSearchScopeTaskFields(searchScopeTaskFields);
+    this.caseDataModel.getCriteria().setSearchScopeCaseFields(searchScopeCaseFields);
 
     if (CollectionUtils.isNotEmpty(globalSearchScopeCategories)) {
       this.caseDataModel.getCriteria().setGlobalSearchScope(globalSearchScopeCategories.contains(GlobalSearchScopeCategory.CASES));
@@ -148,6 +119,14 @@ public class SearchResultsDataModel implements Serializable {
       this.keyword = StringUtils.substringAfter(keyword, SEARCH_CASE_PREFIX);
     }
 
+  }
+
+  public boolean isKeywordTooShort() {
+    return keywordTooShort;
+  }
+
+  public String getMinimumKeywordMessage() {
+    return GlobalSearchService.getMinimumKeywordMessage();
   }
 
   public TaskLazyDataModel getTaskDataModel() {

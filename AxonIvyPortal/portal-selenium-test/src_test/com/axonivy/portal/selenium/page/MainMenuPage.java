@@ -75,8 +75,9 @@ public class MainMenuPage extends TemplatePage {
 
   public String getMenuItemsAsString() {
     expandMainMenu();
-    return String.join(",", $$(".layout-menu li[role='menuitem'] a span").asDynamicIterable().stream()
-        .map(SelenideElement::getText).collect(Collectors.toList()));
+    return String.join(",",
+        $$(".sidebar-scroll-content .layout-menu li[role='menuitem'] a span").asDynamicIterable().stream()
+            .map(SelenideElement::getText).collect(Collectors.toList()));
   }
 
   public CaseWidgetNewDashBoardPage selectCaseMenu() {
@@ -123,7 +124,8 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public void clickMainMenuItem(String name) {
-    $("[title='" + name + "']").click();
+    $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
+    $("[title='" + name + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void assertNavigateToExternalLink(String url) {

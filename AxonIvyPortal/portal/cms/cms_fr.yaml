@@ -280,6 +280,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la vérification de PDF, Excel, Word.
       enableTranslationService: Définissez cette propriété sur true pour activer le service de traduction
       enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
+      globalSearchMinimumKeywordLengthNote: Nombre minimal de caractères requis avant l'exécution de la recherche globale. La valeur par défaut est 3 ; définir sur 0 pour désactiver la vérification. Un mot-clé plus court correspond à presque toutes les lignes, ce qui peut être lent, la recherche est donc ignorée au lieu d'être exécutée.
       hideCaseCreator: |-
         La valeur "true" permet de masquer le créateur du dossier dans la liste des dossiers, le widget du dossier et les détails du dossier.
         Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
@@ -572,7 +573,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     inactive: Désactivé
     information: Information
     leave: Quitter
-    leaveAndReserve: Quitter et réserve
+    leaveAndReserve: Quitter et réserver
     linkToCaseDetails: Cliquez sur <a href="{0}" >ici</a> pour plus de détails.
     listView: Vue en liste
     loading: Chargement
@@ -620,7 +621,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     removeSelection: Retirer la sélection
     reorder: Réorganiser
     requiredFieldMessage: Ce champ est obligatoire
-    reserve: Enregistrer
+    reserve: Réserver
     reset: Réinitialiser
     resetFilters: Tout réinitialiser
     resetSettingHeaderText: Rétablir le réglage ?
@@ -823,7 +824,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     CustomWidgets: Widgets personnalisés
     DashboardConfiguration:
       CreateFromScratch: Créer à partir de rien
-      CreateFromScratchDescription: Créez votre propre tableau de bord à partir de zéro
+      CreateFromScratchDescription: Créez votre propre tableau de bord
       CreateNewPrivateDashboard: Créer un nouveau tableau de bord privé
       CreateNewPublicDashboard: Créer un nouveau tableau de bord public
       Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins et modifier l'ordre des éléments de navigation.
@@ -872,6 +873,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Réorganiser les tableaux de bord publics
       SelectAction: Sélectionnez l'action
       SomeThingWentWrong: Quelque chose n'a pas fonctionné
+      Start: Démarrage
+      Templates: Modèles
       Title: Configuration du portail
       PackageManagement: Package management
       PackageManagementTabInfoPanel: '<p><b>What can I do here?</b></p><p>Export the current Portal configuration as a single zip package, or import a previously exported package to replace it.</p><p><b>Export</b></p><p>Downloads a <code>Portal_Package.zip</code> containing one JSON file per configuration type. Only types with existing data are included.</p><p><b>Import</b></p><p>Upload a zip package to preview which files it contains before applying. Recognized files replace the matching configuration; unrecognized files are skipped. This action cannot be undone.</p>'
@@ -1515,12 +1518,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Voir la liste complète des tâches
     sort: Trier
   taskWarning:
-    createdTaskLeave: Si vous quittez maintenant, vous ne pourrez plus démarrer cette tâche.
-    createdTaskLogout: '<div>Vous êtes sur le point de quitter cette page.<br/> Choisissez l&apos;&apos;une des options suivantes :</div> <UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
-    leaveTaskHeader: Quitter cette tâche ?
-    resetParkTaskBeforeLeave: Cette tâche est en cours. Si vous la quittez maintenant, vous ne pourrez plus la redémarrer. Si vous la réservez, elle réapparaîtra dans votre liste de tâches.
-    resetParkTaskBeforeLogout: '<div>Vous êtes sur le point de laisser une tâche en cours.</br> Choisissez l&apos;&apos;une des options suivantes : </div><UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Enregistrer : annulez vos modifications et conservez la tâche dans votre
-      liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
+    createdTaskLeave: Cette tâche est en cours. Si vous la quittez maintenant, vous perdrez votre travail.
+    createdTaskLogout: Cette tâche est en cours. Si vous vous déconnectez maintenant, vous perdrez votre travail.
+    leaveTaskTitle: Quitter cette tâche ?
+    resetParkTaskBeforeLeave: Cette tâche est en cours. Si vous la quittez maintenant, vous perdrez votre travail. Si vous la réservez, elle réapparaîtra dans votre liste de tâches.
+    resetParkTaskBeforeLogout: Cette tâche est en cours. Si vous vous déconnectez maintenant, vous perdrez votre travail. Si vous la réservez, elle réapparaîtra dans votre liste de tâches.
     taskNotFound: cette tâche n'existe pas ou vous n'avez pas l'autorisation de la voir.
   userProfile:
     myProfileTitle: Mon profil
@@ -1562,6 +1564,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: Voir tous les résultats
+              minimumKeywordText: Saisissez au moins {0} caractères pour lancer la recherche.
               noResultsText: Il n'y a pas de résultats.
             dashboard:
               PortalDashboardConfiguration:

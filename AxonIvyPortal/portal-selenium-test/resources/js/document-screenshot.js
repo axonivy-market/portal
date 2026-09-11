@@ -306,7 +306,7 @@ function highlightProcessDisplayModePanel() {
 }
 
 function highlightDashboardConfiguration() {
-   createRedMediumOutline($("#dashboard-configuration"));
+   createRedMediumOutline($("[id$='dashboard-configuration']"));
 }
 
 function highlightSharePageButton() {

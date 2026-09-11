@@ -280,6 +280,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableScriptCheckingForUploadedDocumentNote: 'Cambiar a "True" para activar el control de anexos permitidos. De momento se pueden controlar archivos en PDF, word y excel. '
       enableTranslationService: Establezca esta propiedad en true para habilitar el servicio de traducción
       enableVirusScannerForUploadedDocumentNote: Cambiar a "true" para habilitar el escáner de virus para el documento cargado. Actualmente esta función utiliza la API VIRUSTOTAL.
+      globalSearchMinimumKeywordLengthNote: Número mínimo de caracteres necesario antes de que se ejecute la búsqueda global. El valor predeterminado es 3; cambiar a 0 para desactivar la comprobación. Una palabra clave más corta coincide con casi todas las filas, lo que puede ser lento, por lo que la búsqueda se omite en lugar de ejecutarse.
       hideCaseCreator: |-
         Establecer a true para ocultar el creador de casos en la lista de casos, widget de casos y detalles de casos.
         Este ajuste afecta a todas las consultas de casos, por ejemplo, para la lista de casos, la búsqueda global o la estadística.
@@ -823,7 +824,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     CustomWidgets: Widgets personalizados
     DashboardConfiguration:
       CreateFromScratch: Crear desde cero
-      CreateFromScratchDescription: Cree su propio panel de control desde cero
+      CreateFromScratchDescription: Cree su propio panel de control
       CreateNewPrivateDashboard: Crear un nuevo cuadro de mando personalizado
       CreateNewPublicDashboard: Crear un dashboard público
       Description: En esta sección puedes configurar los cuadros de mando según tus necesidades y modificar el orden de los elementos de navegación.
@@ -872,6 +873,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Reordenar dashboard públicos
       SelectAction: Seleccione la acción
       SomeThingWentWrong: Algo salió mal
+      Start: Inicio
+      Templates: Plantillas
       Title: Configuración del portal
       PackageManagement: Package management
       PackageManagementTabInfoPanel: '<p><b>What can I do here?</b></p><p>Export the current Portal configuration as a single zip package, or import a previously exported package to replace it.</p><p><b>Export</b></p><p>Downloads a <code>Portal_Package.zip</code> containing one JSON file per configuration type. Only types with existing data are included.</p><p><b>Import</b></p><p>Upload a zip package to preview which files it contains before applying. Recognized files replace the matching configuration; unrecognized files are skipped. This action cannot be undone.</p>'
@@ -1516,12 +1519,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Mostrar lista de tareas completa
     sort: Ordenar
   taskWarning:
-    createdTaskLeave: Si sale ahora, no podrá iniciar esta tarea de nuevo.
-    createdTaskLogout: '<div>Va a salir de esta página.<br/> Por favor selecione una de las siguientes opciones:</div><UL><LI> Cerrar sesión: No guardará sus cambios y se cerrará la sesión.<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
-    leaveTaskHeader: ¿Salir de esta tarea?
-    resetParkTaskBeforeLeave: Esta tarea está en curso. Si sale ahora, no podrá iniciarla de nuevo. Si la reserva, volverá a aparecer en su lista de tareas.
-    resetParkTaskBeforeLogout: '<div>Va a salir de esta página.</br> Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: no guardará sus cambios y volverá a la página anterior.<LI>Reservar: No guardará sus cambios, volverá a la página anterior pero la tarea quedara reservada para usted.<LI>Cancelar:
-      Continue trabajando en esta tarea.</UL>'
+    createdTaskLeave: Esta tarea está en curso. Si sale ahora, perderá lo que ha hecho.
+    createdTaskLogout: Esta tarea está en curso. Si cierra la sesión ahora, perderá lo que ha hecho.
+    leaveTaskTitle: ¿Salir de esta tarea?
+    resetParkTaskBeforeLeave: Esta tarea está en curso. Si sale ahora, perderá lo que ha hecho. Si la reserva, volverá a aparecer en su lista de tareas.
+    resetParkTaskBeforeLogout: Esta tarea está en curso. Si cierra la sesión ahora, perderá lo que ha hecho. Si la reserva, volverá a aparecer en su lista de tareas.
     taskNotFound: La tarea no existe o no los tiene derechos suficientes para ver esta tarea.
   userProfile:
     myProfileTitle: Mi perfil
@@ -1563,6 +1565,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: Ver todos los resultados
+              minimumKeywordText: Introduzca al menos {0} caracteres para buscar.
               noResultsText: No hay resultados.
             dashboard:
               PortalDashboardConfiguration:

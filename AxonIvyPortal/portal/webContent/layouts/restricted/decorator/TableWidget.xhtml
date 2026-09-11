@@ -373,7 +373,7 @@
                       <p:commandButton id="inline-save-filter"
                         widgetVar="inlineSaveFilterButton#{index}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
                         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-                        styleClass="filter-dialog__save-button dashboard-button-truncate"
+                        styleClass="filter-dialog__save-button"
                         actionListener="#{widgetFilterHelperBean.saveInlineWidgetFilter(widget)}"
                         process="inline-save-filter-section #{componentToProcessOnApplyFilter}"
                         update="inline-save-filter-section #{componentToProcessOnApplyFilter}"
@@ -415,7 +415,7 @@
                     }
                     initWidgetFilterHtml('#{widget.id}');"
                   actionListener="#{widget.onApplyUserFilters()}"
-                  styleClass="apply-filter-button dashboard-button-truncate" />
+                  styleClass="apply-filter-button" />
               </div>
             </h:panelGroup>
           </h:panelGroup>

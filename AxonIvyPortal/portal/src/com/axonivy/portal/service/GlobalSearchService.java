@@ -6,12 +6,11 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.enums.GlobalSearchScopeCategory;
-import com.axonivy.portal.enums.SearchScopeCaseField;
-import com.axonivy.portal.enums.SearchScopeTaskField;
 import com.axonivy.portal.payload.SearchPayload;
 import com.axonivy.portal.response.CaseData;
 import com.axonivy.portal.response.GlobalSearchResponse;
@@ -19,6 +18,7 @@ import com.axonivy.portal.response.ProcessData;
 import com.axonivy.portal.response.TaskData;
 import com.axonivy.portal.util.BusinessDetailsUtils;
 import com.axonivy.portal.util.CaseBehaviorUtils;
+import com.axonivy.portal.util.SearchScopeUtils;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
@@ -39,6 +39,7 @@ public class GlobalSearchService {
 
   private static GlobalSearchService instance;
   private static final int PAGE_SIZE = 3;
+  private static final int DEFAULT_MINIMUM_KEYWORD_LENGTH = 3;
 
   public static GlobalSearchService getInstance() {
     if (instance == null) {
@@ -48,6 +49,9 @@ public class GlobalSearchService {
   }
 
   public GlobalSearchResponse searchTasks(SearchPayload payload) {
+    if (isKeywordTooShort(payload.getQuery())) {
+      return tooShortKeywordResponse();
+    }
     TaskSearchCriteria criteria = buildTaskCriteria(payload);
     IvyTaskResultDTO iTasks = TaskService.newInstance().findGlobalSearchTasksByCriteria(criteria, 0, PAGE_SIZE);
     List<TaskData> results = iTasks.getTasks().stream().map(TaskData::new).toList();
@@ -55,6 +59,9 @@ public class GlobalSearchService {
   }
 
   public GlobalSearchResponse searchCases(SearchPayload payload) {
+    if (isKeywordTooShort(payload.getQuery())) {
+      return tooShortKeywordResponse();
+    }
     CaseSearchCriteria criteria = buildCaseCriteria(payload);
     IvyCaseResultDTO iCases = CaseService.newInstance().findGlobalSearchCasesByCriteria(criteria, 0, PAGE_SIZE);
     boolean canAccessBusinessDetails = CaseBehaviorUtils.canAccessBusinessDetails();
@@ -73,7 +80,7 @@ public class GlobalSearchService {
     criteria.setAdminQuery(isAdminQuery);
     criteria.extendStatesQueryByPermission(isAdminQuery);
     criteria.setGlobalSearch(true);
-    criteria.setSearchScopeTaskFields(getSearchScopeTaskFields());
+    criteria.setSearchScopeTaskFields(SearchScopeUtils.getSearchScopeTaskFields());
     return criteria;
   }
 
@@ -81,7 +88,7 @@ public class GlobalSearchService {
     CaseSearchCriteria criteria = new CaseSearchCriteria();
     criteria.setKeyword(payload.getQuery());
     criteria.setGlobalSearch(true);
-    criteria.setSearchScopeCaseFields(getSearchScopeCaseFields());
+    criteria.setSearchScopeCaseFields(SearchScopeUtils.getSearchScopeCaseFields());
     criteria.setBusinessCase(true);
     criteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
     boolean isAdminQuery = PermissionUtils.checkReadAllCasesPermission();
@@ -91,6 +98,9 @@ public class GlobalSearchService {
   }
 
   public GlobalSearchResponse searchProcesses(SearchPayload payload) {
+    if (isKeywordTooShort(payload.getQuery())) {
+      return tooShortKeywordResponse();
+    }
     String keyword = payload.getQuery().toLowerCase();
     List<IWebStartable> startableProcesses = ProcessService.getInstance().findProcesses();
     List<ProcessData> processes = startableProcesses.stream()
@@ -101,6 +111,30 @@ public class GlobalSearchService {
     return new GlobalSearchResponse(results, processes.size());
   }
   
+  public static int getMinimumKeywordLength() {
+    return NumberUtils.toInt(Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_MINIMUM_KEYWORD_LENGTH.getKey()),
+        DEFAULT_MINIMUM_KEYWORD_LENGTH);
+  }
+
+  public static boolean isKeywordTooShort(String keyword) {
+    int minimumLength = getMinimumKeywordLength();
+    if (minimumLength <= 0) {
+      return false;
+    }
+    return StringUtils.length(StringUtils.trim(keyword)) < minimumLength;
+  }
+
+  public static String getMinimumKeywordMessage() {
+    return Ivy.cms().co("/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/minimumKeywordText",
+        List.of(String.valueOf(getMinimumKeywordLength())));
+  }
+
+  private static GlobalSearchResponse tooShortKeywordResponse() {
+    GlobalSearchResponse response = new GlobalSearchResponse(List.of(), 0);
+    response.setNoResultsText(getMinimumKeywordMessage());
+    return response;
+  }
+
   public boolean isShowGlobalSearchByProcesses() {
     boolean isShowFullProcessList = PermissionUtils.checkAccessFullProcessListPermission();
     String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());
@@ -150,38 +184,6 @@ public class GlobalSearchService {
     return isHasSearchScope;
   }
   
-  private List<SearchScopeTaskField> getSearchScopeTaskFields() {
-    String searchScopeTaskFieldsString = Ivy.var().get(GlobalVariable.SEARCH_SCOPE_BY_TASK_FIELDS.getKey());
-    if (StringUtils.isNotBlank(searchScopeTaskFieldsString)) {
-      List<SearchScopeTaskField> searchScopeTaskFields = new ArrayList<>();
-      String[] fieldArray = searchScopeTaskFieldsString.split(",");
-      for (String field : fieldArray) {
-        SearchScopeTaskField fieldEnum = SearchScopeTaskField.valueOf(field.toUpperCase());
-        if (fieldEnum != null) {
-          searchScopeTaskFields.add(fieldEnum);
-        }
-      }
-      return searchScopeTaskFields;
-    }
-    return List.of(SearchScopeTaskField.NAME, SearchScopeTaskField.DESCRIPTION);
-  }
-
-  private List<SearchScopeCaseField> getSearchScopeCaseFields() {
-    String searchScopeCaseFieldsString = Ivy.var().get(GlobalVariable.SEARCH_SCOPE_BY_CASE_FIELDS.getKey());
-    if (StringUtils.isNotBlank(searchScopeCaseFieldsString)) {
-      List<SearchScopeCaseField> searchScopeCaseFields = new ArrayList<>();
-      String[] fieldArray = searchScopeCaseFieldsString.split(",");
-      for (String field : fieldArray) {
-        SearchScopeCaseField fieldEnum = SearchScopeCaseField.valueOf(field.toUpperCase());
-        if (fieldEnum != null) {
-          searchScopeCaseFields.add(fieldEnum);
-        }
-      }
-      return searchScopeCaseFields;
-    }
-    return List.of(SearchScopeCaseField.NAME, SearchScopeCaseField.DESCRIPTION, SearchScopeCaseField.CUSTOM);
-  }
-
   private String buildCaseDataLink(ICase caze, boolean canAccessBusinessDetails) {
     if (canAccessBusinessDetails) {
       return BusinessDetailsUtils.getAdditionalCaseDetailsPageUri(caze);

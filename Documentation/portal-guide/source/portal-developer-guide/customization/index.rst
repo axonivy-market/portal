@@ -68,3 +68,4 @@ The ``portal-developer-examples`` project provides working examples of all custo
    process-information
    side-step
    extend-task-leave-and-reserve-actions
+   growl-message-customization
