@@ -70,6 +70,16 @@ the `./` from this subdirectory:
 git show "HEAD:./weblate/locale/ja/LC_MESSAGES/FILE.po" > weblate/locale/ja/LC_MESSAGES/FILE.po
 ```
 
+List the entries where you left the `msgstr` identical to its `msgid`:
+
+```
+git diff -- weblate/locale | awk '/^[ +]msgid /{id=substr($0,8); next} /^\+msgstr /{if (substr($0,9)==id) print id}'
+```
+
+Every line must be something that belongs in English — an identifier, a colour
+value, a file name, a piece of code. Any line that is a sentence is one you
+failed to translate; go back and translate it.
+
 Finally read `git diff -- weblate/locale` and check every role, anchor, literal
 and substitution in a `msgstr` against its `msgid`.
 
@@ -99,7 +109,13 @@ variable, template name or other identifier shown in English:
 **`:download:`, `:kbd:`** — copy the whole role verbatim.
 
 **` ``literal`` `** — copy verbatim: code, paths, URLs, `.ivp` links, variable
-names, and placeholders inside them like `` ``news_{uuid}`` ``.
+names, and placeholders inside them like `` ``news_{uuid}`` ``. Only the
+literal is copied, never the sentence around it:
+
+```
+msgid  "``y``: row index. HTML DOM Style ``top`` will be calculated by formula ``y * 20px``"
+msgstr "``y``: 行インデックス。HTML DOM スタイル ``top`` は ``y * 20px`` で計算されます。"
+```
 
 **`|icon-name|`** — an image substitution, copy verbatim. Entries that are
 nothing but a substitution name, piped or bare (`|edit-icon|`, `edit-icon`),
@@ -113,6 +129,9 @@ not become `` :guilabel:`」をクリックし、` ``. Keep leading and trailing
 and keep `\n` only where the source has it.
 
 ### Leave in English
+
+Copy an entry through unchanged only when the whole `msgid` is one of these. A
+sentence that merely mentions one is still translated.
 
 - Product names: Axon Ivy, Axon Ivy Portal, Portal, Engine, Designer, Cockpit.
 - Config variables: `Portal.Chat.Enabled`, `Portal.Document.EnablePreview`,
