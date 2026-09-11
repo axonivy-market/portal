@@ -42,6 +42,20 @@ public class GlobalOperatorPolicyService implements Serializable {
         .collect(Collectors.toList());
   }
 
+  /**
+   * A column restricts operators only if its selection leaves out an operator which is both
+   * available for the column and globally enabled. A selection covering all of them is the
+   * default behaviour, so it does not need to be configured on the column.
+   */
+  public boolean restrictsOperators(ColumnModel column) {
+    List<FilterOperator> selectedOperators = column.getAllowedOperators();
+    if (selectedOperators == null) {
+      return false;
+    }
+
+    return !selectedOperators.containsAll(keepGloballyEnabledOperators(baseOpService.resolveForColumn(column)));
+  }
+
   public List<ColumnModel> getColumnsWithGloballyEnabledOperators(List<ColumnModel> columns) {
     return columns.stream()
         .filter(col -> !keepGloballyEnabledOperators(baseOpService.resolveForColumn(col)).isEmpty())

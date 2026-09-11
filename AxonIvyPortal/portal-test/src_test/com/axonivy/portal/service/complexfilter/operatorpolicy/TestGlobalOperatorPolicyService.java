@@ -2,6 +2,7 @@ package com.axonivy.portal.service.complexfilter.operatorpolicy;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -146,6 +147,64 @@ class TestGlobalOperatorPolicyService {
     GlobalOperatorPolicyService service = withDisabledOps();
 
     assertThat(service.getColumnsWithGloballyEnabledOperators(List.of())).isEmpty();
+  }
+
+  // ── restrictsOperators ─────────────────────────────────────────────────────
+
+  @Test
+  void restrictsOperators_returnsFalse_whenColumnHasNoAllowedOperators() {
+    GlobalOperatorPolicyService service = withDisabledOps();
+    ColumnModel nameCol = OperatorPolicyFixtures.filterableColumn(DashboardStandardTaskColumn.NAME.getField());
+
+    assertThat(service.restrictsOperators(nameCol)).isFalse();
+  }
+
+  @Test
+  void restrictsOperators_returnsFalse_whenAllAvailableOperatorsAreAllowed() {
+    GlobalOperatorPolicyService service = withDisabledOps();
+    ColumnModel nameCol = OperatorPolicyFixtures.filterableColumn(DashboardStandardTaskColumn.NAME.getField(),
+        new ArrayList<>(FilterOperator.TEXT_OPERATORS));
+
+    assertThat(service.restrictsOperators(nameCol)).isFalse();
+  }
+
+  @Test
+  void restrictsOperators_returnsTrue_whenAnAvailableOperatorIsNotAllowed() {
+    GlobalOperatorPolicyService service = withDisabledOps();
+    ColumnModel nameCol = OperatorPolicyFixtures.filterableColumn(DashboardStandardTaskColumn.NAME.getField(),
+        List.of(FilterOperator.CONTAINS));
+
+    assertThat(service.restrictsOperators(nameCol)).isTrue();
+  }
+
+  @Test
+  void restrictsOperators_returnsFalse_whenOnlyGloballyDisabledOperatorsAreNotAllowed() {
+    GlobalOperatorPolicyService service = withDisabledOps(FilterOperator.CONTAINS);
+    List<FilterOperator> allowed = FilterOperator.TEXT_OPERATORS.stream()
+        .filter(op -> op != FilterOperator.CONTAINS).collect(Collectors.toList());
+    ColumnModel nameCol =
+        OperatorPolicyFixtures.filterableColumn(DashboardStandardTaskColumn.NAME.getField(), allowed);
+
+    assertThat(service.restrictsOperators(nameCol)).isFalse();
+  }
+
+  @Test
+  void restrictsOperators_returnsTrue_whenNothingIsAllowedButOperatorsAreSelectable() {
+    GlobalOperatorPolicyService service = withDisabledOps();
+    ColumnModel nameCol =
+        OperatorPolicyFixtures.filterableColumn(DashboardStandardTaskColumn.NAME.getField(), new ArrayList<>());
+
+    assertThat(service.restrictsOperators(nameCol)).isTrue();
+  }
+
+  @Test
+  void restrictsOperators_returnsFalse_whenNothingIsAllowedAndNothingIsSelectable() {
+    GlobalOperatorPolicyService service =
+        withDisabledOps(FilterOperator.TEXT_OPERATORS.toArray(new FilterOperator[0]));
+    ColumnModel nameCol =
+        OperatorPolicyFixtures.filterableColumn(DashboardStandardTaskColumn.NAME.getField(), new ArrayList<>());
+
+    assertThat(service.restrictsOperators(nameCol)).isFalse();
   }
 
   // ── resolveEffectiveOperators ──────────────────────────────────────────────
