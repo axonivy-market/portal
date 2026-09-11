@@ -1,140 +1,114 @@
 /*Style for stages process chain -----------------------------------------------------------------------------------*/
-.circle-process-chain .circle-horizontal-process-step.visited .circle-horizontal-step-container span:before {
-    border-color: var(--process-chain-menu-color);
+.circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
+  background-color: var(--process-chain-menu-color, var(--primary-color, hsl(195, 100%, 29%)));
+  border: solid 2px var(--process-chain-circle-step-border-color, var(--primary-color, hsl(195, 100%, 29%)));
 }
 
 .circle-process-chain .circle-horizontal-process-step.waiting .circle-horizontal-step-container {
-  border: solid 2px var(--process-chain-menu-color);
-  background-color: var(--process-chain-circle-horizontal-waiting-step-number-container-background-color);
+  border: solid 2px var(--process-chain-menu-color, var(--primary-color, hsl(195, 100%, 29%)));
+  background-color: var(--process-chain-circle-horizontal-waiting-step-background-color, rgba(0, 0, 0, 0));
 }
 
-.circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
-  background-color: var(--process-chain-menu-color);
-  border: solid 2px var(--process-chain-circle-step-container-border);
+.circle-process-chain .circle-horizontal-process-step.current .circle-horizontal-step-container,
+.circle-process-chain .circle-horizontal-process-step.visited .circle-horizontal-step-container,
+.process-chain-mobile-container .circle-horizontal-step-container,
+.process-chain-mobile-container .circle-horizontal-process-step {
+  color: var(--process-chain-circle-step-number-color, var(--primary-text-color, hsl(0, 0%, 100%)));
 }
 
 .circle-process-chain .circle-vertical-process-step.visited .circle-vertical-step-container span:before {
-    border-color: var(--process-chain-menu-color);
+    border-color: var(--process-chain-menu-color, var(--primary-color, hsl(195, 100%, 29%)));
 }
 
 .circle-process-chain .circle-vertical-process-step.current .circle-vertical-step-title {
-  font-weight: var(--process-chain-current-circle-vertical-step-title-font-weight);
+  font-weight: var(--process-chain-current-circle-vertical-step-title-font-weight, bold);
 }
 
 .circle-process-chain .circle-vertical-process-step.waiting .circle-vertical-step-container {
-  border: solid 2px var(--process-chain-menu-color);
-  background-color: var(--process-chain-circle-vertical-step-container-background-color);
+  border: solid 2px var(--process-chain-menu-color, var(--primary-color, hsl(195, 100%, 29%)));
+  background-color: var(--process-chain-circle-vertical-waiting-step-background-color, rgba(0, 0, 0, 0));
 }
 
 .circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
-  background-color: var(--process-chain-menu-color);
-  border: solid 2px var(--process-chain-circle-step-container-border);
+  background-color: var(--process-chain-menu-color, var(--primary-color, hsl(195, 100%, 29%)));
+  border: solid 2px var(--process-chain-circle-step-border-color, var(--primary-color, hsl(195, 100%, 29%)));
 }
 
 .circle-process-chain .circle-vertical-process-step:not(:last-child) .circle-vertical-step-container .step-number-container:after {
-  border-left: 3px solid var(--process-chain-circle-vertical-step-number-container-border);
+  border-left: 3px solid var(--process-chain-circle-vertical-connector-color, var(--process-chain-link-color, #D9DADA));
 }
 
 .circle-process-chain .circle-horizontal-process-step.current .circle-horizontal-step-title {
-  font-weight: var(--process-chain-current-circle-horizontal-step-title-font-weight);
+  font-weight: var(--process-chain-current-circle-horizontal-step-title-font-weight, bold);
 }
 
 .line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
-    background-color: var(--process-chain-menu-color);
+    background-color: var(--process-chain-menu-color, var(--primary-color, hsl(195, 100%, 29%)));
 }
 
 .line-process-chain .line-horizontal-process-step.current .line-horizontal-step-title {
-  font-weight: var(--process-chain-current-line-horizontal-step-title-font-weight);
+  font-weight: var(--process-chain-current-line-horizontal-step-title-font-weight, bold);
 }
 
 .line-process-chain .line-horizontal-process-step.hide-left-steps {
-    background: repeating-linear-gradient(90deg, var(--process-chain-menu-color), var(--process-chain-menu-color) 10px, var(--process-chain-body-background-color) 10px, var(--process-chain-body-background-color) 20px);
+    background: repeating-linear-gradient(90deg, var(--process-chain-menu-color, var(--primary-color, hsl(195, 100%, 29%))), var(--process-chain-menu-color, var(--primary-color, hsl(195, 100%, 29%))) 10px, var(--process-chain-body-background-color, rgba(0, 0, 0, 0)) 10px, var(--process-chain-body-background-color, rgba(0, 0, 0, 0)) 20px);
 }
 
 .line-process-chain .line-horizontal-process-step.hide-right-steps {
-    background: repeating-linear-gradient(90deg, #e0e0e0, #e0e0e0 10px, var(--process-chain-body-background-color) 10px, var(--process-chain-body-background-color) 20px);
+    background: repeating-linear-gradient(90deg, var(--process-chain-line-hidden-steps-background-color, hsl(0, 0%, 88%)), var(--process-chain-line-hidden-steps-background-color, hsl(0, 0%, 88%)) 10px, var(--process-chain-body-background-color, rgba(0, 0, 0, 0)) 10px, var(--process-chain-body-background-color, rgba(0, 0, 0, 0)) 20px);
 }
 
 .line-process-chain .line-vertical-process-step .line-vertical-step-container {
-    background-color: var(--process-chain-menu-color);
+    background-color: var(--process-chain-menu-color, var(--primary-color, hsl(195, 100%, 29%)));
 }
 
 .line-process-chain .line-vertical-process-step.hide-left-steps {
-    background: repeating-linear-gradient(180deg, var(--process-chain-menu-color), var(--process-chain-menu-color) 10px, var(--process-chain-body-background-color) 10px, var(--process-chain-body-background-color) 20px);
+    background: repeating-linear-gradient(180deg, var(--process-chain-menu-color, var(--primary-color, hsl(195, 100%, 29%))), var(--process-chain-menu-color, var(--primary-color, hsl(195, 100%, 29%))) 10px, var(--process-chain-body-background-color, rgba(0, 0, 0, 0)) 10px, var(--process-chain-body-background-color, rgba(0, 0, 0, 0)) 20px);
 }
 
 .line-process-chain .line-vertical-process-step.hide-right-steps {
-    background: repeating-linear-gradient(180deg, #e0e0e0, #e0e0e0 10px, var(--process-chain-body-background-color) 10px, var(--process-chain-body-background-color) 20px);
+    background: repeating-linear-gradient(180deg, var(--process-chain-line-hidden-steps-background-color, hsl(0, 0%, 88%)), var(--process-chain-line-hidden-steps-background-color, hsl(0, 0%, 88%)) 10px, var(--process-chain-body-background-color, rgba(0, 0, 0, 0)) 10px, var(--process-chain-body-background-color, rgba(0, 0, 0, 0)) 20px);
 }
 
 .line-process-chain .line-horizontal-process-step.waiting .line-horizontal-step-container,
 .line-process-chain .line-vertical-process-step.waiting .line-vertical-step-container {
-  background-color: var(--process-chain-line-waiting-step-background-color);
+  background-color: var(--process-chain-line-waiting-step-background-color, var(--process-chain-link-color, #D9DADA));
 }
 
 .line-process-chain .line-vertical-process-step.current .line-vertical-step-title {
-  font-weight: var(--process-chain-current-line-vertical-step-title-font-weight);
+  font-weight: var(--process-chain-current-line-vertical-step-title-font-weight, bold);
 }
 
-.current .cicrle-step-container, .visited .cicrle-step-container,
-.process-chain-mobile-container .circle-horizontal-process-step {
-    color: var(--process-chain-circle-step-number-color);
+.current .circle-vertical-step-container, .visited .circle-vertical-step-container {
+  color: var(--process-chain-circle-step-number-color, var(--primary-text-color, hsl(0, 0%, 100%)));
 }
 
 .circle-horizontal-step-container:not(.right-steps) .step-number-container:after {
-  border-top-color: var(--process-chain-circle-horizontal-step-number-container-border-top);
+  border-top-color: var(--process-chain-circle-horizontal-connector-color, var(--process-chain-link-color, #D9DADA));
 }
-  
+
 .circle-horizontal-step-container:not(.last-step) .step-number-container:after {
-    border-top: 3px dashed var(--process-chain-circle-horizontal-step-number-container-border-top);
+    border-top: 3px dashed var(--process-chain-circle-horizontal-connector-color, var(--process-chain-link-color, #D9DADA));
   }
 
-.circle-horizontal-step-container.last-step .step-number-container:after {
-  border-top: 3px dashed var(--process-chain-circle-horizontal-step-number-container-border-top);
-}
-  
 .circle-horizontal-step-container .step-number-container:before {
-  border-top: 3px solid var(--process-chain-circle-horizontal-step-number-container-border-top-color);
+  border-top: 3px solid var(--process-chain-circle-horizontal-connector-visited-color, var(--primary-color, hsl(195, 100%, 29%)));
 }
 
 .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
-  border-top: 3px solid var(--process-chain-circle-horizontal-step-number-container-border-top);
-}
-
-.circle-horizontal-process-step.visited .circle-horizontal-step-container .step-number-container:after {
-  color: var(--process-chain-circle-horizontal-step-number-container-border-top-color);
+  border-top: 1px solid var(--process-chain-circle-horizontal-connector-color, var(--process-chain-link-color, #D9DADA));
 }
 
 .circle-process-chain .circle-horizontal-process-step,
 .circle-process-chain .circle-vertical-process-step,
 .line-process-chain .line-vertical-process-step {
-  font-size: var(--process-chain-process-step-font-size);
-}
-
-.process-chain-container {
-  flex: 1 0 auto;
-  text-align: right;
+  font-size: var(--process-chain-process-step-font-size, 12px);
 }
 
 @media (max-width: 1024px) {
-  .process-chain-container.horizontal-process-chain-container {
-    order: 2;
-  }
-  .process-chain-container.vertical-process-chain-container {
-    display: none !important;
-  }
-  .task-name-vertical-process-chain, .task-name-vertical-process-chain.vertical-chain-shape-line,
-  .task-template-button.vertical-process-chain.vertical-chain-shape-line,
-  .task-template-button.vertical-process-chain {
-    margin-left: auto !important;
-  }
-  .task-template-content.vertical-process-chain, .task-template-content.vertical-process-chain.vertical-chain-shape-line,
-  .task-template-button.vertical-process-chain, .task-template-button.vertical-process-chain.vertical-chain-shape-line {
-    width: 100% !important;
-  }
-  .process-chain-container {
-    flex: 1 0 100% !important;
-    text-align: center !important;
+  .circle-process-chain .circle-horizontal-process-step {
+    width: auto !important;
+    margin-top: 1px !important;
   }
   .circle-process-chain .circle-horizontal-step-title {
     margin-bottom: 2px !important;
@@ -210,16 +184,29 @@
 }
 
 .circle-process-chain .circle-horizontal-process-step {
-  margin: 5px -2px;
+  margin: 1px -2px;
 }
 
 .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
   position: absolute;
-  top: 15px;
+  top: 50%;
+  left: calc(100% + 8px);
   content: "";
-  width: 90px;
-  margin: 0 15px;
-  transform: translate(4px, 0);
+  width: 84px;
+  margin: 0;
+  transform: none;
+}
+
+.circle-process-chain .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 87px);
+  width: 5px;
+  height: 5px;
+  border-top: 1px solid var(--process-chain-circle-horizontal-connector-color, var(--process-chain-link-color, #D9DADA));
+  border-right: 1px solid var(--process-chain-circle-horizontal-connector-color, var(--process-chain-link-color, #D9DADA));
+  transform: translateY(-50%) rotate(45deg);
 }
 
 _:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
@@ -243,6 +230,11 @@ _:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle
   position: relative;
 }
 
+.circle-process-chain .circle-horizontal-process-step .step-number-container {
+  font-size: var(--process-chain-circle-step-number-font-size, 1rem);
+  line-height: 1;
+}
+
 .circle-process-chain .circle-horizontal-step-title {
   margin-bottom: 4px;
   display: block;
@@ -254,9 +246,7 @@ _:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle
 
 /** CIRCLE VERTICAL */
 .circle-process-chain .vertical-process-chain {
-  position: relative;
-  top: 20px;
-  right: 20px;
+  margin-top: 20px;
   clear: both;
   float: left;
   width: 140px;
@@ -321,7 +311,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   display: inline-block;
   text-align: center;
   vertical-align: bottom !important;
-  font-size: var(--process-chain-process-step-font-size);
+  font-size: var(--process-chain-process-step-font-size, 12px);
 }
 
 .line-process-chain .line-horizontal-process-step.hide-right-steps,
@@ -348,34 +338,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 /** LINE VERTICAL*/
-.vertical-process-chain-container {
-  display: inline-block;
-  width: 140px;
-  float: left;
-}
-
-.vertical-process-chain-container.vertical-chain-shape-line {
-  width: 70px;
-}
-
-.task-template-content.vertical-process-chain, .task-template-button.vertical-process-chain {
-  width: calc(100% - 140px);
-}
-
-.task-template-content.vertical-process-chain.vertical-chain-shape-line,
-.task-template-button.vertical-process-chain.vertical-chain-shape-line {
-  width: calc(100% - 70px);
-}
-
-.task-name-vertical-process-chain {
-  margin-left: 140px;
-}
-
-.task-name-vertical-process-chain.vertical-chain-shape-line {
-  margin-left: 70px;
-}
-
-.line-process-chain.vertical-process-chain {
+.line-process-chain .vertical-process-chain {
   float: left;
 }
 
@@ -411,41 +374,71 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   padding-top: 49px;
 }
 
-.task-template-button {
-  min-height: 35px;
-  margin: auto;
-  margin-bottom: 15px;
-  float: right;
+/*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
+.stages-chain .process-step {
+  width: 110px;
+  height: auto;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0px;
+  text-align: center;
+}
+
+.stages-chain .process-step i {
+  font-size: 1.6rem;
+}
+
+.stages-chain .current i {
+  color: var(--process-chain-stage-current-icon-color, var(--primary-color, hsl(195, 100%, 29%)));
+}
+
+.stages-chain .visited i {
+  color: var(--process-chain-stage-visited-icon-color, hsl(0, 0%, 29%));
+}
+
+.stages-chain .waiting i {
+  color: var(--process-chain-stage-waiting-icon-color, hsl(0, 0%, 88%));
+}
+
+.stages-chain .process-flow {
+  width: 60px;
+  height: auto;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.stages-chain .process-flow .flow-txt {
   position: relative;
+  margin-top: calc((1.6rem - 2px) / 2);
+  float: left;
   width: 100%;
+  text-align: center;
 }
 
-/* Responsive Class */
-@media screen and (max-width: 40em) {
-  .ui-sm-hidden {
-    display: none !important;
-  }
+.stages-chain .process-flow .flow-txt .visible {
+  width: 100%;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--process-chain-stage-flow-line-background-color, hsl(0, 0%, 88%));
 }
 
-@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-  .ui-md-hidden {
-    display: none !important;
-  }
+.stages-chain .process-flow .flow-txt .none {
+  display: none;
 }
 
-@media screen and (min-width: 64.063em) and (max-width: 90.062em) {
-  .ui-lg-hidden {
-    display: none !important;
-  }
+.stage-title {
+  position: relative;
+  margin-top: 0;
+  float: left;
+  width: 100%;
+  text-align: center;
 }
 
-@media screen and (min-width: 90.063em) {
-  .ui-xl-hidden {
-    display: none !important;
-  }
-}
-
-.u-truncate-text {
+.stage-title .stage-name {
+  margin: 0 auto;
+  display: block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

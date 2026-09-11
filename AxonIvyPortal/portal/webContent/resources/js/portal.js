@@ -367,6 +367,13 @@ function resetPortalLeftMenuState() {
   }
 }
 
+function restorePortalLeftMenuState() {
+  let pfMainMenu = PF('main-menu');
+  if (pfMainMenu) {
+    pfMainMenu.restoreMenuState();
+  }
+}
+
 function hideDashboardOverlayPanels() {
   $(".js-dashboard-overlay-panel").each(function(){
     if ($(this).hasClass("ui-overlay-visible")) {
