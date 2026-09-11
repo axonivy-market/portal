@@ -76,9 +76,18 @@ class TestFilterTypeConverterSelection {
 
   @Test
   void dashboardConverter_runsAfterTheOlderConverters() {
-    List<Class<?>> converters = dashboardConverterTypes("10.0.0");
+    List<IJsonConverter> converters =
+        JsonDashboardConverterFactory.getConverters(new DashboardJsonVersion("10.0.0"));
 
-    assertThat(converters).last().isEqualTo(DashboardTaskWidgetFilterTypeConverter.class);
+    int correctionIndex = toTypes(converters).indexOf(DashboardTaskWidgetFilterTypeConverter.class);
+    assertThat(correctionIndex).as("the correction must be selected").isNotNegative();
+
+    // Converters sharing a version keep their registration order, so this asserts the correction runs
+    // after every older converter without demanding it be the very last one - other converters may be
+    // registered at the same version.
+    assertThat(versionsOf(converters.subList(0, correctionIndex)))
+        .as("only converters older than %s may run before the correction", CORRECTION_VERSION)
+        .doesNotContain(CORRECTION_VERSION);
   }
 
   @Test
@@ -100,5 +109,9 @@ class TestFilterTypeConverterSelection {
 
   private static List<Class<?>> toTypes(List<IJsonConverter> converters) {
     return converters.stream().<Class<?>>map(IJsonConverter::getClass).toList();
+  }
+
+  private static List<String> versionsOf(List<IJsonConverter> converters) {
+    return converters.stream().map(converter -> converter.version().getValue()).toList();
   }
 }
