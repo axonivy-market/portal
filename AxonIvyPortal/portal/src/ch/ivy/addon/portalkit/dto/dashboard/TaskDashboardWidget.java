@@ -17,10 +17,12 @@ import org.primefaces.model.SortMeta;
 import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.persistence.converter.ExcludeTrueFilter;
 import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
@@ -45,10 +47,15 @@ public class TaskDashboardWidget extends DashboardWidget {
   private Long numberOfTasksExpireToday;
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrueFilter.class)
   private boolean enableQuickSearch;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrueFilter.class)
   private boolean showWidgetInfo;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrueFilter.class)
   private boolean showFullscreenMode;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrueFilter.class)
   private boolean showPinnedToggle;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrueFilter.class)
   private boolean showBulkDelegateToggle;
 
   @JsonIgnore
@@ -59,6 +66,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     setColumns(new ArrayList<>());
     setFilters(new ArrayList<>());
     setUserFilters(new ArrayList<>());
+    setEnableQuickSearch(true);
     setShowWidgetInfo(true);
     setShowFullscreenMode(true);
     setShowPinnedToggle(true);

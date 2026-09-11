@@ -18,10 +18,12 @@ import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.CaseQueryType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardCaseLazyDataModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.persistence.converter.ExcludeTrueFilter;
 import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
@@ -40,9 +42,13 @@ public class CaseDashboardWidget extends DashboardWidget {
   private List<WidgetInformationCategoryStatisticData> caseByCategoryStatistic;
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrueFilter.class)
   private boolean enableQuickSearch;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrueFilter.class)
   private boolean showWidgetInfo;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrueFilter.class)
   private boolean showFullscreenMode;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrueFilter.class)
   private boolean showPinnedToggle;
   private CaseQueryType caseQueryType;
   
@@ -51,6 +57,7 @@ public class CaseDashboardWidget extends DashboardWidget {
     setColumns(new ArrayList<>());
     setFilters(new ArrayList<>());
     setUserFilters(new ArrayList<>());
+    setEnableQuickSearch(true);
     setShowWidgetInfo(true);
     setShowFullscreenMode(true);
     setShowPinnedToggle(true);
