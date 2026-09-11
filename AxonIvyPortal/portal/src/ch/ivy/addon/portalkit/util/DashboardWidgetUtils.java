@@ -356,6 +356,9 @@ public class DashboardWidgetUtils {
     if (BooleanUtils.isTrue(column.getEnableFilter())) {
       column.setEnableFilter(null);
     }
+    if (BooleanUtils.isFalse(column.getQuickSearch())) {
+      column.setQuickSearch(null);
+    }
     if (BooleanUtils.isTrue(column.getSortable())) {
       column.setSortable(null);
     }
