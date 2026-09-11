@@ -76,8 +76,8 @@
       </div>
 
       <h:panelGroup layout="block" styleClass="sidebar-footer flex-shrink-0 border-top-1 surface-border pt-2 pb-2" rendered="#{userMenuBean.showDashboardConfigurationMenu}">
-        <ul class="layout-menu" >
-          <li id="dashboard-configuration-menuitem" >
+        <ul class="layout-menu" role="menu">
+          <li id="dashboard-configuration-menuitem" role="menuitem">
             <p:commandLink id="dashboard-configuration" process="@this" styleClass="PORTAL_CONFIGURATION no-underline"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}"

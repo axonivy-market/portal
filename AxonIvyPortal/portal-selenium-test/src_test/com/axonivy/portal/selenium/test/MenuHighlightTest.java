@@ -20,6 +20,7 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.codeborne.selenide.Condition;
@@ -134,7 +135,9 @@ public class MenuHighlightTest extends BaseTest {
   /**
    * The pinned "Portal configuration" sidebar item must get the "active-menuitem" highlight while its page
    * is open, and lose it again (in favor of the item being navigated to) once the user leaves that page -
-   * exactly like the regular Dashboard/Processes/Tasks/Cases sidebar items.
+   * exactly like the regular Dashboard/Processes/Tasks/Cases sidebar items. Covers both the main "Dashboard"
+   * parent item and a sub-dashboard (Task list dashboard, reached via ".../PortalMainDashboard.xhtml"),
+   * since those two are highlighted through different branches of MainMenu.highlightMenuItem().
    */
   @Test
   public void testHighlightPortalConfigurationMenuItem() {
@@ -154,6 +157,14 @@ public class MenuHighlightTest extends BaseTest {
     NewDashboardPage backOnDashboard = menuPage.selectDashboardMenu();
     backOnDashboard.assertPortalConfigurationMenuItemNotHighlighted();
     assertMenuHighlighted(DASHBOARD_0_PARENT_DASHBOARD_PATTERN);
+
+    configurationPage = backOnDashboard.openDashboardConfigurationPage();
+    configurationPage.assertPortalConfigurationMenuItemHighlighted();
+    getActiveMenuItems().shouldBe(size(0));
+
+    TaskWidgetNewDashBoardPage taskListPage = menuPage.selectTaskMenuItem();
+    taskListPage.assertPortalConfigurationMenuItemNotHighlighted();
+    assertMenuHighlighted(DEFAULT_TASK_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
   }
 
   private void executeHighlightMenuScenario() {
