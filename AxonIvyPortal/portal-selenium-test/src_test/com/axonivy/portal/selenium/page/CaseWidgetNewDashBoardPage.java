@@ -1,12 +1,5 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,9 +12,15 @@ import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.text;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 
 public class CaseWidgetNewDashBoardPage extends TemplatePage {
@@ -349,6 +348,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectSavedFilter(String filterName) {
     getSavedFilterItems().filter(text(filterName)).first().shouldBe(getClickableCondition()).click();
+    WaitHelper.waitPageNoAjaxAndAnimation();
   }
 
   public void inputValueOnColumnWidgetHeader(String columnName, String value) {
@@ -379,6 +379,13 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement getConfigurationFilter() {
     return $("div.filter-dialog[style*='display: block']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void closeFilterWidget() {
+    SelenideElement filterDialog = getConfigurationFilter();
+    filterDialog.$("button[id$=':widget-filter-cancel-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
+    filterDialog.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void clickOnFilterOperator() {

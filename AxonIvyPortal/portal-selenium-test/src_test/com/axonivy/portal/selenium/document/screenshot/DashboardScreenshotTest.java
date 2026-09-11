@@ -1,8 +1,5 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
-import static com.codeborne.selenide.Selenide.$;
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +40,9 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.CollectionCondition;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Selenide.$;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -577,6 +576,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
                 homePage.clickOnManageFilterLink();
                 homePage.getTotalSavedFilterInManageFilterDialog().shouldBe(CollectionCondition.size(2), DEFAULT_TIMEOUT);
                 homePage.closeManageFilterDialog();
+                caseWidget.closeFilterWidget();
                 caseWidget.openFilterWidget();
                 homePage.clickOnManageFilterLink();
                 homePage.waitForPageLoad();
