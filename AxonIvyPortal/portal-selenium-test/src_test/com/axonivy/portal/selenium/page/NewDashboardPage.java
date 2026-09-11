@@ -1,5 +1,10 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -10,11 +15,7 @@ import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
 import com.codeborne.selenide.ElementsCollection;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -152,9 +153,20 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   private void waitForWidgetLoadedByExpandThenCollapse(SelenideElement widget) {
-    widget.$(".expand-link").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    widget.$(".collapse-link").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    widget.$(".expand-link").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement gridStackItem = widget.ancestor(".grid-stack-item");
+    clickToggleFullscreenMenuItem(widget);
+    gridStackItem.shouldHave(Condition.cssClass("expand-fullscreen"), DEFAULT_TIMEOUT);
+    clickToggleFullscreenMenuItem(widget);
+    gridStackItem.shouldNotHave(Condition.cssClass("expand-fullscreen"), DEFAULT_TIMEOUT);
+  }
+
+  private void clickToggleFullscreenMenuItem(SelenideElement widget) {
+    SelenideElement actionsMenuButton = widget.$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT).$("[id*=':toggle-fullscreen-item-']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public WelcomeEditWidgetNewDashboardPage editWelcomeWidgetConfiguration(String widgetId) {
@@ -882,14 +894,14 @@ public class NewDashboardPage extends TemplatePage {
 
   public WebElement openWidgetInformation(int index) {
     SelenideElement actionsMenuButton = getDashboardWidget(index).$("button[id$=':actions-menu-button_button']")
-      .shouldBe(appear, DEFAULT_TIMEOUT);
+        .shouldBe(appear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(actionsMenuButton);
     String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
     SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
     String infoMenuItemId = actionsMenuButton.getAttribute("id").replace("actions-menu-button_button",
-      "info-menu-item-" + index);
+        "info-menu-item-" + index);
     actionsMenuPanel.$("[id='" + infoMenuItemId + "']")
-      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
 
     String infoPanel = String.format("div[id$='info-overlay-panel-%d']", index);
     $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT).$(".widget-info--type")

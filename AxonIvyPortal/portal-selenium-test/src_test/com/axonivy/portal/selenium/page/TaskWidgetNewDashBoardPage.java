@@ -635,7 +635,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getFilterOverlayPanel(Integer index) {
-    String widgetIndex = String.format("div[id$='filter-overlay-panel-%d']", index);
+    String widgetIndex = String.format("div[id$='filter-dialog-%d']", index);
     return $(widgetIndex).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
