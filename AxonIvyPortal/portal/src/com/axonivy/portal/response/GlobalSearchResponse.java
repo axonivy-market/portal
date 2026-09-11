@@ -8,11 +8,21 @@ public class GlobalSearchResponse {
   private List<? extends Object> results;
   private long totalResult;
   private String viewAllText;
+  private String noResultsText;
 
   public GlobalSearchResponse(List<? extends Object> results, long totalResult) {
     this.results = results;
     this.totalResult = totalResult;
     this.viewAllText = Ivy.cms().co("/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/ViewAllResults");
+    this.noResultsText = Ivy.cms().co("/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/noResultsText");
+  }
+
+  public String getNoResultsText() {
+    return noResultsText;
+  }
+
+  public void setNoResultsText(String noResultsText) {
+    this.noResultsText = noResultsText;
   }
 
   public String getViewAllText() {
