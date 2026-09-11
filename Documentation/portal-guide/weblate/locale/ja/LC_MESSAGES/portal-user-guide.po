@@ -3265,7 +3265,7 @@ msgstr "サイドバーのメインナビゲーションメニュー項目の順
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:417
 #, python-brace-format
 msgid "Except for ``Portal_MenuOrder.json`` (a single configuration object, not a list), each file's content is a wrapper object: ``{\"version\": \"...\", \"items\": [...]}``. The ``version`` field identifies the format of the file itself and is used to migrate older exports on import - individual entries in ``items`` do not carry their own ``version`` field."
-msgstr ""
+msgstr "``Portal_MenuOrder.json`` を除き、各ファイルの内容はラッパーオブジェクト ``{\"version\": \"...\", \"items\": [...]}`` です。``version`` フィールドはファイル自体の形式を識別し、インポート時に古いエクスポートを移行するために使用されます。``items`` 内の個別のエントリは、独自の ``version`` フィールドを持っていません。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:423
 msgid "HowTo: export a Portal package"
@@ -7089,9 +7089,8 @@ msgid "Info"
 msgstr "情報"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:167
-#, fuzzy
 msgid "The menu entry :guilabel:`Info` provides you with detailed information about the Axon Ivy Engine and Portal versions, and every version of your company's applications, including its release state, activity state, and open/done case counts. Click a version to see the projects deployed in it, along with each project's state, Maven version, and last change. You might be asked for this information in case you issue a support request."
-msgstr ":guilabel:`情報` メニューエントリには、Axon Ivy Engine、Axon Ivy Portal、会社のアプリケーションに関する詳細情報が表示されます。サポートリクエストを発行する場合、この情報が求められることがあります。"
+msgstr ":guilabel:`情報` メニュー項目では、Axon Ivy Engine と Portal バージョン、および会社のアプリケーションのすべてのバージョンの詳細情報が表示されます。これには、リリース状態、アクティビティ状態、未処理/完了ケースのカウントが含まれます。バージョンをクリックして、そのバージョンにデプロイされたプロジェクトと、各プロジェクトの状態、Maven バージョン、最後の変更を確認できます。サポートリクエストを発行する際に、この情報の提供が求められることがあります。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:174
 msgid "|portal-version-information|"
