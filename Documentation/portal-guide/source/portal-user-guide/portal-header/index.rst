@@ -36,8 +36,6 @@ Available Menu Options
    +-------------------------------+---------------------------------------------------------------+
    | **My Profile**                | General settings, language, and notifications                 |
    +-------------------------------+---------------------------------------------------------------+
-   | **Dashboard Configuration**   | Manage private and public dashboards                          |
-   +-------------------------------+---------------------------------------------------------------+
    | **Absences**                  | Manage absences and task delegates                            |
    +-------------------------------+---------------------------------------------------------------+
    | **Change Password**           | Set a new password                                            |
@@ -62,11 +60,6 @@ My Profile
 ^^^^^^^^^^
 
 The :ref:`my-profile` menu entry contains general settings, user language, and notification channels subscription settings.
-
-Dashboard Configuration
-^^^^^^^^^^^^^^^^^^^^^^^
-
-The :ref:`dashboard-configuration` menu entry allows you to manage your private dashboards and public dashboards (if permitted).
 
 Absences
 ^^^^^^^^
@@ -251,12 +244,6 @@ Different header features require specific permissions:
    | Action                               | Required Permission                                    |
    +======================================+========================================================+
    | **Access admin settings**            | Role ``AXONIVY_PORTAL_ADMIN``                          |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Manage own dashboards**            | :ref:`🔑DashboardWriteOwn                              |
-   |                                      | <DashboardWriteOwn>`                                   |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Manage public dashboards**         | :ref:`🔑DashboardWritePublic                           |
-   |                                      | <DashboardWritePublic>`                                |
    +--------------------------------------+--------------------------------------------------------+
    | **Create own absences**              | :ref:`🔑UserCreateOwnAbsence                           |
    |                                      | <UserCreateOwnAbsence>`                                |

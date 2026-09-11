@@ -749,15 +749,12 @@ public class NewDashboardPage extends TemplatePage {
 
   public SelenideElement getConfigureDashboardMenu() {
     waitPageLoaded();
-    $("#user-settings-menu").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("#user-setting-container").shouldBe(Condition.exist, DEFAULT_TIMEOUT).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    return $("#dashboard-configuration").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(),
-        DEFAULT_TIMEOUT);
+    return $("[id$='dashboard-configuration']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getDashboardConfigurationMenu() {
-    return $("#dashboard-configuration");
+    return $("[id$='dashboard-configuration']");
   }
 
   public DashboardConfigurationPage openDashboardConfigurationPage() {

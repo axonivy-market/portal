@@ -15,10 +15,12 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.codeborne.selenide.Condition;
@@ -128,6 +130,34 @@ public class MenuHighlightTest extends BaseTest {
     assertMenuHighlighted(DEFAULT_TASK_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
     clickLogo();
     assertMenuHighlighted(DEFAULT_CASE_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
+  }
+
+  @Test
+  public void testHighlightPortalConfigurationMenuItem() {
+    login(TestAccount.DEMO_USER);
+    permissions().grantDashboardWriteOwnPermission();
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitPageLoaded();
+    assertMenuHighlighted(DASHBOARD_0_PARENT_DASHBOARD_PATTERN);
+    dashboardPage.assertPortalConfigurationMenuItemNotHighlighted();
+
+    DashboardConfigurationPage configurationPage = dashboardPage.openDashboardConfigurationPage();
+    configurationPage.assertPortalConfigurationMenuItemHighlighted();
+    getActiveMenuItems().shouldBe(size(0));
+
+    MainMenuPage menuPage = new MainMenuPage();
+    NewDashboardPage backOnDashboard = menuPage.selectDashboardMenu();
+    backOnDashboard.assertPortalConfigurationMenuItemNotHighlighted();
+    assertMenuHighlighted(DASHBOARD_0_PARENT_DASHBOARD_PATTERN);
+
+    configurationPage = backOnDashboard.openDashboardConfigurationPage();
+    configurationPage.assertPortalConfigurationMenuItemHighlighted();
+    getActiveMenuItems().shouldBe(size(0));
+
+    TaskWidgetNewDashBoardPage taskListPage = menuPage.selectTaskMenuItem();
+    taskListPage.assertPortalConfigurationMenuItemNotHighlighted();
+    assertMenuHighlighted(DEFAULT_TASK_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
   }
 
   private void executeHighlightMenuScenario() {

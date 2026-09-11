@@ -4,10 +4,10 @@ Portal Configuration
 ********************
 
 .. important::
-   **Access Requirements**: The :guilabel:`Portal Configuration` menu item is visible to users with at least one of the following permissions: :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`, :ref:`🔑DashboardWritePublic <DashboardWritePublic>`, :ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>`, or :ref:`🔑PortalPackageManagement <PortalPackageManagement>`. Each tab within the page is independently gated by its own permission — see the table below.
+   **Access Requirements**: The :guilabel:`Portal Configuration` sidebar entry is visible to users with at least one of the following permissions: :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`, :ref:`🔑DashboardWritePublic <DashboardWritePublic>`, :ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>`, or :ref:`🔑PortalPackageManagement <PortalPackageManagement>`. Each tab within the page is independently gated by its own permission — see the table below.
 
 Portal Configuration provides centralized management of your personal and organization-wide dashboards, as well as the sidebar navigation menu.
-Access it through the :guilabel:`Portal Configuration` user menu item.
+Access it through the :guilabel:`Portal Configuration` entry pinned to the bottom of the left sidebar navigation (see :ref:`axon-ivy-portal`).
 
 |portal-configuration|
 
@@ -485,7 +485,7 @@ Different Portal Configuration actions require specific permissions:
 .. include:: ../includes/_common-icon.rst
 
 .. |portal-configuration| image:: ../../screenshots/settings/dashboard-configuration.png
-   :alt: Portal configuration menu
+   :alt: Portal Configuration entry pinned to the bottom of the left sidebar
 .. |private-dashboard-configuration| image:: ../../screenshots/dashboard-configuration/private-dashboard-configuration.png
    :alt: Private dashboard configuration
 .. |create-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/create-private-dashboard-dialog.png

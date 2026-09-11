@@ -75,8 +75,9 @@ public class MainMenuPage extends TemplatePage {
 
   public String getMenuItemsAsString() {
     expandMainMenu();
-    return String.join(",", $$(".layout-menu li[role='menuitem'] a span").asDynamicIterable().stream()
-        .map(SelenideElement::getText).collect(Collectors.toList()));
+    return String.join(",",
+        $$(".sidebar-scroll-content .layout-menu li[role='menuitem'] a span").asDynamicIterable().stream()
+            .map(SelenideElement::getText).collect(Collectors.toList()));
   }
 
   public CaseWidgetNewDashBoardPage selectCaseMenu() {

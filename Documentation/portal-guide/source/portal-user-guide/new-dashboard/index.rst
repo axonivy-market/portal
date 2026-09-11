@@ -67,15 +67,15 @@ Customizing Your Dashboard
 ===========================
 
 .. important::
-   **Required Permissions**: Only users with the :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` 
-   or :ref:`🔑DashboardWritePublic <DashboardWritePublic>` permission can see and access the 
-   **Dashboard Configuration** menu item in the user menu. These permissions allow you to add, edit, reorder, 
+   **Required Permissions**: Only users with the :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`
+   or :ref:`🔑DashboardWritePublic <DashboardWritePublic>` permission can see and access the
+   :ref:`Portal Configuration <dashboard-configuration>` entry in the sidebar. These permissions allow you to add, edit, reorder,
    show, and hide private or public dashboards.
 
 
 If you have the required permissions, you can personalize your dashboard layout by:
 
-#. Accessing **Dashboard Configuration** from the user menu to enter configuration mode.
+#. Accessing :ref:`Portal Configuration <dashboard-configuration>` from the sidebar to enter configuration mode.
 
 |edit-widget|
 

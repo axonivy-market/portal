@@ -555,4 +555,20 @@ public abstract class TemplatePage extends AbstractPage {
     $(".menu-wrapper").shouldNotBe(Condition.visible, DEFAULT_TIMEOUT);
     $(".layout-topbar-left").shouldNotBe(Condition.visible, DEFAULT_TIMEOUT);
   }
+
+  public SelenideElement getSidebarFooter() {
+    return $(".sidebar-footer");
+  }
+
+  public SelenideElement getPortalConfigurationMenuItem() {
+    return $("li#dashboard-configuration-menuitem");
+  }
+
+  public void assertPortalConfigurationMenuItemHighlighted() {
+    getPortalConfigurationMenuItem().shouldHave(Condition.cssClass("active-menuitem"), DEFAULT_TIMEOUT);
+  }
+
+  public void assertPortalConfigurationMenuItemNotHighlighted() {
+    getPortalConfigurationMenuItem().shouldNotHave(Condition.cssClass("active-menuitem"), DEFAULT_TIMEOUT);
+  }
 }

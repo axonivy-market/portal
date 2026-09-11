@@ -106,7 +106,7 @@
              </p:commandLink>
              </li>
 
-            <li class="ui-menu-items" jsf:rendered="#{userMenuBean.showDashboardConfigurationMenu}">
+            <li class="ui-menu-items" jsf:rendered="#{userMenuBean.showDashboardConfigurationMenu and masterDataBean.sidebarMode == 'HIDDEN'}">
               <p:commandLink id="dashboard-configuration"
                 process="@this"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}"
