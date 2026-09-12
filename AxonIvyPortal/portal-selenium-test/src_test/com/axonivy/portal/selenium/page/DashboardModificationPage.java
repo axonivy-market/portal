@@ -1,8 +1,5 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
 import java.time.Duration;
 import java.util.List;
 
@@ -14,6 +11,8 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
@@ -83,7 +82,7 @@ public class DashboardModificationPage extends TemplatePage {
 
   public void clickEditDashboardByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
-    clickButtonOnDashboardConfigurationActionMenu("Edit", dashboardRow);
+    clickButtonOnDashboardConfigurationActionMenu("Settings", dashboardRow);
     getEditDashboardDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -175,7 +174,15 @@ public class DashboardModificationPage extends TemplatePage {
   public SelenideElement getDashboardCellByNameAndPosition(String dashboardName, int position) {
     SelenideElement dashboard = getDashboardRowByName(dashboardName);
     dashboard.shouldBe(Condition.appear);
-    return dashboard.$("td:nth-child(" + position + ")");
+    // Permissions column is only rendered for public dashboards, so nth-child position is unreliable; target by column id instead.
+    switch (position) {
+      case 1:
+        return dashboard.$("[id$='-title-group']");
+      case 3:
+        return dashboard.$("[id$='-description-group']");
+      default:
+        return dashboard.$("td:nth-child(" + position + ")");
+    }
   }
 
   public SelenideElement getDashboardExportButtonOfDashboard(String dashboardName) {
