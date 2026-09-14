@@ -51,22 +51,27 @@ pipeline {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
           resultDir = "/var/tools/performance-result/${env.engineVersion}/${today}"
-          fileOperations([folderCreateOperation(folderPath: "${resultDir}")])
+          fileOperations([folderCreateOperation(folderPath: "${resultDir}"), folderCreateOperation(folderPath: "${resultDir}/warmup")])
+
+          echo '====================Warm up and check the environment===================='
+          updateConfigFile('data/single_admin_user_server.csv', '1')
+          // First executing takes more time, so not record the result of first time.
+          // It walks the whole scenario though, so use it to verify that the application
+          // really works before spending three more rounds measuring it. Its result file
+          // lives in a sub folder so that it stays out of the perfReport source files.
+          executeJMeter('warmup/tmp.jtl', '-Jjmeter.save.saveservice.response_data.on_error=true')
+          assertEnvironmentIsHealthy("${resultDir}/warmup/tmp.jtl")
 
           echo '====================Test one user===================='
-          updateConfigFile('data/single_admin_user_server.csv', '1')
-          // First executing takes more time, so not record the result of first time
-          executeJMeter('../tmp.jtl')
-
-          executeJMeter('result_1_user.jtl')
+          executeJMeter('result_1_user.jtl', '')
 
           echo '====================Test ten users===================='
           updateConfigFile('data/users_server.csv', '10')
-          executeJMeter('result_10_users.jtl')
+          executeJMeter('result_10_users.jtl', '')
 
           echo '====================Test twenty users===================='
           updateConfigFile('data/users_20_server.csv', '20')
-          executeJMeter('result_20_users.jtl')
+          executeJMeter('result_20_users.jtl', '')
         }
       }
     }
@@ -75,6 +80,11 @@ pipeline {
   post {
     always {
       script {
+        // Collect the engine log before the engines are torn down. A failing walkthrough is
+        // usually an application error and its stack trace only exists on the engine, which
+        // is gone by the time somebody looks at the build.
+        sh "docker compose -f ${ivyDir}/${engineNames[3]}/docker-compose.yml logs --no-color --tail=5000 > engine.log 2>&1 || true"
+        archiveArtifacts artifacts: 'engine.log', allowEmptyArchive: true
         for (engineName in engineNames) {
           sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
         }
@@ -99,12 +109,45 @@ def updateConfigFile(acccountFilePath, numberOfUser) {
   """
 }
 
-def executeJMeter(resultFileName) {
+// Stops the build when the warm up walkthrough did not come back clean. Without it an
+// application that answers every request with an error page is reported by perfReport as a
+// performance regression, which reads as "the code got slower" instead of "nothing worked".
+def assertEnvironmentIsHealthy(warmupResultFile) {
+  // The result file keeps the response body of every failed sample, so it contains quoted
+  // fields that span several lines. Only rows that carry true/false in the success column are
+  // counted. Anything unexpected - another column layout, no sample at all - is reported as
+  // well, a gate that silently checks nothing would be worse than no gate.
+  def problems = sh(returnStdout: true, script: """
+    header=\$(head -1 '${warmupResultFile}')
+    case "\$header" in
+      timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,*) ;;
+      *) echo "cannot read the result file, unexpected columns: \$header" ; exit 0 ;;
+    esac
+    awk -F, '
+      \$8 == "true" || \$8 == "false" {
+        samples++
+        if (\$8 == "false") failed[\$3 " answered HTTP " \$4]++
+      }
+      END {
+        if (!samples) print "cannot read the result file, it holds no sample"
+        for (sample in failed) print failed[sample] "x " sample
+      }
+    ' '${warmupResultFile}'
+  """).trim()
+  if (problems) {
+    echo "The warm up walkthrough did not come back clean:\n${problems}"
+    error('Environment is not healthy, see above. Measuring response times against a broken ' +
+      'application is meaningless. The server side stack trace is in the archived engine.log, ' +
+      "the responses of the failed samples are in ${warmupResultFile}.")
+  }
+}
+
+def executeJMeter(resultFileName, extraArguments) {
   def binDir = '/opt/apache-jmeter-5.5/bin'
   docker.build('jmeter-performance-test', '-f build/performance-test/Dockerfile .').inside("""
         -v ${WORKSPACE}/${jmeterSourceDir}:${binDir}/portal-jmeter
         -v ${resultDir}:${binDir}/result
       """) {
-    sh "${binDir}/jmeter -Jjmeter.save.saveservice.subresults=false -n -t ${binDir}/portal-jmeter/portal_walkthrough_testplan.jmx -q ${binDir}/portal-jmeter/test.properties -l ${binDir}/result/${resultFileName}"
+    sh "${binDir}/jmeter -Jjmeter.save.saveservice.subresults=false -Jjmeter.save.saveservice.assertion_results_failure_message=true ${extraArguments} -n -t ${binDir}/portal-jmeter/portal_walkthrough_testplan.jmx -q ${binDir}/portal-jmeter/test.properties -l ${binDir}/result/${resultFileName}"
   }
 }
