@@ -8,12 +8,12 @@ const additionalHeightForResizeHandler = 15;
 // Store the initial window height to detect changes
 let windowHeight = window.innerHeight;
 
-const dashboardTableRowHeight = 53;
+const dashboardTableRowHeight = 53; // dashboard.css:630
 const minTableChunkSize = 25;
 const maxTableChunkSize = 100;
 
 function calculateTableChunkSize() {
-  const rows = Math.ceil(window.innerHeight / dashboardTableRowHeight) + 2;
+  const rows = Math.ceil(window.innerHeight / dashboardTableRowHeight);
   return Math.min(maxTableChunkSize, Math.max(minTableChunkSize, rows));
 }
 
