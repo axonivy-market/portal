@@ -82,18 +82,18 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void startFirstTask() {
-    $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitPageNoAjaxAndAnimation();
     WaitHelper.waitForNavigation(() -> getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
   }
 
   public void startFirstTaskAndWaitShowHomePageButton() {
-    $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitPageNoAjaxAndAnimation();
     getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
     // $("a>span.ti-home.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void startTask(int taskIndex) {
-    $$("span.widget__filter-noti-number").first().shouldBe(appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitPageNoAjaxAndAnimation();
     getCellByRowAndColumnName(taskIndex, "Start").shouldBe(getClickableCondition()).click();
   }
 
@@ -219,9 +219,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public int getNumberOfFilterApplied() {
-    var numberNoti = $("[id$='task-task_1:task-panel-group-0']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$(".widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT).getText();
-    return Integer.valueOf(numberNoti);
+    return getFilterNotiNumber();
   }
 
   public void searchWidgetFilter(String filterName) {
@@ -611,9 +609,15 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public Integer getFilterNotiNumber() {
-    String filterNotiNumber =
-        $$("div.table-widget-panel").filter(text(taskWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
-            .$("div[id$=':widget-header-actions']").$("span[class*='widget__filter-noti-number']").getText();
+    SelenideElement actionsMenuButton = getTaskWidgetHeader().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement filtersMenuItem = actionsMenuPanel.$$("a.ui-menuitem-link").filter(text("Filters")).first();
+    String filterNotiNumber = filtersMenuItem.$("span.ui-tag").shouldBe(appear, DEFAULT_TIMEOUT).getText();
+    actionsMenuButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    actionsMenuPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
     return Integer.parseInt(filterNotiNumber);
   }
 
