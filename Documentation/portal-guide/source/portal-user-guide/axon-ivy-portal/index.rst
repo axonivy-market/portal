@@ -85,14 +85,17 @@ The Portal interface has three main areas:
    
    See :ref:`portal-header` for details.
 
-**2. Side Menu** (always visible on left)
+.. _axon-ivy-portal-menu:
+
+**2. Side Menu**
 
    |axon-ivy-portal-menu|
 
-   Access to all processes, cases, tasks, and Portal features.
+   The side menu provides access to all :ref:`full-process-list`, :ref:`full-case-list`, :ref:`full-task-list`, and :ref:`portal-configuration` page. Administrators can configure the menu to use one of three modes: Hover, Click, or Stick.
+   In the default Hover mode, the menu has two states:
    
-   - **Minimized**: Hover over the menu to temporarily enlarge it
-   - **Expanded**: Click the pin button in the top left to permanently keep the menu expanded
+   - **Minimized**: Hover over the menu to temporarily expand it.
+   - **Pinned**: Click the pin icon in the top-left to keep the menu permanently expanded.
 
 **3. Main Content Area** (center)
 

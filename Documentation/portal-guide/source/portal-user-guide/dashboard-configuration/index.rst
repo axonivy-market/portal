@@ -1,4 +1,4 @@
-.. _dashboard-configuration:
+.. _portal-configuration:
 
 Portal Configuration
 ********************
@@ -35,6 +35,7 @@ The Portal Configuration page has four tabs:
    |                         | <PortalPackageManagement>`                        | as a JSON package                          |
    +-------------------------+---------------------------------------------------+--------------------------------------------+
 
+.. _dashboard-configuration:
 Private dashboards configuration
 ================================
 
@@ -137,6 +138,8 @@ You can rearrange dashboards by dragging and dropping |reorder-dashboard-icon| i
 
 .. hint::
    If you create new dashboards, they are automatically added to the end of your personal sort order.
+
+.. _public-dashboard-configuration:
 
 Public dashboards configuration
 ================================
