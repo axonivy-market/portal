@@ -777,7 +777,7 @@ msgid "Not only the functions, but you can also customize the UI of the **Docume
 msgstr "機能だけでなく、新しい列の追加やデフォルトの列の削除など、 **ドキュメントテーブル** の UI もカスタマイズできます。"
 
 #: ../../source/portal-components/document-table/index.rst:185
-#: ../../source/portal-components/style-customization/index.rst:17
+#: ../../source/portal-components/style-customization/index.rst:25
 msgid "Code Example:"
 msgstr "コードの例："
 
@@ -942,7 +942,7 @@ msgid "Refer to the ``portal-components-examples`` project for usage, customizat
 msgstr "使用方法、カスタマイズ、およびサポートされているテーマにおける視覚的な例については、``portal-components-examples`` のプロジェクトをご参照ください。"
 
 #: ../../source/portal-components/process-chain/index.rst:4
-#: ../../source/portal-components/style-customization/index.rst:45
+#: ../../source/portal-components/style-customization/index.rst:53
 msgid "Process Chain"
 msgstr "プロセスチェーン"
 
@@ -1106,7 +1106,7 @@ msgid "Replace code in HTML files: replace ``ch.ivy.addon.portalkit.singleapp.pr
 msgstr "HTML ファイルのコードを置き換えます。 ``ch.ivy.addon.portalkit.singleapp.process.ProcessChain`` を ``com.axonivy.portal.components.ProcessChain`` に置き換えてください。"
 
 #: ../../source/portal-components/process-viewer/index.rst:4
-#: ../../source/portal-components/style-customization/index.rst:54
+#: ../../source/portal-components/style-customization/index.rst:62
 msgid "Process Viewer"
 msgstr "プロセスビューアー"
 
@@ -1814,23 +1814,28 @@ msgstr "スタイルのカスタマイズ"
 msgid "Portal Components use CSS custom properties (variables) for styling, allowing you to customize colors, fonts, spacing, and other visual aspects without modifying component code. Override these CSS variables in your own stylesheet to match your corporate design or application theme."
 msgstr "ポータルコンポーネントは、スタイリングにCSSカスタムプロパティ（変数）を使用しています。これにより、コンポーネントのコードを変更することなく、色、フォント、間隔、その他の視覚的要素をカスタマイズすることが可能です。ご自身のスタイルシートでこれらのCSS変数を上書きし、企業デザインやアプリケーションのテーマに合わせてください。"
 
-#: ../../source/portal-components/style-customization/index.rst:13
+#: ../../source/portal-components/style-customization/index.rst:14
+msgid "A stylesheet added this way only affects the page it is loaded on. Portal also renders some of these components on its own pages, for example the Process Chain in the task header, which sits outside the iframe that shows your task form. Styles from your project cannot reach those instances. To restyle them, override the same CSS variables in ``custom.css`` instead, see :ref:`customization-portal-logos-and-colors`."
+msgstr ""
+
+#: ../../source/portal-components/style-customization/index.rst:21
 msgid "How to customize"
 msgstr "カスタマイズ方法"
 
-#: ../../source/portal-components/style-customization/index.rst:15
+#: ../../source/portal-components/style-customization/index.rst:23
 msgid "You have to add a new css file to your resources and import it into your template."
 msgstr "新しい css ファイルをリソースに追加し、テンプレートにインポートする必要があります。"
 
-#: ../../source/portal-components/style-customization/index.rst:31
+#: ../../source/portal-components/style-customization/index.rst:39
 msgid "You have to place your css file in a ``<h:outputStylesheet />`` below the component to override defined styles."
 msgstr "コンポーネントの下にある ``<h:outputStylesheet />`` に css ファイルを配置して、規定のスタイルをオーバーライドする必要があります。"
 
-#: ../../source/portal-components/style-customization/index.rst:33
-msgid "Within this file you can override default css variables of components. For example, the \\--process-chain-item-background-color:"
+#: ../../source/portal-components/style-customization/index.rst:41
+#, fuzzy
+msgid "Within this file you can override default css variables of components. For example, the \\--process-chain-menu-color:"
 msgstr "このファイル内では、コンポーネントのデフォルトの CSS 変数を上書きできます。例えば、\\--process-chain-item-background-color:"
 
-#: ../../source/portal-components/style-customization/index.rst:42
+#: ../../source/portal-components/style-customization/index.rst:50
 msgid "List of css variables that you can override"
 msgstr "オーバーライドできる css 変数のリスト"
 
@@ -1853,20 +1858,24 @@ msgid "12px"
 msgstr "12px"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
-msgid "Size of process step in of process chain component."
-msgstr "プロセスチェーンの構成要素におけるプロセスステップのサイズ。"
+#, fuzzy
+msgid "Font size of the process step label."
+msgstr "行の縦のプロセス・ステップ・タイトルのフォントの太さ。"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
-msgid "\\--process-chain-body-background-color"
-msgstr "\\--process-chain-body-background-color"
+#, fuzzy
+msgid "\\--process-chain-circle-step-number-font-size"
+msgstr "\\--process-chain-process-step-font-size"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
-msgid "rgba(0,0,0,0)"
-msgstr "rgba(0,0,0,0)"
+#: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
+#, fuzzy
+msgid "1rem"
+msgstr "1.2rem"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
-msgid "Background color of waiting circle process steps."
-msgstr "待機円のプロセスステップの背景色。"
+msgid "Font size of the step number inside a circle horizontal step."
+msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-menu-color"
@@ -1877,8 +1886,8 @@ msgid "var(\\--primary-color, hsl(195, 100%, 29%))"
 msgstr "var(\\--primary-color, hsl(195, 100%, 29%))"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
-msgid "Color of process steps."
-msgstr "工程ステップの色。"
+msgid "Main color of the process steps: fill of a circle step and of a line step. Follows the branding primary color."
+msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-link-color"
@@ -1889,20 +1898,130 @@ msgid "#D9DADA"
 msgstr "#D9DADA"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
-msgid "Link color between process steps."
-msgstr "工程間の色をリンクさせる。"
+msgid "Base color of the connectors between steps and of a waiting line step. Feeds the connector variables below."
+msgstr ""
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+msgid "\\--process-chain-body-background-color"
+msgstr "\\--process-chain-body-background-color"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+msgid "rgba(0,0,0,0)"
+msgstr "rgba(0,0,0,0)"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+msgid "Background color of the gaps in the striped bar that replaces hidden line steps."
+msgstr ""
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "\\--process-chain-circle-step-border-color"
+msgstr "\\--process-chain-menu-color"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+msgid "Border color of a circle step container in both directions."
+msgstr ""
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "\\--process-chain-circle-step-number-color"
+msgstr "\\--process-chain-menu-color"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "var(\\--primary-text-color, hsl(0, 0%, 100%))"
+msgstr "var(\\--primary-color, hsl(195, 100%, 29%))"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+msgid "Color of the step number of the current and visited circle steps."
+msgstr ""
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "\\--process-chain-circle-horizontal-waiting-step-background-color"
+msgstr "\\--process-chain-body-background-color"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "Background color of a waiting circle horizontal step."
+msgstr "待機円のプロセスステップの背景色。"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "\\--process-chain-circle-vertical-waiting-step-background-color"
+msgstr "\\--process-chain-body-background-color"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "Background color of a waiting circle vertical step."
+msgstr "待機円のプロセスステップの背景色。"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "\\--process-chain-circle-horizontal-connector-color"
+msgstr "\\--process-chain-current-circle-horizontal-step-title-font-weight"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "var(\\--process-chain-link-color, #D9DADA)"
+msgstr "\\--process-chain-link-color"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+msgid "Color of the connector line between circle horizontal steps."
+msgstr ""
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "\\--process-chain-circle-horizontal-connector-visited-color"
+msgstr "\\--process-chain-current-circle-horizontal-step-title-font-weight"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+msgid "Color of the connector line of a visited circle horizontal step."
+msgstr ""
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "\\--process-chain-circle-vertical-connector-color"
+msgstr "\\--process-chain-link-color"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+msgid "Color of the connector line between circle vertical steps."
+msgstr ""
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "\\--process-chain-line-waiting-step-background-color"
+msgstr "\\--process-chain-body-background-color"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "Background color of a waiting line step."
+msgstr "待機円のプロセスステップの背景色。"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "\\--process-chain-line-hidden-steps-background-color"
+msgstr "\\--process-chain-body-background-color"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+msgid "hsl(0, 0%, 88%)"
+msgstr ""
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+msgid "Color of the striped bar that replaces the hidden line steps on the right."
+msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
 msgid "\\--process-chain-current-circle-horizontal-step-title-font-weight"
 msgstr "\\--process-chain-current-circle-horizontal-step-title-font-weight"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
-#: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "bold"
 msgstr "bold"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
-msgid "Font weight of circle horizontal process step title."
+#, fuzzy
+msgid "Font weight of the current circle horizontal process step title."
 msgstr "円の水平プロセス・ステップ・タイトルのフォントの太さ。"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
@@ -1910,7 +2029,8 @@ msgid "\\--process-chain-current-circle-vertical-step-title-font-weight"
 msgstr "\\--process-chain-current-circle-vertical-step-title-font-weight"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
-msgid "Font weight of circle vertical process step title."
+#, fuzzy
+msgid "Font weight of the current circle vertical process step title."
 msgstr "円の縦書きプロセスステップタイトルのフォントの太さ。"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
@@ -1918,7 +2038,8 @@ msgid "\\--process-chain-current-line-horizontal-step-title-font-weight"
 msgstr "\\--process-chain-current-line-horizontal-step-title-font-weight"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
-msgid "Font weight of line horizontal process step title."
+#, fuzzy
+msgid "Font weight of the current line horizontal process step title."
 msgstr "行の横のプロセス・ステップ・タイトルのフォントの太さ。"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
@@ -1926,12 +2047,57 @@ msgid "\\--process-chain-current-line-vertical-step-title-font-weight"
 msgstr "\\--process-chain-current-line-vertical-step-title-font-weight"
 
 #: ../../source/portal-components/documents/css_variables/process_chain.csv:1
-msgid "Font weight of line vertical process step title."
+#, fuzzy
+msgid "Font weight of the current line vertical process step title."
 msgstr "行の縦のプロセス・ステップ・タイトルのフォントの太さ。"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "\\--process-chain-stage-current-icon-color"
+msgstr "\\--process-chain-menu-color"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+msgid "Color of the current stage icon on the case map stage breadcrumb."
+msgstr ""
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "\\--process-chain-stage-visited-icon-color"
+msgstr "\\--process-chain-menu-color"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+msgid "hsl(0, 0%, 29%)"
+msgstr ""
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+msgid "Color of a visited stage icon on the case map stage breadcrumb."
+msgstr ""
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "\\--process-chain-stage-waiting-icon-color"
+msgstr "\\--process-chain-menu-color"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+msgid "Color of a waiting stage icon on the case map stage breadcrumb."
+msgstr ""
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+#, fuzzy
+msgid "\\--process-chain-stage-flow-line-background-color"
+msgstr "\\--process-chain-body-background-color"
+
+#: ../../source/portal-components/documents/css_variables/process_chain.csv:1
+msgid "Color of the flow line between stages on the case map stage breadcrumb."
+msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "\\--process-viewer-data-has-error-message-font-weight"
 msgstr "\\--process-viewer-data-has-error-message-font-weight"
+
+#: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
+msgid "normal"
+msgstr ""
 
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "Error message font weight."
@@ -1940,10 +2106,6 @@ msgstr "エラーメッセージのフォントの太さ。"
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "\\--process-viewer-data-has-error-message-font-size"
 msgstr "\\--process-viewer-data-has-error-message-font-size"
-
-#: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
-msgid "1.2rem"
-msgstr "1.2rem"
 
 #: ../../source/portal-components/documents/css_variables/process_viewer.csv:1
 msgid "Error message font size."
@@ -2569,3 +2731,12 @@ msgstr "データベースに ``ch.ivy.addon.portalkit.dto.UserDTO`` クラス�
 
 #~ msgid "Font size of of message label when there is no item."
 #~ msgstr "項目がない場合のメッセージラベルのフォントサイズ。"
+
+#~ msgid "Size of process step in of process chain component."
+#~ msgstr "プロセスチェーンの構成要素におけるプロセスステップのサイズ。"
+
+#~ msgid "Color of process steps."
+#~ msgstr "工程ステップの色。"
+
+#~ msgid "Link color between process steps."
+#~ msgstr "工程間の色をリンクさせる。"
