@@ -2372,9 +2372,13 @@ body a.portal-detail-toolbar-back:focus,
 }
 
 .portal-detail-toolbar .portal-detail-toolbar-actions .switch-to-edit-mode-btn {
-  width: 8.785rem;
+  min-width: 8.785rem;
   height: 3.071rem;
   border-radius: 100px;
+  white-space: nowrap;
+}
+.portal-detail-toolbar .portal-detail-toolbar-actions .switch-to-edit-mode-btn .ui-button-text {
+  white-space: nowrap;
 }
 
 /* Shared: empty-state block (task & case documents/notes) ----------------------------------------*/
@@ -2883,7 +2887,10 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 .portal-detail-widget-header-actions {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 0.714rem;
+  row-gap: 0.429rem;
 }
 .portal-detail-widget-header-actions .u-mar-right-10 {
   margin-right: 0;
