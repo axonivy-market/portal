@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
   xmlns:ui="jakarta.faces.facelets" xmlns:cc="jakarta.faces.composite"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
-  xmlns:pe="primefaces.extensions" xmlns:c="jakarta.tags.core">
+  xmlns:pe="primefaces.extensions" xmlns:c="jakarta.tags.core"
+  xmlns:pc="jakarta.faces.composite/components">
 <!-- document: com.axonivy.portal.components.ivydata.bo.IvyDocument -->
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="nameColumnRendered" default="true" type="java.lang.Boolean"
@@ -12,6 +13,8 @@
     shortDescription="Boolean value to specify the rendering of the type column, when set to false type column will not be rendered. Type: Boolean. Default value: true. Required: false." />
   <cc:attribute name="functionColumnRendered" default="true" type="java.lang.Boolean"
     shortDescription="Boolean value to specify the rendering of the function column, when set to false function column will not be rendered. Type: Boolean. Default value: true. Required: false." />
+  <cc:attribute name="actionsAsMenu" default="false" type="java.lang.Boolean"
+    shortDescription="Boolean value to group the row actions into a single menu button instead of separate icons. Type: Boolean. Default value: false. Required: false." />
   <cc:attribute name="previewRendered" default="true" type="java.lang.Boolean"
     shortDescription="Boolean value to specify the rendering of the preview icon, when set to false preview icon will not be rendered. Type: Boolean. Default value: true. Required: false." />
   <cc:attribute name="uploadRendered" default="true" type="java.lang.Boolean"
@@ -102,7 +105,7 @@
     <cc:renderFacet name="componentHeader" />
 
     <p:messages id="document-messages" rendered="#{cc.attrs.messageRendered}" />
-    <p:dataTable id="document-table" value="#{data.documents}" var="document"
+    <p:dataTable id="document-table" value="#{data.documents}" var="document" rowIndexVar="rowIndex"
       emptyMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/NoFile')}" styleClass="margin-top-5"
       widgetVar="fileTableVar" lazy="#{cc.attrs.lazy}"
       paginator="#{cc.attrs.lazy}" rows="#{cc.attrs.lazy ? 5 : 0}"
@@ -126,43 +129,21 @@
       <cc:insertChildren />
       <p:column styleClass="align-center-column document-action-column" rendered="#{cc.attrs.functionColumnRendered}"
         headerText="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/FileFunction')}">
-        <div class="flex align-items-center justify-content-around col-12">
-        <p:commandLink id="document-preview" ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" 
-          process="@this"
-          styleClass="#{cc.attrs.previewStyleClass}"
-          actionListener="#{logic.preview(document)}"
-          rendered="#{documentUploadBean.canPreviewDocument(document,cc.attrs.previewRendered)}"
-          update=":#{cc.clientId}:preview-document-dialog"
-          oncomplete="PF('preview-document-dialog').show()">
-          <i class="ti #{cc.attrs.previewIcon}" />
-          <p:tooltip for="document-preview" trackMouse="true" hideEvent="mouseleave click"
-            value="#{cc.attrs.previewTitle}" />
-        </p:commandLink>
-        <p:commandLink id="edit-filename" ariaLabel="#{cc.attrs.renameText}"
-          rendered="#{cc.attrs.renameRendered}" styleClass="#{cc.attrs.renameStyleClass}" immediate="true"
-          actionListener="#{data.setSelectedDocument(document)}"
-          update=":#{cc.clientId}:document-renaming-dialog"
-          oncomplete="PF('document-renaming-dialog').show()">
-          <i class="ti ti-pencil " />
-          <p:tooltip for="edit-filename" trackMouse="true" hideEvent="mouseleave click" value="#{cc.attrs.renameText}" />
-        </p:commandLink>
-        <p:commandLink id="document-download" styleClass="#{cc.attrs.downloadStyleClass}"
-          ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Download')}"
-          immediate="true" ajax="false" process="@none"
-          rendered="#{cc.attrs.downloadRendered}">
-          <i class="ti #{cc.attrs.downloadIcon}" />
-          <p:fileDownload value="#{logic.download(document)}" />
-          <p:tooltip for="document-download" trackMouse="true" hideEvent="mouseleave click" value="#{cc.attrs.downloadTitle}" />
-        </p:commandLink>
-        <p:commandLink id="document-delete" styleClass="#{cc.attrs.deleteStyleClass}"
-          ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Delete')}"
-          actionListener="#{data.setSelectedDocument(document)}" rendered="#{cc.attrs.deleteRendered}"
-          update="#{cc.attrs.updatedComponentAfterDeleted}" immediate="true"
-          oncomplete="PF('document-delete-dialog').show()">
-          <i class="ti #{cc.attrs.deleteIcon}" />
-          <p:tooltip for="document-delete" trackMouse="true" hideEvent="mouseleave click" value="#{cc.attrs.deleteTitle}" />
-        </p:commandLink>
-        </div>
+        <pc:actionMenu rendered="#{cc.attrs.actionsAsMenu}" triggerId="document-actions-menu"
+          panelWidgetVar="document-actions-panel-#{cc.id}-#{rowIndex}"
+          ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/FileFunction')} #{document.name}"
+          title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/FileFunction')}">
+          <ui:include src="DocumentTableActions.xhtml">
+            <ui:param name="asMenu" value="#{true}" />
+          </ui:include>
+        </pc:actionMenu>
+
+        <h:panelGroup layout="block" rendered="#{!cc.attrs.actionsAsMenu}"
+          styleClass="flex align-items-center justify-content-around col-12">
+          <ui:include src="DocumentTableActions.xhtml">
+            <ui:param name="asMenu" value="#{false}" />
+          </ui:include>
+        </h:panelGroup>
       </p:column>
     </p:dataTable>
     <div class="ui-g">

@@ -27,19 +27,19 @@
   <c:set var="generalContainerID" value="#{cc.clientId}:widgets:#{caseDetailsBean.getWidgetPositionByType('InformationWidget')}:case-detail-general-container" />
   <c:set var="informationWidgetComponent" value="#{caseDetailsBean.getWidgetPositionByType('SummaryWidget') gt -1 ? summaryContainerID:''} #{caseDetailsBean.getWidgetPositionByType('InformationWidget') gt -1 ? generalContainerID:''}" />
 
-  <h:panelGroup layout="block" styleClass="portal-detail-toolbar"
+  <h:panelGroup layout="block" styleClass="card portal-detail-toolbar"
     rendered="#{showItemDetailsHeader or (not isWorkingOnTask and not inFrame)}">
     <h:panelGroup styleClass="portal-detail-toolbar-start u-truncate-text"
       rendered="#{showItemDetailsHeader}" layout="block">
       <h:panelGroup id="case-detail-name" styleClass="js-case-name-details hidden" layout="block" />
 
       <p:link id="back-to-cases" href="#" rendered="#{showItemBackButton}"
-        onclick="backToPrevPage(#{!isTaskStartedInDetails})" styleClass="portal-detail-toolbar-back portal-link">
+        onclick="backToPrevPage(#{!isTaskStartedInDetails})" styleClass="portal-detail-toolbar-back">
         <i class="ti ti-chevron-left" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
       </p:link>
       <p:commandButton id="share-page-button-mobile" rendered="#{caseDetailsBean.isShowShareButton}"
-        onclick="PF('share-case-details-panel').show(this); return false;"
+        onclick="var p = PF('share-case-details-panel'); p.isVisible() ? p.hide() : p.show(this); return false;"
         icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
         ariaLabel="#{ivy.cms.co('/Labels/Share')}"
         title="#{ivy.cms.co('/Labels/Share')}"
@@ -48,7 +48,7 @@
     <h:panelGroup id="case-details-actions" rendered="#{not isWorkingOnTask and not inFrame}"
       styleClass="portal-detail-toolbar-actions ui-sm-hidden">
       <p:commandButton id="share-page-button" rendered="#{caseDetailsBean.isShowShareButton}"
-        type="button"
+        type="button" onclick="var p = PF('share-case-details-panel'); p.isVisible() ? p.hide() : p.show(this);"
         icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
         ariaLabel="#{ivy.cms.co('/Labels/Share')}"
         title="#{ivy.cms.co('/Labels/Share')}" styleClass="portal-icon-btn-round portal-icon-btn-lg"/>
@@ -230,7 +230,7 @@
   
   <!-- Share Case Details Panel -->
   <p:overlayPanel id="share-case-details-panel" widgetVar="share-case-details-panel"
-    for="share-page-button" appendTo="@(body)"
+    appendTo="@(body)"
     my="right top" at="right bottom" styleClass="share-link-panel"
     onShow="checkShareCaseDetailsCopyFeature()">
     <h:panelGroup layout="block" styleClass="share-link-panel-content">

@@ -12,7 +12,7 @@
       <h:panelGroup layout="block" id="task-documents" styleClass="ui-g">
         <p:growl id="task-document-global-messages" for="task-document-global-messages" />
 
-        <h:form id="task-doc-toolbar-form" onsubmit="return false;" styleClass="portal-detail-toolbar">
+        <h:form id="task-doc-toolbar-form" onsubmit="return false;" styleClass="card portal-detail-toolbar">
           <h:panelGroup layout="block" styleClass="portal-detail-toolbar-start u-truncate-text">
             <p:commandLink id="back-to-task-details" process="@this"
               actionListener="#{caseTaskDocumentBean.navigateToTaskDetails(data.task)}"
@@ -57,7 +57,7 @@
                 <div class="task-detail-attr-value">
                   <h:panelGroup id="task-state-cell" styleClass="state-cell default-task-cell">
                     <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state" state="#{data.task.businessState}"
-                      showIndicatorBesideText="true" responsiveStyleClass="" />
+                      alwaysShowState="true" responsiveStyleClass="" />
                   </h:panelGroup>
                 </div>
               </div>
@@ -71,7 +71,7 @@
                 #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/documents')}
               </div>
             </h:panelGroup>
-          <p:dataTable cellNavigation="false" id="docs-table" widgetVar="docs-table"
+          <p:dataTable cellNavigation="false" id="docs-table" widgetVar="docs-table" rowIndexVar="rowIndex"
             sortBy="#{caseTaskDocumentBean.documentSortByCreationTimestamp}"
             value="#{data.documents}" var="document"
             filteredValue="#{data.filteredDocuments}"
@@ -93,21 +93,6 @@
                     fileSizeStyleClass="document-size" />
                     <p:tooltip for="download" trackMouse="true" hideEvent="mouseleave click" value="#{document.relativePath}" />
                 </p:commandLink>
-                <p:commandLink id="edit-filename" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')} #{document.name}"
-                  styleClass="ti ti-pencil Fright document-renaming ui-sm-hidden"
-                  actionListener="#{data.setDocument(document)}"
-                  update="document-renaming-dialog"
-                  oncomplete="PF('document-renaming-dialog').show()">
-                  <p:tooltip for="edit-filename" trackMouse="true" hideEvent="mouseleave click"
-                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')} #{document.name}" />
-                </p:commandLink>
-                <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
-                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"
-                  rendered="#{caseTaskDocumentBean.canWriteDocument(data.task)}"
-                  styleClass="ti ti-x Fright task-document-download" oncomplete="PF('document-deletion-dialog').show()">
-                  <p:tooltip for="delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"
-                    trackMouse="true" hideEvent="mouseleave click"/>
-                </p:commandLink>
               </h:panelGroup>
             </p:column>
 
@@ -127,6 +112,22 @@
               <h:outputText value="#{document.creation.timestamp}">
                 <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
               </h:outputText>
+            </p:column>
+
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
+              styleClass="document-actions text-center" width="80">
+              <pc:actionMenu triggerId="document-actions-menu"
+                panelWidgetVar="task-page-document-actions-panel-#{rowIndex}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')} #{document.name}"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}">
+                <ui:include src="/layouts/includes/DocumentActionItems.xhtml">
+                  <ui:param name="canWriteDocument" value="#{caseTaskDocumentBean.canWriteDocument(data.task)}" />
+                  <ui:param name="previewRendered" value="#{false}" />
+                  <ui:param name="previewUpdate" value="" />
+                  <ui:param name="renameUpdate" value="document-renaming-dialog" />
+                  <ui:param name="deleteFileLabel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')}" />
+                </ui:include>
+              </pc:actionMenu>
             </p:column>
           </p:dataTable>
           </h:form>

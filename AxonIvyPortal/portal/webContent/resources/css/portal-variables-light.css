@@ -195,27 +195,18 @@
   --task-detail-separator-border-color: #F4F4F4;
   /* Detail-page design tokens (IVYPORTAL-20779) — shared by Task Details and Case Details */
   /* Surfaces */
-  --portal-detail-card-bg: var(--ivy-primary-color-white);
   --portal-detail-subcard-bg: hsl(0, 0%, 98%);
-  --portal-detail-strip-bg: var(--portal-detail-subcard-bg);
   --portal-detail-table-cell-bg: var(--ivy-primary-color-white);
   /* Borders */
   --portal-detail-card-border-color: hsl(0, 0%, 92%);
-  --portal-detail-subcard-border-color: var(--portal-detail-card-border-color);
-  --portal-detail-divider-color: var(--portal-detail-card-border-color);
-  --portal-detail-table-header-border-color: var(--portal-detail-card-border-color);
   --portal-detail-table-row-border-color: hsl(0, 0%, 91%);
-  --portal-detail-strip-divider-color: var(--portal-detail-table-row-border-color);
   /* Text */
   --portal-detail-value-color: var(--ivy-primary-color-black);
   --portal-detail-label-color: var(--ivy-portal-color-grey-600);
-  --portal-detail-eyebrow-color: var(--portal-detail-label-color);
   /* Accent (Primary ramp) */
   --portal-detail-accent-color: var(--primary-color, var(--ivy-portal-blue-dark));
   /* Shadows */
-  --portal-detail-card-shadow: 0 0 1.9446rem 0 hsla(0, 0%, 0%, 0.05);
-  --portal-detail-toolbar-shadow: 0 0 0.9723rem 0 hsla(0, 0%, 0%, 0.07);
-  --portal-action-menu-shadow: 0 0 1.1143rem 0.2143rem hsla(0, 0%, 0%, 0.15);
+  --portal-action-menu-shadow: 0 0 1.114rem 0.214rem hsla(0, 0%, 0%, 0.15);
   --portal-action-menu-divider-color: hsl(0, 0%, 97%);
   --portal-action-menu-destroy-color: hsl(358, 83%, 49%);
   --task-start-info-header-font-weight: bold;

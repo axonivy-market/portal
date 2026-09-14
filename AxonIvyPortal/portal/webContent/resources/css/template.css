@@ -267,8 +267,8 @@ a.left-sidebar-menu-icon {
   padding-top: 0.714rem;
   padding-bottom: 0.714rem;
   margin-bottom: 10px;
-  border-radius: var(--portal-detail-card-radius);
-  box-shadow: var(--portal-detail-card-shadow);
+  border-radius: var(--portal-card-radius);
+  box-shadow: var(--portal-card-shadow);
 }
 
 .task-template-title-horizontal-container.card > .task-template-title,

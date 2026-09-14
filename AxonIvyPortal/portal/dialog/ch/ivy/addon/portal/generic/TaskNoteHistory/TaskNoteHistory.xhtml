@@ -8,7 +8,7 @@
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskHistoryPageTitle')}</ui:define>
     <ui:define name="pageContent">
       <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }" styleClass="ui-g">
-        <h:panelGroup layout="block" id="task-note-history" styleClass="portal-detail-toolbar">
+        <h:panelGroup layout="block" id="task-note-history" styleClass="card portal-detail-toolbar">
           <h:panelGroup layout="block" styleClass="portal-detail-toolbar-start u-truncate-text">
             <p:commandLink id="back-to-task-details" process="@this"
               actionListener="#{caseTaskNoteHistoryBean.navigateToTaskDetails(data.task)}"
@@ -53,7 +53,7 @@
                 <div class="task-detail-attr-value">
                   <h:panelGroup id="task-state-cell" styleClass="state-cell default-task-cell">
                     <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state" state="#{data.task.businessState}"
-                      showIndicatorBesideText="true" responsiveStyleClass=""/>
+                      alwaysShowState="true" responsiveStyleClass=""/>
                   </h:panelGroup>
                 </div>
               </div>

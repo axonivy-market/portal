@@ -44,7 +44,7 @@
           paginatorPosition="bottom" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}" lazy="false"
-          styleClass="js-task-details-documents" sortBy="#{taskDetailsBean.sortByCreationTimestamp}">
+          styleClass="js-task-details-documents" sortBy="#{taskDetailsBean.sortByCreationTimestamp}" rowIndexVar="rowIndex">
           <p:ajax event="page" oncomplete="ResponsiveTable.init(':task-details-documents')"/>
           <p:ajax event="sort" oncomplete="ResponsiveTable.init(':task-details-documents')"/>
 
@@ -60,29 +60,6 @@
                   fileNameStyleClass="document-name"
                   fileSizeStyleClass="document-size" />
                 <p:tooltip for="download" trackMouse="true" hideEvent="mouseleave click" value="#{document.relativePath}" />
-              </p:commandLink>
-              <p:commandLink id="preview-file" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
-                process="@this" update="#{p:resolveFirstComponentWithId('preview-document-dialog', view).clientId}"
-                styleClass="ti ti-eye Fright document-preview ui-sm-hidden" actionListener="#{logic.previewDocument(document)}"
-                rendered="#{data.isDocumentPreviewEnabled and caseTaskDocumentBean.isSupportedPreviewType(document)}"
-                oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('preview-document-dialog').show();}">
-                <p:tooltip for="preview-file" trackMouse="true" hideEvent="mouseleave click"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" />
-              </p:commandLink>
-              <p:commandLink id="edit-filename" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')} #{document.name}"
-                styleClass="ti ti-pencil Fright document-renaming ui-sm-hidden"
-                rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
-                actionListener="#{data.setDocument(document)}"
-                update="#{p:resolveFirstComponentWithId('document-renaming-dialog', view).clientId}"
-                oncomplete="PF('document-renaming-dialog').show()">
-                <p:tooltip for="edit-filename" trackMouse="true" hideEvent="mouseleave click"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')} #{document.name}" />
-              </p:commandLink>
-              <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"
-                rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
-                styleClass="ti ti-x Fright task-document-download" oncomplete="PF('document-deletion-dialog').show()">
-                <p:tooltip for="delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"
-                  trackMouse="true" hideEvent="mouseleave click"/>
               </p:commandLink>
             </h:panelGroup>
           </p:column>
@@ -106,6 +83,22 @@
               <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
             </h:outputText>
           </p:column>
+
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
+            styleClass="document-actions text-center" width="80">
+            <pc:actionMenu triggerId="document-actions-menu"
+              panelWidgetVar="task-widget-document-actions-panel-#{rowIndex}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')} #{document.name}"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}">
+              <ui:include src="/layouts/includes/DocumentActionItems.xhtml">
+                <ui:param name="canWriteDocument" value="#{caseTaskDocumentBean.canWriteDocument(task)}" />
+                <ui:param name="previewRendered" value="#{data.isDocumentPreviewEnabled and caseTaskDocumentBean.isSupportedPreviewType(document)}" />
+                <ui:param name="previewUpdate" value="#{p:resolveFirstComponentWithId('preview-document-dialog', view).clientId}" />
+                <ui:param name="renameUpdate" value="#{p:resolveFirstComponentWithId('document-renaming-dialog', view).clientId}" />
+                <ui:param name="deleteFileLabel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')}" />
+              </ui:include>
+            </pc:actionMenu>
+          </p:column>
         </p:dataTable>
 
         <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{empty data.documents}">
@@ -116,7 +109,7 @@
           <p:commandLink id="add-document-command-empty" global="false"
                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
                          rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
-                         styleClass="task-details-document-add-link no-item-action-link portal-link"
+                         styleClass="task-details-document-add-link no-item-action-link portal-link portal-detail-link"
                          oncomplete="PF('document-upload-dialog').show()">
             <i class="ti ti-circle-plus" />
             <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
@@ -248,7 +241,7 @@
           icon="#{visibilityBean.generateButtonIcon('ti ti-device-floppy')}"
           actionListener="#{logic.renameDocument}"
           update="#{p:resolveFirstComponentWithId('task-details-documents', view).clientId} #{cc.attrs.componentToUpdate} #{p:resolveFirstComponentWithId('renaming-file-messages', view).clientId}"
-          oncomplete="if (document.querySelector('.ui-messages-info')) PF('document-renaming-dialog').hide(); ResponsiveTable.init(':case-details-documents')"
+          oncomplete="if (document.querySelector('.ui-messages-info')) PF('document-renaming-dialog').hide(); ResponsiveTable.init(':task-details-documents')"
         />
       </h:panelGroup>
     </h:form>
