@@ -220,41 +220,41 @@ In view mode, when quick search is enabled, click the :guilabel:`Quick search` b
 
 **Widget actions menu**
 
-In view mode, click the :guilabel:`⋮` button in the widget header to access actions such as filtering, pinning/unpinning, expanding to fullscreen, and viewing widget information. Some of these actions are described in more detail below.
+In view mode, click the actions menu button in the widget header to access actions such as filtering, pinning/unpinning, expanding to fullscreen, and viewing widget information. Some of these actions are described in more detail below.
 
 |widget-actions-menu|
 
 **Bulk selection**
 
-To select multiple tasks and delegate them at once, click :guilabel:`Bulk selection`.
+:guilabel:`Bulk selection` lets you select multiple tasks and delegate them at once.
 
 |bulk-delegate-task|
 
 **Show pinned tasks**
 
-Click :guilabel:`Show pinned tasks` to filter the widget so it only displays tasks you
-have pinned. Click :guilabel:`Show all tasks` to return to the full task list. This action
-is only available when the :guilabel:`Show pinned items toggle` option is enabled in the
-widget's configuration panel.
+:guilabel:`Show pinned tasks` filters the widget so it only displays tasks you have
+pinned; the item then switches to :guilabel:`Show all tasks`, which returns you to the
+full task list. This action is only available when the :guilabel:`Show pinned items
+toggle` option is enabled in the widget's configuration panel.
 
 **Filters**
 
-Click :guilabel:`Filters` to open the widget's complex filter panel, where you can narrow
-down the displayed tasks by criteria such as status, category, or date. See
+:guilabel:`Filters` opens the widget's complex filter panel, where you can narrow down
+the displayed tasks by criteria such as status, category, or date. See
 :ref:`complex-filter` for more details.
 
 **Expand**
 
-Click :guilabel:`Expand` to enlarge the widget to fill the entire screen for a better view
-of your data. Click :guilabel:`Collapse` to return the widget to its normal size. This
-action is only available when the :guilabel:`Fullscreen Mode` option is enabled in the
-widget's configuration panel.
+:guilabel:`Expand` enlarges the widget to fill the entire screen for a better view of
+your data; :guilabel:`Collapse` returns it to its normal size. This action is only
+available when the :guilabel:`Fullscreen Mode` option is enabled in the widget's
+configuration panel.
 
 **Widget information**
 
-Click :guilabel:`Info` to open the widget information panel, which shows additional
-widget details and statistics. From there, you can also export all data of the task
-widget by clicking on the link ``Export to Excel`` at the bottom left corner of the panel.
+:guilabel:`Widget information` opens the information panel, showing additional widget details
+and statistics. From there, you can also export all data of the task widget using the
+``Export to Excel`` link at the bottom left corner of the panel.
 
 |widget-info|
 
@@ -301,7 +301,7 @@ refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 **Column Management**
 
-By clicking on the :guilabel:`Manage Columns` button at the top right of the configuration panel. You get the following dialog:
+By clicking on the :guilabel:`Manage Columns` button at the top right of the dialog. You get the following dialog:
 
 |case-list-widget-table-configuration|
 
@@ -310,10 +310,11 @@ In the column management dialog, you find two sections to configure the table co
    #. Add field section: add any available field to your widget table
    #. Columns section: configure the widget table itself as follows:
 
+      - Reorder the columns by drag and drop using the button
       - Enable visibility
-      - Use the Filter checkbox to include or exclude a field from the complex filter options
+      - Use the filter checkbox to include or exclude a field from the complex filter options
+      - Select which operators (e.g. equals, contains) are available for a field's filter conditions
       - Enable quick search by selecting the quick search checkbox
-      - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
 
    .. note::
@@ -330,26 +331,6 @@ In the column management dialog, you find two sections to configure the table co
 
     Quick search is enabled for the standard field name and description by default.
 
-**Excel export**
-
-In view mode, you can export all data of the case widget by clicking on the link ``Export to Excel`` at the end of the widget information panel.
-
-|case-export-excel|
-
-If the number of exported cases exceeds the maximum row number of the Excel file, Portal will separate data into multiple Excel
-files and put them into a single zip file.
-
-**Quick search**
-
-In view mode, when quick search is enabled, a text box will appear to allow you to search.
-
-|case-quick-search-textbox|
-
-  .. important::
-
-    #. You can define the scope of the quick search feature in the configuration panel.
-    #. The result of the quick search function may be affected if you apply a complex filter on the widget.
-
 **Adjust column width**
 
 In edit mode, you can adjust the width of each column directly within the widget table.
@@ -361,6 +342,56 @@ You may also notice gridlines on the table which implemented by Portal to help y
   .. important::
 
     If the total width of the columns is less than the widget’s width, the Portal will automatically adjust the column widths to match the widget’s width.
+
+**Quick search**
+
+In view mode, when quick search is enabled, click the :guilabel:`Quick search` button to reveal the search input and start searching.
+
+|case-quick-search-textbox|
+
+  .. important::
+
+    #. You can define the scope of the quick search feature in the configuration panel.
+    #. The result of the quick search function may be affected if you apply a complex filter on the widget.
+
+.. _case-widget-actions-menu:
+
+**Widget actions menu**
+
+In view mode, click the actions menu button in the widget header to access actions such as filtering, pinning/unpinning, expanding to fullscreen, and viewing widget information. Some of these actions are described in more detail below.
+
+|case-widget-actions-menu|
+
+**Show pinned cases**
+
+:guilabel:`Show pinned cases` filters the widget so it only displays cases you have
+pinned; the item then switches to :guilabel:`Show all cases`, which returns you to the
+full case list. This action is only available when the :guilabel:`Show pinned items
+toggle` option is enabled in the widget's configuration panel.
+
+**Filters**
+
+:guilabel:`Filters` opens the widget's complex filter panel, where you can narrow down
+the displayed cases by criteria such as status, category, or date. See
+:ref:`complex-filter` for more details.
+
+**Expand**
+
+:guilabel:`Expand` enlarges the widget to fill the entire screen for a better view of
+your data; :guilabel:`Collapse` returns it to its normal size. This action is only
+available when the :guilabel:`Fullscreen Mode` option is enabled in the widget's
+configuration panel.
+
+**Widget information**
+
+:guilabel:`Widget information` opens the information panel, showing additional widget details
+and statistics. From there, you can also export all data of the case widget using the
+``Export to Excel`` link at the end of the panel.
+
+|case-export-excel|
+
+If the number of exported cases exceeds the maximum row number of the Excel file, Portal will separate data into multiple Excel
+files and put them into a single zip file.
 
 .. _new-dashboard-process-list-widget:
 
@@ -560,6 +591,8 @@ After selecting the :guilabel:`Clone` option, the :guilabel:`Clone widget` dialo
    :alt: Dashboard widget's filters panel
 .. |widget-info| image:: ../../screenshots/new-dashboard/widget-info.png
    :alt: Dashboard widget's info panel
+.. |case-widget-actions-menu| image:: ../../screenshots/new-dashboard/case-widget-actions-menu-panel.png
+   :alt: Dashboard case widget's actions menu panel
 .. |case-export-excel| image:: ../../screenshots/new-dashboard/case-export-excel.png
    :alt: Dashboard case widget: export to Excel feature
 .. |task-export-excel| image:: ../../screenshots/new-dashboard/task-export-excel.png
