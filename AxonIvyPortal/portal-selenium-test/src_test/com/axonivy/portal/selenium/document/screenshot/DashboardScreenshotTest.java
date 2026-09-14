@@ -210,7 +210,9 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
                 ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getWidgetFilter(1),
                                 ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-filter", new ScreenshotMargin(20));
                 homePage.closeWidgetFilter(1);
-
+                var caseActionsMenuPanel = homePage.openWidgetActionsMenu(1);
+                ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseActionsMenuPanel,
+                                ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-widget-actions-menu-panel", new ScreenshotMargin(20));
                 var taskInfoOverlayPanel = homePage.openWidgetInformation(0);
                 // Take screenshot of widget info panel
                 ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskInfoOverlayPanel,

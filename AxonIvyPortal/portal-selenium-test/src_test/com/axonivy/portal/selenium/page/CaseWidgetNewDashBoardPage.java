@@ -404,8 +404,18 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void setInputForQuickSearch(String input) {
+    openQuickSearchInputIfHidden();
     getQuickSearchForm().$("input").sendKeys(input);
     waitForPageLoad();
+  }
+
+  public void openQuickSearchInputIfHidden() {
+    SelenideElement quickSearchPanel = getCaseWidgetHeader().$("div[class*='widget-header-quick-search']");
+    if (!quickSearchPanel.isDisplayed()) {
+      getCaseWidgetHeader().$("button[id*='quick-search-icon']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+          .click();
+      quickSearchPanel.shouldBe(appear, DEFAULT_TIMEOUT);
+    }
   }
 
   private SelenideElement getQuickSearchForm() {
@@ -413,6 +423,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clearQuickSearchInput() {
+    openQuickSearchInputIfHidden();
     getQuickSearchForm().$("input").clear();
     waitForPageLoad();
   }
