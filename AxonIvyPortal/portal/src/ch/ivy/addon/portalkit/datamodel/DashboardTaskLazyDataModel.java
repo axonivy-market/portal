@@ -79,10 +79,12 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
   }
 
   public void loadFirstTime() {
+    readChunkSizeFromRequest();
+    int pageSize = getChunkSize();
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      foundTasks = DashboardTaskService.getInstance().findDashboardTaskByCriteria(criteria, 0, 25);
+      foundTasks = DashboardTaskService.getInstance().findDashboardTaskByCriteria(criteria, 0, pageSize);
       addDistict(tasks, foundTasks);
       mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
       IvyThreadContext.reset();

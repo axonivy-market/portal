@@ -8,6 +8,15 @@ const additionalHeightForResizeHandler = 15;
 // Store the initial window height to detect changes
 let windowHeight = window.innerHeight;
 
+const dashboardTableRowHeight = 53;
+const minTableChunkSize = 25;
+const maxTableChunkSize = 100;
+
+function calculateTableChunkSize() {
+  const rows = Math.ceil(window.innerHeight / dashboardTableRowHeight) + 2;
+  return Math.min(maxTableChunkSize, Math.max(minTableChunkSize, rows));
+}
+
 function loadGrid(isResponsive) {
 
   // Set default height for cells
@@ -233,6 +242,27 @@ function expandFullscreen(index, widgetId) {
     $(widget.get(0)).closest('.js-dashboard__body').addClass('expand-fullscreen');
     $(widget.get(0)).closest('.js-layout-content').addClass('expand-fullscreen');
   }
+  loadMoreRowsWhenNotEnough(widget);
+}
+
+function loadMoreRowsWhenNotEnough(widget) {
+  setTimeout(function() {
+    widget.find('.ui-datatable-scrollable-body').each(function() {
+      if (this.scrollHeight > this.clientHeight) {
+        return;
+      }
+
+      const widgetName = $(this).parents('.grid-stack-item').find('.js-table-widget-var').val();
+      if (!widgetName) {
+        return;
+      }
+
+      const table = PF(widgetName);
+      if (table && table.cfg.liveScroll && table.shouldLiveScroll && !table.loadingLiveScroll) {
+        table.loadLiveRows();
+      }
+    });
+  }, 200);
 }
 
 function getReservedHeightForTableBody(tableBody) {
