@@ -25,6 +25,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 
 @IvyWebTest
 public class DashboardConfigurationTest extends BaseTest {
@@ -76,6 +77,8 @@ public class DashboardConfigurationTest extends BaseTest {
   public void testHideConfigureDashboardButton() {
     permissions().denyDashboardWriteOwnPermission();
     permissions().denyDashboardWritePublicPermission();
+    permissions().denySpecificPortalPermission(PortalPermission.PORTAL_SIDEBAR_CONFIGURATION);
+    permissions().denySpecificPortalPermission(PortalPermission.PORTAL_PACKAGE_MANAGEMENT);
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.getDashboardConfigurationMenu().shouldBe(Condition.disappear);
   }
