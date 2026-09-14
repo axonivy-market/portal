@@ -1322,13 +1322,12 @@ msgid "Defining the types that the global search will search for."
 msgstr "グローバル検索が検索するタイプを定義する。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
-#, fuzzy
 msgid "Portal.GlobalSearch.MinimumKeywordLength"
-msgstr "Portal.GlobalSearchScopeCategories"
+msgstr "Portal.GlobalSearch.MinimumKeywordLength"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Minimum number of characters required before the global search runs. Defaults to 3; set to 0 to disable the check. A shorter keyword matches nearly every row, which can be slow, so the search is skipped rather than run."
-msgstr ""
+msgstr "グローバル検索を実行するために必要な最小文字数。デフォルトは3で、0に設定するとこのチェックを無効にできます。キーワードが短いとほぼすべての行に一致してしまい処理が遅くなる可能性があるため、その場合は検索を実行せずスキップします。"
 
 #: ../../source/portal-user-guide/admin-settings/documents/available_settings.csv:1
 msgid "Portal.Upload.DocumentUploadSizeLimit"
@@ -2419,14 +2418,12 @@ msgid "Portal Configuration"
 msgstr "ポータルの設定"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:7
-#, fuzzy
 msgid "**Access Requirements**: The :guilabel:`Portal Configuration` sidebar entry is visible to users with at least one of the following permissions: :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`, :ref:`🔑DashboardWritePublic <DashboardWritePublic>`, :ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>`, or :ref:`🔑PortalPackageManagement <PortalPackageManagement>`. Each tab within the page is independently gated by its own permission — see the table below."
-msgstr "**アクセス要件**: :guilabel:`ポータル設定` のメニュー項目は、以下の権限のうち少なくとも1つを持つユーザーに表示されます：:ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` 、:ref:`🔑DashboardWritePublic <DashboardWritePublic>` 、:ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>` 、または :ref:`🔑PortalPackageManagement <PortalPackageManagement>` 。ページ内の各タブは、それぞれ独自の権限によって個別にアクセスが制限されています。詳細は以下の表を参照してください。"
+msgstr "**アクセス要件**: :guilabel:`ポータル設定` のサイドバー項目は、以下の権限のうち少なくとも1つを持つユーザーに表示されます：:ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` 、:ref:`🔑DashboardWritePublic <DashboardWritePublic>` 、:ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>` 、または :ref:`🔑PortalPackageManagement <PortalPackageManagement>` 。ページ内の各タブは、それぞれ独自の権限によって個別にアクセスが制限されています。詳細は以下の表を参照してください。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:9
-#, fuzzy
 msgid "Portal Configuration provides centralized management of your personal and organization-wide dashboards, as well as the sidebar navigation menu. Access it through the :guilabel:`Portal Configuration` entry pinned to the bottom of the left sidebar navigation (see :ref:`axon-ivy-portal`)."
-msgstr "「ポータル設定」では、個人および組織全体のダッシュボード、ならびにサイドバーのナビゲーションメニューを一元的に管理できます。:guilabel:`の「ポータル設定」` ユーザーメニュー項目からアクセスしてください。"
+msgstr "「ポータル設定」では、個人および組織全体のダッシュボード、ならびにサイドバーのナビゲーションメニューを一元的に管理できます。左側のサイドバーナビゲーションの下部に固定された :guilabel:`ポータル設定` 項目からアクセスしてください（:ref:`axon-ivy-portal` を参照）。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:12
 msgid "|portal-configuration|"
@@ -2434,7 +2431,7 @@ msgstr "|portal-configuration|"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:487
 msgid "Portal Configuration entry pinned to the bottom of the left sidebar"
-msgstr ""
+msgstr "左サイドバーの下部に固定されたポータル設定項目"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:15
 #: ../../source/portal-user-guide/full-case-list/index.rst:22
@@ -3274,7 +3271,7 @@ msgstr "サイドバーのメインナビゲーションメニュー項目の順
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:417
 #, python-brace-format
 msgid "Except for ``Portal_MenuOrder.json`` (a single configuration object, not a list), each file's content is a wrapper object: ``{\"version\": \"...\", \"items\": [...]}``. The ``version`` field identifies the format of the file itself and is used to migrate older exports on import - individual entries in ``items`` do not carry their own ``version`` field."
-msgstr ""
+msgstr "``Portal_MenuOrder.json``（リストではなく単一の設定オブジェクト）を除き、各ファイルの内容はラッパーオブジェクトです：``{\"version\": \"...\", \"items\": [...]}``。``version`` フィールドはファイル自体のフォーマットを識別するもので、インポート時に古いエクスポートを移行するために使用されます。``items`` 内の個々のエントリーは、それぞれ独自の ``version`` フィールドを持ちません。"
 
 #: ../../source/portal-user-guide/dashboard-configuration/index.rst:423
 msgid "HowTo: export a Portal package"
@@ -5676,18 +5673,16 @@ msgid "Customizing Your Dashboard"
 msgstr "ダッシュボードのカスタマイズ"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:70
-#, fuzzy
 msgid "**Required Permissions**: Only users with the :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :ref:`🔑DashboardWritePublic <DashboardWritePublic>` permission can see and access the :ref:`Portal Configuration <dashboard-configuration>` entry in the sidebar. These permissions allow you to add, edit, reorder, show, and hide private or public dashboards."
-msgstr "**必要な権限**: :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` または :ref:`🔑DashboardWritePublic <DashboardWritePublic>` の権限を持つユーザーのみが、ユーザーメニュー内の **ダッシュボード設定** メニュー項目を表示およびアクセスできます。これらの権限により、プライベートまたはパブリックのダッシュボードを追加、編集、並べ替え、表示、非表示にできます。"
+msgstr "**必要な権限**: :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` または :ref:`🔑DashboardWritePublic <DashboardWritePublic>` の権限を持つユーザーのみが、サイドバー内の :ref:`ポータル設定 <dashboard-configuration>` 項目を表示およびアクセスできます。これらの権限により、プライベートまたはパブリックのダッシュボードを追加、編集、並べ替え、表示、非表示にできます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:76
 msgid "If you have the required permissions, you can personalize your dashboard layout by:"
 msgstr "必要な権限をお持ちの場合、ダッシュボードのレイアウトを以下のようにカスタマイズできます："
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:78
-#, fuzzy
 msgid "Accessing :ref:`Portal Configuration <dashboard-configuration>` from the sidebar to enter configuration mode."
-msgstr "**ダッシュボード設定へのアクセス方法ユーザーメニューから** にアクセスし、設定モードに入ります。"
+msgstr "サイドバーから :ref:`ポータル設定 <dashboard-configuration>` にアクセスして設定モードに入ります。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:80
 msgid "|edit-widget|"
@@ -7084,9 +7079,8 @@ msgid "Info"
 msgstr "情報"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:160
-#, fuzzy
 msgid "The menu entry :guilabel:`Info` provides you with detailed information about the Axon Ivy Engine and Portal versions, and every version of your company's applications, including its release state, activity state, and open/done case counts. Click a version to see the projects deployed in it, along with each project's state, Maven version, and last change. You might be asked for this information in case you issue a support request."
-msgstr ":guilabel:`情報` メニューエントリには、Axon Ivy Engine、Axon Ivy Portal、会社のアプリケーションに関する詳細情報が表示されます。サポートリクエストを発行する場合、この情報が求められることがあります。"
+msgstr "メニュー項目 :guilabel:`情報` には、Axon Ivy EngineとPortalのバージョン、および会社のアプリケーションの各バージョンに関する詳細情報（リリース状態、アクティビティ状態、未完了/完了ケース数を含む）が表示されます。バージョンをクリックすると、そのバージョンにデプロイされたプロジェクトが、各プロジェクトの状態、Mavenバージョン、最終変更日とともに表示されます。サポートリクエストを発行する場合、この情報が求められることがあります。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:167
 msgid "|portal-version-information|"
@@ -7205,13 +7199,12 @@ msgid "Defines the categories that global search will search (can influence perf
 msgstr "グローバル検索の対象となるカテゴリを定義します（パフォーマンスに影響を与える可能性があります）。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:226
-#, fuzzy
 msgid "**Portal.GlobalSearch.MinimumKeywordLength**"
-msgstr "**Portal.GlobalSearchScopeCategories**"
+msgstr "**Portal.GlobalSearch.MinimumKeywordLength**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:227
 msgid "Defines the minimum number of characters a keyword must have before global search runs. A shorter keyword matches nearly every row, which can be slow, so the search is skipped rather than run. Defaults to ``3``; set to ``0`` to disable the check and search on any keyword."
-msgstr ""
+msgstr "グローバル検索を実行するためにキーワードが持つ必要のある最小文字数を定義します。キーワードが短いとほぼすべての行に一致してしまい処理が遅くなる可能性があるため、その場合は検索を実行せずスキップします。デフォルトは ``3`` で、``0`` に設定するとこのチェックを無効にし、どのようなキーワードでも検索できます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:233
 msgid "Configure these variables in :ref:`admin-settings` to optimize search performance for your Portal instance."
