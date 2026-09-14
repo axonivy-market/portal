@@ -863,15 +863,23 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void openWidgetFilter(int index) {
-    SelenideElement actionsMenuButton = getCaseWidget().$("button[id$=':actions-menu-button_button']")
-        .shouldBe(appear, DEFAULT_TIMEOUT);
-    waitForElementClickableThenClick(actionsMenuButton);
-    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
-    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement actionsMenuPanel = openWidgetActionsMenuFor(getCaseWidget());
     actionsMenuPanel.$$("a.ui-menuitem-link").filter(Condition.text("Filters")).first()
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     WaitHelper.waitPageNoAnimation();
     $("[id$=':widget-saved-filters-items']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement openWidgetActionsMenu(int index) {
+    return openWidgetActionsMenuFor(getDashboardWidget(index));
+  }
+
+  private SelenideElement openWidgetActionsMenuFor(SelenideElement widget) {
+    SelenideElement actionsMenuButton = widget.$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    return $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getWidgetFilter(int index) {

@@ -13,6 +13,7 @@ import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.Condition;
 
@@ -35,11 +36,12 @@ public class QuickSearchScreenshotTest extends ScreenshotBaseTest {
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForTaskWidgetLoaded();
-    ScreenshotUtils.executeDecorateJs("highlightQuickSearchTextbox()");
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage("Your Tasks");
+    taskWidget.openQuickSearchInputIfHidden();
     ScreenshotUtils.captureElementScreenshot($(".dashboard__widget").shouldBe(Condition.appear, DEFAULT_TIMEOUT),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-quick-search-textbox");
 
-    }
+  }
 
   @Test
   public void screenshotForQuickSearchConfigurationOnCaseWidget() throws IOException {
@@ -53,7 +55,7 @@ public class QuickSearchScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementScreenshot($(".dashboard__widget").shouldBe(Condition.appear, DEFAULT_TIMEOUT),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-quick-search-textbox");
   }
-  
+
   @Test
   public void screenshotForQuickSearchConfigurationOnProcessWidget() throws IOException {
     ConfigurationJsonUtils.updateJSONSetting("dashboard-process-widget-has-quicksearch.json", Variable.DASHBOARD);

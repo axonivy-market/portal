@@ -55,7 +55,13 @@ Standard Widget Features
 
 **Task List, Case List, and Process List (compact mode)** widgets share these standard features:
 
-- **Saved filters and filter options**: Customize what data you see
+- **Actions menu**: Click the actions button in the widget header to access additional features.
+
+  |widget-actions-menu|
+
+- **Saved filters and filter options**: Narrow down the displayed tasks, cases, or processes by
+  criteria such as status, category, or date, and save filter sets for quick reuse later
+  (see :ref:`complex-filter`)
 
   |widget-filter|
 
@@ -75,7 +81,7 @@ Customizing Your Dashboard
 
 If you have the required permissions, you can personalize your dashboard layout by:
 
-#. Accessing :ref:`Portal Configuration <dashboard-configuration>` from the sidebar to enter configuration mode.
+#. Accessing :ref:`Portal Configuration <portal-configuration>` from the side menu. Depending on your assigned permissions, you can access the :ref:`private dashboards <dashboard-configuration>` tab, the :ref:`public dashboards <public-dashboard-configuration>` tab, or both.
 
 |edit-widget|
 
@@ -135,7 +141,7 @@ The configuration panel offers the following options:
 
 - **Show Bulk Delegate toggle**: Show or hide the bulk delegate toggle. When enabled, users can select multiple tasks and delegate them in bulk.
 
-**Filters panel**
+**Filters dialog**
 
 By clicking on the :guilabel:`Filter` button, you can configure the complex filter for
 your widget and get a preview of it by clicking on the :guilabel:`Apply` button. Please
@@ -151,7 +157,7 @@ refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 **Column Management**
 
-By clicking on the :guilabel:`Manage Columns` button at the top right of the configuration panel. You get the following dialog:
+By clicking on the :guilabel:`Manage Columns` button at the top right of the dialog. You get the following dialog:
 
 |task-list-widget-table-configuration|
 
@@ -160,12 +166,13 @@ In the column management dialog, you find two sections to configure the table co
    #. Add field section: add any available fields to your widget table
    #. Columns section: configure the widget table itself as follows:
 
+      - Reorder the columns by drag and drop using the button
       - Enable visibility
-      - Use the Filter checkbox to include or exclude a field from the complex filter options
+      - Use the filter checkbox to include or exclude a field from the complex filter options
+      - Select which operators (e.g. equals, contains) are available for a field's filter conditions
       - Enable the quick search by selecting the quick search checkbox
-      - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
-
+   
    .. note::
 
       - Newly added fields are filter-enabled by default.
@@ -186,26 +193,6 @@ Portal supports to display **custom case fields** and **business custom case** w
 
 |task-column-field-type-configuration|
 
-**Excel export**
-
-In view mode, you can export all data of the task widget by clicking on the link ``Export to Excel`` at the bottom left corner of the widget information panel.
-
-|task-export-excel|
-
-If the number of exported tasks exceeds the maximum row number of the Excel file, Portal will separate data into multiple Excel
-files and put them into a single zip file.
-
-**Quick search**
-
-In view mode, when quick search is enabled, a text box will appear to allow you to search.
-
-|task-quick-search-textbox|
-
-  .. important::
-
-    #. You can define the scope of the quick search feature in the configuration panel.
-    #. The result of the quick search function may be affected if you apply a complex filter on the widget.
-
 **Adjust column width**
 
 In edit mode, you can adjust the width of each column directly within the widget table.
@@ -218,11 +205,61 @@ You may also notice gridlines on the table which implemented by Portal to help y
 
     If the total width of the columns is less than the widget’s width, the Portal will automatically adjust the column widths to match the widget’s width.
 
-**Bulk delegate**
+**Quick search**
 
-In view mode, you can select multiple tasks and delegate them at once by clicking the :guilabel:`Toggle bulk delegation` button in the widget header.
+In view mode, when quick search is enabled, click the :guilabel:`Quick search` button to reveal the search input and start searching.
+
+|task-quick-search-textbox|
+
+  .. important::
+
+    #. You can define the scope of the quick search feature in the configuration panel.
+    #. The result of the quick search function may be affected if you apply a complex filter on the widget.
+
+.. _task-widget-actions-menu:
+
+**Widget actions menu**
+
+In view mode, click the :guilabel:`⋮` button in the widget header to access actions such as filtering, pinning/unpinning, expanding to fullscreen, and viewing widget information. Some of these actions are described in more detail below.
+
+|widget-actions-menu|
+
+**Bulk selection**
+
+To select multiple tasks and delegate them at once, click :guilabel:`Bulk selection`.
 
 |bulk-delegate-task|
+
+**Show pinned tasks**
+
+Click :guilabel:`Show pinned tasks` to filter the widget so it only displays tasks you
+have pinned. Click :guilabel:`Show all tasks` to return to the full task list. This action
+is only available when the :guilabel:`Show pinned items toggle` option is enabled in the
+widget's configuration panel.
+
+**Filters**
+
+Click :guilabel:`Filters` to open the widget's complex filter panel, where you can narrow
+down the displayed tasks by criteria such as status, category, or date. See
+:ref:`complex-filter` for more details.
+
+**Expand**
+
+Click :guilabel:`Expand` to enlarge the widget to fill the entire screen for a better view
+of your data. Click :guilabel:`Collapse` to return the widget to its normal size. This
+action is only available when the :guilabel:`Fullscreen Mode` option is enabled in the
+widget's configuration panel.
+
+**Widget information**
+
+Click :guilabel:`Info` to open the widget information panel, which shows additional
+widget details and statistics. From there, you can also export all data of the task
+widget by clicking on the link ``Export to Excel`` at the bottom left corner of the panel.
+
+|widget-info|
+
+If the number of exported tasks exceeds the maximum row number of the Excel file, Portal will separate data into multiple Excel
+files and put them into a single zip file.
 
 .. _new-dashboard-case-list-widget:
 
@@ -252,7 +289,7 @@ The configuration panel offers the following options:
 
 - **Case Type**: Select which level of cases the widget displays. Available options: **Business Case** shows only top-level cases, **Sub Case** shows only sub-cases (children of a business case), **All** shows both business cases and sub-cases. By default, the widget queries by **Business Case**.
 
-**Filters panel**
+**Filters dialog**
 
 By clicking on the :guilabel:`Filter` button, you can configure the complex filter for
 your widget and get a preview of it by clicking on the :guilabel:`Apply` button. Please
@@ -517,6 +554,8 @@ After selecting the :guilabel:`Clone` option, the :guilabel:`Clone widget` dialo
 
 .. |dash-board| image:: ../../screenshots/new-dashboard/dashboard.png
    :alt: Dashboard screen
+.. |widget-actions-menu| image:: ../../screenshots/new-dashboard/task-widget-actions-menu-panel.png
+   :alt: Dashboard widget's actions menu panel
 .. |widget-filter| image:: ../../screenshots/new-dashboard/widget-filter.png
    :alt: Dashboard widget's filters panel
 .. |widget-info| image:: ../../screenshots/new-dashboard/widget-info.png
