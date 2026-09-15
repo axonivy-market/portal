@@ -281,7 +281,9 @@ public class DashboardWidgetUtils {
 
       var caseCustomFieldMetas = ICustomFieldMeta.cases();
       taskCustomFieldMetas.addAll(caseCustomFieldMetas);
-      List<TaskColumnModel> columns = ((TaskDashboardWidget) widget).getColumns();
+      TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
+      buildTaskColumns(taskWidget);
+      List<TaskColumnModel> columns = taskWidget.getColumns();
       simplifyAllowedOperators(columns);
       columns.forEach(column -> {
         simplifyColumnData(column, taskCustomFieldMetas, deprecatedFields);
@@ -293,7 +295,9 @@ public class DashboardWidgetUtils {
     }
     case CASE -> {
       var caseCustomFieldMetas = ICustomFieldMeta.cases();
-      List<CaseColumnModel> caseColumns = ((CaseDashboardWidget) widget).getColumns();
+      CaseDashboardWidget caseWidget = (CaseDashboardWidget) widget;
+      buildCaseColumns(caseWidget);
+      List<CaseColumnModel> caseColumns = caseWidget.getColumns();
       simplifyAllowedOperators(caseColumns);
       caseColumns.forEach(column -> {
         simplifyColumnData(column, caseCustomFieldMetas, deprecatedFields);
