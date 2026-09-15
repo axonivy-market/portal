@@ -828,7 +828,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AddItem: Ajouter un élément
       CreateFromScratch: Créer à partir de rien
       CreateFromScratchDescription: Créez votre propre tableau de bord
-      CreateNewPrivateDashboard: Créer un nouveau tableau de bord privé
+      newPrivateDashboard: Nouveau tableau de bord privé
       CreateNewPublicDashboard: Créer un nouveau tableau de bord public
       Dashboard: Tableau de bord
       DashboardTabInfoPanel: <p><b>Que puis-je faire ici ?</b></p><p>Créez, modifiez et supprimez des tableaux de bord publics. Définissez qui peut les voir grâce aux autorisations. Il s'agit de la bibliothèque centrale de tous les tableaux de bord partagés.</p><p><b>Visibilité &amp; emplacement</b></p><p>Les
@@ -1019,7 +1019,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Type de champ personnalisé
     dashboardManagement:
       CreateDashboard: Créer un tableau de bord
-      addDashboard: Ajouter un tableau de bord
+      newDashboard: Nouveau tableau de bord
       dashboardIcon: Icône du tableau de bord
       dashboardPermission: Autorisation du tableau de bord
       dashboardTitle: Titre du tableau de bord

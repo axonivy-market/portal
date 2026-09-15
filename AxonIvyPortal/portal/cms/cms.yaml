@@ -601,7 +601,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboard:
     CanWorkOnAsUser: Only show me the tasks I can work on as a user
     DashboardConfiguration:
-      CreateNewPrivateDashboard: Create new private dashboard
+      newPrivateDashboard: New private dashboard
       CreateNewPublicDashboard: Create new public dashboard
       EditPrivateDashboards: Edit your private dashboards
       EditLayout: Edit Layout
@@ -677,7 +677,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Custom Field Type
     dashboardManagement:
       CreateDashboard: Create Dashboard
-      addDashboard: Add dashboard
+      newDashboard: New dashboard
       dashboardPermission: Dashboard permission
       dashboardTitle: Dashboard title
       editDashboard: Edit dashboard
