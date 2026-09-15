@@ -1,7 +1,5 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
-import static com.codeborne.selenide.CollectionCondition.size;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +20,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
+import static com.codeborne.selenide.CollectionCondition.size;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -248,8 +247,8 @@ public class DashboardConfigurationTest extends BaseTest {
     modificationPage.editPrivateDashboardInfo(EDITED_PRIVATE_DASHBOARD_1, DASHBOARD_1_DESCRIPTION);
     SelenideElement dashboard = modificationPage.getDashboardRowByName(EDITED_PRIVATE_DASHBOARD_1);
     dashboard.shouldBe(Condition.appear);
-    dashboard.$("td:nth-child(1)").shouldHave(Condition.exactText(EDITED_PRIVATE_DASHBOARD_1));
-    dashboard.$("td:nth-child(3)").shouldHave(Condition.exactText(DASHBOARD_1_DESCRIPTION));
+    modificationPage.getDashboardCellByNameAndPosition(EDITED_PRIVATE_DASHBOARD_1, 1).shouldHave(Condition.exactText(EDITED_PRIVATE_DASHBOARD_1));
+    modificationPage.getDashboardCellByNameAndPosition(EDITED_PRIVATE_DASHBOARD_1, 3).shouldHave(Condition.exactText(DASHBOARD_1_DESCRIPTION));
   }
 
   @Test
