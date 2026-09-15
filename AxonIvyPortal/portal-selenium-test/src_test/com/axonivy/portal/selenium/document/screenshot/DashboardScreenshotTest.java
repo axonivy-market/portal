@@ -22,6 +22,7 @@ import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CustomWidgetNewDashBoardPage;
@@ -198,9 +199,10 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
                 ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "dashboard");
 
                 // Take screenshot of widget actions menu panel
-                var taskActionsMenuPanel = homePage.openWidgetActionsMenu(0);
-                ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskActionsMenuPanel,
-                                ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-actions-menu-panel", new ScreenshotMargin(20));
+                homePage.openWidgetActionsMenu(0);
+                WaitHelper.waitPageNoAnimation();
+                ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getTaskWidget(),
+                                ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-actions-menu-panel", new ScreenshotMargin(20, 250, 20, 20));
 
                 // Take screenshot of widget filter panel
                 homePage.openWidgetFilter(1);
@@ -210,9 +212,12 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
                 ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getWidgetFilter(1),
                                 ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-filter", new ScreenshotMargin(20));
                 homePage.closeWidgetFilter(1);
-                var caseActionsMenuPanel = homePage.openWidgetActionsMenu(1);
-                ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseActionsMenuPanel,
-                                ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-widget-actions-menu-panel", new ScreenshotMargin(20));
+
+                // Take screenshot of widget actions menu panel
+                homePage.openWidgetActionsMenu(1);
+                WaitHelper.waitPageNoAnimation();
+                ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getCaseWidget(),
+                                ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-widget-actions-menu-panel", new ScreenshotMargin(20, 250, 20, 20));
                 var taskInfoOverlayPanel = homePage.openWidgetInformation(0);
                 // Take screenshot of widget info panel
                 ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskInfoOverlayPanel,
@@ -414,7 +419,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
         @Test
         public void screenshotWelcomeWidget() throws IOException {
-                ScreenshotUtils.maximizeBrowser();
+                ScreenshotUtils.resizeBrowser(new Dimension(1920, 5000));
                 addPublicWidget(NewDashboardDetailsEditPage.WELCOME_WIDGET);
                 WelcomeEditWidgetNewDashboardPage welcomeWidgetPage = new WelcomeEditWidgetNewDashboardPage();
                 welcomeWidgetPage.waitForDialogLoaded();

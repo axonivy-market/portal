@@ -468,6 +468,17 @@ Welcome widget
 
 You can define a welcome widget with background images for both light and dark mode and a welcome text.
 
+- **Choose which mode you want to configure**: switch between ``Light`` and ``Dark`` to configure the image.
+- **Image preview**: shows how the background image will look with the current settings.
+- **Change image**: upload a new background image for the selected mode.
+- **Choose a fit**: select how the image should fit the widget, for example ``Cover``.
+- **Show greeting**: enable or disable the greeting text shown before the welcome text.
+- **Display text**: define the welcome text to be displayed, with support for multiple languages.
+- **Text color for light mode** and **Text color for dark mode**: set the text color used in each mode.
+- **Text position**: choose where the text is placed on the image, for example ``Top-left corner``.
+- **Text size**: choose the text size, for example ``Heading 3``.
+- **Advanced settings**: expand this section for additional configuration options.
+
 |welcome-widget-configuration|
 
 
