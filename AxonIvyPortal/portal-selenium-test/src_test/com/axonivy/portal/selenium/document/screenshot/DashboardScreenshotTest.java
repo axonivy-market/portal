@@ -196,6 +196,18 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
                 homePage.waitForCaseWidgetLoaded();
                 ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "dashboard");
 
+                var taskActionsMenuPanel = homePage.openWidgetActionsMenu(0);
+                ScreenshotUtils.captureElementsWithMarginOptionScreenshot(
+                                ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-actions-menu-panel",
+                                new ScreenshotMargin(20), homePage.getDashboardWidget(0), taskActionsMenuPanel);
+                homePage.closeWidgetActionsMenu(0);
+
+                var caseActionsMenuPanel = homePage.openWidgetActionsMenu(1);
+                ScreenshotUtils.captureElementsWithMarginOptionScreenshot(
+                                ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-widget-actions-menu-panel",
+                                new ScreenshotMargin(20), homePage.getDashboardWidget(1), caseActionsMenuPanel);
+                homePage.closeWidgetActionsMenu(1);
+
                 // Take screenshot of widget filter panel
                 homePage.openWidgetFilter(1);
                 ComplexFilterHelper.addFilter("Creator", FilterOperator.CURRENT_USER);
@@ -206,9 +218,9 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
                 homePage.closeWidgetFilter(1);
 
                 var taskInfoOverlayPanel = homePage.openWidgetInformation(0);
-                // Take screenshot of widget info panel
-                ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskInfoOverlayPanel,
-                                ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-info", new ScreenshotMargin(20));
+                ScreenshotUtils.captureElementsWithMarginOptionScreenshot(
+                                ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-info", new ScreenshotMargin(20),
+                                homePage.getDashboardWidget(0), taskInfoOverlayPanel);
 
                 // Take screenshot of task Excel export link
                 ScreenshotUtils.executeDecorateJs("highlightWidgetExportToExcelLinkForTask()");

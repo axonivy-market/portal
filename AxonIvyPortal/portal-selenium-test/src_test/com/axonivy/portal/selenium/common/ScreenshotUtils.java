@@ -11,6 +11,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -77,6 +78,50 @@ public class ScreenshotUtils {
     File fileScreenShot = new File(SCREENSHOT_FOLDER + screenshotName + SCREENSHOT_EXTENSION);
     addMarginForImage(element, screenshot, screenshotMargin);
     FileUtils.copyFile(screenshot, fileScreenShot);
+  }
+
+  /**
+   * Captures the area covering all given elements, e.g. a widget together with the overlay panel
+   * which is opened on top of it. Overlay panels are appended to the body, so they cannot be
+   * captured as a part of the widget element itself.
+   *
+   * @param screenshotName
+   * @param screenshotMargin
+   * @param elements
+   */
+  public static void captureElementsWithMarginOptionScreenshot(String screenshotName,
+      ScreenshotMargin screenshotMargin, WebElement... elements) throws IOException {
+    WebDriver driver = WebDriverRunner.getWebDriver();
+    File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+    File fileScreenShot = new File(SCREENSHOT_FOLDER + screenshotName + SCREENSHOT_EXTENSION);
+    cropToElements(screenshot, screenshotMargin, elements);
+    FileUtils.copyFile(screenshot, fileScreenShot);
+  }
+
+  private static File cropToElements(File fileScreenShot, ScreenshotMargin screenshotMargin, WebElement... elements)
+      throws IOException {
+    BufferedImage original = ImageIO.read(fileScreenShot);
+    int left = Integer.MAX_VALUE;
+    int top = Integer.MAX_VALUE;
+    int right = 0;
+    int bottom = 0;
+    for (WebElement element : elements) {
+      Point location = element.getLocation();
+      Dimension size = element.getSize();
+      left = Math.min(left, location.getX());
+      top = Math.min(top, location.getY());
+      right = Math.max(right, location.getX() + size.getWidth());
+      bottom = Math.max(bottom, location.getY() + size.getHeight());
+    }
+
+    int coordinateX = Math.max(0, left - screenshotMargin.getMarginLeft());
+    int coordinateY = Math.max(0, top - screenshotMargin.getMarginTop());
+    int width = Math.min(original.getWidth() - coordinateX, right + screenshotMargin.getMarginRight() - coordinateX);
+    int height = Math.min(original.getHeight() - coordinateY, bottom + screenshotMargin.getMarginBottom() - coordinateY);
+
+    BufferedImage screenshot = original.getSubimage(coordinateX, coordinateY, width, height);
+    ImageIO.write(screenshot, "png", fileScreenShot);
+    return fileScreenShot;
   }
 
   private static File addMarginForImage(WebElement element, File fileScreenShot, ScreenshotMargin screenshotMargin)
