@@ -51,22 +51,27 @@ pipeline {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
           resultDir = "/var/tools/performance-result/${env.engineVersion}/${today}"
-          fileOperations([folderCreateOperation(folderPath: "${resultDir}")])
+          fileOperations([folderCreateOperation(folderPath: "${resultDir}"), folderCreateOperation(folderPath: "${resultDir}/warmup")])
+
+          echo '====================Warm up and check the environment===================='
+          updateConfigFile('data/single_admin_user_server.csv', '1')
+          // First executing takes more time, so not record the result of first time.
+          // It walks the whole scenario though, so use it to verify that the application
+          // really works before spending three more rounds measuring it. Its result file
+          // lives in a sub folder so that it stays out of the perfReport source files.
+          executeJMeter('warmup/tmp.jtl', '-Jjmeter.save.saveservice.response_data.on_error=true')
+          assertEnvironmentIsHealthy('warmup/tmp.jtl')
 
           echo '====================Test one user===================='
-          updateConfigFile('data/single_admin_user_server.csv', '1')
-          // First executing takes more time, so not record the result of first time
-          executeJMeter('../tmp.jtl')
-
-          executeJMeter('result_1_user.jtl')
+          executeJMeter('result_1_user.jtl', '')
 
           echo '====================Test ten users===================='
           updateConfigFile('data/users_server.csv', '10')
-          executeJMeter('result_10_users.jtl')
+          executeJMeter('result_10_users.jtl', '')
 
           echo '====================Test twenty users===================='
           updateConfigFile('data/users_20_server.csv', '20')
-          executeJMeter('result_20_users.jtl')
+          executeJMeter('result_20_users.jtl', '')
         }
       }
     }
@@ -75,6 +80,10 @@ pipeline {
   post {
     always {
       script {
+        // Collect the engine log before the engines are torn down. A failing walkthrough is
+        // usually an application error and its stack trace only exists on the engine, which
+        // is gone by the time somebody looks at the build.
+        sh "docker compose -f ${ivyDir}/${engineNames[3]}/docker-compose.yml logs --no-color --tail=5000 > engine.log 2>&1 || true"
         for (engineName in engineNames) {
           sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
         }
@@ -82,6 +91,12 @@ pipeline {
           docker compose -f ${ivyDir}/${engineNames[0]}/docker-compose.yml up -d
           docker compose -f ${ivyDir}/${engineNames[1]}/docker-compose.yml up -d
         """
+        // Archiving is the one step here that can throw, so it runs once the engines are back:
+        // allowEmptyArchive only covers "nothing matched", not a storage failure, and a throw
+        // would leave the performance engine up and the regular ones down.
+        catchError(message: 'Could not archive the engine log', buildResult: null, stageResult: null, catchInterruptions: false) {
+          archiveArtifacts artifacts: 'engine.log', allowEmptyArchive: true
+        }
       }
       script {
         if (binding.hasVariable('today')) {
@@ -99,12 +114,24 @@ def updateConfigFile(acccountFilePath, numberOfUser) {
   """
 }
 
-def executeJMeter(resultFileName) {
+// Stops the build when the warm up walkthrough did not come back clean. Without it an
+// application that answers every request with an error page is reported by perfReport as a
+// performance regression, which reads as "the code got slower" instead of "nothing worked".
+def assertEnvironmentIsHealthy(warmupResultName) {
+  // Runs in the python image the deploy stage already builds. The result file needs a real CSV
+  // reader: JMeter quotes every field that holds a comma, a transaction controller row for
+  // example, and keeps the response body of failed samples, so rows span several lines.
+  docker.build('build-portal-modules', '-f build/Dockerfile.python .').inside("-v ${resultDir}:/result") {
+    sh "python3 build/performance-test/check-warmup-result.py /result/${warmupResultName}"
+  }
+}
+
+def executeJMeter(resultFileName, extraArguments) {
   def binDir = '/opt/apache-jmeter-5.5/bin'
   docker.build('jmeter-performance-test', '-f build/performance-test/Dockerfile .').inside("""
         -v ${WORKSPACE}/${jmeterSourceDir}:${binDir}/portal-jmeter
         -v ${resultDir}:${binDir}/result
       """) {
-    sh "${binDir}/jmeter -Jjmeter.save.saveservice.subresults=false -n -t ${binDir}/portal-jmeter/portal_walkthrough_testplan.jmx -q ${binDir}/portal-jmeter/test.properties -l ${binDir}/result/${resultFileName}"
+    sh "${binDir}/jmeter -Jjmeter.save.saveservice.subresults=false -Jjmeter.save.saveservice.assertion_results_failure_message=true ${extraArguments} -n -t ${binDir}/portal-jmeter/portal_walkthrough_testplan.jmx -q ${binDir}/portal-jmeter/test.properties -l ${binDir}/result/${resultFileName}"
   }
 }
