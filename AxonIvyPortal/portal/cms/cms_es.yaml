@@ -827,7 +827,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AddItem: Agregar elemento
       CreateFromScratch: Crear desde cero
       CreateFromScratchDescription: Cree su propio panel de control
-      CreateNewPrivateDashboard: Crear un nuevo cuadro de mando personalizado
+      newPrivateDashboard: Nuevo tablero privado
       CreateNewPublicDashboard: Crear un dashboard público
       Dashboard: Panel de control
       DashboardTabInfoPanel: <p><b>¿Qué puedo hacer aquí?</b></p><p>Cree, edite y elimine paneles públicos. Defina quién puede verlos mediante permisos. Esta es la biblioteca central de todos los paneles compartidos.</p><p><b>Visibilidad &amp; ubicación</b></p><p>Los paneles se dividen en tres secciones
@@ -1017,7 +1017,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Tipo de campo personalizado
     dashboardManagement:
       CreateDashboard: Crear tablero
-      addDashboard: Añadir tablero
+      newDashboard: Nuevo tablero
       dashboardIcon: Icono del panel de control
       dashboardPermission: Permiso de tablero
       dashboardTitle: Título del tablero

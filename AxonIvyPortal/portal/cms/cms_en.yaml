@@ -824,7 +824,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AddItem: Add item
       CreateFromScratch: Create from scratch
       CreateFromScratchDescription: Build your own dashboard
-      CreateNewPrivateDashboard: Create new private dashboard
+      newPrivateDashboard: New private dashboard
       CreateNewPublicDashboard: Create new public dashboard
       Dashboard: Dashboard
       DashboardTabInfoPanel: <p><b>What can I do here?</b></p><p>Create, edit and delete public dashboards. Set who can see each one using permissions. This is the central library for all shared dashboards.</p><p><b>Visibility &amp; placement</b></p><p>Dashboards are split into three sections based on
@@ -1013,7 +1013,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Custom Field Type
     dashboardManagement:
       CreateDashboard: Create Dashboard
-      addDashboard: Add dashboard
+      newDashboard: New dashboard
       dashboardIcon: Dashboard icon
       dashboardPermission: Dashboard permission
       dashboardTitle: Dashboard title

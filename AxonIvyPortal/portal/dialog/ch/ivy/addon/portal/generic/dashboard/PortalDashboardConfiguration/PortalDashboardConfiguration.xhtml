@@ -57,8 +57,8 @@
                       partialSubmit="true"/>
                   </li>
                   <li class="#{not dashboardConfigurationBean.menuManagement and not dashboardConfigurationBean.packageManagement and isPublicDashboard ? 'active' : ''}" jsf:rendered="#{dashboardConfigurationBean.canEditPublicDashboard}">
-                    <p:commandLink id="public-dashboard-type" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Dashboard')}"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Dashboard')}"
+                    <p:commandLink id="public-dashboard-type" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PublicDashboard')}"
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PublicDashboard')}"
                       actionListener="#{dashboardConfigurationBean.accessToEditDashboard(true)}"
                       update="dashboard-configuration-type dashboard-configuration-content sidebar-navigation-content package-management-content dashboard-info-button-form" process="@this"
                       partialSubmit="true"/>
@@ -82,8 +82,8 @@
                   <h:panelGroup layout="block" styleClass="dashboard-dynamic-buttons flex gap-2">
                     <p:commandButton id="create-dashboard-action" actionListener="#{dashboardConfigurationBean.addNewDashboard(isPublicDashboard)}"
                         rendered="#{!dashboardConfigurationBean.mobileDevice and !dashboardConfigurationBean.menuManagement and !dashboardConfigurationBean.packageManagement}"
-                        value="#{isPublicDashboard ? ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateNewPrivateDashboard')}"
-                        ariaLabel="#{isPublicDashboard ? ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateNewPrivateDashboard')}"
+                        value="#{isPublicDashboard ? ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/newPrivateDashboard')}"
+                        ariaLabel="#{isPublicDashboard ? ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/newPrivateDashboard')}"
                         styleClass="dashboard-action-container-icon #{selectedDashboardTypeStyleClass}"
                         icon="ti ti-plus"
                         partialSubmit="true" global="false"
