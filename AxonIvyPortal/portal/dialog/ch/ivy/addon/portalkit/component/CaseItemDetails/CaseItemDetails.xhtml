@@ -55,18 +55,18 @@
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{caseDetailsBean.readOnlyMode}"
         ariaLabel="#{ivy.cms.co('/Labels/EditLayout')}"
         value="#{ivy.cms.co('/Labels/EditLayout')}" actionListener="#{caseDetailsBean.switchToEditMode()}"
-        icon="#{visibilityBean.generateButtonIcon('ti ti-pencil')}" styleClass="portal-pill-btn portal-pill-btn-lg switch-to-edit-mode-btn"
+        icon="#{visibilityBean.generateButtonIcon('ti ti-pencil')}" styleClass="switch-to-edit-mode-btn"
         update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid();PortalLayout.hideHorizontalScrollOnLayoutContent()" />
       <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         rendered="#{caseDetailsBean.configuration.changed and not caseDetailsBean.readOnlyMode}" onclick="PF('reset-to-default-case-dialog').show()"
         icon="#{visibilityBean.generateButtonIcon('ti ti-refresh')}"
-        styleClass="reset-details-settings-button portal-pill-btn portal-pill-btn-lg" immediate="true" ajax="false" type="button" />
+        styleClass="reset-details-settings-button" immediate="true" ajax="false" type="button" />
       <p:commandButton id="switch-to-view-mode-button" rendered="#{not caseDetailsBean.readOnlyMode}"
         ariaLabel="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}"
         icon="#{visibilityBean.generateButtonIcon('ti ti-device-floppy')}" onclick="saveCaseDetailsGrid()"
-        styleClass="portal-pill-btn portal-pill-btn-lg portal-pill-btn-accent switch-view-mode-btn"
+        styleClass="switch-view-mode-btn"
         update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid()" />
     </h:panelGroup>
   </h:panelGroup>
