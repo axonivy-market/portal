@@ -2928,8 +2928,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .add-absence-dialog .deputy-type {
-  color: var(--ivy-primary-color);
-  border: 1px solid var(--ivy-primary-color);
+  color: var(--deputy-type-color);
+  border: 1px solid var(--deputy-type-border-color);
   border-radius: 1rem;
   padding: 0.15rem 0.6rem;
   font-size: 0.8rem;
