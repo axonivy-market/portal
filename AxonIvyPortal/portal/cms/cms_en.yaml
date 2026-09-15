@@ -279,6 +279,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
       enableTranslationService: Set this property to true to enable translation service support
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
+      globalSearchMinimumKeywordLengthNote: Minimum number of characters required before the global search runs. Defaults to 3; set to 0 to disable the check. A shorter keyword matches nearly every row, which can be slow, so the search is skipped rather than run.
       hideCaseCreator: |-
         Set to true to hide case creator in case list, case widget and case details.
         This setting affects all case queries, e.g. for case list, global search, statistic.
@@ -821,7 +822,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     CustomWidgets: Custom Widgets
     DashboardConfiguration:
       CreateFromScratch: Create from scratch
-      CreateFromScratchDescription: Create your own dashboard from scratch
+      CreateFromScratchDescription: Build your own dashboard
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Create new public dashboard
       Description: In this area, you can configure the dashboards according to your requirements and modify the order of the navigation elements.
@@ -870,6 +871,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Reorder public dashboards
       SelectAction: Select the action
       SomeThingWentWrong: Something went wrong
+      Start: Start
+      Templates: Templates
       Title: Portal configuration
       PackageManagement: Package management
       PackageManagementTabInfoPanel: '<p><b>What can I do here?</b></p><p>Export the current Portal configuration as a single zip package, or import a previously exported package to replace it.</p><p><b>Export</b></p><p>Downloads a <code>Portal_Package.zip</code> containing one JSON file per configuration type. Only types with existing data are included.</p><p><b>Import</b></p><p>Upload a zip package to preview which files it contains before applying. Recognized files replace the matching configuration; unrecognized files are skipped. This action cannot be undone.</p>'
@@ -1514,12 +1517,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Show full task list
     sort: Sort
   taskWarning:
-    createdTaskLeave: You'll not be able to start this task again if you leave it now.
-    createdTaskLogout: '<div>You are about to leave this page.<br/> Please choose one of the following options:</div><UL><LI>Logout: Discard your changes and logout.<LI>Cancel: Continue working this task.</UL>'
-    leaveTaskHeader: Leave this task?
-    resetParkTaskBeforeLeave: This task is in progress, if you leave it now you'll not be able to start it again. If you reserve it will reappear in your task list.
-    resetParkTaskBeforeLogout: '<div>You are about to leave a task in progress.</br> Please choose one of the following options:</div><UL><LI> Logout: Discard your changes and logout.<LI> Reserve: Discard your changes and keep the task in your personal task list. Then logout.<LI> Cancel: Continue working
-      this task.</UL>'
+    createdTaskLeave: This task is in progress, if you leave it now you'll lose what you've done.
+    createdTaskLogout: This task is in progress, if you log out now you'll lose what you've done.
+    leaveTaskTitle: Leave this task?
+    resetParkTaskBeforeLeave: This task is in progress, if you leave it now you'll lose what you've done. If you reserve it will reappear in your task list.
+    resetParkTaskBeforeLogout: This task is in progress, if you log out now you'll lose what you've done. If you reserve it will reappear in your task list.
     taskNotFound: The task does not exist or you have insufficient rights to see this task.
   userProfile:
     myProfileTitle: My profile
@@ -1561,6 +1563,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: View all results
+              minimumKeywordText: Enter at least {0} characters to search.
               noResultsText: There are no results.
             dashboard:
               PortalDashboardConfiguration:

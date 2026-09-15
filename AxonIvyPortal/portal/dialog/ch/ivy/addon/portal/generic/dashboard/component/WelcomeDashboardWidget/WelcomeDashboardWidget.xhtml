@@ -60,31 +60,23 @@
 
       <p:graphicImage id="default-image" cache="true" styleClass="welcome-image default-welcome-image js-welcome-image #{widget.imageStyleClass}"
         alt="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/WelcomeDashboardWidget/WelcomeToAxon')}"
-        library="ivy-cms" rendered="#{empty widget.imageLocation}" name="#{dashboardWelcomeWidgetBean.defaultImageLink}" />
+        library="ivy-cms" rendered="#{empty widget.imageContentObject}" name="#{dashboardWelcomeWidgetBean.defaultImageLink}" />
 
       <p:graphicImage id="default-image-dark" cache="true" styleClass="welcome-image default-welcome-image-dark js-welcome-image #{widget.imageStyleClass}"
         alt="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/WelcomeDashboardWidget/WelcomeToAxon')}"
-        library="ivy-cms" rendered="#{empty widget.imageLocationDarkMode}" name="#{dashboardWelcomeWidgetBean.defaultImageDarkLink}" />
+        library="ivy-cms" rendered="#{empty widget.imageContentObjectDarkMode}" name="#{dashboardWelcomeWidgetBean.defaultImageDarkLink}" />
 
-      <h:panelGroup rendered="#{not empty widget.imageLocation}">
+      <h:panelGroup rendered="#{not empty widget.imageContentObject}">
         <p:graphicImage id="welcome-image" styleClass="default-welcome-image welcome-image js-welcome-image #{widget.imageStyleClass}"
           library="ivy-cms"
           alt="#{dashboardWelcomeWidgetBean.sanitizeHTML(widget.altText)}"
-          rendered="#{widget.imageContentObject.exists()}"
           name="#{widget.imageContentObject.uri()}"/>
-        <h:panelGroup id="not-found-welcome-image" styleClass="empty-message-container w-full" layout="block"
-            rendered="#{!widget.imageContentObject.exists()}">
-          <i class="ti ti-alert-circle empty-message-icon"/>
-          <br/>
-          <h:outputText styleClass="empty-message-text" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetNotFoundMessage')}" />
-        </h:panelGroup>
       </h:panelGroup>
       
-      <h:panelGroup rendered="#{not empty widget.imageLocationDarkMode}">
+      <h:panelGroup rendered="#{not empty widget.imageContentObjectDarkMode}">
         <p:graphicImage id="welcome-image-dark-mode" styleClass="default-welcome-image-dark welcome-image js-welcome-image #{widget.imageStyleClass}"
           library="ivy-cms"
           alt="#{dashboardWelcomeWidgetBean.sanitizeHTML(widget.altText)}"
-          rendered="#{widget.imageContentObjectDarkMode.exists()}"
           name="#{widget.imageContentObjectDarkMode.uri()}"/>
       </h:panelGroup>
       

@@ -16,12 +16,18 @@
   dynamic="#{not empty dynamic ? dynamic : 'false'}"
   resizable="false"
   appendTo="#{not empty appendTo ? appendTo : ''}"
+  onHide="#{onHide}"
   pt:aria-labelledby="#{not empty id ? id : widgetVar}-dialog-title">
-  
+
+  <h:panelGroup layout="block" rendered="#{iconCircleRendered and not empty iconClass}"
+    styleClass="portal-dialog-icon-circle #{iconCircleStyleClass}">
+    <i class="#{iconClass} #{iconStyleClass}" aria-hidden="true" />
+  </h:panelGroup>
+
   <div class="text-center">
     <p id="#{not empty id ? id : widgetVar}-dialog-title" class="text-style-h3">#{not empty headerText? headerText : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmationHeaderText')}</p>
   </div>
-  
+
   <ui:insert name="dialogContentSection" />
   
   <h:panelGroup layout="block" rendered="#{not empty dialogContent}" class="text-center portal-dialog-content portal-exception-dialog-content">

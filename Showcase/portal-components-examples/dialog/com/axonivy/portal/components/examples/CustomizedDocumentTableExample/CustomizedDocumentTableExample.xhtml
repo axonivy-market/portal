@@ -18,7 +18,7 @@
             <h2>This is customized document table component header</h2>
           </f:facet>
           <p:column headerText="Creator" styleClass="document-creator-column">
-            <h:outputText id="creator" value="#{document.creation.userName}" title="#{document.creation.userName}" />
+            <h:outputText id="creator" value="#{document.creation.user.name}" title="#{document.creation.user.name}" />
           </p:column>
           <p:column headerText="Created time" styleClass="document-created-column">
             <h:outputText id="created-time" value="#{document.creation.timestamp}" title="#{document.creation.timestamp}" />

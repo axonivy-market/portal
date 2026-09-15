@@ -36,8 +36,6 @@ Available Menu Options
    +-------------------------------+---------------------------------------------------------------+
    | **My Profile**                | General settings, language, and notifications                 |
    +-------------------------------+---------------------------------------------------------------+
-   | **Dashboard Configuration**   | Manage private and public dashboards                          |
-   +-------------------------------+---------------------------------------------------------------+
    | **Absences**                  | Manage absences and task delegates                            |
    +-------------------------------+---------------------------------------------------------------+
    | **Change Password**           | Set a new password                                            |
@@ -62,11 +60,6 @@ My Profile
 ^^^^^^^^^^
 
 The :ref:`my-profile` menu entry contains general settings, user language, and notification channels subscription settings.
-
-Dashboard Configuration
-^^^^^^^^^^^^^^^^^^^^^^^
-
-The :ref:`dashboard-configuration` menu entry allows you to manage your private dashboards and public dashboards (if permitted).
 
 Absences
 ^^^^^^^^
@@ -230,6 +223,12 @@ Available Portal Variables
 **Portal.GlobalSearchScopeCategories**
    Defines the categories that global search will search (can influence performance).
 
+**Portal.GlobalSearch.MinimumKeywordLength**
+   Defines the minimum number of characters a keyword must have before global search runs.
+   A shorter keyword matches nearly every row, which can be slow, so the search is skipped
+   rather than run. Defaults to ``3``; set to ``0`` to disable the check and search on any
+   keyword.
+
 .. tip::
    Configure these variables in :ref:`admin-settings` to optimize search performance for your Portal instance.
 
@@ -245,12 +244,6 @@ Different header features require specific permissions:
    | Action                               | Required Permission                                    |
    +======================================+========================================================+
    | **Access admin settings**            | Role ``AXONIVY_PORTAL_ADMIN``                          |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Manage own dashboards**            | :ref:`🔑DashboardWriteOwn                              |
-   |                                      | <DashboardWriteOwn>`                                   |
-   +--------------------------------------+--------------------------------------------------------+
-   | **Manage public dashboards**         | :ref:`🔑DashboardWritePublic                           |
-   |                                      | <DashboardWritePublic>`                                |
    +--------------------------------------+--------------------------------------------------------+
    | **Create own absences**              | :ref:`🔑UserCreateOwnAbsence                           |
    |                                      | <UserCreateOwnAbsence>`                                |

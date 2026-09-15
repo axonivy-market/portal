@@ -45,3 +45,6 @@ Variable,Default value,Description
 ``--portal-detail-subcard-padding``,1.0714rem,"Inner padding of a sub-card on the Task Details and Case Details pages"
 ``--portal-detail-grid-inset``,10px,"Outer margin of the content grid on the Task Details and Case Details pages"
 ``--portal-action-menu-radius``,10px,"Border radius of the action popup menu of a task or case"
+``--portal-dialog-icon-circle-size``,5.214rem,"Diameter of the round badge around the leading icon of a confirmation dialog"
+``--portal-dialog-warning-icon-circle-background-color``,"hsla(27, 100%, 95%, 1)","Background color of the round badge around the warning icon of a confirmation dialog"
+``--portal-dialog-warning-icon-circle-color``,"hsla(25, 95%, 44%, 1)","Color of the warning icon inside its round badge on a confirmation dialog"

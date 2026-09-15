@@ -106,6 +106,9 @@
   <c:set var="widget" value="#{dashboardDetailModificationBean.widget}" />
   <c:set var="widgetType" value="#{dashboardDetailModificationBean.widget.type}" />
 
+  <p:ajax event="close" listener="#{dashboardDetailModificationBean.onCancel(widget)}"
+    disabled="#{widgetType ne 'WELCOME'}" process="@this" global="false" immediate="true" />
+
   <h:form id="widget-configuration-form" styleClass="ui-g" onkeypress="if (event.keyCode == 13) { return false; }">
     <c:if test="#{widgetType eq 'TASK'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidgetConfiguration id="new-widget-configuration-component" taskWidget="#{widget}"

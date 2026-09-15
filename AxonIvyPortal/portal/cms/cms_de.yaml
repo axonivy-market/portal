@@ -280,6 +280,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableScriptCheckingForUploadedDocumentNote: Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt.
       enableTranslationService: Setzen Sie diese Eigenschaft auf true, um den Übersetzungsdienst zu aktivieren
       enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
+      globalSearchMinimumKeywordLengthNote: Mindestanzahl an Zeichen, die erforderlich ist, bevor die globale Suche ausgeführt wird. Der Standardwert ist 3; auf 0 setzen, um die Prüfung zu deaktivieren. Ein kürzeres Schlüsselwort trifft auf nahezu jede Zeile zu, was langsam sein kann, daher wird die Suche übersprungen statt ausgeführt.
       hideCaseCreator: |
         Auf true setzen, um den Fallersteller in der Fallliste, dem Fall-Widget und den Falldetails auszublenden.
         Diese Einstellung wirkt sich auf alle Fallabfragen aus, z. B. für Fallliste, globale Suche, Statistik.
@@ -825,7 +826,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     CustomWidgets: Benutzerdefinierte Widgets
     DashboardConfiguration:
       CreateFromScratch: Von Grund auf neu erstellen
-      CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
+      CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard
       CreateNewPrivateDashboard: Neues privates Dashboard erstellen
       CreateNewPublicDashboard: Neues öffentliches Dashboard erstellen
       Description: In diesem Bereich können Sie die Dashboards nach Ihren Wünschen konfigurieren und die Reihenfolge der Navigationselemente ändern.
@@ -874,6 +875,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPublicDashboards: Öffentliche Dashboards neu anordnen
       SelectAction: Wählen Sie die Aktion
       SomeThingWentWrong: Etwas ist schief gelaufen
+      Start: Start
+      Templates: Vorlagen
       Title: Portal-Konfiguration
       PackageManagement: Package management
       PackageManagementTabInfoPanel: '<p><b>What can I do here?</b></p><p>Export the current Portal configuration as a single zip package, or import a previously exported package to replace it.</p><p><b>Export</b></p><p>Downloads a <code>Portal_Package.zip</code> containing one JSON file per configuration type. Only types with existing data are included.</p><p><b>Import</b></p><p>Upload a zip package to preview which files it contains before applying. Recognized files replace the matching configuration; unrecognized files are skipped. This action cannot be undone.</p>'
@@ -1517,12 +1520,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Komplette Aufgabenliste anzeigen
     sort: Sortieren
   taskWarning:
-    createdTaskLeave: Wenn Sie jetzt verlassen, können Sie diese Aufgabe nicht erneut starten.
-    createdTaskLogout: '<div>Sie verlassen die aktuelle Seite.<br/> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    leaveTaskHeader: Diese Aufgabe verlassen?
-    resetParkTaskBeforeLeave: Diese Aufgabe ist in Bearbeitung. Wenn Sie sie jetzt verlassen, können Sie sie nicht erneut starten. Wenn Sie sie reservieren, erscheint sie wieder in Ihrer Aufgabenliste.
-    resetParkTaskBeforeLogout: '<div>Sie verlassen die aktuelle Aufgabe.</br> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben. Dann abmelden.<LI>Abbrechen:
-      Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    createdTaskLeave: Diese Aufgabe wird gerade bearbeitet. Wenn Sie sie jetzt verlassen, geht Ihre bisherige Arbeit verloren.
+    createdTaskLogout: Diese Aufgabe wird gerade bearbeitet. Wenn Sie sich jetzt abmelden, geht Ihre bisherige Arbeit verloren.
+    leaveTaskTitle: Diese Aufgabe verlassen?
+    resetParkTaskBeforeLeave: Diese Aufgabe wird gerade bearbeitet. Wenn Sie sie jetzt verlassen, geht Ihre bisherige Arbeit verloren. Wenn Sie sie reservieren, erscheint sie wieder in Ihrer Aufgabenliste.
+    resetParkTaskBeforeLogout: Diese Aufgabe wird gerade bearbeitet. Wenn Sie sich jetzt abmelden, geht Ihre bisherige Arbeit verloren. Wenn Sie sie reservieren, erscheint sie wieder in Ihrer Aufgabenliste.
     taskNotFound: Die Aufgabe existiert nicht oder Sie haben ungenügende Rechte, um diese Aufgabe zu sehen.
   userProfile:
     myProfileTitle: Mein Profil
@@ -1564,6 +1566,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: Alle Ergebnisse anzeigen
+              minimumKeywordText: Geben Sie mindestens {0} Zeichen ein, um zu suchen.
               noResultsText: Es liegen keine Ergebnisse vor.
             dashboard:
               PortalDashboardConfiguration:

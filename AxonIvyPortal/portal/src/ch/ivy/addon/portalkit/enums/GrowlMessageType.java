@@ -8,7 +8,7 @@ public enum GrowlMessageType {
   TASK_LEFT,
   TASK_FINISHED,
   PROCESS_VIEWER;
-  
+
   public String message() {
     String label = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/growlMessage/" + name());
     return StringUtils.isBlank(label) ? name() : label;
