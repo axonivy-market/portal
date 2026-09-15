@@ -77,17 +77,6 @@
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
   --widget-filter-background-color: var(--ivy-primary-color-grey-dark);
 
-  --widget-filter-save-filter-button-background-color: var(--ivy-portal-color-grey-450);
-  --widget-filter-condition-accent-border-color: hsla(0, 0%, 49%, 1);
-  --widget-filter-add-condition-background-color: hsla(0, 0%, 100%, 1);
-  --widget-filter-and-badge-background-color: hsla(0, 0%, 15%, 1);
-  --widget-filter-and-badge-text-color: hsla(0, 0%, 98%, 1);
-
-  --checkbox-checked-background-color: var(--ivy-portal-color-grey-900);
-  --checkbox-checked-icon-color: var(--ivy-portal-color-grey-50);
-  --checkbox-checked-hover-background-color: var(--ivy-portal-color-grey-700);
-  --checkbox-border-color: var(--ivy-portal-color-grey-600);
-
   /* Fieldset box */
   --portal-fieldset-background-color: var(--ivy-portal-color-grey-850);
   --portal-fieldset-border-color: var(--ivy-portal-color-grey-750);
@@ -104,13 +93,6 @@
   --widget-filter-save-input-background-color: hsla(0, 0%, 22%, 1);
   --widget-filter-empty-icon-color: var(--ivy-primary-color-grey-medium);
   --widget-filter-empty-icon-background-color: hsla(0, 0%, 22%, 1);
-  --widget-filter-apply-button-background-color: hsla(0, 0%, 100%, 1);
-  --widget-filter-apply-button-hover-background-color: hsla(0, 0%, 38%, 1);
-  --widget-filter-apply-button-text-color: var(--ivy-primary-color-black);
-  --widget-filter-add-condition-text-color: var(--ivy-primary-color-black);
-  --widget-filter-save-filter-button-text-color: var(--ivy-primary-color-black);
-  --widget-filter-reset-button-text-color: hsla(0, 0%, 100%, 1);
-  --widget-filter-manage-filter-text-color: hsla(0, 0%, 100%, 1);
   --widget-filter-saved-item-background-color: hsla(0, 0%, 22%, 1);
   --widget-filter-saved-item-active-background-color: hsla(0, 0%, 17%, 1);
   --widget-filter-saved-item-active-border: 1px solid hsla(0, 0%, 100%, 1);
@@ -202,27 +184,18 @@
   --task-detail-separator-border-color: #F4F4F4;
   /* Detail-page design tokens (IVYPORTAL-20779) — shared by Task Details and Case Details */
   /* Surfaces */
-  --portal-detail-card-bg: hsl(0, 0%, 17%);
   --portal-detail-subcard-bg: hsl(0, 0%, 20%);
-  --portal-detail-strip-bg: var(--portal-detail-subcard-bg);
   --portal-detail-table-cell-bg: transparent;
   /* Borders */
   --portal-detail-card-border-color: hsl(0, 0%, 29%);
-  --portal-detail-subcard-border-color: var(--portal-detail-card-border-color);
-  --portal-detail-divider-color: var(--portal-detail-card-border-color);
-  --portal-detail-table-header-border-color: var(--portal-detail-card-border-color);
   --portal-detail-table-row-border-color: hsl(0, 0%, 31%);
-  --portal-detail-strip-divider-color: var(--portal-detail-table-row-border-color);
   /* Text */
   --portal-detail-value-color: var(--ivy-primary-color-white);
   --portal-detail-label-color: var(--ivy-portal-color-grey-500);
-  --portal-detail-eyebrow-color: var(--portal-detail-label-color);
   /* Accent */
   --portal-detail-accent-color: var(--primary-color, hsl(0, 0%, 98%));
   /* Shadows */
-  --portal-detail-card-shadow: 0 0 1.9446rem 0 hsla(0, 0%, 0%, 0.25);
-  --portal-detail-toolbar-shadow: 0 0 0.9723rem 0 hsla(0, 0%, 0%, 0.25);
-  --portal-action-menu-shadow: 0 0 1.1143rem 0.2143rem hsla(0, 0%, 0%, 0.4);
+  --portal-action-menu-shadow: 0 0 1.114rem 0.214rem hsla(0, 0%, 0%, 0.4);
   --portal-action-menu-divider-color: hsl(0, 0%, 29%);
   --portal-action-menu-destroy-color: hsl(358, 83%, 61%);
   --task-start-info-header-font-weight: bold;
@@ -477,8 +450,6 @@
   --sidebar-mode-select-border-color: var(--ivy-portal-color-grey-950);
   --sidebar-toggle-checked-bg-color: var(--ivy-portal-color-slate-light);
   --sidebar-toggle-knob-color: var(--ivy-primary-color-black);
-  --button-primary-bg-color: var(--ivy-primary-color-white);
-  --button-primary-text-color: var(--ivy-primary-color-black);
   --dashboard-tab-active-color: var(--ivy-primary-color-white);
   --dashboard-header-card-bg-color: var(--ivy-portal-color-grey-850);
   --dashboard-header-card-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);

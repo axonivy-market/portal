@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html"
+  xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces">
+
+  <!-- Row actions of the document table, rendered either as separate icons or as menu items.
+       Included twice by DocumentTable.xhtml so both variants stay in sync. -->
+  <ui:param name="itemStyleClass" value="#{asMenu ? 'portal-action-menu-item option-item ui-menu-items' : ''}" />
+  <ui:param name="iconStyleClass" value="#{asMenu ? 'portal-action-menu-icon option-action-icon' : ''}" />
+
+  <p:commandLink id="document-preview" ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}"
+    process="@this"
+    styleClass="#{asMenu ? itemStyleClass : cc.attrs.previewStyleClass}"
+    actionListener="#{logic.preview(document)}"
+    rendered="#{documentUploadBean.canPreviewDocument(document,cc.attrs.previewRendered)}"
+    update=":#{cc.clientId}:preview-document-dialog"
+    oncomplete="PF('preview-document-dialog').show()">
+    <i class="#{iconStyleClass} ti #{cc.attrs.previewIcon}" />
+    <h:outputText rendered="#{asMenu}" styleClass="portal-action-menu-label option-item-label"
+      value="#{cc.attrs.previewTitle}" />
+    <p:tooltip rendered="#{!asMenu}" for="document-preview" trackMouse="true" hideEvent="mouseleave click"
+      value="#{cc.attrs.previewTitle}" />
+  </p:commandLink>
+
+  <p:commandLink id="document-download"
+    ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Download')}"
+    styleClass="#{asMenu ? itemStyleClass : cc.attrs.downloadStyleClass}"
+    immediate="true" ajax="false" process="@none"
+    rendered="#{cc.attrs.downloadRendered}">
+    <i class="#{iconStyleClass} ti #{cc.attrs.downloadIcon}" />
+    <h:outputText rendered="#{asMenu}" styleClass="portal-action-menu-label option-item-label"
+      value="#{cc.attrs.downloadTitle}" />
+    <p:fileDownload value="#{logic.download(document)}" />
+    <p:tooltip rendered="#{!asMenu}" for="document-download" trackMouse="true" hideEvent="mouseleave click"
+      value="#{cc.attrs.downloadTitle}" />
+  </p:commandLink>
+
+  <p:commandLink id="edit-filename" ariaLabel="#{cc.attrs.renameText}"
+    rendered="#{cc.attrs.renameRendered}"
+    styleClass="#{asMenu ? itemStyleClass : cc.attrs.renameStyleClass}" immediate="true"
+    actionListener="#{data.setSelectedDocument(document)}"
+    update=":#{cc.clientId}:document-renaming-dialog"
+    oncomplete="PF('document-renaming-dialog').show()">
+    <i class="#{iconStyleClass} ti ti-pencil" />
+    <h:outputText rendered="#{asMenu}" styleClass="portal-action-menu-label option-item-label"
+      value="#{cc.attrs.renameText}" />
+    <p:tooltip rendered="#{!asMenu}" for="edit-filename" trackMouse="true" hideEvent="mouseleave click"
+      value="#{cc.attrs.renameText}" />
+  </p:commandLink>
+
+  <p:commandLink id="document-delete"
+    ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Delete')}"
+    styleClass="#{asMenu ? itemStyleClass.concat(' color-destroy') : cc.attrs.deleteStyleClass}"
+    actionListener="#{data.setSelectedDocument(document)}" rendered="#{cc.attrs.deleteRendered}"
+    update="#{cc.attrs.updatedComponentAfterDeleted}" immediate="true"
+    oncomplete="PF('document-delete-dialog').show()">
+    <i class="#{iconStyleClass} ti #{cc.attrs.deleteIcon}" />
+    <h:outputText rendered="#{asMenu}" styleClass="portal-action-menu-label option-item-label"
+      value="#{cc.attrs.deleteTitle}" />
+    <p:tooltip rendered="#{!asMenu}" for="document-delete" trackMouse="true" hideEvent="mouseleave click"
+      value="#{cc.attrs.deleteTitle}" />
+  </p:commandLink>
+</ui:composition>

@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
+  xmlns:p="primefaces">
+
+  <!-- Action items of a document row. The surrounding menu shell is pc:actionMenu. -->
+  <p:commandLink id="preview-file" rendered="#{previewRendered}"
+    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}"
+    styleClass="portal-action-menu-item option-item ui-menu-items"
+    process="@this" update="#{previewUpdate}"
+    actionListener="#{logic.previewDocument(document)}"
+    oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('preview-document-dialog').show();}">
+    <i class="portal-action-menu-icon option-action-icon ti ti-eye" />
+    <span class="portal-action-menu-label option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}</span>
+  </p:commandLink>
+
+  <p:commandLink id="download-file-command" ajax="false"
+    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')} #{document.name}"
+    styleClass="portal-action-menu-item option-item ui-menu-items">
+    <p:fileDownload value="#{logic.downloadDocument(document)}" />
+    <i class="portal-action-menu-icon option-action-icon ti ti-download" />
+    <span class="portal-action-menu-label option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}</span>
+  </p:commandLink>
+
+  <p:commandLink id="edit-filename" rendered="#{canWriteDocument}"
+    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')} #{document.name}"
+    styleClass="portal-action-menu-item option-item ui-menu-items"
+    actionListener="#{data.setDocument(document)}" update="#{renameUpdate}"
+    oncomplete="PF('document-renaming-dialog').show()">
+    <i class="portal-action-menu-icon option-action-icon ti ti-pencil" />
+    <span class="portal-action-menu-label option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')}</span>
+  </p:commandLink>
+
+  <p:commandLink id="delete-file" rendered="#{canWriteDocument}"
+    ariaLabel="#{deleteFileLabel} #{document.name}"
+    styleClass="portal-action-menu-item option-item ui-menu-items color-destroy"
+    actionListener="#{data.setDocument(document)}"
+    oncomplete="PF('document-deletion-dialog').show()">
+    <i class="portal-action-menu-icon option-action-icon ti ti-trash" />
+    <span class="portal-action-menu-label option-item-label">#{deleteFileLabel}</span>
+  </p:commandLink>
+</ui:composition>

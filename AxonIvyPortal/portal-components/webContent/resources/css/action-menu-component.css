@@ -1,0 +1,91 @@
+:root {
+  --action-menu-shadow: 0 0 1.114rem 0.214rem hsla(0, 0%, 0%, 0.15);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --action-menu-shadow: 0 0 1.114rem 0.214rem hsla(0, 0%, 0%, 0.4);
+  }
+}
+
+.portal-action-menu.ui-overlaypanel,
+.portal-action-menu.ui-menu {
+  box-sizing: border-box;
+  min-width: 14rem;
+  width: max-content;
+  max-width: 22.857rem;
+  padding: 0;
+  border: none;
+  border-radius: var(--portal-action-menu-radius, 10px);
+  box-shadow: var(--portal-action-menu-shadow, var(--action-menu-shadow));
+  font-size: var(--default-font-size, 1rem);
+  white-space: nowrap;
+}
+
+.portal-action-menu.ui-overlaypanel::before,
+.portal-action-menu.ui-overlaypanel::after {
+  display: none;
+}
+
+.portal-action-menu.ui-overlaypanel .ui-overlaypanel-content {
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.portal-action-menu .portal-action-menu-item,
+.portal-action-menu.ui-menu .ui-menuitem-link {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.357rem;
+  width: 100%;
+  min-height: 3.143rem;
+  padding: 0 1.071rem;
+  margin: 0;
+  float: none;
+  clear: none;
+  font-size: var(--default-font-size, 1rem);
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: var(--portal-detail-value-color, var(--text-color));
+  border-top: 1px solid var(--portal-action-menu-divider-color, var(--surface-border));
+}
+
+.portal-action-menu.ui-overlaypanel > .ui-overlaypanel-content > .portal-action-menu-item:first-child,
+.portal-action-menu.ui-menu .ui-menuitem:first-child .ui-menuitem-link {
+  border-top: none;
+}
+
+.portal-action-menu .portal-action-menu-icon,
+.portal-action-menu.ui-menu .ui-menuitem-icon {
+  flex: 0 0 auto;
+  width: 1.2rem;
+  height: 1.2rem;
+  line-height: 1;
+  margin: 0;
+}
+
+.portal-action-menu .portal-action-menu-label,
+.portal-action-menu.ui-menu .ui-menuitem-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body .portal-action-menu .portal-action-menu-item.color-destroy {
+  color: var(--portal-action-menu-destroy-color, var(--red-500)) !important;
+}
+
+.portal-action-menu .color-destroy .portal-action-menu-icon {
+  color: inherit;
+}
+
+body .action-menu-button {
+  width: var(--portal-icon-btn-size-sm, 2.143rem);
+  min-width: var(--portal-icon-btn-size-sm, 2.143rem);
+  height: var(--portal-icon-btn-size-sm, 2.143rem);
+}

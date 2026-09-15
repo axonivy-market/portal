@@ -58,7 +58,7 @@ public class EscalationTaskTest extends BaseTest {
     taskDetailsPage.openActionPanel();
     taskDetailsPage.triggerEscalation();
     refreshPage();
-    taskDetailsPage.getPriorityOfTask().shouldHave(Condition.text("EXCEPTION"), DEFAULT_TIMEOUT);
+    taskDetailsPage.getPriorityOfTask().shouldHave(Condition.text("Exception"), DEFAULT_TIMEOUT);
     taskDetailsPage.getStateOfTask().shouldHave(Condition.text("Destroyed"), DEFAULT_TIMEOUT);
     taskDetailsPage.back();
     taskWidget.openFilterWidget();

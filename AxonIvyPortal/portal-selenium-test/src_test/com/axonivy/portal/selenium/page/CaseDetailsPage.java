@@ -264,13 +264,20 @@ public class CaseDetailsPage extends TemplatePage {
     return $("[id$='history-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
+
+  private void openDocumentActionsMenu() {
+    $("button[id$='document-actions-menu']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
   public SelenideElement getDeleteDocumentConfirmDialog() {
+    openDocumentActionsMenu();
     $("a[id$='delete-file']").shouldBe(getClickableCondition()).click();
     $(By.cssSelector("div[id$='document-deletion-dialog']")).shouldBe(appear, DEFAULT_TIMEOUT);
     return $("div[id$='document-deletion-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getRenameDocumentDialog() {
+    openDocumentActionsMenu();
     $("a[id$='edit-filename']").shouldBe(getClickableCondition()).click();
     $(By.cssSelector("div[id$='document-renaming-dialog']")).shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id$='document-renaming-dialog_title']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -361,7 +368,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getCaseState() {
-    return caseItem.findElement(By.cssSelector("span.state-with-indicator > span")).getText();
+    return caseItem.findElement(By.cssSelector("span.case-state")).getText();
   }
 
   public void openActionMenu() {
@@ -1047,6 +1054,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isDeleteDocumentButtonPresented(boolean expected) {
+    openDocumentActionsMenu();
     return isElementDisplayed(By.cssSelector("a[id$='delete-file']"), expected);
   }
 

@@ -42,7 +42,7 @@
           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
-          styleClass="case-details-documents" lazy="false"
+          styleClass="case-details-documents" lazy="false" rowIndexVar="rowIndex"
           sortBy="#{caseDetailsBean.sortByCreationTimestamp}">
           <p:ajax event="page" oncomplete="ResponsiveTable.init(':case-details-documents')"/>
           <p:ajax event="sort" oncomplete="ResponsiveTable.init(':case-details-documents')"/>
@@ -59,32 +59,6 @@
                   fileNameStyleClass="js-document-name document-name"
                   fileSizeStyleClass="document-size" />
                 <p:tooltip for="download" trackMouse="true" hideEvent="mouseleave click" value="#{document.relativePath}" />
-              </p:commandLink>
-              <p:commandLink id="preview-file" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
-                process="@this" update="#{p:resolveFirstComponentWithId('preview-document-dialog', view).clientId}"
-                styleClass="ti ti-eye Fright document-preview ui-sm-hidden"
-                actionListener="#{logic.previewDocument(document)}"
-                rendered="#{data.isDocumentPreviewEnabled and caseTaskDocumentBean.isSupportedPreviewType(document)}"
-                oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('preview-document-dialog').show();}">
-                <p:tooltip for="preview-file" trackMouse="true" hideEvent="mouseleave click"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" />
-              </p:commandLink>
-              <p:commandLink id="edit-filename" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')} #{document.name}"
-                styleClass="ti ti-pencil Fright document-renaming ui-sm-hidden"
-                rendered="#{caseTaskDocumentBean.canWriteDocument(case)}"
-                actionListener="#{data.setDocument(document)}"
-                update="#{p:resolveFirstComponentWithId('document-renaming-dialog', view).clientId}"
-                oncomplete="PF('document-renaming-dialog').show()">
-                <p:tooltip for="edit-filename" trackMouse="true" hideEvent="mouseleave click"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')} #{document.name}" />
-              </p:commandLink>
-              <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
-                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}"
-                rendered="#{caseTaskDocumentBean.canWriteDocument(case)}"
-                styleClass="ti ti-x Fright case-document-download"
-                oncomplete="PF('document-deletion-dialog').show()">
-                <p:tooltip for="delete-file" trackMouse="true" hideEvent="mouseleave click"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}" />
               </p:commandLink>
             </h:panelGroup>
           </p:column>
@@ -107,6 +81,22 @@
               <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
             </h:outputText>
           </p:column>
+
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
+            styleClass="document-actions text-center" width="80">
+            <pc:actionMenu triggerId="document-actions-menu"
+              panelWidgetVar="case-widget-document-actions-panel-#{rowIndex}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')} #{document.name}"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}">
+              <ui:include src="/layouts/includes/DocumentActionItems.xhtml">
+                <ui:param name="canWriteDocument" value="#{caseTaskDocumentBean.canWriteDocument(case)}" />
+                <ui:param name="previewRendered" value="#{data.isDocumentPreviewEnabled and caseTaskDocumentBean.isSupportedPreviewType(document)}" />
+                <ui:param name="previewUpdate" value="#{p:resolveFirstComponentWithId('preview-document-dialog', view).clientId}" />
+                <ui:param name="renameUpdate" value="#{p:resolveFirstComponentWithId('document-renaming-dialog', view).clientId}" />
+                <ui:param name="deleteFileLabel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')}" />
+              </ui:include>
+            </pc:actionMenu>
+          </p:column>
         </p:dataTable>
 
         <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{empty data.documents}">
@@ -117,7 +107,7 @@
           <p:commandLink id="add-document-command-empty" global="false"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
             rendered="#{caseTaskDocumentBean.canWriteDocument(case)}"
-            styleClass="case-details-document-add-link no-item-action-link portal-link"
+            styleClass="case-details-document-add-link no-item-action-link portal-link portal-detail-link"
             onclick="PF('document-upload-dialog').show()">
             <i class="ti ti-circle-plus" />
             <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>

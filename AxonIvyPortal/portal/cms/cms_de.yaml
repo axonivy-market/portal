@@ -611,7 +611,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     pinCaseContext: Vorgang {0} anheften
     pinTaskContext: Aufgabe {0} anheften
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
-    pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
+    pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hinzuzufügen
     previousStage: Vorherige Stufe
     private: Privat
     process: Prozess

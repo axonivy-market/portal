@@ -98,7 +98,7 @@ public class TaskDetailsPage extends TemplatePage {
 
   public SelenideElement getStateOfTask() {
     return $("[id$=':general-information:task-detail-state']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("i[class*='task-state']").closest("span");
+        .$("span[class*='task-state']");
   }
 
   public void back() {
@@ -266,7 +266,13 @@ public class TaskDetailsPage extends TemplatePage {
     return $("[id$=':task-detail-document-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+
+  private void openDocumentActionsMenu() {
+    $("button[id$='document-actions-menu']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
   public WebElement getDeleteDocumentConfirmDialog() {
+    openDocumentActionsMenu();
     $("a[id$='delete-file']").shouldBe(getClickableCondition()).click();
     return $("div[id$='document-deletion-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
