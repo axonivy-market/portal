@@ -88,8 +88,15 @@ public class DashboardProcessCaseSearchCriteria {
       appendSortByCreationDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
       appendSortByEndDateIfSet(criteria);
-      if (criteria.isSortDescending()) {
-        order.descending();
+      if (order != null) {
+        // Null placement must be explicit: ascending()/descending() leave it to the database,
+        // and Oracle/PostgreSQL order NULLs opposite to MySQL/MSSQL. Empty values last in both
+        // directions keeps the first page populated on every database.
+        if (criteria.isSortDescending()) {
+          order.descendingNullLast();
+        } else {
+          order.ascendingNullLast();
+        }
       }
       return this;
     }
