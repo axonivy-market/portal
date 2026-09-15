@@ -170,7 +170,7 @@
               pt:data-collapse-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapse')}"
               styleClass="toggle-fullscreen-item toggle-fullscreen-item-#{index}" containerStyleClass="actions-menu-item-bordered"
               rendered="#{renderExpandCollapse}"
-              onclick="event.preventDefault(); toggleFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}'); return false;" />
+              onclick="toggleFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}');" />
             <!-- Info -->
             <p:menuitem id="info-menu-item-#{index}"
               icon="ti ti-info-circle"

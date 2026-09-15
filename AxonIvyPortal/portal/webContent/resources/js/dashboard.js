@@ -246,6 +246,34 @@ function expandFullscreen(index, widgetId) {
     $(widget.get(0)).closest('.js-layout-content').addClass('expand-fullscreen');
   }
   loadMoreRowsWhenNotEnough(widget);
+  updateTableBodiesOfWidget(widget);
+}
+
+function updateTableBodiesOfWidget(widget) {
+  const apply = function () {
+    widget.find('.ui-datatable-scrollable-body').each(function () {
+      const tableBody = $(this);
+      const parentHeight = tableBody.closest('.grid-stack-item-content.card.dashboard-card').height();
+      if (!parentHeight) {
+        return;
+      }
+      const targetHeight = Math.max(0, Math.round(parentHeight - getReservedHeightForTableBody(tableBody)));
+      if (Math.round(tableBody.height()) !== targetHeight) {
+        tableBody.height(targetHeight);
+      }
+      const widgetName = tableBody.parents('.grid-stack-item').find('.js-table-widget-var').val();
+      if (!widgetName) {
+        return;
+      }
+      const table = PF(widgetName);
+      if (table) {
+        table.cfg.scrollHeight = tableBody.parents('.ui-datatable-scrollable').height().toString();
+      }
+    });
+  };
+  requestAnimationFrame(apply);
+  setTimeout(apply, 150);
+  setTimeout(apply, 350);
 }
 
 function loadMoreRowsWhenNotEnough(widget) {
@@ -347,6 +375,7 @@ function collapseFullscreen(index, widgetId) {
   // Hide dashboard overlay panel is opening
   hideAllDashboardOverlayPanels();
   resizeTableBody();
+  updateTableBodiesOfWidget(widget);
 }
 
 function loadWidgetFirstTime(loadingClass, widgetClass) {
