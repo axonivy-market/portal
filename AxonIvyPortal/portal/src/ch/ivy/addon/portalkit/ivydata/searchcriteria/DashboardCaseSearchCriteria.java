@@ -207,8 +207,15 @@ public class DashboardCaseSearchCriteria {
       appendSortByStateIfSet(criteria);
       appendSortByEndDateIfSet(criteria);
       appendSortByCustomFieldIfSet(criteria);
-      if (order != null && isSortDescending()) {
-        order.descending();
+      if (order != null) {
+        // Null placement must be explicit: ascending()/descending() leave it to the database,
+        // and Oracle/PostgreSQL order NULLs opposite to MySQL/MSSQL. Empty values last in both
+        // directions keeps the first page populated on every database.
+        if (isSortDescending()) {
+          order.descendingNullLast();
+        } else {
+          order.ascendingNullLast();
+        }
       }
       // Issue happens with Postgres DB, doesn't happen in designer and Mssql
       if (StringUtils.isNotBlank(criteria.getSortField())
