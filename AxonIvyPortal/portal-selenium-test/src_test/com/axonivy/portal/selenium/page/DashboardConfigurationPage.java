@@ -61,12 +61,17 @@ public class DashboardConfigurationPage extends TemplatePage {
         .$(".ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='menu-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
-  
+
   public SelenideElement getDashboardConfigurationPageWithActionsMenu() {
     waitForDashboardConfigurationTypeSelectionAppear();
     getDashboardConfigurationActionMenu();
     Sleeper.sleep(500); // Explicitly wait for better screenshots
-    return $("div[id$='configuration-group']"); 
+    return $("div[id$='configuration-group']");
+  }
+
+  public SelenideElement getEditDashboardDialog(int dashboardIndex) {
+    clickButtonOnDashboardConfigurationActionMenu("Settings", dashboardIndex);
+    return $("[id$='configuration-dashboard-detail-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getPrivateDashboardConfigurationTypeSelection() {
@@ -78,7 +83,7 @@ public class DashboardConfigurationPage extends TemplatePage {
     waitForDashboardConfigurationTypeSelectionAppear();
     return $("a[id$='public-dashboard-type']");
   }
-  
+
   public SelenideElement getDashboardConfigurationActionMenu() {
     $$("button[id$='dashboard-configuration-action-button']").filter(Condition.visible).first()
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
@@ -145,24 +150,24 @@ public class DashboardConfigurationPage extends TemplatePage {
     selectPrivateDashboardType();
     return new DashboardModificationPage();
   }
-  
+
   public DashboardModificationPage openEditPrivateDashboardPage(String buttonName) {
     selectPrivateDashboardType();
     clickButtonOnDashboardConfigurationActionMenu(buttonName);
     return new DashboardModificationPage();
   }
-  
+
   public DashboardModificationPage openEditPublicDashboardsPage(String buttonName) {
     selectPublicDashboardType();
     clickButtonOnDashboardConfigurationActionMenu(buttonName);
     return new DashboardModificationPage();
   }
-  
+
   public DashboardModificationPage openEditPublicDashboardsPage() {
     selectPublicDashboardType();
     return new DashboardModificationPage();
   }
-  
+
   public void clickButtonOnDashboardConfigurationActionMenu(String buttonName) {
     getDashboardConfigurationActionMenu().$$("span").filter(Condition.text(buttonName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
@@ -274,7 +279,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   public SelenideElement getMultipleLanguageDialog() {
     SelenideElement addLanguageDialog = $$(
         "[id$='dashboard-creation-component:title-language-config:multiple-languages-dialog']")
-        .filter(Condition.visible).first();
+            .filter(Condition.visible).first();
     addLanguageDialog.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return addLanguageDialog;
   }
@@ -345,7 +350,7 @@ public class DashboardConfigurationPage extends TemplatePage {
     createDashboardDialog.$("button[id$='dashboard-create-button']").click();
     createDashboardDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
-  
+
   public void selectDashboardDisplayType(DashboardDisplayType type, SelenideElement createDashboardDialog) {
     String label = displayTypeLabel(type);
     SelenideElement menu = createDashboardDialog.$("div[id$=':dashboard-display-menu']")
@@ -479,7 +484,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   private void dragAndDropTo(SelenideElement toRow, SelenideElement fromRow) {
-    SelenideElement targetCssSelector = $("[id$='"+ toRow.getAttribute("id") + "']");
+    SelenideElement targetCssSelector = $("[id$='" + toRow.getAttribute("id") + "']");
     // Center both rows in the viewport first: a native Actions move computes an absolute on-screen point
     // (here the target's position plus a 50,20 offset), and that throws MoveTargetOutOfBoundsException if
     // the row sits near the bottom/edge of a short viewport instead of being scrolled into comfortable view.
@@ -537,8 +542,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public void cancelCreateDashboard() {
-    $("div[id$='dashboard-creation-details-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).
-    $("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id$='dashboard-creation-details-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     closeAddDashboardDialog();
   }
 
@@ -549,7 +553,7 @@ public class DashboardConfigurationPage extends TemplatePage {
     $$("[id$=':dashboard-title']").filter(Condition.visible).first().sendKeys("My dashboard");
     $$("input[id$=':dashboard-description']").filter(Condition.visible).first().sendKeys("Public dashboard description");
   }
-  
+
   public SelenideElement getMenuIconContainer() {
     return $("div[id$=':dashboard-creation-details-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$=':custom-array-icon']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -581,8 +585,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public void cancelImportDashboard() {
-    $("div[id$='dashboard-import-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).
-    $("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id$='dashboard-import-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     closeAddDashboardDialog();
   }
 
@@ -653,12 +656,12 @@ public class DashboardConfigurationPage extends TemplatePage {
   public void clickOkCreateDashboard() {
     $("button[id$='dashboard-creation-component:dashboard-create-button']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public void clickOnAddWidgetButton() {
     $("span#dashboard-header-action").shouldBe(appear, DEFAULT_TIMEOUT).$("button#add-button").shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("div#new-widget-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public StatisticConfigurationPage clickOnCreateCustomStatisticWidgetButton() {
     $("a[id$='create-custom-statistic-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return new StatisticConfigurationPage();
@@ -672,7 +675,7 @@ public class DashboardConfigurationPage extends TemplatePage {
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return new NewDashboardPage().selectStatisticChartWidget(widgetName);
   }
-  
+
   public void setSearchInput(String widgetName) {
     $("div.new-widget-dialog__search").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("[id $= 'search-input']").shouldBe(appear, DEFAULT_TIMEOUT)

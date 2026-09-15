@@ -48,7 +48,7 @@ The tab :guilabel:`Private dashboards` allows you to add or edit your private da
 HowTo: add private dashboard
 ----------------------------
 
-#. Select :guilabel:`Add New Dashboard` button
+#. Select :guilabel:`New private Dashboard` button
 
 #. Select one of the available templates to add  (see :ref:`Available dashboard templates <private-available-dashboard-template>`).
 
@@ -56,7 +56,7 @@ HowTo: add private dashboard
 
 #. Enter the mandatory title and the optional description for the private dashboard.
 
-#. Create your private dashboard by selecting |add-icon| Create dashboard.
+#. Create your private dashboard by selecting :guilabel:`Create dashboard`.
 
 #. Configure your private dashboard (see: :ref:`Dashboard <new-dashboard>`).
 
@@ -109,16 +109,16 @@ HowTo: edit private dashboards
 The :guilabel:`Edit private dashboard` section shows your private dashboards in a table with the following columns:
 
 - **Dashboard title**: The name of the dashboard
-- **Dashboard description**: Optional description text
+- **Description**: Optional description text
 - **Actions**: Available operations for each dashboard
 
 **Available Actions:**
 
 Click on |actions-menu-icon| to open the :guilabel:`Actions` menu with these options:
 
-- |edit-icon| **Edit**: Modify dashboard name and description
-- |settings-icon| **Configuration**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
-- |download-icon| **Export**: Download dashboard as JSON file (requires :ref:`🔑DashboardExportOwn <DashboardExportOwn>` permission)
+- |settings-icon| **Settings**: Modify dashboard name and description
+- |edit-icon| **Edit layout**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
+- |download-icon| **Export dashboard**: Download dashboard as JSON file (requires :ref:`🔑DashboardExportOwn <DashboardExportOwn>` permission)
 - |trash-icon| **Delete**: Remove the private dashboard
 
 |edit-private-dashboards|
@@ -147,9 +147,26 @@ Public dashboards configuration
 The tab :guilabel:`Public dashboards` allows you to add, edit, and reorder public dashboards.
 Public dashboards are organized into three sections based on their **Display Type** setting:
 
-- **Top Menu** — dashboards appear as top-level items in the sidebar navigation
+- **Sidebar** — dashboards appear as top-level items in the sidebar
 - **Submenu** — dashboards are grouped under the Dashboard icon in the sidebar
 - **Hidden** — dashboards are not shown in the sidebar
+
+Each section displays a table with the following columns:
+
+- **Dashboard title**: The name of the dashboard
+- **Dashboard permissions**: Roles/permissions that can access the dashboard
+- **Dashboard description**: Optional description text
+- **Actions**:
+
+      Click on |actions-menu-icon| button to open the :guilabel:`Actions` menu with these options:
+
+      - |edit-icon| **Settings**: Modify dashboard name, permissions, description, and Display Type
+      - |settings-icon| **Edit layout**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
+      - |download-icon| **Export dashboard**: Download dashboard as JSON file (requires :ref:`🔑DashboardExportPublic <DashboardExportPublic>` permission)
+      - |share-icon| **Share**: Generate a shareable link to the dashboard (requires :ref:`🔑ShareDashboardLink <ShareDashboardLink>` permission)
+      - |trash-icon| **Delete**: Remove the public dashboard
+
+- **Reorder**: Drag handle |reorder-dashboard-icon| to reorder dashboards within the **Submenu** section
 
 |public-dashboard-configuration|
 
@@ -158,7 +175,7 @@ Public dashboards are organized into three sections based on their **Display Typ
 HowTo: add public dashboard
 ---------------------------
 
-#. Select :guilabel:`Add New Dashboard` button.
+#. Select :guilabel:`New dashboard` button.
 
 #. Select one of the available templates to add  (see :ref:`Available dashboard templates <public-available-dashboard-template>`).
 
@@ -167,11 +184,11 @@ HowTo: add public dashboard
 #. Enter the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
    Select a **Display Type** to control where the dashboard appears in the sidebar:
 
+   - **Sidebar** — the dashboard appears as a top-level item in the sidebar
    - **Submenu** — the dashboard is grouped under the Dashboard icon in the sidebar
-   - **Top Menu** — the dashboard appears as a top-level item in the sidebar navigation
    - **Hidden** — the dashboard is not shown in the sidebar
 
-#. Create the public dashboard by selecting |add-icon| Create dashboard.
+#. Create the public dashboard by selecting Create dashboard.
 
 #. Configuration public dashboard (see: :ref:`Dashboard <new-dashboard>`).
 
@@ -201,7 +218,7 @@ HowTo: import public dashboard
 .. note::
    Requires :ref:`🔑DashboardImportPublic <DashboardImportPublic>` permission.
 
-#. Select :guilabel:`Add New Dashboard` button.
+#. Select :guilabel:`New dashboard` button.
 
 #. Select |import-icon| Import.
 
@@ -213,7 +230,7 @@ HowTo: import public dashboard
    Select a **Display Type** to control where the dashboard appears in the sidebar:
 
    - **Submenu** — the dashboard is grouped under the Dashboard icon in the sidebar
-   - **Top Menu** — the dashboard appears as a top-level item in the sidebar navigation
+   - **Sidebar** — the dashboard appears as a top-level item in the sidebar navigation
    - **Hidden** — the dashboard is not shown in the sidebar
 
 #. Import the dashboard by selecting :guilabel:`Create Dashboard` button.
@@ -227,31 +244,15 @@ HowTo: import public dashboard
 HowTo: edit public dashboards
 -----------------------------
 
-The :guilabel:`Edit public dashboards` section shows you the public dashboards organized into three sections: **Top Menu**, **Submenu**, and **Hidden**. Each section displays a table with the following columns:
-
-- **Dashboard title**: The name of the dashboard
-- **Dashboard permissions**: Roles/permissions that can access the dashboard
-- **Dashboard description**: Optional description text
-- **Display Type**: Where the dashboard appears in the sidebar (Top Menu, Submenu, or Hidden)
-
-**Available Actions:**
-
-Click on |actions-menu-icon| to open the :guilabel:`Actions` menu with these options:
-
-- |edit-icon| **Edit**: Modify dashboard name, permissions, description, and Display Type
-- |settings-icon| **Configuration**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
-- |download-icon| **Export**: Download dashboard as JSON file (requires :ref:`🔑DashboardExportPublic <DashboardExportPublic>` permission)
-- |share-icon| **Share**: Generate a shareable link to the dashboard (requires :ref:`🔑ShareDashboardLink <ShareDashboardLink>` permission)
-- |trash-icon| **Delete**: Remove the public dashboard
-
 |edit-public-dashboards|
+
+Select :guilabel:`Settings` in the :guilabel:`Actions` menu to open an edit dashboard dialog, modify the dashboard icon, title, permissions, description, and Display Type.
 
 .. note::
    To move a dashboard between sections, open the Edit dialog and change the **Display Type** field.
 
 .. hint::
    When exporting a dashboard that references other dashboards, you will be prompted to include the referenced dashboards in the export.
-
 
 HowTo: share public dashboards
 --------------------------------
@@ -271,10 +272,8 @@ HowTo: reorder public dashboards
 
 You can rearrange dashboards within the **Submenu** section by dragging and dropping |reorder-dashboard-icon| icon.
 
-|reorder-public-dashboards|
-
 .. note::
-   Drag-and-drop reordering is only available within the **Submenu** section. Dashboards in the **Top Menu** and **Hidden** sections cannot be reordered by drag and drop.
+   Drag-and-drop reordering is only available within the **Submenu** section.
 
 Sidebar configuration
 =====================
@@ -503,8 +502,6 @@ Different Portal Configuration actions require specific permissions:
    :alt: Create public dashboard dialog
 .. |edit-public-dashboards| image:: ../../screenshots/dashboard-configuration/edit-public-dashboards.png
    :alt: Edit public dashboard dialog
-.. |reorder-public-dashboards| image:: ../../screenshots/dashboard-configuration/reorder-public-dashboards.png
-   :alt: Reorder public dashboards
 .. |dashboard-templates| image:: ../../screenshots/dashboard-configuration/dashboard-templates.png
    :alt: Dashboard template selection dialog
 .. |import-public-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/import-public-dashboard-dialog.png

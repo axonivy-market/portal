@@ -10,7 +10,7 @@ notifications, profile settings, and accessibility options.
 
    axon-ivy-portal/index
    new-dashboard/index
-   dashboard-configuration/index
+   portal-configuration/index
    complex-filter/index
    full-process-list/index
    full-task-list/index
