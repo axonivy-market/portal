@@ -100,6 +100,9 @@ public abstract class AbstractColumn implements Serializable {
     if (isNull(this.enableFilter)) {
       this.enableFilter = true;
     }
+    if (isNull(this.quickSearch)) {
+      this.quickSearch = false;
+    }
     if (isNull(this.sortable)) {
       this.sortable = getDefaultSortable();
     }
