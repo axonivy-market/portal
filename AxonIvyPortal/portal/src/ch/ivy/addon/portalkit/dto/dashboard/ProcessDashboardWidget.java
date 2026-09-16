@@ -15,6 +15,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.process.ProcessColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardProcessSearchCriteria;
+import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeTrue;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 
@@ -31,7 +32,9 @@ public class ProcessDashboardWidget extends DashboardWidget {
   private boolean isPreview;
   @JsonIgnore
   protected DashboardProcessSearchCriteria criteria;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showFullscreenMode;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showWidgetInfo;
 
   public ProcessDashboardWidget() {

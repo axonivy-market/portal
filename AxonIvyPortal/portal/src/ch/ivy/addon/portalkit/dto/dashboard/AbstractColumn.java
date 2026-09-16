@@ -101,7 +101,7 @@ public abstract class AbstractColumn implements Serializable {
       this.enableFilter = true;
     }
     if (isNull(this.quickSearch)) {
-      this.quickSearch = false;
+      this.quickSearch = getDefaultQuickSearch();
     }
     if (isNull(this.sortable)) {
       this.sortable = getDefaultSortable();
@@ -146,6 +146,11 @@ public abstract class AbstractColumn implements Serializable {
   @JsonIgnore
   public Boolean getDefaultSortable() {
     return true;
+  }
+
+  @JsonIgnore
+  public Boolean getDefaultQuickSearch() {
+    return false;
   }
 
   @JsonIgnore

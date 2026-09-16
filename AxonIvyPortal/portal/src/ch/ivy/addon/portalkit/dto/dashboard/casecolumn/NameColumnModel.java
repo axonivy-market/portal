@@ -13,7 +13,6 @@ public class NameColumnModel extends CaseColumnModel {
     super.initDefaultValue();
     this.field = DashboardStandardCaseColumn.NAME.getField();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
-    this.quickSearch = defaultIfEmpty(this.quickSearch, true);
     this.styleToDisplay = initDefaultStyle();
   }
   
@@ -42,6 +41,11 @@ public class NameColumnModel extends CaseColumnModel {
 
   @Override
   public boolean canQuickSearch() {
+    return true;
+  }
+
+  @Override
+  public Boolean getDefaultQuickSearch() {
     return true;
   }
 }

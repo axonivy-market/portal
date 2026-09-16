@@ -360,7 +360,7 @@ public class DashboardWidgetUtils {
     if (BooleanUtils.isTrue(column.getEnableFilter())) {
       column.setEnableFilter(null);
     }
-    if (BooleanUtils.isFalse(column.getQuickSearch())) {
+    if (Objects.equals(column.getDefaultQuickSearch(), column.getQuickSearch())) {
       column.setQuickSearch(null);
     }
     if (BooleanUtils.isTrue(column.getSortable())) {
