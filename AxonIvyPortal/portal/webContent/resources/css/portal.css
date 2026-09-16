@@ -3021,9 +3021,13 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 /* Share link panel ----------------------------------------*/
 .share-link-panel.ui-overlaypanel {
   width: 30dvw;
-  padding: 0.5rem;
+  padding: 1rem;
   margin-top: 3rem;
   border-radius: 10px;
+}
+
+.share-link-panel.ui-overlaypanel .ui-overlaypanel-content {
+  padding: 0 !important;
 }
 
 .share-link-panel-content {
@@ -3032,8 +3036,8 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   gap: 0.857rem;
 }
 
-.share-link-panel-title {
-  font-weight: 600; 
+.share-link-panel-above.ui-overlaypanel {
+  margin-top: 0;
 }
 
 .share-link-panel-input-group {

@@ -114,8 +114,8 @@ public class TaskDetailsPage extends TemplatePage {
     return $("button[id$=':share-page-button']");
   }
 
-  public SelenideElement getShareDialog() {
-    return $("div[id$=':share-task-details-dialog']");
+  public SelenideElement getSharePanel() {
+    return $("div[id$=':share-task-details-panel']");
   }
 
   public String getCreatedOnDateText() {

@@ -224,7 +224,7 @@ public class CaseDetailsPage extends TemplatePage {
     return $("button[id$=':share-page-button']");
   }
 
-  public SelenideElement getShareDialog() {
+  public SelenideElement getSharePanel() {
     return $("div[id$=':share-case-details-panel']");
   }
 

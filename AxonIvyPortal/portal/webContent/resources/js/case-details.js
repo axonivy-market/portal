@@ -91,14 +91,3 @@ function handleCaseDetailsTable() {
     ResponsiveTable.init(":case-histories:case-histories");
   }
 }
-
-function checkShareCaseDetailsCopyFeature() {
-  if (navigator.clipboard === undefined) {
-    $("button[id$=':share-link-copy-button']").remove();
-  }
-}
-
-function copyShareCaseDetailsLink(text) {
-  navigator.clipboard.writeText(text);
-  PF('share-case-details-panel').hide();
-}
