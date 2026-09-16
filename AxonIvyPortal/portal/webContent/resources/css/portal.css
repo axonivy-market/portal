@@ -987,7 +987,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   font-size: var(--delete-deputy-icon-font-size); }
 
 .absence-page-close-button {
-  color: var(--ivy-primary-color-black) !important;
+  color: var(--text-color) !important;
 }
 /*Awesome Icon Selection--------------------------*/
 
@@ -2093,6 +2093,11 @@ body a.portal-pill-btn:focus {
   text-decoration: none;
 }
 
+body .ui-dialog .ui-dialog-titlebar > .ui-button-icon-left,
+body .ui-dialog .ui-dialog-titlebar {
+  color: var(--text-color) !important;
+}
+
 /* Shared: pill button ----------------------------------------*/
 .portal-pill-btn.ui-button,
 .portal-pill-btn {
@@ -2225,11 +2230,6 @@ body .case-list .ui-sidestep-action.portal-icon-btn-round .ti {
   font-size: var(--portal-tabler-icon-size);
 }
 
-.portal-pill-btn.portal-pill-btn-lg.ui-button,
-.portal-pill-btn.portal-pill-btn-lg {
-  height: var(--portal-icon-btn-size-lg);
-}
-
 /* min-height must be overridden too, it beats height on the base pill */
 .portal-pill-btn.portal-pill-btn-sm.ui-button,
 .portal-pill-btn.portal-pill-btn-sm {
@@ -2318,8 +2318,11 @@ body .ui-button.portal-icon-btn-round.portal-icon-btn-accent.ui-state-disabled {
   flex: 0 0 auto;
 }
 
-.portal-detail-toolbar-actions button.reset-details-settings-button, .portal-detail-toolbar-actions button.switch-view-mode-btn {
-  padding: 1rem;
+.portal-detail-toolbar-actions button.switch-view-mode-btn, .portal-detail-toolbar-actions button.reset-details-settings-button {
+  height: var(--portal-icon-btn-size-lg);
+  display: flex;
+  align-items: center;
+  border-radius: 100px;
 }
 
 .portal-detail-toolbar-actions 
@@ -2352,6 +2355,7 @@ body a.portal-detail-toolbar-back:focus,
 .portal-detail-toolbar .portal-detail-toolbar-actions .switch-to-edit-mode-btn {
   width: 8.785rem;
   height: 3.071rem;
+  border-radius: 100px;
 }
 
 /* Shared: empty-state block (task & case documents/notes) ----------------------------------------*/
@@ -3142,27 +3146,20 @@ body .portal-action-menu .portal-action-menu-item.color-destroy {
 
 /* ======================= PORTAL FIELDSET LEGEND ========================== */
 .portal-fieldset.ui-fieldset {
-  background: var(--portal-fieldset-background-color);
-  border: 1px solid var(--portal-fieldset-border-color);
   border-radius: 10px;
 }
 
 .portal-fieldset.ui-fieldset > .ui-fieldset-legend {
-  border: 1px solid var(--portal-fieldset-legend-border-color);
-  color: var(--portal-fieldset-legend-color);
-  background-color: var(--portal-fieldset-legend-background-color);
   border-radius: 100px;
   padding: 0.4rem 0.9rem;
 }
 
 .portal-fieldset.ui-fieldset > .ui-fieldset-legend .ui-fieldset-legend-text {
-  color: var(--portal-fieldset-legend-color);
   font-weight: 600;
 }
 
 .portal-fieldset.ui-fieldset > .ui-fieldset-legend .ui-fieldset-toggler {
   background: none;
-  color: var(--portal-fieldset-legend-color);
   width: auto;
   height: auto;
   text-indent: 0;
@@ -3170,31 +3167,4 @@ body .portal-action-menu .portal-action-menu-item.color-destroy {
   line-height: 1;
 }
 
-.portal-fieldset.ui-fieldset > .ui-fieldset-legend .ui-fieldset-toggler::before {
-  content: "+";
-  font-family: inherit;
-}
-
-.portal-fieldset.ui-fieldset > .ui-fieldset-legend a[aria-expanded="true"] .ui-fieldset-toggler::before {
-  content: "\2212";
-}
-
-.portal-fieldset.ui-fieldset > .ui-fieldset-legend:hover,
-.portal-fieldset.ui-fieldset > .ui-fieldset-legend.ui-state-hover,
-.portal-fieldset.ui-fieldset > .ui-fieldset-legend.ui-state-focus,
-.portal-fieldset.ui-fieldset > .ui-fieldset-legend a:hover,
-.portal-fieldset.ui-fieldset > .ui-fieldset-legend a.ui-state-hover,
-.portal-fieldset.ui-fieldset > .ui-fieldset-legend a.ui-state-focus {
-  background: var(--portal-fieldset-legend-hover-background-color);
-  background-image: none;
-  border-color: var(--portal-fieldset-legend-border-color);
-  color: var(--portal-fieldset-legend-color);
-}
-
-.portal-fieldset.ui-fieldset > .ui-fieldset-legend:hover .ui-fieldset-legend-text,
-.portal-fieldset.ui-fieldset > .ui-fieldset-legend.ui-state-hover .ui-fieldset-legend-text,
-.portal-fieldset.ui-fieldset > .ui-fieldset-legend:hover .ui-fieldset-toggler,
-.portal-fieldset.ui-fieldset > .ui-fieldset-legend.ui-state-hover .ui-fieldset-toggler {
-  color: var(--portal-fieldset-legend-color);
-}
 /* ==================== PORTAL FIELDSET LEGEND END ======================== */

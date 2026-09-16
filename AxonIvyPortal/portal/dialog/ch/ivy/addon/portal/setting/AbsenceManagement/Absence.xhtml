@@ -24,7 +24,7 @@
           <h:outputText value="#{ivy.cms.co(absenceManagementBean.createMode ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/editAbsence')}" />
         </div>
           <h:form id="absence-close-form">
-            <p:commandButton icon="pi pi-times"
+            <p:commandButton icon="ti ti-x"
                             oncomplete="PF('absence-dialog').hide();" update="absence-form"
                             process="@this" actionListener="#{absenceManagementBean.cancelAbsence()}"
                             styleClass="ui-button ui-widget ui-state-default ui-corner-all absence-page-close-button ui-button-icon-only ui-button-flat rounded-button" />
