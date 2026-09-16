@@ -863,7 +863,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void openWidgetFilter(int index) {
-    SelenideElement actionsMenuPanel = openWidgetActionsMenuFor(getCaseWidget());
+    SelenideElement actionsMenuPanel = openWidgetActionsMenu(index);
     actionsMenuPanel.$$("a.ui-menuitem-link").filter(Condition.text("Filters")).first()
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     WaitHelper.waitPageNoAnimation();
@@ -897,12 +897,8 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public WebElement openWidgetInformation(int index) {
-    SelenideElement actionsMenuButton = getDashboardWidget(index).$("button[id$=':actions-menu-button_button']")
-        .shouldBe(appear, DEFAULT_TIMEOUT);
-    waitForElementClickableThenClick(actionsMenuButton);
-    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
-    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
-    String infoMenuItemId = actionsMenuButton.getAttribute("id").replace("actions-menu-button_button",
+    SelenideElement actionsMenuPanel = openWidgetActionsMenu(index);
+    String infoMenuItemId = getActionsMenuButton(index).getAttribute("id").replace("actions-menu-button_button",
         "info-menu-item-" + index);
     actionsMenuPanel.$("[id='" + infoMenuItemId + "']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -910,11 +906,41 @@ public class NewDashboardPage extends TemplatePage {
     String infoPanel = String.format("div[id$='info-overlay-panel-%d']", index);
     $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT).$(".widget-info--type")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $(infoPanel).$("[class^='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitForWidgetStatisticLoaded(infoPanel);
     return $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  private SelenideElement getDashboardWidget(int index) {
+  /**
+   * Waits until every statistic of the opened widget information panel has been loaded. Each
+   * statistic shows a "Loading..." text which gets the "hidden" class once its data has arrived.
+   */
+  private void waitForWidgetStatisticLoaded(String infoPanel) {
+    $$(infoPanel + " [class*='js-loading-']:not(.hidden)").shouldBe(CollectionCondition.empty, DEFAULT_TIMEOUT);
+    $$(infoPanel + " [class*='js-statistic-']:not(.hidden)")
+        .shouldBe(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement openWidgetActionsMenu(int index) {
+    SelenideElement actionsMenuButton = getActionsMenuButton(index);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    // Wait for the end of the fade in animation, otherwise the menu is still transparent
+    return $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
+  }
+
+  public void closeWidgetActionsMenu(int index) {
+    SelenideElement actionsMenuButton = getActionsMenuButton(index);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    waitForElementClickableThenClick(actionsMenuButton);
+    $("[id='" + menuId + "']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getActionsMenuButton(int index) {
+    return getDashboardWidget(index).$("button[id$=':actions-menu-button_button']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getDashboardWidget(int index) {
     if (index == 0) {
       return getTaskWidget();
     }

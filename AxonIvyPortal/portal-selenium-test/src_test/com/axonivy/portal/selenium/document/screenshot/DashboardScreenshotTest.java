@@ -198,11 +198,17 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
                 homePage.waitForCaseWidgetLoaded();
                 ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "dashboard");
 
-                // Take screenshot of widget actions menu panel
                 homePage.openWidgetActionsMenu(0);
-                WaitHelper.waitPageNoAnimation();
-                ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getTaskWidget(),
-                                ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-actions-menu-panel", new ScreenshotMargin(20, 250, 20, 20));
+                ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getDashboardWidget(0),
+                                ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-actions-menu-panel",
+                                new ScreenshotMargin(20, 300, 20, 20));
+                homePage.closeWidgetActionsMenu(0);
+
+                homePage.openWidgetActionsMenu(1);
+                ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getDashboardWidget(1),
+                                ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-widget-actions-menu-panel",
+                                new ScreenshotMargin(20, 300, 20, 20));
+                homePage.closeWidgetActionsMenu(1);
 
                 // Take screenshot of widget filter panel
                 homePage.openWidgetFilter(1);
@@ -219,9 +225,9 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
                 ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getCaseWidget(),
                                 ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-widget-actions-menu-panel", new ScreenshotMargin(20, 250, 20, 20));
                 var taskInfoOverlayPanel = homePage.openWidgetInformation(0);
-                // Take screenshot of widget info panel
-                ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskInfoOverlayPanel,
-                                ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-info", new ScreenshotMargin(20));
+                ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getDashboardWidget(0),
+                                ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-info",
+                                new ScreenshotMargin(20, 300, 20, 20));
 
                 // Take screenshot of task Excel export link
                 ScreenshotUtils.executeDecorateJs("highlightWidgetExportToExcelLinkForTask()");
