@@ -1711,8 +1711,6 @@ Dialogs:
               ImportPublic: Importar panel público
               NavigationWidgetMissingTarget: El widget de navegación "{0}" hace referencia a un panel que no fue importado y no existe en este portal. Es posible que el widget no funcione correctamente.
               chooseAJsonFile: Elija un archivo json
-            DashboardSharing:
-              ShareDashboard: Compartir panel
             NavigationDashboardWidget:
               PermissionsDenied: No tienes permiso para acceder a este panel.
             NavigationDashboardWidgetConfiguration:

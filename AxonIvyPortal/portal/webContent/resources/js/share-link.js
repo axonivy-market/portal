@@ -1,8 +1,10 @@
 /**
- * Shared behaviour for the ShareLinkDialog component, in both its dialog and its overlay panel mode.
+ * Shared behaviour for the ShareLinkDialog component.
  * Every lookup is scoped to one widget, so several share links can live on the same page.
  */
 var PortalShareLink = (function () {
+
+  var lastAnchorId = null;
 
   function widget(widgetVar) {
     return (window.PrimeFaces && PrimeFaces.widgets[widgetVar]) || null;
@@ -53,12 +55,19 @@ var PortalShareLink = (function () {
       }
     },
 
-    show: function (widgetVar) {
+    /**
+     * An overlay menu hides itself as soon as one of its items is clicked, so a menu item cannot
+     * anchor the panel. Remember the menu's own trigger instead, while it is still on screen.
+     */
+    rememberAnchor: function (element) {
+      lastAnchorId = element && element.id ? element.id : null;
+    },
+
+    showAtAnchor: function (widgetVar) {
       var shareWidget = widget(widgetVar);
-      if (shareWidget) {
-        shareWidget.show();
+      if (shareWidget && lastAnchorId && document.getElementById(lastAnchorId)) {
+        shareWidget.show(lastAnchorId);
       }
-      return false;
     },
 
     toggle: function (widgetVar, source) {

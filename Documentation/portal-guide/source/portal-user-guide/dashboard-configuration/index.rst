@@ -509,7 +509,7 @@ Different Portal Configuration actions require specific permissions:
 .. |import-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/import-private-dashboard-dialog.png
    :alt: Import private dashboard dialog
 .. |share-public-dashboards| image:: ../../screenshots/dashboard-configuration/share-dashboard-dialog.png
-   :alt: Share dashboard dialog
+   :alt: Share dashboard panel
 .. |sidebar-navigation-configuration| image:: ../../screenshots/dashboard-configuration/sidebar-navigation-configuration.png
    :alt: Sidebar navigation configuration tab
 .. |add-menu-item-dialog| image:: ../../screenshots/dashboard-configuration/add-menu-item-dialog.png

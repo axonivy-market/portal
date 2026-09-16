@@ -1715,8 +1715,6 @@ Dialogs:
               ImportPublic: Öffentliches Dashboard importieren
               NavigationWidgetMissingTarget: Navigations-Widget "{0}" verweist auf ein Dashboard, das nicht importiert wurde und in diesem Portal nicht vorhanden ist. Das Widget funktioniert möglicherweise nicht korrekt.
               chooseAJsonFile: Wählen Sie eine JSON-Datei
-            DashboardSharing:
-              ShareDashboard: Dashboard teilen
             NavigationDashboardWidget:
               PermissionsDenied: Sie haben keine Berechtigung zum Zugriff auf dieses Dashboard
             NavigationDashboardWidgetConfiguration:

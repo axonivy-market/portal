@@ -3036,7 +3036,7 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   gap: 0.857rem;
 }
 
-.share-link-panel-above.ui-overlaypanel {
+.share-link-panel-flush.ui-overlaypanel {
   margin-top: 0;
 }
 
@@ -3052,15 +3052,13 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 }
 
 
-/* Shared: mid-size dialogs (share link, Excel export status, add note) ----------------------------------------*/
-.share-dialog.ui-dialog,
+/* Shared: mid-size dialogs (Excel export status, add note) ----------------------------------------*/
 .export-status-dialog.ui-dialog,
 .portal-detail-note-dialog.ui-dialog {
   min-width: min(50vw, 750px);
   max-width: 750px;
 }
 @media screen and (max-width: 40em) {
-  .share-dialog.ui-dialog,
   .export-status-dialog.ui-dialog,
   .portal-detail-note-dialog.ui-dialog {
     min-width: 85vw;

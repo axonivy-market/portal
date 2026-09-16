@@ -575,9 +575,11 @@ public class DashboardConfigurationPage extends TemplatePage {
     uploadFile("Dashboard_Dashboard_Export.json");
   }
 
-  public SelenideElement getShareDashboardDialog() {
+  public SelenideElement getShareDashboardPanel() {
     clickButtonOnDashboardConfigurationActionMenu("Share");
-    return $("div[id$=':share-dashboard-dialog']");
+    SelenideElement panel = $("div[id$=':share-dashboard-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
+    return panel;
   }
 
   public void cancelImportDashboard() {
