@@ -1,21 +1,22 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
-import static com.codeborne.selenide.Condition.text;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.LinkNavigator;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
+import static com.codeborne.selenide.Condition.text;
 
 @IvyWebTest
 public class DashboardEditTaskWidgetTest extends BaseTest {
@@ -129,6 +130,7 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
     var modificationPage = configurationPage.openEditPublicDashboardsPage();
     newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
     newDashboardDetailsEditPage.addWidget();
     TaskEditWidgetNewDashBoardPage taskWidget = newDashboardDetailsEditPage.addNewTaskWidget();
     taskWidget.waitPreviewTableLoaded();

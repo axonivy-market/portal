@@ -413,7 +413,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void resetFilter() {
-    $("button[id$=':reset-filter']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("a[id$=':reset-filter']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     countFilterSelect().shouldBe(CollectionCondition.size(0), DEFAULT_TIMEOUT);
   }
 
