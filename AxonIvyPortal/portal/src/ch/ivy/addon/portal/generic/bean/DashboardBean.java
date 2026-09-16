@@ -149,7 +149,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   private void updateSelectedDashboard() {
-    currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
+    currentDashboardIndex = DashboardUtils.findIndexOfDashboardById(dashboards, selectedDashboardId);
     if (currentDashboardIndex < 0) {
       selectedDashboard = null;
       return;
@@ -231,7 +231,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
 
   public void handleStartTask(ITask task) throws IOException {
     selectedTask = task;
-    if (DashboardDisplayType.TOP_MENU.equals(selectedDashboard.getDashboardDisplayType())) {
+    if (selectedDashboard != null && DashboardDisplayType.TOP_MENU.equals(selectedDashboard.getDashboardDisplayType())) {
       TaskUtils.handleStartTask(task, PortalPage.HOME_PAGE, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG,
           selectedDashboardId);
     } else {
@@ -329,6 +329,9 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     deleteFilters = new ArrayList<>();
     widgetFilters.addAll(WidgetFilterService.getInstance().findAll());
 
+    if (selectedDashboard == null) {
+      return;
+    }
     // Update latest widget name
     widgetFilters.forEach(filter -> {
       var selectedWidget = selectedDashboard.getWidgets().stream()
@@ -437,21 +440,6 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     this.dashboardTemplates = dashboardTemplates;
   }
 
-  private int findIndexOfDashboardById(String selectedDashboardId) {
-    if (StringUtils.isNotBlank(selectedDashboardId)) {
-      return dashboards.stream().filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst()
-          .map(dashboards::indexOf).orElseGet(this::findIndexOfFirstSubMenuDashboard);
-    }
-
-    return findIndexOfFirstSubMenuDashboard();
-  }
-
-  private int findIndexOfFirstSubMenuDashboard() {
-    return dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())).findFirst()
-        .map(dashboards::indexOf).orElse(-1);
-  }
-
-
   public int getMaxRowNumberInExcel() {
     return Exporter.MAX_ROW_NUMBER_IN_EXCEL;
   }
@@ -559,11 +547,17 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     }
     if (Ivy.request().getRequestPath().endsWith("/PortalMainDashboard.xhtml")) {
       selectedDashboardId = (String) Ivy.session().getAttribute(SELECTED_DASHBOARD_ID.name());
-    } else {
-      selectedDashboardId = (String) Ivy.session().getAttribute(SELECTED_SUB_DASHBOARD_ID.name());
+      return;
+    }
+    selectedDashboardId = (String) Ivy.session().getAttribute(SELECTED_SUB_DASHBOARD_ID.name());
+    if (StringUtils.isNotBlank(selectedDashboardId) && !DashboardUtils.isSubMenuDashboard(dashboards, selectedDashboardId)) {
+      // The remembered dashboard was later changed to a non-submenu display type (e.g. promoted to
+      // a sidebar entry) - the stale id must not be trusted, or this submenu entry point would keep
+      // rendering a dashboard that is no longer a valid submenu dashboard.
+      selectedDashboardId = null;
     }
   }
-  
+
   public void setSearchScope(DashboardWidget widget) {
     List<String> columnList = new ArrayList<>();
     if (widget instanceof TaskDashboardWidget taskWidget) {
