@@ -517,7 +517,8 @@ public class DashboardWidgetUtils {
   }
 
   private static final Set<DashboardStandardTaskColumn> NOT_DEFAULT_TASK_COLUMNS = Set.of(
-      DashboardStandardTaskColumn.BUSINESS_CASE_ID, DashboardStandardTaskColumn.TECHNICAL_CASE_ID);
+      DashboardStandardTaskColumn.BUSINESS_CASE_ID, DashboardStandardTaskColumn.TECHNICAL_CASE_ID,
+      DashboardStandardTaskColumn.APPLICATION, DashboardStandardTaskColumn.WORKER);
 
   public static List<TaskColumnModel> initStandardTaskColumns() {
     List<TaskColumnModel> columnModels = new ArrayList<>();
@@ -564,9 +565,15 @@ public class DashboardWidgetUtils {
     return DashboardWidgetUtils.buildCaseColumns(widget);
   }
 
+  private static final Set<DashboardStandardCaseColumn> NOT_DEFAULT_CASE_COLUMNS =
+      Set.of(DashboardStandardCaseColumn.APPLICATION);
+
   public static List<CaseColumnModel> initStandardColumns() {
     List<CaseColumnModel> columnModels = new ArrayList<>();
     for (DashboardStandardCaseColumn col : DashboardStandardCaseColumn.values()) {
+      if (NOT_DEFAULT_CASE_COLUMNS.contains(col)) {
+        continue;
+      }
       CaseColumnModel columnModel = new CaseColumnModel();
       columnModel.setField(col.getField());
       columnModels.add(columnModel);
