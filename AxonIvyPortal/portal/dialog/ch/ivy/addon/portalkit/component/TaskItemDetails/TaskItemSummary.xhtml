@@ -111,6 +111,8 @@
         <div class="task-detail-attr-value">
           <i class="ti ti-calendar" />
           <h:outputText id="due-date" value="#{formattingNullWrapperBean.format(task.expiryTimestamp)}" />
+          <p:tooltip for="due-date" value="#{formattingNullWrapperBean.format(task.expiryTimestamp)}"
+            trackMouse="true" hideEvent="mouseleave click" />
         </div>
       </div>
 

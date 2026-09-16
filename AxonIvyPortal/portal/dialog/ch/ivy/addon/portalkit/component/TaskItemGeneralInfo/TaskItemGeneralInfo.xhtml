@@ -31,7 +31,9 @@
       <div class="portal-detail-subcards-row">
     <div id="role-and-user-information" class="role-and-user-information portal-detail-inner-card">
       <div class="portal-detail-subcard-title flex align-items-center justify-content-between">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/RoleUserInformation')}" styleClass="text-ellipsis" />
+        <h:outputText id="role-user-information-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/RoleUserInformation')}" styleClass="text-ellipsis" />
+        <p:tooltip for="role-user-information-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/RoleUserInformation')}"
+          trackMouse="true" hideEvent="mouseleave click" />
         <p:commandLink id="delegate-task-command" styleClass="task-detail-delegate-link portal-link portal-detail-link" global="false"
           rendered="#{taskActionBean.showDelegateTask}" disabled="#{!taskActionBean.canDelegate(task) or cc.attrs.readOnly}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
@@ -41,6 +43,8 @@
           <i class="ti ti-users" />
           <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}</span>
         </p:commandLink>
+        <p:tooltip for="delegate-task-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
+          rendered="#{taskActionBean.showDelegateTask}" trackMouse="true" hideEvent="mouseleave click" />
       </div>
       <h:panelGroup styleClass="content-field" layout="block"
         rendered="#{taskDetailsBean.isRenderItemGeneral(task.getWorkerUser(), task.getWorkerUserName())}">
@@ -86,7 +90,9 @@
     <!-- Time information -->
     <div id="time-information" class="time-information portal-detail-inner-card">
       <div class="portal-detail-subcard-title">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timeInformation')}" styleClass="text-ellipsis" />
+        <h:outputText id="time-information-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timeInformation')}" styleClass="text-ellipsis" />
+        <p:tooltip for="time-information-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timeInformation')}"
+          trackMouse="true" hideEvent="mouseleave click" />
       </div>
 
       <h:panelGroup styleClass="content-field" layout="block"
@@ -209,7 +215,9 @@
     <!-- Task and Case information -->
     <div id="task-and-case-information" class="task-and-case-information portal-detail-inner-card portal-detail-trailing-card">
       <div class="portal-detail-subcard-title">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/TaskCaseInformation')}" styleClass="text-ellipsis" />
+        <h:outputText id="task-case-information-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/TaskCaseInformation')}" styleClass="text-ellipsis" />
+        <p:tooltip for="task-case-information-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/TaskCaseInformation')}"
+          trackMouse="true" hideEvent="mouseleave click" />
       </div>
 
       <h:panelGroup styleClass="content-field" layout="block"
