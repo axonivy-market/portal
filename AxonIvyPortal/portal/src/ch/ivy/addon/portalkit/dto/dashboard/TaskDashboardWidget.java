@@ -17,10 +17,12 @@ import org.primefaces.model.SortMeta;
 import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeTrue;
 import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
@@ -45,10 +47,15 @@ public class TaskDashboardWidget extends DashboardWidget {
   private Long numberOfTasksExpireToday;
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
+  @JsonInclude(JsonInclude.Include.NON_DEFAULT)
   private boolean enableQuickSearch;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showWidgetInfo;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showFullscreenMode;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showPinnedToggle;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showBulkDelegateToggle;
 
   @JsonIgnore
@@ -107,6 +114,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.filterableColumns = DashboardWidgetUtils.buildTaskFilterableColumns(taskColumns);
   }
 
+  @JsonInclude(JsonInclude.Include.NON_DEFAULT)
   public boolean getCanWorkOn() {
     return this.dataModel.getCanWorkOn();
   }
@@ -115,6 +123,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.dataModel.setCanWorkOn(canWorkOn);
   }
 
+  @JsonInclude(JsonInclude.Include.NON_DEFAULT)
   public boolean isFilterTasksByCurrentCaseOwner() {
     return this.dataModel.isFilterTasksByCurrentCaseOwner();
   }
@@ -150,6 +159,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.dataModel.getCriteria().setSortField(sortField);
   }
   
+  @JsonInclude(JsonInclude.Include.NON_DEFAULT)
   public boolean isSortDescending() {
     return this.dataModel.getCriteria().isSortDescending();
   }

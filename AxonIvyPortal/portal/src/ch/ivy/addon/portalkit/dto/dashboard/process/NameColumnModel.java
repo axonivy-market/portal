@@ -14,7 +14,6 @@ public class NameColumnModel extends ProcessColumnModel {
     super.initDefaultValue();
     this.field = DashboardStandardProcessColumn.NAME.getField();
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-process__name");
-    this.quickSearch = defaultIfEmpty(this.quickSearch, true);
   }
 
   @Override
@@ -24,6 +23,11 @@ public class NameColumnModel extends ProcessColumnModel {
   
   @Override
   public boolean canQuickSearch() {
+    return true;
+  }
+
+  @Override
+  public Boolean getDefaultQuickSearch() {
     return true;
   }
 }

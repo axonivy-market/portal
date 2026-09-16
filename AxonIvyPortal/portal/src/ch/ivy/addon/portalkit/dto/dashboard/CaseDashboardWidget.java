@@ -18,10 +18,13 @@ import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.CaseQueryType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardCaseLazyDataModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeBusinessCaseQueryType;
+import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeTrue;
 import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
@@ -40,10 +43,15 @@ public class CaseDashboardWidget extends DashboardWidget {
   private List<WidgetInformationCategoryStatisticData> caseByCategoryStatistic;
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
+  @JsonInclude(JsonInclude.Include.NON_DEFAULT)
   private boolean enableQuickSearch;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showWidgetInfo;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showFullscreenMode;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showPinnedToggle;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeBusinessCaseQueryType.class)
   private CaseQueryType caseQueryType;
   
   public CaseDashboardWidget() {
@@ -107,6 +115,7 @@ public class CaseDashboardWidget extends DashboardWidget {
     this.dataModel.getCriteria().setSortField(sortField);
   }
 
+  @JsonInclude(JsonInclude.Include.NON_DEFAULT)
   public boolean isSortDescending() {
     return this.dataModel.getCriteria().isSortDescending();
   }
