@@ -2,13 +2,13 @@ package com.axonivy.portal.migration.dashboardtemplate.migrator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Test;
+
 import com.axonivy.portal.bo.jsonversion.DashboardTemplateJsonVersion;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
-import org.junit.jupiter.api.Test;
 
 import ch.ivyteam.ivy.environment.IvyTest;
 
@@ -173,5 +173,27 @@ class TestJsonDashboardTemplateMigrator {
 
     JsonNode values = result.get("dashboard").get("widgets").get(0).get("filters").get(0).get("values");
     assertThat(values).extracting(JsonNode::asText).containsExactlyInAnyOrder("OPEN", "IN_PROGRESS");
+  }
+
+  @Test
+  void migrate_staleCustomCaseFilterType_isCorrectedToMatchColumnType() {
+
+    ObjectNode node = template("template-1", "dashboard-1", null, "13.1.0");
+    ObjectNode dashboard = (ObjectNode) node.get("dashboard");
+    ArrayNode widgets = dashboard.putArray("widgets");
+    ObjectNode taskWidget = widgets.addObject();
+    taskWidget.put("type", "task");
+    taskWidget.put("id", "task_1");
+    taskWidget.putArray("columns").addObject().put("field", "myCase").put("type", "custom_business_case");
+    ObjectNode staleFilter = taskWidget.putArray("filters").addObject();
+    staleFilter.put("field", "myCase");
+    staleFilter.put("type", "custom_case");
+
+    JsonNode result = new JsonDashboardTemplateMigrator(node).migrate();
+
+    JsonNode filterType = result.get("dashboard").get("widgets").get(0).get("filters").get(0).get("type");
+    assertThat(filterType.asText()).isEqualTo("custom_business_case");
+    assertThat(result.get("dashboard").get("version").asText())
+        .isEqualTo(DashboardTemplateJsonVersion.LATEST_VERSION.getValue());
   }
 }

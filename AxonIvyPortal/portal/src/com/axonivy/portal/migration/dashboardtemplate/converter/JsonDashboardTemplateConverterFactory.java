@@ -28,18 +28,21 @@ public class JsonDashboardTemplateConverterFactory extends AbstractJsonConverter
       new com.axonivy.portal.migration.dashboardtemplate.converter.v113.DashboardTemplateCaseWidgetConverter(),
       new com.axonivy.portal.migration.dashboardtemplate.converter.v113.DashboardTemplateTaskWidgetConverter());
 
-  // v120/v131 reuse the plain-dashboard converters: the template-specific versions assumed a
-  // collection to iterate rather than one dashboard-shaped node, so they never actually worked.
   private static final List<IJsonConverter> LE120 = List
       .of(new com.axonivy.portal.migration.dashboard.converter.v120.DashboardProcessWidgetConverter());
 
   private static final List<IJsonConverter> LE131 = List
       .of(new com.axonivy.portal.migration.dashboard.converter.v131.DashboardConverter());
 
+  private static final List<IJsonConverter> LE140 = List.of(
+          new com.axonivy.portal.migration.dashboard.converter.v140.DashboardTaskWidgetFilterTypeConverter(),
+          new com.axonivy.portal.migration.dashboard.converter.v140.DashboardConverter());
+
   static {
     CONVERTERS.addAll(LE112);
     CONVERTERS.addAll(LE113);
     CONVERTERS.addAll(LE120);
     CONVERTERS.addAll(LE131);
+    CONVERTERS.addAll(LE140);
   }
 }
