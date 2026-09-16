@@ -8,7 +8,9 @@ const additionalHeightForResizeHandler = 15;
 // Store the initial window height to detect changes
 let windowHeight = window.innerHeight;
 
-const dashboardTableRowHeight = 53; // dashboard.css:934
+// Must match the row height set in dashboard.css:934 (.dashboard-cases--table table tbody tr), keep both in sync
+const dashboardTableRowHeight = 53;
+
 const minTableChunkSize = 25;
 const maxTableChunkSize = 100;
 
