@@ -150,6 +150,10 @@ public class DashboardBean implements Serializable, IMultiLanguage {
 
   private void updateSelectedDashboard() {
     currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
+    if (currentDashboardIndex < 0) {
+      selectedDashboard = null;
+      return;
+    }
     selectedDashboard = dashboards.get(currentDashboardIndex);
 
     String selectedDashboardName = "";
@@ -164,7 +168,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   private void storeAndHighlightDashboardIfRequired() {
-    if (!isRequestPathForMainOrDetailModification()) {
+    if (selectedDashboard == null || !isRequestPathForMainOrDetailModification()) {
       return;
     }
     DashboardUtils.storeDashboardInSession(selectedDashboard.getId());
@@ -434,16 +438,17 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   private int findIndexOfDashboardById(String selectedDashboardId) {
-
-
     if (StringUtils.isNotBlank(selectedDashboardId)) {
       return dashboards.stream().filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst()
-          .map(dashboards::indexOf).orElse(dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType()))
-              .findFirst().map(dashboards::indexOf).orElse(0));
+          .map(dashboards::indexOf).orElseGet(this::findIndexOfFirstSubMenuDashboard);
     }
 
-    return dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())).findFirst().map(dashboards::indexOf)
-        .orElse(0);
+    return findIndexOfFirstSubMenuDashboard();
+  }
+
+  private int findIndexOfFirstSubMenuDashboard() {
+    return dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())).findFirst()
+        .map(dashboards::indexOf).orElse(-1);
   }
 
 
