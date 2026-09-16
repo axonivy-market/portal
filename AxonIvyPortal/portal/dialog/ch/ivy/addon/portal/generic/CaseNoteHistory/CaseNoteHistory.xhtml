@@ -9,7 +9,7 @@
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/caseHistoryPageTitle')}</ui:define>
     <ui:define name="pageContent">
       <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }" styleClass="ui-g">
-        <h:panelGroup layout="block" styleClass="portal-detail-toolbar">
+        <h:panelGroup layout="block" styleClass="card portal-detail-toolbar">
           <h:panelGroup layout="block" styleClass="portal-detail-toolbar-start u-truncate-text">
             <p:commandLink id="back-to-case-details" process="@this"
               actionListener="#{caseTaskNoteHistoryBean.navigateToCaseDetails(data.ivyCase)}"
@@ -55,7 +55,7 @@
                 <div class="case-detail-attr-value">
                   <h:panelGroup id="case-state-cell" styleClass="case-header-default-cell">
                     <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState id="case-state"
-                      case="#{data.ivyCase}" showIndicatorBesideText="true" responsiveStyleClass=""/>
+                      case="#{data.ivyCase}" alwaysShowState="true" responsiveStyleClass=""/>
                   </h:panelGroup>
                 </div>
               </div>

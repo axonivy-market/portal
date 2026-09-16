@@ -28,7 +28,7 @@
   <c:set var="documentWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('DocumentWidget') gt -1 ? documentsContainerID:''}" />
   <c:set var="noteContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('HistoryWidget')}:task-detail-note-container" />
   <c:set var="historyWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('HistoryWidget') gt -1 ? noteContainerID:''}" />
-  <h:panelGroup layout="block" styleClass="portal-detail-toolbar" rendered="#{cc.attrs.showItemDetailsHeader}">
+  <h:panelGroup layout="block" styleClass="card portal-detail-toolbar" rendered="#{cc.attrs.showItemDetailsHeader}">
     <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}"
       styleClass="portal-detail-toolbar-start u-truncate-text">
       <h:form id="task-detail-title-form" onsubmit="return false;" styleClass="portal-detail-toolbar-form">
@@ -36,12 +36,12 @@
         <p:commandLink id="back-to-previous-page"
           actionListener="#{taskActionBean.backToPrevPage(cc.attrs.task, cc.attrs.isFromTaskList, cc.attrs.isTaskStartedInDetails)}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
-          styleClass="portal-detail-toolbar-back portal-link" process="@this">
+          styleClass="portal-detail-toolbar-back" process="@this">
           <i class="ti ti-chevron-left" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
         </p:commandLink>
         <p:commandButton id="share-page-button-mobile" rendered="#{taskDetailsBean.isShowShareButton}"
-          onclick="PF('share-task-details-panel').show(this)" type="button"
+          onclick="var p = PF('share-task-details-panel'); p.isVisible() ? p.hide() : p.show(this);" type="button"
           icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
           ariaLabel="#{ivy.cms.co('/Labels/Share')}"
           title="#{ivy.cms.co('/Labels/Share')}"
@@ -52,7 +52,7 @@
       rendered="#{not cc.attrs.readOnly and cc.attrs.showItemDetailsHeader}"
       styleClass="portal-detail-toolbar-actions ui-sm-hidden">
       <p:commandButton id="share-page-button" rendered="#{taskDetailsBean.isShowShareButton}"
-        type="button"
+        type="button" onclick="var p = PF('share-task-details-panel'); p.isVisible() ? p.hide() : p.show(this);"
         icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
         ariaLabel="#{ivy.cms.co('/Labels/Share')}"
         title="#{ivy.cms.co('/Labels/Share')}" styleClass="portal-icon-btn-round portal-icon-btn-lg "/>
@@ -266,7 +266,7 @@
 
   <!-- Share Task Details Panel -->
   <p:overlayPanel id="share-task-details-panel" widgetVar="share-task-details-panel"
-    for="share-page-button" appendTo="@(body)"
+    appendTo="@(body)"
     my="right top" at="right bottom" styleClass="share-link-panel" 
     onShow="checkShareTaskDetailsCopyFeature()">
     <h:panelGroup layout="block" styleClass="share-link-panel-content">

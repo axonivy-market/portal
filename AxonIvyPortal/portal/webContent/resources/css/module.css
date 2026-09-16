@@ -365,30 +365,9 @@ p:where(.text-style-h1, .text-style-h2, .text-style-h3, .text-style-h4, .text-st
 }
 
 .case-document-name-text, .task-document-name-text {
-  width: calc(100% - 90px);
+  width: 100%;
   display: block;
   overflow: hidden;
-}
-
-.case-document-name, .task-document-name {
-  position: relative;
-}
-
-.case-document-download, .task-document-download {
-  position: absolute;
-  top: 2px;
-  right: 4px;
-}
-.document-preview{
-  position:absolute;
-  top:2px;
-  right:60px;
-}
-
-.document-renaming {
-  position:absolute;
-  top:2px;
-  right:30px;
 }
 .preview-image{
   object-fit: contain;
@@ -746,23 +725,6 @@ p:where(.text-style-h1, .text-style-h2, .text-style-h3, .text-style-h4, .text-st
   text-align: center;
 }
 
-.state-with-indicator {
-  display: inline-flex;
-  align-items: center;
-  float: left;
-  width: 100%;
-}
-
-.state-with-indicator .case-state.state-indicator,
-.state-with-indicator .task-state.state-indicator {
-  display: inline-block;
-  flex: 0 0 12px;
-  height: 12px;
-  width: 12px;
-  padding: 0;
-  margin-right: 3px;
-}
-
 .case-detail-body .id-column,
 .case-detail-body .created-column, 
 .case-detail-body .expiry-column {
@@ -840,7 +802,7 @@ p:where(.text-style-h1, .text-style-h2, .text-style-h3, .text-style-h4, .text-st
   white-space: nowrap;
   box-sizing: border-box;
   width: fit-content;
-  padding: 0.1429rem 0.7143rem;
+  padding: 0.143rem 0.714rem;
 }
 
 .state-column .case-state.ellipsis-state, 
@@ -3925,7 +3887,6 @@ _:-ms-fullscreen, :root .content-link-history {
 
 .task-business-case {
   margin-top: 0px !important;
-  display: inline !important;
 }
 
 .task-details-priority .edit-priority-inplace .ui-inplace-display {
@@ -3938,7 +3899,8 @@ _:-ms-fullscreen, :root .content-link-history {
 
 .truncate-note {
   width: 100%;
-  display: inline;
+  max-width: 100%;
+  display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

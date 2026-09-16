@@ -139,8 +139,8 @@
 
 .dashboard-card {
   padding: 0;
-  border-radius: 15px;
-  box-shadow: 0 0 27.225px 0 rgba(0, 0, 0, 0.05);
+  border-radius: var(--portal-card-radius);
+  box-shadow: var(--portal-card-shadow);
 }
 
 .dashboard-card.new-widget {

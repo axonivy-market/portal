@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html"
+  xmlns:cc="jakarta.faces.composite" xmlns:p="primefaces"
+  xmlns:pt="jakarta.faces.passthrough">
+
+<cc:interface>
+  <cc:attribute name="triggerId" default="action-menu-button"
+    shortDescription="Id of the trigger button. Type: String. Default value: action-menu-button. Required: false." />
+  <cc:attribute name="panelWidgetVar" required="true"
+    shortDescription="Widget variable of the overlay panel. Must be unique on the page, so append the row index when used inside a data table. Type: String. Required: true." />
+  <cc:attribute name="ariaLabel" type="java.lang.String"
+    shortDescription="Accessible name of the trigger button, should name the row it acts on. Type: String. Required: false." />
+  <cc:attribute name="title" type="java.lang.String"
+    shortDescription="Tooltip of the trigger button. Type: String. Required: false." />
+  <cc:attribute name="buttonStyleClass" type="java.lang.String"
+    shortDescription="Extra style classes for the trigger button. Type: String. Required: false." />
+  <cc:attribute name="menuStyleClass" type="java.lang.String"
+    shortDescription="Extra style classes for the overlay panel. Type: String. Required: false." />
+  <cc:attribute name="disabled" type="java.lang.Boolean" default="false"
+    shortDescription="Disables the trigger button and skips rendering the panel. Type: Boolean. Default value: false. Required: false." />
+</cc:interface>
+
+<cc:implementation>
+  <h:outputStylesheet library="css" name="action-menu-component.css" />
+
+  <p:commandButton id="#{cc.attrs.triggerId}" type="button" disabled="#{cc.attrs.disabled}"
+    onclick="event.stopPropagation(); return false;" icon="ti ti-dots"
+    ariaLabel="#{cc.attrs.ariaLabel}" title="#{cc.attrs.title}"
+    styleClass="#{cc.attrs.buttonStyleClass} action-menu-button rounded-button ui-button-widget ui-button-outlined" />
+
+  <p:overlayPanel id="action-menu-panel" for="#{cc.attrs.triggerId}" rendered="#{!cc.attrs.disabled}"
+    widgetVar="#{cc.attrs.panelWidgetVar}"
+    styleClass="portal-action-menu options-panel #{cc.attrs.menuStyleClass}"
+    my="right top" at="right bottom" collision="flip"
+    showCloseIcon="false" dismissable="true" dynamic="true" cache="false"
+    onShow="if (window.focusFirstVisibleElementInPanel) { focusFirstVisibleElementInPanel('#{cc.attrs.panelWidgetVar}', 'a'); }"
+    pt:aria-label="#{cc.attrs.ariaLabel}">
+    <cc:insertChildren />
+  </p:overlayPanel>
+</cc:implementation>
+</html>

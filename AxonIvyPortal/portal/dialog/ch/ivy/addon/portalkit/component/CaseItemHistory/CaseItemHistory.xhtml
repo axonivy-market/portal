@@ -120,7 +120,7 @@
         <i class="ti ti-edit" />
         <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noNoteAvailable')}" />
         <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddNote')}" />
-        <p:commandLink id="add-note-command-empty" styleClass="case-details-document-add-link no-item-action-link" global="false"
+        <p:commandLink id="add-note-command-empty" styleClass="case-details-document-add-link no-item-action-link portal-link portal-detail-link" global="false"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
           rendered="#{caseTaskNoteHistoryBean.showAddNote}" onclick="PF('add-note-dialog-#{case.id}').show()"
           actionListener="#{data.setCaze(case)}">
