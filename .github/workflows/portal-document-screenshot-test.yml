@@ -100,6 +100,7 @@ jobs:
           DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
           mkdir -p $DEPLOYMENT
           rm -rf $DEPLOYMENT/*
+          cp AxonIvyPortal/PortalApp/target/*.zip $DEPLOYMENT
           cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
           cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
           cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
