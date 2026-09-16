@@ -285,6 +285,32 @@ The tab :guilabel:`Sidebar` allows portal administrators to manage the sidebar m
 
 |sidebar-navigation-configuration|
 
+Sidebar Settings
+----------------
+
+The **Sidebar Settings** card provides controls that affect the sidebar behaviour for all users.
+
+|sidebar-settings-panel|
+
+.. table::
+   :widths: 25 75
+
+   +---------------------------+--------------------------------------------------------------+
+   | Setting                   | Description                                                  |
+   +===========================+==============================================================+
+   | **Disable Sidebar**       | When enabled, hides the entire sidebar for all users.        |
+   +---------------------------+--------------------------------------------------------------+
+   | **Sidebar Behaviour**     | Controls how the sidebar opens. Only visible when the        |
+   |                           | sidebar is not disabled. Options:                            |
+   |                           |                                                              |
+   |                           | - **Hover** — sidebar opens on mouse-over                    |
+   |                           | - **Click** — sidebar requires a click to open               |
+   |                           | - **Stick** — sidebar is always visible (pinned)             |
+   +---------------------------+--------------------------------------------------------------+
+
+.. note::
+   When either Sidebar Setting is changed, the page automatically reloads to apply the change.
+
 Menu Items
 ----------
 
@@ -292,7 +318,9 @@ The menu items table displays all sidebar navigation entries with the following 
 
 - **Label**: The display title of the menu item
 - **Links To**: The URL or dashboard the item links to
+- **Permissions**: The permissions set for each item. Not all item types have permissions. This depends on the item's **Type**, items without permissions show ``-``
 - **Type**: The kind of item (Standard, External Link, Main Dashboard, Static Page, etc.)
+- **Source**: Where the item was created (Built-in, Dashboard configuration, Callable process, Configuration, etc.)
 - **Actions**: Edit and Delete operations accessible via the overflow menu
 - **Reorder**: Drag handle (|reorder-dashboard-icon|) to reorder items
 
@@ -306,8 +334,9 @@ HowTo: add a sidebar menu item
 
    |add-menu-item-dialog|
 
-#. Select the item type:
+#. Select the menu type:
 
+   - **Process** — links to an Ivy process
    - **Main Dashboard** — links to a portal dashboard
    - **External Link** — links to any URL; can be configured to open in a new tab
    - **Static Page** — links to a static portal page
@@ -315,11 +344,11 @@ HowTo: add a sidebar menu item
    .. note::
       The item type cannot be changed after the menu item has been created.
 
+#. Depending on the selected menu type, select the corresponding value (e.g. the process, dashboard, URL, or static page to link to).
+
 #. Enter a title for the item. To provide translations, use the multi-language input (see :ref:`portal-multi-language`).
 
 #. Select an icon to represent the item in the sidebar.
-
-#. Set permissions to control which users can see this menu item.
 
 #. Click :guilabel:`Save` to add the item to the sidebar.
 
@@ -351,32 +380,6 @@ HowTo: reorder sidebar menu items
 
 You can rearrange sidebar menu items by dragging and dropping |reorder-dashboard-icon| icon to the desired position.
 
-Sidebar Settings
-----------------
-
-Below the menu items table, the **Sidebar Settings** card provides controls that affect the sidebar behaviour for all users.
-
-|sidebar-settings-panel|
-
-.. table::
-   :widths: 25 75
-
-   +---------------------------+--------------------------------------------------------------+
-   | Setting                   | Description                                                  |
-   +===========================+==============================================================+
-   | **Disable Sidebar**       | When enabled, hides the entire sidebar for all users.        |
-   +---------------------------+--------------------------------------------------------------+
-   | **Sidebar Behaviour**     | Controls how the sidebar opens. Only visible when the        |
-   |                           | sidebar is not disabled. Options:                            |
-   |                           |                                                              |
-   |                           | - **Hover** — sidebar opens on mouse-over                    |
-   |                           | - **Click** — sidebar requires a click to open               |
-   |                           | - **Stick** — sidebar is always visible (pinned)             |
-   +---------------------------+--------------------------------------------------------------+
-
-.. note::
-   When either Sidebar Setting is changed, the page automatically reloads to apply the change.
-
 Package Management configuration
 ==================================
 
@@ -387,6 +390,7 @@ The tab :guilabel:`Package Management` allows you to export the current Portal c
 
 |package-management-configuration|
 
+.. _exportable-configuration-files:
 Exportable configuration files
 -------------------------------
 
@@ -453,7 +457,7 @@ HowTo: import a Portal package
 .. important::
 
       - Importing a package **replaces** the existing configuration for each recognized file type. This action cannot be undone.
-      - File names must match exactly as listed above for a file to be recognized on import.
+      - File names must match exactly as :ref:`listed above <exportable-configuration-files>` for a file to be recognized on import.
 
 .. note::
    Only ``.zip`` files are accepted. If the uploaded file cannot be read, or contains no recognized Portal configuration files, an error message is shown and nothing is imported.
