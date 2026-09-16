@@ -12,9 +12,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
+import ch.ivy.addon.portalkit.enums.ProcessSorting;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardProcessSearchCriteria;
+import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeAlphabeticalSorting;
+import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeTrue;
 import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 
@@ -24,6 +27,7 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
   private static final long serialVersionUID = 1L;
 
   private List<String> processPaths;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeAlphabeticalSorting.class)
   protected String sorting;
   private Map<String, Integer> customIndexs;
 
@@ -35,6 +39,7 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
   private List<DashboardProcess> originalDisplayProcesses;
   @JsonIgnore
   private List<DashboardProcess> processes;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean enableQuickSearch;
 
   public CompactProcessDashboardWidget(CompactProcessDashboardWidget widget) {
@@ -65,6 +70,7 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
     filterableColumns = new ArrayList<>();
     processes = new ArrayList<>();
     setEnableQuickSearch(true);
+    setSorting(ProcessSorting.BY_ALPHABETICALLY.name());
   }
 
   public List<DashboardProcess> getDisplayProcesses() {

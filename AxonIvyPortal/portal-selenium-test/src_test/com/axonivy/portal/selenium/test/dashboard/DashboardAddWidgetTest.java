@@ -11,7 +11,7 @@ import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.codeborne.selenide.CollectionCondition;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardAddWidgetTest extends BaseTest {
 
   @Override

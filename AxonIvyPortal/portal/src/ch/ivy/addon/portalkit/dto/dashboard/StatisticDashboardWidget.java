@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeTrue;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class StatisticDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 1L;
   private String chartId;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showFullscreenMode;
 
   public StatisticDashboardWidget() {

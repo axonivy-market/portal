@@ -86,16 +86,9 @@
   --filter-selection-container-group-border-color: var(--ivy-primary-color-grey-medium);
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
   --widget-filter-background-color: var(--ivy-primary-color-grey-pale);
-
-  /* Fieldset box */
-  --portal-fieldset-background-color: var(--ivy-portal-color-grey-50);
-  --portal-fieldset-border-color: var(--ivy-portal-color-grey-200);
-
-  /* Fieldset legend pill */
-  --portal-fieldset-legend-color: var(--ivy-portal-blue-dark);
-  --portal-fieldset-legend-background-color: var(--ivy-portal-blue-pale);
-  --portal-fieldset-legend-border-color: var(--ivy-portal-blue-muted);
-  --portal-fieldset-legend-hover-background-color: hsla(195, 100%, 29%, 0.08);
+  --widget-filter-condition-accent-border-color: var(--ivy-portal-blue-muted);
+  --widget-filter-and-badge-background-color: var(--ivy-portal-blue-pale);
+  --widget-filter-and-badge-text-color: var(--primary-color);
   --widget-filter-subtle-surface-color: var(--ivy-portal-color-grey-50);
   --widget-filter-subtle-border-color: var(--ivy-portal-color-grey-200);
   --widget-filter-chip-border-color: var(--ivy-portal-color-grey-200);
@@ -458,7 +451,6 @@
   --sidebar-settings-card-border-color: var(--ivy-portal-color-grey-50);
   --sidebar-mode-select-bg-color: var(--ivy-primary-color-white);
   --sidebar-mode-select-border-color: var(--ivy-primary-color-grey-pale);
-  --sidebar-toggle-checked-bg-color: var(--ivy-primary-color);
   --sidebar-toggle-knob-color: var(--ivy-primary-color-white);
   --dashboard-tab-active-color: var(--primary-color);
   --dashboard-header-card-bg-color: var(--ivy-primary-color-white);
@@ -469,4 +461,6 @@
   --filters-card-border-color: var(--sidebar-settings-card-border-color);
   --filters-toggle-checked-bg-color: var(--ivy-primary-color);
   --filters-toggle-knob-color: var(--ivy-primary-color-white);
+  --deputy-type-color: var(--ivy-primary-color);
+  --deputy-type-border-color: var(--ivy-primary-color);
 }

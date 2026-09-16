@@ -42,6 +42,15 @@ public class GlobalOperatorPolicyService implements Serializable {
         .collect(Collectors.toList());
   }
 
+  public boolean restrictsOperators(ColumnModel column) {
+    List<FilterOperator> selectedOperators = column.getAllowedOperators();
+    if (selectedOperators == null) {
+      return false;
+    }
+
+    return !selectedOperators.containsAll(keepGloballyEnabledOperators(baseOpService.resolveForColumn(column)));
+  }
+
   public List<ColumnModel> getColumnsWithGloballyEnabledOperators(List<ColumnModel> columns) {
     return columns.stream()
         .filter(col -> !keepGloballyEnabledOperators(baseOpService.resolveForColumn(col)).isEmpty())

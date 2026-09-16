@@ -401,15 +401,27 @@ public class DashboardModificationBean extends DashboardBean {
   }
 
   public StreamedContent exportToJsonFile(Dashboard dashboard) {
-    prepareDashboardForExport(dashboard);
+    Dashboard dashboardForExport = detachFromCache(dashboard);
+    prepareDashboardForExport(dashboardForExport);
 
     return DefaultStreamedContent
         .builder()
         .stream(() -> new ByteArrayInputStream(
-            BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboard).getBytes(StandardCharsets.UTF_8)))
+            BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboardForExport)
+                .getBytes(StandardCharsets.UTF_8)))
         .contentType(MediaType.APPLICATION_JSON)
         .name(getFileName(dashboard.getTitle()))
         .build();
+  }
+
+  private Dashboard detachFromCache(Dashboard dashboard) {
+    Dashboard detached = new Dashboard(dashboard);
+    if (CollectionUtils.isNotEmpty(dashboard.getWidgets())) {
+      Dashboard roundTripped = BusinessEntityConverter
+          .jsonValueToEntity(BusinessEntityConverter.entityToJsonValue(dashboard), Dashboard.class);
+      detached.setWidgets(roundTripped.getWidgets());
+    }
+    return detached;
   }
 
   private Map<String, Dashboard> collectAllAvailableDashboardsById() {

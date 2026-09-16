@@ -3,11 +3,13 @@ package com.axonivy.portal.dto.dashboard;
 import com.axonivy.portal.datamodel.NotificationLazyModel;
 import com.axonivy.portal.dto.NotificationDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeTrue;
 import ch.ivyteam.ivy.notification.web.WebNotifications;
 
 public class NotificationDashboardWidget extends DashboardWidget {
@@ -22,7 +24,9 @@ public class NotificationDashboardWidget extends DashboardWidget {
   private long countAll;
   @JsonIgnore
   private long countUnread;
+  @JsonInclude(JsonInclude.Include.NON_DEFAULT)
   private boolean onlyUnread;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showFullscreenMode;
 
   public NotificationDashboardWidget() {

@@ -52,7 +52,7 @@ public class DashboardCloneWidgetTest extends BaseTest {
         .openDashboardConfigurationPage();
     configurationPage.openEditPublicDashboardsPage();
     configurationPage
-        .clickButtonOnDashboardConfigurationActionMenu("Configuration");
+        .clickButtonOnDashboardConfigurationActionMenu("Edit Layout");
 
     detailsEditPage = new NewDashboardDetailsEditPage();
     detailsEditPage.waitForTaskWidgetLoaded();

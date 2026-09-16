@@ -47,7 +47,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement widgetTitle() {
-    return $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("span[id$='widget-title-group']")
+    return $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("[id$='widget-title-group']")
         .$("input[id$='widget-title']");
   }
 
