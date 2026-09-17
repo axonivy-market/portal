@@ -13,8 +13,8 @@ notifications, profile settings, and accessibility options.
    dashboard-configuration/index
    complex-filter/index
    full-process-list/index
-   full-task-list/index
-   full-case-list/index
+   task-widget/index
+   case-widget/index
    statistic-chart/index
    portal-header/index
    my-profile/index
