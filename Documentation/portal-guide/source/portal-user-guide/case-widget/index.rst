@@ -59,8 +59,6 @@ Click the actions menu button to open them.
 
 |case-widget-actions-menu|
 
-- **Quick search**: Search the cases of the widget by keyword
-
 - **Show pinned cases**: Show your pinned cases only, :guilabel:`Show all cases` switches back
 
 - **Filters**: Open the complex filter panel of the widget, see :ref:`Complex Filter <complex-filter>`
