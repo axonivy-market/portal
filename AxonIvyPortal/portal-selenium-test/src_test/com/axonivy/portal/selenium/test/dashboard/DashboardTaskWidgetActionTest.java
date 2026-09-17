@@ -250,7 +250,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   
   private void removeAllExistingFilter() {
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
-    int numberOfFilter = taskWidget.getFilterNotiNumber();
+    int numberOfFilter = taskWidget.getNumberOfFilter();
     for(int i = 0; i < numberOfFilter; i++) {
       taskWidget.removeFilter(0);
     }
