@@ -1,11 +1,7 @@
 package com.axonivy.portal.selenium.common;
 
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-import static java.time.Duration.ZERO;
-
 import java.time.Duration;
+import static java.time.Duration.ZERO;
 import java.util.function.Supplier;
 
 import org.openqa.selenium.By;
@@ -17,7 +13,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Condition.exist;
 import com.codeborne.selenide.Selenide;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.WebDriverRunner;
 
 public final class WaitHelper {
@@ -99,8 +98,12 @@ public final class WaitHelper {
   }
 
   public static void waitPageNoAjaxAndAnimation() {
+    waitPageNoAjaxAndAnimation(DEFAULT_TIMEOUT);
+  }
+
+  public static void waitPageNoAjaxAndAnimation(Duration timeout) {
     Selenide.Wait()
-        .withTimeout(DEFAULT_TIMEOUT)
+        .withTimeout(timeout)
         .until(visibleAndAnimationComplete());
   }
 

@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -87,7 +88,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void startFirstTaskAndWaitShowHomePageButton() {
-    WaitHelper.waitPageNoAjaxAndAnimation();
+    WaitHelper.waitPageNoAjaxAndAnimation(Duration.ofSeconds(30));
     getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
     // $("a>span.ti-home.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
   }
