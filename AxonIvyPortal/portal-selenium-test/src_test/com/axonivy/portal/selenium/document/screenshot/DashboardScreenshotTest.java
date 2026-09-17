@@ -1,5 +1,8 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Selenide.$;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +22,7 @@ import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CustomWidgetNewDashBoardPage;
@@ -40,9 +44,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.CollectionCondition;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import com.codeborne.selenide.Condition;
-import static com.codeborne.selenide.Selenide.$;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -217,6 +219,11 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
                                 ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-filter", new ScreenshotMargin(20));
                 homePage.closeWidgetFilter(1);
 
+                // Take screenshot of widget actions menu panel
+                homePage.openWidgetActionsMenu(1);
+                WaitHelper.waitPageNoAnimation();
+                ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getCaseWidget(),
+                                ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-widget-actions-menu-panel", new ScreenshotMargin(20, 250, 20, 20));
                 var taskInfoOverlayPanel = homePage.openWidgetInformation(0);
                 ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getDashboardWidget(0),
                                 ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-info",
@@ -271,7 +278,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
                 taskConfigurationPage.cancelMultiLanguageDialogWhenAddWidget();
                 taskConfigurationPage.openFilter();
-                taskConfigurationPage.addFilter("name", FilterOperator.EMPTY);
+                taskConfigurationPage.addFilter("name", FilterOperator.NOT_EMPTY);
                 ScreenshotUtils.resizeBrowserAndCaptureWholeScreen(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration", new Dimension(1366, 768));
                 taskConfigurationPage.closeFilter();
                 WebElement columnManagementDialog = taskConfigurationPage.openColumnManagementDialog();
@@ -418,7 +425,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
         @Test
         public void screenshotWelcomeWidget() throws IOException {
-                ScreenshotUtils.maximizeBrowser();
+                ScreenshotUtils.resizeBrowser(new Dimension(1920, 5000));
                 addPublicWidget(NewDashboardDetailsEditPage.WELCOME_WIDGET);
                 WelcomeEditWidgetNewDashboardPage welcomeWidgetPage = new WelcomeEditWidgetNewDashboardPage();
                 welcomeWidgetPage.waitForDialogLoaded();

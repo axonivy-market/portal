@@ -881,6 +881,18 @@ public class NewDashboardPage extends TemplatePage {
     $("[id$=':widget-saved-filters-items']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public SelenideElement openWidgetActionsMenu(int index) {
+    return openWidgetActionsMenuFor(getDashboardWidget(index));
+  }
+
+  private SelenideElement openWidgetActionsMenuFor(SelenideElement widget) {
+    SelenideElement actionsMenuButton = widget.$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    return $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
   public SelenideElement getWidgetFilter(int index) {
     var result = $("div[id$=':filter-dialog-content-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
     result.$("[class*='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);

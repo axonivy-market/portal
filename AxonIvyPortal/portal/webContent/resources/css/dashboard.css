@@ -706,8 +706,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 
 .ui-dialog.filter-dialog {
   width: 80dvw !important;
-  height: 100dvh !important;
-  max-height: fit-content;
+  max-height: 90vh;
   border-radius: 15px;
   box-shadow: var(--widget-filter-dialog-box-shadow);
   overflow-y: auto;
