@@ -40,6 +40,10 @@ import com.codeborne.selenide.WebElementCondition;
 
 public abstract class TemplatePage extends AbstractPage {
   private static final int IFRAME_SCREENSHOT_FILE_SIZE_AT_MINIMUM = 10000;
+  protected static final String CHAT_PANEL_SELECTOR = "#chat-panel";
+  protected static final String CHAT_PANEL_OPEN_CLASS = "active";
+  private static final int CHAT_PANEL_OPEN_ATTEMPTS = 3;
+  private static final Duration CHAT_PANEL_OPEN_TIMEOUT = Duration.ofSeconds(5);
   protected static final String LAYOUT_WRAPPER = ".layout-wrapper";
   public static final String ID_PROPERTY = "id";
   public static final String CLASS_PROPERTY = "class";
@@ -500,8 +504,22 @@ public abstract class TemplatePage extends AbstractPage {
 
   public ChatPage getChat() {
     waitForElementDisplayed(By.id("toggle-chat-panel-command"), true, 5);
-    waitForElementClickableThenClick("[id$='toggle-chat-panel-command']");
+    // The chat panel is opened by a jQuery handler which chat.js binds asynchronously, so a click
+    // landing before that binding is silently lost. Click again until the panel is really open.
+    for (int attempt = 0; attempt < CHAT_PANEL_OPEN_ATTEMPTS && !isChatPanelOpen(); attempt++) {
+      waitForElementClickableThenClick("[id$='toggle-chat-panel-command']");
+      try {
+        $(CHAT_PANEL_SELECTOR).shouldHave(Condition.cssClass(CHAT_PANEL_OPEN_CLASS), CHAT_PANEL_OPEN_TIMEOUT);
+      } catch (Throwable clickWasLost) {
+        // chat.js was not ready yet, fall through and click again
+      }
+    }
+    $(CHAT_PANEL_SELECTOR).shouldHave(Condition.cssClass(CHAT_PANEL_OPEN_CLASS), DEFAULT_TIMEOUT);
     return new ChatPage();
+  }
+
+  private boolean isChatPanelOpen() {
+    return $(CHAT_PANEL_SELECTOR).has(Condition.cssClass(CHAT_PANEL_OPEN_CLASS));
   }
 
   public NewDashboardPage goToHomeFromBreadcrumbWithWarning() {

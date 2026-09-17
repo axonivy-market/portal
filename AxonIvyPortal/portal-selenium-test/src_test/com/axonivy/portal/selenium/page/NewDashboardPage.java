@@ -893,8 +893,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public ChatPage openChatDialog() {
-    $("[id='toggle-chat-panel-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    return new ChatPage();
+    return getChat();
   }
 
   public SelenideElement getTopBar() {
