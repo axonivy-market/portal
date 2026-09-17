@@ -136,18 +136,22 @@ HowTo: Add an external link
 
 .. include:: ../includes/_common-icon.rst
 
-HowTo: Edit Process Icon in Image Mode
----------------------------------------
+HowTo: Edit External Link Information
+--------------------------------------
 
 #. Click on ``More menu item`` icon in the process card item.
 
 #. Click on |edit-icon| :guilabel:`Edit` menu item.
 
-#. The dialog **Edit process information** is opened.
+#. The dialog **Edit information** is opened.
 
 #. You can change the current icon using the available icon list, or open the :guilabel:`Selecting icon dialog` to get more new icons.
 
-#. Press on :guilabel:`Save` button, and process icon is changed.
+#. Click |edit-icon| next to :guilabel:`Display name`, :guilabel:`Start link`, :guilabel:`Link description`, or :guilabel:`Permissions` to change the corresponding value.
+
+#. For the :guilabel:`Image`, drag and drop, or click ``Upload one here`` to set a new image.
+
+#. Press on :guilabel:`Save` button to confirm your changes.
 
 |edit-process-menu-item|
 
