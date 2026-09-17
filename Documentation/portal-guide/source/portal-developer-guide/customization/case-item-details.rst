@@ -189,9 +189,9 @@ For the custom widget, we have a new node is ``data`` inside of case details wid
       To quickly understand how the JSON of custom case details looks like.
    
       - Refer to ``variables.Portal.CaseDetails.json`` file in ``portal-developer-examples/resources/files`` project.
-      - Copy to the corresponding application folder located in the designer.
+      - Copy to the corresponding application folder located in the engine.
 
-          - e.g: AxonIvyDesigner/configuration/applications/designer.
+          - e.g: <engine>/configuration/applications/<application>.
 
       - Create some destroyed case or start the process ``Start Processes/CaseDetailsCustomWidgetExample/CreateEventTest.ivp`` in ``portal-developer-examples`` project.
       - Go to the homepage.

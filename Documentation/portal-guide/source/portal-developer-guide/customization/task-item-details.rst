@@ -154,9 +154,9 @@ Show Custom Panels (Widgets)
    To quickly understand how the JSON of custom task details looks like.
 
    - Refer to ``variables.Portal.TaskDetails.json`` file in ``portal-developer-examples/resources/files`` project.
-   - Copy to the corresponding application folder located in the designer.
+   - Copy to the corresponding application folder located in the engine.
 
-      - E.g., AxonIvyDesigner/configuration/applications/designer
+      - E.g., <engine>/configuration/applications/<application>
 
    - Create some destroyed task or start the process ``Start Processes/TaskDetailsCustomWidgetExample/SalesManagement.ivp`` in ``portal-developer-examples`` project.
    - Go to the example homepage by the process ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp``
