@@ -8,7 +8,7 @@
 
 .. _complex-filter:
 
-Complex Filter 
+Complex Filter
 **************
 
 Introduction
@@ -49,7 +49,7 @@ If the task/case widget has been pre-configured with filters in the dashboard co
 
 For more information about filter operators, please refer to the table :ref:`filter-operators`.
 
-Save A Filter Set 
+Save A Filter Set
 -----------------
 
 On dashboard task/case widget, filters that have been added can be saved to a filter set by following these steps:
@@ -97,15 +97,15 @@ Filter Operators
  * - Contains
    - | Valid for category, ID and column that contains text. Specify a single value or multiple values.  
      | Results include only records where the data in the column contains the value in the filter.
- * - Doesn't Contains
-   - | Valid for category, ID and column that contains text. Specify a single value or multiple values.  
-     | Results include only records where the data in the column dóes not contain the value in the filter.
+ * - Doesn't Contain
+   - | Valid for category, ID and column that contains text. Specify a single value or multiple values.
+     | Results include only records where the data in the column does not contain the value in the filter.
  * - Between
    - | Valid for a column that contains number, dates. Specify two values.  
-     | Result include only records where the data in the column is between the two values in the filter.
+     | Results include only records where the data in the column is between the two values in the filter.
  * - Not Between
    - | Valid for a column that contains number, dates. Specify two values.  
-     | Result include only records where the data in the column is not between the two values in the filter.
+     | Results include only records where the data in the column is not between the two values in the filter.
  * - Equal
    - | Valid for a column that contains number. Specify a single value.  
      | Results include only records where the data in the column match the value in the filter.
