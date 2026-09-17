@@ -1,6 +1,5 @@
 package com.axonivy.portal.selenium.page;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -83,14 +82,13 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void startFirstTask() {
-    WaitHelper.waitPageNoAjaxAndAnimation(Duration.ofSeconds(30));
+    WaitHelper.waitPageNoAjaxAndAnimation();
     WaitHelper.waitForNavigation(() -> getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
   }
 
   public void startFirstTaskAndWaitShowHomePageButton() {
-    WaitHelper.waitPageNoAjaxAndAnimation(Duration.ofSeconds(30));
+    WaitHelper.waitPageNoAjaxAndAnimation();
     getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    // $("a>span.ti-home.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void startTask(int taskIndex) {

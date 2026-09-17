@@ -98,12 +98,8 @@ public final class WaitHelper {
   }
 
   public static void waitPageNoAjaxAndAnimation() {
-    waitPageNoAjaxAndAnimation(DEFAULT_TIMEOUT);
-  }
-
-  public static void waitPageNoAjaxAndAnimation(Duration timeout) {
     Selenide.Wait()
-        .withTimeout(timeout)
+        .withTimeout(DEFAULT_TIMEOUT)
         .until(visibleAndAnimationComplete());
   }
 
