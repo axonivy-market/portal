@@ -73,6 +73,7 @@ pipeline {
 
                   if [ "${skipReplacePortal}" = "false" ]; then
                     rm -rf ${DEPLOYMENT}/*
+                    cp ${releaseDir}/AxonIvyPortal/portal/target/*.iar ${releaseDir}/AxonIvyPortal/portal-components/target/*.iar "$tempDir/"
                     portalZip=$(ls ${releaseDir}/Showcase/portal-demo-app/target/*.zip | head -n 1)
                     cp "$portalZip" "$DEPLOYMENT/"
                     zipPath="$DEPLOYMENT/$(basename $portalZip)"
