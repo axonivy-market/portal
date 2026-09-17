@@ -19,10 +19,11 @@ This feature is available for the Case Widget and the Task Widget in Dashboard.
 How to use
 ----------
 
-- The Filters dialog can be accessed by clicking on the :guilabel:`Filters` button within the Task/Case Widget on the Dashboard, or by clicking on the :guilabel:`Filter` button within the Edit Widget Configuration panel on the Edit Dashboard. 
-  Please refer to :ref:`new-dashboard` for more details. 
+- Open the widget action menu in the widget header and selecting :guilabel:`Filters`
+  (see :ref:`task widget actions menu <task-widget-actions-menu>` and :ref:`case widget actions menu <case-widget-actions-menu>`), or by clicking on the :guilabel:`Filter` button within the Edit Widget Configuration panel on the Edit Dashboard.
+  Please refer to :ref:`new-dashboard` for more details.
 
-- To add a filter, select ``Add filter``, then select the column and operator, and input value if needed.  
+- To add a filter, click ``Add condition``, then select the column and operator, and input value if needed.
     
     |filter-operator-dropdown|
 
@@ -35,7 +36,7 @@ How to use
     |case-task-widget-filter-combine|
 
 - Click on |remove-filter-icon| button to remove a filter.
-- Click on ``Apply`` button to apply filters.
+- Click on ``Apply filters`` button to apply filters.
 
 .. tip::
     For example, within a case widget, these filters are applied:
@@ -44,7 +45,7 @@ How to use
 
     This filter configuration finds all cases in state OPEN, with case name containing 'Mike', created today.
 
-If the task/case widget has been pre-configured with filters in the dashboard configuration, these filters will be displayed as read-only filters.
+If the task/case widget has been pre-configured with filters in the dashboard configuration, these filters will be displayed as default filters and not allowed to edit.
 
 For more information about filter operators, please refer to the table :ref:`filter-operators`.
 

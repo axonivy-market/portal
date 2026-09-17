@@ -50,6 +50,7 @@ see :ref:`Column Management <case-widget-column-management>`.
 
 |case-key-information|
 
+.. _case-widget-actions-menu:
 Widget Actions
 --------------
 
