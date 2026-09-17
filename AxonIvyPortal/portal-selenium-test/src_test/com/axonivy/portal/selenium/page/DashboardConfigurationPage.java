@@ -74,6 +74,12 @@ public class DashboardConfigurationPage extends TemplatePage {
     return $("[id$='configuration-dashboard-detail-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public void closeEditDashboardDialog() {
+    $("[id$='configuration-dashboard-detail-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$(".ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$='configuration-dashboard-detail-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
   public SelenideElement getPrivateDashboardConfigurationTypeSelection() {
     waitForDashboardConfigurationTypeSelectionAppear();
     return $("a[id$='private-dashboard-type']");

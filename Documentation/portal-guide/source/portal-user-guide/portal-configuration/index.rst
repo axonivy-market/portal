@@ -246,7 +246,7 @@ HowTo: edit public dashboards
 
 |edit-public-dashboards|
 
-Select :guilabel:`Settings` in the :guilabel:`Actions` menu to open an edit dashboard dialog, modify the dashboard icon, title, permissions, description, and Display Type.
+Select :guilabel:`Settings` in the :guilabel:`Actions` menu to open an edit dashboard dialog, modify the dashboard icon, title, permissions, description, and display type.
 
 .. note::
    To move a dashboard between sections, open the Edit dialog and change the **Display Type** field.
