@@ -26,4 +26,3 @@ notifications, profile settings, and accessibility options.
    accessibility/index
    demo-processes/index
    qr-code/index
-   ai-assistant/index
