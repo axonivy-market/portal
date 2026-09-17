@@ -54,7 +54,9 @@ Save A Filter Set
 
 On dashboard task/case widget, filters that have been added can be saved to a filter set by following these steps:
 
-- Click on ``Save filter`` button, then enter the filter set name and click ``Save``.
+- Add your filters
+
+- In the :guilabel:`Save filter` section, enter the filter set name and click ``Save``.
 
 - Saved filter sets will be displayed on the left side of the filter dialog.
 
@@ -69,7 +71,7 @@ Filter Set Management
 
 You can manage your saved filter set in the Widget Filter Management dialog.
 
-- In the ``Available Filters`` dialog, select ``Manage filters``.
+- Click ``Manage saved filters`` in the bottom left corner to open the dialog.
 
 - To search for a filter set, type the search value into the input field at the top of every column.
 
