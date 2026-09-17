@@ -82,18 +82,18 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void startFirstTask() {
-    $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitPageNoAjaxAndAnimation();
     WaitHelper.waitForNavigation(() -> getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
   }
 
   public void startFirstTaskAndWaitShowHomePageButton() {
-    $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitPageNoAjaxAndAnimation();
     getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
     // $("a>span.ti-home.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void startTask(int taskIndex) {
-    $$("span.widget__filter-noti-number").first().shouldBe(appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitPageNoAjaxAndAnimation();
     getCellByRowAndColumnName(taskIndex, "Start").shouldBe(getClickableCondition()).click();
   }
 
@@ -219,9 +219,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public int getNumberOfFilterApplied() {
-    var numberNoti = $("[id$='task-task_1:task-panel-group-0']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$(".widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT).getText();
-    return Integer.valueOf(numberNoti);
+    return getFilterNotiNumber();
   }
 
   public void searchWidgetFilter(String filterName) {
@@ -565,12 +563,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void saveFilter(String widgetFilterName) {
-    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='save-filter']")
-        .filter(text("Save filter")).first().shouldBe(getClickableCondition()).click();
-    $("div#save-widget-filter-dialog").$("input[id='save-filter-form:save-filter-name']")
-        .shouldBe(appear, DEFAULT_TIMEOUT).setValue(widgetFilterName);
-    $("button[id$=':save-widget-filter-button']").click();
-    $("div[id$=':widget-saved-filters-items']").$$("div.saved-filter__items").filter(text(widgetFilterName)).first()
+    SelenideElement filterDialog = getConfigurationFilter();
+    filterDialog.$("input[id$=':inline-save-filter-name']").shouldBe(appear, DEFAULT_TIMEOUT).setValue(widgetFilterName);
+    filterDialog.$("button[id$=':inline-save-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$=':widget-saved-filters-items']").$$("span.saved-filter-node__text").filter(text(widgetFilterName)).first()
         .shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -611,9 +607,15 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public Integer getFilterNotiNumber() {
-    String filterNotiNumber =
-        $$("div.table-widget-panel").filter(text(taskWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
-            .$("div[id$=':widget-header-actions']").$("span[class*='widget__filter-noti-number']").getText();
+    SelenideElement actionsMenuButton = getTaskWidgetHeader().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement filtersMenuItem = actionsMenuPanel.$$("a.ui-menuitem-link").filter(text("Filters")).first();
+    String filterNotiNumber = filtersMenuItem.$("span.ui-tag").shouldBe(appear, DEFAULT_TIMEOUT).getText();
+    actionsMenuButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    actionsMenuPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
     return Integer.parseInt(filterNotiNumber);
   }
 
@@ -625,7 +627,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getConfigurationFilter() {
-    return $("div[class*='filter-overlay-panel'][style*='display: block']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("div.filter-dialog[style*='display: block']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void removeFocusFilterDialog() {
@@ -653,7 +655,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public int getNumberOfFilter() {
     return $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("div[class*='filter-overlay-panel__content']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("div[class*='filter-dialog__content']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("div[id$='filter-container']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("div[class*='dashboard-widget-filter__filter-wrapper']").size();
   }

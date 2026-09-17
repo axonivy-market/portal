@@ -135,7 +135,7 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
     caseDetailsPage.getShareButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    caseDetailsPage.getShareDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    caseDetailsPage.getSharePanel().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
     permissions().denyShareLinkCaseDetailsPermission();
     redirectToNewDashBoard();

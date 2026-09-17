@@ -21,16 +21,20 @@
   <c:set var="isResizing" value="#{!cc.attrs.isReadOnlyMode and !cc.attrs.isPreviewMode}" />
 
   <p:remoteCommand id="rcLoadCaseFirstTimeAIResult" rendered="#{cc.attrs.isAIResult}"
-    autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
+    name="loadCaseWidgetFirstTime_#{caseWidget.id}" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
     oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget};" />
   <p:inputText type="hidden" value="#{cc.attrs.caseWidgetVar}-#{caseWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
 
   <p:remoteCommand id="rcLoadCaseFirstTime" rendered="#{!cc.attrs.isAIResult}"
-    autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
+    name="loadCaseWidgetFirstTime_#{caseWidget.id}" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
     oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
   <p:inputText type="hidden" value="dashboard-cases-#{caseWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
+  <script>
+    $(function() { loadCaseWidgetFirstTime_#{caseWidget.id}([{name: 'chunkSize', value: calculateTableChunkSize()}]); });
+  </script>
+
   <div class="ui-g">
     <h:panelGroup layout="block"
       styleClass="js-loading-#{caseWidget.id} case-dashboard-widget__loading-message ui-g-12">
@@ -52,7 +56,7 @@
       </h:panelGroup>
 
       <p:dataTable cellNavigation="false" id="dashboard-cases" widgetVar="#{cc.attrs.caseWidgetVar}-#{caseWidget.id}" value="#{caseWidget.dataModel}" var="caseItem"
-        lazy="true" scrollRows="25"
+        lazy="true" scrollRows="#{caseWidget.dataModel.chunkSize}"
         liveScroll="true" scrollable="true" sortBy="#{isResizing ? null : caseWidget.sortBy}"
         showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"

@@ -32,7 +32,7 @@
     <div id="role-and-user-information" class="role-and-user-information portal-detail-inner-card">
       <div class="portal-detail-subcard-title flex align-items-center justify-content-between">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/RoleUserInformation')}" styleClass="text-ellipsis" />
-        <p:commandLink id="delegate-task-command" styleClass="task-detail-delegate-link portal-link" global="false"
+        <p:commandLink id="delegate-task-command" styleClass="task-detail-delegate-link portal-link portal-detail-link" global="false"
           rendered="#{taskActionBean.showDelegateTask}" disabled="#{!taskActionBean.canDelegate(task) or cc.attrs.readOnly}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
           onstart="event.stopPropagation();"
@@ -161,7 +161,7 @@
               </p:inplace>
               <p:growl id="expiry-form-message" for="expiry-calendar" />
             </h:form>
-            <h:outputText id="no-expiry-available"
+            <h:outputText id="expiry-readonly-value"
               value="#{empty task.expiryTimestamp ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.expiryTimestamp}"
               rendered="#{!taskActionBean.canChangeExpiry(task)}">
               <f:convertDateTime locale="#{localeBean.locale}" dateStyle="medium" type="both" timeStyle="short"/>
@@ -241,7 +241,7 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/businessCase')}" />
         </div>
         <div class="portal-detail-kv-value u-truncate-text">
-          <p:commandLink id="related-case" styleClass="task-business-case portal-link" disabled="#{cc.attrs.readOnly or not caseWidgetBean.isCaseFound(task.getCase().getBusinessCase())}"
+          <p:commandLink id="related-case" styleClass="task-business-case portal-link portal-detail-link" disabled="#{cc.attrs.readOnly or not caseWidgetBean.isCaseFound(task.getCase().getBusinessCase())}"
             ariaLabel="#{taskBean.displayCaseName(task)}"
             actionListener="#{logic.navigateToRelatedCase(task.getCase().getBusinessCase())}">
             <i class="ti ti-external-link" />
@@ -261,7 +261,7 @@
             ariaLabel="#{taskBean.getTechnicalCaseDisplayName(task)}"
             actionListener="#{logic.navigateToRelatedCase(task.getCase())}"
             rendered="#{task.getCase().getId() != task.getCase().getBusinessCase().getId()}"
-            styleClass="task-business-case"
+            styleClass="task-business-case portal-link portal-detail-link"
             disabled="#{cc.attrs.readOnly or not caseWidgetBean.isCaseFound(task.getCase())}">
             <i class="ti ti-external-link" />
             <h:outputText value="#{taskBean.getTechnicalCaseDisplayName(task)}" />
@@ -279,7 +279,7 @@
     trackMouse="true" hideEvent="mouseleave click" />
   <p:tooltip for="related-technical-case" value="##{task.getCase().id} #{task.getCase().names().current()} (#{caseBean.getState(task.getCase()).toUpperCase()})"
     trackMouse="true" hideEvent="mouseleave click" />
-  <p:tooltip for="no-expiry-available expiry-task-time" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskExpiryDisable')}"
+  <p:tooltip for="expiry-readonly-value expiry-task-time" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskExpiryDisable')}"
     trackMouse="true" hideEvent="mouseleave click" rendered="#{taskBean.isNotDone(task) and taskActionBean.notHaveExpiryHandleLogic(task)}" />
   <p:tooltip for="duration-time-info" value="#{taskActionBean.getDurationOfTaskOnTooltip(task)}" trackMouse="true" hideEvent="mouseleave click" />
   

@@ -12,7 +12,6 @@ public class NameColumnModel extends TaskColumnModel {
     super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.NAME.getField();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
-    this.quickSearch = defaultIfEmpty(this.quickSearch, true);
     this.styleToDisplay = initDefaultStyle();
   }
 
@@ -41,6 +40,11 @@ public class NameColumnModel extends TaskColumnModel {
 
   @Override
   public boolean canQuickSearch() {
+    return true;
+  }
+
+  @Override
+  public Boolean getDefaultQuickSearch() {
     return true;
   }
 }

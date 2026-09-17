@@ -611,7 +611,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     pinCaseContext: Vorgang {0} anheften
     pinTaskContext: Aufgabe {0} anheften
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
-    pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
+    pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hinzuzufügen
     previousStage: Vorherige Stufe
     private: Privat
     process: Prozess
@@ -1715,8 +1715,6 @@ Dialogs:
               ImportPublic: Öffentliches Dashboard importieren
               NavigationWidgetMissingTarget: Navigations-Widget "{0}" verweist auf ein Dashboard, das nicht importiert wurde und in diesem Portal nicht vorhanden ist. Das Widget funktioniert möglicherweise nicht korrekt.
               chooseAJsonFile: Wählen Sie eine JSON-Datei
-            DashboardSharing:
-              ShareDashboard: Dashboard teilen
             NavigationDashboardWidget:
               PermissionsDenied: Sie haben keine Berechtigung zum Zugriff auf dieses Dashboard
             NavigationDashboardWidgetConfiguration:

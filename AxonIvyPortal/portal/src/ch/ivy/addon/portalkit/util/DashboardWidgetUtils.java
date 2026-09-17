@@ -26,6 +26,8 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
+import com.axonivy.portal.service.filter.operatorpolicy.service.GlobalOperatorPolicyService;
+
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
@@ -279,7 +281,10 @@ public class DashboardWidgetUtils {
 
       var caseCustomFieldMetas = ICustomFieldMeta.cases();
       taskCustomFieldMetas.addAll(caseCustomFieldMetas);
-      List<TaskColumnModel> columns = ((TaskDashboardWidget) widget).getColumns();
+      TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
+      buildTaskColumns(taskWidget);
+      List<TaskColumnModel> columns = taskWidget.getColumns();
+      simplifyAllowedOperators(columns);
       columns.forEach(column -> {
         simplifyColumnData(column, taskCustomFieldMetas, deprecatedFields);
       });
@@ -290,7 +295,10 @@ public class DashboardWidgetUtils {
     }
     case CASE -> {
       var caseCustomFieldMetas = ICustomFieldMeta.cases();
-      List<CaseColumnModel> caseColumns = ((CaseDashboardWidget) widget).getColumns();
+      CaseDashboardWidget caseWidget = (CaseDashboardWidget) widget;
+      buildCaseColumns(caseWidget);
+      List<CaseColumnModel> caseColumns = caseWidget.getColumns();
+      simplifyAllowedOperators(caseColumns);
       caseColumns.forEach(column -> {
         simplifyColumnData(column, caseCustomFieldMetas, deprecatedFields);
       });
@@ -301,6 +309,16 @@ public class DashboardWidgetUtils {
     }
     default -> widget;
     };
+  }
+
+  private static void simplifyAllowedOperators(List<? extends ColumnModel> columns) {
+    if (CollectionUtils.isEmpty(columns)) {
+      return;
+    }
+
+    GlobalOperatorPolicyService operatorPolicyService = new GlobalOperatorPolicyService();
+    columns.stream().filter(Objects::nonNull).filter(column -> !operatorPolicyService.restrictsOperators(column))
+        .forEach(column -> column.setAllowedOperators(null));
   }
 
   private static void simplifyColumnData(AbstractColumn column, Set<ICustomFieldMeta> customFieldMetas,
@@ -341,6 +359,9 @@ public class DashboardWidgetUtils {
     }
     if (BooleanUtils.isTrue(column.getEnableFilter())) {
       column.setEnableFilter(null);
+    }
+    if (Objects.equals(column.getDefaultQuickSearch(), column.getQuickSearch())) {
+      column.setQuickSearch(null);
     }
     if (BooleanUtils.isTrue(column.getSortable())) {
       column.setSortable(null);
@@ -496,7 +517,8 @@ public class DashboardWidgetUtils {
   }
 
   private static final Set<DashboardStandardTaskColumn> NOT_DEFAULT_TASK_COLUMNS = Set.of(
-      DashboardStandardTaskColumn.BUSINESS_CASE_ID, DashboardStandardTaskColumn.TECHNICAL_CASE_ID);
+      DashboardStandardTaskColumn.BUSINESS_CASE_ID, DashboardStandardTaskColumn.TECHNICAL_CASE_ID,
+      DashboardStandardTaskColumn.APPLICATION, DashboardStandardTaskColumn.WORKER);
 
   public static List<TaskColumnModel> initStandardTaskColumns() {
     List<TaskColumnModel> columnModels = new ArrayList<>();
@@ -543,9 +565,15 @@ public class DashboardWidgetUtils {
     return DashboardWidgetUtils.buildCaseColumns(widget);
   }
 
+  private static final Set<DashboardStandardCaseColumn> NOT_DEFAULT_CASE_COLUMNS =
+      Set.of(DashboardStandardCaseColumn.APPLICATION);
+
   public static List<CaseColumnModel> initStandardColumns() {
     List<CaseColumnModel> columnModels = new ArrayList<>();
     for (DashboardStandardCaseColumn col : DashboardStandardCaseColumn.values()) {
+      if (NOT_DEFAULT_CASE_COLUMNS.contains(col)) {
+        continue;
+      }
       CaseColumnModel columnModel = new CaseColumnModel();
       columnModel.setField(col.getField());
       columnModels.add(columnModel);

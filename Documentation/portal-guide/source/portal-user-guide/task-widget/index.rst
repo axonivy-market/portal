@@ -1,67 +1,142 @@
-.. _full-task-list:
+.. _task-widget:
 
-Full Task List
-**************
+Task Widget
+***********
 
-The **Full Task List** page is a dashboard featuring a single, full-width task widget. 
-You can reach the page by using the |task-list-icon| :guilabel:`Tasks` link in the Axon Ivy Portal menu.
+The **Task Widget** shows a list of tasks. Depending on your application roles and Portal
+configuration, you might see not only your own tasks but all open tasks. This chapter describes
+how to work with the widget and with the task details behind it.
 
-.. important::
-   - The Full Task List dashboard works normally like any other dashboard. You can manage it in the :ref:`Dashboard Configuration <dashboard-configuration>` page.
+To add a Task Widget to a dashboard and configure it, follow :ref:`Task list widget
+<new-dashboard-task-list-widget>` in the Dashboard chapter. To configure it in the dashboard JSON
+instead, see :ref:`Configure Task Widget <configure-new-dashboard-task-widget>`.
 
-   - The template :guilabel:`Full Task List dashboard` will support you in creating a new dashboard with a similar layout, see :ref:`public-available-dashboard-template`.
+.. hint::
+   Portal ships a default dashboard named :guilabel:`Tasks` that contains a single task widget.
+   You can reach it with the |task-list-icon| :guilabel:`Tasks` link in the Axon Ivy Portal menu.
 
-   - This dashboard is visible to all users by default. To restrict access to specific user roles, configure the dashboard permissions in the :ref:`Dashboard Configuration <dashboard-configuration>` page.
+   |navigate-to-task-widget-page|
 
-.. tip:: 
-   Depending on your application roles and Portal configuration, you might see not only your tasks but all open tasks.
+   - The template Full Task List dashboard will support you in creating a new dashboard with a similar layout, see :ref:`public-available-dashboard-template`.
 
-|navigate-to-full-task-list-page|
+   - The dashboard is visible to all users by default. To restrict access to specific user roles, configure the dashboard permissions in the :ref:`Dashboard Configuration <dashboard-configuration>` page.
 
 Overview
 ========
 
-On the top of the **Full Task List** page you see next to the heading
-:guilabel:`Tasks` in brackets the overall number of tasks shown to you. Below you find the filter feature.
-The usage will be explained in the HowTo's further down this chapter.
-Finally, you see the list of tasks.
+Below are the standard fields of a task. You can configure them in the column management dialog,
+see :ref:`Column Management <task-widget-column-management>`.
 
-For each task the following key information is shown in the list:
-
-#. Priority
+#. Start
 
 #. Pin
 
-#. Task ID
+#. Priority
 
-#. Name
+#. Task Id
+
+#. Task name
 
 #. Description
 
-#. Responsible user or role
+#. Responsible
 
 #. State
 
-#. Creation Date
+#. Created
 
-#. Expiry Date
+#. Completed
+
+#. Expiry
 
 #. Category
 
-#. Working user (This column is not displayed by default)
+#. Application (This column is not added by default)
 
-#. Application (This column is not displayed by default)
+#. Working user (This column is not added by default)
 
-#. Business Case ID (This column is not displayed by default)
+#. Business Case ID (This column is not added by default)
 
-#. Technical Case ID (This column is not displayed by default)
+#. Technical Case ID (This column is not added by default)
 
 |task-key-information|
 
-Available Actions
------------------
+Widget Actions
+--------------
 
-At the end of each row you find the `Actions` menu with the following options:
+On the right side of the widget header you find the operations that apply to the whole widget.
+Click the actions menu button to open them.
+
+|widget-actions-menu|
+
+- **Quick search**: Search the tasks of the widget by keyword
+
+- **Bulk selection**: Select several tasks and delegate them in one step
+
+- **Show pinned tasks**: Show your pinned tasks only, :guilabel:`Show all tasks` switches back
+
+- **Filters**: Open the complex filter panel of the widget, see :ref:`Complex Filter <complex-filter>`
+
+- **Expand**: Show the widget in fullscreen, :guilabel:`Collapse` returns it to its normal size
+
+- **Widget information**: Show additional widget details and statistics, and export the list to Excel
+
+.. note::
+   Which of these operations are available depends on the widget configuration, see
+   :ref:`Configuration panel <task-list-widget-configuration-panel>` of the Task list widget.
+
+**Quick search**
+
+When quick search is enabled, click the :guilabel:`Quick search` button to reveal the search input
+and start searching.
+
+|task-quick-search-textbox|
+
+  .. important::
+
+    #. The scope of the quick search feature is defined in the configuration panel of the widget.
+    #. The result of the quick search function may be affected if you apply a complex filter on the widget.
+
+**Bulk selection**
+
+:guilabel:`Bulk selection` lets you select multiple tasks and delegate them at once.
+
+|bulk-delegate-task|
+
+**Show pinned tasks**
+
+:guilabel:`Show pinned tasks` filters the widget so it only displays tasks you have pinned; the
+item then switches to :guilabel:`Show all tasks`, which returns you to the full task list.
+
+**Filters**
+
+:guilabel:`Filters` opens the widget's complex filter panel, where you can narrow down the
+displayed tasks by criteria such as status, category, or date. See :ref:`complex-filter` for more
+details.
+
+**Expand**
+
+:guilabel:`Expand` enlarges the widget to fill the entire screen for a better view of your data;
+:guilabel:`Collapse` returns it to its normal size.
+
+**Widget information**
+
+:guilabel:`Widget information` opens the information panel, showing additional widget details and
+statistics. From there, you can also export all data of the task widget using the
+``Export to Excel`` link at the bottom left corner of the panel.
+
+|widget-info|
+
+If the number of exported tasks exceeds the maximum row number of the Excel file, Portal will
+separate data into multiple Excel files and put them into a single zip file.
+
+.. _task-row-actions:
+
+Task Actions
+------------
+
+At the end of each row you find the |actions-menu-icon| :guilabel:`Actions` menu with the
+following options:
 
 .. table::
    :widths: 30 70
@@ -71,73 +146,71 @@ At the end of each row you find the `Actions` menu with the following options:
    +===========================+===============================================================+
    | **Details**               | View full task information                                    |
    +---------------------------+---------------------------------------------------------------+
-   | **Reset Task**            | Revert the task to its initial state                          |
+   | **Pin**                   | Pin the task to find it quickly later, :guilabel:`Unpin`      |
+   |                           | removes it again                                              |
    +---------------------------+---------------------------------------------------------------+
-   | **Delegate Task**         | Assign the task to another user or role                       |
+   | **Reset**                 | Revert the task to its initial state                          |
+   +---------------------------+---------------------------------------------------------------+
+   | **Delegate**              | Assign the task to another user or role                       |
    +---------------------------+---------------------------------------------------------------+
    | **Reserve**               | Reserve the task for yourself                                 |
    +---------------------------+---------------------------------------------------------------+
-   | **Destroy**               | Destroy the task                                              |
-   +---------------------------+---------------------------------------------------------------+
    | **Trigger Escalation**    | Manually trigger task escalation                              |
-   +---------------------------+---------------------------------------------------------------+
-   | **Custom Fields**         | View task custom fields                                       |
    +---------------------------+---------------------------------------------------------------+
    | **Workflow Events**       | View workflow events                                          |
    +---------------------------+---------------------------------------------------------------+
+   | **Custom Fields**         | View task custom fields                                       |
+   +---------------------------+---------------------------------------------------------------+
    | **Process Viewer**        | Visual representation of the process flow                     |
    +---------------------------+---------------------------------------------------------------+
+   | **Destroy**               | Destroy the task                                              |
+   +---------------------------+---------------------------------------------------------------+
+
+At the end of the menu you find the side steps of the process.
 
 Task Details
 ============
 
-Access the full set of task data by clicking on `Actions` then `Details`.
+Clicking on a row opens the task details by default. If the :ref:`Portal setting
+<update-portal-settings>` ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` is set
+to start the task instead, use :guilabel:`Actions` then :guilabel:`Details`.
 
-The task details page is organized into four main sections:
+|detailed-task-information|
 
-.. table::
-   :widths: 30 70
+The task details page consists of four widgets:
 
-   +---------------------------+---------------------------------------------------------------+
-   | Section                   | Content                                                       |
-   +===========================+===============================================================+
-   | **Status Banner**         | Information that needs attention or action                    |
-   +---------------------------+---------------------------------------------------------------+
-   | **Data and Description**  | Task metadata and related case information                    |
-   +---------------------------+---------------------------------------------------------------+
-   | **Histories**             | Notes and task history entries                                |
-   +---------------------------+---------------------------------------------------------------+
-   | **Documents**             | Attached files with add, delete, rename, preview options      |
-   +---------------------------+---------------------------------------------------------------+
+#. **Summary**: The name of the task, its ID and creation date, the :guilabel:`Start` button and
+   the |actions-menu-icon| :guilabel:`Actions` menu of the task. Below you find Priority,
+   State, Due and :guilabel:`Workflow Events`.
 
-#. Task status banner to display information that needs attention or that you should take action on.
-
-   |task-status-banner|
-
-#. Data and description, you find various metadata concerning the task and
-   the respective case it is related to.
+#. **Task Details**: The description of the task, followed by
+   Role and User Information, Time Information and
+   Task and Case Information.
 
    |detailed-task-information-data-description|
 
-#. Histories, you may add additional notes which are described below
-
-   |detailed-task-information-note|
-
-#. Documents, these documents once attached to the case are
-   available on all tasks. You may add, delete, rename or preview documents
-   described in the HowTo’s below.
+#. **Documents**: The documents attached to the case. They are available on all tasks of the case.
+   You may add, delete, rename or preview documents as described in the HowTo's below.
 
    |detailed-task-information-documents|
 
-|detailed-task-information|
+#. **Notes**: The notes of the task. Activate :guilabel:`System notes` to show the notes written
+   by the system as well, and click :guilabel:`Show more` to open the full history.
+
+   |detailed-task-information-note|
+
+.. note::
+   Whenever a task needs your attention, a status banner is shown above the widgets.
+
+   |task-status-banner|
 
 How-to
 ======
 
-HowTo: Configure the Full Task List
------------------------------------
+HowTo: Configure the Task Widget
+--------------------------------
 
-The full task list page functions as a dashboard accessible from the top-level menu. 
+The Task Widget page functions as a dashboard accessible from the top-level menu. 
 To customize the task list, navigate to :ref:`Dashboard configuration <dashboard-configuration>`.
 
 To restore the dashboard to its default settings, including the menu icon and task list layout, delete the dashboard. Portal will automatically 
@@ -148,7 +221,7 @@ HowTo: Move and Resize Widgets in Task Details
 
 #. Open the task details of a task
 
-#. Click on the :guilabel:`Edit` button to drag, drop and resize widgets.
+#. Click on the :guilabel:`Edit layout` button to drag, drop and resize widgets.
 
    |how-to-switch-to-edit-mode|
 
@@ -166,7 +239,7 @@ HowTo: Attach a Document to a Case
 
 #. Open the task details of a task
 
-#. Click the link |add-icon| ``Add document`` 
+#. Click the |add-icon| button in the header of the **Documents** widget
 
 #. The :guilabel:`Add document` dialog is opened
 
@@ -231,7 +304,7 @@ HowTo: Preview a Document of a Task
    - **Default**: Images (jpg, jpeg, bmp, png), plain text (txt, log), and PDF documents
    - **With DocFactory**: Word (doc, docx), Excel (xls, xlsx), and email (eml) files
    
-   To enable this feature, set :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true. 
+   To enable this feature, set :ref:`Portal settings <update-portal-settings>` ``Portal.Document.EnablePreview`` to true. 
    For Office documents, deploy `DocFactory <https://market.axonivy.com/doc-factory#tab-description>`_ in the same security context.
 
 
@@ -240,7 +313,7 @@ HowTo: Add a Note to a Task
 
 #. Open the task details of a task
 
-#. Click on the link |add-icon| ``Add note`` below the notes section
+#. Click the |add-icon| button in the header of the **Notes** widget
 
 #. The :guilabel:`Add note` dialog is opened
 
@@ -261,7 +334,7 @@ HowTo: Export a Task History
 
 #. Open the task details of a task
 
-#. Click on the link |show-more-icon| ``Show more`` below the notes section
+#. Click on |show-more-icon| :guilabel:`Show more` in the header of the **Notes** widget
 
    |how-to-show-note-details|
 
@@ -279,9 +352,9 @@ HowTo: Show Workflow Events
 
 #. Open the task details of a task
 
-#. Click on the link ``Actions`` on the right top corner of the **Data and Description** section
+#. Click on the |actions-menu-icon| :guilabel:`Actions` menu in the **Summary** widget
 
-#. Click the link ``Workflow Events`` on the overlay panel to see Workflow Events dialog
+#. Click :guilabel:`Workflow Events` to open the Workflow Events dialog
 
 **Workflow Events dialog**
 
@@ -292,9 +365,9 @@ HowTo: Show Custom Fields
 
 #. Open the task details of a task
 
-#. Click on the link ``Actions`` on the right top corner of the **Data and Description** section
+#. Click on the |actions-menu-icon| :guilabel:`Actions` menu in the **Summary** widget
 
-#. Click the link ``Custom Fields`` on the overlay panel to see Custom Fields dialog
+#. Click :guilabel:`Custom Fields` to open the Custom Fields dialog
 
 **Custom Fields dialog**
 
@@ -356,10 +429,10 @@ Different task operations require specific permissions:
 .. include:: ../includes/_common-icon.rst
 
 
-.. |navigate-to-full-task-list-page| image:: ../../screenshots/dashboard/expanded-left-menu.png
-   :alt: Menu to navigate to the Full task list
+.. |navigate-to-task-widget-page| image:: ../../screenshots/dashboard/expanded-left-menu.png
+   :alt: Menu to navigate to the Task Widget page
 .. |task-key-information| image:: ../../screenshots/task/task-key-information.png
-   :alt: Full task list: key informations
+   :alt: Task Widget: key information
 .. |detailed-task-information-data-description| image:: ../../screenshots/task-detail/detailed-task-information-data-description.png
    :alt: Task Details: General section
 .. |detailed-task-information-note| image:: ../../screenshots/task-detail/detailed-task-information-note.png
@@ -396,3 +469,11 @@ Different task operations require specific permissions:
    :alt: Task Details: preview document dialog
 .. |how-to-rename-document| image:: ../../screenshots/case-detail/how-to-rename-document.png
    :alt: Task Details: rename document dialog
+.. |task-quick-search-textbox| image:: ../../screenshots/new-dashboard/task-quick-search-textbox.png
+   :alt: Dashboard task widget's quick search
+.. |bulk-delegate-task| image:: ../../screenshots/new-dashboard/task-widget-bulk-delegate-selection.png
+   :alt: Dashboard task widget bulk delegate feature
+.. |widget-actions-menu| image:: ../../screenshots/new-dashboard/task-widget-actions-menu-panel.png
+   :alt: Dashboard widget's actions menu panel
+.. |widget-info| image:: ../../screenshots/new-dashboard/widget-info.png
+   :alt: Dashboard widget's info panel

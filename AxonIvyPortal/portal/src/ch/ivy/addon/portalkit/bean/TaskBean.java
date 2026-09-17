@@ -42,7 +42,7 @@ public class TaskBean implements Serializable {
   private static final String TASK_BUSINESS_STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/";
 
   public String getPriority(WorkflowPriority priority) {
-    return cms("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + priority.name());
+    return cms("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + priority.name() + "_LOWERCASE");
   }
 
   public boolean isNotDone(ITask task) {

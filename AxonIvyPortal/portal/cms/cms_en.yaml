@@ -1709,8 +1709,6 @@ Dialogs:
               ImportPublic: Import Public Dashboard
               NavigationWidgetMissingTarget: Navigation widget "{0}" references a dashboard that was not imported and does not exist in this portal. The widget may not work correctly.
               chooseAJsonFile: Choose a json file
-            DashboardSharing:
-              ShareDashboard: Share Dashboard
             NavigationDashboardWidget:
               PermissionsDenied: You don't have permission to access this dashboard
             NavigationDashboardWidgetConfiguration:

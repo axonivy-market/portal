@@ -88,6 +88,8 @@ In configuration mode, you can:
 - **Reset dashboard**: Undo all changes and return to the standard layout
 - **Resize columns**: Adjust column widths in Task List/Case List widgets by dragging gridlines
 
+.. _new-dashboard-add-widget:
+
 Add a new widget
 ----------------
 
@@ -116,6 +118,8 @@ Adding a task list widget will give you total flexibility about what you want to
 see and how.
 
 |task-list-widget|
+
+.. _task-list-widget-configuration-panel:
 
 **Configuration panel**
 
@@ -186,26 +190,6 @@ Portal supports to display **custom case fields** and **business custom case** w
 
 |task-column-field-type-configuration|
 
-**Excel export**
-
-In view mode, you can export all data of the task widget by clicking on the link ``Export to Excel`` at the bottom left corner of the widget information panel.
-
-|task-export-excel|
-
-If the number of exported tasks exceeds the maximum row number of the Excel file, Portal will separate data into multiple Excel
-files and put them into a single zip file.
-
-**Quick search**
-
-In view mode, when quick search is enabled, a text box will appear to allow you to search.
-
-|task-quick-search-textbox|
-
-  .. important::
-
-    #. You can define the scope of the quick search feature in the configuration panel.
-    #. The result of the quick search function may be affected if you apply a complex filter on the widget.
-
 **Adjust column width**
 
 In edit mode, you can adjust the width of each column directly within the widget table.
@@ -218,12 +202,6 @@ You may also notice gridlines on the table which implemented by Portal to help y
 
     If the total width of the columns is less than the widget’s width, the Portal will automatically adjust the column widths to match the widget’s width.
 
-**Bulk delegate**
-
-In view mode, you can select multiple tasks and delegate them at once by clicking the :guilabel:`Toggle bulk delegation` button in the widget header.
-
-|bulk-delegate-task|
-
 .. _new-dashboard-case-list-widget:
 
 Case list widget
@@ -233,6 +211,8 @@ Adding a case list widget will give you total flexibility about what you want to
 see and how.
 
 |case-list-widget|
+
+.. _case-list-widget-configuration-panel:
 
 **Configuration panel**
 
@@ -292,26 +272,6 @@ In the column management dialog, you find two sections to configure the table co
       #. Custom fields: fields that have type ``STRING`` or ``TEXT``.
 
     Quick search is enabled for the standard field name and description by default.
-
-**Excel export**
-
-In view mode, you can export all data of the case widget by clicking on the link ``Export to Excel`` at the end of the widget information panel.
-
-|case-export-excel|
-
-If the number of exported cases exceeds the maximum row number of the Excel file, Portal will separate data into multiple Excel
-files and put them into a single zip file.
-
-**Quick search**
-
-In view mode, when quick search is enabled, a text box will appear to allow you to search.
-
-|case-quick-search-textbox|
-
-  .. important::
-
-    #. You can define the scope of the quick search feature in the configuration panel.
-    #. The result of the quick search function may be affected if you apply a complex filter on the widget.
 
 **Adjust column width**
 
@@ -521,10 +481,6 @@ After selecting the :guilabel:`Clone` option, the :guilabel:`Clone widget` dialo
    :alt: Dashboard widget's filters panel
 .. |widget-info| image:: ../../screenshots/new-dashboard/widget-info.png
    :alt: Dashboard widget's info panel
-.. |case-export-excel| image:: ../../screenshots/new-dashboard/case-export-excel.png
-   :alt: Dashboard case widget: export to Excel feature
-.. |task-export-excel| image:: ../../screenshots/new-dashboard/task-export-excel.png
-   :alt: Dashboard task widget: export to Excel feature
 .. |edit-widget| image:: ../../screenshots/new-dashboard/edit-widget.png
    :alt: Dashboard configuration screen
 .. |add-widget| image:: ../../screenshots/new-dashboard/add-widget.png
@@ -581,10 +537,6 @@ After selecting the :guilabel:`Clone` option, the :guilabel:`Clone widget` dialo
    :alt: Dashboard notification widget's configuration dialog
 .. |notification-widget| image:: ../../screenshots/new-dashboard/notification-widget.png
    :alt: Dashboard notification widget
-.. |task-quick-search-textbox| image:: ../../screenshots/new-dashboard/task-quick-search-textbox.png
-   :alt: Dashboard task widget's quick search
-.. |case-quick-search-textbox| image:: ../../screenshots/new-dashboard/case-quick-search-textbox.png
-   :alt: Dashboard case widget's quick search
 .. |task-list-widget-edit-mode| image:: ../../screenshots/new-dashboard/task-list-widget-edit-mode.png
    :alt: Dashboard task widget in the Edit mode
 .. |case-list-widget-edit-mode| image:: ../../screenshots/new-dashboard/case-list-widget-edit-mode.png
@@ -602,5 +554,3 @@ After selecting the :guilabel:`Clone` option, the :guilabel:`Clone widget` dialo
 .. |navigation-dashboard-widget-configuration| image:: ../../screenshots/new-dashboard/navigation-dashboard-widget-configuration.png
    :alt: Navigation dashboard widget configuration
 .. |navigation-dashboard-widget| image:: ../../screenshots/new-dashboard/navigation-dashboard-widget.png
-.. |bulk-delegate-task| image:: ../../screenshots/new-dashboard/task-widget-bulk-delegate-selection.png
-   :alt: Dashboard task widget bulk delegate feature

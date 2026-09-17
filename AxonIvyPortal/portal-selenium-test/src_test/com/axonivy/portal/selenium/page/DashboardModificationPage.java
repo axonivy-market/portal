@@ -197,7 +197,7 @@ public class DashboardModificationPage extends TemplatePage {
     return getDashboardConfigurationActionMenu(dashboardRow).$$("span").filter(Condition.text("Share")).first();
   }
 
-  public void getDashboardShareLinkDialog() {
+  public void getDashboardShareLinkPanel() {
     SelenideElement dashboard = getDashboardRowByName("Dashboard");
     clickButtonOnDashboardConfigurationActionMenu("Share", dashboard);
     $("div[id$=':share-dashboard-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);

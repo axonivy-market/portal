@@ -170,7 +170,7 @@
               pt:data-collapse-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapse')}"
               styleClass="toggle-fullscreen-item toggle-fullscreen-item-#{index}" containerStyleClass="actions-menu-item-bordered"
               rendered="#{renderExpandCollapse}"
-              onclick="event.preventDefault(); toggleFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}'); return false;" />
+              onclick="toggleFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}');" />
             <!-- Info -->
             <p:menuitem id="info-menu-item-#{index}"
               icon="ti ti-info-circle"
@@ -392,7 +392,7 @@
               <div class="flex align-items-center justify-content-end footer-buttons-container">
                 <p:commandLink id="reset-button"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetFilters')}"
-                  styleClass="flex align-items-center reset-button portal-link" partialSubmit="true"
+                  styleClass="flex align-items-center" partialSubmit="true"
                   process="filter-form-#{index}"
                   update="#{componentToUpdateOnResetFilter} :#{cc.clientId}:widget-header-actions :#{cc.clientId}:actions-button-panel-#{index}"
                   oncomplete="PF('filter-dialog-#{index}').hide(); initWidgetFilterHtml('#{widget.id}');"
@@ -401,7 +401,7 @@
                     <f:param name="skipValidator" value="true" />
                     <i class="pr-1 ti ti-refresh"/>
                     <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetFilters')}</span>
-                  </p:commandLink>
+                </p:commandLink>
 
                 <p:commandButton id="apply-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/ApplyFilters')}"
                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/applyContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterOptionHeader')])}"

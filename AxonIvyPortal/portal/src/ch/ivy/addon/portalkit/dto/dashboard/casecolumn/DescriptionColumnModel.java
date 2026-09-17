@@ -14,7 +14,6 @@ public class DescriptionColumnModel extends CaseColumnModel {
     this.styleToDisplay = initDefaultStyle();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.sortable = defaultIfEmpty(this.sortable, getDefaultSortable());
-    this.quickSearch = defaultIfEmpty(this.quickSearch, true);
   }
 
   @Override
@@ -47,6 +46,11 @@ public class DescriptionColumnModel extends CaseColumnModel {
 
   @Override
   public boolean canQuickSearch() {
+    return true;
+  }
+
+  @Override
+  public Boolean getDefaultQuickSearch() {
     return true;
   }
 }

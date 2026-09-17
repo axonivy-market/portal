@@ -100,6 +100,9 @@ public abstract class AbstractColumn implements Serializable {
     if (isNull(this.enableFilter)) {
       this.enableFilter = true;
     }
+    if (isNull(this.quickSearch)) {
+      this.quickSearch = getDefaultQuickSearch();
+    }
     if (isNull(this.sortable)) {
       this.sortable = getDefaultSortable();
     }
@@ -143,6 +146,11 @@ public abstract class AbstractColumn implements Serializable {
   @JsonIgnore
   public Boolean getDefaultSortable() {
     return true;
+  }
+
+  @JsonIgnore
+  public Boolean getDefaultQuickSearch() {
+    return false;
   }
 
   @JsonIgnore
