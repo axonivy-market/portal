@@ -1709,8 +1709,6 @@ Dialogs:
               ImportPublic: Importer un tableau de bord public
               NavigationWidgetMissingTarget: Le widget de navigation "{0}" fait référence à un tableau de bord qui n'a pas été importé et n'existe pas dans ce portail. Le widget peut ne pas fonctionner correctement.
               chooseAJsonFile: Choisissez un fichier json
-            DashboardSharing:
-              ShareDashboard: Partager le tableau de bord
             NavigationDashboardWidget:
               PermissionsDenied: |+
                 Vous n'avez pas la permission d'accéder à ce tableau de bord.

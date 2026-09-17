@@ -74,7 +74,7 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
             ScreenshotUtils.ACCESSIBILITY_DASHBOARD_FOLDER + "accessibility-dashboard-creation", new ScreenshotMargin(10));
     dashboardConfigurationPage.closeAddDashboardDialog();
     dashboardConfigurationPage.openEditPublicDashboardsPage();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getShareDashboardDialog(),
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getShareDashboardPanel(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "share-dashboard-dialog", new ScreenshotMargin(10));
   }
   
