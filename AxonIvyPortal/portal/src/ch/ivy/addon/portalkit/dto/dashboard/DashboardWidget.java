@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import ch.ivy.addon.portalkit.datamodel.LiveScrollLazyModel;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
@@ -50,7 +51,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 public abstract class DashboardWidget implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;
-  private static final Integer NUMBER_OF_MOCK_ITEMS = 25;
+  private static final Integer NUMBER_OF_MOCK_ITEMS = LiveScrollLazyModel.DEFAULT_CHUNK_SIZE;
   
   protected String id;
   @Deprecated(since = "10.0", forRemoval = true)

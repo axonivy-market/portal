@@ -106,7 +106,7 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.getShareButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    taskDetailsPage.getShareDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    taskDetailsPage.getSharePanel().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
     permissions().denyShareLinkTaskDetailsPermission();
     redirectToNewDashBoard();

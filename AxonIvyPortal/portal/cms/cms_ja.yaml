@@ -1711,8 +1711,6 @@ Dialogs:
               ImportPublic: 公開用ダッシュボードをインポートする
               NavigationWidgetMissingTarget: ナビゲーションウィジェット"{0}"は、インポートされておらず、このポータルに存在しないダッシュボードを参照しています。ウィジェットが正しく機能しない可能性があります。
               chooseAJsonFile: JSON ファイルを選択してください
-            DashboardSharing:
-              ShareDashboard: ダッシュボードを共有
             NavigationDashboardWidget:
               PermissionsDenied: このダッシュボードにアクセスする権限がありません
             NavigationDashboardWidgetConfiguration:
