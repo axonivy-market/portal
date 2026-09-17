@@ -517,6 +517,9 @@ public class CaseDetailsTest extends BaseTest {
 
   @AfterEach
   public void teardown() {
+    // The deny applies to the user who happens to be logged in, and it survives cleanData.ivp.
+    // Pin it to the admin user so tests running as demo afterwards keep their note permissions.
+    login(TestAccount.ADMIN_USER);
     denySpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
   }
