@@ -342,13 +342,11 @@ public class PortalPackageService {
       switch (file) {
         case DASHBOARD -> importDashboards(migrate(json, node -> new JsonDashboardMigrator(node).migrate()));
         case EXTERNAL_LINK -> importExternalLinks(json);
-        case CUSTOM_STATISTIC ->
-            importList(migrate(json, node -> new JsonStatisticMigrator(node).migrate()), Statistic.class,
-                file.getVariableKey());
+        case CUSTOM_STATISTIC -> importList(migrate(json, node -> new JsonStatisticMigrator(node).migrate()), Statistic.class,
+            file.getVariableKey());
         case USER_MENU -> importList(json, UserMenu.class, file.getVariableKey());
-        case CASE_DETAIL ->
-            importList(migrate(json, node -> new JsonCaseDetailsMigrator(node).migrate()), CaseDetails.class,
-                file.getVariableKey());
+        case CASE_DETAIL -> importList(migrate(json, node -> new JsonCaseDetailsMigrator(node).migrate()), CaseDetails.class,
+            file.getVariableKey());
         case THIRD_PARTY_APP -> importList(
             migrate(json, node -> new JsonThirdPartyApplicationMigrator(node).migrate()), Application.class,
             file.getVariableKey());
@@ -384,7 +382,11 @@ public class PortalPackageService {
     Ivy.var().set(variableKey, BusinessEntityConverter.entityToJsonValue(entity));
   }
 
-  private void importDashboards(String json) {
+  private void importDashboards(String json) throws IOException {
+    JsonNode node = BusinessEntityConverter.getObjectMapper().readTree(json);
+    if (!JsonListWrapper.isListWrapper(node)) {
+      throw new PortalException("Dashboard package file is not a valid {version, items} wrapper.");
+    }
     List<Dashboard> dashboards = BusinessEntityConverter.jsonValueToEntities(json, Dashboard.class);
     for (Dashboard dashboard : dashboards) {
       if (DashboardUtils.hasOversizedWidgetImage(dashboard)) {
