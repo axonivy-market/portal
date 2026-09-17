@@ -1941,39 +1941,6 @@ Enums:
                 name: |
                   Menor o igual que
 Labels:
-  AI:
-    Error:
-      CannotFindUser: Lo sentimos, no se ha encontrado ningún usuario que coincida con su solicitud. Por favor, inténtelo de nuevo.
-      CannotStartTask: No se puede iniciar la tarea tiene ID {0}
-      InvalidTaskPriority: 'Prioridad de tarea no válida. Las prioridades de tarea válidas son: baja, normal, alta o excepción.'
-      InvalidTaskState: 'Estado de tarea no válido. Los estados de tarea válidos son: abierta, realizada, en curso o error.'
-      NoMatchingCase: No se encuentra ninguna tarea que se ajuste a su solicitud
-      NoMatchingProcesses: No utilice procesos de concordancia.
-      NoMatchingTask: No se encuentra ninguna tarea que se ajuste a su solicitud
-    FindCaseAIResult: 'ID: {0}, Nombre: {1}, Descripción: {2}, Estado: {3}'
-    FindProcessAIResult: '   - ID: {0}, Nombre: {1}, Descripción: {2}'
-    FindTaskAIResult: 'ID: {0}, Nombre: {1}, Descripción: {2}, Estado: {3}, Prioridad {4}'
-    FindUserAIResult: 'Nombre de usuario: {0}, Nombre: {1}, Correo electrónico: {2}, Estado: {3}'
-    FoundCaseHeader: 'Casos encontrados:'
-    FoundProcessesHeader: 'Procesos encontrados:'
-    FoundTaskHeader: 'Tareas encontradas:'
-    FoundUsersHeader: 'Usuarios encontrados:'
-    ProcessInfoHeader: |-
-      **Nombre del proceso:** {0}
-      **Descripción del proceso:** {1}
-    ProcessInfoHeaderWithParameters: |-
-      - **Nombre del proceso:** {0}
-      - **Descripción del proceso:** {1}
-      - **Número de parámetros:** {2}
-    ProcessParameterInfo: "\t+ {0} ({1})"
-    ProcessParameterInfoWithValue: |-
-      - Nombre: {0}
-        Descripción: {1}
-        Valor:
-    TaskDetailsResult: |-
-      Detalles de la tarea **{0} (#{1})**:
-      {2}
-  AIAssistant: Asistente de AI
   AllTasks: Todas las tareas
   AndMore: 'y {0} más...  '
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
@@ -1993,16 +1960,6 @@ Labels:
   EnterValue: Ingresar valor
   EnterValues: Ingresar valores
   Enums:
-    ChatbotCandidateQuestion:
-      EXPLORE:
-        header: Explore
-        question: ¿Cuáles son las principales características del portal Axon Ivy?
-      INTERACT:
-        header: Interactúe
-        question: Enuméreme todas las tareas que deben completarse en la semana en curso
-      TUTORIAL:
-        header: Tutorial
-        question: ¿Dónde puedo encontrar la documentación o los tutoriales del portal Axon Ivy?
     DashboardStandardCaseColumn:
       ACTIONS: Acciones
       APPLICATION: Aplicación

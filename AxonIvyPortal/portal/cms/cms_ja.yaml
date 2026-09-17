@@ -1926,36 +1926,6 @@ Enums:
               LESSOREQUAL:
                 name: 以下
 Labels:
-  AI:
-    Error:
-      CannotFindUser: 申し訳ありませんが、リクエストに一致するユーザーが見つかりません。もう一度お試しください。
-      CannotStartTask: ID {0} のタスクを開始できません
-      InvalidTaskPriority: タスクの優先度が無効です。有効なタスク優先度は、低、通常、高、または例外です。
-      InvalidTaskState: タスクの状態が無効です。有効なタスクの状態は、未完了、完了、進行中、またはエラーです。
-      NoMatchingCase: リクエストに一致するタスクが見つかりません
-      NoMatchingProcesses: 一致するプロセスはありません。
-      NoMatchingTask: リクエストに一致するタスクが見つかりません
-    FindCaseAIResult: ID：{0}、名前：{1}、説明：{2}、状態：{3}
-    FindProcessAIResult: '- ID：{0}、名前：{1}、説明：{2}'
-    FindTaskAIResult: ID：{0}、名前：{1}、説明：{2}、状態：{3}、優先度 {4}
-    FindUserAIResult: ユーザー名：{0}、名前：{1}、メール：{2}、状態：{3}
-    FoundCaseHeader: 見つかったケース：
-    FoundProcessesHeader: 見つかったプロセス：
-    FoundTaskHeader: 見つかったタスク：
-    FoundUsersHeader: 見つかったユーザー：
-    ProcessInfoHeader: |-
-      **プロセス名：** {0}
-      **プロセスの説明：** {1}
-    ProcessInfoHeaderWithParameters: |-
-      - **プロセス名：** {0}
-      - **プロセスの説明：** {1}
-      - **パラメーターの数：** {2}
-    ProcessParameterInfo: 指定の値より小さい
-    ProcessParameterInfoWithValue: 指定の値より小さいか等しい
-    TaskDetailsResult: |-
-      タスクの詳細 **{0} (#{1})**：
-      {2}
-  AIAssistant: AIアシスタント
   AllTasks: すべてのタスク
   AndMore: および{0}以上...
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
@@ -1975,16 +1945,6 @@ Labels:
   EnterValue: 値を入力してください
   EnterValues: 値を入力してください
   Enums:
-    ChatbotCandidateQuestion:
-      EXPLORE:
-        header: 機能紹介
-        question: Axon Ivy ポータルの主な機能は何ですか？
-      INTERACT:
-        header: 急ぎのタスク
-        question: 今週中に完了する必要があるすべてのタスクをリストアップしてください
-      TUTORIAL:
-        header: チュートリアル
-        question: Axon Ivy ポータルのドキュメントやチュートリアルはどこにありますか？
     DashboardStandardCaseColumn:
       ACTIONS: アクション
       APPLICATION: アプリケーション
