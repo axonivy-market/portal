@@ -535,18 +535,21 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void expandCompactModeProcess() {
-    getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear).click();
+    SelenideElement gridStackItem = getCompactModeProcessActionsMenuButton().ancestor(".grid-stack-item");
+    SelenideElement actionsMenuPanel = openCompactModeProcessActionsMenu();
 
-    SelenideElement expandLink = getCompactModeProcessExpandLink();
-    expandLink.shouldBe(Condition.appear).click();
-    expandLink.shouldBe(disappear, DEFAULT_TIMEOUT);
-
+    SelenideElement expandLink = actionsMenuPanel.$("[id$=':toggle-fullscreen-item-2']");
+    expandLink.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    gridStackItem.shouldHave(Condition.cssClass("expand-fullscreen"), DEFAULT_TIMEOUT);
   }
 
   public void collapseCompactModeProcess() {
-    getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear).click();
-    getCompactModeProcessCollapseLink().click();
-    getCompactModeProcessCollapseLink().shouldBe(disappear, DEFAULT_TIMEOUT);
+    SelenideElement gridStackItem = getCompactModeProcessActionsMenuButton().ancestor(".grid-stack-item");
+    SelenideElement actionsMenuPanel = openCompactModeProcessActionsMenu();
+
+    SelenideElement collapseLink = actionsMenuPanel.$("[id$=':toggle-fullscreen-item-2']");
+    collapseLink.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    gridStackItem.shouldNotHave(Condition.cssClass("expand-fullscreen"), DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCompactModeProcessExpandLink() {
