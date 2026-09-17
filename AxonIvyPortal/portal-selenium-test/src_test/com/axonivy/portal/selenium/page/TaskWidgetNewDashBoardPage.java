@@ -83,7 +83,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void startFirstTask() {
-    WaitHelper.waitPageNoAjaxAndAnimation();
+    WaitHelper.waitPageNoAjaxAndAnimation(Duration.ofSeconds(30));
     WaitHelper.waitForNavigation(() -> getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
   }
 
