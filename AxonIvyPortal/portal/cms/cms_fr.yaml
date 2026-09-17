@@ -1934,39 +1934,6 @@ Enums:
                 name: |
                   Inférieur ou égal à
 Labels:
-  AI:
-    Error:
-      CannotFindUser: Désolé, aucun utilisateur ne correspond à votre demande. Veuillez réessayer.
-      CannotStartTask: Impossible de démarrer la tâche a ID {0}
-      InvalidTaskPriority: 'Priorité de tâche non valide. Les priorités de tâches valides sont : faible, normale, élevée ou exception.'
-      InvalidTaskState: 'État de la tâche non valide. Les états de tâche valides sont : ouvert, terminé, en cours ou erreur.'
-      NoMatchingCase: Aucune tâche ne correspond à votre demande
-      NoMatchingProcesses: Pas de processus de correspondance.
-      NoMatchingTask: Aucune tâche ne correspond à votre demande
-    FindCaseAIResult: 'ID : {0}, Name : {1}, Description : {2}, État : {3}'
-    FindProcessAIResult: '   - ID : {0}, Nom : {1}, Description : {2}'
-    FindTaskAIResult: 'ID : {0}, Name : {1}, Description : {2}, État : {3}, Priorité {4}'
-    FindUserAIResult: 'Nom d''utilisateur : {0}, Nom : {1}, Email : {2}, État : {3}'
-    FoundCaseHeader: 'Les cas trouvés :'
-    FoundProcessesHeader: 'Procédés trouvés :'
-    FoundTaskHeader: 'Tâches trouvées :'
-    FoundUsersHeader: 'Utilisateurs trouvés :'
-    ProcessInfoHeader: |-
-      **Nom du processus:** {0}
-      **Description du processus:** {1}
-    ProcessInfoHeaderWithParameters: |-
-      - **Nom du processus:** {0}
-      - **Description du processus:** {1}
-      - **Nombre de paramètres:** {2}
-    ProcessParameterInfo: "\t+ {0} ({1})"
-    ProcessParameterInfoWithValue: |-
-      - Nom : {0}
-        Description : {1} {1}
-        Valeur : {2}
-    TaskDetailsResult: |-
-      Détails de la tâche **{0} (#{1})** :
-      {2}
-  AIAssistant: Assistant AI
   AllTasks: Toutes les tâches
   AndMore: 'et {0} de plus...  '
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
@@ -1987,16 +1954,6 @@ Labels:
   EnterValue: ' Sélectionner la période'
   EnterValues: Saisir les valeurs
   Enums:
-    ChatbotCandidateQuestion:
-      EXPLORE:
-        header: Explore
-        question: Quelles sont les principales caractéristiques du portail Axon Ivy ?
-      INTERACT:
-        header: Interact
-        question: Listez toutes les tâches qui doivent être accomplies dans la semaine en cours
-      TUTORIAL:
-        header: Tutorial
-        question: Où puis-je trouver la documentation ou les tutoriels pour le portail Axon Ivy ?
     DashboardStandardCaseColumn:
       ACTIONS: Actions
       APPLICATION: Application

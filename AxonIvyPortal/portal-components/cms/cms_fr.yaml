@@ -83,11 +83,6 @@ Dialogs:
             PARALLEL: Lancer une tâche en arrière-plan (en parallèle)
             SWITCH: Mettre cette tâche en pause et démarrer le processus (basculer)
 Labels:
-  AI:
-    Error:
-      CanceledFlow: You have canceled the flow. If you have any requests, please let me know.
-      ErrorWhenProceedRequest: An error has occurred while trying to process your request. Please try again later.
-      SomethingWentWrong: Something went wrong when proceed your request. Please try again later.
   Close: Fermer
   CloseContext: "Fermer {0}"
   DisabledUserPrefix: (désactivé)

@@ -270,9 +270,6 @@ public class UserMenuBean implements Serializable {
     getExternalContext().redirect(getUserProfileUrl());
   }
 
-  public void navigateToAssistantDashboard() throws IOException {
-    getExternalContext().redirect(getAssistantDashboardUrl());
-  }
 
   private void navigateToTargetPage() throws IOException {
     getExternalContext().redirect(targetPage);
@@ -282,9 +279,6 @@ public class UserMenuBean implements Serializable {
     return PortalNavigator.buildUserProfileUrl();
   }
 
-  private String getAssistantDashboardUrl() {
-    return PortalNavigator.buildAssistantDashboardUrl();
-  }
 
   private void navigateToPortalManagement() throws IOException {
     getExternalContext().redirect(getPortalManagementUrl());
@@ -397,15 +391,6 @@ public class UserMenuBean implements Serializable {
     return DashboardUtils.getSelectedMainDashboardIdFromSession();
   }
 
-  public void navigateToChatBotOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
-    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
-      openTaskLosingConfirmationDialog();
-      targetPage = getAssistantDashboardUrl();
-    } else {
-      executeJSResetPortalMenuState();
-      navigateToAssistantDashboard();
-    }
-  }
 
   public boolean isProcessViewerDisplayed(ICase caze) {
     if (caseIdToProcessViewerDisplayed == null) {

@@ -83,11 +83,6 @@ Dialogs:
             PARALLEL: バックグラウンドタスクを開始する（並列）
             SWITCH: このタスクを一時停止してプロセスを開始する（スイッチ）
 Labels:
-  AI:
-    Error:
-      CanceledFlow: フローをキャンセルしました。ご要望があればお知らせください。
-      ErrorWhenProceedRequest: リクエストの処理中にエラーが発生しました。しばらくしてから、もう一度お試しください。
-      SomethingWentWrong: リクエストの処理中に問題が発生しました。しばらくしてから、もう一度お試しください。
   Close: 閉じる
   CloseContext: "{0}を閉じる"
   DisabledUserPrefix: （無効）
