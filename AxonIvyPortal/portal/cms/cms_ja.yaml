@@ -1006,7 +1006,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: カスタムフィールド タイプ
     dashboardManagement:
       CreateDashboard: ダッシュボードの作成
-      newDashboard: 新しいダッシュボード
       dashboardIcon: ダッシュボードアイコン
       dashboardPermission: ダッシュボードの権限
       dashboardTitle: ダッシュボードのタイトル
@@ -1568,7 +1567,7 @@ Dialogs:
               noResultsText: 結果はありません。
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: 新規ダッシュボードを追加
+                newPublicDashboard: 新しい公開ダッシュボード
               PortalDashboardDetailModification:
                 CreateCustomStatistic: カスタム統計ウィジェットを作成する
                 DeleteConfirm: 削除してもよろしいですか？

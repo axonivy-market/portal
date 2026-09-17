@@ -36,12 +36,29 @@ The Portal Configuration page has four tabs:
    +-------------------------+---------------------------------------------------+--------------------------------------------+
 
 .. _dashboard-configuration:
+
 Private dashboards configuration
 ================================
 
-The tab :guilabel:`Private dashboards` allows you to add or edit your private dashboards, and reorder all dashboards visible to you.
-
 |private-dashboard-configuration|
+
+The :guilabel:`Private dashboards` section shows your private dashboards in a table with the following columns:
+
+- **Dashboard title**: The name of the dashboard
+- **Description**: Optional description text
+- **Actions**: Available operations for each dashboard
+- **Reorder**: Reorder dashboards
+
+**Available Actions:**
+
+Click on |actions-menu-icon| to open the :guilabel:`Actions` menu with these options:
+
+|private-dashboard-actions-menu|
+
+- |settings-icon| **Settings**: Modify dashboard name and description
+- |edit-icon| **Edit layout**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
+- |download-icon| **Export dashboard**: Download dashboard as JSON file (requires :ref:`🔑DashboardExportOwn <DashboardExportOwn>` permission)
+- |trash-icon| **Delete**: Remove the private dashboard
 
 .. _howto-add-private-dashboard:
 
@@ -106,20 +123,13 @@ HowTo: import private dashboards
 HowTo: edit private dashboards
 ------------------------------
 
-The :guilabel:`Edit private dashboard` section shows your private dashboards in a table with the following columns:
+Select :guilabel:`Settings` in the :guilabel:`Actions` menu to open the :guilabel:`Edit dashboard` dialog:
 
-- **Dashboard title**: The name of the dashboard
-- **Description**: Optional description text
-- **Actions**: Available operations for each dashboard
+- **Dashboard icon**: Select an icon to represent the dashboard
+- **Dashboard title**: Enter the mandatory title. To provide translations, use the multi-language input (see :ref:`portal-multi-language`)
+- **Description**: Enter an optional description
 
-**Available Actions:**
-
-Click on |actions-menu-icon| to open the :guilabel:`Actions` menu with these options:
-
-- |settings-icon| **Settings**: Modify dashboard name and description
-- |edit-icon| **Edit layout**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
-- |download-icon| **Export dashboard**: Download dashboard as JSON file (requires :ref:`🔑DashboardExportOwn <DashboardExportOwn>` permission)
-- |trash-icon| **Delete**: Remove the private dashboard
+Click :guilabel:`Save` to apply your changes.
 
 |edit-private-dashboards|
 
@@ -160,8 +170,10 @@ Each section displays a table with the following columns:
 
       Click on |actions-menu-icon| button to open the :guilabel:`Actions` menu with these options:
 
-      - |edit-icon| **Settings**: Modify dashboard name, permissions, description, and Display Type
-      - |settings-icon| **Edit layout**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
+      |public-dashboard-actions-menu|
+
+      - |settings-icon| **Settings**: Modify dashboard name, permissions, description, and Display Type
+      - |edit-icon| **Edit layout**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
       - |download-icon| **Export dashboard**: Download dashboard as JSON file (requires :ref:`🔑DashboardExportPublic <DashboardExportPublic>` permission)
       - |share-icon| **Share**: Generate a shareable link to the dashboard (requires :ref:`🔑ShareDashboardLink <ShareDashboardLink>` permission)
       - |trash-icon| **Delete**: Remove the public dashboard
@@ -391,6 +403,7 @@ The tab :guilabel:`Package Management` allows you to export the current Portal c
 |package-management-configuration|
 
 .. _exportable-configuration-files:
+
 Exportable configuration files
 -------------------------------
 
@@ -494,6 +507,8 @@ Different Portal Configuration actions require specific permissions:
    :alt: Portal Configuration entry pinned to the bottom of the left sidebar
 .. |private-dashboard-configuration| image:: ../../screenshots/dashboard-configuration/private-dashboard-configuration.png
    :alt: Private dashboard configuration
+.. |private-dashboard-actions-menu| image:: ../../screenshots/dashboard-configuration/private-dashboard-actions-menu.png
+   :alt: Private dashboard actions menu
 .. |create-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/create-private-dashboard-dialog.png
    :alt: Create private dashboard dialog
 .. |edit-private-dashboards| image:: ../../screenshots/dashboard-configuration/edit-private-dashboards.png
@@ -502,6 +517,8 @@ Different Portal Configuration actions require specific permissions:
    :alt: Reorder private dashboards
 .. |public-dashboard-configuration| image:: ../../screenshots/dashboard-configuration/public-dashboard-configuration.png
    :alt: Public dashboard configuration
+.. |public-dashboard-actions-menu| image:: ../../screenshots/dashboard-configuration/public-dashboard-actions-menu.png
+   :alt: Public dashboard actions menu
 .. |create-public-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/create-public-dashboard-dialog.png
    :alt: Create public dashboard dialog
 .. |edit-public-dashboards| image:: ../../screenshots/dashboard-configuration/edit-public-dashboards.png

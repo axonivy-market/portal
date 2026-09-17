@@ -1017,7 +1017,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Tipo de campo personalizado
     dashboardManagement:
       CreateDashboard: Crear tablero
-      newDashboard: Nuevo tablero
       dashboardIcon: Icono del panel de control
       dashboardPermission: Permiso de tablero
       dashboardTitle: Título del tablero
@@ -1580,7 +1579,7 @@ Dialogs:
               noResultsText: No hay resultados.
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: Añadir un nuevo cuadro de mandos
+                newPublicDashboard: Nuevo tablero público
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Crear widget de estadísticas personalizado
                 DeleteConfirm: ¿Está seguro de que desea eliminar?

@@ -74,6 +74,12 @@ public class DashboardConfigurationPage extends TemplatePage {
     return $("[id$='configuration-dashboard-detail-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public SelenideElement openEditDashboardDialogFromOpenActionsMenu() {
+    $$("div[id$='dashboard-configuration-action-menu']").filter(Condition.appear).first().$$("span")
+        .filter(Condition.text("Settings")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $("[id$='configuration-dashboard-detail-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
   public void closeEditDashboardDialog() {
     $("[id$='configuration-dashboard-detail-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$(".ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();

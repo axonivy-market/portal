@@ -62,6 +62,7 @@ see :ref:`Column Management <task-widget-column-management>`.
 |task-key-information|
 
 .. _task-widget-actions-menu:
+
 Widget Actions
 --------------
 

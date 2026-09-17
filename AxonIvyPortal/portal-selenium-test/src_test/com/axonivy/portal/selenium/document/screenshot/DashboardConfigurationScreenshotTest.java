@@ -46,7 +46,9 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
                 ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-multi-language-dialog", new ScreenshotMargin(10));
         dashboardConfigurationPage.cancelMultiLanguageDialog();
         dashboardConfigurationPage.cancelCreateDashboard();
-        ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getEditDashboardDialog(0),
+        ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPageWithActionsMenu(),
+                ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "private-dashboard-actions-menu", new ScreenshotMargin(10));
+        ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.openEditDashboardDialogFromOpenActionsMenu(),
                 ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "edit-private-dashboards", new ScreenshotMargin(50));
         dashboardConfigurationPage.closeEditDashboardDialog();
         ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
