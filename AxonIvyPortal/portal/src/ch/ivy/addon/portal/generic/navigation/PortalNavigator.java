@@ -8,7 +8,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -19,12 +18,10 @@ import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
 
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.service.AiProcessService;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_DASHBOARD = "Start Processes/PortalStart/DefaultDashboardPage.ivp";
@@ -266,10 +263,6 @@ public final class PortalNavigator extends BaseNavigator{
     return buildUrlByKeyword(PORTAL_NOTIFICATION_FULLPAGE_START, PORTAL_NOTIFICATION_FULLPAGE, new HashMap<>());
   }
 
-  public static String buildAssistantDashboardUrl() {
-    IWebStartable process = AiProcessService.getInstance().findAssistantDashboardProcess();
-    return Optional.ofNullable(process).map(ws -> ws.getLink().getRelative()).orElse("");
-  }
   
   public static String buildCustomStatisticUrl(Map<String, String> param) {
     return buildUrlByKeyword(PORTAL_CUSTOM_STATISTIC, PORTAL_CUSTOM_STATISTIC, param);

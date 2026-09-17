@@ -22,6 +22,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -52,6 +53,12 @@ class TestDashboardUtils {
     dashboard.setId(id);
     dashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
     dashboard.setTitles(List.of(new DisplayName(Locale.ENGLISH, title)));
+    return dashboard;
+  }
+
+  private Dashboard buildDashboard(String id, DashboardDisplayType displayType) {
+    Dashboard dashboard = buildPlainDashboard(id, id);
+    dashboard.setDashboardDisplayType(displayType);
     return dashboard;
   }
 
@@ -319,5 +326,86 @@ class TestDashboardUtils {
   void updateDashboardInSession_thenGetSelectedMainDashboardId_roundTrips() {
     DashboardUtils.updateDashboardInSession(SessionAttribute.SELECTED_DASHBOARD_ID, "dashboard-42");
     assertThat(DashboardUtils.getSelectedMainDashboardIdFromSession()).isEqualTo("dashboard-42");
+  }
+
+  @Test
+  void findIndexOfDashboardById_exactIdMatch_returnsItsIndexRegardlessOfDisplayType() {
+    List<Dashboard> dashboards = List.of(
+        buildDashboard("tasks", DashboardDisplayType.TOP_MENU),
+        buildDashboard("dashboard-1", DashboardDisplayType.TOP_MENU));
+
+    assertThat(DashboardUtils.findIndexOfDashboardById(dashboards, "dashboard-1")).isEqualTo(1);
+  }
+
+  @Test
+  void findIndexOfDashboardById_idNotFound_fallsBackToFirstSubMenuDashboard() {
+    List<Dashboard> dashboards = List.of(
+        buildDashboard("tasks", DashboardDisplayType.TOP_MENU),
+        buildDashboard("dashboard-1", DashboardDisplayType.SUB_MENU));
+
+    assertThat(DashboardUtils.findIndexOfDashboardById(dashboards, "does-not-exist")).isEqualTo(1);
+  }
+
+  @Test
+  void findIndexOfDashboardById_blankId_returnsFirstSubMenuDashboard() {
+    List<Dashboard> dashboards = List.of(
+        buildDashboard("dashboard-1", DashboardDisplayType.SUB_MENU),
+        buildDashboard("tasks", DashboardDisplayType.TOP_MENU));
+
+    assertThat(DashboardUtils.findIndexOfDashboardById(dashboards, "")).isEqualTo(0);
+  }
+
+  @Test
+  void findIndexOfDashboardById_noSubMenuDashboardExists_returnsMinusOne() {
+    List<Dashboard> dashboards = List.of(
+        buildDashboard("tasks", DashboardDisplayType.TOP_MENU),
+        buildDashboard("cases", DashboardDisplayType.TOP_MENU));
+
+    assertThat(DashboardUtils.findIndexOfDashboardById(dashboards, null)).isEqualTo(-1);
+  }
+
+  @Test
+  void findIndexOfDashboardById_emptyDashboardList_returnsMinusOne() {
+    assertThat(DashboardUtils.findIndexOfDashboardById(List.of(), "dashboard-1")).isEqualTo(-1);
+  }
+
+  @Test
+  void findIndexOfFirstSubMenuDashboard_returnsIndexOfFirstMatch() {
+    List<Dashboard> dashboards = List.of(
+        buildDashboard("tasks", DashboardDisplayType.TOP_MENU),
+        buildDashboard("dashboard-1", DashboardDisplayType.SUB_MENU),
+        buildDashboard("dashboard-2", DashboardDisplayType.SUB_MENU));
+
+    assertThat(DashboardUtils.findIndexOfFirstSubMenuDashboard(dashboards)).isEqualTo(1);
+  }
+
+  @Test
+  void findIndexOfFirstSubMenuDashboard_none_returnsMinusOne() {
+    List<Dashboard> dashboards = List.of(buildDashboard("tasks", DashboardDisplayType.TOP_MENU));
+
+    assertThat(DashboardUtils.findIndexOfFirstSubMenuDashboard(dashboards)).isEqualTo(-1);
+  }
+
+  @Test
+  void isSubMenuDashboard_matchIsSubMenu_returnsTrue() {
+    List<Dashboard> dashboards = List.of(buildDashboard("dashboard-1", DashboardDisplayType.SUB_MENU));
+
+    assertThat(DashboardUtils.isSubMenuDashboard(dashboards, "dashboard-1")).isTrue();
+  }
+
+  @Test
+  void isSubMenuDashboard_matchWasPromotedToTopMenu_returnsFalse() {
+    // Simulates a dashboard that used to be a submenu dashboard (and so was remembered as the
+    // last-selected submenu dashboard in the session) but has since been promoted to a sidebar entry.
+    List<Dashboard> dashboards = List.of(buildDashboard("dashboard-1", DashboardDisplayType.TOP_MENU));
+
+    assertThat(DashboardUtils.isSubMenuDashboard(dashboards, "dashboard-1")).isFalse();
+  }
+
+  @Test
+  void isSubMenuDashboard_idNotFound_returnsFalse() {
+    List<Dashboard> dashboards = List.of(buildDashboard("dashboard-1", DashboardDisplayType.SUB_MENU));
+
+    assertThat(DashboardUtils.isSubMenuDashboard(dashboards, "does-not-exist")).isFalse();
   }
 }
