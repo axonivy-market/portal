@@ -1091,26 +1091,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
   }
 
   public void translate(DisplayName title) {
-    translatedText = "";
-    warningText = "";
-
-    String currentLanguage = UserUtils.getUserLanguage();
-    if (!title.getLocale().getLanguage().equals(currentLanguage)) {
-      List<DisplayName> languages = this.widget.getNames();
-      Optional<DisplayName> optional = languages.stream()
-          .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
-      if (optional.isPresent()) {
-        try {
-          translatedText = IvyTranslationService.getInstance().translate(optional.get().getValue(),
-              optional.get().getLocale(), title.getLocale());
-        } catch (Exception e) {
-          warningText = Ivy.cms()
-              .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-          Ivy.log().error("Ivy Translation Service error: ", e.getMessage());
-        }
-      }
-    }
-
+    translation = IvyTranslationService.getInstance().translate(title, widget.getNames());
   }
 
   public List<DashboardProcess> getCustomWidgets() {
