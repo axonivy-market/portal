@@ -1024,7 +1024,7 @@ body .ui-button.dashboard__add-widget-button.ui-state-disabled {
 body .ui-button.dashboard-tasks__start-button:not(.ui-state-disabled):hover,
 body .ui-button.dashboard__add-widget-button:not(.ui-state-disabled):hover {
   background: var(--accent-btn-hover-bg);
-  color: var(--accent-btn-text);
+  color: var(--accent-btn-hover-text);
 }
 
 body .widget__content .ui-datatable thead th,

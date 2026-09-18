@@ -31,6 +31,16 @@
   --ivy-tertinary-color-orange-dark: hsla(27, 100%, 50%, 1);
   --ivy-tertinary-color-orange-light: hsla(26, 100%, 95%, 1);
 
+  --ivy-portal-light-primary-lighter-color: hsl(var(--ivy-primary-color-h) 43% 93%);
+  --ivy-portal-light-primary-light-color: hsl(var(--ivy-primary-color-h) 41% 71%);
+  --ivy-portal-light-primary-dark-color: hsl(var(--ivy-primary-color-h) 100% 29%);
+  --ivy-portal-light-primary-darker-color: hsl(var(--ivy-primary-color-h) 100% 21%);
+
+  --ivy-portal-dark-primary-lighter-color: hsl(var(--ivy-primary-color-h) 30% 21%);
+  --ivy-portal-dark-primary-light-color:   hsl(var(--ivy-primary-color-h) 45% 42%);
+  --ivy-portal-dark-primary-dark-color:    hsl(var(--ivy-primary-color-h) 58% 70%);
+  --ivy-portal-dark-primary-darker-color:  hsl(var(--ivy-primary-color-h) 48% 88%);
+
   /* Colors for Portal */
   --ivy-portal-blue-light: hsl(188.09, 66.92%, 73.92%);
   --ivy-portal-blue-dark: hsla(195, 100%, 29%, 1);
@@ -85,8 +95,8 @@
   --box-shadow-color: hsla(0, 0%, 15%, 0.2);
   --portal-border-radius: 5px;
   --portal-pill-btn-border-radius: 100px;
-  --item-background-hover: rgba(144, 221, 233, 0.24);
-  --item-border-hover: 1px solid #90DDE9;
+  --item-background-hover: var(--ivy-portal-light-primary-lighter-color);
+  --item-border-hover: 1px solid var(--ivy-portal-light-primary-light-color);
 
   --top-bar-icon-size: 1.4rem;
   --topbar-bg-color: var(--primary-color);
