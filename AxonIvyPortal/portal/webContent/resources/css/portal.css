@@ -3051,6 +3051,14 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   text-overflow: ellipsis;
 }
 
+.share-link-panel-copy-form {
+  display: none;
+}
+
+html.js-clipboard-supported .share-link-panel-copy-form {
+  display: block;
+}
+
 
 /* Shared: mid-size dialogs (Excel export status, add note) ----------------------------------------*/
 .export-status-dialog.ui-dialog,

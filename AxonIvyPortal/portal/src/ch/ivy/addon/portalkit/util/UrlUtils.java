@@ -8,7 +8,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -20,7 +19,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class UrlUtils {
   private static final String EMBED_IN_FRAME = "embedInFrame";
-  private static final Pattern LOOPBACK_IPV4_PATTERN = Pattern.compile("127(\\.\\d{1,3}){3}");
 
   public static String getServerUrl() {
     URL url;
@@ -34,26 +32,6 @@ public class UrlUtils {
       builder.append(":").append(url.getPort());
     }
     return builder.toString();
-  }
-
-  public static boolean isSecureContext() {
-    try {
-      String serverUrl = getServerUrl();
-      return Strings.CI.startsWith(serverUrl, Protocol.HTTPS.getValue())
-          || isLoopbackHost(URI.create(serverUrl).getHost());
-    } catch (Exception e) {
-      Ivy.log().warn("Could not resolve the server url, assuming a non secure context", e);
-      return false;
-    }
-  }
-
-  private static boolean isLoopbackHost(String host) {
-    if (StringUtils.isBlank(host)) {
-      return false;
-    }
-    String name = StringUtils.strip(host.toLowerCase(), "[]");
-    return "localhost".equals(name) || name.endsWith(".localhost")
-        || "::1".equals(name) || LOOPBACK_IPV4_PATTERN.matcher(name).matches();
   }
 
   public static boolean isIvyUrl(String url) {
