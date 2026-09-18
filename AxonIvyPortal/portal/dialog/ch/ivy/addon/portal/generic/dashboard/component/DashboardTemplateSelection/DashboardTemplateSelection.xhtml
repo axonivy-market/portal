@@ -59,7 +59,7 @@
                 oncomplete="PF('dashboard-creation-details-dialog').show()"
                 update=":#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog" resetValues="true" global="false">
                 <div class="dashboard-action__icon pt-2 pb-1 px-2">
-                  <span class="ti #{template.icon} dashboard-action-container-icon" />
+                  <span class="#{iconSelectionBean.generateIconWithFontFamily(template.icon)} dashboard-action-container-icon" />
                 </div>
                 <div class="dashboard-action__text pt-2 pb-1 px-2">
                   <p:outputLabel styleClass="dashboard-action-container-label" value="#{template.title}" />

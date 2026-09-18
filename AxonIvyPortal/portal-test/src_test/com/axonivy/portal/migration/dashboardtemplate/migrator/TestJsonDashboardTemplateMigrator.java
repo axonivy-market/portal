@@ -2,23 +2,18 @@ package com.axonivy.portal.migration.dashboardtemplate.migrator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Test;
+
 import com.axonivy.portal.bo.jsonversion.DashboardTemplateJsonVersion;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import org.junit.jupiter.api.Test;
-
 import ch.ivyteam.ivy.environment.IvyTest;
 
-/**
- * {@link JsonDashboardTemplateMigrator} delegates to the same converter chain used for plain
- * dashboards ({@code JsonDashboardConverterFactory}), but applied to the nested "dashboard" object of
- * a template rather than the template itself - and it reads/writes the migration version from that
- * same nested node. {@code @IvyTest} is required because {@code JsonDashboardTemplateMigrator} logs
- * via {@code Ivy.log()} while running converters.
- */
+/** {@code @IvyTest} is required because {@link JsonDashboardTemplateMigrator} logs via {@code Ivy.log()}
+ * while running converters. */
 @IvyTest
 class TestJsonDashboardTemplateMigrator {
 
@@ -38,6 +33,39 @@ class TestJsonDashboardTemplateMigrator {
     return template;
   }
 
+  private ObjectNode taskWidgetWithStateFilterList(ObjectNode dashboard, String... rawStateValues) {
+    ArrayNode widgets = dashboard.putArray("widgets");
+    ObjectNode taskWidget = widgets.addObject();
+    taskWidget.put("type", "task");
+    taskWidget.put("id", "task_1");
+    ArrayNode columns = taskWidget.putArray("columns");
+    ObjectNode stateColumn = columns.addObject();
+    stateColumn.put("field", "state");
+    ArrayNode filterList = stateColumn.putArray("filterList");
+    for (String value : rawStateValues) {
+      filterList.add(value);
+    }
+    return taskWidget;
+  }
+
+  private ObjectNode taskWidgetWithStateFilterValues(ObjectNode dashboard, String... rawStateValues) {
+    ArrayNode widgets = dashboard.putArray("widgets");
+    ObjectNode taskWidget = widgets.addObject();
+    taskWidget.put("type", "task");
+    taskWidget.put("id", "task_1");
+    taskWidget.putArray("columns").addObject().put("field", "state");
+    ArrayNode filters = taskWidget.putArray("filters");
+    ObjectNode stateFilter = filters.addObject();
+    stateFilter.put("field", "state");
+    stateFilter.put("operator", "in");
+    stateFilter.put("type", "standard");
+    ArrayNode values = stateFilter.putArray("values");
+    for (String value : rawStateValues) {
+      values.add(value);
+    }
+    return taskWidget;
+  }
+
   @Test
   void migrate_singleTemplate_noVersion_runsFullConverterChainAndStampsLatestVersion() {
     JsonNode node = template("template-1", "dashboard-1", true, null);
@@ -51,16 +79,13 @@ class TestJsonDashboardTemplateMigrator {
   }
 
   @Test
-  void migrate_singleTemplate_alreadyAtLatestVersion_doesNotReRunConverters() {
+  void migrate_singleTemplate_alreadyAtLatestVersion_doesNotReRunVersionGatedConverters() {
     JsonNode node =
         template("template-1", "dashboard-1", true, DashboardTemplateJsonVersion.LATEST_VERSION.getValue());
 
     JsonNode result = new JsonDashboardTemplateMigrator(node).migrate();
 
     JsonNode dashboard = result.get("dashboard");
-    // isTopMenu is only translated into dashboardDisplayType by the converter chain - if no
-    // converter ran (because the dashboard is already stamped at the latest version), the raw flag
-    // must still be there, untouched.
     assertThat(dashboard.has("dashboardDisplayType")).isFalse();
     assertThat(dashboard.get("isTopMenu").asBoolean()).isTrue();
   }
@@ -72,26 +97,21 @@ class TestJsonDashboardTemplateMigrator {
     JsonNode result = new JsonDashboardTemplateMigrator(node, new DashboardTemplateJsonVersion("12.0.0")).migrate();
 
     JsonNode dashboard = result.get("dashboard");
-    // The converter that turns "isTopMenu" into "dashboardDisplayType" is registered at 13.1.0,
-    // above this 12.0.0 ceiling, so it must not run.
+    // isTopMenu -> dashboardDisplayType converter is registered at 13.1.0, above this ceiling.
     assertThat(dashboard.has("dashboardDisplayType")).isFalse();
     assertThat(dashboard.get("isTopMenu").asBoolean()).isTrue();
     assertThat(dashboard.get("version").asText()).isEqualTo("12.0.0");
   }
 
   @Test
-  void migrate_wrapperShape_isReturnedCompletelyUnchanged() {
-    // Once a collection is wrapped, the wrapper's own version is the sole gate for this collection
-    // format - per-item version is never read again, and items are NOT re-run through the per-item
-    // converter chain, regardless of what their own nested "dashboard" node looks like. This is
-    // required, not optional: per-item version is stripped once wrapped (see JsonListWrapper), so
-    // without this short-circuit every read of already-current data would see an absent version,
-    // fall back to OLDEST, and re-run every converter unconditionally forever.
+  void migrate_wrapperShape_leavesTopMenuFlagsAlone_butStillNormalizesStateFilterValues() {
     ObjectNode wrapper = mapper.createObjectNode();
     wrapper.put("version", "1.0");
     ArrayNode items = wrapper.putArray("items");
     items.add(template("template-1", "dashboard-1", true, null));
-    items.add(template("template-2", "default-task-list-dashboard", null, null));
+    ObjectNode secondTemplate = template("template-2", "default-task-list-dashboard", null, null);
+    taskWidgetWithStateFilterList((ObjectNode) secondTemplate.get("dashboard"), "PARKED", "RESUMED");
+    items.add(secondTemplate);
 
     JsonNode result = new JsonDashboardTemplateMigrator(wrapper).migrate();
 
@@ -101,9 +121,10 @@ class TestJsonDashboardTemplateMigrator {
     assertThat(firstDashboard.get("isTopMenu").asBoolean()).isTrue();
     assertThat(secondDashboard.has("dashboardDisplayType")).isFalse();
     assertThat(secondDashboard.has("version")).isFalse();
-    // The wrapper-level "version" tracks the JSON collection format, not any one template's
-    // migration version, so it must be left exactly as it was.
     assertThat(result.get("version").asText()).isEqualTo("1.0");
+
+    JsonNode filterList = secondDashboard.get("widgets").get(0).get("columns").get(0).get("filterList");
+    assertThat(filterList).extracting(JsonNode::asText).containsExactlyInAnyOrder("OPEN", "IN_PROGRESS");
   }
 
   @Test
@@ -117,12 +138,62 @@ class TestJsonDashboardTemplateMigrator {
   }
 
   @Test
-  void migrate_templateWithoutDashboardNode_doesNotThrow() {
+  void migrate_templateWithoutDashboardNode_treatsTemplateItselfAsTheWidgetHoldingNode() {
     ObjectNode template = mapper.createObjectNode();
     template.put("id", "template-1");
+    template.put("isTopMenu", true);
 
     JsonNode result = new JsonDashboardTemplateMigrator(template).migrate();
 
     assertThat(result.has("dashboard")).isFalse();
+    assertThat(result.get("dashboardDisplayType").asText()).isEqualTo("top_menu");
+    assertThat(result.get("version").asText()).isEqualTo(DashboardTemplateJsonVersion.LATEST_VERSION.getValue());
+  }
+
+  @Test
+  void migrate_staleTaskStateInColumnFilterList_convertsToTaskBusinessState() {
+    // 11.3.0 excludes both the v112 and v113 version-gated converters, isolating the safety net.
+    JsonNode node = template("template-1", "dashboard-1", null, "11.3.0");
+    taskWidgetWithStateFilterList((ObjectNode) node.get("dashboard"), "PARKED", "RESUMED", "SUSPENDED");
+
+    JsonNode result = new JsonDashboardTemplateMigrator(node).migrate();
+
+    JsonNode filterList =
+        result.get("dashboard").get("widgets").get(0).get("columns").get(0).get("filterList");
+    assertThat(filterList).extracting(JsonNode::asText).containsExactlyInAnyOrder("OPEN", "IN_PROGRESS");
+  }
+
+  @Test
+  void migrate_staleTaskStateInWidgetFiltersArray_convertsToTaskBusinessState() {
+    // No version-gated converter ever targets the "filters" array - only the safety net does.
+    JsonNode node = template("template-1", "dashboard-1", null, DashboardTemplateJsonVersion.LATEST_VERSION.getValue());
+    taskWidgetWithStateFilterValues((ObjectNode) node.get("dashboard"), "PARKED", "RESUMED");
+
+    JsonNode result = new JsonDashboardTemplateMigrator(node).migrate();
+
+    JsonNode values = result.get("dashboard").get("widgets").get(0).get("filters").get(0).get("values");
+    assertThat(values).extracting(JsonNode::asText).containsExactlyInAnyOrder("OPEN", "IN_PROGRESS");
+  }
+
+  @Test
+  void migrate_staleCustomCaseFilterType_isCorrectedToMatchColumnType() {
+
+    ObjectNode node = template("template-1", "dashboard-1", null, "13.1.0");
+    ObjectNode dashboard = (ObjectNode) node.get("dashboard");
+    ArrayNode widgets = dashboard.putArray("widgets");
+    ObjectNode taskWidget = widgets.addObject();
+    taskWidget.put("type", "task");
+    taskWidget.put("id", "task_1");
+    taskWidget.putArray("columns").addObject().put("field", "myCase").put("type", "custom_business_case");
+    ObjectNode staleFilter = taskWidget.putArray("filters").addObject();
+    staleFilter.put("field", "myCase");
+    staleFilter.put("type", "custom_case");
+
+    JsonNode result = new JsonDashboardTemplateMigrator(node).migrate();
+
+    JsonNode filterType = result.get("dashboard").get("widgets").get(0).get("filters").get(0).get("type");
+    assertThat(filterType.asText()).isEqualTo("custom_business_case");
+    assertThat(result.get("dashboard").get("version").asText())
+        .isEqualTo(DashboardTemplateJsonVersion.LATEST_VERSION.getValue());
   }
 }
