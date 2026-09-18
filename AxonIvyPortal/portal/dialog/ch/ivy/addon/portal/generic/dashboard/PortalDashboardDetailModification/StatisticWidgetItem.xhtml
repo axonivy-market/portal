@@ -30,7 +30,7 @@
       <h:panelGroup layout="block" styleClass="new-widget-dialog__item-menu-wrapper absolute top-0 right-0 mt-2 mr-2 z-5" rendered="#{widget.isCustom and dashboardDetailModificationBean.canEditStatistic()}">
         <p:commandButton id="custom-statistic-action-button" icon="ti ti-dots"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-          styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page"
+          styleClass="rounded-button portal-icon-btn portal-icon-btn--sm portal-icon-btn--plain"
           type="button"
           onkeydown="if(event.keyCode === 13 || event.keyCode === 32) { event.preventDefault(); this.click(); return false; }" />
         <p:menu id="custom-statistic-action-menu" styleClass="w-auto" overlay="true"

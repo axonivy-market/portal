@@ -20,12 +20,13 @@
 </cc:interface>
 
 <cc:implementation>
+  <h:outputStylesheet library="css" name="portal-components.css" />
   <h:outputStylesheet library="css" name="action-menu-component.css" />
 
   <p:commandButton id="#{cc.attrs.triggerId}" type="button" disabled="#{cc.attrs.disabled}"
     onclick="event.stopPropagation(); return false;" icon="ti ti-dots"
     ariaLabel="#{cc.attrs.ariaLabel}" title="#{cc.attrs.title}"
-    styleClass="#{cc.attrs.buttonStyleClass} action-menu-button rounded-button ui-button-widget ui-button-outlined" />
+    styleClass="#{cc.attrs.buttonStyleClass} rounded-button portal-icon-btn portal-icon-btn--sm" />
 
   <p:overlayPanel id="action-menu-panel" for="#{cc.attrs.triggerId}" rendered="#{!cc.attrs.disabled}"
     widgetVar="#{cc.attrs.panelWidgetVar}"

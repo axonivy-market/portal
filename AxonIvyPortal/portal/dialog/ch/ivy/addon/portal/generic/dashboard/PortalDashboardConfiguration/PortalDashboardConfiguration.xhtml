@@ -33,7 +33,7 @@
                   <h:panelGroup id="dashboard-info-button-form" layout="block"
                     styleClass="dashboard-configuration-info-circle">
                     <h:outputText id="dashboard-info-icon"
-                      styleClass="dashboard-configuration-info ti ti-info-circle portal-circle-icon" />
+                      styleClass="dashboard-configuration-info ti ti-info-circle icon-circle" />
                     <p:tooltip for="dashboard-info-icon" escape="false" position="bottom"
                       styleClass="dashboard-info-tooltip" hideEvent="mouseleave click"
                       value="#{dashboardConfigurationBean.packageManagement
@@ -234,7 +234,7 @@
                       <p:commandButton id="menu-action-button" icon="ti ti-dots"
                         rendered="#{menuManagementBean.hasAction(menu)}"
                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                        styleClass="rounded-button portal-circle-icon ui-button-flat ui-button-plain" type="button" />
+                        styleClass="rounded-button portal-icon-btn portal-icon-btn--sm" type="button" />
                         <p:menu id="menu-configuration-action-menu" styleClass="w-10rem dashboard-action-menu" overlay="true" trigger="menu-action-button"
                           my="right top" at="right bottom">
                           <p:menuitem id="menu-edit" process="@this"

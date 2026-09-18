@@ -38,7 +38,7 @@
   <p:commandButton id="#{cc.attrs.actionLinkId}" type="button" disabled="#{cc.attrs.isDisabled or cc.attrs.isPreviewMode}"
     onclick="event.stopPropagation(); return false;"
     ariaLabel="#{not empty cc.attrs.ariaLabel ? cc.attrs.ariaLabel : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ti ti-dots"
-    styleClass="#{cc.attrs.buttonStyleClass} rounded-button ui-button-widget ui-button-outlined">
+    styleClass="#{cc.attrs.buttonStyleClass} rounded-button portal-icon-btn">
   </p:commandButton>
 
   <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" appendTo="@(body)"

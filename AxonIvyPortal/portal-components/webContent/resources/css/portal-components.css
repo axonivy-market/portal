@@ -8,3 +8,128 @@
 /* CSS variables for avatar component */
   --avatar-background-color: var(--ivy-primary-color-grey-light, hsl(180, 1%, 85%));
 }
+
+/* Shared: round icon button ----------------------------------------*/
+body .ui-button.rounded-button.portal-icon-btn,
+body a.portal-icon-btn {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  border: var(--portal-icon-btn-border-width, 1px) solid var(--secondary-btn-border);
+  background: var(--secondary-btn-bg);
+  color: var(--portal-detail-value-color, var(--text-color));
+}
+
+body .ui-button.rounded-button.portal-icon-btn:not(.expand-link):not(.collapse-link),
+body a.portal-icon-btn:not(.expand-link):not(.collapse-link) {
+  display: inline-flex;
+}
+
+body .ui-button.rounded-button.portal-icon-btn:not(.ui-state-disabled):hover,
+body a.portal-icon-btn:hover {
+  background: var(--secondary-btn-hover-bg);
+}
+
+body a.portal-icon-btn,
+body a.portal-icon-btn:hover,
+body a.portal-icon-btn:focus {
+  border-radius: 50%;
+  text-decoration: none;
+}
+
+/* Shared: round icon button - size ----------------------------------------*/
+body .ui-button.rounded-button.portal-icon-btn:not(.portal-icon-btn--sm):not(.portal-icon-btn--lg),
+body a.portal-icon-btn:not(.portal-icon-btn--sm):not(.portal-icon-btn--lg) {
+  width: var(--portal-icon-btn-size-md, 2.714rem);
+  min-width: var(--portal-icon-btn-size-md, 2.714rem);
+  height: var(--portal-icon-btn-size-md, 2.714rem);
+  min-height: var(--portal-icon-btn-size-md, 2.714rem);
+}
+
+body .ui-button.rounded-button.portal-icon-btn.portal-icon-btn--sm,
+body a.portal-icon-btn.portal-icon-btn--sm {
+  width: var(--portal-icon-btn-size-sm, 2.143rem);
+  min-width: var(--portal-icon-btn-size-sm, 2.143rem);
+  height: var(--portal-icon-btn-size-sm, 2.143rem);
+  min-height: var(--portal-icon-btn-size-sm, 2.143rem);
+}
+
+body .ui-button.rounded-button.portal-icon-btn.portal-icon-btn--lg,
+body a.portal-icon-btn.portal-icon-btn--lg {
+  width: var(--portal-icon-btn-size-lg, 3.071rem);
+  min-width: var(--portal-icon-btn-size-lg, 3.071rem);
+  height: var(--portal-icon-btn-size-lg, 3.071rem);
+  min-height: var(--portal-icon-btn-size-lg, 3.071rem);
+}
+
+/* Shared: round icon button - icon ----------------------------------------*/
+body .ui-button.rounded-button.portal-icon-btn .ui-icon,
+body .ui-button.rounded-button.portal-icon-btn > i,
+body a.portal-icon-btn > i,
+body a.portal-icon-btn::before,
+body .portal-icon-btn::before {
+  position: static;
+  top: auto;
+  left: auto;
+  right: auto;
+  transform: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+/* Shared: round icon button - icon size ----------------------------------------*/
+body .ui-button.rounded-button.portal-icon-btn:not(.portal-icon-btn--sm) .ui-icon,
+body .ui-button.rounded-button.portal-icon-btn:not(.portal-icon-btn--sm) > i,
+body a.portal-icon-btn:not(.portal-icon-btn--sm) > i,
+body a.portal-icon-btn:not(.portal-icon-btn--sm)::before,
+body .portal-icon-btn:not(.portal-icon-btn--sm)::before {
+  font-size: var(--portal-icon-size-md, 1.286rem);
+}
+
+/* Shared: round icon button - variants ----------------------------------------*/
+body .ui-button.rounded-button.portal-icon-btn.portal-icon-btn--plain,
+body a.portal-icon-btn.portal-icon-btn--plain {
+  background: transparent;
+  border-color: transparent;
+}
+
+body .ui-button.rounded-button.portal-icon-btn.portal-icon-btn--plain:not(.ui-state-disabled):hover,
+body a.portal-icon-btn.portal-icon-btn--plain:hover {
+  background: var(--secondary-btn-hover-bg);
+  border-color: transparent;
+}
+
+body .ui-button.rounded-button.portal-icon-btn.portal-icon-btn--accent,
+body a.portal-icon-btn.portal-icon-btn--accent {
+  background: var(--accent-btn-bg);
+  border-color: var(--accent-btn-border);
+  color: var(--accent-btn-text);
+}
+
+body .ui-button.rounded-button.portal-icon-btn.portal-icon-btn--accent:not(.ui-state-disabled):hover,
+body a.portal-icon-btn.portal-icon-btn--accent:hover {
+  background: var(--accent-btn-hover-bg);
+}
+
+body .ui-button.rounded-button.portal-icon-btn.portal-icon-btn--danger,
+body a.portal-icon-btn.portal-icon-btn--danger {
+  background: var(--widget-button-danger-background-color);
+  border-color: var(--widget-button-danger-border-color);
+}
+
+body .ui-button.rounded-button.portal-icon-btn.portal-icon-btn--danger:not(.ui-state-disabled):hover,
+body a.portal-icon-btn.portal-icon-btn--danger:hover {
+  background: var(--widget-button-danger-background-color-hover);
+}
+
+/* Shared: round icon button - disabled ----------------------------------------*/
+body .ui-button.rounded-button.portal-icon-btn.ui-state-disabled,
+body .ui-button.rounded-button.portal-icon-btn.portal-icon-btn--accent.ui-state-disabled {
+  background: var(--accent-btn-disabled-bg);
+  border-color: var(--accent-btn-disabled-border);
+  color: var(--accent-btn-disabled-text);
+}

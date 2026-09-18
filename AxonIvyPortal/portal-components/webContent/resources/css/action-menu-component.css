@@ -83,9 +83,3 @@ body .portal-action-menu .portal-action-menu-item.color-destroy {
 .portal-action-menu .color-destroy .portal-action-menu-icon {
   color: inherit;
 }
-
-body .action-menu-button {
-  width: var(--portal-icon-btn-size-sm, 2.143rem);
-  min-width: var(--portal-icon-btn-size-sm, 2.143rem);
-  height: var(--portal-icon-btn-size-sm, 2.143rem);
-}
