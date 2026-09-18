@@ -81,10 +81,11 @@ public enum GlobalVariable {
   ENABLE_TRANSLATION_SERVICE("Portal.TranslationService.Enable", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableTranslationService"),
   SHOW_QR_CODE("Portal.UserMenu.ShowQRCode", GlobalVariableType.SELECTION, Option.FALSE.toString(),
       "ShowQRCode"),
-  BASE_QR_CODE_URL("Portal.UserMenu.BaseQRCodeUrl", GlobalVariableType.TEXT, "baseQRCodeUrl"), APPLE_STORE_URL(
-      "Portal.UserMenu.AppleStoreURL", GlobalVariableType.TEXT,
-      "appleStoreURL"), GOOGLE_PLAY_URL("Portal.UserMenu.GooglePlayURL", GlobalVariableType.TEXT,
-          "googlePlayURL"),
+  BASE_QR_CODE_URL("Portal.UserMenu.BaseQRCodeUrl", GlobalVariableType.TEXT, "baseQRCodeUrl"),
+  APPLE_STORE_URL("Portal.UserMenu.AppleStoreURL", GlobalVariableType.TEXT,
+      "https://apps.apple.com/us/app/axon-ivy/id6474303078", "appleStoreURL"),
+  GOOGLE_PLAY_URL("Portal.UserMenu.GooglePlayURL", GlobalVariableType.TEXT,
+      "https://play.google.com/store/apps/details?id=com.axonivy&pli=1", "googlePlayURL"),
   APPLICATION_NAME("Portal.ApplicationName", GlobalVariableType.TEXT, "ApplicationName"), HIDE_CASE_CREATOR(
       "Portal.Cases.HideCaseCreator", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseCreator"),
   ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview", GlobalVariableType.SELECTION, Option.TRUE.toString(), "enableDocumentPreview"),

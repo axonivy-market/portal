@@ -50,7 +50,7 @@ Using QR Codes
 HowTo: Download the Axon Ivy Mobile Application
 -----------------------------------------------
 
-#. Select the :guilabel:`Mobile app` user menu item.
+#. Select the :guilabel:`Connect Mobile App` user menu item.
 
    |mobile-app-menu|
 
@@ -66,7 +66,7 @@ HowTo: Download the Axon Ivy Mobile Application
 HowTo: Connect to Portal via Mobile Application
 ------------------------------------------------
 
-#. Select the :guilabel:`Mobile app` user menu item.
+#. Select the :guilabel:`Connect Mobile App` user menu item.
 
    |mobile-app-menu|
 

@@ -8,11 +8,16 @@ Admin Settings
    from the user menu. Without this role, the menu item will not be visible.
 
 Admin Settings provide centralized control over Portal configuration,
-announcements, roles, and security policies. The interface is organized into tabs for different
-administrative functions.
+announcements, roles, and security policies.
 
-Available Tabs
-==============
+Accessing Admin Settings
+=========================
+
+Select the :guilabel:`Admin settings` user menu item.
+
+   |select-admin-settings|
+
+The interface is organized into tabs for different administrative functions:
 
 .. table::
    :widths: 20 80
@@ -35,27 +40,20 @@ Available Tabs
    :guilabel:`Portal Configuration` → :guilabel:`Sidebar`. To add a new link
    to the sidebar, create an **External Link** item there instead.
 
-Accessing Admin Settings
-=========================
-
-Select the :guilabel:`Admin settings` user menu item.
-
-   |select-admin-settings|
-
 .. _update-portal-settings:
 
 HowTo: Update Portal Settings
------------------------------
+=============================
 
 #. Select the :guilabel:`Settings` tab. All available settings with their default values and descriptions are listed in the table.
 
    |global-settings|
 
-#. To update value of Portal settings variable, click on the |edit-icon| icon.
+#. To update the value of a setting, open the |actions-menu-icon| menu in the Actions column and select :guilabel:`Edit`.
 
    |edit-global-settings|
 
-#. To reset a setting to its default value, click on the |undo-icon| icon.
+#. To reset a setting to its default value, open the |actions-menu-icon| menu in the Actions column and select :guilabel:`Restore to default`.
 
 #. To reset all settings to their default values, click on :guilabel:`Restore all to defaults`.
 
@@ -82,7 +80,7 @@ HowTo: Update Portal Settings
   :widths: 20 20 60
 
 HowTo: Show/Hide the Announcement
----------------------------------
+=================================
 
 #. Select the :guilabel:`Announcements` tab.
 
@@ -95,7 +93,7 @@ HowTo: Show/Hide the Announcement
 #. Turn off the :guilabel:`Enable announcement` option to hide the announcement.
 
 HowTo: Manage Roles
--------------------
+===================
 
 Portal provides the :guilabel:`Role Management` tab in the :guilabel:`Admin Settings` area for creating 
 and managing dynamic roles.
@@ -144,7 +142,7 @@ Steps to Manage Roles
    in the Role Management tab. See :ref:`Settings Variables <portal-available-settings>` for details.
 
 HowTo: Enable/Disable Password Validation
-------------------------------------------
+=========================================
 
 Portal provides the :guilabel:`Password Validation` tab in the :guilabel:`Admin Settings` area to configure 
 password strength requirements and validation rules. This feature works with the Portal's built-in 

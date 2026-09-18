@@ -5,20 +5,14 @@ Portal Multi Language
 
 The translation service integrated from Axon Ivy makes it easy to translate text content into your end user's language, eliminating language barriers in process automation.
 
-How-To
-======
-
-HowTo: Enable the translation
------------------------------
-
 The Portal multi-language feature provides:
 
 - **Automated Translation**: Service-powered translations for supported languages
 - **Manual Translation**: Manual input when translation service is not configured
 - **Flexible Application**: Available for dashboards, processes, and other customizable text fields
 
-.. note::
-   Portal translation requires both :guilabel:`Portal.TranslationService.Enable` set to true and proper translation service configuration. Otherwise, you can translate text fields manually.
+How-To
+======
 
 .. _enable-translation:
 
@@ -33,10 +27,16 @@ To use Axon Ivy's translation service:
 
 #. Configure the translation service variable, refer to :doc-url:`Axon Ivy translation service </engine-guide/configuration/translation-service/index.html>`
 
+.. note::
+   If the translation service is not configured, you can still translate text fields manually.
+
 HowTo: Translate Text
 ---------------------
 
-#. Look for the :guilabel:`translator icon` on supported input text fields. For example, when creating a private dashboard:
+Translation is available on many text fields across Portal. The steps below use the creation of a
+private dashboard as an example, they work the same way wherever the :guilabel:`translator icon` is shown.
+
+#. Look for the :guilabel:`translator icon` on supported input text fields:
 
    |create-private-dashboard-dialog|
 
