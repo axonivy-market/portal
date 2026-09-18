@@ -8,6 +8,8 @@ import com.codeborne.selenide.Condition;
 import static com.codeborne.selenide.Condition.and;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.enabled;
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -32,8 +34,11 @@ public class ComplexFilterHelper {
     WaitHelper.waitPageNoAnimation();
     String columnSelection = String.format("div[id$=':%s:filter-component:field-selection_panel'][style*='display: block']", filterIndex);
     $(columnSelection).$$("ul li").shouldBe(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
-    $(columnSelection).$$("ul li").filter(text(columnName)).first().click();
-    WaitHelper.waitPageNoAjaxAndAnimation();
+    $(columnSelection).$$("ul li").filter(exactText(columnName)).first().click();
+
+    filterElement.$("div[id$=':filter-component:field-selection'] .ui-selectonemenu-label")
+        .shouldHave(exactText(columnName), Duration.ofSeconds(20));
+    filterElement.$("div[id$=':filter-component:operator-selection']").shouldBe(visible, enabled);
   }
 
   public static void selectFilterOperator(FilterOperator operator, int filterIndex) {
@@ -103,7 +108,7 @@ public class ComplexFilterHelper {
     $("button[id$=':add-filter']").shouldBe(getClickableCondition()).click();
     $$(".dashboard-widget-filter__main-panel div[id$=':filter-component:filter-selection-panel']")
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(currentIndex + 1), DEFAULT_TIMEOUT);
-    WaitHelper.waitPageNoAjaxAndAnimation();
+    // selectFilterColumnName already waits for the new filter panel to appear, no need for a global ajax wait here
     ComplexFilterHelper.selectFilterColumnName(columnName, currentIndex);
     if (operator != null) {
       ComplexFilterHelper.selectFilterOperator(operator, currentIndex);
