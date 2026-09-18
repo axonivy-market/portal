@@ -25,6 +25,7 @@ import com.axonivy.portal.bean.ThemeBean;
 import com.axonivy.portal.components.document.SVGSecurityScanner;
 import com.axonivy.portal.components.jsf.ManagedBeans;
 import com.axonivy.portal.enums.ThemeMode;
+import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
@@ -37,6 +38,7 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -56,6 +58,8 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   private List<WelcomeImageFit> imageFits;
   private String welcomeTextValue;
   private boolean previewDarkMode;
+  private String translatedText;
+  private String warningText;
 
   @Override
   public void init() {
@@ -290,5 +294,64 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
 
   public String getGreetingPreviewText() {
     return generateGreetingText(getSupportedUserLanguage());
+  }
+
+  public String getTranslatedText() {
+    return translatedText;
+  }
+
+  public void setTranslatedText(String translatedText) {
+    this.translatedText = translatedText;
+  }
+
+  public String getWarningText() {
+    return warningText;
+  }
+
+  public void setWarningText(String warningText) {
+    this.warningText = warningText;
+  }
+
+  public void translate(DisplayName title) {
+    translateValues(title, findValuesContaining(title));
+  }
+
+  public void translateTextArea(DisplayName title) {
+    translate(title);
+  }
+
+  // The widget hosts two multi language dialogs, so the list to translate from depends on the edited title.
+  private List<DisplayName> findValuesContaining(DisplayName title) {
+    boolean isAltText = CollectionUtils.emptyIfNull(widget.getAltTexts()).stream().anyMatch(altText -> altText == title);
+    return isAltText ? widget.getAltTexts() : widget.getWelcomeTexts();
+  }
+
+  private void translateValues(DisplayName title, List<DisplayName> values) {
+    translatedText = StringUtils.EMPTY;
+    warningText = StringUtils.EMPTY;
+
+    String currentLanguage = UserUtils.getUserLanguage();
+    if (title.getLocale().getLanguage().equals(currentLanguage)) {
+      return;
+    }
+
+    CollectionUtils.emptyIfNull(values).stream()
+        .filter(value -> currentLanguage.equals(value.getLocale().getLanguage())).findFirst().ifPresent(source -> {
+          try {
+            translatedText = IvyTranslationService.getInstance().translate(source.getValue(), source.getLocale(),
+                title.getLocale());
+          } catch (Exception e) {
+            warningText = Ivy.cms()
+                .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
+            Ivy.log().error("Ivy Translation Service error: ", e.getMessage());
+          }
+        });
+  }
+
+  public void applyTranslatedText(DisplayName displayName) {
+    if (StringUtils.isNotBlank(translatedText)) {
+      displayName.setValue(translatedText);
+      translatedText = StringUtils.EMPTY;
+    }
   }
 }
