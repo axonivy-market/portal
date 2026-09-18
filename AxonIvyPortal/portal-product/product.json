@@ -1,48 +1,61 @@
 {
-    "installers": [
-        {
-            "id": "maven-import",
-            "data": {
-                "projects": [
-                    {
-                        "groupId": "com.axonivy.portal",
-                        "artifactId": "portal",
-                        "version": "${version}",
-                        "type": "iar"
-                    },
-                    {
-                        "groupId": "com.axonivy.portal",
-                        "artifactId": "portal-components",
-                        "version": "${version}",
-                        "type": "iar"
-                    },
-                    {
-                        "groupId": "com.axonivy.portal",
-                        "artifactId": "portal-components-examples",
-                        "version": "${version}",
-                        "type": "iar"
-                    },
-                    {
-                        "groupId": "com.axonivy.portal",
-                        "artifactId": "portal-user-examples",
-                        "version": "${version}",
-                        "type": "iar"
-                    },
-                    {
-                        "groupId": "com.axonivy.portal",
-                        "artifactId": "portal-developer-examples",
-                        "version": "${version}",
-                        "type": "iar"
-                    }
-                ],
-                "repositories": [
-                    {
-                        "id": "maven.axonivy.com",
-                        "url": "https://maven.axonivy.com"
-                    }
-                ]
-            }
-        }
-    ],
-    "name": "Axon Ivy Portal"
+  "$schema": "https://json-schema.axonivy.com/market/14.0.0/product.json",
+  "installers": [
+    {
+      "id": "maven-import",
+      "data": {
+        "projects": [
+          {
+            "groupId": "com.axonivy.portal",
+            "artifactId": "portal",
+            "version": "${version}",
+            "type": "iar"
+          },
+          {
+            "groupId": "com.axonivy.portal",
+            "artifactId": "portal-components-examples",
+            "version": "${version}",
+            "type": "iar"
+          },
+          {
+            "groupId": "com.axonivy.portal",
+            "artifactId": "portal-user-examples",
+            "version": "${version}",
+            "type": "iar"
+          },
+          {
+            "groupId": "com.axonivy.portal",
+            "artifactId": "portal-developer-examples",
+            "version": "${version}",
+            "type": "iar"
+          }
+        ],
+        "repositories": [
+          {
+            "id": "maven.axonivy.com",
+            "url": "https://maven.axonivy.com"
+          }
+        ]
+      }
+    },
+    {
+      "id": "maven-dependency",
+      "data": {
+        "dependencies": [
+          {
+            "groupId": "com.axonivy.portal",
+            "artifactId": "portal-components",
+            "version": "${version}",
+            "type": "iar"
+          }
+        ],
+        "repositories": [
+          {
+            "id": "maven.axonivy.com",
+            "url": "https://maven.axonivy.com"
+          }
+        ]
+      }
+    }
+  ]
 }
