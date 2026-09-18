@@ -43,7 +43,7 @@
         icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
         ariaLabel="#{ivy.cms.co('/Labels/Share')}"
         title="#{ivy.cms.co('/Labels/Share')}"
-        styleClass="ui-sm-hidden-op portal-icon-btn-round portal-icon-btn-lg portal-detail-toolbar-share-mobile"/>
+        styleClass="rounded-button ui-sm-hidden-op portal-icon-btn portal-icon-btn--lg portal-detail-toolbar-share-mobile"/>
     </h:panelGroup>
     <h:panelGroup id="case-details-actions" rendered="#{not isWorkingOnTask and not inFrame}"
       styleClass="portal-detail-toolbar-actions ui-sm-hidden">
@@ -51,7 +51,7 @@
         type="button" onclick="var p = PF('share-case-details-panel'); p.isVisible() ? p.hide() : p.show(this);"
         icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
         ariaLabel="#{ivy.cms.co('/Labels/Share')}"
-        title="#{ivy.cms.co('/Labels/Share')}" styleClass="portal-icon-btn-round portal-icon-btn-lg"/>
+        title="#{ivy.cms.co('/Labels/Share')}" styleClass="rounded-button portal-icon-btn portal-icon-btn--lg"/>
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{caseDetailsBean.readOnlyMode}"
         ariaLabel="#{ivy.cms.co('/Labels/EditLayout')}"
         value="#{ivy.cms.co('/Labels/EditLayout')}" actionListener="#{caseDetailsBean.switchToEditMode()}"

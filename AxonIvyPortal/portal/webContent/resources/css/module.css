@@ -4512,22 +4512,6 @@ border-top: 0.14rem dashed;
   white-space: nowrap;
 }
 
-.process-action-group .ui-button.icon-more-menu-button {
-  margin: 0;
-}
-
-.process-action-group .ui-button.process-action-button {
-  width: 2.711rem; /* 38px */
-  height: 2.357rem !important; /* 33px */
-  border-color: var(--secondary-btn-border) !important;
-  color: var(--widget-header-icon);
-}
-
-.process-action-group .ui-button.process-action-button:hover {
-  background-color: var(--secondary-btn-hover-bg) !important;
-  color: var(--widget-header-icon);
-}
-
 .image-view-form {
   position: relative;
 }
@@ -4566,12 +4550,6 @@ border-top: 0.14rem dashed;
   justify-content: flex-end;
   max-width: 100%;
 }
-
-.process-action-button {
-  background-color: var(--process-action-button-color) !important;
-  backdrop-filter: blur(2px);
-}
-
 body .ui-button.process-start-action {
   border-radius: 100px;
   border: 1px solid var(--accent-btn-border);
@@ -4624,8 +4602,8 @@ body .process-compact-mode > .ui-fieldset-content {
   padding: .5rem;
   width: 100%;
   display: inline-flex;
+  align-items: center;
   justify-content: flex-end;
-  padding-right: .9rem;
   padding-top: .9rem;}
 
 .process-action-group .process-category.has-menu-button,
@@ -5629,31 +5607,7 @@ body .ui-button.ui-button-outlined.ui-button-widget, .ui-button.ui-widget.ui-but
 body .ui-button.ui-button-outlined.ui-button-widget:hover, .ui-button.ui-widget.ui-button-widget:hover {
   background-color: var(--secondary-btn-hover-bg);
 }
-
-body .ui-button.ui-button-danger.widget-icon-button {
-  background-color: var(--widget-button-danger-background-color);
-  border-color: var(--widget-button-danger-border-color);
-}
-
-body .ui-button.ui-button-danger.widget-icon-button:hover {
-  background-color: var(--widget-button-danger-background-color-hover);
-}
-
 body .ui-button.ui-widget.ui-button-widget {
-  color: var(--widget-header-icon);
-}
-
-body .ui-button.ui-widget.ui-no-rounded-button-process-page {
-  border: transparent ;
-  background: transparent;
-  box-shadow: none;
-}
-
-body .ui-button.ui-widget.ui-no-rounded-button-process-page.ui-state-focus {
-  box-shadow: 0 0 0 0.2rem var(--ivy-primary-light-color);
-}
-
-body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-button {
   color: var(--widget-header-icon);
 }
 /* =================== PORTAL BUTTON END ====================== */

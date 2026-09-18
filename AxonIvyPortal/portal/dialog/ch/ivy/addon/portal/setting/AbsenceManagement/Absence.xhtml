@@ -27,7 +27,7 @@
             <p:commandButton icon="ti ti-x"
                             oncomplete="PF('absence-dialog').hide();" update="absence-form"
                             process="@this" actionListener="#{absenceManagementBean.cancelAbsence()}"
-                            styleClass="ui-button ui-widget ui-state-default ui-corner-all absence-page-close-button ui-button-icon-only ui-button-flat rounded-button" />
+                            styleClass="rounded-button portal-icon-btn portal-icon-btn--sm portal-icon-btn--plain absence-page-close-button" />
           </h:form>
       </div>
     </f:facet>
@@ -132,9 +132,9 @@
                 <i class="fa fa-star"></i>
                 <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/setAsPermanent')}</span>
               </h:panelGroup>
-              <p:commandButton id="substitute-action-button" icon="fa fa-ellipsis-h"
+              <p:commandButton id="substitute-action-button" icon="ti ti-dots"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page ml-auto"
+                styleClass="rounded-button portal-icon-btn portal-icon-btn--sm portal-icon-btn--plain ml-auto"
                 type="button" />
               <p:menu overlay="true" trigger="substitute-action-button"
                 my="right top" at="right bottom" styleClass="absence-column-value settings-action-menu">
