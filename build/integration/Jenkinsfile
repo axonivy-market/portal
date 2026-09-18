@@ -76,6 +76,7 @@ pipeline {
                     DEPLOYMENT="${engineDir}/system/demo-applications/demo-portal"
                     rm -rf ${DEPLOYMENT}/*
                     cp ${releaseDir}/Showcase/portal-demo-app/target/*.zip ${DEPLOYMENT}/
+                    zip -j ${DEPLOYMENT}/*.zip ${releaseDir}/AxonIvyPortal/portal/target/*.iar ${releaseDir}/AxonIvyPortal/portal-components/target/*.iar
                     cp ${releaseDir}/Showcase/portal-developer-examples/target/*.iar ${DEPLOYMENT}/
                     cp ${releaseDir}/Showcase/portal-components-examples/target/*.iar ${DEPLOYMENT}/
                   '''
