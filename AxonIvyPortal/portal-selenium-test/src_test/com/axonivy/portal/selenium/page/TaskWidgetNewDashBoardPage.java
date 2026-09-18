@@ -405,8 +405,13 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnButtonWidgetInformation() {
-    getTaskWidgetHeader().$(".widget__info-sidebar-link").shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition()).click();
+    SelenideElement actionsMenuButton = getTaskWidgetHeader().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    actionsMenuPanel.$$("a.ui-menuitem-link").filter(text("Widget information")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public SelenideElement getExpiryTodayLabelInWidgetInfo() {
@@ -443,7 +448,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnButtonExpandTaskWidget() {
-    getTaskWidgetHeader().$(".expand-link").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    clickOnToggleFullscreenMenuItem();
   }
 
   public ElementsCollection getExpandedTaskWidget() {
@@ -455,8 +460,16 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnButtonCollapseTaskWidget() {
-    getTaskWidgetHeader().$(".collapse-link").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
-        .click();
+    clickOnToggleFullscreenMenuItem();
+  }
+
+  private void clickOnToggleFullscreenMenuItem() {
+    SelenideElement actionsMenuButton = getTaskWidgetHeader().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    actionsMenuPanel.$(".toggle-fullscreen-item").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   /*
@@ -690,12 +703,28 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public boolean isExpandButtonAppear() {
     WaitHelper.waitPageNoAjaxAndAnimation();
-    return getTaskWidgetHeader().$(".expand-link").isDisplayed();
+    SelenideElement actionsMenuButton = getTaskWidgetHeader().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    boolean isDisplayed = actionsMenuPanel.$(".toggle-fullscreen-item").exists();
+    actionsMenuButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    actionsMenuPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
+    return isDisplayed;
   }
 
   public boolean isWidgetInfomationIconAppear() {
     WaitHelper.waitPageNoAjaxAndAnimation();
-    return getTaskWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
+    SelenideElement actionsMenuButton = getTaskWidgetHeader().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    boolean isDisplayed = actionsMenuPanel.$$("a.ui-menuitem-link").filter(text("Widget information")).first().exists();
+    actionsMenuButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    actionsMenuPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
+    return isDisplayed;
   }
 
   public void clickOnWidgetFilterHeader() {
