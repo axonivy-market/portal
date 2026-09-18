@@ -15,19 +15,22 @@
             "groupId": "com.axonivy.portal",
             "artifactId": "portal-components-examples",
             "version": "${version}",
-            "type": "iar"
+            "type": "iar",
+            "importInWorkspace": false
           },
           {
             "groupId": "com.axonivy.portal",
             "artifactId": "portal-user-examples",
             "version": "${version}",
-            "type": "iar"
+            "type": "iar",
+            "importInWorkspace": false
           },
           {
             "groupId": "com.axonivy.portal",
             "artifactId": "portal-developer-examples",
             "version": "${version}",
-            "type": "iar"
+            "type": "iar",
+            "importInWorkspace": false
           }
         ],
         "repositories": [
