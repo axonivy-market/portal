@@ -37,7 +37,7 @@
 #user-setting-container .ui-menu-items > a {
   display: flex;
   align-items: center;
-  font-weight: 400;
+  font-weight: 500;
   gap: 0.75rem;
   padding: 0.95rem 1.1rem;
   font-size: 1rem;
