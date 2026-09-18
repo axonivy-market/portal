@@ -2289,6 +2289,8 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 .project-info-summary .project-info-label {
+  display: inline-block;
+  width: 10rem;
   font-weight: 600;
 }
 
