@@ -186,6 +186,10 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
     TaskEditWidgetNewDashBoardPage taskWidget = newDashboardDetailsEditPage.addNewTaskWidget();
     taskWidget.waitPreviewTableLoaded();
 
+    taskWidget.openColumnManagementDialog();
+    taskWidget.addStandardField("worker");
+    taskWidget.saveColumn();
+
     taskWidget.openFilter();
     taskWidget.addFilter("Working user", FilterOperator.CURRENT_USER);
     taskWidget.addFilter("Working user", FilterOperator.IN);
