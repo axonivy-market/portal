@@ -26,11 +26,11 @@
     my="#{cc.attrs.my}" at="#{cc.attrs.at}" styleClass="share-link-panel #{cc.attrs.styleClass}"
     onShow="PortalShareLink.onShow('#{cc.attrs.shareDialogId}', #{cc.attrs.focusCopyButtonOnShow})">
     <h:panelGroup layout="block" styleClass="share-link-panel-content">
-      <div class="ui-fluid ui-inputgroup share-link-panel-input-group">
-        <p:inputText id="url" value="#{cc.attrs.url}" readonly="true" disabled="true"
+      <div class="ui-fluid share-link-panel-input-group #{visibilityBean.showClipboardCopyButton ? 'ui-inputgroup' : ''}">
+        <p:inputText id="url" value="#{cc.attrs.url}" readonly="true"
           pt:aria-label="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ShareLinkDialog/Link')}" />
       </div>
-      <h:form id="share-link-form">
+      <h:form id="share-link-form" rendered="#{visibilityBean.showClipboardCopyButton}">
         <p:commandButton id="share-link-copy-button" tabindex="1"
           ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ShareLinkDialog/CopyLink')}"
           value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ShareLinkDialog/CopyLink')}"

@@ -18,6 +18,10 @@ var PortalShareLink = (function () {
     return !!(navigator.clipboard && navigator.clipboard.writeText);
   }
 
+  function urlInput(shareWidget) {
+    return shareWidget && shareWidget.jq ? shareWidget.jq.find("input[id$='url']") : $();
+  }
+
   return {
 
     /**
@@ -26,14 +30,19 @@ var PortalShareLink = (function () {
      */
     onShow: function (widgetVar, focusCopyButton) {
       try {
-        var button = copyButton(widget(widgetVar));
-        if (!isClipboardSupported()) {
-          button.hide();
+        if (!focusCopyButton) {
           return;
         }
-        button.show();
-        if (focusCopyButton) {
+        var shareWidget = widget(widgetVar);
+        var button = copyButton(shareWidget);
+        if (button.length) {
           button.trigger('focus');
+          return;
+        }
+        var input = urlInput(shareWidget);
+        if (input.length) {
+          input.trigger('focus');
+          input[0].select();
         }
       } catch (e) {
         // never break the component that is opening
@@ -45,10 +54,9 @@ var PortalShareLink = (function () {
      * which would swallow the "Link copied" growl.
      */
     copy: function (widgetVar, url) {
-      if (!isClipboardSupported()) {
-        return;
+      if (isClipboardSupported()) {
+        navigator.clipboard.writeText(url).catch(function () {});
       }
-      navigator.clipboard.writeText(url);
       var shareWidget = widget(widgetVar);
       if (shareWidget) {
         shareWidget.hide();

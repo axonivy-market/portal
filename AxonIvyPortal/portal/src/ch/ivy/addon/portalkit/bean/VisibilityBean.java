@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.UrlUtils;
 
 @Named
 @ViewScoped
@@ -49,5 +50,9 @@ public class VisibilityBean implements Serializable {
 
   public boolean isEnablePinCase() {
     return globalSettingService.isEnablePinCase();
+  }
+
+  public boolean isShowClipboardCopyButton() {
+    return UrlUtils.isSecureContext();
   }
 }
