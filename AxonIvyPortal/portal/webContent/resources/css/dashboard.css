@@ -2620,6 +2620,13 @@ body .welcome-config__mode-selection.ui-selectonebutton .ui-button:not(.ui-state
   border-radius: var(--default-filter-chip-radius);
   background-color: var(--default-filter-chip-background-color);
   color: var(--text-color);
+  max-width: 100%;
+}
+
+.filter-dialog .filter-section--default .default-filter-chip .default-filter-chip__text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .dashboard-widget-filter__main-panel .add-condition-button.ui-button {
