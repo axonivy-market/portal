@@ -4,10 +4,12 @@ import java.util.List;
 
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeTrue;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class ProcessViewerDashboardWidget extends DashboardWidget {
@@ -16,6 +18,7 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
   private String processPath;
   @JsonIgnore
   private DashboardProcess process;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showFullscreenMode;
 
   @Override
