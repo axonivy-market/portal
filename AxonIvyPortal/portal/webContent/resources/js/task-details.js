@@ -110,15 +110,3 @@ function handleTaskDetailsTables() {
     ResponsiveTable.init(":task-note-table");
   }
 }
-
-function checkShareTaskDetailsCopyFeature() {
-  if (navigator.clipboard === undefined) {
-    $("button[id$=':share-link-copy-button']").remove();
-  }
-  $("button[id$=':share-link-copy-button']").trigger('focus');
-}
-
-function copyShareTaskDetailsLink(text) {
-  navigator.clipboard.writeText(text);
-  PF('share-task-details-panel').hide();
-}

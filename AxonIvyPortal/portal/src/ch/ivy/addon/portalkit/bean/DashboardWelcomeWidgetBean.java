@@ -39,7 +39,6 @@ public class DashboardWelcomeWidgetBean implements Serializable {
 
   protected static final String DEFAULT_TEXT_COLOR = "ffffff";
   protected static final String DEFAULT_IMAGE_CMS_URI = "/images/WelcomeWidget/DefaultImage";
-  protected static final String DEFAULT_IMAGE_DARK_CMS_URI = DEFAULT_IMAGE_CMS_URI + "Dark";
   protected static final Pattern REGEX_REPLACE_SPECIAL_CHARACTER = Pattern.compile("[^\\p{Alpha}\\p{Digit}_]+");
 
 
@@ -171,8 +170,9 @@ public class DashboardWelcomeWidgetBean implements Serializable {
     return DEFAULT_IMAGE_CMS_URI;
   }
 
+  // Light and dark mode share the same default image
   public String getDefaultImageDarkLink() {
-    return DEFAULT_IMAGE_DARK_CMS_URI;
+    return DEFAULT_IMAGE_CMS_URI;
   }
 
   public String sanitizeHTML(String text) {

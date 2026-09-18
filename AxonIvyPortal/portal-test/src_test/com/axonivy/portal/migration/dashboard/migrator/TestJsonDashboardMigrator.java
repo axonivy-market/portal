@@ -45,22 +45,33 @@ class TestJsonDashboardMigrator {
   }
 
   @Test
-  void migrate_wrapperShape_isReturnedCompletelyUnchanged() {
-    // Once wrapped, the wrapper's own version is the sole gate for this collection format -
-    // per-item version is never read again, and items are NOT re-run through the per-item
-    // converter chain. Required, not optional: per-item version is stripped once wrapped (see
-    // JsonListWrapper), so without this short-circuit every read of already-current data would
-    // see an absent version, fall back to OLDEST, and re-run every converter unconditionally
-    // forever.
+  void migrate_wrapperShape_skipsVersionGatedChain_butStillRunsUnconditionalSafetyNets() {
     ObjectNode wrapper = mapper.createObjectNode();
     wrapper.put("version", "14.0.0");
     ArrayNode items = wrapper.putArray("items");
     items.add(legacyDashboardWithColumnlessTaskWidget("dashboard-1"));
+    ObjectNode staleStateDashboard = mapper.createObjectNode();
+    staleStateDashboard.put("id", "dashboard-2");
+    ArrayNode widgets = staleStateDashboard.putArray("widgets");
+    ObjectNode taskWidget = widgets.addObject();
+    taskWidget.put("type", "task");
+    taskWidget.put("id", "task_1");
+    ArrayNode columns = taskWidget.putArray("columns");
+    ObjectNode stateColumn = columns.addObject();
+    stateColumn.put("field", "state");
+    ArrayNode filterList = stateColumn.putArray("filterList");
+    filterList.add("PARKED");
+    filterList.add("RESUMED");
+    items.add(staleStateDashboard);
 
     JsonNode result = new JsonDashboardMigrator(wrapper).migrate();
 
     JsonNode dashboard = result.get("items").get(0);
-    assertThat(dashboard.has("dashboardDisplayType")).isFalse();
+    assertThat(dashboard.get("dashboardDisplayType").asText()).isEqualTo("sub_menu");
     assertThat(dashboard.has("version")).isFalse();
+
+    JsonNode convertedFilterList =
+        result.get("items").get(1).get("widgets").get(0).get("columns").get(0).get("filterList");
+    assertThat(convertedFilterList).extracting(JsonNode::asText).containsExactlyInAnyOrder("OPEN", "IN_PROGRESS");
   }
 }

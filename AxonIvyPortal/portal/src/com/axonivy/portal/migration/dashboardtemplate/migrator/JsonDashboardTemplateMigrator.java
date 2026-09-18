@@ -8,8 +8,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.DashboardTemplateJsonVersion;
 import com.axonivy.portal.components.dto.JsonListWrapper;
+import com.axonivy.portal.migration.common.BusinessStateMigrationUtils;
 import com.axonivy.portal.migration.common.IJsonConverter;
-import com.axonivy.portal.migration.dashboard.converter.JsonDashboardConverterFactory;
+import com.axonivy.portal.migration.dashboardtemplate.converter.JsonDashboardTemplateConverterFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
@@ -31,29 +32,34 @@ public class JsonDashboardTemplateMigrator {
     this.version = version;
   }
 
+  /** Legacy templates nest widgets/version under "dashboard"; current-schema templates carry them
+   * directly. Assuming only one shape would silently skip every template using the other. */
+  private static JsonNode targetNode(JsonNode template) {
+    if (template == null) {
+      return null;
+    }
+    JsonNode dashboard = template.get("dashboard");
+    return dashboard != null ? dashboard : template;
+  }
+
   /**
-   * Read version
-   * If version is null, assume that this dashboard is created since version 10.0.0 (oldest version)
-   *
-   * <p>The version is stamped on the nested "dashboard" node (see updateVersion()/run()), not on the
-   * top-level template node, so it must be read from the same place - otherwise this always falls back
-   * to OLDEST_VERSION and every converter re-runs on every migration pass.
+   * Read version.
+   * If version is null, assume that this template is created since version 10.0.0 (oldest version).
    *
    * @return json version
    */
   private static AbstractJsonVersion readVersion(JsonNode template) {
-    return Optional.ofNullable(template)
-        .map(t -> t.get("dashboard"))
-        .map(dashboard -> dashboard.get(AbstractJsonVersion.VERSION_FIELD_NAME))
+    return Optional.ofNullable(targetNode(template))
+        .map(t -> t.get(AbstractJsonVersion.VERSION_FIELD_NAME))
         .map(field -> new DashboardTemplateJsonVersion(field.asText()))
         .orElse(DashboardTemplateJsonVersion.OLDEST_VERSION);
   }
 
   public JsonNode migrate() {
     if (JsonListWrapper.isListWrapper(node)) {
-      // Canonical shape: {"version": "...", "items": [...]}. Once wrapped, the wrapper's own
-      // version is the sole gate - per-item version is never read again and items are not
-      // re-run through the per-item converter chain.
+      // Wrapper's version gates the full per-item converter chain (per-item version is never read
+      // again once wrapped), but the unconditional safety nets below must still run on every read.
+      node.get("items").forEach(this::ensureSafetyNets);
       return node;
     }
     if (node.isArray()) {
@@ -65,20 +71,25 @@ public class JsonDashboardTemplateMigrator {
   }
 
   private void migrate(JsonNode template) {
-    var converters = JsonDashboardConverterFactory.getConverters(readVersion(template)).stream()
+    var converters = JsonDashboardTemplateConverterFactory.getConverters(readVersion(template)).stream()
         .filter(conv -> conv.version().compareTo(version) <= 0)
         .collect(Collectors.toList());
 
       if (CollectionUtils.isNotEmpty(converters)) {
         converters.stream().forEachOrdered(converter -> run(converter, template));
       }
+      ensureSafetyNets(template);
+  }
+
+  private void ensureSafetyNets(JsonNode template) {
+    BusinessStateMigrationUtils.ensureTaskAndCaseStateFiltersCurrent(targetNode(template));
   }
 
   private void run(IJsonConverter converter, JsonNode template) {
     Ivy.log().info("Converting Portal dashboard template " + template.get("id") + " to version "+ converter.version().getValue()
         + " using "+ converter.getClass().getSimpleName());
 
-    Optional.ofNullable(template).map(t -> t.get("dashboard")).ifPresent(dashboard -> {
+    Optional.ofNullable(targetNode(template)).ifPresent(dashboard -> {
       converter.convert(dashboard);
       updateVersion(dashboard);
     });

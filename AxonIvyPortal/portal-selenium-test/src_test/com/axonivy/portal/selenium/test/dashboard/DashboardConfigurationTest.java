@@ -440,7 +440,7 @@ public class DashboardConfigurationTest extends BaseTest {
     permissions().grantDashboardShareLinkPermission();
     LinkNavigator.redirectToPortalDashboardConfiguration();
     DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
-    modificationPage.getDashboardShareLinkDialog();
+    modificationPage.getDashboardShareLinkPanel();
   }
 
   @Test

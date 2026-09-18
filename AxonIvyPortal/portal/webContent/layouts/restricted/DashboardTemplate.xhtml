@@ -23,7 +23,7 @@
           }
 
           $(document).ready(function () {
-            const isResponsive = #{htmlSanitizerBean.escapeForJS(managedBean.selectedDashboard.isResponsive)} ? true : false;
+            const isResponsive = #{htmlSanitizerBean.escapeForJS(managedBean.selectedDashboard != null and managedBean.selectedDashboard.isResponsive)} ? true : false;
             loadGrid(isResponsive);
             updateDashboardWhenResizeWindow(isResponsive);
             setTimeout(() => {
@@ -59,14 +59,14 @@
 
         <h:form id="dashboard-remote-command-form" prependId="false">
           <h:inputHidden id="dashboard-view-mode" value="#{managedBean.isReadOnlyMode}"/>
-          <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid(#{managedBean.selectedDashboard.isResponsive});dashboardToolKit.responsive(); initStatistics('#{managedBean.statisticApiUri}');" />
+          <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid(#{managedBean.selectedDashboard != null and managedBean.selectedDashboard.isResponsive});dashboardToolKit.responsive(); initStatistics('#{managedBean.statisticApiUri}');" />
           <p:remoteCommand name="loadAllWidgetSavedFilters" actionListener="#{managedBean.loadAllWidgetSavedFilters()}"
             global="false" process="@this" immediate="true" partialSubmit="true"
             update="delete-saved-filter-form:quick-filter-table"
-            oncomplete="PF('quick-filter-table').clearFilters(); PF('manage-filter-dialog').initPosition();"/>
+            oncomplete="if (PrimeFaces.widgets['quick-filter-table']) { PF('quick-filter-table').clearFilters(); } if (PrimeFaces.widgets['manage-filter-dialog']) { PF('manage-filter-dialog').initPosition(); }"/>
           <p:remoteCommand name="openStatisticDrillDown"
             actionListener="#{statisticDrillDownBean.drillDownToDashboard(param.drillDownData)}" oncomplete="navigateToDrillDownDashboard();" process="@this" />
-          <p:remoteCommand name="navigateToDrillDownDashboard" update="grid-stack" actionListener="#{navigationDashboardWidgetBean.navigateToDrillDownDashboard(managedBean.selectedDashboard.id)}" />
+          <p:remoteCommand name="navigateToDrillDownDashboard" update="grid-stack" actionListener="#{navigationDashboardWidgetBean.navigateToDrillDownDashboard(managedBean.selectedDashboard != null ? managedBean.selectedDashboard.id : null)}" />
 
           <ui:insert name="additionalRemoteCommand" />
         </h:form>
@@ -320,14 +320,16 @@
           </p:dialog>
 
           <h:panelGroup rendered="#{managedBean.isShowShareButtonOnDashboard() and not managedBean.isMainDashboardSelected() and managedBean.selectedDashboard.dashboardDisplayType ne 'HIDDEN'}" layout="block" styleClass="text-center">
-            <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShareThisDashboard')}" 
-                  onclick="PF('share-dashboard-dialog').show(); return false;" styleClass="js-share-dashboard-link" />
+            <p:link id="share-dashboard-link" href="#"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShareThisDashboard')}"
+                  onclick="return PortalShareLink.toggle('share-dashboard-panel', this);" styleClass="js-share-dashboard-link" />
           </h:panelGroup>
           <ic:com.axonivy.portal.component.ShareLinkDialog
             id="share-dashboard-component"
-            shareDialogId="share-dashboard-dialog"
-            url="#{managedBean.dashboardUrl}"
-            title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/ShareDashboard')}" />
+            shareDialogId="share-dashboard-panel"
+            my="center bottom" at="center top-12"
+            styleClass="share-link-panel-flush"
+            url="#{managedBean.dashboardUrl}" />
 
           <h:panelGroup layout="block" rendered="#{!managedBean.isReadOnlyMode}">
             <ic:com.axonivy.portal.component.CloneWidgetDialog id="clone-widget-component" />

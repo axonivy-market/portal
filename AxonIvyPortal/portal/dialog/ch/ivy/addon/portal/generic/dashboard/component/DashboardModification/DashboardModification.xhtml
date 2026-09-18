@@ -44,6 +44,7 @@
             <h:panelGroup layout="block">
               <p:commandButton id="top-dashboard-action-button" icon="ti ti-dots"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
+                onclick="PortalShareLink.rememberAnchor(this);" onkeydown="PortalShareLink.rememberAnchor(this);"
                 styleClass="rounded-button portal-icon-btn portal-icon-btn--sm" type="button" />
               <p:menu id="top-dashboard-action-menu" styleClass="w-auto dashboard-action-menu" overlay="true" trigger="top-dashboard-action-button"
                 my="right top" at="right bottom">
@@ -69,7 +70,7 @@
                   oncomplete="if (args &amp;&amp; args.hasReferencedDashboards) { PF('export-referenced-dialog').show(); } else { PF('exportDashboardSubmit').jq.click(); }" />
                 <p:menuitem id="top-share-dashboard" rendered="#{dashboardModificationBean.isShowShareButtonOnConfig(isPublicDashboard)}"
                   styleClass="rounded-button ui-button-outlined" actionListener="#{dashboardModificationBean.initShareDashboardLink(topDashboard)}"
-                  oncomplete="PF('share-dashboard-dialog').show()"
+                  oncomplete="PortalShareLink.showAtAnchor('share-dashboard-dialog')"
                   title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/Share')}" icon="ti ti-share"
                   update=":#{cc.clientId}:share-dashboard-component:share-dashboard-dialog"
                   value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/Share')}" global="false" />
@@ -121,6 +122,7 @@
           <h:panelGroup layout="block">
             <p:commandButton id="dashboard-configuration-action-button" icon="ti ti-dots"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
+              onclick="PortalShareLink.rememberAnchor(this);" onkeydown="PortalShareLink.rememberAnchor(this);"
               styleClass="rounded-button portal-icon-btn portal-icon-btn--sm" type="button" />
             <p:menu id="dashboard-configuration-action-menu" styleClass="w-auto dashboard-action-menu" overlay="true" trigger="dashboard-configuration-action-button"
               my="right top" at="right bottom">
@@ -146,7 +148,7 @@
                   oncomplete="if (args &amp;&amp; args.hasReferencedDashboards) { PF('export-referenced-dialog').show(); } else { PF('exportDashboardSubmit').jq.click(); }" />
               <p:menuitem id="share-dashboard" rendered="#{dashboardModificationBean.isShowShareButtonOnConfig(isPublicDashboard)}"
                 styleClass="rounded-button ui-button-outlined" actionListener="#{dashboardModificationBean.initShareDashboardLink(dashboard)}"
-                oncomplete="PF('share-dashboard-dialog').show()"
+                oncomplete="PortalShareLink.showAtAnchor('share-dashboard-dialog')"
                 title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/Share')}" icon="ti ti-share"
                 update=":#{cc.clientId}:share-dashboard-component:share-dashboard-dialog"
                 value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/Share')}" global="false" />
@@ -197,6 +199,7 @@
             <h:panelGroup layout="block">
               <p:commandButton id="hidden-dashboard-action-button" icon="ti ti-dots"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
+                onclick="PortalShareLink.rememberAnchor(this);" onkeydown="PortalShareLink.rememberAnchor(this);"
                 styleClass="rounded-button portal-icon-btn portal-icon-btn--sm" type="button" />
               <p:menu id="hidden-dashboard-action-menu" styleClass="w-auto dashboard-action-menu" overlay="true" trigger="hidden-dashboard-action-button"
                 my="right top" at="right bottom">
@@ -222,7 +225,7 @@
                   oncomplete="if (args &amp;&amp; args.hasReferencedDashboards) { PF('export-referenced-dialog').show(); } else { PF('exportDashboardSubmit').jq.click(); }" />
                 <p:menuitem id="hidden-share-dashboard" rendered="#{dashboardModificationBean.isShowShareButtonOnConfig(isPublicDashboard)}"
                   styleClass="rounded-button ui-button-outlined" actionListener="#{dashboardModificationBean.initShareDashboardLink(hiddenDashboard)}"
-                  oncomplete="PF('share-dashboard-dialog').show()"
+                  oncomplete="PortalShareLink.showAtAnchor('share-dashboard-dialog')"
                   title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/Share')}" icon="ti ti-share"
                   update=":#{cc.clientId}:share-dashboard-component:share-dashboard-dialog"
                   value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/DashboardModification/Share')}" global="false" />
@@ -287,10 +290,10 @@
     componentToUpdate="dashboard-modification-component:dashboard-modification-container"
     isDashboardCreation="false" />
     
-  <ic:com.axonivy.portal.component.ShareLinkDialog id="share-dashboard-component" 
-    shareDialogId="share-dashboard-dialog" 
-    url="#{dashboardModificationBean.dashboardUrl}"
-    title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/ShareDashboard')}"/>
+  <ic:com.axonivy.portal.component.ShareLinkDialog id="share-dashboard-component"
+    shareDialogId="share-dashboard-dialog"
+    styleClass="share-link-panel-flush"
+    url="#{dashboardModificationBean.dashboardUrl}" />
 
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
     <ui:param name="id" value="remove-dashboard-dialog" />

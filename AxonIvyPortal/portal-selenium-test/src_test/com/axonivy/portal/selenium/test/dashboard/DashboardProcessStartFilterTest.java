@@ -1,7 +1,5 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
-import static com.codeborne.selenide.CollectionCondition.size;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +13,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.UserMenuPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
+import static com.codeborne.selenide.CollectionCondition.size;
 import com.codeborne.selenide.Condition;
 
 @IvyWebTest
@@ -66,6 +65,7 @@ public class DashboardProcessStartFilterTest extends BaseTest {
     newDashboardPage.getWidgetNoti().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     login(TestAccount.ADMIN_USER);
     newDashboardPage.getWidgetNoti().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    newDashboardPage.closeWidgetNotiActionsMenu();
     newDashboardPage.openCompactModeProcessFilterPanel();
     newDashboardPage.selectCompactModeProcessSavedFilter(CUSTOMIZE_FILTER);
     newDashboardPage.applyCompactModeProcessFilterPanel();

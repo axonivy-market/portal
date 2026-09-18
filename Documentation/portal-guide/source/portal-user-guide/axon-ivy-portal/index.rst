@@ -109,8 +109,8 @@ Now that you understand the Portal interface, explore these key features:
 
 - **Dashboards**: Customize your workspace → See :ref:`new-dashboard`
 - **Processes**: Start new business processes → See :ref:`full-process-list`
-- **Tasks**: View and complete your assigned work → See :ref:`full-task-list`
-- **Cases**: Track and manage case progress → See :ref:`full-case-list`
+- **Tasks**: View and complete your assigned work → See :ref:`task-widget`
+- **Cases**: Track and manage case progress → See :ref:`case-widget`
 - **User Settings**: Configure your preferences → See :ref:`my-profile`
 
 .. include:: ../includes/_common-icon.rst
