@@ -1,0 +1,11 @@
+{
+  "axonivy.process.animation.animate": false,
+  "java.format.settings.url": "https://raw.githubusercontent.com/axonivy/vscode-designer/refs/heads/master/java-formatter/eclipse-formatter.xml",
+  "[java]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modifications",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  }
+}
