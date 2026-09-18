@@ -699,7 +699,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnWidgetFilterHeader() {
-    $$("strong").filter(Condition.text("Filter options")).first().click();
+    $$("strong").filter(Condition.text("Set Filter")).first().click();
   }
 
   public void clickOnManageColumns() {
