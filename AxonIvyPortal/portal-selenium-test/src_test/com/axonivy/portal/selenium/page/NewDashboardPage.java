@@ -768,8 +768,11 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getDashboardActive() {
-    return getDashboardCollection().asFixedIterable().stream()
-        .filter(menuItem -> menuItem.parent().has(Condition.cssClass("active-menuitem"))).findFirst().get();
+    // Only make sure the menu is open, the returned element has to stay a live locator: the menu is
+    // re-rendered whenever a dashboard is selected or a task is started, which turns every element
+    // taken out of the collection into a stale reference Selenide cannot look up again.
+    getDashboardCollection();
+    return $(".layout-menu li.menu-item-dashboard.active-menuitem a.DASHBOARD");
   }
 
   public void selectDashboard(int index) {

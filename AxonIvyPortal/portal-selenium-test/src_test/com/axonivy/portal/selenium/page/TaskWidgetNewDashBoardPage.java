@@ -313,6 +313,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void clickOnTaskActionLink(int taskIndex) {
     waitForPageLoad();
+    // The growl of the task just left or finished sits on top of the action column.
+    dismissGrowlMessages();
     getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
