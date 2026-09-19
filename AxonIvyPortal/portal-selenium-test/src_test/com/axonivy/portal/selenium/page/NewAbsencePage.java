@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.DateTimePattern;
@@ -27,15 +26,15 @@ public class NewAbsencePage extends TemplatePage {
   }
 
   public void input(LocalDate absenceFrom, LocalDate absenceTill, String comment) {
-    inputDate(absenceFrom, "input[id*='absence-start-date']");
-    inputDate(absenceTill, "input[id*='absence-end-date']");
+    inputDate1(absenceFrom, "input[id*='absence-start-date']");
+    inputDate1(absenceTill, "input[id*='absence-end-date']");
 
     typeReliably($("textarea[id*='comment']"), comment);
   }
 
   public void updateDates(LocalDate absenceFrom, LocalDate absenceTill) {
-    inputDate(absenceFrom, "input[id*='absence-start-date']");
-    inputDate(absenceTill, "input[id*='absence-end-date']");
+    inputDate1(absenceFrom, "input[id*='absence-start-date']");
+    inputDate1(absenceTill, "input[id*='absence-end-date']");
   }
 
   public void input(String fullName, LocalDate absenceFrom, LocalDate absenceTill, String comment) {
@@ -49,8 +48,8 @@ public class NewAbsencePage extends TemplatePage {
       String panelSelector = "span[id$='absence-username_panel'] tbody tr[data-item-label*='" + fullName + "']";
       $$(panelSelector).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
-    inputDate(absenceFrom, "input[id*='absence-start-date']");
-    inputDate(absenceTill, "input[id*='absence-end-date']");
+    inputDate1(absenceFrom, "input[id*='absence-start-date']");
+    inputDate1(absenceTill, "input[id*='absence-end-date']");
   }
 
   public void addDeputy(String fullName) {
@@ -90,7 +89,7 @@ public class NewAbsencePage extends TemplatePage {
         .asFixedIterable()
         .stream()
         .map(row -> row.getText())
-      .collect(Collectors.toList());
+        .collect(Collectors.toList());
   }
 
   private void typeReliably(SelenideElement element, String text) {
@@ -113,13 +112,16 @@ public class NewAbsencePage extends TemplatePage {
   }
 
   private void inputDate(LocalDate absenceFrom, String inputCssSelector) {
-    $(inputCssSelector).shouldBe(appear, DEFAULT_TIMEOUT);
-    WebElement fromInput = $(inputCssSelector);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN);
-    fromInput.clear();
-    fromInput.sendKeys(Keys.chord(Keys.CONTROL, "a"));
-    fromInput.sendKeys(Keys.BACK_SPACE);
-    fromInput.sendKeys(absenceFrom.format(formatter));
+    $(inputCssSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .setValue(absenceFrom.format(formatter));
+    closeDatePickerPanel(inputCssSelector);
+  }
+
+  private void inputDate1(LocalDate absenceFrom, String inputCssSelector) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN);
+    $(inputCssSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .setValue(absenceFrom.format(formatter));
     closeDatePickerPanel(inputCssSelector);
   }
 
