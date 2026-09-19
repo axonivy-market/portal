@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.refresh;
@@ -13,6 +14,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 
@@ -26,11 +28,13 @@ public class ChatPage extends TemplatePage {
   }
 
   public void openFirstGroupChat() {
+    // Group cards are rendered by chat.js from a long-polling response, so wait for them instead of
+    // silently skipping the click when the list has not arrived yet.
     ElementsCollection chatNames =
-        $("[id='chat-form:group-chat-container']").shouldBe(appear, DEFAULT_TIMEOUT).$$(".js-group-card-name");
-    if (!chatNames.isEmpty()) {
-      chatNames.get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
-    }
+        $("[id='chat-form:group-chat-container']").shouldBe(exist, DEFAULT_TIMEOUT).$$(".js-group-card-name");
+    chatNames.shouldBe(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+    chatNames.get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $(CHAT_PANEL_SELECTOR).shouldHave(Condition.cssClass("message-displayed"), DEFAULT_TIMEOUT);
   }
 
   public void addUserToChatGroup(List<Responsible> responsibles) {
@@ -82,8 +86,9 @@ public class ChatPage extends TemplatePage {
   public int refreshAndCountGroupChat() {
     refresh();
     getChat();
-    waitForElementDisplayed(By.id("chat-form:group-chat-container"), true);
+    waitForElementExisted(By.id("chat-form:group-chat-container"), true);
     ElementsCollection chatGroups = findElementById("chat-form:group-chat-container").findAll(".js-group-card-name");
+    chatGroups.shouldBe(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
     return chatGroups.size();
   }
 

@@ -40,6 +40,10 @@ import com.codeborne.selenide.WebElementCondition;
 
 public abstract class TemplatePage extends AbstractPage {
   private static final int IFRAME_SCREENSHOT_FILE_SIZE_AT_MINIMUM = 10000;
+  protected static final String CHAT_PANEL_SELECTOR = "#chat-panel";
+  protected static final String CHAT_PANEL_OPEN_CLASS = "active";
+  private static final int CHAT_PANEL_OPEN_ATTEMPTS = 3;
+  private static final Duration CHAT_PANEL_OPEN_TIMEOUT = Duration.ofSeconds(5);
   protected static final String LAYOUT_WRAPPER = ".layout-wrapper";
   public static final String ID_PROPERTY = "id";
   public static final String CLASS_PROPERTY = "class";
@@ -101,6 +105,20 @@ public abstract class TemplatePage extends AbstractPage {
     $("div[id='portal-global-growl_container']").$("div.ui-growl-message").shouldBe(disappear, Duration.ofSeconds(45));
   }
 
+  /**
+   * Closes every growl still on screen instead of waiting for it to fade out.
+   *
+   * PrimeFaces stops the removal timer of a growl while the mouse is over it and restarts it only
+   * on mouse out. A headless browser never moves its cursor again after the click that triggered
+   * the growl, so a growl popping up under that cursor stays forever. Growls cover the top right
+   * corner, where the chat toggle and the task widget action links are, so they both block clicks
+   * and make a wait for their disappearance run into the timeout.
+   */
+  public void dismissGrowlMessages() {
+    ((JavascriptExecutor) WebDriverRunner.getWebDriver())
+        .executeScript("document.querySelectorAll('div.ui-growl-item-container').forEach(item => item.remove());");
+  }
+
   public void waitForElementDisplayed(By element, boolean expected) {
     if (expected) {
       $(element).shouldBe(appear, DEFAULT_TIMEOUT);
@@ -139,8 +157,6 @@ public abstract class TemplatePage extends AbstractPage {
     } else {
       $(element).shouldBe(disappear, Duration.ofSeconds(timeout));
     }
-    $("div[id='portal-global-growl_container']").shouldBe(exist, DEFAULT_TIMEOUT).$("div.ui-growl-message")
-        .shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void waitForGrowlMessageDisplayClearly() {
@@ -500,8 +516,24 @@ public abstract class TemplatePage extends AbstractPage {
 
   public ChatPage getChat() {
     waitForElementDisplayed(By.id("toggle-chat-panel-command"), true, 5);
-    waitForElementClickableThenClick("[id$='toggle-chat-panel-command']");
+    // The chat panel is opened by a jQuery handler which chat.js binds asynchronously, so a click
+    // landing before that binding is silently lost. Click again until the panel is really open.
+    for (int attempt = 0; attempt < CHAT_PANEL_OPEN_ATTEMPTS && !isChatPanelOpen(); attempt++) {
+      // The growl of a task ended earlier lies on top of the chat toggle and swallows the click.
+      dismissGrowlMessages();
+      try {
+        waitForElementClickableThenClick("[id$='toggle-chat-panel-command']");
+        $(CHAT_PANEL_SELECTOR).shouldHave(Condition.cssClass(CHAT_PANEL_OPEN_CLASS), CHAT_PANEL_OPEN_TIMEOUT);
+      } catch (Throwable clickWasLost) {
+        // chat.js was not ready yet or a growl came back over the toggle, fall through and retry
+      }
+    }
+    $(CHAT_PANEL_SELECTOR).shouldHave(Condition.cssClass(CHAT_PANEL_OPEN_CLASS), DEFAULT_TIMEOUT);
     return new ChatPage();
+  }
+
+  private boolean isChatPanelOpen() {
+    return $(CHAT_PANEL_SELECTOR).has(Condition.cssClass(CHAT_PANEL_OPEN_CLASS));
   }
 
   public NewDashboardPage goToHomeFromBreadcrumbWithWarning() {
