@@ -352,9 +352,18 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(appear, DEFAULT_TIMEOUT).$$("span.saved-filter-node__text");
   }
 
+  public ElementsCollection getSavedFilterNodes() {
+    return $("div[id$=':saved-filters-container']").$("div[id$=':widget-saved-filters-items']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("div.saved-filter-node");
+  }
+
   public void selectSavedFilter(String filterName) {
     getSavedFilterItems().filter(text(filterName)).first().shouldBe(getClickableCondition()).click();
-    WaitHelper.waitPageNoAjaxAndAnimation();
+    // The click re-renders the node with the 'selected' class. Do not wait on
+    // PrimeFaces.animationActive here: it is only reset by a transitionend, so an overlay that is
+    // re-rendered while fading leaves the flag stuck true and any global wait times out.
+    getSavedFilterNodes().filter(text(filterName)).first()
+        .shouldHave(Condition.cssClass("selected"), DEFAULT_TIMEOUT);
   }
 
   public void inputValueOnColumnWidgetHeader(String columnName, String value) {
