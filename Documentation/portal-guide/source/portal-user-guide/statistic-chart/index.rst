@@ -110,6 +110,8 @@ How to configure new statistic chart
 
     |custom-statistic-widget-configuration-page|
 
+- In the **Filters** section, click :guilabel:`Add condition` to filter the data used for the chart.
+
 Advanced Configuration
 ----------------------
 

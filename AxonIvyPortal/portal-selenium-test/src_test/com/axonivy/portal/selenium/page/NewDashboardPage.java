@@ -1,5 +1,10 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -10,11 +15,7 @@ import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
 import com.codeborne.selenide.ElementsCollection;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -881,6 +882,18 @@ public class NewDashboardPage extends TemplatePage {
     $("[id$=':widget-saved-filters-items']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public SelenideElement openWidgetActionsMenu(int index) {
+    return openWidgetActionsMenuFor(getDashboardWidget(index));
+  }
+
+  private SelenideElement openWidgetActionsMenuFor(SelenideElement widget) {
+    SelenideElement actionsMenuButton = widget.$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    return $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
   public SelenideElement getWidgetFilter(int index) {
     var result = $("div[id$=':filter-dialog-content-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
     result.$("[class*='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);
@@ -917,15 +930,6 @@ public class NewDashboardPage extends TemplatePage {
     $$(infoPanel + " [class*='js-loading-']:not(.hidden)").shouldBe(CollectionCondition.empty, DEFAULT_TIMEOUT);
     $$(infoPanel + " [class*='js-statistic-']:not(.hidden)")
         .shouldBe(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
-  }
-
-  public SelenideElement openWidgetActionsMenu(int index) {
-    SelenideElement actionsMenuButton = getActionsMenuButton(index);
-    waitForElementClickableThenClick(actionsMenuButton);
-    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
-    // Wait for the end of the fade in animation, otherwise the menu is still transparent
-    return $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldHave(Condition.cssClass("ui-connected-overlay-enter-done"), DEFAULT_TIMEOUT);
   }
 
   public void closeWidgetActionsMenu(int index) {

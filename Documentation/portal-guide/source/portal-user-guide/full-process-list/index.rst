@@ -27,7 +27,7 @@ are sorted alphabetically and grouped by their initial character.
    #. Search for a process, input your keyword here
    #. Image process icon
    #. Change view mode
-   #. Process more menu item icon
+   #. Process action button
 
 Process Display Mode
 --------------------
@@ -100,7 +100,7 @@ HowTo: Add an external link
 
 #. The dialog :guilabel:`Add external link` is opened.
 
-#. For the :guilabel:`Process name`, define the best name for it.
+#. For the :guilabel:`Process name`, define the name.
 
 #. At the end of the :guilabel:`Process name` input, you will see a translate
    icon. Click the icon to open the ``Setting Multiple Languages`` dialog. You
@@ -118,14 +118,14 @@ HowTo: Add an external link
    language fields. If you don't fill in a language field, the default language
    description will be used.
 
-#. For the :guilabel:`Visibility`, select :guilabel:`All users` to create a public link (requires CreatePublicExternalLink permission), 
+#. For the :guilabel:`Visibility`, choose :guilabel:`Select roles` to set permissions (requires CreatePublicExternalLink permission), 
    or leave as default for a private link.
 
 #. For the :guilabel:`Icon`, change the best icon for it.
 
 #. For the :guilabel:`Image`, drag and drop an image, or click on ``Upload one here`` to upload an image for the process.
 
-#. Confirm your configuration with the button :guilabel:`Add`.
+#. Confirm your configuration with the button :guilabel:`Add link`.
 
 |how-to-add-a-new-external-link|
 
@@ -136,18 +136,22 @@ HowTo: Add an external link
 
 .. include:: ../includes/_common-icon.rst
 
-HowTo: Edit Process Icon in Image Mode
----------------------------------------
+HowTo: Edit External Link Information
+--------------------------------------
 
 #. Click on ``More menu item`` icon in the process card item.
 
 #. Click on |edit-icon| :guilabel:`Edit` menu item.
 
-#. The dialog **Edit process information** is opened.
+#. The dialog **Edit information** is opened.
 
 #. You can change the current icon using the available icon list, or open the :guilabel:`Selecting icon dialog` to get more new icons.
 
-#. Press on :guilabel:`Save` button, and process icon is changed.
+#. Click |edit-icon| next to :guilabel:`Display name`, :guilabel:`Start link`, :guilabel:`Link description`, or :guilabel:`Permissions` to change the corresponding value.
+
+#. For the :guilabel:`Image`, drag and drop, or click ``Upload one here`` to set a new image.
+
+#. Press on :guilabel:`Save` button to confirm your changes.
 
 |edit-process-menu-item|
 

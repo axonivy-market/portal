@@ -280,7 +280,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la vérification de PDF, Excel, Word.
       enableTranslationService: Définissez cette propriété sur true pour activer le service de traduction
       enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
-      globalSearchMinimumKeywordLengthNote: Nombre minimal de caractères requis avant l'exécution de la recherche globale. La valeur par défaut est 3 ; définir sur 0 pour désactiver la vérification. Un mot-clé plus court correspond à presque toutes les lignes, ce qui peut être lent, la recherche est donc ignorée au lieu d'être exécutée.
+      globalSearchMinimumKeywordLengthNote: Nombre minimal de caractères requis avant l'exécution de la recherche globale. La valeur par défaut est 3 ; définir sur 0 pour désactiver la vérification. Un mot-clé plus court correspond à presque toutes les lignes, ce qui peut être lent, la recherche est donc
+        ignorée au lieu d'être exécutée.
       hideCaseCreator: |-
         La valeur "true" permet de masquer le créateur du dossier dans la liste des dossiers, le widget du dossier et les détails du dossier.
         Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
@@ -487,6 +488,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     backToCaseMap: Retour à la carte des cas
     backgroundColor: Couleur de fond
     bulkSelection: Sélection multiple
+    businessCaseId: ID du cas métier
     cancel: Annuler
     cancelContext: Annuler {0}
     case: Dossier
@@ -663,6 +665,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskFromSubstitution: Vous voyez cette tâche parce que vous êtes le remplaçant
     taskName: Nom de tâche
     tasks: Tâches
+    technicalCaseId: ID du cas technique
     theCasemap: La carte des cas
     theProcess: Le processus
     timeInformation: Informations sur le temps
@@ -686,14 +689,43 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Nous créons l'export, cela peut prendre quelques minutes
     warning: Attention!
     welcomeToPortal: Bienvenue, veuillez vous connecter
-    businessCaseId: ID du cas métier
-    technicalCaseId: ID du cas technique
     workingUser: Gestionnaire
     wrongDateFormat: Veuillez entrer une date valide
     year: an
     years: ans
     'yes': Oui
   components:
+    PortalPackageManagement:
+      BrowseFiles: parcourir les fichiers
+      CaseDetailsFileDescription: Configurez, réorganisez et étendez la page de détails du cas avec des widgets intégrés ou des panneaux personnalisés
+      CustomMenuItemsFileDescription: Ajoutez des éléments personnalisés dans le menu de navigation latéral gauche
+      CustomStatisticFileDescription: Définitions des graphiques statistiques personnalisés affichés sur les tableaux de bord Portal
+      DashboardFileDescription: Mises en page et configurations des widgets de tableau de bord pour tous les tableaux de bord Portal
+      DescriptionHeader: Description
+      DropZoneLabel: Glissez-déposez un fichier .zip ici
+      DropZoneOr: ou
+      ExportButton: Exporter
+      ExportDescription: Exportez les fichiers de configuration de Portal sous forme de package ZIP. Seuls les fichiers contenant des données existantes sont disponibles à la sélection.
+      ExportTitle: Exporter
+      ExternalLinksFileDescription: Processus de liens externes affichés dans la navigation latérale gauche de Portal ou sur la page de liste des processus
+      FileNameHeader: Nom du fichier
+      GeneralInfo: Gérez les fichiers de configuration de Portal sous la forme d'un package ZIP portable. Utilisez Exporter pour télécharger tous les fichiers de configuration JSON actuels regroupés dans une seule archive ZIP, ou utilisez Importer pour charger un package ZIP et appliquer ses configurations
+        — en remplaçant les configurations existantes.
+      ImportButton: Importer
+      ImportCompleteMessage: Tous les fichiers ont été importés avec succès.
+      ImportDescription: Téléchargez un fichier ZIP contenant les fichiers JSON requis. Les noms de fichiers doivent respecter le modèle ci-dessus.
+      ImportDialogHeader: Importer le package Portal
+      ImportIncompleteMessage: Certains fichiers n'ont pas pu être importés. Consultez le journal du serveur pour plus de détails.
+      ImportTitle: Importer
+      InvalidPackageMessage: Le fichier téléchargé n'a pas pu être lu. Veuillez vous assurer qu'il s'agit d'une archive ZIP valide.
+      MenuOrderFileDescription: Ordre personnalisé des éléments du menu de navigation principal dans la barre latérale de Portal
+      PreviewInvalidFilesHeader: Les fichiers non reconnus seront ignorés ({0} fichier(s))
+      PreviewNoFileMessage: Les éléments valides seront listés ici après la sélection d'un fichier.
+      PreviewNoValidFilesMessage: Aucun fichier de configuration Portal reconnu n'a été trouvé. Veuillez charger un fichier Portal_Package.zip valide.
+      PreviewValidFilesHeader: Valide(s) ({0} fichier(s))
+      ReplaceWarning: Les données existantes de chaque type importé seront remplacées. Cette action est irréversible.
+      ThirdPartyApplicationsFileDescription: Liens vers des applications tierces intégrés dans le menu Portal
+      UserMenuFileDescription: Ajoutez des éléments et des liens personnalisés au menu utilisateur par défaut
     RoleManagement:
       AssignUsersToRole: Attribuer des rôles aux utilisateurs
       AssignedUser: Utilisateurs assignés
@@ -785,36 +817,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       privateFilter: Mes filtres
       publicFilter: Publique
       savedFilters: 'Filtres enregistrés:'
-    PortalPackageManagement:
-      GeneralInfo: 'Gérez les fichiers de configuration de Portal sous la forme d''un package ZIP portable. Utilisez Exporter pour télécharger tous les fichiers de configuration JSON actuels regroupés dans une seule archive ZIP, ou utilisez Importer pour charger un package ZIP et appliquer ses configurations — en remplaçant les configurations existantes.'
-      ExportTitle: Exporter
-      ExportDescription: Exportez les fichiers de configuration de Portal sous forme de package ZIP. Seuls les fichiers contenant des données existantes sont disponibles à la sélection.
-      ExportButton: Exporter
-      ImportTitle: Importer
-      ImportDescription: Téléchargez un fichier ZIP contenant les fichiers JSON requis. Les noms de fichiers doivent respecter le modèle ci-dessus.
-      ImportButton: Importer
-      ImportDialogHeader: Importer le package Portal
-      DropZoneLabel: Glissez-déposez un fichier .zip ici
-      DropZoneOr: ou
-      BrowseFiles: parcourir les fichiers
-      PreviewNoFileMessage: Les éléments valides seront listés ici après la sélection d'un fichier.
-      PreviewNoValidFilesMessage: Aucun fichier de configuration Portal reconnu n'a été trouvé. Veuillez charger un fichier Portal_Package.zip valide.
-      PreviewValidFilesHeader: Valide(s) ({0} fichier(s))
-      PreviewInvalidFilesHeader: Les fichiers non reconnus seront ignorés ({0} fichier(s))
-      ReplaceWarning: Les données existantes de chaque type importé seront remplacées. Cette action est irréversible.
-      FileNameHeader: Nom du fichier
-      DescriptionHeader: Description
-      DashboardFileDescription: Mises en page et configurations des widgets de tableau de bord pour tous les tableaux de bord Portal
-      CustomStatisticFileDescription: Définitions des graphiques statistiques personnalisés affichés sur les tableaux de bord Portal
-      UserMenuFileDescription: Ajoutez des éléments et des liens personnalisés au menu utilisateur par défaut
-      CaseDetailsFileDescription: Configurez, réorganisez et étendez la page de détails du cas avec des widgets intégrés ou des panneaux personnalisés
-      ThirdPartyApplicationsFileDescription: Liens vers des applications tierces intégrés dans le menu Portal
-      CustomMenuItemsFileDescription: Ajoutez des éléments personnalisés dans le menu de navigation latéral gauche
-      ExternalLinksFileDescription: Processus de liens externes affichés dans la navigation latérale gauche de Portal ou sur la page de liste des processus
-      MenuOrderFileDescription: Ordre personnalisé des éléments du menu de navigation principal dans la barre latérale de Portal
-      InvalidPackageMessage: Le fichier téléchargé n'a pas pu être lu. Veuillez vous assurer qu'il s'agit d'une archive ZIP valide.
-      ImportCompleteMessage: Tous les fichiers ont été importés avec succès.
-      ImportIncompleteMessage: Certains fichiers n'ont pas pu être importés. Consultez le journal du serveur pour plus de détails.
   dashboard:
     CanWorkOnAsUser: N'afficher que les tâches sur lesquelles je peux travailler en tant qu'utilisateur
     CaseQueryType:
@@ -823,17 +825,21 @@ ch.ivy.addon.portalkit.ui.jsf:
     CloneWidget: Cloner le widget
     CustomWidgets: Widgets personnalisés
     DashboardConfiguration:
+      AddItem: Ajouter un élément
       CreateFromScratch: Créer à partir de rien
       CreateFromScratchDescription: Créez votre propre tableau de bord
-      CreateNewPrivateDashboard: Créer un nouveau tableau de bord privé
+      NewPrivateDashboard: Nouveau tableau de bord privé
       CreateNewPublicDashboard: Créer un nouveau tableau de bord public
+      Dashboard: Tableau de bord
+      DashboardTabInfoPanel: <p><b>Que puis-je faire ici ?</b></p><p>Créez, modifiez et supprimez des tableaux de bord publics. Définissez qui peut les voir grâce aux autorisations. Il s'agit de la bibliothèque centrale de tous les tableaux de bord partagés.</p><p><b>Visibilité &amp; emplacement</b></p><p>Les
+        tableaux de bord sont répartis en trois sections selon leur emplacement dans la barre latérale. Pour déplacer un tableau de bord, ouvrez Modifier et changez son Type d'affichage. Seule la section Sous-menu supporte le glisser-déposer pour la réorganisation.</p><p><b>Actions par tableau de bord</b></p><p>Modifier
+        met à jour nom, description, icône, autorisations et type d'affichage. Configurer ouvre le tableau de bord pour ajouter ou organiser des widgets. Exporter télécharge un fichier JSON — si le tableau de bord en référence d'autres, une confirmation est demandée. Partager génère un lien direct. Supprimer
+        le retire définitivement.</p>
       Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins et modifier l'ordre des éléments de navigation.
+      DisableSidebar: Désactiver la barre latérale
       DoNotSupportMobile: La configuration du tableau de bord n'est pas prise en charge pour les appareils mobiles.
-      EditPrivateDashboards: Modifier vos tableaux de bord privés
       EditLayout: Modifier la mise en page
-      PrivateTabInfo: 'Créez et gérez vos tableaux de bord personnels.<ul><li>Ils ne sont visibles que par vous</li><li>Ils apparaissent sous l''icône Dashboard dans la barre latérale</li></ul>'
-      PublicTabInfo: 'Gérez les tableaux de bord pour tous les utilisateurs. Définissez la visibilité:<ul><li><b>Barre latérale</b> — apparaît comme élément principal dans le menu latéral</li><li><b>Sous-menu</b> — apparaît sous l''icône Dashboard</li><li><b>Masqué</b> — non visible pour les utilisateurs</li></ul>'
-      Visibility: Visibilité
+      EditPrivateDashboards: Modifier vos tableaux de bord privés
       EditPublicDashboards: Modifier les tableaux de bord publics
       ExportDashboard: Exporter le tableau de bord
       ExportReferencedDialogHeader: Le tableau de bord référence d'autres tableaux de bord
@@ -842,42 +848,49 @@ ch.ivy.addon.portalkit.ui.jsf:
       Hidden: Masqué
       HiddenDashboards: Éléments masqués
       HiddenDashboardsDescription: Non affiché dans la barre latérale. Peut toujours être utilisé comme cible de lien direct.
-      SubMenuDashboards: Tableaux de bord du sous-menu
-      SubMenuDashboardsDescription: Apparaissent groupés sous l'icône Tableau de bord dans la barre latérale.
-      SidebarTopLevelDashboards: Tableaux de bord principaux de la barre latérale
-      SidebarTopLevelDashboardsDescription: Apparaissent comme éléments principaux dans la barre latérale.
+      Label: Libellé
       MenuDashboards: Éléments de la barre latérale
       MenuDashboardsDescription: Ces tableaux de bord apparaissent comme éléments principaux dans la barre latérale. Gérez leur ordre dans l'onglet Navigation de la barre latérale.
-      PrivateDashboardTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Créez et gérez des tableaux de bord visibles uniquement par vous. Ils apparaissent groupés sous l''icône Tableau de bord dans la barre latérale et n''affectent jamais les autres utilisateurs.</p><p><b>Réorganiser</b></p><p>Faites glisser une ligne pour changer l''ordre d''apparition dans le sous-menu. L''ordre est enregistré dans vos paramètres personnels.</p><p><b>Actions par tableau de bord</b></p><p>Modifier permet de mettre à jour le titre, la description, l''icône ou les titres multilingues. Configurer ouvre le tableau de bord pour ajouter ou réorganiser des widgets. Si vous disposez de la permission d''export, vous pouvez télécharger un tableau de bord au format JSON.</p>'
-      DashboardTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Créez, modifiez et supprimez des tableaux de bord publics. Définissez qui peut les voir grâce aux autorisations. Il s''agit de la bibliothèque centrale de tous les tableaux de bord partagés.</p><p><b>Visibilité &amp; emplacement</b></p><p>Les tableaux de bord sont répartis en trois sections selon leur emplacement dans la barre latérale. Pour déplacer un tableau de bord, ouvrez Modifier et changez son Type d''affichage. Seule la section Sous-menu supporte le glisser-déposer pour la réorganisation.</p><p><b>Actions par tableau de bord</b></p><p>Modifier met à jour nom, description, icône, autorisations et type d''affichage. Configurer ouvre le tableau de bord pour ajouter ou organiser des widgets. Exporter télécharge un fichier JSON — si le tableau de bord en référence d''autres, une confirmation est demandée. Partager génère un lien direct. Supprimer le retire définitivement.</p>'
-      MenuManagementTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Configurez tout ce qui est visible dans la barre latérale : les éléments, leur ordre et le comportement global de la barre latérale.</p><p><b>Ajouter de nouveaux éléments</b></p><p>Utilisez Ajouter un élément pour créer une nouvelle entrée. Vous pouvez choisir : Tableau de bord principal (lien vers un tableau de bord), Processus (démarre un processus Ivy), Lien externe (toute URL, avec option ouverture dans un nouvel onglet) ou Page statique. Chaque élément dispose d''un titre multilingue, d''une icône et d''autorisations configurables. Le type d''élément ne peut pas être modifié après création.</p><p><b>Comprendre le tableau</b></p><p>Cible indique où mène un élément (URL ou chemin de processus). Autorisations indique qui peut le voir. Type est la nature de l''entrée et Source indique où il est défini : Intégré, Configuration, Configuration du tableau de bord, Processus appelable ou Application tierce.</p><p><b>Gérer les éléments existants</b></p><p>Modifier met à jour le titre, l''icône, le lien et les autorisations des éléments personnalisés. Supprimer les retire. Les éléments intégrés (source : Intégré) ne peuvent être ni modifiés ni supprimés, et les éléments générés par un processus appelable ne peuvent être modifiés que par un développeur. Faites glisser les lignes pour réorganiser tous les éléments.</p><p><b>Paramètres de la barre latérale</b></p><p>Désactiver la barre latérale la masque entièrement pour tous les utilisateurs. Comportement contrôle comment elle s''ouvre : Survol (au survol de la souris), Clic (nécessite un clic) ou Ancré (toujours visible).</p>'
-      SidebarNavigation: Barre latérale
-      SidebarSettings: Paramètres de la barre latérale
-      SidebarMode: Mode de la barre latérale
-      DisableSidebar: Désactiver la barre latérale
-      SidebarBehaviour: Comportement de la barre latérale
-      SidebarSettingsReloadWarning: 'Paramètres de la barre latérale enregistrés. Rechargez la page pour appliquer les modifications.'
-      Reload: Recharger
-      AddItem: Ajouter un élément
-      Label: Libellé
-      Source: Source
-      Target: Lien vers
-      Dashboard: Tableau de bord
       MenuManagement: Gestion des menus
-      MenuManagementTabInfo: 'Gérez les éléments de navigation de la barre latérale. Vous pouvez:<ul><li>Ajouter de nouveaux éléments de menu (tableaux de bord, liens externes, processus Ivy)</li><li>Réorganiser les éléments par glisser-déposer</li><li>Modifier ou supprimer des éléments de menu existants</li></ul>'
+      MenuManagementTabInfo: Gérez les éléments de navigation de la barre latérale. Vous pouvez:<ul><li>Ajouter de nouveaux éléments de menu (tableaux de bord, liens externes, processus Ivy)</li><li>Réorganiser les éléments par glisser-déposer</li><li>Modifier ou supprimer des éléments de menu existants</li></ul>
+      MenuManagementTabInfoPanel: '<p><b>Que puis-je faire ici ?</b></p><p>Configurez tout ce qui est visible dans la barre latérale : les éléments, leur ordre et le comportement global de la barre latérale.</p><p><b>Ajouter de nouveaux éléments</b></p><p>Utilisez Ajouter un élément pour créer une nouvelle
+        entrée. Vous pouvez choisir : Tableau de bord principal (lien vers un tableau de bord), Processus (démarre un processus Ivy), Lien externe (toute URL, avec option ouverture dans un nouvel onglet) ou Page statique. Chaque élément dispose d''un titre multilingue, d''une icône et d''autorisations
+        configurables. Le type d''élément ne peut pas être modifié après création.</p><p><b>Comprendre le tableau</b></p><p>Cible indique où mène un élément (URL ou chemin de processus). Autorisations indique qui peut le voir. Type est la nature de l''entrée et Source indique où il est défini : Intégré,
+        Configuration, Configuration du tableau de bord, Processus appelable ou Application tierce.</p><p><b>Gérer les éléments existants</b></p><p>Modifier met à jour le titre, l''icône, le lien et les autorisations des éléments personnalisés. Supprimer les retire. Les éléments intégrés (source : Intégré)
+        ne peuvent être ni modifiés ni supprimés, et les éléments générés par un processus appelable ne peuvent être modifiés que par un développeur. Faites glisser les lignes pour réorganiser tous les éléments.</p><p><b>Paramètres de la barre latérale</b></p><p>Désactiver la barre latérale la masque
+        entièrement pour tous les utilisateurs. Comportement contrôle comment elle s''ouvre : Survol (au survol de la souris), Clic (nécessite un clic) ou Ancré (toujours visible).</p>'
+      PackageManagement: Package management
+      PackageManagementTabInfoPanel: <p><b>What can I do here?</b></p><p>Export the current Portal configuration as a single zip package, or import a previously exported package to replace it.</p><p><b>Export</b></p><p>Downloads a <code>Portal_Package.zip</code> containing one JSON file per configuration
+        type. Only types with existing data are included.</p><p><b>Import</b></p><p>Upload a zip package to preview which files it contains before applying. Recognized files replace the matching configuration; unrecognized files are skipped. This action cannot be undone.</p>
       PrivateDashboard: Tableaux de bord privés
       PrivateDashboardConfiguration: Configuration des tableaux de bord privés
+      PrivateDashboardTabInfoPanel: <p><b>Que puis-je faire ici ?</b></p><p>Créez et gérez des tableaux de bord visibles uniquement par vous. Ils apparaissent groupés sous l'icône Tableau de bord dans la barre latérale et n'affectent jamais les autres utilisateurs.</p><p><b>Réorganiser</b></p><p>Faites
+        glisser une ligne pour changer l'ordre d'apparition dans le sous-menu. L'ordre est enregistré dans vos paramètres personnels.</p><p><b>Actions par tableau de bord</b></p><p>Modifier permet de mettre à jour le titre, la description, l'icône ou les titres multilingues. Configurer ouvre le tableau
+        de bord pour ajouter ou réorganiser des widgets. Si vous disposez de la permission d'export, vous pouvez télécharger un tableau de bord au format JSON.</p>
+      PrivateTabInfo: Créez et gérez vos tableaux de bord personnels.<ul><li>Ils ne sont visibles que par vous</li><li>Ils apparaissent sous l'icône Dashboard dans la barre latérale</li></ul>
       PublicDashboard: Tableaux de bord publics
       PublicDashboardConfiguration: Configuration des tableaux de bord publics
+      PublicTabInfo: Gérez les tableaux de bord pour tous les utilisateurs. Définissez la visibilité:<ul><li><b>Barre latérale</b> — apparaît comme élément principal dans le menu latéral</li><li><b>Sous-menu</b> — apparaît sous l'icône Dashboard</li><li><b>Masqué</b> — non visible pour les utilisateurs</li></ul>
+      Reload: Recharger
       ReorderPrivateDashboards: Réorganiser vos tableaux de bord
       ReorderPublicDashboards: Réorganiser les tableaux de bord publics
       SelectAction: Sélectionnez l'action
+      SidebarBehaviour: Comportement de la barre latérale
+      SidebarMode: Mode de la barre latérale
+      SidebarNavigation: Barre latérale
+      SidebarSettings: Paramètres de la barre latérale
+      SidebarSettingsReloadWarning: Paramètres de la barre latérale enregistrés. Rechargez la page pour appliquer les modifications.
+      SidebarTopLevelDashboards: Tableaux de bord principaux de la barre latérale
+      SidebarTopLevelDashboardsDescription: Apparaissent comme éléments principaux dans la barre latérale.
       SomeThingWentWrong: Quelque chose n'a pas fonctionné
+      Source: Source
       Start: Démarrage
+      SubMenuDashboards: Tableaux de bord du sous-menu
+      SubMenuDashboardsDescription: Apparaissent groupés sous l'icône Tableau de bord dans la barre latérale.
+      Target: Lien vers
       Templates: Modèles
       Title: Configuration du portail
-      PackageManagement: Package management
-      PackageManagementTabInfoPanel: '<p><b>What can I do here?</b></p><p>Export the current Portal configuration as a single zip package, or import a previously exported package to replace it.</p><p><b>Export</b></p><p>Downloads a <code>Portal_Package.zip</code> containing one JSON file per configuration type. Only types with existing data are included.</p><p><b>Import</b></p><p>Upload a zip package to preview which files it contains before applying. Recognized files replace the matching configuration; unrecognized files are skipped. This action cannot be undone.</p>'
+      Visibility: Visibilité
     DrillDownWidget:
       caseDrillDown: Widget de cas détaillé pour {0}
       taskDrillDown: Widget de tâche détaillé pour {0}
@@ -956,8 +969,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       STANDARD: Colonne standard
     configuration:
       CustomWidgetExternalLinkWarning: Certains web sites ne sont pas compatibles avec les iframe pour des raisons de sécurité. Veuillez contacter votre administrateur si le web site externe ne fonctionne pas correctement.
-      CustomWidgetUrlInvalidScheme: L'URL fournie n'est pas valide
       CustomWidgetTitlePlaceholder: Laissez-le vide pour masquer l'en-tête du widget
+      CustomWidgetUrlInvalidScheme: L'URL fournie n'est pas valide
       Parameters: Paramètres
       RestoreDefaultDashboardTemplateTooltip: Nous ne trouvons pas le modèle de votre tableau de bord, nous ne pouvons donc pas le réinitialiser à la configuration standard. Veuillez vérifier auprès de votre administrateur pour plus de détails!
       SelectTheTemplate: Sélectionnez le modèle
@@ -966,19 +979,19 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Paramètres avancés
         ChangeImage: Changer l'image
-        ChooseMode: Choisissez le mode que vous souhaitez configurer
-        DarkMode: Sombre
-        ImagePreview: Aperçu de l'image
-        LightMode: Clair
-        ConfigurationHeader: Configuration du widget de bienvenue
         ChooseAFit: Choisissez un ajustement
+        ChooseMode: Choisissez le mode pour configurer l'image
+        ConfigurationHeader: Configuration du widget de bienvenue
+        DarkMode: Sombre
         DisplayText: Texte d'affichage
         Greeting:
           Afternoon: Bonne journée
           Evening: Bonsoir
           Morning: Bonjour
         ImageInlineStyle: Style d'image en ligne
+        ImagePreview: Aperçu de l'image
         ImageStyleClass: Classe de style d'image
+        LightMode: Clair
         PreviewTooltip: Cet aperçu ne peut pas rendre tous les paramètres mais devrait donner une idée de ce à quoi ressemblera le widget final. La taille de l'image, l'orientation et certains paramètres CSS ne seront pas affichés ici.
         ShowGreeting: Afficher les salutations
         TextColorDarkMode: Couleur pour le mode sombre
@@ -1006,7 +1019,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Type de champ personnalisé
     dashboardManagement:
       CreateDashboard: Créer un tableau de bord
-      addDashboard: Ajouter un tableau de bord
       dashboardIcon: Icône du tableau de bord
       dashboardPermission: Autorisation du tableau de bord
       dashboardTitle: Titre du tableau de bord
@@ -1042,12 +1054,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     navigate: Naviguer
     noCategory: Il n'y a pas de catégories
     noDashboard: Il n'y a pas de tableaux de bord. Ajoutez au moins un tableau de bord, puis ajoutez des widgets.
-    noDashboardAvailable: "Aucun tableau de bord du sous-menu n'est disponible."
+    noDashboardAvailable: Aucun tableau de bord du sous-menu n'est disponible.
     noPermission: Vous n'avez pas les permissions pour voir les tableaux de bord.
     noWidget: Il n'y a pas de widgets fournis pour ce tableau de bord.
     numberPattern: Modèle de numéro
-    operators: Opérateurs
     operatorPolicyTooltip: Si les opérateurs sont désactivés globalement par l'administrateur, ils ne peuvent pas être activés ici. Le filtre d'un champ ne peut pas être activé lorsque tous les opérateurs sont désactivés globalement.
+    operators: Opérateurs
     preview: Aperçu
     processList: Liste des processus
     processListIntroduction: Ce widget montre les démarrages de processus disponibles. Vous avez la possibilité de choisir différents formats
@@ -1370,8 +1382,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldsDialog: 'Champs personnalisés de la tâche #{0}'
     delayedUntil: Retardé jusqu'au
     deleteFile: Supprimer le fichier
-    dueDate: Échéance
     documents: Documents
+    dueDate: Échéance
     duration: Durée
     events: Événements relatifs au flux de travail
     expiry: Expiration
@@ -1568,7 +1580,7 @@ Dialogs:
               noResultsText: Il n'y a pas de résultats.
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: Ajouter un nouveau tableau de bord
+                newPublicDashboard: Nouveau tableau de bord public
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Créer un widget de statistiques personnalisé
                 DeleteConfirm: Êtes-vous sûr de vouloir supprimer ?
@@ -1767,17 +1779,17 @@ Dialogs:
             AddNewMenu: Ajouter un nouveau menu
             CallableMenuMessage: Ce menu est généré automatiquement par un processus appelable et ne peut pas être modifié.
             CallableSourceHint: Cet élément est généré par un processus appelable. Contactez votre développeur pour le modifier.
-            ProcessPermissionHint: La visibilité dépend des autorisations de démarrage du processus.
             HelpText: Personnalisez le menu dans cette section en fonction de vos besoins ou préférences.
+            InvalidStaticPagePath: Le chemin doit être relatif à l'application (les URLs absolues ne sont pas autorisées).
+            InvalidUrl: L'URL n'est pas valide.
+            InvalidUrlScheme: Seules les URLs http et https sont autorisées.
             MenuDetails: Détails du menu
             MenuIcon: Icône du menu
             MenuTitle: Titre du menu
             MenuType: Type de menu
-            InvalidUrl: "L'URL n'est pas valide."
-            InvalidUrlScheme: 'Seules les URLs http et https sont autorisées.'
-            InvalidStaticPagePath: "Le chemin doit être relatif à l'application (les URLs absolues ne sont pas autorisées)."
-            NoAvailableSubDashboard: "Aucun tableau de bord du sous-menu n'est disponible pour être ajouté comme tableau de bord principal."
+            NoAvailableSubDashboard: Aucun tableau de bord du sous-menu n'est disponible pour être ajouté comme tableau de bord principal.
             OpenInNewTab: Ouvrir dans un nouvel onglet
+            ProcessPermissionHint: La visibilité dépend des autorisations de démarrage du processus.
             StaticPagePath: Chemin de page statique
           StatisticConfiguration:
             AddFilter: Ajouter un filtre
@@ -2031,10 +2043,10 @@ Labels:
       PROCESSES: Processus
       TASKS: Tâches
     MenuKind:
-      PROCESS: Processus
       DASHBOARD: Tableau de bord
       EXTERNAL_LINK: Lien externe
       MAIN_DASHBOARD: Tableau de bord principal
+      PROCESS: Processus
       PROCESS_LIST: Liste des processus
       STANDARD: Standard
       STATIC_PAGE: Page statique
