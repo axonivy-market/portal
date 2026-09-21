@@ -28,7 +28,7 @@
                          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
                          rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
                          icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
-                         styleClass="task-details-document-add-link portal-icon-btn-round portal-icon-btn-accent u-mar-right-10"
+                         styleClass="rounded-button task-details-document-add-link portal-icon-btn portal-icon-btn--accent u-mar-right-10"
                          oncomplete="PF('document-upload-dialog').show()"/>
           <p:button id="show-more-doc-link" rendered="#{caseTaskDocumentBean.showMoreDocument}"
             styleClass="portal-detail-show-more-btn portal-pill-btn"
