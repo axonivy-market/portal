@@ -234,7 +234,17 @@ public class ComplexFilterHelper {
     trigger.click();
     WaitHelper.waitPageNoAnimation();
     trigger.click();
+
+    forceCloseDatePicker();
     WaitHelper.waitPageNoAjaxAndAnimation();
+  }
+
+  private static void forceCloseDatePicker() {
+    SelenideElement datePicker = $("#ui-datepicker-div");
+    if (datePicker.exists() && datePicker.isDisplayed()) {
+      Selenide.executeJavaScript("arguments[0].style.display='none';", datePicker);
+      datePicker.shouldBe(Condition.hidden, DEFAULT_TIMEOUT);
+    }
   }
 
   private static void handleFilterNumberBetween(SelenideElement filterElement, Object... values) {
