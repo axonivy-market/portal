@@ -90,7 +90,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void startTask(int taskIndex) {
-    WaitHelper.waitPageNoAjaxAndAnimation();
     getCellByRowAndColumnName(taskIndex, "Start").shouldBe(getClickableCondition()).click();
   }
 
