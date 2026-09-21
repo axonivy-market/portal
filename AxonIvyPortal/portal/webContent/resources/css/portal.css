@@ -1409,11 +1409,7 @@ body.in-dialog .ui-widget-overlay {
 }
 
 .time-information .ti-pencil,
-.general-information .ti-pencil,
-.task-detail-description .ti-circle-plus,
-.task-detail-description .ti-circle-minus,
-.case-detail-description .ti-circle-plus,
-.case-detail-description .ti-circle-minus {
+.general-information .ti-pencil {
   margin-left: 5px;
   color: var(--primary-color);
 }

@@ -1907,13 +1907,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding: 0 !important;
 }
 
-.short-description {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-
 .long-description {
   overflow: auto; 
 }
@@ -4371,17 +4364,6 @@ border-top: 0.14rem dashed;
 
 .task-details-widgets .task-action-item-position {
   display: inline-flex;
-}
-
-.icon-more-link, .icon-less-link {
-  display: none;
-}
-
-.icon-less-link.display {
-  display: -webkit-inline-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-box-pack: end;
 }
 
 .task-detail-description .pointer-event-none {

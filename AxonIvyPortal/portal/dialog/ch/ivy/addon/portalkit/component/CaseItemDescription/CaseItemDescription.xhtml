@@ -27,14 +27,14 @@
     <div class="u-no-padding-left case-details-description-content">
       <h:form id="case-description-form">
         <div class="case-detail-description">
-          <div id="description-content" class="scroll-panel short-description">
+          <div id="description-content" class="scroll-panel long-description">
             <p:inplace id="case-description-inplace" editor="true" styleClass="case-description-inplace js-case-description-inplace" effectSpeed="fast"
               widgetVar="widget-description-inplace" disabled="#{!canChangeDescription or cc.attrs.readOnly}"
               saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
               cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDescription')}" >
-              <p:ajax event="save" listener="#{caseDetailsBean.updateCaseDescription(case)}" oncomplete="handleDisplayIconMoreLink()" update="#{cc.attrs.descriptionComponentToUpdate} case-description-form" />
-              <p:ajax event="cancel" oncomplete="handleDisplayIconMoreLink()" update="case-description-form" process="@none" />
+              <p:ajax event="save" listener="#{caseDetailsBean.updateCaseDescription(case)}" update="#{cc.attrs.descriptionComponentToUpdate} case-description-form" />
+              <p:ajax event="cancel" update="case-description-form" process="@none" />
               <p:inputTextarea id="case-description-input" cols="250" rows="5" styleClass="case-detail-description-input"
                 value="#{caseDetailsBean.caseDetailsDescription}" autoResize="false" />
             </p:inplace>
@@ -43,12 +43,6 @@
               <h:outputText escape="false" value="#{caseWidgetBean.sanitizeHTML(case.descriptions().current())}" />
              </h:panelGroup>
           </div>
-          <p:commandLink onclick="displayMoreText()" id="icon-more-link" styleClass="icon-more-link" global="false" process="@this" immediate="true" partialSubmit="true" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ExpandAll')}">
-            <i class="ti ti-circle-plus ti-circle-plus" />
-          </p:commandLink>
-          <p:commandLink onclick="displayLessText()" id="icon-less-link" styleClass="icon-less-link" global="false" process="@this" immediate="true" partialSubmit="true" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/CollapseAll')}">
-            <i class="ti ti-circle-minus" />
-          </p:commandLink>
         </div>
       </h:form>
     </div>
