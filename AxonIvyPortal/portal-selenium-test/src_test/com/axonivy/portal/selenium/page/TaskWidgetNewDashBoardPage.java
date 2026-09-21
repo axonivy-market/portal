@@ -1,5 +1,11 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,14 +20,9 @@ import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Condition.text;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 
 public class TaskWidgetNewDashBoardPage extends TemplatePage {
@@ -587,7 +588,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openManageFiltersDialog() {
-    $("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("a").shouldBe(getClickableCondition()).click();
+    $("a[class*='saved-filter__manage-filter']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click();
   }
 
   public void removeAllFilterItems() {
@@ -605,7 +607,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void searchSavedFilters(String input) {
-    $("div[class*='saved-filter--search-container']").$("input[id$=':search-saved-filter-input']").setValue(input);
+    var savedFilterPanel = getSavedFilterContainer();
+    savedFilterPanel.$("[id$=':search-saved-filter-input']").shouldBe(Condition.visible, DEFAULT_TIMEOUT)
+        .setValue(input);
   }
 
   public void inputValueOnColumnWidgetHeader(String columnName, String value) {
