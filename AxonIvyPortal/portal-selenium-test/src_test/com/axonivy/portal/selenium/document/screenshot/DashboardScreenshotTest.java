@@ -576,15 +576,22 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
                 resizeBrowserTo2kResolution();
                 caseWidget.openFilterWidget();
                 caseWidget.addFilter("Name", FilterOperator.CONTAINS);
-                caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Nam", "Mike");
+                caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Name1");
 
                 caseWidget.saveFilter("Filter Set A");
-                caseWidget.selectSavedFilter("Filter Set A");
-
-                caseWidget.saveFilter("Filter Set B");
-
                 ScreenshotUtils.captureElementScreenshot(homePage.getWidgetFilter(1),
                                 ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-save-filter");
+
+                caseWidget.resetFilter();
+
+                caseWidget.openFilterWidget();
+                caseWidget.addFilter("Name", FilterOperator.CONTAINS);
+                caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Name2");
+
+                caseWidget.saveFilter("Filter Set B");
+                caseWidget.resetFilter();
+
+                caseWidget.openFilterWidget();
 
                 homePage.clickOnManageFilterLink();
                 homePage.getTotalSavedFilterInManageFilterDialog().shouldBe(CollectionCondition.size(2), DEFAULT_TIMEOUT);

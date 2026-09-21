@@ -356,11 +356,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectSavedFilter(String filterName) {
     getSavedFilterItems().filter(text(filterName)).first().shouldBe(getClickableCondition()).click();
-    // Applying a saved filter re-queries and re-renders the widget's data table server-side, not just
-    // a UI animation; under CI load (slower runner, potentially a larger accumulated case dataset from
-    // earlier tests sharing the same engine) this can take longer than the default 15s, so give it its
-    // own longer budget instead of raising DEFAULT_TIMEOUT for every wait in the suite.
-    WaitHelper.waitPageNoAjaxAndAnimation(SELECT_SAVED_FILTER_TIMEOUT);
   }
 
   public void inputValueOnColumnWidgetHeader(String columnName, String value) {

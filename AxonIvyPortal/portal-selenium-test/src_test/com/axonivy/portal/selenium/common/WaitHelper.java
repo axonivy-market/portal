@@ -98,18 +98,8 @@ public final class WaitHelper {
   }
 
   public static void waitPageNoAjaxAndAnimation() {
-    waitPageNoAjaxAndAnimation(DEFAULT_TIMEOUT);
-  }
-
-  /**
-   * Same as {@link #waitPageNoAjaxAndAnimation()} but with a caller-supplied timeout, for the rare
-   * ajax operation (e.g. re-querying/re-rendering a widget's data table) whose real response time
-   * can exceed the default 15s under CI load, where bumping DEFAULT_TIMEOUT globally would slow
-   * down every other wait in the suite.
-   */
-  public static void waitPageNoAjaxAndAnimation(Duration timeout) {
     Selenide.Wait()
-        .withTimeout(timeout)
+        .withTimeout(DEFAULT_TIMEOUT)
         .until(visibleAndAnimationComplete());
   }
 
