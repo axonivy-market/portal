@@ -830,7 +830,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AddItem: Eintrag hinzufügen
       CreateFromScratch: Von Grund auf neu erstellen
       CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard
-      newPrivateDashboard: Neues privates Dashboard
+      NewPrivateDashboard: Neues privates Dashboard
       CreateNewPublicDashboard: Neues öffentliches Dashboard erstellen
       Dashboard: Dashboard
       DashboardTabInfoPanel: '<p><b>Was kann ich hier tun?</b></p><p>Öffentliche Dashboards erstellen, bearbeiten und löschen. Legen Sie fest, wer sie sehen kann. Dies ist die zentrale Bibliothek aller geteilten Dashboards.</p><p><b>Sichtbarkeit &amp; Platzierung</b></p><p>Dashboards sind in drei Bereiche
