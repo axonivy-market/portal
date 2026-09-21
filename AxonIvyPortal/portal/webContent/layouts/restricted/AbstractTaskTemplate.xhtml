@@ -78,12 +78,12 @@
           </h:panelGroup>
   
           <h:panelGroup id="horizontal-task-template-tasks-command" styleClass="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction)}">
-            <p:commandButton id="horizontal-case-info" type="button" styleClass="portal-icon-btn-round portal-icon-btn-lg"
+            <p:commandButton id="horizontal-case-info" type="button" styleClass="rounded-button portal-icon-btn portal-icon-btn--lg"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="ti ti-folders"
               onclick="openCaseInfo()" rendered="#{!isHideCaseInfo}"
               global="false" />
-            <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="portal-icon-btn-round portal-icon-btn-lg"
+            <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="rounded-button portal-icon-btn portal-icon-btn--lg"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ti ti-list-search" />
           
