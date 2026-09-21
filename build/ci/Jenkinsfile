@@ -44,5 +44,16 @@ pipeline {
         }
       }
     }
+
+    stage('restart engine') {
+      steps {
+        script {
+          // Restart the engine to avoid errors like stale class loaders after deployment
+          if (builtModules) {
+            sh 'docker compose -f /var/tools/ivy/master/docker-compose.yml restart'
+          }
+        }
+      }
+    }
   }
 }
