@@ -40,6 +40,25 @@ How to Configure Widgets in Case Details
    itself, and ``items`` holds the list of case detail layouts. This wrapper-level ``version`` is what
    Portal reads (and migrates) on import - individual layouts do not carry their own ``version`` field.
 
+.. important:: **How Portal picks which layout to display** - this determines whether a change to
+   this variable has any visible effect at all:
+
+   #. If the current user has ever clicked **Edit Layout** on this page and saved (or was
+      previously in edit mode when a save was triggered), Portal uses **that user's own saved
+      layout** and ignores this variable **entirely** for that user, indefinitely. The **Reset**
+      button on this page does **not** clear this saved layout - it only discards unsaved changes
+      made during the current edit session. There is currently no supported way to clear a user's
+      saved layout from the UI. If a change to this variable appears to have no effect, check
+      first whether the user you are testing with has ever saved a layout edit on this page.
+   #. Otherwise, Portal scans the ``items`` list for an entry whose ``filters`` match the current
+      case (by ``categories`` or ``states``) and uses the first match.
+   #. If no entry's ``filters`` match, Portal falls back to the entry whose ``id`` is exactly
+      ``"default-case-detail"`` (case-sensitive). **An entry with any other ``id`` and no matching
+      ``filters`` will never be displayed** - this is a common mistake when adapting the examples
+      below.
+   #. If no entry has that exact ``id`` either, Portal falls back to its own built-in default
+      layout (the 5-widget layout shown below), silently ignoring everything you configured.
+
 -  The default configuration includes five widgets:
 
    .. code-block:: javascript
@@ -314,7 +333,7 @@ The following two steps are necessary to add new custom panels:
            "version": "14.0.0",
            "items": [
             {
-               "id": "case-detail",
+               "id": "default-case-detail",
                "widgets": [
                   {
                   "type": "information",
@@ -359,7 +378,7 @@ The following two steps are necessary to add new custom panels:
            "version": "14.0.0",
            "items": [
             {
-               "id": "case-detail",
+               "id": "default-case-detail",
                "widgets": [
                   {
                      "type": "information",
