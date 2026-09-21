@@ -1,8 +1,5 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
-import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,6 +14,8 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
+import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import com.codeborne.selenide.ElementsCollection;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -133,8 +132,9 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName("Sick Leave Request", FilterOperator.IS);
     taskWidget.applyFilter();
-    taskWidget.clickOnTaskName("Sick Leave Request");
-    
+    // click on start button on the row
+    taskWidget.startTask(0);
+
     TaskTemplateIFramePage templatePage = new TaskTemplateIFramePage();
     templatePage.switchToIFrameOfTask();
     newDashboardPage = templatePage.clickCancelButton();
@@ -151,7 +151,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
     filterTaskByNameAndState("Sick Leave Request", OPEN);
-    taskWidget.clickOnTaskName("Sick Leave Request");
+    // click on start button on the row
+    taskWidget.startTask(0);
     templatePage = new TaskTemplateIFramePage();
     templatePage.switchToIFrameOfTask();
     newDashboardPage = templatePage.clickCancelButton();
