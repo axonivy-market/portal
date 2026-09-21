@@ -19,8 +19,8 @@ This feature is available for the Case Widget and the Task Widget in Dashboard.
 How to use
 ----------
 
-- Open the widget action menu in the widget header and selecting :guilabel:`Filters`
-  (see :ref:`task widget actions menu <task-widget-actions-menu>` and :ref:`case widget actions menu <case-widget-actions-menu>`), or by clicking on the :guilabel:`Filter` button within the Edit Widget Configuration panel on the Edit Dashboard.
+- Open the widget action menu in the widget header and select :guilabel:`Filters`
+  (see :ref:`task widget actions menu <task-widget-actions-menu>` and :ref:`case widget actions menu <case-widget-actions-menu>`), or click the :guilabel:`Filter` button within the Edit Widget Configuration panel on the Edit Dashboard.
   Please refer to :ref:`new-dashboard` for more details.
 
 - To add a filter, click ``Add condition``, then select the column and operator, and input value if needed.
@@ -45,7 +45,7 @@ How to use
 
     This filter configuration finds all cases in state OPEN, with case name containing 'Mike', created today.
 
-If the task/case widget has been pre-configured with filters in the dashboard configuration, these filters will be displayed as default filters and not allowed to edit.
+If the task/case widget has been pre-configured with filters in the dashboard configuration, these filters will be displayed as default filters and cannot be edited.
 
 For more information about filter operators, please refer to the table :ref:`filter-operators`.
 
