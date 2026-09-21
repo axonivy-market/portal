@@ -2863,6 +2863,17 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 .portal-detail-kv-value.flex > .task-expiry-activator-edit {
   flex: none;
 }
+.responsibles {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+}
+.responsibles > span {
+  min-width: 0;
+}
+.responsibles > .ml-1 {
+  flex: none;
+}
 .responsibles-avatar-group .ui-avatar + .ui-avatar {
   margin-left: -0.5rem;
 }
