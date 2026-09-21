@@ -32,7 +32,7 @@
           <h:panelGrid styleClass="ui-g-12" columns="2" columnClasses="ui-g-4 ui-sm-12, ui-g-8 ui-sm-12">
             <h:outputLabel id="start-date-label" for="start-date" value="Start date" />
             <h:panelGroup>
-              <p:datePicker id="start-date" value="#{data.investmentRequest.investment.startDate}" />
+              <p:datePicker id="start-date" value="#{data.investmentRequest.investment.startDate}" focusOnSelect="true" />
             </h:panelGroup>
           </h:panelGrid>
         </h:panelGrid>
