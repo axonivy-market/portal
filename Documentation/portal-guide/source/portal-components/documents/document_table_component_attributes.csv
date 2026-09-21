@@ -3,6 +3,7 @@ nameColumnRendered,TRUE,Boolean,"Boolean value to specify the rendering of the n
 sizeColumnRendered,TRUE,Boolean,"Boolean value to specify the rendering of the size column, when set to false size column will not be rendered."
 typeColumnRendered,TRUE,Boolean,"Boolean value to specify the rendering of the type column, when set to false type column will not be rendered."
 functionColumnRendered,TRUE,Boolean,"Boolean value to specify the rendering of the function column, when set to false function column will not be rendered."
+actionsAsMenu,FALSE,Boolean,"Boolean value to group the row actions into a single action menu, when set to true preview, download, rename and delete are shown as menu items instead of separate icons."
 previewRendered,TRUE,Boolean,"Boolean value to specify the rendering of the preview icon, when set to false preview icon will not be rendered."
 uploadRendered,TRUE,Boolean,"Boolean value to specify the rendering of the upload icon, when set to false upload icon will not be rendered."
 downloadRendered,TRUE,Boolean,"Boolean value to specify the rendering of the download icon, when set to false download icon will not be rendered."
@@ -13,22 +14,22 @@ renderChooseUploadIcon,TRUE,Boolean,Defines if the button to upload document is 
 lazy,FALSE,Boolean,Boolean value to specify whether the table should load data lazily and enable pagination.
 fileLimit,-1,Integer,Maximum number of files that can be uploaded.
 sizeLimit,null,Long,Maximum size of an individual file in bytes.
-uploadText,Upload,String,Label text displayed on the upload button.
+uploadText,Upload new file,String,Label text displayed on the upload button.
 updatedComponentAfterUploaded,null,String,"Space-separated clientIds (or EL expressions) of components to update after a successful upload. Example: 'document-table document-messages'."
-previewTitle,Preview,String,Tooltip text displayed when hovering over the preview icon.
-previewIcon,ti-eye,String,Icon class for the preview link.
+previewTitle,Preview,String,"Tooltip text displayed when hovering over the preview icon, or the item label when ``actionsAsMenu`` is enabled."
+previewIcon,ti ti-eye,String,Icon class for the preview link.
 previewStyleClass,null,String,Custom CSS style class to apply to the preview link.
 previewDialogStyleClass,null,String,Custom CSS style class to apply to the preview dialog.
 previewPDFStyleClass,null,String,Custom CSS style class to apply to PDF preview media element.
 previewImageStyleClass,null,String,Custom CSS style class to apply to image preview element.
-downloadTitle,Download,String,Tooltip text displayed when hovering over the download icon.
-downloadIcon,ti-download,String,Icon class will be displayed in download link.
+downloadTitle,Download,String,"Tooltip text displayed when hovering over the download icon, or the item label when ``actionsAsMenu`` is enabled."
+downloadIcon,ti ti-download,String,Icon class will be displayed in download link.
 downloadStyleClass,null,String,Styles for download link.
-deleteTitle,Delete,String,Tooltip text displayed when hovering over the delete icon.
-deleteIcon,ti-trash,String,Icon class will be displayed in delete link.
+deleteTitle,Delete,String,"Tooltip text displayed when hovering over the delete icon, or the item label when ``actionsAsMenu`` is enabled."
+deleteIcon,ti ti-trash,String,Icon class will be displayed in delete link.
 deleteStyleClass,null,String,Custom CSS style class to apply to the download link.
 updatedComponentAfterDeleted,null,String,"Space-separated clientIds (or EL expressions) of components to update after a successful deletion. Example: 'document-table document-messages'."
-renameText,Rename document,String,Tooltip text displayed when hovering over the rename icon.
+renameText,Rename document,String,"Tooltip text displayed when hovering over the rename icon, or the item label when ``actionsAsMenu`` is enabled."
 renameTitle,Rename document,String,Title text displayed in the rename dialog header.
 renameStyleClass,null,String,Custom CSS style class to apply to the rename link.
 updatedComponentAfterRenamed,null,String,"Space-separated clientIds (or EL expressions) of components to update after a successful rename. Example: 'document-table document-messages'."
