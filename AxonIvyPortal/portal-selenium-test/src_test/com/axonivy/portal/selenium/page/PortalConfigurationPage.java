@@ -68,7 +68,7 @@ public class PortalConfigurationPage extends TemplatePage {
   }
 
   public String getPageHeadingText() {
-    return $("div[id$='configuration-group'] .dashboard-configuration__header h2")
+    return $("div[id$='configuration-group'] .dashboard-configuration-title")
         .shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
