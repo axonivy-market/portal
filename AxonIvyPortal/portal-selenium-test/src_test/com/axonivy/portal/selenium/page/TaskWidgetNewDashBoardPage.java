@@ -96,6 +96,13 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     getCellByRowAndColumnName(taskIndex, "Start").shouldBe(getClickableCondition()).click();
   }
 
+  public void startTask(String taskName) {
+    int taskIndex =
+        getAllTasksOfTaskWidget().asFixedIterable().stream().map(WebElement::getText).collect(Collectors.toList())
+        .indexOf(taskName);
+    getCellByRowAndColumnName(taskIndex, "Start").shouldBe(getClickableCondition()).click();
+  }
+
   public ElementsCollection countRelatedCases() {
     return $("div[id$='related-cases']").$$("td.name-column");
   }
