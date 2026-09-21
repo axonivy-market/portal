@@ -133,7 +133,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.filterTaskName("Sick Leave Request", FilterOperator.IS);
     taskWidget.applyFilter();
     // click on start button on the row
-    taskWidget.startTask(0);
+    taskWidget.startTask("Sick Leave Request");
 
     TaskTemplateIFramePage templatePage = new TaskTemplateIFramePage();
     templatePage.switchToIFrameOfTask();
