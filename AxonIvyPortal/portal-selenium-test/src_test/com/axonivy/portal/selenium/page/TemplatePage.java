@@ -106,13 +106,9 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   /**
-   * Closes every growl still on screen instead of waiting for it to fade out.
-   *
-   * PrimeFaces stops the removal timer of a growl while the mouse is over it and restarts it only
-   * on mouse out. A headless browser never moves its cursor again after the click that triggered
-   * the growl, so a growl popping up under that cursor stays forever. Growls cover the top right
-   * corner, where the chat toggle and the task widget action links are, so they both block clicks
-   * and make a wait for their disappearance run into the timeout.
+   * Removes every growl on screen instead of waiting for it to fade out. PrimeFaces pauses the
+   * removal timer while the mouse is over a growl, and a headless browser never moves its cursor
+   * away, so a growl under the cursor stays forever and keeps blocking the elements below it.
    */
   public void dismissGrowlMessages() {
     ((JavascriptExecutor) WebDriverRunner.getWebDriver())

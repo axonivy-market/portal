@@ -517,13 +517,7 @@ public class CaseDetailsTest extends BaseTest {
 
   @AfterEach
   public void teardown() {
-    // A deny applies to the user who happens to be logged in and it survives cleanData.ivp, so each
-    // permission has to be taken back from the user the test granted it to.
-    // testShowNotesWhenGrantNoteReadAllPermission grants this one as demo, revoke it before the
-    // login, otherwise demo keeps it and TaskDetailsTest no longer sees its system notes hidden.
     denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
-    // setup() grants this one as admin. Denying it for demo would override the Everybody grant and
-    // break every later test adding a note as demo.
     login(TestAccount.ADMIN_USER);
     denySpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
   }
