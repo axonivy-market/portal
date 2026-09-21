@@ -65,7 +65,7 @@ public class CaseDocumentService {
   }
 
   public boolean doesDocumentExist(String filename) {
-    IDocument document = documentsOf(iCase).get(new Path(filename));
+    IDocument document = documentsOf(iCase).get(Path.of(filename));
     return document != null;
   }
 
