@@ -24,7 +24,9 @@ import org.primefaces.model.file.UploadedFile;
 import com.axonivy.portal.bean.ThemeBean;
 import com.axonivy.portal.components.document.SVGSecurityScanner;
 import com.axonivy.portal.components.jsf.ManagedBeans;
+import com.axonivy.portal.dto.TranslationResult;
 import com.axonivy.portal.enums.ThemeMode;
+import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
@@ -56,6 +58,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   private List<WelcomeImageFit> imageFits;
   private String welcomeTextValue;
   private boolean previewDarkMode;
+  private TranslationResult translation = TranslationResult.EMPTY;
 
   @Override
   public void init() {
@@ -290,5 +293,30 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
 
   public String getGreetingPreviewText() {
     return generateGreetingText(getSupportedUserLanguage());
+  }
+
+  public String getTranslatedText() {
+    return translation.getTranslatedText();
+  }
+
+  public String getWarningText() {
+    return translation.getWarningText();
+  }
+
+  public void translate(DisplayName title) {
+    translation = IvyTranslationService.getInstance().translate(title, findValuesContaining(title));
+  }
+
+  public void translateTextArea(DisplayName title) {
+    translate(title);
+  }
+
+  private List<DisplayName> findValuesContaining(DisplayName title) {
+    boolean isAltText = CollectionUtils.emptyIfNull(widget.getAltTexts()).stream().anyMatch(altText -> altText == title);
+    return isAltText ? widget.getAltTexts() : widget.getWelcomeTexts();
+  }
+
+  public void applyTranslatedText(DisplayName displayName) {
+    translation = translation.applyTo(displayName);
   }
 }
