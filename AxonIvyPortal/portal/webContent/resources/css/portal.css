@@ -2737,6 +2737,7 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 .case-detail-attr .case-detail-attr-value .case-header-default-cell {
   display: inline-flex;
   align-items: center;
+  min-width: 0;
 }
 
 .task-detail-attr .task-detail-attr-value .ti,
