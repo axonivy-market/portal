@@ -1,24 +1,33 @@
 Key,Default value,Note
 Portal.Accessibility.AllowKeyboardShortcutsConfiguration,TRUE, Set to true to allow the user interact with the keyboard shortcuts toggle.
-Portal.ApplicationName,Axon Ivy,The application name that will be displayed on the page title.
+Portal.ApplicationName,,The application name that will be displayed on the page title.
 Portal.CaseDetails.HideDocument,FALSE,"Set to true, the document section in case detail page will be hidden, otherwise it will be shown."
 Portal.CaseDetails.HideUploadDocumentForDoneCase,FALSE,Set to true to deny upload (also delete) document after a case is done.
 Portal.CaseDetails.ShowDurationTime,TRUE,For switch on/off the display of the duration time in case details page.
 Portal.Cases.EnableOwner,FALSE,"| Set to true to enable filtering case owner when cases are queried. This setting affects all case 
 | queries e.g. for case widget, global search. It also makes the ""Filter tasks by current case owner"" filter available in the task widget, which is hidden by default."
 Portal.Cases.HideCaseCreator,FALSE,"Set to true to hide case creator in case widget, case widget and case details. This setting affects all case queries, e.g. for case widget, global search."
-Portal.Cases.EnablePinnedCase,FALSE,"Set this property to true to enable the ability to pin case."
+Portal.Cases.EnablePinnedCase,TRUE,"Set this property to true to enable the ability to pin case."
 Portal.Chat.EnableGroup,FALSE,Set this property to true to enable group chat function.
 Portal.Chat.EnablePrivate,FALSE,Set this property to true to enable private chat function.
 Portal.Chat.MaxConnection,3,"| The set number controls the amount of tabs allowed with active chat. If more tabs are opened,
 | the chat will be disabled in inactive tabs. Allowed values are 1 to 5."
 Portal.Chat.ResponseTimeout,0,"| Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through 
 | the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds."
+Portal.ComplexFilter.Operators,"| TODAY, YESTERDAY, IS, IS_NOT, BEFORE, AFTER,
+| BETWEEN, NOT_BETWEEN, CURRENT, LAST, NEXT,
+| EMPTY, NOT_EMPTY, CONTAINS, NOT_CONTAINS,
+| IN, NOT_IN, START_WITH, NOT_START_WITH,
+| END_WITH, NOT_END_WITH, CURRENT_USER_CAN_WORK_ON,
+| CURRENT_USER, NO_CATEGORY, EQUAL, NOT_EQUAL,
+| LESS, LESS_OR_EQUAL, GREATER, GREATER_OR_EQUAL","| Configure the enabled operators for complex filters as comma-separated enum names.
+| Unchecked operators are disabled globally."
 Portal.DateTimeFormat.DateFilterWithTime,FALSE,"Set to true to enable date filtering with time. This setting affects on task list, case list, and statistics."
 Portal.DateTimeFormat.HideTime,FALSE,"Set to true to hide hours and minutes next to date."
 Portal.DateTimeFormat.HideYear,FALSE,"Set to true, year will be hidden, otherwise it will be shown."
 Portal.DisplayMessageAfterFinishTask,TRUE,A feedback message will be displayed after user finishes or leaves a task.
 Portal.DisplayUsersOfRole,FALSE,"| Controls the SecurityMemberDisplayName component.| If true and the SecurityMember is a role, lists all users of this role under the info icon besides the role name."
+Portal.Document.EnablePreview,TRUE,"Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log."
 Portal.Document.EnableScriptChecking,TRUE,"If true, enables checking uploaded documents for scripting. Supports PDF, Excel, Word."
 Portal.Document.EnableVirusScanner,FALSE,Set to true to enable virus scanner for uploaded document. Currently this function uses the VIRUSTOTAL API.
 Portal.Document.WhitelistExtension,"| doc, docx, xls,
@@ -42,15 +51,15 @@ Portal.ShowButtonIcon,TRUE,"If true, show icons in buttons."
 Portal.ShowGlobalSearch,TRUE,"If true, display the global search box."
 Portal.TaskDetails.HideDocument,FALSE,"If true, the document section in task detail page will be hidden, otherwise it will be shown."
 Portal.TaskDetails.ShowDurationTime,TRUE,For switch on/off the display of the duration time in task details page.
-Portal.Tasks.BehaviourWhenClickingOnLineInTaskList,Run the task,"| Default behaviors (run the task or access task details) when clicking.
+Portal.Tasks.BehaviourWhenClickingOnLineInTaskList,Access task details,"| Default behaviors (run the task or access task details) when clicking.
 | on a line in the task widget, task widget of the dashboard or on related tasks in the case details page."
-Portal.Tasks.EnablePinnedTask,FALSE,"Set this property to true to enable the ability to pin tasks."
+Portal.Tasks.EnablePinnedTask,TRUE,"Set this property to true to enable the ability to pin tasks."
 Portal.Cases.BehaviourWhenClickingOnLineInCaseList,Access case details,"| Toggle between accessing case details or business details when clicking
 | on a case in the case widget on the dashboard, global search, related cases, and process widget in combined mode."
 Portal.UserMenu.HideChangePasswordMenu,FALSE,"Set this variable to true to hide the ""Change Password"" option in the top menu and the ""Forgotten Password"" option on the login page. If set to false, these options will be shown."
 Portal.UserMenu.HideLogoutMenu,FALSE,"If true, the logout button on top menu will be hidden, otherwise it will be shown."
 Portal.ProcessViewer,TRUE,"Set this property to true to display process viewer option in Task/Case actions. If a process is designed to not allow users to view it, the option in related Task/Case actions will be hidden."
-Portal.Histories.HideRelatedCaseInfo,FALSE,"If true, case history does not display the related case information in the history table."
+Portal.Histories.HideRelatedCaseInfo,TRUE,"If true, case history does not display the related case information in the history table."
 Portal.ShowErrorLogToConsole,FALSE,"If true, write error log to browser console."
 Portal.ShowAvatar,TRUE,"If true, switch on the display of user/role avatars."
 Portal.RoleDirectChildrenLimit,50,"| Controls the number of direct child roles that are shown in the Role Management tab.
@@ -68,8 +77,8 @@ Portal.TranslationService.Enable,FALSE,Set this property to true to enable the n
 Portal.ShowQuickGlobalSearch,TRUE,For switch on/off the display of the quick global search.
 Portal.UserMenu.ShowQRCode,FALSE,For switch on/off the display of the QR code.
 Portal.UserMenu.BaseQRCodeUrl,,Set Base URL for QR code to display.
-Portal.UserMenu.AppleStoreURL,,Set URL to download Axon Ivy mobile app on Apple Store.
-Portal.UserMenu.GooglePlayURL,,Set URL to download Axon Ivy mobile app on Google Play.
+Portal.UserMenu.AppleStoreURL,https://apps.apple.com/us/app/axon-ivy/id6474303078,Set URL to download Axon Ivy mobile app on Apple Store.
+Portal.UserMenu.GooglePlayURL,"https://play.google.com/store/apps/details?id=com.axonivy&pli=1",Set URL to download Axon Ivy mobile app on Google Play.
 Portal.GlobalSearchScopeCategories,"PROCESSES,TASKS,CASES",Defining the types that the global search will search for.
 Portal.GlobalSearch.MinimumKeywordLength,3,"Minimum number of characters required before the global search runs. Defaults to 3; set to 0 to disable the check. A shorter keyword matches nearly every row, which can be slow, so the search is skipped rather than run."
 Portal.Upload.DocumentUploadSizeLimit,20,Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.
@@ -77,4 +86,4 @@ Portal.Upload.ImageUploadSizeLimit,6,Set the size limit for uploading images in 
 Portal.DelegationAppendOption,None,Defines the fields that can be appended to the role group display name.
 Portal.SessionCacheTimeout,86400,"Defines the session cache timeout duration (in seconds) for the Portal. This value can be set between 300 (5 minutes) and 86,400 (24 hours). To keep the session cache active until the user's session ends, set this variable to -1."
 Portal.ShowTooltipTechnicalName,FALSE,"Enable to show users' technical name on tooltips."
-Portal.Tasks.MaximumSelectedTasks,,"Defines the maximum number of tasks a user can select simultaneously within a task widget for bulk operations. Set this value to a positive integer to enforce a specific limit, or leave it empty to allow unlimited task selection."
+Portal.Tasks.MaximumSelectedTasks,20,"Defines the maximum number of tasks a user can select simultaneously within a task widget for bulk operations. Set this value to a positive integer to enforce a specific limit, or leave it empty to allow unlimited task selection."
