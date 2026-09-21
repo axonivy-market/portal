@@ -1,5 +1,8 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Selenide.$;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -40,14 +43,12 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.CollectionCondition;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import com.codeborne.selenide.Condition;
-import static com.codeborne.selenide.Selenide.$;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DashboardScreenshotTest extends ScreenshotBaseTest {
         private NewDashboardPage homePage;
         private static final int SCREENSHOT_WIDTH = 1500;
@@ -591,7 +592,6 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
                 caseWidget.closeFilterWidget();
                 caseWidget.openFilterWidget();
                 homePage.clickOnManageFilterLink();
-                homePage.waitForPageLoad();
                 ScreenshotUtils.captureElementScreenshot(homePage.getManageFilterDialog(),
                                 ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-filter-management"); // #delete-saved-filter-form\:quick-filter-table > div.ui-datatable-scrollable-body
         }
