@@ -33,6 +33,10 @@ public class CustomDashboardWidget extends DashboardWidget {
   @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showFullscreenMode;
 
+  public CustomDashboardWidget() {
+    setShowFullscreenMode(true);
+  }
+
   @Override
   public DashboardWidgetType getType() {
     return DashboardWidgetType.CUSTOM;
@@ -65,7 +69,6 @@ public class CustomDashboardWidget extends DashboardWidget {
     result.getLayout().setAxisX(0);
     result.getLayout().setAxisY(0);
     result.setData(new DashboardCustomWidgetData());
-    result.setShowFullscreenMode(true);
     return result;
   }
 

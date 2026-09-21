@@ -23,6 +23,10 @@ public class NewsDashboardWidget extends DashboardWidget {
   @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showFullscreenMode;
 
+  public NewsDashboardWidget() {
+    setShowFullscreenMode(true);
+  }
+
   public void buildDataFirstTime() {
     newsList = NewsService.getInstance().findAll();
   }
@@ -45,7 +49,6 @@ public class NewsDashboardWidget extends DashboardWidget {
     widget.getLayout().setHeight(6);
     widget.getLayout().setAxisX(0);
     widget.getLayout().setAxisY(0);
-    widget.setShowFullscreenMode(true);
     return widget;
   }
 
