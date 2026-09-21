@@ -22,6 +22,7 @@ import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CustomWidgetNewDashBoardPage;
@@ -579,6 +580,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
                 caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Nam", "Mike");
 
                 caseWidget.saveFilter("Filter Set A");
+                WaitHelper.waitPageNoAjaxAndAnimation();
                 caseWidget.selectSavedFilter("Filter Set A");
 
                 caseWidget.saveFilter("Filter Set B");
