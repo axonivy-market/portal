@@ -12,6 +12,8 @@ import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+
 @IvyWebTest
 public class ShowTaskNoteHistoryTest extends BaseTest {
 
@@ -22,6 +24,8 @@ public class ShowTaskNoteHistoryTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    // Another test class can leave TaskCaseAddNote denied for this user, which hides the add-note command
+    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     redirectToRelativeLink(createTestingTasksUrl);
   }
 
