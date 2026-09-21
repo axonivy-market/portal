@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +28,7 @@ import com.codeborne.selenide.SelenideElement;
 public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   private static final String YOUR_CASES_WIDGET = "Your Cases";
+  private static final Duration SELECT_SAVED_FILTER_TIMEOUT = Duration.ofSeconds(30);
 
   private String caseWidgetId;
   private String caseWidgetName;
@@ -354,7 +356,11 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectSavedFilter(String filterName) {
     getSavedFilterItems().filter(text(filterName)).first().shouldBe(getClickableCondition()).click();
-    WaitHelper.waitPageNoAjaxAndAnimation();
+    // Applying a saved filter re-queries and re-renders the widget's data table server-side, not just
+    // a UI animation; under CI load (slower runner, potentially a larger accumulated case dataset from
+    // earlier tests sharing the same engine) this can take longer than the default 15s, so give it its
+    // own longer budget instead of raising DEFAULT_TIMEOUT for every wait in the suite.
+    WaitHelper.waitPageNoAjaxAndAnimation(SELECT_SAVED_FILTER_TIMEOUT);
   }
 
   public void inputValueOnColumnWidgetHeader(String columnName, String value) {
