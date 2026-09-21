@@ -8,6 +8,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.components.dto.JsonListWrapper;
+import com.axonivy.portal.migration.common.BusinessStateMigrationUtils;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.dashboard.converter.JsonDashboardConverterFactory;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -47,9 +48,9 @@ public class JsonDashboardMigrator {
 
   public JsonNode migrate() {
     if (JsonListWrapper.isListWrapper(node)) {
-      // Canonical shape: {"version": "...", "items": [...]}. Once a collection is wrapped, the
-      // wrapper's own version is the sole gate for this collection format - per-item version is
-      // never read again, and items are NOT re-run through the per-item converter chain.
+      // Wrapper's version gates the full per-item converter chain (per-item version is never read
+      // again once wrapped), but the unconditional safety nets below must still run on every read.
+      node.get("items").forEach(this::ensureSafetyNets);
       return node;
     }
     if (node.isArray()) {
@@ -72,7 +73,16 @@ public class JsonDashboardMigrator {
       if (CollectionUtils.isNotEmpty(converters)) {
         converters.stream().forEachOrdered(converter -> run(converter, dashboard));
       }
-      ensureDisplayType(dashboard);
+      ensureSafetyNets(dashboard);
+  }
+
+  private void ensureSafetyNets(JsonNode dashboard) {
+    if (dashboard != null && dashboard.isArray()) {
+      dashboard.elements().forEachRemaining(this::ensureSafetyNets);
+      return;
+    }
+    ensureDisplayType(dashboard);
+    BusinessStateMigrationUtils.ensureTaskAndCaseStateFiltersCurrent(dashboard);
   }
 
   /**

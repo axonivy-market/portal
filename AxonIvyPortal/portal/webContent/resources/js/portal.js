@@ -423,17 +423,6 @@ function getWidgetVarById(id) {
 }
 
 
-function reloadIframesInsidePortalAIChat() {
-  var iframeInsidePortalAIChat = document.getElementById('iFrame');
-  if (iframeInsidePortalAIChat) {
-    var contentInsideIframe = iframeInsidePortalAIChat.contentDocument || iframeInsidePortalAIChat.contentWindow.document;
-    var iframes = contentInsideIframe.getElementsByClassName('message-iframe');
-    for (let item of iframes) {
-      item.src = item.src;
-    }
-  }
-}
-
 function handleKeyDown(event) {
   if (event.key === 'Enter') {
     event.preventDefault();

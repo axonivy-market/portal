@@ -18,6 +18,8 @@ var PortalShareLink = (function () {
     return !!(navigator.clipboard && navigator.clipboard.writeText);
   }
 
+  document.documentElement.classList.toggle('js-clipboard-supported', isClipboardSupported());
+
   return {
 
     /**
@@ -26,14 +28,8 @@ var PortalShareLink = (function () {
      */
     onShow: function (widgetVar, focusCopyButton) {
       try {
-        var button = copyButton(widget(widgetVar));
-        if (!isClipboardSupported()) {
-          button.hide();
-          return;
-        }
-        button.show();
         if (focusCopyButton) {
-          button.trigger('focus');
+          copyButton(widget(widgetVar)).trigger('focus');
         }
       } catch (e) {
         // never break the component that is opening

@@ -1,15 +1,11 @@
 package com.axonivy.portal.selenium.test.caze;
 
-import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
-import static com.codeborne.selenide.Condition.text;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
-
 import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.AfterEach;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
@@ -32,7 +28,10 @@ import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
+import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Condition.text;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -496,6 +495,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testShowRelatedCaseLinkInNote() {
     createTestingCaseContainTechnicalCases();
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
     detailsPage.getNumberOfHistory().shouldHave(size(1), DEFAULT_TIMEOUT);
     detailsPage.addNote("This is note on business case");
     detailsPage.waitPageLoaded();

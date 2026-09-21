@@ -1,7 +1,5 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
-import static com.axonivy.portal.selenium.common.Variable.ENABLE_TRANSLATION_SERVICE;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,6 +11,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.TestAccount;
+import static com.axonivy.portal.selenium.common.Variable.ENABLE_TRANSLATION_SERVICE;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -77,7 +76,7 @@ public class DashboardSupportMultiLanguageTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage2 = new DashboardConfigurationPage();
 
-    DashboardModificationPage modificationPage = configurationPage2.openEditPublicDashboardsPage("Bearbeiten");
+    DashboardModificationPage modificationPage = configurationPage2.openEditPublicDashboardsPage("Einstellungen");
     SelenideElement dashboard = modificationPage.getDashboardRowByName(updatedName);
     dashboard.shouldBe(Condition.appear);
   }
@@ -117,7 +116,7 @@ public class DashboardSupportMultiLanguageTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage2 = new DashboardConfigurationPage();
 
-    DashboardModificationPage modificationPage = configurationPage2.openEditPrivateDashboardPage("Bearbeiten");
+    DashboardModificationPage modificationPage = configurationPage2.openEditPrivateDashboardPage("Einstellungen");
     SelenideElement dashboard = modificationPage.getDashboardRowByName(updatedName);
     dashboard.shouldBe(Condition.appear);
   }

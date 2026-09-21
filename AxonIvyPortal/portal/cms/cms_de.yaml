@@ -1938,39 +1938,6 @@ Enums:
                 name: |
                   Kleiner oder gleich
 Labels:
-  AI:
-    Error:
-      CannotFindUser: Wir können leider keinen Benutzer finden, der Ihrer Anfrage entspricht. Bitte versuchen Sie es erneut.
-      CannotStartTask: Aufgabe kann nicht gestartet werden hat ID {0}
-      InvalidTaskPriority: 'Ungültige Aufgabenpriorität. Gültige Aufgabenprioritäten sind: niedrig, normal, hoch oder Ausnahme.'
-      InvalidTaskState: 'Ungültiger Aufgabenstatus. Gültige Aufgabenstatus sind: offen, erledigt, in Bearbeitung oder Fehler.'
-      NoMatchingCase: Sie haben keine Aufgabe gefunden, die Ihrer Anfrage entspricht
-      NoMatchingProcesses: Keine Anpassungsprozesse.
-      NoMatchingTask: Sie haben keine Aufgabe gefunden, die Ihrer Anfrage entspricht
-    FindCaseAIResult: 'ID: {0}, Name: {1}, Beschreibung: {2}, Bundesland: {3}'
-    FindProcessAIResult: '   - ID: {0}, Name: {1}, Beschreibung: {2}'
-    FindTaskAIResult: 'ID: {0}, Name: {1}, Beschreibung: {2}, Zustand: {3}, Priorität {4}'
-    FindUserAIResult: 'Benutzername: {0}, Name: {1}, E-Mail: {2}, Bundesland: {3}'
-    FoundCaseHeader: 'Gefundene Fälle:'
-    FoundProcessesHeader: 'Gefundene Prozesse:'
-    FoundTaskHeader: 'Gefundene Aufgaben:'
-    FoundUsersHeader: 'Gefundene Benutzer:'
-    ProcessInfoHeader: |-
-      **Prozessname:** {0}
-      **Prozessbeschreibung:** {1}
-    ProcessInfoHeaderWithParameters: |-
-      - **Prozessname:** {0}
-      - **Prozessbeschreibung:** {1}
-      - **Anzahl der Parameter:** {2}
-    ProcessParameterInfo: "\t+ {0} ({1})"
-    ProcessParameterInfoWithValue: |-
-      - Name: {0}
-        Beschreibung: {1}
-        Wert:
-    TaskDetailsResult: |-
-      Details zur Aufgabe **{0} (#{1})**:
-      {2}
-  AIAssistant: AI-Assistent
   AllTasks: Alle Aufgaben
   AndMore: 'und {0} weitere...  '
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
@@ -1990,16 +1957,6 @@ Labels:
   EnterValue: Wert eingeben
   EnterValues: Werte eingeben
   Enums:
-    ChatbotCandidateQuestion:
-      EXPLORE:
-        header: Explore
-        question: Was sind die wichtigsten Merkmale des Axon Ivy Portals?
-      INTERACT:
-        header: Interact
-        question: Listen Sie mir alle Aufgaben auf, die in der laufenden Woche erledigt werden müssen
-      TUTORIAL:
-        header: Tutorial
-        question: Wo kann ich die Dokumentation oder Tutorials für das Axon Ivy Portal finden?
     DashboardStandardCaseColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung

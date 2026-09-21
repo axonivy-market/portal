@@ -327,6 +327,28 @@ public class DashboardUtils {
     return collectDashboards().stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())).toList();
   }
 
+  /**
+   * Index, within {@code dashboards}, of the dashboard whose id matches {@code selectedDashboardId} -
+   * or, if blank or not found, the index of the first SUB_MENU dashboard. -1 if neither exists.
+   */
+  public static int findIndexOfDashboardById(List<Dashboard> dashboards, String selectedDashboardId) {
+    if (StringUtils.isNotBlank(selectedDashboardId)) {
+      return dashboards.stream().filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst()
+          .map(dashboards::indexOf).orElseGet(() -> findIndexOfFirstSubMenuDashboard(dashboards));
+    }
+    return findIndexOfFirstSubMenuDashboard(dashboards);
+  }
+
+  public static int findIndexOfFirstSubMenuDashboard(List<Dashboard> dashboards) {
+    return dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType()))
+        .findFirst().map(dashboards::indexOf).orElse(-1);
+  }
+
+  public static boolean isSubMenuDashboard(List<Dashboard> dashboards, String dashboardId) {
+    return dashboards.stream().filter(dashboard -> dashboard.getId().contentEquals(dashboardId)).findFirst()
+        .map(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())).orElse(false);
+  }
+
   public static String getSelectedMainDashboardIdFromSession() {
     return (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString());
   }

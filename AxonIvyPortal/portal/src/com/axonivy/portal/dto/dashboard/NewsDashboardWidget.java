@@ -6,10 +6,12 @@ import java.util.List;
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.service.NewsService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeTrue;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 
@@ -18,6 +20,7 @@ public class NewsDashboardWidget extends DashboardWidget {
   private static final long serialVersionUID = -5650954020648136966L;
   @JsonIgnore
   private List<News> newsList;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showFullscreenMode;
 
   public void buildDataFirstTime() {

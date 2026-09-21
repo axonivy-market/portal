@@ -28,7 +28,7 @@
     styleClass="#{cc.attrs.buttonStyleClass} action-menu-button rounded-button ui-button-widget ui-button-outlined" />
 
   <p:overlayPanel id="action-menu-panel" for="#{cc.attrs.triggerId}" rendered="#{!cc.attrs.disabled}"
-    widgetVar="#{cc.attrs.panelWidgetVar}"
+    widgetVar="#{cc.attrs.panelWidgetVar}" appendTo="@(body)"
     styleClass="portal-action-menu options-panel #{cc.attrs.menuStyleClass}"
     my="right top" at="right bottom" collision="flip"
     showCloseIcon="false" dismissable="true" dynamic="true" cache="false"

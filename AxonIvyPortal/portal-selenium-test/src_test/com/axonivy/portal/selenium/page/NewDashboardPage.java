@@ -535,18 +535,21 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void expandCompactModeProcess() {
-    getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear).click();
+    SelenideElement gridStackItem = getCompactModeProcessActionsMenuButton().ancestor(".grid-stack-item");
+    SelenideElement actionsMenuPanel = openCompactModeProcessActionsMenu();
 
-    SelenideElement expandLink = getCompactModeProcessExpandLink();
-    expandLink.shouldBe(Condition.appear).click();
-    expandLink.shouldBe(disappear, DEFAULT_TIMEOUT);
-
+    SelenideElement expandLink = actionsMenuPanel.$("[id$=':toggle-fullscreen-item-2']");
+    expandLink.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    gridStackItem.shouldHave(Condition.cssClass("expand-fullscreen"), DEFAULT_TIMEOUT);
   }
 
   public void collapseCompactModeProcess() {
-    getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear).click();
-    getCompactModeProcessCollapseLink().click();
-    getCompactModeProcessCollapseLink().shouldBe(disappear, DEFAULT_TIMEOUT);
+    SelenideElement gridStackItem = getCompactModeProcessActionsMenuButton().ancestor(".grid-stack-item");
+    SelenideElement actionsMenuPanel = openCompactModeProcessActionsMenu();
+
+    SelenideElement collapseLink = actionsMenuPanel.$("[id$=':toggle-fullscreen-item-2']");
+    collapseLink.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    gridStackItem.shouldNotHave(Condition.cssClass("expand-fullscreen"), DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCompactModeProcessExpandLink() {
@@ -841,7 +844,15 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getWidgetNoti() {
-    return $("div[gs-id$='process_1']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$(".widget__filter-noti-number");
+    SelenideElement processWidget = $("div[gs-id$='process_1']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    processWidget.$("[id$=':actions-widget-form:actions-menu-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $("[id^='process-process_1:actions-widget-form:'].ui-tag").$("span.ui-tag-value");
+  }
+
+  // closes the actions menu opened by getWidgetNoti() so it doesn't block later clicks on the same button
+  public void closeWidgetNotiActionsMenu() {
+    $("div[gs-id$='process_1']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("[id$=':actions-widget-form:actions-menu-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public DashboardNewsWidgetPage selectNewsFeedWidget(String newWidgetName) {

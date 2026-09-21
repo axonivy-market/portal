@@ -188,7 +188,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   }
   
   public String getImageUriDarkMode() {
-    return Objects.isNull(imageCMSObjectDarkMode) ? DEFAULT_IMAGE_DARK_CMS_URI : imageCMSObjectDarkMode.uri();
+    return Objects.isNull(imageCMSObjectDarkMode) ? DEFAULT_IMAGE_CMS_URI : imageCMSObjectDarkMode.uri();
   }
   
   private ContentObject getWelcomeWidgetImageContentObjectDarkMode(boolean isTempImage) {
