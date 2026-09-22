@@ -22,7 +22,7 @@
         isDisabled="#{cc.attrs.readOnly or cc.attrs.inFrame}" inFrame="#{inFrame}"
         panelWidgetVar="task-side-steps-panel-#{rowIndex}" renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}"
         task="#{task}" componentToUpdate="#{p:resolveFirstComponentWithId('related-tasks', view).clientId}" currentPortalPage="#{currentPortalPage}" showDetailOption="#{true}" dataModel="#{dataModel}"
-        buttonStyleClass="ui-sm-hidden" onDestroyComplete="#{onDestroyComplete}"
+        buttonStyleClass="ui-sm-hidden portal-icon-btn--sm" onDestroyComplete="#{onDestroyComplete}"
         onDelegateComplete="#{onDelegateComplete}" destroyTaskDialogComponent="#{destroyTaskDialogComponent}"
         onEscalationComplete="#{onEscalationComplete}" onCustomFieldsDialogComplete="#{onCustomFieldsDialogComplete}"
         onWorkflowEventComplete="#{onWorkflowEventComplete}" />

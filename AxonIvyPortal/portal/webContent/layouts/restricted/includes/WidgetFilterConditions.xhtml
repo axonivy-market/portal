@@ -24,7 +24,9 @@
     </div>
     <h:panelGroup id="#{widget.id}-read-only-predefined-filters" layout="block" styleClass="dashboard-widget-filter__read-only-panel">
       <ui:repeat id="predefined-filter-list" var="chipLabel" value="#{filterBean.defaultFilterChipLabels}">
-        <p:chip label="#{chipLabel}" styleClass="default-filter-chip" />
+        <p:chip styleClass="default-filter-chip">
+          <h:outputText styleClass="default-filter-chip__text" title="#{chipLabel}" value="#{chipLabel}" />
+        </p:chip>
       </ui:repeat>
     </h:panelGroup>
   </h:panelGroup>

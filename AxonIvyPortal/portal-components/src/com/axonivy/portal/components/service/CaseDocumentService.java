@@ -71,7 +71,7 @@ public class CaseDocumentService {
     try {
       List<IDocument> allDocuments = new ArrayList<>();
       for (String uploadSubFolder : displaySubFolderList) {
-        allDocuments.addAll(Sudo.call(() -> iCase.documents().getAllBelow(new Path(uploadSubFolder))));
+        allDocuments.addAll(Sudo.call(() -> iCase.documents().getAllBelow(Path.of(uploadSubFolder))));
       }
       return allDocuments;
     } catch (Exception e) {
@@ -92,7 +92,7 @@ public class CaseDocumentService {
   }
 
   public boolean doesDocumentExist(String filename) {
-    IDocument document = documentsOf(iCase).get(new Path(filename));
+    IDocument document = documentsOf(iCase).get(Path.of(filename));
     return document != null;
   }
 
@@ -106,7 +106,7 @@ public class CaseDocumentService {
       return NewFilenameValidation.INVALID_FORMAT;
     }
 
-    Path parentPath = getParentPath(new Path(modifiedDoc.getRelativePath()));
+    Path parentPath = getParentPath(Path.of(modifiedDoc.getRelativePath()));
 
     boolean filenameExists = documentsOf(iCase).getAllDirectBelow(parentPath).stream()
         .anyMatch(doc -> doc.getName().equalsIgnoreCase(newName) && !doc.uuid().equals(modifiedDoc.getUuid()));
@@ -185,7 +185,7 @@ public class CaseDocumentService {
     for (int i = 0; i < path.segmentCount() - 1; i++) {
       parentSegments.add(path.getSegment(i));
     }
-    return new Path(parentSegments);
+    return Path.of(parentSegments);
   }
 
   public static Path getPathAfterRename(Path oldPath, String newName) {

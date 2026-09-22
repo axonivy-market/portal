@@ -110,7 +110,7 @@
     
     <h:panelGroup layout="block" styleClass="quick-search-icon" rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch()}">
      <!-- Quick search icon button -->
-     <p:commandButton id="quick-search-icon-#{index}" icon="ti ti-search" styleClass="rounded-button ui-button-outlined ui-button-widget widget-icon-button ui-button-icon-only"
+     <p:commandButton id="quick-search-icon-#{index}" icon="ti ti-search" styleClass="rounded-button portal-icon-btn"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}"
       onclick="showQuickSearchInput(#{index});" global="false" disabled="#{!isReadOnlyMode}" >
      </p:commandButton>
@@ -132,7 +132,7 @@
         rendered="#{isReadOnlyMode}">
         <h:form id="actions-widget-form">
           <!-- Actions menu button -->
-          <p:menuButton id="actions-menu-button" menuStyleClass="actions-menu-panel" collision="flipfit" buttonStyleClass="rounded-button ui-button-widget ui-button-outlined actions-menu-button-#{index} widget-icon-button ui-button-icon-only" icon="ti ti-dots">
+          <p:menuButton id="actions-menu-button" menuStyleClass="actions-menu-panel" collision="flipfit" buttonStyleClass="rounded-button portal-icon-btn actions-menu-button-#{index}" icon="ti ti-dots">
             <!-- Bulk selection -->
             <p:menuitem id="bulk-delegate-toggle-button-#{index}" rendered="#{renderSelectionToggle}"
               icon="ti ti-list-check" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/bulkSelection')}"
@@ -223,7 +223,7 @@
       <p:commandButton id="edit-widget-#{index}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
         icon="ti ti-pencil"
-        styleClass="rounded-button ui-button-outlined ui-button-widget u-hidden-sm-down u-mar-right-5 widget-icon-button ui-button-icon-only"
+        styleClass="rounded-button portal-icon-btn u-hidden-sm-down u-mar-right-5"
         oncomplete="PF('new-widget-configuration-dialog').show()"
         global="false"
         actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
@@ -236,7 +236,7 @@
 
       <!-- Clone widget button (copy) -->
       <p:commandButton id="clone-widget-#{index}" type="button" icon="ti ti-copy"
-        styleClass="rounded-button ui-button-outlined ui-button-widget u-mar-right-5 widget-icon-button ui-button-icon-only"
+        styleClass="rounded-button portal-icon-btn u-mar-right-5"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CloneWidget')}"
         rendered="#{!isReadOnlyMode}">
         <p:ajax event="click" listener="#{cloneWidgetBean.setCloneWidget(widget)}"
@@ -251,7 +251,7 @@
       <p:commandButton id="delete-widget-#{index}"
         icon="ti ti-trash"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
-        styleClass="rounded-button ui-button-outlined ui-button-danger widget-icon-button ui-button-icon-only"
+        styleClass="rounded-button portal-icon-btn portal-icon-btn--danger"
         oncomplete="PF('remove-widget-dialog').show()"
         global="false"
         actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
@@ -339,7 +339,7 @@
                 <!-- Filter cancel button (x) -->
                 <p:commandButton icon="ti ti-x" id="widget-filter-cancel-button"
                     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterPanelHeader')])}"
-                    styleClass="ui-button-flat filter-dialog__close ui-button-icon-only" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterPanelHeader')])}"
+                    styleClass="rounded-button portal-icon-btn portal-icon-btn--sm portal-icon-btn--plain" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/closeContext', [ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterPanelHeader')])}"
                     oncomplete="PF('filter-dialog-#{index}').hide();"
                     actionListener="#{widget.onCancelUserFilters()}"
                     update="filter-form-#{index}"
@@ -435,14 +435,14 @@
     <p:commandButton id="expand-link-widget-no-header-#{index}"
       type="button" icon="ti ti-arrows-maximize"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widgetName])}"
-      styleClass="rounded-button ui-button-outlined expand-link widget-no-header ui-button-widget"
+      styleClass="rounded-button portal-icon-btn expand-link widget-no-header"
       rendered="#{renderExpandCollapse and isHeaderHidden}"
       onclick="expandFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')" />
     <!-- Collapse button (minimize) -->
     <p:commandButton id="collapse-link-widget-no-header-#{index}"
       type="button" icon="ti ti-arrows-minimize"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext', [widgetName])}"
-      styleClass="rounded-button ui-button-outlined collapse-link widget-no-header"
+      styleClass="rounded-button portal-icon-btn collapse-link widget-no-header"
       rendered="#{renderExpandCollapse and isHeaderHidden}"
       onclick="collapseFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')" />
   </h:panelGroup>

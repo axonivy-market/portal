@@ -106,16 +106,20 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openFilterWidget() {
+    SelenideElement actionsMenuPanel = openWidgetActionsMenu();
+    actionsMenuPanel.$$("a.ui-menuitem-link").filter(text("Filters")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
+    $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement openWidgetActionsMenu() {
     waitForGlobalGrowlDisappear();
     SelenideElement actionsMenuButton = getTaskWidgetHeader().$("button[id$=':actions-menu-button_button']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(actionsMenuButton);
     String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
-    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
-    actionsMenuPanel.$$("a.ui-menuitem-link").filter(text("Filters")).first()
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    WaitHelper.waitPageNoAnimation();
-    $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void filterTaskName(String input, FilterOperator operator) {
@@ -537,7 +541,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     waitPageLoaded();
   }
 
-  private void openQuickSearchInputIfHidden() {
+  public void openQuickSearchInputIfHidden() {
     SelenideElement quickSearchPanel = getTaskWidgetHeader().$("div[class*='widget-header-quick-search']");
     if (!quickSearchPanel.isDisplayed()) {
       getTaskWidgetHeader().$("button[id*='quick-search-icon']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)

@@ -33,7 +33,7 @@
                   <h:panelGroup id="dashboard-info-button-form" layout="block"
                     styleClass="dashboard-configuration-info-circle">
                     <h:outputText id="dashboard-info-icon"
-                      styleClass="dashboard-configuration-info ti ti-info-circle portal-circle-icon" />
+                      styleClass="dashboard-configuration-info ti ti-info-circle icon-circle" />
                     <p:tooltip for="dashboard-info-icon" escape="false" position="bottom"
                       styleClass="dashboard-info-tooltip" hideEvent="mouseleave click"
                       value="#{dashboardConfigurationBean.packageManagement
@@ -57,8 +57,8 @@
                       partialSubmit="true"/>
                   </li>
                   <li class="#{not dashboardConfigurationBean.menuManagement and not dashboardConfigurationBean.packageManagement and isPublicDashboard ? 'active' : ''}" jsf:rendered="#{dashboardConfigurationBean.canEditPublicDashboard}">
-                    <p:commandLink id="public-dashboard-type" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Dashboard')}"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Dashboard')}"
+                    <p:commandLink id="public-dashboard-type" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PublicDashboard')}"
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PublicDashboard')}"
                       actionListener="#{dashboardConfigurationBean.accessToEditDashboard(true)}"
                       update="dashboard-configuration-type dashboard-configuration-content sidebar-navigation-content package-management-content dashboard-info-button-form" process="@this"
                       partialSubmit="true"/>
@@ -83,14 +83,14 @@
                     <p:commandButton id="create-dashboard-action" actionListener="#{dashboardConfigurationBean.addNewDashboard(isPublicDashboard)}"
                         rendered="#{!dashboardConfigurationBean.mobileDevice and !dashboardConfigurationBean.menuManagement and !dashboardConfigurationBean.packageManagement
                           and (dashboardConfigurationBean.canEditPrivateDashboard or dashboardConfigurationBean.canEditPublicDashboard)}"
-                        value="#{isPublicDashboard ? ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateNewPrivateDashboard')}"
-                        ariaLabel="#{isPublicDashboard ? ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateNewPrivateDashboard')}"
+                        value="#{isPublicDashboard ? ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/newPublicDashboard') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/NewPrivateDashboard')}"
+                        ariaLabel="#{isPublicDashboard ? ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/newPublicDashboard') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/NewPrivateDashboard')}"
                         styleClass="dashboard-action-container-icon #{selectedDashboardTypeStyleClass}"
                         icon="ti ti-plus"
                         partialSubmit="true" global="false"
                         update="dashboard-configuration-type dashboard-configuration-content sidebar-navigation-content package-management-content"
                         oncomplete="PF('create-new-dashboard-dialog').show(); resetPortalLeftMenuState()"
-                        title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard')}" />
+                        title="#{isPublicDashboard ? ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/newPublicDashboard') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/NewPrivateDashboard')}" />
                     <p:commandButton id="add-menu-item-action" actionListener="#{menuDetailsBean.onCreateNewMenu(menuManagementBean.getLastIndex())}"
                         rendered="#{!dashboardConfigurationBean.mobileDevice and dashboardConfigurationBean.menuManagement and not menuManagementBean.sidebarDisabled}"
                         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/AddItem')}"
@@ -234,7 +234,7 @@
                       <p:commandButton id="menu-action-button" icon="ti ti-dots"
                         rendered="#{menuManagementBean.hasAction(menu)}"
                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                        styleClass="rounded-button portal-circle-icon ui-button-flat ui-button-plain" type="button" />
+                        styleClass="rounded-button portal-icon-btn portal-icon-btn--sm" type="button" />
                         <p:menu id="menu-configuration-action-menu" styleClass="w-10rem dashboard-action-menu" overlay="true" trigger="menu-action-button"
                           my="right top" at="right bottom">
                           <p:menuitem id="menu-edit" process="@this"

@@ -10,6 +10,12 @@
             <includes>
                 <include>*:*:iar:*</include>
             </includes>
+            <!-- Ship only what this app adds on top of portal-app.zip. The demo deployment
+                 installs portal-app.zip first, so re-packing these here only wastes disk. -->
+            <excludes>
+                <exclude>com.axonivy.portal:portal</exclude>
+                <exclude>com.axonivy.portal:portal-components</exclude>
+            </excludes>
         </dependencySet>
     </dependencySets>
 

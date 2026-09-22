@@ -33,9 +33,7 @@ Leave Request
 
 #. Login to Portal.
 
-#. Select :guilabel:`User example guide` to open the overview page.
-
-   |user-example-guide-link|
+#. Go to the process list and start the process :guilabel:`User example guide` to open the overview page.
 
 #. On the example overview page, start the leave request
 
@@ -59,9 +57,7 @@ Lending (Case Map)
 
 #. Login to Portal
 
-#. Select :guilabel:`User example guide` to open the overview page.
-
-   |user-example-guide-link|
+#. Go to the process list and start the process :guilabel:`User example guide` to open the overview page.
 
 #. On the example overview page, start the lending case
 
@@ -125,8 +121,6 @@ Side step
    :alt: Portal examples: Leave request example
 .. |leave-request-creation| image:: ../../screenshots/demo-processes/leave-request-creation.png
    :alt: Portal examples: Create leave request example
-.. |user-example-guide-link| image:: ../../screenshots/demo-processes/user-example-guide-link.png
-   :alt: Link to the user example guide
 .. |example-overview-lending-case| image:: ../../screenshots/demo-processes/example-overview-lending-case.png
    :alt: Portal examples: Lending
 .. |lending-casemap-collect-personal-data| image:: ../../screenshots/demo-processes/lending-casemap-collect-personal-data.png

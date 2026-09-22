@@ -28,11 +28,11 @@ Create a callable subprocess with
 
 **Parameters:**
 
-``isTaskReserve`` (java.lang.String)
+``isTaskReserve`` (java.lang.Boolean)
    Indicates whether the task should remain reserved during logout.
 
-``task`` (java.lang.String)
-   The task identifier if logging out while working on a task.
+``task`` (ch.ivyteam.ivy.workflow.ITask)
+   The task if logging out while working on a task.
 
 Customize the logout page
 -------------------------

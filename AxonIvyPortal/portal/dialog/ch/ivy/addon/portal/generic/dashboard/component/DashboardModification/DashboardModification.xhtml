@@ -45,7 +45,7 @@
               <p:commandButton id="top-dashboard-action-button" icon="ti ti-dots"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
                 onclick="PortalShareLink.rememberAnchor(this);" onkeydown="PortalShareLink.rememberAnchor(this);"
-                styleClass="rounded-button portal-circle-icon ui-button-icon-only ui-button-flat ui-button-plain" type="button" />
+                styleClass="rounded-button portal-icon-btn portal-icon-btn--sm" type="button" />
               <p:menu id="top-dashboard-action-menu" styleClass="w-auto dashboard-action-menu" overlay="true" trigger="top-dashboard-action-button"
                 my="right top" at="right bottom">
                 <p:menuitem id="top-edit" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(topDashboard)}"
@@ -123,7 +123,7 @@
             <p:commandButton id="dashboard-configuration-action-button" icon="ti ti-dots"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
               onclick="PortalShareLink.rememberAnchor(this);" onkeydown="PortalShareLink.rememberAnchor(this);"
-              styleClass="rounded-button portal-circle-icon ui-button-flat ui-button-plain" type="button" />
+              styleClass="rounded-button portal-icon-btn portal-icon-btn--sm" type="button" />
             <p:menu id="dashboard-configuration-action-menu" styleClass="w-auto dashboard-action-menu" overlay="true" trigger="dashboard-configuration-action-button"
               my="right top" at="right bottom">
               <p:menuitem id="edit-dashboard" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(dashboard)}"
@@ -200,7 +200,7 @@
               <p:commandButton id="hidden-dashboard-action-button" icon="ti ti-dots"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
                 onclick="PortalShareLink.rememberAnchor(this);" onkeydown="PortalShareLink.rememberAnchor(this);"
-                styleClass="rounded-button portal-circle-icon ui-button-flat ui-button-plain" type="button" />
+                styleClass="rounded-button portal-icon-btn portal-icon-btn--sm" type="button" />
               <p:menu id="hidden-dashboard-action-menu" styleClass="w-auto dashboard-action-menu" overlay="true" trigger="hidden-dashboard-action-button"
                 my="right top" at="right bottom">
                 <p:menuitem id="hidden-edit-dashboard" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(hiddenDashboard)}"

@@ -45,7 +45,7 @@
           icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
           ariaLabel="#{ivy.cms.co('/Labels/Share')}"
           title="#{ivy.cms.co('/Labels/Share')}"
-          styleClass="ui-sm-hidden-op portal-icon-btn-round portal-icon-btn-lg portal-detail-toolbar-share-mobile"/>
+          styleClass="rounded-button ui-sm-hidden-op portal-icon-btn portal-icon-btn--lg portal-detail-toolbar-share-mobile"/>
       </h:form>
     </h:panelGroup>
     <h:panelGroup id="task-details-actions"
@@ -55,7 +55,7 @@
         type="button" onclick="return PortalShareLink.toggle('share-task-details-panel', this);"
         icon="#{visibilityBean.generateButtonIcon('ti ti-share')}"
         ariaLabel="#{ivy.cms.co('/Labels/Share')}"
-        title="#{ivy.cms.co('/Labels/Share')}" styleClass="portal-icon-btn-round portal-icon-btn-lg"/>
+        title="#{ivy.cms.co('/Labels/Share')}" styleClass="rounded-button portal-icon-btn portal-icon-btn--lg"/>
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{taskDetailsBean.readOnlyMode}"
         ariaLabel="#{ivy.cms.co('/Labels/EditLayout')}"
         value="#{ivy.cms.co('/Labels/EditLayout')}" actionListener="#{taskDetailsBean.switchToEditMode()}"

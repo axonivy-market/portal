@@ -9,11 +9,13 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.components.dto.UserDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.widget.DashboardCustomWidgetData;
 import ch.ivy.addon.portalkit.enums.DashboardCustomParamType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeTrue;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -28,7 +30,12 @@ public class CustomDashboardWidget extends DashboardWidget {
   private String errorMessage;
   @JsonIgnore
   private String errorIcon;
+  @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showFullscreenMode;
+
+  public CustomDashboardWidget() {
+    setShowFullscreenMode(true);
+  }
 
   @Override
   public DashboardWidgetType getType() {
@@ -62,7 +69,6 @@ public class CustomDashboardWidget extends DashboardWidget {
     result.getLayout().setAxisX(0);
     result.getLayout().setAxisY(0);
     result.setData(new DashboardCustomWidgetData());
-    result.setShowFullscreenMode(true);
     return result;
   }
 

@@ -216,6 +216,12 @@ slower and could return tasks whose value matched on the other case.
    Review these in the widget's filter configuration. A wrong type still returns results, just the
    wrong case's.
 
+8. We recommend updating your dashboards and dashboard templates to the latest version after
+upgrading. Open and re-save each dashboard once (:guilabel:`Portal Configuration` → open the
+dashboard → :guilabel:`Edit Layout` → :guilabel:`Save`), and re-save the
+``Portal.DashboardTemplates`` variable the same way, so their stored JSON is stamped at the
+current schema version.
+
 Migrate 13.1 To 13.2
 --------------------
 
@@ -572,6 +578,8 @@ Changes in 14.0.0
 
 - Improved the task widget query: a filter on a case custom field now queries only the case its column refers to,
   instead of querying the task's case and business case at once.
+- Removed the **AI Assistant** from Portal.
+- The public API ``com.axonivy.portal.components.publicapi.AiAssistantAPI`` is removed and no longer supported.
 
 Changes in 13.2.0
 -----------------

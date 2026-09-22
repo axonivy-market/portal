@@ -601,7 +601,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboard:
     CanWorkOnAsUser: Only show me the tasks I can work on as a user
     DashboardConfiguration:
-      CreateNewPrivateDashboard: Create new private dashboard
+      NewPrivateDashboard: New private dashboard
       CreateNewPublicDashboard: Create new public dashboard
       EditPrivateDashboards: Edit your private dashboards
       EditLayout: Edit Layout
@@ -677,7 +677,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Custom Field Type
     dashboardManagement:
       CreateDashboard: Create Dashboard
-      addDashboard: Add dashboard
       dashboardPermission: Dashboard permission
       dashboardTitle: Dashboard title
       editDashboard: Edit dashboard
@@ -1145,7 +1144,7 @@ Dialogs:
               noResultsText: There are no results.
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: Add new dashboard
+                newPublicDashboard: New public dashboard
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Create custom statistic widget
                 DeleteConfirm: Are you sure you want to delete?
@@ -1259,7 +1258,6 @@ Dialogs:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
 Labels:
-  AIAssistant: AI Assistant
   AndMore: and more...
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task

@@ -3,8 +3,6 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
@@ -14,11 +12,11 @@ import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 
 import com.axonivy.portal.components.util.ImageUploadResult;
+import com.axonivy.portal.dto.TranslationResult;
 import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
@@ -43,8 +41,7 @@ public class ExternalLinkBean implements Serializable, IMultiLanguage {
   private static final long serialVersionUID = 4772777911430826945L;
   private ExternalLink externalLink;
   private ExternalLinkService externaLinkService;
-  private String warningText;
-  private String translatedText;
+  private TranslationResult translation = TranslationResult.EMPTY;
   
   @PostConstruct
   public void init() {
@@ -138,55 +135,23 @@ public class ExternalLinkBean implements Serializable, IMultiLanguage {
   }
 
   public String getWarningText() {
-    return warningText;
-  }
-
-  public void setWarningText(String warningText) {
-    this.warningText = warningText;
+    return translation.getWarningText();
   }
 
   public String getTranslatedText() {
-    return translatedText;
-  }
-
-  public void setTranslatedText(String translatedText) {
-    this.translatedText = translatedText;
+    return translation.getTranslatedText();
   }
   
   public void translate(DisplayName title) {
-    translateValues(title, externalLink.getNames());
+    translation = IvyTranslationService.getInstance().translate(title, externalLink.getNames());
   }
   
   public void translateTextArea(DisplayName title) {
-    translateValues(title, externalLink.getDescriptions());
-  }
-  
-  private void translateValues(DisplayName title, List<DisplayName> languages) {
-    translatedText = Strings.EMPTY;
-    warningText = Strings.EMPTY;
-
-    String currentLanguage = UserUtils.getUserLanguage();
-    if (!title.getLocale().getLanguage().equals(currentLanguage)) {
-      Optional<DisplayName> optional = languages.stream()
-          .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
-      if (optional.isPresent()) {
-        try {
-          translatedText = IvyTranslationService.getInstance().translate(optional.get().getValue(),
-              optional.get().getLocale(), title.getLocale());
-        } catch (Exception e) {
-          warningText = Ivy.cms()
-              .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-          Ivy.log().error("Ivy Translation Service error: ", e.getMessage());
-        }
-      }
-    }
+    translation = IvyTranslationService.getInstance().translate(title, externalLink.getDescriptions());
   }
   
   public void applyTranslatedText(DisplayName displayName) {
-    if (StringUtils.isNotBlank(translatedText)) {
-      displayName.setValue(translatedText);
-      translatedText = "";
-    }
+    translation = translation.applyTo(displayName);
   }
 
   public Long getUploadFileLimit() {

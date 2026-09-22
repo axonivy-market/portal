@@ -50,6 +50,8 @@ see :ref:`Column Management <case-widget-column-management>`.
 
 |case-key-information|
 
+.. _case-widget-actions-menu:
+
 Widget Actions
 --------------
 
@@ -57,8 +59,6 @@ On the right side of the widget header you find the operations that apply to the
 Click the actions menu button to open them.
 
 |case-widget-actions-menu|
-
-- **Quick search**: Search the cases of the widget by keyword
 
 - **Show pinned cases**: Show your pinned cases only, :guilabel:`Show all cases` switches back
 
