@@ -76,6 +76,7 @@
             <c:if test="#{not empty managedBean.selectedDashboard.widgets}">
               <c:forEach var="widget" items="#{managedBean.selectedDashboard.widgets}" varStatus="status">
                 <div class="grid-stack-item #{widget.type == 'WELCOME' ? 'js-welcome-widget welcome-widget' : ''}"
+                  data-index="#{status.index}"
                   default-y="#{widget.layout.axisY}"
                   default-x="#{widget.layout.axisX}"
                   gs-x="#{widget.layout.axisX}"

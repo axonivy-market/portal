@@ -633,6 +633,11 @@ $(document).ready(function () {
       var collapseWidgetBtn = $('[id*="collapse-link"]:visible');
       if (collapseWidgetBtn.length > 0) {
         collapseWidgetBtn.click();
+      } else {
+        var expandedWidget = $('.grid-stack-item.expand-fullscreen').first();
+        if (expandedWidget.length > 0 && typeof toggleFullscreen === 'function') {
+          toggleFullscreen(expandedWidget.attr('data-index'), expandedWidget.attr('gs-id'));
+        }
       }
 
       if (hidePortalActionPanels('action-steps-panel')) {
