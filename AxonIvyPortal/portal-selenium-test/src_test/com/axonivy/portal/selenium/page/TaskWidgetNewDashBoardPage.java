@@ -1,5 +1,11 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,14 +20,9 @@ import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Condition.text;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 
 public class TaskWidgetNewDashBoardPage extends TemplatePage {
@@ -89,7 +90,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void startFirstTaskAndWaitShowHomePageButton() {
     WaitHelper.waitPageNoAjaxAndAnimation();
     getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    // $("a>span.ti-home.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void startTask(int taskIndex) {
@@ -102,16 +102,20 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openFilterWidget() {
+    SelenideElement actionsMenuPanel = openWidgetActionsMenu();
+    actionsMenuPanel.$$("a.ui-menuitem-link").filter(text("Filters")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAnimation();
+    $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement openWidgetActionsMenu() {
     waitForGlobalGrowlDisappear();
     SelenideElement actionsMenuButton = getTaskWidgetHeader().$("button[id$=':actions-menu-button_button']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(actionsMenuButton);
     String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
-    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
-    actionsMenuPanel.$$("a.ui-menuitem-link").filter(text("Filters")).first()
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    WaitHelper.waitPageNoAnimation();
-    $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void filterTaskName(String input, FilterOperator operator) {
@@ -406,8 +410,13 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnButtonWidgetInformation() {
-    getTaskWidgetHeader().$(".widget__info-sidebar-link").shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition()).click();
+    SelenideElement actionsMenuButton = getTaskWidgetHeader().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    actionsMenuPanel.$$("a.ui-menuitem-link").filter(text("Widget information")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public SelenideElement getExpiryTodayLabelInWidgetInfo() {
@@ -444,7 +453,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnButtonExpandTaskWidget() {
-    getTaskWidgetHeader().$(".expand-link").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    clickOnToggleFullscreenMenuItem();
   }
 
   public ElementsCollection getExpandedTaskWidget() {
@@ -456,8 +465,16 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnButtonCollapseTaskWidget() {
-    getTaskWidgetHeader().$(".collapse-link").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
-        .click();
+    clickOnToggleFullscreenMenuItem();
+  }
+
+  private void clickOnToggleFullscreenMenuItem() {
+    SelenideElement actionsMenuButton = getTaskWidgetHeader().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    actionsMenuPanel.$(".toggle-fullscreen-item").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   /*
@@ -520,7 +537,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     waitPageLoaded();
   }
 
-  private void openQuickSearchInputIfHidden() {
+  public void openQuickSearchInputIfHidden() {
     SelenideElement quickSearchPanel = getTaskWidgetHeader().$("div[class*='widget-header-quick-search']");
     if (!quickSearchPanel.isDisplayed()) {
       getTaskWidgetHeader().$("button[id*='quick-search-icon']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
@@ -691,16 +708,32 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public boolean isExpandButtonAppear() {
     WaitHelper.waitPageNoAjaxAndAnimation();
-    return getTaskWidgetHeader().$(".expand-link").isDisplayed();
+    SelenideElement actionsMenuButton = getTaskWidgetHeader().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    boolean isDisplayed = actionsMenuPanel.$(".toggle-fullscreen-item").exists();
+    actionsMenuButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    actionsMenuPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
+    return isDisplayed;
   }
 
   public boolean isWidgetInfomationIconAppear() {
     WaitHelper.waitPageNoAjaxAndAnimation();
-    return getTaskWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
+    SelenideElement actionsMenuButton = getTaskWidgetHeader().$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    boolean isDisplayed = actionsMenuPanel.$$("a.ui-menuitem-link").filter(text("Widget information")).first().exists();
+    actionsMenuButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    actionsMenuPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
+    return isDisplayed;
   }
 
   public void clickOnWidgetFilterHeader() {
-    $$("strong").filter(Condition.text("Filter options")).first().click();
+    $$("strong").filter(Condition.text("Set Filter")).first().click();
   }
 
   public void clickOnManageColumns() {

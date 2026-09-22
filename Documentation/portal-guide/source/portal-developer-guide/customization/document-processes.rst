@@ -34,7 +34,7 @@ Customize how Portal gets documents, create a callable subprocess with:
 **Result:**
 
 ``documents`` (java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>)
-   List of documents associated with the case. After retrieving documents from your DMS, convert them into this type with mandatory fields: ``id``, ``name``, ``contentType``.
+   List of documents associated with the case. After retrieving documents from your DMS, convert them into this type with mandatory fields: ``uuid``, ``name``, ``contentType``. Note that ``IvyDocument.id`` is deprecated for removal; use ``uuid`` instead.
 
 ``message`` (java.lang.String)
    Status or error message from the document retrieval operation.
@@ -116,3 +116,7 @@ create a callable subprocess with:
 
 ``message`` (java.lang.String)
    Status or error message from the delete operation.
+
+``status`` (java.lang.String)
+   Operation status: OK or FAIL. This field is mandatory — Portal's own delete handling reads it
+   directly and will fail with an internal error if it is not set.

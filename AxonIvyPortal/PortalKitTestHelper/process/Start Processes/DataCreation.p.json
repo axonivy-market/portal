@@ -2297,7 +2297,7 @@
         "at" : { "x" : 64, "y" : 2704 }
       },
       "connect" : [
-        { "id" : "f238", "to" : "f235" }
+        { "id" : "f238", "to" : "f243" }
       ]
     }, {
       "id" : "f235",
@@ -2345,5 +2345,20 @@
         "at" : { "x" : 656, "y" : 2704 },
         "labelOffset" : { "x" : 13, "y" : 33 }
       }
+    }, {
+      "id" : "f243",
+      "type" : "Script",
+      "name" : "Set custom case field",
+      "config" : {
+        "output" : {
+          "code" : "ivy.case.customFields().stringField(\"CustomerType\").set(\"Enterprise\");"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 304, "y" : 2704 }
+      },
+      "connect" : [
+        { "id" : "f244", "to" : "f235", "color" : "default" }
+      ]
     } ]
 }

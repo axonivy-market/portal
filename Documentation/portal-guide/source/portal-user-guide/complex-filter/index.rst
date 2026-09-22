@@ -8,7 +8,7 @@
 
 .. _complex-filter:
 
-Complex Filter 
+Complex Filter
 **************
 
 Introduction
@@ -19,10 +19,11 @@ This feature is available for the Case Widget and the Task Widget in Dashboard.
 How to use
 ----------
 
-- The Filters dialog can be accessed by clicking on the :guilabel:`Filters` button within the Task/Case Widget on the Dashboard, or by clicking on the :guilabel:`Filter` button within the Edit Widget Configuration panel on the Edit Dashboard. 
-  Please refer to :ref:`new-dashboard` for more details. 
+- Open the widget action menu in the widget header and select :guilabel:`Filters`
+  (see :ref:`task widget actions menu <task-widget-actions-menu>` and :ref:`case widget actions menu <case-widget-actions-menu>`), or click the :guilabel:`Filter` button within the Edit Widget Configuration panel on the Edit Dashboard.
+  Please refer to :ref:`new-dashboard` for more details.
 
-- To add a filter, select ``Add filter``, then select the column and operator, and input value if needed.  
+- To add a filter, click ``Add condition``, then select the column and operator, and input value if needed.
     
     |filter-operator-dropdown|
 
@@ -35,7 +36,7 @@ How to use
     |case-task-widget-filter-combine|
 
 - Click on |remove-filter-icon| button to remove a filter.
-- Click on ``Apply`` button to apply filters.
+- Click on ``Apply filters`` button to apply filters.
 
 .. tip::
     For example, within a case widget, these filters are applied:
@@ -44,16 +45,18 @@ How to use
 
     This filter configuration finds all cases in state OPEN, with case name containing 'Mike', created today.
 
-If the task/case widget has been pre-configured with filters in the dashboard configuration, these filters will be displayed as read-only filters.
+If the task/case widget has been pre-configured with filters in the dashboard configuration, these filters will be displayed as default filters and cannot be edited.
 
 For more information about filter operators, please refer to the table :ref:`filter-operators`.
 
-Save A Filter Set 
+Save A Filter Set
 -----------------
 
 On dashboard task/case widget, filters that have been added can be saved to a filter set by following these steps:
 
-- Click on ``Save filter`` button, then enter the filter set name and click ``Save``.
+- Add your filters
+
+- In the :guilabel:`Save filter` section, enter the filter set name and click ``Save``.
 
 - Saved filter sets will be displayed on the left side of the filter dialog.
 
@@ -68,7 +71,7 @@ Filter Set Management
 
 You can manage your saved filter set in the Widget Filter Management dialog.
 
-- In the ``Available Filters`` dialog, select ``Manage filters``.
+- Click ``Manage saved filters`` in the bottom left corner to open the dialog.
 
 - To search for a filter set, type the search value into the input field at the top of every column.
 
@@ -94,15 +97,15 @@ Filter Operators
  * - Contains
    - | Valid for category, ID and column that contains text. Specify a single value or multiple values.  
      | Results include only records where the data in the column contains the value in the filter.
- * - Doesn't Contains
-   - | Valid for category, ID and column that contains text. Specify a single value or multiple values.  
-     | Results include only records where the data in the column dóes not contain the value in the filter.
+ * - Doesn't Contain
+   - | Valid for category, ID and column that contains text. Specify a single value or multiple values.
+     | Results include only records where the data in the column does not contain the value in the filter.
  * - Between
    - | Valid for a column that contains number, dates. Specify two values.  
-     | Result include only records where the data in the column is between the two values in the filter.
+     | Results include only records where the data in the column is between the two values in the filter.
  * - Not Between
    - | Valid for a column that contains number, dates. Specify two values.  
-     | Result include only records where the data in the column is not between the two values in the filter.
+     | Results include only records where the data in the column is not between the two values in the filter.
  * - Equal
    - | Valid for a column that contains number. Specify a single value.  
      | Results include only records where the data in the column match the value in the filter.

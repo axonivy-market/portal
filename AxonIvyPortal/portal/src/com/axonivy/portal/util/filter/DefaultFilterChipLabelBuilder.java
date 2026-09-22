@@ -1,5 +1,8 @@
 package com.axonivy.portal.util.filter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -7,14 +10,19 @@ import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.bean.dashboard.WidgetPriorityFilterBean;
 import com.axonivy.portal.bean.dashboard.WidgetStateFilterBean;
+import com.axonivy.portal.components.service.DateTimeGlobalSettingService;
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
 import com.axonivy.portal.util.filter.field.FilterField;
 
+import ch.ivy.addon.portalkit.bean.LocaleBean;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 
 public final class DefaultFilterChipLabelBuilder {
@@ -48,7 +56,8 @@ public final class DefaultFilterChipLabelBuilder {
     }
     return switch (filter.getOperator()) {
       case EMPTY, NOT_EMPTY, TODAY, YESTERDAY, CURRENT_USER, CURRENT_USER_CAN_WORK_ON, NO_CATEGORY -> StringUtils.EMPTY;
-      case BETWEEN, NOT_BETWEEN -> String.format("%s - %s", filter.getFrom(), filter.getTo());
+      case BETWEEN, NOT_BETWEEN -> String.format("%s - %s", toDisplayValue(filter, filter.getFrom(), widgetType),
+          toDisplayValue(filter, filter.getTo(), widgetType));
       case CURRENT -> filter.getPeriodType().getLabel();
       case LAST, NEXT -> resolvePeriodValue(filter);
       default -> resolveListValue(filter, widgetType);
@@ -63,12 +72,23 @@ public final class DefaultFilterChipLabelBuilder {
 
   private static String resolveListValue(DashboardFilter filter, String widgetType) {
     List<String> values = CollectionUtils.isNotEmpty(filter.getValues())
-        ? filter.getValues() : List.of(filter.getValue());
+        ? filter.getValues() : resolveSingleValue(filter);
     return values.stream().map(value -> toDisplayValue(filter, value, widgetType))
         .collect(Collectors.joining(", "));
   }
 
+  private static List<String> resolveSingleValue(DashboardFilter filter) {
+    return Stream.of(filter.getValue(), filter.getFrom(), filter.getTo())
+        .filter(StringUtils::isNotBlank).findFirst().map(List::of).orElseGet(List::of);
+  }
+
   private static String toDisplayValue(DashboardFilter filter, String value, String widgetType) {
+    if (StringUtils.isBlank(value)) {
+      return StringUtils.EMPTY;
+    }
+    if (filter.getFilterFormat() == FilterFormat.DATE) {
+      return formatDate(value);
+    }
     if (filter.isState()) {
       return ((WidgetStateFilterBean) ManagedBeans.get("widgetStateFilterBean"))
           .getUserFriendlyState(value, widgetType);
@@ -78,5 +98,16 @@ public final class DefaultFilterChipLabelBuilder {
           .getUserFriendlyTaskPriority(value);
     }
     return value;
+  }
+
+  private static String formatDate(String value) {
+    try {
+      Date date = DateUtils.parseDate(value, BaseFilter.DATE_FORMAT, BaseFilter.DMY_DATE_FORMAT,
+          BaseFilter.DATE_FORMAT_WITHOUT_TIME, BaseFilter.DMY_DATE_FORMAT_WITHOUT_TIME);
+      String pattern = DateTimeGlobalSettingService.getInstance().getDateTimePatternForDatePicker(true);
+      return new SimpleDateFormat(pattern, ((LocaleBean) ManagedBeans.get("localeBean")).getLocale()).format(date);
+    } catch (ParseException e) {
+      return value;
+    }
   }
 }

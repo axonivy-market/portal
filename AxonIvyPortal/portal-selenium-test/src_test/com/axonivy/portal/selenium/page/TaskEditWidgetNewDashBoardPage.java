@@ -38,7 +38,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement widgetTitle() {
-    return $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("span[id$='widget-title-group']")
+    return $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("[id$='widget-title-group']")
         .$("input[id$='widget-title']");
   }
 

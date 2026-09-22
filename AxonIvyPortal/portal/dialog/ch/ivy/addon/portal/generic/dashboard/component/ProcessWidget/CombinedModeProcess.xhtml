@@ -7,7 +7,7 @@
 
 <!-- Action -->
 <h:panelGroup id="process-action" rendered="#{!isReadOnlyMode}" styleClass="process-grid-item__action--combined">
-  <p:commandButton id="edit-widget" styleClass="rounded-button ui-button-outlined ui-button-widget u-mar-right-5" global="false" icon="ti ti-pencil"
+  <p:commandButton id="edit-widget" styleClass="rounded-button portal-icon-btn u-mar-right-5" global="false" icon="ti ti-pencil"
     actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
     process="@this" partialSubmit="true"
     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
@@ -17,7 +17,7 @@
     hideEvent="mouseleave click" />
 
   <p:commandButton id="clone-widget" type="button" icon="ti ti-copy"
-    styleClass="rounded-button ui-button-outlined ui-button-widget u-mar-right-5"
+    styleClass="rounded-button portal-icon-btn u-mar-right-5"
     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CloneWidget')}"
     rendered="#{!isReadOnlyMode}">
     <p:ajax event="click" listener="#{cloneWidgetBean.setCloneWidget(widget)}"
@@ -28,7 +28,7 @@
   <p:tooltip for="clone-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CloneWidget')}"
     trackMouse="true" hideEvent="mouseleave click" />
 
-  <p:commandButton id="delete-widget" styleClass="rounded-button ui-button-outlined ui-button-danger" global="false" icon="ti ti-trash"
+  <p:commandButton id="delete-widget" styleClass="rounded-button portal-icon-btn portal-icon-btn--danger" global="false" icon="ti ti-trash"
     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
     actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
     process="@this" partialSubmit="true"
@@ -41,14 +41,14 @@
   <p:commandButton id="expand-link" type="button"
         icon="ti ti-arrows-maximize"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext', [widget.name != null ? widget.name : ''])}"
-        styleClass="rounded-button ui-button-outlined expand-link ui-button-widget"
+        styleClass="rounded-button portal-icon-btn expand-link"
         rendered="#{isReadOnlyMode}"
         onclick="expandFullscreen(#{index}, '#{widget.id}')" />
 
   <p:commandButton id="collapse-link" type="button"
         icon="ti ti-arrows-minimize"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/collapseWidgetContext', [widget.name != null ? widget.name : ''])}"
-        styleClass="rounded-button ui-button-outlined collapse-link ui-button-widget"
+        styleClass="rounded-button portal-icon-btn collapse-link"
         rendered="#{isReadOnlyMode}"
         onclick="collapseFullscreen(#{index}, '#{widget.id}')" />
 </h:panelGroup>

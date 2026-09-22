@@ -74,7 +74,7 @@
 
          <div class="remove-threshold-panel align-items-center flex mt-3">
           <p:commandButton id="remove-threshold" icon="ti ti-minus"  disabled="#{!managedBean.isCategoryDataAvailable and managedBean.statistic.conditionBasedColoringScope eq 'SPECIFIC'}"
-            styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger dashboard-widget-filter__remove-filter"
+            styleClass="rounded-button portal-icon-btn portal-icon-btn--sm portal-icon-btn--danger action-column-icon-button"
             actionListener="#{managedBean.removeThreshold(threshold)}"
             update="#{cc.attrs.componentToUpdateWhenRemoveThreshold} #{cc.attrs.componentToUpdate}" global="false"
             immediate="true" partialSubmit="true">

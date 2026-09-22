@@ -1,93 +1,185 @@
-.. _full-case-list:
+.. _case-widget:
 
-Full Case List
-**************
+Case Widget
+***********
 
-The **Full Case List** page is a dashboard featuring a single, full-width case widget. 
-You can reach the page by using the |case-icon| :guilabel:`Cases` link in the Axon Ivy Portal menu.
+The **Case Widget** shows a list of cases. The cases you see depend on the roles you hold in your
+applications. This chapter describes how to work with the widget and with the case details behind it.
 
-.. important::
-   - The Full Case List dashboard works normally like any other dashboard. You can manage it in the :ref:`Dashboard Configuration <dashboard-configuration>` page.
+To add a Case Widget to a dashboard and configure it, follow :ref:`Case list widget
+<new-dashboard-case-list-widget>` in the Dashboard chapter. To configure it in the dashboard JSON
+instead, see :ref:`Configure Case Widget <configure-new-dashboard-case-widget>`.
 
-   - The template :guilabel:`Full Case List dashboard` will support you in creating a new dashboard with a similar layout, see :ref:`public-available-dashboard-template`.
+.. hint::
+   Portal ships a default dashboard named :guilabel:`Cases` that contains a single case widget.
+   You can reach it with the |case-icon| :guilabel:`Cases` link in the Axon Ivy Portal menu.
 
-   - This dashboard is visible to all users by default. To restrict access to specific user roles, configure the dashboard permissions in the :ref:`Dashboard Configuration <dashboard-configuration>` page.
+   |navigate-to-case-widget-page|
 
-.. tip:: 
-   The cases you see depend on the roles you hold in your applications.
+   - The template Full Case List dashboard will support you in creating a new dashboard with a similar layout, see :ref:`public-available-dashboard-template`.
 
-|navigate-to-full-cases-list-page|
+   - The dashboard is visible to all users by default. To restrict access to specific user roles, configure the dashboard permissions in the :ref:`Dashboard Configuration <dashboard-configuration>` page.
 
 Overview
 ========
 
-For each case, the list shows the following key information:
-
-#. Case ID
+Below are the standard fields of a case. You can configure them in the column management dialog,
+see :ref:`Column Management <case-widget-column-management>`.
 
 #. Pin
 
-#. Name
+#. Case Id
+
+#. Case name
 
 #. Description
 
+#. State
+
 #. Creator
 
-#. Creation Date
+#. Created
 
-#. Finished Date
+#. Finished
 
-#. State
+#. Case Owners
 
 #. Category
 
+#. Application (This column is not added by default)
+
 |case-key-information|
 
-At the end of each row you find a set of key features to handle cases by clicking on :guilabel:`Actions`.
+.. _case-widget-actions-menu:
 
-To access the full set of case data, click on the case Name/Description.
+Widget Actions
+--------------
 
-|case-details|
+On the right side of the widget header you find the operations that apply to the whole widget.
+Click the actions menu button to open them.
+
+|case-widget-actions-menu|
+
+- **Show pinned cases**: Show your pinned cases only, :guilabel:`Show all cases` switches back
+
+- **Filters**: Open the complex filter panel of the widget, see :ref:`Complex Filter <complex-filter>`
+
+- **Expand**: Show the widget in fullscreen, :guilabel:`Collapse` returns it to its normal size
+
+- **Widget information**: Show additional widget details and statistics, and export the list to Excel
+
+.. note::
+   Which of these operations are available depends on the widget configuration, see
+   :ref:`Configuration panel <case-list-widget-configuration-panel>` of the Case list widget.
+
+**Quick search**
+
+When quick search is enabled, click the :guilabel:`Quick search` button to reveal the search input
+and start searching.
+
+|case-quick-search-textbox|
+
+  .. important::
+
+    #. The scope of the quick search feature is defined in the configuration panel of the widget.
+    #. The result of the quick search function may be affected if you apply a complex filter on the widget.
+
+**Show pinned cases**
+
+:guilabel:`Show pinned cases` filters the widget so it only displays cases you have pinned; the
+item then switches to :guilabel:`Show all cases`, which returns you to the full case list.
+
+**Filters**
+
+:guilabel:`Filters` opens the widget's complex filter panel, where you can narrow down the
+displayed cases by criteria such as status, category, or date. See :ref:`complex-filter` for more
+details.
+
+**Expand**
+
+:guilabel:`Expand` enlarges the widget to fill the entire screen for a better view of your data;
+:guilabel:`Collapse` returns it to its normal size.
+
+**Widget information**
+
+:guilabel:`Widget information` opens the information panel, showing additional widget details and
+statistics. From there, you can also export all data of the case widget using the
+``Export to Excel`` link at the end of the panel.
+
+|case-export-excel|
+
+If the number of exported cases exceeds the maximum row number of the Excel file, Portal will
+separate data into multiple Excel files and put them into a single zip file.
+
+Case Actions
+------------
+
+At the end of each row you find the |actions-menu-icon| :guilabel:`Actions` menu with the
+following options:
+
+.. table::
+   :widths: 30 70
+
+   +---------------------------+---------------------------------------------------------------+
+   | Action                    | Description                                                   |
+   +===========================+===============================================================+
+   | **Details**               | View full case information                                    |
+   +---------------------------+---------------------------------------------------------------+
+   | **Pin**                   | Pin the case to find it quickly later, :guilabel:`Unpin`      |
+   |                           | removes it again                                              |
+   +---------------------------+---------------------------------------------------------------+
+   | **Process overview**      | Show how far the case has progressed in its process           |
+   +---------------------------+---------------------------------------------------------------+
+   | **Business details**      | View business-specific case data                              |
+   +---------------------------+---------------------------------------------------------------+
+   | **Custom Fields**         | View case custom fields                                       |
+   +---------------------------+---------------------------------------------------------------+
+   | **Process Viewer**        | Visual representation of the process flow                     |
+   +---------------------------+---------------------------------------------------------------+
+   | **Destroy**               | Destroy the case                                              |
+   +---------------------------+---------------------------------------------------------------+
+
+At the end of the menu you find the side steps of the process.
 
 Case Details
 ============
 
-The case details page is organized into four main sections:
+Clicking on a row opens the case details by default. If the :ref:`Portal setting
+<update-portal-settings>` ``Portal.Cases.BehaviourWhenClickingOnLineInCaseList`` is set to
+another behaviour, use :guilabel:`Actions` then :guilabel:`Details`.
 
-.. table::
-   :widths: 25 75
+|case-details|
 
-   +----------------------------------+---------------------------------------------------------------+
-   | Section                          | Content                                                       |
-   +==================================+===============================================================+
-   | **Data and Description**         | Case metadata and description                                 |
-   +----------------------------------+---------------------------------------------------------------+
-   | **Related Tasks and Cases**      | Lists related running cases and tasks                         |
-   +----------------------------------+---------------------------------------------------------------+
-   | **Histories**                    | State changes, system notes, and user-added notes             |
-   +----------------------------------+---------------------------------------------------------------+
-   | **Documents**                    | Attached files with add, delete, rename, preview options      |
-   +----------------------------------+---------------------------------------------------------------+
+The case details page consists of the following widgets:
 
-#. Data and Description: Contain various metadata of the case and its description.
+#. **Summary**: The name of the case, its ID and creation date and the |actions-menu-icon|
+   :guilabel:`Actions` menu of the case. Below you find Case Id, State
+   and Case Category.
+
+#. **Case Details**: The description of the case, followed by
+   Role and User Information and Time Information.
 
    |case-details-data-description|
 
-#. Related running tasks and cases: Contains a list of all related running cases
-   and tasks. Moving the mouse over a task shows you both state and responsible
-   user. To show all related tasks see the HowTo below.
+#. **Related Tasks of Case**: The tasks of the case. Activate :guilabel:`Show only open tasks` to
+   hide the tasks which are already done, |download-icon| exports the list to Excel and
+   :guilabel:`Manage columns` defines which columns are displayed.
 
    |case-details-related-tasks-cases|
 
-#. Histories: The Axon Ivy Portal adds notes here for state changes of the
-   case. You may add your own notes as described below.
+#. **Documents**: The documents attached to the case. You may add, delete, rename or preview
+   documents as described in the HowTo's below.
+
+   |case-details-documents|
+
+#. **History**: The notes and the state changes of the case. Activate :guilabel:`Related case`,
+   :guilabel:`System tasks` and :guilabel:`System notes` to show these entries as well, and click
+   :guilabel:`Show more` to open the full history.
 
    |case-details-histories|
 
-#. Documents: Here, documents attached to the case are listed. You
-   may add, delete, rename or preview documents as described in the HowTo’s below.
-
-   |case-details-documents|
+#. **Related Cases**: The technical cases of the case. This widget is only displayed if the case
+   has related cases.
 
 .. _howto-move-resize-widgets-case-details:
 
@@ -99,7 +191,7 @@ HowTo: Move and Resize Widgets in Case Details
 
 #. Open the case details
 
-#. Click on the :guilabel:`Edit` button to drag, drop and resize widgets.
+#. Click on the :guilabel:`Edit layout` button to drag, drop and resize widgets.
 
    |how-to-switch-to-edit-mode|
 
@@ -118,7 +210,7 @@ HowTo: Attach a Document to a Case
 
 #. Open the case details
 
-#. Click |add-icon| :guilabel:`Add document` 
+#. Click the |add-icon| button in the header of the **Documents** widget
 
 #. The :guilabel:`Add document` dialog is opened
 
@@ -164,7 +256,7 @@ HowTo: Preview a Document of a Case
    - **Default**: Images (jpg, jpeg, bmp, png), plain text (txt, log), and PDF documents
    - **With DocFactory**: Word (doc, docx), Excel (xls, xlsx), and email (eml) files
    
-   Set :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature. 
+   Set :ref:`Portal settings <update-portal-settings>` ``Portal.Document.EnablePreview`` to true to enable this feature. 
    For Office documents, deploy `DocFactory <https://market.axonivy.com/doc-factory#tab-description>`_ in the same security context.
 
 HowTo: Rename a Document of a Case
@@ -190,7 +282,7 @@ HowTo: Add a Note to a Case
 
 #. Open the case details
 
-#. Click on the |add-icon| ``Add note`` link below the notes section.
+#. Click the |add-icon| button in the header of the **History** widget
 
 #. The :guilabel:`Add note` dialog is opened.
 
@@ -211,7 +303,7 @@ HowTo: Export a Case History
 
 #. Open the case details
 
-#. Click on |show-more-icon| :guilabel:`Show more` below the notes section
+#. Click on |show-more-icon| :guilabel:`Show more` in the header of the **History** widget
 
    |how-to-show-note-details|
 
@@ -235,9 +327,8 @@ This section shows you the related tasks of this case.
 .. note:: 
    The tasks you see depend on your application roles and Portal permissions. Administrators can see all open tasks.
 
-The list shows the following key information for each task. To change the
-columns displayed, click on :guilabel:`Manage columns`. Select from the
-following columns:
+The list shows the following key information for each task. To change the columns displayed, click
+on :guilabel:`Manage columns` and select from the following columns:
 
 - Priority
 
@@ -245,31 +336,34 @@ following columns:
 
 - Description
 
-- Responsible user or role
+- Responsible
 
-- Task ID
+- Task Id
 
-- Creation Date
+- Created
 
-- Expiry Date
+- Expiry
 
-- Finished date
+- Completed on
 
 - State
 
+- Application (This column is not selected by default)
+
+- Working user (This column is not selected by default)
+
+- Business Case ID (This column is not selected by default)
+
+- Technical Case ID (This column is not selected by default)
+
+:guilabel:`Default` selects the columns which are displayed by default.
+
 **Available Actions:**
 
-At the end of each row, click the side step menu to access:
+At the end of each row you find the |actions-menu-icon| :guilabel:`Actions` menu of the task, see
+:ref:`Task Actions <task-row-actions>` of the Task Widget.
 
-- **Reset Task**: Revert the task to its initial state
-- **Delegate Task**: Assign the task to another user or role
-- **Reserve Task**: Reserve the task for yourself
-- **Destroy Task**: Permanently remove the task
-- **Trigger Escalation Task**: Manually trigger task escalation
-- **Workflow Events**: View and manage workflow events
-
-To access the full set of the task data, click on the row containing the
-task.
+To access the full set of the task data, click on the row containing the task.
 
 HowTo: Manipulate Related Cases Inside Case Details
 ---------------------------------------------------
@@ -281,46 +375,50 @@ HowTo: Manipulate Related Cases Inside Case Details
 
 |case-details|
 
-By default, the following information is shown. To change it, click on :guilabel:`Manage columns` to select from:
+The list shows the following key information for each case. To change the columns displayed, click
+on :guilabel:`Manage columns` and select from the following columns:
 
 - Name
 
 - Description
 
-- Case ID
+- Case Id
 
 - Creator
 
-- Creation date
+- Case Owners
 
-- Finished date
+- Created
+
+- Finished
 
 - State
 
 - Category
 
+All these columns are displayed by default.
+
 **Available Actions:**
 
-- **Case details**: View full case information
-- **Business details**: View business-specific case data
-- **Side step**: Access additional case operations
+At the end of each row you find the |actions-menu-icon| :guilabel:`Actions` menu of the case with
+the same options as in the widget, see `Case Actions`_.
 
-To see the details of the related case, click on its row. To export the related
-case list, click on :guilabel:`Export to Excel`.
+To see the details of the related case, click on its row. To export the related case list, click on
+|download-icon| :guilabel:`Export to Excel`.
 
 .. _how-to-show-process-viewer:
 
 HowTo: Show Process Viewer
 --------------------------
 
-Portal provides a visual representation of the process flow of the current case or task. To open the viewer, select :guilabel:`Process Viewer` in the :guilabel:`Action` menu.
+Portal provides a visual representation of the process flow of the current case or task. To open the viewer, select :guilabel:`Process Viewer` in the :guilabel:`Actions` menu.
 
 You find this option on the following pages:
 
 - Case details
 - Task details
-- Full case list
-- Full task list
+- Case Widget
+- Task Widget
 
 **Steps:**
 
@@ -386,10 +484,10 @@ Different case operations require specific permissions:
 
 .. include:: ../includes/_common-icon.rst
 
-.. |navigate-to-full-cases-list-page| image:: ../../screenshots/case/navigate-to-full-cases-list-page.png
-   :alt: Menu to navigate to the Full case list page
+.. |navigate-to-case-widget-page| image:: ../../screenshots/case/navigate-to-full-cases-list-page.png
+   :alt: Menu to navigate to the Case Widget page
 .. |case-key-information| image:: ../../screenshots/case/case-key-information.png
-   :alt: Full case list: key informations
+   :alt: Case Widget: key information
 .. |case-details| image:: ../../screenshots/case-detail/case-details.png
    :alt: The Case Details page
 .. |case-details-data-description| image:: ../../screenshots/case-detail/case-details-data-description.png
@@ -426,3 +524,9 @@ Different case operations require specific permissions:
    :alt: Case Details: rename document dialog
 .. |case-custom-fields-dialog| image:: ../../screenshots/case-detail/case-custom-fields-dialog.png
    :alt: Case Details: custom fields dialog
+.. |case-quick-search-textbox| image:: ../../screenshots/new-dashboard/case-quick-search-textbox.png
+   :alt: Dashboard case widget's quick search
+.. |case-export-excel| image:: ../../screenshots/new-dashboard/case-export-excel.png
+   :alt: Dashboard case widget: export to Excel feature
+.. |case-widget-actions-menu| image:: ../../screenshots/new-dashboard/case-widget-actions-menu-panel.png
+   :alt: Dashboard case widget's actions menu panel

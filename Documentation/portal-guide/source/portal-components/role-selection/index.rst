@@ -29,7 +29,6 @@ two styles to display its label.
          componentId="role-from-defined-role-autocomplete"
          fromRoleNames="#{data.definedRoleNames}"
          selectedRole="#{data.selectedRoleForDefinedRoles}"
-         isRequired="true"
          label="Roles from defined role names"/>
 
 #. Floating Label
@@ -42,10 +41,10 @@ two styles to display its label.
 
       <ic:com.axonivy.portal.components.RoleSelection
          componentId="floating-label-and-exclude-role-autocomplete" hightlight="false"
-         selectedRole="#{data.selectedRole}"
-         label="Loading with all roles (exclude CaseOwner, GeneralManager)"
-         excludedRolenames="#{data.excludedRoleNames}"
-         isRequired="true" floatingLabel="true" />
+         selectedRole="#{data.selectedRoleForExcludingRoles}"
+         label="Loading with all roles (exclude Tester, Supporter)"
+         excludedRoleNames="#{data.excludedRoleNames}"
+         floatingLabel="true" />
 
 .. tip::
    The autocomplete element of the role selection component allows you to

@@ -1,5 +1,10 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -10,11 +15,7 @@ import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
 import com.codeborne.selenide.ElementsCollection;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -535,18 +536,21 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void expandCompactModeProcess() {
-    getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear).click();
+    SelenideElement gridStackItem = getCompactModeProcessActionsMenuButton().ancestor(".grid-stack-item");
+    SelenideElement actionsMenuPanel = openCompactModeProcessActionsMenu();
 
-    SelenideElement expandLink = getCompactModeProcessExpandLink();
-    expandLink.shouldBe(Condition.appear).click();
-    expandLink.shouldBe(disappear, DEFAULT_TIMEOUT);
-
+    SelenideElement expandLink = actionsMenuPanel.$("[id$=':toggle-fullscreen-item-2']");
+    expandLink.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    gridStackItem.shouldHave(Condition.cssClass("expand-fullscreen"), DEFAULT_TIMEOUT);
   }
 
   public void collapseCompactModeProcess() {
-    getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear).click();
-    getCompactModeProcessCollapseLink().click();
-    getCompactModeProcessCollapseLink().shouldBe(disappear, DEFAULT_TIMEOUT);
+    SelenideElement gridStackItem = getCompactModeProcessActionsMenuButton().ancestor(".grid-stack-item");
+    SelenideElement actionsMenuPanel = openCompactModeProcessActionsMenu();
+
+    SelenideElement collapseLink = actionsMenuPanel.$("[id$=':toggle-fullscreen-item-2']");
+    collapseLink.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    gridStackItem.shouldNotHave(Condition.cssClass("expand-fullscreen"), DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCompactModeProcessExpandLink() {
@@ -841,7 +845,15 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getWidgetNoti() {
-    return $("div[gs-id$='process_1']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$(".widget__filter-noti-number");
+    SelenideElement processWidget = $("div[gs-id$='process_1']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    processWidget.$("[id$=':actions-widget-form:actions-menu-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $("[id^='process-process_1:actions-widget-form:'].ui-tag").$("span.ui-tag-value");
+  }
+
+  // closes the actions menu opened by getWidgetNoti() so it doesn't block later clicks on the same button
+  public void closeWidgetNotiActionsMenu() {
+    $("div[gs-id$='process_1']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("[id$=':actions-widget-form:actions-menu-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public DashboardNewsWidgetPage selectNewsFeedWidget(String newWidgetName) {
@@ -863,15 +875,23 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void openWidgetFilter(int index) {
-    SelenideElement actionsMenuButton = getCaseWidget().$("button[id$=':actions-menu-button_button']")
-        .shouldBe(appear, DEFAULT_TIMEOUT);
-    waitForElementClickableThenClick(actionsMenuButton);
-    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
-    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement actionsMenuPanel = openWidgetActionsMenu(index);
     actionsMenuPanel.$$("a.ui-menuitem-link").filter(Condition.text("Filters")).first()
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     WaitHelper.waitPageNoAnimation();
     $("[id$=':widget-saved-filters-items']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement openWidgetActionsMenu(int index) {
+    return openWidgetActionsMenuFor(getDashboardWidget(index));
+  }
+
+  private SelenideElement openWidgetActionsMenuFor(SelenideElement widget) {
+    SelenideElement actionsMenuButton = widget.$("button[id$=':actions-menu-button_button']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(actionsMenuButton);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    return $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getWidgetFilter(int index) {
@@ -889,12 +909,8 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public WebElement openWidgetInformation(int index) {
-    SelenideElement actionsMenuButton = getDashboardWidget(index).$("button[id$=':actions-menu-button_button']")
-        .shouldBe(appear, DEFAULT_TIMEOUT);
-    waitForElementClickableThenClick(actionsMenuButton);
-    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
-    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
-    String infoMenuItemId = actionsMenuButton.getAttribute("id").replace("actions-menu-button_button",
+    SelenideElement actionsMenuPanel = openWidgetActionsMenu(index);
+    String infoMenuItemId = getActionsMenuButton(index).getAttribute("id").replace("actions-menu-button_button",
         "info-menu-item-" + index);
     actionsMenuPanel.$("[id='" + infoMenuItemId + "']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -902,11 +918,32 @@ public class NewDashboardPage extends TemplatePage {
     String infoPanel = String.format("div[id$='info-overlay-panel-%d']", index);
     $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT).$(".widget-info--type")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $(infoPanel).$("[class^='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitForWidgetStatisticLoaded(infoPanel);
     return $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  private SelenideElement getDashboardWidget(int index) {
+  /**
+   * Waits until every statistic of the opened widget information panel has been loaded. Each
+   * statistic shows a "Loading..." text which gets the "hidden" class once its data has arrived.
+   */
+  private void waitForWidgetStatisticLoaded(String infoPanel) {
+    $$(infoPanel + " [class*='js-loading-']:not(.hidden)").shouldBe(CollectionCondition.empty, DEFAULT_TIMEOUT);
+    $$(infoPanel + " [class*='js-statistic-']:not(.hidden)")
+        .shouldBe(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+  }
+
+  public void closeWidgetActionsMenu(int index) {
+    SelenideElement actionsMenuButton = getActionsMenuButton(index);
+    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
+    waitForElementClickableThenClick(actionsMenuButton);
+    $("[id='" + menuId + "']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getActionsMenuButton(int index) {
+    return getDashboardWidget(index).$("button[id$=':actions-menu-button_button']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getDashboardWidget(int index) {
     if (index == 0) {
       return getTaskWidget();
     }

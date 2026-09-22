@@ -1,10 +1,5 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
-import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -25,6 +20,10 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
+import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
@@ -289,7 +288,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     redirectToNewDashBoard();
 
     NewDashboardPage dashboardPage = new NewDashboardPage();
-    TaskWidgetNewDashBoardPage taskWidget = dashboardPage.selectTaskWidget(TASK_NAME);
+    TaskWidgetNewDashBoardPage taskWidget = dashboardPage.selectTaskWidget(taskWidgetName);
     taskWidget.clickExportExcel();
     dashboardPage.isDownloadCompleted();
   }

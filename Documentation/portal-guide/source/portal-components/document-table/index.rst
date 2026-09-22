@@ -4,7 +4,7 @@ Document Table
 **************
 
 This component is a case document table with functions display, upload,
-preview, download and delete document entries.
+preview, download, rename and delete document entries.
 
 .. hint::
 
@@ -66,7 +66,14 @@ To customize how **Document Table** gets documents, create a callable subprocess
 **Result:**
 
 ``documents`` (java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>)
-   List of documents associated with the case. After retrieving documents from your DMS, convert them into this type with mandatory fields: ``id``, ``uuid``, ``name``, ``contentType``.
+   List of documents associated with the case. After retrieving documents from your DMS, convert
+   them into this type and set ``uuid``, ``name``, ``size``, ``path``, ``relativePath`` and
+   ``contentType``. The component needs these fields to render the table and to run the preview,
+   download, rename and delete actions. Set ``type`` as well if you display the type column.
+   ``creation`` and ``lastModification`` are optional and are available for custom columns.
+
+   .. note::
+      The field ``id`` is deprecated since 11.2.0 and will be removed. Use ``uuid`` instead.
 
 ``message`` (java.lang.String)
    Status or error message from the document retrieval operation.
@@ -234,9 +241,9 @@ Please follow our guidelines below to migrate your override subprocesses.
       +----------------------+----------------------------+
       | UploadDocumentItem   | portalUploadDocumentItem   |
       +----------------------+----------------------------+
-      | DeleteDocumentItem   | portalDownloadDocumentItem |
+      | DeleteDocumentItem   | portalDeleteDocumentItem   |
       +----------------------+----------------------------+
-      | DownloadDocumentItem | portalDeleteDocumentItem   |
+      | DownloadDocumentItem | portalDownloadDocumentItem |
       +----------------------+----------------------------+
 
 Now your **Document Table** should work as before.
@@ -284,5 +291,10 @@ Changes in 12.0.11
 ------------------
 
 - Added lazy loading functionality to the Document Table component, enabling efficient data loading through pagination.
+
+Changes in 14.0.0
+-----------------
+
+- Added the ``actionsAsMenu`` attribute to group the row actions of a document into a single action menu instead of separate icons.
 
 .. |document-table| image:: ../../screenshots/components/document-table.png

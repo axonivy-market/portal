@@ -25,6 +25,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
+import com.axonivy.portal.dto.TranslationResult;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.service.IvyTranslationService;
@@ -49,7 +50,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
-import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
@@ -78,8 +78,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   private String fieldDescription;
   private List<DisplayName> fieldDisplayNames;
   private boolean isConfiguredLanguage;
-  private String warningText;
-  private String translatedText;
+  private TranslationResult translation = TranslationResult.EMPTY;
   private final GlobalOperatorPolicyService globalOperatorPolicyService = new GlobalOperatorPolicyService();
 
   public void init() {
@@ -116,8 +115,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     this.isConfiguredLanguage = false;
     this.selectedCustomFieldType = CustomFieldType.STRING;
     this.fieldDisplayNames = Collections.emptyList();
-    this.warningText = null;
-    this.translatedText = null;
+    this.translation = TranslationResult.EMPTY;
   }
 
   public List<String> completeCategoriesSelection(String query) {
@@ -619,39 +617,15 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   }
 
   public void translate(DisplayName title) {
-    translateValues(title, fieldDisplayNames);
+    translation = IvyTranslationService.getInstance().translate(title, fieldDisplayNames);
   }
   
   public void translateTextArea(DisplayName title) {
-    translateValues(title, fieldDisplayNames);
-  }
-  
-  private void translateValues(DisplayName title, List<DisplayName> languages) {
-    translatedText = StringUtils.EMPTY;
-    warningText = StringUtils.EMPTY;
-
-    String currentLanguage = UserUtils.getUserLanguage();
-    if (!title.getLocale().getLanguage().equals(currentLanguage)) {
-      Optional<DisplayName> optional = languages.stream()
-          .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
-      if (optional.isPresent()) {
-        try {
-          translatedText = IvyTranslationService.getInstance().translate(optional.get().getValue(),
-              optional.get().getLocale(), title.getLocale());
-        } catch (Exception e) {
-          warningText = Ivy.cms()
-              .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-          Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
-        }
-      }
-    }
+    translate(title);
   }
   
   public void applyTranslatedText(DisplayName displayName) {
-    if (StringUtils.isNotBlank(translatedText)) {
-      displayName.setValue(translatedText);
-      translatedText = StringUtils.EMPTY;
-    }
+    translation = translation.applyTo(displayName);
   }
 
   public boolean isConfiguredLanguage() {
@@ -663,19 +637,11 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   }
 
   public String getWarningText() {
-    return warningText;
-  }
-
-  public void setWarningText(String warningText) {
-    this.warningText = warningText;
+    return translation.getWarningText();
   }
 
   public String getTranslatedText() {
-    return translatedText;
-  }
-
-  public void setTranslatedText(String translatedText) {
-    this.translatedText = translatedText;
+    return translation.getTranslatedText();
   }
 
   public class FetchingField {

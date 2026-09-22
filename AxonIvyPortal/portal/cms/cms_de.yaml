@@ -280,7 +280,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableScriptCheckingForUploadedDocumentNote: Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt.
       enableTranslationService: Setzen Sie diese Eigenschaft auf true, um den Übersetzungsdienst zu aktivieren
       enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
-      globalSearchMinimumKeywordLengthNote: Mindestanzahl an Zeichen, die erforderlich ist, bevor die globale Suche ausgeführt wird. Der Standardwert ist 3; auf 0 setzen, um die Prüfung zu deaktivieren. Ein kürzeres Schlüsselwort trifft auf nahezu jede Zeile zu, was langsam sein kann, daher wird die Suche übersprungen statt ausgeführt.
+      globalSearchMinimumKeywordLengthNote: Mindestanzahl an Zeichen, die erforderlich ist, bevor die globale Suche ausgeführt wird. Der Standardwert ist 3; auf 0 setzen, um die Prüfung zu deaktivieren. Ein kürzeres Schlüsselwort trifft auf nahezu jede Zeile zu, was langsam sein kann, daher wird die Suche
+        übersprungen statt ausgeführt.
       hideCaseCreator: |
         Auf true setzen, um den Fallersteller in der Fallliste, dem Fall-Widget und den Falldetails auszublenden.
         Diese Einstellung wirkt sich auf alle Fallabfragen aus, z. B. für Fallliste, globale Suche, Statistik.
@@ -487,6 +488,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     backToCaseMap: Zurück zur Case Map
     backgroundColor: Hintergrundfarbe
     bulkSelection: Mehrfachauswahl
+    businessCaseId: Business-Fall-ID
     cancel: Abbrechen
     cancelContext: '{0} abbrechen'
     case: Vorgang
@@ -663,6 +665,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskFromSubstitution: Sie sehen diese Aufgabe, weil Sie der Stellvertreter sind
     taskName: Aufgabenname
     tasks: Aufgaben
+    technicalCaseId: Technische Fall-ID
     theCasemap: Die Case Map
     theProcess: Der Prozess
     timeInformation: Zeitangaben
@@ -686,14 +689,43 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
     warning: Warnung!
     welcomeToPortal: Willkommen, bitte melden Sie sich an
-    businessCaseId: Business-Fall-ID
-    technicalCaseId: Technische Fall-ID
     workingUser: Bearbeiter
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
     year: Jahr
     years: Jahre
     'yes': Ja
   components:
+    PortalPackageManagement:
+      BrowseFiles: Dateien durchsuchen
+      CaseDetailsFileDescription: Konfigurieren, neu anordnen und erweitern Sie die Falldetailseite mit integrierten Widgets oder benutzerdefinierten Panels
+      CustomMenuItemsFileDescription: Benutzerdefinierte Einträge im linken Navigationsmenü hinzufügen
+      CustomStatisticFileDescription: Definitionen benutzerdefinierter Statistikdiagramme, die auf Portal-Dashboards angezeigt werden
+      DashboardFileDescription: Dashboard-Widget-Layouts und -Konfigurationen für alle Portal-Dashboards
+      DescriptionHeader: Beschreibung
+      DropZoneLabel: Ziehen Sie eine ZIP-Datei hierher
+      DropZoneOr: oder
+      ExportButton: Exportieren
+      ExportDescription: Exportieren Sie Portal-Konfigurationsdateien als ZIP-Paket. Nur Dateien mit vorhandenen Daten stehen zur Auswahl.
+      ExportTitle: Exportieren
+      ExternalLinksFileDescription: Externe Link-Prozesse, die in der linken Navigation oder der Prozesslisten-Seite des Portals angezeigt werden
+      FileNameHeader: Dateiname
+      GeneralInfo: Verwalten Sie Portal-Konfigurationsdateien als portables ZIP-Paket. Verwenden Sie Exportieren, um alle aktuellen JSON-Konfigurationsdateien gebündelt in einem einzigen ZIP-Archiv herunterzuladen, oder verwenden Sie Importieren, um ein ZIP-Paket hochzuladen und dessen Konfigurationen
+        anzuwenden — wodurch die bestehenden ersetzt werden.
+      ImportButton: Importieren
+      ImportCompleteMessage: Alle Dateien wurden erfolgreich importiert.
+      ImportDescription: Laden Sie eine ZIP-Datei hoch, die die erforderlichen JSON-Dateien enthält. Die Dateinamen müssen dem obigen Muster entsprechen.
+      ImportDialogHeader: Portal-Paket importieren
+      ImportIncompleteMessage: Einige Dateien konnten nicht importiert werden. Weitere Informationen finden Sie im Server-Log.
+      ImportTitle: Importieren
+      InvalidPackageMessage: Die hochgeladene Datei konnte nicht gelesen werden. Bitte stellen Sie sicher, dass es sich um ein gültiges ZIP-Archiv handelt.
+      MenuOrderFileDescription: Benutzerdefinierte Reihenfolge der Hauptnavigationsmenüpunkte in der Portal-Seitenleiste
+      PreviewInvalidFilesHeader: Nicht erkannte Dateien werden übersprungen ({0} Datei(en))
+      PreviewNoFileMessage: Gültige Elemente werden hier angezeigt, nachdem Sie eine Datei ausgewählt haben.
+      PreviewNoValidFilesMessage: Keine erkannten Portal-Konfigurationsdateien gefunden. Bitte laden Sie eine gültige Portal_Package.zip hoch.
+      PreviewValidFilesHeader: Gültig ({0} Datei(en))
+      ReplaceWarning: Die vorhandenen Daten jedes importierten Typs werden ersetzt. Diese Aktion kann nicht rückgängig gemacht werden.
+      ThirdPartyApplicationsFileDescription: In das Portal-Menü integrierte Links zu Drittanwendungen
+      UserMenuFileDescription: Benutzerdefinierte Einträge und Links zum Standard-Benutzermenü hinzufügen
     RoleManagement:
       AssignUsersToRole: Benutzer einer Rolle zuordnen
       AssignedUser: Zugewiesene Benutzer
@@ -787,36 +819,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       privateFilter: Meine Filter
       publicFilter: Öffentlich
       savedFilters: 'Gespeicherte Filter:'
-    PortalPackageManagement:
-      GeneralInfo: 'Verwalten Sie Portal-Konfigurationsdateien als portables ZIP-Paket. Verwenden Sie Exportieren, um alle aktuellen JSON-Konfigurationsdateien gebündelt in einem einzigen ZIP-Archiv herunterzuladen, oder verwenden Sie Importieren, um ein ZIP-Paket hochzuladen und dessen Konfigurationen anzuwenden — wodurch die bestehenden ersetzt werden.'
-      ExportTitle: Exportieren
-      ExportDescription: Exportieren Sie Portal-Konfigurationsdateien als ZIP-Paket. Nur Dateien mit vorhandenen Daten stehen zur Auswahl.
-      ExportButton: Exportieren
-      ImportTitle: Importieren
-      ImportDescription: Laden Sie eine ZIP-Datei hoch, die die erforderlichen JSON-Dateien enthält. Die Dateinamen müssen dem obigen Muster entsprechen.
-      ImportButton: Importieren
-      ImportDialogHeader: Portal-Paket importieren
-      DropZoneLabel: Ziehen Sie eine ZIP-Datei hierher
-      DropZoneOr: oder
-      BrowseFiles: Dateien durchsuchen
-      PreviewNoFileMessage: Gültige Elemente werden hier angezeigt, nachdem Sie eine Datei ausgewählt haben.
-      PreviewNoValidFilesMessage: Keine erkannten Portal-Konfigurationsdateien gefunden. Bitte laden Sie eine gültige Portal_Package.zip hoch.
-      PreviewValidFilesHeader: Gültig ({0} Datei(en))
-      PreviewInvalidFilesHeader: Nicht erkannte Dateien werden übersprungen ({0} Datei(en))
-      ReplaceWarning: Die vorhandenen Daten jedes importierten Typs werden ersetzt. Diese Aktion kann nicht rückgängig gemacht werden.
-      FileNameHeader: Dateiname
-      DescriptionHeader: Beschreibung
-      DashboardFileDescription: Dashboard-Widget-Layouts und -Konfigurationen für alle Portal-Dashboards
-      CustomStatisticFileDescription: Definitionen benutzerdefinierter Statistikdiagramme, die auf Portal-Dashboards angezeigt werden
-      UserMenuFileDescription: Benutzerdefinierte Einträge und Links zum Standard-Benutzermenü hinzufügen
-      CaseDetailsFileDescription: Konfigurieren, neu anordnen und erweitern Sie die Falldetailseite mit integrierten Widgets oder benutzerdefinierten Panels
-      ThirdPartyApplicationsFileDescription: In das Portal-Menü integrierte Links zu Drittanwendungen
-      CustomMenuItemsFileDescription: Benutzerdefinierte Einträge im linken Navigationsmenü hinzufügen
-      ExternalLinksFileDescription: Externe Link-Prozesse, die in der linken Navigation oder der Prozesslisten-Seite des Portals angezeigt werden
-      MenuOrderFileDescription: Benutzerdefinierte Reihenfolge der Hauptnavigationsmenüpunkte in der Portal-Seitenleiste
-      InvalidPackageMessage: Die hochgeladene Datei konnte nicht gelesen werden. Bitte stellen Sie sicher, dass es sich um ein gültiges ZIP-Archiv handelt.
-      ImportCompleteMessage: Alle Dateien wurden erfolgreich importiert.
-      ImportIncompleteMessage: Einige Dateien konnten nicht importiert werden. Weitere Informationen finden Sie im Server-Log.
   dashboard:
     CanWorkOnAsUser: Nur die Aufgaben anzeigen, die ich als Benutzer bearbeiten kann
     CaseQueryType:
@@ -825,17 +827,20 @@ ch.ivy.addon.portalkit.ui.jsf:
     CloneWidget: Widget klonen
     CustomWidgets: Benutzerdefinierte Widgets
     DashboardConfiguration:
+      AddItem: Eintrag hinzufügen
       CreateFromScratch: Von Grund auf neu erstellen
       CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard
-      CreateNewPrivateDashboard: Neues privates Dashboard erstellen
+      NewPrivateDashboard: Neues privates Dashboard
       CreateNewPublicDashboard: Neues öffentliches Dashboard erstellen
+      Dashboard: Dashboard
+      DashboardTabInfoPanel: '<p><b>Was kann ich hier tun?</b></p><p>Öffentliche Dashboards erstellen, bearbeiten und löschen. Legen Sie fest, wer sie sehen kann. Dies ist die zentrale Bibliothek aller geteilten Dashboards.</p><p><b>Sichtbarkeit &amp; Platzierung</b></p><p>Dashboards sind in drei Bereiche
+        unterteilt: Seitenleisten-Haupteintrag, Untermenü oder Ausgeblendet. Um ein Dashboard zu verschieben, öffnen Sie Bearbeiten und ändern Sie den Anzeigetyp. Nur der Untermenü-Bereich unterstützt Drag-and-Drop-Reihenfolge.</p><p><b>Aktionen pro Dashboard</b></p><p>Bearbeiten aktualisiert Name, Beschreibung,
+        Symbol, Berechtigungen und Anzeigetyp. Konfigurieren öffnet das Dashboard zum Hinzufügen oder Anordnen von Widgets. Exportieren lädt eine JSON-Datei herunter — bei referenzierten Dashboards erscheint eine Rückfrage. Teilen erstellt einen Direktlink. Löschen entfernt das Dashboard dauerhaft.</p>'
       Description: In diesem Bereich können Sie die Dashboards nach Ihren Wünschen konfigurieren und die Reihenfolge der Navigationselemente ändern.
+      DisableSidebar: Seitenleiste deaktivieren
       DoNotSupportMobile: Die Dashboard-Konfiguration wird für mobile Geräte nicht unterstützt.
-      EditPrivateDashboards: Private Dashboards bearbeiten
       EditLayout: Layout bearbeiten
-      PrivateTabInfo: 'Erstellen und verwalten Sie Ihre persönlichen Dashboards.<ul><li>Diese Dashboards sind nur für Sie sichtbar</li><li>Sie erscheinen unter dem Dashboard-Symbol in der Seitenleiste</li></ul>'
-      PublicTabInfo: 'Verwalten Sie Dashboards für alle Benutzer. Steuern Sie die Sichtbarkeit:<ul><li><b>Seitenleiste</b> — erscheint als Haupteintrag im Seitenleistenmenü</li><li><b>Untermenü</b> — erscheint unter dem Dashboard-Symbol</li><li><b>Ausgeblendet</b> — für Benutzer nicht sichtbar</li></ul>'
-      Visibility: Sichtbarkeit
+      EditPrivateDashboards: Private Dashboards bearbeiten
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
       ExportDashboard: Dashboard exportieren
       ExportReferencedDialogHeader: Dashboard referenziert andere Dashboards
@@ -844,42 +849,49 @@ ch.ivy.addon.portalkit.ui.jsf:
       Hidden: Ausgeblendet
       HiddenDashboards: Ausgeblendete Einträge
       HiddenDashboardsDescription: Nicht in der Seitenleiste angezeigt. Kann dennoch als direktes Linkziel verwendet werden – z.B. als Einstiegsseite in einem Prozessablauf.
-      SubMenuDashboards: Untermenü-Dashboards
-      SubMenuDashboardsDescription: Erscheinen gruppiert unter dem Dashboard-Symbol in der Seitenleiste.
-      SidebarTopLevelDashboards: Seitenleisten-Haupteinträge
-      SidebarTopLevelDashboardsDescription: Erscheinen als Haupteinträge in der Seitenleiste.
+      Label: Bezeichnung
       MenuDashboards: Seitenleisten-Einträge
       MenuDashboardsDescription: Diese Dashboards erscheinen als Haupteinträge in der Seitenleiste. Verwalten Sie die Reihenfolge im Tab Seitenleisten-Navigation.
-      PrivateDashboardTabInfoPanel: '<p><b>Was kann ich hier tun?</b></p><p>Erstellen und verwalten Sie Dashboards, die nur für Sie sichtbar sind. Sie erscheinen gruppiert unter dem Dashboard-Symbol in der Seitenleiste und beeinflussen andere Benutzer nicht.</p><p><b>Reihenfolge ändern</b></p><p>Ziehen Sie eine Zeile, um die Reihenfolge Ihrer Dashboards im Untermenü zu ändern. Die Reihenfolge wird in Ihren persönlichen Einstellungen gespeichert.</p><p><b>Aktionen pro Dashboard</b></p><p>Mit Bearbeiten können Sie Titel, Beschreibung, Symbol oder mehrsprachige Titel anpassen. Mit Konfigurieren öffnen Sie das Dashboard und fügen Widgets hinzu oder ordnen sie neu an. Mit der entsprechenden Berechtigung können Sie ein Dashboard auch als JSON-Datei exportieren.</p>'
-      DashboardTabInfoPanel: '<p><b>Was kann ich hier tun?</b></p><p>Öffentliche Dashboards erstellen, bearbeiten und löschen. Legen Sie fest, wer sie sehen kann. Dies ist die zentrale Bibliothek aller geteilten Dashboards.</p><p><b>Sichtbarkeit &amp; Platzierung</b></p><p>Dashboards sind in drei Bereiche unterteilt: Seitenleisten-Haupteintrag, Untermenü oder Ausgeblendet. Um ein Dashboard zu verschieben, öffnen Sie Bearbeiten und ändern Sie den Anzeigetyp. Nur der Untermenü-Bereich unterstützt Drag-and-Drop-Reihenfolge.</p><p><b>Aktionen pro Dashboard</b></p><p>Bearbeiten aktualisiert Name, Beschreibung, Symbol, Berechtigungen und Anzeigetyp. Konfigurieren öffnet das Dashboard zum Hinzufügen oder Anordnen von Widgets. Exportieren lädt eine JSON-Datei herunter — bei referenzierten Dashboards erscheint eine Rückfrage. Teilen erstellt einen Direktlink. Löschen entfernt das Dashboard dauerhaft.</p>'
-      MenuManagementTabInfoPanel: '<p><b>Was kann ich hier tun?</b></p><p>Konfigurieren Sie alles, was in der Seitenleiste erscheint: Einträge, Reihenfolge und das globale Seitenleisten-Verhalten.</p><p><b>Neue Einträge hinzufügen</b></p><p>Erstellen Sie mit Eintrag hinzufügen einen neuen Seitenleisteneintrag. Zur Auswahl stehen: Haupt-Dashboard (verlinkt zu einem Dashboard), Prozess (startet einen Ivy-Prozess), Externer Link (beliebige URL, optional in neuem Tab) oder Statische Seite. Jeder Eintrag hat einen mehrsprachigen Titel, ein Symbol und konfigurierbare Berechtigungen. Der Eintragstyp kann nach der Erstellung nicht mehr geändert werden.</p><p><b>Die Tabelle verstehen</b></p><p>Ziel zeigt, wohin ein Eintrag navigiert (URL oder Prozesspfad). Berechtigungen zeigt, wer ihn sehen kann. Typ ist die Art des Eintrags, und Quelle zeigt, wo er definiert ist: Integriert, Konfiguration, Dashboard-Konfiguration, Aufrufbarer Prozess oder Drittanbieter-Anwendung.</p><p><b>Bestehende Einträge verwalten</b></p><p>Bearbeiten aktualisiert Titel, Symbol, Link und Berechtigungen benutzerdefinierter Einträge. Löschen entfernt sie. Standard-Einträge (Quelle: Integriert) können weder bearbeitet noch gelöscht werden, und Einträge aus einem aufrufbaren Prozess können nur von einem Entwickler geändert werden. Zeilen per Drag-and-Drop neu anordnen.</p><p><b>Seitenleisten-Einstellungen</b></p><p>Seitenleiste deaktivieren blendet die Seitenleiste für alle Benutzer aus. Seitenleisten-Verhalten steuert, wie sie sich öffnet: Hover (beim Überfahren), Klick (erfordert Klick) oder Stick (immer sichtbar).</p>'
-      SidebarNavigation: Seitenleiste
-      SidebarSettings: Seitenleisten-Einstellungen
-      SidebarMode: Seitenleisten-Modus
-      DisableSidebar: Seitenleiste deaktivieren
-      SidebarBehaviour: Seitenleisten-Verhalten
-      SidebarSettingsReloadWarning: 'Seitenleisten-Einstellungen gespeichert. Laden Sie die Seite neu, um die Änderungen zu übernehmen.'
-      Reload: Neu laden
-      AddItem: Eintrag hinzufügen
-      Label: Bezeichnung
-      Source: Quelle
-      Target: Link zu
-      Dashboard: Dashboard
       MenuManagement: Menüverwaltung
-      MenuManagementTabInfo: 'Verwalten Sie die Navigationselemente der Seitenleiste. Sie können:<ul><li>Neue Menüeinträge hinzufügen (Dashboards, externe Links, Ivy-Prozesse)</li><li>Einträge per Drag-and-Drop neu anordnen</li><li>Bestehende Menüeinträge bearbeiten oder entfernen</li></ul>'
+      MenuManagementTabInfo: Verwalten Sie die Navigationselemente der Seitenleiste. Sie können:<ul><li>Neue Menüeinträge hinzufügen (Dashboards, externe Links, Ivy-Prozesse)</li><li>Einträge per Drag-and-Drop neu anordnen</li><li>Bestehende Menüeinträge bearbeiten oder entfernen</li></ul>
+      MenuManagementTabInfoPanel: '<p><b>Was kann ich hier tun?</b></p><p>Konfigurieren Sie alles, was in der Seitenleiste erscheint: Einträge, Reihenfolge und das globale Seitenleisten-Verhalten.</p><p><b>Neue Einträge hinzufügen</b></p><p>Erstellen Sie mit Eintrag hinzufügen einen neuen Seitenleisteneintrag.
+        Zur Auswahl stehen: Haupt-Dashboard (verlinkt zu einem Dashboard), Prozess (startet einen Ivy-Prozess), Externer Link (beliebige URL, optional in neuem Tab) oder Statische Seite. Jeder Eintrag hat einen mehrsprachigen Titel, ein Symbol und konfigurierbare Berechtigungen. Der Eintragstyp kann nach
+        der Erstellung nicht mehr geändert werden.</p><p><b>Die Tabelle verstehen</b></p><p>Ziel zeigt, wohin ein Eintrag navigiert (URL oder Prozesspfad). Berechtigungen zeigt, wer ihn sehen kann. Typ ist die Art des Eintrags, und Quelle zeigt, wo er definiert ist: Integriert, Konfiguration, Dashboard-Konfiguration,
+        Aufrufbarer Prozess oder Drittanbieter-Anwendung.</p><p><b>Bestehende Einträge verwalten</b></p><p>Bearbeiten aktualisiert Titel, Symbol, Link und Berechtigungen benutzerdefinierter Einträge. Löschen entfernt sie. Standard-Einträge (Quelle: Integriert) können weder bearbeitet noch gelöscht werden,
+        und Einträge aus einem aufrufbaren Prozess können nur von einem Entwickler geändert werden. Zeilen per Drag-and-Drop neu anordnen.</p><p><b>Seitenleisten-Einstellungen</b></p><p>Seitenleiste deaktivieren blendet die Seitenleiste für alle Benutzer aus. Seitenleisten-Verhalten steuert, wie sie sich
+        öffnet: Hover (beim Überfahren), Klick (erfordert Klick) oder Stick (immer sichtbar).</p>'
+      PackageManagement: Package management
+      PackageManagementTabInfoPanel: <p><b>What can I do here?</b></p><p>Export the current Portal configuration as a single zip package, or import a previously exported package to replace it.</p><p><b>Export</b></p><p>Downloads a <code>Portal_Package.zip</code> containing one JSON file per configuration
+        type. Only types with existing data are included.</p><p><b>Import</b></p><p>Upload a zip package to preview which files it contains before applying. Recognized files replace the matching configuration; unrecognized files are skipped. This action cannot be undone.</p>
       PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
+      PrivateDashboardTabInfoPanel: <p><b>Was kann ich hier tun?</b></p><p>Erstellen und verwalten Sie Dashboards, die nur für Sie sichtbar sind. Sie erscheinen gruppiert unter dem Dashboard-Symbol in der Seitenleiste und beeinflussen andere Benutzer nicht.</p><p><b>Reihenfolge ändern</b></p><p>Ziehen
+        Sie eine Zeile, um die Reihenfolge Ihrer Dashboards im Untermenü zu ändern. Die Reihenfolge wird in Ihren persönlichen Einstellungen gespeichert.</p><p><b>Aktionen pro Dashboard</b></p><p>Mit Bearbeiten können Sie Titel, Beschreibung, Symbol oder mehrsprachige Titel anpassen. Mit Konfigurieren
+        öffnen Sie das Dashboard und fügen Widgets hinzu oder ordnen sie neu an. Mit der entsprechenden Berechtigung können Sie ein Dashboard auch als JSON-Datei exportieren.</p>
+      PrivateTabInfo: Erstellen und verwalten Sie Ihre persönlichen Dashboards.<ul><li>Diese Dashboards sind nur für Sie sichtbar</li><li>Sie erscheinen unter dem Dashboard-Symbol in der Seitenleiste</li></ul>
       PublicDashboard: Öffentliche Dashboards
       PublicDashboardConfiguration: Konfiguration des öffentlichen Dashboards
+      PublicTabInfo: Verwalten Sie Dashboards für alle Benutzer. Steuern Sie die Sichtbarkeit:<ul><li><b>Seitenleiste</b> — erscheint als Haupteintrag im Seitenleistenmenü</li><li><b>Untermenü</b> — erscheint unter dem Dashboard-Symbol</li><li><b>Ausgeblendet</b> — für Benutzer nicht sichtbar</li></ul>
+      Reload: Neu laden
       ReorderPrivateDashboards: Dashboards neu anordnen
       ReorderPublicDashboards: Öffentliche Dashboards neu anordnen
       SelectAction: Wählen Sie die Aktion
+      SidebarBehaviour: Seitenleisten-Verhalten
+      SidebarMode: Seitenleisten-Modus
+      SidebarNavigation: Seitenleiste
+      SidebarSettings: Seitenleisten-Einstellungen
+      SidebarSettingsReloadWarning: Seitenleisten-Einstellungen gespeichert. Laden Sie die Seite neu, um die Änderungen zu übernehmen.
+      SidebarTopLevelDashboards: Seitenleisten-Haupteinträge
+      SidebarTopLevelDashboardsDescription: Erscheinen als Haupteinträge in der Seitenleiste.
       SomeThingWentWrong: Etwas ist schief gelaufen
+      Source: Quelle
       Start: Start
+      SubMenuDashboards: Untermenü-Dashboards
+      SubMenuDashboardsDescription: Erscheinen gruppiert unter dem Dashboard-Symbol in der Seitenleiste.
+      Target: Link zu
       Templates: Vorlagen
       Title: Portal-Konfiguration
-      PackageManagement: Package management
-      PackageManagementTabInfoPanel: '<p><b>What can I do here?</b></p><p>Export the current Portal configuration as a single zip package, or import a previously exported package to replace it.</p><p><b>Export</b></p><p>Downloads a <code>Portal_Package.zip</code> containing one JSON file per configuration type. Only types with existing data are included.</p><p><b>Import</b></p><p>Upload a zip package to preview which files it contains before applying. Recognized files replace the matching configuration; unrecognized files are skipped. This action cannot be undone.</p>'
+      Visibility: Sichtbarkeit
     DrillDownWidget:
       caseDrillDown: Drilldown-Fall-Widget für {0}
       taskDrillDown: Drilldown-Aufgaben-Widget für {0}
@@ -958,8 +970,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       STANDARD: Standard-Feld
     configuration:
       CustomWidgetExternalLinkWarning: Einige Websites sind aufgrund von Sicherheitsbedenken nicht mit iframe kompatibel. Bitte wenden Sie sich an Ihren Administrator, wenn die externe Website nicht ordnungsgemäß funktioniert.
-      CustomWidgetUrlInvalidScheme: Die angegebene URL ist ungültig
       CustomWidgetTitlePlaceholder: Lassen Sie es leer, um die Kopfzeile des Widgets auszublenden
+      CustomWidgetUrlInvalidScheme: Die angegebene URL ist ungültig
       Parameters: Parameter
       RestoreDefaultDashboardTemplateTooltip: Wir können die Vorlage für Ihr Dashboard nicht finden und es daher nicht auf die Standardkonfiguration zurücksetzen. Bitte erkundigen Sie sich bei Ihrem Administrator nach weiteren Details!
       SelectTheTemplate: Wählen Sie die Vorlage
@@ -968,19 +980,19 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Erweiterte Einstellungen
         ChangeImage: Bild ändern
-        ChooseMode: Wählen Sie den Modus, den Sie konfigurieren möchten
-        DarkMode: Dunkel
-        ImagePreview: Bildvorschau
-        LightMode: Hell
-        ConfigurationHeader: Konfiguration des Willkommens-Widgets
         ChooseAFit: Wählen Sie eine Passform
+        ChooseMode: Wählen Sie den Modus, um das Bild zu konfigurieren
+        ConfigurationHeader: Konfiguration des Willkommens-Widgets
+        DarkMode: Dunkel
         DisplayText: Anzeigetext
         Greeting:
           Afternoon: Guten Tag
           Evening: Guten Abend
           Morning: Guten Morgen
         ImageInlineStyle: Bild Inline-Stil
+        ImagePreview: Bildvorschau
         ImageStyleClass: Bildstilklasse
+        LightMode: Hell
         PreviewTooltip: Diese Vorschau kann nicht alle Einstellungen wiedergeben, sondern soll nur einen Eindruck vermitteln, wie das endgültige Widget aussehen wird. Bildgröße, Ausrichtung und einige CSS-Einstellungen werden hier nicht angezeigt.
         ShowGreeting: Gruß anzeigen
         TextColorDarkMode: Farbe für den dunklen Modus
@@ -1008,7 +1020,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Benutzerdefinierter Feldtyp
     dashboardManagement:
       CreateDashboard: Dashboard erstellen
-      addDashboard: Dashboard hinzufügen
       dashboardIcon: Dashboard-Symbol
       dashboardPermission: Dashboard Berechtigung
       dashboardTitle: Dashboard Titel
@@ -1048,8 +1059,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     noPermission: Sie haben keine Berechtigung, Dashboards zu sehen.
     noWidget: Es sind aktuell keine Widgets auf diesem Dashboard vorhanden
     numberPattern: Zahlen-Muster
-    operators: Operatoren
     operatorPolicyTooltip: Wenn Operatoren vom Administrator global deaktiviert sind, können sie hier nicht aktiviert werden. Der Filter eines Felds kann nicht aktiviert werden, wenn alle Operatoren global deaktiviert sind.
+    operators: Operatoren
     preview: Vorschau
     processList: Prozessliste
     processListIntroduction: Dieses Widget zeigt verfügbare Prozessstarts an. Sie haben die Möglichkeit, unterschiedliche Formate zu wählen
@@ -1372,8 +1383,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldsDialog: 'Benutzerdefinierte Felder der Aufgabe #{0}'
     delayedUntil: Sperrfrist
     deleteFile: Datei löschen
-    dueDate: Fällig
     documents: Dokumente
+    dueDate: Fällig
     duration: Dauer
     events: Workflow-Ereignisse
     expiry: Ablauffrist
@@ -1570,7 +1581,7 @@ Dialogs:
               noResultsText: Es liegen keine Ergebnisse vor.
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: Neues Dashboard hinzufügen
+                newPublicDashboard: Neues öffentliches Dashboard
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Benutzerdefiniertes Statistik-Widget erstellen
                 DeleteConfirm: Sind Sie sicher, dass Sie löschen möchten?
@@ -1770,18 +1781,18 @@ Dialogs:
           MenuManagement:
             AddNewMenu: Füge ein neues Menü hinzu
             CallableMenuMessage: Dieses Menü wird programmgesteuert durch einen aufrufbaren Prozess generiert und kann nicht bearbeitet werden.
-            CallableSourceHint: 'Dieser Eintrag wird durch einen aufrufbaren Prozess generiert. Wende dich an deinen Entwickler, um ihn zu ändern.'
-            ProcessPermissionHint: 'Die Sichtbarkeit richtet sich nach den Startberechtigungen des Prozesses.'
+            CallableSourceHint: Dieser Eintrag wird durch einen aufrufbaren Prozess generiert. Wende dich an deinen Entwickler, um ihn zu ändern.
             HelpText: Passe das Menü in diesem Bereich an deine Bedürfnisse oder Vorlieben an.
+            InvalidStaticPagePath: Der Pfad muss relativ zur Anwendung sein (absolute URLs sind nicht erlaubt).
+            InvalidUrl: Die URL ist ungültig.
+            InvalidUrlScheme: Nur http- und https-URLs sind erlaubt.
             MenuDetails: Menüdetails
             MenuIcon: Menü-Symbol
             MenuTitle: Menütitel
             MenuType: Menütyp
-            InvalidUrl: 'Die URL ist ungültig.'
-            InvalidUrlScheme: 'Nur http- und https-URLs sind erlaubt.'
-            InvalidStaticPagePath: 'Der Pfad muss relativ zur Anwendung sein (absolute URLs sind nicht erlaubt).'
-            NoAvailableSubDashboard: 'Es ist kein Untermenü-Dashboard verfügbar, das als Haupt-Dashboard hinzugefügt werden kann.'
+            NoAvailableSubDashboard: Es ist kein Untermenü-Dashboard verfügbar, das als Haupt-Dashboard hinzugefügt werden kann.
             OpenInNewTab: In neuem Tab öffnen
+            ProcessPermissionHint: Die Sichtbarkeit richtet sich nach den Startberechtigungen des Prozesses.
             StaticPagePath: Statischer Seitenpfad
           StatisticConfiguration:
             AddFilter: Filter hinzufügen
@@ -1938,39 +1949,6 @@ Enums:
                 name: |
                   Kleiner oder gleich
 Labels:
-  AI:
-    Error:
-      CannotFindUser: Wir können leider keinen Benutzer finden, der Ihrer Anfrage entspricht. Bitte versuchen Sie es erneut.
-      CannotStartTask: Aufgabe kann nicht gestartet werden hat ID {0}
-      InvalidTaskPriority: 'Ungültige Aufgabenpriorität. Gültige Aufgabenprioritäten sind: niedrig, normal, hoch oder Ausnahme.'
-      InvalidTaskState: 'Ungültiger Aufgabenstatus. Gültige Aufgabenstatus sind: offen, erledigt, in Bearbeitung oder Fehler.'
-      NoMatchingCase: Sie haben keine Aufgabe gefunden, die Ihrer Anfrage entspricht
-      NoMatchingProcesses: Keine Anpassungsprozesse.
-      NoMatchingTask: Sie haben keine Aufgabe gefunden, die Ihrer Anfrage entspricht
-    FindCaseAIResult: 'ID: {0}, Name: {1}, Beschreibung: {2}, Bundesland: {3}'
-    FindProcessAIResult: '   - ID: {0}, Name: {1}, Beschreibung: {2}'
-    FindTaskAIResult: 'ID: {0}, Name: {1}, Beschreibung: {2}, Zustand: {3}, Priorität {4}'
-    FindUserAIResult: 'Benutzername: {0}, Name: {1}, E-Mail: {2}, Bundesland: {3}'
-    FoundCaseHeader: 'Gefundene Fälle:'
-    FoundProcessesHeader: 'Gefundene Prozesse:'
-    FoundTaskHeader: 'Gefundene Aufgaben:'
-    FoundUsersHeader: 'Gefundene Benutzer:'
-    ProcessInfoHeader: |-
-      **Prozessname:** {0}
-      **Prozessbeschreibung:** {1}
-    ProcessInfoHeaderWithParameters: |-
-      - **Prozessname:** {0}
-      - **Prozessbeschreibung:** {1}
-      - **Anzahl der Parameter:** {2}
-    ProcessParameterInfo: "\t+ {0} ({1})"
-    ProcessParameterInfoWithValue: |-
-      - Name: {0}
-        Beschreibung: {1}
-        Wert:
-    TaskDetailsResult: |-
-      Details zur Aufgabe **{0} (#{1})**:
-      {2}
-  AIAssistant: AI-Assistent
   AllTasks: Alle Aufgaben
   AndMore: 'und {0} weitere...  '
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
@@ -1990,16 +1968,6 @@ Labels:
   EnterValue: Wert eingeben
   EnterValues: Werte eingeben
   Enums:
-    ChatbotCandidateQuestion:
-      EXPLORE:
-        header: Explore
-        question: Was sind die wichtigsten Merkmale des Axon Ivy Portals?
-      INTERACT:
-        header: Interact
-        question: Listen Sie mir alle Aufgaben auf, die in der laufenden Woche erledigt werden müssen
-      TUTORIAL:
-        header: Tutorial
-        question: Wo kann ich die Dokumentation oder Tutorials für das Axon Ivy Portal finden?
     DashboardStandardCaseColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
@@ -2077,10 +2045,10 @@ Labels:
       PROCESSES: Prozesse
       TASKS: Aufgaben
     MenuKind:
-      PROCESS: Prozess
       DASHBOARD: Dashboard
       EXTERNAL_LINK: Externer Link
       MAIN_DASHBOARD: Haupt-Dashboard
+      PROCESS: Prozess
       PROCESS_LIST: Prozessliste
       STANDARD: Standard
       STATIC_PAGE: Statische Seite

@@ -207,9 +207,6 @@
   --notifications-title-header-font-weight: bold;
   --notification-indicator-size: 0.65rem;
 
-  /* Chatbot */
-  --candidate-question-header-font-size: 1.5rem;
-
   /* Project info dialog (theme-independent) */
   --project-info-dialog-box-shadow-color: hsla(0, 0%, 0%, 0.15);
   

@@ -10,7 +10,7 @@ Help you adjust your general settings, language and notification channels subscr
 General settings
 ----------------
 
-**General settings** allows you to configure some settings according to your
+**General settings** allows you to configure settings according to your
 requirements. This area allows you to select the homepage you want to display.
 
 .. _process-list-configuration:
@@ -21,8 +21,7 @@ Process list configuration
 This section has available options which help you to configure your Process list.
 These are options you can modify:
 
-**Default view mode**
-   Standard view mode when you open the process list.
+**Default view mode**: Standard view mode when you open the process list.
 
 Portal will use the default value defined by the administrator if you don't select an option.  
 

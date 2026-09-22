@@ -22,7 +22,6 @@ import jakarta.ws.rs.core.MediaType;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -349,25 +348,7 @@ public class DashboardModificationBean extends DashboardBean {
   }
 
   public void translate(DisplayName title) {
-    translatedText = Strings.EMPTY;
-    warningText = Strings.EMPTY;
-
-    String currentLanguage = UserUtils.getUserLanguage();
-    if (!title.getLocale().getLanguage().equals(currentLanguage)) {
-      Map<String, DisplayName> languages = getMapLanguages();
-      DisplayName defaultTitle = languages.get(currentLanguage);
-      if (defaultTitle != null) {
-        try {
-          translatedText = IvyTranslationService.getInstance().translate(defaultTitle.getValue(),
-              defaultTitle.getLocale(), title.getLocale());
-        } catch (Exception e) {
-          warningText = Ivy.cms()
-              .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-          Ivy.log().error("Ivy Translation Service error: ", e.getMessage());
-        }
-      }
-    }
-
+    translation = IvyTranslationService.getInstance().translate(title, selectedDashboard.getTitles());
   }
 
   public boolean hasExportDashboardPermission() {

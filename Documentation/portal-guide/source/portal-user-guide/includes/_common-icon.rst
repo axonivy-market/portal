@@ -54,7 +54,7 @@
    :width: 25px
 .. |share-icon| image:: ../includes/images/share.svg
    :width: 15px
-.. |remove-filter-icon| image:: ../includes/images/subtract-circle.svg
+.. |remove-filter-icon| image:: ../includes/images/trash.svg
    :width: 15px
 .. |actions-menu-icon| image:: ../includes/images/actions-menu.svg
    :width: 15px
