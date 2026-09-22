@@ -23,6 +23,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 public class TaskWidgetNewDashBoardPage extends TemplatePage {
@@ -466,6 +467,15 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void clickOnButtonCollapseTaskWidget() {
     clickOnToggleFullscreenMenuItem();
+  }
+
+  public void pressEscapeKey() {
+    Selenide.actions().sendKeys(Keys.ESCAPE).perform();
+    WaitHelper.waitPageNoAnimation();
+  }
+
+  public void waitForFilterDialogDisappear() {
+    $("div.filter-dialog[style*='display: block']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   private void clickOnToggleFullscreenMenuItem() {
