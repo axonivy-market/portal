@@ -1180,9 +1180,8 @@ msgid "customization-business-details-page-start-request"
 msgstr "customization-business-details-page-start-request"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:32
-#, fuzzy
 msgid "Store the :doc-url:`IWebStartable ID </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` of the process to the string custom field ``businessDetails`` of the case. There are 2 ways to perform this:"
-msgstr "プロセスの :doc-url:`IWebStartable ID </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` をケースの ``businessDetails`` 文字列カスタムフィールドに格納します。 以下の 2 つの方法があります。"
+msgstr "プロセスの :doc-url:`IWebStartable ID </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` をケースの ``businessDetails`` 文字列カスタムフィールドに格納します。 以下の 2 つの方法があります。"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:35
 msgid "Use the ``SetBusinessDetailsPage.p.json`` callable process, and pass the IWebStartable ID of the business details process as the parameter. To make it more flexible, Portal supports passing the end part of IWebStartable ID as the parameter but you need to ensure that only one process in the security context has the IWebStartable ID that ends with the parameter."
@@ -1414,9 +1413,8 @@ msgstr "``states`` （ケースのビジネスの状態）."
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:139
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:522
-#, fuzzy
 msgid "Refer to :doc-url:`Case business states </reference/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for available case business states."
-msgstr "利用可能なケースのビジネスの状態については、:doc-url:`ケースのビジネスの状態 </public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` を参照してください。"
+msgstr "利用可能なケースのビジネスの状態については、:doc-url:`ケースのビジネスの状態 </reference/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:142
 msgid "The structure of each widget inside the case details layout is stored in variable **Portal.CaseDetails**:"
@@ -1565,9 +1563,8 @@ msgstr "ケースの詳細に移動し、新しいカスタムレイアウトを
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:219
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:184
-#, fuzzy
 msgid "About how to configure Variables, refer to :doc-url:`Axon Ivy Variables </reference/configuration/variables.html>`"
-msgstr "変数の設定方法については、:doc-url:`Axon Ivy の変数 </designer-guide/configuration/variables.html>` を参照してください。"
+msgstr "変数の設定方法については、:doc-url:`Axon Ivy の変数 </reference/configuration/variables.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:223
 msgid "Adding New Custom Panels"
@@ -2814,9 +2811,8 @@ msgid "Change Logos in Portal"
 msgstr "ポータルで表示されるロゴの変更"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:17
-#, fuzzy
 msgid "You can change both the top-left corner logo in the menu and the login logo by using :doc-url:`Engine Branding </getting-productive/user-interface/branding/branding-engine.html>`."
-msgstr ":doc-url:`エンジンのブランディング </designer-guide/user-interface/branding/branding-engine.html>` により、メニューの左上隅のロゴとログインロゴの両方を変更できます。"
+msgstr ":doc-url:`エンジンのブランディング </getting-productive/user-interface/branding/branding-engine.html>` により、メニューの左上隅のロゴとログインロゴの両方を変更できます。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:20
 msgid "We have two different logo graphics for the expanded and the collapsed menu. You can use one \"pure\" logo for the small, quadratic format (default: 42x42 pixels), and a logo with a slogan for the bigger one. The larger logo is intended to have a 4:1 width:height ratio (default: 168x42 pixels)."
@@ -2835,9 +2831,8 @@ msgid "We recommend using images with a transparent background, if your Corporat
 msgstr "コーポレートアイデンティティで必須の背景色が定められていない場合は、背景が透明な画像を使用することを推奨します。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:38
-#, fuzzy
 msgid "To change the logos used in the Portal, please use resources that are described at :doc-url:`User Interface Branding </getting-productive/user-interface/branding/branding-user-interface.html#resources>` and follow the guidelines below."
-msgstr "ポータルで使用するロゴを変更する場合は、:doc-url:`ユーザーインターフェースのブランディング </designer-guide/user-interface/branding/branding-user-interface.html#resources>` に記載されているリソースを使用し、以下のガイドラインに従ってください。"
+msgstr "ポータルで使用するロゴを変更する場合は、:doc-url:`ユーザーインターフェースのブランディング </getting-productive/user-interface/branding/branding-user-interface.html#resources>` に記載されているリソースを使用し、以下のガイドラインに従ってください。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:42
 msgid "Expanded Menu Logo"
@@ -2900,9 +2895,8 @@ msgid "To customize the Portal styles in an upgrade safe way, we suggest that yo
 msgstr "安全にアップデートできる方法でポータルのスタイルをカスタマイズするため、オーバーライドする予定のすべての CSS 変数とスタイルを ``portal-root-variables.css``、``portal-variables-light.css``、``portal-variables-dark.css`` ファイルから ``custom.css`` ファイルにコピーすることを推奨します。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:81
-#, fuzzy
 msgid "Refer to :doc-url:`Engine Branding </getting-productive/user-interface/branding/branding-engine.html>` for the location of :doc-url:`custom.css </engine-guide/configuration/files/custom-css.html>`."
-msgstr ":doc-url:`custom.css </engine-guide/configuration/files/custom-css.html>` の場所については、 :doc-url:`エンジンのブランディング </designer-guide/user-interface/branding/branding-engine.html>` を参照してください。"
+msgstr ":doc-url:`custom.css </engine-guide/configuration/files/custom-css.html>` の場所については、 :doc-url:`エンジンのブランディング </getting-productive/user-interface/branding/branding-engine.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:84
 msgid "Please do not modify ``portal-root-variables.css``, ``portal-variables-light.css``, ``portal-variables-dark.css`` and ``portal.css`` directly because they may change in a future Portal version."
@@ -3495,9 +3489,8 @@ msgid "If ``--primary-color`` is a bright color (such as yellow or light blue), 
 msgstr "``--primary-color`` が明るい色（黄色、水色など）の場合は、``--primary-text-color`` を ``black`` に変更できます。高コントラストにより、ボタンなどのコンポーネントのテキストが読みやすくなります。"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:116
-#, fuzzy
 msgid "If you are using IFrames and you want to customize the colors of the project specific UIs, then refer to this documentation :doc-url:`/getting-productive/workflow/overrides/index.html#overrides`"
-msgstr "IFrame を使用しており、プロジェクト固有の UI の色をカスタマイズしたい場合は、このドキュメントを参照してください。 :doc-url:`/designer-guide/how-to/overrides.html?#override-new-wizard`"
+msgstr "IFrame を使用しており、プロジェクト固有の UI の色をカスタマイズしたい場合は、このドキュメントを参照してください。 :doc-url:`/getting-productive/workflow/overrides/index.html#overrides`"
 
 #: ../../source/portal-developer-guide/customization/portal-style-customization-logos-colors-date-patterns.rst:120
 msgid "Do not modify component-level ``font-family`` declarations directly. Instead, set ``--portal-font-family`` in ``:root`` within ``custom.css``."
@@ -4038,9 +4031,8 @@ msgid "For data of custom widget, if you input ``processPath``, don't input ``ur
 msgstr "カスタムウィジェットのデータについて、 ``processPath`` を入力する場合は ``url`` を入力しないでください。いずれか 1 つのみ使用できます。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:165
-#, fuzzy
 msgid "We support all task business states for filter type ``states``. Please refer to :doc-url:`Task Business States </reference/public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` to check for available task business states."
-msgstr "フィルタタイプ ``` `states`` については、すべてのタスクビジネス状態をサポートしています。利用可能なタスクビジネス状態については、:doc-url:`Task Business States </public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` を参照してください。"
+msgstr "フィルタタイプ ``states`` については、すべてのタスクビジネス状態をサポートしています。利用可能なタスクビジネス状態については、:doc-url:`Task Business States </reference/public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:169
 msgid "Show Custom Panels (Widgets)"
@@ -4707,9 +4699,8 @@ msgid "Open Portal to see the customized dashboard with example widgets"
 msgstr "カスタマイズされたダッシュボードとサンプルウィジェットをご覧になるには、ポータルを開いてください。"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:209
-#, fuzzy
 msgid "For variable configuration details, see :doc-url:`Axon Ivy Variables </reference/configuration/variables.html>`"
-msgstr "変数設定の詳細については、以下をご参照ください。:doc-url:`Axon Ivy 変数 </designer-guide/configuration/variables.html>`"
+msgstr "変数設定の詳細については、以下をご参照ください。:doc-url:`Axon Ivy 変数 </reference/configuration/variables.html>`"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:214
 msgid "Configure Dashboard Templates"
@@ -5568,9 +5559,8 @@ msgstr "``field``：この属性は、列のデータを取得するのに使用
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:336
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:280
-#, fuzzy
 msgid "Portal only displays custom fields declared in the ``custom-fields.yaml`` file. Refer to :doc-url:`Custom Fields Meta Information </getting-productive/workflow/case-task/custom-fields.html#meta-information>` for more information."
-msgstr "ポータルでは、 ``custom-fields.yaml`` ファイルで宣言されたカスタムフィールドのみ表示されます。詳細については、 :doc-url:`カスタムフィールドのメタ情報 </designer-guide/how-to/workflow/custom-fields.html#meta-information>` を参照してください。"
+msgstr "ポータルでは、 ``custom-fields.yaml`` ファイルで宣言されたカスタムフィールドのみ表示されます。詳細については、 :doc-url:`カスタムフィールドのメタ情報 </getting-productive/workflow/case-task/custom-fields.html#meta-information>` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:340
 msgid "Custom Action Button Columns"
@@ -5889,9 +5879,8 @@ msgid "To allow a custom field to retrieve multilingual values from the CMS, set
 msgstr "カスタムフィールドが CMS から多言語の値を取得できるようにするには、対応する ``custom-field`` yaml ファイルの設定で ``HasCmsValue`` 属性を ``true`` に設定してください。そうでない場合、ロジックは変更されず、カスタムフィールドは静的値を使用します。さらに、値は CMS に複数の言語で入力して維持する必要があります。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:756
-#, fuzzy, python-brace-format
 msgid "Following this path to add your custom field values: ``/CustomFields/Cases/{fieldName}/Values/{value}`` Please follow this :doc-url:`Localize Label, Description, Category and Values </reference/configuration/custom-fields.html#localize-label-description-category-and-values>` to get more information."
-msgstr "カスタムフィールドの値を追加するには、次のパスに従ってください：``/CustomFields/Cases/{fieldName}/Values/{value}``。詳細については、次を参照してください： :doc-url:`ラベル、説明、カテゴリ、および値をローカライズする </designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>`。"
+msgstr "カスタムフィールドの値を追加するには、次のパスに従ってください：``/CustomFields/Cases/{fieldName}/Values/{value}``。詳細については、次を参照してください： :doc-url:`ラベル、説明、カテゴリ、および値をローカライズする </reference/configuration/custom-fields.html#localize-label-description-category-and-values>`。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:762
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:724
@@ -6161,9 +6150,8 @@ msgid "``processPath``"
 msgstr "``processPath``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:183
-#, fuzzy
 msgid ":doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the Ivy process"
-msgstr ":doc-url:`IWebStartable </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` Ivyプロセスの識別子"
+msgstr ":doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` Ivyプロセスの識別子"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:184
 msgid "``params``"
@@ -6589,9 +6577,8 @@ msgid "Widget type. Must be ``\"process-viewer\"`` for process viewer widget"
 msgstr "ウィジェットタイプ。プロセスビューアウィジェットの場合は ``\"process-viewer\"`` でなければならない"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:69
-#, fuzzy
 msgid ":doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process to display"
-msgstr ":doc-url:`IWebStartable </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` 表示するプロセスの識別子"
+msgstr ":doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` 表示するプロセスの識別子"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-viewer-widget.rst:100
 msgid "**Recommended process viewer widget size:** Width 8-12 columns, Height 8-12 rows for optimal process diagram visibility."
@@ -6679,18 +6666,16 @@ msgid "*(all processes)*"
 msgstr "*（すべてのプロセスにおいて）*"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:184
-#, fuzzy
 msgid ":doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifiers of specific processes to display"
-msgstr ":doc-url:`IWebStartable </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` 表示する特定プロセスの識別子"
+msgstr ":doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` 表示する特定プロセスの識別子"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:185
 msgid "``categories``"
 msgstr "``categories``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:188
-#, fuzzy
 msgid ":doc-url:`CMS URI </getting-productive/workflow/case-task/categories.html#workflow-categories>` of process categories. Shows all processes in these categories"
-msgstr ":doc-url:`CMS URI </designer-guide/how-to/workflow/categories.html#workflow-categories>` プロセスカテゴリのすべてを表示します。これらのカテゴリに属する全プロセスを表示します。"
+msgstr ":doc-url:`CMS URI </getting-productive/workflow/case-task/categories.html#workflow-categories>` プロセスカテゴリのすべてを表示します。これらのカテゴリに属する全プロセスを表示します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:189
 msgid "``sorting``"
@@ -6749,9 +6734,8 @@ msgid "Combined Mode Properties"
 msgstr "複合モードのプロパティ"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:260
-#, fuzzy
 msgid ":doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process to display with its tasks/cases"
-msgstr ":doc-url:`IWebStartable </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` 表示するプロセスの識別子とそのタスク/ケース"
+msgstr ":doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` 表示するプロセスの識別子とそのタスク/ケース"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:263
 msgid "``5``"
@@ -6782,9 +6766,8 @@ msgid "Full Mode Properties"
 msgstr "フルモードのプロパティ"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:318
-#, fuzzy
 msgid ":doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process to display in detail"
-msgstr ":doc-url:`IWebStartable </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` 詳細表示対象のプロセス識別子"
+msgstr ":doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` 詳細表示対象のプロセス識別子"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:321
 msgid "**Recommended full mode size:** Width 5-8 columns, Height 6-10 rows for complete process information display."
@@ -6807,9 +6790,8 @@ msgid "Image Mode Properties"
 msgstr "画像モードのプロパティ"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:372
-#, fuzzy
 msgid ":doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process to display with its image"
-msgstr ":doc-url:`IWebStartable </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` 表示するプロセスの識別子とその画像"
+msgstr ":doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` 表示するプロセスの識別子とその画像"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:375
 msgid "**Recommended image mode size:** Width 3-5 columns, Height 4-7 rows for optimal process image and info display."
@@ -7421,9 +7403,8 @@ msgid "This column only accepts a list of priorities' names as the filter condit
 msgstr "この列は、フィルター条件として優先度名のリストのみ受け入れます。利用可能なフィルターの演算子は ``in`` です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:461
-#, fuzzy
 msgid "Refer to :doc-url:`Task Priority </reference/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for available task priorities."
-msgstr "利用可能なタスクの優先度については、:doc-url:`タスクの優先度 </public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` を参照してください。"
+msgstr "利用可能なタスクの優先度については、:doc-url:`タスクの優先度 </reference/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:464
 msgid "``state``"
@@ -7434,9 +7415,8 @@ msgid "This column only accepts a list of task business state names as its filte
 msgstr "この列は、フィルター条件としてタスクのビジネスの状態名のリストのみ受け入れます。利用可能なフィルターの演算子は ``in`` です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:490
-#, fuzzy
 msgid "Refer to :doc-url:`Task Business States </reference/public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` for available task business states."
-msgstr "利用可能なタスクのビジネス状態については、:doc-url:`Task Business States </public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` を参照してください。"
+msgstr "利用可能なタスクのビジネス状態については、:doc-url:`Task Business States </reference/public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:494
 msgid "``startTimestamp`` and ``expiryTimestamp`` : created date and finished date of the Task"
@@ -7487,9 +7467,8 @@ msgid "``enableQuickSearch``: to enable/disable the quick search feature, set th
 msgstr "``enableQuickSearch``：クイック検索機能を有効／無効にします。以下のようにタスクウィジェットの ``enableQuickSearch`` フィールドを設定してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:718
-#, fuzzy, python-brace-format
 msgid "Following this path to add your custom field values: ``/CustomFields/Tasks/{fieldName}/Values/{value}`` Please follow this :doc-url:`Localize Label, Description, Category and Values </reference/configuration/custom-fields.html#localize-label-description-category-and-values>` to get more information."
-msgstr "カスタム・フィールドの値を追加するには、以下のパスに従ってください：``/CustomFields/Tasks/{fieldName}/Values/{value}`` :doc-url:`ラベル、説明、カテゴリー、値のローカライズ </designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>` に従ってください。"
+msgstr "カスタム・フィールドの値を追加するには、以下のパスに従ってください：``/CustomFields/Tasks/{fieldName}/Values/{value}`` :doc-url:`ラベル、説明、カテゴリー、値のローカライズ </reference/configuration/custom-fields.html#localize-label-description-category-and-values>` に従ってください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:734
 msgid "In your CMS, the path should be ``/CustomFields/Tasks/Citizenship/Values/korea``, ``/CustomFields/Tasks/Citizenship/Values/singapore`` or ``/CustomFields/Tasks/Citizenship/Values/spain``."
@@ -7921,9 +7900,8 @@ msgid "Production deployments (includes all configuration artifacts)"
 msgstr "本番環境へのデプロイメント（すべての構成アーティファクトを含む）"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:71
-#, fuzzy
 msgid "Use .zip files for production deployments. They bundle :doc-url:`branding </getting-productive/user-interface/branding/branding-engine.html>`, variables, databases, and REST clients :doc-url:`configuration </engine-guide/deployment/prepare/application-configuration/index.html>` with your projects."
-msgstr "本番環境へのデプロイには.zipファイルをご利用ください。これらは :doc-url:`エンジンのブランディング </designer-guide/user-interface/branding/branding-engine.html>` 、変数、データベース、およびRESTクライアント :doc-url:`アプリケーションの設定 </engine-guide/deployment/prepare/application-configuration/index.html>` をプロジェクトにバンドルします。"
+msgstr "本番環境へのデプロイには.zipファイルをご利用ください。これらは :doc-url:`エンジンのブランディング </getting-productive/user-interface/branding/branding-engine.html>` 、変数、データベース、およびRESTクライアント :doc-url:`アプリケーションの設定 </engine-guide/deployment/prepare/application-configuration/index.html>` をプロジェクトにバンドルします。"
 
 #: ../../source/portal-developer-guide/deployment/index.rst:74
 msgid "Prepare Deployment Packages"
@@ -9199,9 +9177,8 @@ msgid "If you call any Portal API which is not mentioned in the API documentatio
 msgstr "API ドキュメントに記載されていないポータル API を呼び出す場合、変更または削除されていることがあります。忘れずに該当する API をプロジェクトに再実装してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:132
-#, fuzzy
 msgid "To migrate the Portal, you need to migrate Axon Ivy first. Refer to the :doc-url:`Axon Ivy Migration Notes </technical-info/migration/migration-notes.html#migration-notes>`. Changes in Axon Ivy could lead to problems if a customer project is not migrated properly."
-msgstr "ポータルを移行するには、最初に Axon Ivy を移行する必要があります。:doc-url:`Axon Ivy の移行に関する注記 </axonivy/migration/index.html>` を参照してください。顧客プロジェクトが適切に移行されていない場合、Axon Ivy の変更によって問題が生じることがあります。"
+msgstr "ポータルを移行するには、最初に Axon Ivy を移行する必要があります。:doc-url:`Axon Ivy の移行に関する注記 </technical-info/migration/migration-notes.html#migration-notes>` を参照してください。顧客プロジェクトが適切に移行されていない場合、Axon Ivy の変更によって問題が生じることがあります。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:138
 msgid "In Designer"
@@ -9212,9 +9189,8 @@ msgid "Replace all Portal projects with the versions of the new release."
 msgstr "ポータルのすべてのプロジェクトを新しいリリースのバージョンに置き換えます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:141
-#, fuzzy
 msgid "Upgrade your projects to use the latest portal version by using the **Convert Project** feature. Please find more information here: :doc-url:`Converting Projects </designer/commands/index.html#project-conversion>`"
-msgstr "最新のポータルバージョンを使用するため、 **プロジェクトの変換** 機能を使用して、プロジェクトをアップグレードします。:doc-url:`プロジェクトの変換 </designer-guide/process-modeling/projects/converting.html#converting-projects>` で詳細を確認してください。"
+msgstr "最新のポータルバージョンを使用するため、 **プロジェクトの変換** 機能を使用して、プロジェクトをアップグレードします。:doc-url:`プロジェクトの変換 </designer/commands/index.html#project-conversion>` で詳細を確認してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:142
 #: ../../source/portal-developer-guide/installation/index.rst:155
@@ -9318,9 +9294,8 @@ msgid "Migrate 11.3.2 To 12.0.0"
 msgstr "11.3.2 から 12.0.0 への移行"
 
 #: ../../source/portal-developer-guide/installation/index.rst:236
-#, fuzzy
 msgid "1. Custom field values for business details pages are migrated silently from the process link relative path to its :doc-url:`IWebStartable ID </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`. You don't need to do anything, this is just for your information."
-msgstr "ビジネスの詳細ページのカスタムフィールドの値は、プロセスリンクの相対パスから :doc-url:`IWebStartable ID </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` にサイレントに移行されます。 管理者が何かを行う必要はありません。これは単なる参考情報です。"
+msgstr "ビジネスの詳細ページのカスタムフィールドの値は、プロセスリンクの相対パスから :doc-url:`IWebStartable ID </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` にサイレントに移行されます。 管理者が何かを行う必要はありません。これは単なる参考情報です。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:240
 msgid "2. We implemented a new feature to adjusting column widths in the Task and Case widgets. This change may slightly impact the column widths of Task and Case widgets from previous versions. To manually adjust column widths, please refer to the :ref:`Task widget configuraiton <new-dashboard-task-list-widget>`, and :ref:`Case widget configuraiton <new-dashboard-case-list-widget>` guides."
@@ -9623,9 +9598,8 @@ msgid "If you have customized PortalStyle, please refer to :ref:`Customization P
 msgstr "PortalStyle をカスタマイズしている場合は、:ref:`ポータルのロゴと色のカスタマイズ <customization-portal-logos-and-colors>` を参照して、ログインの背景、ファビコン、ロゴの画像をオーバーライドします。``PortalStyle`` で CMS を変更している場合は、``portal`` の CMS をそれに合わせます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:381
-#, fuzzy
 msgid "The ``customization.css`` file has been removed, in case you use it in your project, please switch to using :doc-url:`Engine Branding </getting-productive/user-interface/branding/branding-engine.html>` to customize styling"
-msgstr "``customization.css`` ファイルが削除されました。このファイルをプロジェクトで使用している場合は、:doc-url:`エンジンのブランディング </designer-guide/user-interface/branding/branding-engine.html>` の使用に切り替えて、スタイルをカスタマイズしてください。"
+msgstr "``customization.css`` ファイルが削除されました。このファイルをプロジェクトで使用している場合は、:doc-url:`エンジンのブランディング </getting-productive/user-interface/branding/branding-engine.html>` の使用に切り替えて、スタイルをカスタマイズしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:384
 msgid "Subprocesses related to documents are moved to the independent project ``portal-components``. If you customized these processes, please override the correspond subprocess again and added your customization to it."
@@ -9756,14 +9730,12 @@ msgid ":ref:`Migration steps <components-portal-components-migrate-from-old-proc
 msgstr "新しい :ref:`プロセスチェーン <components-portal-components-process-chain>` コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-process-chain>`。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:419
-#, fuzzy
 msgid "Portal dashboard widgets only support the ``CustomFields`` declared in the ``custom-fields.yaml`` file. If your ``CustomFields`` are used in the dashboard widget, please follow the :doc-url:`Custom Fields Meta Information </getting-productive/workflow/case-task/custom-fields.html#meta-information>` to adapt the data."
-msgstr "ポータルダッシュボードのウィジェットは、 ``custom-fields.yaml`` ファイルで宣言された ``CustomFields`` のみサポートします。``CustomFields`` がダッシュボードのウィジェットで使用されている場合は、:doc-url:`カスタムフィールドのメタ情報 </designer-guide/how-to/workflow/custom-fields.html#meta-information>` に従って、データを適合させてください。"
+msgstr "ポータルダッシュボードのウィジェットは、 ``custom-fields.yaml`` ファイルで宣言された ``CustomFields`` のみサポートします。``CustomFields`` がダッシュボードのウィジェットで使用されている場合は、:doc-url:`カスタムフィールドのメタ情報 </getting-productive/workflow/case-task/custom-fields.html#meta-information>` に従って、データを適合させてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:422
-#, fuzzy
 msgid "The ``DefaultChartColor.p.json`` subprocess has been removed, in case you use it in your project, please remove override this subprocess and switch to using :doc-url:`Engine Branding </getting-productive/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color."
-msgstr "``DefaultChartColor.p.json`` サブプロセスが削除されました。プロジェクトで使用している場合は、このサブプロセスのオーバーライドを削除して、:doc-url:`エンジンのブランディング </designer-guide/user-interface/branding/branding-engine.html>` の使用に切り替えて、チャート、データラベル、凡例の色をカスタマイズしてください。"
+msgstr "``DefaultChartColor.p.json`` サブプロセスが削除されました。プロジェクトで使用している場合は、このサブプロセスのオーバーライドを削除して、:doc-url:`エンジンのブランディング </getting-productive/user-interface/branding/branding-engine.html>` の使用に切り替えて、チャート、データラベル、凡例の色をカスタマイズしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:425
 msgid "Deploy :download:`portal-migration-9.4.0.iar <documents/portal-migration-9.4-9.4.0.iar>` project to your Ivy application and run it by access link ``your_host/your_application/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``"
@@ -9814,9 +9786,8 @@ msgid "Portal date filter such as TaskCreationDateFilter, CaseCreationDateFilter
 msgstr "日付の形式を確認するため、TaskCreationDateFilter、CaseCreationDateFilter などのポータルの日付フィルターの ``<p:messages for=\"...\" />`` メッセージが各カレンダーコンポーネントに追加されました。プロジェクトでカスタマイズされた日付フィルターを使用している場合は、それに合わせてテンプレートを交信してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:459
-#, fuzzy
 msgid "The callable process ``DefaultChart.p.json``, ``DefaultUserProcess.p.json`` has been removed. They are replaced by the :doc-url:`Variables </reference/configuration/variables.html>` configuration approach."
-msgstr "``DefaultChart.p.json``、 ``DefaultUserProcess.p.json`` 呼び出し可能プロセスが削除されました。これらは、:doc-url:`変数 </designer-guide/configuration/variables.html>` の設定に置き換えられます。"
+msgstr "``DefaultChart.p.json``、 ``DefaultUserProcess.p.json`` 呼び出し可能プロセスが削除されました。これらは、:doc-url:`変数 </reference/configuration/variables.html>` の設定に置き換えられます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:464
 msgid "Migrate 9.1 To 9.2"
@@ -9863,9 +9834,8 @@ msgid "Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTask
 msgstr "``OpenPortalSearch.mod``、``OpenPortalTasks.mod``、``OpenPortalTaskDetails.mod``、 ``OpenPortalCases.mod``、``OpenPortalCaseDetails.mod`` プロセスが非推奨の呼び出し可能プロセスになりました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:488
-#, fuzzy
 msgid "Portal recommends using :doc-url:`Axon Ivy HtmlOverride wizard </getting-productive/workflow/overrides/index.html#overrides>` to customize ``Portal HTML Dialog``"
-msgstr "ポータルでは、:doc-url:`オーバーライドの作成ウィザード </designer-guide/how-to/overrides.html?#override-new-wizard>` を使用して、 ``ポータルの HTML ダイアログ`` をカスタマイズすることを推奨します"
+msgstr "ポータルでは、:doc-url:`Axon Ivy の HtmlOverride ウィザード </getting-productive/workflow/overrides/index.html#overrides>` を使用して、 ``ポータルの HTML ダイアログ`` をカスタマイズすることを推奨します"
 
 #: ../../source/portal-developer-guide/installation/index.rst:490
 msgid "The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project"
@@ -9916,9 +9886,8 @@ msgid "Remove the process model ``migratePortalUrl.ivp`` after successfully migr
 msgstr "移行に成功したら、 ``migratePortalUrl.ivp`` プロセスモデルを削除します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:518
-#, fuzzy
 msgid "HOMEPAGE_URL (single Portal app mode) and registered application link (multi Portal app mode) are not available anymore. To let Portal know where your new Portal home page is, you have to set default pages in your project. Follow this chapter to customize default-pages: :doc-url:`Default Pages </getting-productive/user-interface/default-pages/index.html>`"
-msgstr "HOMEPAGE_URL（シングルポータルアプリモード）と登録済みアプリケーションのリンク（マルチポータルアプリモード）が利用できなくなりました。 ポータルに新しいポータルホームページの場所を認識させるため、プロジェクトでデフォルトのページを設定する必要があります。 :doc-url:`デフォルトのページ </designer-guide/user-interface/default-pages/index.html>` に従って、デフォルトのページをカスタマイズしてください。"
+msgstr "HOMEPAGE_URL（シングルポータルアプリモード）と登録済みアプリケーションのリンク（マルチポータルアプリモード）が利用できなくなりました。 ポータルに新しいポータルホームページの場所を認識させるため、プロジェクトでデフォルトのページを設定する必要があります。 :doc-url:`デフォルトのページ </getting-productive/user-interface/default-pages/index.html>` に従って、デフォルトのページをカスタマイズしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:524
 msgid "Portal now uses |css_variable| instead of SASS. Therefore, you have to convert the SASS syntax to the new CSS variables or use online tools such as |css_variable_convert| to convert it."
@@ -12782,9 +12751,8 @@ msgid "**Variables File**: Update ``portal/config/variables.yaml`` for developme
 msgstr "**変数ファイル**: 開発用に ``portal/config/variables.yaml`` を更新してください（Designerの再起動後も維持されます）"
 
 #: ../../source/portal-developer-guide/settings/index.rst:46
-#, fuzzy
 msgid "**Engine Cockpit**: Configure via :doc-url:`Variables </reference/configuration/variables.html>`"
-msgstr "**Engine Cockpit**: 設定は以下より行ってください :doc-url:`変数 </designer-guide/configuration/variables.html>`"
+msgstr "**Engine Cockpit**: 設定は以下より行ってください :doc-url:`変数 </reference/configuration/variables.html>`"
 
 #: ../../source/portal-developer-guide/settings/index.rst:49
 msgid "In development, configure settings in ``portal/config/variables.yaml`` to avoid re-configuring after each Designer restart."
@@ -13209,9 +13177,8 @@ msgid "0 6 \\* \\* \\*"
 msgstr "0 6 \\* \\* \\*"
 
 #: ../../source/portal-developer-guide/settings/index.rst:324
-#, fuzzy
 msgid "Cron expression defines the time to clean up data of obsolete users. E.g.: expression for at 6AM every day is ``0 6 * * *``. Refer to `CRON Expression <https:// developer.axonivy.com/doc/ 14.0/engine-guide/configur ation/advanced-configurati on.html#cron-expression>`_. Restart Ivy engine after changing this variable."
-msgstr "クロン式は、古いユーザーのデータを消去する時間を定義します。例えば、毎日 6AM の式は ``0 6 * * *`` になります。 `CRON 式 <https://developer.axonivy.com/doc/11.2/engine-guide/configuration/advanced-configuration.html#cron-expression>`_ を参照してください。この変数の変更後、Ivy エンジンを再起動します。"
+msgstr "クロン式は、古いユーザーのデータを消去する時間を定義します。例えば、毎日 6AM の式は ``0 6 * * *`` になります。 `CRON 式 <https:// developer.axonivy.com/doc/ 14.0/engine-guide/configur ation/advanced-configurati on.html#cron-expression>`_ を参照してください。この変数の変更後、Ivy エンジンを再起動します。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:338
 msgid "PortalDeleteAllFinishedHiddenCases"
@@ -14071,9 +14038,8 @@ msgid "References"
 msgstr "参考文献"
 
 #: ../../source/portal-developer-guide/static-page/index.rst:440
-#, fuzzy
 msgid ":doc-url:`Static JSF Pages Documentation </getting-productive/user-interface/static-jsf-pages.html#static-jsf-pages>`"
-msgstr "`静的JSFページ・ドキュメント <https://developer.axonivy.com/doc/12/designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_"
+msgstr ":doc-url:`静的 JSF ページのドキュメント </getting-productive/user-interface/static-jsf-pages.html#static-jsf-pages>`"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:5
 msgid "Troubleshooting"
