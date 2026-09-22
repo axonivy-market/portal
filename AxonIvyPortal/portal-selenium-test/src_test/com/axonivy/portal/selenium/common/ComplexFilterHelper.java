@@ -235,13 +235,13 @@ public class ComplexFilterHelper {
     WaitHelper.waitPageNoAnimation();
     trigger.click();
 
-    forceCloseDatePicker();
+    closeAnyOpenDatePicker();
     WaitHelper.waitPageNoAjaxAndAnimation();
   }
 
-  private static void forceCloseDatePicker() {
+  public static void closeAnyOpenDatePicker() {
     SelenideElement datePicker = $("#ui-datepicker-div");
-    if (datePicker.exists() && datePicker.isDisplayed()) {
+    if (datePicker.exists()) {
       Selenide.executeJavaScript("arguments[0].style.display='none';", datePicker);
       datePicker.shouldBe(Condition.hidden, DEFAULT_TIMEOUT);
     }
