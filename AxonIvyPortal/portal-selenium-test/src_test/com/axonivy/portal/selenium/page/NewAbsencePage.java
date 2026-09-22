@@ -94,11 +94,7 @@ public class NewAbsencePage extends TemplatePage {
   }
 
   private void typeReliably(SelenideElement element, String text) {
-    // When the dialog opens, PrimeFaces focuses its first input - the 'from' date picker - and the
-    // date picker shows its panel on focus. That panel overlays the fields below it, so a native
-    // click on them is intercepted by the calendar. Click via JS, sendKeys does not hit-test.
-    element.shouldBe(appear, DEFAULT_TIMEOUT);
-    clickByJavaScript(element);
+    element.click();
     element.clear();
     element.sendKeys(text);
   }
