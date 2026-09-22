@@ -83,17 +83,21 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void startFirstTask() {
-    WaitHelper.waitPageNoAjaxAndAnimation();
     WaitHelper.waitForNavigation(() -> getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
   }
 
   public void startFirstTaskAndWaitShowHomePageButton() {
-    WaitHelper.waitPageNoAjaxAndAnimation();
     getCellByRowAndColumnName(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 
   public void startTask(int taskIndex) {
-    WaitHelper.waitPageNoAjaxAndAnimation();
+    getCellByRowAndColumnName(taskIndex, "Start").shouldBe(getClickableCondition()).click();
+  }
+
+  public void startTask(String taskName) {
+    int taskIndex =
+        getAllTasksOfTaskWidget().asFixedIterable().stream().map(WebElement::getText).collect(Collectors.toList())
+        .indexOf(taskName);
     getCellByRowAndColumnName(taskIndex, "Start").shouldBe(getClickableCondition()).click();
   }
 
@@ -588,7 +592,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openManageFiltersDialog() {
-    $("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("a").shouldBe(getClickableCondition()).click();
+    $("a[class*='saved-filter__manage-filter']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click();
   }
 
   public void removeAllFilterItems() {
@@ -606,7 +611,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void searchSavedFilters(String input) {
-    $("div[class*='saved-filter--search-container']").$("input[id$=':search-saved-filter-input']").setValue(input);
+    var savedFilterPanel = getSavedFilterContainer();
+    savedFilterPanel.$("[id$=':search-saved-filter-input']").shouldBe(Condition.visible, DEFAULT_TIMEOUT)
+        .setValue(input);
   }
 
   public void inputValueOnColumnWidgetHeader(String columnName, String value) {

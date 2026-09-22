@@ -1,11 +1,5 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,8 +12,13 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.text;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -175,6 +174,13 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   @Override
   public void startTask(int taskIndex) {
     getCellByRowAndColumnName(taskIndex, "Start").shouldBe(getClickableCondition()).click();
+  }
+
+  public void startTask(String taskName) {
+    int taskIndex =
+        getAllTasksOfTaskWidget().asFixedIterable().stream().map(WebElement::getText).collect(Collectors.toList())
+        .indexOf(taskName);
+    startTaskByIndex(taskIndex);
   }
   
   public boolean isTableHidden() {

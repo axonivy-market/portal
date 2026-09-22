@@ -66,7 +66,7 @@ JSON Configuration Reference
      - Widget position and size (see Layout Properties below)
    * - ``processPath``
      - string
-     - :doc-url:`IWebStartable </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process to display
+     - :doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process to display
 
 **Layout Properties**
 

@@ -84,7 +84,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(SICK_LEAVE_REQUEST, FilterOperator.IS);
     taskWidget.applyFilter();
-    taskWidget.clickOnTaskName(SICK_LEAVE_REQUEST);
+    taskWidget.startTask(SICK_LEAVE_REQUEST);
 
     TaskTemplateIFramePage templatePage = new TaskTemplateIFramePage();
     templatePage.switchToIFrameOfTask();

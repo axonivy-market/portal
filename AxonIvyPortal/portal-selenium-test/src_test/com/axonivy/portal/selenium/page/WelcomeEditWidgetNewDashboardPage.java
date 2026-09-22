@@ -6,9 +6,10 @@ import static com.codeborne.selenide.Selenide.$;
 
 import java.util.List;
 
+import org.openqa.selenium.Keys;
+
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
@@ -36,14 +37,25 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
   }
 
   public void inputWelcomeTexts(List<String> welcomeTexts) {
-    var configDialog = $("#new-widget-configuration-dialog");
-    ElementsCollection welcomeTextInputs = configDialog.findAll(".js-welcome-text-input");
-    welcomeTextInputs.asDynamicIterable().forEach(elem -> {
-      elem.clear();
-    });
-    for (int i = 0; i < welcomeTexts.size(); i++) {
-      $("input[id$='welcome-text-list:" + i + ":welcome-text-input']").sendKeys(welcomeTexts.get(i));
+    if (welcomeTexts.isEmpty()) {
+      return;
     }
+    var configDialog = $("#new-widget-configuration-dialog");
+    var welcomeTextValueInput = configDialog.find("input[id$='welcome-text-value']");
+    welcomeTextValueInput.sendKeys(Keys.CONTROL, "a");
+    welcomeTextValueInput.sendKeys(welcomeTexts.get(0));
+
+    configDialog.find("button[id$='add-welcome-language-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
+    var languagesDialog = $("div[id$='welcome-text-languages-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    for (int i = 0; i < welcomeTexts.size(); i++) {
+      var languageInput = $(String.format("input[id$='table-titles:%s:title-input']", i));
+      languageInput.sendKeys(Keys.CONTROL, "a");
+      languageInput.sendKeys(welcomeTexts.get(i));
+    }
+    languagesDialog.find("button[id$='multi-language-ok-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
+    languagesDialog.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void selectTextSize(String value) {

@@ -212,6 +212,36 @@ JSON Configuration Reference
 .. note::
    When ``kpiField`` and ``aggregationMethod`` are not provided, the chart displays count statistics (number of tasks or cases). When specified, the chart applies the aggregation method to numeric values in ``kpiField``.
 
+Example:
+
+Without ``kpiField`` - counts the cases of each department:
+
+.. code-block:: javascript
+
+  "statisticAggregation": {
+    "field": "Department",
+    "type": "custom"
+  }
+
+With ``kpiField`` - sums up the ``SpendAmount`` of the cases of each department:
+
+.. code-block:: javascript
+
+  "statisticAggregation": {
+    "field": "Department",
+    "type": "custom",
+    "kpiField": "SpendAmount",
+    "aggregationMethod": "sum"
+  }
+
+.. important::
+   Make sure your custom fields are declared in the ``custom-fields.yaml`` file of your project, so that
+   they are displayed in the KPI and Group by lists when a user creates a chart on the UI.
+   Refer to :doc-url:`Custom Fields </reference/configuration/custom-fields.html>` for more information.
+
+   For a sample declaration of the custom fields used in the examples above, see
+   :ref:`statistic-sample-kpi-procurement-overview`.
+
 **Filtering & Permissions**
 
 .. list-table::

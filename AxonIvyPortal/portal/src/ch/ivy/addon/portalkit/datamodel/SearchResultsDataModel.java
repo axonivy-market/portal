@@ -82,8 +82,8 @@ public class SearchResultsDataModel implements Serializable {
   }
 
   public void setKeyword(String keyword) {
-    this.keyword = keyword;
-    analyzeKeyword(keyword.toLowerCase());
+    this.keyword = StringUtils.trim(keyword);
+    analyzeKeyword(this.keyword.toLowerCase());
     this.keywordTooShort = GlobalSearchService.isKeywordTooShort(this.keyword);
     this.taskDataModel.getCriteria().setKeyword(this.keyword);
     this.caseDataModel.getCriteria().setKeyword(this.keyword);

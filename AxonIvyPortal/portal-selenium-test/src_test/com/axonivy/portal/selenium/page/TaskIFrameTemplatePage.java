@@ -1,10 +1,5 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
 import java.util.stream.IntStream;
 
 import org.openqa.selenium.By;
@@ -15,9 +10,13 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -296,7 +295,9 @@ public class TaskIFrameTemplatePage extends TemplatePage {
 
   public void openFinishedTaskInHistoryArea() {
     SelenideElement element = $("[id$=':case-histories:show-more-note-link']").scrollTo();
-    String url = element.getAttribute("href");
+    // URL is embedded in the onclick attribute, e.g. window.open('...','_blank')
+    String onclick = element.getAttribute("onclick");
+    String url = onclick.substring(onclick.indexOf('\'') + 1, onclick.indexOf('\'', onclick.indexOf('\'') + 1));
     ((JavascriptExecutor) driver).executeScript("window.open('" + url + "','_blank');");
   }
 

@@ -1,13 +1,5 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
-import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +8,14 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.PortalConfigurationPage;
+import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 
 @IvyWebTest 
@@ -315,7 +314,7 @@ public class MenuManagementTest extends BaseTest {
     SelenideElement header = page.getMenuTableHeaderRow();
     header.shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th").filter(text("Label")).first().shouldBe(appear, DEFAULT_TIMEOUT);
-    header.$$("th").filter(text("Target")).first().shouldBe(appear, DEFAULT_TIMEOUT);
+    header.$$("th").filter(text("Links to")).first().shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th").filter(text("Permissions")).first().shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th").filter(text("Type")).first().shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th").filter(text("Source")).first().shouldBe(appear, DEFAULT_TIMEOUT);
@@ -340,7 +339,7 @@ public class MenuManagementTest extends BaseTest {
 
     SelenideElement submenuTable = page.getSubmenuDashboardTable();
     submenuTable.shouldBe(appear, DEFAULT_TIMEOUT);
-    submenuTable.$("i.ti-menu-2").shouldBe(appear, DEFAULT_TIMEOUT);
+    submenuTable.$("i.ti-grip-vertical").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -350,7 +349,7 @@ public class MenuManagementTest extends BaseTest {
 
     SelenideElement topMenuTable = page.getTopMenuDashboardTable();
     topMenuTable.shouldBe(appear, DEFAULT_TIMEOUT);
-    assertTrue(topMenuTable.$$("i.ti-menu-2").filter(visible).isEmpty());
+    assertTrue(topMenuTable.$$("i.ti-grip-vertical").filter(visible).isEmpty());
   }
 
   @Test

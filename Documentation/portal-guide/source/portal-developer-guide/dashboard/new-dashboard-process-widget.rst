@@ -181,11 +181,11 @@ Compact Mode Properties
    * - ``processPaths``
      - array
      - *(all processes)*
-     - :doc-url:`IWebStartable </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifiers of specific processes to display
+     - :doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifiers of specific processes to display
    * - ``categories``
      - array
      - *(all processes)*
-     - :doc-url:`CMS URI </designer-guide/how-to/workflow/categories.html#workflow-categories>` of process categories. Shows all processes in these categories
+     - :doc-url:`CMS URI </getting-productive/workflow/case-task/categories.html#workflow-categories>` of process categories. Shows all processes in these categories
    * - ``sorting``
      - string
      - ``"BY_ALPHABETICALLY"``
@@ -257,7 +257,7 @@ Combined Mode Properties
    * - ``processPath``
      - string
      - *(required)*
-     - :doc-url:`IWebStartable </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process to display with its tasks/cases
+     - :doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process to display with its tasks/cases
    * - ``rowsPerPage``
      - number
      - ``5``
@@ -315,7 +315,7 @@ Full Mode Properties
      - Description
    * - ``processPath``
      - string
-     - :doc-url:`IWebStartable </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process to display in detail
+     - :doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process to display in detail
 
 .. tip::
    **Recommended full mode size:** Width 5-8 columns, Height 6-10 rows for complete process information display.
@@ -369,7 +369,7 @@ Image Mode Properties
      - Description
    * - ``processPath``
      - string
-     - :doc-url:`IWebStartable </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process to display with its image
+     - :doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process to display with its image
 
 .. tip::
    **Recommended image mode size:** Width 3-5 columns, Height 4-7 rows for optimal process image and info display.

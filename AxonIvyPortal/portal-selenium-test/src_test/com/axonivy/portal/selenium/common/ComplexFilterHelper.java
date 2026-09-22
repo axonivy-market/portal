@@ -149,11 +149,14 @@ public class ComplexFilterHelper {
     numberPeriodInput.clear();
     numberPeriodInput.shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[0]));
 
-    $("div[id$=':period-type-panel']").shouldBe(getClickableCondition()).click();
+    var periodTypeSelection = $("div[id$=':period-type-panel']").shouldBe(getClickableCondition());
+    periodTypeSelection.click();
     WaitHelper.waitPageNoAnimation();
 
     $$("li").filter(text(String.valueOf(values[1]))).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
+    // ensure the dropdown panel fully closes, otherwise it can obscure the apply button on slower environments
+    $("div[id$=':period-n-type-selection_panel']").shouldBe(Condition.hidden, DEFAULT_TIMEOUT);
   }
 
   private static void handleFilterDateCurrent(SelenideElement filterElement, Object... values) {
@@ -234,7 +237,17 @@ public class ComplexFilterHelper {
     trigger.click();
     WaitHelper.waitPageNoAnimation();
     trigger.click();
+
+    closeAnyOpenDatePicker();
     WaitHelper.waitPageNoAjaxAndAnimation();
+  }
+
+  public static void closeAnyOpenDatePicker() {
+    SelenideElement datePicker = $("#ui-datepicker-div");
+    if (datePicker.exists()) {
+      Selenide.executeJavaScript("arguments[0].style.display='none';", datePicker);
+      datePicker.shouldBe(Condition.hidden, DEFAULT_TIMEOUT);
+    }
   }
 
   private static void handleFilterNumberBetween(SelenideElement filterElement, Object... values) {
