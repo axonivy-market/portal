@@ -353,8 +353,19 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void selectSavedFilter(String filterName) {
-    getSavedFilterItems().filter(text(filterName)).first().shouldBe(getClickableCondition()).click();
-    WaitHelper.waitPageNoAjaxAndAnimation();
+    SelenideElement item = getSavedFilterItems().filter(text(filterName)).first().shouldBe(getClickableCondition());
+    boolean selectedBeforeClick = item.parent().has(Condition.cssClass("selected"));
+    item.click();
+    // Don't wait on PrimeFaces.animationActive here: that global flag is cleared by a one-shot
+    // transitionend handler, and this click's ajax (update="saved-filter-node ...") can replace the
+    // transitioning element before it fires, leaving the flag stuck true for the rest of the page.
+    // onClickSavedFilterItem() toggles the selection, so wait for that to actually take effect.
+    SelenideElement node = getSavedFilterItems().filter(text(filterName)).first().parent();
+    if (selectedBeforeClick) {
+      node.shouldNotHave(Condition.cssClass("selected"), DEFAULT_TIMEOUT);
+    } else {
+      node.shouldHave(Condition.cssClass("selected"), DEFAULT_TIMEOUT);
+    }
   }
 
   public void inputValueOnColumnWidgetHeader(String columnName, String value) {
