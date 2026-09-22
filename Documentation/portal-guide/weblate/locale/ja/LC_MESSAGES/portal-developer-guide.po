@@ -251,12 +251,12 @@ msgstr "モジュール"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:368
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:163
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:188
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:222
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:238
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:271
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:292
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:313
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:328
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:252
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:268
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:301
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:322
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:343
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:358
 msgid "Type"
 msgstr "タイプ"
 
@@ -520,12 +520,12 @@ msgstr "機能"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:369
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:164
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:190
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:223
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:240
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:272
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:293
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:314
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:329
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:253
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:270
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:302
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:323
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:344
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:359
 #: ../../source/portal-developer-guide/iframe/index.rst:43
 #: ../../source/portal-developer-guide/installation/index.rst:15
 #: ../../source/portal-developer-guide/installation/index.rst:76
@@ -4839,12 +4839,12 @@ msgstr "**必須のプロパティ**"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:367
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:162
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:187
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:221
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:237
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:270
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:291
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:312
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:327
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:251
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:267
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:300
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:321
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:342
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:357
 msgid "Property"
 msgstr "プロパティ"
 
@@ -4909,7 +4909,7 @@ msgstr "``type``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:200
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:204
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:208
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:246
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:276
 msgid "string"
 msgstr "string"
 
@@ -4963,16 +4963,16 @@ msgstr "``names``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:182
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:186
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:178
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:225
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:228
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:242
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:274
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:277
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:280
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:295
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:298
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:301
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:316
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:255
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:258
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:272
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:304
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:307
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:310
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:325
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:328
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:331
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:346
 msgid "array"
 msgstr "array"
 
@@ -5077,7 +5077,7 @@ msgstr "``x``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:85
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:88
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:262
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:250
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:280
 msgid "number"
 msgstr "number"
 
@@ -5196,7 +5196,7 @@ msgstr "**表示と動作のプロパティ**"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:105
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:179
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:255
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:239
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:269
 msgid "Default"
 msgstr "デフォルト"
 
@@ -5208,7 +5208,7 @@ msgstr "``sortField``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:194
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:243
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:251
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:247
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:277
 msgid "*(none)*"
 msgstr "*(なし)*"
 
@@ -5234,7 +5234,7 @@ msgstr "``sortDescending``"
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:108
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:112
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-process-widget.rst:194
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:331
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:361
 msgid "boolean"
 msgstr "boolean"
 
@@ -6955,154 +6955,176 @@ msgid "When ``kpiField`` and ``aggregationMethod`` are not provided, the chart d
 msgstr "``kpiField`` および ``aggregationMethod`` が指定されていない場合、チャートはカウント統計（タスク数またはケース数）を表示します。指定された場合、チャートは ``kpiField`` 内の数値に対して集計方法を適用します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:215
+#: ../../source/portal-developer-guide/installation/index.rst:171
+#: ../../source/portal-developer-guide/usermenu/index.rst:98
+msgid "Example:"
+msgstr "例："
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:217
+msgid "Without ``kpiField`` - counts the cases of each department:"
+msgstr ""
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:226
+msgid "With ``kpiField`` - sums up the ``SpendAmount`` of the cases of each department:"
+msgstr ""
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:238
+msgid "Make sure your custom fields are declared in the ``custom-fields.yaml`` file of your project, so that they are displayed in the KPI and Group by lists when a user creates a chart on the UI. Refer to :doc-url:`Custom Fields </reference/configuration/custom-fields.html>` for more information."
+msgstr ""
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:242
+msgid "For a sample declaration of the custom fields used in the examples above, see :ref:`statistic-sample-kpi-procurement-overview`."
+msgstr ""
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:245
 msgid "**Filtering & Permissions**"
 msgstr "**フィルタリングと権限**"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:224
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:254
 msgid "``filters``"
 msgstr "``filters``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:226
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:256
 #, python-brace-format
 msgid "Data filters. Each filter: ``{\"field\": \"state\", \"values\": [\"OPEN\"], \"operator\": \"in\", \"type\": \"standard\"}``"
 msgstr "データフィルター。各フィルター：``{\"field\": \"state\", \"values\": [\"OPEN\"], \"operator\": \"in\", \"type\": \"standard\"}``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:227
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:257
 msgid "``permissions``"
 msgstr "``permissions``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:229
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:259
 msgid "Role names that can view this chart (e.g., ``[\"Everybody\"]``)"
 msgstr "このチャートを閲覧できるロール名（例：``[\"Everybody\"]``）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:231
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:261
 msgid "**Display Options**"
 msgstr "**表示オプション**"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:241
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:271
 msgid "``descriptions``"
 msgstr "``descriptions``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:243
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:273
 msgid "*(empty)*"
 msgstr "*（空）*"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:244
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:274
 #, python-brace-format
 msgid "Multilingual descriptions. Each entry: ``{\"locale\": \"en\", \"value\": \"Description\"}``"
 msgstr "多言語対応の説明文。各エントリ：``{\"locale\": \"en\", \"value\": \"Description\"}``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:245
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:275
 msgid "``icon``"
 msgstr "``icon``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:248
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:278
 msgid "Icon class (e.g., ``\"si-add-circle\"``)"
 msgstr "アイコンクラス（例：``\"si-add-circle\"``）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:249
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:279
 msgid "``refreshInterval``"
 msgstr "``refreshInterval``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:251
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:281
 msgid "``300``"
 msgstr "``300``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:252
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:282
 msgid "Auto-refresh interval in seconds (minimum 60)"
 msgstr "自動更新間隔（秒単位、最小60）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:255
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:285
 msgid "**Recommended statistic widget size:** Width 3-6 columns, Height 4-8 rows for optimal chart display with labels."
 msgstr "**統計ウィジェットの推奨サイズ：** 幅3～6列、高さ4～8行が、ラベル付きで最適なグラフ表示となります。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:258
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:288
 msgid "Chart-Specific Configuration"
 msgstr "チャート固有の設定"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:260
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:290
 msgid "Each chart type supports additional configuration for axis labels and colors:"
 msgstr "各チャートタイプでは、軸ラベルや色に関する追加の設定をサポートしております："
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:262
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:292
 msgid "**Bar Chart Configuration**"
 msgstr "**棒グラフの設定**"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:264
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:294
 msgid "For ``chartType: \"bar\"``, add ``barChartConfig``:"
 msgstr "``chartType: \"bar\"`` の場合、``barChartConfig`` を追加してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:273
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:294
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:303
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:324
 msgid "``xTitles``"
 msgstr "``xTitles``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:275
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:305
 #, python-brace-format
 msgid "Multilingual x-axis labels. Each entry: ``{\"locale\": \"en\", \"value\": \"Label\"}``"
 msgstr "多言語対応のx軸ラベル。各エントリ：``{\"locale\": \"en\", \"value\": \"Label\"}``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:276
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:297
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:306
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:327
 msgid "``yTitles``"
 msgstr "``yTitles``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:278
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:299
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:308
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:329
 msgid "Multilingual y-axis labels"
 msgstr "多言語対応のY軸ラベル"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:279
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:300
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:315
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:309
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:330
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:345
 msgid "``backgroundColors``"
 msgstr "``backgroundColors``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:281
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:311
 msgid "Hex color codes for bars (e.g., ``[\"#6299f7\", \"#8dc261\"]``)"
 msgstr "バーの16進カラーコード（例：``、[\"#6299f7\", \"#8dc261\"]``）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:283
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:313
 msgid "**Line Chart Configuration**"
 msgstr "**折れ線グラフの設定**"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:285
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:315
 msgid "For ``chartType: \"line\"``, add ``lineChartConfig``:"
 msgstr "``chartType: \"line\"`` の場合、``lineChartConfig`` を追加してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:296
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:326
 msgid "Multilingual x-axis labels"
 msgstr "多言語対応のx軸ラベル"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:302
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:332
 msgid "Hex color codes for line segments"
 msgstr "線分用の16進カラーコード"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:304
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:334
 msgid "**Pie Chart Configuration**"
 msgstr "**円グラフの設定**"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:306
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:336
 msgid "For ``chartType: \"pie\"``, add ``pieChartConfig``:"
 msgstr "``chartType: \"pie\"`` の場合、``pieChartConfig`` を追加してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:317
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:347
 msgid "Hex color codes for pie slices"
 msgstr "円グラフの扇形部分の16進カラーコード"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:319
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:349
 msgid "**Number Chart Configuration**"
 msgstr "**数値チャート設定**"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:321
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:351
 msgid "For ``chartType: \"number\"``, add ``numberChartConfig``:"
 msgstr "``chartType: \"number\"`` の場合、``numberChartConfig`` を追加してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:330
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:360
 msgid "``hideLabel``"
 msgstr "``hideLabel``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:332
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:362
 msgid "Toggle to show/hide the number chart label"
 msgstr "番号付き図表のラベルを表示/非表示に切り替える"
 
@@ -9212,11 +9234,6 @@ msgstr "新しい「**」のメニュー管理機能（** ）により、管理�
 #: ../../source/portal-developer-guide/installation/index.rst:169
 msgid "Set an explicit ``id`` on each ``CustomSubMenuItem`` returned from your ``portalLoadSubMenuItems`` sub-process so admin-customized ordering survives code changes (renaming the application, changing the link, or changing the menu kind)."
 msgstr "``portalLoadSubMenuItems`` サブプロセスから返される各``CustomSubMenuItem`` に対して、``id`` を明示的に設定してください。これにより、コードの変更（アプリケーション名の変更、リンクの変更、メニュー種類の変更など）があっても、管理者がカスタマイズした順序が維持されます。"
-
-#: ../../source/portal-developer-guide/installation/index.rst:171
-#: ../../source/portal-developer-guide/usermenu/index.rst:98
-msgid "Example:"
-msgstr "例："
 
 #: ../../source/portal-developer-guide/installation/index.rst:181
 msgid "4. In complex filters, the list of selectable fields now depends on the widget's Column Management configuration. Only fields that are added in Column Management and enabled in the **Filter** column are available in :ref:`Complex Filter <complex-filter>`. To make a field available, add it and enable filtering in :ref:`Task list column management <task-widget-column-management>` or :ref:`Case list column management <case-widget-column-management>`."
