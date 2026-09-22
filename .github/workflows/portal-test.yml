@@ -17,7 +17,7 @@ on:
         description: |
           url to download engine, default is the nightly build.
         type: string
-        default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
+        default: 'https://developer.axonivy.com/permalink/nightly-14.0/axonivy-engine.zip'
         required: true
 
 env:
@@ -295,7 +295,7 @@ jobs:
       - name: Download engine
         run: |
           cd $ENGINE_DIR
-          wget "${{ inputs.engineDownloadURL || 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip' }}" -O axonivy-engine.zip
+          wget "${{ inputs.engineDownloadURL || 'https://developer.axonivy.com/permalink/nightly-14.0/axonivy-engine.zip' }}" -O axonivy-engine.zip
           unzip -o axonivy-engine.zip -d .
           rm axonivy-engine.zip
 
