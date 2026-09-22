@@ -206,7 +206,7 @@ Each widget type has specific configuration options for customization. Click on 
    
    #. Open Portal to see the customized dashboard with example widgets
    
-   For variable configuration details, see :doc-url:`Axon Ivy Variables </designer-guide/configuration/variables.html>`
+   For variable configuration details, see :doc-url:`Axon Ivy Variables </reference/configuration/variables.html>`
 
 .. _customization-dashboard-templates:
 

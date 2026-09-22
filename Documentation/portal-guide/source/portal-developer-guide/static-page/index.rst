@@ -437,4 +437,4 @@ Security Considerations
 References
 ==========
 
-- `Static JSF Pages Documentation <https://developer.axonivy.com/doc/12/designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_
+- :doc-url:`Static JSF Pages Documentation </getting-productive/user-interface/static-jsf-pages.html#static-jsf-pages>`

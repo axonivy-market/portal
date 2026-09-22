@@ -29,7 +29,7 @@ How to customize the business details page
 
    |customization-business-details-page-start-request|
 
-#. Store the :doc-url:`IWebStartable ID </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` of the
+#. Store the :doc-url:`IWebStartable ID </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` of the
    process to the string custom field ``businessDetails`` of the case. There are 2 ways to perform this:
    
    * Use the ``SetBusinessDetailsPage.p.json`` callable process, and pass the IWebStartable ID of the business details process as the 

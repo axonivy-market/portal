@@ -26,11 +26,11 @@
 
           <p:outputLabel for="von" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/from')}" />
           <p:datePicker id="von" value="#{data.von}" locale="#{localeBean.locale}"
-            showTime="#{!dateTimePatternBean.isTimeHidden}" size="10" />
+            showTime="#{!dateTimePatternBean.isTimeHidden}" size="10" focusOnSelect="true" />
 
           <p:outputLabel for="bis" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/to')}" />
           <p:datePicker id="bis" value="#{data.bis}" locale="#{localeBean.locale}"
-            showTime="#{!dateTimePatternBean.isTimeHidden}" size="10" />
+            showTime="#{!dateTimePatternBean.isTimeHidden}" size="10" focusOnSelect="true" />
 
           <p:outputLabel for="genehmigt" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/approved')}" />
           <p:selectBooleanCheckbox id="genehmigt" value="#{data.genehmigt}" />

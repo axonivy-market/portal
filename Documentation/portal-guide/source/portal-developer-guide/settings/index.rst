@@ -43,7 +43,7 @@ Portal settings control global behavior and can be configured through multiple m
 
 - **Admin Settings UI**: See :ref:`update-portal-settings` for user-friendly configuration
 - **Variables File**: Update ``portal/config/variables.yaml`` for development (survives Designer restarts)
-- **Engine Cockpit**: Configure via :doc-url:`Variables </designer-guide/configuration/variables.html>`
+- **Engine Cockpit**: Configure via :doc-url:`Variables </reference/configuration/variables.html>`
 
 .. tip::
    In development, configure settings in ``portal/config/variables.yaml`` to avoid re-configuring after each Designer restart.
@@ -329,7 +329,7 @@ These variables are stored as key-value pairs. They have to be edited in the Eng
    |                                             |                               | ``0 6 * * *``. Refer to     |
    |                                             |                               | `CRON Expression <https://  |
    |                                             |                               | developer.axonivy.com/doc/  |
-   |                                             |                               | 11.2/engine-guide/configur  |
+   |                                             |                               | 14.0/engine-guide/configur  |
    |                                             |                               | ation/advanced-configurati  |
    |                                             |                               | on.html#cron-expression>`_. |
    |                                             |                               | Restart Ivy engine after    |
