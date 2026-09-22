@@ -231,8 +231,8 @@ public class DashboardTaskSearchCriteria {
       appendSortByPriorityIfSet(criteria);
       appendSortByBusinessCaseIdIfSet(criteria);
       appendSortByTechnicalCaseIdIfSet(criteria);
-      appendSortByCustomFieldIfSet(criteria);
       appendSortByWorkerIfSet(criteria);
+      appendSortByCustomFieldIfSet(criteria);
       if (order != null && isSortDescending()) {
         order.descending();
       }
@@ -317,6 +317,13 @@ public class DashboardTaskSearchCriteria {
     private void appendSortByCustomFieldIfSet(DashboardTaskSearchCriteria criteria) {
       String sortField = criteria.getSortField();
       if (sortStandardColumn || StringUtils.isBlank(sortField)) {
+        return;
+      }
+
+      boolean sortStandardField = columns.stream()
+          .filter(c -> Strings.CI.equals(sortField, c.getField()))
+          .anyMatch(c -> c.getType() == DashboardColumnType.STANDARD);
+      if (sortStandardField) {
         return;
       }
       

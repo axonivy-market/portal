@@ -154,6 +154,9 @@ public class DashboardWidgetUtils {
       }
 
       column.initDefaultValue();
+      if (DashboardStandardTaskColumn.isNonSortableStandardField(field)) {
+        column.setSortable(false);
+      }
       if (column.getType() == DashboardColumnType.CUSTOM) {
         buildCustomColumn(ICustomFieldMeta.tasks(), column, field);
       }
@@ -243,6 +246,9 @@ public class DashboardWidgetUtils {
         column = BusinessEntityConverter.convertValue(column, caseColumnModelClass);
       }
       column.initDefaultValue();
+      if (DashboardStandardCaseColumn.isNonSortableStandardField(field)) {
+        column.setSortable(false);
+      }
       if (column.getType() == DashboardColumnType.CUSTOM) {
         buildCustomColumn(ICustomFieldMeta.cases(), column, field);
       }
@@ -341,7 +347,7 @@ public class DashboardWidgetUtils {
       if (column.getDefaultFormat() == column.getFormat()) {
         column.setFormat(null);
       }
-      if (column.getDefaultSortable() == column.getSortable()) {
+      if (Objects.equals(column.getDefaultSortable(), column.getSortable())) {
         column.setSortable(null);
       }
     } else {

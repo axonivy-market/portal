@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardCaseLazyDataModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
+import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeBusinessCaseQueryType;
 import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeTrue;
@@ -98,6 +99,9 @@ public class CaseDashboardWidget extends DashboardWidget {
     List<CaseColumnModel> columnModels = getColumns();
     if (CollectionUtils.isNotEmpty(columnModels)) {
       String sortField = getSortField();
+      if (DashboardStandardCaseColumn.isNonSortableStandardField(sortField)) {
+        return null;
+      }
       for (CaseColumnModel caseColumnModel : columnModels) {
         if (caseColumnModel.getField().equalsIgnoreCase(sortField)) {
           return SortFieldUtil.buildSortMeta(caseColumnModel.getField(), isSortDescending());

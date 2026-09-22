@@ -34,7 +34,7 @@ public class BusinessCaseIdColumnModel extends TaskColumnModel {
 
   @Override
   public Boolean getDefaultSortable() {
-    return true;
+    return DashboardStandardTaskColumn.BUSINESS_CASE_ID.isSortable();
   }
 
   @Override
