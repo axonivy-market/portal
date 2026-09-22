@@ -114,7 +114,7 @@ public class NewDashboardPage extends TemplatePage {
     $("svg.sprotty-graph").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     driver.switchTo().defaultContent();
     // wait for process viewer to load
-    Sleeper.sleep(50000);
+    Sleeper.sleep(5000);
   }
 
   public WebElement waitAndGetProcessViewerWidget(int index) {
