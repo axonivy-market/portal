@@ -334,7 +334,7 @@ two differences:
 
 .. important::
    Portal only displays custom fields declared in the ``custom-fields.yaml`` file.
-   Refer to :doc-url:`Custom Fields Meta Information </designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
+   Refer to :doc-url:`Custom Fields Meta Information </getting-productive/workflow/case-task/custom-fields.html#meta-information>` for more information.
 
 Custom Action Button Columns
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -519,7 +519,7 @@ Standard Column:
 
       This column only accepts a list of case business state names as the filter value. The available filter operator is ``in``.
 
-      Refer to :doc-url:`Case business states </public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for
+      Refer to :doc-url:`Case business states </reference/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for
       available case business states.
 
    - ``creator``
@@ -755,7 +755,7 @@ Additionally, the value must be entered and maintained in the CMS in multiple la
 
 Following this path to add your custom field values: ``/CustomFields/Cases/{fieldName}/Values/{value}``
 Please follow this :doc-url:`Localize Label, Description, Category
-and Values </designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>`
+and Values </reference/configuration/custom-fields.html#localize-label-description-category-and-values>`
 to get more information.
 
 Example YAML Configuration
