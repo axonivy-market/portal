@@ -2795,7 +2795,7 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
   height: 1.786rem;
 }
 
-.task-general-info-responsibles.portal-detail-kv-value .ui-avatar {
+.task-general-info-responsibles.portal-detail-kv-value .ui-avatar, .content-field-after-escalation.portal-detail-kv-value .ui-avatar {
   margin-left: -0.3rem !important;
 }
 
