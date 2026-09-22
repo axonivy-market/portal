@@ -55,7 +55,13 @@ Standard Widget Features
 
 **Task List, Case List, and Process List (compact mode)** widgets share these standard features:
 
-- **Saved filters and filter options**: Customize what data you see
+- **Actions menu**: Click the actions button in the widget header to access additional features.
+
+  |widget-actions-menu|
+
+- **Saved filters and filter options**: Narrow down the displayed tasks, cases, or processes by
+  criteria such as status, category, or date, and save filter sets for quick reuse later
+  (see :ref:`complex-filter`)
 
   |widget-filter|
 
@@ -75,7 +81,7 @@ Customizing Your Dashboard
 
 If you have the required permissions, you can personalize your dashboard layout by:
 
-#. Accessing :ref:`Portal Configuration <dashboard-configuration>` from the sidebar to enter configuration mode.
+#. Accessing :ref:`Portal Configuration <portal-configuration>` from the side menu. Depending on your assigned permissions, you can access the :ref:`private dashboards <dashboard-configuration>` tab, the :ref:`public dashboards <public-dashboard-configuration>` tab, or both.
 
 |edit-widget|
 
@@ -139,7 +145,7 @@ The configuration panel offers the following options:
 
 - **Show Bulk Delegate toggle**: Show or hide the bulk delegate toggle. When enabled, users can select multiple tasks and delegate them in bulk.
 
-**Filters panel**
+**Filters dialog**
 
 By clicking on the :guilabel:`Filter` button, you can configure the complex filter for
 your widget and get a preview of it by clicking on the :guilabel:`Apply` button. Please
@@ -155,7 +161,7 @@ refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 **Column Management**
 
-By clicking on the :guilabel:`Manage Columns` button at the top right of the configuration panel. You get the following dialog:
+By clicking on the :guilabel:`Manage Columns` button at the top right of the dialog. You get the following dialog:
 
 |task-list-widget-table-configuration|
 
@@ -164,12 +170,13 @@ In the column management dialog, you find two sections to configure the table co
    #. Add field section: add any available fields to your widget table
    #. Columns section: configure the widget table itself as follows:
 
+      - Reorder the columns by drag and drop using the button
       - Enable visibility
-      - Use the Filter checkbox to include or exclude a field from the complex filter options
+      - Use the filter checkbox to include or exclude a field from the complex filter options
+      - Select which operators (e.g. equals, contains) are available for a field's filter conditions
       - Enable the quick search by selecting the quick search checkbox
-      - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
-
+   
    .. note::
 
       - Newly added fields are filter-enabled by default.
@@ -232,7 +239,7 @@ The configuration panel offers the following options:
 
 - **Case Type**: Select which level of cases the widget displays. Available options: **Business Case** shows only top-level cases, **Sub Case** shows only sub-cases (children of a business case), **All** shows both business cases and sub-cases. By default, the widget queries by **Business Case**.
 
-**Filters panel**
+**Filters dialog**
 
 By clicking on the :guilabel:`Filter` button, you can configure the complex filter for
 your widget and get a preview of it by clicking on the :guilabel:`Apply` button. Please
@@ -244,7 +251,7 @@ refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 **Column Management**
 
-By clicking on the :guilabel:`Manage Columns` button at the top right of the configuration panel. You get the following dialog:
+By clicking on the :guilabel:`Manage Columns` button at the top right of the dialog. You get the following dialog:
 
 |case-list-widget-table-configuration|
 
@@ -253,10 +260,11 @@ In the column management dialog, you find two sections to configure the table co
    #. Add field section: add any available field to your widget table
    #. Columns section: configure the widget table itself as follows:
 
+      - Reorder the columns by drag and drop using the button
       - Enable visibility
-      - Use the Filter checkbox to include or exclude a field from the complex filter options
+      - Use the filter checkbox to include or exclude a field from the complex filter options
+      - Select which operators (e.g. equals, contains) are available for a field's filter conditions
       - Enable quick search by selecting the quick search checkbox
-      - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
 
    .. note::
@@ -359,6 +367,17 @@ Welcome widget
 ==============
 
 You can define a welcome widget with background images for both light and dark mode and a welcome text.
+
+- **Choose which mode you want to configure**: switch between ``Light`` and ``Dark`` to configure the image.
+- **Image preview**: shows how the background image will look with the current settings.
+- **Change image**: upload a new background image for the selected mode.
+- **Choose a fit**: select how the image should fit the widget, for example ``Cover``.
+- **Show greeting**: enable or disable the greeting text shown before the welcome text.
+- **Display text**: define the welcome text to be displayed, with support for multiple languages.
+- **Text color for light mode** and **Text color for dark mode**: set the text color used in each mode.
+- **Text position**: choose where the text is placed on the image, for example ``Top-left corner``.
+- **Text size**: choose the text size, for example ``Heading 3``.
+- **Advanced settings**: expand this section for additional configuration options.
 
 |welcome-widget-configuration|
 
@@ -477,6 +496,8 @@ After selecting the :guilabel:`Clone` option, the :guilabel:`Clone widget` dialo
 
 .. |dash-board| image:: ../../screenshots/new-dashboard/dashboard.png
    :alt: Dashboard screen
+.. |widget-actions-menu| image:: ../../screenshots/new-dashboard/task-widget-actions-menu-panel.png
+   :alt: Dashboard widget's actions menu panel
 .. |widget-filter| image:: ../../screenshots/new-dashboard/widget-filter.png
    :alt: Dashboard widget's filters panel
 .. |widget-info| image:: ../../screenshots/new-dashboard/widget-info.png

@@ -1,4 +1,4 @@
-.. _dashboard-configuration:
+.. _portal-configuration:
 
 Portal Configuration
 ********************
@@ -35,19 +35,37 @@ The Portal Configuration page has four tabs:
    |                         | <PortalPackageManagement>`                        | as a JSON package                          |
    +-------------------------+---------------------------------------------------+--------------------------------------------+
 
+.. _dashboard-configuration:
+
 Private dashboards configuration
 ================================
 
-The tab :guilabel:`Private dashboards` allows you to add or edit your private dashboards, and reorder all dashboards visible to you.
-
 |private-dashboard-configuration|
+
+The :guilabel:`Private dashboards` section shows your private dashboards in a table with the following columns:
+
+- **Dashboard title**: The name of the dashboard
+- **Description**: Optional description text
+- **Actions**: Available operations for each dashboard
+- **Reorder**: Reorder dashboards
+
+**Available Actions:**
+
+Click on |actions-menu-icon| to open the :guilabel:`Actions` menu with these options:
+
+|private-dashboard-actions-menu|
+
+- |settings-icon| **Settings**: Modify dashboard name and description
+- |edit-icon| **Edit layout**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
+- |download-icon| **Export dashboard**: Download dashboard as JSON file (requires :ref:`🔑DashboardExportOwn <DashboardExportOwn>` permission)
+- |trash-icon| **Delete**: Remove the private dashboard
 
 .. _howto-add-private-dashboard:
 
 HowTo: add private dashboard
 ----------------------------
 
-#. Select :guilabel:`Add New Dashboard` button
+#. Select :guilabel:`New private Dashboard` button
 
 #. Select one of the available templates to add  (see :ref:`Available dashboard templates <private-available-dashboard-template>`).
 
@@ -55,7 +73,7 @@ HowTo: add private dashboard
 
 #. Enter the mandatory title and the optional description for the private dashboard.
 
-#. Create your private dashboard by selecting |add-icon| Create dashboard.
+#. Create your private dashboard by selecting :guilabel:`Create dashboard`.
 
 #. Configure your private dashboard (see: :ref:`Dashboard <new-dashboard>`).
 
@@ -105,20 +123,13 @@ HowTo: import private dashboards
 HowTo: edit private dashboards
 ------------------------------
 
-The :guilabel:`Edit private dashboard` section shows your private dashboards in a table with the following columns:
+Select :guilabel:`Settings` in the :guilabel:`Actions` menu to open the :guilabel:`Edit dashboard` dialog:
 
-- **Dashboard title**: The name of the dashboard
-- **Dashboard description**: Optional description text
-- **Actions**: Available operations for each dashboard
+- **Dashboard icon**: Select an icon to represent the dashboard
+- **Dashboard title**: Enter the mandatory title. To provide translations, use the multi-language input (see :ref:`portal-multi-language`)
+- **Description**: Enter an optional description
 
-**Available Actions:**
-
-Click on |actions-menu-icon| to open the :guilabel:`Actions` menu with these options:
-
-- |edit-icon| **Edit**: Modify dashboard name and description
-- |settings-icon| **Configuration**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
-- |download-icon| **Export**: Download dashboard as JSON file (requires :ref:`🔑DashboardExportOwn <DashboardExportOwn>` permission)
-- |trash-icon| **Delete**: Remove the private dashboard
+Click :guilabel:`Save` to apply your changes.
 
 |edit-private-dashboards|
 
@@ -138,15 +149,36 @@ You can rearrange dashboards by dragging and dropping |reorder-dashboard-icon| i
 .. hint::
    If you create new dashboards, they are automatically added to the end of your personal sort order.
 
+.. _public-dashboard-configuration:
+
 Public dashboards configuration
 ================================
 
 The tab :guilabel:`Public dashboards` allows you to add, edit, and reorder public dashboards.
 Public dashboards are organized into three sections based on their **Display Type** setting:
 
-- **Top Menu** — dashboards appear as top-level items in the sidebar navigation
+- **Sidebar** — dashboards appear as top-level items in the sidebar
 - **Submenu** — dashboards are grouped under the Dashboard icon in the sidebar
 - **Hidden** — dashboards are not shown in the sidebar
+
+Each section displays a table with the following columns:
+
+- **Dashboard title**: The name of the dashboard
+- **Dashboard permissions**: Roles/permissions that can access the dashboard
+- **Dashboard description**: Optional description text
+- **Actions**:
+
+      Click on |actions-menu-icon| button to open the :guilabel:`Actions` menu with these options:
+
+      |public-dashboard-actions-menu|
+
+      - |settings-icon| **Settings**: Modify dashboard name, permissions, description, and Display Type
+      - |edit-icon| **Edit layout**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
+      - |download-icon| **Export dashboard**: Download dashboard as JSON file (requires :ref:`🔑DashboardExportPublic <DashboardExportPublic>` permission)
+      - |share-icon| **Share**: Generate a shareable link to the dashboard (requires :ref:`🔑ShareDashboardLink <ShareDashboardLink>` permission)
+      - |trash-icon| **Delete**: Remove the public dashboard
+
+- **Reorder**: Drag handle |reorder-dashboard-icon| to reorder dashboards within the **Submenu** section
 
 |public-dashboard-configuration|
 
@@ -155,7 +187,7 @@ Public dashboards are organized into three sections based on their **Display Typ
 HowTo: add public dashboard
 ---------------------------
 
-#. Select :guilabel:`Add New Dashboard` button.
+#. Select :guilabel:`New dashboard` button.
 
 #. Select one of the available templates to add  (see :ref:`Available dashboard templates <public-available-dashboard-template>`).
 
@@ -164,11 +196,11 @@ HowTo: add public dashboard
 #. Enter the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
    Select a **Display Type** to control where the dashboard appears in the sidebar:
 
+   - **Sidebar** — the dashboard appears as a top-level item in the sidebar
    - **Submenu** — the dashboard is grouped under the Dashboard icon in the sidebar
-   - **Top Menu** — the dashboard appears as a top-level item in the sidebar navigation
    - **Hidden** — the dashboard is not shown in the sidebar
 
-#. Create the public dashboard by selecting |add-icon| Create dashboard.
+#. Create the public dashboard by selecting Create dashboard.
 
 #. Configuration public dashboard (see: :ref:`Dashboard <new-dashboard>`).
 
@@ -198,7 +230,7 @@ HowTo: import public dashboard
 .. note::
    Requires :ref:`🔑DashboardImportPublic <DashboardImportPublic>` permission.
 
-#. Select :guilabel:`Add New Dashboard` button.
+#. Select :guilabel:`New dashboard` button.
 
 #. Select |import-icon| Import.
 
@@ -210,7 +242,7 @@ HowTo: import public dashboard
    Select a **Display Type** to control where the dashboard appears in the sidebar:
 
    - **Submenu** — the dashboard is grouped under the Dashboard icon in the sidebar
-   - **Top Menu** — the dashboard appears as a top-level item in the sidebar navigation
+   - **Sidebar** — the dashboard appears as a top-level item in the sidebar navigation
    - **Hidden** — the dashboard is not shown in the sidebar
 
 #. Import the dashboard by selecting :guilabel:`Create Dashboard` button.
@@ -224,31 +256,15 @@ HowTo: import public dashboard
 HowTo: edit public dashboards
 -----------------------------
 
-The :guilabel:`Edit public dashboards` section shows you the public dashboards organized into three sections: **Top Menu**, **Submenu**, and **Hidden**. Each section displays a table with the following columns:
-
-- **Dashboard title**: The name of the dashboard
-- **Dashboard permissions**: Roles/permissions that can access the dashboard
-- **Dashboard description**: Optional description text
-- **Display Type**: Where the dashboard appears in the sidebar (Top Menu, Submenu, or Hidden)
-
-**Available Actions:**
-
-Click on |actions-menu-icon| to open the :guilabel:`Actions` menu with these options:
-
-- |edit-icon| **Edit**: Modify dashboard name, permissions, description, and Display Type
-- |settings-icon| **Configuration**: Configure dashboard widgets (see: :ref:`Dashboards <new-dashboard>`)
-- |download-icon| **Export**: Download dashboard as JSON file (requires :ref:`🔑DashboardExportPublic <DashboardExportPublic>` permission)
-- |share-icon| **Share**: Generate a shareable link to the dashboard (requires :ref:`🔑ShareDashboardLink <ShareDashboardLink>` permission)
-- |trash-icon| **Delete**: Remove the public dashboard
-
 |edit-public-dashboards|
+
+Select :guilabel:`Settings` in the :guilabel:`Actions` menu to open an edit dashboard dialog, modify the dashboard icon, title, permissions, description, and display type.
 
 .. note::
    To move a dashboard between sections, open the Edit dialog and change the **Display Type** field.
 
 .. hint::
    When exporting a dashboard that references other dashboards, you will be prompted to include the referenced dashboards in the export.
-
 
 HowTo: share public dashboards
 --------------------------------
@@ -268,10 +284,8 @@ HowTo: reorder public dashboards
 
 You can rearrange dashboards within the **Submenu** section by dragging and dropping |reorder-dashboard-icon| icon.
 
-|reorder-public-dashboards|
-
 .. note::
-   Drag-and-drop reordering is only available within the **Submenu** section. Dashboards in the **Top Menu** and **Hidden** sections cannot be reordered by drag and drop.
+   Drag-and-drop reordering is only available within the **Submenu** section.
 
 Sidebar configuration
 =====================
@@ -283,6 +297,32 @@ The tab :guilabel:`Sidebar` allows portal administrators to manage the sidebar m
 
 |sidebar-navigation-configuration|
 
+Sidebar Settings
+----------------
+
+The **Sidebar Settings** card provides controls that affect the sidebar behaviour for all users.
+
+|sidebar-settings-panel|
+
+.. table::
+   :widths: 25 75
+
+   +---------------------------+--------------------------------------------------------------+
+   | Setting                   | Description                                                  |
+   +===========================+==============================================================+
+   | **Disable Sidebar**       | When enabled, hides the entire sidebar for all users.        |
+   +---------------------------+--------------------------------------------------------------+
+   | **Sidebar Behaviour**     | Controls how the sidebar opens. Only visible when the        |
+   |                           | sidebar is not disabled. Options:                            |
+   |                           |                                                              |
+   |                           | - **Hover** — sidebar opens on mouse-over                    |
+   |                           | - **Click** — sidebar requires a click to open               |
+   |                           | - **Stick** — sidebar is always visible (pinned)             |
+   +---------------------------+--------------------------------------------------------------+
+
+.. note::
+   When either Sidebar Setting is changed, the page automatically reloads to apply the change.
+
 Menu Items
 ----------
 
@@ -290,7 +330,9 @@ The menu items table displays all sidebar navigation entries with the following 
 
 - **Label**: The display title of the menu item
 - **Links To**: The URL or dashboard the item links to
+- **Permissions**: The permissions set for each item. Not all item types have permissions. This depends on the item's **Type**, items without permissions show ``-``
 - **Type**: The kind of item (Standard, External Link, Main Dashboard, Static Page, etc.)
+- **Source**: Where the item was created (Built-in, Dashboard configuration, Callable process, Configuration, etc.)
 - **Actions**: Edit and Delete operations accessible via the overflow menu
 - **Reorder**: Drag handle (|reorder-dashboard-icon|) to reorder items
 
@@ -304,8 +346,9 @@ HowTo: add a sidebar menu item
 
    |add-menu-item-dialog|
 
-#. Select the item type:
+#. Select the menu type:
 
+   - **Process** — links to an Ivy process
    - **Main Dashboard** — links to a portal dashboard
    - **External Link** — links to any URL; can be configured to open in a new tab
    - **Static Page** — links to a static portal page
@@ -313,11 +356,11 @@ HowTo: add a sidebar menu item
    .. note::
       The item type cannot be changed after the menu item has been created.
 
+#. Depending on the selected menu type, select the corresponding value (e.g. the process, dashboard, URL, or static page to link to).
+
 #. Enter a title for the item. To provide translations, use the multi-language input (see :ref:`portal-multi-language`).
 
 #. Select an icon to represent the item in the sidebar.
-
-#. Set permissions to control which users can see this menu item.
 
 #. Click :guilabel:`Save` to add the item to the sidebar.
 
@@ -349,32 +392,6 @@ HowTo: reorder sidebar menu items
 
 You can rearrange sidebar menu items by dragging and dropping |reorder-dashboard-icon| icon to the desired position.
 
-Sidebar Settings
-----------------
-
-Below the menu items table, the **Sidebar Settings** card provides controls that affect the sidebar behaviour for all users.
-
-|sidebar-settings-panel|
-
-.. table::
-   :widths: 25 75
-
-   +---------------------------+--------------------------------------------------------------+
-   | Setting                   | Description                                                  |
-   +===========================+==============================================================+
-   | **Disable Sidebar**       | When enabled, hides the entire sidebar for all users.        |
-   +---------------------------+--------------------------------------------------------------+
-   | **Sidebar Behaviour**     | Controls how the sidebar opens. Only visible when the        |
-   |                           | sidebar is not disabled. Options:                            |
-   |                           |                                                              |
-   |                           | - **Hover** — sidebar opens on mouse-over                    |
-   |                           | - **Click** — sidebar requires a click to open               |
-   |                           | - **Stick** — sidebar is always visible (pinned)             |
-   +---------------------------+--------------------------------------------------------------+
-
-.. note::
-   When either Sidebar Setting is changed, the page automatically reloads to apply the change.
-
 Package Management configuration
 ==================================
 
@@ -384,6 +401,8 @@ Package Management configuration
 The tab :guilabel:`Package Management` allows you to export the current Portal configuration into a single zip package, or import a zip package to apply its configuration.
 
 |package-management-configuration|
+
+.. _exportable-configuration-files:
 
 Exportable configuration files
 -------------------------------
@@ -451,7 +470,7 @@ HowTo: import a Portal package
 .. important::
 
       - Importing a package **replaces** the existing configuration for each recognized file type. This action cannot be undone.
-      - File names must match exactly as listed above for a file to be recognized on import.
+      - File names must match exactly as :ref:`listed above <exportable-configuration-files>` for a file to be recognized on import.
 
 .. note::
    Only ``.zip`` files are accepted. If the uploaded file cannot be read, or contains no recognized Portal configuration files, an error message is shown and nothing is imported.
@@ -488,6 +507,8 @@ Different Portal Configuration actions require specific permissions:
    :alt: Portal Configuration entry pinned to the bottom of the left sidebar
 .. |private-dashboard-configuration| image:: ../../screenshots/dashboard-configuration/private-dashboard-configuration.png
    :alt: Private dashboard configuration
+.. |private-dashboard-actions-menu| image:: ../../screenshots/dashboard-configuration/private-dashboard-actions-menu.png
+   :alt: Private dashboard actions menu
 .. |create-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/create-private-dashboard-dialog.png
    :alt: Create private dashboard dialog
 .. |edit-private-dashboards| image:: ../../screenshots/dashboard-configuration/edit-private-dashboards.png
@@ -496,12 +517,12 @@ Different Portal Configuration actions require specific permissions:
    :alt: Reorder private dashboards
 .. |public-dashboard-configuration| image:: ../../screenshots/dashboard-configuration/public-dashboard-configuration.png
    :alt: Public dashboard configuration
+.. |public-dashboard-actions-menu| image:: ../../screenshots/dashboard-configuration/public-dashboard-actions-menu.png
+   :alt: Public dashboard actions menu
 .. |create-public-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/create-public-dashboard-dialog.png
    :alt: Create public dashboard dialog
 .. |edit-public-dashboards| image:: ../../screenshots/dashboard-configuration/edit-public-dashboards.png
    :alt: Edit public dashboard dialog
-.. |reorder-public-dashboards| image:: ../../screenshots/dashboard-configuration/reorder-public-dashboards.png
-   :alt: Reorder public dashboards
 .. |dashboard-templates| image:: ../../screenshots/dashboard-configuration/dashboard-templates.png
    :alt: Dashboard template selection dialog
 .. |import-public-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/import-public-dashboard-dialog.png

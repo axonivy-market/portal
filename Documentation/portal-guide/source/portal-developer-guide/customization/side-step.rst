@@ -57,10 +57,16 @@ How to Use and Set Up
 
    If not defined, side step task can be assigned to all users and roles in the security context
 
-#. Define configuration for side step by building a list of ``SideStepProcessDTO`` objects. 
+#. Define configuration for side step by building a list of ``SideStepProcessDTO`` objects.
+
+   Each ``processNameCmsUri`` below must point to a CMS entry you create yourself — it is not
+   generated automatically. Before wiring up the DTOs, add a CMS content object at that URI
+   (e.g. ``/Processes/SideStep/AskMoreDetails``) with the display name(s) you want shown for that
+   side step option. If the CMS entry does not exist, the side step option will not display a
+   name/label at all.
 
     .. code-block:: javascript
-      
+
         // First configuration option - using CMS URI for multilingual process names
         SideStepProcessDTO dto1 = SideStepProcessDTO.builder()
         .processNameCmsUri("/Processes/SideStep/AskMoreDetails")
@@ -106,7 +112,7 @@ How to Use and Set Up
       String jsonValue = BusinessEntityConverter.entityToJsonValue(sideStepDto);
 
       // For side step task level
-      task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(jsonValue);
+      task.customFields().textField(CustomFields.SIDE_STEP_TASK).set(jsonValue);
       // Or for side step case level
       ivy.case.customFields().textField(CustomFields.SIDE_STEP_CASE).set(jsonValue);
 

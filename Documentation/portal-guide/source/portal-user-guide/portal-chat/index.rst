@@ -21,7 +21,8 @@ HowTo: Create a process chat related to a case
 
 .. note::
 
-   Process chat of a case could have pre-defined roles that all users of those roles will join the process chat automatically. 
+   - The process chat icon is only shown when :guilabel:`Portal.Chat.EnableGroup` is activated.
+   - Process chat of a case could have pre-defined roles that all users of those roles will join the process chat automatically.
 
 #. Go to any tasks, you will see the process chat icon there.
 

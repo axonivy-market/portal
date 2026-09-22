@@ -18,29 +18,29 @@ Keyboard Shortcuts Quick Reference
    +===================+============================================================+
    | **Navigation**                                                                 |
    +-------------------+------------------------------------------------------------+
-   | Alt + 1           | Jump to Dashboard                                          |
+   | Alt + 1           | Focus Dashboard in the sidebar                             |
    +-------------------+------------------------------------------------------------+
-   | Alt + 2           | Jump to Process section                                    |
+   | Alt + 2           | Focus Processes in the sidebar                             |
    +-------------------+------------------------------------------------------------+
-   | Alt + 3           | Jump to Task section                                       |
+   | Alt + 3           | Focus Tasks in the sidebar                                 |
    +-------------------+------------------------------------------------------------+
-   | Alt + 4           | Jump to Case section                                       |
+   | Alt + 4           | Focus Cases in the sidebar                                 |
    +-------------------+------------------------------------------------------------+
-   | Alt + 5           | Jump to Search section                                     |
+   | Alt + 5           | Focus global search                                        |
    +-------------------+------------------------------------------------------------+
-   | Alt + 6           | Jump to User Settings                                      |
+   | Alt + 6           | Focus user menu profile                                    |
    +-------------------+------------------------------------------------------------+
-   | Alt + 7           | Toggle main menu visibility                                |
+   | Alt + 7           | Collapse or expand the sidebar                             |
    +-------------------+------------------------------------------------------------+
    | Tab               | Cycle through dashboard items (when on Dashboard)          |
    +-------------------+------------------------------------------------------------+
    | **Widget Focus**                                                               |
    +-------------------+------------------------------------------------------------+
-   | Alt + W           | Focus on Task widget (press repeatedly to cycle)           |
+   | Alt + W           | Focus Start button of the next task                        |
    +-------------------+------------------------------------------------------------+
-   | Alt + Q           | Focus on Case widget (press repeatedly to cycle)           |
+   | Alt + Q           | Focus actions menu of the next case                        |
    +-------------------+------------------------------------------------------------+
-   | Alt + A           | Focus on Process widget (press repeatedly to cycle)        |
+   | Alt + A           | Focus next process                                         |
    +-------------------+------------------------------------------------------------+
    | **Action Menu**                                                                |
    +-------------------+------------------------------------------------------------+
@@ -86,13 +86,13 @@ Main Navigation Shortcuts
 
 Use these shortcuts to jump directly to major portal sections:
 
-- **Alt + 1**: Jump to the Dashboard
-- **Alt + 2**: Jump to the Process section
-- **Alt + 3**: Jump to the Task section
-- **Alt + 4**: Jump to the Case section
-- **Alt + 5**: Jump to the Search section
-- **Alt + 6**: Jump to User Settings
-- **Alt + 7**: Toggle the visibility of the main menu
+- **Alt + 1**: Focus Dashboard in the sidebar
+- **Alt + 2**: Focus Processes in the sidebar
+- **Alt + 3**: Focus Tasks in the sidebar
+- **Alt + 4**: Focus Cases in the sidebar
+- **Alt + 5**: Focus global search
+- **Alt + 6**: Focus user menu profile
+- **Alt + 7**: Collapse or expand the sidebar, switching between the icons only and the icons with names
 
 When multiple dashboards are available in the navigation bar, use the **Tab key** to cycle through them. Press **Enter** to open the highlighted dashboard.
 
@@ -101,9 +101,9 @@ Widget Navigation
 
 Navigate within list widgets using these shortcuts:
 
-- **Alt + W**: Task Widget — Focus on first task; press repeatedly to cycle through tasks
-- **Alt + Q**: Case Widget — Focus on first case; press repeatedly to cycle through cases
-- **Alt + A**: Process Widget — Focus on first process; press repeatedly to cycle through processes
+- **Alt + W**: Task Widget — Focus the Start button of the first task; press repeatedly to move to the Start button of the next task
+- **Alt + Q**: Case Widget — Focus the actions menu of the first case; press repeatedly to move to the actions menu of the next case
+- **Alt + A**: Process Widget — Focus the first process; press repeatedly to move to the next process
 
 .. tip::
    When you reach the last visible item, the portal automatically scrolls down. After the very last item, 
@@ -169,35 +169,32 @@ We rely on Microsoft Narrator to support screen readers, ensuring that users wit
 Descriptive Elements in the Task Widget
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When you focus on a task element using a keyboard shortcut, the screen reader announces:
+When you focus on the Start button of a task, the screen reader announces the columns which are
+displayed in the widget. Each column is read as "column header: value", in the same order as in the
+widget, and the Start column is read as "Task start".
 
-   "Task Start - Task Name: `<task name>` - Priority: `<priority>` - Status: `<status>` - Expiry Date: `<expiry date>`"
+For example, a Task widget which displays the columns Task name, Responsible, State, Expiry and
+Start announces:
 
-Information read includes:
+   "Task name: `<task name>` - Responsible: `<responsible>` - State: `<state>` - Expiry: `<expiry>` - Task start"
 
-- **Task Name**: The name or title of the task
-- **Priority**: The priority level (e.g., High, Medium, Low)
-- **Status**: The current status (e.g., In Progress, Completed, Open)
-- **Expiry Date**: The due date of the task
+Columns which you do not display are not announced, and a column without a value, e.g. a task
+without an expiry date, is skipped.
 
 Descriptive Elements in the Case Widget
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When you focus on a case element using a shortcut, the screen reader announces:
+When you focus on the actions menu of a case, the screen reader announces the displayed columns of
+the case in the same way.
 
-   "Case Name: `<case name>` - State: `<state>` - Created On: `<creation date>` - Finished On: `<finish date>` - Owners: `<first owner name>`"
+For example, a Case widget which displays the columns Case Id, Case name, State, Creator and
+Created announces:
 
-Information read includes:
-
-- **Case Name**: The name or title of the case
-- **State**: The current state (e.g., Open, Done, Deleted)
-- **Created On**: The creation date of the case
-- **Finished On**: The completion date of the case
-- **Owners**: The current owners of the case
+   "Case Id: `<case id>` - Case name: `<case name>` - State: `<state>` - Creator: `<creator>` - Created: `<created date>`"
 
 .. note::
-   If the selected task or case is not in the "Completed" state, all relevant details are 
-   read aloud to inform you of the current status.
+   The announced texts follow the column headers of the widget. If you add, remove or rename a
+   column in the column management dialog, the screen reader announces the row accordingly.
 
 Text Alternatives for Buttons
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -216,7 +213,7 @@ To further enhance usability, we have created an **Accessibility Dashboard** tha
 Integrating the Accessibility Dashboard
 ----------------------------------------
 
-You can easily integrate this feature by selecting the **"Accessibility Dashboard"** template when creating a dashboard.
+You can easily integrate this feature by selecting the :guilabel:`Accessibility` template when creating a dashboard.
 
 |accessibility-dashboard-creation|
 

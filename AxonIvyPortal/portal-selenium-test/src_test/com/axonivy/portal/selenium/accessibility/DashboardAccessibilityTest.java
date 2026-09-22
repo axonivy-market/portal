@@ -19,8 +19,8 @@ import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest(headless = false)
-public class DashboardAccessibilityTest extends BaseTest{
+@IvyWebTest
+public class DashboardAccessibilityTest extends BaseTest {
 
   @BeforeEach
   public void setup() {

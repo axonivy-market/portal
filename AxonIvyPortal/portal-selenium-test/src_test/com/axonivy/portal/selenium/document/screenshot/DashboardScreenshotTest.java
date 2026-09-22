@@ -272,7 +272,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
                 taskConfigurationPage.cancelMultiLanguageDialogWhenAddWidget();
                 taskConfigurationPage.openFilter();
-                taskConfigurationPage.addFilter("name", FilterOperator.EMPTY);
+                taskConfigurationPage.addFilter("name", FilterOperator.NOT_EMPTY);
                 ScreenshotUtils.resizeBrowserAndCaptureWholeScreen(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration", new Dimension(1366, 768));
                 taskConfigurationPage.closeFilter();
                 WebElement columnManagementDialog = taskConfigurationPage.openColumnManagementDialog();
@@ -419,7 +419,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
         @Test
         public void screenshotWelcomeWidget() throws IOException {
-                ScreenshotUtils.maximizeBrowser();
+                ScreenshotUtils.resizeBrowser(new Dimension(1920, 5000));
                 addPublicWidget(NewDashboardDetailsEditPage.WELCOME_WIDGET);
                 WelcomeEditWidgetNewDashboardPage welcomeWidgetPage = new WelcomeEditWidgetNewDashboardPage();
                 welcomeWidgetPage.waitForDialogLoaded();

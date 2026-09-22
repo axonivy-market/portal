@@ -578,12 +578,8 @@ Changes in 14.0.0
 
 - Improved the task widget query: a filter on a case custom field now queries only the case its column refers to,
   instead of querying the task's case and business case at once.
-- Completely removed the **AI Assistant** integration from Portal: the AI Assistant icon is gone from the top
-  bar and the REST endpoint ``POST /chatbot/{clientId}`` no longer exists. The REST client
-  ``PortalAI (LangChain Server)`` and the variable ``PortalAiUrl`` are obsolete and can be removed from your
-  configuration.
-- The ``com.axonivy.portal.components.publicapi.AiAssistantAPI`` class is removed and no longer supported,
-  together with the types used in its signature (``AiResultDTO``, ``AIState``). They have no replacement.
+- Removed the **AI Assistant** from Portal.
+- The public API ``com.axonivy.portal.components.publicapi.AiAssistantAPI`` is removed and no longer supported.
 
 Changes in 13.2.0
 -----------------
