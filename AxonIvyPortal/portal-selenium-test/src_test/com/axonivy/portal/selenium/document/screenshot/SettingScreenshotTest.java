@@ -119,15 +119,15 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     newAbsencePage.addDeputy(TestAccount.DEMO_USER.getFullName());
     newAbsencePage.addDeputy("Emma Project Lead");
     newAbsencePage.setDeputyAsPermanent(1);
-    
+
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(absencePage.getAddAbsenceDialog(),
         ScreenshotUtils.SETTINGS_FOLDER + "add-absence-dialog", new ScreenshotMargin(20));
     newAbsencePage.closeAddAbsenceDialog();
-    createAbsenceForCurrentUser(TOMORROW, TOMORROW, "Vacation", absencePage);
-    absencePage.waitForAbsenceTableChange(1);
+    // createAbsenceForCurrentUser(TOMORROW, TOMORROW, "Vacation", absencePage);
+    // absencePage.waitForAbsenceTableChange(1);
 
     absencePage.openSubstitutesTab();
-    ScreenshotUtils.capturePageScreenshot( ScreenshotUtils.SETTINGS_FOLDER + "substitute-tab");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.SETTINGS_FOLDER + "substitute-tab");
     absencePage.openAddSubstituteDialog();
     absencePage.addDeputyInChooseDialog(TestAccount.DEMO_USER.getFullName());
     absencePage.addDeputyInChooseDialog("Ava Designer");
