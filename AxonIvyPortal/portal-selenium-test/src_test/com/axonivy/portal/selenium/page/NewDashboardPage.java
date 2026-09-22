@@ -113,7 +113,9 @@ public class NewDashboardPage extends TemplatePage {
     switchToIframeWithId("process-viewer");
     $("svg.sprotty-graph").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     driver.switchTo().defaultContent();
-    waitForWidgetLoadedByExpandThenCollapse(processViewer);
+    // wait for process viewer to load
+    Sleeper.sleep(50000);
+    // waitForWidgetLoadedByExpandThenCollapse(processViewer);
   }
 
   public WebElement waitAndGetProcessViewerWidget(int index) {
@@ -141,9 +143,7 @@ public class NewDashboardPage extends TemplatePage {
             .get(index)
             .shouldBe(appear, DEFAULT_TIMEOUT);
     widget.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
-    // wait for process viewer to load
-    Sleeper.sleep(50000);
-    // waitForWidgetLoadedByExpandThenCollapse(widget);
+    waitForWidgetLoadedByExpandThenCollapse(widget);
     return widget.ancestor(".grid-stack-item");
   }
 
