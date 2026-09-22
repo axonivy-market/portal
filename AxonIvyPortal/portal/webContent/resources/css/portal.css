@@ -2764,13 +2764,13 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 .portal-detail-kv-value.flex {
   justify-content: flex-end;
 }
-/* Avatar + name inside a value cell (Creator) */
+
 .portal-detail-kv-value .ui-avatar,
 .portal-detail-kv-value .avatar,
 .portal-detail-kv-value img {
   width: 1.786rem;
   height: 1.786rem;
-  border-radius: 50%;
+  margin-left: 0 !important;
 }
 .portal-detail-body .business-case-information .case-detail-business-case {
   color: var(--portal-detail-accent-color);
