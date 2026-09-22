@@ -4,7 +4,6 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
@@ -26,9 +25,6 @@ import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 
 @IvyWebTest
 public class SettingScreenshotTest extends ScreenshotBaseTest {
-
-  private static final LocalDate TODAY = LocalDate.now();
-  private static final LocalDate TOMORROW = TODAY.plusDays(1);
 
   @Test
   public void screenshotAdminSettings() throws IOException {
@@ -124,10 +120,11 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
         ScreenshotUtils.SETTINGS_FOLDER + "add-absence-dialog", new ScreenshotMargin(20));
     newAbsencePage.proceed();// closeAddAbsenceDialog();
     absencePage.waitForAbsenceTableChange(1);
+
+    // change tab to wait for data to display
     absencePage.openSubstitutesTab();
     absencePage.openAbsencesTab();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.SETTINGS_FOLDER + "absence-management-page");
-    // createAbsenceForCurrentUser(TOMORROW, TOMORROW, "Vacation", absencePage);
 
     absencePage.openSubstitutesTab();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.SETTINGS_FOLDER + "substitute-tab");
@@ -141,16 +138,6 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     login(TestAccount.ADMIN_USER);
     homePage.openAbsencePage();
     ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.SETTINGS_FOLDER + "select-user");
-  }
-
-  private void createAbsenceForCurrentUser(LocalDate from, LocalDate till, String comment, AbsencePage absencePage) {
-    createAbsence("", from, till, comment, absencePage);
-  }
-
-  private void createAbsence(String fullname, LocalDate from, LocalDate till, String comment, AbsencePage absencePage) {
-    NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
-    newAbsencePage.input(fullname, from, till, comment);
-    newAbsencePage.proceed();
   }
 
   @Test

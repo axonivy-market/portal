@@ -115,7 +115,6 @@ public class NewDashboardPage extends TemplatePage {
     driver.switchTo().defaultContent();
     // wait for process viewer to load
     Sleeper.sleep(50000);
-    // waitForWidgetLoadedByExpandThenCollapse(processViewer);
   }
 
   public WebElement waitAndGetProcessViewerWidget(int index) {
