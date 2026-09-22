@@ -24,7 +24,12 @@ on:
       engineDownloadURL:
         description: 'url to download engine'
         type: string
-        default: 'https://developer.axonivy.com/permalink/nightly-14.0/axonivy-engine.zip'
+        # Must match the Ivy API version the poms are built against. While they are
+        # pinned to 14.0.0-m34-SNAPSHOT, the floating nightly is a newer build and
+        # drifts out of binary compatibility with it (e.g. UserQuery changed from a
+        # class to an interface, breaking every user autocomplete at runtime).
+        # Switch back to permalink/nightly-14.0 together with the pom pin.
+        default: 'https://developer.axonivy.com/permalink/14.0.0-m34/axonivy-engine.zip'
         required: true
 
 env:
@@ -53,7 +58,7 @@ jobs:
           echo "Check out code from ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
           echo "Build screenshot for document. Use 2 inputs:" >> $GITHUB_STEP_SUMMARY
           echo "- engineDownloadURL: ${{ inputs.engineDownloadURL }}" >>  $GITHUB_STEP_SUMMARY
-          echo "Default value: https://developer.axonivy.com/permalink/nightly-14.0/axonivy-engine.zip" >> $GITHUB_STEP_SUMMARY
+          echo "Default value: https://developer.axonivy.com/permalink/14.0.0-m34/axonivy-engine.zip" >> $GITHUB_STEP_SUMMARY
           echo "- testPatternToRun: ${{ inputs.testPatternToRun }} " >> $GITHUB_STEP_SUMMARY
           echo "Default value: com.axonivy.portal.selenium.document.screenshot.*Test" >> $GITHUB_STEP_SUMMARY
 
