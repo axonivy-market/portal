@@ -133,6 +133,19 @@ jobs:
           path: |
             AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
       
+      # Surefire alone only carries the exception text. The Selenide page dumps and the engine
+      # log are what actually explain a failure (element obscured by what, server-side error,
+      # ...), so keep them in a separate artifact that the test-reporter does not read.
+      - name: Archive failure diagnostics
+        if: steps.run-test.outcome == 'failure'
+        uses: actions/upload-artifact@v7
+        with:
+          name: screenshot-failure-diagnostics
+          retention-days: 5
+          path: |
+            AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
+            AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
+
       - name: Report
         uses: dorny/test-reporter@v3.0.0
         with:
