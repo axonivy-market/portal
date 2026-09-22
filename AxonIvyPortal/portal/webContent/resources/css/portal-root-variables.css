@@ -31,22 +31,14 @@
   --ivy-tertinary-color-orange-dark: hsla(27, 100%, 50%, 1);
   --ivy-tertinary-color-orange-light: hsla(26, 100%, 95%, 1);
 
-  --ivy-portal-light-primary-lighter-color: hsl(var(--ivy-primary-color-h) 43% 93%);
-  --ivy-portal-light-primary-light-color: hsl(var(--ivy-primary-color-h) 41% 71%);
-  --ivy-portal-light-primary-dark-color: hsl(var(--ivy-primary-color-h) 100% 29%);
-  --ivy-portal-light-primary-darker-color: hsl(var(--ivy-primary-color-h) 100% 21%);
-
-  --ivy-portal-dark-primary-lighter-color: hsl(var(--ivy-primary-color-h) 30% 21%);
-  --ivy-portal-dark-primary-light-color:   hsl(var(--ivy-primary-color-h) 45% 42%);
-  --ivy-portal-dark-primary-dark-color:    hsl(var(--ivy-primary-color-h) 58% 70%);
-  --ivy-portal-dark-primary-darker-color:  hsl(var(--ivy-primary-color-h) 48% 88%);
-
   /* Colors for Portal */
+  --ivy-portal-primary-lighter-color: hsl(var(--ivy-primary-color-h) 43% 93%);
+  --ivy-portal-primary-light-color: hsl(var(--ivy-primary-color-h) 41% 71%);
+  --ivy-portal-primary-dark-color: hsl(var(--ivy-primary-color-h) 100% 29%);
+  --ivy-portal-primary-darker-color: hsl(var(--ivy-primary-color-h) 100% 21%);
   --ivy-portal-blue-light: hsl(188.09, 66.92%, 73.92%);
   --ivy-portal-blue-dark: hsla(195, 100%, 29%, 1);
   --ivy-portal-color-black: #1B1B1B;
-  --ivy-portal-blue-pale: hsla(196, 43%, 93%, 1);
-  --ivy-portal-blue-muted: hsla(195, 42%, 71%, 1);
   --ivy-portal-color-slate-light: hsla(212.73, 26.84%, 83.92%, 1);
 
   /* Portal grey palette */
@@ -95,8 +87,8 @@
   --box-shadow-color: hsla(0, 0%, 15%, 0.2);
   --portal-border-radius: 5px;
   --portal-pill-btn-border-radius: 100px;
-  --item-background-hover: var(--ivy-portal-light-primary-lighter-color);
-  --item-border-hover: 1px solid var(--ivy-portal-light-primary-light-color);
+  --item-background-hover: var(--ivy-portal-primary-lighter-color);
+  --item-border-hover: 1px solid var(--ivy-portal-primary-light-color);
 
   --top-bar-icon-size: 1.4rem;
   --topbar-bg-color: var(--primary-color);
