@@ -71,7 +71,7 @@
           <h:outputText styleClass="portal-detail-column-title text-ellipsis"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/afterEscalation')}" />
         </div>
-        <div class="portal-detail-kv-value text-ellipsis content-field-after-escalation">
+        <div class="portal-detail-kv-value text-ellipsis flex content-field-after-escalation">
           <ic:com.axonivy.portal.component.ExpiryResponsible expiryResponsibles="#{task.expiry().responsibles()}" popupLink="true" onClick="PF('expiry-responsible-dialog').show()"/>
           <p:link rendered="#{taskActionBean.canChangeTaskExpiryActivator(task) and !cc.attrs.readOnly}"
             styleClass="task-expiry-activator-edit"
@@ -124,7 +124,7 @@
                 update="delay-form #{cc.attrs.stateComponentToUpdate} #{cc.attrs.componentToUpdate}" resetValues="true" />
               <p:datePicker id="delay-date-calendar" styleClass="delay-date-calendar" value="#{task.delayTimestamp}"
                 placeholder="#{dateTimePatternBean.getShortDateTimePattern(false)}"
-                showTime="#{!dateTimePatternBean.isTimeHidden}"  locale="#{localeBean.locale}" >
+                showTime="#{!dateTimePatternBean.isTimeHidden}"  locale="#{localeBean.locale}" focusOnSelect="true">
                 <f:validator validatorId="taskDelayTimestampValidator" />
               </p:datePicker>
             </p:inplace>
@@ -155,7 +155,7 @@
                   update="expiry-form #{cc.attrs.componentToUpdate}" process="@this expiry-calendar"/>
                 <p:datePicker id="expiry-calendar" styleClass="task-details-data-expiry" value="#{data.expiryTimestamp}"
                   placeholder="#{dateTimePatternBean.getShortDateTimePattern(false)}"
-                  showTime="#{!dateTimePatternBean.isTimeHidden}" locale="#{localeBean.locale}" >
+                  showTime="#{!dateTimePatternBean.isTimeHidden}" locale="#{localeBean.locale}" focusOnSelect="true">
                   <f:validator validatorId="taskExpiryTimestampValidator" />
                 </p:datePicker>
               </p:inplace>

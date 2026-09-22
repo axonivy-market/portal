@@ -1,8 +1,5 @@
 package com.axonivy.portal.selenium.test.task;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-
 import java.time.Duration;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +17,8 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
+import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Selenide.$;
 
 @IvyWebTest
 public class TaskTemplateIFrameTest extends BaseTest {
@@ -103,11 +102,12 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.CONTAINS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Approve Investment");
     taskWidget.applyFilter();
-    $(".widget__filter-noti-number").shouldHave(text("1"));
+    assertEquals(1, taskWidget.getFilterNotiNumber());
     TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
     NewDashboardPage taskWidgetPage2 = taskTemplatePage2.finishIFrameReviewTask();
+    $("[id$=':actions-widget-form:actions-menu-button_button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     WaitHelper.assertTrueWithWait(() -> taskWidgetPage2
-        .isElementDisplayed(By.cssSelector("[id$='task-default_task_list_dashboard_task_1:info-sidebar-link-0']")));
+        .isElementDisplayed(By.cssSelector("[id$='task-default_task_list_dashboard_task_1:actions-widget-form:info-menu-item-0']")));
   }
 
   public void waitForTemplateRender() {

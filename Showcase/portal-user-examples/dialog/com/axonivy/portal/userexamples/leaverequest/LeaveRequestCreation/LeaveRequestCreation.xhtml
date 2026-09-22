@@ -41,7 +41,7 @@
                   <p:datePicker id="from" value="#{data.leaveRequestData.from}" locale="#{localeBean.locale}"
                     styleClass="MarTop10" required="true"
                     showTime="#{!dateTimePatternBean.isTimeHidden}"
-                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/from')}: #{ivy.cms.co('/Labels/RequiredFieldMessage')}" />
+                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/from')}: #{ivy.cms.co('/Labels/RequiredFieldMessage')}" focusOnSelect="true" />
                 </h:panelGroup>
 
                 <h:panelGroup class="MarTop20">
@@ -49,7 +49,7 @@
                   <p:datePicker id="to" value="#{data.leaveRequestData.to}" locale="#{localeBean.locale}"
                     styleClass="MarTop10" required="true"
                     showTime="#{!dateTimePatternBean.isTimeHidden}"
-                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/to')}: #{ivy.cms.co('/Labels/RequiredFieldMessage')}" />
+                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/to')}: #{ivy.cms.co('/Labels/RequiredFieldMessage')}" focusOnSelect="true" />
                 </h:panelGroup>
 
                 <h:panelGroup class="MarTop20">
