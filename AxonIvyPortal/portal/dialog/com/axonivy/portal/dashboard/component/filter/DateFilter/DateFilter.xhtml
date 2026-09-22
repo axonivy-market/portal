@@ -41,7 +41,7 @@
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}"
       placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
-      pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
+      pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}" focusOnSelect="true">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -58,7 +58,7 @@
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}"
       placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
-      pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
+      pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}" focusOnSelect="true">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -75,7 +75,7 @@
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}"
       placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
-      pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
+      pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}" focusOnSelect="true">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -92,7 +92,7 @@
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}"
       placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
-      pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
+      pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}" focusOnSelect="true">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateToDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -110,7 +110,7 @@
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}"
       placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
-      pt:aria-label="#{ivy.cms.co('/Labels/EnterFromValue')}">
+      pt:aria-label="#{ivy.cms.co('/Labels/EnterFromValue')}" focusOnSelect="true">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -131,7 +131,7 @@
     <p:datePicker id="to-date" value="#{filter.toDate}" locale="#{localeBean.locale}" disabled="#{readOnly}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}"
       placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
-      pt:aria-label="#{ivy.cms.co('/Labels/EnterToValue')}">
+      pt:aria-label="#{ivy.cms.co('/Labels/EnterToValue')}" focusOnSelect="true">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateToDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />

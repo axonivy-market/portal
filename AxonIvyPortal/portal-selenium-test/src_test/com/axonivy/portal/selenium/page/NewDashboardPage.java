@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.LinkNavigator;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -112,7 +113,8 @@ public class NewDashboardPage extends TemplatePage {
     switchToIframeWithId("process-viewer");
     $("svg.sprotty-graph").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     driver.switchTo().defaultContent();
-    waitForWidgetLoadedByExpandThenCollapse(processViewer);
+    // wait for process viewer to load
+    Sleeper.sleep(5000);
   }
 
   public WebElement waitAndGetProcessViewerWidget(int index) {
