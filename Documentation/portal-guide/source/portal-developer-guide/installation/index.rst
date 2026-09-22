@@ -131,14 +131,14 @@ How To Migrate
 
    To migrate the Portal, you need to migrate Axon Ivy first. Refer to the
    :doc-url:`Axon Ivy Migration Notes
-   </axonivy/migration/index.html>`. Changes in Axon Ivy could lead
+   </technical-info/migration/migration-notes.html#migration-notes>`. Changes in Axon Ivy could lead
    to problems if a customer project is not migrated properly.
 
 In Designer
 -----------
 
 #. Replace all Portal projects with the versions of the new release.
-#. Upgrade your projects to use the latest portal version by using the **Convert Project** feature. Please find more information here: :doc-url:`Converting Projects </designer-guide/process-modeling/projects/converting.html#converting-projects>`
+#. Upgrade your projects to use the latest portal version by using the **Convert Project** feature. Please find more information here: :doc-url:`Converting Projects </designer/commands/index.html#project-conversion>`
 #. Follow detailed migration notes for each version below.
 #. If customization needs copying code from Portal, merge changes between the
    two versions of the Portal for copied code.
@@ -234,7 +234,7 @@ Migrate 11.3.2 To 12.0.0
 ------------------------
 
 1. Custom field values for business details pages are migrated silently from the process link relative path 
-to its :doc-url:`IWebStartable ID </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`.
+to its :doc-url:`IWebStartable ID </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`.
 You don't need to do anything, this is just for your information.
 
 2. We implemented a new feature to adjusting column widths in the Task and Case widgets.
@@ -379,7 +379,7 @@ Migrate 9.3 To 9.4
    If you have changed the CMS in ``PortalStyle``, please adapt the ``portal`` CMS accordingly.
 
 #. The ``customization.css`` file has been removed, in case you use it in your project, please switch to using
-   :doc-url:`Engine Branding </designer-guide/user-interface/branding/branding-engine.html>` to customize styling
+   :doc-url:`Engine Branding </getting-productive/user-interface/branding/branding-engine.html>` to customize styling
 
 #. Subprocesses related to documents are moved to the independent project ``portal-components``.
    If you customized these processes, please override the correspond subprocess again and added your customization to it.
@@ -417,10 +417,10 @@ Migrate 9.3 To 9.4
    - :ref:`Migration steps <components-portal-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-portal-components-process-chain>` component.
 
 #. Portal dashboard widgets only support the ``CustomFields`` declared in the ``custom-fields.yaml`` file.
-   If your ``CustomFields`` are used in the dashboard widget, please follow the :doc-url:`Custom Fields Meta Information </designer-guide/how-to/workflow/custom-fields.html#meta-information>` to adapt the data.
+   If your ``CustomFields`` are used in the dashboard widget, please follow the :doc-url:`Custom Fields Meta Information </getting-productive/workflow/case-task/custom-fields.html#meta-information>` to adapt the data.
 
 #. The ``DefaultChartColor.p.json`` subprocess has been removed, in case you use it in your project, please remove override this subprocess and switch to using
-   :doc-url:`Engine Branding </designer-guide/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
+   :doc-url:`Engine Branding </getting-productive/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
 
 #. Deploy :download:`portal-migration-9.4.0.iar <documents/portal-migration-9.4-9.4.0.iar>` project to your Ivy application and run it by access link
    ``your_host/your_application/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
@@ -457,7 +457,7 @@ Migrate 9.2 To 9.3
    If you use have any customized date filters in your project, update template accordingly.
 
 #. The callable process ``DefaultChart.p.json``, ``DefaultUserProcess.p.json`` has been removed. They are replaced by
-   the :doc-url:`Variables </designer-guide/configuration/variables.html>` configuration approach.
+   the :doc-url:`Variables </reference/configuration/variables.html>` configuration approach.
    
 
 Migrate 9.1 To 9.2
@@ -485,7 +485,7 @@ Migrate 9.1 To 9.2
 
 #. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
 
-   Portal recommends using :doc-url:`Axon Ivy HtmlOverride wizard </designer-guide/how-to/overrides.html?#override-new-wizard>` to customize ``Portal HTML Dialog``
+   Portal recommends using :doc-url:`Axon Ivy HtmlOverride wizard </getting-productive/workflow/overrides/index.html#overrides>` to customize ``Portal HTML Dialog``
 
    .. important:: The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project
 
@@ -519,7 +519,7 @@ Migrate 8.x To 9.1
    Portal app mode) are not available anymore. To let Portal know where your new
    Portal home page is, you have to set default pages in your project.
    Follow this chapter to customize default-pages:
-   :doc-url:`Default Pages </designer-guide/user-interface/default-pages/index.html>`
+   :doc-url:`Default Pages </getting-productive/user-interface/default-pages/index.html>`
 
 #. Portal now uses |css_variable| instead of SASS. Therefore, you have to convert
    the SASS syntax to the new CSS variables or use online tools such as
@@ -578,12 +578,8 @@ Changes in 14.0.0
 
 - Improved the task widget query: a filter on a case custom field now queries only the case its column refers to,
   instead of querying the task's case and business case at once.
-- Completely removed the **AI Assistant** integration from Portal: the AI Assistant icon is gone from the top
-  bar and the REST endpoint ``POST /chatbot/{clientId}`` no longer exists. The REST client
-  ``PortalAI (LangChain Server)`` and the variable ``PortalAiUrl`` are obsolete and can be removed from your
-  configuration.
-- The ``com.axonivy.portal.components.publicapi.AiAssistantAPI`` class is removed and no longer supported,
-  together with the types used in its signature (``AiResultDTO``, ``AIState``). They have no replacement.
+- Removed the **AI Assistant** from Portal.
+- The public API ``com.axonivy.portal.components.publicapi.AiAssistantAPI`` is removed and no longer supported.
 
 Changes in 13.2.0
 -----------------

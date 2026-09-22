@@ -61,6 +61,8 @@ see :ref:`Column Management <task-widget-column-management>`.
 
 |task-key-information|
 
+.. _task-widget-actions-menu:
+
 Widget Actions
 --------------
 
@@ -68,8 +70,6 @@ On the right side of the widget header you find the operations that apply to the
 Click the actions menu button to open them.
 
 |widget-actions-menu|
-
-- **Quick search**: Search the tasks of the widget by keyword
 
 - **Bulk selection**: Select several tasks and delegate them in one step
 

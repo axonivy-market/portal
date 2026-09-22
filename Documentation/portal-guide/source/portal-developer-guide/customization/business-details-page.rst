@@ -29,7 +29,7 @@ How to customize the business details page
 
    |customization-business-details-page-start-request|
 
-#. Store the :doc-url:`IWebStartable ID </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` of the
+#. Store the :doc-url:`IWebStartable ID </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` of the
    process to the string custom field ``businessDetails`` of the case. There are 2 ways to perform this:
    
    * Use the ``SetBusinessDetailsPage.p.json`` callable process, and pass the IWebStartable ID of the business details process as the 
@@ -39,13 +39,13 @@ How to customize the business details page
      Alternatively, use the ``Functional Processes/SetBusinessDetailsPage:callWithParams(String,Map)`` callable process to pass both the IWebStartable ID and 
      a map of parameters. For example, the parameters are attached to the URL like this: ``Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp?company=Wawa+Company&location=HCMC&embedInFrame``.
 
-      |set-business-details-page-callable-process|
+   |set-business-details-page-callable-process|
 
-   *  Use public API ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String)``, ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String, java.util.Map)`` or ``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)``.
+   *  Use public API ``com.axonivy.portal.components.publicapi.BusinessDetailsAPI.create(String)``, ``com.axonivy.portal.components.publicapi.BusinessDetailsAPI.create(String, java.util.Map)`` or ``com.axonivy.portal.components.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)``.
    
      See the Public API section for more details.
 
-      |customize-business-details-with-public-api|
+   |customize-business-details-with-public-api|
 
       .. tip:: 
          The business details page also supports external links in case the business details site is outside of Axon Ivy.

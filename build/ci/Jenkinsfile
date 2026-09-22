@@ -44,5 +44,17 @@ pipeline {
         }
       }
     }
+
+    stage('restart engine') {
+      steps {
+        script {
+          if (builtModules) {
+            def composeFile = '/var/tools/ivy/master/docker-compose.yml'
+            sh "docker compose -f ${composeFile} down"
+            sh "docker compose -f ${composeFile} up -d"
+          }
+        }
+      }
+    }
   }
 }

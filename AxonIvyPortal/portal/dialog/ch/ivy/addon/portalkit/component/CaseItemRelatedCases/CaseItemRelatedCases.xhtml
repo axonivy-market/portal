@@ -25,7 +25,7 @@
       <h:panelGroup layout="block" styleClass="related-case-section-header-actions portal-detail-widget-header-actions flex align-items-center" id="related-case-actions">
         <h:form id="related-cases-form" styleClass="related-case-export-to-excel ui-sm-hidden">
           <p:commandLink ajax="false" id="related-case-export-to-excel"
-            styleClass="portal-icon-btn-round"
+            styleClass="portal-icon-btn"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
             title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
             onclick="PrimeFaces.monitorDownload(startRelatedCaseExportToExcel, stopRelatedCaseExportToExcel);" >
@@ -115,7 +115,7 @@
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="more-column">
           <div class="case-header-action-cell">
-            <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu" destroyCaseDialogComponent="#{p:resolveFirstComponentWithId('destroy-related-case-confirmation-dialog', view).clientId}"
+            <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" buttonStyleClass="portal-icon-btn--sm" actionLinkId="action-steps-menu" destroyCaseDialogComponent="#{p:resolveFirstComponentWithId('destroy-related-case-confirmation-dialog', view).clientId}"
               case="#{case}" inFrame="#{cc.attrs.inFrame}" onDestroyComplete="PF('destroy-related-case-dialog').show()"
               panelWidgetVar="related-case-action-panel-#{case.id}"/>
           </div>

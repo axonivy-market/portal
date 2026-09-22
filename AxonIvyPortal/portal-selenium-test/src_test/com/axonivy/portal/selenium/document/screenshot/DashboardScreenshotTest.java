@@ -1,5 +1,8 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Selenide.$;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -40,9 +43,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.CollectionCondition;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import com.codeborne.selenide.Condition;
-import static com.codeborne.selenide.Selenide.$;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -271,7 +272,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
                 taskConfigurationPage.cancelMultiLanguageDialogWhenAddWidget();
                 taskConfigurationPage.openFilter();
-                taskConfigurationPage.addFilter("name", FilterOperator.EMPTY);
+                taskConfigurationPage.addFilter("name", FilterOperator.NOT_EMPTY);
                 ScreenshotUtils.resizeBrowserAndCaptureWholeScreen(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration", new Dimension(1366, 768));
                 taskConfigurationPage.closeFilter();
                 WebElement columnManagementDialog = taskConfigurationPage.openColumnManagementDialog();
@@ -418,7 +419,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
         @Test
         public void screenshotWelcomeWidget() throws IOException {
-                ScreenshotUtils.maximizeBrowser();
+                ScreenshotUtils.resizeBrowser(new Dimension(1920, 5000));
                 addPublicWidget(NewDashboardDetailsEditPage.WELCOME_WIDGET);
                 WelcomeEditWidgetNewDashboardPage welcomeWidgetPage = new WelcomeEditWidgetNewDashboardPage();
                 welcomeWidgetPage.waitForDialogLoaded();

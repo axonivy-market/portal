@@ -278,7 +278,7 @@ differences:
 
 .. important::
    Portal only displays custom fields declared in the ``custom-fields.yaml`` file.
-   Refer to :doc-url:`Custom Fields Meta Information </designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
+   Refer to :doc-url:`Custom Fields Meta Information </getting-productive/workflow/case-task/custom-fields.html#meta-information>` for more information.
 
 Filter Conditions
 -----------------
@@ -458,7 +458,7 @@ Standard Column:
       This column only accepts a list of priorities' names as the filter
       condition. The available filter operator is ``in``.
 
-      Refer to :doc-url:`Task Priority </public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for
+      Refer to :doc-url:`Task Priority </reference/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for
       available task priorities.
 
    - ``state``
@@ -487,7 +487,7 @@ Standard Column:
       This column only accepts a list of task business state names as its filter
       condition. The available filter operator is ``in``. 
 
-      Refer to :doc-url:`Task Business States </public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` for
+      Refer to :doc-url:`Task Business States </reference/public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` for
       available task business states.
 
 
@@ -717,7 +717,7 @@ Additionally, the value must be entered and maintained in the CMS in multiple la
 
 Following this path to add your custom field values: ``/CustomFields/Tasks/{fieldName}/Values/{value}``
 Please follow this :doc-url:`Localize Label, Description, Category
-and Values </designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>`
+and Values </reference/configuration/custom-fields.html#localize-label-description-category-and-values>`
 to get more information.
 
 Example YAML Configuration
@@ -725,16 +725,16 @@ Example YAML Configuration
 
 .. code-block:: yaml
 
-   DriversVehicle:
-      Label: Drivers Vehicle
-      Description: Vehicle they use for delivery
+   Citizenship:
+      Label: Citizenship
+      Description: Your citizenship
       HasCmsValues: true
       TYPE: STRING
 
 In your CMS, the path should be
-``/CustomFields/Tasks/DriversVehicle/Values/Bike``,
-``/CustomFields/Tasks/DriversVehicle/Values/Car`` or
-``/CustomFields/Tasks/DriversVehicle/Values/MonsterTruck``.
+``/CustomFields/Tasks/Citizenship/Values/korea``,
+``/CustomFields/Tasks/Citizenship/Values/singapore`` or
+``/CustomFields/Tasks/Citizenship/Values/spain``.
 
 |task-field-cms|
 

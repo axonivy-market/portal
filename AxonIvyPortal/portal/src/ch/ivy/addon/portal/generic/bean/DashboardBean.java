@@ -21,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
 import com.axonivy.portal.components.util.HtmlUtils;
+import com.axonivy.portal.dto.TranslationResult;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -80,8 +81,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   private ITask selectedTask;
   private boolean isRunningTaskWhenClickingOnTaskInList;
   private List<DashboardTemplate> dashboardTemplates;
-  protected String translatedText;
-  protected String warningText;
+  protected TranslationResult translation = TranslationResult.EMPTY;
   protected String dashboardUrl;
   protected List<Dashboard> importedDashboards;
   private String statisticApiUri;
@@ -449,14 +449,11 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   public String getTranslatedText() {
-    return translatedText;
+    return translation.getTranslatedText();
   }
 
   public void applyTranslatedText(DisplayName displayName) {
-    if (StringUtils.isNotBlank(translatedText)) {
-      displayName.setValue(translatedText);
-      translatedText = "";
-    }
+    translation = translation.applyTo(displayName);
   }
 
   @Override
@@ -467,7 +464,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   public String getWarningText() {
-    return warningText;
+    return translation.getWarningText();
   }
 
   public String getDashboardUrl() {

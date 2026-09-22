@@ -43,59 +43,11 @@ Portal settings control global behavior and can be configured through multiple m
 
 - **Admin Settings UI**: See :ref:`update-portal-settings` for user-friendly configuration
 - **Variables File**: Update ``portal/config/variables.yaml`` for development (survives Designer restarts)
-- **Engine Cockpit**: Configure via :doc-url:`Variables </designer-guide/configuration/variables.html>`
+- **Engine Cockpit**: Configure via :doc-url:`Variables </reference/configuration/variables.html>`
 
 .. tip::
    In development, configure settings in ``portal/config/variables.yaml`` to avoid re-configuring after each Designer restart.
 
-.. _settings-language:
-
-Language Settings
-=================
-
-HowTo: Add a New Language to Portal
-------------------------------------
-
-#. **Export CMS Entries**
-
-   Export all CMS entries from Portal to an Excel file
-
-#. **Add Language Column**
-
-   - Open the exported Excel file
-   - Add a new column at the end with the language locale code (e.g., ``it`` for Italian)
-   - Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk25-suported-locales.html>`_ for supported locale codes
-   
-   |export-cms|
-
-#. **Translate CMS Entries**
-
-   - For each row in the Excel file, add the translated text in the new language column
-   - Base your translations on the existing English (``en``) or German (``de``) values
-   - Ensure all cells in the new language column are filled with appropriate translations
-
-#. **Update JSON Configuration Files**
-
-   For each JSON file in ``portal/config/variables/``:
-   
-   - Open the file and locate the ``locale`` arrays
-   - Add a new locale/value pair for your language following the existing pattern
-   - Example: ``{"locale": "it", "value": "Translated text"}``
-   
-   |translate-json|
-
-#. **Update Java Source Files**
-
-   In ``DefaultDashboardUtils.java``:
-   
-   - Add new locale/value entries for your language into default dashboard constants.
-   
-   |translate-java|
-
-#. **Import and Deploy**
-
-   - Import the Excel file back into Portal
-   - Redeploy Portal
 
 Role Configuration
 ==================
@@ -377,7 +329,7 @@ These variables are stored as key-value pairs. They have to be edited in the Eng
    |                                             |                               | ``0 6 * * *``. Refer to     |
    |                                             |                               | `CRON Expression <https://  |
    |                                             |                               | developer.axonivy.com/doc/  |
-   |                                             |                               | 11.2/engine-guide/configur  |
+   |                                             |                               | 14.0/engine-guide/configur  |
    |                                             |                               | ation/advanced-configurati  |
    |                                             |                               | on.html#cron-expression>`_. |
    |                                             |                               | Restart Ivy engine after    |
@@ -782,7 +734,6 @@ Data model:
 .. |global-settings| image:: ../../screenshots/settings/global-settings.png
 .. |global-setting-edit| image:: ../../screenshots/settings/edit-global-settings.png
 .. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
-.. |export-cms| image:: images/export-cms.png
 
 .. _Task Aggregation and Filter: https://developer.axonivy.com/api-browser?configUrl=https%3A%2F%2Fdeveloper.axonivy.com%2Fdoc%2F11.3%2Fopenapi%2Fconfig.json&urls.primaryName=default#/workflow/stats_1 
 .. _Case Aggregation and Filter: https://developer.axonivy.com/api-browser?configUrl=https%3A%2F%2Fdeveloper.axonivy.com%2Fdoc%2F11.3%2Fopenapi%2Fconfig.json&urls.primaryName=default#/workflow/stats
@@ -791,5 +742,3 @@ Data model:
 .. |bar-chart| image:: ../../screenshots/statistic/tasks-by-prior-bar-chart.png
 .. |number-chart| image:: ../../screenshots/statistic/tasks-by-prior-number-chart.png
 .. |line-chart| image:: ../../screenshots/statistic/completed-cases-chart.png
-.. |translate-json| image:: images/translate-json.png
-.. |translate-java| image:: images/translate-java.png

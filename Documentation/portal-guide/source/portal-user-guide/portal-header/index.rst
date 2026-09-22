@@ -8,7 +8,7 @@ The Portal header is always visible and provides quick access to essential featu
 Key Features
 ============
 
-**Username Menu**
+**User Menu**
    Click on your username to access a menu with options for configuring Portal to your personal needs. See :ref:`user-settings` for detailed configuration options.
 
 **Global Search Bar**
@@ -32,9 +32,9 @@ Available Menu Options
    +-------------------------------+---------------------------------------------------------------+
    | Menu Option                   | Description                                                   |
    +===============================+===============================================================+
-   | **Admin Settings**            | Portal administration (``AXONIVY_PORTAL_ADMIN`` role)         |
-   +-------------------------------+---------------------------------------------------------------+
    | **My Profile**                | General settings, language, and notifications                 |
+   +-------------------------------+---------------------------------------------------------------+
+   | **Admin Settings**            | Portal administration (``AXONIVY_PORTAL_ADMIN`` role)         |
    +-------------------------------+---------------------------------------------------------------+
    | **Absences**                  | Manage absences and task delegates                            |
    +-------------------------------+---------------------------------------------------------------+
@@ -48,6 +48,11 @@ Available Menu Options
 Menu Option Details
 -------------------
 
+My Profile
+^^^^^^^^^^
+
+The :ref:`my-profile` contains general settings, user language, and notification channels subscription settings.
+
 Admin Settings
 ^^^^^^^^^^^^^^
 
@@ -55,11 +60,6 @@ The :ref:`Admin Settings <admin-settings>` menu entry provides portal administra
 
 .. important::
    Only users with role ``AXONIVY_PORTAL_ADMIN`` can access Admin Settings.
-
-My Profile
-^^^^^^^^^^
-
-The :ref:`my-profile` menu entry contains general settings, user language, and notification channels subscription settings.
 
 Absences
 ^^^^^^^^

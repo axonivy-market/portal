@@ -21,6 +21,10 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
   @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showFullscreenMode;
 
+  public ProcessViewerDashboardWidget() {
+    setShowFullscreenMode(true);
+  }
+
   @Override
   public DashboardWidgetType getType() {
     return DashboardWidgetType.PROCESS_VIEWER;
@@ -43,7 +47,6 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
     result.getLayout().setHeight(6);
     result.getLayout().setAxisX(0);
     result.getLayout().setAxisY(0);
-    result.setShowFullscreenMode(true);
     return result;
   }
 

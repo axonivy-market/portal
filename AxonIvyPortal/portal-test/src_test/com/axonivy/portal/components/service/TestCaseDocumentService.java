@@ -46,14 +46,14 @@ class TestCaseDocumentService {
 
   @Test
   void getPathAfterRename_returnsParentPathWithNewName() {
-    Path oldPath = new Path("folder/sub/old.pdf");
+    Path oldPath = Path.of("folder/sub/old.pdf");
     Path result = CaseDocumentService.getPathAfterRename(oldPath, "new.pdf");
     assertThat(result.toString()).isEqualTo("folder/sub/new.pdf");
   }
 
   @Test
   void getPathAfterRename_topLevelFile_returnsNewNameOnly() {
-    Path oldPath = new Path("old.pdf");
+    Path oldPath = Path.of("old.pdf");
     Path result = CaseDocumentService.getPathAfterRename(oldPath, "new.pdf");
     assertThat(result.toString()).isEqualTo("new.pdf");
   }

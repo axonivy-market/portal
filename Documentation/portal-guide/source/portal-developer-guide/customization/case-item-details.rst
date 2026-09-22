@@ -40,6 +40,25 @@ How to Configure Widgets in Case Details
    itself, and ``items`` holds the list of case detail layouts. This wrapper-level ``version`` is what
    Portal reads (and migrates) on import - individual layouts do not carry their own ``version`` field.
 
+.. important:: **How Portal picks which layout to display** - this determines whether a change to
+   this variable has any visible effect at all:
+
+   #. If the current user has ever clicked **Edit Layout** on this page and saved (or was
+      previously in edit mode when a save was triggered), Portal uses **that user's own saved
+      layout** and ignores this variable **entirely** for that user, indefinitely. The **Reset**
+      button on this page does **not** clear this saved layout - it only discards unsaved changes
+      made during the current edit session. There is currently no supported way to clear a user's
+      saved layout from the UI. If a change to this variable appears to have no effect, check
+      first whether the user you are testing with has ever saved a layout edit on this page.
+   #. Otherwise, Portal scans the ``items`` list for an entry whose ``filters`` match the current
+      case (by ``categories`` or ``states``) and uses the first match.
+   #. If no entry's ``filters`` match, Portal falls back to the entry whose ``id`` is exactly
+      ``"default-case-detail"`` (case-sensitive). **An entry with any other ``id`` and no matching
+      ``filters`` will never be displayed** - this is a common mistake when adapting the examples
+      below.
+   #. If no entry has that exact ``id`` either, Portal falls back to its own built-in default
+      layout (the 5-widget layout shown below), silently ignoring everything you configured.
+
 -  The default configuration includes five widgets:
 
    .. code-block:: javascript
@@ -117,7 +136,7 @@ How to Configure Widgets in Case Details
       -  ``categories`` (case categories)
       -  ``states`` (case business states).
 
-         Refer to :doc-url:`Case business states </public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for
+         Refer to :doc-url:`Case business states </reference/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for
          available case business states.
 
    -  The structure of each widget inside the case details layout is stored in variable **Portal.CaseDetails**:
@@ -189,15 +208,15 @@ For the custom widget, we have a new node is ``data`` inside of case details wid
       To quickly understand how the JSON of custom case details looks like.
    
       - Refer to ``variables.Portal.CaseDetails.json`` file in ``portal-developer-examples/resources/files`` project.
-      - Copy to the corresponding application folder located in the designer.
+      - Copy to the corresponding application folder located in the engine.
 
-          - e.g: AxonIvyDesigner/configuration/applications/designer.
+          - e.g: <engine>/configuration/applications/<application>.
 
       - Create some destroyed case or start the process ``Start Processes/CaseDetailsCustomWidgetExample/CreateEventTest.ivp`` in ``portal-developer-examples`` project.
       - Go to the homepage.
       - And then go to case details to check the new custom layout.
    
-      About how to configure Variables, refer to :doc-url:`Axon Ivy Variables </designer-guide/configuration/variables.html>`
+      About how to configure Variables, refer to :doc-url:`Axon Ivy Variables </reference/configuration/variables.html>`
    
 
 Adding New Custom Panels
@@ -314,7 +333,7 @@ The following two steps are necessary to add new custom panels:
            "version": "14.0.0",
            "items": [
             {
-               "id": "case-detail",
+               "id": "default-case-detail",
                "widgets": [
                   {
                   "type": "information",
@@ -359,7 +378,7 @@ The following two steps are necessary to add new custom panels:
            "version": "14.0.0",
            "items": [
             {
-               "id": "case-detail",
+               "id": "default-case-detail",
                "widgets": [
                   {
                      "type": "information",

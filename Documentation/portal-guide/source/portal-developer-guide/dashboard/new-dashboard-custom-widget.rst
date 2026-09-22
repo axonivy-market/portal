@@ -180,7 +180,7 @@ The ``data`` object defines the custom widget content:
      - Description
    * - ``processPath``
      - string
-     - :doc-url:`IWebStartable </public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the Ivy process
+     - :doc-url:`IWebStartable </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the Ivy process
    * - ``params``
      - array
      - *(Optional)* Process parameters (see Parameter Configuration below)

@@ -4,16 +4,17 @@ Forgot Password
 ***************
 
 .. important::
-   The *Forgot Password* feature must be enabled by an administrator in the Portal configuration
-   before the "Forgot my password" link is shown on the login screen. If you do not see the link,
-   contact your Portal administrator.
+   The "Forgot my password" link is shown on the login screen only if the :ref:`Portal setting
+   <update-portal-settings>` ``Portal.UserMenu.HideChangePasswordMenu`` is set to false, which is the
+   default. Setting it to true hides both this link and the :guilabel:`Change password` entry in the
+   user menu. If you do not see the link, contact your Portal administrator.
 
 .. note::
    External identity providers (e.g. Microsoft Entra ID (Azure AD), Active Directory, LDAP) manage
    user credentials themselves. In those setups Portal does **not** change passwords; the link may be
    hidden automatically or should be disabled. Use the provider's own self-service password reset pages.
 
-You find the "Forgot my password" link at the bottom right of the login page.
+You find the "Forgot my password" link below the :guilabel:`Login` button on the login page.
 
 |login-screen|
 

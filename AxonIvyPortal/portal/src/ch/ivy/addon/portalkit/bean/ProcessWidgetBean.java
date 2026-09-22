@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -31,6 +30,7 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.ImageUploadResult;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.components.util.SecurityMemberDisplayNameUtils;
+import com.axonivy.portal.dto.TranslationResult;
 import com.axonivy.portal.service.GlobalSearchService;
 import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.util.ImageUploadUtils;
@@ -82,8 +82,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements IMultiLang
   private List<String> selectedPermissionsForSavingEditedExternalLink;
   private Map<String, List<Process>> processesByAlphabet;
   
-  private String warningText;
-  private String translatedText;
+  private TranslationResult translation = TranslationResult.EMPTY;
 
   public void initConfiguration() {
     initProcessViewMode();
@@ -538,55 +537,23 @@ public class ProcessWidgetBean extends AbstractProcessBean implements IMultiLang
   }
 
   public String getWarningText() {
-    return warningText;
+    return translation.getWarningText();
   }
 
   public String getTranslatedText() {
-    return translatedText;
-  }
-
-  public void setWarningText(String warningText) {
-    this.warningText = warningText;
-  }
-
-  public void setTranslatedText(String translatedText) {
-    this.translatedText = translatedText;
+    return translation.getTranslatedText();
   }
   
   public void translate(DisplayName title) {
-    translateValues(title, editedExternalLink.getNames());
+    translation = IvyTranslationService.getInstance().translate(title, editedExternalLink.getNames());
   }
   
   public void translateTextArea(DisplayName title) {
-    translateValues(title, editedExternalLink.getDescriptions());
-  }
-  
-  private void translateValues(DisplayName title, List<DisplayName> languages) {
-    translatedText = "";
-    warningText = "";
-
-    String currentLanguage = UserUtils.getUserLanguage();
-    if (!title.getLocale().getLanguage().equals(currentLanguage)) {
-      Optional<DisplayName> optional = languages.stream()
-          .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
-      if (optional.isPresent()) {
-        try {
-          translatedText = IvyTranslationService.getInstance().translate(optional.get().getValue(),
-              optional.get().getLocale(), title.getLocale());
-        } catch (Exception e) {
-          warningText = Ivy.cms()
-              .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-          Ivy.log().error("Ivy Translation Service error: ", e.getMessage());
-        }
-      }
-    }
+    translation = IvyTranslationService.getInstance().translate(title, editedExternalLink.getDescriptions());
   }
   
   public void applyTranslatedText(DisplayName displayName) {
-    if (StringUtils.isNotBlank(translatedText)) {
-      displayName.setValue(translatedText);
-      translatedText = "";
-    }
+    translation = translation.applyTo(displayName);
   }
   
   public boolean isShowGlobalSearchScope() {
