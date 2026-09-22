@@ -7715,16 +7715,16 @@ msgstr "統計サンプルダッシュボード"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:231
 msgid "The sample charts aggregate on the custom fields declared in the ``custom-fields.yaml`` file of the ``portal-user-examples`` project, for example the :guilabel:`Group by` field ``Department`` and the :guilabel:`KPI` field ``SpendAmount``:"
-msgstr ""
+msgstr "サンプルチャートは、``portal-user-examples`` プロジェクトの ``custom-fields.yaml`` ファイルで宣言されたカスタムフィールドに基づいて集計されます。例えば、:guilabel:`Group by` フィールドの ``Department`` や :guilabel:`KPI` フィールドの ``SpendAmount`` です："
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:249
 #, python-brace-format
 msgid "``HasCmsValues: true`` lets the chart display the values of a custom field in the language of the user. The sample cases store the values ``DepA`` to ``DepD`` in the ``Department`` field, and the chart displays the labels defined in the CMS under ``/CustomFields/Cases/Department/Values/{value}``, for example ``Dep A`` in English and ``Abt A`` in German. Without this attribute, the chart displays the stored value ``DepA``."
-msgstr ""
+msgstr "``HasCmsValues: true`` を設定すると、チャートはカスタムフィールドの値をユーザーの言語で表示します。サンプルケースでは ``Department`` フィールドに ``DepA`` から ``DepD`` までの値が格納されており、チャートは CMS の ``/CustomFields/Cases/Department/Values/{value}`` の下で定義されたラベル、例えば英語では ``Dep A``、ドイツ語では ``Abt A`` を表示します。この属性がない場合、チャートは格納された値 ``DepA`` を表示します。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:255
 msgid "Refer to :doc-url:`Custom Fields </reference/configuration/custom-fields.html>` for more information about declaring custom fields, and to :doc-url:`Localize Label, Description, Category and Values </reference/configuration/custom-fields.html#localize-label-description-category-and-values>` for more information about the CMS values."
-msgstr ""
+msgstr "カスタムフィールドの宣言についての詳細は :doc-url:`カスタムフィールド </reference/configuration/custom-fields.html>` を、CMS値についての詳細は :doc-url:`ラベル、説明、カテゴリおよび値のローカライズ </reference/configuration/custom-fields.html#localize-label-description-category-and-values>` をご参照ください。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:260
 msgid "You can also view the configuration of these example statistic widgets in a similar way with other statistic widgets, follow these steps:"

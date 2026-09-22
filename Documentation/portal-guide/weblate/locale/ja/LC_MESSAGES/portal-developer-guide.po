@@ -6962,19 +6962,19 @@ msgstr "例："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:217
 msgid "Without ``kpiField`` - counts the cases of each department:"
-msgstr ""
+msgstr "``kpiField`` なし - 各部門のケース数をカウントします："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:226
 msgid "With ``kpiField`` - sums up the ``SpendAmount`` of the cases of each department:"
-msgstr ""
+msgstr "``kpiField`` あり - 各部門のケースの ``SpendAmount`` を合計します："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:238
 msgid "Make sure your custom fields are declared in the ``custom-fields.yaml`` file of your project, so that they are displayed in the KPI and Group by lists when a user creates a chart on the UI. Refer to :doc-url:`Custom Fields </reference/configuration/custom-fields.html>` for more information."
-msgstr ""
+msgstr "ユーザーが UI 上でチャートを作成する際に KPI および Group by のリストに表示されるように、カスタムフィールドがプロジェクトの ``custom-fields.yaml`` ファイルに宣言されていることを確認してください。詳細は :doc-url:`カスタムフィールド </reference/configuration/custom-fields.html>` をご参照ください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:242
 msgid "For a sample declaration of the custom fields used in the examples above, see :ref:`statistic-sample-kpi-procurement-overview`."
-msgstr ""
+msgstr "上記の例で使用されているカスタムフィールドの宣言例については、:ref:`statistic-sample-kpi-procurement-overview` をご参照ください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:245
 msgid "**Filtering & Permissions**"
