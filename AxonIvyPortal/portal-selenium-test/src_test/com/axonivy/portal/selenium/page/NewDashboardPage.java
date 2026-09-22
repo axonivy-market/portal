@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.LinkNavigator;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -140,7 +141,9 @@ public class NewDashboardPage extends TemplatePage {
             .get(index)
             .shouldBe(appear, DEFAULT_TIMEOUT);
     widget.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
-    waitForWidgetLoadedByExpandThenCollapse(widget);
+    // wait for process viewer to load
+    Sleeper.sleep(50000);
+    // waitForWidgetLoadedByExpandThenCollapse(widget);
     return widget.ancestor(".grid-stack-item");
   }
 
