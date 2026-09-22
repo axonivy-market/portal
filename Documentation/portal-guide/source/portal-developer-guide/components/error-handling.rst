@@ -101,15 +101,15 @@ Create two XHTML files in your engine's ``webapps/ivy`` folder:
        This page navigates to the predefined 404 error page provided by Portal.
        
        Configure these variables for your environment:
-       1. processModel: The name of the Portal application (default: "portal")
+       1. application: The name of the Portal application (default: "portal")
        2. requestPath: The process start link for the error page (default: "1549F58C18A6C562/Error404Page.ivp")
        -->
        
-       <ui:param name="processModel" value="portal"/>
+       <ui:param name="application" value="portal"/>
        <ui:param name="requestPath" value="1549F58C18A6C562/Error404Page.ivp"/>
        
        <script>
-           var errorURL = "#{facesContext.externalContext.requestContextPath}/pro/#{processModel}/#{requestPath}";
+           var errorURL = "#{facesContext.externalContext.requestContextPath}/#{application}/#{requestPath}";
            // Check if page is opened in IFrame
            if (window.location !== window.parent.location) {
                // The page is in an iframe
@@ -138,17 +138,17 @@ Create two XHTML files in your engine's ``webapps/ivy`` folder:
        This page navigates to the predefined 500 error page provided by Portal.
        
        Configure these variables for your environment:
-       1. processModel: The name of the Portal application (default: "portal")
+       1. application: The name of the Portal application (default: "portal")
        2. requestPath: The process start link for the error page (default: "1549F58C18A6C562/Error500Page.ivp")
        -->
        
-       <ui:param name="processModel" value="portal"/>
+       <ui:param name="application" value="portal"/>
        <ui:param name="requestPath" value="1549F58C18A6C562/Error500Page.ivp"/>
        
        <c:set target="#{flash}" value="#{errorPage.message}" property="errorMessage"/>
        <c:set target="#{flash}" value="#{errorPage.getStackTrace()}" property="errorStackTrace"/>
        <script>
-           var errorURL = "#{facesContext.externalContext.requestContextPath}/pro/#{processModel}/#{requestPath}";
+           var errorURL = "#{facesContext.externalContext.requestContextPath}/#{application}/#{requestPath}";
            // Check if page is opened in IFrame
            if (window.location !== window.parent.location) {
                // The page is in an iframe
@@ -185,7 +185,7 @@ Restart your Axon Ivy Engine for the changes to take effect.
 
 .. tip::
 
-   If you deploy Portal with a custom application name, update the ``processModel`` parameter in both XHTML files to match your Portal application name.
+   If you deploy Portal with a custom application name, update the ``application`` parameter in both XHTML files to match your Portal application name.
 
 .. _components-error-handling-nonajax-error-handling-result:
 
