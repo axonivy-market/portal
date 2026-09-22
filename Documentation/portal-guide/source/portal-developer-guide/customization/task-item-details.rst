@@ -33,6 +33,25 @@ How to configure widgets in task details
    itself, and ``items`` holds the list of task detail layouts. This wrapper-level ``version`` is what
    Portal reads (and migrates) on import - individual layouts do not carry their own ``version`` field.
 
+.. important:: **How Portal picks which layout to display** - this determines whether a change to
+   this variable has any visible effect at all:
+
+   #. If the current user has ever clicked **Edit Layout** on this page and saved (or was
+      previously in edit mode when a save was triggered), Portal uses **that user's own saved
+      layout** and ignores this variable **entirely** for that user, indefinitely. The **Reset**
+      button on this page does **not** clear this saved layout - it only discards unsaved changes
+      made during the current edit session. There is currently no supported way to clear a user's
+      saved layout from the UI. If a change to this variable appears to have no effect, check
+      first whether the user you are testing with has ever saved a layout edit on this page.
+   #. Otherwise, Portal scans the ``items`` list for an entry whose ``filters`` match the current
+      task (by ``categories`` or ``states``) and uses the first match.
+   #. If no entry's ``filters`` match, Portal falls back to the entry whose ``id`` is exactly
+      ``"default-task-detail"`` (case-sensitive). **An entry with any other ``id`` and no matching
+      ``filters`` will never be displayed** - this is a common mistake when adapting the examples
+      below.
+   #. If no entry has that exact ``id`` either, Portal falls back to its own built-in default
+      layout (the 3-widget layout shown below), silently ignoring everything you configured.
+
 -  Default configuration includes 3 widgets.
 
    .. code-block:: javascript
@@ -154,9 +173,9 @@ Show Custom Panels (Widgets)
    To quickly understand how the JSON of custom task details looks like.
 
    - Refer to ``variables.Portal.TaskDetails.json`` file in ``portal-developer-examples/resources/files`` project.
-   - Copy to the corresponding application folder located in the designer.
+   - Copy to the corresponding application folder located in the engine.
 
-      - E.g., AxonIvyDesigner/configuration/applications/designer
+      - E.g., <engine>/configuration/applications/<application>
 
    - Create some destroyed task or start the process ``Start Processes/TaskDetailsCustomWidgetExample/SalesManagement.ivp`` in ``portal-developer-examples`` project.
    - Go to the example homepage by the process ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp``
@@ -241,7 +260,7 @@ There are **two steps** for adding new custom panels.
            "version": "14.0.0",
            "items": [
             {
-               "id": "task-detail",
+               "id": "default-task-detail",
                "widgets": [
                   {
                      "type": "information",
@@ -275,7 +294,7 @@ There are **two steps** for adding new custom panels.
               "version": "14.0.0",
               "items": [
                {
-                  "id": "task-detail",
+                  "id": "default-task-detail",
                   "widgets": [
                      {
                         "type": "information",
