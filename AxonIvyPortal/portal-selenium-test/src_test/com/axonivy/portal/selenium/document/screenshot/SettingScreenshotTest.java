@@ -122,9 +122,12 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
 
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(absencePage.getAddAbsenceDialog(),
         ScreenshotUtils.SETTINGS_FOLDER + "add-absence-dialog", new ScreenshotMargin(20));
-    newAbsencePage.closeAddAbsenceDialog();
+    newAbsencePage.proceed();// closeAddAbsenceDialog();
+    absencePage.waitForAbsenceTableChange(1);
+    absencePage.openSubstitutesTab();
+    absencePage.openAbsencesTab();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.SETTINGS_FOLDER + "absence-management-page");
     // createAbsenceForCurrentUser(TOMORROW, TOMORROW, "Vacation", absencePage);
-    // absencePage.waitForAbsenceTableChange(1);
 
     absencePage.openSubstitutesTab();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.SETTINGS_FOLDER + "substitute-tab");
@@ -135,8 +138,6 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(absencePage.getChooseDeputyDialog(),
         ScreenshotUtils.SETTINGS_FOLDER + "add-deputy-dialog", new ScreenshotMargin(20));
     absencePage.saveSelectedDeputies();
-    absencePage.openAbsencesTab();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.SETTINGS_FOLDER + "absence-management-page");
     login(TestAccount.ADMIN_USER);
     homePage.openAbsencePage();
     ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.SETTINGS_FOLDER + "select-user");
