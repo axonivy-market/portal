@@ -725,16 +725,16 @@ Example YAML Configuration
 
 .. code-block:: yaml
 
-   DriversVehicle:
-      Label: Drivers Vehicle
-      Description: Vehicle they use for delivery
+   Citizenship:
+      Label: Citizenship
+      Description: Your citizenship
       HasCmsValues: true
       TYPE: STRING
 
 In your CMS, the path should be
-``/CustomFields/Tasks/DriversVehicle/Values/Bike``,
-``/CustomFields/Tasks/DriversVehicle/Values/Car`` or
-``/CustomFields/Tasks/DriversVehicle/Values/MonsterTruck``.
+``/CustomFields/Tasks/Citizenship/Values/korea``,
+``/CustomFields/Tasks/Citizenship/Values/singapore`` or
+``/CustomFields/Tasks/Citizenship/Values/spain``.
 
 |task-field-cms|
 

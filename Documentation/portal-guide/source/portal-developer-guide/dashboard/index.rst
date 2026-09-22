@@ -196,9 +196,9 @@ Each widget type has specific configuration options for customization. Click on 
    
    #. Open ``portal-developer-examples`` project
    #. Navigate to ``resources/files/variables.Portal.Dashboard.json``
-   #. Copy this file to Designer configuration:
+   #. Copy this file to application configuration:
       
-      - Location: ``AxonIvyDesigner12.0.0/configuration/applications/designer``
+      - Location: ``<engine>/configuration/applications/<application>``
    
    #. Run the test data creation process:
       
