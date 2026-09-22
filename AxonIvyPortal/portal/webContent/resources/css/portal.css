@@ -1398,11 +1398,7 @@ body.in-dialog .ui-widget-overlay {
 }
 
 .time-information .ti-pencil,
-.general-information .ti-pencil,
-.task-detail-description .ti-circle-plus,
-.task-detail-description .ti-circle-minus,
-.case-detail-description .ti-circle-plus,
-.case-detail-description .ti-circle-minus {
+.general-information .ti-pencil {
   margin-left: 5px;
   color: var(--primary-color);
 }
@@ -2644,6 +2640,7 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 .case-detail-attr .case-detail-attr-value .case-header-default-cell {
   display: inline-flex;
   align-items: center;
+  min-width: 0;
 }
 
 .task-detail-attr .task-detail-attr-value .ti,
@@ -2763,6 +2760,32 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 }
 .portal-detail-kv-value.flex {
   justify-content: flex-end;
+  align-items: center;
+}
+.portal-detail-kv-value.flex > * {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+.portal-detail-kv-value.flex > .task-expiry-activator-edit {
+  flex: none;
+}
+.responsibles {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+}
+.responsibles > span {
+  min-width: 0;
+}
+.responsibles > .ml-1 {
+  flex: none;
+}
+.responsibles-avatar-group .ui-avatar + .ui-avatar {
+  margin-left: -0.5rem;
+}
+.responsibles-avatar-group .ui-avatar.responsibles-more {
+  font-size: 0.75rem;
 }
 /* Avatar + name inside a value cell (Creator) */
 .portal-detail-kv-value .ui-avatar,

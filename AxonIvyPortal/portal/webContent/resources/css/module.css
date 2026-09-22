@@ -719,7 +719,8 @@ p:where(.text-style-h1, .text-style-h2, .text-style-h3, .text-style-h4, .text-st
   width: 150px;
 }
 
-.case-detail-body .state-column,
+.case-detail-body td.state-column,
+.case-detail-body th.state-column,
 .case-detail-body .category-column {
   width: 120px;
   text-align: center;
@@ -809,7 +810,7 @@ p:where(.text-style-h1, .text-style-h2, .text-style-h3, .text-style-h4, .text-st
 .state-cell .task-state.ellipsis-state {
   text-overflow: ellipsis;
   overflow: hidden;
-  max-width: 90px;
+  max-width: 100%;
 }
 
 /* Mobile screen */
@@ -836,7 +837,8 @@ p:where(.text-style-h1, .text-style-h2, .text-style-h3, .text-style-h4, .text-st
   .case-detail-body .category-column,
   .case-detail-body .id-column,
   .case-detail-body .created-column,
-  .case-detail-body .state-column,
+  .case-detail-body td.state-column,
+  .case-detail-body th.state-column,
   .case-detail-body .case-details-related-task-table .priority-column,
   .case-detail-body .case-details-related-task-table .related-task-description-column,
   .case-detail-body .case-details-related-task-table .related-task-id-column,
@@ -1903,13 +1905,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   display: inline-flex;
   max-height: 160px;
   padding: 0 !important;
-}
-
-.short-description {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
 }
 
 .long-description {
@@ -3790,12 +3785,6 @@ _:-ms-fullscreen, :root .content-link-history {
   opacity: 0.5;
 }
 
-.content-field-after-escalation span.name-after-avatar {
-  text-overflow: ellipsis;
-  max-width: 85%;
-  overflow: hidden;
-}
-
 .separator-task-detail::before {
   border-top: 1px solid var(--task-detail-separator-border-color);
 }
@@ -4371,17 +4360,6 @@ border-top: 0.14rem dashed;
 
 .task-details-widgets .task-action-item-position {
   display: inline-flex;
-}
-
-.icon-more-link, .icon-less-link {
-  display: none;
-}
-
-.icon-less-link.display {
-  display: -webkit-inline-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-box-pack: end;
 }
 
 .task-detail-description .pointer-event-none {
