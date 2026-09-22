@@ -42,7 +42,7 @@ public class ExtendingLogicOnTaskLeaveAndReserveActionsTest extends BaseTest {
     MainMenuPage menu = new MainMenuPage();
     menu.openTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    taskWidget.clickOnTaskName("Sick Leave Request");
+    taskWidget.startTask("Sick Leave Request");
     TaskTemplateIFramePage templatePage = new TaskTemplateIFramePage();
     templatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
@@ -63,7 +63,7 @@ public class ExtendingLogicOnTaskLeaveAndReserveActionsTest extends BaseTest {
     MainMenuPage menu = new MainMenuPage();
     menu.openTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    taskWidget.clickOnTaskName("Sick Leave Request");
+    taskWidget.startTask("Sick Leave Request");
     TaskTemplateIFramePage templatePage = new TaskTemplateIFramePage();
     NotificationCompactPage notificationPage = templatePage.openNotificationPanel();
     notificationPage.openNotificationMoreActionsMenu();
@@ -87,7 +87,7 @@ public class ExtendingLogicOnTaskLeaveAndReserveActionsTest extends BaseTest {
     taskWidget.addFilter("Task name", FilterOperator.CONTAINS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Sick Leave Request");
     taskWidget.applyFilter();
-    taskWidget.clickOnTaskName("Sick Leave Request");
+    taskWidget.startTask("Sick Leave Request");
     TaskTemplateIFramePage templatePage = new TaskTemplateIFramePage();
     templatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();

@@ -55,7 +55,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public Boolean isTaskListDisplayed() {
-    return $("div[id*='task-default_task_list_dashboard_task_1']").isDisplayed();
+    return $("div[id*='task-default_task_list_dashboard_task_1']").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
   }
 
   public void waitForTaskListDisplay() {

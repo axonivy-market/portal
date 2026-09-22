@@ -1,18 +1,17 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.text;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -68,7 +67,7 @@ public class PortalConfigurationPage extends TemplatePage {
   }
 
   public String getPageHeadingText() {
-    return $("div[id$='configuration-group'] .dashboard-configuration__header h2")
+    return $("div[id$='configuration-group'] .dashboard-configuration-title")
         .shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
@@ -151,7 +150,8 @@ public class PortalConfigurationPage extends TemplatePage {
     clickByJavaScript($("[id$='menu-type_panel']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("li").filter(Condition.text(menuKindLabel)).first()
         .shouldBe(getClickableCondition()));
-    $("[id$='menu-configuration-form']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='menu-type_label']").shouldHave(text(menuKindLabel), DEFAULT_TIMEOUT);
+    $("[id$='menu-type_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void setExternalLink(String url) {
@@ -164,6 +164,7 @@ public class PortalConfigurationPage extends TemplatePage {
     SelenideElement input = $("[id$='menu-configuration-form:menu-titles']").shouldBe(appear, DEFAULT_TIMEOUT);
     input.clear();
     input.sendKeys(title);
+    input.shouldHave(Condition.exactValue(title));
   }
 
   public void submitCreateMenu() {
@@ -178,6 +179,7 @@ public class PortalConfigurationPage extends TemplatePage {
   }
 
   public void submitUpdateMenu() {
+    $("[id$='menu-configuration-form:menu-titles']").pressTab();
     $("[id$='update-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("[id$='menu-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
     $("[id$='menu-table-container']").shouldBe(appear, DEFAULT_TIMEOUT);
