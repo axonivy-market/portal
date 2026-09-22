@@ -25,9 +25,8 @@ msgid "Document Table"
 msgstr "ドキュメントテーブル"
 
 #: ../../source/portal-components/document-table/index.rst:6
-#, fuzzy
 msgid "This component is a case document table with functions display, upload, preview, download, rename and delete document entries."
-msgstr "このコンポーネントは、ドキュメントのエントリの表示、アップロード、プレビュー、ダウンロード、削除機能を持つケースドキュメントテーブルです。"
+msgstr "このコンポーネントは、ドキュメントのエントリの表示、アップロード、プレビュー、ダウンロード、名前の変更、削除機能を持つケースドキュメントテーブルです。"
 
 #: ../../source/portal-components/document-table/index.rst:11
 msgid "It supports multiple file uploads and drag-and-drop. Click the :guilabel:`Upload new file` button to open the upload dialog, then select files via \"Browse files\" or drag them directly into the dialog's drop zone."
@@ -129,7 +128,7 @@ msgstr "関数列のレンダリングを指定するブール値。falseに設�
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "actionsAsMenu"
-msgstr ""
+msgstr "actionsAsMenu"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "FALSE"
@@ -137,7 +136,7 @@ msgstr "FALSE"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Boolean value to group the row actions into a single action menu, when set to true preview, download, rename and delete are shown as menu items instead of separate icons."
-msgstr ""
+msgstr "行アクションを単一のアクションメニューにまとめるかどうかを指定するブール値。trueに設定すると、プレビュー、ダウンロード、名前の変更、削除が個別のアイコンではなくメニュー項目として表示される。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "previewRendered"
@@ -247,9 +246,8 @@ msgid "uploadText"
 msgstr "uploadText"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "Upload new file"
-msgstr "uploadSubFolder"
+msgstr "新しいファイルをアップロード"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 #: ../../source/portal-components/documents/process_chain_component_attributes.csv:1
@@ -281,18 +279,16 @@ msgid "Preview"
 msgstr "プレビュー"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "Tooltip text displayed when hovering over the preview icon, or the item label when ``actionsAsMenu`` is enabled."
-msgstr "プレビューアイコンにカーソルを合わせると表示されるツールチップのテキスト。"
+msgstr "プレビューアイコンにカーソルを合わせると表示されるツールチップのテキスト、または ``actionsAsMenu`` が有効な場合の項目ラベル。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "previewIcon"
 msgstr "previewIcon"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "ti ti-eye"
-msgstr "ti-eye"
+msgstr "ti ti-eye"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Icon class for the preview link."
@@ -339,18 +335,16 @@ msgid "Download"
 msgstr "ダウンロード"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "Tooltip text displayed when hovering over the download icon, or the item label when ``actionsAsMenu`` is enabled."
-msgstr "ダウンロードアイコンにカーソルを合わせると表示されるツールチップのテキスト。"
+msgstr "ダウンロードアイコンにカーソルを合わせると表示されるツールチップのテキスト、または ``actionsAsMenu`` が有効な場合の項目ラベル。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "downloadIcon"
 msgstr "downloadIcon"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "ti ti-download"
-msgstr "ti-download"
+msgstr "ti ti-download"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Icon class will be displayed in download link."
@@ -373,18 +367,16 @@ msgid "Delete"
 msgstr "削除"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "Tooltip text displayed when hovering over the delete icon, or the item label when ``actionsAsMenu`` is enabled."
-msgstr "削除アイコンにカーソルを合わせると表示されるツールチップのテキスト。"
+msgstr "削除アイコンにカーソルを合わせると表示されるツールチップのテキスト、または ``actionsAsMenu`` が有効な場合の項目ラベル。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "deleteIcon"
 msgstr "deleteIcon"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "ti ti-trash"
-msgstr "ti-trash"
+msgstr "ti ti-trash"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Icon class will be displayed in delete link."
@@ -416,9 +408,8 @@ msgid "Rename document"
 msgstr "ドキュメントの名前を変更する"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
-#, fuzzy
 msgid "Tooltip text displayed when hovering over the rename icon, or the item label when ``actionsAsMenu`` is enabled."
-msgstr "名前変更アイコンにカーソルを合わせると表示されるツールチップのテキスト。"
+msgstr "名前変更アイコンにカーソルを合わせると表示されるツールチップのテキスト、または ``actionsAsMenu`` が有効な場合の項目ラベル。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "renameTitle"
@@ -619,11 +610,11 @@ msgstr "``documents`` (java.util.List<com.axonivy.portal.components.ivydata.bo.I
 
 #: ../../source/portal-components/document-table/index.rst:69
 msgid "List of documents associated with the case. After retrieving documents from your DMS, convert them into this type and set ``uuid``, ``name``, ``size``, ``path``, ``relativePath`` and ``contentType``. The component needs these fields to render the table and to run the preview, download, rename and delete actions. Set ``type`` as well if you display the type column. ``creation`` and ``lastModification`` are optional and are available for custom columns."
-msgstr ""
+msgstr "ケースに関連付けられたドキュメントの一覧です。DMSからドキュメントを取得したら、この型に変換し、``uuid``、``name``、``size``、``path``、``relativePath``、``contentType`` を設定してください。コンポーネントはテーブルを描画し、プレビュー、ダウンロード、名前の変更、削除の各アクションを実行するためにこれらのフィールドを必要とします。型カラムを表示する場合は ``type`` も設定してください。``creation`` と ``lastModification`` は任意項目で、カスタムカラムに利用できます。"
 
 #: ../../source/portal-components/document-table/index.rst:76
 msgid "The field ``id`` is deprecated since 11.2.0 and will be removed. Use ``uuid`` instead."
-msgstr ""
+msgstr "フィールド ``id`` はバージョン11.2.0で非推奨となり、今後削除されます。代わりに ``uuid`` を使用してください。"
 
 #: ../../source/portal-components/document-table/index.rst:78
 #: ../../source/portal-components/document-table/index.rst:111
@@ -951,13 +942,12 @@ msgid "Added lazy loading functionality to the Document Table component, enablin
 msgstr "Document Tableコンポーネントに遅延ロード機能を追加し、ページネーションによる効率的なデータロードを可能にしました。"
 
 #: ../../source/portal-components/document-table/index.rst:296
-#, fuzzy
 msgid "Changes in 14.0.0"
-msgstr "12.0.9 での変更点"
+msgstr "14.0.0 における変更点"
 
 #: ../../source/portal-components/document-table/index.rst:298
 msgid "Added the ``actionsAsMenu`` attribute to group the row actions of a document into a single action menu instead of separate icons."
-msgstr ""
+msgstr "ドキュメントの行アクションを個別のアイコンではなく単一のアクションメニューにまとめるための ``actionsAsMenu`` 属性を追加しました。"
 
 #: ../../source/portal-components/index.rst:4
 msgid "Portal Components"
@@ -1335,9 +1325,8 @@ msgid "Holds the selected role value."
 msgstr "選択されたロールの値を保持します。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid "excludedRoleNames"
-msgstr "excludedRolenames"
+msgstr "excludedRoleNames"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "List of role names to exclude from selection. Only applies when using the default completeMethod."
@@ -1464,9 +1453,8 @@ msgstr "フローティングスタイルを使用してラベルを表示しま
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "autoCompleteStyleClass"
-msgstr "autocompleteStyleClass"
+msgstr "autoCompleteStyleClass"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 msgid "CSS style class applied to the role autocomplete component."
@@ -1549,9 +1537,8 @@ msgid "displayName"
 msgstr "displayName"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Text displayed for roles in the dropdown and the selected value. Falls back to the member name when the role has no display name."
-msgstr "ドロップダウンメニューに表示される役割名と、選択された値。"
+msgstr "ドロップダウンおよび選択された値においてロールに対して表示されるテキストです。ロールに表示名がない場合は、メンバー名にフォールバックします。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
@@ -1639,9 +1626,8 @@ msgid "isShowAvatarInSelectionList"
 msgstr "isShowAvatarInSelectionList"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Displays role avatars in the selection list when enabled. Set to true to show avatar."
-msgstr "有効にすると、選択リストにユーザーのアバターが表示されます。アバターを表示するには true に設定してください。"
+msgstr "有効にすると、選択リストにロールのアバターが表示されます。アバターを表示するには true に設定してください。"
 
 #: ../../source/portal-components/documents/role_selection_component_attributes.csv:2
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:2
@@ -1781,7 +1767,7 @@ msgstr "ISecurityMember"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "Security member in the ivy security system. Beside ``ISecurityMember``, the component also accepts ``SecurityMemberDTO``, ``UserDTO`` and ``RoleDTO``."
-msgstr ""
+msgstr "ivyセキュリティシステムにおけるセキュリティメンバーです。``ISecurityMember`` に加え、このコンポーネントは ``SecurityMemberDTO``、``UserDTO``、``RoleDTO`` も受け付けます。"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "isShowAvatar"
@@ -1792,22 +1778,20 @@ msgid "Boolean value to specify avatar showing. Set to true to show avatar."
 msgstr "アバターの表示を指定するブール値。アバターを表示するにはtrueを設定します。"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
-#, fuzzy
 msgid "showLabel"
-msgstr "label"
+msgstr "showLabel"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "If false, the avatar is rendered without a label, neither the initials of the security member nor ``representName``."
-msgstr ""
+msgstr "falseの場合、アバターはラベルなしでレンダリングされ、セキュリティメンバーのイニシャルも ``representName`` も表示されません。"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
-#, fuzzy
 msgid "representName"
-msgstr "リリースノート"
+msgstr "representName"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "Text displayed in the avatar instead of the initials of the security member. The avatar is rendered as long as either ``securityMember`` or ``representName`` is set."
-msgstr ""
+msgstr "セキュリティメンバーのイニシャルの代わりにアバターに表示されるテキストです。``securityMember`` または ``representName`` のいずれかが設定されていればアバターはレンダリングされます。"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "displayNameId"
@@ -1859,17 +1843,15 @@ msgstr "isShowTechnicalDisplayNameOnTooltip"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "Boolean value to specify showing the technical name of a security member on tooltips. Set to true to show the technical name."
-msgstr ""
+msgstr "ツールチップにセキュリティメンバーの技術名を表示するかどうかを指定するブール値です。技術名を表示するにはtrueを設定します。"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:2
-#, fuzzy
 msgid "The setting will detect Portal setting Portal.ShowTooltipTechnicalName as its default value, refer to HowTo: Update :ref:`update-portal-settings` for more details."
-msgstr "設定はPortal設定のPortal.ShowAvatarをデフォルト値として検出します。詳細は :ref:`ハウツー：ポータル設定を更新する <update-portal-settings>` を参照してください。"
+msgstr "この設定はPortal設定のPortal.ShowTooltipTechnicalNameをデフォルト値として検出します。詳細は HowTo: Update :ref:`update-portal-settings` を参照してください。"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:3
-#, fuzzy
 msgid "If the Portal setting is not available, defaults to false."
-msgstr "ポータルの設定がない場合、デフォルトは ``false`` となる。"
+msgstr "Portal設定が利用できない場合、デフォルトは ``false`` となります。"
 
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:43
 msgid "Refer to process ``SecurityMemberNameAndAvatarExample`` in project ``portal-components-examples`` for more details."
@@ -2296,9 +2278,8 @@ msgid "Label text for the user selection component."
 msgstr "ユーザー選択コンポーネントのラベルテキスト。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
-#, fuzzy
 msgid "Text displayed for users in the dropdown and the selected value."
-msgstr "ドロップダウンメニューに表示される役割名と、選択された値。"
+msgstr "ドロップダウンおよび選択された値においてユーザーに対して表示されるテキストです。"
 
 #: ../../source/portal-components/documents/user_selection_component_attributes.csv:1
 msgid "Displays user avatars in the selection list when enabled. Set to true to show avatar."

@@ -946,9 +946,8 @@ msgid "Restart your Axon Ivy Engine for the changes to take effect."
 msgstr "変更を反映させるには、Axon Ivy Engine を再起動してください。"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:188
-#, fuzzy
 msgid "If you deploy Portal with a custom application name, update the ``application`` parameter in both XHTML files to match your Portal application name."
-msgstr "Portal をカスタムアプリケーション名でデプロイされる場合、両方の XHTML ファイル内の ``processModel`` パラメータを、お客様の Portal アプリケーション名に合わせて更新してください。"
+msgstr "Portal をカスタムアプリケーション名でデプロイされる場合、両方の XHTML ファイル内の ``application`` パラメータを、お客様の Portal アプリケーション名に合わせて更新してください。"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:193
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:285
@@ -1201,9 +1200,8 @@ msgid "set-business-details-page-callable-process"
 msgstr "set-business-details-page-callable-process"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:44
-#, fuzzy
 msgid "Use public API ``com.axonivy.portal.components.publicapi.BusinessDetailsAPI.create(String)``, ``com.axonivy.portal.components.publicapi.BusinessDetailsAPI.create(String, java.util.Map)`` or ``com.axonivy.portal.components.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)``."
-msgstr "公開API``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String)``、``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(String, java.util.Map)``、または``ch.ivy.addon.portalkit.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)`` を使用してください。"
+msgstr "公開API``com.axonivy.portal.components.publicapi.BusinessDetailsAPI.create(String)``、``com.axonivy.portal.components.publicapi.BusinessDetailsAPI.create(String, java.util.Map)``、または``com.axonivy.portal.components.publicapi.BusinessDetailsAPI.create(BusinessDetailsDTO)`` を使用してください。"
 
 #: ../../source/portal-developer-guide/customization/business-details-page.rst:46
 msgid "See the Public API section for more details."
@@ -1365,24 +1363,24 @@ msgstr "この変数の値はラッパーオブジェクトです：``version`` 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:43
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:36
 msgid "**How Portal picks which layout to display** - this determines whether a change to this variable has any visible effect at all:"
-msgstr ""
+msgstr "**Portalがどのレイアウトを表示するか決定する方法** - この変数への変更が何らかの見た目の効果を持つかどうかを左右します。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:46
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:39
 msgid "If the current user has ever clicked **Edit Layout** on this page and saved (or was previously in edit mode when a save was triggered), Portal uses **that user's own saved layout** and ignores this variable **entirely** for that user, indefinitely. The **Reset** button on this page does **not** clear this saved layout - it only discards unsaved changes made during the current edit session. There is currently no supported way to clear a user's saved layout from the UI. If a change to this variable appears to have no effect, check first whether the user you are testing with has ever saved a layout edit on this page."
-msgstr ""
+msgstr "現在のユーザーがこのページで **レイアウトを編集** をクリックして保存したことがある場合（または保存がトリガーされた時点で編集モードにあった場合）、Portalはそのユーザーに対して無期限に **そのユーザー自身の保存済みレイアウト** を使用し、この変数を**完全に**無視します。このページの **リセット** ボタンはこの保存済みレイアウトを消去**しません** - 現在の編集セッション中の未保存の変更を破棄するだけです。現在、UIからユーザーの保存済みレイアウトを消去する公式にサポートされた方法はありません。この変数への変更が効果を持たないように見える場合は、まずテストに使用しているユーザーがこのページでレイアウトの編集を保存したことがあるかどうかを確認してください。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:53
 msgid "Otherwise, Portal scans the ``items`` list for an entry whose ``filters`` match the current case (by ``categories`` or ``states``) and uses the first match."
-msgstr ""
+msgstr "それ以外の場合、Portalは ``items`` リストをスキャンし、（``categories`` または ``states`` によって）現在のケースに一致する ``filters`` を持つエントリを探し、最初に一致したものを使用します。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:55
 msgid "If no entry's ``filters`` match, Portal falls back to the entry whose ``id`` is exactly ``\"default-case-detail\"`` (case-sensitive). **An entry with any other ``id`` and no matching ``filters`` will never be displayed** - this is a common mistake when adapting the examples below."
-msgstr ""
+msgstr "どのエントリの ``filters`` も一致しない場合、Portalは ``id`` が正確に ``\"default-case-detail\"`` （大文字小文字を区別）であるエントリにフォールバックします。**他の ``id`` を持ち、一致する ``filters`` もないエントリは決して表示されません** - これは以下の例を応用する際によくある間違いです。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:59
 msgid "If no entry has that exact ``id`` either, Portal falls back to its own built-in default layout (the 5-widget layout shown below), silently ignoring everything you configured."
-msgstr ""
+msgstr "その正確な ``id`` を持つエントリもない場合、Portalは組み込みのデフォルトレイアウト（以下に示す5つのウィジェットのレイアウト）にフォールバックし、設定した内容をすべて黙って無視します。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:62
 msgid "The default configuration includes five widgets:"
@@ -1544,14 +1542,12 @@ msgstr "``portal-developer-examples/resources/files`` プロジェクトの ``va
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:211
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:176
-#, fuzzy
 msgid "Copy to the corresponding application folder located in the engine."
-msgstr "Designer の対応するアプリケーションフォルダーにコピーします。"
+msgstr "エンジン内の対応するアプリケーションフォルダーにコピーします。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:213
-#, fuzzy
 msgid "e.g: <engine>/configuration/applications/<application>."
-msgstr "例：AxonIvyDesigner/configuration/applications/designer"
+msgstr "例：<engine>/configuration/applications/<application>"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:215
 msgid "Create some destroyed case or start the process ``Start Processes/CaseDetailsCustomWidgetExample/CreateEventTest.ivp`` in ``portal-developer-examples`` project."
@@ -1660,13 +1656,12 @@ msgid "Change Password Process"
 msgstr "パスワードの変更プロセス"
 
 #: ../../source/portal-developer-guide/customization/change-password-process.rst:11
-#, fuzzy
 msgid "The Change Password Process customization enables you to replace Portal's default password change logic with your own — for example checking against leaked password databases, enforcing custom complexity rules, or integrating with external password management systems to ensure compliance with your organization's security policies."
-msgstr "パスワード変更プロセスのカスタマイズにより、ユーザーがパスワードを変更する際の追加セキュリティ検証を実装することが可能となります。具体的には、漏洩したパスワードデータベースとの照合、カスタム複雑性ルールの適用、外部パスワード管理システムとの連携などを行い、組織のセキュリティポリシーへの準拠を確保します。"
+msgstr "パスワード変更プロセスのカスタマイズにより、Portalのデフォルトのパスワード変更ロジックを独自のロジックに置き換えることができます。例えば、漏洩したパスワードデータベースとの照合、カスタム複雑性ルールの適用、外部パスワード管理システムとの連携などを行い、組織のセキュリティポリシーへの準拠を確保できます。"
 
 #: ../../source/portal-developer-guide/customization/change-password-process.rst:18
 msgid "Once you register a custom subprocess for this signature, Portal skips its own default password-persistence step entirely — it does not run in addition to your subprocess. Your subprocess is fully responsible for persisting the new password itself (for example via ``ivy.session.getSessionUser().setPassword(newPassword)``) as well as validating it. Returning ``status = \"OK\"`` only controls what message is shown to the user; it does not, by itself, change the user's password."
-msgstr ""
+msgstr "このシグネチャに対してカスタムサブプロセスを登録すると、Portalは独自のデフォルトのパスワード永続化ステップを完全にスキップします - サブプロセスに加えて実行されることはありません。新しいパスワードを永続化する処理（例えば ``ivy.session.getSessionUser().setPassword(newPassword)`` を介して）およびその検証は、すべてサブプロセスが担う責任となります。``status = \"OK\"`` を返すことは、ユーザーに表示されるメッセージを制御するだけであり、それ自体でユーザーのパスワードを変更するものではありません。"
 
 #: ../../source/portal-developer-guide/customization/change-password-process.rst:28
 #: ../../source/portal-developer-guide/customization/document-processes.rst:18
@@ -1790,9 +1785,8 @@ msgid "``documents`` (java.util.List<com.axonivy.portal.components.ivydata.bo.Iv
 msgstr "``documents`` (java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>)"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:37
-#, fuzzy
 msgid "List of documents associated with the case. After retrieving documents from your DMS, convert them into this type with mandatory fields: ``uuid``, ``name``, ``contentType``. Note that ``IvyDocument.id`` is deprecated for removal; use ``uuid`` instead."
-msgstr "当該ケースに関連する文書のリストです。文書管理システム（DMS）から文書を取得後、以下の必須フィールドを含む形式に変換してください：``id``、``name``、``contentType``。"
+msgstr "当該ケースに関連する文書のリストです。文書管理システム（DMS）から文書を取得後、必須フィールドである ``uuid``、``name``、``contentType`` を含む形式に変換してください。``IvyDocument.id`` は非推奨となり削除される予定のため、代わりに ``uuid`` を使用してください。"
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:40
 msgid "Status or error message from the document retrieval operation."
@@ -1914,7 +1908,7 @@ msgstr "削除操作の結果として表示されるステータスまたはエ
 
 #: ../../source/portal-developer-guide/customization/document-processes.rst:121
 msgid "Operation status: OK or FAIL. This field is mandatory — Portal's own delete handling reads it directly and will fail with an internal error if it is not set."
-msgstr ""
+msgstr "操作ステータス：OKまたはFAIL。このフィールドは必須です - Portal自身の削除処理がこれを直接読み取るため、設定されていないと内部エラーで失敗します。"
 
 #: ../../source/portal-developer-guide/customization/extend-task-leave-and-reserve-actions.rst:4
 msgid "Extend Task Leave and Reserve Actions"
@@ -2492,9 +2486,8 @@ msgid "**Signature**: portalLogout"
 msgstr "**シグネチャ**：portalLogout"
 
 #: ../../source/portal-developer-guide/customization/logout-process.rst:31
-#, fuzzy
 msgid "``isTaskReserve`` (java.lang.Boolean)"
-msgstr "``isTaskReserve`` (java.lang.String)"
+msgstr "``isTaskReserve`` (java.lang.Boolean)"
 
 #: ../../source/portal-developer-guide/customization/logout-process.rst:32
 msgid "Indicates whether the task should remain reserved during logout."
@@ -2506,9 +2499,8 @@ msgid "``task`` (ch.ivyteam.ivy.workflow.ITask)"
 msgstr "``task`` (ch.ivyteam.ivy.workflow.ITask)"
 
 #: ../../source/portal-developer-guide/customization/logout-process.rst:35
-#, fuzzy
 msgid "The task if logging out while working on a task."
-msgstr "タスク作業中にログアウトする場合のタスク識別子。"
+msgstr "タスクの作業中にログアウトする場合のタスクです。"
 
 #: ../../source/portal-developer-guide/customization/logout-process.rst:38
 msgid "Customize the logout page"
@@ -3722,7 +3714,7 @@ msgstr "サイドステップの設定を定義するには、 ``SideStepProcess
 
 #: ../../source/portal-developer-guide/customization/side-step.rst:62
 msgid "Each ``processNameCmsUri`` below must point to a CMS entry you create yourself — it is not generated automatically. Before wiring up the DTOs, add a CMS content object at that URI (e.g. ``/Processes/SideStep/AskMoreDetails``) with the display name(s) you want shown for that side step option. If the CMS entry does not exist, the side step option will not display a name/label at all."
-msgstr ""
+msgstr "以下の各 ``processNameCmsUri`` は、自分で作成するCMSエントリを指す必要があります - 自動的に生成されるものではありません。DTOを構成する前に、そのURI（例：``/Processes/SideStep/AskMoreDetails``）にCMSコンテンツオブジェクトを追加し、そのサイドステップオプションに表示させたい表示名を設定してください。CMSエントリが存在しない場合、サイドステップオプションには名前／ラベルがまったく表示されません。"
 
 #: ../../source/portal-developer-guide/customization/side-step.rst:93
 msgid "Create a ``SideStepConfigurationDTO`` object of ``portal-components`` from this list created on the above code snippet. Convert it to JSON and write the value to a custom text field"
@@ -3940,15 +3932,15 @@ msgstr "この変数の値はラッパーオブジェクトです：``version`` 
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:46
 msgid "Otherwise, Portal scans the ``items`` list for an entry whose ``filters`` match the current task (by ``categories`` or ``states``) and uses the first match."
-msgstr ""
+msgstr "それ以外の場合、Portalは ``items`` リストをスキャンし、（``categories`` または ``states`` によって）現在のタスクに一致する ``filters`` を持つエントリを探し、最初に一致したものを使用します。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:48
 msgid "If no entry's ``filters`` match, Portal falls back to the entry whose ``id`` is exactly ``\"default-task-detail\"`` (case-sensitive). **An entry with any other ``id`` and no matching ``filters`` will never be displayed** - this is a common mistake when adapting the examples below."
-msgstr ""
+msgstr "どのエントリの ``filters`` も一致しない場合、Portalは ``id`` が正確に ``\"default-task-detail\"`` （大文字小文字を区別）であるエントリにフォールバックします。**他の ``id`` を持ち、一致する ``filters`` もないエントリは決して表示されません** - これは以下の例を応用する際によくある間違いです。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:52
 msgid "If no entry has that exact ``id`` either, Portal falls back to its own built-in default layout (the 3-widget layout shown below), silently ignoring everything you configured."
-msgstr ""
+msgstr "その正確な ``id`` を持つエントリもない場合、Portalは組み込みのデフォルトレイアウト（以下に示す3つのウィジェットのレイアウト）にフォールバックし、設定した内容をすべて黙って無視します。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:55
 msgid "Default configuration includes 3 widgets."
@@ -4055,9 +4047,8 @@ msgid "Refer to ``variables.Portal.TaskDetails.json`` file in ``portal-developer
 msgstr "``portal-developer-examples/resources/files`` プロジェクトの ``variables.Portal.TaskDetails.json`` ファイルを参照します。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:178
-#, fuzzy
 msgid "E.g., <engine>/configuration/applications/<application>"
-msgstr "例：AxonIvyDesigner/configuration/applications/designer"
+msgstr "例：<engine>/configuration/applications/<application>"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:180
 msgid "Create some destroyed task or start the process ``Start Processes/TaskDetailsCustomWidgetExample/SalesManagement.ivp`` in ``portal-developer-examples`` project."
@@ -4688,14 +4679,12 @@ msgid "Navigate to ``resources/files/variables.Portal.Dashboard.json``"
 msgstr "``resources/files/variables.Portal.Dashboard.json`` へ移動してください。"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:199
-#, fuzzy
 msgid "Copy this file to application configuration:"
-msgstr "このファイルをデザイナー設定にコピーしてください："
+msgstr "このファイルをアプリケーション設定にコピーしてください："
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:201
-#, fuzzy
 msgid "Location: ``<engine>/configuration/applications/<application>``"
-msgstr "場所:``AxonIvyDesigner12.0.0/configuration/applications/designer``"
+msgstr "場所：``<engine>/configuration/applications/<application>``"
 
 #: ../../source/portal-developer-guide/dashboard/index.rst:203
 msgid "Run the test data creation process:"
@@ -7462,9 +7451,8 @@ msgid "Following this path to add your custom field values: ``/CustomFields/Task
 msgstr "カスタム・フィールドの値を追加するには、以下のパスに従ってください：``/CustomFields/Tasks/{fieldName}/Values/{value}`` :doc-url:`ラベル、説明、カテゴリー、値のローカライズ </designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>` に従ってください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:734
-#, fuzzy
 msgid "In your CMS, the path should be ``/CustomFields/Tasks/Citizenship/Values/korea``, ``/CustomFields/Tasks/Citizenship/Values/singapore`` or ``/CustomFields/Tasks/Citizenship/Values/spain``."
-msgstr "あなたのCMSでは、パスは ``/CustomFields/Tasks/DriversVehicle/Values/Bike``, ``/CustomFields/Tasks/DriversVehicle/Values/Car`` または ``/CustomFields/Tasks/DriversVehicle/Values/MonsterTruck`` であるべきです。"
+msgstr "あなたのCMSでは、パスは ``/CustomFields/Tasks/Citizenship/Values/korea``、``/CustomFields/Tasks/Citizenship/Values/singapore`` または ``/CustomFields/Tasks/Citizenship/Values/spain`` であるべきです。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:739
 msgid "|task-field-cms|"
@@ -9272,7 +9260,7 @@ msgstr "ウィジェットのフィルター設定でこれらを確認してく
 
 #: ../../source/portal-developer-guide/installation/index.rst:219
 msgid "8. We recommend updating your dashboards and dashboard templates to the latest version after upgrading. Open and re-save each dashboard once (:guilabel:`Portal Configuration` → open the dashboard → :guilabel:`Edit Layout` → :guilabel:`Save`), and re-save the ``Portal.DashboardTemplates`` variable the same way, so their stored JSON is stamped at the current schema version."
-msgstr ""
+msgstr "8. アップグレード後、ダッシュボードとダッシュボードテンプレートを最新バージョンに更新することをお勧めします。各ダッシュボードを一度開いて再保存し（:guilabel:`Portal Configuration` → ダッシュボードを開く → :guilabel:`Edit Layout` → :guilabel:`Save`）、``Portal.DashboardTemplates`` 変数も同様の手順で再保存することで、保存されているJSONが現在のスキーマバージョンで記録されるようにします。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:226
 msgid "Migrate 13.1 To 13.2"
@@ -9960,12 +9948,11 @@ msgstr "タスクウィジェットのクエリを改善しました：ケース
 
 #: ../../source/portal-developer-guide/installation/index.rst:581
 msgid "Removed the **AI Assistant** from Portal."
-msgstr ""
+msgstr "Portal から **AI アシスタント** を削除しました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:582
-#, fuzzy
 msgid "The public API ``com.axonivy.portal.components.publicapi.AiAssistantAPI`` is removed and no longer supported."
-msgstr "com.axonivy.portal.components.publicapi.CaseAPI.removeHidePropertyToDisplayInPortal(ICase)"
+msgstr "公開API ``com.axonivy.portal.components.publicapi.AiAssistantAPI`` は削除され、サポート対象外になりました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:585
 msgid "Changes in 13.2.0"
@@ -10044,9 +10031,8 @@ msgid "Introduce the component IFrameTaskConfig to configure IFrame tasks. Refer
 msgstr "IFrame のタスクを設定する IFrameTaskConfig コンポーネントを導入しました。詳細については、:ref:`iframe-configure-template` を参照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:616
-#, fuzzy
 msgid "The :ref:`Task Widget page <task-widget>` and :ref:`Case Widget page <case-widget>` have been redesigned to align with the concept of a dashboard widget. It now functions as a dashboard with a single, full-width widget. To configure it, you can adjust it like any other widgets."
-msgstr "ダッシュボードウィジェットのコンセプトに合わせて、:ref:`全タスクリストページ <full-task-list>` と :ref:`全ケースリスト <full-case-list>` のデザインが一新されました。ページは 1 つの全幅ウィジェットを含むダッシュボードとして機能します。他のウィジェットと同じように調整して設定できます。"
+msgstr "ダッシュボードウィジェットのコンセプトに合わせて、:ref:`タスクウィジェットページ <task-widget>` と :ref:`ケースウィジェットページ <case-widget>` のデザインが一新されました。ページは 1 つの全幅ウィジェットを含むダッシュボードとして機能します。他のウィジェットと同じように調整して設定できます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:618
 msgid "Support multiple case owners. The single case owner sort feature is removed."
