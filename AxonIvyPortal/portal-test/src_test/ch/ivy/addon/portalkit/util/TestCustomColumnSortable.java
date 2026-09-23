@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
+import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.environment.IvyTest;
@@ -74,6 +75,47 @@ class TestCustomColumnSortable {
     column.initDefaultValue();
     DashboardWidgetUtils.buildCustomColumn(Set.of(meta(field, type, customAction)), column, field);
     return column;
+  }
+
+  private CaseColumnModel buildCustomCase(String field, CustomFieldType type, boolean customAction) {
+    CaseColumnModel column = new CaseColumnModel();
+    column.setField(field);
+    column.setType(DashboardColumnType.CUSTOM);
+    column.initDefaultValue();
+    DashboardWidgetUtils.buildCustomColumn(Set.of(meta(field, type, customAction)), column, field);
+    return column;
+  }
+
+  @ParameterizedTest
+  @EnumSource(value = CustomFieldType.class, names = {"STRING", "NUMBER", "TIMESTAMP"})
+  void caseOrderableCustomFieldTypesStaySortable(CustomFieldType type) {
+    assertThat(buildCustomCase("Field_" + type.name(), type, false).getSortable()).isTrue();
+  }
+
+  @Test
+  void caseTextCustomFieldIsNotSortable() {
+    assertThat(buildCustomCase("Remark", CustomFieldType.TEXT, false).getSortable()).isFalse();
+  }
+
+  @Test
+  void caseHideMarkerFieldIsNotSortable() {
+    assertThat(buildCustomCase("HIDE", CustomFieldType.STRING, false).getSortable()).isFalse();
+  }
+
+  @Test
+  void caseCustomActionFieldIsNotSortable() {
+    assertThat(buildCustomCase("DestroyCaseAction", CustomFieldType.STRING, true).getSortable()).isFalse();
+  }
+
+  @Test
+  void caseDeprecatedCustomFieldWithoutMetaIsNotSortable() {
+    CaseColumnModel column = new CaseColumnModel();
+    column.setField("GoneField");
+    column.setType(DashboardColumnType.CUSTOM);
+    column.initDefaultValue();
+    DashboardWidgetUtils.buildCustomColumn(Set.of(), column, "GoneField");
+
+    assertThat(column.getSortable()).isFalse();
   }
 
   @ParameterizedTest
