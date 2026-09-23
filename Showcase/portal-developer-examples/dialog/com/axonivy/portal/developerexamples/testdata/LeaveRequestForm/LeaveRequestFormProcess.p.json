@@ -58,7 +58,7 @@
         "guid" : "160C5931F565508F",
         "output" : {
           "code" : [
-            "/*import javax.faces.context.FacesContext;",
+            "/*import jakarta.faces.context.FacesContext;",
             "import ch.ivy.addon.portal.generic.bean.UserMenuBean;",
             "String homePageUrl = new UserMenuBean().getHomePageURL();",
             "FacesContext.getCurrentInstance().getExternalContext().redirect(homePageUrl);*/"
