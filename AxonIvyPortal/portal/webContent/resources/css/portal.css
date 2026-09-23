@@ -957,14 +957,14 @@ body .ui-inputfield.case-detail-name-input {
 .task-start-list-item.full-mode,
 .case-list-item {
   border: 1px solid transparent;
-  border: 1px solid transparent;
   border-bottom: 1px solid var(--task-filter-separator-border-bottom);
 }
 
 a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.full-mode:hover,
 .case-list-item:hover {
   background: var(--compact-task-start-list-item-hover-background-color);
-  border: var(--compact-task-start-list-item-hover-border); }
+  border: var(--compact-task-start-list-item-hover-border); 
+}
 
 .task-start-info-header, .task-start-info-content, .task-start-info-footer {
   color: var(--compact-task-start-info-color); }

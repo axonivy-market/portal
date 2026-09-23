@@ -87,7 +87,7 @@
   --box-shadow-color: hsla(0, 0%, 15%, 0.2);
   --portal-border-radius: 5px;
   --portal-pill-btn-border-radius: 100px;
-  --item-background-hover: var(--ivy-portal-primary-lighter-color);
+  --item-background-hover: var(--primary-lighter-color);
   --item-border-hover: 1px solid var(--ivy-portal-primary-light-color);
 
   --top-bar-icon-size: 1.4rem;
