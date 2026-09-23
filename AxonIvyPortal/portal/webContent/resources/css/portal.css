@@ -2126,9 +2126,9 @@ body .ui-button.portal-pill-btn,
 body .ui-button.portal-pill-btn.ui-state-focus,
 body .ui-button.portal-pill-btn.ui-state-active,
 body .ui-button.portal-pill-btn.ui-state-down {
-  background-color: var(--ivy-portal-primary-lighter-color);
-  border-color: var(--ivy-portal-primary-light-color);
-  color: var(--ivy-portal-primary-dark-color);
+  background: var(--secondary-btn-bg);
+  border-color: var(--secondary-btn-border);
+  color: var(--portal-detail-value-color);
 }
 
 body .ui-button.portal-pill-btn.ui-state-hover,
