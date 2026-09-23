@@ -421,6 +421,11 @@ public class CaseDetailsPage extends TemplatePage {
     return $$("td.history-related-case a[id$=':related-case-link']");
   }
 
+  public ElementsCollection getNumberOfRelatedCaseRows() {
+    $("div[id$=':related-cases-widget:related-cases']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $$("div[id$=':related-cases-widget:related-cases'] table tbody tr[data-ri]");
+  }
+
   public ElementsCollection getNumberOfHistory() {
     $("[id$=':history-container']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(),
         DEFAULT_TIMEOUT);
