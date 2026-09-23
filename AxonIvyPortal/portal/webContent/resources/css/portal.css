@@ -2446,6 +2446,7 @@ body a.portal-detail-toolbar-back:focus,
   display: flex;
   align-items: center;
   gap: 1.071rem;
+  min-width: 0;
 }
 .task-detail-name-row,
 .case-detail-name-row {
@@ -2477,6 +2478,9 @@ body a.portal-detail-toolbar-back:focus,
   font-size: var(--small-font-size);
   font-weight: 400;
   line-height: var(--portal-detail-label-line-height);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .task-detail-header-actions .task-action-item-label {
   font-size: var(--default-font-size);
@@ -2540,7 +2544,8 @@ body a.portal-detail-toolbar-back:focus,
   cursor: default;
 }
 .task-detail-attr .task-detail-attr-value > span,
-.task-detail-attr .task-detail-attr-value > a {
+.task-detail-attr .task-detail-attr-value > a,
+.case-detail-attr .case-detail-attr-value > span {
   min-width: 0;
   overflow: hidden;
   white-space: nowrap;
