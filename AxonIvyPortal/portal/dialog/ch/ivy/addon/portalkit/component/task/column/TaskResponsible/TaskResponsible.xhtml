@@ -34,7 +34,7 @@
           <p:tooltip for="all-responsibles" position="top" autoHide="false">
             <ui:repeat id="task-responsibles" value="#{responsibleBean.getResponsibleLimit10(cc.attrs.responsibles)}" var="responsible">
               <div class="py-1">
-                <pc:securityMemberNameAndAvatar displayName="#{responsibleBean.getDisplayName(responsible.get())}" 
+                <pc:securityMemberNameAndAvatar displayName="#{responsibleBean.getDisplayName(responsible.get())}"
                     securityMember="#{responsible.get()}" />
               </div>
             </ui:repeat>

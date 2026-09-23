@@ -2914,17 +2914,12 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding: 0.25rem 0;
 }
 
-.avatar-stack .avatar-stack-item {
-  display: inline-flex;
-  align-items: center;
-}
-
-.avatar-stack .avatar-stack-item + .avatar-stack-item {
+.avatar-stack .ui-avatar + .ui-avatar {
   margin-left: -10px;
 }
 
-.avatar-stack .avatar-stack-item .ui-avatar,
-.avatar-stack .avatar-stack-item img {
+.avatar-stack .ui-avatar,
+.avatar-stack .ui-avatar img {
   border: 2px solid var(--substituted-user-avatar-color);
   box-sizing: content-box;
 }

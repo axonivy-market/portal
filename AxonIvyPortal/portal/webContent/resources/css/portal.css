@@ -2792,14 +2792,28 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 .responsibles-avatar-group .ui-avatar.responsibles-more {
   font-size: 0.75rem;
 }
-/* Avatar + name inside a value cell (Creator) */
+
 .portal-detail-kv-value .ui-avatar,
 .portal-detail-kv-value .avatar,
 .portal-detail-kv-value img {
   width: 1.786rem;
   height: 1.786rem;
-  border-radius: 50%;
 }
+
+.task-general-info-responsibles.portal-detail-kv-value .responsibles-avatar-group .ui-avatar, .content-field-after-escalation.portal-detail-kv-value .responsibles-avatar-group .ui-avatar {
+  margin-left: -0.3rem !important;
+}
+
+.portal-detail-kv-value .responsibles-avatar-group .ui-avatar {
+  border: 2px solid var(--substituted-user-avatar-color);
+  box-sizing: content-box;
+}
+
+.portal-detail-kv-value .responsibles-avatar-group .ui-avatar.responsibles-more {
+  background-color: var(--portal-detail-card-border-color);
+  color: var(--portal-detail-value-color);
+}
+
 .portal-detail-body .business-case-information .case-detail-business-case {
   color: var(--portal-detail-accent-color);
   font-size: var(--default-font-size);
