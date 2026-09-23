@@ -441,7 +441,7 @@ msgstr "selectedType"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Default document type to be selected. If not provided, the first item of ``typeSelectionItems`` will be used."
-msgstr "選択するデフォルトのドキュメントタイプ。指定がない場合は、\ ``typeSelectionItems`` の最初の項目が使用されます。"
+msgstr "選択するデフォルトのドキュメントタイプ。指定がない場合は、``typeSelectionItems`` の最初の項目が使用されます。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "typeSelectionItems"
@@ -482,7 +482,7 @@ msgstr "enableVirusScannerForUploadedDocument"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:1
 msgid "Boolean value to specify virus scanning. Set to ``true`` to enable virus scanning. Refer to :ref:`Virus Scanning Setting<settings-virus-scanning-setting>` for more details."
-msgstr "ウイルススキャンを指定するブール値。ウイルススキャンを有効にするには、\ ``true`` に設定します。詳細は :ref:`ウイルススキャンの設定 <settings-virus-scanning-setting>` を参照してください。"
+msgstr "ウイルススキャンを指定するブール値。ウイルススキャンを有効にするには、``true`` に設定します。詳細は :ref:`ウイルススキャンの設定 <settings-virus-scanning-setting>` を参照してください。"
 
 #: ../../source/portal-components/documents/document_table_component_attributes.csv:2
 msgid "The setting will detect Portal setting ``Portal.Document.EnableVirusScanner`` as its default value, refer to :ref:`update-portal-settings` for more details."
@@ -550,7 +550,7 @@ msgstr "コードの例："
 
 #: ../../source/portal-components/document-table/index.rst:39
 msgid "Please refer to :ref:`settings-virus-scanning-setting` for more details about virus scanning."
-msgstr "ウイルススキャンの詳細については、\ :ref:`settings-virus-scanning-setting` を参照してください。"
+msgstr "ウイルススキャンの詳細については、:ref:`settings-virus-scanning-setting` を参照してください。"
 
 #: ../../source/portal-components/document-table/index.rst:44
 msgid "Customize"
@@ -558,7 +558,7 @@ msgstr "カスタマイズ"
 
 #: ../../source/portal-components/document-table/index.rst:46
 msgid "In your project, create callable subprocesses with the information below to customize the functions of the **Document Table**."
-msgstr "プロジェクト内で、以下の情報を使用して呼び出し可能なサブプロセスを作成し、\ **ドキュメントテーブル** の機能をカスタマイズしてください。"
+msgstr "プロジェクト内で、以下の情報を使用して呼び出し可能なサブプロセスを作成し、**ドキュメントテーブル** の機能をカスタマイズしてください。"
 
 #: ../../source/portal-components/document-table/index.rst:51
 msgid "You can refer to process ``CustomDocumentFeatures`` in project ``portal-components-examples`` to examine how to customize."
@@ -574,7 +574,7 @@ msgstr "**ドキュメントテーブル** のドキュメントの取得方法�
 
 #: ../../source/portal-components/document-table/index.rst:59
 msgid "**Signature**: portalGetDocumentItems"
-msgstr "**シグネチャ**\ ：portalGetDocumentItems"
+msgstr "**シグネチャ**：portalGetDocumentItems"
 
 #: ../../source/portal-components/document-table/index.rst:61
 #: ../../source/portal-components/document-table/index.rst:89
@@ -610,7 +610,7 @@ msgstr "``documents`` (java.util.List<com.axonivy.portal.components.ivydata.bo.I
 
 #: ../../source/portal-components/document-table/index.rst:69
 msgid "List of documents associated with the case. After retrieving documents from your DMS, convert them into this type and set ``uuid``, ``name``, ``size``, ``path``, ``relativePath`` and ``contentType``. The component needs these fields to render the table and to run the preview, download, rename and delete actions. Set ``type`` as well if you display the type column. ``creation`` and ``lastModification`` are optional and are available for custom columns."
-msgstr "ケースに関連付けられたドキュメントの一覧です。DMSからドキュメントを取得したら、この型に変換し、\ ``uuid``\ 、\ ``name``\ 、\ ``size``\ 、\ ``path``\ 、\ ``relativePath``\ 、\ ``contentType`` を設定してください。コンポーネントはテーブルを描画し、プレビュー、ダウンロード、名前の変更、削除の各アクションを実行するためにこれらのフィールドを必要とします。型カラムを表示する場合は ``type`` も設定してください。\ ``creation`` と ``lastModification`` は任意項目で、カスタムカラムに利用できます。"
+msgstr "ケースに関連付けられたドキュメントの一覧です。DMSからドキュメントを取得したら、この型に変換し、``uuid``、``name``、``size``、``path``、``relativePath``、``contentType`` を設定してください。コンポーネントはテーブルを描画し、プレビュー、ダウンロード、名前の変更、削除の各アクションを実行するためにこれらのフィールドを必要とします。型カラムを表示する場合は ``type`` も設定してください。``creation`` と ``lastModification`` は任意項目で、カスタムカラムに利用できます。"
 
 #: ../../source/portal-components/document-table/index.rst:76
 msgid "The field ``id`` is deprecated since 11.2.0 and will be removed. Use ``uuid`` instead."
@@ -706,7 +706,7 @@ msgstr "ユーザーが **ドキュメントテーブル** からドキュメン
 
 #: ../../source/portal-components/document-table/index.rst:123
 msgid "**Signature**: portalDownloadDocumentItem"
-msgstr "**シグネチャ**\ ：portalDownloadDocumentItem"
+msgstr "**シグネチャ**：portalDownloadDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:128
 #: ../../source/portal-components/document-table/index.rst:149
@@ -742,7 +742,7 @@ msgstr "ユーザーが **ドキュメントテーブル** からドキュメン
 
 #: ../../source/portal-components/document-table/index.rst:144
 msgid "**Signature**: portalDeleteDocumentItem"
-msgstr "**シグネチャ**\ ：portalDeleteDocumentItem"
+msgstr "**シグネチャ**：portalDeleteDocumentItem"
 
 #: ../../source/portal-components/document-table/index.rst:152
 msgid "The document to be deleted."
@@ -911,7 +911,7 @@ msgstr "IvyDocument をカスタマイズした場合は、必ず ``com.axonivy.
 
 #: ../../source/portal-components/document-table/index.rst:274
 msgid "Attributes ``typeSelectionItems`` and ``selectedType`` now use ``com.axonivy.portal.components.enums.DocumentType``. Please replace ``ch.ivy.addon.portalkit.enums.DocumentType`` with ``com.axonivy.portal.components.enums.DocumentType``."
-msgstr "``typeSelectionItems`` と ``selectedType`` 属性が ``com.axonivy.portal.components.enums.DocumentType`` を使用するようになりました。\ ``ch.ivy.addon.portalkit.enums.DocumentType`` を ``com.axonivy.portal.components.enums.DocumentType`` に置き換えてください。"
+msgstr "``typeSelectionItems`` と ``selectedType`` 属性が ``com.axonivy.portal.components.enums.DocumentType`` を使用するようになりました。``ch.ivy.addon.portalkit.enums.DocumentType`` を ``com.axonivy.portal.components.enums.DocumentType`` に置き換えてください。"
 
 #: ../../source/portal-components/document-table/index.rst:278
 msgid "Please remove redundant overridden configurations, subprocesses, and data classes such as GetDocumentListOverride, UploadDocumentOverride, etc."
@@ -927,7 +927,7 @@ msgstr "12.0.9 での変更点"
 
 #: ../../source/portal-components/document-table/index.rst:287
 msgid "Introduced **Renaming Document** feature for Document Table component. Follow instructions in :ref:`Customize <components-portal-components-migrate-from-old-document-table>` section to create a callable subprocess to customize the renaming behavior if needed."
-msgstr "**Document Table コンポーネントに Renaming Document** 機能を導入。\ :ref:`Customize <components-portal-components-migrate-from-old-document-table>` の説明に従って、呼び出し可能なサブプロセスを作成し、必要に応じてリネームの動作をカスタマイズします。"
+msgstr "**Document Table コンポーネントに Renaming Document** 機能を導入。:ref:`Customize <components-portal-components-migrate-from-old-document-table>` の説明に従って、呼び出し可能なサブプロセスを作成し、必要に応じてリネームの動作をカスタマイズします。"
 
 #: ../../source/portal-components/document-table/index.rst:288
 msgid "Enhanced the document preview feature for the task and case detail. If you have `DocFactory <https://market.axonivy.com/doc-factory#tab-description>`_ in the same security context, you can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents."
@@ -959,7 +959,7 @@ msgstr "ポータルコンポーネントは、再利用可能なUIコンポー�
 
 #: ../../source/portal-components/index.rst:20
 msgid "Refer to the ``portal-components-examples`` project for usage, customization, and visual examples across supported themes."
-msgstr "使用方法、カスタマイズ、およびサポートされているテーマにおける視覚的な例については、\ ``portal-components-examples`` のプロジェクトをご参照ください。"
+msgstr "使用方法、カスタマイズ、およびサポートされているテーマにおける視覚的な例については、``portal-components-examples`` のプロジェクトをご参照ください。"
 
 #: ../../source/portal-components/process-chain/index.rst:4
 #: ../../source/portal-components/style-customization/index.rst:53
@@ -1121,7 +1121,7 @@ msgstr "プロセスチェーンのすべてのステップを表示する。"
 #: ../../source/portal-components/process-chain/index.rst:54
 #: ../../source/portal-components/process-viewer/index.rst:57
 msgid "If you want to customize its style, please refer to :ref:`components-portal-components-style-customization`."
-msgstr "スタイルをカスタマイズしたい場合は、\ :ref:`components-portal-components-style-customization` を参照してください。"
+msgstr "スタイルをカスタマイズしたい場合は、:ref:`components-portal-components-style-customization` を参照してください。"
 
 #: ../../source/portal-components/process-chain/index.rst:60
 msgid "Migrate from Deprecated Process Chain"
@@ -1199,11 +1199,11 @@ msgstr "以下のいずれかのパラメーターを設定する必要があり
 
 #: ../../source/portal-components/process-viewer/index.rst:31
 msgid "``taskId``: show the process or Case Map of the task has ID equals to ``taskId``."
-msgstr "``taskId``\ ： ``taskId`` に等しい ID を持つタスクのプロセスまたはケースマップを表示します。"
+msgstr "``taskId``： ``taskId`` に等しい ID を持つタスクのプロセスまたはケースマップを表示します。"
 
 #: ../../source/portal-components/process-viewer/index.rst:37
 msgid "``caseId``: show the process or Case Map of the case has ID equals to ``caseId``."
-msgstr "``caseId``\ ： ``caseId`` に等しい ID を持つケースのプロセスまたはケースマップを表示します。"
+msgstr "``caseId``： ``caseId`` に等しい ID を持つケースのプロセスまたはケースマップを表示します。"
 
 #: ../../source/portal-components/process-viewer/index.rst:43
 msgid "``processLink``: show the process or Case Map which by its defined relative link."
@@ -1715,7 +1715,7 @@ msgstr "セキュリティメンバーの名前とアバター"
 
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:9
 msgid "This component is used to display the name and avatar of a security member in the ivy security system. It is also integrated in :ref:`components-portal-components-user-selection` and :ref:`components-portal-components-role-selection`."
-msgstr "このコンポーネントは、ivy のセキュリティシステムでセキュリティメンバーの名前とアバターを表示するのに使用します。コンポーネントは、\ :ref:`components-portal-components-user-selection`\ 、\ :ref:`components-portal-components-role-selection` にも統合されています。"
+msgstr "このコンポーネントは、ivy のセキュリティシステムでセキュリティメンバーの名前とアバターを表示するのに使用します。コンポーネントは、:ref:`components-portal-components-user-selection`、:ref:`components-portal-components-role-selection` にも統合されています。"
 
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:15
 msgid "You can insert this component into any page."
@@ -1767,7 +1767,7 @@ msgstr "ISecurityMember"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "Security member in the ivy security system. Beside ``ISecurityMember``, the component also accepts ``SecurityMemberDTO``, ``UserDTO`` and ``RoleDTO``."
-msgstr "ivyセキュリティシステムにおけるセキュリティメンバーです。\ ``ISecurityMember`` に加え、このコンポーネントは ``SecurityMemberDTO``\ 、\ ``UserDTO``\ 、\ ``RoleDTO`` も受け付けます。"
+msgstr "ivyセキュリティシステムにおけるセキュリティメンバーです。``ISecurityMember`` に加え、このコンポーネントは ``SecurityMemberDTO``、``UserDTO``、``RoleDTO`` も受け付けます。"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "isShowAvatar"
@@ -1791,7 +1791,7 @@ msgstr "representName"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "Text displayed in the avatar instead of the initials of the security member. The avatar is rendered as long as either ``securityMember`` or ``representName`` is set."
-msgstr "セキュリティメンバーのイニシャルの代わりにアバターに表示されるテキストです。\ ``securityMember`` または ``representName`` のいずれかが設定されていればアバターはレンダリングされます。"
+msgstr "セキュリティメンバーのイニシャルの代わりにアバターに表示されるテキストです。``securityMember`` または ``representName`` のいずれかが設定されていればアバターはレンダリングされます。"
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:1
 msgid "displayNameId"
@@ -1867,7 +1867,7 @@ msgstr "ポータルコンポーネントは、スタイリングにCSSカスタ
 
 #: ../../source/portal-components/style-customization/index.rst:14
 msgid "A stylesheet added this way only affects the page it is loaded on. Portal also renders some of these components on its own pages, for example the Process Chain in the task header, which sits outside the iframe that shows your task form. Styles from your project cannot reach those instances. To restyle them, override the same CSS variables in ``custom.css`` instead, see :ref:`customization-portal-logos-and-colors`."
-msgstr "この方法で追加したスタイルシートは、読み込まれたページにのみ影響します。Portalは、タスクヘッダー内のプロセスチェーンなど、これらのコンポーネントの一部を独自のページ上にも描画します。これはタスクフォームを表示するiframeの外側にあります。プロジェクトのスタイルはそれらのインスタンスには届きません。それらのスタイルを変更するには、代わりに ``custom.css`` 内で同じCSS変数を上書きしてください。\ :ref:`customization-portal-logos-and-colors` を参照してください。"
+msgstr "この方法で追加したスタイルシートは、読み込まれたページにのみ影響します。Portalは、タスクヘッダー内のプロセスチェーンなど、これらのコンポーネントの一部を独自のページ上にも描画します。これはタスクフォームを表示するiframeの外側にあります。プロジェクトのスタイルはそれらのインスタンスには届きません。それらのスタイルを変更するには、代わりに ``custom.css`` 内で同じCSS変数を上書きしてください。:ref:`customization-portal-logos-and-colors` を参照してください。"
 
 #: ../../source/portal-components/style-customization/index.rst:21
 msgid "How to customize"

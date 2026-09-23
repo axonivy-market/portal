@@ -183,7 +183,7 @@ msgstr "アクセシビリティはなぜ重要なのでしょうか？"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:62
 msgid "In today's digital landscape, ensuring that front-end UIs are accessible to all users is not just a nice-to-have — it's essential. At Axon Ivy, we recognize the importance of making our portal available to everyone, regardless of their abilities or disabilities. With this in mind, we've put significant thought into enhancing the accessibility features within the Axon Ivy Portal. This is only the beginning, and we are committed to continually improving these features. To ensure the highest quality, we have used tools such as the Microsoft Lighthouse Accessibility Checker and adhered to the guidelines of the **WCAG 2.1 Level AA** standard to evaluate and refine our UI."
-msgstr "現代のデジタル環境において、フロントエンドUIを全てのユーザーが利用できるようにすることは、単なる「あれば良い」機能ではなく、必須の要件です。Axon Ivyでは、能力や障がいの有無に関わらず、あらゆる方々にポータルをご利用いただける重要性を認識しております。 この考えに基づき、Axon Ivyポータル内のアクセシビリティ機能強化に注力してまいりました。これは始まりに過ぎず、今後もこれらの機能を継続的に改善してまいります。最高品質を確保するため、Microsoft Lighthouseアクセシビリティチェッカーなどのツールを活用し、\ **のWCAG 2.1レベルAA** 基準に準拠してUIの評価と改良を行っております。"
+msgstr "現代のデジタル環境において、フロントエンドUIを全てのユーザーが利用できるようにすることは、単なる「あれば良い」機能ではなく、必須の要件です。Axon Ivyでは、能力や障がいの有無に関わらず、あらゆる方々にポータルをご利用いただける重要性を認識しております。 この考えに基づき、Axon Ivyポータル内のアクセシビリティ機能強化に注力してまいりました。これは始まりに過ぎず、今後もこれらの機能を継続的に改善してまいります。最高品質を確保するため、Microsoft Lighthouseアクセシビリティチェッカーなどのツールを活用し、**のWCAG 2.1レベルAA** 基準に準拠してUIの評価と改良を行っております。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:65
 msgid "Accessibility Approach in the Axon Ivy Portal"
@@ -199,7 +199,7 @@ msgstr "コントラスト"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:72
 msgid "The contrast between text, buttons, and background elements is vital for users with visual impairments. We have optimized the UI for both Dark Mode and Light Mode in line with the **WCAG 2.1 Level AA** contrast ratios. This ensures that all components — buttons, widgets, and backgrounds — meet the necessary contrast thresholds to enhance visibility and readability."
-msgstr "視覚障害のあるユーザーにとって、テキスト、ボタン、背景要素のコントラストは非常に重要です。当UIは、\ **WCAG 2.1 レベルAA** のコントラスト比に基づき、ダークモードとライトモードの両方に最適化されています。これにより、ボタン、ウィジェット、背景など全てのコンポーネントが、視認性と可読性を高めるために必要なコントラスト閾値を満たすことが保証されます。"
+msgstr "視覚障害のあるユーザーにとって、テキスト、ボタン、背景要素のコントラストは非常に重要です。当UIは、**WCAG 2.1 レベルAA** のコントラスト比に基づき、ダークモードとライトモードの両方に最適化されています。これにより、ボタン、ウィジェット、背景など全てのコンポーネントが、視認性と可読性を高めるために必要なコントラスト閾値を満たすことが保証されます。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:75
 msgid "Zoom Capabilities"
@@ -255,7 +255,7 @@ msgstr "**Alt + 7**: サイドバーを折りたたむ、または展開しま�
 
 #: ../../source/portal-user-guide/accessibility/index.rst:97
 msgid "When multiple dashboards are available in the navigation bar, use the **Tab key** to cycle through them. Press **Enter** to open the highlighted dashboard."
-msgstr "ナビゲーションバーに複数のダッシュボードが表示されている場合、\ **タブキー** で切り替えます。\ **Enter** を押すと、ハイライトされたダッシュボードが開きます。"
+msgstr "ナビゲーションバーに複数のダッシュボードが表示されている場合、**タブキー** で切り替えます。**Enter** を押すと、ハイライトされたダッシュボードが開きます。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:100
 msgid "Widget Navigation"
@@ -321,7 +321,7 @@ msgstr "特定のタスクを処理するには："
 
 #: ../../source/portal-user-guide/accessibility/index.rst:129
 msgid "Press **Alt + W** repeatedly until you reach the desired task"
-msgstr "プレス\ **Alt + W** 希望するタスクに達するまで繰り返し"
+msgstr "プレス**Alt + W** 希望するタスクに達するまで繰り返し"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:130
 msgid "Press **Tab** then **Enter** to open its context menu"
@@ -329,7 +329,7 @@ msgstr "プレス **タブ** 以降 **入力** コンテキストメニューを
 
 #: ../../source/portal-user-guide/accessibility/index.rst:131
 msgid "Press **Alt + W** repeatedly to navigate menu options"
-msgstr "メニューオプションを移動するには、\ **Alt + W** を繰り返し押してください。"
+msgstr "メニューオプションを移動するには、**Alt + W** を繰り返し押してください。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:134
 msgid "|task-actions-popup|"
@@ -357,7 +357,7 @@ msgstr "**Enter** キーを押してコンテキストメニューを開く"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:143
 msgid "Press **Alt + Q** repeatedly to navigate menu options"
-msgstr "メニューオプションを移動するには、\ **Alt + Q** を繰り返し押してください。"
+msgstr "メニューオプションを移動するには、**Alt + Q** を繰り返し押してください。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:146
 msgid "|case-actions-popup|"
@@ -610,7 +610,7 @@ msgstr "パスワードポリシーと検証ルールを設定します。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:38
 msgid "The **Applications** tab for third-party applications has been removed. Existing third-party applications still appear in the sidebar and can be edited or deleted in :guilabel:`Portal Configuration` → :guilabel:`Sidebar`. To add a new link to the sidebar, create an **External Link** item there instead."
-msgstr "サードパーティ製アプリケーション用の\ **Applications**\ タブが削除されました。既存のサードパーティ製アプリケーションは引き続きサイドバーに表示され、:guilabel:`Portal Configuration` → :guilabel:`Sidebar` から編集または削除できます。サイドバーに新しいリンクを追加するには、代わりに\ **External Link**\ 項目を作成してください。"
+msgstr "**の「アプリケーション」** にあるサードパーティ製アプリケーションのタブは削除されました。既存のサードパーティ製アプリケーションは引き続きサイドバーに表示され、「:guilabel:`」の「ポータル設定」` → 「:guilabel:`」の「サイドバー」` から編集または削除できます。サイドバーに新しいリンクを追加するには、代わりに「**」の「外部リンク」** 項目を作成してください。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:46
 msgid "HowTo: Update Portal Settings"
@@ -630,7 +630,7 @@ msgstr "管理者設定：グローバル設定"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:52
 msgid "To update the value of a setting, open the |actions-menu-icon| menu in the Actions column and select :guilabel:`Edit`."
-msgstr "設定の値を更新するには、アクション列で |actions-menu-icon| メニューを開き、\ :guilabel:`Edit` を選択します。"
+msgstr "設定の値を更新するには、アクション列で |actions-menu-icon| メニューを開き、:guilabel:`Edit` を選択します。"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:59
 msgid "actions-menu-icon"
@@ -646,19 +646,19 @@ msgstr "管理者設定：グローバル設定の編集ダイアログ"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:56
 msgid "To reset a setting to its default value, open the |actions-menu-icon| menu in the Actions column and select :guilabel:`Restore to default`."
-msgstr "設定をデフォルト値にリセットするには、アクション列で |actions-menu-icon| メニューを開き、\ :guilabel:`Restore to default` を選択します。"
+msgstr "設定をデフォルト値にリセットするには、アクション列で |actions-menu-icon| メニューを開き、:guilabel:`Restore to default` を選択します。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:58
 msgid "To reset all settings to their default values, click on :guilabel:`Restore all to defaults`."
-msgstr "すべての設定をデフォルト値にリセットするには、\ :guilabel:`すべて初期値に戻す` をクリックします。"
+msgstr "すべての設定をデフォルト値にリセットするには、:guilabel:`すべて初期値に戻す` をクリックします。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:61
 msgid "Portal settings are stored as Axon Ivy variables and can be configured in the :doc-url:`Axon Ivy Cockpit </engine-guide/reference/engine-cockpit/configuration.html#engine-cockpit-variables>`."
-msgstr "ポータル設定は Axon Ivy の変数として格納され、\ :doc-url:`Axon Ivy コックピット </engine-guide/reference/engine-cockpit/configuration.html#engine-cockpit-variables>` で設定できます。"
+msgstr "ポータル設定は Axon Ivy の変数として格納され、:doc-url:`Axon Ivy コックピット </engine-guide/reference/engine-cockpit/configuration.html#engine-cockpit-variables>` で設定できます。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:64
 msgid "**Scheduled for removal in 13**:"
-msgstr "**バージョン13で削除予定**\ ："
+msgstr "**バージョン13で削除予定**："
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:67
 msgid ":guilabel:`Portal.Histories.HideSystemNotes`"
@@ -670,7 +670,7 @@ msgstr ":guilabel:`Portal.Histories.HideSystemNotesForAdministrator`"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:70
 msgid "**Migration**: Use the permission :ref:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>` to control visibility of system notes in task and case details instead."
-msgstr "**移行**: 代わりに、\ :ref:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>` 権限を使用して、タスクおよびケース詳細におけるシステム注記の可視性を制御してください。"
+msgstr "**移行**: 代わりに、:ref:`🔑NoteReadAllCaseTaskDetails <NoteReadAllCaseTaskDetails>` 権限を使用して、タスクおよびケース詳細におけるシステム注記の可視性を制御してください。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:75
 msgid "Available settings"
@@ -1431,7 +1431,7 @@ msgstr "管理者設定：通知"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:89
 msgid "Input your announcement text and click on :guilabel:`Save` button."
-msgstr "通知テキストを入力し、\ :guilabel:`保存` ボタンをクリックします"
+msgstr "通知テキストを入力し、:guilabel:`保存` ボタンをクリックします"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:91
 msgid "Turn on the :guilabel:`Enable announcement` option to display the announcement."
@@ -1447,7 +1447,7 @@ msgstr "ハウツー：ロールを管理する"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:98
 msgid "Portal provides the :guilabel:`Role Management` tab in the :guilabel:`Admin Settings` area for creating and managing dynamic roles."
-msgstr "Portalでは、動的ロールの作成および管理のために、\ :guilabel:`ロールの管理` 領域に :guilabel:`役割管理` タブが用意されております。"
+msgstr "Portalでは、動的ロールの作成および管理のために、:guilabel:`ロールの管理` 領域に :guilabel:`役割管理` タブが用意されております。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:102
 #: ../../source/portal-user-guide/admin-settings/index.rst:156
@@ -1544,15 +1544,15 @@ msgstr "ハウツー：パスワード検証を有効／無効にする"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:147
 msgid "Portal provides the :guilabel:`Password Validation` tab in the :guilabel:`Admin Settings` area to configure password strength requirements and validation rules. This feature works with the Portal's built-in password management (e.g., :ref:`Forgot Password <forgot-password>` and password change functionality)."
-msgstr "Portalでは、パスワードの強度要件と検証ルールを設定するため、\ :guilabel:`管理者設定` エリアに :guilabel:`パスワード検証` タブが用意されています。この機能は、Portalの組み込みパスワード管理機能（例：\ :ref:`パスワードを忘れた場合 <forgot-password>` およびパスワード変更機能）と連携して動作します。"
+msgstr "Portalでは、パスワードの強度要件と検証ルールを設定するため、:guilabel:`管理者設定` エリアに :guilabel:`パスワード検証` タブが用意されています。この機能は、Portalの組み込みパスワード管理機能（例：:ref:`パスワードを忘れた場合 <forgot-password>` およびパスワード変更機能）と連携して動作します。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:152
 msgid "**External Authentication**: Password validation does **not** apply when using external identity providers like Active Directory, Entra ID, or LDAP, as those systems manage their own password policies."
-msgstr "**外部認証**: パスワードの検証は、Active Directory、Entra ID、またはLDAPなどの外部IDプロバイダーを使用する場合、\ **適用されません**\ 。これらのシステムは独自のパスワードポリシーを管理しているためです。"
+msgstr "**外部認証**: パスワードの検証は、Active Directory、Entra ID、またはLDAPなどの外部IDプロバイダーを使用する場合、**適用されません**。これらのシステムは独自のパスワードポリシーを管理しているためです。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:158
 msgid "To access Password Validation settings, you need the :ref:`🔑PasswordValidation <PasswordValidation>` permission."
-msgstr "パスワード検証設定にアクセスするには、\ :ref:`🔑PasswordValidation <PasswordValidation>` 権限が必要です。"
+msgstr "パスワード検証設定にアクセスするには、:ref:`🔑PasswordValidation <PasswordValidation>` 権限が必要です。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:161
 msgid "Steps to Configure Password Validation"
@@ -1588,7 +1588,7 @@ msgstr "ポリシー設定（最小文字数、必須文字種別など）を調
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:174
 msgid "Click :guilabel:`Save` to apply the configuration."
-msgstr "設定を適用するには、\ :guilabel:`保存` をクリックしてください。"
+msgstr "設定を適用するには、:guilabel:`保存` をクリックしてください。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:176
 msgid "Verify the configuration by testing password change or reset password functionality."
@@ -1716,7 +1716,7 @@ msgstr "**シングルサインオン（SSO）** ：組織でSSOをご利用の�
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:65
 msgid "**Password Reset**: If your organization uses the Ivy Security System, you can reset your password using the :guilabel:`Forgot my password` link. See :ref:`forgot-password` for detailed instructions."
-msgstr "**パスワードリセット**: ご所属の組織がIvyセキュリティシステムをご利用の場合、\ :guilabel:`パスワードを忘れた` のリンクよりパスワードをリセットいただけます。詳細な手順については、\ :ref:`forgot-password` をご参照ください。"
+msgstr "**パスワードリセット**: ご所属の組織がIvyセキュリティシステムをご利用の場合、:guilabel:`パスワードを忘れた` のリンクよりパスワードをリセットいただけます。詳細な手順については、:ref:`forgot-password` をご参照ください。"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:69
 msgid "For external authentication systems (Active Directory, Entra ID, LDAP), contact your IT department or use your organization's self-service password reset portal."
@@ -1768,15 +1768,15 @@ msgstr "ポータルの拡大表示された左メニュー"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:94
 msgid "The sidebar provides access to the :ref:`full-process-list`, :ref:`full-case-list`, :ref:`full-task-list`, and :ref:`portal-configuration` pages. Administrators can configure the sidebar to use one of three behaviours: Hover, Click, or Stick. In the default Hover mode, the sidebar has two states:"
-msgstr "サイドバーからは、\ :ref:`full-process-list`\ 、\ :ref:`full-case-list`\ 、\ :ref:`full-task-list`\ 、\ :ref:`portal-configuration` の各ページにアクセスできます。管理者は、サイドバーの動作をホバー、クリック、固定の3つの中から1つに設定できます。デフォルトのホバーモードでは、サイドバーには2つの状態があります："
+msgstr "サイドバーからは、:ref:`full-process-list`、:ref:`full-case-list`、:ref:`full-task-list`、:ref:`portal-configuration` の各ページにアクセスできます。管理者は、サイドバーの動作をホバー、クリック、固定の3つの中から1つに設定できます。デフォルトのホバーモードでは、サイドバーには2つの状態があります："
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:97
 msgid "**Minimized**: Hover over the sidebar to temporarily expand it."
-msgstr "**最小化**\ ：サイドバーにカーソルを合わせると一時的に拡大されます。"
+msgstr "**最小化**：サイドバーにカーソルを合わせると一時的に拡大されます。"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:98
 msgid "**Pinned**: Click the pin icon in the top-left to keep the sidebar permanently expanded."
-msgstr "**固定**\ ：左上のピンアイコンをクリックすると、サイドバーを常に展開状態に保つことができます。"
+msgstr "**固定**：左上のピンアイコンをクリックすると、サイドバーを常に展開状態に保つことができます。"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:100
 msgid "**3. Main Content Area** (center)"
@@ -1796,7 +1796,7 @@ msgstr "プロセス、ケース、タスク、およびパフォーマンス指
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:106
 msgid "See :ref:`new-dashboard` for a detailed description of dashboards and widgets."
-msgstr "ダッシュボードとウィジェットの詳細な説明については、\ :ref:`new-dashboard` をご参照ください。"
+msgstr "ダッシュボードとウィジェットの詳細な説明については、:ref:`new-dashboard` をご参照ください。"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:109
 msgid "Next Steps"
@@ -1837,7 +1837,7 @@ msgstr "**ケースウィジェット** は、ケースの一覧を表示しま�
 
 #: ../../source/portal-user-guide/case-widget/index.rst:9
 msgid "To add a Case Widget to a dashboard and configure it, follow :ref:`Case list widget <new-dashboard-case-list-widget>` in the Dashboard chapter. To configure it in the dashboard JSON instead, see :ref:`Configure Case Widget <configure-new-dashboard-case-widget>`."
-msgstr "ケースウィジェットをダッシュボードに追加して設定するには、ダッシュボードの章にある :ref:`ケースリストウィジェット <new-dashboard-case-list-widget>` の手順に従ってください。ダッシュボードのJSONで設定する場合は、\ :ref:`ケースウィジェットの設定 <configure-new-dashboard-case-widget>` を参照してください。"
+msgstr "ケースウィジェットをダッシュボードに追加して設定するには、ダッシュボードの章にある :ref:`ケースリストウィジェット <new-dashboard-case-list-widget>` の手順に従ってください。ダッシュボードのJSONで設定する場合は、:ref:`ケースウィジェットの設定 <configure-new-dashboard-case-widget>` を参照してください。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:14
 msgid "Portal ships a default dashboard named :guilabel:`Cases` that contains a single case widget. You can reach it with the |case-icon| :guilabel:`Cases` link in the Axon Ivy Portal menu."
@@ -1862,7 +1862,7 @@ msgstr "テンプレート Full Case List dashboard を使用すると、同様�
 #: ../../source/portal-user-guide/case-widget/index.rst:21
 #: ../../source/portal-user-guide/task-widget/index.rst:22
 msgid "The dashboard is visible to all users by default. To restrict access to specific user roles, configure the dashboard permissions in the :ref:`Dashboard Configuration <dashboard-configuration>` page."
-msgstr "このダッシュボードは、デフォルトですべてのユーザーに表示されます。特定のユーザーロールへのアクセスを制限するには、\ :ref:`Dashboard Configuration <dashboard-configuration>` ページでダッシュボードの権限を設定してください。"
+msgstr "このダッシュボードは、デフォルトですべてのユーザーに表示されます。特定のユーザーロールへのアクセスを制限するには、:ref:`Dashboard Configuration <dashboard-configuration>` ページでダッシュボードの権限を設定してください。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:24
 #: ../../source/portal-user-guide/full-process-list/index.rst:20
@@ -1873,7 +1873,7 @@ msgstr "概要"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:26
 msgid "Below are the standard fields of a case. You can configure them in the column management dialog, see :ref:`Column Management <case-widget-column-management>`."
-msgstr "以下はケースの標準フィールドです。これらはカラム管理ダイアログで設定できます。\ :ref:`カラム管理 <case-widget-column-management>` を参照してください。"
+msgstr "以下はケースの標準フィールドです。これらはカラム管理ダイアログで設定できます。:ref:`カラム管理 <case-widget-column-management>` を参照してください。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:29
 #: ../../source/portal-user-guide/task-widget/index.rst:32
@@ -1958,22 +1958,22 @@ msgstr "ダッシュボードのケースウィジェットのアクションメ
 
 #: ../../source/portal-user-guide/case-widget/index.rst:63
 msgid "**Show pinned cases**: Show your pinned cases only, :guilabel:`Show all cases` switches back"
-msgstr "**ピン留めしたケースを表示**\ ：ピン留めしたケースのみを表示します。\ :guilabel:`Show all cases` で元に戻ります"
+msgstr "**ピン留めしたケースを表示**：ピン留めしたケースのみを表示します。:guilabel:`Show all cases` で元に戻ります"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:65
 #: ../../source/portal-user-guide/task-widget/index.rst:78
 msgid "**Filters**: Open the complex filter panel of the widget, see :ref:`Complex Filter <complex-filter>`"
-msgstr "**フィルター**\ ：ウィジェットの複合フィルターパネルを開きます。\ :ref:`複合フィルター <complex-filter>` を参照してください"
+msgstr "**フィルター**：ウィジェットの複合フィルターパネルを開きます。:ref:`複合フィルター <complex-filter>` を参照してください"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:67
 #: ../../source/portal-user-guide/task-widget/index.rst:80
 msgid "**Expand**: Show the widget in fullscreen, :guilabel:`Collapse` returns it to its normal size"
-msgstr "**展開**\ ：ウィジェットをフルスクリーンで表示します。\ :guilabel:`Collapse` で通常のサイズに戻ります"
+msgstr "**展開**：ウィジェットをフルスクリーンで表示します。:guilabel:`Collapse` で通常のサイズに戻ります"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:69
 #: ../../source/portal-user-guide/task-widget/index.rst:82
 msgid "**Widget information**: Show additional widget details and statistics, and export the list to Excel"
-msgstr "**ウィジェット情報**\ ：追加のウィジェット詳細と統計を表示し、リストをExcelにエクスポートします"
+msgstr "**ウィジェット情報**：追加のウィジェット詳細と統計を表示し、リストをExcelにエクスポートします"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:72
 msgid "Which of these operations are available depends on the widget configuration, see :ref:`Configuration panel <case-list-widget-configuration-panel>` of the Case list widget."
@@ -1987,7 +1987,7 @@ msgstr "**クイック検索**"
 #: ../../source/portal-user-guide/case-widget/index.rst:77
 #: ../../source/portal-user-guide/task-widget/index.rst:90
 msgid "When quick search is enabled, click the :guilabel:`Quick search` button to reveal the search input and start searching."
-msgstr "クイック検索が有効な場合、\ :guilabel:`Quick search` ボタンをクリックすると検索入力欄が表示され、検索を開始できます。"
+msgstr "クイック検索が有効な場合、:guilabel:`Quick search` ボタンをクリックすると検索入力欄が表示され、検索を開始できます。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:80
 msgid "|case-quick-search-textbox|"
@@ -2032,7 +2032,7 @@ msgstr "**展開**"
 #: ../../source/portal-user-guide/case-widget/index.rst:100
 #: ../../source/portal-user-guide/task-widget/index.rst:119
 msgid ":guilabel:`Expand` enlarges the widget to fill the entire screen for a better view of your data; :guilabel:`Collapse` returns it to its normal size."
-msgstr ":guilabel:`Expand` はウィジェットを画面全体に拡大し、データを見やすくします。\ :guilabel:`Collapse` で通常のサイズに戻ります。"
+msgstr ":guilabel:`Expand` はウィジェットを画面全体に拡大し、データを見やすくします。:guilabel:`Collapse` で通常のサイズに戻ります。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:103
 #: ../../source/portal-user-guide/task-widget/index.rst:122
@@ -2080,7 +2080,7 @@ msgstr "**ピン**"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:128
 msgid "Pin the case to find it quickly later, :guilabel:`Unpin` removes it again"
-msgstr "ケースをピン留めして後で素早く見つけられるようにします。\ :guilabel:`Unpin` で再び解除します"
+msgstr "ケースをピン留めして後で素早く見つけられるようにします。:guilabel:`Unpin` で再び解除します"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:131
 msgid "**Process overview**"
@@ -2138,7 +2138,7 @@ msgstr "ケースの詳細"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:147
 msgid "Clicking on a row opens the case details by default. If the :ref:`Portal setting <update-portal-settings>` ``Portal.Cases.BehaviourWhenClickingOnLineInCaseList`` is set to another behaviour, use :guilabel:`Actions` then :guilabel:`Details`."
-msgstr "デフォルトでは行をクリックするとケースの詳細が開きます。\ :ref:`Portal setting <update-portal-settings>` ``Portal.Cases.BehaviourWhenClickingOnLineInCaseList`` が別の動作に設定されている場合は、\ :guilabel:`Actions` から :guilabel:`Details` を使用してください。"
+msgstr "デフォルトでは行をクリックするとケースの詳細が開きます。:ref:`Portal setting <update-portal-settings>` ``Portal.Cases.BehaviourWhenClickingOnLineInCaseList`` が別の動作に設定されている場合は、:guilabel:`Actions` から :guilabel:`Details` を使用してください。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:151
 #: ../../source/portal-user-guide/case-widget/index.rst:376
@@ -2155,11 +2155,11 @@ msgstr "ケースの詳細ページは、以下のウィジェットで構成さ
 
 #: ../../source/portal-user-guide/case-widget/index.rst:155
 msgid "**Summary**: The name of the case, its ID and creation date and the |actions-menu-icon| :guilabel:`Actions` menu of the case. Below you find Case Id, State and Case Category."
-msgstr "**サマリー**\ ：ケースの名前、ID、作成日、およびケースの |actions-menu-icon| :guilabel:`Actions` メニューです。その下にケースID、ステータス、ケースカテゴリーが表示されます。"
+msgstr "**サマリー**：ケースの名前、ID、作成日、およびケースの |actions-menu-icon| :guilabel:`Actions` メニューです。その下にケースID、ステータス、ケースカテゴリーが表示されます。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:159
 msgid "**Case Details**: The description of the case, followed by Role and User Information and Time Information."
-msgstr "**ケースの詳細**\ ：ケースの説明に続き、ロールとユーザー情報、および時間情報が表示されます。"
+msgstr "**ケースの詳細**：ケースの説明に続き、ロールとユーザー情報、および時間情報が表示されます。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:162
 msgid "|case-details-data-description|"
@@ -2171,7 +2171,7 @@ msgstr "ケースの詳細一般セクション"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:164
 msgid "**Related Tasks of Case**: The tasks of the case. Activate :guilabel:`Show only open tasks` to hide the tasks which are already done, |download-icon| exports the list to Excel and :guilabel:`Manage columns` defines which columns are displayed."
-msgstr "**ケースの関連タスク**\ ：ケースのタスクです。\ :guilabel:`Show only open tasks` を有効にすると、完了済みのタスクが非表示になります。|download-icon| でリストをExcelにエクスポートし、\ :guilabel:`Manage columns` で表示するカラムを定義できます。"
+msgstr "**ケースの関連タスク**：ケースのタスクです。:guilabel:`Show only open tasks` を有効にすると、完了済みのタスクが非表示になります。|download-icon| でリストをExcelにエクスポートし、:guilabel:`Manage columns` で表示するカラムを定義できます。"
 
 #: ../../source/portal-user-guide/includes/_common-icon.rst:49
 msgid "download-icon"
@@ -2188,7 +2188,7 @@ msgstr "ケースの詳細ケースセクションの関連タスク"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:170
 msgid "**Documents**: The documents attached to the case. You may add, delete, rename or preview documents as described in the HowTo's below."
-msgstr "**ドキュメント**\ ：ケースに添付されたドキュメントです。以下のハウツーの説明に従って、ドキュメントの追加、削除、名前の変更、プレビューを行うことができます。"
+msgstr "**ドキュメント**：ケースに添付されたドキュメントです。以下のハウツーの説明に従って、ドキュメントの追加、削除、名前の変更、プレビューを行うことができます。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:173
 msgid "|case-details-documents|"
@@ -2200,7 +2200,7 @@ msgstr "事件の詳細書類セクション"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:175
 msgid "**History**: The notes and the state changes of the case. Activate :guilabel:`Related case`, :guilabel:`System tasks` and :guilabel:`System notes` to show these entries as well, and click :guilabel:`Show more` to open the full history."
-msgstr "**履歴**\ ：ケースのノートとステータス変更です。これらのエントリも表示するには :guilabel:`Related case`\ 、\ :guilabel:`System tasks`\ 、\ :guilabel:`System notes` を有効にしてください。\ :guilabel:`Show more` をクリックすると全履歴が開きます。"
+msgstr "**履歴**：ケースのノートとステータス変更です。これらのエントリも表示するには :guilabel:`Related case`、:guilabel:`System tasks`、:guilabel:`System notes` を有効にしてください。:guilabel:`Show more` をクリックすると全履歴が開きます。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:179
 msgid "|case-details-histories|"
@@ -2212,7 +2212,7 @@ msgstr "ケースの詳細歴史セクション"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:181
 msgid "**Related Cases**: The technical cases of the case. This widget is only displayed if the case has related cases."
-msgstr "**関連するケース**\ ：ケースのテクニカルケースです。このウィジェットは、ケースに関連するケースがある場合のみ表示されます。"
+msgstr "**関連するケース**：ケースのテクニカルケースです。このウィジェットは、ケースに関連するケースがある場合のみ表示されます。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:187
 #: ../../source/portal-user-guide/task-widget/index.rst:208
@@ -2254,7 +2254,7 @@ msgstr "ケース詳細：編集モードに切り替えるボタン"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:198
 msgid "Click on the :guilabel:`Save` button to save the current state of the page and switch to read-only mode."
-msgstr "現在のページの状態を保存し、読み取り専用モードに切り替えるには、\ :guilabel:`保存` ボタンをクリックしてください。"
+msgstr "現在のページの状態を保存し、読み取り専用モードに切り替えるには、:guilabel:`保存` ボタンをクリックしてください。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:200
 #: ../../source/portal-user-guide/task-widget/index.rst:230
@@ -2304,7 +2304,7 @@ msgstr ":guilabel:`ここにアップロード` をクリックするか、フ�
 
 #: ../../source/portal-user-guide/case-widget/index.rst:220
 msgid "Click :guilabel:`Close` to close the dialog"
-msgstr "ダイアログを閉じるには、\ :guilabel:`閉じる` をクリックしてください。"
+msgstr "ダイアログを閉じるには、:guilabel:`閉じる` をクリックしてください。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:222
 msgid "|how-to-attach-document-to-case|"
@@ -2394,7 +2394,7 @@ msgstr "**DocFactory** を使用した場合：Word (doc, docx)、Excel (xls, xl
 
 #: ../../source/portal-user-guide/case-widget/index.rst:259
 msgid "Set :ref:`Portal settings <update-portal-settings>` ``Portal.Document.EnablePreview`` to true to enable this feature. For Office documents, deploy `DocFactory <https://market.axonivy.com/doc-factory#tab-description>`_ in the same security context."
-msgstr "この機能を有効にするには、\ :ref:`Portal settings <update-portal-settings>` ``Portal.Document.EnablePreview`` をtrueに設定してください。Office文書の場合は、`DocFactory <https://market.axonivy.com/doc-factory#tab-description>`_ を同じセキュリティコンテキストでデプロイしてください。"
+msgstr "この機能を有効にするには、:ref:`Portal settings <update-portal-settings>` ``Portal.Document.EnablePreview`` をtrueに設定してください。Office文書の場合は、`DocFactory <https://market.axonivy.com/doc-factory#tab-description>`_ を同じセキュリティコンテキストでデプロイしてください。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:263
 #: ../../source/portal-user-guide/task-widget/index.rst:254
@@ -2457,7 +2457,7 @@ msgstr "ノートを入力します。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:291
 msgid "To save your note, click :guilabel:`Save`."
-msgstr "ノートを保存するには、\ :guilabel:`保存` をクリックします。"
+msgstr "ノートを保存するには、:guilabel:`保存` をクリックします。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:293
 msgid "|how-to-add-task-note|"
@@ -2474,7 +2474,7 @@ msgstr "**注記の可視性：**"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:298
 msgid "**Technical case notes**: Displayed in the ``Notes`` table of the case and its tasks"
-msgstr "**技術的なケースノート** ：ケースとそのタスクの一覧表（\ ``Notes``\ ）に表示されます。"
+msgstr "**技術的なケースノート** ：ケースとそのタスクの一覧表（``Notes``）に表示されます。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:299
 msgid "**Business case notes**: Displayed in the ``History`` table of the case details, its direct tasks, and technical case details (not shown in task Notes tables)"
@@ -2507,7 +2507,7 @@ msgstr "ケース履歴を含むページが開きます。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:312
 msgid "To export the case history, click on :guilabel:`Export to Excel`"
-msgstr "ケース履歴をエクスポートするには、\ :guilabel:`Excel にエクスポート` をクリックします。"
+msgstr "ケース履歴をエクスポートするには、:guilabel:`Excel にエクスポート` をクリックします。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:314
 msgid "|export-case-history|"
@@ -2611,7 +2611,7 @@ msgstr "**関連するケース** セクションまでスクロールします�
 
 #: ../../source/portal-user-guide/case-widget/index.rst:378
 msgid "The list shows the following key information for each case. To change the columns displayed, click on :guilabel:`Manage columns` and select from the following columns:"
-msgstr "リストには、ケースごとに以下の情報が表示されます。表示される列を変更するには、\ :guilabel:`列の管理` をクリックします。以下の列から選択します。"
+msgstr "リストには、ケースごとに以下の情報が表示されます。表示される列を変更するには、:guilabel:`列の管理` をクリックします。以下の列から選択します。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:399
 msgid "All these columns are displayed by default."
@@ -2631,7 +2631,7 @@ msgstr "ハウツー：プロセスビューアーを表示する"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:414
 msgid "Portal provides a visual representation of the process flow of the current case or task. To open the viewer, select :guilabel:`Process Viewer` in the :guilabel:`Actions` menu."
-msgstr "Portal は、現在のケースまたはタスクのプロセスフローを視覚的に表現します。ビューアーを開くには、\ :guilabel:`アクション` メニューで :guilabel:`プロセスビューアー` を選択します。"
+msgstr "Portal は、現在のケースまたはタスクのプロセスフローを視覚的に表現します。ビューアーを開くには、:guilabel:`アクション` メニューで :guilabel:`プロセスビューアー` を選択します。"
 
 #: ../../source/portal-user-guide/case-widget/index.rst:416
 msgid "You find this option on the following pages:"
@@ -2810,7 +2810,7 @@ msgstr "グローバルに無効化された演算子は、ウィジェットレ
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:19
 msgid "**Example:** If the admin disables ``Contains``, no widget configuration or user filter can use ``Contains``."
-msgstr "**例:** 管理者が\ ``Contains`` を無効にした場合、どのウィジェットの設定やユーザーフィルターも\ ``Contains`` を使用できなくなります。"
+msgstr "**例:** 管理者が``Contains`` を無効にした場合、どのウィジェットの設定やユーザーフィルターも``Contains`` を使用できなくなります。"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:23
 msgid "Widget-level configuration (Column Management)"
@@ -2871,7 +2871,7 @@ msgstr "使用方法"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:22
 msgid "Open the widget action menu in the widget header and select :guilabel:`Filters` (see :ref:`task widget actions menu <task-widget-actions-menu>` and :ref:`case widget actions menu <case-widget-actions-menu>`), or click the :guilabel:`Filter` button within the Edit Widget Configuration panel on the Edit Dashboard. Please refer to :ref:`new-dashboard` for more details."
-msgstr "ウィジェットヘッダーのウィジェットアクションメニューを開いて :guilabel:`フィルター` を選択するか（\ :ref:`タスクウィジェットアクションメニュー <task-widget-actions-menu>` および :ref:`ケースウィジェットアクションメニュー <case-widget-actions-menu>` を参照）、ダッシュボードの編集画面にあるウィジェット設定編集パネル内の :guilabel:`フィルター` ボタンをクリックします。詳細については :ref:`new-dashboard` を参照してください。"
+msgstr "ウィジェットヘッダーのウィジェットアクションメニューを開いて :guilabel:`フィルター` を選択するか（:ref:`タスクウィジェットアクションメニュー <task-widget-actions-menu>` および :ref:`ケースウィジェットアクションメニュー <case-widget-actions-menu>` を参照）、ダッシュボードの編集画面にあるウィジェット設定編集パネル内の :guilabel:`フィルター` ボタンをクリックします。詳細については :ref:`new-dashboard` を参照してください。"
 
 #: ../../source/portal-user-guide/complex-filter/index.rst:26
 msgid "To add a filter, click ``Add condition``, then select the column and operator, and input value if needed."
@@ -3374,7 +3374,7 @@ msgstr "デモプロセス"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:6
 msgid "The Axon Ivy Portal includes example processes to help you understand how Portal and Axon Ivy work together. When you start the Engine in demo mode, the **portal-user-examples** project provides interactive examples you can explore and test."
-msgstr "Axon Ivy Portalには、PortalとAxon Ivyの連携方法を理解するためのサンプルプロセスが含まれています。デモモードでエンジンを起動すると、\ **portal-user-examples** プロジェクトが提供され、探索およびテスト可能な対話型サンプルをご利用いただけます。"
+msgstr "Axon Ivy Portalには、PortalとAxon Ivyの連携方法を理解するためのサンプルプロセスが含まれています。デモモードでエンジンを起動すると、**portal-user-examples** プロジェクトが提供され、探索およびテスト可能な対話型サンプルをご利用いただけます。"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:11
 msgid "Demo User Accounts"
@@ -3445,7 +3445,7 @@ msgstr "ポータルにログインします。"
 #: ../../source/portal-user-guide/demo-processes/index.rst:36
 #: ../../source/portal-user-guide/demo-processes/index.rst:60
 msgid "Go to the process list and start the process :guilabel:`User example guide` to open the overview page."
-msgstr "プロセス一覧に移動し、\ :guilabel:`User example guide` プロセスを開始して、概要ページを開きます。"
+msgstr "プロセス一覧に移動し、:guilabel:`User example guide` プロセスを開始して、概要ページを開きます。"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:38
 msgid "On the example overview page, start the leave request"
@@ -3480,7 +3480,7 @@ msgstr "データを入力し、休暇申請を送信します。選択した承
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:49
 msgid "The second task is **Leave request approval**. After the approver finishes his task, the summary task will be assigned back to requester."
-msgstr "2 番目のタスクは、\ **休暇申請の承認** です。承認者がタスクを完了した後、概要タスクが申請者に割り当て直されます。"
+msgstr "2 番目のタスクは、**休暇申請の承認** です。承認者がタスクを完了した後、概要タスクが申請者に割り当て直されます。"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:52
 msgid "After the requester finishes the **summary task**, the case ends."
@@ -3553,7 +3553,7 @@ msgstr "ポータルの例：貸出ケースマップ - 承認タスク"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:87
 msgid "In the approval task, approve to complete the task and go to the last step: create a contract. Once the **Create Contract** task is finished, the case is Done. If we reject task, the case will end in status Rejected."
-msgstr "承認タスクで承認してタスクを完了し、最後の手順である契約作成に進みます。\ **契約作成** タスクが完了すると、ケースが完了になります。タスクを却下した場合は、ケースが却下ステータスで終了します。"
+msgstr "承認タスクで承認してタスクを完了し、最後の手順である契約作成に進みます。**契約作成** タスクが完了すると、ケースが完了になります。タスクを却下した場合は、ケースが却下ステータスで終了します。"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:92
 msgid "Side step"
@@ -3561,11 +3561,11 @@ msgstr "サイドステップ"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:96
 msgid "Go to process list, select :guilabel:`Leave request with side step processes (task level)` or :guilabel:`Leave request with side step processes (case level)` to start a leave request."
-msgstr "プロセス一覧に移動し、\ :guilabel:`Leave request with side step processes (task level)` または :guilabel:`Leave request with side step processes (case level)` を選択して休暇申請を開始してください。"
+msgstr "プロセス一覧に移動し、:guilabel:`Leave request with side step processes (task level)` または :guilabel:`Leave request with side step processes (case level)` を選択して休暇申請を開始してください。"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:105
 msgid "The second task is **Leave request approval**. You can start a side step task by selecting **Start parallel process** with the approval task. For more details about this concept, please refer to :ref:`side-step`"
-msgstr "2つ目のタスクは **休暇申請承認** です。承認タスクで **並行プロセスを開始** を選択することで、サイドステップタスクを開始できます。この概念の詳細については、\ :ref:`side-step` を参照してください。"
+msgstr "2つ目のタスクは **休暇申請承認** です。承認タスクで **並行プロセスを開始** を選択することで、サイドステップタスクを開始できます。この概念の詳細については、:ref:`side-step` を参照してください。"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:107
 msgid "With task level, each task will have different process list to select."
@@ -3577,7 +3577,7 @@ msgstr "ケースレベルでは、すべてのタスクで同じプロセスリ
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:109
 msgid "The side step can be started asynchronously or synchronously by selecting **Step type**"
-msgstr "サイドステップは、\ **ステップタイプ** を選択することで非同期または同期で開始できます"
+msgstr "サイドステップは、**ステップタイプ** を選択することで非同期または同期で開始できます"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:111
 msgid "|side-step-menu|"
@@ -3597,7 +3597,7 @@ msgstr "side-step-config"
 
 #: ../../source/portal-user-guide/demo-processes/index.rst:115
 msgid "After the requester finishes the side step tasks and open again the original task (the task which you start side step task from it), a **summary dialog** will be shown. This dialog will list out information about all relevant completed side step tasks."
-msgstr "リクエスト者がサイドステップタスクを完了し、元のタスク（サイドステップタスクを開始したタスク）を再度開くと、\ **サマリーダイアログ** が表示されます。このダイアログには、関連するすべての完了済みサイドステップタスクに関する情報が一覧表示されます。"
+msgstr "リクエスト者がサイドステップタスクを完了し、元のタスク（サイドステップタスクを開始したタスク）を再度開くと、**サマリーダイアログ** が表示されます。このダイアログには、関連するすべての完了済みサイドステップタスクに関する情報が一覧表示されます。"
 
 #: ../../source/portal-user-guide/forgot-password/index.rst:4
 msgid "Forgot Password"
@@ -3621,7 +3621,7 @@ msgstr "Portal login page"
 
 #: ../../source/portal-user-guide/forgot-password/index.rst:21
 msgid "To reset your password, click on ``Forgot my password``. You will see the page below."
-msgstr "パスワードをリセットするには、\ ``パスワードを忘れました`` をクリックします。以下のページが表示されます。"
+msgstr "パスワードをリセットするには、``パスワードを忘れました`` をクリックします。以下のページが表示されます。"
 
 #: ../../source/portal-user-guide/forgot-password/index.rst:23
 msgid "|send-email-screen|"
@@ -3633,7 +3633,7 @@ msgstr "「パスワードをリセットするためのメールの送信」ペ
 
 #: ../../source/portal-user-guide/forgot-password/index.rst:25
 msgid "Input your registered email address and click on :guilabel:`Send`. If successful, an email with a link will be sent to this email address. After clicking on this link, you will see this page:"
-msgstr "登録したメールアドレスを入力し、\ :guilabel:`送信` をクリックします。成功すると、リンクを含むメールがそのメールアドレスに送信されます。リンクをクリックすると、以下のページが表示されます。"
+msgstr "登録したメールアドレスを入力し、:guilabel:`送信` をクリックします。成功すると、リンクを含むメールがそのメールアドレスに送信されます。リンクをクリックすると、以下のページが表示されます。"
 
 #: ../../source/portal-user-guide/forgot-password/index.rst:28
 msgid "|reset-password-screen|"
@@ -3645,7 +3645,7 @@ msgstr "新しいパスワードページ"
 
 #: ../../source/portal-user-guide/forgot-password/index.rst:30
 msgid "Input your new password and the password confirmation, then click on :guilabel:`Continue`. If successful, you will see this page:"
-msgstr "新しいパスワードを入力し、パスワードを再入力し、\ :guilabel:`続ける` をクリックします。成功すると、以下のページが表示されます。"
+msgstr "新しいパスワードを入力し、パスワードを再入力し、:guilabel:`続ける` をクリックします。成功すると、以下のページが表示されます。"
 
 #: ../../source/portal-user-guide/forgot-password/index.rst:33
 msgid "|reset-password-success-screen|"
@@ -3661,7 +3661,7 @@ msgstr ":guilabel:`ログインページに戻る` をクリックし、自分�
 
 #: ../../source/portal-user-guide/forgot-password/index.rst:38
 msgid "For developers: This feature can be customized (e.g., custom email templates, validation rules). See :ref:`Customize Forgot Password <customization-forgot-password>` in the Developer Guide."
-msgstr "開発者向け：この機能はカスタマイズが可能です（例：カスタムメールテンプレート、検証ルール）。詳細は開発者ガイドの「\ :ref:`パスワードを忘れた場合 <customization-forgot-password>` 」をご参照ください。"
+msgstr "開発者向け：この機能はカスタマイズが可能です（例：カスタムメールテンプレート、検証ルール）。詳細は開発者ガイドの「:ref:`パスワードを忘れた場合 <customization-forgot-password>` 」をご参照ください。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:4
 msgid "Full Process List"
@@ -3673,7 +3673,7 @@ msgstr "**全プロセスリスト** ページには、利用可能なアプリ�
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:11
 msgid "**Access Requirement**: Only users with the :ref:`🔑AccessFullProcessList <AccessFullProcessList>` permission can see the :guilabel:`Processes` menu item."
-msgstr "**アクセス要件**::ref:`🔑AccessFullProcessList <AccessFullProcessList>` 権限を持つユーザーのみが\ :guilabel:`Processes` メニュー項目を表示できます。"
+msgstr "**アクセス要件**::ref:`🔑AccessFullProcessList <AccessFullProcessList>` 権限を持つユーザーのみが:guilabel:`Processes` メニュー項目を表示できます。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:14
 msgid "|navigate-to-full-process-list|"
@@ -3801,7 +3801,7 @@ msgstr "プロセス検索は、ヘッダー領域にあるグローバルなAxo
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:79
 msgid "To start a new instance of a process, select the process in the list. We call this instance a **case**. After you finish your activities in the case, you will be re-directed to the **Dashboard**, not to the :guilabel:`Full Process List`."
-msgstr "プロセスの新しいインスタンスを開始するには、リストでプロセスを選択します。このインスタンスを **ケース** といいます。ケースで活動を終了すると、\ :guilabel:`全プロセスリスト` ではなく、 **ダッシュボード** にリダイレクトされます。"
+msgstr "プロセスの新しいインスタンスを開始するには、リストでプロセスを選択します。このインスタンスを **ケース** といいます。ケースで活動を終了すると、:guilabel:`全プロセスリスト` ではなく、 **ダッシュボード** にリダイレクトされます。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:86
 msgid "Values of Portal Setting Portal.Processes.DefaultImage"
@@ -3829,7 +3829,7 @@ msgstr "ハウツー：外部リンクを追加する"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:97
 msgid "Creating public external links (visible to all users) requires :ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>` permission. Private links can be created by any user."
-msgstr "公開外部リンク（全ユーザーに表示）の作成には、\ :ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>` の権限が必要です。非公開リンクは全ユーザーが作成可能です。"
+msgstr "公開外部リンク（全ユーザーに表示）の作成には、:ref:`🔑CreatePublicExternalLink <CreatePublicExternalLink>` の権限が必要です。非公開リンクは全ユーザーが作成可能です。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:99
 msgid "Click on :guilabel:`Add external link` at the top of the page next to the search text box."
@@ -3917,7 +3917,7 @@ msgstr "利用可能なアイコンのリストを使用して現在のアイコ
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:150
 msgid "Click |edit-icon| next to :guilabel:`Display name`, :guilabel:`Start link`, :guilabel:`Link description`, or :guilabel:`Permissions` to change the corresponding value."
-msgstr ":guilabel:`表示名`\ 、\ :guilabel:`開始リンク`\ 、\ :guilabel:`リンクの説明`\ 、または :guilabel:`権限` の隣にある |edit-icon| をクリックすると、対応する値を変更できます。"
+msgstr ":guilabel:`表示名`、:guilabel:`開始リンク`、:guilabel:`リンクの説明`、または :guilabel:`権限` の隣にある |edit-icon| をクリックすると、対応する値を変更できます。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:152
 msgid "For the :guilabel:`Image`, drag and drop, or click ``Upload one here`` to set a new image."
@@ -3925,7 +3925,7 @@ msgstr ":guilabel:`画像` に画像をドラッグ＆ドロップするか、�
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:154
 msgid "Press on :guilabel:`Save` button to confirm your changes."
-msgstr "変更を確定するには、\ :guilabel:`保存` ボタンを押します。"
+msgstr "変更を確定するには、:guilabel:`保存` ボタンを押します。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:156
 msgid "|edit-process-menu-item|"
@@ -3969,7 +3969,7 @@ msgstr "**このページにアクセスするには：**"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:177
 msgid "Click on ``More action item`` icon of a process in image mode or grid mode, then choose ``More Information``"
-msgstr "画像モードまたはグリッドモードでプロセスのアイコン（\ ``More action item``\ ）をクリックし、\ ``More Information`` を選択してください。"
+msgstr "画像モードまたはグリッドモードでプロセスのアイコン（``More action item``）をクリックし、``More Information`` を選択してください。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:179
 msgid "|more-information-link|"
@@ -4072,7 +4072,7 @@ msgstr ""
 
 #: ../../source/portal-user-guide/my-profile/index.rst:24
 msgid "**Default view mode**: Standard view mode when you open the process list."
-msgstr "**デフォルトの表示モード**\ ：プロセスリストを開いたときの標準の表示モード。"
+msgstr "**デフォルトの表示モード**：プロセスリストを開いたときの標準の表示モード。"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:26
 msgid "Portal will use the default value defined by the administrator if you don't select an option."
@@ -4197,11 +4197,11 @@ msgstr ""
 
 #: ../../source/portal-user-guide/my-profile/index.rst:113
 msgid "As an administrator, you can configure the permission :ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` to allow or prevent users from modifying notification channel preferences."
-msgstr "管理者として、\ :ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` 権限を設定し、ユーザーが通知チャネルの設定を変更できるようにする、または禁止することができます。"
+msgstr "管理者として、:ref:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` 権限を設定し、ユーザーが通知チャネルの設定を変更できるようにする、または禁止することができます。"
 
 #: ../../source/portal-user-guide/my-profile/index.rst:115
 msgid "To do this, access the :doc-url:`Engine Cockpit </engine-guide/reference/engine-cockpit/security.html>`, open the **Security area**. Since this permission is granted to the Everybody role by default, administrators need to deny this permission from the Everybody role, then grant it to specific roles that should be allowed to modify notification channel preferences."
-msgstr "これを行うには、\ :doc-url:`エンジン コックピット </engine-guide/reference/engine-cockpit/security.html>` にアクセスし、\ **セキュリティ領域** を開きます。この権限はデフォルトで「すべてのユーザー」ロールに付与されているため、管理者は「すべてのユーザー」ロールからこの権限を拒否し、通知チャネルの設定を変更できる特定のロールに付与する必要があります。"
+msgstr "これを行うには、:doc-url:`エンジン コックピット </engine-guide/reference/engine-cockpit/security.html>` にアクセスし、**セキュリティ領域** を開きます。この権限はデフォルトで「すべてのユーザー」ロールに付与されているため、管理者は「すべてのユーザー」ロールからこの権限を拒否し、通知チャネルの設定を変更できる特定のロールに付与する必要があります。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:9
 msgid "The Axon Ivy Portal Dashboard is your central workspace and the first page you see after successful login. It provides an at-a-glance view of your work with customizable widgets showing tasks, cases, processes, and statistics."
@@ -4339,7 +4339,7 @@ msgstr "ダッシュボードウィジェットのアクションメニューパ
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:62
 msgid "**Saved filters and filter options**: Narrow down the displayed tasks, cases, or processes by criteria such as status, category, or date, and save filter sets for quick reuse later (see :ref:`complex-filter`)"
-msgstr "**保存済みフィルターとフィルターオプション**: ステータス、カテゴリー、日付などの条件で表示するタスク、ケース、プロセスを絞り込み、フィルターセットを保存して後で素早く再利用できます（\ :ref:`complex-filter` を参照）"
+msgstr "**保存済みフィルターとフィルターオプション**: ステータス、カテゴリー、日付などの条件で表示するタスク、ケース、プロセスを絞り込み、フィルターセットを保存して後で素早く再利用できます（:ref:`complex-filter` を参照）"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:66
 msgid "|widget-filter|"
@@ -4377,7 +4377,7 @@ msgstr "必要な権限をお持ちの場合、ダッシュボードのレイア
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:84
 msgid "Accessing :ref:`Portal Configuration <portal-configuration>` from the side menu. Depending on your assigned permissions, you can access the :ref:`private dashboards <dashboard-configuration>` tab, the :ref:`public dashboards <public-dashboard-configuration>` tab, or both."
-msgstr "サイドメニューから :ref:`ポータル設定 <portal-configuration>` にアクセスします。割り当てられた権限に応じて、\ :ref:`プライベートダッシュボード <dashboard-configuration>` タブ、\ :ref:`パブリックダッシュボード <public-dashboard-configuration>` タブ、またはその両方にアクセスできます。"
+msgstr "サイドメニューから :ref:`ポータル設定 <portal-configuration>` にアクセスします。割り当てられた権限に応じて、:ref:`プライベートダッシュボード <dashboard-configuration>` タブ、:ref:`パブリックダッシュボード <public-dashboard-configuration>` タブ、またはその両方にアクセスできます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:86
 msgid "|edit-widget|"
@@ -4483,7 +4483,7 @@ msgstr "**設定パネル**"
 #: ../../source/portal-user-guide/new-dashboard/index.rst:132
 #: ../../source/portal-user-guide/new-dashboard/index.rst:226
 msgid "By clicking on the :guilabel:`Configuration` button at the top right of the dialog, you can access additional widget settings:"
-msgstr "ダイアログの右上にある「\ :guilabel:`Configuration` 」ボタンをクリックすると、ウィジェットの追加設定にアクセスできます："
+msgstr "ダイアログの右上にある「:guilabel:`Configuration` 」ボタンをクリックすると、ウィジェットの追加設定にアクセスできます："
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:134
 msgid "|task-widget-configuration-panel|"
@@ -4529,7 +4529,7 @@ msgstr "**フィルターダイアログ**"
 #: ../../source/portal-user-guide/new-dashboard/index.rst:150
 #: ../../source/portal-user-guide/new-dashboard/index.rst:244
 msgid "By clicking on the :guilabel:`Filter` button, you can configure the complex filter for your widget and get a preview of it by clicking on the :guilabel:`Apply` button. Please refer to :ref:`Complex Filter <complex-filter>` for more details."
-msgstr ":guilabel:`フィルター` ボタンをクリックして、ウィジェットの複合フィルターを設定し、\ :guilabel:`適用` ボタンをクリックしてプレビューできます。詳細については、\ :ref:`複合フィルター <complex-filter>` を参照してください。"
+msgstr ":guilabel:`フィルター` ボタンをクリックして、ウィジェットの複合フィルターを設定し、:guilabel:`適用` ボタンをクリックしてプレビューできます。詳細については、:ref:`複合フィルター <complex-filter>` を参照してください。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:154
 msgid "|task-list-widget-configuration|"
@@ -4541,7 +4541,7 @@ msgstr "ダッシュボードのタスクウィジェットの設定パネル"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:158
 msgid "``Filter tasks by current case owner`` filter is hidden by default. To make it visible, you need to set the ``Portal.Cases.EnableOwner`` setting to ``true`` in the :ref:`Admin Settings <update-portal-settings>`."
-msgstr "``Filter tasks by current case owner`` フィルターはデフォルトで非表示です。表示するには、\ :ref:`ハウツー：ポータル設定を更新する <update-portal-settings>` で ``Portal.Cases.EnableOwner`` 設定を ``true`` に設定する必要があります。"
+msgstr "``Filter tasks by current case owner`` フィルターはデフォルトで非表示です。表示するには、:ref:`ハウツー：ポータル設定を更新する <update-portal-settings>` で ``Portal.Cases.EnableOwner`` 設定を ``true`` に設定する必要があります。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:162
 #: ../../source/portal-user-guide/new-dashboard/index.rst:252
@@ -4703,7 +4703,7 @@ msgstr "**「ピン留めされた項目」のトグルを表示**: 「ピン留
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:240
 msgid "**Case Type**: Select which level of cases the widget displays. Available options: **Business Case** shows only top-level cases, **Sub Case** shows only sub-cases (children of a business case), **All** shows both business cases and sub-cases. By default, the widget queries by **Business Case**."
-msgstr "**ケースの種類**: ウィジェットに表示するケースのレベルを選択します。利用可能なオプション：\ **ビジネスケース** はトップレベルのケースのみを表示します。\ **サブケース** はサブケース（ビジネスケースの子要素）のみを表示します。\ **すべて** はビジネスケースとサブケースの両方を表示します。デフォルトでは、ウィジェットは\ **ビジネスケース** をクエリします。"
+msgstr "**ケースの種類**: ウィジェットに表示するケースのレベルを選択します。利用可能なオプション：**ビジネスケース** はトップレベルのケースのみを表示します。**サブケース** はサブケース（ビジネスケースの子要素）のみを表示します。**すべて** はビジネスケースとサブケースの両方を表示します。デフォルトでは、ウィジェットは**ビジネスケース** をクエリします。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:248
 msgid "|case-list-widget-configuration|"
@@ -4912,43 +4912,43 @@ msgstr "ライトモードとダークモードの背景画像とウェルカム
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:371
 msgid "**Choose which mode you want to configure**: switch between ``Light`` and ``Dark`` to configure the image."
-msgstr "**設定するモードを選択**\ ：\ ``Light`` と ``Dark`` を切り替えて画像を設定します。"
+msgstr "**設定するモードを選択**：``Light`` と ``Dark`` を切り替えて画像を設定します。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:372
 msgid "**Image preview**: shows how the background image will look with the current settings."
-msgstr "**画像プレビュー**\ ：現在の設定で背景画像がどのように表示されるかを確認できます。"
+msgstr "**画像プレビュー**：現在の設定で背景画像がどのように表示されるかを確認できます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:373
 msgid "**Change image**: upload a new background image for the selected mode."
-msgstr "**画像を変更**\ ：選択したモード用の新しい背景画像をアップロードします。"
+msgstr "**画像を変更**：選択したモード用の新しい背景画像をアップロードします。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:374
 msgid "**Choose a fit**: select how the image should fit the widget, for example ``Cover``."
-msgstr "**フィット方法を選択**\ ：\ ``Cover`` など、画像をウィジェットにどのように合わせるかを選択します。"
+msgstr "**フィット方法を選択**：``Cover`` など、画像をウィジェットにどのように合わせるかを選択します。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:375
 msgid "**Show greeting**: enable or disable the greeting text shown before the welcome text."
-msgstr "**挨拶を表示**\ ：ウェルカムテキストの前に表示される挨拶文の表示・非表示を切り替えます。"
+msgstr "**挨拶を表示**：ウェルカムテキストの前に表示される挨拶文の表示・非表示を切り替えます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:376
 msgid "**Display text**: define the welcome text to be displayed, with support for multiple languages."
-msgstr "**表示テキスト**\ ：表示するウェルカムテキストを定義します。複数言語に対応しています。"
+msgstr "**表示テキスト**：表示するウェルカムテキストを定義します。複数言語に対応しています。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:377
 msgid "**Text color for light mode** and **Text color for dark mode**: set the text color used in each mode."
-msgstr "**ライトモードのテキスト色** と **ダークモードのテキスト色**\ ：それぞれのモードで使用するテキストの色を設定します。"
+msgstr "**ライトモードのテキスト色** と **ダークモードのテキスト色**：それぞれのモードで使用するテキストの色を設定します。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:378
 msgid "**Text position**: choose where the text is placed on the image, for example ``Top-left corner``."
-msgstr "**テキストの位置**\ ：\ ``Top-left corner`` など、画像上のテキストの配置場所を選択します。"
+msgstr "**テキストの位置**：``Top-left corner`` など、画像上のテキストの配置場所を選択します。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:379
 msgid "**Text size**: choose the text size, for example ``Heading 3``."
-msgstr "**テキストサイズ**\ ：\ ``Heading 3`` など、テキストのサイズを選択します。"
+msgstr "**テキストサイズ**：``Heading 3`` など、テキストのサイズを選択します。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:380
 msgid "**Advanced settings**: expand this section for additional configuration options."
-msgstr "**詳細設定**\ ：このセクションを展開すると、追加の設定オプションが表示されます。"
+msgstr "**詳細設定**：このセクションを展開すると、追加の設定オプションが表示されます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:382
 msgid "|welcome-widget-configuration|"
@@ -5000,7 +5000,7 @@ msgstr "ユーザーに権限がある場合は、以下を行うことができ
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:404
 msgid "**Add news message**: add a new entry for the news feed by clicking :guilabel:`Add News` button."
-msgstr "**ニュースメッセージの追加**: ニュースフィードに新規エントリーを追加するには、\ :guilabel:`ニュースを追加` ボタンをクリックしてください。"
+msgstr "**ニュースメッセージの追加**: ニュースフィードに新規エントリーを追加するには、:guilabel:`ニュースを追加` ボタンをクリックしてください。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:406
 msgid "**Edit news message**: edit an existing entry for the list by clicking on the |edit-icon| icon in the lower right corner of each entry."
@@ -5141,7 +5141,7 @@ msgstr "既存のダッシュボードからのウィジェット複製"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:470
 msgid "When editing a dashboard, you can clone a widget from another dashboard by clicking the :guilabel:`Clone widget` button at the top of the page."
-msgstr "ダッシュボードを編集する際、ページ上部の「\ :guilabel:`Clone widget` 」ボタンをクリックすることで、別のダッシュボードからウィジェットを複製できます。"
+msgstr "ダッシュボードを編集する際、ページ上部の「:guilabel:`Clone widget` 」ボタンをクリックすることで、別のダッシュボードからウィジェットを複製できます。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:472
 msgid "|clone-widget-from-button|"
@@ -5197,7 +5197,7 @@ msgstr "編集モードのウィジェットのウィジェット複製メニュ
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:491
 msgid "After selecting the :guilabel:`Clone` option, the :guilabel:`Clone widget` dialog will appear. Choose the target dashboard where you want to copy the widget, then click the :guilabel:`Clone` button to complete the process."
-msgstr ":guilabel:`複製` オプションを選択すると、 :guilabel:`ウィジェット複製` ダイアログが表示されます。ウィジェットをコピーしたいダッシュボードを選択し、\ :guilabel:`複製` ボタンをクリックしてプロセスを完了します。"
+msgstr ":guilabel:`複製` オプションを選択すると、 :guilabel:`ウィジェット複製` ダイアログが表示されます。ウィジェットをコピーしたいダッシュボードを選択し、:guilabel:`複製` ボタンをクリックしてプロセスを完了します。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:493
 msgid "|clone-widget-dialog|"
@@ -5303,7 +5303,7 @@ msgstr "ハウツー：ケースに関連するプロセスチャットを作成
 
 #: ../../source/portal-user-guide/portal-chat/index.rst:24
 msgid "The process chat icon is only shown when :guilabel:`Portal.Chat.EnableGroup` is activated."
-msgstr "プロセスチャットのアイコンは、\ :guilabel:`Portal.Chat.EnableGroup` が有効になっている場合にのみ表示されます。"
+msgstr "プロセスチャットのアイコンは、:guilabel:`Portal.Chat.EnableGroup` が有効になっている場合にのみ表示されます。"
 
 #: ../../source/portal-user-guide/portal-chat/index.rst:25
 msgid "Process chat of a case could have pre-defined roles that all users of those roles will join the process chat automatically."
@@ -5383,11 +5383,11 @@ msgstr "ポータルの設定"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:7
 msgid "**Access Requirements**: The :guilabel:`Portal Configuration` sidebar entry is visible to users with at least one of the following permissions: :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`, :ref:`🔑DashboardWritePublic <DashboardWritePublic>`, :ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>`, or :ref:`🔑PortalPackageManagement <PortalPackageManagement>`. Each tab within the page is independently gated by its own permission — see the table below."
-msgstr "**アクセス要件**: :guilabel:`ポータル設定` のサイドバー項目は、以下の権限のうち少なくとも1つを持つユーザーに表示されます：\ :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` 、\ :ref:`🔑DashboardWritePublic <DashboardWritePublic>` 、\ :ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>` 、または :ref:`🔑PortalPackageManagement <PortalPackageManagement>` 。ページ内の各タブは、それぞれ独自の権限によって個別にアクセスが制限されています。詳細は以下の表を参照してください。"
+msgstr "**アクセス要件**: :guilabel:`ポータル設定` のサイドバー項目は、以下の権限のうち少なくとも1つを持つユーザーに表示されます：:ref:`🔑DashboardWriteOwn <DashboardWriteOwn>` 、:ref:`🔑DashboardWritePublic <DashboardWritePublic>` 、:ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>` 、または :ref:`🔑PortalPackageManagement <PortalPackageManagement>` 。ページ内の各タブは、それぞれ独自の権限によって個別にアクセスが制限されています。詳細は以下の表を参照してください。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:9
 msgid "Portal Configuration provides centralized management of your personal and organization-wide dashboards, as well as the sidebar navigation menu. Access it through the :guilabel:`Portal Configuration` entry pinned to the bottom of the left sidebar navigation (see :ref:`axon-ivy-portal`)."
-msgstr "「ポータル設定」では、個人および組織全体のダッシュボード、ならびにサイドバーのナビゲーションメニューを一元的に管理できます。左側のサイドバーナビゲーションの下部に固定された :guilabel:`ポータル設定` 項目からアクセスしてください（\ :ref:`axon-ivy-portal` を参照）。"
+msgstr "「ポータル設定」では、個人および組織全体のダッシュボード、ならびにサイドバーのナビゲーションメニューを一元的に管理できます。左側のサイドバーナビゲーションの下部に固定された :guilabel:`ポータル設定` 項目からアクセスしてください（:ref:`axon-ivy-portal` を参照）。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:12
 msgid "|portal-configuration|"
@@ -5511,7 +5511,7 @@ msgstr "|edit-icon| **レイアウトの編集**: ダッシュボードウィジ
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:60
 msgid "|download-icon| **Export dashboard**: Download dashboard as JSON file (requires :ref:`🔑DashboardExportOwn <DashboardExportOwn>` permission)"
-msgstr "|download-icon| **ダッシュボードのエクスポート**: ダッシュボードを JSON ファイルとしてダウンロードします（\ :ref:`🔑DashboardExportOwn <DashboardExportOwn>` 権限が必要です）"
+msgstr "|download-icon| **ダッシュボードのエクスポート**: ダッシュボードを JSON ファイルとしてダウンロードします（:ref:`🔑DashboardExportOwn <DashboardExportOwn>` 権限が必要です）"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:61
 msgid "|trash-icon| **Delete**: Remove the private dashboard"
@@ -5572,7 +5572,7 @@ msgstr "利用可能なダッシュボードのテンプレート"
 #: ../../source/portal-user-guide/portal-configuration/index.rst:91
 #: ../../source/portal-user-guide/portal-configuration/index.rst:218
 msgid ":guilabel:`Default Template`, :guilabel:`Two Task list dashboard` template, :guilabel:`Accessibility dashboard` template, :guilabel:`Full Task list dashboard` template and :guilabel:`Full Case list dashboard` template. Please see the image below for more details."
-msgstr ":guilabel:`Default Template`\ 、\ :guilabel:`Two Task list dashboard` テンプレート、\ :guilabel:`Accessibility dashboard` テンプレート、\ :guilabel:`Full Task list dashboard` テンプレート、および\ :guilabel:`Full Case list dashboard` テンプレート。詳細については、以下の画像をご覧ください。"
+msgstr ":guilabel:`Default Template`、:guilabel:`Two Task list dashboard` テンプレート、:guilabel:`Accessibility dashboard` テンプレート、:guilabel:`Full Task list dashboard` テンプレート、および:guilabel:`Full Case list dashboard` テンプレート。詳細については、以下の画像をご覧ください。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:93
 #: ../../source/portal-user-guide/portal-configuration/index.rst:220
@@ -5648,7 +5648,7 @@ msgstr "ハウツー：プライベートダッシュボードの編集方法"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:126
 msgid "Select :guilabel:`Settings` in the :guilabel:`Actions` menu to open the :guilabel:`Edit dashboard` dialog:"
-msgstr ":guilabel:`アクション` メニューで :guilabel:`設定` を選択すると、\ :guilabel:`ダッシュボードの編集` ダイアログが開きます。"
+msgstr ":guilabel:`アクション` メニューで :guilabel:`設定` を選択すると、:guilabel:`ダッシュボードの編集` ダイアログが開きます。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:128
 msgid "**Dashboard icon**: Select an icon to represent the dashboard"
@@ -5656,7 +5656,7 @@ msgstr "**ダッシュボードのアイコン**: ダッシュボードを表す
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:129
 msgid "**Dashboard title**: Enter the mandatory title. To provide translations, use the multi-language input (see :ref:`portal-multi-language`)"
-msgstr "**ダッシュボードのタイトル**: タイトル（必須）を入力します。翻訳を提供するには、多言語入力機能を使用してください（\ :ref:`portal-multi-language` を参照）"
+msgstr "**ダッシュボードのタイトル**: タイトル（必須）を入力します。翻訳を提供するには、多言語入力機能を使用してください（:ref:`portal-multi-language` を参照）"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:130
 msgid "**Description**: Enter an optional description"
@@ -5712,7 +5712,7 @@ msgstr "公開用ダッシュボードの設定"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:157
 msgid "The tab :guilabel:`Public dashboards` allows you to add, edit, and reorder public dashboards. Public dashboards are organized into three sections based on their **Display Type** setting:"
-msgstr "\ :guilabel:`Public dashboards`\ タブでは、公開ダッシュボードの追加、編集、順序変更を行うことができます。公開ダッシュボードは、\ **Display Type**\ 設定に基づいて、3つのセクションに分類されます："
+msgstr "「:guilabel:`」タブの「Public dashboards」` では、公開ダッシュボードの追加、編集、順序変更を行うことができます。公開ダッシュボードは、「**」の「Display Type」** 設定に基づいて、3つのセクションに分類されます："
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:160
 msgid "**Sidebar** — dashboards appear as top-level items in the sidebar"
@@ -5720,7 +5720,7 @@ msgstr "**サイドバー** — ダッシュボードはサイドバーの最上
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:161
 msgid "**Submenu** — dashboards are grouped under the Dashboard icon in the sidebar"
-msgstr "**Submenu**\\ — ダッシュボードはサイドバーの「Dashboard」アイコンの下にグループ化されます"
+msgstr "**サブメニュー「** 」 — ダッシュボードはサイドバーの「Dashboard」アイコンの下にグループ化されています"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:162
 msgid "**Hidden** — dashboards are not shown in the sidebar"
@@ -5760,7 +5760,7 @@ msgstr "|settings-icon| **設定**: ダッシュボード名、権限、説明�
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:177
 msgid "|download-icon| **Export dashboard**: Download dashboard as JSON file (requires :ref:`🔑DashboardExportPublic <DashboardExportPublic>` permission)"
-msgstr "|download-icon| **ダッシュボードのエクスポート**: ダッシュボードを JSON ファイルとしてダウンロードします（\ :ref:`🔑DashboardExportPublic <DashboardExportPublic>` 権限が必要です）"
+msgstr "|download-icon| **ダッシュボードのエクスポート**: ダッシュボードを JSON ファイルとしてダウンロードします（:ref:`🔑DashboardExportPublic <DashboardExportPublic>` 権限が必要です）"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:178
 msgid "|share-icon| **Share**: Generate a shareable link to the dashboard (requires :ref:`🔑ShareDashboardLink <ShareDashboardLink>` permission)"
@@ -5801,7 +5801,7 @@ msgstr ":guilabel:`新しい公開用ダッシュボードを作成` ダイア�
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:196
 msgid "Enter the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard. Select a **Display Type** to control where the dashboard appears in the sidebar:"
-msgstr "必須項目のタイトル、パブリックダッシュボードの閲覧権限、およびパブリックダッシュボードの説明（任意）を入力してください。サイドバー内のダッシュボードの表示位置を制御するには、\ **の表示タイプ** を選択してください："
+msgstr "必須項目のタイトル、パブリックダッシュボードの閲覧権限、およびパブリックダッシュボードの説明（任意）を入力してください。サイドバー内のダッシュボードの表示位置を制御するには、**の表示タイプ** を選択してください："
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:199
 msgid "**Sidebar** — the dashboard appears as a top-level item in the sidebar"
@@ -5810,7 +5810,7 @@ msgstr "**サイドバー** — ダッシュボードはサイドバーの最上
 #: ../../source/portal-user-guide/portal-configuration/index.rst:200
 #: ../../source/portal-user-guide/portal-configuration/index.rst:244
 msgid "**Submenu** — the dashboard is grouped under the Dashboard icon in the sidebar"
-msgstr "**Submenu**\\ — ダッシュボードはサイドバーの「Dashboard」アイコンの下にグループ化されます"
+msgstr "**サブメニュー「** 」 — ダッシュボードはサイドバーの「Dashboard」アイコンの下にグループ化されています"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:201
 #: ../../source/portal-user-guide/portal-configuration/index.rst:246
@@ -5856,7 +5856,7 @@ msgstr ":guilabel:`公開用ダッシュボードをインポート` ダイア�
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:241
 msgid "Edit the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard. Select a **Display Type** to control where the dashboard appears in the sidebar:"
-msgstr "必須項目のタイトル、パブリックダッシュボードの閲覧権限、およびパブリックダッシュボードの任意の説明文を編集してください。\ **の表示タイプ** を選択して、サイドバー内のダッシュボードの表示位置を制御してください："
+msgstr "必須項目のタイトル、パブリックダッシュボードの閲覧権限、およびパブリックダッシュボードの任意の説明文を編集してください。**の表示タイプ** を選択して、サイドバー内のダッシュボードの表示位置を制御してください："
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:245
 msgid "**Sidebar** — the dashboard appears as a top-level item in the sidebar navigation"
@@ -5928,11 +5928,11 @@ msgstr "ハウツー：公開ダッシュボードの並べ替え"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:285
 msgid "You can rearrange dashboards within the **Submenu** section by dragging and dropping |reorder-dashboard-icon| icon."
-msgstr "\\ **Submenu**\\ セクション内では、|reorder-dashboard-icon| アイコンをドラッグ＆ドロップすることで、ダッシュボードの配置を変更できます。"
+msgstr "**のサブメニュー「** 」セクション内では、|reorder-dashboard-icon| アイコンをドラッグ＆ドロップすることで、ダッシュボードの配置を変更できます。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:288
 msgid "Drag-and-drop reordering is only available within the **Submenu** section."
-msgstr "ドラッグ＆ドロップによる並べ替えは、\ **サブメニュー** セクション内でのみ利用可能です。"
+msgstr "ドラッグ＆ドロップによる並べ替えは、**サブメニュー** セクション内でのみ利用可能です。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:291
 msgid "Sidebar configuration"
@@ -5940,11 +5940,11 @@ msgstr "サイドバーの設定"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:294
 msgid "**Access Requirements**: The :guilabel:`Sidebar` tab is only accessible to users with the :ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>` permission."
-msgstr "**アクセス要件**\ ：\ :guilabel:`サイドバー` タブにアクセスできるのは、\ :ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>` 権限を持つユーザーのみです。"
+msgstr "**アクセス要件**：:guilabel:`サイドバー` タブにアクセスできるのは、:ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>` 権限を持つユーザーのみです。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:296
 msgid "The tab :guilabel:`Sidebar` allows portal administrators to manage the sidebar menu items and configure sidebar behaviour for all users."
-msgstr "「\ :guilabel:`」タブの「` 」では、ポータル管理者がサイドバーのメニュー項目を管理し、すべてのユーザーに対するサイドバーの動作を設定できます。"
+msgstr "「:guilabel:`」タブの「` 」では、ポータル管理者がサイドバーのメニュー項目を管理し、すべてのユーザーに対するサイドバーの動作を設定できます。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:298
 msgid "|sidebar-navigation-configuration|"
@@ -6016,7 +6016,7 @@ msgstr "メニュー項目テーブルには、サイドバーのナビゲーシ
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:331
 msgid "**Label**: The display title of the menu item"
-msgstr "\\ **Label**\\ ：メニュー項目の表示タイトル"
+msgstr "**ラベル「** 」：メニュー項目の表示タイトル"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:332
 msgid "**Links To**: The URL or dashboard the item links to"
@@ -6044,7 +6044,7 @@ msgstr "**Reorder**: ドラッグハンドル(|reorder-dashboard-icon|)をリオ
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:340
 msgid "Built-in items such as **Dashboard** and **Processes** are Standard items and cannot be edited or deleted. The Actions menu is not available for these items."
-msgstr "**、Dashboard** 、\ **、Processes** などの組み込み項目は標準項目であり、編集や削除はできません。これらの項目では、[Actions] メニューは利用できません。"
+msgstr "**、Dashboard** 、**、Processes** などの組み込み項目は標準項目であり、編集や削除はできません。これらの項目では、[Actions] メニューは利用できません。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:343
 msgid "HowTo: add a sidebar menu item"
@@ -6052,7 +6052,7 @@ msgstr "ハウツー：サイドバーメニュー項目を追加する"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:345
 msgid "Click :guilabel:`Add Item` to open the :guilabel:`Add Menu Item` dialog."
-msgstr ":guilabel:`の「Add Item」` をクリックして、「\ :guilabel:`Add Menu Item」` ダイアログを開きます。"
+msgstr ":guilabel:`の「Add Item」` をクリックして、「:guilabel:`Add Menu Item」` ダイアログを開きます。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:347
 msgid "|add-menu-item-dialog|"
@@ -6092,7 +6092,7 @@ msgstr "選択したメニュータイプに応じて、対応する値（リン
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:361
 msgid "Enter a title for the item. To provide translations, use the multi-language input (see :ref:`portal-multi-language`)."
-msgstr "項目のタイトルを入力してください。翻訳を提供するには、多言語入力機能を使用してください（\ :ref:`portal-multi-language` を参照）。"
+msgstr "項目のタイトルを入力してください。翻訳を提供するには、多言語入力機能を使用してください（:ref:`portal-multi-language` を参照）。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:363
 msgid "Select an icon to represent the item in the sidebar."
@@ -6156,7 +6156,7 @@ msgstr "パッケージ管理の設定"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:399
 msgid "**Access Requirements**: The :guilabel:`Package Management` tab is only accessible to users with the :ref:`🔑PortalPackageManagement <PortalPackageManagement>` permission."
-msgstr "**アクセス要件**\ ：\ :guilabel:`パッケージ管理` タブにアクセスできるのは、\ :ref:`🔑PortalPackageManagement <PortalPackageManagement>` 権限を持つユーザーのみです。"
+msgstr "**アクセス要件**：:guilabel:`パッケージ管理` タブにアクセスできるのは、:ref:`🔑PortalPackageManagement <PortalPackageManagement>` 権限を持つユーザーのみです。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:401
 msgid "The tab :guilabel:`Package Management` allows you to export the current Portal configuration into a single zip package, or import a zip package to apply its configuration."
@@ -6261,7 +6261,7 @@ msgstr ":guilabel:`の「` 」エクスポートボタンを選択してくだ�
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:446
 msgid "The package is downloaded as ``Portal_Package.zip``."
-msgstr "このパッケージは、\ ``Portal_Package.zip`` からダウンロードできます。"
+msgstr "このパッケージは、``Portal_Package.zip`` からダウンロードできます。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:449
 msgid "HowTo: import a Portal package"
@@ -6273,11 +6273,11 @@ msgstr ":guilabel:`の「` 」ボタンをクリックしてインポートし�
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:453
 msgid "The :guilabel:`Import Portal Package` dialog is opened."
-msgstr "「\ :guilabel:`」のインポートポータルパッケージ「` 」ダイアログが開きます。"
+msgstr "「:guilabel:`」のインポートポータルパッケージ「` 」ダイアログが開きます。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:455
 msgid "Drag and drop, or click :guilabel:`browse files` to select the zip file containing the Portal package you want to import."
-msgstr "ドラッグ＆ドロップするか、\ :guilabel:`をクリックしてファイルを参照し、` から、インポートしたい Portal パッケージを含む ZIP ファイルを選択してください。"
+msgstr "ドラッグ＆ドロップするか、:guilabel:`をクリックしてファイルを参照し、` から、インポートしたい Portal パッケージを含む ZIP ファイルを選択してください。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:457
 msgid "|import-portal-package-dialog|"
@@ -6309,7 +6309,7 @@ msgstr "有効なファイルと無効なファイルを含む Portal パッケ�
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:466
 msgid "Select :guilabel:`Import` button to apply the package."
-msgstr "「\ :guilabel:`」を選択し、「` 」ボタンをクリックしてパッケージを適用してください。"
+msgstr "「:guilabel:`」を選択し、「` 」ボタンをクリックしてパッケージを適用してください。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:468
 msgid "The dialog shows the result for each file: imported successfully, skipped (unrecognized), or failed."
@@ -6397,7 +6397,7 @@ msgstr "**ユーザーメニュー**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:12
 msgid "Click on your username to access a menu with options for configuring Portal to your personal needs. See :ref:`user-settings` for detailed configuration options."
-msgstr "ユーザー名をクリックすると、Portalを個人のニーズに合わせて設定するためのオプションメニューが表示されます。詳細な設定オプションについては、\ :ref:`user-settings` を参照してください。"
+msgstr "ユーザー名をクリックすると、Portalを個人のニーズに合わせて設定するためのオプションメニューが表示されます。詳細な設定オプションについては、:ref:`user-settings` を参照してください。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:14
 msgid "**Global Search Bar**"
@@ -6449,7 +6449,7 @@ msgstr "**管理設定**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:37
 msgid "Portal administration (``AXONIVY_PORTAL_ADMIN`` role)"
-msgstr "ポータル管理（\ ``AXONIVY_PORTAL_ADMIN`` ロール）"
+msgstr "ポータル管理（``AXONIVY_PORTAL_ADMIN`` ロール）"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:39
 msgid "**Absences**"
@@ -6753,7 +6753,7 @@ msgstr "ログアウト"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:172
 msgid "The menu entry :guilabel:`Logout` will terminate your session in the Axon Ivy Portal. You'll be routed back to the login page of the Axon Ivy Portal."
-msgstr "メニュー項目「\ :guilabel:`Logout` 」を選択すると、Axon Ivy Portalのセッションが終了します。Axon Ivy Portalのログインページに戻ります。"
+msgstr "メニュー項目「:guilabel:`Logout` 」を選択すると、Axon Ivy Portalのセッションが終了します。Axon Ivy Portalのログインページに戻ります。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:177
 msgid "The Axon Ivy Portal will automatically log you out after a period of inactivity."
@@ -6861,7 +6861,7 @@ msgstr "**Portal.GlobalSearch.MinimumKeywordLength**"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:227
 msgid "Defines the minimum number of characters a keyword must have before global search runs. A shorter keyword matches nearly every row, which can be slow, so the search is skipped rather than run. Defaults to ``3``; set to ``0`` to disable the check and search on any keyword."
-msgstr "グローバル検索を実行するためにキーワードが持つ必要のある最小文字数を定義します。キーワードが短いとほぼすべての行に一致してしまい処理が遅くなる可能性があるため、その場合は検索を実行せずスキップします。デフォルトは ``3`` で、\ ``0`` に設定するとこのチェックを無効にし、どのようなキーワードでも検索できます。"
+msgstr "グローバル検索を実行するためにキーワードが持つ必要のある最小文字数を定義します。キーワードが短いとほぼすべての行に一致してしまい処理が遅くなる可能性があるため、その場合は検索を実行せずスキップします。デフォルトは ``3`` で、``0`` に設定するとこのチェックを無効にし、どのようなキーワードでも検索できます。"
 
 #: ../../source/portal-user-guide/portal-header/index.rst:233
 msgid "Configure these variables in :ref:`admin-settings` to optimize search performance for your Portal instance."
@@ -6967,7 +6967,7 @@ msgstr ":guilabel:`Portal.TranslationService.Enable` をtrueに設定してく�
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:28
 msgid "Configure the translation service variable, refer to :doc-url:`Axon Ivy translation service </engine-guide/configuration/translation-service/index.html>`"
-msgstr "翻訳サービス変数の設定については、以下をご参照ください。\ :doc-url:`Axon Ivy 翻訳サービス </engine-guide/configuration/translation-service/index.html>`"
+msgstr "翻訳サービス変数の設定については、以下をご参照ください。:doc-url:`Axon Ivy 翻訳サービス </engine-guide/configuration/translation-service/index.html>`"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:31
 msgid "If the translation service is not configured, you can still translate text fields manually."
@@ -6979,7 +6979,7 @@ msgstr "ハウツー：テキストの翻訳方法"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:36
 msgid "Translation is available on many text fields across Portal. The steps below use the creation of a private dashboard as an example, they work the same way wherever the :guilabel:`translator icon` is shown."
-msgstr "翻訳機能は、Portal 内の多くのテキストフィールドでご利用いただけます。以下の手順ではプライベートダッシュボードの作成を例として説明しますが、\ :guilabel:`translator icon` が表示されている箇所であれば同様に操作できます。"
+msgstr "翻訳機能は、Portal 内の多くのテキストフィールドでご利用いただけます。以下の手順ではプライベートダッシュボードの作成を例として説明しますが、:guilabel:`translator icon` が表示されている箇所であれば同様に操作できます。"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:39
 msgid "Look for the :guilabel:`translator icon` on supported input text fields:"
@@ -7003,7 +7003,7 @@ msgstr "対象言語の入力テキストフィールドをクリックしてく
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:49
 msgid "If the translation service is enabled, the text will be automatically translated. Click :guilabel:`Auto translation` to accept the translated text."
-msgstr "翻訳サービスが有効な場合、テキストは自動的に翻訳されます。翻訳されたテキストを受け入れるには、\ :guilabel:`自動翻訳` をクリックしてください。"
+msgstr "翻訳サービスが有効な場合、テキストは自動的に翻訳されます。翻訳されたテキストを受け入れるには、:guilabel:`自動翻訳` をクリックしてください。"
 
 #: ../../source/portal-user-guide/portal-multi-language/index.rst:51
 msgid "If the translation service is not configured, enter translations manually for each language."
@@ -7166,11 +7166,11 @@ msgstr "ダッシュボード設定で統計機能を使用するには、以下
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:16
 msgid "Navigate to Dashboard Configuration of the dashboard where you want to add the widget and click :guilabel:`Add Widget` button to open :guilabel:`Add a widget` dialog."
-msgstr "ウィジェットを追加したいダッシュボードの設定画面に移動し、「\ :guilabel:`Add Widget` 」ボタンをクリックして、「\ :guilabel:`Add a widget` 」ダイアログを開きます。"
+msgstr "ウィジェットを追加したいダッシュボードの設定画面に移動し、「:guilabel:`Add Widget` 」ボタンをクリックして、「:guilabel:`Add a widget` 」ダイアログを開きます。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:18
 msgid "Select a predefined Standard Chart from the **Statistic Widgets** section, or click :guilabel:`Create custom statistic widget` to configure a new statistic chart."
-msgstr "**の「Statistic Widgets」セクション（** ）から定義済みの標準チャートを選択するか、\ :guilabel:`Create custom statistic widget` をクリックして新しい統計チャートを設定してください。"
+msgstr "**の「Statistic Widgets」セクション（** ）から定義済みの標準チャートを選択するか、:guilabel:`Create custom statistic widget` をクリックして新しい統計チャートを設定してください。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:20
 msgid "|statistic-widget-list-page|"
@@ -7383,7 +7383,7 @@ msgstr "新しい統計チャートの設定方法"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:105
 msgid "Navigate to Dashboard Configuration of the dashboard and select :guilabel:`Create custom statistic widget`."
-msgstr "ダッシュボードのダッシュボード構成に移動し、\ :guilabel:`カスタム統計ウィジェットを作成する` を選択する。"
+msgstr "ダッシュボードのダッシュボード構成に移動し、:guilabel:`カスタム統計ウィジェットを作成する` を選択する。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:107
 msgid "|create-new-custom-statistic-widget|"
@@ -7479,7 +7479,7 @@ msgstr "**条件に基づくカラーリングを有効化しました**: 有効
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:148
 msgid "Condition-based coloring is available for **Bar**, **Line**, and **Pie** charts only."
-msgstr "条件付きカラーリングは、\ **の棒グラフ** 、\ **の折れ線グラフ** 、および **の円グラフ** のみご利用いただけます。"
+msgstr "条件付きカラーリングは、**の棒グラフ** 、**の折れ線グラフ** 、および **の円グラフ** のみご利用いただけます。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:150
 msgid "There are two scopes for applying condition-based coloring:"
@@ -7699,7 +7699,7 @@ msgstr "具体的には、この例は調達プロセス向けに設計されて
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:223
 msgid "You can access this statistic demonstration in Axon Ivy Engine Demo Mode. If you are working with Axon Ivy Designer, run the process :guilabel:`Init sample dashboard (UPDATE PORTAL DASHBOARD AND STATISTIC VARIABLES)` by yourself to set up the sample dashboards, but please be aware that this action will update the sample's configuration to your **Portal.Dashboard** and **Portal.CustomStatistic** variables."
-msgstr "この統計デモはAxon Ivy Engineデモモードでご利用いただけます。Axon Ivy Designerをご利用の場合は、\ :guilabel:`初期サンプルダッシュボード（ポータルダッシュボードと統計変数の更新）` プロセスを実行してサンプルダッシュボードを設定してください。ただし、この操作によりサンプルの設定が **Portal.Dashboard** および **Portal.CustomStatistic** 変数に更新される点にご注意ください。"
+msgstr "この統計デモはAxon Ivy Engineデモモードでご利用いただけます。Axon Ivy Designerをご利用の場合は、:guilabel:`初期サンプルダッシュボード（ポータルダッシュボードと統計変数の更新）` プロセスを実行してサンプルダッシュボードを設定してください。ただし、この操作によりサンプルの設定が **Portal.Dashboard** および **Portal.CustomStatistic** 変数に更新される点にご注意ください。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:227
 msgid "You will see the item :guilabel:`KPI Procurement Overview` in the left menu, and more data can be generated by starting the process :guilabel:`Procurement Data For Sample Statistic Dashboard`."
@@ -7715,12 +7715,12 @@ msgstr "統計サンプルダッシュボード"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:231
 msgid "The sample charts aggregate on the custom fields declared in the ``custom-fields.yaml`` file of the ``portal-user-examples`` project, for example the :guilabel:`Group by` field ``Department`` and the :guilabel:`KPI` field ``SpendAmount``:"
-msgstr "サンプルチャートは、\ ``portal-user-examples`` プロジェクトの ``custom-fields.yaml`` ファイルで宣言されたカスタムフィールドに基づいて集計されます。例えば、\ :guilabel:`Group by` フィールドの ``Department`` や :guilabel:`KPI` フィールドの ``SpendAmount`` です："
+msgstr "サンプルチャートは、``portal-user-examples`` プロジェクトの ``custom-fields.yaml`` ファイルで宣言されたカスタムフィールドに基づいて集計されます。例えば、:guilabel:`Group by` フィールドの ``Department`` や :guilabel:`KPI` フィールドの ``SpendAmount`` です："
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:249
 #, python-brace-format
 msgid "``HasCmsValues: true`` lets the chart display the values of a custom field in the language of the user. The sample cases store the values ``DepA`` to ``DepD`` in the ``Department`` field, and the chart displays the labels defined in the CMS under ``/CustomFields/Cases/Department/Values/{value}``, for example ``Dep A`` in English and ``Abt A`` in German. Without this attribute, the chart displays the stored value ``DepA``."
-msgstr "``HasCmsValues: true`` を設定すると、チャートはカスタムフィールドの値をユーザーの言語で表示します。サンプルケースでは ``Department`` フィールドに ``DepA`` から ``DepD`` までの値が格納されており、チャートは CMS の ``/CustomFields/Cases/Department/Values/{value}`` の下で定義されたラベル、例えば英語では ``Dep A``\ 、ドイツ語では ``Abt A`` を表示します。この属性がない場合、チャートは格納された値 ``DepA`` を表示します。"
+msgstr "``HasCmsValues: true`` を設定すると、チャートはカスタムフィールドの値をユーザーの言語で表示します。サンプルケースでは ``Department`` フィールドに ``DepA`` から ``DepD`` までの値が格納されており、チャートは CMS の ``/CustomFields/Cases/Department/Values/{value}`` の下で定義されたラベル、例えば英語では ``Dep A``、ドイツ語では ``Abt A`` を表示します。この属性がない場合、チャートは格納された値 ``DepA`` を表示します。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:255
 msgid "Refer to :doc-url:`Custom Fields </reference/configuration/custom-fields.html>` for more information about declaring custom fields, and to :doc-url:`Localize Label, Description, Category and Values </reference/configuration/custom-fields.html#localize-label-description-category-and-values>` for more information about the CMS values."
@@ -7732,11 +7732,11 @@ msgstr "また、他の統計ウィジェットと同様の方法で、これら
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:262
 msgid "In the dashboard configuration page, click the :guilabel:`Add widget` button."
-msgstr "ダッシュボード設定ページで、\ :guilabel:`ウィジェットの追加` ボタンをクリックします。"
+msgstr "ダッシュボード設定ページで、:guilabel:`ウィジェットの追加` ボタンをクリックします。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:263
 msgid "Select :guilabel:`Edit` to review their configurations."
-msgstr "設定を確認するには、\ :guilabel:`編集` を選択してください。"
+msgstr "設定を確認するには、:guilabel:`編集` を選択してください。"
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:265
 msgid "|statistic-config|"
@@ -7752,7 +7752,7 @@ msgstr "**タスクウィジェット** には、タスクの一覧が表示さ�
 
 #: ../../source/portal-user-guide/task-widget/index.rst:10
 msgid "To add a Task Widget to a dashboard and configure it, follow :ref:`Task list widget <new-dashboard-task-list-widget>` in the Dashboard chapter. To configure it in the dashboard JSON instead, see :ref:`Configure Task Widget <configure-new-dashboard-task-widget>`."
-msgstr "タスクウィジェットをダッシュボードに追加し設定するには、ダッシュボードの章にある :ref:`タスクリストウィジェット <new-dashboard-task-list-widget>` を参照してください。ダッシュボードの JSON で設定する場合は、\ :ref:`タスクウィジェットの設定 <configure-new-dashboard-task-widget>` をご参照ください。"
+msgstr "タスクウィジェットをダッシュボードに追加し設定するには、ダッシュボードの章にある :ref:`タスクリストウィジェット <new-dashboard-task-list-widget>` を参照してください。ダッシュボードの JSON で設定する場合は、:ref:`タスクウィジェットの設定 <configure-new-dashboard-task-widget>` をご参照ください。"
 
 #: ../../source/portal-user-guide/task-widget/index.rst:15
 msgid "Portal ships a default dashboard named :guilabel:`Tasks` that contains a single task widget. You can reach it with the |task-list-icon| :guilabel:`Tasks` link in the Axon Ivy Portal menu."
@@ -7776,7 +7776,7 @@ msgstr "テンプレート :guilabel:`Full Task List dashboard` を使用する�
 
 #: ../../source/portal-user-guide/task-widget/index.rst:27
 msgid "Below are the standard fields of a task. You can configure them in the column management dialog, see :ref:`Column Management <task-widget-column-management>`."
-msgstr "以下はタスクの標準フィールドです。これらはカラム管理ダイアログで設定できます。\ :ref:`カラム管理 <task-widget-column-management>` をご参照ください。"
+msgstr "以下はタスクの標準フィールドです。これらはカラム管理ダイアログで設定できます。:ref:`カラム管理 <task-widget-column-management>` をご参照ください。"
 
 #: ../../source/portal-user-guide/task-widget/index.rst:30
 msgid "Start"
@@ -7816,7 +7816,7 @@ msgstr "**一括選択**: 複数のタスクを選択し、一度に委任しま
 
 #: ../../source/portal-user-guide/task-widget/index.rst:76
 msgid "**Show pinned tasks**: Show your pinned tasks only, :guilabel:`Show all tasks` switches back"
-msgstr "**ピン留めしたタスクを表示**: ピン留めしたタスクのみを表示します。\ :guilabel:`すべてのタスクを表示` をクリックすると元に戻ります"
+msgstr "**ピン留めしたタスクを表示**: ピン留めしたタスクのみを表示します。:guilabel:`すべてのタスクを表示` をクリックすると元に戻ります"
 
 #: ../../source/portal-user-guide/task-widget/index.rst:85
 msgid "Which of these operations are available depends on the widget configuration, see :ref:`Configuration panel <task-list-widget-configuration-panel>` of the Task list widget."
@@ -7876,7 +7876,7 @@ msgstr "タスクの詳細情報を見る"
 
 #: ../../source/portal-user-guide/task-widget/index.rst:149
 msgid "Pin the task to find it quickly later, :guilabel:`Unpin` removes it again"
-msgstr "タスクをピン留めすると、後で素早く見つけられます。\ :guilabel:`ピン留めを解除` をクリックすると解除されます"
+msgstr "タスクをピン留めすると、後で素早く見つけられます。:guilabel:`ピン留めを解除` をクリックすると解除されます"
 
 #: ../../source/portal-user-guide/task-widget/index.rst:152
 msgid "**Reset**"
@@ -7932,7 +7932,7 @@ msgstr "タスクの詳細"
 
 #: ../../source/portal-user-guide/task-widget/index.rst:174
 msgid "Clicking on a row opens the task details by default. If the :ref:`Portal setting <update-portal-settings>` ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` is set to start the task instead, use :guilabel:`Actions` then :guilabel:`Details`."
-msgstr "行をクリックすると、既定ではタスクの詳細が開きます。\ :ref:`Portal 設定 <update-portal-settings>` の ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` がタスクを開始するよう設定されている場合は、\ :guilabel:`Actions` から :guilabel:`Details` を使用してください。"
+msgstr "行をクリックすると、既定ではタスクの詳細が開きます。:ref:`Portal 設定 <update-portal-settings>` の ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` がタスクを開始するよう設定されている場合は、:guilabel:`Actions` から :guilabel:`Details` を使用してください。"
 
 #: ../../source/portal-user-guide/task-widget/index.rst:178
 msgid "|detailed-task-information|"
@@ -7948,7 +7948,7 @@ msgstr "タスク詳細ページは、以下の4つの主要なセクション�
 
 #: ../../source/portal-user-guide/task-widget/index.rst:182
 msgid "**Summary**: The name of the task, its ID and creation date, the :guilabel:`Start` button and the |actions-menu-icon| :guilabel:`Actions` menu of the task. Below you find Priority, State, Due and :guilabel:`Workflow Events`."
-msgstr "**サマリー**: タスクの名前、ID、作成日、\ :guilabel:`Start` ボタン、およびタスクの |actions-menu-icon| :guilabel:`Actions` メニューが表示されます。その下には、優先度、状態、期限、\ :guilabel:`Workflow Events` があります。"
+msgstr "**サマリー**: タスクの名前、ID、作成日、:guilabel:`Start` ボタン、およびタスクの |actions-menu-icon| :guilabel:`Actions` メニューが表示されます。その下には、優先度、状態、期限、:guilabel:`Workflow Events` があります。"
 
 #: ../../source/portal-user-guide/task-widget/index.rst:186
 msgid "**Task Details**: The description of the task, followed by Role and User Information, Time Information and Task and Case Information."
@@ -7976,7 +7976,7 @@ msgstr "タスクの詳細：ドキュメントセクション"
 
 #: ../../source/portal-user-guide/task-widget/index.rst:197
 msgid "**Notes**: The notes of the task. Activate :guilabel:`System notes` to show the notes written by the system as well, and click :guilabel:`Show more` to open the full history."
-msgstr "**ノート**: タスクのノートです。\ :guilabel:`System notes` を有効にすると、システムが記述したノートも表示されます。\ :guilabel:`Show more` をクリックすると、履歴全体が表示されます。"
+msgstr "**ノート**: タスクのノートです。:guilabel:`System notes` を有効にすると、システムが記述したノートも表示されます。:guilabel:`Show more` をクリックすると、履歴全体が表示されます。"
 
 #: ../../source/portal-user-guide/task-widget/index.rst:200
 msgid "|detailed-task-information-note|"
@@ -8004,7 +8004,7 @@ msgstr "ハウツー：タスクウィジェットの設定方法"
 
 #: ../../source/portal-user-guide/task-widget/index.rst:213
 msgid "The Task Widget page functions as a dashboard accessible from the top-level menu. To customize the task list, navigate to :ref:`Dashboard configuration <dashboard-configuration>`."
-msgstr "タスクウィジェットページは、トップレベルメニューからアクセス可能なダッシュボードとして機能します。タスクリストをカスタマイズするには、\ :ref:`ダッシュボードの設定 <dashboard-configuration>` に移動します。"
+msgstr "タスクウィジェットページは、トップレベルメニューからアクセス可能なダッシュボードとして機能します。タスクリストをカスタマイズするには、:ref:`ダッシュボードの設定 <dashboard-configuration>` に移動します。"
 
 #: ../../source/portal-user-guide/task-widget/index.rst:216
 msgid "To restore the dashboard to its default settings, including the menu icon and task list layout, delete the dashboard. Portal will automatically recreate the dashboard with the default settings."
@@ -8083,7 +8083,7 @@ msgstr "タスクの詳細: ドキュメントのプレビューダイアログ"
 
 #: ../../source/portal-user-guide/task-widget/index.rst:307
 msgid "To enable this feature, set :ref:`Portal settings <update-portal-settings>` ``Portal.Document.EnablePreview`` to true. For Office documents, deploy `DocFactory <https://market.axonivy.com/doc-factory#tab-description>`_ in the same security context."
-msgstr "この機能を有効にするには、\ :ref:`Portal 設定 <update-portal-settings>` の ``Portal.Document.EnablePreview`` をtrueに設定してください。Office文書の場合は、`DocFactory <https://market.axonivy.com/doc-factory#tab-description>`_ を同じセキュリティコンテキストでデプロイしてください。"
+msgstr "この機能を有効にするには、:ref:`Portal 設定 <update-portal-settings>` の ``Portal.Document.EnablePreview`` をtrueに設定してください。Office文書の場合は、`DocFactory <https://market.axonivy.com/doc-factory#tab-description>`_ を同じセキュリティコンテキストでデプロイしてください。"
 
 #: ../../source/portal-user-guide/task-widget/index.rst:312
 msgid "HowTo: Add a Note to a Task"
