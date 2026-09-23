@@ -605,6 +605,29 @@ $(document).ready(function () {
     return event ? event.altKey && !event.ctrlKey && !event.shiftKey && !event.metaKey : false;
   }
 
+  function hasVisibleOverlayOnTop() {
+    return $('.ui-dialog:visible, .ui-overlaypanel:visible, .ui-menu-overlay:visible').length > 0;
+  }
+
+  function collapseExpandedWidget() {
+    if (hasVisibleOverlayOnTop()) {
+      return;
+    }
+
+    var collapseWidgetBtn = $('[id*="collapse-link"]:visible');
+    if (collapseWidgetBtn.length > 0) {
+      collapseWidgetBtn.click();
+      return;
+    }
+
+    var expandedWidget = $('.grid-stack-item.expand-fullscreen').first();
+    if (expandedWidget.length > 0 && typeof toggleFullscreen === 'function') {
+      var widgetIndex = expandedWidget.attr('data-index');
+      toggleFullscreen(widgetIndex, expandedWidget.attr('gs-id'));
+      $('.actions-menu-button-' + widgetIndex + ':visible').first().trigger('focus');
+    }
+  }
+
   const iframes = document.getElementsByTagName('iframe');
   
   if (iframes.length > 0) {
@@ -633,10 +656,7 @@ $(document).ready(function () {
 
     var keyCode = event.code;
     if (keyCode === 'Escape') {
-      var collapseWidgetBtn = $('[id*="collapse-link"]:visible');
-      if (collapseWidgetBtn.length > 0) {
-        collapseWidgetBtn.click();
-      }
+      collapseExpandedWidget();
 
       if (hidePortalActionPanels('action-steps-panel')) {
         if (focusedCaseEl) {
