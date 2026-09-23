@@ -34,7 +34,7 @@ public class ActionsColumnModel extends TaskColumnModel {
 
   @Override
   public Boolean getDefaultSortable() {
-    return DashboardStandardTaskColumn.ACTIONS.isSortable();
+    return false;
   }
 
   @Override

@@ -52,7 +52,7 @@ public class ApplicationColumnModel extends CaseColumnModel {
   
   @Override
   public Boolean getDefaultSortable() {
-    return DashboardStandardCaseColumn.APPLICATION.isSortable();
+    return false;
   }
   
   public void updateApplications(CaseDashboardWidget widget) {

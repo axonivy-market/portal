@@ -54,7 +54,7 @@ public class CategoryColumnModel extends TaskColumnModel {
 
   @Override
   public Boolean getDefaultSortable() {
-    return DashboardStandardTaskColumn.CATEGORY.isSortable();
+    return false;
   }
 
   @Override

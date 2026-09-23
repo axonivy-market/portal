@@ -21,7 +21,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
-import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeTrue;
 import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
@@ -143,9 +142,6 @@ public class TaskDashboardWidget extends DashboardWidget {
     List<TaskColumnModel> columnModels = getColumns();
     if (CollectionUtils.isNotEmpty(columnModels)) {
       String sortField = getSortField();
-      if (DashboardStandardTaskColumn.isNonSortableStandardField(sortField)) {
-        return null;
-      }
       for (TaskColumnModel taskColumnModel : columnModels) {
         if (taskColumnModel.getField().equalsIgnoreCase(sortField)) {
           return SortFieldUtil.buildSortMeta(taskColumnModel.getField(), isSortDescending());

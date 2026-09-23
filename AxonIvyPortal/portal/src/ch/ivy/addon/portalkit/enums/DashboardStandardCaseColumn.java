@@ -11,21 +11,20 @@ import java.util.Set;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum DashboardStandardCaseColumn {
-  PIN("pin", false),
-  ID("id", true), 
-  NAME("name", true), 
-  DESCRIPTION("description", false), 
-  STATE("state", true), 
-  CREATOR("creator", true), 
-  CREATED("startTimestamp", true), 
-  FINISHED("endTimestamp", true),
-  OWNER("owner", false), 
-  CATEGORY("category", false), 
-  APPLICATION("application", false),
-  ACTIONS("actions", false);
+  PIN("pin"),
+  ID("id"), 
+  NAME("name"), 
+  DESCRIPTION("description"), 
+  STATE("state"), 
+  CREATOR("creator"), 
+  CREATED("startTimestamp"), 
+  FINISHED("endTimestamp"),
+  OWNER("owner"), 
+  CATEGORY("category"), 
+  APPLICATION("application"),
+  ACTIONS("actions");
 
   private final String field;
-  private final boolean sortable;
 
   private static final Map<String, DashboardStandardCaseColumn> map = new HashMap<>();
 
@@ -35,38 +34,16 @@ public enum DashboardStandardCaseColumn {
     }
   }
 
-  private DashboardStandardCaseColumn(String field, boolean sortable) {
+  private DashboardStandardCaseColumn(String field) {
     this.field = field;
-    this.sortable = sortable;
   }
 
   public String getField() {
     return field;
   }
 
-  public boolean isSortable() {
-    return sortable;
-  }
-
   public static DashboardStandardCaseColumn findBy(String field) {
     return map.get(field);
-  }
-
-  public static DashboardStandardCaseColumn findByIgnoreCase(String field) {
-    if (field == null) {
-      return null;
-    }
-    for (DashboardStandardCaseColumn col : values()) {
-      if (col.field.equalsIgnoreCase(field)) {
-        return col;
-      }
-    }
-    return null;
-  }
-
-  public static boolean isNonSortableStandardField(String field) {
-    DashboardStandardCaseColumn column = findByIgnoreCase(field);
-    return column != null && !column.sortable;
   }
 
   public static List<DashboardStandardCaseColumn> getFilterableFields() {

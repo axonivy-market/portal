@@ -120,7 +120,7 @@ public class OwnerColumnModel extends CaseColumnModel {
   
   @Override
   public Boolean getDefaultSortable() {
-    return DashboardStandardCaseColumn.OWNER.isSortable();
+    return false;
   }
 
   @Override

@@ -57,7 +57,7 @@ public class ApplicationColumnModel extends TaskColumnModel {
   
   @Override
   public Boolean getDefaultSortable() {
-    return DashboardStandardTaskColumn.APPLICATION.isSortable();
+    return false;
   }
 
   public void updateApplications(TaskDashboardWidget widget) {

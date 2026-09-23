@@ -22,7 +22,7 @@ public class StartColumnModel extends TaskColumnModel {
 
   @Override
   public Boolean getDefaultSortable() {
-    return DashboardStandardTaskColumn.START.isSortable();
+    return false;
   }
 
   @Override

@@ -29,7 +29,7 @@ public class PinColumnModel extends TaskColumnModel {
 
   @Override
   public Boolean getDefaultSortable() {
-    return DashboardStandardTaskColumn.PIN.isSortable();
+    return false;
   }
 
   @Override

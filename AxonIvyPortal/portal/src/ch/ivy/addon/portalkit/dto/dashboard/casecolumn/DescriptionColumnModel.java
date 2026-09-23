@@ -23,7 +23,7 @@ public class DescriptionColumnModel extends CaseColumnModel {
 
   @Override
   public Boolean getDefaultSortable() {
-    return DashboardStandardCaseColumn.DESCRIPTION.isSortable();
+    return false;
   }
 
   @Override

@@ -319,13 +319,6 @@ public class DashboardTaskSearchCriteria {
       if (sortStandardColumn || StringUtils.isBlank(sortField)) {
         return;
       }
-
-      boolean sortStandardField = columns.stream()
-          .filter(c -> Strings.CI.equals(sortField, c.getField()))
-          .anyMatch(c -> c.getType() == DashboardColumnType.STANDARD);
-      if (sortStandardField) {
-        return;
-      }
       
       DashboardColumnFormat format =
           columns.stream().filter(c -> Strings.CI.equals(sortField, c.getField()))

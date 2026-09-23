@@ -23,7 +23,7 @@ public class DescriptionColumnModel extends TaskColumnModel {
 
   @Override
   public Boolean getDefaultSortable() {
-    return DashboardStandardTaskColumn.DESCRIPTION.isSortable();
+    return false;
   }
 
   @Override

@@ -105,7 +105,7 @@ public class ResponsibleColumnModel extends TaskColumnModel {
   
   @Override
   public Boolean getDefaultSortable() {
-    return DashboardStandardTaskColumn.RESPONSIBLE.isSortable();
+    return false;
   }
   
   public List<SecurityMemberDTO> completeUserFilterResponsibles(String query) {

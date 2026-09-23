@@ -46,6 +46,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.dto.dashboard.process.ProcessColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
@@ -154,9 +155,6 @@ public class DashboardWidgetUtils {
       }
 
       column.initDefaultValue();
-      if (DashboardStandardTaskColumn.isNonSortableStandardField(field)) {
-        column.setSortable(false);
-      }
       if (column.getType() == DashboardColumnType.CUSTOM) {
         buildCustomColumn(ICustomFieldMeta.tasks(), column, field);
       }
@@ -188,12 +186,21 @@ public class DashboardWidgetUtils {
       column.setHasCmsValues(Boolean.valueOf(fieldMeta.get().attribute(HAS_CMS_VALUES_ATTRIBUTE)));
       column.setIcon(fieldMeta.get().attribute(ICON_ATTRIBUTE));
       column.setDescription(fieldMeta.get().description());
-      if (column.getIsCustomAction()) {
+      if (!isSortableCustomColumn(column, field)) {
         column.setSortable(false);
       }
-    } else if (StringUtils.isBlank(column.getHeader())) {
-      column.setHeader(field);
+    } else {
+      column.setSortable(false);
+      if (StringUtils.isBlank(column.getHeader())) {
+        column.setHeader(field);
+      }
     }
+  }
+
+  private static boolean isSortableCustomColumn(AbstractColumn column, String field) {
+    return !column.getIsCustomAction()
+        && column.getFormat().isSortableCustomField()
+        && !AdditionalProperty.HIDE.toString().equals(field);
   }
 
   public static List<ColumnModel> buildTaskFilterableColumns(List<TaskColumnModel> taskColumns) {
@@ -246,9 +253,6 @@ public class DashboardWidgetUtils {
         column = BusinessEntityConverter.convertValue(column, caseColumnModelClass);
       }
       column.initDefaultValue();
-      if (DashboardStandardCaseColumn.isNonSortableStandardField(field)) {
-        column.setSortable(false);
-      }
       if (column.getType() == DashboardColumnType.CUSTOM) {
         buildCustomColumn(ICustomFieldMeta.cases(), column, field);
       }
@@ -347,7 +351,7 @@ public class DashboardWidgetUtils {
       if (column.getDefaultFormat() == column.getFormat()) {
         column.setFormat(null);
       }
-      if (Objects.equals(column.getDefaultSortable(), column.getSortable())) {
+      if (column.getDefaultSortable() == column.getSortable()) {
         column.setSortable(null);
       }
     } else {

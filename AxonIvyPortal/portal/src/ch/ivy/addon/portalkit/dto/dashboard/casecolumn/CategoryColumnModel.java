@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.bo.CategoryNode;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
-import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
@@ -54,7 +53,7 @@ public class CategoryColumnModel extends CaseColumnModel {
 
   @Override
   public Boolean getDefaultSortable() {
-    return DashboardStandardCaseColumn.CATEGORY.isSortable();
+    return false;
   }
 
   @Override

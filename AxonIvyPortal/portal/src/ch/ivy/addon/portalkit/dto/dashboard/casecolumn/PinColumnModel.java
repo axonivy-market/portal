@@ -29,7 +29,7 @@ public class PinColumnModel extends CaseColumnModel {
 
   @Override
   public Boolean getDefaultSortable() {
-    return DashboardStandardCaseColumn.PIN.isSortable();
+    return false;
   }
 
   @Override

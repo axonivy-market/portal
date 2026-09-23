@@ -30,7 +30,7 @@ public class ActionsColumnModel extends CaseColumnModel {
 
   @Override
   public Boolean getDefaultSortable() {
-    return DashboardStandardCaseColumn.ACTIONS.isSortable();
+    return false;
   }
 
   @Override
