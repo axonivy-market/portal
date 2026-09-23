@@ -1863,12 +1863,13 @@ i.dashboard-icon-drag-drop {
   margin: 5px;
   cursor: pointer;
 }
+
 body.light .focused {
-  outline: 2px solid black;
+  outline: 2px solid var(--ivy-primary-color);
 }
 
 body.dark .focused {
-  outline: 2px solid white;
+  outline: 2px solid var(--ivy-primary-light-color);
 }
 
 .screenreader-only {
