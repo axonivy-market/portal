@@ -17,13 +17,13 @@ public class TaskColumnModel extends ColumnModel {
 
   public Object display(ITask task) {
     if (type == DashboardColumnType.CUSTOM_CASE) {
-      ICase technicalCase = task.getCase();
-      // A task of a business case has no technical case. The filter of this column queries sub cases
-      // only, so a value shown here would belong to a row that the same filter excludes.
-      if (technicalCase.isBusinessCase()) {
+      ICase taskCase = task.getCase();
+      // The filter of this column is scoped to sub cases, so it never matches a task whose own case
+      // is the business case. Showing a value here would contradict that filter.
+      if (taskCase.isBusinessCase()) {
         return null;
       }
-      return getCustomFieldValue(technicalCase.customFields());
+      return getCustomFieldValue(taskCase.customFields());
     } else if (type == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
       ICustomFields customFields = task.getCase().getBusinessCase().customFields();
       return getCustomFieldValue(customFields);
