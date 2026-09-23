@@ -68,7 +68,7 @@ Axon Ivy projects can be packaged in two formats:
    +----------------+--------------------------------+----------------------------------------+
 
 .. tip::
-   Use .zip files for production deployments. They bundle :doc-url:`branding </designer-guide/user-interface/branding/branding-engine.html>`, variables, databases, and REST clients :doc-url:`configuration </engine-guide/deployment/prepare/application-configuration/index.html>` with your projects.
+   Use .zip files for production deployments. They bundle :doc-url:`branding </getting-productive/user-interface/branding/branding-engine.html>`, variables, databases, and REST clients :doc-url:`configuration </engine-guide/deployment/prepare/application-configuration/index.html>` with your projects.
 
 Prepare Deployment Packages
 ---------------------------

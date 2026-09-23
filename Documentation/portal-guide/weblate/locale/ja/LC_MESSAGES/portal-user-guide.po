@@ -321,7 +321,7 @@ msgstr "特定のタスクを処理するには："
 
 #: ../../source/portal-user-guide/accessibility/index.rst:129
 msgid "Press **Alt + W** repeatedly until you reach the desired task"
-msgstr "プレス**Alt + W** 希望するタスクに達するまで繰り返し"
+msgstr "プレス **Alt + W** 希望するタスクに達するまで繰り返し"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:130
 msgid "Press **Tab** then **Enter** to open its context menu"
@@ -610,7 +610,7 @@ msgstr "パスワードポリシーと検証ルールを設定します。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:38
 msgid "The **Applications** tab for third-party applications has been removed. Existing third-party applications still appear in the sidebar and can be edited or deleted in :guilabel:`Portal Configuration` → :guilabel:`Sidebar`. To add a new link to the sidebar, create an **External Link** item there instead."
-msgstr "**の「アプリケーション」** にあるサードパーティ製アプリケーションのタブは削除されました。既存のサードパーティ製アプリケーションは引き続きサイドバーに表示され、「:guilabel:`」の「ポータル設定」` → 「:guilabel:`」の「サイドバー」` から編集または削除できます。サイドバーに新しいリンクを追加するには、代わりに「**」の「外部リンク」** 項目を作成してください。"
+msgstr "サードパーティ製アプリケーション用の **アプリケーション** タブは削除されました。既存のサードパーティ製アプリケーションは引き続きサイドバーに表示され、:guilabel:`ポータル設定` → :guilabel:`サイドバー` から編集または削除できます。サイドバーに新しいリンクを追加するには、代わりに **外部リンク** 項目を作成してください。"
 
 #: ../../source/portal-user-guide/admin-settings/index.rst:46
 msgid "HowTo: Update Portal Settings"
@@ -1767,8 +1767,8 @@ msgid "Portal expanded Left menu"
 msgstr "ポータルの拡大表示された左メニュー"
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:94
-msgid "The sidebar provides access to the :ref:`full-process-list`, :ref:`full-case-list`, :ref:`full-task-list`, and :ref:`portal-configuration` pages. Administrators can configure the sidebar to use one of three behaviours: Hover, Click, or Stick. In the default Hover mode, the sidebar has two states:"
-msgstr "サイドバーからは、:ref:`full-process-list`、:ref:`full-case-list`、:ref:`full-task-list`、:ref:`portal-configuration` の各ページにアクセスできます。管理者は、サイドバーの動作をホバー、クリック、固定の3つの中から1つに設定できます。デフォルトのホバーモードでは、サイドバーには2つの状態があります："
+msgid "The sidebar provides access to the :ref:`full-process-list`, :ref:`case-widget`, :ref:`task-widget`, and :ref:`portal-configuration` pages. Administrators can configure the sidebar to use one of three behaviours: Hover, Click, or Stick. In the default Hover mode, the sidebar has two states:"
+msgstr "サイドバーからは、:ref:`full-process-list`、:ref:`case-widget`、:ref:`task-widget`、:ref:`portal-configuration` の各ページにアクセスできます。管理者は、サイドバーの動作をホバー、クリック、固定の3つの中から1つに設定できます。デフォルトのホバーモードでは、サイドバーには2つの状態があります："
 
 #: ../../source/portal-user-guide/axon-ivy-portal/index.rst:97
 msgid "**Minimized**: Hover over the sidebar to temporarily expand it."
@@ -2794,7 +2794,7 @@ msgstr "グローバル設定（管理者）"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:10
 msgid "Administrators can configure which operators are available globally via the ``Portal.ComplexFilter.Operators`` setting in `Admin Settings > Settings`."
-msgstr "管理者は、`Admin Settings > Settings` 内の ``` `Portal.ComplexFilter.Operators`` 設定を通じて、グローバルに利用可能な演算子を設定できます。"
+msgstr "管理者は、`Admin Settings > Settings` 内の ``Portal.ComplexFilter.Operators`` 設定を通じて、グローバルに利用可能な演算子を設定できます。"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:13
 msgid "All operators are enabled by default."
@@ -2810,7 +2810,7 @@ msgstr "グローバルに無効化された演算子は、ウィジェットレ
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:19
 msgid "**Example:** If the admin disables ``Contains``, no widget configuration or user filter can use ``Contains``."
-msgstr "**例:** 管理者が``Contains`` を無効にした場合、どのウィジェットの設定やユーザーフィルターも``Contains`` を使用できなくなります。"
+msgstr "**例:** 管理者が ``Contains`` を無効にした場合、どのウィジェットの設定やユーザーフィルターも ``Contains`` を使用できなくなります。"
 
 #: ../../source/portal-user-guide/complex-filter/filter-management.rst:23
 msgid "Widget-level configuration (Column Management)"
@@ -3673,7 +3673,7 @@ msgstr "**全プロセスリスト** ページには、利用可能なアプリ�
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:11
 msgid "**Access Requirement**: Only users with the :ref:`🔑AccessFullProcessList <AccessFullProcessList>` permission can see the :guilabel:`Processes` menu item."
-msgstr "**アクセス要件**::ref:`🔑AccessFullProcessList <AccessFullProcessList>` 権限を持つユーザーのみが:guilabel:`Processes` メニュー項目を表示できます。"
+msgstr "**アクセス要件**::ref:`🔑AccessFullProcessList <AccessFullProcessList>` 権限を持つユーザーのみが :guilabel:`Processes` メニュー項目を表示できます。"
 
 #: ../../source/portal-user-guide/full-process-list/index.rst:14
 msgid "|navigate-to-full-process-list|"
@@ -4703,7 +4703,7 @@ msgstr "**「ピン留めされた項目」のトグルを表示**: 「ピン留
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:240
 msgid "**Case Type**: Select which level of cases the widget displays. Available options: **Business Case** shows only top-level cases, **Sub Case** shows only sub-cases (children of a business case), **All** shows both business cases and sub-cases. By default, the widget queries by **Business Case**."
-msgstr "**ケースの種類**: ウィジェットに表示するケースのレベルを選択します。利用可能なオプション：**ビジネスケース** はトップレベルのケースのみを表示します。**サブケース** はサブケース（ビジネスケースの子要素）のみを表示します。**すべて** はビジネスケースとサブケースの両方を表示します。デフォルトでは、ウィジェットは**ビジネスケース** をクエリします。"
+msgstr "**ケースの種類**: ウィジェットに表示するケースのレベルを選択します。利用可能なオプション：**ビジネスケース** はトップレベルのケースのみを表示します。**サブケース** はサブケース（ビジネスケースの子要素）のみを表示します。**すべて** はビジネスケースとサブケースの両方を表示します。デフォルトでは、ウィジェットは **ビジネスケース** をクエリします。"
 
 #: ../../source/portal-user-guide/new-dashboard/index.rst:248
 msgid "|case-list-widget-configuration|"
@@ -5572,7 +5572,7 @@ msgstr "利用可能なダッシュボードのテンプレート"
 #: ../../source/portal-user-guide/portal-configuration/index.rst:91
 #: ../../source/portal-user-guide/portal-configuration/index.rst:218
 msgid ":guilabel:`Default Template`, :guilabel:`Two Task list dashboard` template, :guilabel:`Accessibility dashboard` template, :guilabel:`Full Task list dashboard` template and :guilabel:`Full Case list dashboard` template. Please see the image below for more details."
-msgstr ":guilabel:`Default Template`、:guilabel:`Two Task list dashboard` テンプレート、:guilabel:`Accessibility dashboard` テンプレート、:guilabel:`Full Task list dashboard` テンプレート、および:guilabel:`Full Case list dashboard` テンプレート。詳細については、以下の画像をご覧ください。"
+msgstr ":guilabel:`Default Template`、:guilabel:`Two Task list dashboard` テンプレート、:guilabel:`Accessibility dashboard` テンプレート、:guilabel:`Full Task list dashboard` テンプレート、および :guilabel:`Full Case list dashboard` テンプレート。詳細については、以下の画像をご覧ください。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:93
 #: ../../source/portal-user-guide/portal-configuration/index.rst:220
@@ -5712,7 +5712,7 @@ msgstr "公開用ダッシュボードの設定"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:157
 msgid "The tab :guilabel:`Public dashboards` allows you to add, edit, and reorder public dashboards. Public dashboards are organized into three sections based on their **Display Type** setting:"
-msgstr "「:guilabel:`」タブの「Public dashboards」` では、公開ダッシュボードの追加、編集、順序変更を行うことができます。公開ダッシュボードは、「**」の「Display Type」** 設定に基づいて、3つのセクションに分類されます："
+msgstr ":guilabel:`Public dashboards` タブでは、公開ダッシュボードの追加、編集、順序変更を行うことができます。公開ダッシュボードは、**Display Type** 設定に基づいて、3つのセクションに分類されます："
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:160
 msgid "**Sidebar** — dashboards appear as top-level items in the sidebar"
@@ -5892,7 +5892,7 @@ msgstr ":guilabel:`アクション` メニューで :guilabel:`設定` を選択
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:264
 msgid "To move a dashboard between sections, open the Edit dialog and change the **Display Type** field."
-msgstr "ダッシュボードをセクション間で移動するには、[編集] ダイアログを開き、[**] の [表示タイプ]** フィールドを変更してください。"
+msgstr "ダッシュボードをセクション間で移動するには、[編集] ダイアログを開き、**表示タイプ** フィールドを変更してください。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:267
 msgid "When exporting a dashboard that references other dashboards, you will be prompted to include the referenced dashboards in the export."
@@ -6249,7 +6249,7 @@ msgstr "サイドバーのメインナビゲーションメニュー項目の順
 #: ../../source/portal-user-guide/portal-configuration/index.rst:436
 #, python-brace-format
 msgid "Except for ``Portal_MenuOrder.json`` (a single configuration object, not a list), each file's content is a wrapper object: ``{\"version\": \"...\", \"items\": [...]}``. The ``version`` field identifies the format of the file itself and is used to migrate older exports on import - individual entries in ``items`` do not carry their own ``version`` field."
-msgstr "``Portal_MenuOrder.json``（リストではなく単一の設定オブジェクト）を除き、各ファイルの内容はラッパーオブジェクトです：``{\"version\": \"...\", \"items\": [...]}``。``version`` フィールドはファイル自体のフォーマットを識別するもので、インポート時に古いエクスポートを移行するために使用されます。``items`` 内の個々のエントリーは、それぞれ独自の ``version`` フィールドを持ちません。"
+msgstr "``Portal_MenuOrder.json`` （リストではなく単一の設定オブジェクト）を除き、各ファイルの内容はラッパーオブジェクトです：``{\"version\": \"...\", \"items\": [...]}``。``version`` フィールドはファイル自体のフォーマットを識別するもので、インポート時に古いエクスポートを移行するために使用されます。``items`` 内の個々のエントリーは、それぞれ独自の ``version`` フィールドを持ちません。"
 
 #: ../../source/portal-user-guide/portal-configuration/index.rst:442
 msgid "HowTo: export a Portal package"
@@ -7176,7 +7176,7 @@ msgstr "**の「Statistic Widgets」セクション（** ）から定義済み�
 msgid "|statistic-widget-list-page|"
 msgstr "|statistic-widget-list-page|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:236
+#: ../../source/portal-user-guide/statistic-chart/index.rst:267
 msgid "Statistic widget list"
 msgstr "統計ウィジェットのリスト"
 
@@ -7194,7 +7194,7 @@ msgstr "優先度別タスク"
 msgid "|tasks-by-prior-pie-chart|"
 msgstr "|tasks-by-prior-pie-chart|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:240
+#: ../../source/portal-user-guide/statistic-chart/index.rst:271
 msgid "Task by priority pie chart"
 msgstr "優先度別タスクの円グラフ"
 
@@ -7214,7 +7214,7 @@ msgstr "3 日以内に期限切れ"
 msgid "|top-prior-chart|"
 msgstr "|top-prior-chart|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:258
+#: ../../source/portal-user-guide/statistic-chart/index.rst:289
 msgid "Top priority tasks chart"
 msgstr "期限切れが近いタスクのグラフ"
 
@@ -7232,7 +7232,7 @@ msgstr "チャートタイプ:``Bar``"
 msgid "|tasks-by-prior-bar-chart|"
 msgstr "|tasks-by-prior-bar-chart|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:242
+#: ../../source/portal-user-guide/statistic-chart/index.rst:273
 msgid "Task by priority bar chart"
 msgstr "優先度別タスクの棒グラフ"
 
@@ -7248,7 +7248,7 @@ msgstr "ケースカテゴリー平均実行時間"
 msgid "|avg-runtime-chart|"
 msgstr "|avg-runtime-chart|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:246
+#: ../../source/portal-user-guide/statistic-chart/index.rst:277
 msgid "Average runtime chart"
 msgstr "平均実行時間のグラフ"
 
@@ -7264,7 +7264,7 @@ msgstr "1 日あたりの新規ケース数"
 msgid "|new-cases-chart|"
 msgstr "|new-cases-chart|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:252
+#: ../../source/portal-user-guide/statistic-chart/index.rst:283
 msgid "Number of new cases chart"
 msgstr "新規ケース数のグラフ"
 
@@ -7285,7 +7285,7 @@ msgstr "1 日あたりの完了ケース数"
 msgid "|completed-cases-chart|"
 msgstr "|completed-cases-chart|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:248
+#: ../../source/portal-user-guide/statistic-chart/index.rst:279
 msgid "Completed cases chart"
 msgstr "完了ケースのグラフ"
 
@@ -7301,7 +7301,7 @@ msgstr "実行中のケース"
 msgid "|running-cases-chart|"
 msgstr "|running-cases-chart|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:260
+#: ../../source/portal-user-guide/statistic-chart/index.rst:291
 msgid "Running cases chart"
 msgstr "実行中のケースの表"
 
@@ -7325,7 +7325,7 @@ msgstr "今週末までに期限が切れるタスク"
 msgid "|tasks-expire-end-week-chart|"
 msgstr "|tasks-expire-end-week-chart|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:256
+#: ../../source/portal-user-guide/statistic-chart/index.rst:287
 msgid "Number of tasks expire this week chart"
 msgstr "今週期限切れのタスク数の表"
 
@@ -7337,7 +7337,7 @@ msgstr "これは、今週末までに期限が切れるすべてのタスクの
 msgid "|tasks-by-prior-number-chart|"
 msgstr "|tasks-by-prior-number-chart|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:244
+#: ../../source/portal-user-guide/statistic-chart/index.rst:275
 msgid "Task by priority number chart"
 msgstr "優先度別タスクの数値表"
 
@@ -7353,7 +7353,7 @@ msgstr "オープンなタスク"
 msgid "|open-tasks-chart|"
 msgstr "|open-tasks-chart|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:254
+#: ../../source/portal-user-guide/statistic-chart/index.rst:285
 msgid "Number of opening tasks chart"
 msgstr "オープニング・タスク表"
 
@@ -7369,7 +7369,7 @@ msgstr "本日納期のタスク"
 msgid "|due-today-chart|"
 msgstr "|due-today-chart|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:250
+#: ../../source/portal-user-guide/statistic-chart/index.rst:281
 msgid "Number of tasks expire today"
 msgstr "今日期限切れのタスクの数"
 
@@ -7389,7 +7389,7 @@ msgstr "ダッシュボードのダッシュボード構成に移動し、:guila
 msgid "|create-new-custom-statistic-widget|"
 msgstr "|create-new-custom-statistic-widget|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:262
+#: ../../source/portal-user-guide/statistic-chart/index.rst:293
 msgid "Create new custom statistic widget"
 msgstr "新しいカスタム統計ウィジェットを作成する"
 
@@ -7401,7 +7401,7 @@ msgstr "統計図表の設定から、新しい統計図表を作成するため
 msgid "|custom-statistic-widget-configuration-page|"
 msgstr "|custom-statistic-widget-configuration-page|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:264
+#: ../../source/portal-user-guide/statistic-chart/index.rst:295
 msgid "Custom statistic widget configuration page"
 msgstr "カスタム統計ウィジェット設定ページ"
 
@@ -7421,7 +7421,7 @@ msgstr "高度な設定オプションにより、統計チャートをカスタ
 msgid "|advanced-settings|"
 msgstr "|advanced-settings|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:266
+#: ../../source/portal-user-guide/statistic-chart/index.rst:297
 msgid "Custom statistic widget advanced settings"
 msgstr "カスタム統計ウィジェットの詳細設定"
 
@@ -7445,7 +7445,7 @@ msgstr "すべてのチャートタイプでドリルダウン機能をご利用
 msgid "|drill-down dashboard|"
 msgstr "|drill-down dashboard|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:268
+#: ../../source/portal-user-guide/statistic-chart/index.rst:299
 msgid "Drill-down dashboard"
 msgstr "ドリルダウンダッシュボード"
 
@@ -7685,51 +7685,64 @@ msgstr "ラベルを非表示にする"
 msgid "Toggle to show label of number chart."
 msgstr "数値チャートのラベル表示を切り替える。"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:214
+#: ../../source/portal-user-guide/statistic-chart/index.rst:216
 msgid "Sample: KPI Procurement Overview"
 msgstr "サンプル：KPI調達概要"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:216
+#: ../../source/portal-user-guide/statistic-chart/index.rst:218
 msgid "The dashboards shown in the images below demonstrate the capabilities of Custom Statistics Widgets, which are available starting from version 13.2 of the Axon Ivy Portal. These widgets enable you to visualize KPIs and other information in a fully customizable way."
 msgstr "下記の画像に示されているダッシュボードは、カスタム統計ウィジェットの機能を示しています。これらのウィジェットはAxon Ivy Portalバージョン13.2以降で利用可能となり、KPIやその他の情報を完全にカスタマイズ可能な方法で可視化することを可能にします。"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:219
+#: ../../source/portal-user-guide/statistic-chart/index.rst:221
 msgid "Specifically, this example is designed for procurement processes, these dashboards provide insights into various aspects of procurement activities."
 msgstr "具体的には、この例は調達プロセス向けに設計されており、これらのダッシュボードは調達活動の様々な側面に関する洞察を提供します。"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:221
+#: ../../source/portal-user-guide/statistic-chart/index.rst:223
 msgid "You can access this statistic demonstration in Axon Ivy Engine Demo Mode. If you are working with Axon Ivy Designer, run the process :guilabel:`Init sample dashboard (UPDATE PORTAL DASHBOARD AND STATISTIC VARIABLES)` by yourself to set up the sample dashboards, but please be aware that this action will update the sample's configuration to your **Portal.Dashboard** and **Portal.CustomStatistic** variables."
 msgstr "この統計デモはAxon Ivy Engineデモモードでご利用いただけます。Axon Ivy Designerをご利用の場合は、:guilabel:`初期サンプルダッシュボード（ポータルダッシュボードと統計変数の更新）` プロセスを実行してサンプルダッシュボードを設定してください。ただし、この操作によりサンプルの設定が **Portal.Dashboard** および **Portal.CustomStatistic** 変数に更新される点にご注意ください。"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:225
+#: ../../source/portal-user-guide/statistic-chart/index.rst:227
 msgid "You will see the item :guilabel:`KPI Procurement Overview` in the left menu, and more data can be generated by starting the process :guilabel:`Procurement Data For Sample Statistic Dashboard`."
 msgstr "左メニューに項目 :guilabel:`KPI調達概要` が表示されます。さらに多くのデータは、プロセス :guilabel:`サンプル統計ダッシュボード向け調達データ` を開始することで生成できます。"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:227
+#: ../../source/portal-user-guide/statistic-chart/index.rst:229
 msgid "|statistic-sample-dashboard|"
 msgstr "|statistic-sample-dashboard|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:270
+#: ../../source/portal-user-guide/statistic-chart/index.rst:301
 msgid "Statistic sample dashboard"
 msgstr "統計サンプルダッシュボード"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:229
+#: ../../source/portal-user-guide/statistic-chart/index.rst:231
+msgid "The sample charts aggregate on the custom fields declared in the ``custom-fields.yaml`` file of the ``portal-user-examples`` project, for example the :guilabel:`Group by` field ``Department`` and the :guilabel:`KPI` field ``SpendAmount``:"
+msgstr "サンプルチャートは、``portal-user-examples`` プロジェクトの ``custom-fields.yaml`` ファイルで宣言されたカスタムフィールドに基づいて集計されます。例えば、:guilabel:`Group by` フィールドの ``Department`` や :guilabel:`KPI` フィールドの ``SpendAmount`` です："
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:249
+#, python-brace-format
+msgid "``HasCmsValues: true`` lets the chart display the values of a custom field in the language of the user. The sample cases store the values ``DepA`` to ``DepD`` in the ``Department`` field, and the chart displays the labels defined in the CMS under ``/CustomFields/Cases/Department/Values/{value}``, for example ``Dep A`` in English and ``Abt A`` in German. Without this attribute, the chart displays the stored value ``DepA``."
+msgstr "``HasCmsValues: true`` を設定すると、チャートはカスタムフィールドの値をユーザーの言語で表示します。サンプルケースでは ``Department`` フィールドに ``DepA`` から ``DepD`` までの値が格納されており、チャートは CMS の ``/CustomFields/Cases/Department/Values/{value}`` の下で定義されたラベル、例えば英語では ``Dep A``、ドイツ語では ``Abt A`` を表示します。この属性がない場合、チャートは格納された値 ``DepA`` を表示します。"
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:255
+msgid "Refer to :doc-url:`Custom Fields </reference/configuration/custom-fields.html>` for more information about declaring custom fields, and to :doc-url:`Localize Label, Description, Category and Values </reference/configuration/custom-fields.html#localize-label-description-category-and-values>` for more information about the CMS values."
+msgstr "カスタムフィールドの宣言についての詳細は :doc-url:`カスタムフィールド </reference/configuration/custom-fields.html>` を、CMS値についての詳細は :doc-url:`ラベル、説明、カテゴリおよび値のローカライズ </reference/configuration/custom-fields.html#localize-label-description-category-and-values>` をご参照ください。"
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:260
 msgid "You can also view the configuration of these example statistic widgets in a similar way with other statistic widgets, follow these steps:"
 msgstr "また、他の統計ウィジェットと同様の方法で、これらの統計ウィジェットの例の設定を確認することも可能です。以下の手順に従ってください："
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:231
+#: ../../source/portal-user-guide/statistic-chart/index.rst:262
 msgid "In the dashboard configuration page, click the :guilabel:`Add widget` button."
 msgstr "ダッシュボード設定ページで、:guilabel:`ウィジェットの追加` ボタンをクリックします。"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:232
+#: ../../source/portal-user-guide/statistic-chart/index.rst:263
 msgid "Select :guilabel:`Edit` to review their configurations."
 msgstr "設定を確認するには、:guilabel:`編集` を選択してください。"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:234
+#: ../../source/portal-user-guide/statistic-chart/index.rst:265
 msgid "|statistic-config|"
 msgstr "|statistic-config|"
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:272
+#: ../../source/portal-user-guide/statistic-chart/index.rst:303
 msgid "Statistic configuration example"
 msgstr "統計設定例"
 
@@ -7759,7 +7772,7 @@ msgstr "タスクウィジェットページへ移動するメニュー"
 
 #: ../../source/portal-user-guide/task-widget/index.rst:20
 msgid "The template Full Task List dashboard will support you in creating a new dashboard with a similar layout, see :ref:`public-available-dashboard-template`."
-msgstr "テンプレート :guilabel:`Full Task List dashboard` を使用すると、同様のレイアウトを持つ新しいダッシュボードを作成できます。詳細は :ref:`public-available-dashboard-template` を参照してください。"
+msgstr "テンプレートの Full Task List ダッシュボードを使用すると、同様のレイアウトを持つ新しいダッシュボードを作成できます。詳細は :ref:`public-available-dashboard-template` を参照してください。"
 
 #: ../../source/portal-user-guide/task-widget/index.rst:27
 msgid "Below are the standard fields of a task. You can configure them in the column management dialog, see :ref:`Column Management <task-widget-column-management>`."

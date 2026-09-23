@@ -1,8 +1,5 @@
 package com.axonivy.portal.selenium.test.task;
 
-import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
-
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
@@ -21,6 +18,8 @@ import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
+import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import com.codeborne.selenide.Condition;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -187,7 +186,7 @@ public class TaskDetailsTest extends BaseTest {
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails("task with 8 responsible");
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
-    taskDetailsPage.getAllResponsible().shouldHave(Condition.text("8"));
+    taskDetailsPage.getAllResponsible().shouldHave(Condition.text("+5"));
     taskDetailsPage.getAllExpiryResponsible().shouldHave(Condition.text("6"));
     taskDetailsPage.getAllExpiryResponsible().click();
     taskDetailsPage.getExpiryResponsibleDialog().should(Condition.appear);

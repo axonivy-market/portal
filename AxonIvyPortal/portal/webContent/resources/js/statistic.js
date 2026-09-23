@@ -375,6 +375,21 @@ function getFormatedTitle(titles) {
   return '';
 }
 
+function setWidgetHeaderTitle(headerTitle, widgetName) {
+  if (!headerTitle) {
+    return;
+  }
+  headerTitle.textContent = widgetName;
+
+  const tooltip = document.getElementById(headerTitle.getAttribute('aria-describedby'));
+  const tooltipText = tooltip?.querySelector('.ui-tooltip-text');
+  if (tooltipText) {
+    tooltipText.textContent = widgetName;
+  } else {
+    headerTitle.title = widgetName;
+  }
+}
+
 // Generic class for Client charts
 class ClientChart {
   constructor(chart, data) {
@@ -621,7 +636,7 @@ class ClientCanvasChart extends ClientChart {
     let cardPanel = $(this.chart).parents('.card-widget-panel');
 
     $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title')
-      .text(widgetName);
+      .each((index, headerTitle) => setWidgetHeaderTitle(headerTitle, widgetName));
 
     if (cardPanel.length > 0) {
       cardPanel.get(0).ariaLabel = widgetName;
@@ -1024,10 +1039,7 @@ class ClientNumberChart extends ClientChart {
   initWidgetHeaderName(chart, widgetName) {
     let cardPanel = $(chart).parents(".card-widget-panel");
 
-    let widgetHeader = cardPanel.find(".widget__header .widget__header-title").get(0);
-    if (widgetHeader) {
-      widgetHeader.textContent = widgetName;
-    }
+    setWidgetHeaderTitle(cardPanel.find(".widget__header .widget__header-title").get(0), widgetName);
 
     let widgetPanel = cardPanel.get(0);
     if (widgetPanel) {

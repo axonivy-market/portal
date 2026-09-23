@@ -84,7 +84,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(SICK_LEAVE_REQUEST, FilterOperator.IS);
     taskWidget.applyFilter();
-    taskWidget.clickOnTaskName(SICK_LEAVE_REQUEST);
+    taskWidget.startTask(SICK_LEAVE_REQUEST);
 
     TaskTemplateIFramePage templatePage = new TaskTemplateIFramePage();
     templatePage.switchToIFrameOfTask();
@@ -234,6 +234,42 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.clickOnButtonExpandTaskWidget();
     taskWidget.getExpandedTaskWidget().shouldHave(size(1));
     taskWidget.clickOnButtonCollapseTaskWidget();
+    taskWidget.getExpandedWidget().shouldHave(size(0));
+  }
+
+  @Test
+  public void testCollapseExpandedTaskWidgetByEscapeKey() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+
+    taskWidget.clickOnButtonExpandTaskWidget();
+    taskWidget.getExpandedTaskWidget().shouldHave(size(1));
+    taskWidget.pressEscapeKey();
+    taskWidget.getExpandedWidget().shouldHave(size(0));
+  }
+
+  @Test
+  public void testEscapeKeyOnFilterDialogKeepsTaskWidgetExpanded() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+
+    taskWidget.clickOnButtonExpandTaskWidget();
+    taskWidget.getExpandedTaskWidget().shouldHave(size(1));
+
+    taskWidget.openFilterWidget();
+    taskWidget.pressEscapeKey();
+    taskWidget.waitForFilterDialogDisappear();
+    taskWidget.getExpandedTaskWidget().shouldHave(size(1));
+
+    taskWidget.pressEscapeKey();
     taskWidget.getExpandedWidget().shouldHave(size(0));
   }
 
