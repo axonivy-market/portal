@@ -307,7 +307,10 @@ public class TaskIFrameTemplatePage extends TemplatePage {
 
   public void clickOnHomeLogo() {
     switchBackToParent();
-    WaitHelper.waitForNavigation(() -> $("span[class*='ti ti-home']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition()).click());
+    $("span[class*='ti ti-home']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+      .shouldBe(getClickableCondition()).click();
+    
+    // Wait for the target page (Portal Home / Dashboard) to load instead of JSF navigation ViewState
+    $("[id$=':main-navigator:main-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }
