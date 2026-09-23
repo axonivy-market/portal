@@ -29,7 +29,7 @@
         <p:commandButton id="export-btn"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ExportButton')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ExportButton')}"
-          styleClass="white-space-nowrap" icon="ti ti-upload" ajax="false">
+          styleClass="white-space-nowrap" icon="ti ti-download" ajax="false">
           <p:fileDownload value="#{portalPackageBean.exportPackage()}" />
         </p:commandButton>
       </div>
@@ -67,7 +67,7 @@
         <p:commandButton id="import-btn"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportButton')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/PortalPackageManagement/ImportButton')}"
-          styleClass="white-space-nowrap" icon="ti ti-download"
+          styleClass="white-space-nowrap" icon="ti ti-upload"
           onclick="PF('portalPackageImportDialog').show(); return false;" type="button" />
       </div>
     </h:panelGroup>

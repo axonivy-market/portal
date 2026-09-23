@@ -1398,11 +1398,7 @@ body.in-dialog .ui-widget-overlay {
 }
 
 .time-information .ti-pencil,
-.general-information .ti-pencil,
-.task-detail-description .ti-circle-plus,
-.task-detail-description .ti-circle-minus,
-.case-detail-description .ti-circle-plus,
-.case-detail-description .ti-circle-minus {
+.general-information .ti-pencil {
   margin-left: 5px;
   color: var(--primary-color);
 }
@@ -2450,6 +2446,7 @@ body a.portal-detail-toolbar-back:focus,
   display: flex;
   align-items: center;
   gap: 1.071rem;
+  min-width: 0;
 }
 .task-detail-name-row,
 .case-detail-name-row {
@@ -2481,6 +2478,9 @@ body a.portal-detail-toolbar-back:focus,
   font-size: var(--small-font-size);
   font-weight: 400;
   line-height: var(--portal-detail-label-line-height);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .task-detail-header-actions .task-action-item-label {
   font-size: var(--default-font-size);
@@ -2544,7 +2544,8 @@ body a.portal-detail-toolbar-back:focus,
   cursor: default;
 }
 .task-detail-attr .task-detail-attr-value > span,
-.task-detail-attr .task-detail-attr-value > a {
+.task-detail-attr .task-detail-attr-value > a,
+.case-detail-attr .case-detail-attr-value > span {
   min-width: 0;
   overflow: hidden;
   white-space: nowrap;
@@ -2644,6 +2645,7 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 .case-detail-attr .case-detail-attr-value .case-header-default-cell {
   display: inline-flex;
   align-items: center;
+  min-width: 0;
 }
 
 .task-detail-attr .task-detail-attr-value .ti,
@@ -2763,15 +2765,55 @@ body .portal-detail-body .separator-task-detail.ui-divider:before {
 }
 .portal-detail-kv-value.flex {
   justify-content: flex-end;
+  align-items: center;
 }
-/* Avatar + name inside a value cell (Creator) */
+.portal-detail-kv-value.flex > * {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+.portal-detail-kv-value.flex > .task-expiry-activator-edit {
+  flex: none;
+}
+.responsibles {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+}
+.responsibles > span {
+  min-width: 0;
+}
+.responsibles > .ml-1 {
+  flex: none;
+}
+.responsibles-avatar-group .ui-avatar + .ui-avatar {
+  margin-left: -0.5rem;
+}
+.responsibles-avatar-group .ui-avatar.responsibles-more {
+  font-size: 0.75rem;
+}
+
 .portal-detail-kv-value .ui-avatar,
 .portal-detail-kv-value .avatar,
 .portal-detail-kv-value img {
   width: 1.786rem;
   height: 1.786rem;
-  border-radius: 50%;
 }
+
+.task-general-info-responsibles.portal-detail-kv-value .responsibles-avatar-group .ui-avatar, .content-field-after-escalation.portal-detail-kv-value .responsibles-avatar-group .ui-avatar {
+  margin-left: -0.3rem !important;
+}
+
+.portal-detail-kv-value .responsibles-avatar-group .ui-avatar {
+  border: 2px solid var(--substituted-user-avatar-color);
+  box-sizing: content-box;
+}
+
+.portal-detail-kv-value .responsibles-avatar-group .ui-avatar.responsibles-more {
+  background-color: var(--portal-detail-card-border-color);
+  color: var(--portal-detail-value-color);
+}
+
 .portal-detail-body .business-case-information .case-detail-business-case {
   color: var(--portal-detail-accent-color);
   font-size: var(--default-font-size);

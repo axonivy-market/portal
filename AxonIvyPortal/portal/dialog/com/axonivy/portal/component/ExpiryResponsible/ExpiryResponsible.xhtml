@@ -16,21 +16,36 @@
   <c:set var="expiryResponsibles" value="#{cc.attrs.expiryResponsibles}" />
   
   <pc:securityMemberNameAndAvatar 
-  	displayName="#{responsibleSize gt 1 ? ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple') : expiryRepsonsibleBean.getFirstDisplayName(expiryResponsibles)}" 
+  	displayName="#{responsibleSize gt 1 ? (cc.attrs.isShowAvatar ? null : ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple')) : expiryRepsonsibleBean.getFirstDisplayName(expiryResponsibles)}" 
   	securityMember="#{responsibleSize gt 1 ? null : expiryRepsonsibleBean.getFirstResponsible(expiryResponsibles)}" 
-  	representName="#{responsibleSize gt 1 ? ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple') : null}" 
+  	representName="#{responsibleSize gt 1 ? (cc.attrs.isShowAvatar ? null : ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple')) : null}" 
+    isShowAvatar="#{cc.attrs.isShowAvatar}"
     isShowTechnicalDisplayNameOnTooltip="#{responsibleSize gt 1 ? false : null}" > 
     <f:facet name="afterName">
       <h:panelGroup rendered="#{responsibleSize != null and responsibleSize gt 1}">
         <h:panelGroup id="all-expiry-responsibles" styleClass="ml-1" >
-          <p:commandLink onclick="#{cc.attrs.onClick}" rendered="#{cc.attrs.popupLink}" ariaLabel="#{responsibleSize}">
+          <p:avatarGroup styleClass="responsibles-avatar-group" rendered="#{cc.attrs.isShowAvatar}">
+            <p:tooltip globalSelector=".ui-avatar"/>
+            <ui:repeat value="#{expiryRepsonsibleBean.getResponsibleLimit10(expiryResponsibles)}" var="responsible" varStatus="s">
+              <pc:avatar securityMember="#{responsible.get()}"
+                rendered="#{responsible.get() != null and s.index lt 3}"
+                renderedAvatar="true"
+                title="#{expiryRepsonsibleBean.getDisplayName(responsible.get())}" />
+            </ui:repeat>
+            <p:avatar id="expiry-responsibles-more" styleClass="responsibles-more" shape="circle" rendered="#{responsibleSize gt 3}">
+              <p:commandLink styleClass="text-xs" rendered="#{cc.attrs.popupLink and cc.attrs.isShowAvatar}" value="+#{responsibleSize - 3}" onclick="#{cc.attrs.onClick}"/>
+              <h:outputText rendered="#{!cc.attrs.popupLink and cc.attrs.isShowAvatar}" value="+#{responsibleSize - 3}" />
+            </p:avatar>
+          </p:avatarGroup>
+          <p:commandLink onclick="#{cc.attrs.onClick}" rendered="#{cc.attrs.popupLink and !cc.attrs.isShowAvatar}" ariaLabel="#{responsibleSize}">
             (<i class="mr-1 ti ti-users" /><h:outputText value="#{responsibleSize}" />)
           </p:commandLink>
-          <h:panelGroup rendered="#{!cc.attrs.popupLink}">
+          <h:panelGroup rendered="#{!cc.attrs.popupLink and !cc.attrs.isShowAvatar}">
             (<i class="mr-1 ti ti-users" /><h:outputText value="#{responsibleSize}" />)
           </h:panelGroup>
         </h:panelGroup>
-        <p:tooltip for="all-expiry-responsibles" position="top" autoHide="false">
+        <p:tooltip for="#{cc.attrs.isShowAvatar ? 'expiry-responsibles-more' : 'all-expiry-responsibles'}" position="top" autoHide="false"
+          rendered="#{cc.attrs.isShowAvatar ? responsibleSize gt 3 : true}">
           <div class="py-1">
             <ui:repeat id="task-responsibles" value="#{expiryRepsonsibleBean.getResponsibleLimit10(expiryResponsibles)}" var="responsible">
               <div class="py-1">

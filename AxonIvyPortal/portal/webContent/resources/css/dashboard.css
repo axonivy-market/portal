@@ -2983,14 +2983,6 @@ body .widget-view-toggle .ui-button.ui-widget.widget-view-toggle__button.widget-
 }
 /* =================== WIDGET VIEW TOGGLE END ====================== */
 
-.responsibles-avatar-group .ui-avatar + .ui-avatar {
-  margin-left: -0.5rem;
-}
-
-.responsibles-avatar-group .ui-avatar.responsibles-more {
-  font-size: 0.75rem;
-}
-
 /* Dashboard Configuration and Icons */
 .dashboard-configuration-title {
   font-size: calc(9 / 7 * 1rem);
