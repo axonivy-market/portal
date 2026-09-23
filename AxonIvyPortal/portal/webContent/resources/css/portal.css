@@ -1719,7 +1719,7 @@ body .notification-full-scroll>.ui-datascroller-content  {
 }
 
 .notification-start-task {
-  background-color: var(--item-background-hover);
+  background-color: var(--accent-btn-bg);
   width: 2rem;
   height: 2rem;
   position: relative;
@@ -1905,8 +1905,8 @@ body.dark .focused {
 }
 
 .chart-number-container {
-  color: var(--chart-container-background-color);
-  -webkit-text-stroke: 1px var(--chart-container-number-border-color);
+  color: var(--chart-container-number-color);
+  -webkit-text-stroke: 1px var(--chart-container-number-color-text-stroke);
   width: fit-content;
   margin: auto;
   padding: 5px 5px;
