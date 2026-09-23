@@ -473,6 +473,9 @@ function showQuickSearchInput(index) {
     } else {
       $(spanEl).removeClass("ti-x");
       $(spanEl).addClass("ti-search");
+      if ($(quickSearchInput).val() !== "") {
+        $(quickSearchInput).val("").trigger("cut");
+      }
     }
   }
 }
