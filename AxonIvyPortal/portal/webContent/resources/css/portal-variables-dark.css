@@ -63,8 +63,8 @@
   /* Statistic widget */
   --statistic-filter-accordion-panel-border: var(--ivy-primary-color-grey-light);
   --chart-container-background-color: var(--ivy-portal-color-grey-900);
-  --chart-container-number-color: var(--ivy-portal-primary-light-color);
-  --chart-container-number-color-text-stroke: var(--ivy-portal-primary-dark-color);
+  --chart-container-number-color: hsl(var(--ivy-primary-color-h) 43% 93%);
+  --chart-container-number-color-text-stroke: hsl(var(--ivy-primary-color-h) 100% 15%);
   --chart-container-number-border-color: var(--ivy-portal-color-grey-50);
   
   /* Filter Widget */
