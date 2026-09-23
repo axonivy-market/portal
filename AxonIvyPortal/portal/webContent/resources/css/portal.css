@@ -1864,11 +1864,11 @@ i.dashboard-icon-drag-drop {
   cursor: pointer;
 }
 
-body.light .focused {
+body.light .focused:not(input, button) {
   outline: 2px solid var(--ivy-primary-color);
 }
 
-body.dark .focused {
+body.dark .focused:not(input, button) {
   outline: 2px solid var(--ivy-primary-light-color);
 }
 
