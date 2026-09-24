@@ -1293,34 +1293,28 @@ msgid "Each CaseItemDetails contains"
 msgstr "CaseItemDetails には以下が含まれます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:15
-#, fuzzy
 msgid "**CaseItemSummary** ``1``"
-msgstr "**CaseItemDetailsDocuments** ``2``"
+msgstr "**CaseItemSummary** ``1``"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:16
-#, fuzzy
 msgid "**CaseItemGeneralInformation** ``2``"
-msgstr "**CaseItemGeneralInformation** ``1``"
+msgstr "**CaseItemGeneralInformation** ``2``"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:17
-#, fuzzy
 msgid "**CaseItemDocument** ``3``"
-msgstr "**CaseItemDetailsDocuments** ``2``"
+msgstr "**CaseItemDocument** ``3``"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:18
-#, fuzzy
 msgid "**CaseItemRelatedCases** ``4``"
-msgstr "**CaseItemDetailsRelatedCases** ``3``"
+msgstr "**CaseItemRelatedCases** ``4``"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:19
-#, fuzzy
 msgid "**CaseItemRelatedTasks** ``5``"
-msgstr "**CaseItemDetailsRelatedTasks** ``4``"
+msgstr "**CaseItemRelatedTasks** ``5``"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:20
-#, fuzzy
 msgid "**CaseItemHistories** ``6``"
-msgstr "**CaseItemDetailsHistories** ``5``"
+msgstr "**CaseItemHistories** ``6``"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:21
 msgid "**CaseItemBusinessDetails**"
@@ -1389,14 +1383,12 @@ msgid "If no entry's ``filters`` match, Portal falls back to the entry whose ``i
 msgstr "どのエントリの ``filters`` も一致しない場合、Portalは ``id`` が正確に ``\"default-case-detail\"`` （大文字小文字を区別）であるエントリにフォールバックします。**他の ``id`` を持ち、一致する ``filters`` もないエントリは決して表示されません** - これは以下の例を応用する際によくある間違いです。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:60
-#, fuzzy
 msgid "If no entry has that exact ``id`` either, Portal falls back to its own built-in default layout (the 6-widget layout shown below), silently ignoring everything you configured."
-msgstr "その正確な ``id`` を持つエントリもない場合、Portalは組み込みのデフォルトレイアウト（以下に示す5つのウィジェットのレイアウト）にフォールバックし、設定した内容をすべて黙って無視します。"
+msgstr "その正確な ``id`` を持つエントリもない場合、Portalは組み込みのデフォルトレイアウト（以下に示す6つのウィジェットのレイアウト）にフォールバックし、設定した内容をすべて黙って無視します。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:63
-#, fuzzy
 msgid "The default configuration includes six widgets:"
-msgstr "デフォルト設定には 5 つのウィジェットが含まれます。"
+msgstr "デフォルト設定には 6 つのウィジェットが含まれます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:139
 msgid "The structure of each Case Details layout is saved in variable **Portal.CaseDetails**:"
@@ -1437,9 +1429,8 @@ msgid "``id``: ID of widget."
 msgstr "``id``：ウィジェットの ID。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:157
-#, fuzzy
 msgid "``type``: type of widget, there are 8 types: -  ``summary`` -  ``information`` -  ``document`` -  ``technicalCase`` -  ``businessDetails`` -  ``relatedTask`` -  ``history`` -  ``custom``."
-msgstr "``type``: ウィジェットの種類。7種類あります：‐  ``information``-  ``document``-  ``technicalCase``-  ``businessDetails``-  ``relatedTask``-  ``history``-  ``custom``。"
+msgstr "``type``：ウィジェットの種類。8種類あります：-  ``summary`` -  ``information`` -  ``document`` -  ``technicalCase`` -  ``businessDetails`` -  ``relatedTask`` -  ``history`` -  ``custom``。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:167
 msgid "``layout``: defines the UI styling of the widget."
@@ -1505,7 +1496,7 @@ msgstr "組み込みウィジェットタイプ ``businessDetails`` はデフォ
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:194
 msgid "The ``summary`` widget contains the case actions, ID, state and category. Add it to your layouts when upgrading to 14.0.0."
-msgstr ""
+msgstr "``summary`` ウィジェットには、ケースのアクション、ID、状態、カテゴリーが含まれます。14.0.0にアップグレードする際は、レイアウトに追加してください。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:200
 msgid "Show custom widgets"
@@ -3900,24 +3891,20 @@ msgid "Each TaskItemDetails contains"
 msgstr "TaskItemDetails には以下が含まれます。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:10
-#, fuzzy
 msgid "**Summary** ``1``"
-msgstr "**履歴** ``3``"
+msgstr "**サマリー** ``1``"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:12
-#, fuzzy
 msgid "**Data and Description** ``2``"
-msgstr "**データと説明** ``1``"
+msgstr "**データと説明** ``2``"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:14
-#, fuzzy
 msgid "**Documents** ``3``"
-msgstr "**ドキュメント** ``2``"
+msgstr "**ドキュメント** ``3``"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:16
-#, fuzzy
 msgid "**Histories** ``4``"
-msgstr "**履歴** ``3``"
+msgstr "**履歴** ``4``"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:18
 msgid "**Custom panels (widgets)**"
@@ -3964,14 +3951,12 @@ msgid "If no entry's ``filters`` match, Portal falls back to the entry whose ``i
 msgstr "どのエントリの ``filters`` も一致しない場合、Portalは ``id`` が正確に ``\"default-task-detail\"`` （大文字小文字を区別）であるエントリにフォールバックします。**他の ``id`` を持ち、一致する ``filters`` もないエントリは決して表示されません** - これは以下の例を応用する際によくある間違いです。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:54
-#, fuzzy
 msgid "If no entry has that exact ``id`` either, Portal falls back to its own built-in default layout (the 4-widget layout shown below), silently ignoring everything you configured."
-msgstr "その正確な ``id`` を持つエントリもない場合、Portalは組み込みのデフォルトレイアウト（以下に示す5つのウィジェットのレイアウト）にフォールバックし、設定した内容をすべて黙って無視します。"
+msgstr "その正確な ``id`` を持つエントリもない場合、Portalは組み込みのデフォルトレイアウト（以下に示す4つのウィジェットのレイアウト）にフォールバックし、設定した内容をすべて黙って無視します。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:57
-#, fuzzy
 msgid "Default configuration includes 4 widgets."
-msgstr "デフォルト設定には 3 つのウィジェットが含まれます。"
+msgstr "デフォルト設定には 4 つのウィジェットが含まれます。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:123
 msgid "Structure of each task details layout in variable **Portal.TaskDetails**:"
@@ -3990,9 +3975,8 @@ msgid "Structure of each widget inside task details layout in variable **Portal.
 msgstr "**Portal.TaskDetails** 変数の各タスクの詳細のレイアウトに含まれる各ウィジェットの構造："
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:133
-#, fuzzy
 msgid "``type``: Supported values: ``summary``, ``information``, ``document``, ``history``, ``custom``"
-msgstr "``type``: サポートされる値: ``information``、``document``、``history``、``custom``"
+msgstr "``type``：サポートされる値：``summary``、``information``、``document``、``history``、``custom``"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:135
 msgid "``x``: column index. HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``"
@@ -4064,7 +4048,7 @@ msgstr "フィルタタイプ ``states`` については、すべてのタスク
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:175
 msgid "The ``summary`` widget contains the Start button, task actions, priority, state and due date. Add it to your layouts when upgrading to 14.0.0."
-msgstr ""
+msgstr "``summary`` ウィジェットには、開始ボタン、タスクのアクション、優先度、状態、期限日が含まれます。14.0.0にアップグレードする際は、レイアウトに追加してください。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:179
 msgid "Show Custom Panels (Widgets)"
