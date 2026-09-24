@@ -53,15 +53,14 @@ See **Portal Guide > User Guide > Statistic Chart > Sample: KPI Procurement Over
 
 ## Setup
 
-This section describes the first installation. We recommend reading the document detail in the **Portal guideline** in the section **Developer Guide > Installation**
+This section describes the first installation. We recommend reading the document detail in the **Portal Guide** in the section **Developer Guide > Installation**
 
 ### Project modules
 
-The application consists of 3 process modules. For detailed information on each module, refer to **Portal Guide**.
+The application consists of 2 process modules. For detailed information on each module, refer to **Portal Guide**.
 
 * portal-components
 * portal
-* AxonIvyExpress
 
 ### The default users
 
