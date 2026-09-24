@@ -15,7 +15,7 @@
     <ui:define name="pageContent">
 
       <h:form id="absences-management-form" styleClass="absences-management-form ">
-        <p:remoteCommand name="reloadAbsenceTable"
+        <p:remoteCommand name="reloadAbsenceTable" ignoreAutoUpdate="true"
           actionListener="#{absenceManagementBean.findAbsencesAndSubstitutes()}"
           update="@(.absence-table) @(.substitute-table)" global="false" />
         <div id="absences-management-container" class="absences-management-container absences-management-page w-full">
