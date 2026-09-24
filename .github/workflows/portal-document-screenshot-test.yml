@@ -47,7 +47,7 @@ jobs:
       - name: Set up Maven
         uses: stCarolas/setup-maven@v5.1
         with:
-          maven-version: 3.9.8
+          maven-version: 3.9.16
       - name: Export environment variables
         run: |
           echo "Check out code from ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
