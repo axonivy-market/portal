@@ -5879,6 +5879,7 @@ msgid "To allow a custom field to retrieve multilingual values from the CMS, set
 msgstr "カスタムフィールドが CMS から多言語の値を取得できるようにするには、対応する ``custom-field`` yaml ファイルの設定で ``HasCmsValue`` 属性を ``true`` に設定してください。そうでない場合、ロジックは変更されず、カスタムフィールドは静的値を使用します。さらに、値は CMS に複数の言語で入力して維持する必要があります。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:756
+#, python-brace-format
 msgid "Following this path to add your custom field values: ``/CustomFields/Cases/{fieldName}/Values/{value}`` Please follow this :doc-url:`Localize Label, Description, Category and Values </reference/configuration/custom-fields.html#localize-label-description-category-and-values>` to get more information."
 msgstr "カスタムフィールドの値を追加するには、次のパスに従ってください：``/CustomFields/Cases/{fieldName}/Values/{value}``。詳細については、次を参照してください： :doc-url:`ラベル、説明、カテゴリ、および値をローカライズする </reference/configuration/custom-fields.html#localize-label-description-category-and-values>`。"
 
@@ -7467,6 +7468,7 @@ msgid "``enableQuickSearch``: to enable/disable the quick search feature, set th
 msgstr "``enableQuickSearch``：クイック検索機能を有効／無効にします。以下のようにタスクウィジェットの ``enableQuickSearch`` フィールドを設定してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:718
+#, python-brace-format
 msgid "Following this path to add your custom field values: ``/CustomFields/Tasks/{fieldName}/Values/{value}`` Please follow this :doc-url:`Localize Label, Description, Category and Values </reference/configuration/custom-fields.html#localize-label-description-category-and-values>` to get more information."
 msgstr "カスタム・フィールドの値を追加するには、以下のパスに従ってください：``/CustomFields/Tasks/{fieldName}/Values/{value}`` :doc-url:`ラベル、説明、カテゴリー、値のローカライズ </reference/configuration/custom-fields.html#localize-label-description-category-and-values>` に従ってください。"
 
@@ -10415,570 +10417,20 @@ msgid "New & Noteworthy"
 msgstr "新機能と注目点"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:65
+msgid "New & Noteworthy 14"
+msgstr "14 の新機能と注目すべき変更点"
+
+#: ../../source/portal-developer-guide/introduction/index.rst:67
+msgid "Check out more information on `release 14.0 <https://dev.axonivy.com/news/14.0>`__."
+msgstr "`リリース 14.0 <https://dev.axonivy.com/news/14.0>`__ で詳細情報を確認してください。"
+
+#: ../../source/portal-developer-guide/introduction/index.rst:72
 msgid "New & Noteworthy 12"
 msgstr "12 の新機能と注目すべき変更点"
 
-#: ../../source/portal-developer-guide/introduction/index.rst:67
+#: ../../source/portal-developer-guide/introduction/index.rst:74
 msgid "Check out more information on `release 12.0 <https://dev.axonivy.com/news/12.0>`__."
 msgstr "`リリース 12.0 <https://dev.axonivy.com/news/12.0>`__ .で詳細情報を確認してください。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:72
-msgid "New & Noteworthy 11"
-msgstr "11 の新機能と注目すべき変更点"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:74
-msgid "Check out more information on `release 11.3 <https://dev.axonivy.com/news/11.3>`__, `release 11.2 <https://dev.axonivy.com/news/11.2>`__ and `release 11.1 <https://dev.axonivy.com/news/11.1>`__."
-msgstr "`リリース 11.3 <https://dev.axonivy.com/news/11.3>`__ 、 `リリース 11.2 <https://dev.axonivy.com/news/11.2>`__ 、 `リリース 11.1 <https://dev.axonivy.com/news/11.1>`__ で詳細情報を確認してください。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:79
-msgid "New & Noteworthy 10"
-msgstr "10 の新機能と注目すべき変更点"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:81
-msgid "The focus with Release 10 was to finalize the new portal approach of enabling the portal users to configure the portal to their custom needs and make the portal more adaptable to the various use cases of the Axon Ivy Platform."
-msgstr "リリース 10 の注目点は、ポータルのユーザーがそれぞれのニーズに合わせてポータルを設定し、 Axon Ivyプラットフォームのさまざまなユースケースにポータルを適合させることができる新しい方法の完成です。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:83
-msgid "As part of this journey, the portal dashboards were completely redesigned giving more power to the end user in making the portal his own workbench, interacting with processes and tasks, reporting on process progress and managing workloads. With the update of the overall theme, the portal now also supports dark mode giving the portal a more modern overall look & feel."
-msgstr "その一環として、ポータルのダッシュボードのデザインが一新されました。エンドユーザーは、ポータルを自分のワークベンチとしてカスタマイズし、プロセスやタスクの操作、プロセスの進捗状況のレポーティング、ワークロードの管理を行うことができます。テーマ全体の更新により、ダークモードに対応しました。これにより、ポータルの外観がさらにモダンになりました。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:85
-msgid "|new-dashboard|"
-msgstr "|new-dashboard|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:358
-msgid "new-dashboard"
-msgstr "new-dashboard"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:87
-msgid "Within the dashboards, the portal now offers:"
-msgstr "ポータルのダッシュボードに以下が追加されました。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:89
-msgid "Public Dashboards with permissions"
-msgstr "公開用ダッシュボードと権限"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:90
-msgid "Private Dashboards that users can fit to their needs"
-msgstr "ユーザーがニーズに合わせてカスタマイズできる個人用ダッシュボード"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:91
-msgid "Many Standard Widgets like configurable task, case and process start list with filters and sorting"
-msgstr "フィルターと並べ替え機能を備えた、設定可能なタスク、ケース、プロセス開始リストなどの標準ウィジェット"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:92
-msgid "Custom Widgets for integrating existing processes directly into the dashboard"
-msgstr "既存のプロセスをダッシュボードに直接統合できるカスタムウィジェット"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:93
-msgid "Custom filters and sorting, even on custom task and case fields"
-msgstr "カスタムタスクフィールド、カスタムケースフィールドでも利用可能なカスタムフィルターと並べ替え機能"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:94
-msgid "Welcome Widget with custom images and messages"
-msgstr "カスタム画像とメッセージを含むウェルカムウィジェット"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:96
-msgid "Also other parts of the portal have improved:"
-msgstr "また、ポータルの以下の要素が向上しました。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:98
-msgid "Password recovery flows for an automated reset of lost passwords"
-msgstr "パスワード回復フローによる紛失したパスワードの自動リセット"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:99
-msgid "New Password complexity rules and validations for more secure passwords."
-msgstr "新しいパスワードの複雑さに関する規則と検証によるパスワードの安全性の向上"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:100
-msgid "Advanced absence management for personal and role deputies with full transparency"
-msgstr "高度な不在管理による代理人、代理ロールの完全な透明性の確保"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:101
-msgid "Advanced user specific settings for notifications, language, and formatting preferences"
-msgstr "ユーザー固有の詳細設定による通知、言語、書式の設定"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:102
-msgid "Configurable case details page"
-msgstr "設定可能なケースの詳細ページ"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:103
-msgid "New menu with a cleaner look and an easier navigation between dashboards"
-msgstr "見やすく、ダッシュボード間の移動が容易な新しいメニュー"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:104
-msgid "Custom Avatars within all dialogs"
-msgstr "すべてのダイアログでのカスタムアバターの表示"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:106
-msgid "Not only for the end user but also for developers, the portal was updated:"
-msgstr "ポータルは、エンドユーザーだけでなく、開発者向けにも更新されました。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:108
-msgid "The portal projects have been simplified, two projects are left:  Portal & Portal-Components"
-msgstr "ポータルのプロジェクトが portal と portal-components の 2 つのプロジェクトに整理されました。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:109
-msgid "The multiapp approach is now covered by the Axon Ivy core, making the use of the portal for displaying tasks from more than one application much easier"
-msgstr "Axon Ivy のコアがマルチアプリに対応し、ポータルを使用した複数のアプリケーションの表示が簡単になりました。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:110
-msgid "Through the separation of process and portal by the iframe approach, supported by the portal templates on portal, can serve multiple applications"
-msgstr "ポータルのポータルテンプレートでサポートされる、iframe によるプロセスとポータルの分離により、マルチアプリケーションへの対応が可能になりました。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:111
-msgid "Dialog Templates now offer portal functions, e.g., forwarding the user in an exit event, or interacting with the portal from within the iframe template."
-msgstr "ダイアログテンプレートで、終了イベントのユーザーの転送、iframe テンプレートからのポータルの操作などのポータル機能を利用できるようになりました。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:112
-msgid "The portal-components project now offers ready to use components like a documents-component or user choosers that can be reused in your Axon Ivy Projects"
-msgstr "portal-components プロジェクトで、documents-component などのコンポーネントや、Axon Ivy プロジェクトで再利用可能なユーザーチューザーを利用できるようになりました。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:115
-msgid "New Welcome Widget"
-msgstr "新しいウェルカムウィジェット"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:117
-msgid "The new welcome widget greets the user based on the local time and enables a friendlier approach, thus also adding more CI/CD elements into the portal, making it your own."
-msgstr "新しいウェルカムウィジェットは、現地時間に合わせた挨拶文をユーザーに表示します。より親しみやすいように、さらに多くの CI/CD要素をポータルに追加し、自分好みにすることができます。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:119
-msgid "|new-welcome-widget|"
-msgstr "|new-welcome-widget|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:357
-msgid "new-welcome-widget"
-msgstr "new-welcome-widget"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:123
-msgid "Inviting and modern Look & Feel for Axon Ivy Portal 9.4. Refer to :ref:`introduction-new-and-note-worthy-9.4`."
-msgstr "モダンな外観の Axon Ivy Portal 9.4。詳細については、:ref:`introduction-new-and-note-worthy-9.4` を参照してください。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:125
-#: ../../source/portal-developer-guide/introduction/index.rst:151
-msgid "Welcome Screen"
-msgstr "ようこそ画面"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:126
-msgid "Dashboard Wizards"
-msgstr "ダッシュボードウィザード"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:127
-msgid "New Portal Theme Freya"
-msgstr "新しいポータルテーマ Freya"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:128
-msgid "Change password validations"
-msgstr "パスワード検証の変更"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:130
-msgid "The Individual Dashboard for Axon Ivy Portal 9.3. Refers to :ref:`introduction-new-and-note-worthy-9.3`."
-msgstr "Axon Ivy Portal 9.3 の個人用ダッシュボード。詳細については、:ref:`introduction-new-and-note-worthy-9.3` を参照してください。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:132
-#: ../../source/portal-developer-guide/introduction/index.rst:207
-msgid "Customizable Dashboard"
-msgstr "カスタマイズ可能なダッシュボード"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:133
-#: ../../source/portal-developer-guide/introduction/index.rst:217
-msgid "Default Widgets"
-msgstr "デフォルトのウィジェット"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:134
-#: ../../source/portal-developer-guide/introduction/index.rst:229
-msgid "Custom Widgets"
-msgstr "カスタムウィジェット"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:135
-#: ../../source/portal-developer-guide/introduction/index.rst:244
-msgid "Adjustable Look for Process List"
-msgstr "調整可能なプロセスリストの外観"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:137
-msgid "More UX for Axon Ivy Portal 9.2. Refer to :ref:`introduction-new-and-note-worthy-9.2`."
-msgstr "Axon Ivy Portal 9.2 の UX の向上について。:ref:`introduction-new-and-note-worthy-9.2` を参照してください。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:139
-#: ../../source/portal-developer-guide/introduction/index.rst:267
-msgid "Enhanced forgot password features"
-msgstr "パスワードを忘れた場合の機能の強化"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:140
-#: ../../source/portal-developer-guide/introduction/index.rst:274
-msgid "Simplified tasks and cases export"
-msgstr "タスクとケースのエクスポートの簡素化"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:141
-#: ../../source/portal-developer-guide/introduction/index.rst:281
-msgid "Redesigned process list"
-msgstr "デザインが一新されたプロセスリスト"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:142
-#: ../../source/portal-developer-guide/introduction/index.rst:287
-msgid "Additional drag and drop widgets in task and case detail pages"
-msgstr "タスクおよびケースの詳細ページのドラッグ＆ドロップウィジェットの追加"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:143
-#: ../../source/portal-developer-guide/introduction/index.rst:295
-msgid "Advanced user specific settings"
-msgstr "ユーザー固有の詳細設定"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:148
-msgid "New & Noteworthy 9.4"
-msgstr "9.4 の新機能と注目すべき変更点"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:153
-msgid "First impressions matter; a nice user experience also means engaging and motivating the end user. That’s the idea of the new configurable welcome dashboard widget."
-msgstr "第一印象は重要です。また、素晴らしいユーザーエクスペリエンスは、エンドユーザーの興味とやる気を引き出します。そこで考案されたのが、新しい設定可能なウェルカムウィジェットダッシュボードです。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:156
-msgid "|dashboard-light-mode|"
-msgstr "|dashboard-light-mode|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:352
-msgid "dashboard-light-mode"
-msgstr "dashboard-light-mode"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:158
-msgid "This feature includes displaying your own welcome image and attaching personalized messages with your own styling, embedded into the fully configurable dashboard."
-msgstr "独自のようこそ画像を表示し、独自のスタイルでパーソナライズされたメッセージを添付し、設定可能なダッシュボードに埋め込むことが可能です。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:161
-msgid "Freya Theme featuring Dark Mode"
-msgstr "ダークモードに対応した Freya テーマ"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:163
-msgid "Another step in this direction is the upgrade to a new UI theme. The latest trends and design patterns are ideally included in the fresh `Freya <https://www.primefaces.org/freya/>`_ theme by PrimeFaces. Moreover, the entire Axon Ivy Portal can now be used in Dark Mode."
-msgstr "この方向性でのもう 1 つの変更点が、新しい UI テーマへのアップグレテーマへのアップグレードです。最新のトレンドとデザインパターンを PrimeFaces の新しい `Freya <https://www.primefaces.org/freya/>`__ テーマに取り入れました。さらに、Axon Ivy Portal 全体をダークモードで使用できるようになりました。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:166
-msgid "|dashboard-dark-mode|"
-msgstr "|dashboard-dark-mode|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:353
-msgid "dashboard-dark-mode"
-msgstr "dashboard-dark-mode"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:168
-msgid "A dark mode color scheme can be more visually appealing and easier on the eyes. End users can switch between the light and dark color schemes as needed."
-msgstr "ダークモードのカラースキームは、見た目が美しく、目にも優しいのが特徴です。エンドユーザーは、必要に応じて、ライトモードとダークモードを切り替えることができます。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:171
-msgid "Dashboard Configuration Wizard"
-msgstr "ダッシュボード設定ウィザード"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:173
-msgid "All dashboards within the Axon Ivy Portal can now be configured and arranged with a wizard according to individual preferences."
-msgstr "ウィザードで、Axon Ivy Portal のすべてのダッシュボードを好みに合わせて設定できるようになりました。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:175
-msgid "|dashboard-configuration-wizard|"
-msgstr "|dashboard-configuration-wizard|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:355
-msgid "dashboard-configuration-wizard"
-msgstr "dashboard-configuration-wizard"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:177
-msgid "Now, it is possible to create and manage private and public Dashboards. Creating those dashboards is now done conveniently via a significantly simplified and enhanced wizard. Additionally, the dashboards can be rearranged as desired."
-msgstr "個人用ダッシュボードと公開用ダッシュボードを作成、管理できます。大幅に簡素化、強化されたウィザードで、これらのダッシュボードを作成できます。また、ダッシュボードを自由に並べ替えることも可能です。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:180
-msgid "|dashboard-configuration-wizard-create|"
-msgstr "|dashboard-configuration-wizard-create|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:354
-msgid "dashboard-configuration-wizard-create"
-msgstr "dashboard-configuration-wizard-create"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:182
-msgid "When creating new dashboards, the wizard goes one step further and offers predefined templates based on our experience."
-msgstr "ウィザードで手順を 1 つずつ進みながら、新しいダッシュボードを作成できます。ウィザードには、私たちの経験に基づいて事前定義されたテンプレートが用意されています。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:185
-msgid "Password Validation"
-msgstr "パスワード検証"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:187
-msgid "Password policies are different in each company. This fact is fully taken into account in the Axon Ivy Portal."
-msgstr "パスワードポリシーは、企業ごとに異なります。Axon Ivy Portal では、その事実に十分に配慮しました。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:189
-msgid "This applies to users managed by the Axon Ivy Engine only. If users are imported from an external Identity Provider (IDP), this IDP manages passwords as well as password policy."
-msgstr "パスワード検証は、Axon Ivy Engine で管理されるユーザーにのみ適用されます。ユーザーを外部 ID プロバイダー（IDP）からインポートする場合、その IDP がパスワードとパスワードポリシーを管理します。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:191
-msgid "|password-validation|"
-msgstr "|password-validation|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:356
-msgid "password-validation"
-msgstr "password-validation"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:193
-msgid "Portal administrators can enable or disable password validation and also freely define the following criteria:"
-msgstr "ポータルの管理者は、パスワード検証を有効または無効にすることができます。また、以下の基準を自由に定義できます。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:195
-msgid "Minimum length"
-msgstr "文字数の最小値"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:196
-msgid "Minimum number of lower case characters"
-msgstr "小文字の最小数"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:197
-msgid "Minimum number of upper case characters"
-msgstr "大文字の最小数"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:198
-msgid "Minimum number of numbers"
-msgstr "数値の最小数"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:199
-msgid "Minimum number of special characters"
-msgstr "特殊文字の最小数"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:204
-msgid "New & Noteworthy 9.3"
-msgstr "9.3 の新機能と注目すべき変更点"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:208
-msgid "End-users can choose between different layouts, enable and disable default columns and even add custom columns at will."
-msgstr "エンドユーザーは、自由にレイアウトを選び、デフォルトの列を有効／無効にし、カスタム列を追加できます。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:211
-msgid "|customizable-dashboard|"
-msgstr "|customizable-dashboard|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:347
-msgid "customizable-dashboard"
-msgstr "customizable-dashboard"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:213
-msgid "This feature allows multiple task lists with different filter options. For example, separating HR tasks from Finance tasks provides a better overview and more transparency."
-msgstr "この機能により、異なるフィルターオプションによる複数のタスクリストが可能になります。例えば、HR タスクを Finance タスクから分離することで、概要が分かりやすくなり、透明性も高まります。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:218
-msgid "Axon Ivy Portal supports a sophisticated concept featuring default widgets for Process Starts, Task Lists, and Case Lists."
-msgstr "Axon Ivy Portal には、プロセスの開始、タスクリスト、ケースリストのデフォルトのウィジェットが用意されています。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:220
-msgid "|default-widgets|"
-msgstr "|default-widgets|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:348
-msgid "default-widgets"
-msgstr "default-widgets"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:222
-msgid "Processes, tasks, and cases are essential when it comes to business process automation and workflow management. Therefore, the Axon Ivy Portal gives you full power by providing these standard widgets out-of-the-box."
-msgstr "プロセス、タスク、ケースは、ビジネスプロセスの自動化やワークフローの管理において非常に重要です。Axon Ivy Portal のこれらの標準ウィジェットは、そのまますぐに使えます。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:224
-msgid "|default-widgets-configuration|"
-msgstr "|default-widgets-configuration|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:349
-msgid "default-widgets-configuration"
-msgstr "default-widgets-configuration"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:226
-msgid "Each configuration is intuitive, and users can make their settings meticulously."
-msgstr "それぞれの設定は直感的で分かりやすく、きめ細かな設定が可能です。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:230
-msgid "Individuality is king. End-users can easily create custom widgets in the dashboard."
-msgstr "個性は重要です。エンドユーザーは、簡単にダッシュボードでカスタムウィジェットを作成できます。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:232
-msgid "|custom-widgets|"
-msgstr "|custom-widgets|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:350
-msgid "custom-widgets"
-msgstr "custom-widgets"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:234
-msgid "There are two different widgets types available:"
-msgstr "以下の 2 つのタイプのウィジェットが利用可能です。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:236
-msgid "Axon Ivy Process"
-msgstr "Axon Ivy プロセス"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:237
-msgid "External URL"
-msgstr "外部 URL"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:239
-msgid "An external URL embeds the corresponding website into your dashboard. This feature is helpful to integrate enterprise content management systems or knowledge sites."
-msgstr "外部 URL は、対応するウェブサイトをダッシュボードに埋め込みます。この機能を利用して、エンタープライズコンテンツ管理システムやナレッジサイトを統合できます。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:241
-msgid "Specify your Axon Ivy Process as a widget element and display your process directly in your custom dashboard."
-msgstr "Axon Ivy プロセスをウィジェットの要素として指定し、プロセスをカスタムダッシュボードに直接表示します。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:246
-msgid "Switch between an image, grid, and compact mode to display available processes."
-msgstr "画像、グリッド、コンパクトモードを切り替えて、利用可能なプロセスを表示します。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:248
-msgid "|adjustable-look-for-process-list|"
-msgstr "|adjustable-look-for-process-list|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:351
-msgid "adjustable-look-for-process-list"
-msgstr "adjustable-look-for-process-list"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:250
-msgid "A picture says a thousand words. This saying is true and applies to business processes. The requirements of end-users must be met. The process starts with image support to contribute to a beautiful appearance and help work quickly and purposefully."
-msgstr "「百聞は一見に如かず」このことわざは、ビジネスプロセスにも当てはまります。エンドユーザーの要件は満たさなければなりません。プロセスの開始が画像に対応したことで、美しい外観になり、素早く、目的を持って作業できます。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:257
-msgid "New & Noteworthy 9.2"
-msgstr "9.2 の新機能と注目すべき変更点"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:262
-msgid "Task/Case details configuration"
-msgstr "タスク／ケースの詳細の設定"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:264
-msgid "Task/Case details are well structured, user can drag and drop the widgets and they can be configured via variable (JSON file)."
-msgstr "タスク／ケースの詳細の構成が整えられ、ユーザーはウィジェットをドラッグ＆ドロップできます。変数による設定も可能です（JSON ファイル）。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:268
-msgid "Users can reset their passwords easily using the standard password reset feature integrated in Axon Ivy Portal"
-msgstr "ユーザーは、Axon Ivy Portal に統合された標準的なパスワードのリセット機能を使用して、簡単にパスワードをリセットできます。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:270
-msgid "|login-screen| |send-email-screen|"
-msgstr "|login-screen| |send-email-screen|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:340
-msgid "login-screen"
-msgstr "login-screen"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:341
-msgid "send-email-screen"
-msgstr "send-email-screen"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:275
-msgid "We have listened to you! Business users requested to export specific lists from Axon Ivy Portal to perform further analysis in Microsoft Excel. Now they have the possibility to export any list with one mouse click."
-msgstr "私たちはユーザーの声に耳を傾けます。特定のリストを Axon Ivy Portal からエクスポートして、Microsoft Excel でさらに分析を行いたいというリクエストがビジネスユーザーから寄せられていました。これからは、どのリストでもワンクリックでエクスポートできます。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:278
-msgid "|task-key-information|"
-msgstr "|task-key-information|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:342
-msgid "task-key-information"
-msgstr "task-key-information"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:282
-msgid "You don’t see the forest for the trees? Not anymore! Switch to the new grid view to display your process list in a more user-friendly way."
-msgstr "「木を見て森を見ず」になっていませんか。もう大丈夫です。新しいグリッド表示に切り替えて、もっと分かりやすくプロセスリストを表示できます。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:284
-msgid "|portal-process-grid-view-page|"
-msgstr "|portal-process-grid-view-page|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:343
-msgid "portal-process-grid-view-page"
-msgstr "portal-process-grid-view-page"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:288
-msgid "Only you know the details and therefore, any detail page for tasks or cases can be restyled using drag and drop widgets. Create your own detail page with your specific content and without the need of programming."
-msgstr "詳細を知っているのはユーザーだけです。ドラッグ＆ドロップウィジェットを使用して、タスクまたはケースの詳細ページのスタイルを変更できます。独自のコンテンツで自分だけの詳細ページを作成しましょう。プログラミングは必要ありません。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:290
-msgid "|detailed-task-information|"
-msgstr "|detailed-task-information|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:344
-msgid "detailed-task-information"
-msgstr "detailed-task-information"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:292
-msgid "|case-details|"
-msgstr "|case-details|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:345
-msgid "case-details"
-msgstr "case-details"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:297
-msgid "Make it your own way with the Axon Ivy Portal. Users can optimize process work and customize the Axon Ivy Portal to their own taste."
-msgstr "Axon Ivy Portal にも個性を。ユーザーは、プロセス作業を最適化し、Axon Ivy Portal を独自のテイストでカスタマイズできます。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:299
-msgid "|my-profile-save|"
-msgstr "|my-profile-save|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:346
-msgid "my-profile-save"
-msgstr "my-profile-save"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:302
-msgid "New override approach"
-msgstr "新しいオーバーライド方法"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:304
-msgid "Portal uses HTML Dialog Override instead of Subprocess Override for customization."
-msgstr "ポータルは、サブプロセスのオーバーライドの代わりに HTML ダイアログのオーバーライドを使用して、カスタマイズを行います。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:307
-msgid "User and role selection component"
-msgstr "ユーザーとロールの選択コンポーネント"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:309
-msgid "If you need user and role selection, use Portal component instead of implementing yourself. For details refer to :ref:`components-portal-components-user-selection` and :ref:`components-portal-components-role-selection`."
-msgstr "ユーザーとロールの選択が必要な場合、自分で行う代わりに、ポータルのコンポーネントを使用できます。詳細については、:ref:`components-portal-components-user-selection` と :ref:`components-portal-components-role-selection` を参照してください。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:313
-msgid "New & Noteworthy 9.1"
-msgstr "9.1 の新機能と注目すべき変更点"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:316
-msgid "My profile"
-msgstr "マイプロフィール"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:318
-msgid "My profile replaces for language setting and email setting. Also, introduce the general setting for you can configure the Portal according to your requirements"
-msgstr "マイプロフィールでも、言語の設定やメールの設定を行うことができます。また、要件に合わせてポータルを設定可能な一般設定も用意されています。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:320
-msgid "|my-profile|"
-msgstr "|my-profile|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:338
-msgid "my-profile"
-msgstr "my-profile"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:323
-msgid "New absence management"
-msgstr "新しい不在管理"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:325
-msgid "New UI and user can choose substitute as permanent or temporary for personal task."
-msgstr "UI が新しくなり、ユーザーは自分のタスクの恒久的な代行者や一時的な代行者を選択できます。"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:327
-msgid "|absence|"
-msgstr "|absence|"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:339
-msgid "absence"
-msgstr "absence"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:333
-msgid "Further improvements"
-msgstr "その他の改良点"
-
-#: ../../source/portal-developer-guide/introduction/index.rst:335
-msgid "Filter case by owner in case list and task analysis if case owner is enabled."
-msgstr "ケースオーナーが有効な場合、ケースリストやタスクの分析に含まれるケースをオーナーでフィルタリングできます。"
 
 #: ../../source/portal-developer-guide/permissions/index.rst:12
 msgid "Permission List"
@@ -16767,3 +16219,414 @@ msgstr "Portal.UserMenu変数の変更は即時反映されます。更新内容
 
 #~ msgid "Redeploy Portal"
 #~ msgstr "ポータルの再デプロイ"
+
+#~ msgid "New & Noteworthy 11"
+#~ msgstr "11 の新機能と注目すべき変更点"
+
+#~ msgid "Check out more information on `release 11.3 <https://dev.axonivy.com/news/11.3>`__, `release 11.2 <https://dev.axonivy.com/news/11.2>`__ and `release 11.1 <https://dev.axonivy.com/news/11.1>`__."
+#~ msgstr "`リリース 11.3 <https://dev.axonivy.com/news/11.3>`__ 、 `リリース 11.2 <https://dev.axonivy.com/news/11.2>`__ 、 `リリース 11.1 <https://dev.axonivy.com/news/11.1>`__ で詳細情報を確認してください。"
+
+#~ msgid "New & Noteworthy 10"
+#~ msgstr "10 の新機能と注目すべき変更点"
+
+#~ msgid "The focus with Release 10 was to finalize the new portal approach of enabling the portal users to configure the portal to their custom needs and make the portal more adaptable to the various use cases of the Axon Ivy Platform."
+#~ msgstr "リリース 10 の注目点は、ポータルのユーザーがそれぞれのニーズに合わせてポータルを設定し、 Axon Ivyプラットフォームのさまざまなユースケースにポータルを適合させることができる新しい方法の完成です。"
+
+#~ msgid "As part of this journey, the portal dashboards were completely redesigned giving more power to the end user in making the portal his own workbench, interacting with processes and tasks, reporting on process progress and managing workloads. With the update of the overall theme, the portal now also supports dark mode giving the portal a more modern overall look & feel."
+#~ msgstr "その一環として、ポータルのダッシュボードのデザインが一新されました。エンドユーザーは、ポータルを自分のワークベンチとしてカスタマイズし、プロセスやタスクの操作、プロセスの進捗状況のレポーティング、ワークロードの管理を行うことができます。テーマ全体の更新により、ダークモードに対応しました。これにより、ポータルの外観がさらにモダンになりました。"
+
+#~ msgid "|new-dashboard|"
+#~ msgstr "|new-dashboard|"
+
+#~ msgid "new-dashboard"
+#~ msgstr "new-dashboard"
+
+#~ msgid "Within the dashboards, the portal now offers:"
+#~ msgstr "ポータルのダッシュボードに以下が追加されました。"
+
+#~ msgid "Public Dashboards with permissions"
+#~ msgstr "公開用ダッシュボードと権限"
+
+#~ msgid "Private Dashboards that users can fit to their needs"
+#~ msgstr "ユーザーがニーズに合わせてカスタマイズできる個人用ダッシュボード"
+
+#~ msgid "Many Standard Widgets like configurable task, case and process start list with filters and sorting"
+#~ msgstr "フィルターと並べ替え機能を備えた、設定可能なタスク、ケース、プロセス開始リストなどの標準ウィジェット"
+
+#~ msgid "Custom Widgets for integrating existing processes directly into the dashboard"
+#~ msgstr "既存のプロセスをダッシュボードに直接統合できるカスタムウィジェット"
+
+#~ msgid "Custom filters and sorting, even on custom task and case fields"
+#~ msgstr "カスタムタスクフィールド、カスタムケースフィールドでも利用可能なカスタムフィルターと並べ替え機能"
+
+#~ msgid "Welcome Widget with custom images and messages"
+#~ msgstr "カスタム画像とメッセージを含むウェルカムウィジェット"
+
+#~ msgid "Also other parts of the portal have improved:"
+#~ msgstr "また、ポータルの以下の要素が向上しました。"
+
+#~ msgid "Password recovery flows for an automated reset of lost passwords"
+#~ msgstr "パスワード回復フローによる紛失したパスワードの自動リセット"
+
+#~ msgid "New Password complexity rules and validations for more secure passwords."
+#~ msgstr "新しいパスワードの複雑さに関する規則と検証によるパスワードの安全性の向上"
+
+#~ msgid "Advanced absence management for personal and role deputies with full transparency"
+#~ msgstr "高度な不在管理による代理人、代理ロールの完全な透明性の確保"
+
+#~ msgid "Advanced user specific settings for notifications, language, and formatting preferences"
+#~ msgstr "ユーザー固有の詳細設定による通知、言語、書式の設定"
+
+#~ msgid "Configurable case details page"
+#~ msgstr "設定可能なケースの詳細ページ"
+
+#~ msgid "New menu with a cleaner look and an easier navigation between dashboards"
+#~ msgstr "見やすく、ダッシュボード間の移動が容易な新しいメニュー"
+
+#~ msgid "Custom Avatars within all dialogs"
+#~ msgstr "すべてのダイアログでのカスタムアバターの表示"
+
+#~ msgid "Not only for the end user but also for developers, the portal was updated:"
+#~ msgstr "ポータルは、エンドユーザーだけでなく、開発者向けにも更新されました。"
+
+#~ msgid "The portal projects have been simplified, two projects are left:  Portal & Portal-Components"
+#~ msgstr "ポータルのプロジェクトが portal と portal-components の 2 つのプロジェクトに整理されました。"
+
+#~ msgid "The multiapp approach is now covered by the Axon Ivy core, making the use of the portal for displaying tasks from more than one application much easier"
+#~ msgstr "Axon Ivy のコアがマルチアプリに対応し、ポータルを使用した複数のアプリケーションの表示が簡単になりました。"
+
+#~ msgid "Through the separation of process and portal by the iframe approach, supported by the portal templates on portal, can serve multiple applications"
+#~ msgstr "ポータルのポータルテンプレートでサポートされる、iframe によるプロセスとポータルの分離により、マルチアプリケーションへの対応が可能になりました。"
+
+#~ msgid "Dialog Templates now offer portal functions, e.g., forwarding the user in an exit event, or interacting with the portal from within the iframe template."
+#~ msgstr "ダイアログテンプレートで、終了イベントのユーザーの転送、iframe テンプレートからのポータルの操作などのポータル機能を利用できるようになりました。"
+
+#~ msgid "The portal-components project now offers ready to use components like a documents-component or user choosers that can be reused in your Axon Ivy Projects"
+#~ msgstr "portal-components プロジェクトで、documents-component などのコンポーネントや、Axon Ivy プロジェクトで再利用可能なユーザーチューザーを利用できるようになりました。"
+
+#~ msgid "New Welcome Widget"
+#~ msgstr "新しいウェルカムウィジェット"
+
+#~ msgid "The new welcome widget greets the user based on the local time and enables a friendlier approach, thus also adding more CI/CD elements into the portal, making it your own."
+#~ msgstr "新しいウェルカムウィジェットは、現地時間に合わせた挨拶文をユーザーに表示します。より親しみやすいように、さらに多くの CI/CD要素をポータルに追加し、自分好みにすることができます。"
+
+#~ msgid "|new-welcome-widget|"
+#~ msgstr "|new-welcome-widget|"
+
+#~ msgid "new-welcome-widget"
+#~ msgstr "new-welcome-widget"
+
+#~ msgid "Inviting and modern Look & Feel for Axon Ivy Portal 9.4. Refer to :ref:`introduction-new-and-note-worthy-9.4`."
+#~ msgstr "モダンな外観の Axon Ivy Portal 9.4。詳細については、:ref:`introduction-new-and-note-worthy-9.4` を参照してください。"
+
+#~ msgid "Welcome Screen"
+#~ msgstr "ようこそ画面"
+
+#~ msgid "Dashboard Wizards"
+#~ msgstr "ダッシュボードウィザード"
+
+#~ msgid "New Portal Theme Freya"
+#~ msgstr "新しいポータルテーマ Freya"
+
+#~ msgid "Change password validations"
+#~ msgstr "パスワード検証の変更"
+
+#~ msgid "The Individual Dashboard for Axon Ivy Portal 9.3. Refers to :ref:`introduction-new-and-note-worthy-9.3`."
+#~ msgstr "Axon Ivy Portal 9.3 の個人用ダッシュボード。詳細については、:ref:`introduction-new-and-note-worthy-9.3` を参照してください。"
+
+#~ msgid "Customizable Dashboard"
+#~ msgstr "カスタマイズ可能なダッシュボード"
+
+#~ msgid "Default Widgets"
+#~ msgstr "デフォルトのウィジェット"
+
+#~ msgid "Custom Widgets"
+#~ msgstr "カスタムウィジェット"
+
+#~ msgid "Adjustable Look for Process List"
+#~ msgstr "調整可能なプロセスリストの外観"
+
+#~ msgid "More UX for Axon Ivy Portal 9.2. Refer to :ref:`introduction-new-and-note-worthy-9.2`."
+#~ msgstr "Axon Ivy Portal 9.2 の UX の向上について。:ref:`introduction-new-and-note-worthy-9.2` を参照してください。"
+
+#~ msgid "Enhanced forgot password features"
+#~ msgstr "パスワードを忘れた場合の機能の強化"
+
+#~ msgid "Simplified tasks and cases export"
+#~ msgstr "タスクとケースのエクスポートの簡素化"
+
+#~ msgid "Redesigned process list"
+#~ msgstr "デザインが一新されたプロセスリスト"
+
+#~ msgid "Additional drag and drop widgets in task and case detail pages"
+#~ msgstr "タスクおよびケースの詳細ページのドラッグ＆ドロップウィジェットの追加"
+
+#~ msgid "Advanced user specific settings"
+#~ msgstr "ユーザー固有の詳細設定"
+
+#~ msgid "New & Noteworthy 9.4"
+#~ msgstr "9.4 の新機能と注目すべき変更点"
+
+#~ msgid "First impressions matter; a nice user experience also means engaging and motivating the end user. That’s the idea of the new configurable welcome dashboard widget."
+#~ msgstr "第一印象は重要です。また、素晴らしいユーザーエクスペリエンスは、エンドユーザーの興味とやる気を引き出します。そこで考案されたのが、新しい設定可能なウェルカムウィジェットダッシュボードです。"
+
+#~ msgid "|dashboard-light-mode|"
+#~ msgstr "|dashboard-light-mode|"
+
+#~ msgid "dashboard-light-mode"
+#~ msgstr "dashboard-light-mode"
+
+#~ msgid "This feature includes displaying your own welcome image and attaching personalized messages with your own styling, embedded into the fully configurable dashboard."
+#~ msgstr "独自のようこそ画像を表示し、独自のスタイルでパーソナライズされたメッセージを添付し、設定可能なダッシュボードに埋め込むことが可能です。"
+
+#~ msgid "Freya Theme featuring Dark Mode"
+#~ msgstr "ダークモードに対応した Freya テーマ"
+
+#~ msgid "Another step in this direction is the upgrade to a new UI theme. The latest trends and design patterns are ideally included in the fresh `Freya <https://www.primefaces.org/freya/>`_ theme by PrimeFaces. Moreover, the entire Axon Ivy Portal can now be used in Dark Mode."
+#~ msgstr "この方向性でのもう 1 つの変更点が、新しい UI テーマへのアップグレテーマへのアップグレードです。最新のトレンドとデザインパターンを PrimeFaces の新しい `Freya <https://www.primefaces.org/freya/>`__ テーマに取り入れました。さらに、Axon Ivy Portal 全体をダークモードで使用できるようになりました。"
+
+#~ msgid "|dashboard-dark-mode|"
+#~ msgstr "|dashboard-dark-mode|"
+
+#~ msgid "dashboard-dark-mode"
+#~ msgstr "dashboard-dark-mode"
+
+#~ msgid "A dark mode color scheme can be more visually appealing and easier on the eyes. End users can switch between the light and dark color schemes as needed."
+#~ msgstr "ダークモードのカラースキームは、見た目が美しく、目にも優しいのが特徴です。エンドユーザーは、必要に応じて、ライトモードとダークモードを切り替えることができます。"
+
+#~ msgid "Dashboard Configuration Wizard"
+#~ msgstr "ダッシュボード設定ウィザード"
+
+#~ msgid "All dashboards within the Axon Ivy Portal can now be configured and arranged with a wizard according to individual preferences."
+#~ msgstr "ウィザードで、Axon Ivy Portal のすべてのダッシュボードを好みに合わせて設定できるようになりました。"
+
+#~ msgid "|dashboard-configuration-wizard|"
+#~ msgstr "|dashboard-configuration-wizard|"
+
+#~ msgid "dashboard-configuration-wizard"
+#~ msgstr "dashboard-configuration-wizard"
+
+#~ msgid "Now, it is possible to create and manage private and public Dashboards. Creating those dashboards is now done conveniently via a significantly simplified and enhanced wizard. Additionally, the dashboards can be rearranged as desired."
+#~ msgstr "個人用ダッシュボードと公開用ダッシュボードを作成、管理できます。大幅に簡素化、強化されたウィザードで、これらのダッシュボードを作成できます。また、ダッシュボードを自由に並べ替えることも可能です。"
+
+#~ msgid "|dashboard-configuration-wizard-create|"
+#~ msgstr "|dashboard-configuration-wizard-create|"
+
+#~ msgid "dashboard-configuration-wizard-create"
+#~ msgstr "dashboard-configuration-wizard-create"
+
+#~ msgid "When creating new dashboards, the wizard goes one step further and offers predefined templates based on our experience."
+#~ msgstr "ウィザードで手順を 1 つずつ進みながら、新しいダッシュボードを作成できます。ウィザードには、私たちの経験に基づいて事前定義されたテンプレートが用意されています。"
+
+#~ msgid "Password Validation"
+#~ msgstr "パスワード検証"
+
+#~ msgid "Password policies are different in each company. This fact is fully taken into account in the Axon Ivy Portal."
+#~ msgstr "パスワードポリシーは、企業ごとに異なります。Axon Ivy Portal では、その事実に十分に配慮しました。"
+
+#~ msgid "This applies to users managed by the Axon Ivy Engine only. If users are imported from an external Identity Provider (IDP), this IDP manages passwords as well as password policy."
+#~ msgstr "パスワード検証は、Axon Ivy Engine で管理されるユーザーにのみ適用されます。ユーザーを外部 ID プロバイダー（IDP）からインポートする場合、その IDP がパスワードとパスワードポリシーを管理します。"
+
+#~ msgid "|password-validation|"
+#~ msgstr "|password-validation|"
+
+#~ msgid "password-validation"
+#~ msgstr "password-validation"
+
+#~ msgid "Portal administrators can enable or disable password validation and also freely define the following criteria:"
+#~ msgstr "ポータルの管理者は、パスワード検証を有効または無効にすることができます。また、以下の基準を自由に定義できます。"
+
+#~ msgid "Minimum length"
+#~ msgstr "文字数の最小値"
+
+#~ msgid "Minimum number of lower case characters"
+#~ msgstr "小文字の最小数"
+
+#~ msgid "Minimum number of upper case characters"
+#~ msgstr "大文字の最小数"
+
+#~ msgid "Minimum number of numbers"
+#~ msgstr "数値の最小数"
+
+#~ msgid "Minimum number of special characters"
+#~ msgstr "特殊文字の最小数"
+
+#~ msgid "New & Noteworthy 9.3"
+#~ msgstr "9.3 の新機能と注目すべき変更点"
+
+#~ msgid "End-users can choose between different layouts, enable and disable default columns and even add custom columns at will."
+#~ msgstr "エンドユーザーは、自由にレイアウトを選び、デフォルトの列を有効／無効にし、カスタム列を追加できます。"
+
+#~ msgid "|customizable-dashboard|"
+#~ msgstr "|customizable-dashboard|"
+
+#~ msgid "customizable-dashboard"
+#~ msgstr "customizable-dashboard"
+
+#~ msgid "This feature allows multiple task lists with different filter options. For example, separating HR tasks from Finance tasks provides a better overview and more transparency."
+#~ msgstr "この機能により、異なるフィルターオプションによる複数のタスクリストが可能になります。例えば、HR タスクを Finance タスクから分離することで、概要が分かりやすくなり、透明性も高まります。"
+
+#~ msgid "Axon Ivy Portal supports a sophisticated concept featuring default widgets for Process Starts, Task Lists, and Case Lists."
+#~ msgstr "Axon Ivy Portal には、プロセスの開始、タスクリスト、ケースリストのデフォルトのウィジェットが用意されています。"
+
+#~ msgid "|default-widgets|"
+#~ msgstr "|default-widgets|"
+
+#~ msgid "default-widgets"
+#~ msgstr "default-widgets"
+
+#~ msgid "Processes, tasks, and cases are essential when it comes to business process automation and workflow management. Therefore, the Axon Ivy Portal gives you full power by providing these standard widgets out-of-the-box."
+#~ msgstr "プロセス、タスク、ケースは、ビジネスプロセスの自動化やワークフローの管理において非常に重要です。Axon Ivy Portal のこれらの標準ウィジェットは、そのまますぐに使えます。"
+
+#~ msgid "|default-widgets-configuration|"
+#~ msgstr "|default-widgets-configuration|"
+
+#~ msgid "default-widgets-configuration"
+#~ msgstr "default-widgets-configuration"
+
+#~ msgid "Each configuration is intuitive, and users can make their settings meticulously."
+#~ msgstr "それぞれの設定は直感的で分かりやすく、きめ細かな設定が可能です。"
+
+#~ msgid "Individuality is king. End-users can easily create custom widgets in the dashboard."
+#~ msgstr "個性は重要です。エンドユーザーは、簡単にダッシュボードでカスタムウィジェットを作成できます。"
+
+#~ msgid "|custom-widgets|"
+#~ msgstr "|custom-widgets|"
+
+#~ msgid "custom-widgets"
+#~ msgstr "custom-widgets"
+
+#~ msgid "There are two different widgets types available:"
+#~ msgstr "以下の 2 つのタイプのウィジェットが利用可能です。"
+
+#~ msgid "Axon Ivy Process"
+#~ msgstr "Axon Ivy プロセス"
+
+#~ msgid "External URL"
+#~ msgstr "外部 URL"
+
+#~ msgid "An external URL embeds the corresponding website into your dashboard. This feature is helpful to integrate enterprise content management systems or knowledge sites."
+#~ msgstr "外部 URL は、対応するウェブサイトをダッシュボードに埋め込みます。この機能を利用して、エンタープライズコンテンツ管理システムやナレッジサイトを統合できます。"
+
+#~ msgid "Specify your Axon Ivy Process as a widget element and display your process directly in your custom dashboard."
+#~ msgstr "Axon Ivy プロセスをウィジェットの要素として指定し、プロセスをカスタムダッシュボードに直接表示します。"
+
+#~ msgid "Switch between an image, grid, and compact mode to display available processes."
+#~ msgstr "画像、グリッド、コンパクトモードを切り替えて、利用可能なプロセスを表示します。"
+
+#~ msgid "|adjustable-look-for-process-list|"
+#~ msgstr "|adjustable-look-for-process-list|"
+
+#~ msgid "adjustable-look-for-process-list"
+#~ msgstr "adjustable-look-for-process-list"
+
+#~ msgid "A picture says a thousand words. This saying is true and applies to business processes. The requirements of end-users must be met. The process starts with image support to contribute to a beautiful appearance and help work quickly and purposefully."
+#~ msgstr "「百聞は一見に如かず」このことわざは、ビジネスプロセスにも当てはまります。エンドユーザーの要件は満たさなければなりません。プロセスの開始が画像に対応したことで、美しい外観になり、素早く、目的を持って作業できます。"
+
+#~ msgid "New & Noteworthy 9.2"
+#~ msgstr "9.2 の新機能と注目すべき変更点"
+
+#~ msgid "Task/Case details configuration"
+#~ msgstr "タスク／ケースの詳細の設定"
+
+#~ msgid "Task/Case details are well structured, user can drag and drop the widgets and they can be configured via variable (JSON file)."
+#~ msgstr "タスク／ケースの詳細の構成が整えられ、ユーザーはウィジェットをドラッグ＆ドロップできます。変数による設定も可能です（JSON ファイル）。"
+
+#~ msgid "Users can reset their passwords easily using the standard password reset feature integrated in Axon Ivy Portal"
+#~ msgstr "ユーザーは、Axon Ivy Portal に統合された標準的なパスワードのリセット機能を使用して、簡単にパスワードをリセットできます。"
+
+#~ msgid "|login-screen| |send-email-screen|"
+#~ msgstr "|login-screen| |send-email-screen|"
+
+#~ msgid "login-screen"
+#~ msgstr "login-screen"
+
+#~ msgid "send-email-screen"
+#~ msgstr "send-email-screen"
+
+#~ msgid "We have listened to you! Business users requested to export specific lists from Axon Ivy Portal to perform further analysis in Microsoft Excel. Now they have the possibility to export any list with one mouse click."
+#~ msgstr "私たちはユーザーの声に耳を傾けます。特定のリストを Axon Ivy Portal からエクスポートして、Microsoft Excel でさらに分析を行いたいというリクエストがビジネスユーザーから寄せられていました。これからは、どのリストでもワンクリックでエクスポートできます。"
+
+#~ msgid "|task-key-information|"
+#~ msgstr "|task-key-information|"
+
+#~ msgid "task-key-information"
+#~ msgstr "task-key-information"
+
+#~ msgid "You don’t see the forest for the trees? Not anymore! Switch to the new grid view to display your process list in a more user-friendly way."
+#~ msgstr "「木を見て森を見ず」になっていませんか。もう大丈夫です。新しいグリッド表示に切り替えて、もっと分かりやすくプロセスリストを表示できます。"
+
+#~ msgid "|portal-process-grid-view-page|"
+#~ msgstr "|portal-process-grid-view-page|"
+
+#~ msgid "portal-process-grid-view-page"
+#~ msgstr "portal-process-grid-view-page"
+
+#~ msgid "Only you know the details and therefore, any detail page for tasks or cases can be restyled using drag and drop widgets. Create your own detail page with your specific content and without the need of programming."
+#~ msgstr "詳細を知っているのはユーザーだけです。ドラッグ＆ドロップウィジェットを使用して、タスクまたはケースの詳細ページのスタイルを変更できます。独自のコンテンツで自分だけの詳細ページを作成しましょう。プログラミングは必要ありません。"
+
+#~ msgid "|detailed-task-information|"
+#~ msgstr "|detailed-task-information|"
+
+#~ msgid "detailed-task-information"
+#~ msgstr "detailed-task-information"
+
+#~ msgid "|case-details|"
+#~ msgstr "|case-details|"
+
+#~ msgid "case-details"
+#~ msgstr "case-details"
+
+#~ msgid "Make it your own way with the Axon Ivy Portal. Users can optimize process work and customize the Axon Ivy Portal to their own taste."
+#~ msgstr "Axon Ivy Portal にも個性を。ユーザーは、プロセス作業を最適化し、Axon Ivy Portal を独自のテイストでカスタマイズできます。"
+
+#~ msgid "|my-profile-save|"
+#~ msgstr "|my-profile-save|"
+
+#~ msgid "my-profile-save"
+#~ msgstr "my-profile-save"
+
+#~ msgid "New override approach"
+#~ msgstr "新しいオーバーライド方法"
+
+#~ msgid "Portal uses HTML Dialog Override instead of Subprocess Override for customization."
+#~ msgstr "ポータルは、サブプロセスのオーバーライドの代わりに HTML ダイアログのオーバーライドを使用して、カスタマイズを行います。"
+
+#~ msgid "User and role selection component"
+#~ msgstr "ユーザーとロールの選択コンポーネント"
+
+#~ msgid "If you need user and role selection, use Portal component instead of implementing yourself. For details refer to :ref:`components-portal-components-user-selection` and :ref:`components-portal-components-role-selection`."
+#~ msgstr "ユーザーとロールの選択が必要な場合、自分で行う代わりに、ポータルのコンポーネントを使用できます。詳細については、:ref:`components-portal-components-user-selection` と :ref:`components-portal-components-role-selection` を参照してください。"
+
+#~ msgid "New & Noteworthy 9.1"
+#~ msgstr "9.1 の新機能と注目すべき変更点"
+
+#~ msgid "My profile"
+#~ msgstr "マイプロフィール"
+
+#~ msgid "My profile replaces for language setting and email setting. Also, introduce the general setting for you can configure the Portal according to your requirements"
+#~ msgstr "マイプロフィールでも、言語の設定やメールの設定を行うことができます。また、要件に合わせてポータルを設定可能な一般設定も用意されています。"
+
+#~ msgid "|my-profile|"
+#~ msgstr "|my-profile|"
+
+#~ msgid "my-profile"
+#~ msgstr "my-profile"
+
+#~ msgid "New absence management"
+#~ msgstr "新しい不在管理"
+
+#~ msgid "New UI and user can choose substitute as permanent or temporary for personal task."
+#~ msgstr "UI が新しくなり、ユーザーは自分のタスクの恒久的な代行者や一時的な代行者を選択できます。"
+
+#~ msgid "|absence|"
+#~ msgstr "|absence|"
+
+#~ msgid "absence"
+#~ msgstr "absence"
+
+#~ msgid "Further improvements"
+#~ msgstr "その他の改良点"
+
+#~ msgid "Filter case by owner in case list and task analysis if case owner is enabled."
+#~ msgstr "ケースオーナーが有効な場合、ケースリストやタスクの分析に含まれるケースをオーナーでフィルタリングできます。"
