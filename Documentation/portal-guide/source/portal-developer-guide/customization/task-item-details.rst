@@ -7,11 +7,13 @@ TaskItemDetails is a built-in component of Portal which contains role, user, tas
 
 Each TaskItemDetails contains
 
--  **Data and Description** ``1``
+-  **Summary** ``1``
 
--  **Documents** ``2``
+-  **Data and Description** ``2``
 
--  **Histories** ``3``
+-  **Documents** ``3``
+
+-  **Histories** ``4``
 
 -  **Custom panels (widgets)**
 
@@ -50,9 +52,9 @@ How to configure widgets in task details
       ``filters`` will never be displayed** - this is a common mistake when adapting the examples
       below.
    #. If no entry has that exact ``id`` either, Portal falls back to its own built-in default
-      layout (the 3-widget layout shown below), silently ignoring everything you configured.
+      layout (the 4-widget layout shown below), silently ignoring everything you configured.
 
--  Default configuration includes 3 widgets.
+-  Default configuration includes 4 widgets.
 
    .. code-block:: javascript
 
@@ -68,10 +70,17 @@ How to configure widgets in task details
             "widgets": 
             [
                {
+                  "id": "summary",
+                  "type": "summary",
+                  "layout": {
+                     "x": 0, "y": 0, "w": 6, "h": 12
+                  }
+               },
+               {
                   "id": "information",
                   "type": "information",
                   "layout": {
-                     "x": 0, "y": 0, "w": 6, "h": 30
+                     "x": 0, "y": 12, "w": 6, "h": 18
                   }
                },
                {
@@ -121,7 +130,7 @@ How to configure widgets in task details
 
 -  Structure of each widget inside task details layout in variable **Portal.TaskDetails**:
 
-   ``type``: Supported values: ``information``, ``document``, ``history``, ``custom``
+   ``type``: Supported values: ``summary``, ``information``, ``document``, ``history``, ``custom``
 
    ``x``: column index. HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``
 
@@ -163,6 +172,7 @@ How to configure widgets in task details
    -  ``x + w`` must **not be larger** than **12**.
    -  For data of custom widget, if you input ``processPath``, don't input ``url``. You can only use one of them.
    -  We support all task business states for filter type ``states``. Please refer to :doc-url:`Task Business States </reference/public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` to check for available task business states.
+   -  The ``summary`` widget contains the Start button, task actions, priority, state and due date. Add it to your layouts when upgrading to 14.0.0.
 
 
 Show Custom Panels (Widgets)
@@ -203,9 +213,15 @@ There are **two steps** for adding new custom panels.
             "widgets":
                [
                   {
+                     "type": "summary",
+                     "layout": {
+                        "x": 0, "y": 20, "w": 6, "h": 12
+                     }
+                  },
+                  {
                      "type": "information",
                      "layout": {
-                        "x": 0, "y": 20, "w": 6, "h": 60
+                        "x": 0, "y": 32, "w": 6, "h": 48
                      }
                   },
                   {
@@ -263,9 +279,15 @@ There are **two steps** for adding new custom panels.
                "id": "default-task-detail",
                "widgets": [
                   {
+                     "type": "summary",
+                     "layout": {
+                     "x": 0, "y": 0, "w": 4, "h": 12
+                     }
+                  },
+                  {
                      "type": "information",
                      "layout": {
-                     "x": 0, "y": 0, "w": 4, "h": 60
+                     "x": 0, "y": 12, "w": 4, "h": 48
                      }
                   },
                   {
@@ -297,9 +319,15 @@ There are **two steps** for adding new custom panels.
                   "id": "default-task-detail",
                   "widgets": [
                      {
+                        "type": "summary",
+                        "layout": {
+                        "x": 0, "y": 0, "w": 6, "h": 12
+                        }
+                     },
+                     {
                         "type": "information",
                         "layout": {
-                        "x": 0, "y": 0, "w": 6, "h": 60
+                        "x": 0, "y": 12, "w": 6, "h": 48
                         }
                      },
                      {
