@@ -1,15 +1,19 @@
 # Axon Ivy Portal
-**Axon Ivy Portal** is the centerpiece for your daily work with the applications you / your company implemented using the **Axon Ivy Platform**. 
-With a web-based, modern interface the Portal provides you with key functionalities on all your devices:
+**Axon Ivy Portal** is your centralized entry point for working with business applications built on the **Axon Ivy Platform**.
 
-* Access your / your company's applications and start new cases
-* Manage and fulfill tasks assigned to you or your roles
-* Understand what is going on by using on-the-spot statistics and historic data on all your cases and tasks
-* Improve your Axon Ivy Portal experience and efficiency through the built-in customization options
+Designed for both end users and business teams, the Portal streamlines your daily operations through an intuitive, web-based interface that runs seamlessly across desktop and mobile devices.
+
+With the Portal, you can:
+
+* **Start new business processes** quickly through the **Process List Widget** — launch workflows with just a few clicks.
+* **Manage cases** through the **Case List Widget** — view, track, and follow up on all process instances you are involved in.
+* **Work on your tasks** using the **Task List Widget** — easily view pending assignments, deadlines, and priorities.
+* **Analyze your workload** via the **Statistics Widget** — monitor performance and uncover trends with charts and metrics.
+* **Customize your workspace** — configure dashboards and widgets to fit your working style and preferences.
+
+The **Axon Ivy Portal** is built with extensibility and customization in mind. From personalized dashboards to deep integration with your business logic, you can tailor the Portal to meet the needs of individuals, teams, and departments.
 
 ![Portal](images/portal.png)
-
-
 
 ## Demo
 
@@ -29,9 +33,13 @@ See **Portal Header** for details.
 
 ![axon-ivy-portal-header](images/axon-ivy-portal-header.png)
 
-* The menu on the left side is always available and gives you access to all **processes**, **cases**, **tasks**, and other features of the **Axon Ivy Portal**.
-If the menu is minimized, you could hover to the menu to enlarge it.
-You may enlarge permanently the menu by clicking on the pin-icon icon in the top left corner. In the center you see **your personal dashboard** providing you instant access to **your processes**, **cases**, **tasks**, and performance indicators.
+* The **Sidebar** on the left side gives you access to the **Processes**, **Cases**, **Tasks**, and **Portal Configuration** pages.
+Administrators can configure the sidebar to use one of three behaviours: **Hover**, **Click**, or **Stick**.
+In the default **Hover** mode, the sidebar has two states:
+  * **Minimized**: Hover over the sidebar to temporarily expand it.
+  * **Pinned**: Click the pin icon in the top-left corner to keep the sidebar permanently expanded.
+
+* The **main content area** in the center shows **your personal dashboard** with your **processes**, **cases**, **tasks**, and performance indicators.
 
 ![Portal](images/portal.png)
 
@@ -41,7 +49,13 @@ Just click on the corresponding link below to get more information.
 
 ![user-example-demo](images/user-example-demo.png)
 
+### Sample dashboards
+With **Portal User Examples**, the Portal provides two sample dashboards in the top menu:
 
+* **User Guide Dashboard**: introduces the standard dashboard widgets (welcome, process, case, task, and statistic widgets) with short explanations for each of them.
+See **Portal Guide > User Guide > Dashboard** for details.
+* **KPI Procurement Overview**: demonstrates the Custom Statistics Widgets, which visualize KPIs of procurement processes in a fully customizable way.
+See **Portal Guide > User Guide > Statistic Chart > Sample: KPI Procurement Overview** for details.
 
 ## Setup
 
