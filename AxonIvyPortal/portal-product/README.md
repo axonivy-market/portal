@@ -43,14 +43,8 @@ In the default **Hover** mode, the sidebar has two states:
 
 ![Portal](images/portal.png)
 
-### Welcome example
-Now, start the **User example guide** process to find some demo processes available in the **Axon Ivy Portal**.
-Just click on the corresponding link below to get more information.
-
-![user-example-demo](images/user-example-demo.png)
-
 ### Sample dashboards
-With **Portal User Examples**, the Portal provides two sample dashboards in the top menu:
+In **Axon Ivy Engine demo mode**, the Portal provides two sample dashboards in the sidebar:
 
 * **User Guide Dashboard**: introduces the standard dashboard widgets (welcome, process, case, task, and statistic widgets) with short explanations for each of them.
 See **Portal Guide > User Guide > Dashboard** for details.
