@@ -12,11 +12,12 @@ plus the ability to add custom panels at multiple insertion points.
 
 Each CaseItemDetails contains
 
-- **CaseItemGeneralInformation** ``1``
-- **CaseItemDocument** ``2``
-- **CaseItemRelatedCases** ``3``
-- **CaseItemRelatedTasks** ``4``
-- **CaseItemHistories** ``5``
+- **CaseItemSummary** ``1``
+- **CaseItemGeneralInformation** ``2``
+- **CaseItemDocument** ``3``
+- **CaseItemRelatedCases** ``4``
+- **CaseItemRelatedTasks** ``5``
+- **CaseItemHistories** ``6``
 - **CaseItemBusinessDetails**
 -  Case Details custom panel: ``caseItemDetailCustomTop``,
    ``caseItemDetailCustomMiddle``, ``caseItemDetailCustomBottom``
@@ -57,9 +58,9 @@ How to Configure Widgets in Case Details
       ``filters`` will never be displayed** - this is a common mistake when adapting the examples
       below.
    #. If no entry has that exact ``id`` either, Portal falls back to its own built-in default
-      layout (the 5-widget layout shown below), silently ignoring everything you configured.
+      layout (the 6-widget layout shown below), silently ignoring everything you configured.
 
--  The default configuration includes five widgets:
+-  The default configuration includes six widgets:
 
    .. code-block:: javascript
       
@@ -70,13 +71,23 @@ How to Configure Widgets in Case Details
                "id": "default-case-detail",
                "widgets": [
                   {
+                     "type": "summary",
+                     "id": "summary",
+                     "layout": {
+                        "w": 6,
+                        "h": 12,
+                        "x": 0,
+                        "y": 0
+                     }
+                  },
+                  {
                      "type": "information",
                      "id": "information",
                      "layout": {
                         "w": 6,
-                        "h": 40,
+                        "h": 28,
                         "x": 0,
-                        "y": 0
+                        "y": 12
                      }
                   },
                   {
@@ -143,7 +154,8 @@ How to Configure Widgets in Case Details
 
       ``id``: ID of widget.
 
-      ``type``: type of widget, there are 7 types: 
+      ``type``: type of widget, there are 8 types: 
+      -  ``summary``
       -  ``information``
       -  ``document``
       -  ``technicalCase``
@@ -179,6 +191,7 @@ How to Configure Widgets in Case Details
       - ``x + w`` must **not be larger** than **12**.
       - We support all case business states in filter type ``states``.
       - The built-in widget type ``businessDetails`` is not part of the default configuration and will only be displayed if the :ref:`🔑ShowCaseDetails <ShowCaseDetails>` permission is granted.
+      - The ``summary`` widget contains the case actions, ID, state and category. Add it to your layouts when upgrading to 14.0.0.
 
 
 .. _customization-case-item-details-how-to-override-ui-custom-body:
@@ -240,13 +253,23 @@ The following two steps are necessary to add new custom panels:
                "id": "default-case-detail",
                "widgets": [
                   {
+                     "type": "summary",
+                     "id": "summary",
+                     "layout": {
+                        "w": 6,
+                        "h": 12,
+                        "x": 0,
+                        "y": 0
+                     }
+                  },
+                  {
                      "type": "information",
                      "id": "information",
                      "layout": {
                         "w": 6,
-                        "h": 40,
+                        "h": 28,
                         "x": 0,
-                        "y": 0
+                        "y": 12
                      }
                   },
                   {
@@ -336,13 +359,23 @@ The following two steps are necessary to add new custom panels:
                "id": "default-case-detail",
                "widgets": [
                   {
-                  "type": "information",
-                  "id": "information",
+                  "type": "summary",
+                  "id": "summary",
                   "layout": {
                      "x": 0,
                      "y": 0,
                      "w": 6,
-                     "h": 40
+                     "h": 12
+                  }
+                  },
+                  {
+                  "type": "information",
+                  "id": "information",
+                  "layout": {
+                     "x": 0,
+                     "y": 12,
+                     "w": 6,
+                     "h": 28
                   }
                   },
                   {
@@ -381,13 +414,23 @@ The following two steps are necessary to add new custom panels:
                "id": "default-case-detail",
                "widgets": [
                   {
-                     "type": "information",
-                     "id": "information",
+                     "type": "summary",
+                     "id": "summary",
                      "layout": {
                         "x": 0,
                         "y": 0,
                         "w": 6,
-                        "h": 40
+                        "h": 12
+                  }
+                  },
+                  {
+                     "type": "information",
+                     "id": "information",
+                     "layout": {
+                        "x": 0,
+                        "y": 12,
+                        "w": 6,
+                        "h": 28
                   }
                   },
                   {
