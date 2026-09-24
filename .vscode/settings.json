@@ -1,0 +1,4 @@
+{
+  "axonivy.process.animation.animate": false,
+  "java.server.launchMode": "Hybrid"
+}
