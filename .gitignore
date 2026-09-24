@@ -6,7 +6,6 @@ Showcase/InternalSupport/target/
 **/target/
 **/logs/
 **/mvn-deps/
-.vscode
 AxonIvyPortal/portal/bin/src_dataClasses/
 .copilot/**
 .claude
