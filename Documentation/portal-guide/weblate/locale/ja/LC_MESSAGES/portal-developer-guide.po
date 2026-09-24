@@ -10417,14 +10417,12 @@ msgid "New & Noteworthy"
 msgstr "新機能と注目点"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:65
-#, fuzzy
 msgid "New & Noteworthy 14"
-msgstr "12 の新機能と注目すべき変更点"
+msgstr "14 の新機能と注目すべき変更点"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:67
-#, fuzzy
 msgid "Check out more information on `release 14.0 <https://dev.axonivy.com/news/14.0>`__."
-msgstr "`リリース 12.0 <https://dev.axonivy.com/news/12.0>`__ .で詳細情報を確認してください。"
+msgstr "`リリース 14.0 <https://dev.axonivy.com/news/14.0>`__ で詳細情報を確認してください。"
 
 #: ../../source/portal-developer-guide/introduction/index.rst:72
 msgid "New & Noteworthy 12"
