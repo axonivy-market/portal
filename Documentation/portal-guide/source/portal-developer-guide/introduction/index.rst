@@ -59,6 +59,13 @@ If you encounter issues during development or deployment:
 New & Noteworthy
 ================
 
+.. _introduction-new-and-note-worthy-14.0:
+
+New & Noteworthy 14
+-------------------
+
+Check out more information on `release 14.0 <https://dev.axonivy.com/news/14.0>`__.
+
 .. _introduction-new-and-note-worthy-12.0:
 
 New & Noteworthy 12
