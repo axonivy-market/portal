@@ -147,11 +147,13 @@ public class PortalConfigurationPage extends TemplatePage {
   public void selectMenuType(String menuKindLabel) {
     $("[id$='menu-configuration-form:menu-type']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    clickByJavaScript($("[id$='menu-type_panel']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$$("li").filter(Condition.text(menuKindLabel)).first()
-        .shouldBe(getClickableCondition()));
-    $("[id$='menu-type_label']").shouldHave(text(menuKindLabel), DEFAULT_TIMEOUT);
-    $("[id$='menu-type_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    SelenideElement panel = $("[id$='menu-type_panel']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    SelenideElement targetOption = panel.$$("li").filter(Condition.exactText(menuKindLabel)).first()
+        .shouldBe(Condition.visible, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
+    // Real click dispatches pointer/mouse events that PrimeFaces relies on, unlike a synthetic JS click
+    targetOption.scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center)).click();
+    $("[id$='menu-type_label']").shouldHave(Condition.exactText(menuKindLabel), DEFAULT_TIMEOUT);
+    panel.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void setExternalLink(String url) {
