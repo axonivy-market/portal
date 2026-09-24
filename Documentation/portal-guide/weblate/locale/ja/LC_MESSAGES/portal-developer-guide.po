@@ -950,8 +950,8 @@ msgid "If you deploy Portal with a custom application name, update the ``applica
 msgstr "Portal をカスタムアプリケーション名でデプロイされる場合、両方の XHTML ファイル内の ``application`` パラメータを、お客様の Portal アプリケーション名に合わせて更新してください。"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:193
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:285
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:339
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:307
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:367
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:780
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:742
 msgid "Result"
@@ -1293,361 +1293,378 @@ msgid "Each CaseItemDetails contains"
 msgstr "CaseItemDetails には以下が含まれます。"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:15
-msgid "**CaseItemGeneralInformation** ``1``"
-msgstr "**CaseItemGeneralInformation** ``1``"
-
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:16
-msgid "**CaseItemDocument** ``2``"
+#, fuzzy
+msgid "**CaseItemSummary** ``1``"
 msgstr "**CaseItemDetailsDocuments** ``2``"
 
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:16
+#, fuzzy
+msgid "**CaseItemGeneralInformation** ``2``"
+msgstr "**CaseItemGeneralInformation** ``1``"
+
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:17
-msgid "**CaseItemRelatedCases** ``3``"
-msgstr "**CaseItemDetailsRelatedCases** ``3``"
+#, fuzzy
+msgid "**CaseItemDocument** ``3``"
+msgstr "**CaseItemDetailsDocuments** ``2``"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:18
-msgid "**CaseItemRelatedTasks** ``4``"
-msgstr "**CaseItemDetailsRelatedTasks** ``4``"
+#, fuzzy
+msgid "**CaseItemRelatedCases** ``4``"
+msgstr "**CaseItemDetailsRelatedCases** ``3``"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:19
-msgid "**CaseItemHistories** ``5``"
-msgstr "**CaseItemDetailsHistories** ``5``"
+#, fuzzy
+msgid "**CaseItemRelatedTasks** ``5``"
+msgstr "**CaseItemDetailsRelatedTasks** ``4``"
 
 #: ../../source/portal-developer-guide/customization/case-item-details.rst:20
+#, fuzzy
+msgid "**CaseItemHistories** ``6``"
+msgstr "**CaseItemDetailsHistories** ``5``"
+
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:21
 msgid "**CaseItemBusinessDetails**"
 msgstr "**ケース項目ビジネス詳細**"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:21
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:22
 msgid "Case Details custom panel: ``caseItemDetailCustomTop``, ``caseItemDetailCustomMiddle``, ``caseItemDetailCustomBottom``"
 msgstr "ケースの詳細のカスタムパネル： ``caseItemDetailCustomTop`` 、 ``caseItemDetailCustomMiddle`` 、 ``caseItemDetailCustomBottom``"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:24
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:25
 msgid "|case-standard-1|"
 msgstr "|case-standard-1|"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:441
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:484
 msgid "case-standard-1"
 msgstr "case-standard-1"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:26
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:27
 msgid "|case-standard-2|"
 msgstr "|case-standard-2|"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:442
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:485
 msgid "case-standard-2"
 msgstr "case-standard-2"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:28
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:29
 msgid "All visible widgets are configured in :ref:`variable Portal.CaseDetails<case-details-configuration-variable>`"
 msgstr "表示可能なウィジェットはすべて :ref:`variable Portal.CaseDetails <case-details-configuration-variable>` で設定されます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:33
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:34
 msgid "How to Configure Widgets in Case Details"
 msgstr "ケースの詳細ページのウィジェットを設定する方法"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:35
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:36
 msgid "Settings of all visible widgets on the Case Details page are saved in the **variable Portal.CaseDetails**."
 msgstr "ケースの詳細ページで表示可能なすべてのウィジェットの設定は、 **Portal.CaseDetails 変数** に保存されます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:36
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:37
 msgid "In the Engine Cockpit, an administrator can configure widgets in the variable **Portal.CaseDetails** on the Settings page. |edit-variable-portal-case-details|"
 msgstr "管理者は、エンジンコックピットで、設定ページの **Portal.CaseDetails** 変数でウィジェットを設定できます。|edit-variable-portal-case-details|"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:443
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:486
 msgid "edit-variable-portal-case-details"
 msgstr "edit-variable-portal-case-details"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:39
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:40
 msgid "The variable's value is a wrapper object: ``version`` identifies the format of the JSON collection itself, and ``items`` holds the list of case detail layouts. This wrapper-level ``version`` is what Portal reads (and migrates) on import - individual layouts do not carry their own ``version`` field."
 msgstr "この変数の値はラッパーオブジェクトです：``version`` はJSONコレクション自体のフォーマットを識別し、``items`` はケース詳細レイアウトのリストを保持します。このラッパーレベルの ``version`` は、インポート時にPortalが読み取り（および移行に使用）するものです。個々のレイアウトは、それぞれ独自の ``version`` フィールドを持ちません。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:43
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:36
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:44
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:38
 msgid "**How Portal picks which layout to display** - this determines whether a change to this variable has any visible effect at all:"
 msgstr "**Portalがどのレイアウトを表示するか決定する方法** - この変数への変更が何らかの見た目の効果を持つかどうかを左右します。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:46
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:39
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:47
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:41
 msgid "If the current user has ever clicked **Edit Layout** on this page and saved (or was previously in edit mode when a save was triggered), Portal uses **that user's own saved layout** and ignores this variable **entirely** for that user, indefinitely. The **Reset** button on this page does **not** clear this saved layout - it only discards unsaved changes made during the current edit session. There is currently no supported way to clear a user's saved layout from the UI. If a change to this variable appears to have no effect, check first whether the user you are testing with has ever saved a layout edit on this page."
 msgstr "現在のユーザーがこのページで **レイアウトを編集** をクリックして保存したことがある場合（または保存がトリガーされた時点で編集モードにあった場合）、Portalはそのユーザーに対して無期限に **そのユーザー自身の保存済みレイアウト** を使用し、この変数を **完全に** 無視します。このページの **リセット** ボタンはこの保存済みレイアウトを消去 **しません** - 現在の編集セッション中の未保存の変更を破棄するだけです。現在、UIからユーザーの保存済みレイアウトを消去する公式にサポートされた方法はありません。この変数への変更が効果を持たないように見える場合は、まずテストに使用しているユーザーがこのページでレイアウトの編集を保存したことがあるかどうかを確認してください。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:53
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:54
 msgid "Otherwise, Portal scans the ``items`` list for an entry whose ``filters`` match the current case (by ``categories`` or ``states``) and uses the first match."
 msgstr "それ以外の場合、Portalは ``items`` リストをスキャンし、（``categories`` または ``states`` によって）現在のケースに一致する ``filters`` を持つエントリを探し、最初に一致したものを使用します。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:55
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:56
 msgid "If no entry's ``filters`` match, Portal falls back to the entry whose ``id`` is exactly ``\"default-case-detail\"`` (case-sensitive). **An entry with any other ``id`` and no matching ``filters`` will never be displayed** - this is a common mistake when adapting the examples below."
 msgstr "どのエントリの ``filters`` も一致しない場合、Portalは ``id`` が正確に ``\"default-case-detail\"`` （大文字小文字を区別）であるエントリにフォールバックします。**他の ``id`` を持ち、一致する ``filters`` もないエントリは決して表示されません** - これは以下の例を応用する際によくある間違いです。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:59
-msgid "If no entry has that exact ``id`` either, Portal falls back to its own built-in default layout (the 5-widget layout shown below), silently ignoring everything you configured."
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:60
+#, fuzzy
+msgid "If no entry has that exact ``id`` either, Portal falls back to its own built-in default layout (the 6-widget layout shown below), silently ignoring everything you configured."
 msgstr "その正確な ``id`` を持つエントリもない場合、Portalは組み込みのデフォルトレイアウト（以下に示す5つのウィジェットのレイアウト）にフォールバックし、設定した内容をすべて黙って無視します。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:62
-msgid "The default configuration includes five widgets:"
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:63
+#, fuzzy
+msgid "The default configuration includes six widgets:"
 msgstr "デフォルト設定には 5 つのウィジェットが含まれます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:128
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:139
 msgid "The structure of each Case Details layout is saved in variable **Portal.CaseDetails**:"
 msgstr "各ケースの詳細のレイアウトの構造は、 **Portal.CaseDetails** 変数に保存されます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:130
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:141
 msgid "``id``: ID of layout."
 msgstr "``id``：レイアウトの ID。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:132
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:118
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:143
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:127
 msgid "``widgets``: definition of widgets in layout."
 msgstr "``widgets``：レイアウト内のウィジェットの定義。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:134
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:145
 msgid "``filters``: conditions to determine which cases are eligible to use the layout. There are two types of case filters:"
 msgstr "``filters``：レイアウトを使用可能なケースを決定する条件。以下の 2 つのタイプのケースフィルターがあります。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:136
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:147
 msgid "``categories`` (case categories)"
 msgstr "``categories`` （ケースのカテゴリー）"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:137
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:148
 msgid "``states`` (case business states)."
 msgstr "``states`` （ケースのビジネスの状態）."
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:139
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:150
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:522
 msgid "Refer to :doc-url:`Case business states </reference/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for available case business states."
 msgstr "利用可能なケースのビジネスの状態については、:doc-url:`ケースのビジネスの状態 </reference/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` を参照してください。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:142
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:153
 msgid "The structure of each widget inside the case details layout is stored in variable **Portal.CaseDetails**:"
 msgstr "ケースの詳細のレイアウトに含まれる各ウィジェットの構造は、 **Portal.CaseDetails** 変数に格納されます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:144
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:155
 msgid "``id``: ID of widget."
 msgstr "``id``：ウィジェットの ID。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:146
-msgid "``type``: type of widget, there are 7 types: -  ``information`` -  ``document`` -  ``technicalCase`` -  ``businessDetails`` -  ``relatedTask`` -  ``history`` -  ``custom``."
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:157
+#, fuzzy
+msgid "``type``: type of widget, there are 8 types: -  ``summary`` -  ``information`` -  ``document`` -  ``technicalCase`` -  ``businessDetails`` -  ``relatedTask`` -  ``history`` -  ``custom``."
 msgstr "``type``: ウィジェットの種類。7種類あります：‐  ``information``-  ``document``-  ``technicalCase``-  ``businessDetails``-  ``relatedTask``-  ``history``-  ``custom``。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:155
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:167
 msgid "``layout``: defines the UI styling of the widget."
 msgstr "``layout``：ウィジェットの UI のスタイル設定を定義します。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:157
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:169
 msgid "``x``: column index. HTML DOM Style ``left`` is computed as ``x / 12 * 100%``."
 msgstr "``x``：列インデックス。HTML DOM スタイル ``left`` は ``x / 12 * 100%`` として計算されます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:159
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:171
 msgid "``y``: row index. HTML DOM Style ``top`` is computed as ``y * 20px``."
 msgstr "``y``：行インデックス。HTML DOM スタイル ``top`` は ``y * 20px`` として計算されます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:161
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:173
 msgid "``w``: width in columns. HTML DOM Style ``width`` is computed as ``w / 12 * 100%``."
 msgstr "``w``：列数で表した幅。HTML DOM スタイル ``width`` は ``w / 12 * 100%`` として計算されます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:163
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:175
 msgid "``h``: height in rows. HTML DOM Style ``height`` is computed as ``h * 20px``."
 msgstr "``h``：行数で表した高さ。HTML DOM スタイル ``height`` は ``h * 20px`` として計算されます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:165
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:134
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:177
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:143
 msgid "The grid is 12 columns wide and one row is 20 pixels high. Each widget is then inset by 10 pixels on every side, so two neighbours end up 20 pixels apart."
 msgstr "グリッドの幅は12列で、1行の高さは20ピクセルです。各ウィジェットはさらに全方向に10ピクセルずつ内側にずらされるため、隣接する2つのウィジェット間は20ピクセル離れます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:168
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:180
 msgid "``styleClass`` (optional): add CSS Classes to HTML DOM."
 msgstr "``styleClass`` （任意）：CSS クラスを HTML DOM に追加します。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:170
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:182
 msgid "``style`` (optional): add inline style to HTML DOM."
 msgstr "``style`` （任意）：インラインスタイルを HTML DOM に追加します。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:172
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:184
 msgid "``data`` (for custom widget): data for custom widget, refer to :ref:`Show custom widgets <customization-case-item-details-how-to-override-ui-custom-body>`"
 msgstr "``data`` （カスタムウィジェット）：カスタムウィジェットのデータ。:ref:`カスタムウィジェットの表示 <customization-case-item-details-how-to-override-ui-custom-body>` を参照してください。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:176
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:188
 msgid "**Do not change** ``type`` and ``id`` of widgets."
 msgstr "ウィジェットの ``type`` と ``id`` は **変更しないでください**。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:177
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:189
 msgid "You can change ``x``, ``y``, ``w`` and ``h`` to update size and position of widgets."
 msgstr "``x``、 ``y``、 ``w``、 ``h`` を変更して、ウィジェットのサイズと位置を更新できます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:178
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:190
 msgid "``x``, ``y``, ``w`` and ``h`` have to be **integers**."
 msgstr "``x``、 ``y``、 ``w``、 ``h`` は **整数** で指定してください。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:179
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:163
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:191
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:172
 msgid "``x + w`` must **not be larger** than **12**."
 msgstr "``x + w`` は **12** を **超えてはなりません**。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:180
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:192
 msgid "We support all case business states in filter type ``states``."
 msgstr "フィルタータイプ  ``states`` ではすべてのケースのビジネスの状態がサポートされます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:181
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:193
 msgid "The built-in widget type ``businessDetails`` is not part of the default configuration and will only be displayed if the :ref:`🔑ShowCaseDetails <ShowCaseDetails>` permission is granted."
 msgstr "組み込みウィジェットタイプ ``businessDetails`` はデフォルト設定の一部ではなく、:ref:`🔑ShowCaseDetails <ShowCaseDetails>` 権限が付与されている場合にのみ表示されます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:187
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:194
+msgid "The ``summary`` widget contains the case actions, ID, state and category. Add it to your layouts when upgrading to 14.0.0."
+msgstr ""
+
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:200
 msgid "Show custom widgets"
 msgstr "カスタムウィジェットの表示"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:189
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:202
 msgid "For the custom widget, we have a new node is ``data`` inside of case details widget. The structure of ``data`` on each custom widget will be:"
 msgstr "カスタムウィジェット用に、ケースの詳細ウィジェット内に新しい ``data`` ノードを提供します。各カスタムウィジェットの ``data`` の構造は以下のとおりです。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:191
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:204
 msgid "``type``: type of custom widget panel, there are 3 types: ``caseItemDetailCustomTop``, ``caseItemDetailCustomMiddle``, ``caseItemDetailCustomBottom``."
 msgstr "``type``：カスタムウィジェットパネルのタイプ。 ``caseItemDetailCustomTop``、``caseItemDetailCustomMiddle``、``caseItemDetailCustomBottom`` の 3 つのタイプがあります。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:193
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:145
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:206
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:154
 msgid "``url``: URL for external website"
 msgstr "``url``：外部ウェブサイトの URL。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:195
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:208
 msgid "``processPath``: the user-friendly request path of the Ivy process which will be displayed in custom widget"
 msgstr "``processPath``：カスタムウィジェットに表示される Ivy プロセスのユーザーフレンドリーなリクエストパス。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:197
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:149
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:210
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:158
 msgid "``params``: parameters for the Ivy process above, each parameter can be defined as follows:"
 msgstr "``params``：上記の Ivy プロセスのパラメーター。各パラメーターは以下のように定義できます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:199
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:212
 msgid "Key name that will be the parameter name for the Ivy process above. Note: don't use ``caseId``."
 msgstr "上記の Ivy プロセスのパラメーター名となるキー名。注記： ``caseId`` は使用しないでください。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:201
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:214
 msgid "The key value for the case has to start with ``case.``. Supported are three values: ``case.id``, ``case.uuid``, ``case.category``."
 msgstr "``case.`` で始まる必要があるケースのキー値。 ``case.id``、 ``case.uuid`` と ``case.category`` の 3 つの値がサポートされます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:203
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:216
 msgid "Key value for case custom fields: must start with ``case.customFields.``, followed by custom field name."
 msgstr "カスタムケースフィールドのキー値は ``case.customFields.`` で始まり、その後にカスタムフィールド名が続く必要があります。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:205
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:218
 msgid "Other key values will be treated as a hard coded value."
 msgstr "その他のキー値は、ハードコーディングされた値として処理されます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:208
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:221
 msgid "To quickly understand how the JSON of custom case details looks like."
 msgstr "カスタムケースの詳細の JSON の概要を理解するには"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:210
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:223
 msgid "Refer to ``variables.Portal.CaseDetails.json`` file in ``portal-developer-examples/resources/files`` project."
 msgstr "``portal-developer-examples/resources/files`` プロジェクトの ``variables.Portal.CaseDetails.json`` ファイルを参照します。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:211
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:176
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:224
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:186
 msgid "Copy to the corresponding application folder located in the engine."
 msgstr "エンジン内の対応するアプリケーションフォルダーにコピーします。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:213
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:226
 msgid "e.g: <engine>/configuration/applications/<application>."
 msgstr "例：<engine>/configuration/applications/<application>"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:215
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:228
 msgid "Create some destroyed case or start the process ``Start Processes/CaseDetailsCustomWidgetExample/CreateEventTest.ivp`` in ``portal-developer-examples`` project."
 msgstr "破棄したケースを作成するか、 ``portal-developer-examples`` プロジェクトの ``Start Processes/CaseDetailsCustomWidgetExample/CreateEventTest.ivp`` プロセスを開始します。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:216
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:229
 msgid "Go to the homepage."
 msgstr "ホームページに移動します。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:217
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:230
 msgid "And then go to case details to check the new custom layout."
 msgstr "ケースの詳細に移動し、新しいカスタムレイアウトを確認します。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:219
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:184
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:232
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:194
 msgid "About how to configure Variables, refer to :doc-url:`Axon Ivy Variables </reference/configuration/variables.html>`"
 msgstr "変数の設定方法については、:doc-url:`Axon Ivy の変数 </reference/configuration/variables.html>` を参照してください。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:223
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:236
 msgid "Adding New Custom Panels"
 msgstr "新規カスタムパネルの追加"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:225
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:238
 msgid "The following two steps are necessary to add new custom panels:"
 msgstr "新規カスタムパネルを追加するには、以下の 2 つのステップが必要です。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:227
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:240
 msgid "The **Engine Administrator** has to configure the variable :ref:`Portal.CaseDetails<case-details-configuration-variable>` on the Cockpit Page to add custom widgets."
 msgstr "カスタムウィジェットを追加するには、 **エンジンの管理者** がコックピットページで :ref:`Portal.CaseDetails <case-details-configuration-variable>` 変数を設定する必要があります。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:232
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:245
 msgid "This is an example **Portal.CaseDetails** configuration that includes three custom widgets:"
 msgstr "以下は、3 つのカスタムウィジェットを含む **Portal.CaseDetails** 設定の例です。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:316
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:339
 msgid "To customize case details using an **IFrame**, you have to define one of the following two input parameters in the ``data`` node:"
 msgstr "**IFrame** を使用してケースの詳細をカスタマイズするには、 ``data`` ノードで以下の 2 つの入力パラメーターのいずれかを定義する必要があります。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:318
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:341
 msgid "``url`` if you want to use an external URL."
 msgstr "``url`` ：外部 URL を使用する場合。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:320
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:343
 msgid "``processPath`` if you want to use an Ivy process start. You may predefine parameters for the process by adding ``params`` to the ``data`` node."
 msgstr "``processPath`` ：Ivy のプロセス開始を使用する場合。 ``params`` を ``data`` ノードに追加して、プロセスのパラメーターを事前に定義できます。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:325
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:348
 msgid "Use only one of ``processPath`` or ``url``."
 msgstr "``processPath`` または ``url`` のいずれか 1 つのみを使用してください。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:328
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:351
 msgid "Here is an example of a customized case details page using an external URL:"
 msgstr "以下は、外部 URL を使用してカスタマイズしたケースの詳細ページの例です。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:367
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:436
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:400
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:479
 msgid "Result:"
 msgstr "結果："
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:369
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:402
 msgid "|case-customized-iframe-url|"
 msgstr "|case-customized-iframe-url|"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:444
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:487
 msgid "case-customized-iframe-url"
 msgstr "case-customized-iframe-url"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:371
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:404
 msgid "The following example shows a customized case details page using an ivy process start. Please refer to the ``CaseDetailsCustomWidgetExample`` process in ``portal-developer-examples`` for details."
 msgstr "以下の例は、ivy のプロセスの開始を使用してカスタマイズしたケースの詳細を示しています。詳細については、 ``portal-developer-examples`` の ``CaseDetailsCustomWidgetExample`` プロセスを参照してください。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:428
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:471
 msgid "Provide case custom fields:"
 msgstr "カスタムケースフィールドを用意します。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:430
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:473
 msgid "|case-customized-iframe-process-custom-field|"
 msgstr "|case-customized-iframe-process-custom-field|"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:445
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:488
 msgid "case-customized-iframe-process-custom-field"
 msgstr "case-customized-iframe-process-custom-field"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:432
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:475
 msgid "Map parameters to process data:"
 msgstr "パラメーターをプロセスデータにマップします。"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:434
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:477
 msgid "|case-customized-iframe-process-input-mapping|"
 msgstr "|case-customized-iframe-process-input-mapping|"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:446
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:489
 msgid "case-customized-iframe-process-input-mapping"
 msgstr "case-customized-iframe-process-input-mapping"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:438
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:481
 msgid "|case-customized-iframe-process|"
 msgstr "|case-customized-iframe-process|"
 
-#: ../../source/portal-developer-guide/customization/case-item-details.rst:447
+#: ../../source/portal-developer-guide/customization/case-item-details.rst:490
 msgid "case-customized-iframe-process"
 msgstr "case-customized-iframe-process"
 
@@ -3883,258 +3900,273 @@ msgid "Each TaskItemDetails contains"
 msgstr "TaskItemDetails には以下が含まれます。"
 
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:10
-msgid "**Data and Description** ``1``"
-msgstr "**データと説明** ``1``"
-
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:12
-msgid "**Documents** ``2``"
-msgstr "**ドキュメント** ``2``"
-
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:14
-msgid "**Histories** ``3``"
+#, fuzzy
+msgid "**Summary** ``1``"
 msgstr "**履歴** ``3``"
 
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:12
+#, fuzzy
+msgid "**Data and Description** ``2``"
+msgstr "**データと説明** ``1``"
+
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:14
+#, fuzzy
+msgid "**Documents** ``3``"
+msgstr "**ドキュメント** ``2``"
+
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:16
+#, fuzzy
+msgid "**Histories** ``4``"
+msgstr "**履歴** ``3``"
+
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:18
 msgid "**Custom panels (widgets)**"
 msgstr "**カスタムパネル（ウィジェット）**"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:18
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:20
 msgid "|task-standard|"
 msgstr "|task-standard|"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:344
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:372
 msgid "task-standard"
 msgstr "task-standard"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:20
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:22
 msgid "All visible widgets will be configured in :ref:`Variable Portal.TaskDetails<task-details-configuration-variable>`."
 msgstr "表示可能なウィジェットはすべて :ref:`Portal.TaskDetails<task-details-configuration-variable>` 変数で設定されます。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:26
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:28
 msgid "How to configure widgets in task details"
 msgstr "タスクの詳細ページのウィジェットを設定する方法"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:28
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:30
 msgid "Settings of all visible widgets on task details page are saved in **variable Portal.TaskDetails**."
 msgstr "タスクの詳細ページで表示可能なすべてのウィジェットの設定は、**Portal.TaskDetails** 変数に保存されます。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:29
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:31
 msgid "Cockpit Administrator can configure widgets via variable **Portal.TaskDetails** on Cockpit settings page. |edit-variable-portal-task-details|"
 msgstr "コックピットの管理者は、コックピット設定ページの **Portal.TaskDetails** 変数でウィジェットを設定できます。 |edit-variable-portal-task-details|"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:345
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:373
 msgid "edit-variable-portal-task-details"
 msgstr "edit-variable-portal-task-details"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:32
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:34
 msgid "The variable's value is a wrapper object: ``version`` identifies the format of the JSON collection itself, and ``items`` holds the list of task detail layouts. This wrapper-level ``version`` is what Portal reads (and migrates) on import - individual layouts do not carry their own ``version`` field."
 msgstr "この変数の値はラッパーオブジェクトです：``version`` はJSONコレクション自体のフォーマットを識別し、``items`` はタスク詳細レイアウトのリストを保持します。このラッパーレベルの ``version`` は、インポート時にPortalが読み取る（および移行に使用する）ものです。個々のレイアウトは、それぞれ独自の ``version`` フィールドを持ちません。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:46
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:48
 msgid "Otherwise, Portal scans the ``items`` list for an entry whose ``filters`` match the current task (by ``categories`` or ``states``) and uses the first match."
 msgstr "それ以外の場合、Portalは ``items`` リストをスキャンし、（``categories`` または ``states`` によって）現在のタスクに一致する ``filters`` を持つエントリを探し、最初に一致したものを使用します。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:48
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:50
 msgid "If no entry's ``filters`` match, Portal falls back to the entry whose ``id`` is exactly ``\"default-task-detail\"`` (case-sensitive). **An entry with any other ``id`` and no matching ``filters`` will never be displayed** - this is a common mistake when adapting the examples below."
 msgstr "どのエントリの ``filters`` も一致しない場合、Portalは ``id`` が正確に ``\"default-task-detail\"`` （大文字小文字を区別）であるエントリにフォールバックします。**他の ``id`` を持ち、一致する ``filters`` もないエントリは決して表示されません** - これは以下の例を応用する際によくある間違いです。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:52
-msgid "If no entry has that exact ``id`` either, Portal falls back to its own built-in default layout (the 3-widget layout shown below), silently ignoring everything you configured."
-msgstr "その正確な ``id`` を持つエントリもない場合、Portalは組み込みのデフォルトレイアウト（以下に示す3つのウィジェットのレイアウト）にフォールバックし、設定した内容をすべて黙って無視します。"
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:54
+#, fuzzy
+msgid "If no entry has that exact ``id`` either, Portal falls back to its own built-in default layout (the 4-widget layout shown below), silently ignoring everything you configured."
+msgstr "その正確な ``id`` を持つエントリもない場合、Portalは組み込みのデフォルトレイアウト（以下に示す5つのウィジェットのレイアウト）にフォールバックし、設定した内容をすべて黙って無視します。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:55
-msgid "Default configuration includes 3 widgets."
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:57
+#, fuzzy
+msgid "Default configuration includes 4 widgets."
 msgstr "デフォルト設定には 3 つのウィジェットが含まれます。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:114
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:123
 msgid "Structure of each task details layout in variable **Portal.TaskDetails**:"
 msgstr "**Portal.TaskDetails** 変数の各タスクの詳細のレイアウトの構造："
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:116
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:125
 msgid "``id``: ID which used to identify layout."
 msgstr "``id``：レイアウトの識別に使用する ID。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:120
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:129
 msgid "``filters``: conditions to determine which tasks can use the layout. There are 2 filter types: ``categories`` (task categories) and ``states`` (task business states)."
 msgstr "``filters``: レイアウトの使用を許可するタスクを決定する条件です。2種類のフィルタータイプがあります：``categories`` （タスクカテゴリ）と ``states`` （タスクのビジネス状態）です。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:122
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:131
 msgid "Structure of each widget inside task details layout in variable **Portal.TaskDetails**:"
 msgstr "**Portal.TaskDetails** 変数の各タスクの詳細のレイアウトに含まれる各ウィジェットの構造："
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:124
-msgid "``type``: Supported values: ``information``, ``document``, ``history``, ``custom``"
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:133
+#, fuzzy
+msgid "``type``: Supported values: ``summary``, ``information``, ``document``, ``history``, ``custom``"
 msgstr "``type``: サポートされる値: ``information``、``document``、``history``、``custom``"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:126
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:135
 msgid "``x``: column index. HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``"
 msgstr "``x``：列インデックス。HTML DOM スタイル ``left`` は ``x / 12 * 100%`` の式で計算されます。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:128
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:137
 msgid "``y``: row index. HTML DOM Style ``top`` will be calculated by formula ``y * 20px``"
 msgstr "``y``：行インデックス。HTML DOM スタイル ``top`` は ``y * 20px`` の式で計算されます。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:130
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:139
 msgid "``w``: width in columns. HTML DOM Style ``width`` will be calculated by formula ``w / 12 * 100%``"
 msgstr "``w``：列数で表した幅。HTML DOM スタイル ``width`` は ``w / 12 * 100%`` の式で計算されます。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:132
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:141
 msgid "``h``: height in rows. HTML DOM Style ``height`` will be calculated by formula ``h * 20px``"
 msgstr "``h``：行数で表した高さ。HTML DOM スタイル ``height`` は ``h * 20px`` の式で計算されます。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:137
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:146
 msgid "``styleClass`` (optional): add CSS Classes to HTML DOM"
 msgstr "``styleClass`` （任意）：CSS クラスを HTML DOM に追加します。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:139
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:148
 msgid "``style`` (optional): add inline style to HTML DOM (avoid inline styles when possible)."
 msgstr "``style`` (任意): HTML DOM にインラインスタイルを追加します（可能な限りインラインスタイルは避けてください）。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:141
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:150
 msgid "``data`` (for custom widget): data for custom widget using iframe"
 msgstr "``data`` （カスタムウィジェット）：iframe を使用するカスタムウィジェットのデータ。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:143
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:152
 msgid "``type``: type of custom widget which is not using IFrame. Supported values: ``taskItemDetailCustomPanelTop`` and ``taskItemDetailCustomPanelBottom``."
 msgstr "``type``: IFrameを使用しないカスタムウィジェットの種類です。サポートされる値は、``taskItemDetailCustomPanelTop`` および ``taskItemDetailCustomPanelBottom`` です。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:147
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:156
 msgid "``processPath``: the user-friendly request path of the Ivy process which will be displayed in the custom widget"
 msgstr "``processPath``：カスタムウィジェットに表示される Ivy プロセスのユーザーフレンドリーなリクエストパス。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:151
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:160
 msgid "Key name that will be parameter name for the Ivy process above. Note: don't use ``taskId``."
 msgstr "上記の Ivy プロセスのパラメーター名となるキー名。注記： ``taskId`` は使用しないでください。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:153
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:162
 msgid "Key value for task has to start with ``task.``. Supported are two values: ``task.id``, ``task.category``."
 msgstr "``task.`` で始まる必要があるタスクのキー値。 ``task.id`` と ``task.category`` の 2 つの値がサポートされます。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:155
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:164
 msgid "Key value for task custom fields have to start with ``task.customFields.``, follow by the custom field name."
 msgstr "カスタムタスクフィールドのキー値は ``task.customFields.`` で始まり、その後にカスタムフィールド名が続く必要があります。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:157
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:166
 msgid "Other key values will be treated as hard coded values."
 msgstr "その他のキー値は、ハードコーディングされた値として処理されます。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:160
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:169
 msgid "**Do not change** ``type`` of widgets. You can change ``x``, ``y``, ``w`` and ``h`` to update size and position of widgets."
 msgstr "ウィジェットの ``type`` は **変更しないでください**。``x``、``y``、``w``、``h`` を変更して、ウィジェットのサイズと位置を更新できます。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:162
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:171
 msgid "``x``, ``y``, ``w`` and ``h`` must be **integers**."
 msgstr "``x``、``y``、``w``、``h`` は **整数** で指定してください。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:164
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:173
 msgid "For data of custom widget, if you input ``processPath``, don't input ``url``. You can only use one of them."
 msgstr "カスタムウィジェットのデータについて、 ``processPath`` を入力する場合は ``url`` を入力しないでください。いずれか 1 つのみ使用できます。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:165
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:174
 msgid "We support all task business states for filter type ``states``. Please refer to :doc-url:`Task Business States </reference/public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` to check for available task business states."
 msgstr "フィルタタイプ ``states`` については、すべてのタスクビジネス状態をサポートしています。利用可能なタスクビジネス状態については、:doc-url:`Task Business States </reference/public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` を参照してください。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:169
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:175
+msgid "The ``summary`` widget contains the Start button, task actions, priority, state and due date. Add it to your layouts when upgrading to 14.0.0."
+msgstr ""
+
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:179
 msgid "Show Custom Panels (Widgets)"
 msgstr "カスタムパネル（ウィジェット）の表示"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:173
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:183
 msgid "To quickly understand how the JSON of custom task details looks like."
 msgstr "カスタムタスクの詳細の JSON の概要を理解するには"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:175
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:185
 msgid "Refer to ``variables.Portal.TaskDetails.json`` file in ``portal-developer-examples/resources/files`` project."
 msgstr "``portal-developer-examples/resources/files`` プロジェクトの ``variables.Portal.TaskDetails.json`` ファイルを参照します。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:178
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:188
 msgid "E.g., <engine>/configuration/applications/<application>"
 msgstr "例：<engine>/configuration/applications/<application>"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:180
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:190
 msgid "Create some destroyed task or start the process ``Start Processes/TaskDetailsCustomWidgetExample/SalesManagement.ivp`` in ``portal-developer-examples`` project."
 msgstr "破棄したタスクを作成するか、 ``portal-developer-examples`` プロジェクトの ``Start Processes/TaskDetailsCustomWidgetExample/SalesManagement.ivp`` プロセスを開始します。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:181
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:191
 msgid "Go to the example homepage by the process ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp``"
 msgstr "``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp`` プロセスでサンプルホームページに移動します。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:182
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:192
 msgid "Lastly, go to task details to check the new custom layout."
 msgstr "最後に、タスクの詳細に移動し、新しいカスタムレイアウトを確認します。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:187
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:197
 msgid "There are **two steps** for adding new custom panels."
 msgstr "以下の **2 つのステップ** で、新しいカスタムパネルを追加します。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:189
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:199
 msgid "The **Engine administrator** has to configure variable :ref:`Portal.TaskDetails<task-details-configuration-variable>` on Cockpit Page to add custom widgets."
 msgstr "カスタムウィジェットを追加するには、 **エンジンの管理者** がコックピットページで :ref:`Portal.TaskDetails<task-details-configuration-variable>` 変数を設定する必要があります。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:194
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:204
 msgid "Example Portal.TaskDetails with layout configuration includes 4 custom widgets:"
 msgstr "レイアウト設定を含む Portal.TaskDetails の例には、4 つのカスタムウィジェットが含まれます。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:247
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:263
 msgid "To customize task details using an IFrame, please make sure"
 msgstr "IFrameを使用してタスクの詳細をカスタマイズする場合は、必ず以下の点をご確認ください。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:249
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:265
 msgid "Must input parameter ``url`` if you want to use external URL."
 msgstr "外部 URL を使用する場合は、 ``url`` パラメーターを入力する必要があります。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:251
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:267
 msgid "Must input parameter ``ivy`` if you want to start an Ivy process."
 msgstr "Ivyプロセスを開始する場合は、入力パラメータ ``ivy`` を指定する必要があります。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:253
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:269
 msgid "If you usestart process, you can predefine parameter for ``params``."
 msgstr "開始プロセスを使用する場合は、 ``params`` のパラメーターを事前に定義できます。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:255
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:271
 msgid "Customized task details using external URL"
 msgstr "外部 URL を使用してカスタマイズしたタスクの詳細"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:287
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:309
 msgid "|task-customized-iframe-url|"
 msgstr "|task-customized-iframe-url|"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:346
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:374
 msgid "task-customized-iframe-url"
 msgstr "task-customized-iframe-url"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:289
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:311
 msgid "Customized task details using a process start, please refer to ``TaskDetailsCustomWidgetExample`` in ``portal-developer-examples`` for details."
 msgstr "カスタマイズされたタスクの詳細については、プロセスの開始方法をご参照ください。詳細は、``TaskDetailsCustomWidgetExample`` および ``portal-developer-examples`` をご確認ください。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:331
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:359
 msgid "Provide task custom field"
 msgstr "カスタムタスクフィールドを用意します。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:333
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:361
 msgid "|task-customized-iframe-process-custom-field|"
 msgstr "|task-customized-iframe-process-custom-field|"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:348
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:376
 msgid "task-customized-iframe-process-custom-field"
 msgstr "task-customized-iframe-process-custom-field"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:335
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:363
 msgid "Map parameters to process data"
 msgstr "パラメーターをプロセスデータにマップします。"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:337
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:365
 msgid "|task-customized-iframe-process-input-mapping|"
 msgstr "|task-customized-iframe-process-input-mapping|"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:349
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:377
 msgid "task-customized-iframe-process-input-mapping"
 msgstr "task-customized-iframe-process-input-mapping"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:341
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:369
 msgid "|task-customized-iframe-process|"
 msgstr "|task-customized-iframe-process|"
 
-#: ../../source/portal-developer-guide/customization/task-item-details.rst:347
+#: ../../source/portal-developer-guide/customization/task-item-details.rst:375
 msgid "task-customized-iframe-process"
 msgstr "task-customized-iframe-process"
 
@@ -16630,3 +16662,6 @@ msgstr "Portal.UserMenu変数の変更は即時反映されます。更新内容
 
 #~ msgid "Filter case by owner in case list and task analysis if case owner is enabled."
 #~ msgstr "ケースオーナーが有効な場合、ケースリストやタスクの分析に含まれるケースをオーナーでフィルタリングできます。"
+
+#~ msgid "If no entry has that exact ``id`` either, Portal falls back to its own built-in default layout (the 3-widget layout shown below), silently ignoring everything you configured."
+#~ msgstr "その正確な ``id`` を持つエントリもない場合、Portalは組み込みのデフォルトレイアウト（以下に示す3つのウィジェットのレイアウト）にフォールバックし、設定した内容をすべて黙って無視します。"
