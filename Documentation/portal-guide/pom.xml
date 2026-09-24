@@ -28,7 +28,7 @@
               <outputDirectory>build/doc/en/portal-developer-guide/public-api</outputDirectory>
               <resources>
                 <resource>
-                  <directory>../public-api/target/site/apidocs</directory>
+                  <directory>../public-api/target/reports/apidocs</directory>
                   <filtering>true</filtering>
                     <excludes>
                     <exclude>**/*.woff</exclude>
@@ -48,7 +48,7 @@
               <outputDirectory>build/doc/ja/portal-developer-guide/public-api</outputDirectory>
               <resources>
                 <resource>
-                  <directory>../public-api/target/site/apidocs</directory>
+                  <directory>../public-api/target/reports/apidocs</directory>
                   <filtering>true</filtering>
                     <excludes>
                     <exclude>**/*.woff</exclude>
