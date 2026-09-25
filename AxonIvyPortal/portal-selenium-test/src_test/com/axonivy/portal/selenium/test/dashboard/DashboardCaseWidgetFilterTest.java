@@ -298,6 +298,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
   public void testFilterDateOnCustomFields() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(testCaseListPermission);
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     addCustomFields(caseWidget, List.of("CreatedBillDate", "ShipmentDate"));
 
