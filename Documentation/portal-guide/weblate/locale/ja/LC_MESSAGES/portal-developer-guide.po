@@ -9236,14 +9236,12 @@ msgid "Migrate To 14.0"
 msgstr "14.0 への移行"
 
 #: ../../source/portal-developer-guide/installation/index.rst:160
-#, fuzzy
 msgid "Permissions **🔑AccessFullCaseList** and **🔑AccessFullTaskList** have been removed. Default Tasks and Cases dashboards now work like any other dashboards. If you want to restrict access to these dashboards, you can now configure their permissions using user roles. Please access the :ref:`Dashboard Configuration <dashboard-configuration>` page to change its default settings."
-msgstr "1. 権限 **🔑AccessFullCaseList** および **🔑AccessFullTaskList** が削除されました。デフォルトのタスクおよびケースダッシュボードは、他のダッシュボードと同様に動作するようになりました。これらのダッシュボードへのアクセスを制限したい場合は、ユーザーロールを使用して権限を設定できるようになりました。デフォルト設定を変更するには、:ref:`Dashboard Configuration <dashboard-configuration>` ページにアクセスしてください。"
+msgstr "権限 **🔑AccessFullCaseList** および **🔑AccessFullTaskList** が削除されました。デフォルトのタスクおよびケースダッシュボードは、他のダッシュボードと同様に動作するようになりました。これらのダッシュボードへのアクセスを制限したい場合は、ユーザーロールを使用して権限を設定できるようになりました。デフォルト設定を変更するには、:ref:`ダッシュボード設定 <dashboard-configuration>` ページにアクセスしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:164
-#, fuzzy
 msgid "The global variable ``Portal.KeepSidebarExpanded`` has been removed. Use ``Portal.Sidebar.Mode`` instead. Set ``Portal.Sidebar.Mode`` to ``STICK`` to achieve the same effect as ``Portal.KeepSidebarExpanded=true``."
-msgstr "2. グローバル変数 ``Portal.KeepSidebarExpanded`` を削除しました。代わりに ``Portal.Sidebar.Mode`` を使ってください。 ``Portal.Sidebar.Mode`` を ``STICK`` に設定して ``Portal.KeepSidebarExpanded=true`` と同じ効果を達成します。"
+msgstr "グローバル変数 ``Portal.KeepSidebarExpanded`` は削除されました。代わりに ``Portal.Sidebar.Mode`` を使用してください。``Portal.Sidebar.Mode`` を ``STICK`` に設定すると、``Portal.KeepSidebarExpanded=true`` と同じ効果が得られます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:167
 msgid "The new **Menu Management** feature lets admins customize the order of items in the Portal sidebar."
@@ -9254,14 +9252,12 @@ msgid "Set an explicit ``id`` on each ``CustomSubMenuItem`` returned from your `
 msgstr "``portalLoadSubMenuItems`` サブプロセスから返される各 ``CustomSubMenuItem`` に対して、``id`` を明示的に設定してください。これにより、コードの変更（アプリケーション名の変更、リンクの変更、メニュー種類の変更など）があっても、管理者がカスタマイズした順序が維持されます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:181
-#, fuzzy
 msgid "In complex filters, the list of selectable fields now depends on the widget's Column Management configuration. Only fields that are added in Column Management and enabled in the **Filter** column are available in :ref:`Complex Filter <complex-filter>`. To make a field available, add it and enable filtering in :ref:`Task list column management <task-widget-column-management>` or :ref:`Case list column management <case-widget-column-management>`."
-msgstr "4. 複合フィルターにおいて、選択可能なフィールドの一覧は、ウィジェットの「列管理」設定に依存するようになりました。「列管理」に追加され、**フィルター** 列で有効化されているフィールドのみが :ref:`複合フィルター <complex-filter>` で利用可能です。フィールドを利用可能にするには、:ref:`タスクリストの列管理 <task-widget-column-management>` または :ref:`ケースリストの列管理 <case-widget-column-management>` で、そのフィールドを追加し、フィルタリングを有効にしてください。"
+msgstr "複合フィルターにおいて、選択可能なフィールドの一覧は、ウィジェットの「列管理」設定に依存するようになりました。「列管理」に追加され、**フィルター** 列で有効化されているフィールドのみが :ref:`複合フィルター <complex-filter>` で利用可能です。フィールドを利用可能にするには、:ref:`タスクリストの列管理 <task-widget-column-management>` または :ref:`ケースリストの列管理 <case-widget-column-management>` で、そのフィールドを追加し、フィルタリングを有効にしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:187
-#, fuzzy
 msgid "The **Applications** tab has been removed from :ref:`Admin Settings <admin-settings>`, as third-party applications duplicate the **External Link** sidebar items of the new Menu Management feature."
-msgstr "5. :ref:`の管理設定 <admin-settings>` から、「**アプリケーション」** タブが削除されました。これは、サードパーティ製アプリケーションが、新しい「メニュー管理」機能のサイドバー項目 **外部リンク** と重複しているためです。"
+msgstr ":ref:`管理設定 <admin-settings>` から **アプリケーション** タブが削除されました。これは、サードパーティ製アプリケーションが、新しい「メニュー管理」機能のサイドバー項目 **外部リンク** と重複しているためです。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:191
 msgid "No data migration is needed: existing third-party applications configured in the ``Portal.ThirdPartyApplications`` variable still appear in the sidebar and can be edited, reordered, and deleted in :guilabel:`Portal Configuration` → :guilabel:`Sidebar`. Creating *new* third-party applications is no longer possible — create an **External Link** sidebar item instead."
@@ -9272,14 +9268,12 @@ msgid "The ``Portal.ThirdPartyApplications`` variable is deprecated and will be 
 msgstr "``Portal.ThirdPartyApplications`` 変数は非推奨となっており、将来のバージョンで削除される予定です。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:200
-#, fuzzy
 msgid "Operators can be restricted globally by admins and further narrowed per field in each widget via Column Management. Filters using disabled operators are automatically removed. See :ref:`Restricting Filter Fields And Operators <restricting-filter-fields-and-operators>` for details."
-msgstr "6. 演算子は、管理者によってグローバルに制限できるほか、「列管理」機能を通じて各ウィジェットのフィールドごとにさらに絞り込むことができます。無効化された演算子を使用するフィルターは自動的に削除されます。詳細については、:ref:`「フィルターフィールドと演算子の制限」 <restricting-filter-fields-and-operators>` を参照してください。"
+msgstr "演算子は、管理者によってグローバルに制限できるほか、「列管理」機能を通じて各ウィジェットのフィールドごとにさらに絞り込むことができます。無効化された演算子を使用するフィルターは自動的に削除されます。詳細については、:ref:`フィルターフィールドと演算子の制限 <restricting-filter-fields-and-operators>` を参照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:204
-#, fuzzy
 msgid "Filters on a case custom field of a task widget now query only the case the filtered column refers to: a **Custom Case Field** column filters the task's own case, a **Custom Business Case Field** column filters the task's business case. Previously both were stored as ``custom_case`` and queried both cases at once, which was slower and could return tasks whose value matched on the other case."
-msgstr "7. タスクウィジェットのケースカスタムフィールドに対するフィルターは、フィルタリング対象の列が参照するケースのみを照会するようになりました。**Custom Case Field** 列はタスク自身のケースをフィルタリングし、**Custom Business Case Field** 列はタスクのビジネスケースをフィルタリングします。以前は両方とも ``custom_case`` として保存され、両方のケースを同時に照会していたため、処理が遅く、値が他方のケースで一致したタスクが返されることがありました。"
+msgstr "タスクウィジェットのケースカスタムフィールドに対するフィルターは、フィルタリング対象の列が参照するケースのみを照会するようになりました。**Custom Case Field** 列はタスク自身のケースをフィルタリングし、**Custom Business Case Field** 列はタスクのビジネスケースをフィルタリングします。以前は両方とも ``custom_case`` として保存され、両方のケースを同時に照会していたため、処理が遅く、値が他方のケースで一致したタスクが返されることがありました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:209
 msgid "Existing dashboards are migrated automatically, taking each filter's type from the widget column using the same field. Two cases cannot be resolved and need a check after upgrading:"
@@ -9298,9 +9292,8 @@ msgid "Review these in the widget's filter configuration. A wrong type still ret
 msgstr "ウィジェットのフィルター設定でこれらを確認してください。誤ったタイプであっても結果は返されますが、誤ったケースのものになります。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:219
-#, fuzzy
 msgid "We recommend updating your dashboards and dashboard templates to the latest version after upgrading. Open and re-save each dashboard once (:guilabel:`Portal Configuration` → open the dashboard → :guilabel:`Edit Layout` → :guilabel:`Save`), and re-save the ``Portal.DashboardTemplates`` variable the same way, so their stored JSON is stamped at the current schema version."
-msgstr "8. アップグレード後、ダッシュボードとダッシュボードテンプレートを最新バージョンに更新することをお勧めします。各ダッシュボードを一度開いて再保存し（:guilabel:`Portal Configuration` → ダッシュボードを開く → :guilabel:`Edit Layout` → :guilabel:`Save`）、``Portal.DashboardTemplates`` 変数も同様の手順で再保存することで、保存されているJSONが現在のスキーマバージョンで記録されるようにします。"
+msgstr "アップグレード後、ダッシュボードとダッシュボードテンプレートを最新バージョンに更新することをお勧めします。各ダッシュボードを一度開いて再保存し（:guilabel:`Portal Configuration` → ダッシュボードを開く → :guilabel:`Edit Layout` → :guilabel:`Save`）、``Portal.DashboardTemplates`` 変数も同様の手順で再保存することで、保存されているJSONが現在のスキーマバージョンで記録されるようにします。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:226
 msgid "Migrate 13.1 To 13.2"
@@ -9311,23 +9304,20 @@ msgid "If you are using DeepL translation service in the Portal, please reconfig
 msgstr "ポータルで DeepL 翻訳サービスを使用している場合は、ここに記載されている手順に従って再構成してください：:doc-url:`Axon Ivy 翻訳サービス </engine-guide/configuration/translation-service/index.html>`"
 
 #: ../../source/portal-developer-guide/installation/index.rst:230
-#, fuzzy
 msgid "Global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator`` have been removed and no longer supported. Use permission ``NoteReadAllCaseTaskDetails`` instead to control the visibility of system notes in task and case details."
-msgstr "2. 全体変数 ``Portal.Histories.HideSystemNotes`` および ``Portal.Histories.HideSystemNotesForAdministrator`` は削除され、サポートされなくなりました。代わりに ``NoteReadAllCaseTaskDetails`` を使用し、タスクおよびケース詳細におけるシステムノートの可視性を制御してください。"
+msgstr "グローバル変数 ``Portal.Histories.HideSystemNotes`` および ``Portal.Histories.HideSystemNotesForAdministrator`` は削除され、サポートされなくなりました。代わりに ``NoteReadAllCaseTaskDetails`` を使用し、タスクおよびケース詳細におけるシステムノートの可視性を制御してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:234
 msgid "Migrate 11.3.2 To 12.0.0"
 msgstr "11.3.2 から 12.0.0 への移行"
 
 #: ../../source/portal-developer-guide/installation/index.rst:236
-#, fuzzy
 msgid "Custom field values for business details pages are migrated silently from the process link relative path to its :doc-url:`IWebStartable ID </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`. You don't need to do anything, this is just for your information."
-msgstr "ビジネスの詳細ページのカスタムフィールドの値は、プロセスリンクの相対パスから :doc-url:`IWebStartable ID </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` にサイレントに移行されます。 管理者が何かを行う必要はありません。これは単なる参考情報です。"
+msgstr "ビジネスの詳細ページのカスタムフィールドの値は、プロセスリンクの相対パスから :doc-url:`IWebStartable ID </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` にサイレントに移行されます。管理者が何かを行う必要はありません。これは単なる参考情報です。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:240
-#, fuzzy
 msgid "We implemented a new feature to adjusting column widths in the Task and Case widgets. This change may slightly impact the column widths of Task and Case widgets from previous versions. To manually adjust column widths, please refer to the :ref:`Task widget configuraiton <new-dashboard-task-list-widget>`, and :ref:`Case widget configuraiton <new-dashboard-case-list-widget>` guides."
-msgstr "タスクウィジェットとケースウィジェットの列の幅を調整する新しい機能を実装しました。 この変更により、以前のバージョンからのタスクウィジェットとケースウィジェットの列の幅に若干の影響が生じることがあります。 列の幅を手動で調整する方法については、:ref:`タスクウィジェットの設定 <new-dashboard-task-list-widget>` と :ref:`ケースウィジェットの設定 <new-dashboard-case-list-widget>` を参照してください。"
+msgstr "タスクウィジェットとケースウィジェットの列の幅を調整する新しい機能を実装しました。この変更により、以前のバージョンからのタスクウィジェットとケースウィジェットの列の幅に若干の影響が生じることがあります。列の幅を手動で調整する方法については、:ref:`タスクウィジェットの設定 <new-dashboard-task-list-widget>` と :ref:`ケースウィジェットの設定 <new-dashboard-case-list-widget>` を参照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:246
 msgid "Migrate 11.1.0 To 11.2.0"
@@ -9362,9 +9352,8 @@ msgid "If you override ``PortalStartTimeCleanObsoletedDataExpression`` variable,
 msgstr "``PortalStartTimeCleanObsoletedDataExpression`` 変数をオーバーライドする場合は、新しい Ivy CRON のジョブパターンに更新します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:258
-#, fuzzy
 msgid "Refer to Axon Ivy CRON job pattern: :doc-url:`CRON Expression </engine-guide/configuration/advanced-configuration.html#cron-expression>`."
-msgstr "Axon Ivy CRON のジョブパターンを参照してください（ `CRON 式 <https://developer.axonivy.com/engine-guide/configuration/advanced-configuration.html#cron-expression>`_ ）。"
+msgstr "Axon Ivy CRON のジョブパターンについては、:doc-url:`CRON 式 </engine-guide/configuration/advanced-configuration.html#cron-expression>` を参照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:259
 msgid "Example: Change ``0 0 1 * * ?`` to ``0 1 * * *`` for job trigger 01:00 AM everyday."
@@ -12656,9 +12645,8 @@ msgid "0 6 \\* \\* \\*"
 msgstr "0 6 \\* \\* \\*"
 
 #: ../../source/portal-developer-guide/settings/index.rst:324
-#, fuzzy
 msgid "Cron expression defines the time to clean up data of obsolete users. E.g.: expression for at 6AM every day is ``0 6 * * *``. Refer to |cron-expression|. Restart Ivy engine after changing this variable."
-msgstr "クロン式は、古いユーザーのデータを消去する時間を定義します。例えば、毎日 6AM の式は ``0 6 * * *`` になります。 `CRON 式 <https:// developer.axonivy.com/doc/ 14.0/engine-guide/configur ation/advanced-configurati on.html#cron-expression>`_ を参照してください。この変数の変更後、Ivy エンジンを再起動します。"
+msgstr "クロン式は、無効になったユーザーのデータを消去する時間を定義します。例えば、毎日 6AM に実行する式は ``0 6 * * *`` になります。|cron-expression| を参照してください。この変数を変更した後は、Ivy エンジンを再起動してください。"
 
 #: ../../source/portal-developer-guide/settings/index.rst:334
 msgid "PortalDeleteAllFinishedHiddenCases"
