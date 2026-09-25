@@ -157,14 +157,14 @@ In Engine
 Migrate To 14.0
 ---------------
 
-1. Permissions **🔑AccessFullCaseList** and **🔑AccessFullTaskList** have been removed.
-Default Tasks and Cases dashboards now work like any other dashboards. If you want to restrict access to these dashboards, you can now configure their permissions using user roles.
-Please access the :ref:`Dashboard Configuration <dashboard-configuration>` page to change its default settings.
+#. Permissions **🔑AccessFullCaseList** and **🔑AccessFullTaskList** have been removed.
+   Default Tasks and Cases dashboards now work like any other dashboards. If you want to restrict access to these dashboards, you can now configure their permissions using user roles.
+   Please access the :ref:`Dashboard Configuration <dashboard-configuration>` page to change its default settings.
 
-2. The global variable ``Portal.KeepSidebarExpanded`` has been removed. Use ``Portal.Sidebar.Mode`` instead.
-Set ``Portal.Sidebar.Mode`` to ``STICK`` to achieve the same effect as ``Portal.KeepSidebarExpanded=true``.
+#. The global variable ``Portal.KeepSidebarExpanded`` has been removed. Use ``Portal.Sidebar.Mode`` instead.
+   Set ``Portal.Sidebar.Mode`` to ``STICK`` to achieve the same effect as ``Portal.KeepSidebarExpanded=true``.
 
-3. The new **Menu Management** feature lets admins customize the order of items in the Portal sidebar.
+#. The new **Menu Management** feature lets admins customize the order of items in the Portal sidebar.
 
    Set an explicit ``id`` on each ``CustomSubMenuItem`` returned from your ``portalLoadSubMenuItems`` sub-process so admin-customized ordering survives code changes (renaming the application, changing the link, or changing the menu kind).
 
@@ -178,15 +178,15 @@ Set ``Portal.Sidebar.Mode`` to ``STICK`` to achieve the same effect as ``Portal.
       item.setLink("/my-project/Tasks.ivp");
       item.setMenuKind(MenuKind.CUSTOM);
 
-4. In complex filters, the list of selectable fields now depends on the widget's Column Management configuration.
-Only fields that are added in Column Management and enabled in the **Filter** column are available in
-:ref:`Complex Filter <complex-filter>`. To make a field available, add it and enable filtering in
-:ref:`Task list column management <task-widget-column-management>` or
-:ref:`Case list column management <case-widget-column-management>`.
+#. In complex filters, the list of selectable fields now depends on the widget's Column Management configuration.
+   Only fields that are added in Column Management and enabled in the **Filter** column are available in
+   :ref:`Complex Filter <complex-filter>`. To make a field available, add it and enable filtering in
+   :ref:`Task list column management <task-widget-column-management>` or
+   :ref:`Case list column management <case-widget-column-management>`.
 
-5. The **Applications** tab has been removed from :ref:`Admin Settings <admin-settings>`,
-as third-party applications duplicate the **External Link** sidebar items of the new
-Menu Management feature.
+#. The **Applications** tab has been removed from :ref:`Admin Settings <admin-settings>`,
+   as third-party applications duplicate the **External Link** sidebar items of the new
+   Menu Management feature.
 
    No data migration is needed: existing third-party applications configured in the
    ``Portal.ThirdPartyApplications`` variable still appear in the sidebar and can be
@@ -197,14 +197,14 @@ Menu Management feature.
    The ``Portal.ThirdPartyApplications`` variable is deprecated and will be removed in a
    future version.
 
-6. Operators can be restricted globally by admins and further narrowed per field in each widget via Column Management.
-Filters using disabled operators are automatically removed.
-See :ref:`Restricting Filter Fields And Operators <restricting-filter-fields-and-operators>` for details.
+#. Operators can be restricted globally by admins and further narrowed per field in each widget via Column Management.
+   Filters using disabled operators are automatically removed.
+   See :ref:`Restricting Filter Fields And Operators <restricting-filter-fields-and-operators>` for details.
 
-7. Filters on a case custom field of a task widget now query only the case the filtered column refers to:
-a **Custom Case Field** column filters the task's own case, a **Custom Business Case Field** column filters the
-task's business case. Previously both were stored as ``custom_case`` and queried both cases at once, which was
-slower and could return tasks whose value matched on the other case.
+#. Filters on a case custom field of a task widget now query only the case the filtered column refers to:
+   a **Custom Case Field** column filters the task's own case, a **Custom Business Case Field** column filters the
+   task's business case. Previously both were stored as ``custom_case`` and queried both cases at once, which was
+   slower and could return tasks whose value matched on the other case.
 
    Existing dashboards are migrated automatically, taking each filter's type from the widget column
    using the same field. Two cases cannot be resolved and need a check after upgrading:
@@ -216,31 +216,31 @@ slower and could return tasks whose value matched on the other case.
    Review these in the widget's filter configuration. A wrong type still returns results, just the
    wrong case's.
 
-8. We recommend updating your dashboards and dashboard templates to the latest version after
-upgrading. Open and re-save each dashboard once (:guilabel:`Portal Configuration` → open the
-dashboard → :guilabel:`Edit Layout` → :guilabel:`Save`), and re-save the
-``Portal.DashboardTemplates`` variable the same way, so their stored JSON is stamped at the
-current schema version.
+#. We recommend updating your dashboards and dashboard templates to the latest version after
+   upgrading. Open and re-save each dashboard once (:guilabel:`Portal Configuration` → open the
+   dashboard → :guilabel:`Edit Layout` → :guilabel:`Save`), and re-save the
+   ``Portal.DashboardTemplates`` variable the same way, so their stored JSON is stamped at the
+   current schema version.
 
 Migrate 13.1 To 13.2
 --------------------
 
-1. If you are using DeepL translation service in the Portal, please reconfigure it according to the instructions provided here: :doc-url:`Axon Ivy Translation service </engine-guide/configuration/translation-service/index.html>`
+#. If you are using DeepL translation service in the Portal, please reconfigure it according to the instructions provided here: :doc-url:`Axon Ivy Translation service </engine-guide/configuration/translation-service/index.html>`
 
-2. Global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator`` have been removed and no longer supported.
-Use permission ``NoteReadAllCaseTaskDetails`` instead to control the visibility of system notes in task and case details.
+#. Global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator`` have been removed and no longer supported.
+   Use permission ``NoteReadAllCaseTaskDetails`` instead to control the visibility of system notes in task and case details.
 
 Migrate 11.3.2 To 12.0.0
 ------------------------
 
-1. Custom field values for business details pages are migrated silently from the process link relative path 
-to its :doc-url:`IWebStartable ID </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`.
-You don't need to do anything, this is just for your information.
+#. Custom field values for business details pages are migrated silently from the process link relative path 
+   to its :doc-url:`IWebStartable ID </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`.
+   You don't need to do anything, this is just for your information.
 
-2. We implemented a new feature to adjusting column widths in the Task and Case widgets.
-This change may slightly impact the column widths of Task and Case widgets from previous versions.
-To manually adjust column widths, please refer to the :ref:`Task widget configuraiton <new-dashboard-task-list-widget>`,
-and :ref:`Case widget configuraiton <new-dashboard-case-list-widget>` guides.
+#. We implemented a new feature to adjusting column widths in the Task and Case widgets.
+   This change may slightly impact the column widths of Task and Case widgets from previous versions.
+   To manually adjust column widths, please refer to the :ref:`Task widget configuraiton <new-dashboard-task-list-widget>`,
+   and :ref:`Case widget configuraiton <new-dashboard-case-list-widget>` guides.
 
 Migrate 11.1.0 To 11.2.0
 ------------------------
@@ -255,7 +255,7 @@ The ``AxonIvyExpress`` module is renamed to ``axonivy-express`` and becomes an i
 
 
 - If you override ``PortalStartTimeCleanObsoletedDataExpression`` variable, please update it to new Ivy CRON job pattern.
-- Refer to Axon Ivy CRON job pattern: `CRON Expression <https://developer.axonivy.com/engine-guide/configuration/advanced-configuration.html#cron-expression>`_.
+- Refer to Axon Ivy CRON job pattern: :doc-url:`CRON Expression </engine-guide/configuration/advanced-configuration.html#cron-expression>`.
 - Example: Change ``0 0 1 * * ?`` to ``0 1 * * *`` for job trigger 01:00 AM everyday.
 
 Migrate 10.0.19 To 10.0.20
@@ -278,7 +278,7 @@ Migrate 10.0.12 To 10.0.13
 Migrate 10.0.11 To 10.0.12
 --------------------------
 
-1. Portal no longer supports the override process approach for some subprocesses. Please follow the guidelines below to migrate your override subprocesses.
+#. Portal no longer supports the override process approach for some subprocesses. Please follow the guidelines below to migrate your override subprocesses.
 
    - :ref:`Customize Forgot Password <customization-forgot-password>`
       - Remove subprocess override of ``ResetPassword`` and ``SendPasswordResetEmail``` from your project.
@@ -353,7 +353,7 @@ Migrate 10.0.11 To 10.0.12
       - Update ``index`` for each custom menu item.
       - Refer to process ``CustomLoadSubMenuItems`` in the project ``portal-developer-examples`` for an example of how to create custom menu items.
 
-2. We changed the **External Link** configuration for the field ``imageContent``, refer to :ref:`Portal Processes External Links <portal-process-external-link>` for more information. Basically, you do not need any migration on your engine. In case you have overridden the variable `Portal.Processes.ExternalLinks` by deployment, update the field ``imageContent`` by removing the prefix like `data:image/jpeg;base64,` in your JSON variable `Portal.Processes.ExternalLinks` file.
+#. We changed the **External Link** configuration for the field ``imageContent``, refer to :ref:`Portal Processes External Links <portal-process-external-link>` for more information. Basically, you do not need any migration on your engine. In case you have overridden the variable `Portal.Processes.ExternalLinks` by deployment, update the field ``imageContent`` by removing the prefix like `data:image/jpeg;base64,` in your JSON variable `Portal.Processes.ExternalLinks` file.
 
 Migrate 10.0 To 10.0.7
 ----------------------
@@ -493,7 +493,7 @@ Migrate 9.1 To 9.2
 
 #. If you have taskItemDetailCustomPanelTop, taskItemDetailCustomPanelBottom customization, follow :ref:`How to override TaskItemDetail <customization-task-item-details>` to add custom widgets.
 
-9. If you have ``caseItemDetailCustomTop`` or ``caseItemDetailCustomMiddle`` or ``caseItemDetailCustomBottom`` customization, follow :ref:`How to override CaseItemDetail <customization-case-item-details>` to add these custom widgets.
+#. If you have ``caseItemDetailCustomTop`` or ``caseItemDetailCustomMiddle`` or ``caseItemDetailCustomBottom`` customization, follow :ref:`How to override CaseItemDetail <customization-case-item-details>` to add these custom widgets.
 
 Migrate 8.x To 9.1
 ------------------
