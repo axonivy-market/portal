@@ -327,11 +327,7 @@ These variables are stored as key-value pairs. They have to be edited in the Eng
    |                                             |                               | expression for at 6AM       |
    |                                             |                               | every day is                |
    |                                             |                               | ``0 6 * * *``. Refer to     |
-   |                                             |                               | `CRON Expression <https://  |
-   |                                             |                               | developer.axonivy.com/doc/  |
-   |                                             |                               | 14.0/engine-guide/configur  |
-   |                                             |                               | ation/advanced-configurati  |
-   |                                             |                               | on.html#cron-expression>`_. |
+   |                                             |                               | |cron-expression|.          |
    |                                             |                               | Restart Ivy engine after    |
    |                                             |                               | changing this variable.     |
    +---------------------------------------------+-------------------------------+-----------------------------+
@@ -734,6 +730,7 @@ Data model:
 .. |global-settings| image:: ../../screenshots/settings/global-settings.png
 .. |global-setting-edit| image:: ../../screenshots/settings/edit-global-settings.png
 .. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
+.. |cron-expression| replace:: :doc-url:`CRON Expression </engine-guide/configuration/advanced-configuration.html#cron-expression>`
 
 .. _Task Aggregation and Filter: https://developer.axonivy.com/api-browser?configUrl=https%3A%2F%2Fdeveloper.axonivy.com%2Fdoc%2F11.3%2Fopenapi%2Fconfig.json&urls.primaryName=default#/workflow/stats_1 
 .. _Case Aggregation and Filter: https://developer.axonivy.com/api-browser?configUrl=https%3A%2F%2Fdeveloper.axonivy.com%2Fdoc%2F11.3%2Fopenapi%2Fconfig.json&urls.primaryName=default#/workflow/stats
