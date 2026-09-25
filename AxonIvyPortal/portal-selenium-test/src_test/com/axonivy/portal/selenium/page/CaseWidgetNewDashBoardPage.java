@@ -1,12 +1,5 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
 import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -184,7 +177,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public void applyFilter() {
     SelenideElement filterDialog = getConfigurationFilter();
-    ComplexFilterHelper.closeAnyOpenDatePicker();
     filterDialog.$("div.footer-buttons-container").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("button[id$='apply-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     filterDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
