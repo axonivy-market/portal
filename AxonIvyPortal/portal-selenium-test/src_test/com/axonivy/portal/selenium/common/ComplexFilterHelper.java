@@ -235,19 +235,26 @@ public class ComplexFilterHelper {
         input, value);
     SelenideElement trigger = input.parent().$("button.ui-datepicker-trigger").shouldBe(getClickableCondition());
     trigger.click();
-    WaitHelper.waitPageNoAnimation();
+    // wait for the real open state instead of a fixed animation delay, otherwise the 2nd click races the popup on slow CI runners
+    $$(".ui-datepicker-group").shouldBe(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
     trigger.click();
 
     closeAnyOpenDatePicker();
+    // confirm the popup is actually gone (with retry) rather than trusting a single fire-and-forget JS mutation
+    $$(".ui-datepicker-group").filter(Condition.visible).shouldBe(CollectionCondition.empty, DEFAULT_TIMEOUT);
     WaitHelper.waitPageNoAjaxAndAnimation();
   }
 
   public static void closeAnyOpenDatePicker() {
-    SelenideElement datePicker = $("#ui-datepicker-div");
-    if (datePicker.exists()) {
-      Selenide.executeJavaScript("arguments[0].style.display='none';", datePicker);
-      datePicker.shouldBe(Condition.hidden, DEFAULT_TIMEOUT);
-    }
+    Selenide.executeJavaScript(
+        "document.querySelectorAll('.ui-datepicker-group').forEach(function(el) {" +
+        "  var container = el.closest('.ui-datepicker') || el.parentElement;" +
+        "  if (container) { container.style.display = 'none'; }" +
+        "});" +
+        "document.querySelectorAll('.ui-datepicker, #ui-datepicker-div, .ui-datepicker-panel').forEach(function(el) {" +
+        "  el.style.display = 'none';" +
+        "});"
+    );
   }
 
   private static void handleFilterNumberBetween(SelenideElement filterElement, Object... values) {

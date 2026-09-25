@@ -177,6 +177,8 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public void applyFilter() {
     SelenideElement filterDialog = getConfigurationFilter();
+    // guard against a lingering open date picker popup obscuring the button on slower CI runners
+    ComplexFilterHelper.closeAnyOpenDatePicker();
     filterDialog.$("div.footer-buttons-container").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("button[id$='apply-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     filterDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
