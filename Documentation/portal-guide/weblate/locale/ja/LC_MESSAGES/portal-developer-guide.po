@@ -734,7 +734,7 @@ msgstr "カスタムダイアログでポータルグローバルグロウルの
 #: ../../source/portal-developer-guide/components/portal-chat.rst:14
 #: ../../source/portal-developer-guide/dashboard/index.rst:11
 #: ../../source/portal-developer-guide/deployment/index.rst:181
-#: ../../source/portal-developer-guide/settings/index.rst:368
+#: ../../source/portal-developer-guide/settings/index.rst:364
 msgid "Configuration"
 msgstr "設定"
 
@@ -9236,11 +9236,13 @@ msgid "Migrate To 14.0"
 msgstr "14.0 への移行"
 
 #: ../../source/portal-developer-guide/installation/index.rst:160
-msgid "1. Permissions **🔑AccessFullCaseList** and **🔑AccessFullTaskList** have been removed. Default Tasks and Cases dashboards now work like any other dashboards. If you want to restrict access to these dashboards, you can now configure their permissions using user roles. Please access the :ref:`Dashboard Configuration <dashboard-configuration>` page to change its default settings."
+#, fuzzy
+msgid "Permissions **🔑AccessFullCaseList** and **🔑AccessFullTaskList** have been removed. Default Tasks and Cases dashboards now work like any other dashboards. If you want to restrict access to these dashboards, you can now configure their permissions using user roles. Please access the :ref:`Dashboard Configuration <dashboard-configuration>` page to change its default settings."
 msgstr "1. 権限 **🔑AccessFullCaseList** および **🔑AccessFullTaskList** が削除されました。デフォルトのタスクおよびケースダッシュボードは、他のダッシュボードと同様に動作するようになりました。これらのダッシュボードへのアクセスを制限したい場合は、ユーザーロールを使用して権限を設定できるようになりました。デフォルト設定を変更するには、:ref:`Dashboard Configuration <dashboard-configuration>` ページにアクセスしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:164
-msgid "2. The global variable ``Portal.KeepSidebarExpanded`` has been removed. Use ``Portal.Sidebar.Mode`` instead. Set ``Portal.Sidebar.Mode`` to ``STICK`` to achieve the same effect as ``Portal.KeepSidebarExpanded=true``."
+#, fuzzy
+msgid "The global variable ``Portal.KeepSidebarExpanded`` has been removed. Use ``Portal.Sidebar.Mode`` instead. Set ``Portal.Sidebar.Mode`` to ``STICK`` to achieve the same effect as ``Portal.KeepSidebarExpanded=true``."
 msgstr "2. グローバル変数 ``Portal.KeepSidebarExpanded`` を削除しました。代わりに ``Portal.Sidebar.Mode`` を使ってください。 ``Portal.Sidebar.Mode`` を ``STICK`` に設定して ``Portal.KeepSidebarExpanded=true`` と同じ効果を達成します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:167
@@ -9252,11 +9254,13 @@ msgid "Set an explicit ``id`` on each ``CustomSubMenuItem`` returned from your `
 msgstr "``portalLoadSubMenuItems`` サブプロセスから返される各 ``CustomSubMenuItem`` に対して、``id`` を明示的に設定してください。これにより、コードの変更（アプリケーション名の変更、リンクの変更、メニュー種類の変更など）があっても、管理者がカスタマイズした順序が維持されます。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:181
-msgid "4. In complex filters, the list of selectable fields now depends on the widget's Column Management configuration. Only fields that are added in Column Management and enabled in the **Filter** column are available in :ref:`Complex Filter <complex-filter>`. To make a field available, add it and enable filtering in :ref:`Task list column management <task-widget-column-management>` or :ref:`Case list column management <case-widget-column-management>`."
+#, fuzzy
+msgid "In complex filters, the list of selectable fields now depends on the widget's Column Management configuration. Only fields that are added in Column Management and enabled in the **Filter** column are available in :ref:`Complex Filter <complex-filter>`. To make a field available, add it and enable filtering in :ref:`Task list column management <task-widget-column-management>` or :ref:`Case list column management <case-widget-column-management>`."
 msgstr "4. 複合フィルターにおいて、選択可能なフィールドの一覧は、ウィジェットの「列管理」設定に依存するようになりました。「列管理」に追加され、**フィルター** 列で有効化されているフィールドのみが :ref:`複合フィルター <complex-filter>` で利用可能です。フィールドを利用可能にするには、:ref:`タスクリストの列管理 <task-widget-column-management>` または :ref:`ケースリストの列管理 <case-widget-column-management>` で、そのフィールドを追加し、フィルタリングを有効にしてください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:187
-msgid "5. The **Applications** tab has been removed from :ref:`Admin Settings <admin-settings>`, as third-party applications duplicate the **External Link** sidebar items of the new Menu Management feature."
+#, fuzzy
+msgid "The **Applications** tab has been removed from :ref:`Admin Settings <admin-settings>`, as third-party applications duplicate the **External Link** sidebar items of the new Menu Management feature."
 msgstr "5. :ref:`の管理設定 <admin-settings>` から、「**アプリケーション」** タブが削除されました。これは、サードパーティ製アプリケーションが、新しい「メニュー管理」機能のサイドバー項目 **外部リンク** と重複しているためです。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:191
@@ -9268,11 +9272,13 @@ msgid "The ``Portal.ThirdPartyApplications`` variable is deprecated and will be 
 msgstr "``Portal.ThirdPartyApplications`` 変数は非推奨となっており、将来のバージョンで削除される予定です。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:200
-msgid "6. Operators can be restricted globally by admins and further narrowed per field in each widget via Column Management. Filters using disabled operators are automatically removed. See :ref:`Restricting Filter Fields And Operators <restricting-filter-fields-and-operators>` for details."
+#, fuzzy
+msgid "Operators can be restricted globally by admins and further narrowed per field in each widget via Column Management. Filters using disabled operators are automatically removed. See :ref:`Restricting Filter Fields And Operators <restricting-filter-fields-and-operators>` for details."
 msgstr "6. 演算子は、管理者によってグローバルに制限できるほか、「列管理」機能を通じて各ウィジェットのフィールドごとにさらに絞り込むことができます。無効化された演算子を使用するフィルターは自動的に削除されます。詳細については、:ref:`「フィルターフィールドと演算子の制限」 <restricting-filter-fields-and-operators>` を参照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:204
-msgid "7. Filters on a case custom field of a task widget now query only the case the filtered column refers to: a **Custom Case Field** column filters the task's own case, a **Custom Business Case Field** column filters the task's business case. Previously both were stored as ``custom_case`` and queried both cases at once, which was slower and could return tasks whose value matched on the other case."
+#, fuzzy
+msgid "Filters on a case custom field of a task widget now query only the case the filtered column refers to: a **Custom Case Field** column filters the task's own case, a **Custom Business Case Field** column filters the task's business case. Previously both were stored as ``custom_case`` and queried both cases at once, which was slower and could return tasks whose value matched on the other case."
 msgstr "7. タスクウィジェットのケースカスタムフィールドに対するフィルターは、フィルタリング対象の列が参照するケースのみを照会するようになりました。**Custom Case Field** 列はタスク自身のケースをフィルタリングし、**Custom Business Case Field** 列はタスクのビジネスケースをフィルタリングします。以前は両方とも ``custom_case`` として保存され、両方のケースを同時に照会していたため、処理が遅く、値が他方のケースで一致したタスクが返されることがありました。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:209
@@ -9292,7 +9298,8 @@ msgid "Review these in the widget's filter configuration. A wrong type still ret
 msgstr "ウィジェットのフィルター設定でこれらを確認してください。誤ったタイプであっても結果は返されますが、誤ったケースのものになります。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:219
-msgid "8. We recommend updating your dashboards and dashboard templates to the latest version after upgrading. Open and re-save each dashboard once (:guilabel:`Portal Configuration` → open the dashboard → :guilabel:`Edit Layout` → :guilabel:`Save`), and re-save the ``Portal.DashboardTemplates`` variable the same way, so their stored JSON is stamped at the current schema version."
+#, fuzzy
+msgid "We recommend updating your dashboards and dashboard templates to the latest version after upgrading. Open and re-save each dashboard once (:guilabel:`Portal Configuration` → open the dashboard → :guilabel:`Edit Layout` → :guilabel:`Save`), and re-save the ``Portal.DashboardTemplates`` variable the same way, so their stored JSON is stamped at the current schema version."
 msgstr "8. アップグレード後、ダッシュボードとダッシュボードテンプレートを最新バージョンに更新することをお勧めします。各ダッシュボードを一度開いて再保存し（:guilabel:`Portal Configuration` → ダッシュボードを開く → :guilabel:`Edit Layout` → :guilabel:`Save`）、``Portal.DashboardTemplates`` 変数も同様の手順で再保存することで、保存されているJSONが現在のスキーマバージョンで記録されるようにします。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:226
@@ -9304,7 +9311,8 @@ msgid "If you are using DeepL translation service in the Portal, please reconfig
 msgstr "ポータルで DeepL 翻訳サービスを使用している場合は、ここに記載されている手順に従って再構成してください：:doc-url:`Axon Ivy 翻訳サービス </engine-guide/configuration/translation-service/index.html>`"
 
 #: ../../source/portal-developer-guide/installation/index.rst:230
-msgid "2. Global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator`` have been removed and no longer supported. Use permission ``NoteReadAllCaseTaskDetails`` instead to control the visibility of system notes in task and case details."
+#, fuzzy
+msgid "Global variables ``Portal.Histories.HideSystemNotes`` and ``Portal.Histories.HideSystemNotesForAdministrator`` have been removed and no longer supported. Use permission ``NoteReadAllCaseTaskDetails`` instead to control the visibility of system notes in task and case details."
 msgstr "2. 全体変数 ``Portal.Histories.HideSystemNotes`` および ``Portal.Histories.HideSystemNotesForAdministrator`` は削除され、サポートされなくなりました。代わりに ``NoteReadAllCaseTaskDetails`` を使用し、タスクおよびケース詳細におけるシステムノートの可視性を制御してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:234
@@ -9312,11 +9320,13 @@ msgid "Migrate 11.3.2 To 12.0.0"
 msgstr "11.3.2 から 12.0.0 への移行"
 
 #: ../../source/portal-developer-guide/installation/index.rst:236
-msgid "1. Custom field values for business details pages are migrated silently from the process link relative path to its :doc-url:`IWebStartable ID </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`. You don't need to do anything, this is just for your information."
+#, fuzzy
+msgid "Custom field values for business details pages are migrated silently from the process link relative path to its :doc-url:`IWebStartable ID </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`. You don't need to do anything, this is just for your information."
 msgstr "ビジネスの詳細ページのカスタムフィールドの値は、プロセスリンクの相対パスから :doc-url:`IWebStartable ID </reference/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` にサイレントに移行されます。 管理者が何かを行う必要はありません。これは単なる参考情報です。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:240
-msgid "2. We implemented a new feature to adjusting column widths in the Task and Case widgets. This change may slightly impact the column widths of Task and Case widgets from previous versions. To manually adjust column widths, please refer to the :ref:`Task widget configuraiton <new-dashboard-task-list-widget>`, and :ref:`Case widget configuraiton <new-dashboard-case-list-widget>` guides."
+#, fuzzy
+msgid "We implemented a new feature to adjusting column widths in the Task and Case widgets. This change may slightly impact the column widths of Task and Case widgets from previous versions. To manually adjust column widths, please refer to the :ref:`Task widget configuraiton <new-dashboard-task-list-widget>`, and :ref:`Case widget configuraiton <new-dashboard-case-list-widget>` guides."
 msgstr "タスクウィジェットとケースウィジェットの列の幅を調整する新しい機能を実装しました。 この変更により、以前のバージョンからのタスクウィジェットとケースウィジェットの列の幅に若干の影響が生じることがあります。 列の幅を手動で調整する方法については、:ref:`タスクウィジェットの設定 <new-dashboard-task-list-widget>` と :ref:`ケースウィジェットの設定 <new-dashboard-case-list-widget>` を参照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:246
@@ -9352,7 +9362,8 @@ msgid "If you override ``PortalStartTimeCleanObsoletedDataExpression`` variable,
 msgstr "``PortalStartTimeCleanObsoletedDataExpression`` 変数をオーバーライドする場合は、新しい Ivy CRON のジョブパターンに更新します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:258
-msgid "Refer to Axon Ivy CRON job pattern: `CRON Expression <https://developer.axonivy.com/engine-guide/configuration/advanced-configuration.html#cron-expression>`_."
+#, fuzzy
+msgid "Refer to Axon Ivy CRON job pattern: :doc-url:`CRON Expression </engine-guide/configuration/advanced-configuration.html#cron-expression>`."
 msgstr "Axon Ivy CRON のジョブパターンを参照してください（ `CRON 式 <https://developer.axonivy.com/engine-guide/configuration/advanced-configuration.html#cron-expression>`_ ）。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:259
@@ -12198,7 +12209,7 @@ msgstr ":ref:`デプロイメント <deployment>` - 本番環境デプロイ設�
 msgid "|portal-header|"
 msgstr "|portal-header|"
 
-#: ../../source/portal-developer-guide/settings/index.rst:733
+#: ../../source/portal-developer-guide/settings/index.rst:729
 msgid "portal-header"
 msgstr "portal-header"
 
@@ -12645,362 +12656,363 @@ msgid "0 6 \\* \\* \\*"
 msgstr "0 6 \\* \\* \\*"
 
 #: ../../source/portal-developer-guide/settings/index.rst:324
-msgid "Cron expression defines the time to clean up data of obsolete users. E.g.: expression for at 6AM every day is ``0 6 * * *``. Refer to `CRON Expression <https:// developer.axonivy.com/doc/ 14.0/engine-guide/configur ation/advanced-configurati on.html#cron-expression>`_. Restart Ivy engine after changing this variable."
+#, fuzzy
+msgid "Cron expression defines the time to clean up data of obsolete users. E.g.: expression for at 6AM every day is ``0 6 * * *``. Refer to |cron-expression|. Restart Ivy engine after changing this variable."
 msgstr "クロン式は、古いユーザーのデータを消去する時間を定義します。例えば、毎日 6AM の式は ``0 6 * * *`` になります。 `CRON 式 <https:// developer.axonivy.com/doc/ 14.0/engine-guide/configur ation/advanced-configurati on.html#cron-expression>`_ を参照してください。この変数の変更後、Ivy エンジンを再起動します。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:338
+#: ../../source/portal-developer-guide/settings/index.rst:334
 msgid "PortalDeleteAllFinishedHiddenCases"
 msgstr "PortalDeleteAllFinishedHiddenCases"
 
-#: ../../source/portal-developer-guide/settings/index.rst:338
+#: ../../source/portal-developer-guide/settings/index.rst:334
 msgid "false"
 msgstr "false"
 
-#: ../../source/portal-developer-guide/settings/index.rst:338
+#: ../../source/portal-developer-guide/settings/index.rst:334
 msgid "If set to ``true``, the above cron job runs daily and removes all finished hidden cases on the engine."
 msgstr "``true`` に設定すると、上記の cron ジョブが毎日動作し、エンジンのすべての完了した非表示のケースを削除します。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:343
+#: ../../source/portal-developer-guide/settings/index.rst:339
 msgid "Otherwise, just cases which were generated by this Portal will be deleted."
 msgstr "そうでない場合は、このポータルで生成されたケースのみ削除されます。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:347
+#: ../../source/portal-developer-guide/settings/index.rst:343
 msgid "PortalHiddenTaskCaseExcluded"
 msgstr "PortalHiddenTaskCaseExcluded"
 
-#: ../../source/portal-developer-guide/settings/index.rst:347
-#: ../../source/portal-developer-guide/settings/index.rst:353
+#: ../../source/portal-developer-guide/settings/index.rst:343
+#: ../../source/portal-developer-guide/settings/index.rst:349
 msgid "true"
 msgstr "true"
 
-#: ../../source/portal-developer-guide/settings/index.rst:347
+#: ../../source/portal-developer-guide/settings/index.rst:343
 msgid "By default, Portal will query tasks and cases which are not hidden. If set to ``false``, Portal will ignore this property."
 msgstr "ポータルは自動的に非表示でないタスクとケースを問い合わせます。``false`` に設定すると、ポータルはこのプロパティを無視します。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:353
+#: ../../source/portal-developer-guide/settings/index.rst:349
 msgid "PortalLoginPageDisplay"
 msgstr "PortalLoginPageDisplay"
 
-#: ../../source/portal-developer-guide/settings/index.rst:353
+#: ../../source/portal-developer-guide/settings/index.rst:349
 msgid "By default, Portal will redirect to Login Page if login is required and the user is unknown. Set to ``false`` to redirect to the login error page and hide Logout in the User menu (when you use external authentication and the user is not present in your application user list.)"
 msgstr "ログインが必要で、ユーザーが不明な場合、ポータルは自動的にログインページにリダイレクトします。ログインエラーページにリダイレクトし、ユーザーメニューの［ログアウト］を非表示にするには、``false`` に設定します（外部認証を使用しており、アプリケーションのユーザーリストに該当するユーザーが存在しない場合）。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:370
+#: ../../source/portal-developer-guide/settings/index.rst:366
 msgid "These variables are stored in JSON format. You can edit them in the cockpit, or use the UI on the Portal Admin settings."
 msgstr "これらの変数は JSON 形式で格納されます。これらはコックピットで編集できます。ポータルの管理者設定の UI を使用することも可能です。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:375
+#: ../../source/portal-developer-guide/settings/index.rst:371
 msgid "Portal Announcement"
 msgstr "ポータルの通知"
 
-#: ../../source/portal-developer-guide/settings/index.rst:376
+#: ../../source/portal-developer-guide/settings/index.rst:372
 msgid "The standard announcement for Portal is intended to be used for general information (e.g. Downtime, Changes, etc.). This message can be seen by all Portal users."
 msgstr "ポータルの標準的な通知は、一般情報（ダウンタイム、変更など）に使用されます。 ポータルのすべてのユーザーにこのメッセージを表示できます。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:380
+#: ../../source/portal-developer-guide/settings/index.rst:376
 msgid "Filename: ``variables.Portal.Announcement.json``"
 msgstr "ファイル名： ``variables.Portal.Announcement.json``"
 
-#: ../../source/portal-developer-guide/settings/index.rst:382
-#: ../../source/portal-developer-guide/settings/index.rst:424
-#: ../../source/portal-developer-guide/settings/index.rst:697
+#: ../../source/portal-developer-guide/settings/index.rst:378
+#: ../../source/portal-developer-guide/settings/index.rst:420
+#: ../../source/portal-developer-guide/settings/index.rst:693
 msgid "Data model:"
 msgstr "データモデル："
 
-#: ../../source/portal-developer-guide/settings/index.rst:396
+#: ../../source/portal-developer-guide/settings/index.rst:392
 msgid "``contents``: list of supported languages and content for each language."
 msgstr "``contents``：サポートされる言語のリストと各言語のコンテンツ"
 
-#: ../../source/portal-developer-guide/settings/index.rst:398
+#: ../../source/portal-developer-guide/settings/index.rst:394
 msgid "``language``: the language code such as ``en``, ``de``, ``es``, and ``fr``"
 msgstr "``language``： ``en``、 ``de``、 ``es``、 ``fr`` などの言語コード"
 
-#: ../../source/portal-developer-guide/settings/index.rst:399
+#: ../../source/portal-developer-guide/settings/index.rst:395
 msgid "``value``: the announcement content of that language"
 msgstr "``value``：その言語の通知コンテンツ"
 
-#: ../../source/portal-developer-guide/settings/index.rst:401
+#: ../../source/portal-developer-guide/settings/index.rst:397
 msgid "``enabled``: the status of the announcement, true shows the announcement"
 msgstr "``enabled``：通知のステータス。true の場合、通知を表示します。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:405
+#: ../../source/portal-developer-guide/settings/index.rst:401
 msgid "Third Party Applications Linked Into Portal"
 msgstr "ポータルにリンクされるサードパーティーのアプリケーション"
 
-#: ../../source/portal-developer-guide/settings/index.rst:407
+#: ../../source/portal-developer-guide/settings/index.rst:403
 msgid "Third-party applications duplicate the **External Link** sidebar items of the Menu Management feature and will be removed in a future version. Existing entries still appear in the sidebar and can be edited or deleted in :guilabel:`Portal Configuration` → :guilabel:`Sidebar`. For new entries, create an **External Link** sidebar item there instead."
 msgstr "サードパーティ製アプリケーションは、**外部リンク** の「メニュー管理」機能のサイドバー項目を複製しているため、将来のバージョンで削除される予定です。既存のエントリは引き続きサイドバーに表示され、:guilabel:`ポータル設定` → :guilabel:`サイドバー` で編集または削除できます。新しいエントリについては、代わりに **外部リンク** のサイドバー項目を作成してください。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:414
+#: ../../source/portal-developer-guide/settings/index.rst:410
 msgid "You can define your custom menu item in the following JSON file. It will be included in the left menu."
 msgstr "以下の JSON ファイルでカスタムメニュー項目を定義できます。カスタムメニュー項目は、左側のメニューに表示されます。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:417
+#: ../../source/portal-developer-guide/settings/index.rst:413
 msgid "Filename: ``variables.Portal.ThirdPartyApplications.json``"
 msgstr "ファイル名： ``variables.Portal.ThirdPartyApplications.json``"
 
-#: ../../source/portal-developer-guide/settings/index.rst:419
+#: ../../source/portal-developer-guide/settings/index.rst:415
 msgid "The file's value is a wrapper object: ``version`` identifies the format of the JSON collection itself, and ``items`` holds the list of third-party applications. This wrapper-level ``version`` is what Portal reads (and migrates) on import - individual applications do not carry their own ``version`` field."
 msgstr "このファイルの値はラッパーオブジェクトです：``version`` はJSONコレクション自体のフォーマットを識別し、``items`` はサードパーティ製アプリケーションのリストを保持します。このラッパーレベルの ``version`` は、インポート時にPortalが読み取る（および移行に使用する）ものです。個々のアプリケーションは、それぞれ独自の ``version`` フィールドを持ちません。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:442
+#: ../../source/portal-developer-guide/settings/index.rst:438
 msgid "``id``: the identification number of a third-party application. It is an auto-generated UUID."
 msgstr "``id``：サードパーティーのアプリケーションの ID 番号。自動生成される UUID になります。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:444
+#: ../../source/portal-developer-guide/settings/index.rst:440
 msgid "``displayName``: the display name of the app that is shown in the left menu. Supports multi-language."
 msgstr "``displayName``：左側のメニューに表示されるアプリの表示名。複数言語をサポートしています。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:446
+#: ../../source/portal-developer-guide/settings/index.rst:442
 msgid "``menuIcon``: the style class of the app icon that shows in the left menu."
 msgstr "``menuIcon``：左側のメニューに表示されるアプリアイコンのスタイルクラス。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:447
+#: ../../source/portal-developer-guide/settings/index.rst:443
 msgid "``menuOrdinal``: index of the app. Used to sort menu items in the left menu."
 msgstr "``menuOrdinal``：アプリのインデックス。左側のメニューのメニュー項目を並べ替えるのに使用されます。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:448
+#: ../../source/portal-developer-guide/settings/index.rst:444
 msgid "``name``: the name of third-party app."
 msgstr "``name``：サードパーティーのアプリの名前。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:449
+#: ../../source/portal-developer-guide/settings/index.rst:445
 msgid "``link``: the URL of third-party app."
 msgstr "``link``：サードパーティーのアプリのURL。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:454
+#: ../../source/portal-developer-guide/settings/index.rst:450
 msgid "Portal Statistic Charts"
 msgstr "ポータルの統計チャート"
 
-#: ../../source/portal-developer-guide/settings/index.rst:455
+#: ../../source/portal-developer-guide/settings/index.rst:451
 msgid "You can define filter logic, appearance, and other settings for all statistic charts that can be used by the :ref:`Statistic widget <portal-statistic-widget>` of Portal dashboard."
 msgstr "ポータル・ダッシュボードの :ref:`統計ウィジェットの定義 <portal-statistic-widget>` で使用できるすべての統計チャートについて、フィルタ・ロジック、外観、その他の設定を定義できます。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:458
+#: ../../source/portal-developer-guide/settings/index.rst:454
 msgid "Filename: ``variables.Portal.CustomStatistic.json``"
 msgstr "ファイル名：``variables.Portal.CustomStatistic.json``"
 
-#: ../../source/portal-developer-guide/settings/index.rst:460
+#: ../../source/portal-developer-guide/settings/index.rst:456
 #, python-brace-format
 msgid "The file's value is a wrapper object: ``{\"version\": ..., \"items\": [...]}``, where ``version`` identifies the format of the JSON collection itself and ``items`` holds the list of charts below. This wrapper-level ``version`` is what Portal reads (and migrates) on import - individual charts do not carry their own ``version`` field. Data model of a single chart entry in ``items``:"
 msgstr "このファイルの値はラッパーオブジェクトです：``{\"version\": ..., \"items\": [...]}``。``version`` はJSONコレクション自体のフォーマットを識別し、``items`` は以下のチャートのリストを保持します。このラッパーレベルの ``version`` は、インポート時にPortalが読み取る（および移行に使用する）ものです。個々のチャートは、それぞれ独自の ``version`` フィールドを持ちません。``items`` 内の単一のチャートエントリのデータモデル："
 
-#: ../../source/portal-developer-guide/settings/index.rst:604
+#: ../../source/portal-developer-guide/settings/index.rst:600
 msgid "``id``: ID of the widget."
 msgstr "``id``：ウィジェットの ID。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:606
+#: ../../source/portal-developer-guide/settings/index.rst:602
 msgid "``statisticAggregation``: statistic's aggregation."
 msgstr "``statisticAggregation``: 統計の集計。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:608
+#: ../../source/portal-developer-guide/settings/index.rst:604
 msgid "``field``: aggregation (group by) field."
 msgstr "``field``: 集計（group by）フィールド。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:610
+#: ../../source/portal-developer-guide/settings/index.rst:606
 msgid "``type``: type of the field, could be `standard` or `custom`."
 msgstr "``type``: フィールドのタイプ。`standard` または `custom` である。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:612
+#: ../../source/portal-developer-guide/settings/index.rst:608
 msgid "``kpiField`` (optional): the numeric custom field on which to perform calculations."
 msgstr "``kpiField`` (任意): 計算を行う数値カスタムフィールド。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:614
+#: ../../source/portal-developer-guide/settings/index.rst:610
 msgid "``aggregationMethod`` (optional): the calculation method to apply, could be `sum`, `avg`, `max` or `min`."
 msgstr "``aggregationMethod`` (任意): 適用する計算方法。`sum`, `avg`, `max` または `min` を指定する。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:616
+#: ../../source/portal-developer-guide/settings/index.rst:612
 msgid "When ``kpiField`` and ``aggregationMethod`` are not provided, returns count statistics (counting number of tasks or cases). In contrast, the system applies the specified aggregation method to the numeric values in ``kpiField``."
 msgstr "``kpiField`` と ``aggregationMethod`` が提供されない場合、カウント統計（タスク数またはケース数のカウント）を返します。一方、システムは ``kpiField`` の数値に指定された集計方法を適用する。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:619
+#: ../../source/portal-developer-guide/settings/index.rst:615
 msgid "``filters``: filters for the statistic chart."
 msgstr "``filters``: 統計チャートのフィルター。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:621
+#: ../../source/portal-developer-guide/settings/index.rst:617
 msgid "``field``: field to filter."
 msgstr "``field``: フィルタリングするフィールド。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:623
+#: ../../source/portal-developer-guide/settings/index.rst:619
 msgid "``values``: value of the filter to query."
 msgstr "``values``: 問い合わせるフィルターの値。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:625
+#: ../../source/portal-developer-guide/settings/index.rst:621
 msgid "``operator``: operator for the filter."
 msgstr "``operator``: フィルタの演算子。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:627
+#: ../../source/portal-developer-guide/settings/index.rst:623
 msgid "``type``: type of the field."
 msgstr "``type``: フィールドのタイプ。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:629
+#: ../../source/portal-developer-guide/settings/index.rst:625
 msgid "``permissions``: permissions for statistic chart."
 msgstr "``permissions``: 統計チャートのパーミッション。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:631
+#: ../../source/portal-developer-guide/settings/index.rst:627
 msgid "``chartTarget``: chart's target, could be `case` or `task`."
 msgstr "``chartTarget``: `case` または `task` である。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:633
+#: ../../source/portal-developer-guide/settings/index.rst:629
 msgid "``icon``: icon for the statistic chart."
 msgstr "``icon``: 統計チャートのアイコン。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:635
+#: ../../source/portal-developer-guide/settings/index.rst:631
 msgid "``refreshInterval``: number of seconds for the chart auto-refreshed, minimum value is 60."
 msgstr "``refreshInterval``: チャートが自動更新される秒数、最小値は 60。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:637
+#: ../../source/portal-developer-guide/settings/index.rst:633
 msgid "``names``: name for the statistic chart, multi-language supported."
 msgstr "``names``: 統計チャートの名前、多言語対応。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:639
+#: ../../source/portal-developer-guide/settings/index.rst:635
 msgid "``descriptions``: description for the statistic chart, multi-language supported."
 msgstr "``descriptions``: 統計チャートの説明、多言語対応。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:641
+#: ../../source/portal-developer-guide/settings/index.rst:637
 msgid "``chartType``: chart's type, could be `bar`, `line`, `pie` or `number`."
 msgstr "``chartType``: チャートの種類。`bar`, `line`, `pie` または `number` のいずれか。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:643
+#: ../../source/portal-developer-guide/settings/index.rst:639
 msgid "``pie``: Pie chart"
 msgstr "``pie``：円グラフ"
 
-#: ../../source/portal-developer-guide/settings/index.rst:645
+#: ../../source/portal-developer-guide/settings/index.rst:641
 msgid "|pie-chart|"
 msgstr "|pie-chart|"
 
-#: ../../source/portal-developer-guide/settings/index.rst:741
+#: ../../source/portal-developer-guide/settings/index.rst:738
 msgid "pie-chart"
 msgstr "円グラフ"
 
-#: ../../source/portal-developer-guide/settings/index.rst:647
+#: ../../source/portal-developer-guide/settings/index.rst:643
 msgid "``bar``: Bar chart"
 msgstr "``bar``：棒グラフ"
 
-#: ../../source/portal-developer-guide/settings/index.rst:649
+#: ../../source/portal-developer-guide/settings/index.rst:645
 msgid "|bar-chart|"
 msgstr "|bar-chart|"
 
-#: ../../source/portal-developer-guide/settings/index.rst:742
+#: ../../source/portal-developer-guide/settings/index.rst:739
 msgid "bar-chart"
 msgstr "棒グラフ"
 
-#: ../../source/portal-developer-guide/settings/index.rst:651
+#: ../../source/portal-developer-guide/settings/index.rst:647
 msgid "``line``: Line chart"
 msgstr "``line``：折れ線グラフ"
 
-#: ../../source/portal-developer-guide/settings/index.rst:653
+#: ../../source/portal-developer-guide/settings/index.rst:649
 msgid "|line-chart|"
 msgstr "|line-chart|"
 
-#: ../../source/portal-developer-guide/settings/index.rst:744
+#: ../../source/portal-developer-guide/settings/index.rst:741
 msgid "line-chart"
 msgstr "線グラフ"
 
-#: ../../source/portal-developer-guide/settings/index.rst:655
+#: ../../source/portal-developer-guide/settings/index.rst:651
 msgid "``number``: Labelled number chart"
 msgstr "``number``：ラベル付きナンバーチャート"
 
-#: ../../source/portal-developer-guide/settings/index.rst:657
+#: ../../source/portal-developer-guide/settings/index.rst:653
 msgid "|number-chart|"
 msgstr "|number-chart|"
 
-#: ../../source/portal-developer-guide/settings/index.rst:743
+#: ../../source/portal-developer-guide/settings/index.rst:740
 msgid "number-chart"
 msgstr "すうひょう"
 
-#: ../../source/portal-developer-guide/settings/index.rst:659
+#: ../../source/portal-developer-guide/settings/index.rst:655
 msgid "For some specific charts such as ``Bar``, ``Pie``, ``Line`` or ``Number``, there are additional fields:"
 msgstr "``Bar``、``Pie``、``Line``、``Number`` のような特定のチャートには、追加のフィールドがある："
 
-#: ../../source/portal-developer-guide/settings/index.rst:661
+#: ../../source/portal-developer-guide/settings/index.rst:657
 msgid "``barChartConfig``: additional fields for configuring the ``Bar`` chart, you can add if chart type is ``bar``"
 msgstr "``barChartConfig``: ``Bar`` チャートを設定するための追加フィールド。チャートタイプが ``bar`` の場合に追加できます。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:663
-#: ../../source/portal-developer-guide/settings/index.rst:671
+#: ../../source/portal-developer-guide/settings/index.rst:659
+#: ../../source/portal-developer-guide/settings/index.rst:667
 msgid "``xTitles``: the multilingual display title for the x-axis"
 msgstr "``xTitles``：X 軸の複数言語の表示タイトル"
 
-#: ../../source/portal-developer-guide/settings/index.rst:665
-#: ../../source/portal-developer-guide/settings/index.rst:673
+#: ../../source/portal-developer-guide/settings/index.rst:661
+#: ../../source/portal-developer-guide/settings/index.rst:669
 msgid "``yTitles``: the multilingual display title for the y-axis"
 msgstr "``yTitles``：Y 軸の複数言語の表示タイトル"
 
-#: ../../source/portal-developer-guide/settings/index.rst:667
+#: ../../source/portal-developer-guide/settings/index.rst:663
+#: ../../source/portal-developer-guide/settings/index.rst:671
 #: ../../source/portal-developer-guide/settings/index.rst:675
-#: ../../source/portal-developer-guide/settings/index.rst:679
 msgid "``backgroundColors`` : the colors to display the chart"
 msgstr "``backgroundColors`` : チャートを表示する色"
 
-#: ../../source/portal-developer-guide/settings/index.rst:669
+#: ../../source/portal-developer-guide/settings/index.rst:665
 msgid "``lineChartConfig``: additional fields for configuring the ``Line`` chart, you can add if chart type is ``line``"
 msgstr "``lineChartConfig``: ``Line`` チャートを設定するための追加フィールド。チャートのタイプがの場合に追加できる ``line``"
 
-#: ../../source/portal-developer-guide/settings/index.rst:677
+#: ../../source/portal-developer-guide/settings/index.rst:673
 msgid "``pieChartConfig``: additional fields for configuring the ``Pie`` chart, you can add if chart type is ``pie``"
 msgstr "``pieChartConfig``: ``Pie`` チャートを設定するための追加フィールド。チャートのタイプが の場合に追加できる ``pie``。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:681
+#: ../../source/portal-developer-guide/settings/index.rst:677
 msgid "``numberChartConfig``: additional fields for configuring the ``Number`` chart, you can add if chart type is ``number``"
 msgstr "``numberChartConfig``： ``Number`` 表を設定する場合に必要なフィールド。チャートのタイプが ``number`` の場合に追加してください。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:683
+#: ../../source/portal-developer-guide/settings/index.rst:679
 msgid "``hideLabel``: toggle to show label of the number chart"
 msgstr "``hideLabel``: 数値チャートのラベル表示を切り替える"
 
-#: ../../source/portal-developer-guide/settings/index.rst:688
+#: ../../source/portal-developer-guide/settings/index.rst:684
 msgid "Portal Processes External Links"
 msgstr "ポータルのプロセスの外部リンク"
 
-#: ../../source/portal-developer-guide/settings/index.rst:689
+#: ../../source/portal-developer-guide/settings/index.rst:685
 msgid "The standard external links in Portal are defined in the following file:"
 msgstr "Portal の標準的な外部リンクは、以下のファイルで定義されています："
 
-#: ../../source/portal-developer-guide/settings/index.rst:691
+#: ../../source/portal-developer-guide/settings/index.rst:687
 msgid "Filename: ``variables.Portal.Processes.ExternalLinks.json``"
 msgstr "ファイル名： ``variables.Portal.Processes.ExternalLinks.json``"
 
-#: ../../source/portal-developer-guide/settings/index.rst:693
+#: ../../source/portal-developer-guide/settings/index.rst:689
 msgid "The file's value is a wrapper object: ``version`` identifies the format of the JSON collection itself, and ``items`` holds the list of external links. This wrapper-level ``version`` is what Portal reads (and migrates) on import - individual links do not carry their own ``version`` field."
 msgstr "このファイルの値はラッパーオブジェクトです：``version`` はJSONコレクション自体のフォーマットを識別し、``items`` は外部リンクのリストを保持します。このラッパーレベルの ``version`` は、インポート時にPortalが読み取る（および移行に使用する）ものです。個々のリンクは、それぞれ独自の ``version`` フィールドを持ちません。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:721
+#: ../../source/portal-developer-guide/settings/index.rst:717
 msgid "``id``: the identification of a link, auto-generated by UUID"
 msgstr "``id``：UUID で自動生成されるリンクの ID"
 
-#: ../../source/portal-developer-guide/settings/index.rst:722
+#: ../../source/portal-developer-guide/settings/index.rst:718
 msgid "``name``: the display name of a link"
 msgstr "``name``：リンクの表示名"
 
-#: ../../source/portal-developer-guide/settings/index.rst:723
+#: ../../source/portal-developer-guide/settings/index.rst:719
 msgid "``link``: the URL of the link"
 msgstr "``link``：リンクの URL"
 
-#: ../../source/portal-developer-guide/settings/index.rst:724
+#: ../../source/portal-developer-guide/settings/index.rst:720
 msgid "``creatorId``: the user id who create the link. This user can see and start the external link in any case"
 msgstr "``creatorId``：リンクを作成したユーザーの ID。ユーザーは、作成した外部リンクを任意のケースで表示して開始できます。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:725
+#: ../../source/portal-developer-guide/settings/index.rst:721
 msgid "``icon``: the style class of the link icon"
 msgstr "``icon``：リンクのアイコンのスタイルクラス。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:726
+#: ../../source/portal-developer-guide/settings/index.rst:722
 msgid "``description``: the description of a link"
 msgstr "``description``：リンクの説明"
 
-#: ../../source/portal-developer-guide/settings/index.rst:727
+#: ../../source/portal-developer-guide/settings/index.rst:723
 msgid "``imageContent``: the base64 data format of the process image. If this value is valid then it will be converted to a physical file. If you want to configure external link images when deploying, you just need to define ``imageContent``"
 msgstr "``imageContent``：プロセスの画像の base64 データ形式。この値が有効な場合は、物理ファイルに変換されます。展開時に外部リンクの画像を設定する場合は、 ``imageContent`` を定義するだけで済みます。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:728
+#: ../../source/portal-developer-guide/settings/index.rst:724
 msgid "``imageLocation``: the location of the process image. This image is stored in Application CMS. Basically, this should be handled by the engine"
 msgstr "``imageLocation``：プロセスの画像の場所。この画像はアプリケーションの CMS に格納されます。基本的にはエンジンで処理されます。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:729
+#: ../../source/portal-developer-guide/settings/index.rst:725
 msgid "``imageType``: the extension of the process image. Basically, this should be handled by the engine"
 msgstr "``imageType``：プロセスの画像の拡張子。基本的にはエンジンで処理されます。"
 
-#: ../../source/portal-developer-guide/settings/index.rst:730
+#: ../../source/portal-developer-guide/settings/index.rst:726
 msgid "``permissions``: users have these roles can see and start the external link. If you don't define it, default role is Everybody"
 msgstr "``permissions``：該当するロールを持つユーザーは、外部リンクを表示して開始できます。定義されない場合のデフォルトのロールは Everybody です。"
 
