@@ -68,7 +68,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       addNewAbsence: New absence is added for {0}
       removedAbsences: Removed absence for {0}
       saveAbsenceSetting: Absences settings saved successfully.
-      updateAbsence: Asence updated successfully
+      updateAbsence: Absence updated successfully
     absenceAndDeputy: Absences and substitutes
     allAbsences: Absences of all users
     applicationAndRole: Application and role
