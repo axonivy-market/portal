@@ -39,7 +39,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       addNewAbsence: 新しい不在者が{0}に追加されました
       removedAbsences: '{0}から削除された不在者'
       saveAbsenceSetting: 不在設定の保存に成功しました。
-      updateAbsence: 欠席設定の更新に成功しました
+      updateAbsence: 不在の更新に成功しました
     absenceAndDeputy: 不在者と代行者
     allAbsences: すべてのユーザーの不在状況
     applicationAndRole: アプリケーションと役割
