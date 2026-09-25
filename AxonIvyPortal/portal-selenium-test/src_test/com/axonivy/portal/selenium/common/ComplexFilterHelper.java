@@ -235,14 +235,11 @@ public class ComplexFilterHelper {
         input, value);
     SelenideElement trigger = input.parent().$("button.ui-datepicker-trigger").shouldBe(getClickableCondition());
     trigger.click();
-    // wait for the real open state instead of a fixed animation delay, otherwise the 2nd click races the popup on slow CI runners
     $$(".ui-datepicker-group").shouldBe(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
     trigger.click();
 
     closeAnyOpenDatePicker();
-    // confirm the popup is actually gone (with retry) rather than trusting a single fire-and-forget JS mutation
     $$(".ui-datepicker-group").filter(Condition.visible).shouldBe(CollectionCondition.empty, DEFAULT_TIMEOUT);
-    WaitHelper.waitPageNoAjaxAndAnimation();
   }
 
   public static void closeAnyOpenDatePicker() {
