@@ -43,6 +43,7 @@ public class TaskSearchCriteria {
       TaskBusinessState.ERROR);
 
   private List<TaskState> includedStates;
+  private List<TaskBusinessState> includedBusinessStates;
   private boolean isAdminQuery;
   private boolean filterTasksByCurrentCaseOwner;
   private String keyword;
@@ -86,6 +87,7 @@ public class TaskSearchCriteria {
     }
 
     addTaskStateQuery(finalQuery);
+    addTaskBusinessStateQuery(finalQuery);
     addLegacyTaskFilterQuery(finalQuery);
 
     if (hasTaskId()) {
@@ -126,6 +128,12 @@ public class TaskSearchCriteria {
   private void addTaskStateQuery(TaskQuery finalQuery) {
     if (hasIncludedStates()) {
       finalQuery.where().and(queryForStates(getIncludedStates()));
+    }
+  }
+
+  private void addTaskBusinessStateQuery(TaskQuery finalQuery) {
+    if (hasIncludedBusinessStates()) {
+      finalQuery.where().and().businessState().isIn(getIncludedBusinessStates());
     }
   }
 
@@ -479,7 +487,19 @@ public class TaskSearchCriteria {
   public boolean hasIncludedStates() {
     return CollectionUtils.isNotEmpty(includedStates);
   }
-  
+
+  public List<TaskBusinessState> getIncludedBusinessStates() {
+    return includedBusinessStates;
+  }
+
+  public void setIncludedBusinessStates(List<TaskBusinessState> includedBusinessStates) {
+    this.includedBusinessStates = includedBusinessStates;
+  }
+
+  public boolean hasIncludedBusinessStates() {
+    return CollectionUtils.isNotEmpty(includedBusinessStates);
+  }
+
   public boolean hasKeyword() {
     return StringUtils.isNotEmpty(keyword);
   }
