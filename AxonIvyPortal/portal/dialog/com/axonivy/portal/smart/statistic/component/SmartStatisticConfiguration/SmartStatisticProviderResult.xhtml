@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html"
+  xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces">
+
+  <!-- The records the field catalogue was read from. -->
+  <h:panelGroup id="provider-result" layout="block" styleClass="col-12 px-0 smart-result">
+    <div class="smart-result__head">
+      <span class="smart-result__title">
+        <i class="ti ti-braces"></i>
+        Result data
+      </span>
+
+      <h:panelGroup styleClass="smart-result__count"
+        rendered="#{managedBean.providerForm.resultLoaded and not empty managedBean.providerForm.resultJson}">
+        <h:outputText rendered="#{managedBean.providerForm.resultTruncated}"
+          value="Showing the first #{managedBean.providerForm.resultShownRows} of #{managedBean.providerForm.resultTotalRows} records" />
+        <h:outputText rendered="#{not managedBean.providerForm.resultTruncated}"
+          value="#{managedBean.providerForm.resultTotalRows} records available" />
+      </h:panelGroup>
+
+      <p:commandButton id="reload-provider-result" styleClass="smart-result__reload portal-pill-btn"
+        icon="ti ti-refresh" process="@this" update="provider-result"
+        actionListener="#{managedBean.loadProviderResult()}"
+        value="Reload"
+        ariaLabel="Reload" />
+    </div>
+
+    <h:panelGroup layout="block" styleClass="smart-result__empty"
+      rendered="#{not managedBean.providerForm.resultLoaded}">
+      Load the data to compare the chart against it.
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" styleClass="smart-result__empty"
+      rendered="#{managedBean.providerForm.resultLoaded and empty managedBean.providerForm.resultJson}">
+      This data source returned no records.
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" styleClass="smart-result__body"
+      rendered="#{not empty managedBean.providerForm.resultJson}">
+      <pre class="smart-result__json"><h:outputText escape="true"
+        value="#{managedBean.providerForm.resultJson}" /></pre>
+    </h:panelGroup>
+  </h:panelGroup>
+
+</ui:composition>

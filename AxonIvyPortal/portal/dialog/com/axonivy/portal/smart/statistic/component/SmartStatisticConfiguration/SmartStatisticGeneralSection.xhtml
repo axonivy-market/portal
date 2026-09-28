@@ -1,0 +1,78 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:pc="jakarta.faces.composite/components">
+
+  <!-- Name, description, permissions and icon. -->
+  <p:panel id="general-section" toggleable="true" toggleableHeader="true" collapsed="true"
+    toggleSpeed="500" widgetVar="general-panel" styleClass="w-full smart-section"
+    header="#{ivy.cms.co('/Labels/General')}">
+
+    <div class="field col-12">
+      <p:outputLabel value="#{ivy.cms.co('/Labels/Name')}" for="@next" />
+      <div class="ui-inputgroup">
+        <p:inputText id="name" value="#{managedBean.statistic.name}" maxlength="#{statisticInput}"
+          requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Labels/Name')])}"
+          styleClass="w-full" required="true" />
+        <p:commandButton id="add-name-language-button" icon="ti ti-language"
+          actionListener="#{managedBean.updateNameByLocale()}" process="name"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
+          update="name-language-config:multiple-languages-dialog"
+          oncomplete="PF('multiple-languages-dialog').show();" />
+      </div>
+    </div>
+
+    <div class="field col-12">
+      <p:outputLabel value="#{ivy.cms.co('/Labels/Description')}" for="@next" />
+      <div class="ui-inputgroup">
+        <p:inputTextarea id="description" value="#{managedBean.statistic.description}"
+          maxlength="#{statisticDescriptionInput}" rows="4" autoResize="false"
+          styleClass="w-full smart-description__input" />
+        <p:commandButton id="add-description-language-button" icon="ti ti-language"
+          actionListener="#{managedBean.updateDescriptionByLocale()}" process="description"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
+          update="description-language-config:multiple-languages-dialog"
+          oncomplete="PF('multiple-languages-dialog').show();" />
+      </div>
+    </div>
+
+    <div class="field col-12">
+      <p:outputLabel id="permission-label" for="@next" value="#{ivy.cms.co('/Labels/Permissions')}" />
+      <div class="w-full ui-fluid">
+        <p:autoComplete id="permissions" scrollHeight="210" dropdown="true"
+          completeMethod="#{managedBean.completePermissions}"
+          styleClass="manage-dashboard__input" inputStyleClass="manage-dashboard__autocomplete-input"
+          emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+          value="#{managedBean.statistic.permissionDTOs}" var="responsible"
+          itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}"
+          converter="pojoConverter" cache="true" maxResults="100" multiple="true"
+          moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
+          forceSelection="true" required="true"
+          requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Labels/Permissions')])}">
+          <p:ajax event="itemSelect" listener="#{managedBean.onSelectPermissionForDashboard}"
+            update="permissions errors-message" global="false" process="@this" immediate="true" />
+          <p:ajax event="itemUnselect"
+            listener="#{managedBean.onUnSelectPermissionForDashboard}" global="false"
+            process="@this" immediate="true" />
+          <p:column>
+            <pc:securityMemberNameAndAvatar displayName="#{dashboardTaskFilterBean.formatName(responsible)}"
+              securityMember="#{responsible}">
+              <f:facet name="alternativeAvatar">
+                <h:outputText rendered="#{not avatarBean.isShowAvatar()}"
+                  styleClass="ti #{responsible.isUser() ? 'ti-user' : 'ti-users'} u-mar-right-5" />
+              </f:facet>
+            </pc:securityMemberNameAndAvatar>
+          </p:column>
+        </p:autoComplete>
+      </div>
+    </div>
+
+    <div class="field col-12">
+      <p:outputLabel for="@next" value="#{ivy.cms.co('/Labels/Icon')}" />
+      <div>
+        <ic:ch.ivy.addon.portalkit.component.IconSelection id="icon"
+          value="#{managedBean.statistic.icon}" />
+      </div>
+    </div>
+  </p:panel>
+
+</ui:composition>

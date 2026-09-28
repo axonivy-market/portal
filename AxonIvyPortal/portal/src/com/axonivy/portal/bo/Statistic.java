@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.smart.statistic.provider.dto.ProviderChartSpec;
 import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
@@ -63,7 +64,12 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private boolean conditionBasedColoringEnabled;
   private ConditionBasedColoringScope conditionBasedColoringScope;
   private boolean chartDrillDownEnabled;
-  
+  /**
+   * Set only on charts fed by a tagged data provider instead of by tasks or cases. Absent from
+   * every chart stored before this existed, which is what keeps those reading back unchanged.
+   */
+  private ProviderChartSpec customChart;
+
   public Statistic() {
     icon = DEFAULT_ICON;
     isCustom = true;
@@ -283,10 +289,28 @@ public class Statistic extends AbstractConfiguration implements Serializable {
 
   @JsonView(PortalJsonViews.Internal.class)
   public boolean getCanDrillDown() {
+    // Provider-backed charts have no task or case behind a bucket to drill into, and they carry
+    // neither a target nor an aggregation - so this has to answer before dereferencing either.
+    if (customChart != null || statisticAggregation == null || chartTarget == null) {
+      return false;
+    }
     boolean supportedDrillDownAggregation =
         !AggregationField.AGGREGATES_HAS_NO_MATCHED_FILTERS.contains(statisticAggregation.getField());
     boolean hasRequiredReadAllPermission = chartTarget.equals(ChartTarget.CASE) ? PermissionUtils.checkReadAllCasesPermission() : PermissionUtils.checkReadAllTasksPermission();
     return chartDrillDownEnabled && StringUtils.isEmpty(aggregates) && StringUtils.isEmpty(filter) && supportedDrillDownAggregation && hasRequiredReadAllPermission;
+  }
+
+  public ProviderChartSpec getCustomChart() {
+    return customChart;
+  }
+
+  public void setCustomChart(ProviderChartSpec customChart) {
+    this.customChart = customChart;
+  }
+
+  @JsonIgnore
+  public boolean isProviderBacked() {
+    return customChart != null;
   }
 
   public boolean getChartDrillDownEnabled() {

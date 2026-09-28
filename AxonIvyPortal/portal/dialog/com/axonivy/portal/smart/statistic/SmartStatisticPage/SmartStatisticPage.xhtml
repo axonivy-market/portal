@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces">
+
+<!-- The insight page: ask a question, keep the answer on the board.
+     The chart editor renders over it as a component whenever the bean leaves view mode. -->
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="viewName" value="STATISTIC_CONFIGURATION" />
+    <ui:param name="loadGridStack" value="true" />
+    <ui:define name="head">
+      <h:outputScript library="primefaces" name="chart/chart.js" />
+      <h:outputScript library="chartjs-plugin" name="chartjs-plugin-datalabels.min.js" />
+      <h:outputScript name="smart-statistic.js" library="js" />
+      <h:outputScript name="smart-statistic-prompt.js" library="js" />
+      <h:outputScript name="smart-statistic-grid.js" library="js" />
+      <h:outputStylesheet library="css" name="dashboard.css" />
+      <h:outputStylesheet library="css" name="smart-statistic.css" />
+    </ui:define>
+    <ui:define name="title">Smart statistic</ui:define>
+    <ui:define name="pageContent">
+
+      <p:remoteCommand name="preview" action="#{smartStatisticManagementBean.getPreviewData}"
+        oncomplete="handlePreviewChart(xhr, status, args)" autoRun="#{smartStatisticManagementBean.editMode}" />
+      <p:remoteCommand name="updateThresholdToggle" action="#{smartStatisticManagementBean.resetConditionBasedColoring}" global="false" />
+
+      <h:form id="smart-statistic-form" styleClass="card dashboard-card p-5">
+        <h:panelGroup id="page-modes" layout="block">
+          <h:panelGroup id="view-mode" layout="block"
+            styleClass="smart-page #{smartStatisticManagementBean.pageStyleClass}"
+            rendered="#{smartStatisticManagementBean.viewMode}">
+
+            <h:panelGroup id="page-masthead" layout="block" styleClass="smart-masthead">
+              <h:outputText id="page-title" styleClass="mb-0 text-4xl font-semibold"
+                style="line-height:1.2; display:block"
+                value="Smart statistic" />
+            </h:panelGroup>
+
+            <ui:include src="SmartStatisticAskBar.xhtml" />
+            <ui:include src="SmartStatisticPinnedZone.xhtml" />
+            <ui:include src="SmartStatisticBoardZone.xhtml" />
+          </h:panelGroup>
+
+          <ic:com.axonivy.portal.smart.statistic.component.SmartStatisticConfiguration
+            id="smart-statistic-config"
+            managedBean="#{smartStatisticManagementBean.chartConfiguration}"
+            componentToUpdate=":smart-statistic-form:page-modes"
+            componentClientId="smart-statistic-form:smart-statistic-config" />
+
+        </h:panelGroup>
+
+        <p:remoteCommand name="saveSmartGridLayout" global="false"
+          actionListener="#{smartStatisticManagementBean.saveGridLayout}" process="@this" />
+
+        <p:tooltip globalSelector=".smart-card__title, .smart-card__scope" trackMouse="true" />
+
+        <script type="text/javascript">
+          window.smartStatGridConfig = {
+            apiUri: "#{smartStatisticManagementBean.statisticApiUri}",
+            language: "#{smartStatisticManagementBean.supportedUserLanguage}",
+            datePattern: "#{dateTimePatternBean.datePattern}",
+            locale: "#{ivy.session.contentLocale}",
+            thinkingShow: "Show thinking",
+            thinkingHide: "Hide thinking",
+            aiEvalShow: "Show the AI evaluation",
+            aiEvalHide: "Hide the AI evaluation",
+            insightRefresh: "Read these numbers again"
+          };
+        </script>
+      </h:form>
+    </ui:define>
+  </ui:composition>
+</h:body>
+
+</html>

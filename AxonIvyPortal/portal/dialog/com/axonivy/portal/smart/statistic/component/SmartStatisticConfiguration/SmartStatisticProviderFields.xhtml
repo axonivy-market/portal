@@ -1,0 +1,88 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces">
+
+  <!-- What a provider-backed chart measures, and how it slices it. -->
+  <h:panelGroup layout="block" styleClass="col-12 p-0"
+    rendered="#{managedBean.providerForm.catalogueEmpty}">
+    <p:staticMessage severity="warn" styleClass="w-full"
+      detail="The &quot;#{managedBean.providerForm.providerName}&quot; data source returned no records, so there is nothing to chart yet." />
+  </h:panelGroup>
+
+  <h:panelGroup layout="block" rendered="#{not managedBean.providerForm.catalogueEmpty}">
+
+    <div class="flex">
+      <h:panelGroup layout="block" styleClass="field col-6 pl-0"
+        rendered="#{managedBean.providerForm.labelDate}">
+        <p:outputLabel for="@next"
+          value="Group dates by" />
+        <p:selectOneMenu id="provider-date-bucket" styleClass="w-full"
+          value="#{managedBean.providerForm.dateBucket}">
+          <f:selectItems value="#{managedBean.providerDateBuckets}" />
+          <p:ajax listener="#{managedBean.onSelectProviderDateBucket}"
+            process="chart-aggregation" update="chart-aggregation" />
+        </p:selectOneMenu>
+      </h:panelGroup>
+    </div>
+
+    <div class="flex">
+      <div class="field col-6 pl-0">
+        <p:outputLabel for="@next"
+          value="Measure" />
+        <p:selectOneMenu id="provider-aggregation" styleClass="w-full"
+          value="#{managedBean.providerForm.aggregation}">
+          <f:selectItems value="#{managedBean.providerAggregations}" />
+          <p:ajax listener="#{managedBean.onSelectProviderAggregation}"
+            process="chart-aggregation" update="chart-aggregation" />
+        </p:selectOneMenu>
+      </div>
+
+      <h:panelGroup layout="block" styleClass="field col-6 pr-0"
+        rendered="#{managedBean.providerForm.measureRequired}">
+        <p:outputLabel for="@next"
+          value="Field to measure" />
+        <p:selectOneMenu id="provider-value" styleClass="w-full"
+          value="#{managedBean.providerForm.valuePath}">
+          <f:selectItems value="#{managedBean.providerForm.measurableFields}"
+            var="measurable" itemValue="#{measurable.fieldName}"
+            itemLabel="#{measurable.title}" itemDescription="#{managedBean.describeField(measurable)}" />
+        </p:selectOneMenu>
+      </h:panelGroup>
+    </div>
+
+    <h:panelGroup layout="block" styleClass="flex"
+      rendered="#{managedBean.statistic.chartType.name() ne 'NUMBER'}">
+      <div class="field col-6 pl-0">
+        <p:outputLabel for="@next"
+          value="Sort" />
+        <p:selectOneMenu id="provider-sort" styleClass="w-full"
+          value="#{managedBean.providerForm.sort}">
+          <f:selectItems value="#{managedBean.providerSortOrders}" />
+        </p:selectOneMenu>
+      </div>
+      <div class="field col-6 pr-0">
+        <p:outputLabel for="@next"
+          value="Maximum groups" />
+        <div>
+          <p:inputNumber id="provider-limit" decimalPlaces="0" minValue="1"
+            maxValue="#{managedBean.providerForm.maxLimit}"
+            value="#{managedBean.providerForm.limit}"
+            onkeydown="return event.key !== '-'" inputStyleClass="w-full" />
+        </div>
+      </div>
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" styleClass="field col-12 px-0"
+      rendered="#{empty managedBean.providerForm.groupableFields}">
+      <p:staticMessage severity="warn" styleClass="w-full"
+        detail="This data has no field that can be grouped, so only a single figure can be shown." />
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" styleClass="field col-12 px-0"
+      rendered="#{empty managedBean.providerForm.measurableFields}">
+      <p:staticMessage severity="warn" styleClass="w-full"
+        detail="This data has no numeric field, so records can only be counted." />
+    </h:panelGroup>
+
+  </h:panelGroup>
+
+</ui:composition>
