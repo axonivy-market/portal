@@ -120,7 +120,7 @@
       "id" : "f3",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 672, "y" : 96 }
+        "at" : { "x" : 416, "y" : 96 }
       }
     }, {
       "id" : "f34",
@@ -437,7 +437,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 96 }
+        "at" : { "x" : 248, "y" : 96 }
       },
       "connect" : [
         { "id" : "f1", "to" : "f3" }
