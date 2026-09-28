@@ -137,12 +137,13 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void applyFilter() {
     $("div.footer-buttons-container").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
-    $("div[id$='task-task_1:filter-dialog-0']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    waitForFilterDialogDisappear();
   }
 
   public void resetFilter() {
     $("div.footer-buttons-container").shouldBe(appear, DEFAULT_TIMEOUT).$$("a[id$='reset-button']")
         .filter(text("Reset")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForFilterDialogDisappear();
   }
 
   public void clickOnSaveFilterButton() {
