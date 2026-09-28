@@ -38,15 +38,15 @@
 
                 <h:panelGroup class="MarTop20">
                   <p:outputLabel for="from" value="#{ivy.cms.co('/Labels/LeaveRequest/from')}" />
-                  <p:datePicker id="from" value="#{data.leaveRequestData.from}"
-                    styleClass="MarTop10" required="true" pattern="#{dateTimeExampleBean.datePattern}"
+                  <p:datePicker id="from" value="#{data.leaveRequestData.from}" locale="de"
+                    styleClass="MarTop10" required="true" pattern="#{dateTimeExampleBean.datePatternForDatePicker}"
                     requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/from')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}" focusOnSelect="true" />
                 </h:panelGroup>
 
                 <h:panelGroup class="MarTop20">
-                  <p:outputLabel for="to" value="#{ivy.cms.co('/Labels/LeaveRequest/to')} " />
-                  <p:datePicker id="to" value="#{data.leaveRequestData.to}"
-                    styleClass="MarTop10" required="true" pattern="#{dateTimeExampleBean.datePattern}"
+                  <p:outputLabel for="to" value="#{dateTimeExampleBean.datePattern}" />
+                  <p:datePicker id="to" value="#{data.leaveRequestData.to}" locale="de"
+                    styleClass="MarTop10" required="true" pattern="#{dateTimeExampleBean.datePatternForDatePicker}"
                     requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/to')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}" focusOnSelect="true" />
                 </h:panelGroup>
 
