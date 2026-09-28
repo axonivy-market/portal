@@ -814,12 +814,14 @@ $(document).ready(function () {
 
         function adjustMediaHeight() {
           var dialog = contentWindow.PF('preview-document-dialog').jq;
-          var media = dialog.find('.ui-widget-content').find('.ui-g-12 object');
-
+          var content = dialog.find('.ui-dialog-content');
+          var media = content.find('.ui-g-12 object');
           if (dialog.hasClass('ui-dialog-maximized')) {
             var newHeight = dialog.height() - 130;
+            content.css('width', '');
             media.css('height', newHeight + 'px');
           } else {
+            content.css('width', '');
             media.css('height', '600px');
           }
         }
