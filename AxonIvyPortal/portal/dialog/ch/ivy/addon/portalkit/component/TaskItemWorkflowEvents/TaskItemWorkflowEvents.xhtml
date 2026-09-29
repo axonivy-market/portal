@@ -23,14 +23,16 @@
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
       reflow="true" lazy="false" styleClass="ui-g-12">
 
-      <p:column width="250" sortBy="#{event.displayName}">
+      <p:column width="250" sortBy="#{event.displayName}"
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/eventType')}">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/eventType')}" />
         </f:facet>
         <h:outputText value="#{event.displayName}" />
       </p:column>
 
-      <p:column sortBy="#{event.content}" width="300">
+      <p:column sortBy="#{event.content}" width="300"
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" />
         </f:facet>
@@ -39,6 +41,7 @@
 
       <c:set var="taskState" value="#{taskBean.getTranslatedState(event.taskBusinessState)}" />
       <p:column width="80" sortBy="#{taskState}"
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}"
         styleClass="note-history-fullname-column">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
@@ -48,7 +51,8 @@
         </h:panelGroup>
       </p:column>
 
-      <p:column width="150" sortBy="#{event.involvedUsername}">
+      <p:column width="150" sortBy="#{event.involvedUsername}"
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}" />
         </f:facet>
@@ -56,7 +60,8 @@
           displayName="#{event.involvedUsername}" securityMember="#{event.involvedUser}" />
       </p:column>
 
-      <p:column width="100" sortBy="#{event.timestamp}" field="timestamp" filterable="false" styleClass="u-hidden-sm-down">
+      <p:column width="100" sortBy="#{event.timestamp}"
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" field="timestamp" filterable="false" styleClass="u-hidden-sm-down">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />
         </f:facet>

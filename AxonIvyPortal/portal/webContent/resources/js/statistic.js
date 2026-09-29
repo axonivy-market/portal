@@ -1023,6 +1023,7 @@ class ClientNumberChart extends ClientChart {
     let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
     let chartContainer = $(this.chart);
     chartContainer.attr('tabindex', '0');
+    chartContainer.attr('role', 'group');
     chartContainer.attr('aria-label', this.buildNumberChartAriaLabel(getFormatedTitle(config.names), result));
     chartContainer.css('--card-count', Math.max(result.length, 1));
     chartContainer.html(multipleKPI);

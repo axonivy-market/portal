@@ -689,6 +689,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
     warning: Warnung!
     welcomeToPortal: Willkommen, bitte melden Sie sich an
+    widgetActionMenuContext: Aktionsmenü für Widget {0} öffnen
     workingUser: Bearbeiter
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
     year: Jahr
@@ -1273,6 +1274,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     newPassword: Neues Passwort
     noPermission: Sie haben nicht die erforderlichen Berechtigungen, um das Passwort zu ändern. Bitte wenden Sie sich an Ihren Administrator, um Unterstützung zu erhalten.
     passwordMust: Das Passwort muss
+    passwordRequirements: Passwortanforderungen
     requireConfirmPassword: Wiederholen Sie Ihr Passwort, bitte
     requireCurrentPassword: Bitte geben Sie Ihr Passwort an
     requireNewPassword: Das neue Passwort wurde nicht angegeben
@@ -1386,6 +1388,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     documents: Dokumente
     dueDate: Fällig
     duration: Dauer
+    editDelay: Sperrfrist bearbeiten
+    editExpiry: Ablauffrist bearbeiten
+    editExpiryActivator: Aktivierer der Ablauffrist bearbeiten
     events: Workflow-Ereignisse
     expiry: Ablauffrist
     failedDelayValidation: Der Zeitstempel der Aufgabenverzögerung darf kein leerer Wert oder ungültiges Datumsformat sein

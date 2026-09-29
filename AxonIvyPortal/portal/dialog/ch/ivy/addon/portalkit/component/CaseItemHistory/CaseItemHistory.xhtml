@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="primefaces" xmlns:pe="primefaces.extensions"
+  xmlns:p="primefaces" xmlns:pt="jakarta.faces.passthrough" xmlns:pe="primefaces.extensions"
   xmlns:jsf="jakarta.faces" xmlns:c="jakarta.tags.core"
   xmlns:pc="jakarta.faces.composite/components">
 
@@ -15,7 +15,7 @@
   <div class="case-details-item portal-detail-widget #{cc.attrs.styleClass} ui-g">
 
     <div class="case-detail-section-title portal-detail-widget-header ui-g-12 flex align-items-center justify-content-between flex-wrap">
-      <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="1">
+      <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="2">
         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/history')}
       </div>
       <h:panelGroup layout="block" styleClass="case-detail-history-section-header-actions portal-detail-widget-header-actions flex align-items-center">
@@ -159,6 +159,7 @@
         <p:inputTextarea id="note-content" value="#{data.noteContent}" required="true"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" rows="8"
           placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNoteHelpText')}"
+          pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
           styleClass="note-content-textarea" autoResize="false" />
       </h:panelGroup>
       <h:panelGroup layout="block" styleClass="MarTop10 text-right">

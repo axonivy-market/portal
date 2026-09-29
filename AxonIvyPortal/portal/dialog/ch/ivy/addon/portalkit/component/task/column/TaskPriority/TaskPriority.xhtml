@@ -24,12 +24,13 @@
   <h:panelGroup id="#{cc.attrs.componentId}" styleClass="priority-cell #{cc.attrs.priorityStyleClass} #{cc.attrs.responsiveStyleClass}"
     rendered="#{showPriority}" >
     <span id="task-priority" class="#{cc.attrs.priorityIconStyleClass} priority-icon">
-      <i jsf:rendered="#{priority eq 'LOW'}" class="priority ti ti-circle-arrow-down low-priority" />
-      <i jsf:rendered="#{priority eq 'NORMAL'}" class="priority ti ti-circle-arrow-right normal-priority" />
-      <i jsf:rendered="#{priority eq 'HIGH'}" class="priority ti ti-circle-arrow-up high-priority" />
-      <i jsf:rendered="#{priority eq 'EXCEPTION'}" class="priority ti ti-alert-circle exception-priority" />
+      <i jsf:rendered="#{priority eq 'LOW'}" class="priority ti ti-circle-arrow-down low-priority" aria-hidden="true" />
+      <i jsf:rendered="#{priority eq 'NORMAL'}" class="priority ti ti-circle-arrow-right normal-priority" aria-hidden="true" />
+      <i jsf:rendered="#{priority eq 'HIGH'}" class="priority ti ti-circle-arrow-up high-priority" aria-hidden="true" />
+      <i jsf:rendered="#{priority eq 'EXCEPTION'}" class="priority ti ti-alert-circle exception-priority" aria-hidden="true" />
       <h:outputText rendered="#{showIconWithText}" styleClass="priority-text" value="#{taskBean.getPriority(priority)}"/>
-      <i jsf:rendered="#{showEditIcon}" class="ti ti-pencil" />
+      <h:outputText rendered="#{!showIconWithText}" styleClass="screenreader-only" value="#{taskBean.getPriority(priority)}"/>
+      <i jsf:rendered="#{showEditIcon}" class="ti ti-pencil" aria-hidden="true" />
     </span>
     <p:tooltip rendered="#{!showIconWithText}" for="task-priority" value="#{taskBean.getPriority(priority)}" 
       trackMouse="true" hideEvent="mouseleave click" />

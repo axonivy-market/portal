@@ -133,7 +133,8 @@
         rendered="#{isReadOnlyMode}">
         <h:form id="actions-widget-form">
           <!-- Actions menu button -->
-          <p:menuButton id="actions-menu-button" menuStyleClass="actions-menu-panel" collision="flipfit" buttonStyleClass="rounded-button portal-icon-btn actions-menu-button-#{index}" icon="ti ti-dots">
+          <p:menuButton id="actions-menu-button" menuStyleClass="actions-menu-panel" collision="flipfit" buttonStyleClass="rounded-button portal-icon-btn actions-menu-button-#{index}" icon="ti ti-dots"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/widgetActionMenuContext', [widgetName])}">
             <!-- Bulk selection -->
             <p:menuitem id="bulk-delegate-toggle-button-#{index}" rendered="#{renderSelectionToggle}"
               icon="ti ti-list-check" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/bulkSelection')}"
@@ -311,7 +312,7 @@
         resizable="false"
         showHeader="false"
         dynamic="true"
-        onShow="loadUserFilters#{index}(); #{onFilterDialogShow};"
+        onShow="this.jq.attr('aria-labelledby', '#{cc.clientId}-filter-dialog-title-#{index}'); loadUserFilters#{index}(); #{onFilterDialogShow};"
         pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterPanelHeader')}">
         <p:tooltip globalSelector=".ui-button" hideEvent="mouseleave click"/>
         <h:form id="filter-form-#{index}" styleClass="filter-form flex flex-column flex-auto">
@@ -333,7 +334,7 @@
               
               <div class="flex align-items-center justify-content-between">
                 <div class="flex align-items-center gap-1">
-                  <strong class="filter-dialog__title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/SetFilterHeader')}</strong>
+                  <strong id="#{cc.clientId}-filter-dialog-title-#{index}" class="filter-dialog__title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/SetFilterHeader')}</strong>
                   <h:outputText id="set-filter-info-icon-#{index}" styleClass="ti ti-info-circle" />
                   <p:tooltip for="set-filter-info-icon-#{index}"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterOptionHeaderTooltip')}"
@@ -370,7 +371,8 @@
                         value="#{widgetFilterHelperBean.newFilterName}" maxlength="30"
                         required="#{param['inlineSaveFilter'] == 'true'}"
                         requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/SaveFilterNameRequired')}"
-                        placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/SaveFilterNamePlaceholder')}">
+                        placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/SaveFilterNamePlaceholder')}"
+                        pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterName')}">
                       </p:inputText>
 
                       <p:commandButton id="inline-save-filter"

@@ -686,6 +686,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: We are creating the Export, this can take a few minutes
     warning: Warning!
     welcomeToPortal: Welcome, please login
+    widgetActionMenuContext: Open actions menu for {0} widget
     workingUser: Working user
     wrongDateFormat: Please enter valid date.
     year: year
@@ -1267,6 +1268,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     newPassword: New password
     noPermission: You do not have the required permissions to change the password. Please contact your administrator for assistance.
     passwordMust: Password must
+    passwordRequirements: Password requirements
     requireConfirmPassword: Password confirmation was missing
     requireCurrentPassword: Please specify the current password
     requireNewPassword: Please specify the new password as well
@@ -1380,6 +1382,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     documents: Documents
     dueDate: Due
     duration: Duration
+    editDelay: Edit delay
+    editExpiry: Edit expiry
+    editExpiryActivator: Edit expiry activator
     events: Workflow Events
     expiry: Expiry
     failedDelayValidation: Task delay timestamp cannot be an empty value or invalid date format

@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="primefaces" xmlns:pe="primefaces.extensions"
+  xmlns:p="primefaces" xmlns:pt="jakarta.faces.passthrough" xmlns:pe="primefaces.extensions"
   xmlns:c="jakarta.tags.core" xmlns:jsf="jakarta.faces">
 
 <cc:interface componentType="IvyComponent">
@@ -15,7 +15,7 @@
   <f:event listener="#{logic.initData(task)}" type="preRenderComponent" />
   <h:panelGroup class="task-details-item-note portal-detail-widget ui-g" id="task-details-item-note" layout="block">
     <div class="task-detail-section-title portal-detail-widget-header ui-g-12 flex align-items-center justify-content-between flex-wrap">
-      <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="1">
+      <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="2">
         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/histories')}
       </div>
       <h:panelGroup layout="block" styleClass="note-task-detail-section-header-actions portal-detail-widget-header-actions flex align-items-center">
@@ -106,7 +106,8 @@
         <p:messages id="task-detail-create-note-msg" for="task-detail-note-content" />
         <p:inputTextarea id="task-detail-note-content" value="#{data.noteContent}" required="true"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" rows="8"
-          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNoteHelpText')}" styleClass="note-content-textarea" autoResize="false" />
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNoteHelpText')}" styleClass="note-content-textarea" autoResize="false"
+          pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" />
       </h:panelGroup>
 
       <h:panelGroup layout="block" styleClass="text-right MarTop10">

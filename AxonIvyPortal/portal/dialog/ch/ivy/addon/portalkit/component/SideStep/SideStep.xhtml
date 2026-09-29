@@ -37,7 +37,7 @@
 
   <p:commandButton id="#{cc.attrs.actionLinkId}" type="button" disabled="#{cc.attrs.isDisabled or cc.attrs.isPreviewMode}"
     onclick="event.stopPropagation(); return false;"
-    ariaLabel="#{not empty cc.attrs.ariaLabel ? cc.attrs.ariaLabel : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ti ti-dots"
+    ariaLabel="#{not empty cc.attrs.ariaLabel ? cc.attrs.ariaLabel : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ti ti-dots" pt:aria-haspopup="true"
     styleClass="#{cc.attrs.buttonStyleClass} rounded-button portal-icon-btn">
   </p:commandButton>
 

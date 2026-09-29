@@ -24,6 +24,7 @@
    <i class="ti ti-search" />
    <p:inputText id="search-saved-filter-input"
       placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/SearchForFilter')}"
+      pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/SearchForFilter')}"
       styleClass="saved-filter__search w-full" value="#{widget.searchSavedFilterKeyword}"
       onfocus="#{widget.type == 'PROCESS'} ? preventFocus() : 'false' "
       onclick="retrieveFocus()"
