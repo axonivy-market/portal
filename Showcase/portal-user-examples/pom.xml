@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.axonivy.ivy.api</groupId>
     <artifactId>ivy-project-parent</artifactId>
-    <version>14.0.0</version>
+    <version>14.0.1-SNAPSHOT</version>
     <relativePath />
   </parent>
   <groupId>com.axonivy.portal</groupId>
@@ -39,6 +39,12 @@
       <groupId>com.axonivy.ivy.api.extension</groupId>
       <artifactId>ivy-process-extension-api</artifactId>
     </dependency>
+    <!-- Remove after migrating to Jackson 3. -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
   <repositories>
     <repository>
@@ -49,9 +55,6 @@
       <url>https://repo.maven.apache.org/maven2</url>
     </repository>
     <repository>
-      <snapshots>
-        <updatePolicy>always</updatePolicy>
-      </snapshots>
       <id>maven.axonivy.com</id>
       <url>https://maven.axonivy.com</url>
     </repository>
