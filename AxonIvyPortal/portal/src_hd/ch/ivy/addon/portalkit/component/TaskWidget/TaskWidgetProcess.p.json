@@ -117,49 +117,10 @@
         { "id" : "f30", "to" : "f29" }
       ]
     }, {
-      "id" : "f27",
-      "type" : "Script",
-      "name" : [
-        "load filter set",
-        "and init column ",
-        "configuration"
-      ],
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.jsf.ManagedBeans;",
-            "import ch.ivy.addon.portalkit.bean.PermissionBean;",
-            "import ch.ivy.addon.portalkit.enums.FilterType;",
-            "import ch.ivy.addon.portalkit.service.TaskFilterService;",
-            "",
-            "",
-            "TaskFilterService taskFilterService = new TaskFilterService();",
-            "in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId) as List;",
-            "",
-            "PermissionBean permissionBean = ManagedBeans.get(\"permissionBean\") as PermissionBean;",
-            "if (permissionBean.hasAdminPermission()) {",
-            "  in.taskPublicFilters = taskFilterService.getPublicFilterForAdmin(in.taskFilterGroupId) as List;",
-            "} else {",
-            "  in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;",
-            "}",
-            "",
-            "in.taskPublicFilters.add(in.dataModel.buildDefaultTaskFilterData());",
-            "in.filterType = FilterType.ONLY_ME;"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 384, "y" : 96 },
-        "size" : { "width" : 128 }
-      },
-      "connect" : [
-        { "id" : "f101", "to" : "f3" }
-      ]
-    }, {
       "id" : "f3",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 672, "y" : 96 }
+        "at" : { "x" : 416, "y" : 96 }
       }
     }, {
       "id" : "f34",
@@ -476,10 +437,10 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 96 }
+        "at" : { "x" : 248, "y" : 96 }
       },
       "connect" : [
-        { "id" : "f1", "to" : "f27" }
+        { "id" : "f1", "to" : "f3" }
       ]
     }, {
       "id" : "f11",
