@@ -10,16 +10,6 @@
       "name" : "start(String,String)",
       "config" : {
         "signature" : "smartStatistic",
-        "input" : {
-          "params" : [
-            { "name" : "id", "type" : "String", "desc" : "Id of an existing custom chart to refine. Keep empty to start a new one." },
-            { "name" : "callbackDashboardId", "type" : "String", "desc" : "Dashboard to return to after saving. Keep empty to return to the Portal home page." }
-          ],
-          "map" : {
-            "out.callbackDashboardId" : "param.callbackDashboardId",
-            "out.id" : "param.id"
-          }
-        },
         "request" : {
           "name" : "Smart Statistic",
           "customFields" : [
@@ -48,13 +38,7 @@
       "id" : "f3",
       "type" : "DialogCall",
       "config" : {
-        "dialog" : "com.axonivy.portal.smart.statistic.SmartStatisticPage:start(String,String)",
-        "call" : {
-          "map" : {
-            "param.callbackDashboardId" : "in.callbackDashboardId",
-            "param.id" : "in.id"
-          }
-        }
+        "dialog" : "com.axonivy.portal.smart.statistic.SmartStatisticPage:start()"
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }

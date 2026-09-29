@@ -23,7 +23,6 @@ import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
 import com.axonivy.portal.bo.ThresholdStatisticChart;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
-import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
@@ -58,7 +57,6 @@ import com.axonivy.portal.smart.statistic.service.StatisticPermissionService;
 import com.axonivy.portal.util.filter.field.FilterField;
 
 import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
-import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
@@ -609,15 +607,6 @@ public class SmartChartConfigurationBean implements Serializable, IMultiLanguage
 
   public int getMinRefreshIntervalInSeconds() {
     return StatisticLifecycleService.MIN_REFRESH_INTERVAL_IN_SECONDS;
-  }
-
-  /** Called by the page when it leaves entirely, rather than returning to the board. */
-  void navigateToDashboard(String callbackDashboardId) {
-    if (StringUtils.isEmpty(callbackDashboardId)) {
-      PortalNavigatorAPI.navigateToPortalHome();
-    } else {
-      PortalNavigator.navigateToDashboardDetailsPage(callbackDashboardId, true);
-    }
   }
 
   /** Marks the submit failed and puts the reason where the form shows its messages. */

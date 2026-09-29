@@ -20,7 +20,6 @@ import com.axonivy.portal.smart.statistic.dto.SmartStatisticGridItem;
 import com.axonivy.portal.smart.statistic.service.SmartStatisticAiService;
 import com.axonivy.portal.smart.statistic.service.SmartStatisticGridService;
 
-import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
@@ -63,22 +62,12 @@ public class SmartStatisticManagementBean implements Serializable {
   private String answerQuestion;
   private boolean answerActive;
 
-  private String callbackDashboardId;
-
   @PostConstruct
   public void init() {
-    String statisticId = Attrs.currentContext().getAttribute("#{data.id}", String.class);
-    callbackDashboardId = Attrs.currentContext().getAttribute("#{data.callbackDashboardId}", String.class);
-
     gridItems = SmartStatisticGridService.load();
     statisticApiUri = FacesContext.getCurrentInstance().getExternalContext()
         .getRequestContextPath() + "/api/statistics/data";
     agentAvailable = SmartStatisticAiService.isAvailable();
-
-    // Entering with an explicit chart id means "edit this one", so skip the board.
-    if (StringUtils.isNotEmpty(statisticId)) {
-      editChart(statisticId);
-    }
   }
 
   // ==========================================================================
@@ -98,17 +87,6 @@ public class SmartStatisticManagementBean implements Serializable {
   public void returnToView() {
     viewMode = true;
     answerActive = false;
-  }
-
-  /** Leaves the page entirely, as opposed to returning to the board. */
-  public void close() {
-    backToDashboardDetailsPageIfPossible();
-  }
-
-  void backToDashboardDetailsPageIfPossible() {
-    if (StringUtils.isNotBlank(callbackDashboardId)) {
-      chartConfiguration.navigateToDashboard(callbackDashboardId);
-    }
   }
 
   // ==========================================================================
