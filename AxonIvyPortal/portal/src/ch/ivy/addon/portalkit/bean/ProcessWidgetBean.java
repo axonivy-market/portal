@@ -102,7 +102,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements IMultiLang
         || UserSettingService.getInstance().isDefaultProcessModeOption(userProcessSetting)) {
       GlobalSetting defaultSetting = GlobalSettingService.getInstance()
           .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_MODE);
-      viewMode = getProcessModeByLabel(defaultSetting.getDisplayValue());
+      viewMode = getProcessModeByLabel(defaultSetting.getValue());
     } else {
       viewMode = getProcessModeByLabel(userProcessSetting);
     }
@@ -110,7 +110,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements IMultiLang
 
   private String getProcessModeByLabel(String processLabel) {
     return Stream.of(ProcessMode.values())
-        .filter(e -> Strings.CI.equals(processLabel, e.getLabel()) || Strings.CI.equals(e.name(), processLabel))
+        .filter(e -> e.name().equals(processLabel))
         .findFirst()
         .orElse(ProcessMode.IMAGE).toString();
   }

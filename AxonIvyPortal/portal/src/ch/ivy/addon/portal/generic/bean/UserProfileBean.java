@@ -15,9 +15,11 @@ import com.axonivy.portal.components.util.FacesMessageUtils;
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.enums.ProcessMode;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelSubcriptionDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationEventDTO;
+import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -129,5 +131,12 @@ public class UserProfileBean implements Serializable {
 
   public boolean hasNotificationChannelsSettingPermission() {
     return PermissionUtils.hasPortalPermission(PortalPermission.NOTIFICATION_CHANNELS_SETTING);
+  }
+
+  public String getLabelByProcessMode(String mode, String defaultGlobalProcessMode) {
+    if (UserSettingService.DEFAULT.equals(mode)) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption", List.of(ProcessMode.valueOf(defaultGlobalProcessMode).getLabel()));
+    }
+    return ProcessMode.valueOf(mode).getLabel();
   }
 }
