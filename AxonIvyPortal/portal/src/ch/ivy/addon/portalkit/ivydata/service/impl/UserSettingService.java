@@ -1,9 +1,9 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivy.addon.portalkit.enums.ProcessMode;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -25,18 +25,18 @@ public class UserSettingService {
     return instance;
   }
 
-  public void saveProcessModeSetting(String processMode) {
+  public void saveProcessModeSetting(String label) {
     IUser user = getSessionUser();
-    if (isDefaultProcessModeOption(processMode)) {
+    if (isDefaultProcessModeOption(label)) {
       user.removeProperty(UserProperty.DEFAULT_PROCESS_MODE);
     } else {
+      String processMode = getProcessModeByLabel(label);
       user.setProperty(UserProperty.DEFAULT_PROCESS_MODE, processMode);
     }
   }
 
   public boolean isDefaultProcessModeOption(String processMode) {
-    return Strings.CI.startsWith(processMode,
-        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption").replace("({0})", ""));
+    return DEFAULT.equals(processMode);
   }
 
   public String getDateFormat() {
@@ -44,7 +44,8 @@ public class UserSettingService {
   }
 
   public String getDefaultProcessMode() {
-    return getUserProperty(UserProperty.DEFAULT_PROCESS_MODE);
+    String userProcessMode = getUserProperty(UserProperty.DEFAULT_PROCESS_MODE);
+    return StringUtils.isBlank(userProcessMode) ? StringUtils.EMPTY : getProcessModeByLabel(userProcessMode);
   }
 
   public String getDefaultProcessImage() {
@@ -77,4 +78,14 @@ public class UserSettingService {
     }
     return Boolean.parseBoolean(isKeyboardShortcutsEnabled);
   }
+
+  public String getProcessModeByLabel(String label) {
+    for (ProcessMode mode : ProcessMode.values()) {
+      if (mode.name().equals(label) || mode.getLabel().equals(label)) {
+        return mode.name();
+      }
+    }
+    return ProcessMode.IMAGE.name();
+  }
+
 }
