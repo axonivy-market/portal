@@ -845,19 +845,7 @@ $(document).ready(function () {
     });
 	
   }, 200);
-
-  setAltForAvatar();
 });
-
-function setAltForAvatar() {
-  $("div.has-avatar").each((index, item) => {
-    let imgTag = $(item).find('img');
-    if ($(imgTag).attr('alt') === undefined) {
-      let alt = $(item).find('.name-after-avatar').text() || 'Avatar';
-      $(imgTag).attr('alt', alt)
-    }
-  })
-}
 
 
 /**
