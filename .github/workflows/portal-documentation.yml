@@ -59,23 +59,40 @@ jobs:
           echo "Version is $VERSION"
           echo "Release is $RELEASE"
 
-      - name: Download screenshot artifacts from head branch
-        id: get_screenshots_head_branch
+      - name: Download screenshot artifacts of this commit
+        id: get_screenshots_commit
         uses: dawidd6/action-download-artifact@v21
         continue-on-error: true
         with:
           workflow: portal-document-screenshot-test.yml
           name: screenshots
-          branch: ${{ github.head_ref || github.ref_name }}
+          commit: ${{ github.event.pull_request.head.sha || github.sha }}
           path: Documentation/portal-guide/source/screenshots
 
-      - name: Download artifacts from screenshot workflow
-        if: steps.get_screenshots_head_branch.outcome != 'success' && github.ref_name != 'release/12.0'
+      - name: Find latest screenshot run
+        id: get_latest_screenshots_run
+        if: steps.get_screenshots_commit.outcome != 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          # The API's branch filter can return stale runs, so filter the unfiltered list here instead
+          RUN_ID=$(gh api "repos/${{ github.repository }}/actions/workflows/portal-document-screenshot-test.yml/runs?per_page=100" --jq '
+            [.workflow_runs[] | select(.conclusion == "success")] as $runs
+            | ([$runs[] | select(.head_branch == env.HEAD_BRANCH)][0] // [$runs[] | select(.head_branch == "release/12.0")][0]).id // empty')
+          if [ -z "$RUN_ID" ]; then
+            echo "::error::No successful screenshot run found for $HEAD_BRANCH or release/12.0"
+            exit 1
+          fi
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+
+      - name: Download latest screenshot artifacts
+        if: steps.get_latest_screenshots_run.outputs.run_id != ''
         uses: dawidd6/action-download-artifact@v21
         with:
           workflow: portal-document-screenshot-test.yml
           name: screenshots
-          branch: release/12.0
+          run_id: ${{ steps.get_latest_screenshots_run.outputs.run_id }}
           path: Documentation/portal-guide/source/screenshots
 
       - name: install zip
