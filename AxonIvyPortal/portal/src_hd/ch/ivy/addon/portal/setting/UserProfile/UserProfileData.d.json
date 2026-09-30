@@ -43,5 +43,9 @@
     "name" : "isShortcutEnabled",
     "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "globalDefaultProcessMode",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

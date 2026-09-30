@@ -15,7 +15,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -25,6 +24,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 import org.primefaces.event.FileUploadEvent;
@@ -108,22 +108,15 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   private void initProcessViewMode() {
-    String userProcessSetting = UserSettingService.getInstance().getDefaultProcessMode();
-    if (StringUtils.isBlank(userProcessSetting)
-        || UserSettingService.getInstance().isDefaultProcessModeOption(userProcessSetting)) {
+    String userProcessMode = UserSettingService.getInstance().getDefaultProcessMode();
+    if (StringUtils.isBlank(userProcessMode)) {
       GlobalSetting defaultSetting = GlobalSettingService.getInstance()
           .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_MODE);
-      viewMode = getProcessModeByLabel(defaultSetting.getDisplayValue());
+      String globalProcessMode = defaultSetting.getValue();
+      viewMode = EnumUtils.isValidEnum(ProcessMode.class, globalProcessMode) ? globalProcessMode : ProcessMode.IMAGE.name();
     } else {
-      viewMode = getProcessModeByLabel(userProcessSetting);
+      viewMode = userProcessMode;
     }
-  }
-
-  private String getProcessModeByLabel(String processLabel) {
-    return Stream.of(ProcessMode.values())
-        .filter(e -> Strings.CI.equals(processLabel, e.getLabel()) || Strings.CI.equals(e.name(), processLabel))
-        .findFirst()
-        .orElse(ProcessMode.IMAGE).toString();
   }
 
   private void groupProcessesByAlphabetIndex(List<Process> processes) {
