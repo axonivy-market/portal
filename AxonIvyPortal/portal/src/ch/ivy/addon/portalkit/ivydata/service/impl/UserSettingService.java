@@ -1,5 +1,10 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Stream;
+
+import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
@@ -9,6 +14,7 @@ import ch.ivyteam.ivy.security.IUser;
 
 public class UserSettingService {
 
+  private static final String PROCESS_MODE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessMode/";
   public static final String DEFAULT = "DEFAULT";
   private static UserSettingService instance;
 
@@ -25,12 +31,11 @@ public class UserSettingService {
     return instance;
   }
 
-  public void saveProcessModeSetting(String label) {
+  public void saveProcessModeSetting(String processMode) {
     IUser user = getSessionUser();
-    if (isDefaultProcessModeOption(label)) {
+    if (isDefaultProcessModeOption(processMode)) {
       user.removeProperty(UserProperty.DEFAULT_PROCESS_MODE);
     } else {
-      String processMode = getProcessModeByLabel(label);
       user.setProperty(UserProperty.DEFAULT_PROCESS_MODE, processMode);
     }
   }
@@ -45,7 +50,19 @@ public class UserSettingService {
 
   public String getDefaultProcessMode() {
     String userProcessMode = getUserProperty(UserProperty.DEFAULT_PROCESS_MODE);
-    return StringUtils.isBlank(userProcessMode) ? StringUtils.EMPTY : getProcessModeByLabel(userProcessMode);
+    if (StringUtils.isBlank(userProcessMode)) {
+      return StringUtils.EMPTY;
+    }
+
+    if (EnumUtils.isValidEnum(ProcessMode.class, userProcessMode)) {
+      return userProcessMode;
+    }
+
+    String processMode = findProcessModeByLocalizedLabel(userProcessMode);
+    if (StringUtils.isNotBlank(processMode)) {
+      updateUserProperty(UserProperty.DEFAULT_PROCESS_MODE, processMode);
+    }
+    return processMode;
   }
 
   public String getDefaultProcessImage() {
@@ -79,13 +96,14 @@ public class UserSettingService {
     return Boolean.parseBoolean(isKeyboardShortcutsEnabled);
   }
 
-  public String getProcessModeByLabel(String label) {
-    for (ProcessMode mode : ProcessMode.values()) {
-      if (mode.name().equals(label) || mode.getLabel().equals(label)) {
-        return mode.name();
-      }
-    }
-    return ProcessMode.IMAGE.name();
+  private String findProcessModeByLocalizedLabel(String label) {
+    List<Locale> locales = LanguageService.getInstance().getContentLocales();
+    return Stream.of(ProcessMode.values())
+        .filter(mode -> locales.stream()
+            .anyMatch(locale -> label.equals(Ivy.cms().coLocale(PROCESS_MODE_CMS_PATH + mode.name(), locale))))
+        .map(ProcessMode::name)
+        .findFirst()
+        .orElse(StringUtils.EMPTY);
   }
 
 }
