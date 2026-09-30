@@ -98,8 +98,9 @@ jobs:
         run: |
           DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
           rm -rf $DEPLOYMENT/*
-          cp AxonIvyPortal/PortalApp/target/*.zip $DEPLOYMENT
           cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
+          # The engine deploys separate zips in unsorted directory order, so ship portal inside the demo zip
+          zip -j $DEPLOYMENT/*.zip AxonIvyPortal/portal/target/*.iar AxonIvyPortal/portal-components/target/*.iar
           cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
           cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
           cp AxonIvyPortal/PortalKitTestHelper/target/*.iar $DEPLOYMENT
