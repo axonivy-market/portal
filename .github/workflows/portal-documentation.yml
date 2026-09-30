@@ -70,10 +70,9 @@ jobs:
         run: |
           # The API's branch filter can return stale runs, so filter the unfiltered list here instead
           RUN_ID=$(gh api "repos/${{ github.repository }}/actions/workflows/portal-document-screenshot-test.yml/runs?per_page=100" --jq '
-            [.workflow_runs[] | select(.conclusion == "success")] as $runs
-            | ([$runs[] | select(.head_branch == env.HEAD_BRANCH)][0] // [$runs[] | select(.head_branch == "release/10.0")][0]).id // empty')
+            [.workflow_runs[] | select(.conclusion == "success" and .head_branch == env.HEAD_BRANCH)][0].id // empty')
           if [ -z "$RUN_ID" ]; then
-            echo "::error::No successful screenshot run found for $HEAD_BRANCH or release/10.0"
+            echo "::error::No successful screenshot run found for $HEAD_BRANCH"
             exit 1
           fi
           echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
