@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 import org.primefaces.event.FileUploadEvent;
@@ -99,7 +100,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements IMultiLang
     if (StringUtils.isBlank(userProcessMode)) {
       GlobalSetting defaultSetting = GlobalSettingService.getInstance()
           .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_MODE);
-      viewMode = defaultSetting.getValue();
+      String globalProcessMode = defaultSetting.getValue();
+      viewMode = EnumUtils.isValidEnum(ProcessMode.class, globalProcessMode) ? globalProcessMode : ProcessMode.IMAGE.name();
     } else {
       viewMode = userProcessMode;
     }
