@@ -62,7 +62,7 @@
 
 #user-setting-container .ui-menu-items.color-destroy > a,
 #user-setting-container .ui-menu-items.color-destroy > a > i {
-  color: var(--ivy-tertinary-color-red-medium) !important;
+  color: var(--portal-action-menu-destroy-color) !important;
 }
 
 .ti,
@@ -1565,9 +1565,9 @@ body.in-dialog .ui-widget-overlay {
 }
 
 .notifications-indicator {
-  width: 1rem;
   justify-content: center;
-  flex: 0 0 1.5rem;
+  flex: 0 0 auto;
+  min-width: 1.5rem;
 }
 
 .notifications-indicator-icon {
@@ -1618,6 +1618,14 @@ body .notification-full-scroll>.ui-datascroller-content  {
   padding: 20px 15px 5px 15px;
   display: block;
   overflow: hidden;
+}
+
+.notification-mark-as-read {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  min-height: 24px;
 }
 
 .notifications-icon {
@@ -1870,6 +1878,42 @@ body.light .focused:not(input, button) {
 
 body.dark .focused:not(input, button) {
   outline: 2px solid var(--ivy-primary-light-color);
+}
+
+/* Topbar reflow on small screens */
+@media screen and (max-width: 40em) {
+  .layout-topbar .layout-topbar-right,
+  .layout-topbar .layout-topbar-actions {
+    min-width: 0;
+  }
+
+  .layout-topbar .layout-topbar-actions > .custom-search-item {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  .layout-topbar .custom-search-item .search-input-wrapper,
+  .layout-topbar .custom-search-item .global-search-input {
+    min-width: 0;
+  }
+}
+
+/* Document upload dialog */
+.portal-document-upload-dialog {
+  max-width: calc(100vw - 2rem);
+}
+
+/* Data table keyboard focus */
+body.light .ui-datatable th.ui-sortable-column:focus-visible,
+body.light .ui-datatable tbody.ui-datatable-data:focus-visible {
+  outline: 2px solid var(--ivy-primary-color);
+  outline-offset: -2px;
+}
+
+body.dark .ui-datatable th.ui-sortable-column:focus-visible,
+body.dark .ui-datatable tbody.ui-datatable-data:focus-visible {
+  outline: 2px solid var(--ivy-primary-light-color);
+  outline-offset: -2px;
 }
 
 .screenreader-only {

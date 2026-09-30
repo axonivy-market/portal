@@ -1945,6 +1945,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   right: -2px;
 }
 
+.workflow-events-dialog .ui-datatable tbody td {
+  overflow-wrap: anywhere;
+}
+
 .workflow-events-dialog, .task-custom-fields-dialog, .case-custom-fields-dialog {
   max-width: 70%;
 }
@@ -2819,8 +2823,45 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 @media screen and (max-width: 40em) {
+  .absence-tabs-header-row {
+    display: flex;
+    flex-direction: column;
+  }
+
   .absence-tabs-header-row .absences-tabview .ui-tabs-nav {
-    padding-right: 3rem;
+    padding-right: 0;
+  }
+
+  .absence-tab-actions {
+    position: static;
+    order: -1;
+    align-self: flex-end;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.absence-filters-row {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.absence-filters-user {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.absence-filters-toggle {
+  flex: 0 0 auto;
+}
+
+@media screen and (max-width: 40em) {
+  .absence-filters-row {
+    flex-wrap: wrap;
+  }
+
+  .absence-filters-user,
+  .absence-filters-toggle {
+    flex: 1 1 100%;
   }
 }
 

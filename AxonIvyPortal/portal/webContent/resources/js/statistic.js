@@ -10,7 +10,6 @@ const TOOLTIP_KPI_LABEL = 'tooltipKpiLabel';
 const EXPAND_LABEL_TEMPLATE = 'expandLabelTemplate';
 const COLLAPSE_LABEL_TEMPLATE = 'collapseLabelTemplate';
 const INFO_LABEL_TEMPLATE = 'infoLabelTemplate';
-const CHART_TEXT_COLOR = '#808080';
 const CHART_GRID_COLOR = 'rgba(192, 192, 192, 0.5)';
 const MIN_REFRESH_INTERVAL = 60;
 const SUCCESS_STATUS_CODE = 200;
@@ -43,6 +42,10 @@ const chartColors = () => {
 
 const getCssVariable = variableName => {
   return getComputedStyle(document.body).getPropertyValue(variableName);
+}
+
+const chartTextColor = () => {
+  return getCssVariable('--statistics-axis-text-color').trim() || '#707070';
 }
 
 const isNumeric = number => {
@@ -743,7 +746,7 @@ class ClientPieChart extends ClientCanvasChart {
           plugins: {
             legend: {
               labels: {
-                color: CHART_TEXT_COLOR
+                color: chartTextColor()
               }
             },
             tooltip: {
@@ -847,12 +850,12 @@ class ClientCartesianChart extends ClientCanvasChart {
               title: {
                 text: getFormatedTitle(yTitles),
                 display: yTitles.length > 0,
-                color: CHART_TEXT_COLOR
+                color: chartTextColor()
               },
               ticks: {
                 stepSize: stepSize,
                 precision: config.statisticAggregation?.aggregationMethod ? undefined : 0,
-                color: CHART_TEXT_COLOR
+                color: chartTextColor()
               },
               grid: {
                 color: CHART_GRID_COLOR
@@ -862,10 +865,10 @@ class ClientCartesianChart extends ClientCanvasChart {
               title: {
                 text: getFormatedTitle(xTitles),
                 display: xTitles.length > 0,
-                color: CHART_TEXT_COLOR
+                color: chartTextColor()
               },
               ticks: {
-                color: CHART_TEXT_COLOR
+                color: chartTextColor()
               },
               grid: {
                 color: CHART_GRID_COLOR
