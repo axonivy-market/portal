@@ -66,7 +66,7 @@ jobs:
         with:
           workflow: portal-document-screenshot-test.yml
           name: screenshots
-          commit: ${{ github.event.pull_request.head.sha || github.sha }}
+          commit: ${{ github.sha }}
           path: Documentation/portal-guide/source/screenshots
 
       - name: Find latest screenshot run
@@ -86,6 +86,7 @@ jobs:
           echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
 
       - name: Download latest screenshot artifacts
+        id: get_latest_screenshots
         if: steps.get_latest_screenshots_run.outputs.run_id != ''
         uses: dawidd6/action-download-artifact@v21
         with:
@@ -93,6 +94,42 @@ jobs:
           name: screenshots
           run_id: ${{ steps.get_latest_screenshots_run.outputs.run_id }}
           path: Documentation/portal-guide/source/screenshots
+
+      - name: Show screenshot source
+        if: always() && steps.get_screenshots_commit.outcome != 'skipped'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BUILD_BRANCH: ${{ github.head_ref || github.ref_name }}
+          BUILD_SHA: ${{ github.sha }}
+          FROM_COMMIT: ${{ steps.get_screenshots_commit.outcome == 'success' }}
+          COMMIT_ARTIFACTS: ${{ steps.get_screenshots_commit.outputs.artifacts }}
+          LATEST_ARTIFACTS: ${{ steps.get_latest_screenshots.outputs.artifacts }}
+          LATEST_RUN_ID: ${{ steps.get_latest_screenshots_run.outputs.run_id }}
+        run: |
+          if [ "$FROM_COMMIT" == "true" ]; then
+            export SOURCE="screenshot run of this commit"
+            ARTIFACTS=${COMMIT_ARTIFACTS:-[]}
+          else
+            export SOURCE="latest successful screenshot run of $BUILD_BRANCH"
+            ARTIFACTS=${LATEST_ARTIFACTS:-[]}
+          fi
+          RUN_ID=$(echo "$ARTIFACTS" | jq -r '.[0].workflow_run.id // empty')
+          RUN_ID=${RUN_ID:-$LATEST_RUN_ID}
+          {
+            echo "### Screenshot source"
+            echo "- Documentation: \`$BUILD_BRANCH\` @ \`$BUILD_SHA\`"
+            if [ -z "$RUN_ID" ]; then
+              echo "- Screenshots: no successful screenshot run found"
+            else
+              RUN_LINE=$(gh api "repos/${{ github.repository }}/actions/runs/$RUN_ID" \
+                --jq '"- Screenshots: \(env.SOURCE), [#\(.run_number)](\(.html_url)) on `\(.head_branch)` @ `\(.head_sha)`"' 2>/dev/null) \
+                || RUN_LINE="- Screenshots: $SOURCE, run $RUN_ID (details unavailable)"
+              echo "$RUN_LINE"
+              echo "$ARTIFACTS" | jq -r 'if length == 0 then "- Artifact: `screenshots` not found in that run"
+                else .[0] | "- Artifact: `\(.name)` (id \(.id)), created \(.created_at), expires \(.expires_at)\(if .expired then " (expired)" else "" end)" end'
+            fi
+          } | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: install zip
         uses: montudor/action-zip@v1
