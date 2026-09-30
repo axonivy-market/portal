@@ -643,6 +643,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     seeDetail: Details anzeigen
     select: Auswählen
     selectAll: Alle selektieren
+    skipToContent: Zum Inhalt springen
     selectUsers: Benutzer auswählen
     selectedDay: '{0} ausgewählte Tag(e)'
     send: Senden

@@ -1898,6 +1898,25 @@ body.dark .focused:not(input, button) {
   }
 }
 
+/* Skip to content link */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 10000;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 6px 6px;
+  background: var(--ivy-primary-color);
+  color: var(--primary-color-text, #ffffff);
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+#main-area-panel:focus {
+  outline: none;
+}
 /* Document upload dialog */
 .portal-document-upload-dialog {
   max-width: calc(100vw - 2rem);

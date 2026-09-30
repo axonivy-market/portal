@@ -641,6 +641,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     seeDetail: 詳細をご覧ください
     select: 詳細を表示
     selectAll: すべて選択
+    skipToContent: コンテンツへスキップ
     selectUsers: ユーザーを選択
     selectedDay: 選択した日数：{0}
     send: 送信
