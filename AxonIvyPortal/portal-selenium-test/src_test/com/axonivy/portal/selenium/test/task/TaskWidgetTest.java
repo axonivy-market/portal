@@ -1,8 +1,5 @@
 package com.axonivy.portal.selenium.test.task;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
