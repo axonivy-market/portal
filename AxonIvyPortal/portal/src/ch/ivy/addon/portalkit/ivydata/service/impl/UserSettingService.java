@@ -47,7 +47,13 @@ public class UserSettingService {
   public String getDateFormat() {
     return getUserProperty(UserProperty.DATE_FORMAT);
   }
-
+  
+  /**
+   * Returns the user's default process mode as a {@link ProcessMode} name, or empty if the user
+   * has none (the global setting is then used).
+   * Older versions stored the translated label (e.g. "Raster"). When such a value is found,
+   * it is converted to the enum name and the user property is updated.
+   */
   public String getDefaultProcessMode() {
     String userProcessMode = getUserProperty(UserProperty.DEFAULT_PROCESS_MODE);
     if (StringUtils.isBlank(userProcessMode)) {
