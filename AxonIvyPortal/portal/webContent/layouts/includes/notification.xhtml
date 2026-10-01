@@ -26,7 +26,7 @@
                           icon="notifications-button ti ti-settings-cog"
                           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/openNotificationSettings')}"
                           actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"
-                          oncomplete="Portal.updateLayoutContent()" global="false" />
+                          oncomplete="Portal.updateLayoutContent(); fitNotificationScroller();" global="false" />
                         <p:divider />
                         <p:menuitem id="notification-full-page" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToFullScreen')}"
                           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/viewNotificationsFullScreen')}"
@@ -41,7 +41,7 @@
                   <div class="flex align-items-center">
                     <p:toggleSwitch id="notifications-only-unread" value="#{notificationBean.dataModel.onlyUnread}"
                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/onlyUnread')}" styleClass="only-unread-block-toggle">
-                      <p:ajax listener="#{notificationBean.dataModel.onSelectedFilter()}" oncomplete="Portal.updateLayoutContent()"
+                      <p:ajax listener="#{notificationBean.dataModel.onSelectedFilter()}" oncomplete="Portal.updateLayoutContent(); fitNotificationScroller();"
                         update="#{unreadNotificationsId}, #{notificationScrollerId}" global="false" partialSubmit="true" />
                     </p:toggleSwitch>
                     <h:outputText styleClass="only-unread-block-text" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/onlyUnread')}" />
@@ -51,7 +51,7 @@
                       disabled="#{!notificationBean.hasUnreadNotifications()}"
                       update="#{unreadNotificationsId}, #{notificationScrollerId} notification-mark-all-as-read"
                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}" oncomplete="Portal.updateLayoutContent()"
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}" oncomplete="Portal.updateLayoutContent(); fitNotificationScroller();"
                       actionListener="#{notificationBean.readAll()}" icon="ti ti-checks">
                     </p:commandButton>
                   </div>

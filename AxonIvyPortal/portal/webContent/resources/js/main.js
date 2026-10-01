@@ -17,7 +17,10 @@ function Notifier() {
       }
       var container = $(document.createElement('div'));
       container.addClass('notification-container js-notification-container u-shadow-effect');
+      container.attr('role', 'alert');
+      container.attr('aria-live', 'assertive');
       $('body').append(container);
+      this.containerJustCreated = true;
     },
     
     notify : function(message, actionLinkText) {
@@ -44,7 +47,9 @@ function Notifier() {
       var notificationContentAction = $(document.createElement('div'));
       notificationContentAction.addClass('notification-content-action');
 
-      var notificationContentActionClose = $(document.createElement('span'));
+      var notificationContentActionClose = $(document.createElement('button'));
+      notificationContentActionClose.attr('type', 'button');
+      notificationContentActionClose.attr('aria-label', $('.js-default-notification-error-close-text').text() || 'Close');
       notificationContentActionClose.addClass('notification-content-action-close');
       notificationContentActionClose.click(function() {
         $(this).parent().parent().parent().remove();
@@ -58,7 +63,15 @@ function Notifier() {
       notificationContentAction.append(moreDetailsLink);
       notificationContentAction.append(notificationContentActionClose);
 
-      $('.js-notification-container').append(notification);
+      var appendNotification = function() {
+        $('.js-notification-container').append(notification);
+      };
+      if (this.containerJustCreated) {
+        this.containerJustCreated = false;
+        setTimeout(appendNotification, 100);
+      } else {
+        appendNotification();
+      }
     }
   }
 }

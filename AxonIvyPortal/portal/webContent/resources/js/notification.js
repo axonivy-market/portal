@@ -4,10 +4,36 @@ function openNotificationPanel() {
     if (right !== '-470px') {
         document.getElementById("notifications-panel").style.right = "0";
     }
+    fitNotificationScroller();
+}
+
+function fitNotificationScroller() {
+    const content = document.querySelector('#notifications-panel .notification-scroll > .ui-datascroller-content');
+    if (!content) {
+        return;
+    }
+    const availableHeight = window.innerHeight - content.getBoundingClientRect().top - 16;
+    content.style.maxHeight = Math.max(availableHeight, 120) + 'px';
+    content.style.overflowY = 'auto';
 }
 
 function closeNotificationPanel() {
     document.getElementById("notifications-panel").style.right = "-470px";
+}
+
+function isNotificationPanelOpen() {
+    return document.getElementById("notifications-panel").style.right === '0px';
+}
+
+function focusNotificationPanel() {
+    const panel = document.getElementById("notifications-panel");
+    if (!isNotificationPanelOpen() || panel.contains(document.activeElement)) {
+        return;
+    }
+    const first = $(panel).find('a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), [tabindex]:not([tabindex="-1"])').filter(':visible').first();
+    if (first.length) {
+        first.trigger('focus');
+    }
 }
 
 function markAsRead(notiId) {
@@ -21,6 +47,17 @@ function markAsRead(notiId) {
 
 $(document).ready(function () {
     closeNotificationPanel();
+    window.addEventListener('resize', fitNotificationScroller);
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && isNotificationPanelOpen() && !$('.ui-dialog:visible, .ui-menu-overlay:visible').length) {
+            closeNotificationPanel();
+            const bell = document.getElementById('open-notifications-panel');
+            if (bell) {
+                bell.focus();
+            }
+        }
+    });
+    $(document).on('pfAjaxComplete', fitNotificationScroller);
     let notificationPanel = document.getElementById("notifications-panel");
     let bellIcon = document.getElementById('open-notifications-panel');
     let isClickOnBell = false;

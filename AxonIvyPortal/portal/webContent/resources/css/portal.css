@@ -1671,6 +1671,7 @@ body .notification-full-scroll>.ui-datascroller-content  {
 .notifications-item-list {
   width: 100%;
   max-width: 450px;
+  overflow-y: auto;
   position: relative;
   z-index: 999;
   text-align: left;

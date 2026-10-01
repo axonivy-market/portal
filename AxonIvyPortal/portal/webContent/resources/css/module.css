@@ -3307,6 +3307,9 @@ _:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
   position: relative;
   cursor: pointer;
   border-radius: 15px;
+  border: 0;
+  padding: 0;
+  background: transparent;
 }
 
 .notification-content-action-close:before, .notification-content-action-close:after {
