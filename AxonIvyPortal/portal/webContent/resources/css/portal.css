@@ -1925,6 +1925,14 @@ body.dark .focused:not(input, button) {
 #main-area-panel:focus {
   outline: none;
 }
+
+/* Details widgets follow DOM order in one column mode */
+.task-details-widgets.grid-stack-1 > .grid-stack-item.grid-stack-item,
+.case-details-widgets.grid-stack-1 > .grid-stack-item.grid-stack-item {
+  position: relative !important;
+  top: auto !important;
+}
+
 /* Document upload dialog */
 .portal-document-upload-dialog {
   max-width: calc(100vw - 2rem);
