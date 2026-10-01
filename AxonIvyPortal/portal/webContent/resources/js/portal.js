@@ -855,10 +855,22 @@ $(document).ready(function () {
     });
 	
   }, 200);
+
+  syncAriaExpandedWithClass(document.querySelector('.layout-topbar-left a.menu-button'), document.querySelector('.layout-wrapper'), 'layout-mobile-active');
+  const userSettingsMenu = document.getElementById('user-settings-menu');
+  syncAriaExpandedWithClass(userSettingsMenu, userSettingsMenu && userSettingsMenu.closest('li'), 'active-topmenuitem');
   fixDynamicContentAccessibility();
   observeDynamicContentAccessibility();
 });
 
+function syncAriaExpandedWithClass(trigger, observedElement, expandedClass) {
+  if (!trigger || !observedElement) {
+    return;
+  }
+  const sync = () => trigger.setAttribute('aria-expanded', String(observedElement.classList.contains(expandedClass)));
+  new MutationObserver(sync).observe(observedElement, { attributes: true, attributeFilter: ['class'] });
+  sync();
+}
 
 function fixSelectOneButtonAccessibility() {
   $('.ui-selectonebutton').each((index, group) => {

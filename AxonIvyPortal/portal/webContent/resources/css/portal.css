@@ -1899,6 +1899,13 @@ body.dark .focused:not(input, button) {
   }
 }
 
+/* Hide closed mobile menu from keyboard and screen readers */
+@media (max-width: 991px) {
+  .layout-wrapper:not(.layout-mobile-active) .menu-wrapper.js-left-sidebar {
+    visibility: hidden;
+  }
+}
+
 /* Skip to content link */
 .skip-to-content {
   position: absolute;
