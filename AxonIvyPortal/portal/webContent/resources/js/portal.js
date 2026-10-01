@@ -503,6 +503,8 @@ function initKeyboardShortcutsEnabledValue(value) {
   }
 }
 
+initToggleSwitchAccessibleName(window);
+
 $(document).ready(function () {
   initFocusManagament(window);
   const shortcuts = {
@@ -845,8 +847,58 @@ $(document).ready(function () {
     });
 	
   }, 200);
+  fixDynamicContentAccessibility();
+  observeDynamicContentAccessibility();
 });
 
+
+function fixSelectOneButtonAccessibility() {
+  $('.ui-selectonebutton').each((index, group) => {
+    $(group).attr('role', 'radiogroup');
+    $(group).find('input[type="radio"]').attr('inert', '');
+    let label = group.id ? document.querySelector(`label[for="${CSS.escape(group.id)}"]`) : null;
+    if (label && !$(group).attr('aria-label')) {
+      $(group).attr('aria-label', label.textContent.trim());
+    }
+  });
+}
+
+function applyAccessibleNameToInputs() {
+  $('[data-accessible-name]').each((index, element) => {
+    $(element).find('input').first().attr('aria-label', $(element).attr('data-accessible-name'));
+  });
+}
+
+function labelInplaceEditorButtons() {
+  $('.ui-inplace-save, .ui-inplace-cancel').each((index, button) => {
+    let label = $(button).attr('title');
+    if (label && $(button).attr('aria-label') !== label) {
+      $(button).attr('aria-label', label);
+    }
+  });
+}
+
+function setAltForAvatar() {
+  $('.gravatar img:not([alt])').each((index, img) => {
+    let hasVisibleName = $(img).closest('.has-avatar').find('.name-after-avatar').length > 0;
+    $(img).attr('alt', hasVisibleName ? '' : ($(img).parent().attr('title') || ''));
+  });
+}
+
+function fixDynamicContentAccessibility() {
+  setAltForAvatar();
+  labelInplaceEditorButtons();
+  applyAccessibleNameToInputs();
+  fixSelectOneButtonAccessibility();
+}
+
+function observeDynamicContentAccessibility() {
+  let timer;
+  new MutationObserver(() => {
+    clearTimeout(timer);
+    timer = setTimeout(fixDynamicContentAccessibility, 100);
+  }).observe(document.body, { childList: true, subtree: true });
+}
 
 /**
  * Focuses the first visible element matching the selector in a PrimeFaces overlay panel.
@@ -1009,6 +1061,42 @@ function initFocusManagament(targetWindow) {
 
 }
 
+
+function initToggleSwitchAccessibleName(targetWindow) {
+  var widgetNamespace = targetWindow.PrimeFaces && targetWindow.PrimeFaces.widget;
+  if (!widgetNamespace || !widgetNamespace.ToggleSwitch || widgetNamespace.ToggleSwitch._accessibleNameManaged) {
+    return;
+  }
+
+  widgetNamespace.ToggleSwitch = widgetNamespace.ToggleSwitch.extend({
+    init: function (cfg) {
+      this.accessibleName = targetWindow.$(targetWindow.PrimeFaces.escapeClientId(cfg.id) + '_input').attr('aria-label');
+      this._super(cfg);
+      this.input.attr('role', 'switch');
+      this.syncAccessibleState();
+    },
+
+    check: function (silent) {
+      this._super(silent);
+      this.syncAccessibleState();
+    },
+
+    uncheck: function (silent) {
+      this._super(silent);
+      this.syncAccessibleState();
+    },
+
+    syncAccessibleState: function () {
+      this.input.attr('aria-checked', String(this.input.prop('checked')));
+      if (this.accessibleName) {
+        this.input.attr('aria-label', this.accessibleName);
+      } else {
+        this.input.removeAttr('aria-label');
+      }
+    }
+  });
+  widgetNamespace.ToggleSwitch._accessibleNameManaged = true;
+}
 function storeFocusedElement(targetDocument, focusElements, containerId, targetElement) {
   if (targetElement && targetElement !== targetDocument.body && targetElement.tagName !== 'HTML') {
     var item = {"containerId": containerId, "activeElement": targetElement};
