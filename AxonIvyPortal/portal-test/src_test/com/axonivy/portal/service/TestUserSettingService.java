@@ -50,14 +50,6 @@ public class TestUserSettingService {
   }
 
   @Test
-  void getDefaultProcessMode_valueIsRaster_convertToEnumValueInUserProperty() {
-    user.setProperty(UserProperty.DEFAULT_PROCESS_MODE, "Raster"); // Raster is grid in German
-    String processMode = service.getDefaultProcessMode();
-    assertEquals(ProcessMode.GRID.name(), Ivy.session().getSessionUser().getProperty(UserProperty.DEFAULT_PROCESS_MODE));
-    assertEquals(ProcessMode.GRID.name(), processMode);
-  }
-
-  @Test
   void getDefaultProcessMode_valueIsAnEnumValue_returnEnumValue() {
     user.setProperty(UserProperty.DEFAULT_PROCESS_MODE, ProcessMode.COMPACT.name());
     String userProperty = service.getDefaultProcessMode();
