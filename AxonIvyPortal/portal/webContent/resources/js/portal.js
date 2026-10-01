@@ -860,7 +860,7 @@ $(document).ready(function () {
   const userSettingsMenu = document.getElementById('user-settings-menu');
   syncAriaExpandedWithClass(userSettingsMenu, userSettingsMenu && userSettingsMenu.closest('li'), 'active-topmenuitem');
   fixDynamicContentAccessibility();
-  observeDynamicContentAccessibility();
+  $(document).on('pfAjaxComplete', fixDynamicContentAccessibility);
 });
 
 function syncAriaExpandedWithClass(trigger, observedElement, expandedClass) {
@@ -898,26 +898,10 @@ function labelInplaceEditorButtons() {
   });
 }
 
-function setAltForAvatar() {
-  $('.gravatar img:not([alt])').each((index, img) => {
-    let hasVisibleName = $(img).closest('.has-avatar').find('.name-after-avatar').length > 0;
-    $(img).attr('alt', hasVisibleName ? '' : ($(img).parent().attr('title') || ''));
-  });
-}
-
 function fixDynamicContentAccessibility() {
-  setAltForAvatar();
   labelInplaceEditorButtons();
   applyAccessibleNameToInputs();
   fixSelectOneButtonAccessibility();
-}
-
-function observeDynamicContentAccessibility() {
-  let timer;
-  new MutationObserver(() => {
-    clearTimeout(timer);
-    timer = setTimeout(fixDynamicContentAccessibility, 100);
-  }).observe(document.body, { childList: true, subtree: true });
 }
 
 /**
