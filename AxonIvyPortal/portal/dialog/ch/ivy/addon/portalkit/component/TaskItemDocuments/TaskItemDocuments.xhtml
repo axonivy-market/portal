@@ -221,7 +221,7 @@
     </ui:define>
   </ui:decorate>
 
-  <p:dialog id="document-renaming-dialog" widgetVar="document-renaming-dialog" appendTo="@(body)"
+  <p:dialog id="document-renaming-dialog" widgetVar="document-renaming-dialog" closeOnEscape="true" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocument')}" modal="true" resizable="false" showEffect="fade" hideEffect="fade"
     styleClass="document-renaming-dialog" dynamic="true" fitViewport="true" responsive="true">
     <h:form id="document-renaming-form">

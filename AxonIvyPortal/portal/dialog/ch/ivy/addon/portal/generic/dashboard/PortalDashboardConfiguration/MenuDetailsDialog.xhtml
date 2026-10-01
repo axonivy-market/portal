@@ -8,7 +8,7 @@
   <c:set var="isReadOnly" value="#{menuDetailsBean.readOnly}" />
   <c:set var="contentState" value="#{menuDetailsBean.contentState}" />
 
-<p:dialog id="menu-configuration-dialog" widgetVar="menu-configuration-dialog"
+<p:dialog id="menu-configuration-dialog" widgetVar="menu-configuration-dialog" styleClass="js-return-focus-to-opener"
     header="#{menuDetailsBean.configurationDialogHeader}"
     appendTo="@(body)" closeOnEscape="true"
     fitViewport="true" responsive="true"

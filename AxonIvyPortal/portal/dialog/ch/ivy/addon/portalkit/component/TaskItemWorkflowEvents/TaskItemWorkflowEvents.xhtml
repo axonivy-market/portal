@@ -14,7 +14,7 @@
 
   <p:dialog id="workflow-events-dialog" widgetVar="workflow-events-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/workflowEventDialog', [cc.attrs.taskId])}"
-    dynamic="true" closable="true"
+    dynamic="true" closable="true" closeOnEscape="true"
     appendTo="@(body)"
     modal="true" responsive="true" fitViewport="true"
     styleClass="workflow-events-dialog">

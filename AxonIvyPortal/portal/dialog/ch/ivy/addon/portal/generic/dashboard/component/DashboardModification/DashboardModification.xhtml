@@ -256,6 +256,7 @@
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
     <ui:param name="id" value="export-referenced-dialog" />
     <ui:param name="widgetVar" value="export-referenced-dialog" />
+    <ui:param name="styleClass" value="js-return-focus-to-opener" />
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="iconClass" value="ti ti-alert-triangle" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon portal-dialog-icon" />
@@ -288,7 +289,7 @@
     title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/editDashboard')}"
     isPublicDashboard="#{isPublicDashboard}"
     componentToUpdate="dashboard-modification-component:dashboard-modification-container"
-    isDashboardCreation="false" />
+    isDashboardCreation="false" returnFocusToOpener="true" />
     
   <ic:com.axonivy.portal.component.ShareLinkDialog id="share-dashboard-component"
     shareDialogId="share-dashboard-dialog"
@@ -298,6 +299,7 @@
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
     <ui:param name="id" value="remove-dashboard-dialog" />
     <ui:param name="widgetVar" value="remove-dashboard-dialog" />
+    <ui:param name="styleClass" value="js-return-focus-to-opener" />
     <ui:param name="iconClass" value="ti ti-trash" />
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="closeable" value="true" />

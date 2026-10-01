@@ -504,6 +504,7 @@ function initKeyboardShortcutsEnabledValue(value) {
 }
 
 initToggleSwitchAccessibleName(window);
+initDialogKeyboardAccessibility(window);
 
 $(document).ready(function () {
   initFocusManagament(window);
@@ -658,6 +659,13 @@ $(document).ready(function () {
 
     var keyCode = event.code;
     if (keyCode === 'Escape') {
+      hideVisibleTooltips();
+      if (event.isDefaultPrevented() || isEscapeHandledByDialog()) {
+        return;
+      }
+      if (hideOpenMenuButtons()) {
+        return;
+      }
       collapseExpandedWidget();
 
       if (hidePortalActionPanels('action-steps-panel')) {
@@ -945,6 +953,47 @@ function hidePortalActionPanels(idSuffix) {
   return hidden;
 }
 
+function hideVisibleTooltips() {
+  if (!PrimeFaces.widget.Tooltip) {
+    return;
+  }
+  for (var widgetVar in PrimeFaces.widgets) {
+    var widget = PrimeFaces.widgets[widgetVar];
+    if (widget instanceof PrimeFaces.widget.Tooltip && widget.jq && widget.jq.is(':visible')) {
+      widget.hide();
+    }
+  }
+}
+
+function isEscapeHandledByDialog() {
+  for (var widgetVar in PrimeFaces.widgets) {
+    var widget = PrimeFaces.widgets[widgetVar];
+    if (widget && widget.cfg && widget.cfg.closeOnEscape && widget.jq && widget.jq.hasClass('ui-dialog') && widget.jq.is(':visible')) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function hideOpenMenuButtons() {
+  var hidden = false;
+  if (!PrimeFaces.widget.MenuButton) {
+    return hidden;
+  }
+  for (var widgetVar in PrimeFaces.widgets) {
+    var widget = PrimeFaces.widgets[widgetVar];
+    if (widget instanceof PrimeFaces.widget.MenuButton && widget.menu && widget.menu.is(':visible')) {
+      widget.hide();
+      var button = widget.trigger[0];
+      setTimeout(function () {
+        button.focus();
+      }, 0);
+      hidden = true;
+    }
+  }
+  return hidden;
+}
+
 function updateMainMenuAriaLabel() {
   let parentMenu = $("[id$='user-menu-required-login:main-navigator:main-menu']");
   if (parentMenu) {
@@ -1028,6 +1077,8 @@ function initFocusManagament(targetWindow) {
               console.warn("Cannot store focused element");
             }
 
+            moveFocusIntoOverlayPanel(self, targetWindow);
+
             if (self.escHandler) {
               targetWindow.document.removeEventListener('keydown', self.escHandler);
             }
@@ -1061,6 +1112,80 @@ function initFocusManagament(targetWindow) {
 
 }
 
+function initDialogKeyboardAccessibility(targetWindow) {
+  var widgetNamespace = targetWindow.PrimeFaces && targetWindow.PrimeFaces.widget;
+  if (!widgetNamespace || !widgetNamespace.Dialog || widgetNamespace.Dialog._keyboardAccessibilityManaged) {
+    return;
+  }
+
+  var lastFocusedElement = null;
+  targetWindow.document.addEventListener('focusin', function (event) {
+    if (event.target !== targetWindow.document.body) {
+      lastFocusedElement = event.target;
+    }
+  }, true);
+
+  widgetNamespace.Dialog = widgetNamespace.Dialog.extend({
+    show: function (duration) {
+      this._super(duration);
+      if (!this.returnsFocusToOpener()) {
+        return;
+      }
+      var focused = this.focusedElementBeforeDialogOpened;
+      if ((!focused || focused === targetWindow.document.body) && lastFocusedElement && !this.jq[0].contains(lastFocusedElement)) {
+        this.focusedElementBeforeDialogOpened = lastFocusedElement;
+      }
+    },
+
+    returnFocus: function () {
+      if (this.returnsFocusToOpener()) {
+        this.focusedElementBeforeDialogOpened = resolveFocusReturnTarget(this.focusedElementBeforeDialogOpened, targetWindow);
+      }
+      if (this._super) {
+        this._super();
+      }
+    },
+
+    returnsFocusToOpener: function () {
+      return this.jq.hasClass('js-return-focus-to-opener');
+    }
+  });
+  widgetNamespace.Dialog._keyboardAccessibilityManaged = true;
+}
+
+function resolveFocusReturnTarget(element, targetWindow) {
+  var targetDocument = targetWindow.document;
+  var isFocusable = function (el) {
+    return el && el !== targetDocument.body && el.isConnected && el.offsetParent !== null && !el.disabled;
+  };
+
+  if (element && element.id) {
+    element = targetDocument.getElementById(element.id) || element;
+  }
+  if (!element || isFocusable(element)) {
+    return element;
+  }
+
+  var popup = element.closest('.ui-overlaypanel, .ui-menu-overlay');
+  if (!popup || !popup.id) {
+    return element;
+  }
+
+  var widgets = targetWindow.PrimeFaces.widgets;
+  for (var key in widgets) {
+    var widget = widgets[key];
+    var opener = null;
+    if (widget.id === popup.id && widget.cfg && widget.cfg.target) {
+      opener = targetDocument.getElementById(widget.cfg.target);
+    } else if (widget.id && popup.id === widget.id + '_menu') {
+      opener = targetDocument.getElementById(widget.id + '_button');
+    }
+    if (isFocusable(opener)) {
+      return opener;
+    }
+  }
+  return element;
+}
 
 function initToggleSwitchAccessibleName(targetWindow) {
   var widgetNamespace = targetWindow.PrimeFaces && targetWindow.PrimeFaces.widget;
@@ -1097,6 +1222,28 @@ function initToggleSwitchAccessibleName(targetWindow) {
   });
   widgetNamespace.ToggleSwitch._accessibleNameManaged = true;
 }
+
+function moveFocusIntoOverlayPanel(panel, targetWindow) {
+  var targetElement = panel.targetElement && panel.targetElement[0];
+  if (!targetElement || $(targetElement).is('input, textarea, [contenteditable="true"]')) {
+    return;
+  }
+  var activeElement = targetWindow.document.activeElement;
+  if (activeElement !== targetElement && activeElement !== targetWindow.document.body) {
+    return;
+  }
+  setTimeout(function () {
+    if (panel.jq[0].contains(targetWindow.document.activeElement)) {
+      return;
+    }
+    var first = panel.jq.find('a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])')
+      .filter(':visible').first();
+    if (first.length) {
+      first.trigger('focus');
+    }
+  }, 50);
+}
+
 function storeFocusedElement(targetDocument, focusElements, containerId, targetElement) {
   if (targetElement && targetElement !== targetDocument.body && targetElement.tagName !== 'HTML') {
     var item = {"containerId": containerId, "activeElement": targetElement};
