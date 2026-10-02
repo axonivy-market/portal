@@ -4,15 +4,15 @@ import static com.axonivy.portal.components.constant.CustomFields.BUSINESS_DETAI
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.BusinessDetailsDTO;
 import com.axonivy.portal.components.service.exception.PortalException;
+import com.axonivy.portal.components.util.ProcessStartUtils;
 
-import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 /**
@@ -48,11 +48,8 @@ public class BusinessDetailsAPI {
     if (detectExternalLink(path)) {
       customField = path;
     } else {
-      List<IWebStartable> iWebStartables = IWorkflowSession.current().getAllStartables().toList();
-
-      IWebStartable targetStartable =
-          iWebStartables.stream().filter(startable -> startable.getId().endsWith(path)).findAny().orElseThrow(
-              () -> new PortalException(String.format("Cannot find IWebStartable by ID [%s].", path)));
+      IWebStartable targetStartable = Optional.ofNullable(ProcessStartUtils.findWebStartableByUserFriendlyRequestPath(path))
+          .orElseThrow(() -> new PortalException(String.format("Cannot find IWebStartable by ID [%s].", path)));
       customField = targetStartable.getId();
       StringBuilder params = new StringBuilder();
       Map<String, String> parameters = businessDetailsDTO.getParameters();
