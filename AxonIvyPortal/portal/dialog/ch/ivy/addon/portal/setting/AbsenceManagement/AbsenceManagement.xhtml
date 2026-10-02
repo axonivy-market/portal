@@ -52,8 +52,8 @@
                   <div class="absence-management w-full">
                     <div class="filters-card w-full mb-3">
                       <p class="filters-card-title mb-2 text-style-h5">#{ivy.cms.co('/Labels/Filters')}</p>
-                      <div class="flex align-items-start flex-nowrap gap-3 justify-content-between">
-                        <div class="flex-1 min-w-0 pr-3" jsf:rendered="#{absenceManagementBean.supervisor}">
+                      <div class="absence-filters-row align-items-start gap-3 justify-content-between">
+                        <div class="absence-filters-user" jsf:rendered="#{absenceManagementBean.supervisor}">
                           <ic:com.axonivy.portal.components.UserSelection id="user-absence-selection-absences"
                             componentId="user-absence-absences"
                             selectedUser="#{absenceManagementBean.selectedAbsenceUser}"
@@ -75,7 +75,7 @@
                             </f:facet>
                           </ic:com.axonivy.portal.components.UserSelection>
                         </div>
-                        <div class="flex flex-column gap-3 flex-shrink-0">
+                        <div class="absence-filters-toggle flex flex-column gap-3">
                           <p:outputLabel id="show-absence-in-the-past-label"
                             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/disableAbsencesInThePast')}"
                             for="show-absence-in-the-past" />

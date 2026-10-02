@@ -653,6 +653,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showRelatedCaseInfo: Cas connexe
     showSystemNotes: Notes du système
     showSystemTasks: Tâches du système
+    skipToContent: Aller au contenu
     sorting: triage
     start: Démarrage
     startProcess: Démarrer le processus
@@ -689,6 +690,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Nous créons l'export, cela peut prendre quelques minutes
     warning: Attention!
     welcomeToPortal: Bienvenue, veuillez vous connecter
+    widgetActionMenuContext: Ouvrir le menu d'actions pour le widget {0}
     workingUser: Gestionnaire
     wrongDateFormat: Veuillez entrer une date valide
     year: an
@@ -1385,6 +1387,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     documents: Documents
     dueDate: Échéance
     duration: Durée
+    editDelay: Modifier le retard
+    editExpiry: Modifier l'expiration
+    editExpiryActivator: Modifier l'activateur d'expiration
     events: Événements relatifs au flux de travail
     expiry: Expiration
     failedDelayValidation: L'horodatage du délai des tâches ne peut pas être une valeur vide ou un format de date non valide

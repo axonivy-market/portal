@@ -19,7 +19,7 @@
   <div id="#{cc.clientId}" class="task-details-item-document portal-detail-widget ui-g">
     <h:form id="task-document-form" prependId="false" styleClass="ui-g-12 u-padding-0 portal-detail-widget-form">
       <div class="task-detail-section-title portal-detail-widget-header ui-g-12 flex align-items-center justify-content-between">
-        <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="1">
+        <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="2">
           #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/documents')}
         </div>
         <h:panelGroup layout="block" styleClass="u-padding-0 document-task-detail-section-header-actions portal-detail-widget-header-actions flex align-items-center">
@@ -124,7 +124,7 @@
     modal="true" resizable="false" showEffect="fade" hideEffect="fade"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
     closeOnEscape="true" responsive="true" closable="true" fitViewport="true"
-    width="450px">
+    width="450px" styleClass="portal-document-upload-dialog">
     <div class="ui-g">
       <h:form id="document-upload-form" styleClass="w-full">
         <div class="w-full">
@@ -221,7 +221,7 @@
     </ui:define>
   </ui:decorate>
 
-  <p:dialog id="document-renaming-dialog" widgetVar="document-renaming-dialog" appendTo="@(body)"
+  <p:dialog id="document-renaming-dialog" widgetVar="document-renaming-dialog" closeOnEscape="true" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocument')}" modal="true" resizable="false" showEffect="fade" hideEffect="fade"
     styleClass="document-renaming-dialog" dynamic="true" fitViewport="true" responsive="true">
     <h:form id="document-renaming-form">

@@ -4,7 +4,7 @@
   xmlns:p="primefaces" xmlns:pe="primefaces.extensions"
   xmlns:c="jakarta.tags.core">
 
-<p:dialog id="manage-news-dialog" widgetVar="manage-news-dialog" dynamic="true" width="700" fitViewport="true" responsive="true"
+<p:dialog id="manage-news-dialog" widgetVar="manage-news-dialog" closeOnEscape="true" dynamic="true" width="700" fitViewport="true" responsive="true"
   styleClass="manage-news-dialog dialog-responsive" appendTo="@(body)" modal="true" resizable="false"
   onShow="PF('manage-news-dialog').initPosition()" rendered="#{newsWidgetBean.canManageNews and isReadOnlyMode}">
   <f:facet name="header">

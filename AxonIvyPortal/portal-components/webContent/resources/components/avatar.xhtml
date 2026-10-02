@@ -10,6 +10,7 @@
   <cc:attribute name="representName" />
   <cc:attribute name="showLabel" type="java.lang.Boolean" default="true" />
   <cc:attribute name="title" default="" />
+  <cc:attribute name="alt" default="" shortDescription="Alternative text of the avatar image. Defaults to the title; leave both empty when the name is displayed next to the avatar." />
 
 </cc:interface>
 
@@ -17,7 +18,9 @@
   <h:outputStylesheet library="css" name="portal-components.css" />
 
   <p:avatar id="#{cc.attrs.id}" rendered="#{cc.attrs.renderedAvatar}" title="#{portalComponentAvatarBean.getAvatarTitle(cc.attrs.title, cc.attrs.showLabel, cc.attrs.representName, cc.attrs.securityMember)}"
-    gravatar="#{cc.attrs.representName != null ? cc.attrs.representName : portalComponentAvatarBean.getEmailAddress(cc.attrs.securityMember, cc.attrs.useLowercaseEmail)}" gravatarConfig="d=blank"
-    label="#{cc.attrs.showLabel ? portalComponentAvatarBean.getAvatarLabel(cc.attrs.representName, cc.attrs.securityMember) : ''}" styleClass="gravatar" shape="circle" />
+    label="#{cc.attrs.showLabel ? portalComponentAvatarBean.getAvatarLabel(cc.attrs.representName, cc.attrs.securityMember) : ''}" styleClass="gravatar" shape="circle">
+    <p:graphicImage value="#{portalComponentAvatarBean.getGravatarUrl(cc.attrs.representName != null ? cc.attrs.representName : portalComponentAvatarBean.getEmailAddress(cc.attrs.securityMember, cc.attrs.useLowercaseEmail))}"
+      alt="#{empty cc.attrs.alt ? cc.attrs.title : cc.attrs.alt}" />
+  </p:avatar>
 </cc:implementation>
 </html>

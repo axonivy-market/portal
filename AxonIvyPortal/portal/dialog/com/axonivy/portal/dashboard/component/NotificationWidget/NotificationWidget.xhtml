@@ -56,7 +56,7 @@
               <div class="#{notification.style} notifications-container-top">
                 <div class="flex">
                   <div class="flex notifications-indicator">
-                    <p:commandLink id="notification-mark-as-read"
+                    <p:commandLink id="notification-mark-as-read" styleClass="notification-mark-as-read"
                       disabled="#{!isReadOnlyMode}"
                       actionListener="#{widget.markAsRead(notification)}"
                       process="@this" partialSubmit="true"

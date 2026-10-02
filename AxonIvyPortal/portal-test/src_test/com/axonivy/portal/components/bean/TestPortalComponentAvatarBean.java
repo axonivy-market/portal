@@ -130,4 +130,17 @@ class TestPortalComponentAvatarBean {
 
     assertThat(bean.tooltipTechnicalDisplayName(role)).isEmpty();
   }
+
+  @Test
+  void getGravatarUrl_email_returnsMd5HashedUrl() {
+    assertThat(bean.getGravatarUrl("john@example.com"))
+        .isEqualTo("https://www.gravatar.com/avatar/d4c74594d841139328695756648b6bd6?d=blank");
+  }
+
+  @Test
+  void getGravatarUrl_nullOrEmpty_returnsHashOfEmptyString() {
+    String expected = "https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?d=blank";
+    assertThat(bean.getGravatarUrl(null)).isEqualTo(expected);
+    assertThat(bean.getGravatarUrl("")).isEqualTo(expected);
+  }
 }

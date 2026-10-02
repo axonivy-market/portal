@@ -656,6 +656,13 @@ $(document).ready(function () {
 
     var keyCode = event.code;
     if (keyCode === 'Escape') {
+      hideVisibleTooltips();
+      if (event.isDefaultPrevented() || isEscapeHandledByDialog()) {
+        return;
+      }
+      if (hideOpenMenuButtons()) {
+        return;
+      }
       collapseExpandedWidget();
 
       if (hidePortalActionPanels('action-steps-panel')) {
@@ -848,19 +855,53 @@ $(document).ready(function () {
 	
   }, 200);
 
-  setAltForAvatar();
+  syncAriaExpandedWithClass(document.querySelector('.layout-topbar-left a.menu-button'), document.querySelector('.layout-wrapper'), 'layout-mobile-active');
+  const userSettingsMenu = document.getElementById('user-settings-menu');
+  syncAriaExpandedWithClass(userSettingsMenu, userSettingsMenu && userSettingsMenu.closest('li'), 'active-topmenuitem');
+  fixDynamicContentAccessibility();
+  $(document).on('pfAjaxComplete', fixDynamicContentAccessibility);
 });
 
-function setAltForAvatar() {
-  $("div.has-avatar").each((index, item) => {
-    let imgTag = $(item).find('img');
-    if ($(imgTag).attr('alt') === undefined) {
-      let alt = $(item).find('.name-after-avatar').text() || 'Avatar';
-      $(imgTag).attr('alt', alt)
-    }
-  })
+function syncAriaExpandedWithClass(trigger, observedElement, expandedClass) {
+  if (!trigger || !observedElement) {
+    return;
+  }
+  const sync = () => trigger.setAttribute('aria-expanded', String(observedElement.classList.contains(expandedClass)));
+  new MutationObserver(sync).observe(observedElement, { attributes: true, attributeFilter: ['class'] });
+  sync();
 }
 
+function fixSelectOneButtonAccessibility() {
+  $('.ui-selectonebutton').each((index, group) => {
+    $(group).attr('role', 'radiogroup');
+    $(group).find('input[type="radio"]').attr('inert', '');
+    let label = group.id ? document.querySelector(`label[for="${CSS.escape(group.id)}"]`) : null;
+    if (label && !$(group).attr('aria-label')) {
+      $(group).attr('aria-label', label.textContent.trim());
+    }
+  });
+}
+
+function applyAccessibleNameToInputs() {
+  $('[data-accessible-name]').each((index, element) => {
+    $(element).find('input').first().attr('aria-label', $(element).attr('data-accessible-name'));
+  });
+}
+
+function labelInplaceEditorButtons() {
+  $('.ui-inplace-save, .ui-inplace-cancel').each((index, button) => {
+    let label = $(button).attr('title');
+    if (label && $(button).attr('aria-label') !== label) {
+      $(button).attr('aria-label', label);
+    }
+  });
+}
+
+function fixDynamicContentAccessibility() {
+  labelInplaceEditorButtons();
+  applyAccessibleNameToInputs();
+  fixSelectOneButtonAccessibility();
+}
 
 /**
  * Focuses the first visible element matching the selector in a PrimeFaces overlay panel.
@@ -901,6 +942,47 @@ function hidePortalActionPanels(idSuffix) {
     if (widget && widget.jq && typeof widget.hide === 'function'
         && widget.jq.is('[id$="' + idSuffix + '"]') && widget.jq.is(':visible')) {
       widget.hide();
+      hidden = true;
+    }
+  }
+  return hidden;
+}
+
+function hideVisibleTooltips() {
+  if (!PrimeFaces.widget.Tooltip) {
+    return;
+  }
+  for (var widgetVar in PrimeFaces.widgets) {
+    var widget = PrimeFaces.widgets[widgetVar];
+    if (widget instanceof PrimeFaces.widget.Tooltip && widget.jq && widget.jq.is(':visible')) {
+      widget.hide();
+    }
+  }
+}
+
+function isEscapeHandledByDialog() {
+  for (var widgetVar in PrimeFaces.widgets) {
+    var widget = PrimeFaces.widgets[widgetVar];
+    if (widget && widget.cfg && widget.cfg.closeOnEscape && widget.jq && widget.jq.hasClass('ui-dialog') && widget.jq.is(':visible')) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function hideOpenMenuButtons() {
+  var hidden = false;
+  if (!PrimeFaces.widget.MenuButton) {
+    return hidden;
+  }
+  for (var widgetVar in PrimeFaces.widgets) {
+    var widget = PrimeFaces.widgets[widgetVar];
+    if (widget instanceof PrimeFaces.widget.MenuButton && widget.menu && widget.menu.is(':visible')) {
+      widget.hide();
+      let button = widget.trigger[0];
+      setTimeout(function () {
+        button.focus();
+      }, 0);
       hidden = true;
     }
   }
@@ -990,6 +1072,8 @@ function initFocusManagament(targetWindow) {
               console.warn("Cannot store focused element");
             }
 
+            moveFocusIntoOverlayPanel(self, targetWindow);
+
             if (self.escHandler) {
               targetWindow.document.removeEventListener('keydown', self.escHandler);
             }
@@ -1021,6 +1105,27 @@ function initFocusManagament(targetWindow) {
     targetWindow.PrimeFaces.widget.OverlayPanel._focusManaged = true;
   }
 
+}
+
+function moveFocusIntoOverlayPanel(panel, targetWindow) {
+  var targetElement = panel.targetElement && panel.targetElement[0];
+  if (!targetElement || $(targetElement).is('input, textarea, [contenteditable="true"]')) {
+    return;
+  }
+  var activeElement = targetWindow.document.activeElement;
+  if (activeElement !== targetElement && activeElement !== targetWindow.document.body) {
+    return;
+  }
+  setTimeout(function () {
+    if (panel.jq[0].contains(targetWindow.document.activeElement)) {
+      return;
+    }
+    var first = panel.jq.find('a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])')
+      .filter(':visible').first();
+    if (first.length) {
+      first.trigger('focus');
+    }
+  }, 50);
 }
 
 function storeFocusedElement(targetDocument, focusElements, containerId, targetElement) {
