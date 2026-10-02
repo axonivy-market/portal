@@ -643,7 +643,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     seeDetail: Details anzeigen
     select: Auswählen
     selectAll: Alle selektieren
-    skipToContent: Zum Inhalt springen
     selectUsers: Benutzer auswählen
     selectedDay: '{0} ausgewählte Tag(e)'
     send: Senden
@@ -654,6 +653,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showRelatedCaseInfo: Zugehöriger Vorgang
     showSystemNotes: Systemhinweise
     showSystemTasks: Systemaufgaben
+    skipToContent: Zum Inhalt springen
     sorting: Sortierung
     start: Start
     startProcess: Prozess starten
@@ -1275,7 +1275,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     newPassword: Neues Passwort
     noPermission: Sie haben nicht die erforderlichen Berechtigungen, um das Passwort zu ändern. Bitte wenden Sie sich an Ihren Administrator, um Unterstützung zu erhalten.
     passwordMust: Das Passwort muss
-    passwordRequirements: Passwortanforderungen
     requireConfirmPassword: Wiederholen Sie Ihr Passwort, bitte
     requireCurrentPassword: Bitte geben Sie Ihr Passwort an
     requireNewPassword: Das neue Passwort wurde nicht angegeben

@@ -204,7 +204,7 @@
         <!-- START DIALOG TO CONFIGURE SIDE STEP PROCESSES -->
         <p:dialog id="side-step-process-dialog" resizable="false" onHide="resetDataSideStep();" 
           header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/SideStep/SideStepProcess')}" width="650px" 
-          rendered="#{sideStepProcessBean.isRendered(currentTask)}" widgetVar="side-step-process-dialog" closeOnEscape="true" styleClass="js-return-focus-to-opener" appendTo="@(body)" modal="true"
+          rendered="#{sideStepProcessBean.isRendered(currentTask)}" widgetVar="side-step-process-dialog" closeOnEscape="true" appendTo="@(body)" modal="true"
           dynamic="true" responsive="true">
             <h:form id="side-step-process-form" styleClass="ui-fluid">
             <p:messages redisplay="false" showIcon="false">
@@ -312,7 +312,6 @@
         <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
           <ui:param name="id" value="sidestep-task-reset-confirmation-dialog" />
           <ui:param name="widgetVar" value="sidestep-task-reset-confirmation-dialog" />
-          <ui:param name="styleClass" value="js-return-focus-to-opener" />
           <ui:param name="dynamic" value="true"/>
           <ui:param name="appendTo" value="@(body)" />
           <ui:param name="iconClass" value="ti ti-alert-triangle" />

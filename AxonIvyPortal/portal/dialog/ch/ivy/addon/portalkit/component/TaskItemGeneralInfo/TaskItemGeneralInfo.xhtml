@@ -133,8 +133,9 @@
 
               <p:ajax event="save" listener="#{logic.updateDelayTimestamp(task)}"
                 update="delay-form #{cc.attrs.stateComponentToUpdate} #{cc.attrs.componentToUpdate}" resetValues="true" />
+              <p:outputLabel for="delay-date-calendar" styleClass="ui-helper-hidden-accessible"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/delayedUntil')}" />
               <p:datePicker id="delay-date-calendar" styleClass="delay-date-calendar" value="#{task.delayTimestamp}"
-                pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/delayedUntil')}"
                 placeholder="#{dateTimePatternBean.getShortDateTimePattern(false)}"
                 showTime="#{!dateTimePatternBean.isTimeHidden}"  locale="#{localeBean.locale}" focusOnSelect="true">
                 <f:validator validatorId="taskDelayTimestampValidator" />
@@ -168,8 +169,9 @@
 
                 <p:ajax event="save" listener="#{logic.updateExpiryTime(task)}"
                   update="expiry-form #{cc.attrs.componentToUpdate}" process="@this expiry-calendar"/>
+                <p:outputLabel for="expiry-calendar" styleClass="ui-helper-hidden-accessible"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" />
                 <p:datePicker id="expiry-calendar" styleClass="task-details-data-expiry" value="#{data.expiryTimestamp}"
-                  pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}"
                   placeholder="#{dateTimePatternBean.getShortDateTimePattern(false)}"
                   showTime="#{!dateTimePatternBean.isTimeHidden}" locale="#{localeBean.locale}" focusOnSelect="true">
                   <f:validator validatorId="taskExpiryTimestampValidator" />

@@ -641,7 +641,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     seeDetail: 詳細をご覧ください
     select: 詳細を表示
     selectAll: すべて選択
-    skipToContent: コンテンツへスキップ
     selectUsers: ユーザーを選択
     selectedDay: 選択した日数：{0}
     send: 送信
@@ -652,6 +651,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showRelatedCaseInfo: 関連するケース
     showSystemNotes: システムノート
     showSystemTasks: システムタスク
+    skipToContent: コンテンツへスキップ
     sorting: 並べ替え
     start: 開始
     startProcess: プロセスの開始
@@ -1261,7 +1261,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     newPassword: 新しいパスワード
     noPermission: このパスワードを変更するために必要な権限がありません。サポートが必要な場合は、管理者にお問い合わせください。
     passwordMust: パスワードは、
-    passwordRequirements: パスワードの要件
     requireConfirmPassword: パスワード（再入力）が空欄です
     requireCurrentPassword: 現在のパスワードを入力してください
     requireNewPassword: 新しいパスワードを入力してください

@@ -29,7 +29,7 @@
       <i jsf:rendered="#{priority eq 'HIGH'}" class="priority ti ti-circle-arrow-up high-priority" aria-hidden="true" />
       <i jsf:rendered="#{priority eq 'EXCEPTION'}" class="priority ti ti-alert-circle exception-priority" aria-hidden="true" />
       <h:outputText rendered="#{showIconWithText}" styleClass="priority-text" value="#{taskBean.getPriority(priority)}"/>
-      <h:outputText rendered="#{!showIconWithText}" styleClass="screenreader-only" value="#{taskBean.getPriority(priority)}"/>
+      <h:outputText rendered="#{!showIconWithText}" styleClass="ui-helper-hidden-accessible" value="#{taskBean.getPriority(priority)}"/>
       <i jsf:rendered="#{showEditIcon}" class="ti ti-pencil" aria-hidden="true" />
     </span>
     <p:tooltip rendered="#{!showIconWithText}" for="task-priority" value="#{taskBean.getPriority(priority)}" 

@@ -98,7 +98,7 @@
 </p:dialog>
 
 <p:dialog id="new-widget-configuration-dialog" widgetVar="new-widget-configuration-dialog"
-  styleClass="new-widget-configuration-dialog js-return-focus-to-opener" closable="true"
+  styleClass="new-widget-configuration-dialog" closable="true"
   header="#{dashboardDetailModificationBean.newWidgetHeader}"
   appendTo="@(body)" closeOnEscape="true"
   fitViewport="true" responsive="true" modal="true"
@@ -204,7 +204,6 @@
 <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
   <ui:param name="id" value="remove-statistic-widget-dialog" />
   <ui:param name="widgetVar" value="remove-statistic-widget-dialog" />
-  <ui:param name="styleClass" value="js-return-focus-to-opener" />
   <ui:param name="iconClass" value="ti ti-trash" />
   <ui:param name="appendTo" value="@(body)" />
   <ui:param name="closeable" value="true" />

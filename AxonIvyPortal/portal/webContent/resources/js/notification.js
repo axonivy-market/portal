@@ -4,17 +4,6 @@ function openNotificationPanel() {
     if (right !== '-470px') {
         document.getElementById("notifications-panel").style.right = "0";
     }
-    fitNotificationScroller();
-}
-
-function fitNotificationScroller() {
-    const content = document.querySelector('#notifications-panel .notification-scroll > .ui-datascroller-content');
-    if (!content) {
-        return;
-    }
-    const availableHeight = window.innerHeight - content.getBoundingClientRect().top - 16;
-    content.style.maxHeight = Math.max(availableHeight, 120) + 'px';
-    content.style.overflowY = 'auto';
 }
 
 function closeNotificationPanel() {
@@ -47,7 +36,6 @@ function markAsRead(notiId) {
 
 $(document).ready(function () {
     closeNotificationPanel();
-    window.addEventListener('resize', fitNotificationScroller);
     document.addEventListener('keydown', event => {
         if (event.key === 'Escape' && isNotificationPanelOpen() && !$('.ui-dialog:visible, .ui-menu-overlay:visible').length) {
             closeNotificationPanel();
@@ -57,7 +45,6 @@ $(document).ready(function () {
             }
         }
     });
-    $(document).on('pfAjaxComplete', fitNotificationScroller);
     let notificationPanel = document.getElementById("notifications-panel");
     let bellIcon = document.getElementById('open-notifications-panel');
     let isClickOnBell = false;

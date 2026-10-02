@@ -18,9 +18,7 @@ function Notifier() {
       var container = $(document.createElement('div'));
       container.addClass('notification-container js-notification-container u-shadow-effect');
       container.attr('role', 'alert');
-      container.attr('aria-live', 'assertive');
       $('body').append(container);
-      this.containerJustCreated = true;
     },
     
     notify : function(message, actionLinkText) {
@@ -63,15 +61,7 @@ function Notifier() {
       notificationContentAction.append(moreDetailsLink);
       notificationContentAction.append(notificationContentActionClose);
 
-      var appendNotification = function() {
-        $('.js-notification-container').append(notification);
-      };
-      if (this.containerJustCreated) {
-        this.containerJustCreated = false;
-        setTimeout(appendNotification, 100);
-      } else {
-        appendNotification();
-      }
+      $('.js-notification-container').append(notification);
     }
   }
 }

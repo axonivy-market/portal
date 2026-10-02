@@ -503,9 +503,6 @@ function initKeyboardShortcutsEnabledValue(value) {
   }
 }
 
-initToggleSwitchAccessibleName(window);
-initDialogKeyboardAccessibility(window);
-
 $(document).ready(function () {
   initFocusManagament(window);
   const shortcuts = {
@@ -980,7 +977,7 @@ function hideOpenMenuButtons() {
     var widget = PrimeFaces.widgets[widgetVar];
     if (widget instanceof PrimeFaces.widget.MenuButton && widget.menu && widget.menu.is(':visible')) {
       widget.hide();
-      var button = widget.trigger[0];
+      let button = widget.trigger[0];
       setTimeout(function () {
         button.focus();
       }, 0);
@@ -1106,117 +1103,6 @@ function initFocusManagament(targetWindow) {
     targetWindow.PrimeFaces.widget.OverlayPanel._focusManaged = true;
   }
 
-}
-
-function initDialogKeyboardAccessibility(targetWindow) {
-  var widgetNamespace = targetWindow.PrimeFaces && targetWindow.PrimeFaces.widget;
-  if (!widgetNamespace || !widgetNamespace.Dialog || widgetNamespace.Dialog._keyboardAccessibilityManaged) {
-    return;
-  }
-
-  var lastFocusedElement = null;
-  targetWindow.document.addEventListener('focusin', function (event) {
-    if (event.target !== targetWindow.document.body) {
-      lastFocusedElement = event.target;
-    }
-  }, true);
-
-  widgetNamespace.Dialog = widgetNamespace.Dialog.extend({
-    show: function (duration) {
-      this._super(duration);
-      if (!this.returnsFocusToOpener()) {
-        return;
-      }
-      var focused = this.focusedElementBeforeDialogOpened;
-      if ((!focused || focused === targetWindow.document.body) && lastFocusedElement && !this.jq[0].contains(lastFocusedElement)) {
-        this.focusedElementBeforeDialogOpened = lastFocusedElement;
-      }
-    },
-
-    returnFocus: function () {
-      if (this.returnsFocusToOpener()) {
-        this.focusedElementBeforeDialogOpened = resolveFocusReturnTarget(this.focusedElementBeforeDialogOpened, targetWindow);
-      }
-      if (this._super) {
-        this._super();
-      }
-    },
-
-    returnsFocusToOpener: function () {
-      return this.jq.hasClass('js-return-focus-to-opener');
-    }
-  });
-  widgetNamespace.Dialog._keyboardAccessibilityManaged = true;
-}
-
-function resolveFocusReturnTarget(element, targetWindow) {
-  var targetDocument = targetWindow.document;
-  var isFocusable = function (el) {
-    return el && el !== targetDocument.body && el.isConnected && el.offsetParent !== null && !el.disabled;
-  };
-
-  if (element && element.id) {
-    element = targetDocument.getElementById(element.id) || element;
-  }
-  if (!element || isFocusable(element)) {
-    return element;
-  }
-
-  var popup = element.closest('.ui-overlaypanel, .ui-menu-overlay');
-  if (!popup || !popup.id) {
-    return element;
-  }
-
-  var widgets = targetWindow.PrimeFaces.widgets;
-  for (var key in widgets) {
-    var widget = widgets[key];
-    var opener = null;
-    if (widget.id === popup.id && widget.cfg && widget.cfg.target) {
-      opener = targetDocument.getElementById(widget.cfg.target);
-    } else if (widget.id && popup.id === widget.id + '_menu') {
-      opener = targetDocument.getElementById(widget.id + '_button');
-    }
-    if (isFocusable(opener)) {
-      return opener;
-    }
-  }
-  return element;
-}
-
-function initToggleSwitchAccessibleName(targetWindow) {
-  var widgetNamespace = targetWindow.PrimeFaces && targetWindow.PrimeFaces.widget;
-  if (!widgetNamespace || !widgetNamespace.ToggleSwitch || widgetNamespace.ToggleSwitch._accessibleNameManaged) {
-    return;
-  }
-
-  widgetNamespace.ToggleSwitch = widgetNamespace.ToggleSwitch.extend({
-    init: function (cfg) {
-      this.accessibleName = targetWindow.$(targetWindow.PrimeFaces.escapeClientId(cfg.id) + '_input').attr('aria-label');
-      this._super(cfg);
-      this.input.attr('role', 'switch');
-      this.syncAccessibleState();
-    },
-
-    check: function (silent) {
-      this._super(silent);
-      this.syncAccessibleState();
-    },
-
-    uncheck: function (silent) {
-      this._super(silent);
-      this.syncAccessibleState();
-    },
-
-    syncAccessibleState: function () {
-      this.input.attr('aria-checked', String(this.input.prop('checked')));
-      if (this.accessibleName) {
-        this.input.attr('aria-label', this.accessibleName);
-      } else {
-        this.input.removeAttr('aria-label');
-      }
-    }
-  });
-  widgetNamespace.ToggleSwitch._accessibleNameManaged = true;
 }
 
 function moveFocusIntoOverlayPanel(panel, targetWindow) {

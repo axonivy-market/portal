@@ -9,14 +9,13 @@
   <cc:attribute name="isPublicDashboard" type="java.lang.Boolean" required="true" />
   <cc:attribute name="componentToUpdate" />
   <cc:attribute name="isDashboardCreation" type="java.lang.Boolean" default="false" />
-  <cc:attribute name="returnFocusToOpener" type="java.lang.Boolean" default="false" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
 
   <p:dialog id="#{cc.attrs.detailDialogId}" widgetVar="#{cc.attrs.detailDialogId}"
-    styleClass="js-#{cc.attrs.detailDialogId} #{isPublicDashboard ? 'create-public-dashboard-dialog' : 'create-private-dashboard-dialog'} w-30rem #{cc.attrs.returnFocusToOpener ? 'js-return-focus-to-opener' : ''}"
+    styleClass="js-#{cc.attrs.detailDialogId} #{isPublicDashboard ? 'create-public-dashboard-dialog' : 'create-private-dashboard-dialog'} w-30rem "
     header="#{cc.attrs.title}" 
     appendTo="@(body)" closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true"
     minWidth="300">
