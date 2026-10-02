@@ -4,10 +4,10 @@ import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -15,10 +15,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.ws.rs.core.MediaType;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -28,13 +24,13 @@ import org.primefaces.event.UnselectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
-import com.axonivy.portal.dto.menu.MenuOrderEntry;
-import com.axonivy.portal.menu.management.enums.MenuSource;
-import com.axonivy.portal.service.MenuOrderService;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
+import com.axonivy.portal.dto.menu.MenuOrderEntry;
+import com.axonivy.portal.menu.management.enums.MenuSource;
 import com.axonivy.portal.service.IvyTranslationService;
+import com.axonivy.portal.service.MenuOrderService;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -54,6 +50,9 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
+import jakarta.ws.rs.core.MediaType;
 
 @ViewScoped
 @Named
@@ -341,8 +340,6 @@ public class DashboardModificationBean extends DashboardBean {
         displayName.setLocale(Locale.forLanguageTag(language));
         displayName.setValue(currentTitle);
         this.selectedDashboard.getTitles().add(displayName);
-      } else if (StringUtils.isBlank(localeLanguage.getValue())) {
-        localeLanguage.setValue(currentTitle);
       }
     }
   }
