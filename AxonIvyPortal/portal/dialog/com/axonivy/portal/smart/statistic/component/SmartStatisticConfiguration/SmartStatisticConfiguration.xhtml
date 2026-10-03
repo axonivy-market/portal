@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
+  xmlns:cc="jakarta.faces.composite" xmlns:p="primefaces" xmlns:c="jakarta.tags.core">
+
+<!-- The chart editor: a modal over whatever page hosts it. Controls on the left,
+     live preview and the save actions on the right. -->
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="managedBean" required="true" />
+  <cc:attribute name="componentToUpdate" required="true" />
+  <cc:attribute name="componentClientId" required="true" />
+</cc:interface>
+
+<cc:implementation>
+  <!--
+    These aliases are visible in THIS file only. A c:set variable does not reach an included
+    facelet from inside a composite implementation, so every fragment below is handed what it
+    needs through ui:param, and re-passes it to its own includes. Reading an alias that was only
+    set here fails silently - the expression resolves to null - which is why an editor opened on
+    a real chart rendered every field blank.
+  -->
+  <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
+  <c:set var="cfg" value="#{cc.attrs.componentClientId}" />
+
+  <c:set var="statisticInput" value="200" />
+  <c:set var="statisticDescriptionInput" value="2000" />
+  <c:set var="conditionBasedColoringComponent"
+    value="#{cfg}:chart-background-colors #{cfg}:condition-based-coloring-container #{cfg}:condition-based-coloring-scope" />
+
+  <h:panelGroup id="config-mode" layout="block" styleClass="smart-config-modal"
+    rendered="#{managedBean.open}">
+    <!-- The page-level "preview" remote command only autoRuns on a full page load, so an editor
+         opened by AJAX has to ask for its own first draw. Read by smartStatAfterModeSwitch(). -->
+    <f:passThroughAttribute name="data-preview-on-open" value="#{managedBean.previewOnOpen}" />
+    <div class="smart-config-modal__backdrop" onclick="smartStatCancelConfig();"></div>
+    <div class="smart-config-modal__panel" role="dialog" aria-modal="true">
+      <div class="smart-config-modal__head">
+        <span class="smart-config-modal__title">Smart statistic</span>
+        <button type="button" class="smart-config-modal__close" aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          onclick="smartStatCancelConfig(); return false;">
+          <i class="ti ti-x"></i>
+        </button>
+      </div>
+
+      <div class="flex statistic-configuration-panel">
+        <p:card styleClass="w-6 mr-2 shadow-none smart-config-col smart-config-col--form">
+          <div>
+            <p:messages id="errors-message" closable="true" />
+          </div>
+
+          <ui:include src="SmartStatisticConfigPanel.xhtml">
+            <ui:param name="managedBean" value="#{cc.attrs.managedBean}" />
+            <ui:param name="cfg" value="#{cc.attrs.componentClientId}" />
+            <ui:param name="statisticInput" value="#{statisticInput}" />
+            <ui:param name="statisticDescriptionInput" value="#{statisticDescriptionInput}" />
+            <ui:param name="conditionBasedColoringComponent" value="#{conditionBasedColoringComponent}" />
+          </ui:include>
+        </p:card>
+
+        <p:card styleClass="w-6 ml-2 pl-3 pr-3 border-transparent shadow-none smart-config-col smart-config-col--preview">
+          <ui:include src="SmartStatisticPreviewPane.xhtml">
+            <ui:param name="managedBean" value="#{cc.attrs.managedBean}" />
+            <ui:param name="cfg" value="#{cc.attrs.componentClientId}" />
+            <ui:param name="componentToUpdate" value="#{cc.attrs.componentToUpdate}" />
+          </ui:include>
+        </p:card>
+      </div>
+    </div>
+  </h:panelGroup>
+</cc:implementation>
+
+</html>

@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets" xmlns:ic="http://ivyteam.ch/jsf/component">
+
+  <!-- The draggable board of saved charts, the draft awaiting a decision, and the
+       empty state that stands in for both. -->
+  <h:panelGroup id="board-zone" layout="block" styleClass="smart-zone"
+    rendered="#{not smartStatisticManagementBean.otherChartsEmpty
+      or smartStatisticManagementBean.gridEmpty
+      or smartStatisticManagementBean.answerActive}">
+
+    <h:panelGroup id="board-head" layout="block" styleClass="smart-zone__head">
+      <h:panelGroup id="board-eyebrow" styleClass="smart-eyebrow"
+        rendered="#{not smartStatisticManagementBean.answerActive}">Your charts</h:panelGroup>
+
+      <h:panelGroup id="board-eyebrow-answered" styleClass="smart-eyebrow smart-eyebrow--asked"
+        rendered="#{smartStatisticManagementBean.answerActive}">
+        <span>Answered: </span>
+        <h:outputText id="board-answered-question" escape="true" value="#{smartStatisticManagementBean.answerQuestion}" />
+      </h:panelGroup>
+
+      <h:panelGroup id="board-meta" styleClass="smart-zone__meta">
+        <h:outputText id="board-draft-count" styleClass="smart-zone__draftcount" value="1 draft"
+          rendered="#{smartStatisticManagementBean.answerActive}" />
+        <h:outputText id="board-count-separator" value=" · "
+          rendered="#{smartStatisticManagementBean.answerActive
+          and smartStatisticManagementBean.savedChartCount gt 0}" />
+        <h:outputText id="board-saved-count" value="#{smartStatisticManagementBean.savedChartCount} saved"
+          rendered="#{smartStatisticManagementBean.savedChartCount gt 0}" />
+      </h:panelGroup>
+
+      <h:panelGroup id="board-arrange" rendered="#{not smartStatisticManagementBean.otherChartsEmpty}">
+        <button type="button" class="smart-zone__arrange portal-pill-btn portal-pill-btn-accent"
+          onclick="smartStatToggleGridArrange();">
+          <i class="ti ti-arrows-move smart-zone__arrange-icon"></i>
+          <span class="smart-zone__arrange-start">Arrange</span>
+          <span class="smart-zone__arrange-stop">Done arranging</span>
+        </button>
+      </h:panelGroup>
+    </h:panelGroup>
+
+    <ui:include src="SmartStatisticDraftCard.xhtml" />
+
+    <h:panelGroup id="board-empty" layout="block" styleClass="smart-empty"
+      rendered="#{smartStatisticManagementBean.gridEmpty
+        and not smartStatisticManagementBean.answerActive}">
+      <i class="ti ti-chart-pie empty-message-icon"></i>
+      <p class="empty-message-text">No charts yet. Add one and it will appear here.</p>
+    </h:panelGroup>
+
+    <h:panelGroup id="board-grid" layout="block" styleClass="grid-stack smart-grid"
+      rendered="#{not smartStatisticManagementBean.otherChartsEmpty}">
+      <ui:repeat var="card" value="#{smartStatisticManagementBean.otherCards}">
+        <div class="grid-stack-item"
+          gs-id="#{card.chartId}"
+          gs-x="#{card.item.axisX}" gs-y="#{card.item.axisY}"
+          gs-w="#{card.item.width}" gs-h="#{card.item.height}">
+          <div class="grid-stack-item-content">
+            <ic:com.axonivy.portal.smart.statistic.component.SmartStatisticCardLayout
+              id="card" card="#{card}"
+              managedBean="#{smartStatisticManagementBean}"
+              componentToUpdate=":smart-statistic-form:page-modes"
+              pinFull="#{smartStatisticManagementBean.pinFull}" />
+          </div>
+        </div>
+      </ui:repeat>
+    </h:panelGroup>
+  </h:panelGroup>
+
+</ui:composition>
