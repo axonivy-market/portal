@@ -48,41 +48,6 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
     }
   }
 
-  public List<T> getPublicFilterForAdmin(Long filterGroupId) {
-    try {
-      Filter<T> publicFilterQuery =
-          repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ALL_USERS.name()).or().textField(FILTER_TYPE).isEqualToIgnoringCase(ALL_ADMINS.name()).and()
-              .numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId);
-      Result<T> queryResult = publicFilterQuery.orderBy().textField(FILTER_NAME).ascending().limit(LIMIT_20).execute();
-      long totalCount = queryResult.totalCount();
-      if(totalCount > LIMIT_20) {
-        queryResult = publicFilterQuery.orderBy().textField(FILTER_NAME).ascending().limit(Math.toIntExact(totalCount)).execute();
-      }
-      return queryResult.getAll();
-    } catch (Exception e) {
-      Ivy.log().error(e);
-      return new ArrayList<>();
-    }
-  }
-
-  public List<T> getPrivateFilterForCurrentUser(Long filterGroupId) {
-    try {
-      Filter<T> privateFilterQuery =
-          repo().search(getType()).numberField(USER_ID).isEqualTo(Ivy.session().getSessionUser().getId()).and()
-              .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name()).and().numberField(FILTER_GROUP_ID)
-              .isEqualTo(filterGroupId);
-      Result<T> queryResult = privateFilterQuery.orderBy().textField(FILTER_NAME).ascending().limit(LIMIT_20).execute();
-      long totalCount = queryResult.totalCount();
-      if(totalCount > LIMIT_20) {
-        queryResult = privateFilterQuery.orderBy().textField(FILTER_NAME).ascending().limit(Math.toIntExact(totalCount)).execute();
-      }
-      return queryResult.getAll();
-    } catch (Exception e) {
-      Ivy.log().error(e);
-      return new ArrayList<>();
-    }
-  }
-
   public List<T> sortFilters(List<T> filters) {
     filters.sort((f1, f2) -> f1.getFilterName().toLowerCase().compareTo(f2.getFilterName().toLowerCase()));
     return filters;
