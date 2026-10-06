@@ -72,6 +72,12 @@
       <artifactId>gson</artifactId>
       <scope>provided</scope>
     </dependency>
+    <!-- Remove after migrating to Jackson 3. -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
   <repositories>
     <repository>

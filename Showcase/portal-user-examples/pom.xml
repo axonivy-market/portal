@@ -39,6 +39,12 @@
       <groupId>com.axonivy.ivy.api.extension</groupId>
       <artifactId>ivy-process-extension-api</artifactId>
     </dependency>
+    <!-- Remove after migrating to Jackson 3. -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
   <repositories>
     <repository>
