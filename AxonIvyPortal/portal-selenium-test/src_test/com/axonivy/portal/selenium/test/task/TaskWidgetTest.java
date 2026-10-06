@@ -1,5 +1,8 @@
 package com.axonivy.portal.selenium.test.task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -93,7 +96,9 @@ public class TaskWidgetTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
     taskWidget.openFilterWidget();
-    taskWidget.addFilter("Completed", FilterOperator.TODAY);
+    taskWidget.addFilter("Completed", FilterOperator.BEFORE);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.DATE,
+        LocalDate.now().plusDays(1).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
 
