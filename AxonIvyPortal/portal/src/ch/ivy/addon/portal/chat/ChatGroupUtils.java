@@ -3,7 +3,6 @@ package ch.ivy.addon.portal.chat;
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.log;
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -17,7 +16,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivyteam.ivy.security.IRole;
@@ -125,7 +125,7 @@ public class ChatGroupUtils {
           assignees.add(assigneeName);
         }
       });
-    } catch (IOException e) {
+    } catch (JacksonException e) {
       log().error("Failed to parse asignees in group chat for case {0}, json: {1}", e, iCase.getId(), groupChatJson);
     }
     return assignees;

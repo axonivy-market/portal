@@ -9,9 +9,9 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.TextNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.node.StringNode;
 
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
@@ -62,7 +62,7 @@ public class SavedTaskWidgetFilterTypeConverter implements IJsonConverter {
     DashboardColumnType current = parseType(textValue(filterNode, TYPE));
     DashboardColumnType resolved = resolveCaseCustomColumnType(columns, field, current);
     if (resolved != null && resolved != current) {
-      filterNode.set(TYPE, new TextNode(resolved.getType()));
+      filterNode.set(TYPE, new StringNode(resolved.getType()));
     }
   }
 
@@ -121,6 +121,6 @@ public class SavedTaskWidgetFilterTypeConverter implements IJsonConverter {
 
   private static String textValue(JsonNode node, String field) {
     JsonNode value = node.get(field);
-    return value != null && value.isTextual() ? value.asText() : null;
+    return value != null && value.isTextual() ? value.asString() : null;
   }
 }

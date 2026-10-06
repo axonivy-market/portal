@@ -43,7 +43,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
 import com.google.gson.GsonBuilder;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
@@ -393,7 +394,7 @@ public class ChatService {
             return mapper.readValue(iCase.customFields()
                 .stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).get().orElse(StringUtils.EMPTY),
                 GroupChat.class);
-          } catch (PersistencyException | IOException e) {
+          } catch (PersistencyException | JacksonException e) {
             log().error(e);
             return null;
           }

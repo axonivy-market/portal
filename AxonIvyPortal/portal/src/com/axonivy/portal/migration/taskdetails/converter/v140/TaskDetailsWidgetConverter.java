@@ -7,11 +7,11 @@ import org.apache.commons.lang3.Strings;
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.TaskDetailsJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import ch.ivy.addon.portalkit.constant.WidgetType;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.ObjectNode;
 
 public class TaskDetailsWidgetConverter implements IJsonConverter {
 
@@ -98,7 +98,7 @@ public class TaskDetailsWidgetConverter implements IJsonConverter {
 
   private static int indexOfType(ArrayNode widgets, String type) {
     for (int i = 0; i < widgets.size(); i++) {
-      if (Strings.CS.equals(widgets.get(i).path(TYPE).asText(), type)) {
+      if (Strings.CS.equals(widgets.get(i).path(TYPE).asString(), type)) {
         return i;
       }
     }
@@ -115,7 +115,7 @@ public class TaskDetailsWidgetConverter implements IJsonConverter {
 
   private static boolean hasId(ArrayNode widgets, String id) {
     for (JsonNode widget : widgets) {
-      if (Strings.CS.equals(widget.path(ID).asText(), id)) {
+      if (Strings.CS.equals(widget.path(ID).asString(), id)) {
         return true;
       }
     }

@@ -14,10 +14,10 @@ import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.common.search.JsonWidgetSearch;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.TextNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.node.StringNode;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
@@ -50,8 +50,8 @@ public class DashboardTaskWidgetConverter implements IJsonConverter {
         continue;
       }
 
-      columns.elements().forEachRemaining(col -> {
-        DashboardStandardTaskColumn field = DashboardStandardTaskColumn.findBy(col.get("field").asText());
+      columns.values().forEach(col -> {
+        DashboardStandardTaskColumn field = DashboardStandardTaskColumn.findBy(col.get("field").asString());
         if (field == null) {
           migrateCustomColumn(taskWidget, col);
         } else {
@@ -68,13 +68,13 @@ public class DashboardTaskWidgetConverter implements IJsonConverter {
    */
   private void migrateCustomColumn(JsonNode taskWidget, JsonNode col) {
     DashboardColumnType dashboardColumnType = null;
-    if (col.get(TYPE) != null && CUSTOM_CASE.equals(col.get(TYPE).asText())) {
+    if (col.get(TYPE) != null && CUSTOM_CASE.equals(col.get(TYPE).asString())) {
       dashboardColumnType = DashboardColumnType.CUSTOM_CASE;
     } else {
       dashboardColumnType = DashboardColumnType.CUSTOM;
     }
 
-    FilterField filterField = TaskFilterFieldFactory.findBy(col.get("field").asText(), dashboardColumnType);
+    FilterField filterField = TaskFilterFieldFactory.findBy(col.get("field").asString(), dashboardColumnType);
 
     if (filterField != null) {
       DashboardFilter filter = new DashboardFilter();
@@ -159,71 +159,71 @@ public class DashboardTaskWidgetConverter implements IJsonConverter {
     }
 
     // If the new complex filters has filter for the same field, skip migrate
-    filters.elements().forEachRemaining(filter -> {
-      if (filter.get("field").asText().contentEquals(field)) {
+    filters.values().forEach(filter -> {
+      if (filter.get("field").asString().contentEquals(field)) {
         return;
       }
     });
 
     ObjectNode newFilterNode = filters.addObject();
-    newFilterNode.set("field", new TextNode(field));
-    newFilterNode.set("type", new TextNode(type.getType()));
-    newFilterNode.set("operator", new TextNode(FilterOperator.IN.name()));
+    newFilterNode.set("field", new StringNode(field));
+    newFilterNode.set("type", new StringNode(type.getType()));
+    newFilterNode.set("operator", new StringNode(FilterOperator.IN.name()));
 
     ArrayNode valuesNode = newFilterNode.putArray("values");
-    filterList.elements().forEachRemaining(node -> {
-      valuesNode.add(new TextNode(node.asText()));
+    filterList.values().forEach(node -> {
+      valuesNode.add(new StringNode(node.asString()));
     });
   }
 
   private void convertDateFilters(ArrayNode filters, JsonNode filterFrom, JsonNode filterTo, String field,
       DashboardColumnType type) {
-    boolean isEmptyFilterFrom = filterFrom == null || StringUtils.isBlank(filterFrom.asText());
-    boolean isEmptyFilterTo = filterTo == null || StringUtils.isBlank(filterTo.asText());
+    boolean isEmptyFilterFrom = filterFrom == null || StringUtils.isBlank(filterFrom.asString());
+    boolean isEmptyFilterTo = filterTo == null || StringUtils.isBlank(filterTo.asString());
 
     if (isEmptyFilterFrom && isEmptyFilterTo) {
       return;
     }
 
-    filters.elements().forEachRemaining(filter -> {
-      if (filter.get("field").asText().contentEquals(field)) {
+    filters.values().forEach(filter -> {
+      if (filter.get("field").asString().contentEquals(field)) {
         return;
       }
     });
 
     ObjectNode newFilterNode = filters.addObject();
-    newFilterNode.set("field", new TextNode(field));
-    newFilterNode.set("type", new TextNode(type.getType()));
-    newFilterNode.set("operator", new TextNode(FilterOperator.BETWEEN.getOperator()));
+    newFilterNode.set("field", new StringNode(field));
+    newFilterNode.set("type", new StringNode(type.getType()));
+    newFilterNode.set("operator", new StringNode(FilterOperator.BETWEEN.getOperator()));
 
     if (!isEmptyFilterFrom) {
-      newFilterNode.set("from", new TextNode(filterFrom == null ? "" : filterFrom.asText()));
+      newFilterNode.set("from", new StringNode(filterFrom == null ? "" : filterFrom.asString()));
     }
 
     if (!isEmptyFilterTo) {
-      newFilterNode.set("to", new TextNode(filterTo == null ? "" : filterTo.asText()));
+      newFilterNode.set("to", new StringNode(filterTo == null ? "" : filterTo.asString()));
     }
   }
 
   private void convertStringFilters(ArrayNode filters, JsonNode filterText, String field, DashboardColumnType type) {
-    if (filterText == null || StringUtils.isBlank(filterText.asText())) {
+    if (filterText == null || StringUtils.isBlank(filterText.asString())) {
       return;
     }
 
     // If the new complex filters has filter for the same field, skip migrate
-    filters.elements().forEachRemaining(filter -> {
-      if (filter.get("field").asText().contentEquals(field)) {
+    filters.values().forEach(filter -> {
+      if (filter.get("field").asString().contentEquals(field)) {
         return;
       }
     });
 
     ObjectNode newFilterNode = filters.addObject();
-    newFilterNode.set("field", new TextNode(field));
-    newFilterNode.set("type", new TextNode(type.getType()));
-    newFilterNode.set("operator", new TextNode(FilterOperator.CONTAINS.getOperator()));
+    newFilterNode.set("field", new StringNode(field));
+    newFilterNode.set("type", new StringNode(type.getType()));
+    newFilterNode.set("operator", new StringNode(FilterOperator.CONTAINS.getOperator()));
 
     ArrayNode valuesNode = newFilterNode.putArray("values");
-    valuesNode.add(new TextNode(filterText.asText()));
+    valuesNode.add(new StringNode(filterText.asString()));
   }
 
   private void convertCategoryFilter(ArrayNode filters, ArrayNode filterList, String field) {
@@ -232,26 +232,26 @@ public class DashboardTaskWidgetConverter implements IJsonConverter {
     }
 
     // If the new complex filters has filter for the same field, skip migrate
-    filters.elements().forEachRemaining(filter -> {
-      if (filter.get("field").asText().contentEquals(field)) {
+    filters.values().forEach(filter -> {
+      if (filter.get("field").asString().contentEquals(field)) {
         return;
       }
     });
 
     ObjectNode newFilterNode = filters.addObject();
-    newFilterNode.set("field", new TextNode(field));
-    newFilterNode.set("type", new TextNode(DashboardColumnType.STANDARD.getType()));
-    newFilterNode.set("operator", new TextNode(FilterOperator.IN.name()));
+    newFilterNode.set("field", new StringNode(field));
+    newFilterNode.set("type", new StringNode(DashboardColumnType.STANDARD.getType()));
+    newFilterNode.set("operator", new StringNode(FilterOperator.IN.name()));
 
     ArrayNode valuesNode = newFilterNode.putArray("values");
-    filterList.elements().forEachRemaining(node -> {
-      if (node.asText().contentEquals(NO_CATEGORY) && CollectionUtils.size(filterList.elements()) == 1) {
+    filterList.values().forEach(node -> {
+      if (node.asString().contentEquals(NO_CATEGORY) && filterList.values().size() == 1) {
         // If category filter only have one option: No category
         // Choose operator: No category
-        newFilterNode.set("operator", new TextNode(FilterOperator.NO_CATEGORY.name()));
-      } else if (!node.asText().contentEquals(NO_CATEGORY)) {
+        newFilterNode.set("operator", new StringNode(FilterOperator.NO_CATEGORY.name()));
+      } else if (!node.asString().contentEquals(NO_CATEGORY)) {
         // Otherwise add all selected categories beside "No category"
-        valuesNode.add(new TextNode(node.asText()));
+        valuesNode.add(new StringNode(node.asString()));
       }
     });
   }

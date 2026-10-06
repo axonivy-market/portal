@@ -5,12 +5,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.portal.bo.jsonversion.DashboardTemplateJsonVersion;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import ch.ivyteam.ivy.environment.IvyTest;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.ObjectNode;
 
 /** {@code @IvyTest} is required because {@link JsonDashboardTemplateMigrator} logs via {@code Ivy.log()}
  * while running converters. */
@@ -73,9 +73,9 @@ class TestJsonDashboardTemplateMigrator {
     JsonNode result = new JsonDashboardTemplateMigrator(node).migrate();
 
     JsonNode dashboard = result.get("dashboard");
-    assertThat(dashboard.get("dashboardDisplayType").asText()).isEqualTo("top_menu");
+    assertThat(dashboard.get("dashboardDisplayType").asString()).isEqualTo("top_menu");
     assertThat(dashboard.has("isTopMenu")).isFalse();
-    assertThat(dashboard.get("version").asText()).isEqualTo(DashboardTemplateJsonVersion.LATEST_VERSION.getValue());
+    assertThat(dashboard.get("version").asString()).isEqualTo(DashboardTemplateJsonVersion.LATEST_VERSION.getValue());
   }
 
   @Test
@@ -100,7 +100,7 @@ class TestJsonDashboardTemplateMigrator {
     // isTopMenu -> dashboardDisplayType converter is registered at 13.1.0, above this ceiling.
     assertThat(dashboard.has("dashboardDisplayType")).isFalse();
     assertThat(dashboard.get("isTopMenu").asBoolean()).isTrue();
-    assertThat(dashboard.get("version").asText()).isEqualTo("12.0.0");
+    assertThat(dashboard.get("version").asString()).isEqualTo("12.0.0");
   }
 
   @Test
@@ -121,10 +121,10 @@ class TestJsonDashboardTemplateMigrator {
     assertThat(firstDashboard.get("isTopMenu").asBoolean()).isTrue();
     assertThat(secondDashboard.has("dashboardDisplayType")).isFalse();
     assertThat(secondDashboard.has("version")).isFalse();
-    assertThat(result.get("version").asText()).isEqualTo("1.0");
+    assertThat(result.get("version").asString()).isEqualTo("1.0");
 
     JsonNode filterList = secondDashboard.get("widgets").get(0).get("columns").get(0).get("filterList");
-    assertThat(filterList).extracting(JsonNode::asText).containsExactlyInAnyOrder("OPEN", "IN_PROGRESS");
+    assertThat(filterList).extracting(JsonNode::asString).containsExactlyInAnyOrder("OPEN", "IN_PROGRESS");
   }
 
   @Test
@@ -134,7 +134,7 @@ class TestJsonDashboardTemplateMigrator {
 
     JsonNode result = new JsonDashboardTemplateMigrator(array).migrate();
 
-    assertThat(result.get(0).get("dashboard").get("dashboardDisplayType").asText()).isEqualTo("sub_menu");
+    assertThat(result.get(0).get("dashboard").get("dashboardDisplayType").asString()).isEqualTo("sub_menu");
   }
 
   @Test
@@ -146,8 +146,8 @@ class TestJsonDashboardTemplateMigrator {
     JsonNode result = new JsonDashboardTemplateMigrator(template).migrate();
 
     assertThat(result.has("dashboard")).isFalse();
-    assertThat(result.get("dashboardDisplayType").asText()).isEqualTo("top_menu");
-    assertThat(result.get("version").asText()).isEqualTo(DashboardTemplateJsonVersion.LATEST_VERSION.getValue());
+    assertThat(result.get("dashboardDisplayType").asString()).isEqualTo("top_menu");
+    assertThat(result.get("version").asString()).isEqualTo(DashboardTemplateJsonVersion.LATEST_VERSION.getValue());
   }
 
   @Test
@@ -160,7 +160,7 @@ class TestJsonDashboardTemplateMigrator {
 
     JsonNode filterList =
         result.get("dashboard").get("widgets").get(0).get("columns").get(0).get("filterList");
-    assertThat(filterList).extracting(JsonNode::asText).containsExactlyInAnyOrder("OPEN", "IN_PROGRESS");
+    assertThat(filterList).extracting(JsonNode::asString).containsExactlyInAnyOrder("OPEN", "IN_PROGRESS");
   }
 
   @Test
@@ -172,7 +172,7 @@ class TestJsonDashboardTemplateMigrator {
     JsonNode result = new JsonDashboardTemplateMigrator(node).migrate();
 
     JsonNode values = result.get("dashboard").get("widgets").get(0).get("filters").get(0).get("values");
-    assertThat(values).extracting(JsonNode::asText).containsExactlyInAnyOrder("OPEN", "IN_PROGRESS");
+    assertThat(values).extracting(JsonNode::asString).containsExactlyInAnyOrder("OPEN", "IN_PROGRESS");
   }
 
   @Test
@@ -192,8 +192,8 @@ class TestJsonDashboardTemplateMigrator {
     JsonNode result = new JsonDashboardTemplateMigrator(node).migrate();
 
     JsonNode filterType = result.get("dashboard").get("widgets").get(0).get("filters").get(0).get("type");
-    assertThat(filterType.asText()).isEqualTo("custom_business_case");
-    assertThat(result.get("dashboard").get("version").asText())
+    assertThat(filterType.asString()).isEqualTo("custom_business_case");
+    assertThat(result.get("dashboard").get("version").asString())
         .isEqualTo(DashboardTemplateJsonVersion.LATEST_VERSION.getValue());
   }
 }

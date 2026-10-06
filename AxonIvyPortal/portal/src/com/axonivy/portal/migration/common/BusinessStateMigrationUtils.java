@@ -8,9 +8,9 @@ import java.util.function.Function;
 import org.apache.commons.lang3.EnumUtils;
 
 import com.axonivy.portal.migration.common.search.JsonWidgetSearch;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.TextNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.StringNode;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
@@ -35,34 +35,34 @@ public final class BusinessStateMigrationUtils {
   private BusinessStateMigrationUtils() {
   }
 
-  public static TextNode convertTaskBusinessState(String oldTaskStateString) {
+  public static StringNode convertTaskBusinessState(String oldTaskStateString) {
     TaskState oldTaskState = EnumUtils.getEnum(TaskState.class, oldTaskStateString);
-    TextNode result = new TextNode(oldTaskStateString);
+    StringNode result = new StringNode(oldTaskStateString);
 
     if (Objects.nonNull(oldTaskState)) {
       result = switch (oldTaskState) {
-        case PARKED, WAITING_FOR_INTERMEDIATE_EVENT, SUSPENDED -> new TextNode(TaskBusinessState.OPEN.name());
-        case CREATED, RESUMED -> new TextNode(TaskBusinessState.IN_PROGRESS.name());
-        case DONE, READY_FOR_JOIN, JOINING -> new TextNode(TaskBusinessState.DONE.name());
-        case DESTROYED -> new TextNode(TaskBusinessState.DESTROYED.name());
-        case DELAYED -> new TextNode(TaskBusinessState.DELAYED.name());
-        case JOIN_FAILED, FAILED -> new TextNode(TaskBusinessState.ERROR.name());
+        case PARKED, WAITING_FOR_INTERMEDIATE_EVENT, SUSPENDED -> new StringNode(TaskBusinessState.OPEN.name());
+        case CREATED, RESUMED -> new StringNode(TaskBusinessState.IN_PROGRESS.name());
+        case DONE, READY_FOR_JOIN, JOINING -> new StringNode(TaskBusinessState.DONE.name());
+        case DESTROYED -> new StringNode(TaskBusinessState.DESTROYED.name());
+        case DELAYED -> new StringNode(TaskBusinessState.DELAYED.name());
+        case JOIN_FAILED, FAILED -> new StringNode(TaskBusinessState.ERROR.name());
         default -> null;
       };
     }
     return result;
   }
 
-  public static TextNode convertCaseBusinessState(String oldStateString) {
+  public static StringNode convertCaseBusinessState(String oldStateString) {
     CaseState oldState = EnumUtils.getEnum(CaseState.class, oldStateString);
-    TextNode result = new TextNode(oldStateString);
+    StringNode result = new StringNode(oldStateString);
 
     if (Objects.nonNull(oldState)) {
       result = switch (oldState) {
-        case RUNNING -> new TextNode(CaseBusinessState.OPEN.name());
-        case CREATED -> new TextNode(CaseBusinessState.OPEN.name());
-        case DONE -> new TextNode(CaseBusinessState.DONE.name());
-        case DESTROYED -> new TextNode(CaseBusinessState.DESTROYED.name());
+        case RUNNING -> new StringNode(CaseBusinessState.OPEN.name());
+        case CREATED -> new StringNode(CaseBusinessState.OPEN.name());
+        case DONE -> new StringNode(CaseBusinessState.DONE.name());
+        case DESTROYED -> new StringNode(CaseBusinessState.DESTROYED.name());
         default -> null;
       };
     }
@@ -71,13 +71,13 @@ public final class BusinessStateMigrationUtils {
 
   /** Rewrites a raw JSON array of state-name strings in place - used for both the legacy per-column
    * {@code filterList} and the current widget-level {@code filters[].values}, which share the same shape. */
-  public static void convertStatesArrayInPlace(JsonNode statesNode, Function<String, TextNode> converter) {
+  public static void convertStatesArrayInPlace(JsonNode statesNode, Function<String, StringNode> converter) {
     if (Objects.isNull(statesNode) || !statesNode.isArray()) {
       return;
     }
-    List<TextNode> newStates = new ArrayList<>();
-    statesNode.elements().forEachRemaining(node -> {
-      TextNode newState = converter.apply(node.asText());
+    List<StringNode> newStates = new ArrayList<>();
+    statesNode.values().forEach(node -> {
+      StringNode newState = converter.apply(node.asString());
       if (newState != null) {
         newStates.add(newState);
       }
@@ -105,34 +105,34 @@ public final class BusinessStateMigrationUtils {
   }
 
   private static void normalizeStateFilters(JsonNode dashboardLikeNode, String widgetType, String stateField,
-      Function<String, TextNode> converter) {
+      Function<String, StringNode> converter) {
     for (JsonNode widget : new JsonWidgetSearch(dashboardLikeNode).type(widgetType).findWidgets()) {
       normalizeColumnFilterList(widget, stateField, converter);
       normalizeWidgetFilters(widget, stateField, converter);
     }
   }
 
-  private static void normalizeColumnFilterList(JsonNode widget, String stateField, Function<String, TextNode> converter) {
+  private static void normalizeColumnFilterList(JsonNode widget, String stateField, Function<String, StringNode> converter) {
     JsonNode columns = widget.get("columns");
     if (columns == null || !columns.isArray()) {
       return;
     }
     columns.forEach(column -> {
       JsonNode fieldNode = column.get(FIELD);
-      if (fieldNode != null && stateField.equals(fieldNode.asText())) {
+      if (fieldNode != null && stateField.equals(fieldNode.asString())) {
         convertStatesArrayInPlace(column.get(FILTER_LIST), converter);
       }
     });
   }
 
-  private static void normalizeWidgetFilters(JsonNode widget, String stateField, Function<String, TextNode> converter) {
+  private static void normalizeWidgetFilters(JsonNode widget, String stateField, Function<String, StringNode> converter) {
     JsonNode filters = widget.get(FILTERS);
     if (filters == null || !filters.isArray()) {
       return;
     }
     filters.forEach(filter -> {
       JsonNode fieldNode = filter.get(FIELD);
-      if (fieldNode != null && stateField.equals(fieldNode.asText())) {
+      if (fieldNode != null && stateField.equals(fieldNode.asString())) {
         convertStatesArrayInPlace(filter.get(VALUES), converter);
       }
     });

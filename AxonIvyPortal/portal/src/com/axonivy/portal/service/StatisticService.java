@@ -39,7 +39,6 @@ import com.axonivy.portal.util.AggregationResultMapper;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -57,6 +56,7 @@ import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 import jakarta.ws.rs.NotFoundException;
+import tools.jackson.databind.ObjectMapper;
 
 public class StatisticService {
 

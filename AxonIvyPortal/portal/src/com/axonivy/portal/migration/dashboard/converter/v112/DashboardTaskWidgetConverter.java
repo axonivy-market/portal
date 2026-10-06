@@ -5,7 +5,7 @@ import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.migration.common.BusinessStateMigrationUtils;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.common.search.JsonWidgetSearch;
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
@@ -25,8 +25,8 @@ public class DashboardTaskWidgetConverter implements IJsonConverter{
     new JsonWidgetSearch(jsonNode)
       .type(DashboardWidgetType.TASK.name())
       .findColumns().forEach(columns -> {
-        columns.elements().forEachRemaining(column -> {
-          if (column.get(FIELD).asText().contentEquals(DashboardStandardTaskColumn.STATE.getField())) {
+          columns.values().forEach(column -> {
+          if (column.get(FIELD).asString().contentEquals(DashboardStandardTaskColumn.STATE.getField())) {
             BusinessStateMigrationUtils.convertStatesArrayInPlace(column.get(FILTER_LIST),
                 BusinessStateMigrationUtils::convertTaskBusinessState);
           }

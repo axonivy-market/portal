@@ -8,10 +8,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
@@ -23,6 +19,9 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardUtils.PortalDashboardItemWrapper;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.IvyTest;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.JsonNodeFactory;
+import tools.jackson.databind.node.ObjectNode;
 
 @IvyTest
 class TestSavedTaskWidgetFilterTypeConverter {
@@ -241,6 +240,6 @@ class TestSavedTaskWidgetFilterTypeConverter {
   }
 
   private static String userFilterType(ObjectNode savedFilter) {
-    return savedFilter.get("userFilters").get(0).get("type").asText();
+    return savedFilter.get("userFilters").get(0).get("type").asString();
   }
 }
