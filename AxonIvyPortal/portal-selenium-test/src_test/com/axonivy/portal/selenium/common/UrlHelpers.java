@@ -20,18 +20,24 @@ public class UrlHelpers {
       relativeProcessStartLink = WordUtils.capitalize(relativeProcessStartLink);
     }
     if (relativeProcessStartLink.endsWith(".icm") || relativeProcessStartLink.endsWith(".m.json")) {
-      return getEngineUrl() + getApplicationName() + "/casemap/" + relativeProcessStartLink;
+      return getEngineUrl() + getContext() + getApplicationName() + "/casemap/" + relativeProcessStartLink;
     }
-    return getEngineUrl() + getApplicationName() + "/pro/" + relativeProcessStartLink;
+    return getEngineUrl() + getContext() + getApplicationName() + "/pro/" + relativeProcessStartLink;
   }
 
   public static String getLogoutLink() {
-    return getEngineUrl() + getApplicationName() + "/logout";
+    return getEngineUrl() + getContext() + getApplicationName() + "/logout";
   }
 
   private static String getApplicationName() {
     String applicationName = System.getProperty("test.engine.app");
     return Optional.ofNullable(applicationName).orElse(PropertyLoader.getApplicationName());
+  }
+
+  private static String getContext() {
+    return Optional.ofNullable(System.getProperty("test.engine.context"))
+        .map(context -> context.replace("/", "") + "/")
+        .orElse("default/");
   }
 
   @SuppressWarnings("deprecation")
