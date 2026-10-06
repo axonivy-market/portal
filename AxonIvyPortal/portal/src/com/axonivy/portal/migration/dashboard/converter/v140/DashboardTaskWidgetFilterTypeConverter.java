@@ -10,13 +10,13 @@ import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.common.search.JsonWidgetSearch;
+
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.node.ArrayNode;
 import tools.jackson.databind.node.ObjectNode;
 import tools.jackson.databind.node.StringNode;
-
-import ch.ivy.addon.portalkit.enums.DashboardColumnType;
-import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 
 public class DashboardTaskWidgetFilterTypeConverter implements IJsonConverter {
 
@@ -97,6 +97,6 @@ public class DashboardTaskWidgetFilterTypeConverter implements IJsonConverter {
 
   private static String textValue(JsonNode node, String field) {
     JsonNode value = node.get(field);
-    return value != null && value.isTextual() ? value.asString() : null;
+    return value != null && value.isString() ? value.asString() : null;
   }
 }

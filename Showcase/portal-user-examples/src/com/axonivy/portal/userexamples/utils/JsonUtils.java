@@ -72,7 +72,7 @@ public class JsonUtils {
     JsonNode root = mapper.readTree(json);
     if (root.isObject() && root.has(JsonListWrapper.VERSION_FIELD_NAME)) {
       JsonNode version = root.get(JsonListWrapper.VERSION_FIELD_NAME);
-      return version.isTextual() ? version.asString() : null;
+      return version.isString() ? version.asString() : null;
     }
     return null;
   }

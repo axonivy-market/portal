@@ -5,10 +5,10 @@ import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.migration.common.BusinessStateMigrationUtils;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.common.search.JsonWidgetSearch;
-import tools.jackson.databind.JsonNode;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import tools.jackson.databind.JsonNode;
 
 public class DashboardTaskWidgetConverter implements IJsonConverter{
   public static final String DASHBOARD_VERSION = "11.2.0";

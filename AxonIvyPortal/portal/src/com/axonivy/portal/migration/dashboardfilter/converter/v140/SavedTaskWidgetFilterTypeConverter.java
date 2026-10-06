@@ -9,9 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
-import tools.jackson.databind.JsonNode;
-import tools.jackson.databind.node.ObjectNode;
-import tools.jackson.databind.node.StringNode;
 
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
@@ -20,6 +17,9 @@ import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.node.StringNode;
 
 public class SavedTaskWidgetFilterTypeConverter implements IJsonConverter {
 
@@ -121,6 +121,6 @@ public class SavedTaskWidgetFilterTypeConverter implements IJsonConverter {
 
   private static String textValue(JsonNode node, String field) {
     JsonNode value = node.get(field);
-    return value != null && value.isTextual() ? value.asString() : null;
+    return value != null && value.isString() ? value.asString() : null;
   }
 }
