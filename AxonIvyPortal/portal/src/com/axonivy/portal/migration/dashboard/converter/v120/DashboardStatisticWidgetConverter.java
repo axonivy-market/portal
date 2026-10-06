@@ -5,8 +5,8 @@ import java.util.Iterator;
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ArrayNode;
 
 public class DashboardStatisticWidgetConverter implements IJsonConverter {
 
@@ -29,7 +29,7 @@ public class DashboardStatisticWidgetConverter implements IJsonConverter {
     Iterator<JsonNode> iterator = widgetsArray.iterator();
     while (iterator.hasNext()) {
       JsonNode widget = iterator.next();
-      if (widget.has("type") && "statistic".equals(widget.get("type").asText())) {
+      if (widget.has("type") && "statistic".equals(widget.get("type").asString())) {
         iterator.remove(); // Remove widget of type "statistic"
       }
     }

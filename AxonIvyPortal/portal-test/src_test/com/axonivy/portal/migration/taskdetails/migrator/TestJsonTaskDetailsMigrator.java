@@ -2,15 +2,15 @@ package com.axonivy.portal.migration.taskdetails.migrator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.axonivy.portal.bo.jsonversion.TaskDetailsJsonVersion;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import org.junit.jupiter.api.Test;
 
+import com.axonivy.portal.bo.jsonversion.TaskDetailsJsonVersion;
+
 import ch.ivyteam.ivy.environment.IvyTest;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.ObjectNode;
 
 /**
  * {@code @IvyTest} is required because {@link JsonTaskDetailsMigrator} logs via {@code Ivy.log()}
@@ -43,8 +43,8 @@ class TestJsonTaskDetailsMigrator {
     JsonNode result = new JsonTaskDetailsMigrator(node).migrate();
 
     ArrayNode widgets = (ArrayNode) result.get("widgets");
-    assertThat(widgets.get(0).get("type").asText()).isEqualTo("summary");
-    assertThat(result.get("version").asText()).isEqualTo(TaskDetailsJsonVersion.LATEST_VERSION.getValue());
+    assertThat(widgets.get(0).get("type").asString()).isEqualTo("summary");
+    assertThat(result.get("version").asString()).isEqualTo(TaskDetailsJsonVersion.LATEST_VERSION.getValue());
   }
 
   @Test
@@ -65,7 +65,7 @@ class TestJsonTaskDetailsMigrator {
 
     JsonNode configuration = result.get("items").get(0);
     ArrayNode widgets = (ArrayNode) configuration.get("widgets");
-    assertThat(widgets.get(0).get("type").asText()).isEqualTo("information");
+    assertThat(widgets.get(0).get("type").asString()).isEqualTo("information");
     assertThat(configuration.has("version")).isFalse();
   }
 }

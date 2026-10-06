@@ -1,8 +1,7 @@
 package com.axonivy.portal.components.persistence.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import com.axonivy.portal.components.persistence.variable.PropertyKey;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public abstract class BusinessEntity {
   protected static final int PRIME_NUMBER = 31;

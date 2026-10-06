@@ -5,13 +5,13 @@ import java.util.Iterator;
 import java.util.Set;
 
 import com.axonivy.portal.components.dto.JsonListWrapper;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import ch.ivyteam.ivy.environment.Ivy;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.ObjectNode;
 
 public class JsonUtils {
 
@@ -30,15 +30,15 @@ public class JsonUtils {
       existingArray.forEach(node -> {
         JsonNode idNode = node.get("id");
         if (idNode != null) {
-          existingIds.add(idNode.asText());
+          existingIds.add(idNode.asString());
         }
         items.add(node);
       });
 
       newArray.forEach(node -> {
         JsonNode idNode = node.get("id");
-        if (idNode != null && !existingIds.contains(idNode.asText())) {
-          existingIds.add(idNode.asText());
+        if (idNode != null && !existingIds.contains(idNode.asString())) {
+          existingIds.add(idNode.asString());
           items.add(node);
         }
       });
@@ -59,7 +59,7 @@ public class JsonUtils {
    * side is wrapped yet.
    */
   private static String resolveVersion(ObjectMapper mapper, String existingJson, String newJson)
-      throws JsonProcessingException {
+      throws JacksonException {
     String fromNew = readVersion(mapper, newJson);
     if (fromNew != null) {
       return fromNew;
@@ -68,11 +68,11 @@ public class JsonUtils {
     return fromExisting != null ? fromExisting : DEFAULT_VERSION;
   }
 
-  private static String readVersion(ObjectMapper mapper, String json) throws JsonProcessingException {
+  private static String readVersion(ObjectMapper mapper, String json) throws JacksonException {
     JsonNode root = mapper.readTree(json);
     if (root.isObject() && root.has(JsonListWrapper.VERSION_FIELD_NAME)) {
       JsonNode version = root.get(JsonListWrapper.VERSION_FIELD_NAME);
-      return version.isTextual() ? version.asText() : null;
+      return version.isString() ? version.asString() : null;
     }
     return null;
   }
@@ -83,7 +83,7 @@ public class JsonUtils {
    * {@link JsonListWrapper}, or (for backward compatibility with
    * not-yet-migrated data) any other single array field, e.g. {"dashboard": [...]}.
    */
-  private static JsonNode asArrayNode(ObjectMapper mapper, String json) throws JsonProcessingException {
+  private static JsonNode asArrayNode(ObjectMapper mapper, String json) throws JacksonException {
     JsonNode root = mapper.readTree(json);
     if (root.isArray()) {
       return root;
@@ -95,7 +95,7 @@ public class JsonUtils {
       if (root.isEmpty()) {
         return mapper.createArrayNode();
       }
-      Iterator<JsonNode> fields = root.elements();
+      Iterator<JsonNode> fields = root.values().stream().iterator();
       while (fields.hasNext()) {
         JsonNode value = fields.next();
         if (value.isArray()) {

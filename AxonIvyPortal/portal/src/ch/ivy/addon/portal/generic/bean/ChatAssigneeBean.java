@@ -1,6 +1,5 @@
 package ch.ivy.addon.portal.generic.bean;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -18,8 +17,8 @@ import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.publicapi.SanitizeAPI;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.HtmlUtils;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portal.chat.ChatReferencesContainer;
 import ch.ivy.addon.portal.chat.CreateGroupChatStatus;
@@ -132,7 +131,7 @@ public class ChatAssigneeBean implements Serializable {
         boolean joinGroup = true;
         try {
           createGroupChatStatus = saveGroupChat(existedGroupChat, true);
-        } catch (JsonProcessingException ex) {
+        } catch (JacksonException ex) {
           Ivy.log().error("Failure to process json {0}", ex, existedGroupChat.toString());
           joinGroup = false;
         }
@@ -164,7 +163,7 @@ public class ChatAssigneeBean implements Serializable {
       GroupChat result = mapper.readValue(groupChatJson, GroupChat.class);
       result.getAssignees();
       return result;
-    } catch (IOException e) {
+    } catch (JacksonException e) {
       Ivy.log().error("Failed to parse group chat for case {0}, json: {1}", e, iCase.getId(), groupChatJson);
       return null;
     }
@@ -212,7 +211,7 @@ public class ChatAssigneeBean implements Serializable {
         message = generateErrorMessageWhenCreateGroupChat();
         isCreated = false;
       }
-    } catch (JsonProcessingException ex) {
+    } catch (JacksonException ex) {
       Ivy.log().error("Failure to process json {0}", ex, group.toString());
       message = generateErrorMessageWhenCreateGroupChat();
       isCreated = false;
@@ -262,7 +261,7 @@ public class ChatAssigneeBean implements Serializable {
     return HtmlUtils.sanitize(groupChatName);
   }
 
-  private CreateGroupChatStatus saveGroupChat(GroupChat group, boolean isUpdate) throws JsonProcessingException {
+  private CreateGroupChatStatus saveGroupChat(GroupChat group, boolean isUpdate) throws JacksonException {
     IBusinessCase iCase = task.getCase().getBusinessCase();
     String portalGroupChatInfo = iCase.customFields().stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString())
         .get().orElse(StringUtils.EMPTY);

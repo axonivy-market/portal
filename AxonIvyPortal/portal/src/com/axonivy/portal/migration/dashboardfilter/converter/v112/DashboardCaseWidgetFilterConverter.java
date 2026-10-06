@@ -11,9 +11,9 @@ import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.common.search.JCondition;
 import com.axonivy.portal.migration.common.search.JsonDashboardConfigurationSearch;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.TextNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.StringNode;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
@@ -32,7 +32,7 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
       new JsonDashboardConfigurationSearch(jsonNode)
       .type(DashboardWidgetType.CASE.name())
       .findFilterableColumns()
-      .ifPresent(columns -> columns.elements().forEachRemaining(col -> {
+          .ifPresent(columns -> columns.values().forEach(col -> {
           if (JCondition.isField(DashboardStandardCaseColumn.STATE.getField()).test(col)) {
             convertCaseBusinessStates(col.get("userFilterList"));
           }
@@ -48,9 +48,9 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
     if (Objects.isNull(statesNode)) {
       return;
     }
-    List<TextNode> newStates = new ArrayList<>();
-    statesNode.elements().forEachRemaining(node -> {
-      TextNode newState = convertCaseBusinessState(node.asText());
+    List<StringNode> newStates = new ArrayList<>();
+    statesNode.values().forEach(node -> {
+      StringNode newState = convertCaseBusinessState(node.asString());
       if (newState != null) {
         newStates.add(newState);
       }
@@ -64,16 +64,16 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
    * IVYPORTAL-14663: Introduce CaseBusinessState
    * 
    */
-  private TextNode convertCaseBusinessState(String oldStateString) {
+  private StringNode convertCaseBusinessState(String oldStateString) {
     CaseState oldState = EnumUtils.getEnum(CaseState.class, oldStateString);
-    TextNode result = new TextNode(oldStateString);
+    StringNode result = new StringNode(oldStateString);
 
     if (Objects.nonNull(oldState)) {
       result =  switch(oldState) {
-        case RUNNING -> new TextNode(CaseBusinessState.OPEN.name());
-        case CREATED -> new TextNode(CaseBusinessState.OPEN.name());
-        case DONE -> new TextNode(CaseBusinessState.DONE.name());
-        case DESTROYED -> new TextNode(CaseBusinessState.DESTROYED.name());
+        case RUNNING -> new StringNode(CaseBusinessState.OPEN.name());
+        case CREATED -> new StringNode(CaseBusinessState.OPEN.name());
+        case DONE -> new StringNode(CaseBusinessState.DONE.name());
+        case DESTROYED -> new StringNode(CaseBusinessState.DESTROYED.name());
         default -> null;
       };
     }

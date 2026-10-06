@@ -11,9 +11,9 @@ import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.migration.common.BusinessStateMigrationUtils;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.dashboard.converter.JsonDashboardConverterFactory;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.TextNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.node.StringNode;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -42,7 +42,7 @@ public class JsonDashboardMigrator {
   private static AbstractJsonVersion readVersion(JsonNode node) {
     return Optional.ofNullable(node)
         .map(jsonNode -> jsonNode.get(AbstractJsonVersion.VERSION_FIELD_NAME))
-        .map(field -> new DashboardJsonVersion(field.asText()))
+        .map(field -> new DashboardJsonVersion(field.asString()))
         .orElse(DashboardJsonVersion.OLDEST_VERSION);
   }
 
@@ -54,7 +54,7 @@ public class JsonDashboardMigrator {
       return node;
     }
     if (node.isArray()) {
-      node.elements().forEachRemaining(dashboard -> migrate(dashboard));
+      node.values().forEach(dashboard -> migrate(dashboard));
     } else {
       migrate(node);
     }
@@ -63,7 +63,7 @@ public class JsonDashboardMigrator {
 
   private void migrate(JsonNode dashboard) {
     if (dashboard.isArray()) {
-      dashboard.elements().forEachRemaining(dashboardNode -> migrate(dashboardNode));
+      dashboard.values().forEach(dashboardNode -> migrate(dashboardNode));
       return;
     }
     var converters = JsonDashboardConverterFactory.getConverters(readVersion(dashboard)).stream()
@@ -78,7 +78,7 @@ public class JsonDashboardMigrator {
 
   private void ensureSafetyNets(JsonNode dashboard) {
     if (dashboard != null && dashboard.isArray()) {
-      dashboard.elements().forEachRemaining(this::ensureSafetyNets);
+      dashboard.values().forEach(this::ensureSafetyNets);
       return;
     }
     ensureDisplayType(dashboard);
@@ -108,9 +108,9 @@ public class JsonDashboardMigrator {
   }
 
   private void updateVersion(JsonNode node) {
-    TextNode versionNode = Optional.ofNullable(version)
+    StringNode versionNode = Optional.ofNullable(version)
         .map(v -> v.getValue())
-        .map(val -> new TextNode(val)).get();
+        .map(val -> new StringNode(val)).get();
     ((ObjectNode) node).set(AbstractJsonVersion.VERSION_FIELD_NAME, versionNode);
   }
 }

@@ -11,12 +11,12 @@ import com.axonivy.portal.bo.jsonversion.StatisticJsonVersion;
 import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.statistic.converter.JsonStatisticConverterFactory;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.TextNode;
 
 import ch.ivyteam.ivy.environment.Ivy;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.node.StringNode;
 
 public class JsonStatisticMigrator {
 
@@ -42,7 +42,7 @@ public class JsonStatisticMigrator {
   private static AbstractJsonVersion readVersion(JsonNode node) {
     return Optional.ofNullable(node)
         .map(template -> template.get(AbstractJsonVersion.VERSION_FIELD_NAME))
-        .map(field -> new StatisticJsonVersion(field.asText()))
+        .map(field -> new StatisticJsonVersion(field.asString()))
         .orElse(StatisticJsonVersion.OLDEST_VERSION);
   }
 
@@ -56,7 +56,7 @@ public class JsonStatisticMigrator {
     }
     Ivy.log().info("Converting Portal original statistic charts: " + collectChartIds((ArrayNode) node));
     removeDefaultChartsFromClientStatistic((ArrayNode) node);
-    node.elements().forEachRemaining(template -> migrate(template));
+    node.values().forEach(template -> migrate(template));
     return node;
   }
 
@@ -80,7 +80,7 @@ public class JsonStatisticMigrator {
 
   private String collectChartIds(ArrayNode nodes) {
     return StreamSupport.stream(nodes.spliterator(), false)
-        .map(chart -> chart.path("id").asText())
+        .map(chart -> chart.path("id").asString())
         .collect(Collectors.joining(", "));
   }
 
@@ -95,9 +95,9 @@ public class JsonStatisticMigrator {
   }
 
   private void updateVersion(JsonNode node) {
-    TextNode versionNode = Optional.ofNullable(version)
+    StringNode versionNode = Optional.ofNullable(version)
         .map(v -> v.getValue())
-        .map(val -> new TextNode(val)).get();
+        .map(val -> new StringNode(val)).get();
     ((ObjectNode) node).set(AbstractJsonVersion.VERSION_FIELD_NAME, versionNode);
   }
 }
