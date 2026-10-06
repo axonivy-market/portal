@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces">
+
+  <!-- Left column of the editor: every control, in the order the questions arise. -->
+  <h:panelGroup id="config-panel" layout="block" class="col-6 grid m-0 p-0 w-full">
+
+    <h:panelGroup id="task-status-banner" layout="block">
+      <p:staticMessage detail="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/OutdatedChartMessage')}"
+        rendered="#{managedBean.isOutdatedChart(managedBean.statistic)}"
+        severity="warn"
+        styleClass="w-full" />
+    </h:panelGroup>
+
+    <!-- Every include re-passes what it needs: a ui:param does not reach a nested include on
+         its own. See the note in SmartStatisticConfiguration.xhtml. -->
+    <ui:include src="SmartStatisticPromptBar.xhtml">
+      <ui:param name="managedBean" value="#{managedBean}" />
+    </ui:include>
+
+    <ui:include src="SmartStatisticGeneralSection.xhtml">
+      <ui:param name="managedBean" value="#{managedBean}" />
+      <ui:param name="statisticInput" value="#{statisticInput}" />
+      <ui:param name="statisticDescriptionInput" value="#{statisticDescriptionInput}" />
+    </ui:include>
+
+    <h:panelGroup id="schema-section" layout="block">
+      <p:panel id="schema-panel" toggleable="true" toggleableHeader="true" collapsed="true"
+        toggleSpeed="500" widgetVar="schema-panel" styleClass="w-full smart-section"
+        header="Schema"
+        rendered="#{managedBean.statistic.providerBacked}">
+        <ui:include src="SmartStatisticFieldCatalogue.xhtml">
+          <ui:param name="managedBean" value="#{managedBean}" />
+        </ui:include>
+        <ui:include src="SmartStatisticProviderResult.xhtml">
+          <ui:param name="managedBean" value="#{managedBean}" />
+        </ui:include>
+      </p:panel>
+    </h:panelGroup>
+
+    <ui:include src="SmartStatisticChartSection.xhtml">
+      <ui:param name="managedBean" value="#{managedBean}" />
+    </ui:include>
+
+    <h:panelGroup id="filter-section-wrapper" layout="block">
+      <p:panel id="filter-section" toggleable="true" toggleableHeader="true" collapsed="true"
+        toggleSpeed="500" widgetVar="filter-panel" styleClass="w-full smart-section"
+        header="#{ivy.cms.co('/Labels/Filters')}"
+        rendered="#{not managedBean.statistic.providerBacked}">
+        <ui:include src="SmartStatisticTaskCaseFilters.xhtml">
+          <ui:param name="managedBean" value="#{managedBean}" />
+          <ui:param name="conditionBasedColoringComponent" value="#{conditionBasedColoringComponent}" />
+        </ui:include>
+      </p:panel>
+    </h:panelGroup>
+
+    <h:panelGroup id="provider-filter-section" layout="block">
+      <p:panel id="provider-filter-panel" toggleable="true" toggleableHeader="true" collapsed="true"
+        toggleSpeed="500" widgetVar="provider-filter-panel" styleClass="w-full smart-section"
+        header="#{ivy.cms.co('/Labels/Filters')}"
+        rendered="#{managedBean.statistic.providerBacked}">
+        <ui:include src="SmartStatisticProviderFilters.xhtml">
+          <ui:param name="managedBean" value="#{managedBean}" />
+          <ui:param name="cfg" value="#{cfg}" />
+        </ui:include>
+      </p:panel>
+    </h:panelGroup>
+
+    <ui:include src="SmartStatisticAdvancedSection.xhtml">
+      <ui:param name="managedBean" value="#{managedBean}" />
+    </ui:include>
+
+  </h:panelGroup>
+
+</ui:composition>

@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces">
+
+  <!-- Describe the chart in words; the answer fills in the form below. -->
+  <h:panelGroup id="ai-bar" layout="block" styleClass="col-12 smart-prompt">
+    <div class="smart-prompt__row">
+      <span class="ui-inputgroup-addon smart-prompt__icon"><i class="ti ti-sparkles"></i></span>
+      <p:inputText id="prompt" value="#{managedBean.prompt}"
+        styleClass="smart-prompt__input"
+        disabled="#{not managedBean.agentAvailable}"
+        onkeydown="return smartStatPromptKeyDown(event);"
+        placeholder="Describe the chart you want, e.g. open tasks by priority" />
+      <p:commandButton id="apply-prompt" widgetVar="applyPromptButton"
+        value="Generate"
+        ariaLabel="Generate"
+        disabled="#{not managedBean.agentAvailable}"
+        actionListener="#{managedBean.applyPrompt}"
+        process="ai-bar" update="config-panel chart-description-preview"
+        onstart="smartStatPromptBusy(true)"
+        oncomplete="smartStatPromptBusy(false); handlePreviewChart(xhr, status, args);" />
+    </div>
+
+    <p:staticMessage severity="warn" styleClass="w-full mt-2"
+      rendered="#{not managedBean.agentAvailable}"
+      detail="The chart assistant is not available in this installation, so this page is read-only." />
+
+    <h:panelGroup layout="block" styleClass="smart-prompt__note mt-2"
+      rendered="#{not empty managedBean.assistantNote}">
+      <i class="ti ti-info-circle mr-2"></i>
+      <h:outputText value="#{managedBean.assistantNote}" escape="true" />
+    </h:panelGroup>
+
+    <ui:repeat value="#{managedBean.assistantWarnings}" var="warning">
+      <div class="smart-prompt__warning mt-1">
+        <i class="ti ti-alert-triangle mr-2"></i>
+        <h:outputText value="#{warning}" escape="true" />
+      </div>
+    </ui:repeat>
+  </h:panelGroup>
+
+</ui:composition>

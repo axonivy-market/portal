@@ -1,0 +1,1202 @@
+/* Smart Statistic: view mode (ask bar, brief, pinned row, chart grid) and the
+   classic configurator below it. Colours come from the Portal theme variables,
+   which are swapped between the light and dark stylesheets. */
+
+.smart-page {
+  /* Fallbacks only apply outside the Portal template. */
+  --smart-surface: var(--surface-card, #ffffff);
+  --smart-surface-sunken: var(--surface-ground, #f6f8fa);
+  --smart-line: var(--surface-border, #dde1e7);
+  --smart-ink: var(--text-color, #10151b);
+  --smart-ink-muted: var(--text-color-secondary, #6b7684);
+  --smart-accent: var(--primary-color, #35618e);
+  /* Reserved for "not saved yet" and used for nothing else, so the state reads without a label. */
+  --smart-draft: #b8720c;
+  --smart-draft-wash: #fdf3e4;
+
+  --smart-font-data: "Cascadia Mono", Consolas, "SF Mono", Menlo, "Roboto Mono", monospace;
+  --smart-radius: 3px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+}
+
+.smart-eyebrow {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* The question that produced the draft, standing in for the zone label while it is on the
+   board. Italic rather than bold: it is quoted text, not a heading. */
+.smart-eyebrow--asked {
+  font-weight: 400;
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 60ch;
+}
+
+.smart-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.smart-zone__head {
+  display: flex;
+  align-items: baseline;
+  gap: .7rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--smart-line);
+}
+
+.smart-zone__meta {
+  margin-left: auto;
+  color: var(--smart-ink-muted);
+}
+
+/* ============================== MASTHEAD ================================= */
+
+.smart-masthead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+/* ============================== ASK BAR ================================== */
+
+.smart-ask {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--smart-line);
+  border-radius: var(--smart-radius);
+  background: var(--smart-surface);
+  overflow: hidden;
+}
+
+.smart-ask:focus-within {
+  border-color: var(--smart-accent);
+}
+
+.smart-ask__mark {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  border-right: 1px solid var(--smart-line);
+  background: var(--smart-surface-sunken);
+  color: var(--smart-accent);
+}
+
+/* Must win the width fight against the addon and the button. */
+.smart-ask .smart-ask__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.smart-ask .smart-ask__input:focus {
+  box-shadow: none;
+}
+
+.smart-ask .ui-button {
+  flex: 0 0 auto;
+  border-radius: 0;
+}
+
+.smart-ask--busy .ui-button {
+  pointer-events: none;
+  opacity: .6;
+}
+
+.smart-ask__input--busy {
+  opacity: .6;
+  cursor: progress;
+}
+
+.smart-ask__actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: .6rem;
+}
+
+.smart-ask__aside {
+  flex: 0 0 auto;
+  margin-left: auto;
+  padding-top: .35rem;
+  white-space: nowrap;
+}
+
+.smart-ask__suggestions {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.smart-ask__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.smart-ask__chips--collapsed {
+  display: none;
+}
+
+.smart-zone__draftcount {
+  color: var(--smart-draft);
+  font-weight: 600;
+}
+
+/* Portal's secondary pill does the look; only weight and the pointer affordances
+   differ. Compound selector so it wins without relying on stylesheet order. */
+.smart-chip.portal-pill-btn {
+  font-weight: 400;
+  cursor: pointer;
+  user-select: none;
+}
+
+.smart-chip:focus-visible {
+  outline: 2px solid var(--smart-accent);
+  outline-offset: 2px;
+}
+
+.smart-chip:active {
+  transform: translateY(1px);
+}
+
+/* No second question while one is in flight. */
+.smart-ask--busy ~ .smart-ask__actions .smart-chip,
+.smart-ask--busy ~ .smart-ask__suggestions .smart-chip,
+.smart-ask--busy .smart-chip {
+  pointer-events: none;
+  opacity: .5;
+}
+
+/* The agent's own words. The toggle is a p:link with .portal-link, so it needs
+   nothing here. */
+.smart-thinking {
+  display: flex;
+  align-items: flex-start;
+  gap: .6rem;
+  margin-top: .6rem;
+  padding: .7rem .9rem;
+  border: 1px solid var(--ivy-tertinary-color-green-medium, #a5d6a7);
+  border-left: 3px solid var(--ivy-tertinary-color-green-dark, #2f6b4f);
+  border-radius: var(--smart-radius);
+  background: var(--ivy-tertinary-color-green-light, #e8f5e9);
+  color: var(--ivy-primary-color-black, #1b1b1b);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* [hidden] loses to the display above unless restated. */
+.smart-thinking[hidden] {
+  display: none;
+}
+
+.smart-thinking__icon {
+  flex: 0 0 auto;
+  margin-top: .15rem;
+  color: var(--ivy-tertinary-color-green-dark, #2f6b4f);
+}
+
+/* ======================= CARD (pinned, grid, answer) ==================== */
+
+/* Flex, not grid: the insight row comes and goes. */
+.smart-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 15px;
+  background: var(--smart-surface);
+  /* The dashboard's mask minus the dash pattern. */
+  --smart-outline-mask: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='15' ry='15' stroke='black' stroke-width='2'/%3e%3c/svg%3e");
+}
+
+/* A masked pseudo element rather than a border, so the line never takes part in the
+   card's box. */
+.smart-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  pointer-events: none;
+  z-index: 1;
+  background-color: var(--smart-accent);
+  -webkit-mask-image: var(--smart-outline-mask);
+  mask-image: var(--smart-outline-mask);
+}
+
+.smart-card__head {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: .5rem;
+  min-width: 0;
+  padding: .7rem .8rem;
+  border-bottom: 1px solid var(--smart-line);
+  align-items: center;
+}
+
+.smart-card__handle {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+
+
+.smart-card__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.smart-card__actions {
+  flex: 0 0 auto;
+  display: flex;
+  gap: .2rem;
+  /* The header is the drag handle; these must not be. */
+  cursor: default;
+}
+
+.smart-card__actions .ui-button {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+body .actions-menu-panel.smart-card__actions-menu {
+  max-height: 26rem !important;
+  overflow-y: auto;
+}
+
+/* ------------------------------- insight -------------------------------- */
+
+.smart-card__insight {
+  display: flex;
+  align-items: flex-start;
+  gap: .5rem;
+  padding: .5rem .8rem;
+}
+
+/* --------------------------- insight offer -------------------------------- */
+
+.smart-insight-offer {
+  opacity: 0;
+  transition: opacity .15s ease;
+}
+
+.smart-card:hover .smart-insight-offer,
+.smart-insight-offer:focus {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .smart-insight-offer {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smart-insight-offer {
+    transition: none;
+  }
+}
+
+.smart-card__spark {
+  flex: 0 0 auto;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+body .smart-card__spark.ui-button-outlined,
+body .smart-card__spark.ui-button-outlined.ui-state-hover,
+body .smart-card__spark.ui-button-outlined:not(.ui-state-disabled):hover {
+  border-color: var(--accent-btn-border);
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
+}
+
+body .smart-card__spark.ui-button-outlined:not(.ui-state-disabled):hover {
+  background: var(--accent-btn-hover-bg);
+}
+
+.smart-card__spark--busy {
+  pointer-events: none;
+}
+
+.smart-card__spark--busy .ti {
+  display: inline-block;
+  animation: smart-spin 1s linear infinite;
+}
+
+@keyframes smart-spin {
+  to { transform: rotate(360deg); }
+}
+
+.smart-card__insight-text {
+  min-width: 0;
+  line-height: 1.5;
+  color: var(--smart-ink);
+  overflow-wrap: anywhere;
+}
+
+/* ---------------------------------- body -------------------------------- */
+
+.smart-card__body {
+  flex: 1 1 auto;
+  position: relative;
+  container-type: size;
+  min-height: 0;
+  min-width: 0;
+  padding: .4rem;
+}
+
+.smart-card__body > .smart-card__canvas {
+  position: absolute;
+  inset: .4rem;
+  height: auto;
+  width: auto;
+}
+
+.smart-card__scope {
+  flex: 0 0 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--smart-ink-muted);
+  line-height: 1.35;
+}
+
+.smart-region.smart-card__scope {
+  overflow: hidden;
+}
+
+/* --------------------------------- layouts ------------------------------- */
+
+.smart-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.smart-region {
+  flex: 0 0 auto;
+  min-width: 0;
+  overflow: auto;
+}
+
+.smart-region--chart {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.smart-region__canvas {
+  flex: 1 1 auto;
+  position: relative;
+  min-height: 0;
+  container-type: size;
+}
+
+.smart-region--chart .js-statistic-chart {
+  position: absolute;
+  inset: 0;
+  height: auto;
+  width: auto;
+}
+
+.smart-region--chart .smart-region__skeleton {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--smart-surface-sunken);
+}
+
+.smart-region--chart .smart-region__skeleton::after {
+  background: linear-gradient(90deg, transparent, var(--smart-surface), transparent);
+  opacity: .6;
+}
+
+.smart-region--ready .smart-region__skeleton {
+  display: none;
+}
+
+.smart-layout__texts--hidden {
+  display: none;
+}
+
+/* ---- SIDEBAR: 11-12 columns. The texts take a column beside the chart. ---- */
+
+[data-layout="SIDEBAR"] .smart-layout--texts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(15rem, 26%);
+}
+
+[data-layout="SIDEBAR"] .smart-layout--texts > .smart-region--chart {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+[data-layout="SIDEBAR"] .smart-layout__texts {
+  grid-row: 1;
+  grid-column: 2;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-left: 1px solid var(--smart-line);
+}
+
+[data-layout="SIDEBAR"] .smart-layout__pair {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+}
+
+[data-layout="SIDEBAR"] .smart-layout__pair > .smart-region {
+  flex: 0 0 auto;
+  overflow: visible;
+}
+
+[data-layout="SIDEBAR"] .smart-layout__pair > .smart-region + .smart-region {
+  border-top: 1px solid var(--smart-line);
+}
+
+[data-layout="CAPTION"] .smart-layout__texts {
+  flex: 0 0 auto;
+  min-width: 0;
+  border-top: 1px solid var(--smart-line);
+}
+
+[data-layout="CAPTION"] .smart-layout__pair {
+  display: flex;
+  min-width: 0;
+}
+
+.smart-layout__pair > .smart-region {
+  min-width: 0;
+}
+
+[data-layout="CAPTION"] .smart-layout__pair > .smart-region {
+  flex: 1 1 0;
+  max-height: 5rem;
+  overflow: auto;
+}
+
+[data-layout="CAPTION"] .smart-layout__pair > .smart-region + .smart-region {
+  border-left: 1px solid var(--smart-line);
+}
+
+.smart-layout__tab {
+  display: none;
+}
+
+[data-layout="TUCKED"] .smart-layout__texts {
+  flex: 0 0 auto;
+  min-width: 0;
+  border-top: 1px solid var(--smart-line);
+}
+
+[data-layout="TUCKED"] .smart-layout__tab {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  width: 100%;
+  padding: .25rem .6rem;
+  border: 0;
+  background: transparent;
+  color: var(--smart-ink-muted);
+  font: inherit;
+  font-size: .8rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+[data-layout="TUCKED"] .smart-layout__tab:hover {
+  color: var(--smart-accent);
+}
+
+[data-layout="TUCKED"] .smart-layout__tab:focus-visible {
+  outline: 2px solid var(--smart-accent);
+  outline-offset: -2px;
+}
+
+.smart-layout__caret {
+  margin-left: auto;
+}
+
+[data-layout="TUCKED"] .smart-layout__pair {
+  display: none;
+}
+
+.smart-card--open[data-layout="TUCKED"] .smart-layout__pair {
+  display: block;
+  max-height: 9rem;
+  overflow: auto;
+  border-top: 1px solid var(--smart-line);
+}
+
+.smart-card--open[data-layout="TUCKED"] .smart-layout__caret {
+  transform: rotate(180deg);
+}
+
+.smart-card__missing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  opacity: .7;
+  text-align: center;
+}
+
+/* ============================== PINNED ROW =============================== */
+
+.smart-pinned {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1rem;
+}
+
+.smart-pinned .smart-card {
+  min-height: 280px;
+}
+
+/* ============================== CHART GRID =============================== */
+
+.smart-grid .grid-stack-item-content {
+  display: flex;
+  overflow: hidden;
+}
+
+.smart-grid .smart-card {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.smart-grid-arranging .smart-grid .smart-card:hover::before {
+  background-color: var(--dashboard-widget-dashed-outline-color);
+  -webkit-mask-image: var(--dashboard-widget-dashed-outline-mask);
+  mask-image: var(--dashboard-widget-dashed-outline-mask);
+}
+
+.smart-grid-arranging .smart-grid .smart-card__handle {
+  cursor: move;
+}
+
+.smart-zone__arrange {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  cursor: pointer;
+}
+
+.smart-zone__arrange-stop,
+.smart-grid-arranging .smart-zone__arrange-start {
+  display: none;
+}
+
+.smart-grid-arranging .smart-zone__arrange-stop {
+  display: inline;
+}
+
+.smart-grid-arranging .smart-zone__arrange {
+  border-color: var(--smart-accent);
+  color: var(--smart-accent);
+}
+
+.smart-grid > .grid-stack-item > .ui-resizable-handle {
+  opacity: 0;
+}
+
+/* ============================== DRAFT ==================================== */
+
+.smart-draft__slot {
+  box-sizing: border-box;
+  width: calc(var(--smart-draft-w, 6) / 12 * 100%);
+  height: calc(var(--smart-draft-h, 4) * 100px);
+  padding: 10px;
+}
+
+.smart-draft__slot > .smart-card {
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .smart-draft__slot {
+    width: 100%;
+  }
+}
+
+.smart-card--draft {
+  --smart-outline-mask: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='15' ry='15' stroke='black' stroke-width='2' stroke-dasharray='8 6'/%3e%3c/svg%3e");
+}
+
+.smart-card--draft::before {
+  background-color: var(--smart-draft);
+}
+
+.smart-card__badge {
+  flex: 0 0 auto;
+  font-family: var(--smart-font-data);
+  font-size: .95rem;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  padding: .1rem .5rem;
+  border-radius: 99px;
+  background: var(--smart-draft-wash);
+  color: var(--smart-draft);
+}
+
+/* The decision, attached to the thing it decides about. */
+.smart-card__decide {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .6rem .8rem;
+  border-top: 1px dashed var(--smart-draft);
+  background: var(--smart-draft-wash);
+}
+
+.smart-card__why {
+  margin-left: auto;
+  color: var(--smart-draft);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.smart-btn--draft.portal-pill-btn {
+  background: var(--smart-draft);
+  border-color: var(--smart-draft);
+  color: #fff;
+}
+
+.smart-btn--quiet.portal-pill-btn {
+  background: transparent;
+  border-color: transparent;
+}
+
+.smart-thinking--inline {
+  flex: 0 0 auto;
+  max-height: 40%;
+  margin-top: 0;
+  border: 0;
+  border-top: 1px solid var(--smart-line);
+  border-radius: 0;
+  background: var(--smart-surface-sunken);
+  color: var(--smart-ink);
+  overflow-y: auto;
+}
+
+.smart-thinking--inline .smart-thinking__icon {
+  color: var(--smart-draft);
+}
+
+/* ========================== DRAFTING FOCUS ================================ */
+
+.smart-page--drafting .smart-ask-bar,
+.smart-page--drafting .smart-pinned,
+.smart-page--drafting .smart-grid {
+  opacity: .4;
+  filter: grayscale(.5);
+  transition: opacity .25s ease, filter .25s ease;
+}
+
+.smart-page--drafting .smart-draft {
+  position: relative;
+  z-index: 1;
+}
+
+.smart-page--drafting .smart-card--draft {
+  box-shadow: 0 0 0 1px var(--smart-draft),
+    0 10px 30px -10px color-mix(in srgb, var(--smart-draft) 60%, transparent);
+}
+
+/* ============================== EMPTY STATES ============================= */
+
+.smart-empty {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  opacity: .7;
+  border: 1px dashed var(--smart-line);
+  border-radius: var(--smart-radius);
+}
+
+.smart-empty .empty-message-icon {
+  font-size: 3.2em;
+  display: block;
+  margin-bottom: .5rem;
+}
+
+/* ============================== FEEDBACK =================================
+   Shared by the ask bar and the prompt bar inside the form. */
+
+.smart-prompt__note,
+.smart-prompt__warning {
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.smart-prompt__note {
+  opacity: .85;
+}
+
+.smart-prompt__warning {
+  padding: .35rem .6rem;
+  border-radius: 4px;
+  background: var(--ivy-tertinary-color-orange-light, #fff4e5);
+  color: var(--ivy-tertinary-color-orange-dark, #7a4f01);
+  border: 1px solid var(--ivy-tertinary-color-orange-dark, #ffd8a8);
+}
+
+/* ========================= CONFIGURATION MODE =========================== */
+
+body.smart-config-modal-open {
+  overflow: hidden;
+}
+
+.smart-config-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* PrimeFaces appends its overlays to <body> and numbers them from 1000, so inside a modal that
+   sits above that they are in the DOM, correctly populated, and painted behind it - a dropdown
+   that opens onto nothing. The z-index is written inline by the widget, so only !important wins.
+   Raised for every overlay kind, not just the dropdown: the translation dialog, the colour
+   pickers and the permission autocomplete all open from the same modal. */
+body > .ui-selectonemenu-panel,
+body > .ui-selectcheckboxmenu-panel,
+body > .ui-autocomplete-panel,
+body > .ui-datepicker,
+body > .ui-colorpicker-panel,
+body > .ui-overlaypanel,
+body > .ui-tooltip,
+body > .ui-dialog,
+body > .ui-confirm-dialog,
+body > .ui-widget-overlay {
+  z-index: 1200 !important;
+}
+
+.smart-config-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 21, 27, .5);
+}
+
+.smart-config-modal__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(96vw, 1400px);
+  max-height: 100%;
+  background: var(--surface-card, #fff);
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+  overflow: hidden;
+}
+
+.smart-config-modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--surface-border, #dde1e7);
+}
+
+.smart-config-modal__title {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.smart-config-modal__close {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: .4rem;
+  line-height: 1;
+  font-size: 1.4rem;
+  color: var(--text-color-secondary, #6b7684);
+}
+
+.smart-config-modal__close:hover {
+  color: var(--text-color, #10151b);
+}
+
+/* The panel is the only thing measured against the viewport; everything inside divides
+   that height rather than adding to it. dashboard.css sizes this row for the standalone
+   configuration page - height:calc(100vh - 95px) - which inside a centred modal would
+   overflow it, so the height is handed back to the flex column.
+
+   overflow is hidden, not auto: auto here is what scrolled the entire dialog, header and
+   preview and buttons together. The form column below is the single scroller.
+
+   min-height:0 on every link of the chain is the load-bearing part - a flex item defaults
+   to min-height:auto and refuses to shrink below its content, so without it the row grows
+   to fit the form and the scrollbar pops back out to the nearest ancestor. */
+.smart-config-modal .statistic-configuration-panel {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: auto;
+  overflow: hidden;
+  padding: 1.5rem;
+  align-items: stretch;
+}
+
+/* Each column is a flex ITEM of the row above, so align-items:stretch already gives it the
+   row's full height. Scrolling it needs nothing more than that height plus overflow - no
+   rules reaching into p:card's .ui-card-body/.ui-card-content wrappers, whose structure is
+   PrimeFaces' to change. Content inside stays in normal block flow and overflows the column,
+   which is exactly what a scroll container wants. */
+.smart-config-modal .smart-config-col {
+  min-height: 0;
+}
+
+/* The form is the one scroller in the dialog. */
+.smart-config-modal .smart-config-col--form {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* The preview is a fixed frame the chart is drawn into, and the Save row under it has to
+   stay reachable without hunting for it, so this column is sized to fit rather than
+   scrolled. auto, not hidden, only so a very short viewport clips nothing away entirely. */
+.smart-config-modal .smart-config-col--preview {
+  overflow-y: auto;
+}
+
+/* ---------------------------- preview skeleton ----------------------------
+
+   The wait for a preview is shown where the chart will land rather than by the page-wide
+   progress loader, so the eye stays on the frame it is about to read. Hidden by default:
+   the frame starts on its "configure your chart" message, which is an answer, not a wait. */
+
+/* height:100% keeps the chain the chart already relied on: .statistic-chart-widget__chart is
+   sized 100% of its parent, which used to be the fixed-height content box this frame now sits
+   inside. Without it the frame would collapse and take the chart with it. */
+.smart-preview__frame {
+  position: relative;
+  height: 100%;
+}
+
+/* Scoped through the frame so these win over PrimeFaces' own .ui-skeleton rules whatever
+   order the two stylesheets end up in. */
+.smart-preview__frame .smart-preview__skeleton {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: .75rem;
+  padding: 2rem 3rem 1.5rem;
+}
+
+.smart-preview--busy.smart-preview__frame .smart-preview__skeleton {
+  display: flex;
+}
+
+/* The bars stand on the axis, so they grow upward from a common baseline. */
+.smart-preview__frame .smart-preview__bars {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: flex-end;
+  gap: 1.25rem;
+  min-height: 0;
+}
+
+.smart-preview__frame .smart-preview__bar {
+  flex: 1 1 0;
+  border-radius: var(--border-radius, 6px) var(--border-radius, 6px) 0 0;
+}
+
+/* Nothing shows through the gaps between the bars while the old chart is still in the DOM. */
+.smart-preview--busy.smart-preview__frame .statistic-chart-widget__chart {
+  visibility: hidden;
+}
+
+/* ---------------------------- provider fields ---------------------------- */
+
+.smart-source {
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+  padding: .45rem 0;
+}
+
+.smart-source__signature {
+  font-family: var(--smart-font-data, monospace);
+  overflow-wrap: anywhere;
+}
+
+.smart-source__application {
+  font-size: .9em;
+  color: var(--text-color-secondary, #6b7684);
+}
+
+.smart-provider-filter > .ui-selectonemenu,
+.smart-provider-filter > .ui-inputfield {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.smart-provider-filter > .ui-selectonemenu:nth-of-type(2) {
+  flex: 0 1 14rem;
+}
+
+/* ------------------------------ field catalogue --------------------------- */
+
+.smart-catalogue {
+  margin-top: .75rem;
+  border: 1px solid var(--smart-line, #e9ecef);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.smart-catalogue__head {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .5rem .75rem;
+  background: var(--surface-ground, #f8f9fa);
+  border-bottom: 1px solid var(--smart-line, #e9ecef);
+}
+
+.smart-catalogue__title {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-weight: 600;
+}
+
+.smart-catalogue__count {
+  flex: 1 1 auto;
+  font-size: .9em;
+  color: var(--text-color-secondary, #6b7684);
+}
+
+.smart-catalogue__body {
+  max-height: 24rem;
+  overflow: auto;
+}
+
+.smart-catalogue__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr) minmax(0, .9fr) minmax(0, 1fr);
+  gap: .5rem;
+  align-items: center;
+  padding: .35rem .75rem;
+  border-bottom: 1px solid var(--smart-line, #e9ecef);
+}
+
+.smart-catalogue__row:last-child {
+  border-bottom: none;
+}
+
+.smart-catalogue__row--head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--surface-card, #fff);
+  font-size: .85em;
+  font-weight: 600;
+  color: var(--text-color-secondary, #6b7684);
+}
+
+.smart-catalogue__name {
+  font-family: var(--smart-font-data, monospace);
+  font-size: .85em;
+  overflow-wrap: anywhere;
+}
+
+.smart-catalogue__title-cell {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.smart-catalogue__type,
+.smart-catalogue__measures {
+  font-size: .85em;
+  color: var(--text-color-secondary, #6b7684);
+}
+
+/* ----------------------------- result data ------------------------------- */
+
+.smart-result {
+  margin-top: .75rem;
+  border: 1px solid var(--smart-line, #e9ecef);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.smart-result__head {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .5rem .75rem;
+  background: var(--surface-ground, #f8f9fa);
+  border-bottom: 1px solid var(--smart-line, #e9ecef);
+}
+
+.smart-result__title {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-weight: 600;
+}
+
+.smart-result__count {
+  flex: 1 1 auto;
+  font-size: .9em;
+  color: var(--text-color-secondary, #6b7684);
+}
+
+.smart-result__head .smart-result__reload {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.smart-result__empty {
+  padding: 1rem .75rem;
+  color: var(--text-color-secondary, #6b7684);
+}
+
+.smart-result__body {
+  max-height: 22rem;
+  overflow: auto;
+}
+
+.smart-result__json {
+  margin: 0;
+  padding: .75rem;
+  font-family: var(--smart-font-data, monospace);
+  font-size: .85em;
+  line-height: 1.45;
+  white-space: pre;
+  tab-size: 2;
+}
+
+.smart-prompt {
+  margin-bottom: .75rem;
+  padding: .75rem;
+  border: 1px solid var(--smart-line, #e9ecef);
+  border-radius: 6px;
+  background: var(--surface-ground, #f8f9fa);
+}
+
+.smart-prompt__row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.smart-prompt__icon {
+  display: flex;
+  align-items: center;
+}
+
+.smart-prompt__row .smart-prompt__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border-radius: 0;
+}
+
+.smart-prompt__row .ui-button {
+  flex: 0 0 auto;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.smart-prompt__input--busy {
+  opacity: .6;
+  cursor: progress;
+}
+
+.smart-prompt--busy .ui-button {
+  pointer-events: none;
+  opacity: .6;
+}
+
+/* ------------------------------- sections -------------------------------- */
+
+.smart-section {
+  margin-bottom: .75rem;
+}
+
+.smart-section > .ui-panel-content {
+  padding: .25rem .5rem .5rem .5rem;
+}
+
+/* The whole bar toggles, so it has to look like it does. */
+.smart-section > .ui-panel-titlebar {
+  cursor: pointer;
+}
+
+.smart-section > .ui-panel-titlebar .ui-panel-title {
+  font-weight: 600;
+}
+
+/* ---------------------------- chart description --------------------------- */
+
+.smart-description__input {
+  resize: vertical;
+  min-height: 6rem;
+  line-height: 1.45;
+}
+
+/* ------------------------------ responsive ------------------------------- */
+
+@media screen and (max-width: 768px) {
+  .smart-prompt__row,
+  .smart-ask {
+    flex-wrap: wrap;
+  }
+
+  .smart-prompt__row .smart-prompt__input,
+  .smart-ask .smart-ask__input {
+    flex: 1 1 100%;
+    border-radius: 4px;
+  }
+
+  .smart-prompt__row .ui-button,
+  .smart-ask .ui-button {
+    margin-top: .5rem;
+    border-radius: 4px;
+  }
+
+  .smart-prompt__icon,
+  .smart-ask__mark {
+    display: none;
+  }
+}
