@@ -1754,11 +1754,16 @@ i.dashboard-icon-drag-drop {
   width: 600px;
 }
 
+.search-input-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .global-search-icon {
   position: absolute;
   left: 0.9rem;
   top: 50%;
-  margin-top: -0.35rem;
+  transform: translateY(-50%);
   z-index: 1;
 }
 .ui-inputfield.global-search-input {
