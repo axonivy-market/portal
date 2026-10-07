@@ -82,8 +82,8 @@ public class DashboardProcessTaskSearchCriteria {
         order.descending();
       }
       // Add secondary sort by ID for deterministic ordering when primary sort has duplicate values
-      // Only add if not already sorting by ID to avoid double sorting
-      if (org.apache.commons.lang3.StringUtils.isNotBlank(criteria.getSortField())
+      // Only add if a primary sort was actually applied and it's not already sorting by ID
+      if (order != null && org.apache.commons.lang3.StringUtils.isNotBlank(criteria.getSortField())
           && !DashboardStandardTaskColumn.ID.getField().equalsIgnoreCase(criteria.getSortField())) {
         query.orderBy().taskId().ascending();
       }
