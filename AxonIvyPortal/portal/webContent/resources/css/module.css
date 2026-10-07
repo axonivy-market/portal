@@ -2816,6 +2816,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .absence-tab-actions {
   position: absolute;
+  z-index: 1;
   top: -0.5rem;
   right: 0;
   display: flex;

@@ -1936,6 +1936,14 @@ body .ui-datepicker td > a.ui-state-active:focus-visible,
   box-shadow: inset 0 0 0 4px currentColor;
 }
 
+body .ui-tabs .ui-tabs-nav li.ui-tabs-header.ui-tabs-outline {
+  box-shadow: inset 0 0 0 2px var(--portal-focus-ring-color);
+}
+
+body .ui-tabs .ui-tabs-nav li.ui-tabs-header > a:focus-visible {
+  outline: none !important;
+}
+
 body .ui-selectonemenu.ui-state-focus,
 body .ui-selectcheckboxmenu.ui-state-focus,
 body .ui-autocomplete-multiple-container.ui-state-focus {
