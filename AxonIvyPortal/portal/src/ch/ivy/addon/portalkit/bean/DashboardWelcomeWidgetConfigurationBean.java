@@ -8,11 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-
-import jakarta.faces.application.FacesMessage;
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.faces.context.FacesContext;
+import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
@@ -41,6 +37,10 @@ import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @ViewScoped
 @Named
@@ -138,7 +138,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       }
     }
 
-    String fileName = getWidget().getId().concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
+    String fileName = UUID.randomUUID().toString().concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
     getWidget().setImageLocation(fileName);
     getWidget().setImageType(extension);
 
@@ -179,7 +179,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       }
     }
 
-    String fileName = getWidget().getId().concat(WelcomeWidgetUtils.DARK_MODE).concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
+    String fileName = UUID.randomUUID().toString().concat(WelcomeWidgetUtils.DARK_MODE).concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
     getWidget().setImageLocationDarkMode(fileName);
     getWidget().setImageTypeDarkMode(extension);
 
