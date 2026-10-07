@@ -4,6 +4,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Keys;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.AccessibilityHelpers;
@@ -18,6 +19,7 @@ import com.axonivy.portal.selenium.page.ProjectVersionPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 
 @IvyWebTest
 public class DashboardAccessibilityTest extends BaseTest {
@@ -57,7 +59,8 @@ public class DashboardAccessibilityTest extends BaseTest {
     taskWidget.clickOnTaskActionLink(0);
     var actionPanel = taskWidget.getSelectedTaskAction(0);
     AccessibilityHelpers.makeElementA11yReport(actionPanel, "task-widget-actions");
-    actionPanel.$(".ui-overlaypanel-close").click();
+    Selenide.actions().sendKeys(Keys.ESCAPE).perform();
+    actionPanel.shouldBe(Condition.disappear);
 
     ChangePasswordPage changePasswordPage = homePage.openChangePasswordPage();
     var changePasswordDialog = changePasswordPage.getChangePasswordDialog().shouldBe(Condition.visible);

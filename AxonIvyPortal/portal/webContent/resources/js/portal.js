@@ -561,9 +561,7 @@ $(document).ready(function () {
     removeFocusClass(focusedTaskEl);
     removeFocusClass(focusedCaseEl);
     removeFocusClass(focusedProcessEl);
-    removeFocusClass(focusedCaseSideStepEl);
     removeFocusClass(focusedResetTaskFormEl);
-    removeFocusClass(focusedTaskSideStepEl);
   }
 
   function handleFocusOnMainElement(event) {
@@ -641,16 +639,12 @@ $(document).ready(function () {
 
   let taskIndex = 0;
   let resetTaskFormIndex = 0;
-  let taskSideStepIndex = 0;
   let caseIndex = 0;
-  let caseSideStepIndex = 0;
   let processIndex = 0;
   let focusedTaskEl;
   let focusedCaseEl;
-  let focusedCaseSideStepEl;
   let focusedProcessEl;
   let focusedResetTaskFormEl = 0;
-  let focusedTaskSideStepEl;
 
   $(document).on('keydown', function (event) {
 
@@ -665,15 +659,6 @@ $(document).ready(function () {
         return;
       }
       collapseExpandedWidget();
-
-      if (hidePortalActionPanels('action-steps-panel')) {
-        if (focusedCaseEl) {
-          focusedCaseEl.addClass('focused');
-          focusedCaseEl.focus();
-        }
-      }
-
-      hidePortalActionPanels('side-steps-panel');
       return;
     }
 
@@ -700,11 +685,8 @@ $(document).ready(function () {
         event.preventDefault();
         removeFocusedElements();
         taskIndex = 0;
-        taskSideStepIndex = 0;
         processIndex = 0;
-        if (caseActionStepsPanelVisible) {
-          caseSideStepIndex = 0;
-        } else {
+        if (!caseActionStepsPanelVisible) {
           caseIndex = 0;
         }
         handleFocusOnMainElement(event);
@@ -725,19 +707,7 @@ $(document).ready(function () {
           focusedResetTaskFormEl = $(cancelOk[resetTaskFormIndex]);
           addFocusClass(focusedResetTaskFormEl);
           resetTaskFormIndex++;
-        } else if (taskActionStepsPanelVisible) {
-
-          var steps = taskActionStepsPanel.find('div.ui-overlaypanel-content a');
-          if (taskSideStepIndex >= steps.length) {
-            taskSideStepIndex = 0;
-          }
-
-          removeFocusedElements();
-
-          focusedTaskSideStepEl = $(steps[taskSideStepIndex]);
-          addFocusClass(focusedTaskSideStepEl);
-          taskSideStepIndex++;
-        } else {
+        } else if (!taskActionStepsPanelVisible) {
           var taskList = $('[id$=":task-component:dashboard-tasks"] table tr td:visible [id$=":start-task"]');
           if (taskIndex >= taskList.length) {
             taskIndex = 0;
@@ -745,10 +715,7 @@ $(document).ready(function () {
 
           removeFocusedElements();
           processIndex = 0;
-          taskSideStepIndex = 0;
-          if (caseActionStepsPanelVisible) {
-            caseSideStepIndex = 0;
-          } else {
+          if (!caseActionStepsPanelVisible) {
             caseIndex = 0;
           }
 
@@ -758,19 +725,7 @@ $(document).ready(function () {
         }
       } else if (keyCode == 'KeyQ') {
         //Short cuts for Case widget
-        if (caseActionStepsPanelVisible) {
-          var steps = caseActionStepsPanel.find('div.ui-overlaypanel-content a');
-
-          if (caseSideStepIndex >= steps.length) {
-            caseSideStepIndex = 0;
-          }
-
-          removeFocusedElements();
-
-          focusedCaseSideStepEl = $(steps[caseSideStepIndex]);
-          addFocusClass(focusedCaseSideStepEl);
-          caseSideStepIndex++;
-        } else {
+        if (!caseActionStepsPanelVisible) {
           var caseList = $('[id$="case-component:dashboard-cases"] table tr td:visible [id$=":dashboard-case-side-steps-menu"]');
 
           if (caseIndex >= caseList.length) {
@@ -779,9 +734,7 @@ $(document).ready(function () {
 
           removeFocusedElements();
           taskIndex = 0;
-          taskSideStepIndex = 0;
           processIndex = 0;
-          caseSideStepIndex = 0;
 
           focusedCaseEl = $(caseList[caseIndex]);
           addFocusClass(focusedCaseEl);
@@ -797,10 +750,7 @@ $(document).ready(function () {
 
         removeFocusedElements();
         taskIndex = 0;
-        taskSideStepIndex = 0;
-        if (caseActionStepsPanelVisible) {
-          caseSideStepIndex = 0;
-        } else {
+        if (!caseActionStepsPanelVisible) {
           caseIndex = 0;
         }
 
@@ -926,25 +876,6 @@ function focusFirstVisibleElementInPanel(widgetVar, selector) {
   if (first.length) {
     first.focus();
   }
-}
-
-/**
- * Hides every visible action overlay panel whose id ends with the given suffix.
- * These panels render without a close icon, so they are hidden through their widget.
- * @param {string} idSuffix - 'action-steps-panel' or 'side-steps-panel'.
- * @returns {boolean} true if at least one panel was hidden.
- */
-function hidePortalActionPanels(idSuffix) {
-  var hidden = false;
-  for (var widgetVar in PrimeFaces.widgets) {
-    var widget = PrimeFaces.widgets[widgetVar];
-    if (widget && widget.jq && typeof widget.hide === 'function'
-        && widget.jq.is('[id$="' + idSuffix + '"]') && widget.jq.is(':visible')) {
-      widget.hide();
-      hidden = true;
-    }
-  }
-  return hidden;
 }
 
 function hideVisibleTooltips() {
