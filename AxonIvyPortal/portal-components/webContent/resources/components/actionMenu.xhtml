@@ -25,7 +25,7 @@
   <h:outputStylesheet library="css" name="action-menu-component.css" />
 
   <p:commandButton id="#{cc.attrs.triggerId}" type="button" disabled="#{cc.attrs.disabled}"
-    onclick="event.stopPropagation(); return false;" icon="ti ti-dots"
+    onclick="PF('#{cc.attrs.panelWidgetVar}').toggle(); event.stopPropagation(); return false;" icon="ti ti-dots"
     ariaLabel="#{cc.attrs.ariaLabel}" title="#{cc.attrs.title}" pt:aria-haspopup="true"
     styleClass="#{cc.attrs.buttonStyleClass} rounded-button portal-icon-btn portal-icon-btn--sm" />
 
@@ -33,7 +33,7 @@
     widgetVar="#{cc.attrs.panelWidgetVar}" appendTo="@(body)"
     styleClass="portal-action-menu options-panel #{cc.attrs.menuStyleClass}"
     my="right top" at="right bottom" collision="flip"
-    showCloseIcon="false" dismissable="true" dynamic="true" cache="false"
+    showCloseIcon="false" dismissable="true" dynamic="true" cache="false" showEvent="none" hideEvent="none"
     onShow="initActionMenuKeyboard(this)"
     pt:aria-label="#{cc.attrs.ariaLabel}">
     <cc:insertChildren />

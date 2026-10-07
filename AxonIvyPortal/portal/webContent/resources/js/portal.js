@@ -375,6 +375,15 @@ function restorePortalLeftMenuState() {
   }
 }
 
+function closeUserSettingsMenu() {
+  var trigger = $('#user-settings-menu');
+  if (!trigger.parent().hasClass('active-topmenuitem')) {
+    return false;
+  }
+  trigger.trigger('click').trigger('focus');
+  return true;
+}
+
 function hideDashboardOverlayPanels() {
   $(".js-dashboard-overlay-panel").each(function(){
     if ($(this).hasClass("ui-overlay-visible")) {
@@ -658,6 +667,9 @@ $(document).ready(function () {
       if (event.isDefaultPrevented() || isEscapeHandledByDialog()) {
         return;
       }
+      if (closeUserSettingsMenu()) {
+        return;
+      }
       collapseExpandedWidget();
       return;
     }
@@ -807,9 +819,24 @@ $(document).ready(function () {
   syncAriaExpandedWithClass(document.querySelector('.layout-topbar-left a.menu-button'), document.querySelector('.layout-wrapper'), 'layout-mobile-active');
   const userSettingsMenu = document.getElementById('user-settings-menu');
   syncAriaExpandedWithClass(userSettingsMenu, userSettingsMenu && userSettingsMenu.closest('li'), 'active-topmenuitem');
+  focusFirstItemWhenOpened(userSettingsMenu, userSettingsMenu && userSettingsMenu.closest('li'), 'active-topmenuitem', document.getElementById('user-setting-container'));
   fixDynamicContentAccessibility();
   $(document).on('pfAjaxComplete', fixDynamicContentAccessibility);
 });
+
+function focusFirstItemWhenOpened(trigger, observedElement, expandedClass, menu) {
+  if (!trigger || !observedElement || !menu) {
+    return;
+  }
+  let wasExpanded = observedElement.classList.contains(expandedClass);
+  new MutationObserver(() => {
+    const isExpanded = observedElement.classList.contains(expandedClass);
+    if (isExpanded && !wasExpanded && document.activeElement === trigger) {
+      $(menu).find('a[href]').filter(':visible').first().trigger('focus');
+    }
+    wasExpanded = isExpanded;
+  }).observe(observedElement, { attributes: true, attributeFilter: ['class'] });
+}
 
 function syncAriaExpandedWithClass(trigger, observedElement, expandedClass) {
   if (!trigger || !observedElement) {
