@@ -205,6 +205,7 @@
   --portal-action-menu-divider-color: hsl(0, 0%, 97%);
   --portal-action-menu-destroy-color: hsl(358, 83%, 49%);
   --statistics-axis-text-color: var(--ivy-portal-color-grey-650);
+  --portal-focus-ring-color: var(--ivy-primary-color);
   --task-start-info-header-font-weight: bold;
   --task-start-info-task-id-font-weight: normal;
   --task-name-input-font-weight: bold;

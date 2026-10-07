@@ -1923,17 +1923,31 @@ body.dark .focused:not(input, button) {
   max-width: calc(100vw - 2rem);
 }
 
-/* Data table keyboard focus */
-body.light .ui-datatable th.ui-sortable-column:focus-visible,
-body.light .ui-datatable tbody.ui-datatable-data:focus-visible {
-  outline: 2px solid var(--ivy-primary-color);
+/* Focus indicator */
+:focus-visible:not([tabindex="-1"]):not(input, textarea, select) {
+  outline: 2px solid var(--portal-focus-ring-color) !important;
+  outline-offset: -2px !important;
+}
+
+body .ui-button:not(.ui-button-outlined, .ui-button-flat, .portal-icon-btn, .portal-pill-btn, .context-button, .portal-cancel-button, .ui-inplace-cancel, .primary-color-light-button):focus-visible,
+body .ui-paginator .ui-paginator-page.ui-state-active:focus-visible,
+body .ui-datepicker td > a.ui-state-active:focus-visible,
+.skip-to-content:focus-visible {
+  box-shadow: inset 0 0 0 4px currentColor;
+}
+
+body .ui-selectonemenu.ui-state-focus,
+body .ui-selectcheckboxmenu.ui-state-focus,
+body .ui-autocomplete-multiple-container.ui-state-focus {
+  outline: 2px solid var(--portal-focus-ring-color);
   outline-offset: -2px;
 }
 
-body.dark .ui-datatable th.ui-sortable-column:focus-visible,
-body.dark .ui-datatable tbody.ui-datatable-data:focus-visible {
-  outline: 2px solid var(--ivy-primary-light-color);
-  outline-offset: -2px;
+body .ui-chkbox .ui-chkbox-box.ui-state-focus,
+body .ui-radiobutton .ui-radiobutton-box.ui-state-focus,
+body .ui-toggleswitch.ui-toggleswitch-focus .ui-toggleswitch-slider {
+  outline: 2px solid var(--portal-focus-ring-color);
+  outline-offset: 2px;
 }
 
 .screenreader-only {
@@ -2625,6 +2639,10 @@ body a.portal-detail-toolbar-back:focus,
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.task-detail-attr .task-detail-attr-value:focus-within,
+.task-detail-attr .task-detail-attr-value > .task-details-priority:focus-within {
+  overflow: visible;
 }
 /* "See details" (Workflow) is a primary-colored link, not a plain value */
 .task-detail-attr .task-detail-attr-value a[id$=":workflow-event-link"],
