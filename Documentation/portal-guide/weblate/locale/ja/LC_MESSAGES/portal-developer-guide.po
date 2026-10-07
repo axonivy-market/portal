@@ -2070,66 +2070,64 @@ msgid "Please refer to process ``CustomResetPassword`` in project ``portal-devel
 msgstr "パスワードのリセットのカスタマイズ方法の例については、 ``portal-developer-examples`` プロジェクトの ``CustomResetPassword`` プロセスを参照してください。"
 
 #: ../../source/portal-developer-guide/customization/growl-message-customization.rst:4
-#, fuzzy
 msgid "Growl Message Customization"
-msgstr "カスタマイズ"
+msgstr "Growl メッセージのカスタマイズ"
 
 #: ../../source/portal-developer-guide/customization/growl-message-customization.rst:9
 msgid "When a task is finished (**proceed**) or left (**cancel**), Portal shows a default feedback message in the global growl, e.g. \"You have finished the task successfully. Click here for details.\". The growl message customization lets you replace this default feedback with your own summary and detail text, so end users see business-relevant information instead of the generic message."
-msgstr ""
+msgstr "タスクが完了（**proceed**）または中断（**cancel**）されると、Portal はグローバル growl にデフォルトのフィードバックメッセージ、例えば「タスクは正常に完了しました。詳細はこちらをクリックしてください。」を表示します。Growl メッセージのカスタマイズを使用すると、このデフォルトのフィードバックを独自の要約と詳細テキストに置き換えることができ、エンドユーザーは一般的なメッセージの代わりに業務に関連する情報を確認できます。"
 
 #: ../../source/portal-developer-guide/customization/growl-message-customization.rst:17
 msgid "**Class**: ``com.axonivy.portal.components.publicapi.PortalGrowlMessageAPI``"
-msgstr ""
+msgstr "**クラス**: ``com.axonivy.portal.components.publicapi.PortalGrowlMessageAPI``"
 
 #: ../../source/portal-developer-guide/customization/growl-message-customization.rst:19
 msgid "``setCustomMessage(String summary)``"
-msgstr ""
+msgstr "``setCustomMessage(String summary)``"
 
 #: ../../source/portal-developer-guide/customization/growl-message-customization.rst:20
 msgid "Sets only a summary (title) text."
-msgstr ""
+msgstr "要約（タイトル）テキストのみを設定します。"
 
 #: ../../source/portal-developer-guide/customization/growl-message-customization.rst:22
 msgid "``setCustomMessage(String summary, String detail)``"
-msgstr ""
+msgstr "``setCustomMessage(String summary, String detail)``"
 
 #: ../../source/portal-developer-guide/customization/growl-message-customization.rst:23
 msgid "Sets a summary text together with a detail line shown below the summary."
-msgstr ""
+msgstr "要約テキストと、その下に表示される詳細行を設定します。"
 
 #: ../../source/portal-developer-guide/customization/growl-message-customization.rst:25
 msgid "Add a script element that calls one of these methods **right before the task ends**, i.e. as the last step in front of the task end or html dialog end element of your process:"
-msgstr ""
+msgstr "プロセスのタスク終了要素または HTML ダイアログ終了要素の直前、つまり最後のステップとして、これらのメソッドのいずれかを呼び出すスクリプト要素を **タスクが終了する直前に** 追加します。"
 
 #: ../../source/portal-developer-guide/customization/growl-message-customization.rst:38
 msgid "Portal stores the message in the session of the current user, reads it right after the task ended and displays it in the global growl instead of the default message."
-msgstr ""
+msgstr "Portal は現在のユーザーのセッションにメッセージを保存し、タスク終了直後にそれを読み取り、デフォルトメッセージの代わりにグローバル growl に表示します。"
 
 #: ../../source/portal-developer-guide/customization/growl-message-customization.rst:44
-#, fuzzy
 msgid "There is an example implementation in the project ``portal-developer-examples`` under the process name ``GlobalGrowl``."
-msgstr "プロジェクト ``portal-developer-examples`` 内のプロセス名 ``CustomExtendTaskLeave`` に実装例があります。"
+msgstr "プロジェクト ``portal-developer-examples`` 内のプロセス名 ``GlobalGrowl`` に実装例があります。"
 
 #: ../../source/portal-developer-guide/customization/growl-message-customization.rst:46
 msgid "To see how it works, run the process ``customizedMessage.ivp`` or ``customizedMessageWithSkipTaskList.ivp``, then finish or cancel the task. The global growl shows the customized message instead of the default Portal feedback."
-msgstr ""
+msgstr "動作を確認するには、プロセス ``customizedMessage.ivp`` または ``customizedMessageWithSkipTaskList.ivp`` を実行し、タスクを完了または中断してください。グローバル growl には、デフォルトの Portal フィードバックの代わりにカスタマイズされたメッセージが表示されます。"
 
 #: ../../source/portal-developer-guide/customization/growl-message-customization.rst:51
 msgid "The customized message is only used for the **next** task-ending action of the current session; after it is displayed, it is cleared automatically so subsequent tasks show the default message again unless you set it again."
-msgstr ""
+msgstr "カスタマイズされたメッセージは、現在のセッションの **次の** タスク終了アクションにのみ使用されます。表示された後は自動的にクリアされるため、再度設定しない限り、以降のタスクでは再びデフォルトメッセージが表示されます。"
 
 #: ../../source/portal-developer-guide/customization/growl-message-customization.rst:53
 msgid "If no customized message is set, Portal falls back to its default growl feedback."
-msgstr ""
+msgstr "カスタマイズされたメッセージが設定されていない場合、Portal はデフォルトの growl フィードバックにフォールバックします。"
 
 #: ../../source/portal-developer-guide/customization/growl-message-customization.rst:54
 msgid "The customized message follows the global variable ``Portal.DisplayMessageAfterFinishTask``. When growl feedback is turned off, no message is shown at all, not even a customized one. The stored message is still cleared, so it is not displayed later."
-msgstr ""
+msgstr "カスタマイズされたメッセージは、グローバル変数 ``Portal.DisplayMessageAfterFinishTask`` に従います。growl フィードバックがオフの場合、カスタマイズされたものも含めて一切メッセージは表示されません。保存されたメッセージはそれでもクリアされるため、後で表示されることはありません。"
 
 #: ../../source/portal-developer-guide/customization/growl-message-customization.rst:57
 msgid "The message is stored per session, not per task or per browser tab. If a user works on several tasks of the same session in parallel, the message is consumed by whichever task ends first - one more reason to set it directly before the task ends."
-msgstr ""
+msgstr "メッセージはタスクごとやブラウザタブごとではなく、セッションごとに保存されます。ユーザーが同一セッションの複数のタスクを並行して処理している場合、最初に終了したタスクによってメッセージが消費されます。これも、タスク終了の直前にメッセージを設定すべき理由の一つです。"
 
 #: ../../source/portal-developer-guide/customization/hide-technical-stuffs.rst:4
 msgid "Hide Technical Stuff"
