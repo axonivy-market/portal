@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
@@ -67,6 +68,7 @@ public class DashboardCloneWidgetScreenshotTest extends ScreenshotBaseTest {
     detailsEditPage.openCloneWidgetDialog(0);
     detailsEditPage.chooseDashboardToClone("Dashboard");
     detailsEditPage.waitCloneButtonClickable();
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
 
     ScreenshotUtils.captureElementScreenshot(
         detailsEditPage.getCloneWidgetDialog().getWrappedElement(),
@@ -82,6 +84,7 @@ public class DashboardCloneWidgetScreenshotTest extends ScreenshotBaseTest {
     detailsEditPage.openCloneFromDialog();
     detailsEditPage.fillCloneWidgetDialog("Dashboard", "Your Tasks");
     detailsEditPage.waitCloneFromButtonClickable();
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
 
     ScreenshotUtils.captureElementScreenshot(
         detailsEditPage.getCloneWidgetFromDialog().getWrappedElement(),

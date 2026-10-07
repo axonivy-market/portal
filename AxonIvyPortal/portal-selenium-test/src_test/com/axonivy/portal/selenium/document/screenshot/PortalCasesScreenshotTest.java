@@ -103,7 +103,9 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
 
     refreshPage();
     detailsPage.waitForCaseDetailsDisplay();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.getRenameDocumentDialog(),
+    SelenideElement renameDocumentDialog = detailsPage.getRenameDocumentDialog();
+    Sleeper.sleep(500); // Explicitly wait for better screenshots
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(renameDocumentDialog,
         ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-rename-document", new ScreenshotMargin(10));
 
     refreshPage();
