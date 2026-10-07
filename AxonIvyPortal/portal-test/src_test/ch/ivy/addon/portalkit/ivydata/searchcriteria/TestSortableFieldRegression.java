@@ -1,11 +1,10 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import org.junit.jupiter.api.Test;
 
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
@@ -104,5 +103,40 @@ class TestSortableFieldRegression {
     for (CustomFieldType type : CustomFieldType.values()) {
       assertThat(DashboardColumnFormat.valueOf(type.name())).isNotNull();
     }
+  }
+
+  @Test
+  void taskWidget_sortByNonIdField_includesToSecondaryIdSort() {
+    // When sorting by name, should include secondary sort by ID for determinism
+    String query = taskQuery("name", false);
+    // Secondary sort by ID should be included for determinism
+    assertThat(query).contains("ORDER BY").contains("Column(IWA_Task.TaskId)");
+  }
+
+  @Test
+  void taskWidget_sortByIdField_doesNotDoublesort() {
+    // When sorting by ID, should only sort by ID once
+    String query = taskQuery("id", false);
+    assertThat(query).contains("ORDER BY Column(IWA_Task.TaskId) ASCENDING");
+    // Count occurrences of taskId ordering - should be exactly 1
+    int count = query.split("Column\\(IWA_Task.TaskId\\)").length - 1;
+    assertThat(count).isEqualTo(1);
+  }
+
+  @Test
+  void taskWidget_sortByPriority_includesSecondaryIdSort() {
+    // Priority can have same values, needs secondary sort by ID
+    String query = taskQuery("priority", true);
+    assertThat(query).contains("ORDER BY Column(IWA_Task.Priority) DESCENDING");
+    // Secondary sort by ID should be included
+    assertThat(query).contains("Column(IWA_Task.TaskId)");
+  }
+
+  @Test
+  void processWidget_sortByNonIdField_includesToSecondaryIdSort() {
+    // Process widget should also have secondary sort by ID
+    String query = processTaskQuery("name", false);
+    // Should include secondary sort by ID
+    assertThat(query).contains("ORDER BY").contains("Column(IWA_Task.TaskId)");
   }
 }
