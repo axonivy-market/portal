@@ -657,7 +657,7 @@ $(document).ready(function () {
     var keyCode = event.code;
     if (keyCode === 'Escape') {
       hideVisibleTooltips();
-      if (hideOpenMenuButtons()) {
+      if (hideOpenOverlayMenus()) {
         event.preventDefault();
         return;
       }
@@ -969,14 +969,22 @@ function isEscapeHandledByDialog() {
   return false;
 }
 
-function hideOpenMenuButtons() {
-  var hidden = false;
-  if (!PrimeFaces.widget.MenuButton) {
-    return hidden;
+function isOpenOverlayMenu(widget) {
+  var widgets = PrimeFaces.widget;
+  if (widgets.MenuButton && widget instanceof widgets.MenuButton) {
+    return widget.menu && widget.menu.is(':visible');
   }
+  if (widgets.PlainMenu && widget instanceof widgets.PlainMenu) {
+    return widget.cfg.overlay && widget.trigger && widget.jq.is(':visible');
+  }
+  return false;
+}
+
+function hideOpenOverlayMenus() {
+  var hidden = false;
   for (var widgetVar in PrimeFaces.widgets) {
     var widget = PrimeFaces.widgets[widgetVar];
-    if (widget instanceof PrimeFaces.widget.MenuButton && widget.menu && widget.menu.is(':visible')) {
+    if (widget && isOpenOverlayMenu(widget)) {
       widget.hide();
       let button = widget.trigger[0];
       setTimeout(function () {
@@ -1080,6 +1088,7 @@ function initFocusManagament(targetWindow) {
             self.escHandler = function(e) {
               if (e.key === 'Escape' && panel.isVisible() && isTopMostPanel(panel, targetWindow)) {
                 panel.hide();
+                e.preventDefault();
               }
             };
             targetWindow.document.addEventListener('keydown', self.escHandler);
@@ -1168,6 +1177,43 @@ function initIframeFocusManagement(iframe) {
     console.log('Focus management initialized for iframe');
   } catch (e) {
     console.warn('Cannot initialize focus management for iframe:', e.message);
+  }
+}
+
+function bindDialogKeysInIframe(iframe, widgetVar) {
+  try {
+    var iframeWindow = iframe.contentWindow;
+    iframeWindow.document.addEventListener('keydown', function (event) {
+      if (event.defaultPrevented || iframeWindow.$('.ui-dialog:visible').length) {
+        return;
+      }
+      if (event.key === 'Escape') {
+        PF(widgetVar).hide();
+      } else if (event.key === 'Tab' && !event.shiftKey && iframeWindow.$.expr.pseudos.tabbable
+          && event.target === iframeWindow.$(':tabbable').last()[0]) {
+        var first = PF(widgetVar).jq.find(':tabbable').first();
+        if (first.length) {
+          event.preventDefault();
+          first.trigger('focus');
+        }
+      }
+    });
+    PF(widgetVar).jq.off('keydown.iframeTab').on('keydown.iframeTab', function (event) {
+      if (event.key !== 'Tab' || !iframeWindow.$ || !iframeWindow.$.expr.pseudos.tabbable) {
+        return;
+      }
+      var dialogItems = $(this).find(':tabbable');
+      var isLeavingDialogItems = event.shiftKey ? event.target === dialogItems.first()[0] : event.target === dialogItems.last()[0];
+      var iframeItems = iframeWindow.$(':tabbable');
+      var next = event.shiftKey ? iframeItems.last() : iframeItems.first();
+      if (isLeavingDialogItems && next.length) {
+        event.preventDefault();
+        event.stopPropagation();
+        next.trigger('focus');
+      }
+    });
+  } catch (e) {
+    console.warn('Cannot handle dialog keys in iframe:', e.message);
   }
 }
 
