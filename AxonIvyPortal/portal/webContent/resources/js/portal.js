@@ -657,10 +657,11 @@ $(document).ready(function () {
     var keyCode = event.code;
     if (keyCode === 'Escape') {
       hideVisibleTooltips();
-      if (event.isDefaultPrevented() || isEscapeHandledByDialog()) {
+      if (hideOpenMenuButtons()) {
+        event.preventDefault();
         return;
       }
-      if (hideOpenMenuButtons()) {
+      if (event.isDefaultPrevented() || isEscapeHandledByDialog()) {
         return;
       }
       collapseExpandedWidget();

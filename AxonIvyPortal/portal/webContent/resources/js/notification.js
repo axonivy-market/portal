@@ -37,7 +37,7 @@ function markAsRead(notiId) {
 $(document).ready(function () {
     closeNotificationPanel();
     document.addEventListener('keydown', event => {
-        if (event.key === 'Escape' && isNotificationPanelOpen() && !$('.ui-dialog:visible, .ui-menu-overlay:visible').length) {
+        if (event.key === 'Escape' && !event.defaultPrevented && isNotificationPanelOpen() && !$('.ui-dialog:visible, .ui-menu-overlay:visible').length) {
             closeNotificationPanel();
             const bell = document.getElementById('open-notifications-panel');
             if (bell) {
