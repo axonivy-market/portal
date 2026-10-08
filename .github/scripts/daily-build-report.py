@@ -77,6 +77,19 @@ def failed_tests(archive):
     return sorted(failures)
 
 
+def format_failed_tests(tests):
+    grouped = {}
+    for test in tests:
+        class_name, method = test.rsplit("#", 1)
+        grouped.setdefault(class_name, []).append(method)
+    lines = []
+    for class_name in sorted(grouped, key=lambda name: (name.rsplit(".", 1)[-1], name)):
+        lines.append(class_name.rsplit(".", 1)[-1])
+        lines.extend(f"- {method}" for method in sorted(grouped[class_name]))
+        lines.append("")
+    return f"❌ **Failed Tests ({len(tests)})**\n\n```\n" + "\n".join(lines).rstrip() + "\n```"
+
+
 def selenium_details(repo, run):
     try:
         artifacts = list(items(f"repos/{repo}/actions/runs/{run['id']}/artifacts", "artifacts"))
@@ -87,7 +100,7 @@ def selenium_details(repo, run):
         # Re-runs can leave multiple artifacts; use the newest report only.
         artifact = max(artifacts, key=lambda value: (value["created_at"], value["id"]))
         tests = failed_tests(api(f"repos/{repo}/actions/artifacts/{artifact['id']}/zip", binary=True))
-        return "\n".join(tests) or "No failed test cases recorded; check the build log."
+        return format_failed_tests(tests) if tests else "No failed test cases recorded; check the build log."
     except (subprocess.CalledProcessError, zipfile.BadZipFile, ET.ParseError) as error:
         print(f"::warning::Unable to read Selenium test details for run {run['id']}: {type(error).__name__}")
         return "Failed test details unavailable; check the build log."
@@ -123,9 +136,8 @@ def report(repo, now):
             else:
                 entry = f"- **{label}** {link}"
             if title == "Selenium Test":
-                # Keep names inside an indented code block, including any backticks.
                 details = selenium_details(repo, run)
-                entry += "\n\n" + "\n".join("      " + line for line in details.splitlines())
+                entry += "\n\n" + "\n".join("  " + line if line else "" for line in details.splitlines())
             entries.append(entry)
         if entries:
             sections.append(f"## {title}\n\n" + "\n\n".join(entries))

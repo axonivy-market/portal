@@ -58,13 +58,14 @@ class DailyBuildReportTest(unittest.TestCase):
             return [run(1, "release/10.0"), run(2, "release/12.0"), run(3)]
 
         with patch.object(reporter, "items", side_effect=items), \
-                patch.object(reporter, "selenium_details", return_value="Example#failed"):
+                patch.object(reporter, "selenium_details",
+                             return_value=reporter.format_failed_tests(["Example#failed"])):
             text = reporter.report("axonivy-market/portal", NOW)
         self.assertTrue(text.startswith("### Report 2026-10-07\n"))
         self.assertEqual(5, sum(line.startswith("## ") for line in text.splitlines()))
         self.assertEqual(9, text.count("[failed]"))
         self.assertEqual(1, text.count("**LTS10**"))
-        self.assertEqual(2, text.count("      Example#failed"))
+        self.assertEqual(2, text.count("  ❌ **Failed Tests (1)**\n\n  ```\n  Example\n  - failed\n  ```"))
         self.assertEqual("2026-10-06T01:00:00Z..2026-10-07T01:00:00Z", queried[0][1]["created"])
 
     def test_passes_and_empty_sections_are_omitted(self):
@@ -101,7 +102,7 @@ class DailyBuildReportTest(unittest.TestCase):
 
     def test_selenium_artifact_names_on_both_branches(self):
         xml = '<testsuite><testcase classname="com.axonivy.portal.selenium.test.dashboard.DashboardCaseWidgetTest" name="testCustomActionButton"><failure/></testcase></testsuite>'
-        expected = "com.axonivy.portal.selenium.test.dashboard.DashboardCaseWidgetTest#testCustomActionButton"
+        expected = "❌ **Failed Tests (1)**\n\n```\nDashboardCaseWidgetTest\n- testCustomActionButton\n```"
         for name in ["artifacts", "selenium-test-reports"]:
             with self.subTest(artifact_name=name):
                 artifacts = [
@@ -113,6 +114,13 @@ class DailyBuildReportTest(unittest.TestCase):
                         patch.object(reporter, "api", return_value=archive(xml)) as api:
                     self.assertEqual(expected, reporter.selenium_details("repo", run()))
                     api.assert_called_once_with("repos/repo/actions/artifacts/1/zip", binary=True)
+
+    def test_failed_tests_are_grouped_by_class(self):
+        tests = ["pkg.ZTest#second", "pkg.ATest#first", "pkg.ZTest#first"]
+        self.assertEqual(
+            "❌ **Failed Tests (3)**\n\n```\nATest\n- first\n\nZTest\n- first\n- second\n```",
+            reporter.format_failed_tests(tests),
+        )
 
     def test_pagination_reads_all_pages(self):
         with patch.object(reporter, "api", side_effect=[{"runs": list(range(100))}, {"runs": [100]}]) as api:
