@@ -6,6 +6,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
@@ -16,8 +17,13 @@ public class TaskColumnModel extends ColumnModel {
 
   public Object display(ITask task) {
     if (type == DashboardColumnType.CUSTOM_CASE) {
-      ICustomFields customFields = task.getCase().customFields();
-      return getCustomFieldValue(customFields);
+      ICase taskCase = task.getCase();
+      // The filter of this column is scoped to sub cases, so it never matches a task whose own case
+      // is the business case. Showing a value here would contradict that filter.
+      if (taskCase.isBusinessCase()) {
+        return null;
+      }
+      return getCustomFieldValue(taskCase.customFields());
     } else if (type == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
       ICustomFields customFields = task.getCase().getBusinessCase().customFields();
       return getCustomFieldValue(customFields);
