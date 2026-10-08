@@ -99,6 +99,21 @@ class DailyBuildReportTest(unittest.TestCase):
                 patch.object(reporter, "api", return_value=archive('<testsuite><testcase name="ok"/></testsuite>')):
             self.assertIn("No failed test cases", reporter.selenium_details("repo", run()))
 
+    def test_selenium_artifact_names_on_both_branches(self):
+        xml = '<testsuite><testcase classname="com.axonivy.portal.selenium.test.dashboard.DashboardCaseWidgetTest" name="testCustomActionButton"><failure/></testcase></testsuite>'
+        expected = "com.axonivy.portal.selenium.test.dashboard.DashboardCaseWidgetTest#testCustomActionButton"
+        for name in ["artifacts", "selenium-test-reports"]:
+            with self.subTest(artifact_name=name):
+                artifacts = [
+                    {"id": 1, "name": name, "expired": False, "created_at": "2026-10-08T00:00:00Z"},
+                    {"id": 2, "name": name, "expired": True, "created_at": "2026-10-08T00:30:00Z"},
+                    {"id": 3, "name": "screenshots", "expired": False, "created_at": "2026-10-08T00:40:00Z"},
+                ]
+                with patch.object(reporter, "items", return_value=artifacts), \
+                        patch.object(reporter, "api", return_value=archive(xml)) as api:
+                    self.assertEqual(expected, reporter.selenium_details("repo", run()))
+                    api.assert_called_once_with("repos/repo/actions/artifacts/1/zip", binary=True)
+
     def test_pagination_reads_all_pages(self):
         with patch.object(reporter, "api", side_effect=[{"runs": list(range(100))}, {"runs": [100]}]) as api:
             self.assertEqual(list(range(101)), list(reporter.items("path", "runs")))

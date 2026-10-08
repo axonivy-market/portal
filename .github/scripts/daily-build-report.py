@@ -81,7 +81,7 @@ def selenium_details(repo, run):
     try:
         artifacts = list(items(f"repos/{repo}/actions/runs/{run['id']}/artifacts", "artifacts"))
         artifacts = [artifact for artifact in artifacts
-                     if artifact["name"] == "artifacts" and not artifact["expired"]]
+                     if artifact["name"] in {"artifacts", "selenium-test-reports"} and not artifact["expired"]]
         if not artifacts:
             return "Failed test details unavailable: test artifact missing or expired."
         # Re-runs can leave multiple artifacts; use the newest report only.
