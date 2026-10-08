@@ -180,4 +180,12 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
         ScreenshotUtils.COMPONENTS_FOLDER + "session-role-security-member-name-and-avatar");
   }
 
+  @Test
+  public void captureScreenshotPhotoLibraryOfDefaultProcessImageExample() throws IOException {
+    redirectToRelativeLink(photoLibraryOfDefaultProcessImageExampleUrl);
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
+    ScreenshotUtils.capturePageScreenshot(
+        ScreenshotUtils.PROCESSES_PROCESS_IMAGE_FOLDER + "photo-library-of-default-process-image-example");
+  }
+
 }
