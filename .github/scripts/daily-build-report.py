@@ -1,4 +1,4 @@
-"""Report latest dispatched builds in the 24 hours ending at 08:00 Vietnam time.
+"""Report latest dispatched builds in the 24 hours ending when the report runs.
 
 Only failed builds appear in GITHUB_STEP_SUMMARY. Missing/incomplete runs are
 warnings in the job log. Manual runs use today's date and also skip weekends.
@@ -113,7 +113,7 @@ def report(repo, now):
     if local.weekday() >= 5:
         print("Weekend in Vietnam; no report.")
         return ""
-    end = local.replace(hour=8, minute=0, second=0, microsecond=0)
+    end = local
     start = end - timedelta(days=1)
     sections = []
     for title, workflow, branches in BUILDS:
