@@ -236,10 +236,11 @@ public class DashboardTaskSearchCriteria {
       if (order != null && isSortDescending()) {
         order.descending();
       }
-      // Issue happens with Postgres DB, doesn't happen in designer and Mssql
+      // Add secondary sort by ID for deterministic ordering when primary sort has duplicate values
+      // Only add if not already sorting by ID to avoid double sorting
       if (StringUtils.isNotBlank(criteria.getSortField())
           && !DashboardStandardTaskColumn.ID.getField().equalsIgnoreCase(criteria.getSortField())) {
-        query.orderBy().taskId().descending();
+        query.orderBy().taskId().ascending();
       }
       return this;
     }
