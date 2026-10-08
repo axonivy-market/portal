@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
   xmlns:ui="jakarta.faces.facelets" xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="primefaces" xmlns:pe="primefaces.extensions" xmlns:c="jakarta.tags.core"
+  xmlns:p="primefaces" xmlns:pt="jakarta.faces.passthrough" xmlns:pe="primefaces.extensions" xmlns:c="jakarta.tags.core"
   xmlns:jsf="jakarta.faces">
 
 <cc:interface componentType="IvyComponent">
@@ -19,7 +19,7 @@
       #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}
       <p:commandLink onclick="showWidgetDescriptionInplaceEditor();" ariaLabel="#{ivy.cms.co('/Labels/EditDescription')}" global="false"
         rendered="#{canChangeDescription and !cc.attrs.readOnly}" id="edit-description-link">
-        <i class="ti ti-pencil" />
+        <i class="ti ti-pencil" aria-hidden="true" />
       </p:commandLink>
     </div>
   </h:panelGroup>
@@ -38,6 +38,7 @@
               <p:ajax event="save" listener="#{taskDetailsBean.updateTaskDescription(task)}" update="task-detail-description-form" />
               <p:ajax event="cancel" update="task-detail-description-form" process="@none" />
               <p:inputTextarea id="task-description-input" cols="250" rows="6" styleClass="task-detail-description-input"
+                pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}"
                 value="#{taskDetailsBean.taskDetailsDescription}" autoResize="false" />
             </p:inplace>
             <h:panelGroup id="task-description-output"

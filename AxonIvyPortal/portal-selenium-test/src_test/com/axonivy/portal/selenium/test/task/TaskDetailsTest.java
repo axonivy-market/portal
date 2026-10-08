@@ -246,6 +246,26 @@ public class TaskDetailsTest extends BaseTest {
   }
   
   @Test
+  public void testWorkflowEventsSortableColumnsHaveAccessibleName() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToNewDashBoard();
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.openTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails(ORDER_PIZZA);
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.openWorkflowEventDialog();
+
+    List<String> sortOptions = taskDetailsPage.getWorkflowEventsReflowSortOptions();
+    assertFalse(sortOptions.isEmpty());
+    assertTrue(sortOptions.stream().noneMatch(option -> option.contains("null")));
+    assertTrue(sortOptions.contains("Event type Ascending"));
+
+    List<String> headerAriaLabels = taskDetailsPage.getWorkflowEventsSortableHeaderAriaLabels();
+    assertTrue(headerAriaLabels.stream().allMatch(label -> label != null && !label.startsWith(":")));
+  }
+
+  @Test
   public void testShowNotesWhenGrantNoteReadAllPermissionInTaskDetails() {
     redirectToRelativeLink(CREATE_NOTES);
     login(TestAccount.DEMO_USER);

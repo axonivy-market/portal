@@ -197,13 +197,15 @@
   --portal-detail-table-row-border-color: hsl(0, 0%, 91%);
   /* Text */
   --portal-detail-value-color: var(--ivy-primary-color-black);
-  --portal-detail-label-color: var(--ivy-portal-color-grey-600);
+  --portal-detail-label-color: var(--ivy-portal-color-grey-650);
   /* Accent (Primary ramp) */
   --portal-detail-accent-color: var(--ivy-primary-color);
   /* Shadows */
   --portal-action-menu-shadow: 0 0 1.114rem 0.214rem hsla(0, 0%, 0%, 0.15);
   --portal-action-menu-divider-color: hsl(0, 0%, 97%);
   --portal-action-menu-destroy-color: hsl(358, 83%, 49%);
+  --statistics-axis-text-color: var(--ivy-portal-color-grey-650);
+  --portal-focus-ring-color: var(--ivy-primary-color);
   --task-start-info-header-font-weight: bold;
   --task-start-info-task-id-font-weight: normal;
   --task-name-input-font-weight: bold;
@@ -215,7 +217,7 @@
   --task-exception-priority-color: #EE4A52;
   --task-state-suspended-background: hsla(217, 91%, 60%, 0.1);
   --task-state-suspended-border-color: hsla(217, 91%, 60%, 0.25);
-  --task-state-suspended-color: hsla(217, 91%, 60%, 1);
+  --task-state-suspended-color: hsla(217, 91%, 45%, 1);
   --task-state-resumed-background: hsla(48, 96%, 53%, 0.1);
   --task-state-resumed-border: hsla(48, 96%, 53%, 0.25);
   --task-state-resumed-color: hsla(48, 85%, 29%, 1);
@@ -376,7 +378,7 @@
   --widget-view-toggle-icon: var(--ivy-portal-color-grey-500);
   --widget-view-toggle-border: var(--ivy-portal-color-grey-200);
   /* New Dashboard */
-  --dashboard-table-column-small-screen-description-color: var(--ivy-primary-color-grey-medium);
+  --dashboard-table-column-small-screen-description-color: var(--ivy-portal-color-grey-650);
   --new-widget-dialog-title-color: var(--ivy-primary-color-black);
   --new-widget-dialog-description-color: var(--ivy-primary-color-grey-medium);
   --dashboard-type-color: var(--ivy-primary-color-grey-dark);

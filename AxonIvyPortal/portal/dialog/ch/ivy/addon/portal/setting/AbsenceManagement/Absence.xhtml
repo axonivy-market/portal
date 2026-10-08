@@ -24,7 +24,9 @@
           <h:outputText value="#{ivy.cms.co(absenceManagementBean.createMode ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/editAbsence')}" />
         </div>
           <h:form id="absence-close-form">
-            <p:commandButton icon="ti ti-x"
+            <p:commandButton icon="ti ti-x" id="absence-close-button"
+                            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+                            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
                             oncomplete="PF('absence-dialog').hide();" update="absence-form"
                             process="@this" actionListener="#{absenceManagementBean.cancelAbsence()}"
                             styleClass="rounded-button portal-icon-btn portal-icon-btn--sm portal-icon-btn--plain absence-page-close-button" />
@@ -99,7 +101,8 @@
         <h:panelGroup id="select-deputy" layout="block" styleClass="select-deputy w-full flex no-wrap">
           <ic:com.axonivy.portal.components.UserSelection id="user-selection-component"
             selectedUser="#{absenceManagementBean.selectedDeputy}" queryDelay="500" isRenderedMessage="false" isDisabled="#{!absenceManagementBean.canCreateSubstitute(absenceManagementBean.selectedAbsenceUser)}"
-            autoCompletePanelStyleClass="flex-grow-1" hasCustomizedSelectionList="true">
+            autoCompletePanelStyleClass="flex-grow-1" hasCustomizedSelectionList="true"
+            label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Substitutes')}" labelStyleClass="ui-helper-hidden-accessible">
             <p:column>
               <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
                 securityMember="#{user}" isStandAlone="false"/>

@@ -26,9 +26,11 @@
 
   <c:set var="tooltipTechnicalDisplayName"
     value="#{cc.attrs.isShowTechnicalDisplayNameOnTooltip ? portalComponentAvatarBean.tooltipTechnicalDisplayName(cc.attrs.securityMember) : cc.attrs.displayName}" />
+  <c:set var="isDisplayNameVisible" value="#{cc.attrs.displayNameRendered and !userMenuBean.isMobileDevice()}" />
   <div id="#{cc.attrs.id}" class="#{cc.attrs.isShowAvatar ? 'has-avatar' : ''} #{cc.attrs.containerStyleClass}">
     <ui:fragment rendered="#{cc.attrs.securityMember != null or cc.attrs.representName != null}">
-      <pc:avatar securityMember="#{cc.attrs.securityMember}" renderedAvatar="#{cc.attrs.isShowAvatar}" representName="#{cc.attrs.representName}" showLabel="#{cc.attrs.showLabel}"/>
+      <pc:avatar securityMember="#{cc.attrs.securityMember}" renderedAvatar="#{cc.attrs.isShowAvatar}" representName="#{cc.attrs.representName}" showLabel="#{cc.attrs.showLabel}"
+        alt="#{isDisplayNameVisible ? '' : cc.attrs.displayName}"/>
     </ui:fragment>
     <cc:renderFacet name="alternativeAvatar" />
     <h:outputText id="#{cc.attrs.displayNameId}" value="#{cc.attrs.displayName}"

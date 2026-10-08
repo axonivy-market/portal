@@ -6,8 +6,9 @@
   xmlns:pc="jakarta.faces.composite/components">
   <!-- TOPBAR START -->
   <div class="layout-topbar-left">
-    <a href="#" class="menu-button">
-      <i class="ti ti-menu-2" />
+    <a href="#" class="menu-button" aria-controls="left-menu" aria-expanded="false"
+      aria-label="#{ivy.cms.co('/Labels/ToggleMenu')}">
+      <i class="ti ti-menu-2" aria-hidden="true" />
     </a>
     <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component"
       rendered="#{isWorkingOnATask}" leaveActionListener="#{userMenuBean.resetTaskAndNavigateWithGrowl(task)}"
@@ -63,7 +64,7 @@
         <li class="topbar-item">
           <p:commandLink id="open-notifications-panel" global="false" update="#{p:resolveFirstComponentWithId('has-notifications', view).clientId}" 
           rendered="#{notificationBean.isBellIconNeeded}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationsBadgeLabel', [notificationBean.countUnread])}"
-          actionListener="#{notificationBean.setRender(true)}" onclick="openNotificationPanel()" process="@this">
+          actionListener="#{notificationBean.setRender(true)}" onclick="openNotificationPanel()" oncomplete="focusNotificationPanel();" process="@this">
             <i class="topbar-icon ti ti-bell" />
             <h:panelGroup class="notifications-badge" id="topbar-unread-notifications-container">
               <h:outputText id="topbar-unread-notifications"
@@ -82,7 +83,8 @@
         </li>
 
         <li class="topbar-item user-profile setting-container">
-          <a href="#" id="user-settings-menu" onclick="hideDashboardOverlayPanels()" class="topbar-item user-profile">
+          <a href="#" id="user-settings-menu" onclick="hideDashboardOverlayPanels()" class="topbar-item user-profile"
+            aria-expanded="false" aria-controls="user-setting-container">
             <pc:securityMemberNameAndAvatar displayName="#{userMenuBean.loggedInUser}" securityMember="#{ivy.session.sessionUser}" displayNameStyleClass="user-name" />
           </a>
           <ul id="user-setting-container">

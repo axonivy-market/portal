@@ -10,6 +10,21 @@ function closeNotificationPanel() {
     document.getElementById("notifications-panel").style.right = "-470px";
 }
 
+function isNotificationPanelOpen() {
+    return document.getElementById("notifications-panel").style.right === '0px';
+}
+
+function focusNotificationPanel() {
+    const panel = document.getElementById("notifications-panel");
+    if (!isNotificationPanelOpen() || panel.contains(document.activeElement)) {
+        return;
+    }
+    const first = $(panel).find('a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), [tabindex]:not([tabindex="-1"])').filter(':visible').first();
+    if (first.length) {
+        first.trigger('focus');
+    }
+}
+
 function markAsRead(notiId) {
     $('i#' + notiId).each(function(index) {
       if ($(this) !== undefined) {
@@ -21,6 +36,15 @@ function markAsRead(notiId) {
 
 $(document).ready(function () {
     closeNotificationPanel();
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && !event.defaultPrevented && isNotificationPanelOpen() && !$('.ui-dialog:visible, .ui-menu-overlay:visible').length) {
+            closeNotificationPanel();
+            const bell = document.getElementById('open-notifications-panel');
+            if (bell) {
+                bell.focus();
+            }
+        }
+    });
     let notificationPanel = document.getElementById("notifications-panel");
     let bellIcon = document.getElementById('open-notifications-panel');
     let isClickOnBell = false;

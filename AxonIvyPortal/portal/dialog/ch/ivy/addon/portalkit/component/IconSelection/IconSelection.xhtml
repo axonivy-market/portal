@@ -47,10 +47,11 @@
     <p:inputText type="hidden" id="selected-icon-hidden-value" value="#{cc.attrs.value}" />
   </h:panelGroup>
   
-  <p:dialog id="select-icon-dialog" widgetVar="#{cc.clientId}-select-icon-dialog" styleClass="select-icon-dialog dialog-responsive"
+  <p:dialog id="select-icon-dialog" widgetVar="#{cc.clientId}-select-icon-dialog" closeOnEscape="true" styleClass="select-icon-dialog dialog-responsive"
     width="52%" modal="true" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/iconSelectionDialogHeader')}" dynamic="true"
-    resizable="false" fitViewport="true" responsive="true">
+    resizable="false" fitViewport="true" responsive="true"
+    onHide="if (this.focusedElementBeforeDialogOpened) { this.focusedElementBeforeDialogOpened.focus({ preventScroll: true }); }">
     <div class="search-icon-name-container">
       <p:inputText id="search-icon-name-field" onkeyup="searchIconByName(this)" 
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/seachIconByNamePlaceHolder')}"

@@ -653,6 +653,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showRelatedCaseInfo: Zugehöriger Vorgang
     showSystemNotes: Systemhinweise
     showSystemTasks: Systemaufgaben
+    skipToContent: Zum Inhalt springen
     sorting: Sortierung
     start: Start
     startProcess: Prozess starten
@@ -689,6 +690,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
     warning: Warnung!
     welcomeToPortal: Willkommen, bitte melden Sie sich an
+    widgetActionMenuContext: Aktionsmenü für Widget {0} öffnen
     workingUser: Bearbeiter
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
     year: Jahr
@@ -1386,6 +1388,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     documents: Dokumente
     dueDate: Fällig
     duration: Dauer
+    editDelay: Sperrfrist bearbeiten
+    editExpiry: Ablauffrist bearbeiten
+    editExpiryActivator: Aktivierer der Ablauffrist bearbeiten
     events: Workflow-Ereignisse
     expiry: Ablauffrist
     failedDelayValidation: Der Zeitstempel der Aufgabenverzögerung darf kein leerer Wert oder ungültiges Datumsformat sein

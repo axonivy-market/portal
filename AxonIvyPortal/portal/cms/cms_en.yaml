@@ -650,6 +650,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showRelatedCaseInfo: Related case
     showSystemNotes: System notes
     showSystemTasks: System tasks
+    skipToContent: Skip to content
     sorting: Sorting
     start: Start
     startProcess: Start process
@@ -686,6 +687,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: We are creating the Export, this can take a few minutes
     warning: Warning!
     welcomeToPortal: Welcome, please login
+    widgetActionMenuContext: Open actions menu for {0} widget
     workingUser: Working user
     wrongDateFormat: Please enter valid date.
     year: year
@@ -1380,6 +1382,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     documents: Documents
     dueDate: Due
     duration: Duration
+    editDelay: Edit delay
+    editExpiry: Edit expiry
+    editExpiryActivator: Edit expiry activator
     events: Workflow Events
     expiry: Expiry
     failedDelayValidation: Task delay timestamp cannot be an empty value or invalid date format

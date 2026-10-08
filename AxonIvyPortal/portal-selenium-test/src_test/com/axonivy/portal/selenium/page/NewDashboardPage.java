@@ -1161,7 +1161,7 @@ public class NewDashboardPage extends TemplatePage {
     $("[id$='dashboard-actions-task-task_1:side-steps-panel']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
     focusByJavascript($("[id$=':task-open-detail-command']"));
-    $("[id$=':task-open-detail-command']").sendKeys(Keys.TAB);
+    $("[id$=':task-open-detail-command']").sendKeys(Keys.ARROW_DOWN);
   }
 
   public void clickOnFirstCaseAction() {
@@ -1172,7 +1172,7 @@ public class NewDashboardPage extends TemplatePage {
     $("[id$=':action-steps-panel']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
     focusByJavascript($("[id$=':case-item-open-detail-link']"));
-    $("[id$=':case-item-open-detail-link']").sendKeys(Keys.TAB);
+    $("[id$=':case-item-open-detail-link']").sendKeys(Keys.ARROW_DOWN);
   }
 
   public void focusOnWarningResetTaskDialog() {

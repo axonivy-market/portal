@@ -196,7 +196,9 @@
   /* Shadows */
   --portal-action-menu-shadow: 0 0 1.114rem 0.214rem hsla(0, 0%, 0%, 0.4);
   --portal-action-menu-divider-color: hsl(0, 0%, 29%);
-  --portal-action-menu-destroy-color: hsl(358, 83%, 61%);
+  --portal-action-menu-destroy-color: hsl(358, 83%, 72%);
+  --statistics-axis-text-color: var(--ivy-portal-color-grey-500);
+  --portal-focus-ring-color: var(--ivy-primary-light-color);
   --task-start-info-header-font-weight: bold;
   --task-start-info-task-id-font-weight: normal;
   --task-name-input-font-weight: bold;
@@ -256,7 +258,7 @@
   /* Login */
   --login-panel-header-background-color: var(--ivy-primary-color-grey-pale);
   /* Asterik Icon */
-  --asterik-icon-color: #f03369;
+  --asterik-icon-color: hsl(343, 86%, 72%);
   /* Error Page */
   --error-container-color: #546e7a;
   --error-message-header-color: #e67163;

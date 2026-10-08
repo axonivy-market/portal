@@ -17,7 +17,7 @@
     <p:growl id="case-document-global-messages" escape="false" />
     <h:form id="case-document-form" prependId="false" styleClass="ui-g-12 u-padding-0 portal-detail-widget-form">
       <div class="case-detail-section-title portal-detail-widget-header ui-g-12 flex align-items-center justify-content-between">
-        <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="1">
+        <div class="u-truncate-text u-padding-0 task-details-panel-title portal-detail-block-title portal-detail-widget-header-title" role="heading" aria-level="2">
           #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/documents')}
         </div>
         <h:panelGroup layout="block" styleClass="document-case-detail-section-header-actions portal-detail-widget-header-actions u-padding-0 flex align-items-center">
@@ -122,9 +122,9 @@
     modal="true" resizable="false" showEffect="fade" hideEffect="fade" fitViewport="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
     closeOnEscape="true" responsive="true" closable="true"
-    width="450px">
+    width="450px" styleClass="portal-document-upload-dialog">
     <div class="ui-g">
-      <h:form id="document-upload-form" style="width: 450px">
+      <h:form id="document-upload-form" styleClass="w-full">
       <div class="w-full">
           <p:messages id="upload-messages" />
           <div style="display: none;" id="error-message" />
@@ -219,7 +219,7 @@
     </ui:define>
   </ui:decorate>
 
-  <p:dialog id="document-renaming-dialog" widgetVar="document-renaming-dialog" appendTo="@(body)"
+  <p:dialog id="document-renaming-dialog" widgetVar="document-renaming-dialog" closeOnEscape="true" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenamingDocument')}" modal="true" resizable="false" showEffect="fade" hideEffect="fade"
     styleClass="document-renaming-dialog" dynamic="true" fitViewport="true" responsive="true">
     <h:form id="document-renaming-form">

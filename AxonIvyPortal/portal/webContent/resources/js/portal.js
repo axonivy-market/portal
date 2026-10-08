@@ -375,6 +375,15 @@ function restorePortalLeftMenuState() {
   }
 }
 
+function closeUserSettingsMenu() {
+  var trigger = $('#user-settings-menu');
+  if (!trigger.parent().hasClass('active-topmenuitem')) {
+    return false;
+  }
+  trigger.trigger('click').trigger('focus');
+  return true;
+}
+
 function hideDashboardOverlayPanels() {
   $(".js-dashboard-overlay-panel").each(function(){
     if ($(this).hasClass("ui-overlay-visible")) {
@@ -561,9 +570,7 @@ $(document).ready(function () {
     removeFocusClass(focusedTaskEl);
     removeFocusClass(focusedCaseEl);
     removeFocusClass(focusedProcessEl);
-    removeFocusClass(focusedCaseSideStepEl);
     removeFocusClass(focusedResetTaskFormEl);
-    removeFocusClass(focusedTaskSideStepEl);
   }
 
   function handleFocusOnMainElement(event) {
@@ -641,31 +648,29 @@ $(document).ready(function () {
 
   let taskIndex = 0;
   let resetTaskFormIndex = 0;
-  let taskSideStepIndex = 0;
   let caseIndex = 0;
-  let caseSideStepIndex = 0;
   let processIndex = 0;
   let focusedTaskEl;
   let focusedCaseEl;
-  let focusedCaseSideStepEl;
   let focusedProcessEl;
   let focusedResetTaskFormEl = 0;
-  let focusedTaskSideStepEl;
 
   $(document).on('keydown', function (event) {
 
     var keyCode = event.code;
     if (keyCode === 'Escape') {
-      collapseExpandedWidget();
-
-      if (hidePortalActionPanels('action-steps-panel')) {
-        if (focusedCaseEl) {
-          focusedCaseEl.addClass('focused');
-          focusedCaseEl.focus();
-        }
+      hideVisibleTooltips();
+      if (hideOpenOverlayMenus()) {
+        event.preventDefault();
+        return;
       }
-
-      hidePortalActionPanels('side-steps-panel');
+      if (event.isDefaultPrevented() || isEscapeHandledByDialog()) {
+        return;
+      }
+      if (closeUserSettingsMenu()) {
+        return;
+      }
+      collapseExpandedWidget();
       return;
     }
 
@@ -692,11 +697,8 @@ $(document).ready(function () {
         event.preventDefault();
         removeFocusedElements();
         taskIndex = 0;
-        taskSideStepIndex = 0;
         processIndex = 0;
-        if (caseActionStepsPanelVisible) {
-          caseSideStepIndex = 0;
-        } else {
+        if (!caseActionStepsPanelVisible) {
           caseIndex = 0;
         }
         handleFocusOnMainElement(event);
@@ -717,19 +719,7 @@ $(document).ready(function () {
           focusedResetTaskFormEl = $(cancelOk[resetTaskFormIndex]);
           addFocusClass(focusedResetTaskFormEl);
           resetTaskFormIndex++;
-        } else if (taskActionStepsPanelVisible) {
-
-          var steps = taskActionStepsPanel.find('div.ui-overlaypanel-content a');
-          if (taskSideStepIndex >= steps.length) {
-            taskSideStepIndex = 0;
-          }
-
-          removeFocusedElements();
-
-          focusedTaskSideStepEl = $(steps[taskSideStepIndex]);
-          addFocusClass(focusedTaskSideStepEl);
-          taskSideStepIndex++;
-        } else {
+        } else if (!taskActionStepsPanelVisible) {
           var taskList = $('[id$=":task-component:dashboard-tasks"] table tr td:visible [id$=":start-task"]');
           if (taskIndex >= taskList.length) {
             taskIndex = 0;
@@ -737,10 +727,7 @@ $(document).ready(function () {
 
           removeFocusedElements();
           processIndex = 0;
-          taskSideStepIndex = 0;
-          if (caseActionStepsPanelVisible) {
-            caseSideStepIndex = 0;
-          } else {
+          if (!caseActionStepsPanelVisible) {
             caseIndex = 0;
           }
 
@@ -750,19 +737,7 @@ $(document).ready(function () {
         }
       } else if (keyCode == 'KeyQ') {
         //Short cuts for Case widget
-        if (caseActionStepsPanelVisible) {
-          var steps = caseActionStepsPanel.find('div.ui-overlaypanel-content a');
-
-          if (caseSideStepIndex >= steps.length) {
-            caseSideStepIndex = 0;
-          }
-
-          removeFocusedElements();
-
-          focusedCaseSideStepEl = $(steps[caseSideStepIndex]);
-          addFocusClass(focusedCaseSideStepEl);
-          caseSideStepIndex++;
-        } else {
+        if (!caseActionStepsPanelVisible) {
           var caseList = $('[id$="case-component:dashboard-cases"] table tr td:visible [id$=":dashboard-case-side-steps-menu"]');
 
           if (caseIndex >= caseList.length) {
@@ -771,9 +746,7 @@ $(document).ready(function () {
 
           removeFocusedElements();
           taskIndex = 0;
-          taskSideStepIndex = 0;
           processIndex = 0;
-          caseSideStepIndex = 0;
 
           focusedCaseEl = $(caseList[caseIndex]);
           addFocusClass(focusedCaseEl);
@@ -789,10 +762,7 @@ $(document).ready(function () {
 
         removeFocusedElements();
         taskIndex = 0;
-        taskSideStepIndex = 0;
-        if (caseActionStepsPanelVisible) {
-          caseSideStepIndex = 0;
-        } else {
+        if (!caseActionStepsPanelVisible) {
           caseIndex = 0;
         }
 
@@ -848,19 +818,68 @@ $(document).ready(function () {
 	
   }, 200);
 
-  setAltForAvatar();
+  syncAriaExpandedWithClass(document.querySelector('.layout-topbar-left a.menu-button'), document.querySelector('.layout-wrapper'), 'layout-mobile-active');
+  const userSettingsMenu = document.getElementById('user-settings-menu');
+  syncAriaExpandedWithClass(userSettingsMenu, userSettingsMenu && userSettingsMenu.closest('li'), 'active-topmenuitem');
+  focusFirstItemWhenOpened(userSettingsMenu, userSettingsMenu && userSettingsMenu.closest('li'), 'active-topmenuitem', document.getElementById('user-setting-container'));
+  fixDynamicContentAccessibility();
+  $(document).on('pfAjaxComplete', fixDynamicContentAccessibility);
 });
 
-function setAltForAvatar() {
-  $("div.has-avatar").each((index, item) => {
-    let imgTag = $(item).find('img');
-    if ($(imgTag).attr('alt') === undefined) {
-      let alt = $(item).find('.name-after-avatar').text() || 'Avatar';
-      $(imgTag).attr('alt', alt)
+function focusFirstItemWhenOpened(trigger, observedElement, expandedClass, menu) {
+  if (!trigger || !observedElement || !menu) {
+    return;
+  }
+  let wasExpanded = observedElement.classList.contains(expandedClass);
+  new MutationObserver(() => {
+    const isExpanded = observedElement.classList.contains(expandedClass);
+    if (isExpanded && !wasExpanded && document.activeElement === trigger) {
+      $(menu).find('a[href]').filter(':visible').first().trigger('focus');
     }
-  })
+    wasExpanded = isExpanded;
+  }).observe(observedElement, { attributes: true, attributeFilter: ['class'] });
 }
 
+function syncAriaExpandedWithClass(trigger, observedElement, expandedClass) {
+  if (!trigger || !observedElement) {
+    return;
+  }
+  const sync = () => trigger.setAttribute('aria-expanded', String(observedElement.classList.contains(expandedClass)));
+  new MutationObserver(sync).observe(observedElement, { attributes: true, attributeFilter: ['class'] });
+  sync();
+}
+
+function fixSelectOneButtonAccessibility() {
+  $('.ui-selectonebutton').each((index, group) => {
+    $(group).attr('role', 'radiogroup');
+    $(group).find('input[type="radio"]').attr('inert', '');
+    let label = group.id ? document.querySelector(`label[for="${CSS.escape(group.id)}"]`) : null;
+    if (label && !$(group).attr('aria-label')) {
+      $(group).attr('aria-label', label.textContent.trim());
+    }
+  });
+}
+
+function applyAccessibleNameToInputs() {
+  $('[data-accessible-name]').each((index, element) => {
+    $(element).find('input').first().attr('aria-label', $(element).attr('data-accessible-name'));
+  });
+}
+
+function labelInplaceEditorButtons() {
+  $('.ui-inplace-save, .ui-inplace-cancel').each((index, button) => {
+    let label = $(button).attr('title');
+    if (label && $(button).attr('aria-label') !== label) {
+      $(button).attr('aria-label', label);
+    }
+  });
+}
+
+function fixDynamicContentAccessibility() {
+  labelInplaceEditorButtons();
+  applyAccessibleNameToInputs();
+  fixSelectOneButtonAccessibility();
+}
 
 /**
  * Focuses the first visible element matching the selector in a PrimeFaces overlay panel.
@@ -888,19 +907,49 @@ function focusFirstVisibleElementInPanel(widgetVar, selector) {
   }
 }
 
-/**
- * Hides every visible action overlay panel whose id ends with the given suffix.
- * These panels render without a close icon, so they are hidden through their widget.
- * @param {string} idSuffix - 'action-steps-panel' or 'side-steps-panel'.
- * @returns {boolean} true if at least one panel was hidden.
- */
-function hidePortalActionPanels(idSuffix) {
+function hideVisibleTooltips() {
+  if (!PrimeFaces.widget.Tooltip) {
+    return;
+  }
+  for (var widgetVar in PrimeFaces.widgets) {
+    var widget = PrimeFaces.widgets[widgetVar];
+    if (widget instanceof PrimeFaces.widget.Tooltip && widget.jq && widget.jq.is(':visible')) {
+      widget.hide();
+    }
+  }
+}
+
+function isEscapeHandledByDialog() {
+  for (var widgetVar in PrimeFaces.widgets) {
+    var widget = PrimeFaces.widgets[widgetVar];
+    if (widget && widget.cfg && widget.cfg.closeOnEscape && widget.jq && widget.jq.hasClass('ui-dialog') && widget.jq.is(':visible')) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function isOpenOverlayMenu(widget) {
+  var widgets = PrimeFaces.widget;
+  if (widgets.MenuButton && widget instanceof widgets.MenuButton) {
+    return widget.menu && widget.menu.is(':visible');
+  }
+  if (widgets.PlainMenu && widget instanceof widgets.PlainMenu) {
+    return widget.cfg.overlay && widget.trigger && widget.jq.is(':visible');
+  }
+  return false;
+}
+
+function hideOpenOverlayMenus() {
   var hidden = false;
   for (var widgetVar in PrimeFaces.widgets) {
     var widget = PrimeFaces.widgets[widgetVar];
-    if (widget && widget.jq && typeof widget.hide === 'function'
-        && widget.jq.is('[id$="' + idSuffix + '"]') && widget.jq.is(':visible')) {
+    if (widget && isOpenOverlayMenu(widget)) {
       widget.hide();
+      let button = widget.trigger[0];
+      setTimeout(function () {
+        button.focus();
+      }, 0);
       hidden = true;
     }
   }
@@ -990,6 +1039,8 @@ function initFocusManagament(targetWindow) {
               console.warn("Cannot store focused element");
             }
 
+            moveFocusIntoOverlayPanel(self, targetWindow);
+
             if (self.escHandler) {
               targetWindow.document.removeEventListener('keydown', self.escHandler);
             }
@@ -997,6 +1048,7 @@ function initFocusManagament(targetWindow) {
             self.escHandler = function(e) {
               if (e.key === 'Escape' && panel.isVisible() && isTopMostPanel(panel, targetWindow)) {
                 panel.hide();
+                e.preventDefault();
               }
             };
             targetWindow.document.addEventListener('keydown', self.escHandler);
@@ -1021,6 +1073,27 @@ function initFocusManagament(targetWindow) {
     targetWindow.PrimeFaces.widget.OverlayPanel._focusManaged = true;
   }
 
+}
+
+function moveFocusIntoOverlayPanel(panel, targetWindow) {
+  var targetElement = panel.targetElement && panel.targetElement[0];
+  if (!targetElement || $(targetElement).is('input, textarea, [contenteditable="true"]')) {
+    return;
+  }
+  var activeElement = targetWindow.document.activeElement;
+  if (activeElement !== targetElement && activeElement !== targetWindow.document.body) {
+    return;
+  }
+  setTimeout(function () {
+    if (panel.jq[0].contains(targetWindow.document.activeElement)) {
+      return;
+    }
+    var first = panel.jq.find('a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])')
+      .filter(':visible').first();
+    if (first.length) {
+      first.trigger('focus');
+    }
+  }, 50);
 }
 
 function storeFocusedElement(targetDocument, focusElements, containerId, targetElement) {
@@ -1064,6 +1137,43 @@ function initIframeFocusManagement(iframe) {
     console.log('Focus management initialized for iframe');
   } catch (e) {
     console.warn('Cannot initialize focus management for iframe:', e.message);
+  }
+}
+
+function bindDialogKeysInIframe(iframe, widgetVar) {
+  try {
+    var iframeWindow = iframe.contentWindow;
+    iframeWindow.document.addEventListener('keydown', function (event) {
+      if (event.defaultPrevented || iframeWindow.$('.ui-dialog:visible').length) {
+        return;
+      }
+      if (event.key === 'Escape') {
+        PF(widgetVar).hide();
+      } else if (event.key === 'Tab' && !event.shiftKey && iframeWindow.$.expr.pseudos.tabbable
+          && event.target === iframeWindow.$(':tabbable').last()[0]) {
+        var first = PF(widgetVar).jq.find(':tabbable').first();
+        if (first.length) {
+          event.preventDefault();
+          first.trigger('focus');
+        }
+      }
+    });
+    PF(widgetVar).jq.off('keydown.iframeTab').on('keydown.iframeTab', function (event) {
+      if (event.key !== 'Tab' || !iframeWindow.$ || !iframeWindow.$.expr.pseudos.tabbable) {
+        return;
+      }
+      var dialogItems = $(this).find(':tabbable');
+      var isLeavingDialogItems = event.shiftKey ? event.target === dialogItems.first()[0] : event.target === dialogItems.last()[0];
+      var iframeItems = iframeWindow.$(':tabbable');
+      var next = event.shiftKey ? iframeItems.last() : iframeItems.first();
+      if (isLeavingDialogItems && next.length) {
+        event.preventDefault();
+        event.stopPropagation();
+        next.trigger('focus');
+      }
+    });
+  } catch (e) {
+    console.warn('Cannot handle dialog keys in iframe:', e.message);
   }
 }
 
