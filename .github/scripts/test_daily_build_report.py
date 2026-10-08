@@ -66,7 +66,7 @@ class DailyBuildReportTest(unittest.TestCase):
         self.assertEqual(9, text.count("[failed]"))
         self.assertEqual(1, text.count("**LTS10**"))
         self.assertEqual(2, text.count("  ❌ **Failed Tests (1)**\n\n  ```\n  Example\n  - failed\n  ```"))
-        self.assertEqual("2026-10-06T01:00:00Z..2026-10-07T01:00:00Z", queried[0][1]["created"])
+        self.assertEqual({"event": "workflow_dispatch", "branch": "release/10.0"}, queried[0][1])
 
     def test_passes_and_empty_sections_are_omitted(self):
         def items(path, key, params=None):

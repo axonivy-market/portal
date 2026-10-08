@@ -55,13 +55,15 @@ def timestamp(value):
 
 
 def latest_run(runs, branch, start, end):
-    # Filter locally too: the repository's documentation job notes stale branch
-    # results from the API. Do not filter by conclusion: a newer pass wins.
+    # A re-run keeps its original created_at and run ID. Use run_started_at to
+    # include and rank the latest attempt instead of the original dispatch time.
     candidates = [run for run in runs
                   if run["head_branch"] == branch
                   and run["event"] == "workflow_dispatch"
-                  and start <= timestamp(run["created_at"]) < end]
-    return max(candidates, key=lambda run: (run["created_at"], run["id"]), default=None)
+                  and start <= timestamp(run.get("run_started_at") or run["created_at"]) < end]
+    return max(candidates,
+               key=lambda run: (run.get("run_started_at") or run["created_at"], run["id"]),
+               default=None)
 
 
 def failed_tests(archive):
@@ -113,13 +115,14 @@ def report(repo, now):
         return ""
     end = local.replace(hour=8, minute=0, second=0, microsecond=0)
     start = end - timedelta(days=1)
-    utc = lambda value: value.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     sections = []
     for title, workflow, branches in BUILDS:
-        runs = list(items(f"repos/{repo}/actions/workflows/{workflow}/runs", "workflow_runs",
-                          {"event": "workflow_dispatch", "created": f"{utc(start)}..{utc(end)}"}))
         entries = []
         for label, branch in branches:
+            # The API's created filter uses the original run timestamp, so it
+            # would miss a re-run started in this window for an older run.
+            runs = list(items(f"repos/{repo}/actions/workflows/{workflow}/runs", "workflow_runs",
+                              {"event": "workflow_dispatch", "branch": branch}))
             run = latest_run(runs, branch, start, end)
             if run is None or run["status"] != "completed":
                 print(f"::warning::{title} {label}: no completed latest run in the reporting window.")
