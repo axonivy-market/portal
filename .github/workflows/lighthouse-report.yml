@@ -14,7 +14,9 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
+      - name: Install XML parser
+        run: sudo apt-get update && sudo apt-get install -y xmlstarlet
       - name: Report failed builds
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python3 .github/scripts/daily-build-report.py
+        run: bash .github/scripts/daily-build-report.sh
