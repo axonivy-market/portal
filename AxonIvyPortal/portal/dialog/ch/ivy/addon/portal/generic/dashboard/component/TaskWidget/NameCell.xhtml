@@ -2,20 +2,20 @@
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
   xmlns:pe="primefaces.extensions" xmlns:jsf="jakarta.faces"
-  xmlns:c="jakarta.tags.core" xmlns:pt="jakarta.faces.passthrough">
+  xmlns:c="jakarta.tags.core">
   
   <c:set var="taskName" value="#{empty task.names().current() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.names().current()}" />
   <c:set var="taskDescription" value="#{dashboardBean.createExtractedTextFromHtml(task.descriptions().current())}" />
 
-  <h:outputText id="task-name" value="#{taskName}" pt:data-tooltip="#{taskName}"
+  <h:outputText id="task-name" value="#{taskName}" title="#{taskName}"
     styleClass="#{column.fieldStyleClass} u-hidden-sm-down"
     style="#{column.fieldStyle}" />
 
   <h:panelGroup layout="block" styleClass="u-hidden-md-up">
     <h:outputText id="task-name-sm" value="#{taskName}"
-      pt:data-tooltip="#{taskName}" styleClass="dashboard-tasks__column-small-screen-name"/>
+      title="#{taskName}" styleClass="dashboard-tasks__column-small-screen-name"/>
 
-    <h:outputText id="task-description" styleClass="dashboard-tasks__column-small-screen-description" pt:data-tooltip="#{taskDescription}" value="#{taskDescription}" />
+    <h:outputText id="task-description" styleClass="dashboard-tasks__column-small-screen-description" title="#{taskDescription}" value="#{taskDescription}" />
   </h:panelGroup>
 
 </html>

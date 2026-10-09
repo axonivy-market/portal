@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite" xmlns:p="primefaces"
-  xmlns:pc="jakarta.faces.composite/components" xmlns:c="jakarta.tags.core" xmlns:pt="jakarta.faces.passthrough">
+  xmlns:pc="jakarta.faces.composite/components" xmlns:c="jakarta.tags.core">
 
 <cc:interface>
   <cc:attribute name="responsibles" type="ch.ivyteam.ivy.workflow.task.responsible.Responsibles" required="true" />
@@ -25,7 +25,6 @@
       <h:panelGroup rendered="#{responsibles != null and responsibleSize gt 1}"> 
         <h:panelGroup id="all-responsibles" styleClass="ml-1">
           <p:avatarGroup styleClass="responsibles-avatar-group" rendered="#{cc.attrs.isShowAvatar}">
-            <p:tooltip globalSelector=".ui-avatar"/>
             <ui:repeat value="#{responsibleBean.getResponsibleLimit10(responsibles)}" var="responsible" varStatus="s">
               <pc:avatar securityMember="#{responsible.get()}"
                 rendered="#{responsible.get() != null and s.index lt 3}"
@@ -69,7 +68,7 @@
         </p:tooltip>
       </h:panelGroup>
       <h:panelGroup id="deputy-info" rendered="#{responsibleBean.isSubstituteForTask(responsibles)}" styleClass="deputy-info"
-        pt:data-tooltip="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskFromSubstitution')}">
+        title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskFromSubstitution')}">
         <i class="ti ti-info-circle" />
       </h:panelGroup>
     </f:facet>

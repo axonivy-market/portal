@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html"
   xmlns:cc="jakarta.faces.composite" xmlns:c="jakarta.tags.core"
-  xmlns:p="primefaces" xmlns:pt="jakarta.faces.passthrough">
+  xmlns:p="primefaces">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="componentId" default="case-state-cell" />
@@ -24,7 +24,7 @@
 
   <h:panelGroup rendered="#{showState}" id="#{componentId}"
     styleClass="case-header-default-cell state-column #{cc.attrs.stateStyleClass} #{cc.attrs.responsiveStyleClass}">
-    <h:outputText value="#{stateLabel}" pt:data-tooltip="#{stateLabel}"
+    <h:outputText value="#{stateLabel}" title="#{stateLabel}"
       styleClass="case-state #{state.toString().toLowerCase()}-case-state #{cc.attrs.stateIconStyleClass} #{ellipsisText ? 'ellipsis-state':''}" />
   </h:panelGroup>
 </cc:implementation>

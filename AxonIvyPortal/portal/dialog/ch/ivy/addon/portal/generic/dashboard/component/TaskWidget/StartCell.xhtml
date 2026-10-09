@@ -2,11 +2,11 @@
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
   xmlns:pe="primefaces.extensions" xmlns:jsf="jakarta.faces"
-  xmlns:c="jakarta.tags.core" xmlns:pt="jakarta.faces.passthrough">
+  xmlns:c="jakarta.tags.core">
 
 <p:commandButton id="start-task" styleClass="ui-button-flat dashboard-tasks__start-button" actionListener="#{dashboardTaskWidgetBean.handleStartTask(task)}" onclick="event.stopPropagation();"
   disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task) or isPreviewMode or isResizing}" oncomplete="resetPortalLeftMenuState()"
-  ariaLabel="#{ariaLabel}" pt:data-tooltip="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskStart')}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" icon="ti ti-player-play"
+  ariaLabel="#{ariaLabel}" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskStart')}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" icon="ti ti-player-play"
   process="@this">
 </p:commandButton>
 </html>

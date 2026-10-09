@@ -2,16 +2,16 @@
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
   xmlns:pe="primefaces.extensions" xmlns:jsf="jakarta.faces"
-  xmlns:c="jakarta.tags.core" xmlns:pt="jakarta.faces.passthrough">
+  xmlns:c="jakarta.tags.core">
   
   <c:set var="caseName" value="#{empty column.display(caseItem) ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable') : column.display(caseItem)}" />
 
-  <h:outputText id="case-name" value="#{caseName}" pt:data-tooltip="#{caseName}"
+  <h:outputText id="case-name" value="#{caseName}" title="#{caseName}"
     styleClass="#{column.fieldStyleClass} u-hidden-sm-down" style="#{column.fieldStyle}" />
 
   <h:panelGroup layout="block" styleClass="u-hidden-md-up">
     <h:outputText value="#{caseName}"
-      pt:data-tooltip="#{column.display(caseItem)}" styleClass="dashboard-cases__column-small-screen-name"/>
+      title="#{column.display(caseItem)}" styleClass="dashboard-cases__column-small-screen-name"/>
     <h:outputText value="#{dashboardBean.createExtractedTextFromHtml(caseItem.descriptions().current())}" styleClass="dashboard-cases__column-small-screen-description"/>
   </h:panelGroup>
 
