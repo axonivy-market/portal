@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
   xmlns:ui="jakarta.faces.facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
   xmlns:pe="primefaces.extensions" xmlns:cc="jakarta.faces.composite" xmlns:jsf="jakarta.faces"
-  xmlns:c="jakarta.tags.core" xmlns:fn="jakarta.tags.functions" xmlns:pt="jakarta.faces.passthrough"
+  xmlns:c="jakarta.tags.core" xmlns:fn="jakarta.tags.functions"
   xmlns:pc="jakarta.faces.composite/components">
 
 <cc:interface componentType="IvyComponent">
@@ -75,8 +75,7 @@
           style="#{column.isCustomAction or column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay}">
 
           <f:facet name="header">
-           <h:outputText id="header" value="#{column.headerText}" />
-           <p:tooltip value="#{column.headerText}" for="header" />
+           <h:outputText id="header" value="#{column.headerText}" title="#{column.headerText}" />
           </f:facet>
 
           <h:panelGroup rendered="#{column.field eq 'pin' and visibilityBean.enablePinCase}">
@@ -94,8 +93,7 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'owner'}">
-            <h:outputText id="owners" value="#{dashboardCaseWidgetBean.display(column, caseItem)}" />
-            <p:tooltip value="#{dashboardCaseWidgetBean.display(column, caseItem)}" for="owners" />
+            <h:outputText id="owners" value="#{dashboardCaseWidgetBean.display(column, caseItem)}" title="#{dashboardCaseWidgetBean.display(column, caseItem)}" />
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'name'}">
@@ -103,16 +101,14 @@
           </h:panelGroup>
 
           <h:panelGroup rendered="#{(column.format eq 'STRING' or column.format eq 'TEXT') and column.field ne 'name' and !column.isCustomAction}">
-            <h:outputText id="custom-column" value="#{dashboardCaseWidgetBean.display(column, caseItem)}" styleClass="dashboard-widget-column__custom #{column.fieldStyleClass}" style="#{column.fieldStyle}" />
-            <p:tooltip for="custom-column" value="#{dashboardCaseWidgetBean.display(column, caseItem)}" trackMouse="true" hideEvent="mouseleave click"/>
+            <h:outputText id="custom-column" value="#{dashboardCaseWidgetBean.display(column, caseItem)}" styleClass="dashboard-widget-column__custom #{column.fieldStyleClass}" style="#{column.fieldStyle}" title="#{dashboardCaseWidgetBean.display(column, caseItem)}" />
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.caseWithCustomAction(caseItem)}">
             <p:link id="custom-description" disabled="#{!isReadOnlyMode}"
-              href="#{column.getCustomProcessPath(caseItem)}">
+              href="#{column.getCustomProcessPath(caseItem)}" title="#{column.description}">
               <i class="#{column.icon}" />
             </p:link>
-            <p:tooltip for="custom-description" value="#{column.description}" />  
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.format eq 'TIMESTAMP'}">
@@ -129,13 +125,11 @@
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'category'}">
-            <h:outputText id="case-category" value="#{column.display(caseItem)}"/>
-            <p:tooltip for="case-category" value="#{caseItem.getCategory().getPath()}" trackMouse="true" hideEvent="mouseleave click"/>
+            <h:outputText id="case-category" value="#{column.display(caseItem)}" title="#{caseItem.getCategory().getPath()}"/>
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'application'}">
-            <h:outputText id="case-application" value="#{dashboardCaseWidgetBean.display(column, caseItem)}"/>
-            <p:tooltip for="case-application" value="#{dashboardCaseWidgetBean.display(column, caseItem)}" trackMouse="true" hideEvent="mouseleave click"/>
+            <h:outputText id="case-application" value="#{dashboardCaseWidgetBean.display(column, caseItem)}" title="#{dashboardCaseWidgetBean.display(column, caseItem)}"/>
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">

@@ -16,16 +16,14 @@
 <cc:implementation>
   <c:set var="ellipsisText" value="#{cc.attrs.ellipsisText}" />
   <c:set var="state" value="#{cc.attrs.state}" />
+  <c:set var="stateLabel" value="#{taskBean.getTaskBusinessState(state)}" />
   <c:set var="showState" value="#{cc.attrs.alwaysShowState or cc.attrs.dataModel.isSelectedColumn('STATE')}" />
 
   <h:panelGroup rendered="#{showState}">
     <h:panelGroup id="#{cc.attrs.componentId}" styleClass="state-cell default-task-cell #{cc.attrs.stateStyleClass} #{cc.attrs.responsiveStyleClass}">
-      <h:outputText value="#{taskBean.getTaskBusinessState(state)}"
+      <h:outputText value="#{stateLabel}" title="#{stateLabel}"
         styleClass="#{cc.attrs.stateIconStyleClass} task-state #{state.toString().toLowerCase()}-task-state #{ellipsisText ? 'ellipsis-state':''}" />
     </h:panelGroup>
   </h:panelGroup>
-  <p:tooltip rendered="#{showState}" id="state-tooltip" for="#{cc.attrs.componentId}"
-    value="#{taskBean.getTaskBusinessState(state)}" styleClass="#{cc.attrs.stateTooltipStyleClass}"
-    trackMouse="true" hideEvent="mouseleave click" />
 </cc:implementation>
 </html>

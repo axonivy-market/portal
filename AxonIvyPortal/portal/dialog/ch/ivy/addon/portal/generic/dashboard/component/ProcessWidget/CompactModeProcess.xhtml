@@ -5,6 +5,7 @@
   xmlns:c="jakarta.tags.core">
 
 <ui:composition>
+
   <!-- INDEX OR ALPHABET SORT -->
   <h:panelGroup id="process-list" layout="block" styleClass="compact-processes-container widget-content"
     rendered="#{!compactDashboardProcessBean.isPreviewCustomOrder()}">
@@ -22,8 +23,8 @@
               </h:panelGroup>
               <div class="process-start-list-item-name">
                 <h:outputText id="process-name-process-item" value="#{process.name}"
+                  title="#{process.name}"
                   styleClass="dashboard-compact-process-item process-start-list-item-name-text u-truncate-text" />
-                <p:tooltip for="process-name-process-item" value="#{process.name}" styleClass="process-tooltip" />
               </div>
               <div class="process-item-action-container">
                 <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down"
@@ -60,8 +61,8 @@
             </h:panelGroup>
             <div class="process-start-list-item-name">
               <h:outputText id="process-name-process-item" value="#{process.name}"
+                title="#{process.name}"
                 styleClass="dashboard-compact-process-item process-start-list-item-name-text u-truncate-text" />
-              <p:tooltip for="process-name-process-item" value="#{process.name}" styleClass="process-tooltip" />
             </div>
             <div class="process-item-action-container">
               <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down"

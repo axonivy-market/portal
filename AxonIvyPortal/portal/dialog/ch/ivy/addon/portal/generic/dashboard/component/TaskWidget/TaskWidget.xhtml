@@ -3,8 +3,7 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
   xmlns:pe="primefaces.extensions"
   xmlns:cc="jakarta.faces.composite" xmlns:jsf="jakarta.faces"
-  xmlns:c="jakarta.tags.core" xmlns:fn="jakarta.tags.functions"
-  xmlns:pt="jakarta.faces.passthrough">
+  xmlns:c="jakarta.tags.core" xmlns:fn="jakarta.tags.functions">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="taskWidget" type="ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget" required="true" />
@@ -83,8 +82,7 @@
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay}">
 
           <f:facet name="header">
-           <h:outputText id="header" value="#{column.headerText}" />
-           <p:tooltip value="#{column.headerText}" for="header" />
+           <h:outputText id="header" value="#{column.headerText}" title="#{column.headerText}" />
           </f:facet>
 
           <h:panelGroup rendered="#{column.field eq 'start'}" styleClass="dashboard-tasks__start-container">
@@ -122,8 +120,7 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{(column.format eq 'STRING' or column.format eq 'TEXT') and column.field ne 'name'}">
-            <h:outputText id="custom-column" value="#{dashboardTaskWidgetBean.createParseTextFromHtml(dashboardTaskWidgetBean.display(column, task))}" styleClass="dashboard-widget-column__custom #{column.fieldStyleClass}" style="#{column.fieldStyle}" />
-            <p:tooltip for="custom-column" value="#{dashboardTaskWidgetBean.display(column, task)}" trackMouse="true" hideEvent="mouseleave click"/>
+            <h:outputText id="custom-column" value="#{dashboardTaskWidgetBean.createParseTextFromHtml(dashboardTaskWidgetBean.display(column, task))}" styleClass="dashboard-widget-column__custom #{column.fieldStyleClass}" style="#{column.fieldStyle}" title="#{dashboardTaskWidgetBean.display(column, task)}" />
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.format eq 'TIMESTAMP'}">
@@ -140,23 +137,19 @@
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'category'}">
-            <h:outputText id="task-category" value="#{column.display(task)}"/>
-            <p:tooltip for="task-category" value="#{task.getCategory().getPath()}" trackMouse="true" hideEvent="mouseleave click"/>
+            <h:outputText id="task-category" value="#{column.display(task)}" title="#{task.getCategory().getPath()}"/>
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'application'}">
-            <h:outputText id="task-application" value="#{dashboardTaskWidgetBean.display(column, task)}"/>
-            <p:tooltip for="task-application" value="#{dashboardTaskWidgetBean.display(column, task)}" trackMouse="true" hideEvent="mouseleave click"/>
+            <h:outputText id="task-application" value="#{dashboardTaskWidgetBean.display(column, task)}" title="#{dashboardTaskWidgetBean.display(column, task)}"/>
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'businessCaseId'}">
-            <h:outputText id="task-business-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}"/>
-            <p:tooltip for="task-business-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}" trackMouse="true" hideEvent="mouseleave click"/>
+            <h:outputText id="task-business-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}" title="#{dashboardTaskWidgetBean.display(column, task)}"/>
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'technicalCaseId'}">
-            <h:outputText id="task-technical-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}"/>
-            <p:tooltip for="task-technical-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}" trackMouse="true" hideEvent="mouseleave click"/>
+            <h:outputText id="task-technical-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}" title="#{dashboardTaskWidgetBean.display(column, task)}"/>
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">

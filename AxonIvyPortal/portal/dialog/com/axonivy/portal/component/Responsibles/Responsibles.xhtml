@@ -25,7 +25,6 @@
       <h:panelGroup rendered="#{responsibles != null and responsibleSize gt 1}"> 
         <h:panelGroup id="all-responsibles" styleClass="ml-1">
           <p:avatarGroup styleClass="responsibles-avatar-group" rendered="#{cc.attrs.isShowAvatar}">
-            <p:tooltip globalSelector=".ui-avatar"/>
             <ui:repeat value="#{responsibleBean.getResponsibleLimit10(responsibles)}" var="responsible" varStatus="s">
               <pc:avatar securityMember="#{responsible.get()}"
                 rendered="#{responsible.get() != null and s.index lt 3}"
@@ -68,11 +67,10 @@
           </h:panelGroup>
         </p:tooltip>
       </h:panelGroup>
-      <h:panelGroup id="deputy-info" rendered="#{responsibleBean.isSubstituteForTask(responsibles)}" styleClass="deputy-info">
+      <h:panelGroup id="deputy-info" rendered="#{responsibleBean.isSubstituteForTask(responsibles)}" styleClass="deputy-info"
+        title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskFromSubstitution')}">
         <i class="ti ti-info-circle" />
       </h:panelGroup>
-      <p:tooltip for="deputy-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskFromSubstitution')}" trackMouse="true" hideEvent="mouseleave click"
-        rendered="#{responsibleBean.isSubstituteForTask(responsibles)}"/>
     </f:facet>
   </pc:securityMemberNameAndAvatar>
   <cc:renderFacet name="after" />
