@@ -8,9 +8,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
@@ -30,6 +27,8 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @ViewScoped
 @Named
@@ -66,15 +65,8 @@ public class DashboardWelcomeWidgetBean implements Serializable {
           .filter(name -> equalsLanguageLocale(name, userLanguage)).findFirst().orElse(new DisplayName()).getValue());
     }
     widget.setImageContentObject(renderImage());
-    // get image from light mode if not set
-    if (StringUtils.isBlank(widget.getImageLocationDarkMode())) {
-      widget.setImageContentObjectDarkMode(widget.getImageContentObject());
-      widget.setImageContentDarkMode(widget.getImageContent());
-      widget.setImageLocationDarkMode(widget.getImageLocation());
-      widget.setImageTypeDarkMode(widget.getImageType());
-    } else {
-      widget.setImageContentObjectDarkMode(renderImageDarkMode());
-    }
+    widget.setImageContentObjectDarkMode(renderImageDarkMode());
+
     if (StringUtils.isNotBlank(widget.getId())) {
       String idWithoutSpecialChar = REGEX_REPLACE_SPECIAL_CHARACTER.matcher(widget.getId()).replaceAll("_");
       widget.setInternalId(idWithoutSpecialChar);
