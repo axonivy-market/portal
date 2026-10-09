@@ -210,12 +210,10 @@ public class WelcomeWidgetUtils {
     String content = encodeImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType());
     if (StringUtils.isNotBlank(content)) {
       welcomeWidget.setImageContent(content);
-      welcomeWidget.setImageLocation(null);
     }
     String contentDarkMode = encodeImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode());
     if (StringUtils.isNotBlank(contentDarkMode)) {
       welcomeWidget.setImageContentDarkMode(contentDarkMode);
-      welcomeWidget.setImageLocationDarkMode(null);
     }
   }
 
