@@ -3,11 +3,6 @@ run-name: Daily Build Report Experiment
 
 on:
   workflow_dispatch:
-    inputs:
-      post_notification:
-        description: Post the report to a GitHub issue and notify @tphvu-axonivy
-        type: boolean
-        default: true
 
 permissions:
   actions: read
@@ -24,64 +19,4 @@ jobs:
       - name: Report failed builds
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          set -o pipefail
-          bash .github/scripts/daily-build-report.sh | tee "$RUNNER_TEMP/daily-build-report.log"
-      - name: Prepare notification report
-        if: ${{ inputs.post_notification }}
-        run: |
-          if grep -q '^### Report ' "$RUNNER_TEMP/daily-build-report.log"; then
-            sed -n '/^### Report /,$p' "$RUNNER_TEMP/daily-build-report.log" > "$RUNNER_TEMP/daily-build-report.txt"
-          else
-            tail -n 1 "$RUNNER_TEMP/daily-build-report.log" > "$RUNNER_TEMP/daily-build-report.txt"
-          fi
-      - name: Upload notification report
-        if: ${{ inputs.post_notification }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: daily-build-report
-          path: ${{ runner.temp }}/daily-build-report.txt
-          if-no-files-found: error
-          retention-days: 1
-
-  notify:
-    if: ${{ inputs.post_notification }}
-    needs: report
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    concurrency:
-      group: daily-build-report-notification
-      cancel-in-progress: false
-    permissions:
-      actions: read
-      issues: write
-    steps:
-      - name: Download notification report
-        uses: actions/download-artifact@v4
-        with:
-          name: daily-build-report
-          path: ${{ runner.temp }}/daily-build-report
-      - name: Post report to issue
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          report="$RUNNER_TEMP/daily-build-report/daily-build-report.txt"
-          [[ -s $report ]] || { echo 'Notification report is empty' >&2; exit 1; }
-          body=$(mktemp)
-          trap 'rm -f "$body"' EXIT
-          {
-            printf '@tphvu-axonivy\n\n'
-            cat "$report"
-            printf '\n\n[Workflow run](https://github.com/%s/actions/runs/%s)\n' "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID"
-          } > "$body"
-
-          title='Daily build report notifications'
-          issue=$(gh api --paginate "repos/$GITHUB_REPOSITORY/issues?state=open&per_page=100" \
-            --jq '.[] | select(.pull_request == null and .title == "Daily build report notifications") | .number' |
-            jq -s 'first // empty')
-          if [[ -n $issue ]]; then
-            gh issue comment "$issue" --repo "$GITHUB_REPOSITORY" --body-file "$body"
-          else
-            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body-file "$body"
-          fi
+        run: bash .github/scripts/daily-build-report.sh
