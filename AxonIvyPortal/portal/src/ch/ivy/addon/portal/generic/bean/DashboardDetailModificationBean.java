@@ -606,7 +606,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
           WelcomeDashboardWidget oldWidget = (WelcomeDashboardWidget) oldWidgetOptional.get();
           Optional.ofNullable(getWelcomeWidgetImage(false, oldWidget, false)).ifPresent(co -> {
             // Only delete if image is not the same as the dark mode image
-            if (!isSameImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType(),
+            if (!isSameImage(oldWidget.getImageLocation(), oldWidget.getImageType(),
                 welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode())) {
               co.delete();
             }
