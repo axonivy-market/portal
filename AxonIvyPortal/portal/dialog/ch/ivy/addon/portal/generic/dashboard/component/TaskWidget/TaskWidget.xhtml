@@ -83,7 +83,7 @@
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay}">
 
           <f:facet name="header">
-           <h:outputText id="header" value="#{column.headerText}" title="#{column.headerText}" />
+           <h:outputText id="header" value="#{column.headerText}" pt:data-tooltip="#{column.headerText}" />
           </f:facet>
 
           <h:panelGroup rendered="#{column.field eq 'start'}" styleClass="dashboard-tasks__start-container">
@@ -121,7 +121,7 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{(column.format eq 'STRING' or column.format eq 'TEXT') and column.field ne 'name'}">
-            <h:outputText id="custom-column" value="#{dashboardTaskWidgetBean.createParseTextFromHtml(dashboardTaskWidgetBean.display(column, task))}" styleClass="dashboard-widget-column__custom #{column.fieldStyleClass}" style="#{column.fieldStyle}" title="#{dashboardTaskWidgetBean.display(column, task)}" />
+            <h:outputText id="custom-column" value="#{dashboardTaskWidgetBean.createParseTextFromHtml(dashboardTaskWidgetBean.display(column, task))}" styleClass="dashboard-widget-column__custom #{column.fieldStyleClass}" style="#{column.fieldStyle}" pt:data-tooltip="#{dashboardTaskWidgetBean.display(column, task)}" />
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.format eq 'TIMESTAMP'}">
@@ -138,19 +138,19 @@
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'category'}">
-            <h:outputText id="task-category" value="#{column.display(task)}" title="#{task.getCategory().getPath()}"/>
+            <h:outputText id="task-category" value="#{column.display(task)}" pt:data-tooltip="#{task.getCategory().getPath()}"/>
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'application'}">
-            <h:outputText id="task-application" value="#{dashboardTaskWidgetBean.display(column, task)}" title="#{dashboardTaskWidgetBean.display(column, task)}"/>
+            <h:outputText id="task-application" value="#{dashboardTaskWidgetBean.display(column, task)}" pt:data-tooltip="#{dashboardTaskWidgetBean.display(column, task)}"/>
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'businessCaseId'}">
-            <h:outputText id="task-business-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}" title="#{dashboardTaskWidgetBean.display(column, task)}"/>
+            <h:outputText id="task-business-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}" pt:data-tooltip="#{dashboardTaskWidgetBean.display(column, task)}"/>
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'technicalCaseId'}">
-            <h:outputText id="task-technical-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}" title="#{dashboardTaskWidgetBean.display(column, task)}"/>
+            <h:outputText id="task-technical-case-id" value="#{dashboardTaskWidgetBean.display(column, task)}" pt:data-tooltip="#{dashboardTaskWidgetBean.display(column, task)}"/>
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">

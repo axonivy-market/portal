@@ -2,9 +2,14 @@
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
   xmlns:pe="primefaces.extensions" xmlns:jsf="jakarta.faces"
-  xmlns:c="jakarta.tags.core">
+  xmlns:c="jakarta.tags.core" xmlns:pt="jakarta.faces.passthrough">
 
 <ui:composition>
+  <p:tooltip globalSelector=".dashboard-compact-process-item"
+    styleClass="process-tooltip"
+    trackMouse="true"
+    hideEvent="mouseleave click" />
+
   <!-- INDEX OR ALPHABET SORT -->
   <h:panelGroup id="process-list" layout="block" styleClass="compact-processes-container widget-content"
     rendered="#{!compactDashboardProcessBean.isPreviewCustomOrder()}">
@@ -22,8 +27,8 @@
               </h:panelGroup>
               <div class="process-start-list-item-name">
                 <h:outputText id="process-name-process-item" value="#{process.name}"
+                  pt:data-tooltip="#{process.name}"
                   styleClass="dashboard-compact-process-item process-start-list-item-name-text u-truncate-text" />
-                <p:tooltip for="process-name-process-item" value="#{process.name}" styleClass="process-tooltip" />
               </div>
               <div class="process-item-action-container">
                 <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down"
@@ -60,8 +65,8 @@
             </h:panelGroup>
             <div class="process-start-list-item-name">
               <h:outputText id="process-name-process-item" value="#{process.name}"
+                pt:data-tooltip="#{process.name}"
                 styleClass="dashboard-compact-process-item process-start-list-item-name-text u-truncate-text" />
-              <p:tooltip for="process-name-process-item" value="#{process.name}" styleClass="process-tooltip" />
             </div>
             <div class="process-item-action-container">
               <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down"

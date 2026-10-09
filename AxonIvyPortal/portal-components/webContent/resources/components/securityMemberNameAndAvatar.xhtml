@@ -2,7 +2,7 @@
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite" xmlns:p="primefaces"
   xmlns:pc="jakarta.faces.composite/components"
-  xmlns:c="jakarta.tags.core">
+  xmlns:c="jakarta.tags.core" xmlns:pt="jakarta.faces.passthrough">
   
 
 <cc:interface>
@@ -31,7 +31,7 @@
       <pc:avatar securityMember="#{cc.attrs.securityMember}" renderedAvatar="#{cc.attrs.isShowAvatar}" representName="#{cc.attrs.representName}" showLabel="#{cc.attrs.showLabel}"/>
     </ui:fragment>
     <cc:renderFacet name="alternativeAvatar" />
-    <h:outputText id="#{cc.attrs.displayNameId}" value="#{cc.attrs.displayName}" title="#{tooltipTechnicalDisplayName}"
+    <h:outputText id="#{cc.attrs.displayNameId}" value="#{cc.attrs.displayName}" pt:data-tooltip="#{tooltipTechnicalDisplayName}"
       rendered="#{cc.attrs.displayNameRendered and !userMenuBean.isMobileDevice()}"
       styleClass="u-truncate-text #{cc.attrs.isShowAvatar ? 'name-after-avatar' : ''} #{cc.attrs.displayNameStyleClass} #{(cc.attrs.securityMember == null and cc.attrs.representName == null) ? 'u-no-padding-left' : ''}">
     </h:outputText>

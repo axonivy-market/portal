@@ -1,5 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:cc="jakarta.faces.composite"
-  xmlns:c="jakarta.tags.core" xmlns:p="primefaces">
+  xmlns:c="jakarta.tags.core" xmlns:p="primefaces" xmlns:pt="jakarta.faces.passthrough">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="componentId" default="task-state" />
@@ -21,7 +21,7 @@
 
   <h:panelGroup rendered="#{showState}">
     <h:panelGroup id="#{cc.attrs.componentId}" styleClass="state-cell default-task-cell #{cc.attrs.stateStyleClass} #{cc.attrs.responsiveStyleClass}">
-      <h:outputText value="#{stateLabel}" title="#{stateLabel}"
+      <h:outputText value="#{stateLabel}" pt:data-tooltip="#{stateLabel}"
         styleClass="#{cc.attrs.stateIconStyleClass} task-state #{state.toString().toLowerCase()}-task-state #{ellipsisText ? 'ellipsis-state':''}" />
     </h:panelGroup>
   </h:panelGroup>
