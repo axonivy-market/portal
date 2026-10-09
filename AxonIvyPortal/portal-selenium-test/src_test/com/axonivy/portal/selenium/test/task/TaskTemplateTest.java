@@ -18,6 +18,7 @@ import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.axonivy.portal.selenium.page.WorkingTaskDialogPage;
+import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
@@ -37,6 +38,19 @@ public class TaskTemplateTest extends BaseTest {
     createTestData();
     TaskIFrameTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     assertTrue(taskTemplatePage.containsCaseDetails());
+  }
+
+  @Test
+  public void testCaseInformationWithSecurityMemberTooltips() {
+    updateGlobalVariable(Variable.DISPLAY_USERS_OF_TASK_ACTIVATOR.getKey(), "true");
+    try {
+      createTestData();
+      TaskIFrameTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
+      assertTrue(taskTemplatePage.countRelatedTasks() > 0);
+    } finally {
+      WebDriverRunner.getWebDriver().switchTo().defaultContent();
+      updateGlobalVariable(Variable.DISPLAY_USERS_OF_TASK_ACTIVATOR.getKey(), "false");
+    }
   }
 
   @Test
