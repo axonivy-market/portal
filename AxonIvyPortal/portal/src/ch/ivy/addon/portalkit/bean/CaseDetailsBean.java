@@ -16,8 +16,7 @@ import com.axonivy.portal.components.util.ProcessStartUtils;
 import com.axonivy.portal.migration.casedetails.migrator.JsonCaseDetailsMigrator;
 import com.axonivy.portal.util.BusinessDetailsUtils;
 import com.axonivy.portal.util.CaseBehaviorUtils;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import tools.jackson.core.JacksonException;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -263,7 +262,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
 
   @Override
   protected List<CaseDetails> convertToLatestVersion(String configurationJson)
-      throws JsonMappingException, JsonProcessingException {
+      throws JacksonException {
     JsonCaseDetailsMigrator migrator = new JsonCaseDetailsMigrator(BusinessEntityConverter.getObjectMapper().readTree(configurationJson));
     return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), CaseDetails.class);
   }

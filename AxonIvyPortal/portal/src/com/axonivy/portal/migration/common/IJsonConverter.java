@@ -1,7 +1,7 @@
 package com.axonivy.portal.migration.common;
 
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 
 /**
  * A single migration step that upgrades one entity's JSON representation from one schema version to

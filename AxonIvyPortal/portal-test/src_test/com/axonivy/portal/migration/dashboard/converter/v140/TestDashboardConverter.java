@@ -2,11 +2,11 @@ package com.axonivy.portal.migration.dashboard.converter.v140;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import org.junit.jupiter.api.Test;
+
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.ObjectNode;
 
 /**
  * v140's {@link DashboardConverter} intentionally mirrors
@@ -39,7 +39,7 @@ class TestDashboardConverter {
 
     converter.convert(dashboard);
 
-    assertThat(dashboard.get("dashboardDisplayType").asText()).isEqualTo("top_menu");
+    assertThat(dashboard.get("dashboardDisplayType").asString()).isEqualTo("top_menu");
     assertThat(dashboard.has("isTopMenu")).isFalse();
   }
 
@@ -49,7 +49,7 @@ class TestDashboardConverter {
 
     converter.convert(dashboard);
 
-    assertThat(dashboard.get("dashboardDisplayType").asText()).isEqualTo("sub_menu");
+    assertThat(dashboard.get("dashboardDisplayType").asString()).isEqualTo("sub_menu");
   }
 
   @Test
@@ -59,7 +59,7 @@ class TestDashboardConverter {
 
     converter.convert(dashboard);
 
-    assertThat(dashboard.get("dashboardDisplayType").asText()).isEqualTo("hidden");
+    assertThat(dashboard.get("dashboardDisplayType").asString()).isEqualTo("hidden");
   }
 
   @Test
@@ -75,7 +75,7 @@ class TestDashboardConverter {
 
     ArrayNode updatedColumns = (ArrayNode) dashboard.get("widgets").get(0).get("columns");
     assertThat(updatedColumns).hasSize(3);
-    assertThat(updatedColumns.get(1).get("field").asText()).isEqualTo("pin");
+    assertThat(updatedColumns.get(1).get("field").asString()).isEqualTo("pin");
   }
 
   @Test
@@ -86,6 +86,6 @@ class TestDashboardConverter {
 
     converter.convert(dashboard);
 
-    assertThat(dashboard.get("dashboardDisplayType").asText()).isEqualTo("top_menu");
+    assertThat(dashboard.get("dashboardDisplayType").asString()).isEqualTo("top_menu");
   }
 }

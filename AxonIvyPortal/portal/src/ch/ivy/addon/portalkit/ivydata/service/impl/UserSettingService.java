@@ -1,14 +1,20 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Stream;
+
+import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivy.addon.portalkit.enums.ProcessMode;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
 public class UserSettingService {
 
+  private static final String PROCESS_MODE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessMode/";
   public static final String DEFAULT = "DEFAULT";
   private static UserSettingService instance;
 
@@ -35,16 +41,34 @@ public class UserSettingService {
   }
 
   public boolean isDefaultProcessModeOption(String processMode) {
-    return Strings.CI.startsWith(processMode,
-        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption").replace("({0})", ""));
+    return DEFAULT.equals(processMode);
   }
 
   public String getDateFormat() {
     return getUserProperty(UserProperty.DATE_FORMAT);
   }
 
+  /**
+   * Returns the user's default process mode as a {@link ProcessMode} name, or empty if the user
+   * has none (the global setting is then used).
+   * Older versions stored the translated label (e.g. "Raster"). When such a value is found,
+   * it is converted to the enum name and the user property is updated.
+   */
   public String getDefaultProcessMode() {
-    return getUserProperty(UserProperty.DEFAULT_PROCESS_MODE);
+    String userProcessMode = getUserProperty(UserProperty.DEFAULT_PROCESS_MODE);
+    if (StringUtils.isBlank(userProcessMode)) {
+      return StringUtils.EMPTY;
+    }
+
+    if (EnumUtils.isValidEnum(ProcessMode.class, userProcessMode)) {
+      return userProcessMode;
+    }
+
+    String processMode = findProcessModeByLocalizedLabel(userProcessMode);
+    if (StringUtils.isNotBlank(processMode)) {
+      updateUserProperty(UserProperty.DEFAULT_PROCESS_MODE, processMode);
+    }
+    return processMode;
   }
 
   public String getDefaultProcessImage() {
@@ -77,4 +101,15 @@ public class UserSettingService {
     }
     return Boolean.parseBoolean(isKeyboardShortcutsEnabled);
   }
+
+  private String findProcessModeByLocalizedLabel(String label) {
+    List<Locale> locales = LanguageService.getInstance().getContentLocales();
+    return Stream.of(ProcessMode.values())
+        .filter(mode -> locales.stream()
+            .anyMatch(locale -> label.equals(Ivy.cms().coLocale(PROCESS_MODE_CMS_PATH + mode.name(), locale))))
+        .map(ProcessMode::name)
+        .findFirst()
+        .orElse(StringUtils.EMPTY);
+  }
+
 }

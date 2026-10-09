@@ -2,15 +2,15 @@ package com.axonivy.portal.migration.dashboard.migrator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import org.junit.jupiter.api.Test;
 
+import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
+
 import ch.ivyteam.ivy.environment.IvyTest;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.ObjectNode;
 
 /**
  * {@code @IvyTest} is required because {@link JsonDashboardMigrator} logs via {@code Ivy.log()}
@@ -40,8 +40,8 @@ class TestJsonDashboardMigrator {
 
     JsonNode result = new JsonDashboardMigrator(node).migrate();
 
-    assertThat(result.get("dashboardDisplayType").asText()).isEqualTo("sub_menu");
-    assertThat(result.get("version").asText()).isEqualTo(DashboardJsonVersion.LATEST_VERSION.getValue());
+    assertThat(result.get("dashboardDisplayType").asString()).isEqualTo("sub_menu");
+    assertThat(result.get("version").asString()).isEqualTo(DashboardJsonVersion.LATEST_VERSION.getValue());
   }
 
   @Test
@@ -67,11 +67,11 @@ class TestJsonDashboardMigrator {
     JsonNode result = new JsonDashboardMigrator(wrapper).migrate();
 
     JsonNode dashboard = result.get("items").get(0);
-    assertThat(dashboard.get("dashboardDisplayType").asText()).isEqualTo("sub_menu");
+    assertThat(dashboard.get("dashboardDisplayType").asString()).isEqualTo("sub_menu");
     assertThat(dashboard.has("version")).isFalse();
 
     JsonNode convertedFilterList =
         result.get("items").get(1).get("widgets").get(0).get("columns").get(0).get("filterList");
-    assertThat(convertedFilterList).extracting(JsonNode::asText).containsExactlyInAnyOrder("OPEN", "IN_PROGRESS");
+    assertThat(convertedFilterList).extracting(JsonNode::asString).containsExactlyInAnyOrder("OPEN", "IN_PROGRESS");
   }
 }

@@ -5,7 +5,7 @@ import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.migration.common.BusinessStateMigrationUtils;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.common.search.JsonWidgetSearch;
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
@@ -22,8 +22,8 @@ public class DashboardCaseWidgetConverter implements IJsonConverter {
       new JsonWidgetSearch(jsonNode)
       .type(DashboardWidgetType.CASE.name())
       .findColumns().forEach(columns -> {
-        columns.elements().forEachRemaining(col -> {
-          if (col.get("field").asText().contentEquals(DashboardStandardCaseColumn.STATE.getField())) {
+            columns.values().forEach(col -> {
+          if (col.get("field").asString().contentEquals(DashboardStandardCaseColumn.STATE.getField())) {
             BusinessStateMigrationUtils.convertStatesArrayInPlace(col.get("filterList"),
                 BusinessStateMigrationUtils::convertCaseBusinessState);
           }

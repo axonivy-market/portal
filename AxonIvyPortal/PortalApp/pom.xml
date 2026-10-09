@@ -24,9 +24,6 @@
       <url>https://repo.maven.apache.org/maven2</url>
     </repository>
     <repository>
-      <snapshots>
-        <updatePolicy>always</updatePolicy>
-      </snapshots>
       <id>maven.axonivy.com</id>
       <url>https://maven.axonivy.com</url>
     </repository>

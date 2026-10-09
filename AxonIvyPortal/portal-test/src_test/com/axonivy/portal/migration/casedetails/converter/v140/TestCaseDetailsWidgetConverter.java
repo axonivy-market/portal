@@ -2,12 +2,14 @@ package com.axonivy.portal.migration.casedetails.converter.v140;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import org.junit.jupiter.api.Test;
+
+import com.axonivy.portal.migration.casedetails.migrator.JsonCaseDetailsMigrator;
+
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.ObjectNode;
 
 /**
  * Regression coverage for a real corruption bug: neither {@code rescaleLayout()} nor
@@ -61,7 +63,7 @@ class TestCaseDetailsWidgetConverter {
 
     long summaryWidgetCount = 0;
     for (JsonNode widget : widgets) {
-      if ("summary".equals(widget.path("type").asText())) {
+      if ("summary".equals(widget.path("type").asString())) {
         summaryWidgetCount++;
       }
     }
@@ -78,7 +80,7 @@ class TestCaseDetailsWidgetConverter {
 
     JsonNode summary = widgets.get(0);
     JsonNode information = widgets.get(1);
-    assertThat(summary.get("type").asText()).isEqualTo("summary");
+    assertThat(summary.get("type").asString()).isEqualTo("summary");
     assertThat(information.get("layout").get("y").asInt()).isEqualTo(2 * 5 + 12);
   }
 }

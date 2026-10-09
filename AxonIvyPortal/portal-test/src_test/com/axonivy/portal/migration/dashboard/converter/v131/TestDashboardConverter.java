@@ -2,12 +2,12 @@ package com.axonivy.portal.migration.dashboard.converter.v131;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import org.junit.jupiter.api.Test;
+
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.ObjectNode;
 
 class TestDashboardConverter {
 
@@ -35,7 +35,7 @@ class TestDashboardConverter {
 
     converter.convert(dashboard);
 
-    assertThat(dashboard.get("dashboardDisplayType").asText()).isEqualTo("top_menu");
+    assertThat(dashboard.get("dashboardDisplayType").asString()).isEqualTo("top_menu");
     assertThat(dashboard.has("isTopMenu")).isFalse();
   }
 
@@ -46,7 +46,7 @@ class TestDashboardConverter {
 
     converter.convert(dashboard);
 
-    assertThat(dashboard.get("dashboardDisplayType").asText()).isEqualTo("sub_menu");
+    assertThat(dashboard.get("dashboardDisplayType").asString()).isEqualTo("sub_menu");
     assertThat(dashboard.has("isTopMenu")).isFalse();
   }
 
@@ -56,7 +56,7 @@ class TestDashboardConverter {
 
     converter.convert(dashboard);
 
-    assertThat(dashboard.get("dashboardDisplayType").asText()).isEqualTo("sub_menu");
+    assertThat(dashboard.get("dashboardDisplayType").asString()).isEqualTo("sub_menu");
   }
 
   @Test
@@ -65,7 +65,7 @@ class TestDashboardConverter {
 
     converter.convert(dashboard);
 
-    assertThat(dashboard.get("dashboardDisplayType").asText()).isEqualTo("top_menu");
+    assertThat(dashboard.get("dashboardDisplayType").asString()).isEqualTo("top_menu");
   }
 
   @Test
@@ -74,7 +74,7 @@ class TestDashboardConverter {
 
     converter.convert(dashboard);
 
-    assertThat(dashboard.get("dashboardDisplayType").asText()).isEqualTo("top_menu");
+    assertThat(dashboard.get("dashboardDisplayType").asString()).isEqualTo("top_menu");
   }
 
   @Test
@@ -86,7 +86,7 @@ class TestDashboardConverter {
 
     // Only fills in a default when genuinely missing - must not clobber an explicit user choice
     // (or the result of a previous migration pass) back to a default.
-    assertThat(dashboard.get("dashboardDisplayType").asText()).isEqualTo("hidden");
+    assertThat(dashboard.get("dashboardDisplayType").asString()).isEqualTo("hidden");
   }
 
   @Test
@@ -102,9 +102,9 @@ class TestDashboardConverter {
 
     ArrayNode updatedColumns = (ArrayNode) dashboard.get("widgets").get(0).get("columns");
     assertThat(updatedColumns).hasSize(3);
-    assertThat(updatedColumns.get(0).get("field").asText()).isEqualTo("name");
-    assertThat(updatedColumns.get(1).get("field").asText()).isEqualTo("pin");
-    assertThat(updatedColumns.get(2).get("field").asText()).isEqualTo("state");
+    assertThat(updatedColumns.get(0).get("field").asString()).isEqualTo("name");
+    assertThat(updatedColumns.get(1).get("field").asString()).isEqualTo("pin");
+    assertThat(updatedColumns.get(2).get("field").asString()).isEqualTo("state");
   }
 
   @Test
@@ -142,7 +142,7 @@ class TestDashboardConverter {
 
     converter.convert(dashboard);
 
-    assertThat(dashboard.get("dashboardDisplayType").asText()).isEqualTo("top_menu");
+    assertThat(dashboard.get("dashboardDisplayType").asString()).isEqualTo("top_menu");
   }
 
   @Test
@@ -155,6 +155,6 @@ class TestDashboardConverter {
 
     JsonNode widget = dashboard.get("widgets").get(0);
     assertThat(widget.has("columns")).isFalse();
-    assertThat(dashboard.get("dashboardDisplayType").asText()).isEqualTo("top_menu");
+    assertThat(dashboard.get("dashboardDisplayType").asString()).isEqualTo("top_menu");
   }
 }

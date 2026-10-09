@@ -11,9 +11,9 @@ import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.common.search.JCondition;
 import com.axonivy.portal.migration.common.search.JsonDashboardConfigurationSearch;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.TextNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.StringNode;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
@@ -34,7 +34,7 @@ public class DashboardTaskWidgetFilterConverter implements IJsonConverter{
     new JsonDashboardConfigurationSearch(jsonNode)
       .type(DashboardWidgetType.TASK.name())
       .findFilterableColumns()
-      .ifPresent(columns -> columns.elements().forEachRemaining(column -> {
+        .ifPresent(columns -> columns.values().forEach(column -> {
         if(JCondition.isField(DashboardStandardTaskColumn.STATE.getField()).test(column)) {
           convertToTaskBusinessState(column.get(USER_FILTER_LIST));
         }
@@ -45,10 +45,10 @@ public class DashboardTaskWidgetFilterConverter implements IJsonConverter{
     if (Objects.isNull(statesNode)) {
       return;
     }
-    List<TextNode> newStates = new ArrayList<>();
+    List<StringNode> newStates = new ArrayList<>();
     
-    statesNode.elements().forEachRemaining(node -> {
-      TextNode newState = convertTaskBusinessState(node.asText());
+    statesNode.values().forEach(node -> {
+      StringNode newState = convertTaskBusinessState(node.asString());
       if (newState != null) {
         newStates.add(newState);
       }
@@ -62,29 +62,29 @@ public class DashboardTaskWidgetFilterConverter implements IJsonConverter{
    * IVYPORTAL-14903: Introduce TaskBusinessState
    * 
    */
-  private TextNode convertTaskBusinessState(String oldTaskStateString) {
+  private StringNode convertTaskBusinessState(String oldTaskStateString) {
     TaskState oldTaskState = EnumUtils.getEnum(TaskState.class, oldTaskStateString);
-    TextNode result = new TextNode(oldTaskStateString);
+    StringNode result = new StringNode(oldTaskStateString);
         
     if (Objects.nonNull(oldTaskState)) {
       result = switch (oldTaskState) {
         case PARKED, WAITING_FOR_INTERMEDIATE_EVENT, SUSPENDED 
-          -> new TextNode(TaskBusinessState.OPEN.name());
+            -> new StringNode(TaskBusinessState.OPEN.name());
 
         case CREATED, RESUMED 
-          -> new TextNode(TaskBusinessState.IN_PROGRESS.name());
+            -> new StringNode(TaskBusinessState.IN_PROGRESS.name());
 
         case DONE, READY_FOR_JOIN, JOINING 
-          -> new TextNode(TaskBusinessState.DONE.name());
+            -> new StringNode(TaskBusinessState.DONE.name());
 
         case DESTROYED 
-          -> new TextNode(TaskBusinessState.DESTROYED.name());
+            -> new StringNode(TaskBusinessState.DESTROYED.name());
 
         case DELAYED 
-          -> new TextNode(TaskBusinessState.DELAYED.name());
+            -> new StringNode(TaskBusinessState.DELAYED.name());
 
         case JOIN_FAILED, FAILED 
-          -> new TextNode(TaskBusinessState.ERROR.name());
+            -> new StringNode(TaskBusinessState.ERROR.name());
 
         default -> null;
       } ;
