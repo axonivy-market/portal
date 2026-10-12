@@ -604,6 +604,15 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
             widget.getId());
         if (oldWidgetOptional.isPresent()) {
           WelcomeDashboardWidget oldWidget = (WelcomeDashboardWidget) oldWidgetOptional.get();
+
+          // if old image light is referenced by dark mode, clear the dark mode image location and type
+          boolean sameImage = isSameImage(oldWidget.getImageLocation(), oldWidget.getImageType(), welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode());
+          // if old image light is referenced by dark mode, clear the dark mode image location and type
+          if (sameImage) {
+            welcomeWidget.setImageLocationDarkMode(null);
+            welcomeWidget.setImageTypeDarkMode(null);
+          }
+
           Optional.ofNullable(getWelcomeWidgetImage(false, oldWidget, false)).ifPresent(co -> {
             // Only delete if image is not the same as the dark mode image
             if (!isSameImage(oldWidget.getImageLocation(), oldWidget.getImageType(),
@@ -616,6 +625,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
         tempImageFile.delete();
       }
     }
+
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocationDarkMode())) {
       ContentObjectValue tempImageFileDarkMode = getWelcomeWidgetImage(true, welcomeWidget, true);
       ContentObjectValue imageFileDarkMode = getWelcomeWidgetImage(false, welcomeWidget, true);
