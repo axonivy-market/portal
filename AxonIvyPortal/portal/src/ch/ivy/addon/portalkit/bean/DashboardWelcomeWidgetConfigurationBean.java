@@ -14,6 +14,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
@@ -115,6 +116,12 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
 
     String originalLocation = getWidget().getImageLocation();
     String originalType = getWidget().getImageType();
+    boolean sameImage = isSameImage(originalLocation, originalType, getWidget().getImageLocationDarkMode(), getWidget().getImageTypeDarkMode());
+    // if old image light is referenced by dark mode, clear the dark mode image location and type
+    if (sameImage) {
+      getWidget().setImageLocationDarkMode(null);
+      getWidget().setImageTypeDarkMode(null);
+    }
 
     String extension = FilenameUtils.getExtension(file.getFileName());
     byte[] content = file.getContent();
@@ -147,7 +154,11 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(content);
     }
   }
-  
+
+  private boolean isSameImage(String originalLocation, String originalType, String darkModeLocation, String darkModeType) {
+    return Strings.CS.equals(originalLocation, darkModeLocation) && Strings.CS.equals(originalType, darkModeType);
+  }
+
   public void handleFileUploadDarkMode(FileUploadEvent event) {
     UploadedFile file = event.getFile();
     if (file == null || file.getContent() == null || file.getContent().length == 0 || file.getFileName() == null) {
