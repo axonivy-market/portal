@@ -170,7 +170,7 @@ public class WelcomeWidgetUtils {
         byte[] oldFileContent = WelcomeWidgetUtils.getImageAsByteData(widget.getImageLocation());
         if (oldFileContent != null) {
           if (SvgUtils.isPotentialSvg(fileExtension, oldFileContent) && SvgUtils.isUnsafeSvg(oldFileContent)) {
-            Ivy.log().warn("WidgetId [{0}] image clone rejected: unsafe SVG content (base64 path).", widget.getId());
+            Ivy.log().warn("WidgetId [{0}] image clone rejected: unsafe SVG content (clone path).", widget.getId());
             widget.setImageLocation(null);
             return;
           }
