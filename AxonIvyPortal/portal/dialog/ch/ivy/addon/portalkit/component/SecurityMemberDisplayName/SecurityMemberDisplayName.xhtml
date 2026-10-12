@@ -39,7 +39,7 @@
       rendered="#{cc.attrs.renderDeputyInfo and responsibleBean.isSubstituteForTask(task.responsibles())}" />
 
     <p:tooltip rendered="#{securityMemberDisplayNameBean.isRenderDisplayNameTooltip(securityMember)}"
-      for=":#{cc.clientId}:name-and-avatar:#{cc.attrs.textId}-text"
+      for="name-and-avatar:#{cc.attrs.textId}-text"
       value="#{securityMemberDisplayNameBean.getFullDisplayName(securityMember, memberName)}"
       hideEvent="mouseleave click"
       styleClass="security-member-tooltip"
@@ -49,7 +49,7 @@
     <ui:fragment rendered="#{securityMemberDisplayNameBean.isRenderGroupUsersAsTooltip(securityMember, alwaysShowAsText)}">
       <f:event listener="#{logic.loadUsersForTooltip(securityMember)}" type="preRenderComponent" />
       <p:tooltip escape="false" value="#{htmlSanitizerBean.sanitize(data.usersInTooltips)}"
-        for=":#{cc.clientId}:name-and-avatar:#{cc.attrs.textId}-text"
+        for="name-and-avatar:#{cc.attrs.textId}-text"
         styleClass="security-member-tooltip"
         hideEvent="mouseleave click" />
     </ui:fragment>
@@ -60,7 +60,7 @@
         styleClass="#{cc.attrs.styleClass} user-fullname-link"
         update="user-of-role"
         actionListener="#{logic.loadUsersOfRole(securityMember.getMemberName())}"
-        oncomplete="PF('users-of-role').show('#{component.clientId}')"
+        oncomplete="PF('users-of-role-#{cc.clientId}').show('#{component.clientId}')"
         process="@this"
         ariaLabel="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)} - #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/tooltipHelper')}"
         immediate="true">
@@ -76,13 +76,13 @@
   <!-- Display Role name as link format, click to show all user of this role -->
   <h:panelGroup rendered="#{securityMemberDisplayNameBean.isRenderUsersOverlaySearch(securityMember, alwaysShowAsText)}"
     styleClass="#{cc.attrs.roleNameStyleClass}">
-    <p:overlayPanel id="user-of-role" widgetVar="users-of-role"
+    <p:overlayPanel id="user-of-role" widgetVar="users-of-role-#{cc.clientId}"
       styleClass="user-of-role u-padding-0"
       dismissable="true"
       my="left top"
       at="left bottom"
       appendTo="@(body)"
-      dynamic="true">
+      dynamic="false">
       <h:form id="user-form" styleClass="ui-g"
         onsubmit="return false;">
         <h:panelGroup id="user-data-container"
@@ -99,11 +99,11 @@
               styleClass="widget-header-filter-input"
               keywordStoresIn="#{data.keyword}"
               listener="#{logic.filterUserByName(data.keyword)}"
-              updateComponent=":#{cc.clientId}:user-form:user-data-container" />
+              updateComponent="@form:user-data-container" />
           </h:panelGroup>
 
           <c:set var="totalMember" value="#{data.memberNames.size()}" />
-          <p:dataScroller id="user-data" widgetVar="user-data"
+          <p:dataScroller id="user-data" widgetVar="user-data-#{cc.clientId}"
             value="#{data.memberNames}" var="user"
             chunkSize="21"
             rendered="#{not empty data.memberNames}"
