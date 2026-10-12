@@ -116,12 +116,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
 
     String originalLocation = getWidget().getImageLocation();
     String originalType = getWidget().getImageType();
-    boolean sameImage = isSameImage(originalLocation, originalType, getWidget().getImageLocationDarkMode(), getWidget().getImageTypeDarkMode());
-    // if old image light is referenced by dark mode, clear the dark mode image location and type
-    if (sameImage) {
-      getWidget().setImageLocationDarkMode(null);
-      getWidget().setImageTypeDarkMode(null);
-    }
+    
 
     String extension = FilenameUtils.getExtension(file.getFileName());
     byte[] content = file.getContent();
@@ -155,9 +150,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     }
   }
 
-  private boolean isSameImage(String originalLocation, String originalType, String darkModeLocation, String darkModeType) {
-    return Strings.CS.equals(originalLocation, darkModeLocation) && Strings.CS.equals(originalType, darkModeType);
-  }
+  
 
   public void handleFileUploadDarkMode(FileUploadEvent event) {
     UploadedFile file = event.getFile();
