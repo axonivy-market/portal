@@ -150,7 +150,7 @@ public class WelcomeWidgetUtils {
     }
     String widgetId = DashboardWidgetUtils.generateNewWidgetId(WELCOME);
     boolean hasImageContent = StringUtils.isNotBlank(widget.getImageContent());
-    if (StringUtils.isNotBlank(widget.getImageLocation()) && StringUtils.isNotBlank(widget.getImageType()) || hasImageContent) {
+    if ((StringUtils.isNotBlank(widget.getImageLocation()) && StringUtils.isNotBlank(widget.getImageType())) || hasImageContent) {
       String rawExtension = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageType());
       String fileExtension = SvgUtils.normalizeSvgExtension(rawExtension);
       String imageLocation = widgetId.concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtension);
@@ -180,7 +180,7 @@ public class WelcomeWidgetUtils {
     }
 
     boolean hasImageContentDarkMode = StringUtils.isNotBlank(widget.getImageContentDarkMode());
-    if (StringUtils.isNotBlank(widget.getImageLocationDarkMode()) && StringUtils.isNotBlank(widget.getImageTypeDarkMode()) || hasImageContentDarkMode) {
+    if ((StringUtils.isNotBlank(widget.getImageLocationDarkMode()) && StringUtils.isNotBlank(widget.getImageTypeDarkMode())) || hasImageContentDarkMode) {
       String fileExtensionDarkMode = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageTypeDarkMode());
       String imageLocationDarkMode = widgetId.concat(WelcomeWidgetUtils.DARK_MODE).concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtensionDarkMode);
       ContentObject newImageObjectDarkMode = WelcomeWidgetUtils.getImageContentObject(getFileNameOfImage(imageLocationDarkMode), fileExtensionDarkMode);
