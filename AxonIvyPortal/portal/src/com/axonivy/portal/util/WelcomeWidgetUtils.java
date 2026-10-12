@@ -181,7 +181,8 @@ public class WelcomeWidgetUtils {
 
     boolean hasImageContentDarkMode = StringUtils.isNotBlank(widget.getImageContentDarkMode());
     if ((StringUtils.isNotBlank(widget.getImageLocationDarkMode()) && StringUtils.isNotBlank(widget.getImageTypeDarkMode())) || hasImageContentDarkMode) {
-      String fileExtensionDarkMode = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageTypeDarkMode());
+      String rawExtensionDarkMode = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageTypeDarkMode());
+      String fileExtensionDarkMode = SvgUtils.normalizeSvgExtension(rawExtensionDarkMode);
       String imageLocationDarkMode = widgetId.concat(WelcomeWidgetUtils.DARK_MODE).concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtensionDarkMode);
       ContentObject newImageObjectDarkMode = WelcomeWidgetUtils.getImageContentObject(getFileNameOfImage(imageLocationDarkMode), fileExtensionDarkMode);
       if (hasImageContentDarkMode) {
