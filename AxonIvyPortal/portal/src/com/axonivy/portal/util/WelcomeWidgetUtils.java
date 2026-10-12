@@ -189,8 +189,8 @@ public class WelcomeWidgetUtils {
         // Handle sanitize SVG
         if (SvgUtils.isUnsafeSvg(content)) {
           Ivy.log().warn("WidgetId [{0}] image rejected: unsafe SVG content (base64 path).", widget.getId());
-          widget.setImageContent(null);
-          widget.setImageLocation(null);
+          widget.setImageLocationDarkMode(null);
+          widget.setImageContentDarkMode(null);
           return;
         }
         WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObjectDarkMode).write().bytes(content);
