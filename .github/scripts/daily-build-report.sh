@@ -12,20 +12,21 @@ if (( local_day >= 6 )); then
 fi
 
 start=$((now - 86400))
+start_iso=$(date -u -d "@$start" +%Y-%m-%dT%H:%M:%SZ)
 report_date=$(TZ=Asia/Ho_Chi_Minh date -d "@$now" +%Y-%m-%d)
 workdir=$(mktemp -d)
 trap 'rm -rf "$workdir"' EXIT
 
 latest_run() {
-  local workflow=$1 branch=$2 encoded
-  encoded=$(jq -nr --arg branch "$branch" '$branch | @uri')
-  gh api --paginate "repos/$repo/actions/workflows/$workflow/runs?event=workflow_dispatch&branch=$encoded&per_page=100" \
+  local workflow=$1 branch=$2
+  gh api --paginate --method GET "repos/$repo/actions/workflows/$workflow/runs" \
+    -f event=workflow_dispatch -f branch="$branch" -f "created=>=$start_iso" -f per_page=100 \
     --jq '.workflow_runs[]' |
     jq -s --arg branch "$branch" --argjson start "$start" --argjson end "$now" '
       map(select(.head_branch == $branch and .event == "workflow_dispatch")
-        | select((.run_started_at // .created_at | fromdateiso8601) >= $start
-          and (.run_started_at // .created_at | fromdateiso8601) < $end))
-      | max_by([(.run_started_at // .created_at), .id]) // empty'
+        | select((.created_at | fromdateiso8601) >= $start
+          and (.created_at | fromdateiso8601) < $end))
+      | max_by([.created_at, .id]) // empty'
 }
 
 failed_tests() {
@@ -109,7 +110,7 @@ while IFS='|' read -r title workflow branches; do
   fi
 done <<'BUILDS'
 Document Screenshot|portal-document-screenshot-test.yml|LTS10:release/10.0 LTS12:release/12.0 MASTER:master
-Documentation|portal-documentation.yml|LTS12:release/12.0 MASTER:master
+Documentation|portal-documentation.yml|LTS10:release/10.0 LTS12:release/12.0 MASTER:master
 Selenium Test|portal-selenium-test.yml|LTS12:release/12.0 MASTER:master
 Portal Test|portal-test.yml|MASTER:master
 A11y Report|a11y-report.yml|MASTER:master
