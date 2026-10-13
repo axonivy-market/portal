@@ -44,13 +44,13 @@ import org.primefaces.PrimeFaces;
 import org.primefaces.event.ColumnResizeEvent;
 
 import com.axonivy.portal.bo.ClientStatistic;
-import com.axonivy.portal.enums.CaseQueryType;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.CaseQueryType;
 import com.axonivy.portal.service.ClientStatisticService;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.DashboardCloneUtils;
@@ -565,6 +565,15 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
             widget.getId());
         if (oldWidgetOptional.isPresent()) {
           WelcomeDashboardWidget oldWidget = (WelcomeDashboardWidget) oldWidgetOptional.get();
+          
+          // if old image light is referenced by dark mode, clear the dark mode image location and type
+          boolean sameImage = isSameImage(oldWidget.getImageLocation(), oldWidget.getImageType(), welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode());
+          // if old image light is referenced by dark mode, clear the dark mode image location and type
+          if (sameImage) {
+            welcomeWidget.setImageLocationDarkMode(null);
+            welcomeWidget.setImageTypeDarkMode(null);
+          }
+          
           Optional.ofNullable(getWelcomeWidgetImage(false, oldWidget, false)).ifPresent(co -> {
             co.delete();
           });
@@ -590,6 +599,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         tempImageFileDarkMode.delete();
       }
     }
+  }
+  
+  private boolean isSameImage(String originalLocation, String originalType, String darkModeLocation, String darkModeType) {
+    return Strings.CS.equals(originalLocation, darkModeLocation) && Strings.CS.equals(originalType, darkModeType);
   }
 
   private void updateCaseWidget(DashboardWidget widget) {
