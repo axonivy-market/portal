@@ -150,13 +150,11 @@ public class WelcomeWidgetUtils {
       ContentObject newImageObject = WelcomeWidgetUtils.getImageContentObject(getFileNameOfImage(imageLocation), fileExtension);
       if (StringUtils.isNotBlank(widget.getImageContent())) {
         byte[] content = Base64.getDecoder().decode(widget.getImageContent());
-        if (isPotentialSvg(fileExtension, content)) {
-          if (isUnsafeSvg(content)) {
-            Ivy.log().warn("WidgetId [{0}] image rejected: unsafe SVG content (base64 path).", widget.getId());
-            widget.setImageContent(null);
-            widget.setImageLocation(null);
-            return;
-          }
+        if (isPotentialSvg(fileExtension, content) && isUnsafeSvg(content)) {
+          Ivy.log().warn("WidgetId [{0}] image rejected: unsafe SVG content (base64 path).", widget.getId());
+          widget.setImageContent(null);
+          widget.setImageLocation(null);
+          return;
         }
         WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(content);
         widget.setImageLocation(imageLocation);
@@ -179,15 +177,15 @@ public class WelcomeWidgetUtils {
       ContentObject newImageObjectDarkMode = WelcomeWidgetUtils.getImageContentObject(getFileNameOfImage(imageLocationDarkMode), fileExtensionDarkMode);
       if (StringUtils.isNotBlank(widget.getImageContentDarkMode())) {
         // If has defined content, create new image
-        byte[] content = Base64.getDecoder().decode(widget.getImageContentDarkMode());
+        byte[] contentDarkMode = Base64.getDecoder().decode(widget.getImageContentDarkMode());
         // Handle sanitize SVG
-        if (isUnsafeSvg(content)) {
+        if (isPotentialSvg(fileExtensionDarkMode, contentDarkMode) && isUnsafeSvg(contentDarkMode)) {
           Ivy.log().warn("WidgetId [{0}] image rejected: unsafe SVG content (base64 path).", widget.getId());
-          widget.setImageContent(null);
-          widget.setImageLocation(null);
+          widget.setImageContentDarkMode(null);
+          widget.setImageLocationDarkMode(null);
           return;
         }
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObjectDarkMode).write().bytes(content);
+        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObjectDarkMode).write().bytes(contentDarkMode);
         widget.setImageLocationDarkMode(imageLocationDarkMode);
         widget.setImageContentDarkMode(null);
       } else {
