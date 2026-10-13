@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.document.DocumentDetector;
 import com.axonivy.portal.components.document.ExcelDocumentDetector;
+import com.axonivy.portal.components.document.ImageDocumentDetector;
 import com.axonivy.portal.components.document.PDFDocumentDetector;
 import com.axonivy.portal.components.document.SVGSecurityScanner;
 import com.axonivy.portal.components.document.WordDocumentDetector;
@@ -24,6 +25,8 @@ public class DocumentDetectorFactory {
       return new PDFDocumentDetector();
     } else if (DocumentExtensionConstants.ALLOWED_SVG_FORMAT.contains(fileExtension)) {
       return new SVGSecurityScanner();
+    } else if (DocumentExtensionConstants.IMAGE_FORMAT.contains(fileExtension)) {
+      return new ImageDocumentDetector();
     }
     return null;
   }

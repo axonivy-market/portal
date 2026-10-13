@@ -4,8 +4,10 @@ import static ch.ivy.addon.portal.chat.ChatReferencesContainer.log;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.function.Supplier;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.StreamedContent;
@@ -31,6 +33,9 @@ public class UploadDocumentUtils {
     String validateMessage = "";
     if (importFile == null || importFile.getSize() == 0) {
       validateMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileEmptyMessage");
+    } else if (importFile.getSize() > getDocumentUploadSizeLimit()) {
+      validateMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize",
+          Arrays.asList(FileUtils.byteCountToDisplaySize(getDocumentUploadSizeLimit())));
     } else if (enableVirusScannerForUploadedDocument() && isDocumentTypeHasVirus(importFile)) {
       validateMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainVirus");
     } else if (enableScriptCheckingForUploadedDocument() && !isDocumentSafe(importFile)) {
