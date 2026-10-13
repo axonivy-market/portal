@@ -568,7 +568,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
           
           // if old image light is referenced by dark mode, clear the dark mode image location and type
           boolean sameImage = isSameImage(oldWidget.getImageLocation(), oldWidget.getImageType(), welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode());
-          // if old image light is referenced by dark mode, clear the dark mode image location and type
           if (sameImage) {
             welcomeWidget.setImageLocationDarkMode(null);
             welcomeWidget.setImageTypeDarkMode(null);
