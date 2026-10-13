@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Report the latest dispatched attempt per branch in the preceding 24 hours.
-# Only failures go into the job summary; missing or incomplete runs are warnings.
+# Failures and cancellations go into the summary; missing or incomplete runs are warnings.
 repo=${GITHUB_REPOSITORY:?}
 now=$(date -u -d "${REPORT_NOW:-now}" +%s)
 local_day=$(TZ=Asia/Ho_Chi_Minh date -d "@$now" +%u)
@@ -87,17 +87,18 @@ while IFS='|' read -r title workflow branches; do
     conclusion=$(jq -r '.conclusion' <<< "$run")
     run_id=$(jq -r '.id' <<< "$run")
     case $conclusion in
-      failure|timed_out|startup_failure|action_required) ;;
+      failure|timed_out|startup_failure|action_required) result=failed ;;
+      cancelled) result=cancelled ;;
       success) continue ;;
       *) echo "::warning::$title $label: $conclusion (run $run_id)."; continue ;;
     esac
-    link="[failed]($(jq -r '.html_url' <<< "$run"))"
+    link="[$result]($(jq -r '.html_url' <<< "$run"))"
     case $title in
       'Document Screenshot') entry=$(printf -- '- **%s**\n  - %s' "$label" "$link") ;;
       'A11y Report') entry=$link ;;
       *) entry="- **$label** $link" ;;
     esac
-    if [[ $title == 'Selenium Test' ]]; then
+    if [[ $title == 'Selenium Test' && $conclusion != cancelled ]]; then
       details=$(selenium_details "$run_id")
       entry+=$'\n\n'"$(sed '/./s/^/  /' <<< "$details")"
     fi
@@ -117,7 +118,7 @@ A11y Report|a11y-report.yml|MASTER:master
 BUILDS
 
 if (( ${#sections[@]} == 0 )); then
-  echo 'No failed builds to report.'
+  echo 'No failed or cancelled builds to report.'
   exit 0
 fi
 summary="### Report $report_date"
