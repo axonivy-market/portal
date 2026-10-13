@@ -12,6 +12,8 @@ import java.util.stream.Stream;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.document.ImageDocumentDetector;
+
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.application.app.Application;
@@ -153,12 +155,24 @@ public class WelcomeWidgetUtils {
     if ((StringUtils.isNotBlank(widget.getImageLocation()) && StringUtils.isNotBlank(widget.getImageType())) || hasImageContent) {
       String rawExtension = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageType());
       String fileExtension = SvgUtils.normalizeSvgExtension(rawExtension);
+      if (!ImageDocumentDetector.isAllowedImageExtension(fileExtension)) {
+        Ivy.log().warn("WidgetId [{0}] image rejected: invalid image extension [{1}].", widget.getId(), fileExtension);
+        widget.setImageContent(null);
+        widget.setImageLocation(null);
+        return;
+      }
       String imageLocation = widgetId.concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtension);
       ContentObject newImageObject = WelcomeWidgetUtils.getImageContentObject(getFileNameOfImage(imageLocation), fileExtension);
       if (hasImageContent) {
+        if (UploadDocumentUtils.isBase64ImageSizeExceeded(widget.getImageContent())) {
+          Ivy.log().warn("WidgetId [{0}] image rejected: size exceeded limit (base64 path).", widget.getId());
+          widget.setImageContent(null);
+          widget.setImageLocation(null);
+          return;
+        }
         byte[] content = Base64.getDecoder().decode(widget.getImageContent());
-        if (SvgUtils.isPotentialSvg(fileExtension, content) && SvgUtils.isUnsafeSvg(content)) {
-          Ivy.log().warn("WidgetId [{0}] image rejected: unsafe SVG content (base64 path).", widget.getId());
+        if (!ImageDocumentDetector.isImageSafe(content, fileExtension)) {
+          Ivy.log().warn("WidgetId [{0}] image rejected: unsafe or invalid image content (base64 path).", widget.getId());
           widget.setImageContent(null);
           widget.setImageLocation(null);
           return;
@@ -169,8 +183,8 @@ public class WelcomeWidgetUtils {
       } else {
         byte[] oldFileContent = WelcomeWidgetUtils.getImageAsByteData(widget.getImageLocation());
         if (oldFileContent != null) {
-          if (SvgUtils.isPotentialSvg(fileExtension, oldFileContent) && SvgUtils.isUnsafeSvg(oldFileContent)) {
-            Ivy.log().warn("WidgetId [{0}] image clone rejected: unsafe SVG content (clone path).", widget.getId());
+          if (!ImageDocumentDetector.isImageSafe(oldFileContent, fileExtension)) {
+            Ivy.log().warn("WidgetId [{0}] image clone rejected: unsafe or invalid image content (clone path).", widget.getId());
             widget.setImageLocation(null);
             return;
           }
@@ -183,16 +197,27 @@ public class WelcomeWidgetUtils {
     if ((StringUtils.isNotBlank(widget.getImageLocationDarkMode()) && StringUtils.isNotBlank(widget.getImageTypeDarkMode())) || hasImageContentDarkMode) {
       String rawExtensionDarkMode = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageTypeDarkMode());
       String fileExtensionDarkMode = SvgUtils.normalizeSvgExtension(rawExtensionDarkMode);
+      if (!ImageDocumentDetector.isAllowedImageExtension(fileExtensionDarkMode)) {
+        Ivy.log().warn("WidgetId [{0}] dark mode image rejected: invalid image extension [{1}].", widget.getId(), fileExtensionDarkMode);
+        widget.setImageContentDarkMode(null);
+        widget.setImageLocationDarkMode(null);
+        return;
+      }
       String imageLocationDarkMode = widgetId.concat(WelcomeWidgetUtils.DARK_MODE).concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtensionDarkMode);
       ContentObject newImageObjectDarkMode = WelcomeWidgetUtils.getImageContentObject(getFileNameOfImage(imageLocationDarkMode), fileExtensionDarkMode);
       if (hasImageContentDarkMode) {
+        if (UploadDocumentUtils.isBase64ImageSizeExceeded(widget.getImageContentDarkMode())) {
+          Ivy.log().warn("WidgetId [{0}] dark mode image rejected: size exceeded limit (base64 path).", widget.getId());
+          widget.setImageContentDarkMode(null);
+          widget.setImageLocationDarkMode(null);
+          return;
+        }
         // If has defined content, create new image
         byte[] content = Base64.getDecoder().decode(widget.getImageContentDarkMode());
-        // Handle sanitize SVG
-        if (SvgUtils.isPotentialSvg(fileExtensionDarkMode, content) && SvgUtils.isUnsafeSvg(content)) {
-          Ivy.log().warn("WidgetId [{0}] image clone rejected: unsafe SVG content (base64 path).", widget.getId());
-          widget.setImageLocationDarkMode(null);
+        if (!ImageDocumentDetector.isImageSafe(content, fileExtensionDarkMode)) {
+          Ivy.log().warn("WidgetId [{0}] image rejected: unsafe or invalid SVG/image content (base64 path).", widget.getId());
           widget.setImageContentDarkMode(null);
+          widget.setImageLocationDarkMode(null);
           return;
         }
         WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObjectDarkMode).write().bytes(content);
@@ -201,7 +226,13 @@ public class WelcomeWidgetUtils {
       } else {
         // If has defined location, clone new image
         byte[] oldFileContentDarkMode = WelcomeWidgetUtils.getImageAsByteData(widget.getImageLocationDarkMode());
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObjectDarkMode).write().bytes(oldFileContentDarkMode);
+        if (oldFileContentDarkMode != null) {
+          if (!ImageDocumentDetector.isImageSafe(oldFileContentDarkMode, fileExtensionDarkMode)) {
+            Ivy.log().warn("WidgetId [{0}] dark mode image clone rejected: unsafe or invalid image content (clone path).", widget.getId());
+            return;
+          }
+          WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObjectDarkMode).write().bytes(oldFileContentDarkMode);
+        }
       }
     }
   }
@@ -234,7 +265,8 @@ public class WelcomeWidgetUtils {
   public static void cloneImage(String extension, String oldImageLocation,
       WelcomeDashboardWidget newWidget, boolean isDarkMode) throws IOException {
     if (StringUtils.isBlank(extension)
-        || StringUtils.isBlank(oldImageLocation)) {
+        || StringUtils.isBlank(oldImageLocation)
+        || !ImageDocumentDetector.isAllowedImageExtension(extension)) {
       return;
     }
 

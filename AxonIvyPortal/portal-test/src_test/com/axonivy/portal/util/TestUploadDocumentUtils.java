@@ -278,4 +278,11 @@ class TestUploadDocumentUtils {
     UploadedFile file = fakeFile("image.svg", UNSAFE_SVG.getBytes(StandardCharsets.UTF_8));
     assertThat(UploadDocumentUtils.validateUploadedFile(file)).isNotBlank();
   }
+
+  @Test
+  void validateUploadedFile_fileSizeExceeded_returnsErrorMessage() {
+    Ivy.var().set(GlobalVariable.DOCUMENT_UPLOAD_SIZE_LIMIT.getKey(), "0");
+    UploadedFile file = fakeFile("dashboard.json", "{}".getBytes(StandardCharsets.UTF_8));
+    assertThat(UploadDocumentUtils.validateUploadedFile(file)).isNotBlank();
+  }
 }

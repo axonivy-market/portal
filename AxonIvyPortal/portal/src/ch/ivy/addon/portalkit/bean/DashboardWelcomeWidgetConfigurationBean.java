@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.bean;
 
 import static com.axonivy.portal.util.WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +17,7 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
 import com.axonivy.portal.bean.ThemeBean;
-import com.axonivy.portal.components.document.SVGSecurityScanner;
+import com.axonivy.portal.components.document.ImageDocumentDetector;
 import com.axonivy.portal.components.jsf.ManagedBeans;
 import com.axonivy.portal.dto.TranslationResult;
 import com.axonivy.portal.enums.ThemeMode;
@@ -115,21 +114,33 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
 
     String originalLocation = getWidget().getImageLocation();
     String originalType = getWidget().getImageType();
-    
+
+    if (file.getSize() > getUploadFileLimit()) {
+      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          getFileUploadInvalidSizeMessage(), null);
+      FacesContext.getCurrentInstance().addMessage("config-welcome-widget-message", message);
+      return;
+    }
 
     String extension = FilenameUtils.getExtension(file.getFileName());
     byte[] content = file.getContent();
 
-    if (extension != null && extension.toLowerCase().startsWith("svg")) {
-      String fileContent = new String(content, StandardCharsets.UTF_8);
-      if (!SVGSecurityScanner.isSafe(fileContent)) {
-        getWidget().setImageLocation(originalLocation);
-        getWidget().setImageType(originalType);
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
-        FacesContext.getCurrentInstance().addMessage("config-welcome-widget-message", message);
-        return;
-      }
+    if (!ImageDocumentDetector.isAllowedImageExtension(extension)) {
+      getWidget().setImageLocation(originalLocation);
+      getWidget().setImageType(originalType);
+      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/Dialogs/components/CaseDocument/invalidFileMessage"), null);
+      FacesContext.getCurrentInstance().addMessage("config-welcome-widget-message", message);
+      return;
+    }
+
+    if (!ImageDocumentDetector.isImageSafe(content, extension)) {
+      getWidget().setImageLocation(originalLocation);
+      getWidget().setImageType(originalType);
+      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
+      FacesContext.getCurrentInstance().addMessage("config-welcome-widget-message", message);
+      return;
     }
 
     if (StringUtils.isNotBlank(originalLocation)) {
@@ -160,19 +171,32 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     String originalLocation = getWidget().getImageLocationDarkMode();
     String originalType = getWidget().getImageTypeDarkMode();
 
+    if (file.getSize() > getUploadFileLimit()) {
+      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          getFileUploadInvalidSizeMessage(), null);
+      FacesContext.getCurrentInstance().addMessage("config-welcome-widget-message", message);
+      return;
+    }
+
     String extension = FilenameUtils.getExtension(file.getFileName());
     byte[] content = file.getContent();
 
-    if (extension != null && extension.toLowerCase().startsWith("svg")) {
-      String fileContent = new String(content, StandardCharsets.UTF_8);
-      if (!SVGSecurityScanner.isSafe(fileContent)) {
-        getWidget().setImageLocationDarkMode(originalLocation);
-        getWidget().setImageTypeDarkMode(originalType);
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
-        FacesContext.getCurrentInstance().addMessage("config-welcome-widget-message", message);
-        return;
-      }
+    if (!ImageDocumentDetector.isAllowedImageExtension(extension)) {
+      getWidget().setImageLocationDarkMode(originalLocation);
+      getWidget().setImageTypeDarkMode(originalType);
+      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/Dialogs/components/CaseDocument/invalidFileMessage"), null);
+      FacesContext.getCurrentInstance().addMessage("config-welcome-widget-message", message);
+      return;
+    }
+
+    if (!ImageDocumentDetector.isImageSafe(content, extension)) {
+      getWidget().setImageLocationDarkMode(originalLocation);
+      getWidget().setImageTypeDarkMode(originalType);
+      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
+      FacesContext.getCurrentInstance().addMessage("config-welcome-widget-message", message);
+      return;
     }
 
     if (StringUtils.isNotBlank(originalLocation)) {
