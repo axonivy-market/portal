@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.UUID;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -132,7 +133,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       }
     }
 
-    String fileName = getWidget().getId().concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
+    String fileName = UUID.randomUUID().toString().concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
     getWidget().setImageLocation(fileName);
     getWidget().setImageType(extension);
 
@@ -186,7 +187,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       }
     }
 
-    String fileName = getWidget().getId().concat(WelcomeWidgetUtils.DARK_MODE).concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
+    String fileName = UUID.randomUUID().toString().concat(WelcomeWidgetUtils.DARK_MODE).concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
     getWidget().setImageLocationDarkMode(fileName);
     getWidget().setImageTypeDarkMode(extension);
 

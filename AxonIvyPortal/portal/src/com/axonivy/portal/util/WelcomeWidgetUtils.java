@@ -199,14 +199,14 @@ public class WelcomeWidgetUtils {
           return;
         }
         // If has defined content, create new image
-        byte[] content = Base64.getDecoder().decode(widget.getImageContentDarkMode());
-        if (!ImageDocumentDetector.isImageSafe(content, fileExtensionDarkMode)) {
+        byte[] contentDarkMode = Base64.getDecoder().decode(widget.getImageContentDarkMode());
+        if (!ImageDocumentDetector.isImageSafe(contentDarkMode, fileExtensionDarkMode)) {
           Ivy.log().warn("WidgetId [{0}] image rejected: unsafe or invalid SVG/image content (base64 path).", widget.getId());
           widget.setImageContentDarkMode(null);
           widget.setImageLocationDarkMode(null);
           return;
         }
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObjectDarkMode).write().bytes(content);
+        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObjectDarkMode).write().bytes(contentDarkMode);
         widget.setImageLocationDarkMode(imageLocationDarkMode);
         widget.setImageContentDarkMode(null);
       } else {

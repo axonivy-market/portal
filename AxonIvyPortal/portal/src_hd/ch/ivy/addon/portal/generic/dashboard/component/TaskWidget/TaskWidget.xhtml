@@ -24,16 +24,15 @@
   <c:set var="isResizing" value="#{!cc.attrs.isReadOnlyMode and !cc.attrs.isPreviewMode}" />
 
   <p:remoteCommand id="rcLoadTaskFirstTimeAIResult" rendered="#{cc.attrs.isAIResult}"
-                   name="loadTaskWidgetFirstTime_#{taskWidget.id}" actionListener="#{taskWidget.dataModel.loadFirstTime()}"
+                   autoRun="true" onstart="addDashboardTableChunkSize(cfg)" actionListener="#{taskWidget.dataModel.loadFirstTime()}"
                    update="dashboard-tasks-container" global="false" async="true" process="@this"
                    oncomplete="loadWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); #{cc.attrs.onCompleteLoadWidget};" />
 
   <p:remoteCommand id="rcLoadTaskFirstTime" rendered="#{!cc.attrs.isAIResult}"
-                   name="loadTaskWidgetFirstTime_#{taskWidget.id}" actionListener="#{taskWidget.dataModel.loadFirstTime()}"
+                   autoRun="true" onstart="addDashboardTableChunkSize(cfg)" actionListener="#{taskWidget.dataModel.loadFirstTime()}"
                    update="dashboard-tasks-container" global="false" async="true" process="@this"
                    oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); #{cc.attrs.onCompleteLoadWidget}; #{cc.attrs.isPreviewMode ? 'calculateFilterPaneltPosition();' : ''}" />
   <p:inputText type="hidden" value="#{cc.attrs.taskWidgetVar}-#{taskWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
-  <script>$(function() { loadTaskWidgetFirstTime_#{taskWidget.id}([{name: 'chunkSize', value: calculateTableChunkSize()}]); });</script>
 
   <div class="ui-g">
     <h:panelGroup layout="block"
