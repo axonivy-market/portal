@@ -68,7 +68,7 @@
         <p:ajax event="colResize" process="dashboard-cases" global="false" partialSubmit="true"
           listener="#{dashboardDetailModificationBean.onResizeColumn}" disabled="#{!isResizing}" />
         <f:attribute name="widgetId" value="#{caseWidget.id}" />
-        <p:ajax event="sort" update="dashboard-cases" onstart="liveScroll()" disabled="#{isResizing}" />
+        <p:ajax event="sort" update="dashboard-cases" onerror="liveScroll()" disabled="#{isResizing}" />
 
         <p:columns id="dashboard-cases-columns" var="column" value="#{caseWidget.columns}" styleClass="#{column.styleClass} #{(column.field eq 'name' or column.field eq 'actions' ) ? 'dashboard-cases__column-small-screen' : 'u-hidden-sm-down'} widget-column-header"
           visible="#{column.visible}" field="#{column.field}" filterable="false" sortBy="#{column.field}" sortable="#{(isPreviewMode or isReadOnlyMode) and column.sortable}"
@@ -169,11 +169,6 @@
   </div>
   <script type="text/javascript">
       function liveScroll() {
-        if (PF('dashboard-cases-#{caseWidget.id}') != null) {
-          PF('dashboard-cases-#{caseWidget.id}').scrollOffset = 0;
-          PF('dashboard-cases-#{caseWidget.id}').scrollBody.scrollTop(1);
-          PF('dashboard-cases-#{caseWidget.id}').allLoadedLiveScroll = false;
-        }
       }
 
     </script>
