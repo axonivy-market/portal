@@ -240,7 +240,7 @@ public class DashboardTaskSearchCriteria {
       // Only add if not already sorting by ID to avoid double sorting
       if (StringUtils.isNotBlank(criteria.getSortField())
           && !DashboardStandardTaskColumn.ID.getField().equalsIgnoreCase(criteria.getSortField())) {
-        query.orderBy().taskId().ascending();
+        query.orderBy().taskId().descending();
       }
       return this;
     }
