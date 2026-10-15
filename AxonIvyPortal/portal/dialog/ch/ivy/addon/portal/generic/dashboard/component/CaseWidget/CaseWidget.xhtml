@@ -21,19 +21,16 @@
   <c:set var="isResizing" value="#{!cc.attrs.isReadOnlyMode and !cc.attrs.isPreviewMode}" />
 
   <p:remoteCommand id="rcLoadCaseFirstTimeAIResult" rendered="#{cc.attrs.isAIResult}"
-    name="loadCaseWidgetFirstTime_#{caseWidget.id}" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
+    autoRun="true" onstart="addDashboardTableChunkSize(cfg)" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
     oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget};" />
   <p:inputText type="hidden" value="#{cc.attrs.caseWidgetVar}-#{caseWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
 
   <p:remoteCommand id="rcLoadCaseFirstTime" rendered="#{!cc.attrs.isAIResult}"
-    name="loadCaseWidgetFirstTime_#{caseWidget.id}" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
+    autoRun="true" onstart="addDashboardTableChunkSize(cfg)" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
     oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
   <p:inputText type="hidden" value="dashboard-cases-#{caseWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
-  <script>
-    $(function() { loadCaseWidgetFirstTime_#{caseWidget.id}([{name: 'chunkSize', value: calculateTableChunkSize()}]); });
-  </script>
 
   <div class="ui-g">
     <h:panelGroup layout="block"
