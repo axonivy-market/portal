@@ -85,7 +85,7 @@ public class DashboardProcessTaskSearchCriteria {
       // Only add if a primary sort was actually applied and it's not already sorting by ID
       if (order != null && org.apache.commons.lang3.StringUtils.isNotBlank(criteria.getSortField())
           && !DashboardStandardTaskColumn.ID.getField().equalsIgnoreCase(criteria.getSortField())) {
-        query.orderBy().taskId().ascending();
+        query.orderBy().taskId().descending();
       }
       return this;
     }

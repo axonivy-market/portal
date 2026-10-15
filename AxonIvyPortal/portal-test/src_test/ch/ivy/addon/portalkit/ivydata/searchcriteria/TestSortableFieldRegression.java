@@ -6,6 +6,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
@@ -106,9 +108,10 @@ class TestSortableFieldRegression {
   }
 
   @Test
-  void taskWidget_sortByNonIdField_includesToSecondaryIdSort() {
+  void taskWidget_sortByName_ordersByNameThenIdDescending() {
     String query = taskQuery("name", false);
-    assertThat(query).contains("ORDER BY").contains("Column(IWA_Task.TaskId)");
+    assertThat(query).contains(
+        "ORDER BY Column(IWA_TaskLocalized.Name) ASCENDING, Column(IWA_Task.TaskId) DESCENDING");
   }
 
   @Test
@@ -122,13 +125,16 @@ class TestSortableFieldRegression {
   @Test
   void taskWidget_sortByPriority_includesSecondaryIdSort() {
     String query = taskQuery("priority", true);
-    assertThat(query).contains("ORDER BY Column(IWA_Task.Priority) DESCENDING");
-    assertThat(query).contains("Column(IWA_Task.TaskId) DESCENDING");
+    assertThat(query).contains(
+        "ORDER BY Column(IWA_Task.Priority) DESCENDING, Column(IWA_Task.TaskId) DESCENDING");
   }
 
-  @Test
-  void processWidget_sortByNonIdField_includesToSecondaryIdSort() {
-    String query = processTaskQuery("name", false);
-    assertThat(query).contains("ORDER BY").contains("Column(IWA_Task.TaskId)");
+  @ParameterizedTest
+  @ValueSource(booleans = {false, true})
+  void processWidget_sortByName_ordersByNameThenIdDescending(boolean descending) {
+    String query = processTaskQuery("name", descending);
+    String direction = descending ? "DESCENDING" : "ASCENDING";
+    assertThat(query).contains(
+        "ORDER BY Column(IWA_TaskLocalized.Name) " + direction + ", Column(IWA_Task.TaskId) DESCENDING");
   }
 }
