@@ -54,6 +54,7 @@ public class TaskDetailsTest extends BaseTest {
   
   @AfterEach
   public void teardown() {
+    updateGlobalVariable(Variable.DISPLAY_USERS_OF_TASK_ACTIVATOR.getKey(), "false");
     permissions().denySpecificPortalPermission(PortalPermission.NOTE_READ_ALL_CASE_TASK_DETAILS);
   }
 
