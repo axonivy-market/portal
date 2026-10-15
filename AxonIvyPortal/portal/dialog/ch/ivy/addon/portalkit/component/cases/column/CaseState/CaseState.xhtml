@@ -20,12 +20,12 @@
   <c:set var="ellipsisText" value="#{cc.attrs.ellipsisText}" />
   <c:set var="showState" value="#{cc.attrs.alwaysShowState or cc.attrs.dataModel.isSelectedColumn('STATE')}" />
   <c:set var="state" value="#{empty cc.attrs.case ? cc.attrs.state : cc.attrs.case.businessState}" />
+  <c:set var="stateLabel" value="#{caseBean.getDisplayState(state)}" />
 
   <h:panelGroup rendered="#{showState}" id="#{componentId}"
     styleClass="case-header-default-cell state-column #{cc.attrs.stateStyleClass} #{cc.attrs.responsiveStyleClass}">
-    <h:outputText value="#{caseBean.getDisplayState(state)}"
+    <h:outputText value="#{stateLabel}" title="#{stateLabel}"
       styleClass="case-state #{state.toString().toLowerCase()}-case-state #{cc.attrs.stateIconStyleClass} #{ellipsisText ? 'ellipsis-state':''}" />
   </h:panelGroup>
-  <p:tooltip rendered="#{showState}" for="#{componentId}" value="#{caseBean.getDisplayState(state)}" styleClass="#{cc.attrs.stateTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click"/>
 </cc:implementation>
 </html>

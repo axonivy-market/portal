@@ -6,10 +6,8 @@
   
   <c:set var="caseName" value="#{empty column.display(caseItem) ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable') : column.display(caseItem)}" />
 
-  <h:outputText id="case-name" value="#{caseName}"
+  <h:outputText id="case-name" value="#{caseName}" title="#{caseName}"
     styleClass="#{column.fieldStyleClass} u-hidden-sm-down" style="#{column.fieldStyle}" />
-  <p:tooltip id="case-name-tooltip" for="case-name" styleClass="#{cc.attrs.stateTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click" 
-    value="#{caseName}" />
 
   <h:panelGroup layout="block" styleClass="u-hidden-md-up">
     <h:outputText value="#{caseName}"

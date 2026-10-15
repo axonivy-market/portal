@@ -31,15 +31,10 @@
       <pc:avatar securityMember="#{cc.attrs.securityMember}" renderedAvatar="#{cc.attrs.isShowAvatar}" representName="#{cc.attrs.representName}" showLabel="#{cc.attrs.showLabel}"/>
     </ui:fragment>
     <cc:renderFacet name="alternativeAvatar" />
-    <h:outputText id="#{cc.attrs.displayNameId}" value="#{cc.attrs.displayName}"
+    <h:outputText id="#{cc.attrs.displayNameId}" value="#{cc.attrs.displayName}" title="#{tooltipTechnicalDisplayName}"
       rendered="#{cc.attrs.displayNameRendered and !userMenuBean.isMobileDevice()}"
       styleClass="u-truncate-text #{cc.attrs.isShowAvatar ? 'name-after-avatar' : ''} #{cc.attrs.displayNameStyleClass} #{(cc.attrs.securityMember == null and cc.attrs.representName == null) ? 'u-no-padding-left' : ''}">
     </h:outputText>
-    <p:tooltip for="#{cc.attrs.displayNameId}"
-      value="#{tooltipTechnicalDisplayName}"
-      trackMouse="true"
-      hideEvent="mouseleave click"
-      rendered="#{cc.attrs.displayNameRendered and !userMenuBean.isMobileDevice()}" />
     <cc:renderFacet name="afterName" />
   </div>
 </cc:implementation>
