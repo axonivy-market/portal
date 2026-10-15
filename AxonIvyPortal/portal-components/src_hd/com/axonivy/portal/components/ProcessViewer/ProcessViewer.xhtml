@@ -45,13 +45,13 @@
                 columnClasses="process-details-column-title p-2 text-ellipsis, process-details-column-value text-ellipsis">
 
                 <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Name')}" />
-                <h:outputText id="process-start-name" value="#{data.webStartable.name}" title="#{data.webStartable.name}" styleClass="process-start-item-tooltip"/>
+                <h:outputText id="process-start-name" value="#{data.webStartable.name}" title="#{data.webStartable.name}" />
 
                 <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Description')}" />
-                <h:outputText id="process-start-description" value="#{data.webStartable.description}" title="#{data.webStartable.description}" styleClass="process-start-item-tooltip"/>
+                <h:outputText id="process-start-description" value="#{data.webStartable.description}" title="#{data.webStartable.description}" />
 
                 <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Categories')}" />
-                <h:outputText id="process-start-category" value="#{data.category}" title="#{data.category}" styleClass="process-start-item-tooltip"/>
+                <h:outputText id="process-start-category" value="#{data.category}" title="#{data.category}" />
 
                 <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Task/Activator')}" />
                 <h:panelGroup>
@@ -61,12 +61,11 @@
                 </h:panelGroup>
 
                 <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Type')}" />
-                <h:outputText id="process-type" value="#{processViewerBean.getProcessTypeDisplayName(data.webStartable.type)}" title="#{processViewerBean.getProcessTypeDisplayName(data.webStartable.type)}" styleClass="process-start-item-tooltip"/>
+                <h:outputText id="process-type" value="#{processViewerBean.getProcessTypeDisplayName(data.webStartable.type)}" title="#{processViewerBean.getProcessTypeDisplayName(data.webStartable.type)}" />
 
                 <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessId')}" />
-                <h:outputText id="process-start-id" value="#{data.webStartable.id}" title="#{data.webStartable.id}" styleClass="process-start-item-tooltip"/>
+                <h:outputText id="process-start-id" value="#{data.webStartable.id}" title="#{data.webStartable.id}" />
               </h:panelGrid>
-              <p:tooltip globalSelector="span.process-start-item-tooltip" trackMouse="true" hideEvent="mouseleave click"/>
             </div>
           </p:overlayPanel>
         </div>
