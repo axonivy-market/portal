@@ -30,10 +30,7 @@
                 <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down"
                   rendered="#{not empty process.description}">
                   <h:outputText id="info-workflow"
-                    styleClass="ti ti-info-circle process-description process-item" />
-                  <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{process.description}"
-                    position="top" trackMouse="true" hideEvent="mouseleave click"
-                    styleClass="js-process-start-list-item-description process-tooltip" />
+                    styleClass="ti ti-info-circle process-description process-item" title="#{process.description}"/>
                 </h:panelGroup>
                 <h:panelGroup styleClass="process-start-list-item-action"
                   rendered="#{compactDashboardProcessBean.isBrokenLink(process)}">
@@ -67,10 +64,7 @@
             <div class="process-item-action-container">
               <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down"
                 rendered="#{not empty process.description}">
-                <h:outputText id="info-workflow" styleClass="ti ti-info-circle process-description process-item" />
-                <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{process.description}" position="top"
-                  trackMouse="true" hideEvent="mouseleave click"
-                  styleClass="js-process-start-list-item-description process-tooltip" />
+                <h:outputText id="info-workflow" styleClass="ti ti-info-circle process-description process-item" title="#{process.description}"/>
               </h:panelGroup>
               <h:panelGroup styleClass="process-start-list-item-action"
                 rendered="#{compactDashboardProcessBean.isBrokenLink(process)}">
