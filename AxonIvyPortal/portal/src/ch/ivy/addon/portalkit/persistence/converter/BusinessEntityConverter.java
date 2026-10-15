@@ -212,6 +212,7 @@ public class BusinessEntityConverter {
           .builder()
           .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
           .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
+          .enable(MapperFeature.DEFAULT_VIEW_INCLUSION)
           .propertyNamingStrategy(PropertyNamingStrategies.LOWER_CAMEL_CASE)
           .build();
     }
