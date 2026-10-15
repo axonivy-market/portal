@@ -19,6 +19,15 @@ function calculateTableChunkSize() {
   return Math.min(maxTableChunkSize, Math.max(minTableChunkSize, rows));
 }
 
+function addDashboardTableChunkSize(config) {
+  if (!config.params) {
+    config.params = [];
+  }
+
+  const chunkSize = calculateTableChunkSize();
+  config.params.push({name: 'chunkSize', value: chunkSize});
+}
+
 function loadGrid(isResponsive) {
 
   // Set default height for cells
