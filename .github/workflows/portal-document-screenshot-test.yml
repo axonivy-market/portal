@@ -119,6 +119,7 @@ jobs:
           retention-days: 5
           path: |
             AxonIvyPortal/portal-selenium-test/target/*.zip
+            AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
       
       - name: Archive test reports
         uses: actions/upload-artifact@v7
