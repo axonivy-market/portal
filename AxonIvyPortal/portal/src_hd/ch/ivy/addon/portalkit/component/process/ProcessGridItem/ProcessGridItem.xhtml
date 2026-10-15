@@ -60,7 +60,7 @@
           ajax="#{!isExternalLink}"
           target="#{processTarget}"
           disabled="#{cc.attrs.readOnlyMode}"
-          global="#{!isExternalLink}" partialSubmit="true" process="@this">
+          global="#{!isExternalLink}" partialSubmit="true" process="@this" title="#{process.name}">
           <!-- Process Icon -->
           <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())} process-grid-view-icon #{cc.attrs.processIconStyleClass}" />
           <!-- Process Name -->
@@ -71,10 +71,8 @@
 
         <!-- Process Description -->
         <div class="ui-g-12 process-description js-process-start-list-item-description">
-          <h:outputText id="process-description" value="#{process.description}"
+          <h:outputText id="process-description" value="#{process.description}" title="#{process.description}"
             styleClass="text-center line-clamp-text-5 process-description__text" />
-          <p:tooltip id="info-workflow-tooltip" for="process-description" value="#{process.description}" position="top"
-            trackMouse="true" hideEvent="mouseleave click" styleClass="js-process-start-list-item-description process-tooltip" />
         </div>
         <!-- Start process -->
         <div class="ui-g-12 start-button-wrap" id="start-button-wrap-#{status.index}">
@@ -84,7 +82,6 @@
             ajax="#{!isExternalLink}"
             disabled="#{cc.attrs.readOnlyMode}" />
         </div>
-        <p:tooltip for="process-name" value="#{process.name}" trackMouse="true" hideEvent="mouseleave click" styleClass="process-tooltip"/>
       </h:form>
     </div>
   </h:panelGroup>
