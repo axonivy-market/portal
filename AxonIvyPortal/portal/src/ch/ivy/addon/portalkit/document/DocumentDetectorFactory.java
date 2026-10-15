@@ -26,7 +26,7 @@ public class DocumentDetectorFactory {
     } else if (DocumentExtensionConstants.ALLOWED_SVG_FORMAT.contains(fileExtension)) {
       return new SVGSecurityScanner();
     } else if (ImageDocumentDetector.isAllowedImageExtension(fileExtension)) {
-      return new ImageDocumentDetector(fileExtension);
+      return new ImageDocumentDetector();
     }
     return null;
   }

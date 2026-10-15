@@ -35,24 +35,19 @@ public class ImageDocumentDetector implements DocumentDetector {
   private static final Pattern SVG_TAG_PATTERN = Pattern.compile(
       "<([a-zA-Z0-9_-]+:)?svg[\\s/>]", Pattern.CASE_INSENSITIVE);
 
-  private final String extension;
-
-  public ImageDocumentDetector() {
-    this(null);
-  }
-
-  public ImageDocumentDetector(String extension) {
-    this.extension = extension;
-  }
+  public ImageDocumentDetector() {}
 
   @Override
   public boolean isSafe(InputStream inputStream) {
+    return isImageSafe(inputStream);
+  }
+
+  public static boolean isImageSafe(InputStream inputStream) {
     if (inputStream == null) {
       return false;
     }
     try {
-      byte[] content = inputStream.readAllBytes();
-      return isImageSafe(content, this.extension);
+      return isImageSafe(inputStream.readAllBytes());
     } catch (IOException e) {
       Ivy.log().error("Failed to read image input stream", e);
       return false;
@@ -60,49 +55,31 @@ public class ImageDocumentDetector implements DocumentDetector {
   }
 
   public static boolean isImageSafe(InputStream inputStream, String extension) {
-    if (inputStream == null) {
+    if (extension != null && !isAllowedImageExtension(extension)) {
       return false;
     }
-    try {
-      byte[] content = inputStream.readAllBytes();
-      return isImageSafe(content, extension);
-    } catch (IOException e) {
-      Ivy.log().error("Failed to read image input stream", e);
+    return isImageSafe(inputStream);
+  }
+
+  public static boolean isImageSafe(byte[] content) {
+    if (content == null || content.length < 4) {
       return false;
     }
+    if (matchesMagicBytes(content, PNG_SIGNATURE)) {
+      return isSafePng(content);
+    } else if (matchesMagicBytes(content, JPEG_SIGNATURE)) {
+      return isSafeJpeg(content);
+    } else if (isSafeSvg(content)) {
+      return true;
+    }
+    return false;
   }
 
   public static boolean isImageSafe(byte[] content, String extension) {
-    if (content == null || content.length == 0) {
+    if (extension != null && !isAllowedImageExtension(extension)) {
       return false;
     }
-
-    String ext = StringUtils.lowerCase(extension != null ? extension.trim() : null);
-
-    // If extension is supplied, verify it is an allowed image extension
-    if (ext != null && !isAllowedImageExtension(ext)) {
-      return false;
-    }
-
-    if ("svg".equals(ext)) {
-      return isSafeSvg(content);
-    } else if ("png".equals(ext)) {
-      return isSafePng(content);
-    } else if ("jpg".equals(ext) || "jpeg".equals(ext)) {
-      return isSafeJpeg(content);
-    } else if (ext == null) {
-      // Auto-detect format from magic bytes if extension not provided
-      if (matchesMagicBytes(content, PNG_SIGNATURE)) {
-        return isSafePng(content);
-      } else if (matchesMagicBytes(content, JPEG_SIGNATURE)) {
-        return isSafeJpeg(content);
-      } else if (isSafeSvg(content)) {
-        return true;
-      }
-      return false;
-    }
-
-    return false;
+    return isImageSafe(content);
   }
 
   public static boolean isAllowedImageExtension(String extension) {

@@ -158,37 +158,19 @@ class TestImageDocumentDetector {
   }
 
   @Test
-  void isSafe_detectorWithExtension_validatesMatchingFormatOnly() throws IOException {
-    ImageDocumentDetector pngDetector = new ImageDocumentDetector("png");
-    try (ByteArrayInputStream in = new ByteArrayInputStream(VALID_PNG_BYTES)) {
-      assertThat(pngDetector.isSafe(in)).isTrue();
-    }
-
-    ImageDocumentDetector svgDetector = new ImageDocumentDetector("svg");
-    try (ByteArrayInputStream in = new ByteArrayInputStream(SAFE_SVG.getBytes(StandardCharsets.UTF_8))) {
-      assertThat(svgDetector.isSafe(in)).isTrue();
-    }
+  void isImageSafe_bytesWithoutExtension_detectsValidImages() {
+    assertThat(ImageDocumentDetector.isImageSafe(VALID_PNG_BYTES)).isTrue();
+    assertThat(ImageDocumentDetector.isImageSafe(VALID_JPEG_BYTES)).isTrue();
+    byte[] svgBytes = SAFE_SVG.getBytes(StandardCharsets.UTF_8);
+    assertThat(ImageDocumentDetector.isImageSafe(svgBytes)).isTrue();
   }
 
   @Test
-  void isSafe_detectorWithExtension_rejectsMismatchedFormat() throws IOException {
-    ImageDocumentDetector pngDetector = new ImageDocumentDetector("png");
-    // Passing SVG content to png detector must fail
-    try (ByteArrayInputStream in = new ByteArrayInputStream(SAFE_SVG.getBytes(StandardCharsets.UTF_8))) {
-      assertThat(pngDetector.isSafe(in)).isFalse();
-    }
-
-    ImageDocumentDetector jpgDetector = new ImageDocumentDetector("jpg");
-    // Passing PNG content to jpg detector must fail
-    try (ByteArrayInputStream in = new ByteArrayInputStream(VALID_PNG_BYTES)) {
-      assertThat(jpgDetector.isSafe(in)).isFalse();
-    }
-
-    ImageDocumentDetector svgDetector = new ImageDocumentDetector("svg");
-    // Passing PNG content to svg detector must fail
-    try (ByteArrayInputStream in = new ByteArrayInputStream(VALID_PNG_BYTES)) {
-      assertThat(svgDetector.isSafe(in)).isFalse();
-    }
+  void isImageSafe_bytesWithoutExtension_rejectsInvalidContent() {
+    byte[] badBytes = new byte[] {0x00, 0x01, 0x02, 0x03};
+    assertThat(ImageDocumentDetector.isImageSafe(badBytes)).isFalse();
+    byte[] plainText = "plain text not an image".getBytes(StandardCharsets.UTF_8);
+    assertThat(ImageDocumentDetector.isImageSafe(plainText)).isFalse();
   }
 
   @Test
