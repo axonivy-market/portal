@@ -33,7 +33,7 @@ public class NavigationWidgetUtils {
                                           .read().inputStream().readAllBytes();
 
     if (oldFileContent != null && oldFileContent.length > 0) {
-      if (!ImageDocumentDetector.isImageSafe(oldFileContent, extension)) {
+      if (!ImageDocumentDetector.isImageSafe(oldFileContent)) {
         Ivy.log().warn("Navigation widget image clone rejected: unsafe content");
         return;
       }

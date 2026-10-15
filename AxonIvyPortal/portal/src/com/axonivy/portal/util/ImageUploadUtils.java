@@ -38,7 +38,7 @@ public class ImageUploadUtils {
         return new ImageUploadResult(null, null, true, "/Dialogs/components/CaseDocument/invalidFileMessage");
       }
 
-      if (!ImageDocumentDetector.isImageSafe(content, fileExtension)) {
+      if (!ImageDocumentDetector.isImageSafe(content)) {
         return new ImageUploadResult(null, null, true, "/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript");
       }
 
@@ -72,7 +72,7 @@ public class ImageUploadUtils {
         return StringUtils.EMPTY;
       }
       byte[] data = Base64.getDecoder().decode(base64Data.getBytes(StandardCharsets.UTF_8));
-      if (!ImageDocumentDetector.isImageSafe(data, imageType)) {
+      if (!ImageDocumentDetector.isImageSafe(data)) {
         Ivy.log().warn("Image rejected: unsafe image content (base64 path).");
         return StringUtils.EMPTY;
       }

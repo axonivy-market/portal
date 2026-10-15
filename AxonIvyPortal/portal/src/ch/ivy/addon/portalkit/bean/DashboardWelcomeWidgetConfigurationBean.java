@@ -134,7 +134,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       return;
     }
 
-    if (!ImageDocumentDetector.isImageSafe(content, extension)) {
+    if (!ImageDocumentDetector.isImageSafe(content)) {
       getWidget().setImageLocation(originalLocation);
       getWidget().setImageType(originalType);
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
@@ -190,7 +190,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       return;
     }
 
-    if (!ImageDocumentDetector.isImageSafe(content, extension)) {
+    if (!ImageDocumentDetector.isImageSafe(content)) {
       getWidget().setImageLocationDarkMode(originalLocation);
       getWidget().setImageTypeDarkMode(originalType);
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,

@@ -169,7 +169,7 @@ public class WelcomeWidgetUtils {
             widget.setImageLocation(null);
           } else {
             byte[] content = Base64.getDecoder().decode(widget.getImageContent());
-            if (!ImageDocumentDetector.isImageSafe(content, fileExtension)) {
+            if (!ImageDocumentDetector.isImageSafe(content)) {
               Ivy.log().warn("WidgetId [{0}] image rejected: unsafe or invalid image content (base64 path).", widget.getId());
               widget.setImageContent(null);
               widget.setImageLocation(null);
@@ -182,7 +182,7 @@ public class WelcomeWidgetUtils {
         } else {
           byte[] oldFileContent = WelcomeWidgetUtils.getImageAsByteData(widget.getImageLocation());
           if (oldFileContent != null) {
-            if (!ImageDocumentDetector.isImageSafe(oldFileContent, fileExtension)) {
+            if (!ImageDocumentDetector.isImageSafe(oldFileContent)) {
               Ivy.log().warn("WidgetId [{0}] image clone rejected: unsafe or invalid image content (clone path).", widget.getId());
               widget.setImageLocation(null);
             } else {
@@ -212,7 +212,7 @@ public class WelcomeWidgetUtils {
           } else {
             // If has defined content, create new image
             byte[] content = Base64.getDecoder().decode(widget.getImageContentDarkMode());
-            if (!ImageDocumentDetector.isImageSafe(content, fileExtensionDarkMode)) {
+            if (!ImageDocumentDetector.isImageSafe(content)) {
               Ivy.log().warn("WidgetId [{0}] image rejected: unsafe or invalid SVG/image content (base64 path).", widget.getId());
               widget.setImageContentDarkMode(null);
               widget.setImageLocationDarkMode(null);
@@ -226,7 +226,7 @@ public class WelcomeWidgetUtils {
           // If has defined location, clone new image
           byte[] oldFileContentDarkMode = WelcomeWidgetUtils.getImageAsByteData(widget.getImageLocationDarkMode());
           if (oldFileContentDarkMode != null) {
-            if (!ImageDocumentDetector.isImageSafe(oldFileContentDarkMode, fileExtensionDarkMode)) {
+            if (!ImageDocumentDetector.isImageSafe(oldFileContentDarkMode)) {
               Ivy.log().warn("WidgetId [{0}] dark mode image clone rejected: unsafe or invalid image content (clone path).", widget.getId());
               widget.setImageLocationDarkMode(null);
             } else {

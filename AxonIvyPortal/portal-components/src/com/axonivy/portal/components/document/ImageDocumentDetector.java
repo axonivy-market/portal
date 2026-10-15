@@ -54,13 +54,6 @@ public class ImageDocumentDetector implements DocumentDetector {
     }
   }
 
-  public static boolean isImageSafe(InputStream inputStream, String extension) {
-    if (extension != null && !isAllowedImageExtension(extension)) {
-      return false;
-    }
-    return isImageSafe(inputStream);
-  }
-
   public static boolean isImageSafe(byte[] content) {
     if (content == null || content.length < 4) {
       return false;
@@ -73,13 +66,6 @@ public class ImageDocumentDetector implements DocumentDetector {
       return true;
     }
     return false;
-  }
-
-  public static boolean isImageSafe(byte[] content, String extension) {
-    if (extension != null && !isAllowedImageExtension(extension)) {
-      return false;
-    }
-    return isImageSafe(content);
   }
 
   public static boolean isAllowedImageExtension(String extension) {

@@ -49,53 +49,37 @@ class TestImageDocumentDetector {
 
   @Test
   void isImageSafe_validPng_returnsTrue() {
-    assertThat(ImageDocumentDetector.isImageSafe(VALID_PNG_BYTES, "png")).isTrue();
+    assertThat(ImageDocumentDetector.isImageSafe(VALID_PNG_BYTES)).isTrue();
   }
 
   @Test
   void isImageSafe_validJpeg_returnsTrue() {
-    assertThat(ImageDocumentDetector.isImageSafe(VALID_JPEG_BYTES, "jpg")).isTrue();
-    assertThat(ImageDocumentDetector.isImageSafe(VALID_JPEG_BYTES, "jpeg")).isTrue();
+    assertThat(ImageDocumentDetector.isImageSafe(VALID_JPEG_BYTES)).isTrue();
   }
 
   @Test
   void isImageSafe_validSvg_returnsTrue() {
     byte[] svgBytes = SAFE_SVG.getBytes(StandardCharsets.UTF_8);
-    assertThat(ImageDocumentDetector.isImageSafe(svgBytes, "svg")).isTrue();
+    assertThat(ImageDocumentDetector.isImageSafe(svgBytes)).isTrue();
   }
 
   @Test
   void isImageSafe_nullOrEmptyData_returnsFalse() {
-    assertThat(ImageDocumentDetector.isImageSafe((byte[]) null, "png")).isFalse();
-    assertThat(ImageDocumentDetector.isImageSafe((java.io.InputStream) null, "png")).isFalse();
-    assertThat(ImageDocumentDetector.isImageSafe(new byte[0], "png")).isFalse();
-  }
-
-  @Test
-  void isImageSafe_unsupportedExtension_returnsFalse() {
-    assertThat(ImageDocumentDetector.isImageSafe(VALID_PNG_BYTES, "gif")).isFalse();
-    assertThat(ImageDocumentDetector.isImageSafe(VALID_PNG_BYTES, "exe")).isFalse();
-    assertThat(ImageDocumentDetector.isImageSafe(VALID_PNG_BYTES, "")).isFalse();
-  }
-
-  @Test
-  void isImageSafe_nullExtension_autoDetectsFromContent() {
-    assertThat(ImageDocumentDetector.isImageSafe(VALID_PNG_BYTES, null)).isTrue();
-    assertThat(ImageDocumentDetector.isImageSafe(VALID_JPEG_BYTES, null)).isTrue();
-    byte[] badPng = new byte[] {0x00, 0x01, 0x02, 0x03, 0x04};
-    assertThat(ImageDocumentDetector.isImageSafe(badPng, null)).isFalse();
+    assertThat(ImageDocumentDetector.isImageSafe((byte[]) null)).isFalse();
+    assertThat(ImageDocumentDetector.isImageSafe((java.io.InputStream) null)).isFalse();
+    assertThat(ImageDocumentDetector.isImageSafe(new byte[0])).isFalse();
   }
 
   @Test
   void isImageSafe_pngWrongMagicBytes_returnsFalse() {
     byte[] badPng = new byte[] {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
-    assertThat(ImageDocumentDetector.isImageSafe(badPng, "png")).isFalse();
+    assertThat(ImageDocumentDetector.isImageSafe(badPng)).isFalse();
   }
 
   @Test
   void isImageSafe_jpegWrongMagicBytes_returnsFalse() {
     byte[] badJpeg = new byte[] {0x00, 0x01, 0x02, 0x03};
-    assertThat(ImageDocumentDetector.isImageSafe(badJpeg, "jpg")).isFalse();
+    assertThat(ImageDocumentDetector.isImageSafe(badJpeg)).isFalse();
   }
 
   @Test
@@ -105,7 +89,7 @@ class TestImageDocumentDetector {
     System.arraycopy(VALID_PNG_BYTES, 0, merged, 0, VALID_PNG_BYTES.length);
     System.arraycopy(scriptBytes, 0, merged, VALID_PNG_BYTES.length, scriptBytes.length);
 
-    assertThat(ImageDocumentDetector.isImageSafe(merged, "png")).isFalse();
+    assertThat(ImageDocumentDetector.isImageSafe(merged)).isFalse();
   }
 
   @Test
@@ -115,13 +99,13 @@ class TestImageDocumentDetector {
     System.arraycopy(VALID_JPEG_BYTES, 0, merged, 0, VALID_JPEG_BYTES.length);
     System.arraycopy(scriptBytes, 0, merged, VALID_JPEG_BYTES.length, scriptBytes.length);
 
-    assertThat(ImageDocumentDetector.isImageSafe(merged, "jpg")).isFalse();
+    assertThat(ImageDocumentDetector.isImageSafe(merged)).isFalse();
   }
 
   @Test
   void isImageSafe_svgContainingScript_returnsFalse() {
     byte[] svgBytes = SCRIPT_SVG.getBytes(StandardCharsets.UTF_8);
-    assertThat(ImageDocumentDetector.isImageSafe(svgBytes, "svg")).isFalse();
+    assertThat(ImageDocumentDetector.isImageSafe(svgBytes)).isFalse();
   }
 
   @Test
@@ -177,21 +161,20 @@ class TestImageDocumentDetector {
   void isImageSafe_nonSvgXml_returnsFalse() {
     String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><document><title>Not SVG</title></document>";
     byte[] xmlBytes = xml.getBytes(StandardCharsets.UTF_8);
-    assertThat(ImageDocumentDetector.isImageSafe(xmlBytes, "svg")).isFalse();
-    assertThat(ImageDocumentDetector.isImageSafe(xmlBytes, null)).isFalse();
+    assertThat(ImageDocumentDetector.isImageSafe(xmlBytes)).isFalse();
   }
 
   @Test
   void isImageSafe_prefixedSvg_returnsTrue() {
     String prefixedSvg = "<s:svg xmlns:s=\"http://www.w3.org/2000/svg\" width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\"/></s:svg>";
     byte[] svgBytes = prefixedSvg.getBytes(StandardCharsets.UTF_8);
-    assertThat(ImageDocumentDetector.isImageSafe(svgBytes, "svg")).isTrue();
+    assertThat(ImageDocumentDetector.isImageSafe(svgBytes)).isTrue();
   }
 
   @Test
   void isImageSafe_svgWithLongLeadingComment_returnsTrue() {
     String longComment = "<!-- " + "A".repeat(2048) + " -->\n" + SAFE_SVG;
     byte[] svgBytes = longComment.getBytes(StandardCharsets.UTF_8);
-    assertThat(ImageDocumentDetector.isImageSafe(svgBytes, "svg")).isTrue();
+    assertThat(ImageDocumentDetector.isImageSafe(svgBytes)).isTrue();
   }
 }
