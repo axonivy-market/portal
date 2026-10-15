@@ -156,4 +156,74 @@ class TestImageDocumentDetector {
       assertThat(detector.isSafe(in)).isFalse();
     }
   }
+
+  @Test
+  void isSafe_detectorWithExtension_validatesMatchingFormatOnly() throws IOException {
+    ImageDocumentDetector pngDetector = new ImageDocumentDetector("png");
+    try (ByteArrayInputStream in = new ByteArrayInputStream(VALID_PNG_BYTES)) {
+      assertThat(pngDetector.isSafe(in)).isTrue();
+    }
+
+    ImageDocumentDetector svgDetector = new ImageDocumentDetector("svg");
+    try (ByteArrayInputStream in = new ByteArrayInputStream(SAFE_SVG.getBytes(StandardCharsets.UTF_8))) {
+      assertThat(svgDetector.isSafe(in)).isTrue();
+    }
+  }
+
+  @Test
+  void isSafe_detectorWithExtension_rejectsMismatchedFormat() throws IOException {
+    ImageDocumentDetector pngDetector = new ImageDocumentDetector("png");
+    // Passing SVG content to png detector must fail
+    try (ByteArrayInputStream in = new ByteArrayInputStream(SAFE_SVG.getBytes(StandardCharsets.UTF_8))) {
+      assertThat(pngDetector.isSafe(in)).isFalse();
+    }
+
+    ImageDocumentDetector jpgDetector = new ImageDocumentDetector("jpg");
+    // Passing PNG content to jpg detector must fail
+    try (ByteArrayInputStream in = new ByteArrayInputStream(VALID_PNG_BYTES)) {
+      assertThat(jpgDetector.isSafe(in)).isFalse();
+    }
+
+    ImageDocumentDetector svgDetector = new ImageDocumentDetector("svg");
+    // Passing PNG content to svg detector must fail
+    try (ByteArrayInputStream in = new ByteArrayInputStream(VALID_PNG_BYTES)) {
+      assertThat(svgDetector.isSafe(in)).isFalse();
+    }
+  }
+
+  @Test
+  void isImageSafe_nonSvgXml_returnsFalse() {
+    String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><document><title>Not SVG</title></document>";
+    byte[] xmlBytes = xml.getBytes(StandardCharsets.UTF_8);
+    assertThat(ImageDocumentDetector.isImageSafe(xmlBytes, "svg")).isFalse();
+    assertThat(ImageDocumentDetector.isImageSafe(xmlBytes, null)).isFalse();
+  }
+
+  @Test
+  void isImageSafe_prefixedSvg_returnsTrue() {
+    String prefixedSvg = "<s:svg xmlns:s=\"http://www.w3.org/2000/svg\" width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\"/></s:svg>";
+    byte[] svgBytes = prefixedSvg.getBytes(StandardCharsets.UTF_8);
+    assertThat(ImageDocumentDetector.isImageSafe(svgBytes, "svg")).isTrue();
+  }
+
+  @Test
+  void isImageSafe_prefixedSvgWithInvalidNamespace_returnsFalse() {
+    String invalidNsSvg = "<s:svg xmlns:s=\"http://example.com/not-svg\" width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\"/></s:svg>";
+    byte[] svgBytes = invalidNsSvg.getBytes(StandardCharsets.UTF_8);
+    assertThat(ImageDocumentDetector.isImageSafe(svgBytes, "svg")).isFalse();
+  }
+
+  @Test
+  void isImageSafe_svgWithLongLeadingComment_returnsTrue() {
+    String longComment = "<!-- " + "A".repeat(2048) + " -->\n" + SAFE_SVG;
+    byte[] svgBytes = longComment.getBytes(StandardCharsets.UTF_8);
+    assertThat(ImageDocumentDetector.isImageSafe(svgBytes, "svg")).isTrue();
+  }
+
+  @Test
+  void isImageSafe_multipleRootsXml_returnsFalse() {
+    String multiRoot = "<svg xmlns=\"http://www.w3.org/2000/svg\"/><svg xmlns=\"http://www.w3.org/2000/svg\"/>";
+    byte[] svgBytes = multiRoot.getBytes(StandardCharsets.UTF_8);
+    assertThat(ImageDocumentDetector.isImageSafe(svgBytes, "svg")).isFalse();
+  }
 }

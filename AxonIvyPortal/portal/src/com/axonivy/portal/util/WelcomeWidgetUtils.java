@@ -159,36 +159,36 @@ public class WelcomeWidgetUtils {
         Ivy.log().warn("WidgetId [{0}] image rejected: invalid image extension [{1}].", widget.getId(), fileExtension);
         widget.setImageContent(null);
         widget.setImageLocation(null);
-        return;
-      }
-      String imageLocation = widgetId.concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtension);
-      ContentObject newImageObject = WelcomeWidgetUtils.getImageContentObject(getFileNameOfImage(imageLocation), fileExtension);
-      if (hasImageContent) {
-        if (UploadDocumentUtils.isBase64ImageSizeExceeded(widget.getImageContent())) {
-          Ivy.log().warn("WidgetId [{0}] image rejected: size exceeded limit (base64 path).", widget.getId());
-          widget.setImageContent(null);
-          widget.setImageLocation(null);
-          return;
-        }
-        byte[] content = Base64.getDecoder().decode(widget.getImageContent());
-        if (!ImageDocumentDetector.isImageSafe(content, fileExtension)) {
-          Ivy.log().warn("WidgetId [{0}] image rejected: unsafe or invalid image content (base64 path).", widget.getId());
-          widget.setImageContent(null);
-          widget.setImageLocation(null);
-          return;
-        }
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(content);
-        widget.setImageLocation(imageLocation);
-        widget.setImageContent(null);
       } else {
-        byte[] oldFileContent = WelcomeWidgetUtils.getImageAsByteData(widget.getImageLocation());
-        if (oldFileContent != null) {
-          if (!ImageDocumentDetector.isImageSafe(oldFileContent, fileExtension)) {
-            Ivy.log().warn("WidgetId [{0}] image clone rejected: unsafe or invalid image content (clone path).", widget.getId());
+        String imageLocation = widgetId.concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtension);
+        ContentObject newImageObject = WelcomeWidgetUtils.getImageContentObject(getFileNameOfImage(imageLocation), fileExtension);
+        if (hasImageContent) {
+          if (UploadDocumentUtils.isBase64ImageSizeExceeded(widget.getImageContent())) {
+            Ivy.log().warn("WidgetId [{0}] image rejected: size exceeded limit (base64 path).", widget.getId());
+            widget.setImageContent(null);
             widget.setImageLocation(null);
-            return;
+          } else {
+            byte[] content = Base64.getDecoder().decode(widget.getImageContent());
+            if (!ImageDocumentDetector.isImageSafe(content, fileExtension)) {
+              Ivy.log().warn("WidgetId [{0}] image rejected: unsafe or invalid image content (base64 path).", widget.getId());
+              widget.setImageContent(null);
+              widget.setImageLocation(null);
+            } else {
+              WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(content);
+              widget.setImageLocation(imageLocation);
+              widget.setImageContent(null);
+            }
           }
-          WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(oldFileContent);
+        } else {
+          byte[] oldFileContent = WelcomeWidgetUtils.getImageAsByteData(widget.getImageLocation());
+          if (oldFileContent != null) {
+            if (!ImageDocumentDetector.isImageSafe(oldFileContent, fileExtension)) {
+              Ivy.log().warn("WidgetId [{0}] image clone rejected: unsafe or invalid image content (clone path).", widget.getId());
+              widget.setImageLocation(null);
+            } else {
+              WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(oldFileContent);
+            }
+          }
         }
       }
     }
@@ -201,37 +201,38 @@ public class WelcomeWidgetUtils {
         Ivy.log().warn("WidgetId [{0}] dark mode image rejected: invalid image extension [{1}].", widget.getId(), fileExtensionDarkMode);
         widget.setImageContentDarkMode(null);
         widget.setImageLocationDarkMode(null);
-        return;
-      }
-      String imageLocationDarkMode = widgetId.concat(WelcomeWidgetUtils.DARK_MODE).concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtensionDarkMode);
-      ContentObject newImageObjectDarkMode = WelcomeWidgetUtils.getImageContentObject(getFileNameOfImage(imageLocationDarkMode), fileExtensionDarkMode);
-      if (hasImageContentDarkMode) {
-        if (UploadDocumentUtils.isBase64ImageSizeExceeded(widget.getImageContentDarkMode())) {
-          Ivy.log().warn("WidgetId [{0}] dark mode image rejected: size exceeded limit (base64 path).", widget.getId());
-          widget.setImageContentDarkMode(null);
-          widget.setImageLocationDarkMode(null);
-          return;
-        }
-        // If has defined content, create new image
-        byte[] content = Base64.getDecoder().decode(widget.getImageContentDarkMode());
-        if (!ImageDocumentDetector.isImageSafe(content, fileExtensionDarkMode)) {
-          Ivy.log().warn("WidgetId [{0}] image rejected: unsafe or invalid SVG/image content (base64 path).", widget.getId());
-          widget.setImageContentDarkMode(null);
-          widget.setImageLocationDarkMode(null);
-          return;
-        }
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObjectDarkMode).write().bytes(content);
-        widget.setImageLocationDarkMode(imageLocationDarkMode);
-        widget.setImageContentDarkMode(null);
       } else {
-        // If has defined location, clone new image
-        byte[] oldFileContentDarkMode = WelcomeWidgetUtils.getImageAsByteData(widget.getImageLocationDarkMode());
-        if (oldFileContentDarkMode != null) {
-          if (!ImageDocumentDetector.isImageSafe(oldFileContentDarkMode, fileExtensionDarkMode)) {
-            Ivy.log().warn("WidgetId [{0}] dark mode image clone rejected: unsafe or invalid image content (clone path).", widget.getId());
-            return;
+        String imageLocationDarkMode = widgetId.concat(WelcomeWidgetUtils.DARK_MODE).concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtensionDarkMode);
+        ContentObject newImageObjectDarkMode = WelcomeWidgetUtils.getImageContentObject(getFileNameOfImage(imageLocationDarkMode), fileExtensionDarkMode);
+        if (hasImageContentDarkMode) {
+          if (UploadDocumentUtils.isBase64ImageSizeExceeded(widget.getImageContentDarkMode())) {
+            Ivy.log().warn("WidgetId [{0}] dark mode image rejected: size exceeded limit (base64 path).", widget.getId());
+            widget.setImageContentDarkMode(null);
+            widget.setImageLocationDarkMode(null);
+          } else {
+            // If has defined content, create new image
+            byte[] content = Base64.getDecoder().decode(widget.getImageContentDarkMode());
+            if (!ImageDocumentDetector.isImageSafe(content, fileExtensionDarkMode)) {
+              Ivy.log().warn("WidgetId [{0}] image rejected: unsafe or invalid SVG/image content (base64 path).", widget.getId());
+              widget.setImageContentDarkMode(null);
+              widget.setImageLocationDarkMode(null);
+            } else {
+              WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObjectDarkMode).write().bytes(content);
+              widget.setImageLocationDarkMode(imageLocationDarkMode);
+              widget.setImageContentDarkMode(null);
+            }
           }
-          WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObjectDarkMode).write().bytes(oldFileContentDarkMode);
+        } else {
+          // If has defined location, clone new image
+          byte[] oldFileContentDarkMode = WelcomeWidgetUtils.getImageAsByteData(widget.getImageLocationDarkMode());
+          if (oldFileContentDarkMode != null) {
+            if (!ImageDocumentDetector.isImageSafe(oldFileContentDarkMode, fileExtensionDarkMode)) {
+              Ivy.log().warn("WidgetId [{0}] dark mode image clone rejected: unsafe or invalid image content (clone path).", widget.getId());
+              widget.setImageLocationDarkMode(null);
+            } else {
+              WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObjectDarkMode).write().bytes(oldFileContentDarkMode);
+            }
+          }
         }
       }
     }

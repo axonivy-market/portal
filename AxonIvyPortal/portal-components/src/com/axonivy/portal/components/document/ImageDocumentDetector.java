@@ -9,6 +9,10 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.parser.Parser;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -32,6 +36,16 @@ public class ImageDocumentDetector implements DocumentDetector {
   private static final Pattern SCRIPT_OR_HTML_PATTERN = Pattern.compile(
       "(?i)(<(script|html|head|body|iframe|object|embed|!doctype)|javascript:)");
 
+  private final String extension;
+
+  public ImageDocumentDetector() {
+    this(null);
+  }
+
+  public ImageDocumentDetector(String extension) {
+    this.extension = extension;
+  }
+
   @Override
   public boolean isSafe(InputStream inputStream) {
     if (inputStream == null) {
@@ -39,7 +53,7 @@ public class ImageDocumentDetector implements DocumentDetector {
     }
     try {
       byte[] content = inputStream.readAllBytes();
-      return isImageSafe(content, null);
+      return isImageSafe(content, this.extension);
     } catch (IOException e) {
       Ivy.log().error("Failed to read image input stream", e);
       return false;
@@ -83,8 +97,8 @@ public class ImageDocumentDetector implements DocumentDetector {
         return isSafePng(content);
       } else if (matchesMagicBytes(content, JPEG_SIGNATURE)) {
         return isSafeJpeg(content);
-      } else if (isPotentialSvgContent(content)) {
-        return isSafeSvg(content);
+      } else if (isSafeSvg(content)) {
+        return true;
       }
       return false;
     }
@@ -117,14 +131,6 @@ public class ImageDocumentDetector implements DocumentDetector {
     return !containsScriptOrHtml(content);
   }
 
-  private static boolean isSafeSvg(byte[] content) {
-    if (!isPotentialSvgContent(content)) {
-      return false;
-    }
-    String svgText = new String(content, StandardCharsets.UTF_8);
-    return SVGSecurityScanner.isSafe(svgText);
-  }
-
   private static boolean matchesMagicBytes(byte[] content, byte[] signature) {
     if (content.length < signature.length) {
       return false;
@@ -137,12 +143,56 @@ public class ImageDocumentDetector implements DocumentDetector {
     return true;
   }
 
-  private static boolean isPotentialSvgContent(byte[] content) {
+  private static boolean isSafeSvg(byte[] content) {
     if (content == null || content.length < 4) {
       return false;
     }
-    String snippet = new String(content, 0, Math.min(content.length, 1024), StandardCharsets.UTF_8).trim().toLowerCase(Locale.ROOT);
-    return snippet.startsWith("<svg") || snippet.contains("<svg") || snippet.startsWith("<?xml");
+    int checkLen = Math.min(content.length, 1024);
+    for (int i = 0; i < checkLen; i++) {
+      if (content[i] == 0) {
+        return false;
+      }
+    }
+    String svgText = new String(content, StandardCharsets.UTF_8);
+    return isSvgDocument(svgText) && SVGSecurityScanner.isSafe(svgText);
+  }
+
+  private static boolean isSvgDocument(String svgText) {
+    if (StringUtils.isBlank(svgText)) {
+      return false;
+    }
+    try {
+      Document doc = Jsoup.parse(svgText, "", Parser.xmlParser());
+      if (doc.children().size() != 1) {
+        return false;
+      }
+      Element root = doc.firstElementChild();
+      if (root == null) {
+        return false;
+      }
+      String tag = root.tagName().toLowerCase(Locale.ROOT);
+      String localName = tag.contains(":") ? tag.substring(tag.lastIndexOf(':') + 1) : tag;
+      if (!"svg".equals(localName)) {
+        return false;
+      }
+      if (tag.contains(":")) {
+        String prefix = tag.substring(0, tag.indexOf(':'));
+        String ns = root.attr("xmlns:" + prefix);
+        if (StringUtils.isNotBlank(ns) && !"http://www.w3.org/2000/svg".equalsIgnoreCase(ns.trim())) {
+          return false;
+        }
+      }
+      if (root.hasAttr("xmlns")) {
+        String defaultNs = root.attr("xmlns");
+        if (StringUtils.isNotBlank(defaultNs) && !"http://www.w3.org/2000/svg".equalsIgnoreCase(defaultNs.trim())) {
+          return false;
+        }
+      }
+      return true;
+    } catch (Exception e) {
+      Ivy.log().error("Failed to parse SVG document", e);
+      return false;
+    }
   }
 
   private static boolean containsScriptOrHtml(byte[] content) {
