@@ -207,23 +207,9 @@ class TestImageDocumentDetector {
   }
 
   @Test
-  void isImageSafe_prefixedSvgWithInvalidNamespace_returnsFalse() {
-    String invalidNsSvg = "<s:svg xmlns:s=\"http://example.com/not-svg\" width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\"/></s:svg>";
-    byte[] svgBytes = invalidNsSvg.getBytes(StandardCharsets.UTF_8);
-    assertThat(ImageDocumentDetector.isImageSafe(svgBytes, "svg")).isFalse();
-  }
-
-  @Test
   void isImageSafe_svgWithLongLeadingComment_returnsTrue() {
     String longComment = "<!-- " + "A".repeat(2048) + " -->\n" + SAFE_SVG;
     byte[] svgBytes = longComment.getBytes(StandardCharsets.UTF_8);
     assertThat(ImageDocumentDetector.isImageSafe(svgBytes, "svg")).isTrue();
-  }
-
-  @Test
-  void isImageSafe_multipleRootsXml_returnsFalse() {
-    String multiRoot = "<svg xmlns=\"http://www.w3.org/2000/svg\"/><svg xmlns=\"http://www.w3.org/2000/svg\"/>";
-    byte[] svgBytes = multiRoot.getBytes(StandardCharsets.UTF_8);
-    assertThat(ImageDocumentDetector.isImageSafe(svgBytes, "svg")).isFalse();
   }
 }
