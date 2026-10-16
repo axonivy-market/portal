@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Report the latest dispatched attempt per branch in the preceding 24 hours.
+# Report the latest completed dispatched run per branch in the preceding 24 hours.
 # Failures and cancellations go into the summary; missing or incomplete runs are warnings.
 repo=${GITHUB_REPOSITORY:?}
 now=$(date -u -d "${REPORT_NOW:-now}" +%s)
@@ -17,24 +17,28 @@ report_date=$(TZ=Asia/Ho_Chi_Minh date -d "@$now" +%Y-%m-%d)
 workdir=$(mktemp -d)
 trap 'rm -rf "$workdir"' EXIT
 
-latest_run() {
+latest_completed_run() {
   local workflow=$1 branch=$2
   gh api --paginate --method GET "repos/$repo/actions/workflows/$workflow/runs" \
-    -f event=workflow_dispatch -f branch="$branch" -f "created=>=$start_iso" -f per_page=100 \
+    -f event=workflow_dispatch -f status=completed -f branch="$branch" -f "created=>=$start_iso" -f per_page=100 \
     --jq '.workflow_runs[]' |
     jq -s --arg branch "$branch" --argjson start "$start" --argjson end "$now" '
-      map(select(.head_branch == $branch and .event == "workflow_dispatch")
+      map(select(.head_branch == $branch and .event == "workflow_dispatch" and .status == "completed")
         | select((.created_at | fromdateiso8601) >= $start
           and (.created_at | fromdateiso8601) < $end))
       | max_by([.created_at, .id]) // empty'
 }
 
 failed_tests() {
-  local archive=$1 cases=$workdir/cases.xml.txt name
+  local archive=$1 cases=$workdir/cases.xml.txt name failure_count
   unzip -tqq "$archive" || return 1
   : > "$cases"
   while IFS= read -r name; do
     [[ ${name##*/} == TEST-*.xml ]] || continue
+    failure_count=$(unzip -p "$archive" "$name" |
+      xmlstarlet sel -T -t -v 'count(//testcase[failure or error])') || return 1
+    [[ $failure_count =~ ^[0-9]+$ ]] || return 1
+    (( failure_count == 0 )) && continue
     unzip -p "$archive" "$name" |
       xmlstarlet sel -t -m '//testcase[failure or error]' \
         -v '@classname' -o $'\t' -v '@name' -n >> "$cases" || return 1
@@ -79,9 +83,9 @@ while IFS='|' read -r title workflow branches; do
   for pair in $branches; do
     label=${pair%%:*}
     branch=${pair#*:}
-    run=$(latest_run "$workflow" "$branch")
+    run=$(latest_completed_run "$workflow" "$branch")
     if [[ -z $run || $(jq -r '.status' <<< "$run") != completed ]]; then
-      echo "::warning::$title $label: no completed latest run in the reporting window."
+      echo "::warning::$title $label: no completed run in the reporting window."
       continue
     fi
     conclusion=$(jq -r '.conclusion' <<< "$run")
