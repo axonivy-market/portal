@@ -607,7 +607,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getProcessLinkInCustomIFrameWidget() {
-    WebElement formInFrame = findElementByCssSelector("form[id$='custom-widget-iframe-data']");
+    WebElement formInFrame = $("form[id$='custom-widget-iframe-data']").shouldBe(exist, DEFAULT_TIMEOUT);
     return formInFrame.getDomAttribute("action");
   }
 
