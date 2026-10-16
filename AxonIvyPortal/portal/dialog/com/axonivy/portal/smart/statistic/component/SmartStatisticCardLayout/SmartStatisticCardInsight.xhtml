@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces">
+
+  <h:panelGroup id="insight-panel" layout="block"
+    styleClass="smart-layout__texts #{cc.attrs.card.textsStyleClass}"
+    rendered="#{cc.attrs.card.available and cc.attrs.managedBean.agentAvailable}">
+
+    <p:link id="insight-toggle" styleClass="smart-layout__tab" href="#"
+      onclick="smartStatToggleTucked(this); return false;">
+      <f:passThroughAttribute name="aria-expanded" value="false" />
+      <i class="ti ti-sparkles"></i>
+      <h:outputText id="insight-toggle-label" styleClass="smart-layout__tab-label"
+        value="Show the AI evaluation" />
+      <i class="ti ti-chevron-down smart-layout__caret"></i>
+    </p:link>
+
+    <h:panelGroup id="insight-pair" layout="block" styleClass="smart-layout__pair">
+      <h:panelGroup id="insight-region" layout="block"
+        styleClass="smart-region smart-region--insight smart-card__insight">
+        <h:outputText id="insight-text" styleClass="smart-card__insight-text" escape="true"
+          value="#{cc.attrs.card.insight}" />
+      </h:panelGroup>
+    </h:panelGroup>
+  </h:panelGroup>
+
+</ui:composition>

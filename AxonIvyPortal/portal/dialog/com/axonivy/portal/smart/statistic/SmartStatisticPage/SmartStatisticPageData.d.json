@@ -1,0 +1,5 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
+  "simpleName" : "SmartStatisticPageData",
+  "namespace" : "com.axonivy.portal.smart.statistic.SmartStatisticPage"
+}

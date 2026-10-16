@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces" xmlns:f="jakarta.faces.core">
+
+  <!-- Which tasks or cases reach the chart. -->
+  <h:panelGroup styleClass="field col-12" layout="block">
+    <div>
+      <h:panelGroup id="user-filter" layout="block" styleClass="dashboard-widget-filter__main-panel">
+        <h:panelGroup layout="block" styleClass="dashboard-widget-filter__list" rendered="#{not empty managedBean.statistic.filters}">
+          <ui:repeat id="filter-list" var="filter" value="#{managedBean.statistic.filters}"
+            varStatus="status">
+            <div class="dashboard-widget-filter__condition">
+              <div class="dashboard-widget-filter__connector">
+                <h:panelGroup layout="block" styleClass="filter-and-badge" rendered="#{status.index gt 0}">
+                  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/And')}
+                </h:panelGroup>
+              </div>
+              <ic:com.axonivy.portal.page.component.StatisticFilter id="filter-component" filter="#{filter}"
+                managedBean="#{managedBean}" conditionBasedColoringComponent="#{conditionBasedColoringComponent}"
+                componentToUpdate="#{p:resolveFirstComponentWithId('user-filter', view).clientId}"
+                filterIndex="#{status.index}" readOnly="true" />
+            </div>
+          </ui:repeat>
+        </h:panelGroup>
+
+        <div>
+          <p:commandButton id="add-filter" icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
+            update="user-filter" process="user-filter" styleClass="add-condition-button"
+            actionListener="#{managedBean.addNewFilter()}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/AddCondition')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/AddCondition')}"
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/AddCondition')}"
+            immediate="true" partialSubmit="true">
+            <f:param name="skipValidator" value="true" />
+          </p:commandButton>
+        </div>
+      </h:panelGroup>
+    </div>
+  </h:panelGroup>
+
+</ui:composition>

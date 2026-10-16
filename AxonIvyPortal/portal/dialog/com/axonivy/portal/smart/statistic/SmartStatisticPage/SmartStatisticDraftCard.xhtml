@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces">
+
+  <!-- The proposed chart, shown where it would live, with Keep, Refine and Discard. -->
+  <h:panelGroup id="draft-card" layout="block" styleClass="smart-draft"
+    rendered="#{smartStatisticManagementBean.answerActive}">
+    <h:panelGroup id="draft-slot" layout="block" styleClass="smart-draft__slot"
+      style="--smart-draft-w:#{smartStatisticManagementBean.draftWidth};--smart-draft-h:#{smartStatisticManagementBean.draftHeight}">
+      <h:panelGroup id="draft-body" layout="block" styleClass="smart-card smart-card--draft">
+
+        <h:panelGroup id="draft-head" layout="block" styleClass="smart-card__head">
+          <span class="smart-card__badge">Draft</span>
+          <span class="smart-card__handle">
+            <span class="smart-card__title" title="#{smartStatisticManagementBean.statistic.name}">#{smartStatisticManagementBean.statistic.name}</span>
+            <h:panelGroup id="draft-scope" layout="block" styleClass="smart-card__scope"
+              rendered="#{not empty smartStatisticManagementBean.answerScope}">
+              <f:passThroughAttribute name="title" value="#{smartStatisticManagementBean.answerScope}" />#{smartStatisticManagementBean.answerScope}</h:panelGroup>
+          </span>
+        </h:panelGroup>
+
+        <h:panelGroup id="draft-canvas-frame" layout="block" styleClass="smart-card__body">
+          <div id="smart-answer-canvas"
+            class="ui-chart smart-card__canvas statistic-chart-widget__canvas"></div>
+        </h:panelGroup>
+
+        <h:panelGroup id="draft-actions" layout="block" styleClass="smart-card__decide">
+          <p:commandButton id="answer-keep" styleClass="portal-pill-btn smart-btn--draft"
+            value="Keep on board" ariaLabel="Keep on board"
+            action="#{smartStatisticManagementBean.keepAnswer}"
+            process="@this" update="page-modes" oncomplete="smartStatAfterModeSwitch();" />
+          <p:commandButton id="answer-refine" styleClass="portal-pill-btn"
+            value="Refine" ariaLabel="Refine"
+            actionListener="#{smartStatisticManagementBean.refineAnswer}"
+            process="@this" update="page-modes" oncomplete="smartStatAfterModeSwitch();" />
+          <p:commandButton id="answer-dismiss" styleClass="portal-pill-btn smart-btn--quiet"
+            value="Discard" ariaLabel="Discard"
+            actionListener="#{smartStatisticManagementBean.dismissAnswer}" immediate="true"
+            process="@this" update="view-mode" oncomplete="smartStatAfterModeSwitch();" />
+          <p:link id="draft-why" styleClass="portal-link smart-card__why" href="#"
+            rendered="#{not empty smartStatisticManagementBean.assistantNote}"
+            onclick="smartStatToggleWhy(this); return false;">
+            <f:passThroughAttribute name="aria-expanded" value="false" />
+            <span>Why this chart?</span>
+          </p:link>
+        </h:panelGroup>
+
+        <h:panelGroup id="draft-note" rendered="#{not empty smartStatisticManagementBean.assistantNote}">
+          <div class="smart-thinking smart-thinking--inline" hidden="hidden">
+            <i class="ti ti-sparkles smart-thinking__icon"></i>
+            <h:outputText id="draft-note-text" value="#{smartStatisticManagementBean.assistantNote}" escape="true" />
+          </div>
+        </h:panelGroup>
+      </h:panelGroup>
+    </h:panelGroup>
+  </h:panelGroup>
+
+</ui:composition>

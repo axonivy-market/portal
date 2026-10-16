@@ -1,0 +1,1228 @@
+/*
+   The Smart Statistic chart renderer.
+
+   A fork of statistic.js: the Smart Statistic board lets a bar chart swap its axes, which the
+   shared renderer does not offer. Forked rather than hooked so statistic.js stays untouched.
+
+   Loaded INSTEAD of statistic.js, never alongside it - both declare the same top-level
+   constants and classes, so loading the two together is a redeclaration error.
+*/
+const DATA_CHART_ID = 'data-chart-id';
+const WIDGET_HEADER_TITLE = '.widget__header-title';
+const AVERAGE_BUSINESS_RUNTIME = "avg-businessRuntime";
+
+// Additional configs
+const EMPTY_CHART_MESSAGE =  'emptyChartDataMessage';
+const MANIPULATE_BY = 'manipulateValueBy';
+const TOOLTIP_TOTAL_LABEL = 'tooltipTotalLabel';
+const TOOLTIP_KPI_LABEL = 'tooltipKpiLabel';
+const EXPAND_LABEL_TEMPLATE = 'expandLabelTemplate';
+const COLLAPSE_LABEL_TEMPLATE = 'collapseLabelTemplate';
+const INFO_LABEL_TEMPLATE = 'infoLabelTemplate';
+const CHART_TEXT_COLOR = '#808080';
+const CHART_GRID_COLOR = 'rgba(192, 192, 192, 0.5)';
+const MIN_REFRESH_INTERVAL = 60;
+const SUCCESS_STATUS_CODE = 200;
+
+const OPERATOR_FIELD_STATISTIC = Object.freeze({
+  GREATER: "greater",
+  LESS: "less",
+  GREATEROREQUAL: "greaterOrEqual",
+  LESSOREQUAL: "lessOrEqual",
+  EQUAL: "equal"
+});
+
+
+let locale;
+let contentLocale;
+let datePattern;
+var statisticApiURL = '';
+var refreshInfos = [];
+
+const chartColors = () => {
+  return [getCssVariable('--statistics-1-color'),
+  getCssVariable('--statistics-2-color'),
+  getCssVariable('--statistics-3-color'),
+  getCssVariable('--statistics-4-color'),
+  getCssVariable('--statistics-5-color'),
+  getCssVariable('--statistics-6-color'),
+  getCssVariable('--statistics-7-color'),
+  getCssVariable('--statistics-8-color')];
+}
+
+const getCssVariable = variableName => {
+  return getComputedStyle(document.body).getPropertyValue(variableName);
+}
+
+const isNumeric = number => {
+  return !isNaN(parseFloat(number)) && isFinite(number);
+}
+
+async function postFetchApi(uri, content) {
+  const response = await fetch(uri, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Requested-By': 'ivy',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST',
+    },
+    body: content
+  });
+  return response;
+}
+
+function filterOptionsForDateTimeFormatter(pattern) {
+  let options = { day: 'numeric', month: 'long', year: 'numeric' };
+  let patternArr = pattern.includes('.') ? pattern.split('.') : pattern.split(' ');
+  patternArr.forEach((element, index) => {
+    switch (element) {
+      case 'd':
+      case 'dd':
+      case 'ddd':
+      case 'dddd': options.day = '2-digit'; break;
+
+      case 'M':
+      case 'MM': options.month = '2-digit'; break;
+      case 'MMM': options.month = 'short'; break;
+      case 'MMMM': options.month = 'long'; break;
+
+      case 'y':
+      case 'yy':
+      case 'yyy':
+      case 'yyyy': options.year = 'numeric'; break;
+    }
+  })
+  return options;
+}
+
+function isDateValid(date) {
+  return !isNaN(date);
+}
+
+function formatDateFollowLocale(dt) {
+  if (!isDateValid(dt)) {
+    console.warn('Invalid Date object provided for formatting.');
+    return;
+  }
+  const options = filterOptionsForDateTimeFormatter(datePattern);
+  // Format locale
+  let friendlyLocale = contentLocale.replace('_', '-');
+  const formatter = new Intl.DateTimeFormat(friendlyLocale, options);
+  return formatter.format(dt);
+}
+
+function formatISODate(dt) {
+  const correctMonth = dt.getMonth() + 1;
+  let year = dt.getFullYear();
+  let month = correctMonth < 10 ? '0' + correctMonth : correctMonth;
+  let date = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate();
+  return year + '-' + month + '-' + date;
+}
+const convertYValue = (value, config) => {
+  if (!value || !config) {
+    return value;
+  }
+  
+  let valueNumber = 0;
+  try {
+     valueNumber = Number(value);
+
+     config.find(function (item) {
+      if (Object.keys(item || {})[0] === MANIPULATE_BY) {
+        let itemVal = Object.values(item)[0];
+        let operator = itemVal.charAt(0);
+        let manipulateValueBy = Number(itemVal.substring(1));
+        switch (operator) {
+          case '/': 
+             value = (valueNumber / manipulateValueBy);
+             break;
+          case '*':
+             value =  valueNumber * manipulateValueBy;
+             break;
+          default:
+             break;
+        };
+      }
+    });
+  } catch(error) {
+    return value;
+  }
+  
+  return value;
+}
+
+const processYValue = (result, config) => {
+  if (result.length > 0 && result[0].aggs.length > 0) {
+    const values = [];
+    result.forEach((bucket) => {
+      if (bucket.key) {
+        bucket.aggs.forEach((item) => {
+          values.push({
+            key: bucket.key,
+            displayKey: bucket.displayKey,
+            count: convertYValue(item.value, config)
+          });
+        });
+      }
+    })
+    return values;
+  }
+
+  return result;
+}
+
+function shouldRenderEmptyChart(data) {
+  var result = data.result.aggs?.[0]?.buckets ?? [];
+  if (result.length == 0) {
+    return true;
+  }
+
+  if (data.chartConfig.statisticAggregation.kpiField) {
+    var objects = result;
+    const allNestedValuesAreZero = objects.every(obj => 
+      Object.values(obj.aggs).every(val => {
+        return val.value == 0 || val.value == null || val.value == undefined || val.value === "null";
+      })
+    );
+    return allNestedValuesAreZero;
+  }
+
+  return false;
+}
+
+async function fetchChartData(chart, chartId) {
+  let data;
+  let cloneResponse;
+
+  try {
+    const response = await postFetchApi(statisticApiURL, JSON.stringify({ "chartId": chartId }));
+    cloneResponse = response.clone();
+    data = await response.json();
+    data['statusCode'] = response.status;
+    return await data;
+  } catch (error) {
+    (new ClientChart()).renderNoPermissionStatistics(chart, await cloneResponse.text());
+    return;
+  }
+}
+
+async function refreshChart(chartInfo) {
+  data = await fetchChartData(chartInfo.chart.chart, chartInfo.chartId);
+  chartInfo.chart.update(data);
+}
+
+function initRefresh() {
+  for (let i = 0; i < refreshInfos.length; i++) {
+    let refreshInfo = refreshInfos[i];
+    if (refreshInfo.refreshInterval && refreshInfo.refreshInterval > 0) {
+      // when init statistic again, e.g., AJAX update statistic, clear exising interval
+      if (typeof refreshInfo.refreshIntervalId !== 'undefined') {
+        clearInterval(refreshInfo.refreshIntervalId);
+      }
+      if (refreshInfo.refreshInterval !== 0) {
+        if (refreshInfo.refreshInterval < MIN_REFRESH_INTERVAL) {
+          refreshInfo.refreshInterval = MIN_REFRESH_INTERVAL;
+        }
+        refreshInfo.refreshIntervalId = setInterval(() => {
+          if (!(document.hidden || document.msHidden || document.webkitHidden)) {
+            refreshChart(refreshInfo);
+          }
+        }, refreshInfo.refreshInterval * 1000);
+      }
+    }
+  }
+}
+
+function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig, defaultContentLocale) {
+  initConfig(defaultLocale, defaultContentLocale, datePatternConfig);
+
+  // Find HTML elements of client charts widget
+  const charts = Array.from(document.getElementsByClassName('js-statistic-chart'));
+  if (!charts || charts.length == 0) {
+    return;
+  }
+ 
+  statisticApiURL = window.location.origin + statisticEndpoint;
+
+  // Use AJAX to call REST API to fetch data for each chart elements
+  charts.forEach(async chart => {
+    let chartId = chart.getAttribute(DATA_CHART_ID);
+    let data = await fetchChartData(chart, chartId);
+
+    if (data.statusCode != SUCCESS_STATUS_CODE) {
+      renderNotFoundData(chart, data.errorMessage);
+      return;
+    }
+
+    if (!data) {
+      renderNotFoundData(chart, 'No data found');
+      return;
+    }
+
+    // proceed chart data
+    let chartData = generateChart(chart, data);
+    const config = data.chartConfig;
+
+    // If chart data is fetched succesfully:
+    // Render chart
+    // Prepare info for refresh routine of each chart
+    if (chartData) {
+      chartData.render();
+
+      const chartObject = {
+        chart: chartData,
+        chartType: config.chartType,
+        chartId: chartId,
+        refreshInterval: config.refreshInterval
+      }
+
+      refreshInfos.push(chartObject);
+    }
+
+    // Init refresh routine for charts
+    initRefresh();
+  });
+}
+
+function previewChart(data, defaultLocale, datePatternConfig, defaultContentLocale) {
+  const charts = document.getElementsByClassName('js-statistic-chart');
+  if (!charts || charts.length == 0) {
+    return;
+  }
+  initConfig(defaultLocale, defaultContentLocale, datePatternConfig);
+  
+  try {
+    let chartData = generateChart(charts[0], data);
+    if (chartData) {
+      chartData.render();
+    }
+  } catch (error) {
+    console.error("Error in previewChart:", error);
+    PF('previewButton').enable();
+    renderFailToRenderChart(charts[0], data.chartConfig.additionalConfigs);
+  }
+
+}
+
+function clearChartInterval() {
+  for (let i = 0; i < refreshInfos.length; i++) {
+    let refreshInfo = refreshInfos[i];
+    if (typeof refreshInfo.refreshIntervalId !== 'undefined') {
+      clearInterval(refreshInfo.refreshIntervalId);
+    }
+  }
+}
+
+function removeCharacterFromLastIndex(str, n) {
+  if (!str || str.length <= n) {
+    return ""; // Handle empty or short strings
+  }
+  return str.slice(0, str.length - (n + 1)) + str.slice(str.length - n);
+}
+// Function to generate chart data by chart type
+const generateChart = (chart, data) => {
+  data.chartConfig.filter = data.chartConfig.filter ? data.chartConfig.filter : '';
+  
+  switch (data.chartConfig.chartType) {
+    case 'number': return new ClientNumberChart(chart, data);
+    case 'bar': return new ClientBarChart(chart, data);
+    case 'line': return new ClientLineChart(chart, data);
+    case 'pie': return new ClientPieChart(chart, data);
+    case 'doughnut': return new ClientPieChart(chart, data);
+  }
+  return undefined;
+}
+
+function renderNotFoundData(chart, errorMessage) {
+  const container = document.createElement('div');
+  container.className = 'process-dashboard-widget__empty-process empty-message-container';
+  const span = document.createElement('span');
+  span.className = 'empty-message-text';
+  span.textContent = errorMessage == null ? '' : String(errorMessage);
+  container.appendChild(span);
+  $(chart).empty().append(container);
+}
+
+// Method to render empty preview chart
+function renderFailToRenderChart(chart, additionalConfig) {
+  let failToRenderChartMessage;
+  additionalConfig.find(function (item) {
+    if (Object.keys(item || {})[0] === 'failToRenderChartMessage') {
+      failToRenderChartMessage = item.failToRenderChartMessage;
+    }
+  });
+  const container = document.createElement('div');
+  container.className = 'empty-message-container';
+  const icon = document.createElement('i');
+  icon.className = 'ti ti-chart-pie empty-message-icon';
+  const message = document.createElement('p');
+  message.className = 'empty-message-text';
+  message.textContent = failToRenderChartMessage == null ? '' : String(failToRenderChartMessage);
+  container.appendChild(icon);
+  container.appendChild(message);
+  $(chart).empty().append(container);
+}
+
+function initConfig(defaultLocale, defaultContentLocale, datePatternConfig) {
+    // If locale didn't initialized, set the default locale to it.
+    if (!locale) {
+      locale = defaultLocale;
+    }
+  
+    if (!contentLocale) {
+      contentLocale = defaultContentLocale;
+    }
+    datePattern = datePatternConfig;
+}
+
+function getFormatedTitle(titles) { 
+  const matchingItem = titles.find(item => item.locale === locale);
+  if (matchingItem) {
+    return matchingItem.value;
+  }
+  return '';
+}
+
+// Generic class for Client charts
+class ClientChart {
+  constructor(chart, data) {
+    this.chart = chart;
+    this.data = data;
+    this.clientChartConfig = null;
+  }
+
+  // Abstract method to render client chart
+  render() { }
+
+  // Abstract method to format chart label
+  formatChartLabel() { }
+
+  // Check DateTime field
+  isTimestampField(field) {
+    if (field === undefined) {
+      return false;
+    }
+    return field.toLowerCase().includes("timestamp");
+  }
+
+  // Update new data to an existing chart
+  update(newData) {
+    this.data = newData;
+    this.dataResult = newData.result.aggs?.[0]?.buckets ?? [];
+    this.updateClientChart();
+  }
+
+  calculateConditionalColors(chartConfig, data, backgroundColors) {
+    if (chartConfig.conditionBasedColoringEnabled) {
+      if (chartConfig.thresholdStatisticCharts == null) {
+        return chartConfig.defaultBackgroundColor;
+      }
+      if (this.data.chartConfig.conditionBasedColoringScope === 'all') {
+        return this.getBackgroundColorsWithAllScope(chartConfig, data);
+      } else if (this.data.chartConfig.conditionBasedColoringScope === 'specific') {
+        return this.getBackgroundColorsWithSpecificScope(chartConfig, data);
+      }
+    }
+
+    return backgroundColors;
+  }
+
+  getBackgroundColorsWithSpecificScope(chartConfig, data) {
+    const { defaultBackgroundColor, thresholdStatisticCharts } = chartConfig;
+
+    const generatedCompareFunctions = thresholdStatisticCharts.map(rule => {
+      const { operator, value, backgroundColor, targetValue } = rule;
+
+      switch (operator) {
+        case OPERATOR_FIELD_STATISTIC.GREATER:
+          return (count, key) => this.compareValue(key, targetValue) && count > value ? backgroundColor : null;
+        case OPERATOR_FIELD_STATISTIC.GREATEROREQUAL:
+          return (count, key) => this.compareValue(key, targetValue) && count >= value ? backgroundColor : null;
+        case OPERATOR_FIELD_STATISTIC.LESS:
+          return (count, key) => this.compareValue(key, targetValue) && count < value ? backgroundColor : null;
+        case OPERATOR_FIELD_STATISTIC.LESSOREQUAL:
+          return (count, key) => this.compareValue(key, targetValue) && count <= value ? backgroundColor : null;
+        case OPERATOR_FIELD_STATISTIC.EQUAL:
+          return (count, key) => this.compareValue(key, targetValue) && count === value ? backgroundColor : null;
+        default:
+          return () => null;
+      }
+    });
+
+    return data.map((val) => {
+      if (!isNumeric(val.count)) return defaultBackgroundColor;
+
+      for (const func of generatedCompareFunctions) {
+        const result = func(val.count, val.key);
+        if (result) return result;
+      }
+
+      return defaultBackgroundColor;
+    });
+  }
+
+getBackgroundColorsWithAllScope(chartConfig, data) {
+  const { defaultBackgroundColor, thresholdStatisticCharts } = chartConfig;
+
+  const generatedCompareFunction = thresholdStatisticCharts.map(rule => {
+    const { operator, value, backgroundColor } = rule;
+
+    switch (operator) {
+      case OPERATOR_FIELD_STATISTIC.GREATER:
+        return (count) => count > value ? backgroundColor : null;
+      case OPERATOR_FIELD_STATISTIC.GREATEROREQUAL:
+        return (count) => count >= value ? backgroundColor : null;
+      case OPERATOR_FIELD_STATISTIC.LESS:
+        return (count) => count < value ? backgroundColor : null;
+      case OPERATOR_FIELD_STATISTIC.LESSOREQUAL:
+        return (count) => count <= value ? backgroundColor : null;
+      case OPERATOR_FIELD_STATISTIC.EQUAL:
+        return (count) => count === value ? backgroundColor : null;
+      default:
+        return () => null;
+    }
+  });
+
+  return data.map((val) => {
+    if (!val || !isNumeric(val.count)) return defaultBackgroundColor;
+
+    for (const func of generatedCompareFunction) {
+      const result = func(val.count);
+      if (result) return result;
+    }
+
+    return defaultBackgroundColor;
+  });
+}
+
+  compareValue(value, targetValue) {
+    if (isNumeric(targetValue)) {
+      const num = Number(targetValue);
+      return value == num;
+    }
+    return value === targetValue;
+  }
+
+  updateClientChart() { }
+
+  canDrillDown() {
+    const config = this.data.chartConfig;
+    return config.canDrillDown === true;
+  }
+
+  handleChartClick(element, event) {
+    if (!this.canDrillDown()) {
+      return;
+    }
+    const drillDownData = {
+      chartId: this.data.chartConfig.id,
+      drillDownValue: this.data.result.aggs[0].buckets[element.index].key
+    };
+    this.drillDownStatistic(drillDownData);
+  }
+
+  drillDownStatistic(drillDownData) {
+    if (typeof window.openStatisticDrillDown === 'function') {
+      window.openStatisticDrillDown([{
+        name: 'drillDownData',
+        value: JSON.stringify(drillDownData)
+      }]);
+    }
+  }
+
+  // Method to render empty chart
+  renderEmptyChart(chart, additionalConfig) {
+    let emptyChartDataMessage;
+    additionalConfig.find(function (item) {
+      if (Object.keys(item || {})[0] === 'emptyChartDataMessage') {
+        emptyChartDataMessage = item.emptyChartDataMessage;
+      }
+    });
+    const container = document.createElement('div');
+    container.className = 'empty-message-container';
+    const icon = document.createElement('i');
+    icon.className = 'ti ti-chart-pie empty-message-icon';
+    const message = document.createElement('p');
+    message.className = 'empty-message-text';
+    message.textContent = emptyChartDataMessage == null ? '' : String(emptyChartDataMessage);
+    container.appendChild(icon);
+    container.appendChild(message);
+    $(chart).empty().append(container);
+  }
+
+  // Method to render no permission error to see chart
+  renderNoPermissionStatistics(chart, noPermissionChartMessage) {
+    const container = document.createElement('div');
+    container.className = 'process-dashboard-widget__empty-process empty-message-container';
+    const icon = document.createElement('i');
+    icon.className = 'ti ti-lock empty-message-icon';
+    const message = document.createElement('span');
+    message.className = 'empty-message-text';
+    message.textContent = noPermissionChartMessage == null ? '' : String(noPermissionChartMessage);
+    container.appendChild(icon);
+    container.appendChild(document.createElement('br'));
+    container.appendChild(message);
+    $(chart).empty().append(container);
+  }
+}
+
+// Generic class for canvas charts which handled and generated by Chart.js 
+class ClientCanvasChart extends ClientChart {
+  constructor(chart, data) {
+    super(chart, data);
+  }
+
+  // Method to render canvas
+  renderChartCanvas(chartId, ariaLabel) {
+    let canvas = $('<canvas></canvas>');
+    canvas.attr('id', chartId);
+    canvas.attr('role', 'img');
+    canvas.attr('tabindex', '0');
+    canvas.attr('aria-label', ariaLabel || '');
+    return canvas;
+  };
+
+  // Method to build accessible description from chart data
+  buildChartAriaLabel(labels, values) {
+    let description = this.widgetName || '';
+    if (labels && values && labels.length > 0) {
+      let items = labels.map((label, i) => this.formatAriaLabel(label) + ': ' + values[i]);
+      if (description) {
+        description += ', ';
+      }
+      description += items.join(', ');
+    }
+    return description;
+  };
+
+  // Method to format label for aria description
+  formatAriaLabel(label) {
+    if (typeof label === 'string' && !isNaN(Date.parse(label)) && label.includes('T')) {
+      return formatDateFollowLocale(new Date(label));
+    }
+    return label;
+  };
+
+  // Method to format chart label
+  formatChartLabel(label) {
+    let aggregationField = this.data.chartConfig.statisticAggregation?.field;
+    let kpiMethod = this.data.chartConfig.statisticAggregation?.kpiMethod;
+
+    if (typeof label === 'number' || this.isTimestampField(aggregationField) || kpiMethod) {
+      return formatDateFollowLocale(new Date(label));
+    }
+    
+    if (aggregationField !== 'state') {
+      return label;
+    }
+
+    return label.toLowerCase()
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+
+  // Method to init the dashboard statistic widget title
+  initWidgetTitle() {
+    let widgetName = getFormatedTitle(this.data.chartConfig.names);
+    this.widgetName = widgetName;
+    let cardPanel = $(this.chart).parents('.card-widget-panel');
+
+    $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title')
+      .text(widgetName);
+
+    if (cardPanel.length > 0) {
+      cardPanel.get(0).ariaLabel = widgetName;
+    }
+
+    let additionalConfigs = this.data.chartConfig.additionalConfigs;
+    let expandTemplate = getAdditionalConfigValue(additionalConfigs, EXPAND_LABEL_TEMPLATE);
+    let collapseTemplate = getAdditionalConfigValue(additionalConfigs, COLLAPSE_LABEL_TEMPLATE);
+    let infoTemplate = getAdditionalConfigValue(additionalConfigs, INFO_LABEL_TEMPLATE);
+    if (expandTemplate) {
+      cardPanel.find('.expand-link').attr('aria-label', expandTemplate.replace('{0}', widgetName));
+    }
+    if (collapseTemplate) {
+      cardPanel.find('.collapse-link').attr('aria-label', collapseTemplate.replace('{0}', widgetName));
+    }
+    if (infoTemplate) {
+      cardPanel.find('.widget__info-sidebar-link').attr('aria-label', infoTemplate.replace('{0}', widgetName));
+    }
+  }
+
+  updateClientChart() {
+    this.initWidgetTitle();
+
+    let result = this.data.result.aggs?.[0]?.buckets ?? [];
+    let config = this.data.chartConfig;
+    let chart = this.chart;
+
+    // Render empty chart when result empty 
+    if (shouldRenderEmptyChart(this.data)) {
+      return this.renderEmptyChart(chart, config.additionalConfigs);
+    }
+
+    // If there is no chart from the beginning, init chart config
+    if ($(this.chart).find('.empty-message-container').length > 0) {
+      this.render();
+      return;
+    }
+
+    // Update client chart config by new data
+    let labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
+    let values = result.map(bucket => bucket.count);
+    this.clientChartConfig.data.labels = labels;
+    if (this.clientChartConfig.data.datasets[0]) {
+      this.clientChartConfig.data.datasets[0].data = values;
+      this.clientChartConfig.data.datasets[0].label = config.name;
+    }
+
+    // Update canvas aria-label with new data
+    let canvasElem = $(chart).find('canvas').get(0);
+    if (canvasElem) {
+      canvasElem.setAttribute('aria-label', this.buildChartAriaLabel(labels, values));
+    }
+
+    this.clientChartConfig.update("none");
+  }
+}
+
+class ClientPieChart extends ClientCanvasChart {
+  render() {
+    this.initWidgetTitle();
+
+    let result = this.data.result.aggs?.[0]?.buckets ?? [];
+    let config = this.data.chartConfig;
+    let chart = this.chart;
+    
+    const data = processYValue(result, this.data.chartConfig.additionalConfigs);
+
+    if (shouldRenderEmptyChart(this.data)) {
+      return this.renderEmptyChart(chart, config.additionalConfigs);
+    } else {
+      let labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
+      let values = data.map(bucket => bucket.count);
+      let ariaLabel = this.buildChartAriaLabel(labels, values);
+      let canvas = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID), ariaLabel);
+      $(chart).empty().append(canvas);
+      let backgroundColors = this.calculateConditionalColors(config, result, config.pieChartConfig.backgroundColors);
+      this.clientChartConfig = new Chart(canvas, {
+        type: config.chartType,
+        label: config.name,
+        data: {
+          labels: labels,
+          datasets: [{
+            label: config.name,
+            data: values,
+            counting: result.map(bucket => bucket.count),
+            chartTarget: config.chartTarget,
+            aggregation: config.statisticAggregation,
+            additionalConfigs: config.additionalConfigs,
+            backgroundColor: backgroundColors
+          }],
+          hoverOffset: 4
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          onHover: (event, elements) => {
+            event.native.target.style.cursor = this.canDrillDown() && elements.length > 0 ? 'pointer' : 'default';
+          },
+          onClick: (event, elements) => {
+            if (this.canDrillDown() && elements.length > 0) {
+              this.handleChartClick(elements[0], event);
+            }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: CHART_TEXT_COLOR
+              }
+            },
+            tooltip: {
+              callbacks: {
+                footer: customFooterChartTooltip,
+                beforeBody: customBeforeBodyChartTooltip,
+              }
+            }
+          }
+        }
+      });
+    }
+  }
+
+  getBackgoundColors() {
+    return this.data.chartConfig.pieChartConfig.backgroundColors;
+  }
+}
+
+// Class for cartersian charts (bar, line)
+class ClientCartesianChart extends ClientCanvasChart {
+  constructor(chart, data) {
+    super(chart, data);
+    this.dataResult = data.result.aggs?.[0]?.buckets ?? [];
+  }
+
+  render() {
+    this.initWidgetTitle();
+
+    let result = this.dataResult;
+    let config = this.data.chartConfig;
+    let chart = this.chart;
+
+    if (shouldRenderEmptyChart(this.data)) {
+      return this.renderEmptyChart(chart, config.additionalConfigs);
+    } else {
+      //If the target type for the Y axis is 'time', get average time from sub aggregate of the result.
+      const chartTypeConfig = this.getChartTypeConfig();
+      let data = processYValue(result, this.data.chartConfig.additionalConfigs);
+      // Because processYValue removes bucket which has empty key, if the returned result is empty, render empty chart
+      if (data.length == 0) {
+        return this.renderEmptyChart(chart, config.additionalConfigs);
+      }
+
+      let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : undefined;
+      // Axis titles are omitted from the JSON when not configured, so default them to empty
+      let yTitles = chartTypeConfig?.yTitles ?? [];
+      let xTitles = chartTypeConfig?.xTitles ?? [];
+      let axisScales = buildBarChartAxisScales(config, xTitles, yTitles, stepSize);
+      let labels = data.map(bucket => this.formatChartLabel(bucket.displayKey));
+      let values = data.map(bucket => bucket.count);
+      let ariaLabel = this.buildChartAriaLabel(labels, values);
+      let canvas = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID), ariaLabel);
+      let backgroundColors = this.calculateConditionalColors(config, data, config.chartType == 'bar' ? config.barChartConfig.backgroundColors : config.lineChartConfig.backgroundColors);
+      $(chart).empty().append(canvas);
+      this.clientChartConfig = new Chart(canvas, {
+        type: config.chartType,
+        data: {
+          labels: labels,
+          datasets: [{
+            label: config.name,
+            data: values,
+            counting: result.map(bucket => bucket.count),
+            chartTarget: config.chartTarget,
+            aggregation: config.statisticAggregation,
+            additionalConfigs: config.additionalConfigs,
+            backgroundColor: backgroundColors,
+            pointBorderColor: backgroundColors,
+            pointRadius: 4,
+            borderColor: getCssVariable("--ivy-primary-color-grey-medium"),
+            borderWidth: 1
+          }]
+        },
+        options: {
+          indexAxis: axisScales.indexAxis,
+          responsive: true,
+          maintainAspectRatio: false,
+          onHover: (event, elements) => {
+            event.native.target.style.cursor = this.canDrillDown() && elements.length > 0 ? 'pointer' : 'default';
+          },
+          onClick: (event, elements) => {
+            if (this.canDrillDown() && elements.length > 0) {
+              this.handleChartClick(elements[0], event);
+            }
+          },
+          plugins: {
+            legend: {
+              display: false,
+              labels: {
+                color: backgroundColors
+              }
+            },
+            tooltip: {
+              callbacks: {
+                footer: customFooterChartTooltip,
+                beforeBody: customBeforeBodyChartTooltip,
+              }
+            }
+          },
+          scales: axisScales.scales
+        }
+      });
+    }
+  }
+
+  // abstract methods
+  getChartTitleConfig() { }
+
+  getBackgoundColors() { }
+}
+
+// Class for bar chart
+class ClientBarChart extends ClientCartesianChart {
+  getChartTypeConfig() {
+    return this.data.chartConfig.barChartConfig;
+  }
+
+  updateClientChart() {
+    this.initWidgetTitle();
+    let result = this.data.result.aggs?.[0]?.buckets ?? [];
+    let config = this.data.chartConfig;
+    let chart = this.chart;
+
+    // Render empty chart when result empty 
+    if (shouldRenderEmptyChart(this.data)) {
+      return this.renderEmptyChart(chart, config.additionalConfigs);
+    } 
+    else if (result.length > 0) {
+      // Update y value in case y value is time
+      if (config.barChartConfig?.yValue === 'time') {
+        result = processYValue(result, config.barChartConfig.yValue);
+
+        // Because processYValue removes bucket which has empty key, if the returned result is empty, render empty chart
+        if (result.length == 0) {
+          return this.renderEmptyChart(chart, config.additionalConfigs);
+        }
+      }
+      let data = result;
+      let labels = result.map(bucket => this.formatChartLabel(bucket.displayKey));
+      let values = data.map(bucket => bucket.count);
+      this.clientChartConfig.data.labels = labels;
+      this.clientChartConfig.data.datasets = [{
+        label: config.name,
+        data: values,
+        backgroundColor: config.backgroundColors ? config.backgroundColors : chartColors
+      }]
+
+      // Update canvas aria-label with new data
+      let canvasElem = $(chart).find('canvas').get(0);
+      if (canvasElem) {
+        canvasElem.setAttribute('aria-label', this.buildChartAriaLabel(labels, values));
+      }
+    }
+
+    // If there is no chart from the beginning, init chart config
+    if ($(this.chart).find('.empty-message-container').length > 0) {
+      this.render();
+      return;
+    }
+
+    this.clientChartConfig.update("none");
+  }
+
+  getBackgoundColors() {
+    return this.data.chartConfig.barChartConfig.backgroundColors;
+  }
+}
+
+
+// Class for line chart
+class ClientLineChart extends ClientCartesianChart {
+  getChartTypeConfig() {
+    return this.data.chartConfig.lineChartConfig;
+  }
+
+  getBackgoundColors() {
+    return this.data.chartConfig.lineChartConfig.backgroundColors;
+  }
+}
+
+// Class for number chart
+class ClientNumberChart extends ClientChart {
+  constructor(chartElem, data) {
+    super(chartElem, data);
+    this.filters = data.chartConfig.filter?.split(',');
+    this.dataResult = data.result.aggs?.[0]?.buckets ?? [];
+    this.items = this.getItemFromFilters();
+  }
+
+  fillResult() {
+    let result = this.dataResult;
+    if (result?.length == 0) {
+      result = this.fillEmptyResult();
+    }
+
+    let dataResultKeys = result.map(item => item.key);
+    this.items.forEach((item) => {
+      if (!dataResultKeys.includes(item)) {
+        result.push({
+          key: item,
+          displayKey: item,
+          count: 0,
+          aggs: []
+        })
+      }
+    });
+
+    return result;
+  }
+
+  fillEmptyResult() {
+    // If items of chart is recognizable, render result for each item
+    if (this?.items?.length > 0) {
+      let result = [];
+      this.items.forEach(item => {
+        result.push({
+          key: item,
+          displayKey: item,
+          count: 0,
+          aggs: []
+        });
+      });
+      return result;
+    }
+
+    // If cannot recognize result, render only 1 result with empty key
+    return [{
+      key: '',
+      displayKey: '',
+      count: 0,
+      aggs: []
+    }];
+  }
+
+  formatChartLabel(label) {
+    return label;
+  }
+
+  render() {
+    let config = this.data.chartConfig;
+    this.initWidgetHeaderName(this.chart, getFormatedTitle(config.names));
+    let result = this.fillResult();
+
+    if (!result || result.length == 0) {
+      result = this.fillEmptyResult();
+    }
+
+    $(this.chart).parents('.statistic-chart-widget__chart').addClass('client-number-chart');
+    let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
+    let chartContainer = $(this.chart);
+    chartContainer.attr('tabindex', '0');
+    chartContainer.attr('aria-label', this.buildNumberChartAriaLabel(getFormatedTitle(config.names), result));
+    chartContainer.css('--card-count', Math.max(result.length, 1));
+    chartContainer.html(multipleKPI);
+    
+    if (this.canDrillDown()) {
+      $(this.chart).find('.chart-content-card-clickable').each((index, element) => {
+        element.addEventListener('click', (event) => this.handleNumberCardClick(element, event));
+      });
+    }
+    
+    return $(this.chart);
+  }
+
+  initWidgetHeaderName(chart, widgetName) {
+    let cardPanel = $(chart).parents(".card-widget-panel");
+
+    let widgetHeader = cardPanel.find(".widget__header .widget__header-title").get(0);
+    if (widgetHeader) {
+      widgetHeader.textContent = widgetName;
+    }
+
+    let widgetPanel = cardPanel.get(0);
+    if (widgetPanel) {
+      widgetPanel.ariaLabel = widgetName;
+    }
+
+    let additionalConfigs = this.data.chartConfig.additionalConfigs;
+    let expandTemplate = getAdditionalConfigValue(additionalConfigs, EXPAND_LABEL_TEMPLATE);
+    let collapseTemplate = getAdditionalConfigValue(additionalConfigs, COLLAPSE_LABEL_TEMPLATE);
+    let infoTemplate = getAdditionalConfigValue(additionalConfigs, INFO_LABEL_TEMPLATE);
+    if (expandTemplate) {
+      cardPanel.find('.expand-link').attr('aria-label', expandTemplate.replace('{0}', widgetName));
+    }
+    if (collapseTemplate) {
+      cardPanel.find('.collapse-link').attr('aria-label', collapseTemplate.replace('{0}', widgetName));
+    }
+    if (infoTemplate) {
+      cardPanel.find('.widget__info-sidebar-link').attr('aria-label', infoTemplate.replace('{0}', widgetName));
+    }
+  }
+
+  renderMultipleNumberChartInHTML(result, suffixSymbold) {
+    const totalLabelTemplate = getAdditionalConfigValue(this.data.chartConfig.additionalConfigs, TOOLTIP_TOTAL_LABEL) || '';
+    let multipleNumberChartInHTML = '';
+    if (result?.length > 0) {
+        result.forEach((item, index) => {
+          const yValue = item.aggs.length > 0 ? this.formatNumberValue(item.aggs[0].value) : item.count;
+          const counting = item.aggs.length > 0 ? totalLabelTemplate.replace('{0}', item.count) : '';
+          let htmlString = this.generateItemHtml(item.displayKey, yValue, suffixSymbold, index, counting);
+          multipleNumberChartInHTML += htmlString;
+        })
+
+    } else {
+      multipleNumberChartInHTML = this.generateItemHtml('', '0', suffixSymbold, 0, '');
+    }
+    return multipleNumberChartInHTML;
+  }
+
+  generateItemHtml(label, number, suffixSymbol, index, counting) {
+    label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
+    const isClickable = this.canDrillDown() ? 'chart-content-card-clickable' : '';
+
+    let container = $('<div class="text-center chart-content-card" role="group" aria-hidden="true"></div>');
+    container.addClass(isClickable);
+    container.attr('data-index', index);
+
+    let numberContainer = $('<div class="chart-number-container"></div>');
+    $('<span class="card-number chart-number-font-size chart-number-animation"></span>').text(number).appendTo(numberContainer);
+    $('<i class="card-number chart-number-font-size chart-number-animation" aria-hidden="true"></i>').addClass(suffixSymbol).appendTo(numberContainer);
+    numberContainer.appendTo(container);
+
+    if (counting) {
+      $('<div class="chart-number-animation chart-number-counting" style="padding-top: 10px;"></div>').text(counting).appendTo(container);
+    }
+
+    let labelContainer = $('<div class="chart-label-container"></div>');
+    $('<span class="card-name chart-name-font-size chart-number-animation"></span>').text(label).appendTo(labelContainer);
+    labelContainer.appendTo(container);
+
+    let wrapper = $('<div></div>');
+    if (index > 0) {
+      $('<div class="chart-border"></div>').appendTo(wrapper);
+    }
+    container.appendTo(wrapper);
+    return wrapper.html();
+  };
+
+  // Method to format chart label.
+  formatChartLabel(label) {
+    let field = this.data.chartConfig.aggregates || this.data.chartConfig.statisticAggregation.field;
+    
+    // Format date
+    if (typeof label === 'number' || (this.isTimestampField(field) && isNumeric(new Date(label).getTime()))) {
+      return formatDateFollowLocale(new Date(label));
+    }
+
+    // Format enum. Example: IN_PROGRESS -> In Progess
+    return label.toLowerCase()
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+
+  formatNumberValue(value) {
+    if (value === "null" || value === null || value === undefined) {
+      return "0";
+    }
+  
+    const numValue = Number(value);
+    return numValue % 1 === 0 ? numValue.toString() : numValue.toFixed(2);
+  }
+
+  getItemFromFilters() {
+    const aggregateFilter = this.data.chartConfig.aggregates + ':';
+    const aggregateFilterRegex = new RegExp('^' + this.data.chartConfig.aggregates + ':');
+    let result = [];
+    this.filters.filter(filter => filter.startsWith(aggregateFilter))
+    .forEach(filter => {
+      // Get states from filter. Expected result: ['OPEN','DONE']
+      filter.replace(aggregateFilterRegex, "").split(' ')
+      .filter(item => item !== "").forEach((state) => result.push(state));
+    });
+    // Remove duplicated states if any. ['OPEN','DONE', 'OPEN'] => ['OPEN','DONE']
+    // result = result.filter(item => item !== "" && item !== null);
+    return result.filter((item, index) => result.indexOf(item) == index);
+  }
+
+  buildNumberChartAriaLabel(name, result) {
+    let description = name || '';
+    if (result && result.length > 0) {
+      let hideLabel = this.data.chartConfig.numberChartConfig?.hideLabel === true;
+      let items = result.map(item => {
+        let label = hideLabel ? '' : this.formatChartLabel(item.displayKey);
+        let value = item.aggs.length > 0 ? this.formatNumberValue(item.aggs[0].value) : item.count;
+        return label ? label + ': ' + value : '' + value;
+      });
+      if (description) {
+        description += ', ';
+      }
+      description += items.join(', ');
+    }
+    return description;
+  }
+
+  updateClientChart() {
+    this.render();
+  }
+
+  handleNumberCardClick(cardElement, event) {
+    if (!this.canDrillDown()) {
+      return;
+    }
+
+    const cardIndex = parseInt(cardElement.getAttribute('data-index'));
+    const item = this.dataResult[cardIndex];
+    const drillDownData = {
+      chartId: this.data.chartConfig.id,
+      drillDownValue: item.key
+    };
+    this.drillDownStatistic(drillDownData);
+  }
+}
+
+const customFooterChartTooltip = (tooltipItems) => {
+  if (tooltipItems.length === 0 || !tooltipItems[0].dataset.aggregation?.kpiField) {
+    return;
+  }
+
+  const template = getAdditionalConfigValue(tooltipItems[0].dataset.additionalConfigs, TOOLTIP_TOTAL_LABEL);
+  if (!template) {
+    return;
+  }
+
+  let total = 0;
+  tooltipItems.forEach((tooltipItem) => total += tooltipItem.dataset.counting[tooltipItem.dataIndex]);
+
+  return template.replace('{0}', total);
+};
+
+const customBeforeBodyChartTooltip = (tooltipItems) => {
+  if (tooltipItems.length === 0 || !tooltipItems[0].dataset.aggregation?.kpiField) {
+    return;
+  }
+
+  return getAdditionalConfigValue(tooltipItems[0].dataset.additionalConfigs, TOOLTIP_KPI_LABEL);
+};
+
+function getAdditionalConfigValue(additionalConfigs, key) {
+  if (!additionalConfigs) return undefined;
+
+  for (const item of additionalConfigs) {
+    if (item && Object.keys(item)[0] === key) {
+      return item[key];
+    }
+  }
+
+  return undefined;
+}
+
+function buildBarChartAxisScales(config, xTitles, yTitles, stepSize) {
+  let swapAxes = config.chartType == 'bar' && config.barChartConfig?.swapAxes === true;
+  let categoryScale = {
+    title: {
+      text: getFormatedTitle(xTitles),
+      display: xTitles.length > 0,
+      color: CHART_TEXT_COLOR
+    },
+    ticks: {
+      color: CHART_TEXT_COLOR
+    },
+    grid: {
+      color: CHART_GRID_COLOR
+    }
+  };
+  let valueScale = {
+    beginAtZero: true,
+    title: {
+      text: getFormatedTitle(yTitles),
+      display: yTitles.length > 0,
+      color: CHART_TEXT_COLOR
+    },
+    ticks: {
+      stepSize: stepSize,
+      precision: config.statisticAggregation?.aggregationMethod ? undefined : 0,
+      color: CHART_TEXT_COLOR
+    },
+    grid: {
+      color: CHART_GRID_COLOR
+    }
+  };
+  return {
+    indexAxis: swapAxes ? 'y' : 'x',
+    scales: swapAxes
+      ? { x: valueScale, y: categoryScale }
+      : { x: categoryScale, y: valueScale }
+  };
+}

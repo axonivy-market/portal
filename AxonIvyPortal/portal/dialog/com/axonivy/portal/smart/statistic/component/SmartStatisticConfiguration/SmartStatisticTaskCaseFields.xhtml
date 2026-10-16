@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces">
+
+  <!-- What a task or case chart measures, and how it slices it. -->
+  <div class="flex">
+    <div class="field col-6 pl-0">
+      <p:outputLabel for="kpi-custom-fields" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/KPI')}" />
+      <h:panelGroup id="kpi-info-icon">
+        <i class="ti ti-info-circle ml-1" />
+      </h:panelGroup>
+      <p:selectOneMenu id="kpi-custom-fields" styleClass="w-full"
+        value="#{managedBean.statistic.statisticAggregation.kpiField}">
+        <f:selectItem itemLabel="Counting" itemValue="" />
+        <f:selectItems value="#{managedBean.numericCustomFieldNames}" var="kpiFieldItem" />
+        <p:ajax update="kpi-aggregation-method" />
+      </p:selectOneMenu>
+      <p:tooltip for="kpi-info-icon" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/KPITooltip')}" position="right" />
+    </div>
+
+    <div class="field col-6 pr-0">
+      <p:outputLabel for="kpi-aggregation-method" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/AggregationMethod')}" />
+      <h:panelGroup id="aggregation-method-info-icon">
+        <i class="ti ti-info-circle ml-1" />
+      </h:panelGroup>
+      <p:selectOneMenu id="kpi-aggregation-method" styleClass="w-full"
+        value="#{managedBean.statistic.statisticAggregation.aggregationMethod}"
+        disabled="#{empty managedBean.statistic.statisticAggregation.kpiField}">
+        <f:selectItems value="#{managedBean.aggregationMethods}"
+          var="aggregationMethodItem"
+          itemLabel="#{aggregationMethodItem.label}"
+          itemValue="#{aggregationMethodItem.value}" />
+      </p:selectOneMenu>
+      <p:tooltip for="aggregation-method-info-icon" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/AggregationMethodTooltip')}" position="right" />
+    </div>
+  </div>
+
+  <div class="field col-12 px-0">
+    <p:outputLabel for="aggregates" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GroupBy')}" />
+    <h:panelGroup id="group-by-info-icon">
+      <i class="ti ti-info-circle ml-1" />
+    </h:panelGroup>
+    <p:selectOneMenu id="aggregates" styleClass="w-full"
+      value="#{managedBean.statistic.statisticAggregation.field}">
+      <f:selectItems value="#{managedBean.getAllAvailableAggregationField()}"
+        var="aggregate" itemValue="#{aggregate.name}" itemLabel="#{aggregate.getCmsName()}" />
+      <p:ajax listener="#{managedBean.onSelectAggregationField()}"
+        update="chart-aggregation" />
+      <p:ajax event="itemSelect" listener="#{managedBean.resetConditionBasedColoring}" resetValues="true"
+        update="chart-background-colors condition-based-coloring-container condition-based-coloring-scope chart-drill-down-container" global="false" />
+    </p:selectOneMenu>
+    <p:tooltip for="group-by-info-icon" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GroupbyTooltip')}" position="right" />
+  </div>
+
+  <p:selectOneMenu id="aggregates-custom-fields" required="true" styleClass="w-full mt-2"
+    requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GroupBy')])}"
+    rendered="#{managedBean.isCustomFieldsSelected()}" value="#{managedBean.statistic.statisticAggregation.customFieldValue}">
+    <f:selectItems value="#{managedBean.getCustomFieldNames()}" var="customField" />
+    <p:ajax listener="#{managedBean.onSelectCustomField()}" update="custom-field-description chart-aggregation" />
+    <p:ajax event="itemSelect" listener="#{managedBean.resetConditionBasedColoring}" resetValues="true"
+      update="chart-background-colors condition-based-coloring-enabled-toggle condition-based-coloring-scope" global="false" />
+  </p:selectOneMenu>
+  <p:inputText id="custom-field-description" readonly="true"
+    rendered="#{managedBean.isCustomFieldsSelected()}"
+    styleClass="w-full mt-2" disabled="true"
+    value="#{managedBean.currentCustomFieldDescription}" />
+
+  <p:outputLabel for="@next" rendered="#{managedBean.dateTimeSelected}"
+    styleClass="w-full mt-2"
+    value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Interval')}" />
+  <p:selectOneMenu id="aggregates-custom-fields-intervals" styleClass="w-full mt-0"
+    rendered="#{managedBean.dateTimeSelected}" value="#{managedBean.aggregationInterval}">
+    <f:selectItems var="dateTimeInterval" value="#{managedBean.getAvailableIntervals()}"
+      itemLabel="#{dateTimeInterval.getCmsName()}" />
+    <p:ajax listener="#{managedBean.onSelectInterval}" />
+  </p:selectOneMenu>
+
+</ui:composition>

@@ -1,0 +1,75 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces">
+
+  <!-- Asking is how a chart gets made here; the editor is the escape hatch behind
+       "Refine" on the answer, not the way in. -->
+  <h:panelGroup id="ask-bar" layout="block" styleClass="smart-ask-bar">
+    <h:panelGroup id="ask-input-group" layout="block" styleClass="smart-ask">
+      <span class="ui-inputgroup-addon smart-ask__mark"><i class="ti ti-sparkles"></i></span>
+      <p:inputText id="question" value="#{smartStatisticManagementBean.question}"
+        styleClass="smart-ask__input"
+        disabled="#{not smartStatisticManagementBean.agentAvailable or smartStatisticManagementBean.answerActive}"
+        onkeydown="return smartStatAskKeyDown(event);"
+        placeholder="Ask about your work..." />
+      <p:commandButton id="ask-submit" styleClass="smart-ask__submit"
+        value="Ask"
+        ariaLabel="Ask"
+        disabled="#{not smartStatisticManagementBean.agentAvailable or smartStatisticManagementBean.answerActive}"
+        actionListener="#{smartStatisticManagementBean.askQuestion}"
+        process="ask-bar" update="view-mode"
+        onstart="smartStatAskBusy(true)"
+        oncomplete="smartStatAskBusy(false); smartStatAfterModeSwitch(); smartStatRenderAnswer(xhr, status, args);" />
+    </h:panelGroup>
+
+    <h:panelGroup id="ask-actions" layout="block" styleClass="smart-ask__actions"
+      rendered="#{smartStatisticManagementBean.agentAvailable or not empty smartStatisticManagementBean.assistantNote}">
+
+      <h:panelGroup id="ask-suggestions" layout="block" styleClass="smart-ask__suggestions"
+        rendered="#{smartStatisticManagementBean.agentAvailable}">
+        <h:panelGroup id="ask-chips" layout="block"
+          styleClass="smart-ask__chips #{smartStatisticManagementBean.suggestionChipsStyleClass}">
+          <ui:repeat value="#{smartStatisticManagementBean.suggestions}" var="suggestion">
+            <div class="smart-chip portal-pill-btn" role="button" tabindex="0"
+              onclick="smartStatAskSuggestion(this);"
+              onkeydown="return smartStatSuggestionKeyDown(event, this);">#{suggestion}</div>
+          </ui:repeat>
+        </h:panelGroup>
+      </h:panelGroup>
+
+      <h:panelGroup id="ask-aside" layout="block" styleClass="smart-ask__aside"
+        rendered="#{not empty smartStatisticManagementBean.assistantNote
+          and not smartStatisticManagementBean.answerActive}">
+
+        <p:link id="thinking-toggle" styleClass="portal-link portal-detail-link" href="#"
+          onclick="smartStatToggleThinking(this); return false;">
+          <f:passThroughAttribute name="aria-expanded" value="false" />
+          <i class="ti ti-sparkles" />
+          <h:outputText id="thinking-toggle-label" styleClass="smart-thinking__label"
+            value="Show thinking" />
+        </p:link>
+      </h:panelGroup>
+    </h:panelGroup>
+
+    <p:staticMessage id="agent-unavailable" severity="warn" styleClass="w-full mt-2"
+      rendered="#{not smartStatisticManagementBean.agentAvailable}"
+      detail="The chart assistant is not available in this installation, so this page is read-only." />
+
+    <h:panelGroup id="thinking-note"
+      rendered="#{not empty smartStatisticManagementBean.assistantNote
+      and not smartStatisticManagementBean.answerActive}">
+
+      <div class="smart-thinking" hidden="hidden">
+        <i class="ti ti-sparkles smart-thinking__icon"></i>
+        <h:outputText id="thinking-note-text" value="#{smartStatisticManagementBean.assistantNote}" escape="true" />
+      </div>
+    </h:panelGroup>
+
+    <ui:repeat value="#{smartStatisticManagementBean.assistantWarnings}" var="warning">
+      <div class="smart-prompt__warning mt-1">
+        <i class="ti ti-alert-triangle mr-2"></i>
+        <h:outputText id="assistant-warning-text" value="#{warning}" escape="true" />
+      </div>
+    </ui:repeat>
+  </h:panelGroup>
+
+</ui:composition>

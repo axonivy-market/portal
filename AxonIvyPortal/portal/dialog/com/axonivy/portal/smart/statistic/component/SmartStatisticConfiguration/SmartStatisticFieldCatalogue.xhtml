@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces"
+  xmlns:ic="http://ivyteam.ch/jsf/component">
+
+  <!-- The fields a provider offers, and which of them the chart may use. -->
+  <h:panelGroup id="field-catalogue" layout="block" styleClass="smart-catalogue">
+    <div class="smart-catalogue__head">
+      <span class="smart-catalogue__title">
+        <i class="ti ti-list-details"></i>
+        Fields
+      </span>
+      <span class="smart-catalogue__count">
+        #{managedBean.catalogueFields.size()} fields, read from #{managedBean.providerForm.catalogue.rowCount} records
+      </span>
+      <p:commandButton id="regenerate-catalogue" styleClass="smart-catalogue__regenerate portal-pill-btn"
+        icon="ti ti-refresh" process="@this" update="field-catalogue chart-aggregation errors-message"
+        actionListener="#{managedBean.regenerateCatalogue()}"
+        value="Regenerate"
+        ariaLabel="Regenerate">
+        <p:confirm header="Regenerate"
+          message="Reading the fields again replaces every title and type, including the ones you changed. Continue?"
+          icon="ti ti-alert-triangle" />
+      </p:commandButton>
+    </div>
+
+    <div class="smart-catalogue__body">
+      <div class="smart-catalogue__row smart-catalogue__row--head">
+        <span>Field</span>
+        <span>Title</span>
+        <span>Type</span>
+        <span>Measures</span>
+      </div>
+
+      <ui:repeat var="catalogueField" varStatus="row"
+        value="#{managedBean.catalogueFields}">
+        <div class="smart-catalogue__row">
+          <span class="smart-catalogue__name">#{catalogueField.fieldName}</span>
+          <span class="smart-catalogue__title-cell">
+            <h:outputText value="#{catalogueField.title}" />
+          </span>
+          <span class="smart-catalogue__type">#{catalogueField.type.label}</span>
+          <span class="smart-catalogue__measures">
+            #{managedBean.describeMeasures(catalogueField)}
+          </span>
+        </div>
+      </ui:repeat>
+    </div>
+  </h:panelGroup>
+
+</ui:composition>
