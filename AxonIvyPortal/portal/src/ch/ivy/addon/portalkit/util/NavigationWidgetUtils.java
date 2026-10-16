@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.document.ImageDocumentDetector;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.util.ImageUploadUtils;
 
@@ -20,7 +21,8 @@ public class NavigationWidgetUtils {
   private static void cloneImage(String extension, String oldImageLocation,
       NavigationDashboardWidget newWidget, boolean isDarkMode) throws IOException {
     if (StringUtils.isBlank(extension)
-        || StringUtils.isBlank(oldImageLocation)) {
+        || StringUtils.isBlank(oldImageLocation)
+        || !ImageDocumentDetector.isAllowedImageExtension(extension)) {
       return;
     }
 
@@ -31,6 +33,10 @@ public class NavigationWidgetUtils {
                                           .read().inputStream().readAllBytes();
 
     if (oldFileContent != null && oldFileContent.length > 0) {
+      if (!ImageDocumentDetector.isImageSafe(oldFileContent)) {
+        Ivy.log().warn("Navigation widget image clone rejected: unsafe content");
+        return;
+      }
       String newFileName = UUID.randomUUID().toString();
       ContentObject newImageCMSObject =
           getApplicationCMS().child().folder(ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY).child().file(newFileName, extension);
@@ -88,6 +94,9 @@ public class NavigationWidgetUtils {
           widget.getImageType(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
       widget.setImageLocation(newImageLocation);
       widget.setImageContent(null);
+      if (newImageLocation == null) {
+        widget.setImageType(null);
+      }
     } else {
       try {
         cloneLightModeImage(widget.getImageType(), widget.getImageLocation(), widget);
@@ -102,6 +111,9 @@ public class NavigationWidgetUtils {
           widget.getImageTypeDarkMode(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
       widget.setImageLocationDarkMode(newImageLocation);
       widget.setImageContentDarkMode(null);
+      if (newImageLocation == null) {
+        widget.setImageTypeDarkMode(null);
+      }
     } else {
       try {
         cloneDarkModeImage(widget.getImageTypeDarkMode(), widget.getImageLocationDarkMode(), widget);

@@ -279,8 +279,13 @@ public class ProcessWidgetBean extends AbstractProcessBean implements IMultiLang
     removeTempExternalLinkImage();
     ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, ImageUploadUtils.EXTERNAL_LINK_IMAGE_DIRECTORY);
     if (imageInfo.isInvalid()) {
+      String messageKey = StringUtils.defaultIfBlank(imageInfo.message(),
+          "/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript");
+      String messageDetail = "/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize".equals(messageKey)
+          ? getFileUploadInvalidSizeMessage()
+          : Ivy.cms().co(messageKey);
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
+          messageDetail, null);
       FacesContext.getCurrentInstance().addMessage("edit-external-link-error-message", message);
     } else {
       this.editedExternalLink.setImageLocation(imageInfo.imageLocation());
