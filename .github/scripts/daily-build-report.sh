@@ -30,11 +30,15 @@ latest_run() {
 }
 
 failed_tests() {
-  local archive=$1 cases=$workdir/cases.xml.txt name
+  local archive=$1 cases=$workdir/cases.xml.txt name failure_count
   unzip -tqq "$archive" || return 1
   : > "$cases"
   while IFS= read -r name; do
     [[ ${name##*/} == TEST-*.xml ]] || continue
+    failure_count=$(unzip -p "$archive" "$name" |
+      xmlstarlet sel -T -t -v 'count(//testcase[failure or error])') || return 1
+    [[ $failure_count =~ ^[0-9]+$ ]] || return 1
+    (( failure_count == 0 )) && continue
     unzip -p "$archive" "$name" |
       xmlstarlet sel -t -m '//testcase[failure or error]' \
         -v '@classname' -o $'\t' -v '@name' -n >> "$cases" || return 1
