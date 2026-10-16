@@ -21,6 +21,7 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class ProcessStartUtils {
 
@@ -58,6 +59,37 @@ public class ProcessStartUtils {
   private static IProcessStart findProcessStartByUserFriendlyRequestPathAndPmv(String requestPath,
       IProcessModelVersion processModelVersion) {
     return IWorkflowProcessModelVersion.of(processModelVersion).findStartElementByUserFriendlyRequestPath(requestPath);
+  }
+
+  public static IWebStartable findWebStartableByUserFriendlyRequestPath(String requestPath) {
+    return Sudo.get(() -> {
+      IWebStartable webStartable = findWebStartableByPathAndPmv(requestPath, Ivy.request().getProcessModelVersion());
+      if (webStartable != null) {
+        return webStartable;
+      }
+
+      List<IApplication> applicationsInSecurityContext = IApplicationRepository.of(ISecurityContext.current()).all();
+
+      List<IProcessModel> processModels = applicationsInSecurityContext.stream()
+          .map(IApplication::getProcessModelsSortedByName).flatMap(List::stream).collect(Collectors.toList());
+
+      for (IProcessModel processModel : processModels) {
+        Optional<IWebStartable> webStartableOptional = Optional.of(processModel).filter(pm -> isActive(pm))
+            .map(IProcessModel::getReleasedProcessModelVersion).filter(pmv -> isActive(pmv))
+            .map(p -> findWebStartableByPathAndPmv(requestPath, p)).filter(Objects::nonNull);
+        if (webStartableOptional.isPresent()) {
+          return webStartableOptional.get();
+        }
+      }
+      return webStartable;
+    });
+  }
+
+  private static IWebStartable findWebStartableByPathAndPmv(String requestPath,
+      IProcessModelVersion processModelVersion) {
+    return IWorkflowProcessModelVersion.of(processModelVersion).getAllStartables()
+        .filter(ws -> ws.getId().endsWith(requestPath))
+        .findFirst().orElse(null);
   }
 
   private static boolean isActive(IProcessModel processModel) {
