@@ -45,6 +45,13 @@ class TestSortableFieldRegression {
     return criteria.buildQuery().toString();
   }
 
+  private String processCaseQuery(String sortField, boolean descending) {
+    DashboardProcessCaseSearchCriteria criteria = new DashboardProcessCaseSearchCriteria(null);
+    criteria.setSortField(sortField);
+    criteria.setSortDescending(descending);
+    return criteria.buildQuery().toString();
+  }
+
   @Test
   void taskWidget_sortByWorker_doesNotJoinCustomFieldTable() {
     assertThat(taskQuery("worker", false)).doesNotContain("IWA_TaskCustom");
@@ -127,6 +134,31 @@ class TestSortableFieldRegression {
     String query = taskQuery("priority", true);
     assertThat(query).contains(
         "ORDER BY Column(IWA_Task.Priority) DESCENDING, Column(IWA_Task.TaskId) DESCENDING");
+  }
+
+  @ParameterizedTest
+  @ValueSource(booleans = {false, true})
+  void processCaseWidget_sortByName_ordersByNameThenIdDescending(boolean descending) {
+    String direction = descending ? "DESCENDING" : "ASCENDING";
+    assertThat(processCaseQuery("name", descending)).contains(
+        "ORDER BY Column(IWA_CaseLocalized.Name) " + direction + ", Column(IWA_Case.CaseId) DESCENDING");
+  }
+
+  @ParameterizedTest
+  @ValueSource(booleans = {false, true})
+  void processCaseWidget_sortById_ordersByIdOnce(boolean descending) {
+    String direction = descending ? "DESCENDING" : "ASCENDING";
+    String query = processCaseQuery("id", descending);
+    String orderBy = query.substring(query.indexOf("ORDER BY"));
+    assertThat(orderBy).contains("ORDER BY Column(IWA_Case.CaseId) " + direction);
+    assertThat(orderBy.split("Column\\(IWA_Case.CaseId\\)", -1)).hasSize(2);
+  }
+
+  @ParameterizedTest
+  @ValueSource(booleans = {false, true})
+  void processCaseWidget_withoutSupportedSort_appliesNoOrdering(boolean descending) {
+    assertThat(processCaseQuery(null, descending)).doesNotContain("ORDER BY");
+    assertThat(processCaseQuery("description", descending)).isEqualTo(processCaseQuery(null, descending));
   }
 
   @ParameterizedTest
