@@ -417,8 +417,6 @@ public class NewDashboardPage extends TemplatePage {
   private SelenideElement openCompactModeProcessActionsMenu() {
     getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear).click();
     SelenideElement actionsMenuButton = getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    waitUntilElementToBeClickable(actionsMenuButton);
-    clickByJavaScript(actionsMenuButton);
     String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
     return $("[id='" + menuId + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
