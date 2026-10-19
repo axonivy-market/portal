@@ -2202,6 +2202,88 @@
       "connect" : [
         { "id" : "f206", "to" : "f7", "via" : [ { "x" : 408, "y" : 1928 } ] }
       ]
+    }, {
+      "id" : "f207",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.PORTAL_SIDEBAR_CONFIGURATION.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 2000 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : [
+        { "id" : "f211", "to" : "f7", "via" : [ { "x" : 408, "y" : 2000 } ] }
+      ]
+    }, {
+      "id" : "f208",
+      "type" : "RequestStart",
+      "name" : "grantPortalSidebarConfigurationPermission.ivp",
+      "config" : {
+        "signature" : "grantPortalSidebarConfigurationPermission"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 2000 },
+        "labelOffset" : { "x" : 136, "y" : 20 }
+      },
+      "connect" : [
+        { "id" : "f212", "to" : "f207" }
+      ]
+    }, {
+      "id" : "f209",
+      "type" : "RequestStart",
+      "name" : "denyPortalSidebarConfigurationPermission.ivp",
+      "config" : {
+        "signature" : "denyPortalSidebarConfigurationPermission"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 2064 },
+        "labelOffset" : { "x" : 135, "y" : 20 }
+      },
+      "connect" : [
+        { "id" : "f213", "to" : "f210" }
+      ]
+    }, {
+      "id" : "f210",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.PORTAL_SIDEBAR_CONFIGURATION.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 2064 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : [
+        { "id" : "f214", "to" : "f7", "via" : [ { "x" : 408, "y" : 2064 } ] }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {
