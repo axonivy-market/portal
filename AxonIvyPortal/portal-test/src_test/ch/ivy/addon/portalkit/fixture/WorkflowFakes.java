@@ -2,9 +2,9 @@ package ch.ivy.addon.portalkit.fixture;
 
 import static ch.ivy.addon.portalkit.fixture.Fakes.fake;
 
+import java.lang.reflect.InvocationHandler;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -41,7 +41,7 @@ public final class WorkflowFakes {
   }
 
   private static ICustomFields customFields(Map<String, String> values) {
-    Function<Object, Object> byName = name -> stringField(values.get(name));
+    InvocationHandler byName = (_, _, args) -> stringField(values.get(args[0]));
     return fake(ICustomFields.class, Map.of("stringField", byName, "textField", byName));
   }
 
