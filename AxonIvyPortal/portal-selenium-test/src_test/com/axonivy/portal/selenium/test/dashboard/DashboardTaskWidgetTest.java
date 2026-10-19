@@ -238,6 +238,42 @@ public class DashboardTaskWidgetTest extends BaseTest {
   }
 
   @Test
+  public void testCollapseExpandedTaskWidgetByEscapeKey() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+
+    taskWidget.clickOnButtonExpandTaskWidget();
+    taskWidget.getExpandedTaskWidget().shouldHave(size(1));
+    taskWidget.pressEscapeKey();
+    taskWidget.getExpandedWidget().shouldHave(size(0));
+  }
+
+  @Test
+  public void testEscapeKeyOnFilterDialogKeepsTaskWidgetExpanded() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+
+    taskWidget.clickOnButtonExpandTaskWidget();
+    taskWidget.getExpandedTaskWidget().shouldHave(size(1));
+
+    taskWidget.openFilterWidget();
+    taskWidget.pressEscapeKey();
+    taskWidget.waitForFilterDialogDisappear();
+    taskWidget.getExpandedTaskWidget().shouldHave(size(1));
+
+    taskWidget.pressEscapeKey();
+    taskWidget.getExpandedWidget().shouldHave(size(0));
+  }
+
+  @Test
   public void testStickySortTaskList() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);

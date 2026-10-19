@@ -43,7 +43,7 @@
           </h:panelGroup>
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="true" sortBy="#{description}" field="description" filterable="false" styleClass="relevant-tasks__description u-hidden-sm-down">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false" sortBy="#{description}" field="description" filterable="false" styleClass="relevant-tasks__description u-hidden-sm-down">
           <span><h:outputText value="#{task.descriptions().current()}" /></span>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortable="true" sortBy="#{expiryTimestamp}" field="expiryTimestamp" filterable="false" styleClass="relevant-tasks__expiry u-hidden-sm-down">

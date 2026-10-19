@@ -39,5 +39,8 @@
     "name" : "isShortcutEnabled",
     "type" : "Boolean",
     "modifiers" : [ ]
+  }, {
+    "name" : "globalDefaultProcessMode",
+    "modifiers" : [ ]
   } ]
 }

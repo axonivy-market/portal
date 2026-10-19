@@ -18,7 +18,7 @@ public class CustomNumberEmptyOperatorHandler {
 
   public CaseQuery buildEmptyQuery(DashboardFilter filter) {
     CaseQuery query = initCaseQuery(filter.getFilterType());
-    query.where().customField().numberField(filter.getField()).isNull();
+    query.where().not(CaseQuery.create().where().customField().numberField(filter.getField()).isNotNull());
     return query;
   }
 

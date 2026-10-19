@@ -19,6 +19,15 @@ function calculateTableChunkSize() {
   return Math.min(maxTableChunkSize, Math.max(minTableChunkSize, rows));
 }
 
+function addDashboardTableChunkSize(config) {
+  if (!config.params) {
+    config.params = [];
+  }
+
+  const chunkSize = calculateTableChunkSize();
+  config.params.push({name: 'chunkSize', value: chunkSize});
+}
+
 function loadGrid(isResponsive) {
 
   // Set default height for cells
@@ -359,6 +368,17 @@ function toggleFullscreen(index, widgetId) {
     icon.removeClass('ti-arrows-maximize').addClass('ti-arrows-minimize');
     label.text(item.attr('data-collapse-label'));
   }
+}
+
+function restoreFullscreenToggleLabel(index, widgetId) {
+  var widget = $('div.grid-stack-item[gs-id = "' + widgetId + '"]');
+  if (!widget.hasClass('expand-fullscreen')) {
+    return;
+  }
+
+  var item = $('.toggle-fullscreen-item-' + index);
+  item.find('.ui-menuitem-icon').removeClass('ti-arrows-maximize').addClass('ti-arrows-minimize');
+  item.find('.ui-menuitem-text').text(item.attr('data-collapse-label'));
 }
 
 function collapseFullscreen(index, widgetId) {

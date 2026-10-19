@@ -1851,7 +1851,7 @@ msgstr "この設定はPortal設定のPortal.ShowTooltipTechnicalNameをデフ�
 
 #: ../../source/portal-components/documents/security_member_name_and_avatar_component_attributes.csv:3
 msgid "If the Portal setting is not available, defaults to false."
-msgstr "Portal設定が利用できない場合、デフォルトは ``false`` となります。"
+msgstr "Portal設定が利用できない場合、デフォルトは false となります。"
 
 #: ../../source/portal-components/security-member-name-and-avatar/index.rst:43
 msgid "Refer to process ``SecurityMemberNameAndAvatarExample`` in project ``portal-components-examples`` for more details."

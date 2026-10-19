@@ -4,9 +4,9 @@ import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.common.search.JsonWidgetSearch;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.TextNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.node.StringNode;
 
 public class DashboardProcessWidgetConverter implements IJsonConverter {
 
@@ -60,11 +60,11 @@ public class DashboardProcessWidgetConverter implements IJsonConverter {
    * @param widgetNode
    */
   private static void migrateOldProcessWidgetTypes(ObjectNode widgetNode) {
-    if (widgetNode.get(TYPE).asText().contentEquals(PROCESS)) {
+    if (widgetNode.get(TYPE).asString().contentEquals(PROCESS)) {
       ProcessType displayMode = ProcessType
-          .findByOldType(widgetNode.get(DISPLAY_MODE).asText());
+          .findByOldType(widgetNode.get(DISPLAY_MODE).asString());
       if (displayMode != null) {
-        widgetNode.set(TYPE, new TextNode(displayMode.getNewType()));
+        widgetNode.set(TYPE, new StringNode(displayMode.getNewType()));
       }
     }
   }

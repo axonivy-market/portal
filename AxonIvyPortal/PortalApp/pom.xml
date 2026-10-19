@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-app</artifactId>
-  <version>14.0.0-SNAPSHOT</version>
+  <version>14.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <distributionManagement>
     <repository>
@@ -24,9 +24,6 @@
       <url>https://repo.maven.apache.org/maven2</url>
     </repository>
     <repository>
-      <snapshots>
-        <updatePolicy>always</updatePolicy>
-      </snapshots>
       <id>maven.axonivy.com</id>
       <url>https://maven.axonivy.com</url>
     </repository>
@@ -35,13 +32,13 @@
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal-components</artifactId>
-      <version>14.0.0-SNAPSHOT</version>
+      <version>14.0.1-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
-      <version>14.0.0-SNAPSHOT</version>
+      <version>14.0.1-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
   </dependencies>

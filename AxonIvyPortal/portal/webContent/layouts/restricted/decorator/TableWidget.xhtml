@@ -71,6 +71,7 @@
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               actionListener="#{bulkActionBean.cancelBulkAction(widget)}"
               update="@(.delegation-action-bar-#{widget.id}) @(.widget-header-default-actions-#{widget.id}) #{componentToUpdateOnResetFilter}"
+              oncomplete="restoreFullscreenToggleLabel(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}');"
               process="@this" />
           </h:panelGroup>
         </h:form>
@@ -81,7 +82,7 @@
     <h:panelGroup rendered="#{not dashboardBean.isTaskWidget(widget) or not bulkActionBean.isInBulkMode(widget)}">
 
     <h:panelGroup id="widget-header-quick-search-#{index}" layout="block"
-      styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1'} widget-header-quick-search"
+      styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1'} widget-header-quick-search #{not empty widget.quickSearchKeyword ? 'widget-header-quick-search-show' : ''}"
       rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch()}">
       <h:form id="quick-search-form" onkeydown="if (isPressedSpecialKeys(event) == true) { return false; }">
       <c:set var="widgetContentId" value=":#{cc.clientId}:widget-content" />
@@ -110,7 +111,7 @@
     
     <h:panelGroup layout="block" styleClass="quick-search-icon" rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch()}">
      <!-- Quick search icon button -->
-     <p:commandButton id="quick-search-icon-#{index}" icon="ti ti-search" styleClass="rounded-button portal-icon-btn"
+     <p:commandButton id="quick-search-icon-#{index}" icon="#{not empty widget.quickSearchKeyword ? 'ti ti-x' : 'ti ti-search'}" styleClass="rounded-button portal-icon-btn"
       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}"
       onclick="showQuickSearchInput(#{index});" global="false" disabled="#{!isReadOnlyMode}" >
      </p:commandButton>
@@ -140,12 +141,14 @@
               styleClass="flex align-items-center" containerStyleClass="actions-menu-item-bordered"
               actionListener="#{bulkActionBean.startBulkDelegation(widget)}"
               update="@(.delegation-action-bar-#{widget.id}) @(.widget-header-default-actions-#{widget.id}) #{componentToUpdateOnResetFilter}"
+              oncomplete="restoreFullscreenToggleLabel(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}');"
               process="@this">
             </p:menuitem>
             <!-- Pin/Unpin -->
             <p:menuitem value="#{dashboardBean.showPinnedItemToggleLabel(widget)}"
               icon="#{widget.showPinnedItem ? 'tif tif-pin' : 'ti ti-pin'}" rendered="#{dashboardBean.canShowPinnedItemToggle(widget)}"
               action="#{dashboardBean.togglePinned(widget)}"
+              oncomplete="restoreFullscreenToggleLabel(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}');"
               update="#{componentToUpdateOnResetFilter} actions-widget-form" process="@this" />
             <p:divider rendered="#{renderSelectionToggle or dashboardBean.canShowPinnedItemToggle(widget)}"/>
             <!-- Filter -->
@@ -310,7 +313,6 @@
         dynamic="true"
         onShow="loadUserFilters#{index}(); #{onFilterDialogShow};"
         pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterPanelHeader')}">
-        <p:tooltip globalSelector=".ui-button" hideEvent="mouseleave click"/>
         <h:form id="filter-form-#{index}" styleClass="filter-form flex flex-column flex-auto">
           <h:panelGroup id="filter-dialog-content-#{index}" styleClass="flex flex-auto align-items-stretch filter-dialog__panels" layout="block">
             <h:panelGroup id="saved-filters-container" styleClass="saved-filter ui-sm-hidden" layout="block">

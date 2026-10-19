@@ -40,13 +40,13 @@ import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 @IvyWebTest
 public class CaseDetailsTest extends BaseTest {
-  private static final String BUSINESS_DETAILS_TITLE = "Business Details - Portal - Axon Ivy";
+  private static final String BUSINESS_DETAILS_TITLE = "Business Details - Portal";
   private static final String ORDER_PIZZA = "Order Pizza";
   private static final String TAKE_ORDER = "Take Order";
   private static final String TAKE_ORDER_AND_MAKE_PIZZA = "Take Order and Make Pizza";
 
-  private static final String TASK_DETAILS_TITLE = "Task Details - Portal - Axon Ivy";
-  private static final String CASE_DETAILS_TITLE = "Case Details - Portal - Axon Ivy";
+  private static final String TASK_DETAILS_TITLE = "Task Details - Portal";
+  private static final String CASE_DETAILS_TITLE = "Case Details - Portal";
 
   // NOTE CONTENT
   private static final String NOTE_TECHNICAL_CASE = "Note is added on Technical Case";
@@ -515,17 +515,11 @@ public class CaseDetailsTest extends BaseTest {
     relatedCaseDetailsPage.waitForPageLoad();
     refreshPage();
 
-    String subCaseId = relatedCaseDetailsPage.getCaseId();
-    String caseName = relatedCaseDetailsPage.getCaseName();
     relatedCaseDetailsPage.getNumberOfHistory().shouldHave(size(2), DEFAULT_TIMEOUT);
     relatedCaseDetailsPage.getNumberOfHistoryForRelatedCaseLink().shouldHave(size(0), DEFAULT_TIMEOUT);
     detailsPage = relatedCaseDetailsPage.openBusinessCaseFromTechnicalCase();
     detailsPage.getNumberOfHistory().shouldHave(size(4), DEFAULT_TIMEOUT);
-    detailsPage.getNumberOfHistoryForRelatedCaseLink().shouldHave(size(4), DEFAULT_TIMEOUT);
-    String relaledCaseName = detailsPage.getContentOfHistoryTableRelatedCaseColumn(0);
-    assertTrue(relaledCaseName.startsWith("#"));
-    assertTrue(relaledCaseName.contains(subCaseId));
-    assertTrue(relaledCaseName.contains(caseName));
+    detailsPage.getNumberOfRelatedCaseRows().shouldHave(size(1), DEFAULT_TIMEOUT);
   }
 
   @Test

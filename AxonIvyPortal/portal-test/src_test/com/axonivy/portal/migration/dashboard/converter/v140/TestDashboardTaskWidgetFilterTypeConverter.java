@@ -5,10 +5,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.JsonNodeFactory;
+import tools.jackson.databind.node.ObjectNode;
 
 class TestDashboardTaskWidgetFilterTypeConverter {
 
@@ -155,7 +155,7 @@ class TestDashboardTaskWidgetFilterTypeConverter {
 
     converter.convert(dashboard);
 
-    assertThat(dashboard.get("widgets").get(0).get("filters").get(0).get("type").asText())
+    assertThat(dashboard.get("widgets").get(0).get("filters").get(0).get("type").asString())
         .isEqualTo(CUSTOM_CASE);
   }
 
@@ -290,6 +290,6 @@ class TestDashboardTaskWidgetFilterTypeConverter {
   }
 
   private static String filterType(JsonNode dashboard, int widgetIndex) {
-    return dashboard.get("widgets").get(widgetIndex).get("filters").get(0).get("type").asText();
+    return dashboard.get("widgets").get(widgetIndex).get("filters").get(0).get("type").asString();
   }
 }

@@ -10,9 +10,9 @@ import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
 import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.dashboardfilter.converter.JsonDashboardFilterConverterFactory;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.TextNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.node.StringNode;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -40,7 +40,7 @@ public class JsonDashboardFilterMigrator {
   private static AbstractJsonVersion readVersion(JsonNode node) {
     return Optional.ofNullable(node)
         .map(jsonNode -> jsonNode.get(AbstractJsonVersion.VERSION_FIELD_NAME))
-        .map(field -> new DashboardFilterJsonVersion(field.asText()))
+        .map(field -> new DashboardFilterJsonVersion(field.asString()))
         .orElse(DashboardFilterJsonVersion.OLDEST_VERSION);
   }
 
@@ -52,7 +52,7 @@ public class JsonDashboardFilterMigrator {
       return node;
     }
     if (node.isArray()) {
-      node.elements().forEachRemaining(config -> migrate(config));
+      node.values().forEach(config -> migrate(config));
     } else {
       migrate(node);
     }
@@ -78,9 +78,9 @@ public class JsonDashboardFilterMigrator {
   }
 
   private void updateVersion(JsonNode node) {
-    TextNode versionNode = Optional.ofNullable(version)
+    StringNode versionNode = Optional.ofNullable(version)
         .map(v -> v.getValue())
-        .map(val -> new TextNode(val)).get();
+        .map(val -> new StringNode(val)).get();
     ((ObjectNode) node).set(AbstractJsonVersion.VERSION_FIELD_NAME, versionNode);
   }
 }

@@ -18,10 +18,8 @@
   <c:set var="caseDescription" value="#{caseWidgetBean.formatCaseDescription(case.descriptions().current())}" />
   
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('NAME')}">
-    <h:outputText id="#{cc.attrs.caseNameId}" styleClass="case-header-name-cell #{cc.attrs.nameStyleClass} #{cc.attrs.responsiveStyleClass}" value="#{caseName}" />
-    <p:tooltip for="#{cc.attrs.caseNameId}" value="#{caseName}" trackMouse="true" hideEvent="mouseleave click" />
-    <h:outputText id="#{cc.attrs.caseDescriptionId}" styleClass="case-header-desc-cell" value="#{caseDescription}" />
-    <p:tooltip for="#{cc.attrs.caseDescriptionId}" value="#{caseDescription}" trackMouse="true" hideEvent="mouseleave click"/>
+    <h:outputText id="#{cc.attrs.caseNameId}" styleClass="case-header-name-cell #{cc.attrs.nameStyleClass} #{cc.attrs.responsiveStyleClass}" value="#{caseName}" title="#{caseName}" />
+    <h:outputText id="#{cc.attrs.caseDescriptionId}" styleClass="case-header-desc-cell" value="#{caseDescription}" title="#{caseDescription}" />
   </h:panelGroup>
 </cc:implementation>
 </html>

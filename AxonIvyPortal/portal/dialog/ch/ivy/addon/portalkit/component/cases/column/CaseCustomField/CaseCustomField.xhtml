@@ -18,9 +18,7 @@
   
   <cc:implementation>
     <h:panelGroup id="#{cc.attrs.panelGroupId}" rendered="#{cc.attrs.dataModel.isSelectedColumn(cc.attrs.column)}" styleClass="text-center case-custom-field-cell #{cc.attrs.responsiveStyleClass}">
-      <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.labelValue}" />
-      <p:tooltip for="#{cc.attrs.componentId}" styleClass="#{cc.attrs.responsiveStyleClass}" trackMouse="true"
-        hideEvent="mouseleave click" value="#{cc.attrs.labelValue}" />
+      <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.labelValue}" title="#{cc.attrs.labelValue}" />
   </h:panelGroup>
   </cc:implementation>
 </html>

@@ -25,7 +25,6 @@
       <h:panelGroup rendered="#{responsibleSize != null and responsibleSize gt 1}">
         <h:panelGroup id="all-expiry-responsibles" styleClass="ml-1" >
           <p:avatarGroup styleClass="responsibles-avatar-group" rendered="#{cc.attrs.isShowAvatar}">
-            <p:tooltip globalSelector=".ui-avatar"/>
             <ui:repeat value="#{expiryRepsonsibleBean.getResponsibleLimit10(expiryResponsibles)}" var="responsible" varStatus="s">
               <pc:avatar securityMember="#{responsible.get()}"
                 rendered="#{responsible.get() != null and s.index lt 3}"
@@ -33,7 +32,8 @@
                 title="#{expiryRepsonsibleBean.getDisplayName(responsible.get())}" />
             </ui:repeat>
             <p:avatar id="expiry-responsibles-more" styleClass="responsibles-more" shape="circle" rendered="#{responsibleSize gt 3}">
-              <h:outputText value="+#{responsibleSize - 3}" />
+              <p:commandLink styleClass="text-xs" rendered="#{cc.attrs.popupLink and cc.attrs.isShowAvatar}" value="+#{responsibleSize - 3}" onclick="#{cc.attrs.onClick}"/>
+              <h:outputText rendered="#{!cc.attrs.popupLink and cc.attrs.isShowAvatar}" value="+#{responsibleSize - 3}" />
             </p:avatar>
           </p:avatarGroup>
           <p:commandLink onclick="#{cc.attrs.onClick}" rendered="#{cc.attrs.popupLink and !cc.attrs.isShowAvatar}" ariaLabel="#{responsibleSize}">

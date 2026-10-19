@@ -49,7 +49,8 @@
             "groupId": "com.axonivy.portal",
             "artifactId": "portal-components",
             "version": "${version}",
-            "type": "iar"
+            "type": "iar",
+            "optional": true
           }
         ],
         "repositories": [

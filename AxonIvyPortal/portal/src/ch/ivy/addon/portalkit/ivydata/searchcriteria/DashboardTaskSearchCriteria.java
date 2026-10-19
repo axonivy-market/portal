@@ -231,8 +231,8 @@ public class DashboardTaskSearchCriteria {
       appendSortByPriorityIfSet(criteria);
       appendSortByBusinessCaseIdIfSet(criteria);
       appendSortByTechnicalCaseIdIfSet(criteria);
-      appendSortByCustomFieldIfSet(criteria);
       appendSortByWorkerIfSet(criteria);
+      appendSortByCustomFieldIfSet(criteria);
       if (order != null && isSortDescending()) {
         order.descending();
       }

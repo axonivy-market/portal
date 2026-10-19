@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,21 +19,14 @@ import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Condition.text;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.ScrollIntoViewOptions;
 import com.codeborne.selenide.ScrollIntoViewOptions.Block;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 
 public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   private static final String YOUR_CASES_WIDGET = "Your Cases";
-  private static final Duration SELECT_SAVED_FILTER_TIMEOUT = Duration.ofSeconds(30);
 
   private String caseWidgetId;
   private String caseWidgetName;

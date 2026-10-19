@@ -7,9 +7,10 @@ import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.StatisticJsonVersion;
 import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.migration.common.IJsonConverter;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.JsonNodeFactory;
+import tools.jackson.databind.node.ObjectNode;
 
 public class ClientStatisticConverter implements IJsonConverter {
 
@@ -20,7 +21,7 @@ public class ClientStatisticConverter implements IJsonConverter {
 
   @Override
   public void convert(JsonNode jsonNode) {
-    ChartType chartType = EnumUtils.getEnum(ChartType.class, StringUtils.upperCase(jsonNode.get("chartType").asText()));
+    ChartType chartType = EnumUtils.getEnum(ChartType.class, StringUtils.upperCase(jsonNode.get("chartType").asString()));
     if (chartType == ChartType.NUMBER) {
       updateNumberChartConfig((ObjectNode) jsonNode);
     }

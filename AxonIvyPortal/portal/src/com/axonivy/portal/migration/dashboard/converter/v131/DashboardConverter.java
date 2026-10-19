@@ -3,9 +3,9 @@ package com.axonivy.portal.migration.dashboard.converter.v131;
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.ObjectNode;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 
@@ -24,7 +24,7 @@ public class DashboardConverter implements IJsonConverter {
   public void convert(JsonNode jsonNode) {
 
     ObjectNode objectNode = (ObjectNode) jsonNode;
-    String dashboardId = objectNode.path("id").asText();
+    String dashboardId = objectNode.path("id").asString();
     boolean isDefaultTaskOrCaseList =
         "default-task-list-dashboard".equals(dashboardId) || "default-case-list-dashboard".equals(dashboardId);
 
@@ -56,7 +56,7 @@ public class DashboardConverter implements IJsonConverter {
 
           boolean hasPin = false;
           for (JsonNode column : columns) {
-            if (PIN.equals(column.path("field").asText())) {
+            if (PIN.equals(column.path("field").asString())) {
               hasPin = true;
               break;
             }

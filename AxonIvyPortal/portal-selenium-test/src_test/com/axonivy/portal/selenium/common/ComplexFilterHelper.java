@@ -3,6 +3,8 @@ package com.axonivy.portal.selenium.common;
 import java.time.Duration;
 import java.util.Arrays;
 
+import org.openqa.selenium.Keys;
+
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import static com.codeborne.selenide.Condition.and;
@@ -235,19 +237,24 @@ public class ComplexFilterHelper {
         input, value);
     SelenideElement trigger = input.parent().$("button.ui-datepicker-trigger").shouldBe(getClickableCondition());
     trigger.click();
-    WaitHelper.waitPageNoAnimation();
+    $$(".ui-datepicker-group").shouldBe(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
     trigger.click();
+    input.sendKeys(Keys.TAB);
 
     closeAnyOpenDatePicker();
-    WaitHelper.waitPageNoAjaxAndAnimation();
+    $$(".ui-datepicker-group").filter(Condition.visible).shouldBe(CollectionCondition.empty, DEFAULT_TIMEOUT);
   }
 
   public static void closeAnyOpenDatePicker() {
-    SelenideElement datePicker = $("#ui-datepicker-div");
-    if (datePicker.exists()) {
-      Selenide.executeJavaScript("arguments[0].style.display='none';", datePicker);
-      datePicker.shouldBe(Condition.hidden, DEFAULT_TIMEOUT);
-    }
+    Selenide.executeJavaScript(
+        "document.querySelectorAll('.ui-datepicker-group').forEach(function(el) {" +
+        "  var container = el.closest('.ui-datepicker') || el.parentElement;" +
+        "  if (container) { container.style.display = 'none'; }" +
+        "});" +
+        "document.querySelectorAll('.ui-datepicker, #ui-datepicker-div, .ui-datepicker-panel').forEach(function(el) {" +
+        "  el.style.display = 'none';" +
+        "});"
+    );
   }
 
   private static void handleFilterNumberBetween(SelenideElement filterElement, Object... values) {

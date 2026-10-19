@@ -1,6 +1,5 @@
 package com.axonivy.portal.components.persistence.converter;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -10,13 +9,13 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.components.persistence.domain.BusinessEntity;
 import com.axonivy.portal.components.service.exception.PortalException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.JavaType;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.MapperFeature;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 
 /**
  * This class provides method to convert Business entity object into Json value
@@ -31,7 +30,7 @@ public final class BusinessEntityConverter {
   public static String entityToJsonValue(BusinessEntity entity) {
     try {
       return getObjectMapper().writeValueAsString(entity);
-    } catch (JsonProcessingException e) {
+    } catch (JacksonException e) {
       throw new PortalException(e);
     }
   }
@@ -52,7 +51,7 @@ public final class BusinessEntityConverter {
       }
       return mapper.treeToValue(rootNode, classType);
       //return getObjectMapper().readValue(jsonValue, classType);
-    } catch (IOException e) {
+    } catch (JacksonException e) {
       throw new PortalException(e);
     }
   }
@@ -60,7 +59,7 @@ public final class BusinessEntityConverter {
   public static String entityToJsonValue(Object entity) {
     try {
       return getObjectMapper().writeValueAsString(entity);
-    } catch (JsonProcessingException e) {
+    } catch (JacksonException e) {
       throw new PortalException(e);
     }
   }
@@ -68,7 +67,7 @@ public final class BusinessEntityConverter {
   public static JsonNode entityToJsonNode(Object entity) {
     try {
       return getObjectMapper().readTree(entityToJsonValue(entity));
-    } catch (JsonProcessingException e) {
+    } catch (JacksonException e) {
       throw new PortalException(e);
     }
   }
@@ -95,7 +94,7 @@ public final class BusinessEntityConverter {
       }
 
       return new ArrayList<>();
-    } catch (IOException e) {
+    } catch (JacksonException e) {
       throw new PortalException(e);
     }
   }
@@ -119,7 +118,7 @@ public final class BusinessEntityConverter {
     try {
       return getObjectMapper().writerWithDefaultPrettyPrinter()
           .writeValueAsString(entity);
-    } catch (JsonProcessingException e) {
+    } catch (JacksonException e) {
       throw new PortalException(e);
     }
   }

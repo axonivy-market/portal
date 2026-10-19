@@ -208,31 +208,37 @@ function scrollToBottomOfLayoutContent() {
 }
 
 function highlightCaseDetailComponents() {
+  var summary = $('#case-details-summary-panel');
+  appendStepAnnotation(summary, 1, 0, summary.width()/2);
+  
   var general = $('#case-details-information-panel');
-  appendStepAnnotation(general, 1, 0, general.width()/2);
+  appendStepAnnotation(general, 2, 0, general.width()/2);
   
   var document = $('#case-details-document-panel');
-  appendStepAnnotation(document, 2, 0, document.width()/2);
+  appendStepAnnotation(document, 3, 0, document.width()/2);
   
   var technicalCase = $('#case-details-technicalCase-panel');
-  appendStepAnnotation(technicalCase, 3, 0, technicalCase.width()/2);
+  appendStepAnnotation(technicalCase, 4, 0, technicalCase.width()/2);
   
   var relatedTask = $('#case-details-relatedTask-panel');
-  appendStepAnnotation(relatedTask, 4, 0, relatedTask.width()/2);
+  appendStepAnnotation(relatedTask, 5, 0, relatedTask.width()/2);
   
   var histories = $('#case-details-history-panel');
-  appendStepAnnotation(histories, 5, 0, histories.width()/2);
+  appendStepAnnotation(histories, 6, 0, histories.width()/2);
 }
 
 function highlightTaskDetailComponent() {
+  var summary = $('#task-details-summary-panel');
+  appendStepAnnotation(summary, 1, 0, summary.width()/2);
+
   var information = $('#task-details-information-panel');
-  appendStepAnnotation(information, 1, 0, information.width()/2);
+  appendStepAnnotation(information, 2, 0, information.width()/2);
 
   var document = $('#task-details-document-panel');
-  appendStepAnnotation(document, 2, 0, document.width()/2);
+  appendStepAnnotation(document, 3, 0, document.width()/2);
 
   var histories = $('#task-details-history-panel');
-  appendStepAnnotation(histories, 3, 0, histories.width()/2);
+  appendStepAnnotation(histories, 4, 0, histories.width()/2);
 }
 
 function highlightTaskStatusBanner() {

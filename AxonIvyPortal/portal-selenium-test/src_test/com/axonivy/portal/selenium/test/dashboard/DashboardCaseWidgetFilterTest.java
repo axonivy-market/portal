@@ -1,8 +1,5 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
-import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.Selenide.$$;
-
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -20,8 +17,10 @@ import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.CollectionCondition;
+import static com.codeborne.selenide.CollectionCondition.size;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import static com.codeborne.selenide.Selenide.$$;
 
 @IvyWebTest
 public class DashboardCaseWidgetFilterTest extends BaseTest {
@@ -298,6 +297,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
   public void testFilterDateOnCustomFields() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(testCaseListPermission);
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     addCustomFields(caseWidget, List.of("CreatedBillDate", "ShipmentDate"));
 

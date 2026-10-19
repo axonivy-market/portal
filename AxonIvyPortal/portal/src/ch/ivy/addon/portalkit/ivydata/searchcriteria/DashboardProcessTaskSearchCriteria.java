@@ -78,7 +78,7 @@ public class DashboardProcessTaskSearchCriteria {
       appendSortByCompletionionDateIfSet(criteria);
       appendSortByExpiryDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
-      if (criteria.isSortDescending()) {
+      if (order != null && criteria.isSortDescending()) {
         order.descending();
       }
       return this;

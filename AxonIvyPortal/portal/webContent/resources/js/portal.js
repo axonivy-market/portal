@@ -473,6 +473,9 @@ function showQuickSearchInput(index) {
     } else {
       $(spanEl).removeClass("ti-x");
       $(spanEl).addClass("ti-search");
+      if ($(quickSearchInput).val() !== "") {
+        $(quickSearchInput).val("").trigger("cut");
+      }
     }
   }
 }
@@ -602,6 +605,29 @@ $(document).ready(function () {
     return event ? event.altKey && !event.ctrlKey && !event.shiftKey && !event.metaKey : false;
   }
 
+  function hasVisibleOverlayOnTop() {
+    return $('.ui-dialog:visible, .ui-overlaypanel:visible, .ui-menu-overlay:visible').length > 0;
+  }
+
+  function collapseExpandedWidget() {
+    if (hasVisibleOverlayOnTop()) {
+      return;
+    }
+
+    var collapseWidgetBtn = $('[id*="collapse-link"]:visible');
+    if (collapseWidgetBtn.length > 0) {
+      collapseWidgetBtn.click();
+      return;
+    }
+
+    var expandedWidget = $('.grid-stack-item.expand-fullscreen').first();
+    if (expandedWidget.length > 0 && typeof toggleFullscreen === 'function') {
+      var widgetIndex = expandedWidget.attr('data-index');
+      toggleFullscreen(widgetIndex, expandedWidget.attr('gs-id'));
+      $('.actions-menu-button-' + widgetIndex + ':visible').first().trigger('focus');
+    }
+  }
+
   const iframes = document.getElementsByTagName('iframe');
   
   if (iframes.length > 0) {
@@ -630,10 +656,7 @@ $(document).ready(function () {
 
     var keyCode = event.code;
     if (keyCode === 'Escape') {
-      var collapseWidgetBtn = $('[id*="collapse-link"]:visible');
-      if (collapseWidgetBtn.length > 0) {
-        collapseWidgetBtn.click();
-      }
+      collapseExpandedWidget();
 
       if (hidePortalActionPanels('action-steps-panel')) {
         if (focusedCaseEl) {
@@ -794,12 +817,14 @@ $(document).ready(function () {
 
         function adjustMediaHeight() {
           var dialog = contentWindow.PF('preview-document-dialog').jq;
-          var media = dialog.find('.ui-widget-content').find('.ui-g-12 object');
-
+          var content = dialog.find('.ui-dialog-content');
+          var media = content.find('.ui-g-12 object');
           if (dialog.hasClass('ui-dialog-maximized')) {
             var newHeight = dialog.height() - 130;
+            content.css('width', '');
             media.css('height', newHeight + 'px');
           } else {
+            content.css('width', '');
             media.css('height', '600px');
           }
         }
@@ -996,6 +1021,18 @@ function initFocusManagament(targetWindow) {
     targetWindow.PrimeFaces.widget.OverlayPanel._focusManaged = true;
   }
 
+}
+
+// Blurs focus still inside widget before PF hides it, so aria-hidden isn't blocked by a focused descendant.
+function blurActiveElementIn(widgetVar) {
+  var widget = PF(widgetVar);
+  if (!widget || !widget.jq) {
+    return;
+  }
+  var active = document.activeElement;
+  if (active && widget.jq.get(0).contains(active)) {
+    active.blur();
+  }
 }
 
 function storeFocusedElement(targetDocument, focusElements, containerId, targetElement) {

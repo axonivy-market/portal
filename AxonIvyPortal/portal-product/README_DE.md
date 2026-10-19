@@ -1,74 +1,78 @@
 # Axon Ivy Portal
+Das **Axon Ivy Portal** ist dein zentraler Einstiegspunkt für die Arbeit mit Geschäftsanwendungen, die auf der **Axon Ivy Platform** entwickelt wurden.
 
-Das **Axon Ivy Portal** ist der SPOC (Single-Point-of-Contact) für deine tägliche Arbeit mit Axon Ivy Anwendungen. 
+Das Portal wurde sowohl für Endanwender als auch für Fachabteilungen konzipiert und vereinfacht deine täglichen Abläufe durch eine intuitive, webbasierte Oberfläche, die nahtlos auf Desktop- und Mobilgeräten funktioniert.
 
-Mit einer webbasierten, modernen Oberfläche bietet dir das Portal u.a. folgende Funktionen:
+Mit dem Portal kannst du:
 
-- Greife auf die Anwendungen deines Unternehmens zu und starte neue *Cases* 
-- Verwalte und erledige *Tasks*, die dir zugewiesen sind
-- Behalte den Überblick, indem du Statistiken und historische Daten zu all deinen *Cases* und *Tasks* analysierst.  
-- Steigere die Benutzerfreundlichkeit und Leistungsfähigkeit des Axon Ivy Portals mit Hilfe zahlreicher Konfigurationsoptionen
+* **Neue Geschäftsprozesse starten** – schnell über das **Process List Widget**, Workflows mit nur wenigen Klicks anstoßen.
+* **Cases verwalten** – über das **Case List Widget** alle Prozessinstanzen, an denen du beteiligt bist, anzeigen, verfolgen und nachbearbeiten.
+* **An deinen Tasks arbeiten** – mit dem **Task List Widget** offene Aufgaben, Fristen und Prioritäten einfach im Blick behalten.
+* **Deine Arbeitslast analysieren** – über das **Statistics Widget** die Leistung überwachen und Trends mit Diagrammen und Kennzahlen erkennen.
+* **Deinen Arbeitsbereich anpassen** – Dashboards und Widgets so konfigurieren, dass sie zu deiner Arbeitsweise und deinen Vorlieben passen.
+
+Das **Axon Ivy Portal** wurde mit Blick auf Erweiterbarkeit und Anpassbarkeit entwickelt. Von personalisierten Dashboards bis hin zur tiefen Integration in deine Geschäftslogik kannst du das Portal an die Bedürfnisse von Einzelpersonen, Teams und Abteilungen anpassen.
 
 ![Portal](images/portal.png)
-
-
 
 ## Demo
 
 ### Axon Ivy Portal Dashboard
-To start your **Axon Ivy Portal** experience, use the link provided to you by your administrator.
-Following the link, the **Axon Ivy Portal** will ask for your login credentials.
+Um das **Axon Ivy Portal** zu nutzen, verwende den Link, den dir dein Administrator zur Verfügung gestellt hat.
+Nach dem Aufruf des Links fragt dich das **Axon Ivy Portal** nach deinen Anmeldedaten.
 
 ![login-screen](images/login-screen.png)
 
 
-After successful login, you'll see the **Axon Ivy Portal Homepage** and your personal dashboard.
-All your activities can be managed from this central entry point.
-In detail these are:
+Nach erfolgreicher Anmeldung siehst du die **Axon Ivy Portal Homepage** und dein persönliches Dashboard.
+Alle deine Aktivitäten kannst du von diesem zentralen Einstiegspunkt aus verwalten.
+Im Einzelnen sind dies:
 
-* The **Axon Ivy Portal header** on the top is always visible and provides you with a global search, key information about the Portal, and options to configure your personal user account.
-See **Portal Header** for details.
+* Der **Axon Ivy Portal Header** oben ist immer sichtbar und bietet dir eine globale Suche, wichtige Informationen über das Portal sowie Optionen zur Konfiguration deines persönlichen Benutzerkontos.
+Details findest du unter **Portal Header**.
 
 ![axon-ivy-portal-header](images/axon-ivy-portal-header.png)
 
-* The menu on the left side is always available and gives you access to all **processes**, **cases**, **tasks**, and other features of the **Axon Ivy Portal**.
-If the menu is minimized, you could hover to the menu to enlarge it.
-You may enlarge permanently the menu by clicking on the pin-icon icon in the top left corner. In the center you see **your personal dashboard** providing you instant access to **your processes**, **cases**, **tasks**, and performance indicators.
+* Die **Sidebar** auf der linken Seite bietet dir Zugriff auf die Seiten **Processes**, **Cases**, **Tasks** und **Portal Configuration**.
+Administratoren können für die Sidebar eines von drei Verhalten konfigurieren: **Hover**, **Click** oder **Stick**.
+Im Standardmodus **Hover** hat die Sidebar zwei Zustände:
+  * **Minimiert**: Bewege den Mauszeiger über die Sidebar, um sie vorübergehend aufzuklappen.
+  * **Angeheftet**: Klicke auf das Pin-Symbol oben links, um die Sidebar dauerhaft aufgeklappt zu lassen.
+
+* Der **Hauptinhaltsbereich** in der Mitte zeigt **dein persönliches Dashboard** mit deinen **Prozessen**, **Cases**, **Tasks** und Leistungskennzahlen.
 
 ![Portal](images/portal.png)
 
-### Welcome example
-Now, start the **User example guide** process to find some demo processes available in the **Axon Ivy Portal**.
-Just click on the corresponding link below to get more information.
+### Beispiel-Dashboards
+Im **Demo-Modus der Axon Ivy Engine** stellt das Portal zwei Beispiel-Dashboards in der Sidebar bereit:
 
-![user-example-demo](images/user-example-demo.png)
-
-
+* **User Guide Dashboard**: stellt die Standard-Dashboard-Widgets (Welcome, Process, Case, Task und Statistic Widgets) jeweils mit einer kurzen Erklärung vor.
+Details findest du unter **Portal Guide > User Guide > Dashboard**.
+* **KPI Procurement Overview**: demonstriert die Custom Statistics Widgets, die KPIs von Beschaffungsprozessen vollständig anpassbar visualisieren.
+Details findest du unter **Portal Guide > User Guide > Statistic Chart > Sample: KPI Procurement Overview**.
 
 ## Setup
 
-This section describes the first installation. We recommend reading the document detail in the **Portal guideline** in the section **Developer Guide > Installation**
+Dieser Abschnitt beschreibt die Erstinstallation. Wir empfehlen, die ausführliche Dokumentation im **Portal Guide** im Abschnitt **Developer Guide > Installation** zu lesen.
 
-### Project modules
+### Projektmodule
 
-The application consists of 3 process modules. For detailed information on each module, refer to **Portal Guide**.
+Die Anwendung besteht aus 2 Prozessmodulen. Detaillierte Informationen zu jedem Modul findest du im **Portal Guide**.
 
 * portal-components
 * portal
-* AxonIvyExpress
 
-### The default users
+### Die Standardbenutzer
 
-The default users for demonstration of Portal.
+Die Standardbenutzer zur Demonstration des Portals.
 
-| Username | Description                                                                     |
-| -------- | ------------------------------------------------------------------------------- |
-| admin    | This user has all Portal permissions, which can access to Portal Admin Settings |
-| demo     | This user has permission to manage user absences                                |
-| guest    | Default standard user of the Portal                                             |
+| Benutzername | Beschreibung                                                                                  |
+| ------------ | --------------------------------------------------------------------------------------------- |
+| admin        | Dieser Benutzer hat alle Portal-Berechtigungen und kann auf die Portal Admin Settings zugreifen |
+| demo         | Dieser Benutzer hat die Berechtigung, Abwesenheiten von Benutzern zu verwalten                |
+| guest        | Standardbenutzer des Portals                                                                  |
 
 
-### Hints
+### Hinweise
 
-We recommend reading the document detail in the **Portal guideline** in the section **Developer Guide** to get more information about installing **Portal** to your workspaces.
-
+Wir empfehlen, die ausführliche Dokumentation im **Portal Guide** im Abschnitt **Developer Guide** zu lesen, um weitere Informationen zur Installation des **Portals** in deinen Workspaces zu erhalten.

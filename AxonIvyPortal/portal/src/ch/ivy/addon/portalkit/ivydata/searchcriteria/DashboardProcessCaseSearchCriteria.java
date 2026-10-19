@@ -88,7 +88,7 @@ public class DashboardProcessCaseSearchCriteria {
       appendSortByCreationDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
       appendSortByEndDateIfSet(criteria);
-      if (criteria.isSortDescending()) {
+      if (order != null && criteria.isSortDescending()) {
         order.descending();
       }
       return this;

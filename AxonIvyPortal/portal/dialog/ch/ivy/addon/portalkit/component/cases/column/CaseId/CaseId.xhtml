@@ -13,7 +13,6 @@
 
 <cc:implementation>
   <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.case.id}" rendered="#{cc.attrs.dataModel.isSelectedColumn('ID')}" 
-    styleClass="case-header-id-cell case-header-default-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" />
-  <p:tooltip for="#{cc.attrs.componentId}" value="#{cc.attrs.case.id}" trackMouse="true" hideEvent="mouseleave click" />
+    styleClass="case-header-id-cell case-header-default-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" title="#{cc.attrs.case.id}" />
 </cc:implementation>
 </html>

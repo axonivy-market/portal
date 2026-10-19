@@ -3,12 +3,12 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces"
   xmlns:jsf="jakarta.faces">
   <div class="case-detail-header-card">
-    <div class="case-detail-section-title case-detail-header-row u-padding-0 flex align-items-center justify-content-between flex-wrap">
+    <div class="case-detail-section-title case-detail-header-row u-padding-0 flex align-items-center justify-content-between">
       <div class="case-detail-identity" role="heading" aria-level="1">
         <div class="flex flex-column u-truncate-text">
           <span class="case-detail-eyebrow">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}</span>
           <div class="case-detail-name-row">
-            <span class="case-detail-name u-truncate-text">#{case.names().current()}</span>
+            <span class="case-detail-name u-truncate-text" title="#{case.names().current()}">#{case.names().current()}</span>
             <ui:fragment rendered="#{caseBean.isPinnedCase(case)}">
               <i class="ti ti-pin case-detail-pin-indicator" />
             </ui:fragment>
@@ -41,7 +41,8 @@
       <!-- Case ID -->
       <div class="case-detail-attr">
         <h:outputText styleClass="portal-detail-column-title"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}"
+          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
         <div class="case-detail-attr-value">
           <h:outputText id="case-id" value="#{case.id}" />
         </div>
@@ -50,7 +51,8 @@
       <!-- State -->
       <div class="case-detail-attr">
         <h:outputText styleClass="portal-detail-column-title"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}"
+          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
         <div class="case-detail-attr-value">
           <h:panelGroup id="case-state">
             <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{case}" alwaysShowState="true"
@@ -63,9 +65,11 @@
       <div class="case-detail-attr"
         jsf:rendered="#{(caseDetailsBean.showNotAvailableData and empty case.categoryPath) or not empty case.categoryPath}">
         <h:outputText styleClass="portal-detail-column-title"
-          value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
+          value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}"
+          title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
         <div class="case-detail-attr-value u-truncate-text">
-          <h:outputText id="case-category" value="#{case.getCategory().getPath()}" rendered="#{not empty case.categoryPath}" />
+          <h:outputText id="case-category" value="#{case.getCategory().getPath()}" rendered="#{not empty case.categoryPath}"
+            title="#{case.getCategory().getPath()}" />
           <h:outputText id="empty-case-category" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable')}"
             rendered="#{empty case.categoryPath}" />
         </div>

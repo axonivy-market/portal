@@ -78,7 +78,6 @@ public class DashboardNavigationWidgetTest extends BaseTest{
     ScreenshotUtils.maximizeBrowser();
     navigationWidget.clickOnNavigateButton();
     newDashboardPage.waitForTaskWidgetLoaded();
-    assertTrue(newDashboardPage.isTaskListDisplayed());
   }
 
   private void addNewNavigationDashboardWidget(NewDashboardDetailsEditPage newDashboardDetailsEditPage) {

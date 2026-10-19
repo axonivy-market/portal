@@ -187,7 +187,7 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.openDashboardTaskDetails("task with 8 responsible");
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.getAllResponsible().shouldHave(Condition.text("+5"));
-    taskDetailsPage.getAllExpiryResponsible().shouldHave(Condition.text("6"));
+    taskDetailsPage.getAllExpiryResponsible().shouldHave(Condition.text("+3"));
     taskDetailsPage.getAllExpiryResponsible().click();
     taskDetailsPage.getExpiryResponsibleDialog().should(Condition.appear);
   }
