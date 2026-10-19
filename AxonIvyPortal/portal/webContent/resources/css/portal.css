@@ -1917,16 +1917,24 @@ body.dark .focused:not(input, button) {
 }
 
 /* Focus indicator */
-:focus-visible:not([tabindex="-1"]):not(input, textarea, select) {
+:focus-visible:not([tabindex="-1"]):not(input, textarea, select),
+[role="menuitem"]:focus-visible {
   outline: 2px solid var(--portal-focus-ring-color) !important;
   outline-offset: -2px !important;
 }
 
-body .ui-button:not(.ui-button-outlined, .ui-button-flat, .portal-icon-btn, .portal-pill-btn, .context-button, .portal-cancel-button, .ui-inplace-cancel, .primary-color-light-button):focus-visible,
+body .ui-button:not(.ui-button-outlined, .ui-button-flat, .portal-icon-btn, .portal-pill-btn, .context-button, .portal-cancel-button, .ui-inplace-cancel, .primary-color-light-button, .process-start-action, .dashboard-tasks__start-button, .dashboard__add-widget-button, .widget-view-toggle__button):focus-visible,
 body .ui-paginator .ui-paginator-page.ui-state-active:focus-visible,
 body .ui-datepicker td > a.ui-state-active:focus-visible,
 .skip-to-content:focus-visible {
   box-shadow: inset 0 0 0 4px currentColor;
+}
+
+body .ui-button:is(.ui-button-outlined, .ui-button-flat, .portal-icon-btn, .portal-pill-btn, .context-button, .portal-cancel-button, .ui-inplace-cancel, .primary-color-light-button, .process-start-action, .dashboard-tasks__start-button, .dashboard__add-widget-button, .widget-view-toggle__button):focus-visible,
+body .ui-selectonebutton > .ui-button:not(.ui-state-active):focus-visible,
+body .ui-selectmanybutton > .ui-button:not(.ui-state-active):focus-visible,
+body .ui-selectbooleanbutton.ui-button:not(.ui-state-active):focus-visible {
+  box-shadow: none;
 }
 
 body .ui-tabs .ui-tabs-nav li.ui-tabs-header.ui-tabs-outline {
@@ -1937,11 +1945,26 @@ body .ui-tabs .ui-tabs-nav li.ui-tabs-header > a:focus-visible {
   outline: none !important;
 }
 
+body .ui-datatable thead th.ui-sortable-column.ui-state-focus,
+body .ui-treetable thead th.ui-sortable-column.ui-state-focus {
+  box-shadow: inset 0 0 0 2px var(--portal-focus-ring-color);
+}
+
+body .ui-datatable thead th.ui-sortable-column.ui-state-focus::before,
+body .ui-treetable thead th.ui-sortable-column.ui-state-focus::before {
+  content: none;
+}
+
+body .ui-selectonemenu .ui-selectonemenu-label:focus-visible {
+  outline: none !important;
+}
+
 body .ui-selectonemenu.ui-state-focus,
 body .ui-selectcheckboxmenu.ui-state-focus,
 body .ui-autocomplete-multiple-container.ui-state-focus {
   outline: 2px solid var(--portal-focus-ring-color);
-  outline-offset: -2px;
+  outline-offset: 0;
+  box-shadow: none;
 }
 
 body .ui-chkbox .ui-chkbox-box.ui-state-focus,
@@ -1949,6 +1972,11 @@ body .ui-radiobutton .ui-radiobutton-box.ui-state-focus,
 body .ui-toggleswitch.ui-toggleswitch-focus .ui-toggleswitch-slider {
   outline: 2px solid var(--portal-focus-ring-color);
   outline-offset: 2px;
+  box-shadow: none;
+}
+
+html:has(.layout-topbar) {
+  scroll-padding-top: 64px;
 }
 
 .screenreader-only {

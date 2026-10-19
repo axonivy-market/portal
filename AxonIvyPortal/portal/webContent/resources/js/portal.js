@@ -1140,6 +1140,23 @@ function initIframeFocusManagement(iframe) {
   }
 }
 
+function findTopVisibleOverlayPanel(targetWindow) {
+  var topPanel = null;
+  var maxZIndex = -1;
+  var widgets = (targetWindow.PrimeFaces && targetWindow.PrimeFaces.widgets) || {};
+  for (var key in widgets) {
+    var w = widgets[key];
+    if (w && w.jq && w.jq.hasClass('ui-overlaypanel') && w.jq.is(':visible')) {
+      var zIndex = parseInt(w.jq.css('z-index'), 10) || 0;
+      if (zIndex > maxZIndex) {
+        maxZIndex = zIndex;
+        topPanel = w;
+      }
+    }
+  }
+  return topPanel;
+}
+
 function bindDialogKeysInIframe(iframe, widgetVar) {
   try {
     var iframeWindow = iframe.contentWindow;
@@ -1148,7 +1165,16 @@ function bindDialogKeysInIframe(iframe, widgetVar) {
         return;
       }
       if (event.key === 'Escape') {
-        PF(widgetVar).hide();
+        var openPanel = findTopVisibleOverlayPanel(iframeWindow);
+        if (openPanel) {
+          event.preventDefault();
+          openPanel.hide();
+          if (openPanel.targetElement) {
+            openPanel.targetElement.trigger('focus');
+          }
+        } else {
+          PF(widgetVar).hide();
+        }
       } else if (event.key === 'Tab' && !event.shiftKey && iframeWindow.$.expr.pseudos.tabbable
           && event.target === iframeWindow.$(':tabbable').last()[0]) {
         var first = PF(widgetVar).jq.find(':tabbable').first();
