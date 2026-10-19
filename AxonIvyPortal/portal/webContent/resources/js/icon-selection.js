@@ -51,10 +51,12 @@ function createAwesomeTag(iconCode, clientId) {
       iconAnchor.className = "icon-selection-array-selecting-icon icon-color highlight-selected-icon";
       iconAnchor.appendChild(iconImage);
       iconAnchor.title = iconCode;
+      iconAnchor.href = "#";
       iconAnchor.onclick = function() {
         updateSelectedIconDisplay(iconCode, "awesome", clientId);
         resetIconArrayStyle(container);
         highlightSelectedIcon(this);
+        return false;
       };
       $(container).prepend(iconAnchor);
       $(container).children().last().remove()
@@ -104,7 +106,7 @@ function loadDialogTablerIcon(clientId) {
     iconAnchor.className = "icon-selection-dialog-selecting-icon icon-color";
     iconAnchor.appendChild(iconImage);
     iconAnchor.title = iconCode;
-    iconAnchor.tabindex = "0";
+    iconAnchor.href = "#";
     iconAnchor.onclick = function() {
       updateSelectedIconDisplay(iconCode, "tabler", clientId);
       reloadArrayTablerIcon(clientId, iconCode);
@@ -135,7 +137,7 @@ function loadDialogTablerFilledIcon(clientId) {
     iconAnchor.className = "icon-selection-dialog-selecting-icon icon-color";
     iconAnchor.appendChild(iconImage);
     iconAnchor.title = iconCode;
-    iconAnchor.tabindex = "0";
+    iconAnchor.href = "#";
     iconAnchor.onclick = function() {
       updateSelectedIconDisplay(iconCode, "tabler-filled", clientId);
       reloadArrayTablerFilledIcon(clientId, iconCode);
@@ -172,7 +174,7 @@ function loadDialogStreamlineIcon(clientId) {
     iconAnchor.className = "icon-selection-dialog-selecting-icon icon-color";
     iconAnchor.appendChild(iconImage);
     iconAnchor.title = iconCode;
-    iconAnchor.tabindex = "0";
+    iconAnchor.href = "#";
     iconAnchor.onclick = function() {
       updateSelectedIconDisplay(iconCode, "streamline", clientId);
       reloadArrayStreamlineIcon(clientId, iconCode);
@@ -215,11 +217,12 @@ function reloadArrayStreamlineIcon(clientId, currentIconCode) {
 
     iconAnchor.appendChild(iconImage);
     iconAnchor.title = iconCode;
-    iconAnchor.tabindex = "0";
+    iconAnchor.href = "#";
     iconAnchor.onclick = function() {
       updateSelectedIconDisplay(iconCode, "streamline", clientId);
       resetIconArrayStyle(container);
       highlightSelectedIcon(this);
+      return false;
     };
     container.appendChild(iconAnchor);
   });
@@ -251,11 +254,12 @@ function reloadArrayTablerIcon(clientId, currentIconCode) {
 
     iconAnchor.appendChild(iconImage);
     iconAnchor.title = iconCode;
-    iconAnchor.tabindex = "0";
+    iconAnchor.href = "#";
     iconAnchor.onclick = function() {
       updateSelectedIconDisplay(iconCode, "tabler", clientId);
       resetIconArrayStyle(container);
       highlightSelectedIcon(this);
+      return false;
     };
     container.appendChild(iconAnchor);
   });
@@ -287,11 +291,12 @@ function reloadArrayTablerFilledIcon(clientId, currentIconCode) {
 
     iconAnchor.appendChild(iconImage);
     iconAnchor.title = iconCode;
-    iconAnchor.tabindex = "0";
+    iconAnchor.href = "#";
     iconAnchor.onclick = function() {
       updateSelectedIconDisplay(iconCode, "tabler-filled", clientId);
       resetIconArrayStyle(container);
       highlightSelectedIcon(this);
+      return false;
     };
     container.appendChild(iconAnchor);
   });

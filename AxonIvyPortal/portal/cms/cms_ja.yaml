@@ -651,6 +651,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showRelatedCaseInfo: 関連するケース
     showSystemNotes: システムノート
     showSystemTasks: システムタスク
+    skipToContent: コンテンツへスキップ
     sorting: 並べ替え
     start: 開始
     startProcess: プロセスの開始
@@ -687,6 +688,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     waitingDownloadMessage: エクスポートの準備中、数分かかる場合があります
     warning: 警告
     welcomeToPortal: ようこそ、ログインしてください
+    widgetActionMenuContext: ウィジェット{0}のアクションメニューを開く
     workingUser: 作業中ユーザー
     wrongDateFormat: 有効な日付を入力してください。
     year: 年
@@ -1372,6 +1374,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     documents: ドキュメント
     dueDate: 期限
     duration: 所要時間
+    editDelay: 延期を編集
+    editExpiry: 有効期限を編集
+    editExpiryActivator: 有効期限アクティベーターを編集
     events: ワークフローイベント
     expiry: 有効期限
     failedDelayValidation: タスク遅延タイムスタンプは空欄または無効な日付形式にすることはできません

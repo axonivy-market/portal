@@ -298,6 +298,16 @@ public class TaskDetailsPage extends TemplatePage {
     return $("div[id$='workflow-events-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public List<String> getWorkflowEventsReflowSortOptions() {
+    return $$("select[id$='events-table_reflowDD'] option").shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT)
+        .asFixedIterable().stream().map(option -> option.getAttribute("textContent")).collect(Collectors.toList());
+  }
+
+  public List<String> getWorkflowEventsSortableHeaderAriaLabels() {
+    return $$("div[id$='workflow-events-dialog'] th.ui-sortable-column").shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT)
+        .asFixedIterable().stream().map(header -> header.getAttribute("aria-label")).collect(Collectors.toList());
+  }
+
   public void closeWorkflowEventDialog() {
     $("div[id$='workflow-events-dialog'] .ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$='workflow-events-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
