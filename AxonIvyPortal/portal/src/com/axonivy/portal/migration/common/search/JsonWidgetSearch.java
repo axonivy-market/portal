@@ -8,8 +8,8 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import com.axonivy.portal.migration.common.visitor.JsonDashboardVisitor;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ArrayNode;
 
 public class JsonWidgetSearch {
   private final JsonNode dashboard;

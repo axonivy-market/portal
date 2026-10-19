@@ -10,11 +10,11 @@ import com.axonivy.portal.bo.jsonversion.TaskDetailsJsonVersion;
 import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.taskdetails.converter.JsonTaskDetailsConverterFactory;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.TextNode;
 
 import ch.ivyteam.ivy.environment.Ivy;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.node.StringNode;
 
 public class JsonTaskDetailsMigrator {
 
@@ -39,7 +39,7 @@ public class JsonTaskDetailsMigrator {
   private static AbstractJsonVersion readVersion(JsonNode node) {
     return Optional.ofNullable(node)
         .map(configuration -> configuration.get(AbstractJsonVersion.VERSION_FIELD_NAME))
-        .map(field -> new TaskDetailsJsonVersion(field.asText()))
+        .map(field -> new TaskDetailsJsonVersion(field.asString()))
         .orElse(TaskDetailsJsonVersion.OLDEST_VERSION);
   }
 
@@ -51,7 +51,7 @@ public class JsonTaskDetailsMigrator {
       return node;
     }
     if (node.isArray()) {
-      node.elements().forEachRemaining(this::migrate);
+      node.values().forEach(this::migrate);
     } else {
       migrate(node);
     }
@@ -80,6 +80,6 @@ public class JsonTaskDetailsMigrator {
     if (!node.isObject()) {
       return;
     }
-    ((ObjectNode) node).set(AbstractJsonVersion.VERSION_FIELD_NAME, new TextNode(version.getValue()));
+    ((ObjectNode) node).set(AbstractJsonVersion.VERSION_FIELD_NAME, new StringNode(version.getValue()));
   }
 }

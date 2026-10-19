@@ -7,20 +7,15 @@
   <c:set var="taskName" value="#{empty task.names().current() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.names().current()}" />
   <c:set var="taskDescription" value="#{dashboardBean.createExtractedTextFromHtml(task.descriptions().current())}" />
 
-  <h:outputText id="task-name" value="#{taskName}"
+  <h:outputText id="task-name" value="#{taskName}" title="#{taskName}"
     styleClass="#{column.fieldStyleClass} u-hidden-sm-down"
     style="#{column.fieldStyle}" />
-  <p:tooltip id="task-name-tooltip" for="task-name" styleClass="#{cc.attrs.stateTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click" 
-    value="#{taskName}" />
 
   <h:panelGroup layout="block" styleClass="u-hidden-md-up">
     <h:outputText id="task-name-sm" value="#{taskName}"
-      title="#{column.display(task)}" styleClass="dashboard-tasks__column-small-screen-name"/>
-    <p:tooltip id="task-name-tooltip-sm" for="task-name-sm" styleClass="#{cc.attrs.stateTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click" 
-      value="#{taskName}" />
+      title="#{taskName}" styleClass="dashboard-tasks__column-small-screen-name"/>
 
-    <h:outputText id="task-description" styleClass="dashboard-tasks__column-small-screen-description" value="#{taskDescription}" />
-    <p:tooltip for="task-description" value="#{taskDescription}" trackMouse="true" hideEvent="mouseleave click" />
+    <h:outputText id="task-description" styleClass="dashboard-tasks__column-small-screen-description" title="#{taskDescription}" value="#{taskDescription}" />
   </h:panelGroup>
 
 </html>

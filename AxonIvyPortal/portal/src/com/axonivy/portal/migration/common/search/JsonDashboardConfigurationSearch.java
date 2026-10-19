@@ -3,8 +3,8 @@ package com.axonivy.portal.migration.common.search;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ArrayNode;
 
 public class JsonDashboardConfigurationSearch {
   private final JsonNode configuration;

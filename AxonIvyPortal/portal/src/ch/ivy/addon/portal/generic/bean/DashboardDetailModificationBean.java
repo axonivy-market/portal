@@ -30,11 +30,6 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.faces.context.FacesContext;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
@@ -103,6 +98,10 @@ import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @ViewScoped
 @Named
@@ -605,6 +604,15 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
             widget.getId());
         if (oldWidgetOptional.isPresent()) {
           WelcomeDashboardWidget oldWidget = (WelcomeDashboardWidget) oldWidgetOptional.get();
+
+          // if old image light is referenced by dark mode, clear the dark mode image location and type
+          boolean sameImage = isSameImage(oldWidget.getImageLocation(), oldWidget.getImageType(), welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode());
+          // if old image light is referenced by dark mode, clear the dark mode image location and type
+          if (sameImage) {
+            welcomeWidget.setImageLocationDarkMode(null);
+            welcomeWidget.setImageTypeDarkMode(null);
+          }
+
           Optional.ofNullable(getWelcomeWidgetImage(false, oldWidget, false)).ifPresent(co -> {
             co.delete();
           });
@@ -613,6 +621,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
         tempImageFile.delete();
       }
     }
+
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocationDarkMode())) {
       ContentObjectValue tempImageFileDarkMode = getWelcomeWidgetImage(true, welcomeWidget, true);
       ContentObjectValue imageFileDarkMode = getWelcomeWidgetImage(false, welcomeWidget, true);
@@ -630,6 +639,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Pr
         tempImageFileDarkMode.delete();
       }
     }
+  }
+
+  private boolean isSameImage(String originalLocation, String originalType, String darkModeLocation, String darkModeType) {
+    return Strings.CS.equals(originalLocation, darkModeLocation) && Strings.CS.equals(originalType, darkModeType);
   }
 
   private void updateCaseWidget(DashboardWidget widget) {

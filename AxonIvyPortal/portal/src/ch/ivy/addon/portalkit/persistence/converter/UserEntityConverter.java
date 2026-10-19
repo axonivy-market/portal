@@ -1,14 +1,13 @@
 package ch.ivy.addon.portalkit.persistence.converter;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.databind.type.CollectionType;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.databind.type.CollectionType;
 
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 
@@ -23,7 +22,7 @@ public final class UserEntityConverter {
     ObjectMapper objectMapper = new ObjectMapper();
     try {
       return objectMapper.writeValueAsString(entities);
-    } catch (JsonProcessingException e) {
+    } catch (JacksonException e) {
       throw new PortalException(e);
     }
   }
@@ -32,7 +31,7 @@ public final class UserEntityConverter {
     ObjectMapper objectMapper = new ObjectMapper();
     try {
       return objectMapper.writeValueAsString(entity);
-    } catch (JsonProcessingException e) {
+    } catch (JacksonException e) {
       throw new PortalException(e);
     }
   }
@@ -43,7 +42,7 @@ public final class UserEntityConverter {
     try {
       CollectionType listType = objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, classType);
       return objectMapper.readValue(jsonValue, listType);
-    } catch (IOException e) {
+    } catch (JacksonException e) {
       throw new PortalException(e);
     }
   }
@@ -53,7 +52,7 @@ public final class UserEntityConverter {
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).build();
     try {
       return objectMapper.readValue(jsonValue, classType);
-    } catch (IOException e) {
+    } catch (JacksonException e) {
       throw new PortalException(e);
     }
   }

@@ -87,6 +87,11 @@ p:where(.text-style-h1, .text-style-h2, .text-style-h3, .text-style-h4, .text-st
   z-index: auto !important;
 }
 
+.common-tooltip {
+  max-width: 500px;
+  word-wrap: break-word;
+}
+
 /********************** START CASE BOX ***********************/
 .grid-item-content-list-item {
   display: flex;
@@ -1285,10 +1290,6 @@ p:where(.text-style-h1, .text-style-h2, .text-style-h3, .text-style-h4, .text-st
   margin-right: 15px;
 }
 
-.process-tooltip {
-  max-width: 500px;
-  word-wrap: break-word;
-}
 /********************************** END PROCESSES **********************************/
 /******************START DELEGATE DIALOG********************/
 .bulk-delegate-warning {

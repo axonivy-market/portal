@@ -32,9 +32,6 @@ import com.axonivy.portal.migration.thirdpartyapplication.migrator.JsonThirdPart
 import com.axonivy.portal.util.ImageUploadUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
@@ -50,6 +47,10 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.NavigationWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.ObjectNode;
 
 /**
  * Exports and imports Portal configuration as a zip package of per-entity-type JSON files.
@@ -182,7 +183,7 @@ public class PortalPackageService {
       return migrated;
     }
     if (file == PortalPackageFile.THIRD_PARTY_APP && migrated.isObject() && migrated.size() == 1) {
-      JsonNode onlyValue = migrated.elements().next();
+      JsonNode onlyValue = migrated.values().iterator().next();
       if (onlyValue.isArray()) {
         return onlyValue;
       }
@@ -234,7 +235,7 @@ public class PortalPackageService {
    */
   private void stripPerItemVersion(JsonNode node) {
     if (node.isArray()) {
-      node.elements().forEachRemaining(this::stripPerItemVersion);
+      node.values().iterator().forEachRemaining(this::stripPerItemVersion);
     } else if (node.isObject()) {
       ((ObjectNode) node).remove(AbstractJsonVersion.VERSION_FIELD_NAME);
     }
@@ -302,7 +303,7 @@ public class PortalPackageService {
       if (JsonListWrapper.isListWrapper(node)) {
         return node.get(JsonListWrapper.ITEMS_FIELD_NAME).isEmpty();
       }
-    } catch (IOException e) {
+    } catch (JacksonException e) {
       // Not parseable JSON - treat as non-empty raw content rather than fail export/import.
     }
     return false;

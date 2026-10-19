@@ -12,8 +12,7 @@ import org.primefaces.model.SortMeta;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.service.DateTimeGlobalSettingService;
 import com.axonivy.portal.migration.taskdetails.migrator.JsonTaskDetailsMigrator;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import tools.jackson.core.JacksonException;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetails;
@@ -128,7 +127,7 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
 
   @Override
   protected List<TaskDetails> convertToLatestVersion(String configurationJson)
-      throws JsonMappingException, JsonProcessingException {
+      throws JacksonException {
     JsonTaskDetailsMigrator migrator = new JsonTaskDetailsMigrator(BusinessEntityConverter.getObjectMapper().readTree(configurationJson));
     return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), TaskDetails.class);
   }

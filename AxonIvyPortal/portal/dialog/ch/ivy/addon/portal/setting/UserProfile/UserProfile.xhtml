@@ -41,7 +41,7 @@
                   <p:outputLabel for="process-mode-selection" styleClass="user-profile-setting-title">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultViewMode")}</p:outputLabel>
                   <div class="ui-fluid">
                     <p:selectOneMenu id="process-mode-selection" value="#{data.selectedProcessMode}">
-                      <f:selectItems value="#{data.processModes}" var="mode" itemValue="#{mode}" itemLabel="#{mode}" />
+                      <f:selectItems value="#{data.processModes}" var="mode" itemValue="#{mode}" itemLabel="#{userProfileBean.getLabelByProcessMode(mode, data.globalDefaultProcessMode)}" />
                     </p:selectOneMenu>
                   </div>
                 </h:panelGroup>

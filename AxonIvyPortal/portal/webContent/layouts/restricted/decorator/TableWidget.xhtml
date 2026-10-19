@@ -314,7 +314,6 @@
         dynamic="true"
         onShow="this.jq.attr('aria-labelledby', '#{cc.clientId}-filter-dialog-title-#{index}'); loadUserFilters#{index}(); #{onFilterDialogShow};"
         pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterPanelHeader')}">
-        <p:tooltip globalSelector=".ui-button" hideEvent="mouseleave click"/>
         <h:form id="filter-form-#{index}" styleClass="filter-form flex flex-column flex-auto">
           <h:panelGroup id="filter-dialog-content-#{index}" styleClass="flex flex-auto align-items-stretch filter-dialog__panels" layout="block">
             <h:panelGroup id="saved-filters-container" styleClass="saved-filter ui-sm-hidden" layout="block">

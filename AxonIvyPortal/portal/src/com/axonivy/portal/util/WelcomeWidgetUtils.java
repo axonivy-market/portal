@@ -149,20 +149,19 @@ public class WelcomeWidgetUtils {
       return;
     }
     String widgetId = DashboardWidgetUtils.generateNewWidgetId(WELCOME);
-    if (StringUtils.isNotBlank(widget.getImageLocation()) && StringUtils.isNotBlank(widget.getImageType())) {
+    boolean hasImageContent = StringUtils.isNotBlank(widget.getImageContent());
+    if ((StringUtils.isNotBlank(widget.getImageLocation()) && StringUtils.isNotBlank(widget.getImageType())) || hasImageContent) {
       String rawExtension = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageType());
       String fileExtension = SvgUtils.normalizeSvgExtension(rawExtension);
       String imageLocation = widgetId.concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtension);
       ContentObject newImageObject = WelcomeWidgetUtils.getImageContentObject(getFileNameOfImage(imageLocation), fileExtension);
-      if (StringUtils.isNotBlank(widget.getImageContent())) {
+      if (hasImageContent) {
         byte[] content = Base64.getDecoder().decode(widget.getImageContent());
-        if (SvgUtils.isPotentialSvg(fileExtension, content)) {
-          if (SvgUtils.isUnsafeSvg(content)) {
-            Ivy.log().warn("WidgetId [{0}] image rejected: unsafe SVG content (base64 path).", widget.getId());
-            widget.setImageContent(null);
-            widget.setImageLocation(null);
-            return;
-          }
+        if (SvgUtils.isPotentialSvg(fileExtension, content) && SvgUtils.isUnsafeSvg(content)) {
+          Ivy.log().warn("WidgetId [{0}] image rejected: unsafe SVG content (base64 path).", widget.getId());
+          widget.setImageContent(null);
+          widget.setImageLocation(null);
+          return;
         }
         WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(content);
         widget.setImageLocation(imageLocation);
@@ -179,18 +178,21 @@ public class WelcomeWidgetUtils {
         }
       }
     }
-    if (StringUtils.isNotBlank(widget.getImageLocationDarkMode()) && StringUtils.isNotBlank(widget.getImageTypeDarkMode())) {
-      String fileExtensionDarkMode = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageTypeDarkMode());
+
+    boolean hasImageContentDarkMode = StringUtils.isNotBlank(widget.getImageContentDarkMode());
+    if ((StringUtils.isNotBlank(widget.getImageLocationDarkMode()) && StringUtils.isNotBlank(widget.getImageTypeDarkMode())) || hasImageContentDarkMode) {
+      String rawExtensionDarkMode = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageTypeDarkMode());
+      String fileExtensionDarkMode = SvgUtils.normalizeSvgExtension(rawExtensionDarkMode);
       String imageLocationDarkMode = widgetId.concat(WelcomeWidgetUtils.DARK_MODE).concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtensionDarkMode);
       ContentObject newImageObjectDarkMode = WelcomeWidgetUtils.getImageContentObject(getFileNameOfImage(imageLocationDarkMode), fileExtensionDarkMode);
-      if (StringUtils.isNotBlank(widget.getImageContentDarkMode())) {
+      if (hasImageContentDarkMode) {
         // If has defined content, create new image
         byte[] content = Base64.getDecoder().decode(widget.getImageContentDarkMode());
         // Handle sanitize SVG
-        if (SvgUtils.isUnsafeSvg(content)) {
-          Ivy.log().warn("WidgetId [{0}] image rejected: unsafe SVG content (base64 path).", widget.getId());
-          widget.setImageContent(null);
-          widget.setImageLocation(null);
+        if (SvgUtils.isPotentialSvg(fileExtensionDarkMode, content) && SvgUtils.isUnsafeSvg(content)) {
+          Ivy.log().warn("WidgetId [{0}] image clone rejected: unsafe SVG content (base64 path).", widget.getId());
+          widget.setImageLocationDarkMode(null);
+          widget.setImageContentDarkMode(null);
           return;
         }
         WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObjectDarkMode).write().bytes(content);
@@ -210,12 +212,10 @@ public class WelcomeWidgetUtils {
     String content = encodeImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType());
     if (StringUtils.isNotBlank(content)) {
       welcomeWidget.setImageContent(content);
-      welcomeWidget.setImageLocation(null);
     }
     String contentDarkMode = encodeImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode());
     if (StringUtils.isNotBlank(contentDarkMode)) {
       welcomeWidget.setImageContentDarkMode(contentDarkMode);
-      welcomeWidget.setImageLocationDarkMode(null);
     }
   }
 

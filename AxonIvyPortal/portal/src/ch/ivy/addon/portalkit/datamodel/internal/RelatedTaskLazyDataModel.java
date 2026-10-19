@@ -5,9 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import jakarta.faces.component.UIComponent;
-import jakarta.faces.context.FacesContext;
-
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.SortMeta;
@@ -24,8 +21,10 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.jsf.primefaces.sort.SortMetaConverter;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
+import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
 
 public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
 
@@ -87,8 +86,7 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
   @Override
   public List<ITask> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
     if (isOnlyShowOpenTask()) {
-      criteria.setIncludedStates(
-          new ArrayList<>(TaskState.WORKING_OR_SUSPENDED_STATES));
+      criteria.setIncludedBusinessStates(Arrays.asList(TaskBusinessState.OPEN));
     } else {
       updateCriteria();
     }

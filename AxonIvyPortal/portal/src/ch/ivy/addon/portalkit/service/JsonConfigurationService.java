@@ -13,8 +13,8 @@ import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
 import com.axonivy.portal.migration.dashboardfilter.migrator.JsonDashboardFilterMigrator;
 import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemplateMigrator;
 import com.axonivy.portal.migration.thirdpartyapplication.migrator.JsonThirdPartyApplicationMigrator;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.configuration.Application;
@@ -97,7 +97,7 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
         JsonThirdPartyApplicationMigrator migrator = new JsonThirdPartyApplicationMigrator(mapper.readTree(jsonValue));
         return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), getType());
       }
-    } catch (JsonProcessingException ex) {
+    } catch (JacksonException ex) {
       Ivy.log().error("Failed to read dashboard template from JSON {0}", ex, jsonValue);
     }
     return null;

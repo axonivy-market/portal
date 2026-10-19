@@ -21,22 +21,22 @@
     leaveActionListener="#{logic.fireEventClick()}" leaveOnComplete="leaveTaskSearch();"
     reserveActionListener="#{logic.fireEventClick()}" reserveOnComplete="reserveTaskSearch();">
   </ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask>
-  <h:panelGroup styleClass="search-input-wrapper">
+  <h:panelGroup styleClass="ui-input-icon-left">
+    <i class="ti ti-search" aria-hidden="true" />
     <p:inputText id="global-search-data" styleClass="global-search-input" value="#{data.keyword}" autocomplete="off"
       onkeypress="if (event.code === 'Enter') { portalGlobalSearch(); return false; }"
       placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}"
       pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}">
     </p:inputText>
-    <i class="global-search-icon ti ti-search" aria-hidden="true" />
   </h:panelGroup>
   <ul>
-    <h:panelGroup styleClass="search-input-wrapper">
+    <h:panelGroup styleClass="ui-input-icon-left">
+      <i class="ti ti-search" aria-hidden="true" />
       <p:inputText id="global-search-mobile-data" styleClass="global-search-input " value="#{data.keyword}"
         onkeypress="if (event.code === 'Enter') { portalGlobalSearchMobile(); return false; }"
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}"
         pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}">
       </p:inputText>
-      <i class="global-search-icon ti ti-search" aria-hidden="true" />
     </h:panelGroup>
   </ul>
   <p:remoteCommand id="search-leave-task-rc" name="leaveTaskSearch" actionListener="#{logic.leave(task)}" immediate="true"

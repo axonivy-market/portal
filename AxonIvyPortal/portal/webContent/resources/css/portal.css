@@ -1762,13 +1762,6 @@ i.dashboard-icon-drag-drop {
   width: 600px;
 }
 
-.global-search-icon {
-  position: absolute;
-  left: 0.9rem;
-  top: 50%;
-  margin-top: -0.35rem;
-  z-index: 1;
-}
 .ui-inputfield.global-search-input {
   padding-left: 2.5rem;
   width: 100%;
@@ -1892,7 +1885,7 @@ body.dark .focused:not(input, button) {
     min-width: 0;
   }
 
-  .layout-topbar .custom-search-item .search-input-wrapper,
+  .layout-topbar .custom-search-item .ui-input-icon-left,
   .layout-topbar .custom-search-item .global-search-input {
     min-width: 0;
   }

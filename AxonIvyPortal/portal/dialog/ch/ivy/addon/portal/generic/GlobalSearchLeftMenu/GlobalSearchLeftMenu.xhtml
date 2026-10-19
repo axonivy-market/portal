@@ -9,12 +9,13 @@
 
 <cc:implementation>
   <div id="global-search-container-in-page" class="search-item">
-  <h:panelGroup styleClass="mobile-global-search-container">
+  <h:panelGroup styleClass="mobile-global-search-container ui-input-icon-left">
+    <i class="ti ti-search" />
     <p:inputText id="global-search-data" styleClass="global-search-input" value="#{data.keyword}"
       onkeypress="if (event.keyCode == 13) { portalGlobalSearchLeftMenu(); return false; }">
     </p:inputText>
     <p:outputLabel for="global-search-data" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}" />
-    <i class="global-search-icon ti ti-search" />
+
   </h:panelGroup>
   </div>
   <p:remoteCommand id="global-search-left-menu-remote-cmd" name="portalGlobalSearchLeftMenu" actionListener="#{logic.search}" />

@@ -26,7 +26,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.primefaces.model.StreamedContent;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import com.axonivy.portal.bo.Statistic;
+import com.axonivy.portal.components.configuration.CustomSubMenuItem;
+import com.axonivy.portal.dto.menu.MenuOrder;
 
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
@@ -39,10 +41,7 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.PortalPackageService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.environment.IvyTest;
-
-import com.axonivy.portal.bo.Statistic;
-import com.axonivy.portal.components.configuration.CustomSubMenuItem;
-import com.axonivy.portal.dto.menu.MenuOrder;
+import tools.jackson.databind.JsonNode;
 
 @IvyTest
 public class TestPortalPackageService {
@@ -170,7 +169,7 @@ public class TestPortalPackageService {
     String exportedJson = zipEntryContent(content, PortalPackageFile.DASHBOARD.getFilename());
 
     JsonNode wrapper = BusinessEntityConverter.getObjectMapper().readTree(exportedJson);
-    assertThat(wrapper.get("version").asText()).isEqualTo("14.0.0");
+    assertThat(wrapper.get("version").asString()).isEqualTo("14.0.0");
     assertThat(wrapper.get("items").get(0).has("version")).isFalse();
   }
 
@@ -293,9 +292,9 @@ public class TestPortalPackageService {
     String exportedJson = zipEntryContent(content, PortalPackageFile.CUSTOM_STATISTIC.getFilename());
 
     JsonNode wrapper = BusinessEntityConverter.getObjectMapper().readTree(exportedJson);
-    assertThat(wrapper.get("version").asText()).isEqualTo("14.0.0");
+    assertThat(wrapper.get("version").asString()).isEqualTo("14.0.0");
     assertThat(wrapper.get("items").get(0).has("version")).isFalse();
-    assertThat(wrapper.get("items").get(0).get("id").asText()).isEqualTo("statistic-1");
+    assertThat(wrapper.get("items").get(0).get("id").asString()).isEqualTo("statistic-1");
   }
 
   @Test
@@ -482,7 +481,7 @@ public class TestPortalPackageService {
     JsonNode reimported =
         BusinessEntityConverter.getObjectMapper().readTree(Ivy.var().get(PortalPackageFile.CASE_DETAIL.getVariableKey()));
     assertThat(reimported.get("items")).hasSize(1);
-    assertThat(reimported.get("items").get(0).get("id").asText()).isEqualTo("default-case-detail");
+    assertThat(reimported.get("items").get(0).get("id").asString()).isEqualTo("default-case-detail");
   }
 
   @Test
@@ -512,6 +511,6 @@ public class TestPortalPackageService {
     JsonNode reimported = BusinessEntityConverter.getObjectMapper()
         .readTree(Ivy.var().get(PortalPackageFile.THIRD_PARTY_APP.getVariableKey()));
     assertThat(reimported.get("items")).hasSize(1);
-    assertThat(reimported.get("items").get(0).get("id").asText()).isEqualTo("app-1");
+    assertThat(reimported.get("items").get(0).get("id").asString()).isEqualTo("app-1");
   }
 }

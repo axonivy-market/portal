@@ -36,7 +36,7 @@ class TestBusinessEntityConverter {
   @Test
   void entityToJsonNode_returnsTraversableNode() {
     SampleEntity entity = new SampleEntity("bar", 7);
-    assertThat(BusinessEntityConverter.entityToJsonNode(entity).get("name").asText()).isEqualTo("bar");
+    assertThat(BusinessEntityConverter.entityToJsonNode(entity).get("name").asString()).isEqualTo("bar");
   }
 
   @ParameterizedTest
