@@ -36,6 +36,7 @@ public class MenuManagementTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
     redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
+    redirectToRelativeLink(grantPortalSidebarConfigurationPermission);
     redirectToRelativeLink(createSampleDashboardUrl);
   }
 

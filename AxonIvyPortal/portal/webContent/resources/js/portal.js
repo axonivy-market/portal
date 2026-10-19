@@ -1096,6 +1096,18 @@ function moveFocusIntoOverlayPanel(panel, targetWindow) {
   }, 50);
 }
 
+// Blurs focus still inside widget before PF hides it, so aria-hidden isn't blocked by a focused descendant.
+function blurActiveElementIn(widgetVar) {
+  var widget = PF(widgetVar);
+  if (!widget || !widget.jq) {
+    return;
+  }
+  var active = document.activeElement;
+  if (active && widget.jq.get(0).contains(active)) {
+    active.blur();
+  }
+}
+
 function storeFocusedElement(targetDocument, focusElements, containerId, targetElement) {
   if (targetElement && targetElement !== targetDocument.body && targetElement.tagName !== 'HTML') {
     var item = {"containerId": containerId, "activeElement": targetElement};
