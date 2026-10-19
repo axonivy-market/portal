@@ -66,7 +66,7 @@
         <p:ajax event="colResize" process="dashboard-tasks" global="false" partialSubmit="true"
           listener="#{dashboardDetailModificationBean.onResizeColumn}" disabled="#{!isResizing}" />
         <f:attribute name="widgetId" value="#{taskWidget.id}" />
-        <p:ajax event="sort" update="dashboard-tasks" onerror="liveScroll()" disabled="#{!isPreviewMode and !isReadOnlyMode}" />
+        <p:ajax event="sort" update="dashboard-tasks" onstart="liveScroll('#{cc.attrs.taskWidgetVar}-#{taskWidget.id}')" disabled="#{!isPreviewMode and !isReadOnlyMode}" />
 
         <p:column headerText="" rendered="#{bulkActionBean.isInBulkMode(taskWidget)}" styleClass="dashboard-tasks__selection-column">
           <h:panelGroup styleClass="js-task-selection js-task-selection-#{taskWidget.id}">
@@ -212,15 +212,5 @@
       </h:form>
     </ui:define>
   </ui:decorate>
-   <script type="text/javascript">
-      function liveScroll() {
-        if (PF('dashboard-tasks-#{taskWidget.id}') != null) {
-          PF('dashboard-tasks-#{taskWidget.id}').scrollOffset = 0;
-          PF('dashboard-tasks-#{taskWidget.id}').scrollBody.scrollTop(1);
-          PF('dashboard-tasks-#{taskWidget.id}').allLoadedLiveScroll = false;
-        }
-      }
-
-    </script>
 </cc:implementation>
 </html>
