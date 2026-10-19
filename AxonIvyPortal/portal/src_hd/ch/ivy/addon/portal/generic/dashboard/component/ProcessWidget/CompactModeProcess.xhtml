@@ -7,6 +7,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
+
   <!-- INDEX OR ALPHABET SORT -->
   <h:panelGroup id="process-list" layout="block" styleClass="compact-processes-container widget-content"
     rendered="#{!compactDashboardProcessBean.isPreviewCustomOrder()}">
@@ -24,17 +25,14 @@
               </h:panelGroup>
               <div class="process-start-list-item-name">
                 <h:outputText id="process-name-process-item" value="#{process.name}"
+                  title="#{process.name}"
                   styleClass="dashboard-compact-process-item process-start-list-item-name-text u-truncate-text" />
-                <p:tooltip for="process-name-process-item" value="#{process.name}" styleClass="process-tooltip" />
               </div>
               <div class="process-item-action-container">
                 <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down"
                   rendered="#{not empty process.description}">
                   <h:outputText id="info-workflow"
-                    styleClass="si si-information-circle process-description process-item" />
-                  <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{process.description}"
-                    position="top" trackMouse="true" hideEvent="mouseleave click"
-                    styleClass="js-process-start-list-item-description process-tooltip" />
+                    styleClass="si si-information-circle process-description process-item" title="#{process.description}" />
                 </h:panelGroup>
                 <h:panelGroup styleClass="process-start-list-item-action"
                   rendered="#{compactDashboardProcessBean.isBrokenLink(process)}">
@@ -62,16 +60,13 @@
             </h:panelGroup>
             <div class="process-start-list-item-name">
               <h:outputText id="process-name-process-item" value="#{process.name}"
+                title="#{process.name}"
                 styleClass="dashboard-compact-process-item process-start-list-item-name-text u-truncate-text" />
-              <p:tooltip for="process-name-process-item" value="#{process.name}" styleClass="process-tooltip" />
             </div>
             <div class="process-item-action-container">
               <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down"
                 rendered="#{not empty process.description}">
-                <h:outputText id="info-workflow" styleClass="si si-information-circle process-description process-item" />
-                <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{process.description}" position="top"
-                  trackMouse="true" hideEvent="mouseleave click"
-                  styleClass="js-process-start-list-item-description process-tooltip" />
+                <h:outputText id="info-workflow" styleClass="si si-information-circle process-description process-item" title="#{process.description}" />
               </h:panelGroup>
               <h:panelGroup styleClass="process-start-list-item-action"
                 rendered="#{compactDashboardProcessBean.isBrokenLink(process)}">

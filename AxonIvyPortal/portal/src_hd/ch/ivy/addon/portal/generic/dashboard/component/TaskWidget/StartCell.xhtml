@@ -6,10 +6,8 @@
 
 <p:commandLink id="start-task" actionListener="#{dashboardTaskWidgetBean.handleStartTask(task)}" onclick="event.stopPropagation();"
   disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)} or isPreviewMode or isResizing" oncomplete="resetPortalLeftMenuState()"
-  ariaLabel="#{ariaLabel}"
+  ariaLabel="#{ariaLabel}" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskStart')}"
   process="@this">
   <span class="si si-controls-play" />
 </p:commandLink>
-<p:tooltip for="start-task" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskStart')}" trackMouse="true"
-  hideEvent="mouseleave click" />
 </html>
