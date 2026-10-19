@@ -415,10 +415,18 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   private SelenideElement openCompactModeProcessActionsMenu() {
-    getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear).click();
-    SelenideElement actionsMenuButton = getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
-    return $("[id='" + menuId + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement actionsMenuButton =
+        getCompactModeProcessActionsMenuButton().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    String menuId = actionsMenuButton.shouldHave(Condition.attribute("aria-controls"), DEFAULT_TIMEOUT)
+        .getAttribute("aria-controls");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']");
+
+    // The button toggles the menu: click only when closed, never twice during its animation.
+    if (!"true".equals(actionsMenuButton.getAttribute("aria-expanded"))) {
+      actionsMenuButton.click();
+    }
+    actionsMenuButton.shouldHave(Condition.attribute("aria-expanded", "true"), DEFAULT_TIMEOUT);
+    return actionsMenuPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCompactModeProcessActionsMenuButton() {
