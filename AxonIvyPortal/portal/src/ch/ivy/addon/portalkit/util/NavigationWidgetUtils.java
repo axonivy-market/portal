@@ -21,8 +21,12 @@ public class NavigationWidgetUtils {
   private static void cloneImage(String extension, String oldImageLocation,
       NavigationDashboardWidget newWidget, boolean isDarkMode) throws IOException {
     if (StringUtils.isBlank(extension)
-        || StringUtils.isBlank(oldImageLocation)
-        || !ImageDocumentDetector.isAllowedImageExtension(extension)) {
+        || StringUtils.isBlank(oldImageLocation)) {
+      return;
+    }
+
+    if (!ImageDocumentDetector.isAllowedImageExtension(extension)) {
+      clearWidgetImage(newWidget, isDarkMode);
       return;
     }
 
@@ -35,6 +39,7 @@ public class NavigationWidgetUtils {
     if (oldFileContent != null && oldFileContent.length > 0) {
       if (!ImageDocumentDetector.isImageSafe(oldFileContent)) {
         Ivy.log().warn("Navigation widget image clone rejected: unsafe content");
+        clearWidgetImage(newWidget, isDarkMode);
         return;
       }
       String newFileName = UUID.randomUUID().toString();
@@ -47,6 +52,16 @@ public class NavigationWidgetUtils {
       } else {
         newWidget.setImageLocation(newImageCMSObject.uri());
       }
+    }
+  }
+
+  private static void clearWidgetImage(NavigationDashboardWidget widget, boolean isDarkMode) {
+    if (isDarkMode) {
+      widget.setImageLocationDarkMode(null);
+      widget.setImageTypeDarkMode(null);
+    } else {
+      widget.setImageLocation(null);
+      widget.setImageType(null);
     }
   }
   
@@ -92,11 +107,13 @@ public class NavigationWidgetUtils {
     if (StringUtils.isNotBlank(widget.getImageContent())) {
       String newImageLocation = ImageUploadUtils.imageBase64ToApplicationCMSFile(widget.getImageContent(), 
           widget.getImageType(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
-      widget.setImageLocation(newImageLocation);
-      widget.setImageContent(null);
-      if (newImageLocation == null) {
+      if (StringUtils.isBlank(newImageLocation)) {
+        widget.setImageLocation(null);
         widget.setImageType(null);
+      } else {
+        widget.setImageLocation(newImageLocation);
       }
+      widget.setImageContent(null);
     } else {
       try {
         cloneLightModeImage(widget.getImageType(), widget.getImageLocation(), widget);
@@ -109,11 +126,13 @@ public class NavigationWidgetUtils {
     if (StringUtils.isNotBlank(widget.getImageContentDarkMode())) {
       String newImageLocation = ImageUploadUtils.imageBase64ToApplicationCMSFile(widget.getImageContentDarkMode(), 
           widget.getImageTypeDarkMode(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
-      widget.setImageLocationDarkMode(newImageLocation);
-      widget.setImageContentDarkMode(null);
-      if (newImageLocation == null) {
+      if (StringUtils.isBlank(newImageLocation)) {
+        widget.setImageLocationDarkMode(null);
         widget.setImageTypeDarkMode(null);
+      } else {
+        widget.setImageLocationDarkMode(newImageLocation);
       }
+      widget.setImageContentDarkMode(null);
     } else {
       try {
         cloneDarkModeImage(widget.getImageTypeDarkMode(), widget.getImageLocationDarkMode(), widget);

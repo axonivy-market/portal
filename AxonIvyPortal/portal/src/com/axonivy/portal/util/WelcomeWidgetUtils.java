@@ -266,8 +266,12 @@ public class WelcomeWidgetUtils {
   public static void cloneImage(String extension, String oldImageLocation,
       WelcomeDashboardWidget newWidget, boolean isDarkMode) throws IOException {
     if (StringUtils.isBlank(extension)
-        || StringUtils.isBlank(oldImageLocation)
-        || !ImageDocumentDetector.isAllowedImageExtension(extension)) {
+        || StringUtils.isBlank(oldImageLocation)) {
+      return;
+    }
+
+    if (!ImageDocumentDetector.isAllowedImageExtension(extension)) {
+      clearWidgetImage(newWidget, isDarkMode);
       return;
     }
 
@@ -283,6 +287,11 @@ public class WelcomeWidgetUtils {
     byte[] oldFileContent = oldImageObject.value().get(DEFAULT_LOCALE_TAG)
         .read().inputStream().readAllBytes();
     if (oldFileContent != null && oldFileContent.length > 0) {
+      if (!ImageDocumentDetector.isImageSafe(oldFileContent)) {
+        Ivy.log().warn("Welcome widget image clone rejected: unsafe content");
+        clearWidgetImage(newWidget, isDarkMode);
+        return;
+      }
       WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write()
           .bytes(oldFileContent);
     }
@@ -291,6 +300,16 @@ public class WelcomeWidgetUtils {
       newWidget.setImageLocationDarkMode(newImageLocation);
     } else {
       newWidget.setImageLocation(newImageLocation);
+    }
+  }
+
+  private static void clearWidgetImage(WelcomeDashboardWidget widget, boolean isDarkMode) {
+    if (isDarkMode) {
+      widget.setImageLocationDarkMode(null);
+      widget.setImageTypeDarkMode(null);
+    } else {
+      widget.setImageLocation(null);
+      widget.setImageType(null);
     }
   }
 

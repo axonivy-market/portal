@@ -63,7 +63,10 @@ class TestImageUploadUtils {
 
   @Test
   void imageBase64ToApplicationCMSFile_oversized_returnsEmpty() {
-    byte[] largeContent = new byte[3 * 1024 * 1024];
+    long limit = UploadDocumentUtils.getImageUploadSizeLimit();
+    int size = (int) Math.max(limit + 1024, 3 * 1024 * 1024);
+    byte[] largeContent = new byte[size];
+    System.arraycopy(VALID_PNG, 0, largeContent, 0, VALID_PNG.length);
     String largeBase64 = Base64.getEncoder().encodeToString(largeContent);
     String uri = ImageUploadUtils.imageBase64ToApplicationCMSFile(largeBase64, "png", TEST_DIR);
     assertThat(uri).isEmpty();

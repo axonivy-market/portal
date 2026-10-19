@@ -162,6 +162,9 @@ class TestImageDocumentDetector {
     String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><document><title>Not SVG</title></document>";
     byte[] xmlBytes = xml.getBytes(StandardCharsets.UTF_8);
     assertThat(ImageDocumentDetector.isImageSafe(xmlBytes)).isFalse();
+
+    String xmlWithSvgComment = "<document><!-- <svg/> --></document>";
+    assertThat(ImageDocumentDetector.isImageSafe(xmlWithSvgComment.getBytes(StandardCharsets.UTF_8))).isFalse();
   }
 
   @Test

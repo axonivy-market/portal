@@ -218,6 +218,32 @@ class TestWelcomeWidgetUtils {
     }
   }
 
+  @Test
+  void cloneImage_invalidExtension_clearsLocationAndType() throws IOException {
+    WelcomeDashboardWidget widget = new WelcomeDashboardWidget();
+    widget.setId("welcome_test_clone_invalid_ext");
+    widget.setImageType("exe");
+    widget.setImageLocation("some/path/image.exe");
+
+    WelcomeWidgetUtils.cloneImage("exe", "some/path/image.exe", widget, false);
+
+    assertThat(widget.getImageLocation()).isNull();
+    assertThat(widget.getImageType()).isNull();
+  }
+
+  @Test
+  void cloneImageDarkMode_invalidExtension_clearsDarkModeLocationAndType() throws IOException {
+    WelcomeDashboardWidget widget = new WelcomeDashboardWidget();
+    widget.setId("welcome_test_clone_dark_invalid_ext");
+    widget.setImageTypeDarkMode("exe");
+    widget.setImageLocationDarkMode("some/path/image.exe");
+
+    WelcomeWidgetUtils.cloneImage("exe", "some/path/image.exe", widget, true);
+
+    assertThat(widget.getImageLocationDarkMode()).isNull();
+    assertThat(widget.getImageTypeDarkMode()).isNull();
+  }
+
   private static void writeTestImageToCms() {
     ContentManagement.cms(Application.current()).root()
         .child().folder(WelcomeWidgetUtils.IMAGE_DIRECTORY)

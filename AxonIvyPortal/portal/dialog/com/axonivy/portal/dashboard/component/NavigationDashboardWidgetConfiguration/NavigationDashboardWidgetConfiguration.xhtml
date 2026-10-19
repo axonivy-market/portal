@@ -111,7 +111,7 @@
             <p:tab title="Light Mode">
               <h:panelGroup id="file-upload-panel" layout="block"
                 styleClass="#{empty widget.imageLocation ? 'ui-g-12 ':'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
-                <p:fileUpload id="navigation-widget-image-upload" style="display: none;" widgetVar="navigationWidgetUpload" rendered="#{empty widget.imageLocation}" listener="#{navigationDashboardWidgetConfigurationBean.handleImageUpload}" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" dragDrop="true" auto="true" update="file-upload-panel config-custom-widget-message" accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('navigationWidgetUpload');" dropZone="navigation-widget-preview-image-panel" mode="advanced">
+                <p:fileUpload id="navigation-widget-image-upload" style="display: none;" widgetVar="navigationWidgetUpload" rendered="#{empty widget.imageLocation}" listener="#{navigationDashboardWidgetConfigurationBean.handleImageUpload}" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" dragDrop="true" auto="true" update="file-upload-panel :#{cc.clientId}:config-custom-widget-message" accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('navigationWidgetUpload');" dropZone="navigation-widget-preview-image-panel" mode="advanced">
                   <p:validateFile sizeLimit="#{navigationDashboardWidgetConfigurationBean.uploadFileLimit}" allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i" />
                 </p:fileUpload>
                   
@@ -144,7 +144,7 @@
             <p:tab title="Dark Mode">
               <h:panelGroup id="file-upload-panel-dark-mode" layout="block"
                 styleClass="#{empty widget.imageLocationDarkMode ? 'ui-g-12 ':'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
-                <p:fileUpload id="navigation-widget-image-dark-mode-upload" style="display: none;" widgetVar="navigationWidgetDarkModeUpload" rendered="#{empty widget.imageLocationDarkMode}" listener="#{navigationDashboardWidgetConfigurationBean.handleImageDarkModeUpload}" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" dragDrop="true" auto="true" update="file-upload-panel-dark-mode config-custom-widget-message" accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('navigationWidgetDarkModeUpload');" dropZone="navigation-widget-preview-image-panel" mode="advanced">
+                <p:fileUpload id="navigation-widget-image-dark-mode-upload" style="display: none;" widgetVar="navigationWidgetDarkModeUpload" rendered="#{empty widget.imageLocationDarkMode}" listener="#{navigationDashboardWidgetConfigurationBean.handleImageDarkModeUpload}" chooseIcon="#{visibilityBean.generateButtonIcon('ti ti-plus')}" dragDrop="true" auto="true" update="file-upload-panel-dark-mode :#{cc.clientId}:config-custom-widget-message" accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('navigationWidgetDarkModeUpload');" dropZone="navigation-widget-preview-image-panel" mode="advanced">
                   <p:validateFile sizeLimit="#{navigationDashboardWidgetConfigurationBean.uploadFileLimit}" allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i" />
                 </p:fileUpload>
                   

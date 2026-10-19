@@ -59,8 +59,22 @@ class TestNavigationWidgetUtils {
 
     NavigationWidgetUtils.writeNavigateWidgetImage(widget);
 
-    assertThat(widget.getImageLocation()).isEmpty();
+    assertThat(widget.getImageLocation()).isNull();
+    assertThat(widget.getImageType()).isNull();
     assertThat(widget.getImageContent()).isNull();
+  }
+
+  @Test
+  void cloneLightModeImage_invalidExtension_clearsLocationAndType() throws Exception {
+    NavigationDashboardWidget widget = new NavigationDashboardWidget();
+    widget.setId("nav_test_clone_invalid_ext");
+    widget.setImageType("exe");
+    widget.setImageLocation("some/path/image.exe");
+
+    NavigationWidgetUtils.cloneLightModeImage("exe", "some/path/image.exe", widget);
+
+    assertThat(widget.getImageLocation()).isNull();
+    assertThat(widget.getImageType()).isNull();
   }
 
   @Test
