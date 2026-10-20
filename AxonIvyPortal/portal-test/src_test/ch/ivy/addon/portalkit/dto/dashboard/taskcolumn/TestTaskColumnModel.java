@@ -10,6 +10,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
@@ -26,13 +27,16 @@ class TestTaskColumnModel {
   private static final IBusinessCase BUSINESS_CASE = businessCase(Map.of("CustomerName", "AxonIvy"));
   private static final ITask TASK_ON_BUSINESS_CASE = task(BUSINESS_CASE, Map.of());
   private static final ITask TASK_ON_SUB_CASE =
-      task(subCaseOf(BUSINESS_CASE, Map.of("CustomerType", "Enterprise")), Map.of());
+      task(subCaseOf(BUSINESS_CASE, Map.of("CustomerType", "Enterprise", "CustomerName", "from technical case")),
+          Map.of("CustomerName", "from task"));
 
   @ParameterizedTest(name = "{0} column reading {2} on a task of the {1} case shows {3}")
   @CsvSource(nullValues = "NOTHING", value = {
       "CUSTOM_CASE,          business, CustomerName, NOTHING",
       "CUSTOM_CASE,          sub,      CustomerType, Enterprise",
-      "CUSTOM_CASE,          sub,      CustomerName, NOTHING",
+      "CUSTOM_CASE,          sub,      CustomerName, from technical case",
+      "CUSTOM_CASE,          sub,      MissingField, NOTHING",
+      "CUSTOM,               sub,      CustomerName, from task",
       "CUSTOM_BUSINESS_CASE, business, CustomerName, AxonIvy",
       "CUSTOM_BUSINESS_CASE, sub,      CustomerName, AxonIvy",
       "CUSTOM_BUSINESS_CASE, sub,      CustomerType, NOTHING"})
@@ -48,6 +52,15 @@ class TestTaskColumnModel {
     ITask task = task(BUSINESS_CASE, Map.of("CustomerName", "from task"));
 
     assertThat(column(DashboardColumnType.CUSTOM, "CustomerName").display(task)).isEqualTo("from task");
+  }
+
+  @ParameterizedTest
+  @EnumSource(value = DashboardColumnFormat.class, names = {"STRING", "TEXT", "NUMBER", "TIMESTAMP"})
+  void customCaseColumn_withoutTechnicalCase_isBlankForEveryFormat(DashboardColumnFormat format) {
+    TaskColumnModel column = column(DashboardColumnType.CUSTOM_CASE, "CustomerName");
+    column.setFormat(format);
+
+    assertThat(column.display(TASK_ON_BUSINESS_CASE)).isNull();
   }
 
   private static TaskColumnModel column(DashboardColumnType type, String field) {

@@ -4,12 +4,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -130,16 +133,10 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
     if(fieldFormat == null) {
       return "";
     }
-    ICustomFields customFields;
-    if (type.equals(DashboardColumnFormat.CUSTOM_CASE.name())) {
-      if (taskItem.getCase().isBusinessCase()) {
-        return null;
-      }
-      customFields = taskItem.getCase().customFields();
-    } else if (type.equals(DashboardColumnFormat.CUSTOM_BUSINESS_CASE.name())) {
-      customFields = taskItem.getCase().getBusinessCase().customFields();
-    } else {
-      customFields = taskItem.customFields();
+    ICustomFields customFields = PortalCustomFieldUtils.getTaskColumnCustomFields(taskItem,
+        EnumUtils.getEnum(DashboardColumnType.class, type));
+    if (customFields == null) {
+      return null;
     }
     switch (fieldFormat) {
       case NUMBER: 
