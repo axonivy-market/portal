@@ -2,6 +2,7 @@ package com.axonivy.portal.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Optional;
@@ -9,10 +10,12 @@ import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivyteam.ivy.application.app.Application;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.IvyTest;
+import ch.ivyteam.ivy.scripting.objects.File;
 
 @IvyTest
 class TestWelcomeWidgetUtils {
@@ -166,6 +169,79 @@ class TestWelcomeWidgetUtils {
   @Test
   void encodeImage_blankLocation_returnsEmpty() {
     assertThat(WelcomeWidgetUtils.encodeImage(null, IMAGE_TYPE)).isEmpty();
+  }
+
+  @Test
+  void writeWelcomeWidgetImage_lightModeRejected_darkModeStillProcessed() {
+    WelcomeDashboardWidget widget = new WelcomeDashboardWidget();
+    widget.setId(WIDGET_ID);
+    widget.setImageType("exe");
+    widget.setImageContent(Base64.getEncoder().encodeToString("bad_content".getBytes(StandardCharsets.UTF_8)));
+
+    byte[] validPng = new byte[] {
+        (byte) 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A,
+        0x00, 0x00, 0x00, 0x0D, 0x49, 0x48, 0x44, 0x52
+    };
+    widget.setImageTypeDarkMode("png");
+    widget.setImageContentDarkMode(Base64.getEncoder().encodeToString(validPng));
+
+    WelcomeWidgetUtils.writeWelcomeWidgetImage(widget);
+
+    // light mode was rejected
+    assertThat(widget.getImageLocation()).isNull();
+    assertThat(widget.getImageContent()).isNull();
+
+    // dark mode was processed and saved
+    assertThat(widget.getImageLocationDarkMode()).isNotNull();
+    assertThat(widget.getImageLocationDarkMode()).contains("_darkmode_en.png");
+    assertThat(widget.getImageContentDarkMode()).isNull();
+  }
+
+  @Test
+  void writeWelcomeWidgetImage_darkModeCloneRejected_clearsLocation() throws IOException {
+    File tempFile = new File("test_invalid_clone.png");
+    try {
+      tempFile.write("not an image");
+
+      WelcomeDashboardWidget widget = new WelcomeDashboardWidget();
+      widget.setId(WIDGET_ID);
+      widget.setImageTypeDarkMode("png");
+      widget.setImageLocationDarkMode(tempFile.getPath());
+
+      WelcomeWidgetUtils.writeWelcomeWidgetImage(widget);
+
+      assertThat(widget.getImageLocationDarkMode()).isNull();
+    } finally {
+      if (tempFile.exists()) {
+        tempFile.forceDelete();
+      }
+    }
+  }
+
+  @Test
+  void cloneImage_invalidExtension_clearsLocationAndType() throws IOException {
+    WelcomeDashboardWidget widget = new WelcomeDashboardWidget();
+    widget.setId("welcome_test_clone_invalid_ext");
+    widget.setImageType("exe");
+    widget.setImageLocation("some/path/image.exe");
+
+    WelcomeWidgetUtils.cloneImage("exe", "some/path/image.exe", widget, false);
+
+    assertThat(widget.getImageLocation()).isNull();
+    assertThat(widget.getImageType()).isNull();
+  }
+
+  @Test
+  void cloneImageDarkMode_invalidExtension_clearsDarkModeLocationAndType() throws IOException {
+    WelcomeDashboardWidget widget = new WelcomeDashboardWidget();
+    widget.setId("welcome_test_clone_dark_invalid_ext");
+    widget.setImageTypeDarkMode("exe");
+    widget.setImageLocationDarkMode("some/path/image.exe");
+
+    WelcomeWidgetUtils.cloneImage("exe", "some/path/image.exe", widget, true);
+
+    assertThat(widget.getImageLocationDarkMode()).isNull();
+    assertThat(widget.getImageTypeDarkMode()).isNull();
   }
 
   private static void writeTestImageToCms() {

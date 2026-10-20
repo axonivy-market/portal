@@ -16,9 +16,15 @@ class TestDocumentDetectorFactory {
 
   @ParameterizedTest
   @NullSource
-  @ValueSource(strings = {"", "txt", "png", "ppt", "zip", "csv"})
+  @ValueSource(strings = {"", "txt", "ppt", "zip", "csv"})
   void returnsNull_forUnsupportedExtension(String extension) {
     assertThat(factory.getDocumentDetector(extension)).isNull();
+  }
+
+  @ParameterizedTest
+  @ValueSource(strings = {"png", "jpg", "jpeg"})
+  void returnsImageDetector(String extension) {
+    assertThat(factory.getDocumentDetector(extension)).isInstanceOf(ImageDocumentDetector.class);
   }
 
   @ParameterizedTest

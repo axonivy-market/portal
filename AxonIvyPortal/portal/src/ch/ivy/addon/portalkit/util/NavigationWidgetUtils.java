@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.document.ImageDocumentDetector;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.util.ImageUploadUtils;
 
@@ -24,6 +25,11 @@ public class NavigationWidgetUtils {
       return;
     }
 
+    if (!ImageDocumentDetector.isAllowedImageExtension(extension)) {
+      clearWidgetImage(newWidget, isDarkMode);
+      return;
+    }
+
     String fileName = getFileNameOfImage(oldImageLocation);
     ContentObject imageCMSObject =
         getApplicationCMS().child().folder(ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY).child().file(fileName, extension);
@@ -31,6 +37,11 @@ public class NavigationWidgetUtils {
                                           .read().inputStream().readAllBytes();
 
     if (oldFileContent != null && oldFileContent.length > 0) {
+      if (!ImageDocumentDetector.isImageSafe(oldFileContent)) {
+        Ivy.log().warn("Navigation widget image clone rejected: unsafe content");
+        clearWidgetImage(newWidget, isDarkMode);
+        return;
+      }
       String newFileName = UUID.randomUUID().toString();
       ContentObject newImageCMSObject =
           getApplicationCMS().child().folder(ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY).child().file(newFileName, extension);
@@ -41,6 +52,16 @@ public class NavigationWidgetUtils {
       } else {
         newWidget.setImageLocation(newImageCMSObject.uri());
       }
+    }
+  }
+
+  private static void clearWidgetImage(NavigationDashboardWidget widget, boolean isDarkMode) {
+    if (isDarkMode) {
+      widget.setImageLocationDarkMode(null);
+      widget.setImageTypeDarkMode(null);
+    } else {
+      widget.setImageLocation(null);
+      widget.setImageType(null);
     }
   }
   
@@ -86,7 +107,12 @@ public class NavigationWidgetUtils {
     if (StringUtils.isNotBlank(widget.getImageContent())) {
       String newImageLocation = ImageUploadUtils.imageBase64ToApplicationCMSFile(widget.getImageContent(), 
           widget.getImageType(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
-      widget.setImageLocation(newImageLocation);
+      if (StringUtils.isBlank(newImageLocation)) {
+        widget.setImageLocation(null);
+        widget.setImageType(null);
+      } else {
+        widget.setImageLocation(newImageLocation);
+      }
       widget.setImageContent(null);
     } else {
       try {
@@ -100,7 +126,12 @@ public class NavigationWidgetUtils {
     if (StringUtils.isNotBlank(widget.getImageContentDarkMode())) {
       String newImageLocation = ImageUploadUtils.imageBase64ToApplicationCMSFile(widget.getImageContentDarkMode(), 
           widget.getImageTypeDarkMode(), ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
-      widget.setImageLocationDarkMode(newImageLocation);
+      if (StringUtils.isBlank(newImageLocation)) {
+        widget.setImageLocationDarkMode(null);
+        widget.setImageTypeDarkMode(null);
+      } else {
+        widget.setImageLocationDarkMode(newImageLocation);
+      }
       widget.setImageContentDarkMode(null);
     } else {
       try {
