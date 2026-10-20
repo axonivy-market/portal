@@ -13,6 +13,7 @@ import com.axonivy.portal.components.dto.UserDTO;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
+import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -55,7 +56,8 @@ public class SecurityMemberDisplayNameBean implements Serializable {
   public boolean isRenderUsersOverlaySearch(ISecurityMember securityMember, String alwaysShowAsText) {
     return isDisplayUserOfRole
         && Objects.nonNull(securityMember) && !securityMember.isUser()
-        && !BooleanUtils.toBoolean(alwaysShowAsText);
+        && !BooleanUtils.toBoolean(alwaysShowAsText)
+        && !ISecurityConstants.TOP_LEVEL_ROLE_NAME.equals(securityMember.getMemberName());
   }
 
   public boolean isDisplayUserOfRole() {
