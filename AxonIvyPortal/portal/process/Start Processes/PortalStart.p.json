@@ -4349,12 +4349,6 @@
         "size" : { "width" : 128, "height" : 62 }
       }
     }, {
-      "id" : "f308",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 272, "y" : 1584 }
-      }
-    }, {
       "id" : "f309",
       "type" : "Alternative",
       "name" : "is safe url ?",
@@ -4368,7 +4362,22 @@
       },
       "connect" : [
         { "id" : "f310", "to" : "f297", "color" : "default" },
-        { "id" : "f311", "to" : "f308" }
+        { "id" : "f311", "to" : "f312" }
       ]
+    }, {
+      "id" : "f312",
+      "type" : "Script",
+      "name" : "Redirect to home page",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
+            "PortalNavigatorAPI.navigateToPortalHome();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 1608 }
+      }
     } ]
 }
