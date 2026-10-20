@@ -734,9 +734,9 @@ function updateDashboardWhenResizeWindow(isResponsiveDashboard) {
 }
 
 function liveScroll(widgetId) {
-  datatable = PF(widgetId);
-  if (datatable != null) {
-    datatable.scrollOffset = 10;
+  const datatable = PF(widgetId);
+  if (datatable) {
+    datatable.scrollOffset = 0;
     datatable.scrollBody.scrollTop(1);
     datatable.allLoadedLiveScroll = false;
   }
