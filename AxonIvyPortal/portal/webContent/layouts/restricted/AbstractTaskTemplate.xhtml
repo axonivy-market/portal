@@ -141,7 +141,7 @@
            process="@this"
            partialSubmit="true"
            update="case-info-dialog"
-           oncomplete="PF('case-info-dialog').show(); handleFocusOnElementsInCaseDetailsPanel();" />
+           oncomplete="PF('case-info-dialog').show();" />
         <p:dialog id="case-info-dialog" resizable="false" fitViewport="true" width="95vw" height="80vh"
           closeOnEscape="true" draggable="false" responsive="true"
           widgetVar="case-info-dialog" appendTo="@(body)" modal="true" styleClass="case-info-dialog"
@@ -158,14 +158,16 @@
               rendered="#{!isCaseViewable}" styleClass="no-case-found" />
             <h:panelGroup id="case-details-panel" layout="block" rendered="#{isCaseViewable}"
               styleClass="case-default-widget-container case-details case-details-panel">
-              <div class="ui-g js-iframe-container">
-                <div class="ui-g-12 u-padding-0">
-                  <iframe id="i-frame-case-details" src="#{taskTemplateBean.caseDetailsLink}"
-                    onload="setupHeightForIFrame(); bindDialogKeysInIframe(this, 'case-info-dialog'); if (PF('case-info-dialog')) focusFirstVisibleElementInPanel('case-info-dialog', '[id$=i-frame-case-details]')" class="case-information-frame js-iFrame-case-details"
-                    scrolling="no" frameborder="0"
-                    title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/layouts/AbstractTaskTemplate/CaseDetailsIFrameTitle')}" />
+              <ui:fragment rendered="#{not empty taskTemplateBean.caseDetailsLink}">
+                <div class="ui-g js-iframe-container">
+                  <div class="ui-g-12 u-padding-0">
+                    <iframe id="i-frame-case-details" src="#{taskTemplateBean.caseDetailsLink}"
+                      onload="setupHeightForIFrame(); bindDialogKeysInIframe(this, 'case-info-dialog'); initIframeFocusManagement(this); focusFirstVisibleElementInPanel('case-info-dialog', '[id$=i-frame-case-details]')" class="case-information-frame js-iFrame-case-details"
+                      scrolling="no" frameborder="0"
+                      title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/layouts/AbstractTaskTemplate/CaseDetailsIFrameTitle')}" />
+                  </div>
                 </div>
-              </div>
+              </ui:fragment>
             </h:panelGroup>
           </ui:insert>
         </p:dialog>
