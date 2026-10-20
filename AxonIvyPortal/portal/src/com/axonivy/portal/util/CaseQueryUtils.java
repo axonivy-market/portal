@@ -6,6 +6,7 @@ import com.axonivy.portal.enums.CaseQueryStrategy;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public final class CaseQueryUtils {
@@ -25,6 +26,14 @@ public final class CaseQueryUtils {
       return CaseQuery.subCases();
     }
     return CaseQuery.create();
+  }
+
+  /**
+   * Keep legacy own-case values, but require a separate technical case when queries are split.
+   * Shared by task-widget display and Excel export.
+   */
+  public static boolean shouldDisplayCaseCustomFields(ICase taskCase) {
+    return !taskCase.isBusinessCase() || currentStrategy() == CaseQueryStrategy.LEGACY;
   }
 
   private static CaseQueryStrategy currentStrategy() {
