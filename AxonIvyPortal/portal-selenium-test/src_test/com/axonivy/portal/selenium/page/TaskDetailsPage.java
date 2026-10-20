@@ -304,7 +304,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public List<String> getWorkflowEventsSortableHeaderAriaLabels() {
-    return $$("div[id$='workflow-events-dialog'] th.ui-sortable-column").shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT)
+    return $$("div[id$='workflow-events-dialog'] th.ui-sortable-column:not([id$='_clone'])").shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT)
         .asFixedIterable().stream().map(header -> header.getAttribute("aria-label")).collect(Collectors.toList());
   }
 
