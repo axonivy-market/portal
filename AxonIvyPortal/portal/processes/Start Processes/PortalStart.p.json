@@ -1328,7 +1328,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1360 },
-        "labelOffset" : { "x" : -55, "y" : 41 }
+        "labelOffset" : { "x" : 105, "y" : 33 }
       },
       "connect" : [
         { "id" : "f198", "to" : "S12" }
@@ -1373,7 +1373,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 760, "y" : 1760 },
+        "at" : { "x" : 856, "y" : 1760 },
         "size" : { "width" : 128 }
       }
     }, {
@@ -1385,11 +1385,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 568, "y" : 1680 }
+        "at" : { "x" : 664, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f87", "to" : "f84" },
-        { "id" : "f90", "to" : "f80", "via" : [ { "x" : 568, "y" : 1760 } ] }
+        { "id" : "f90", "to" : "f80", "via" : [ { "x" : 664, "y" : 1760 } ] }
       ]
     }, {
       "id" : "f82",
@@ -1416,7 +1416,7 @@
         "labelOffset" : { "x" : -31, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f89", "to" : "f297" }
+        { "id" : "f89", "to" : "f56" }
       ]
     }, {
       "id" : "f83",
@@ -1437,7 +1437,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 320, "y" : 1680 }
+        "at" : { "x" : 416, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f88", "to" : "f86" }
@@ -1456,7 +1456,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 760, "y" : 1680 },
+        "at" : { "x" : 856, "y" : 1680 },
         "size" : { "width" : 128 }
       }
     }, {
@@ -1484,7 +1484,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 464, "y" : 1680 }
+        "at" : { "x" : 560, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f91", "to" : "f81" }
@@ -4253,11 +4253,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 192, "y" : 1680 }
+        "at" : { "x" : 288, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f298", "to" : "f83", "color" : "default" },
-        { "id" : "f300", "to" : "f299", "via" : [ { "x" : 192, "y" : 1600 } ] }
+        { "id" : "f300", "to" : "f299", "via" : [ { "x" : 288, "y" : 1600 } ] }
       ]
     }, {
       "id" : "f299",
@@ -4272,8 +4272,40 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 760, "y" : 1601 },
+        "at" : { "x" : 856, "y" : 1601 },
         "size" : { "width" : 128, "height" : 62 }
+      }
+    }, {
+      "id" : "f56",
+      "type" : "Alternative",
+      "name" : "is safe url?",
+      "config" : {
+        "conditions" : {
+          "f59" : "ch.ivy.addon.portalkit.util.UrlUtils.isSafeRelativePath(in.callbackUrl)"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 1680 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f59", "to" : "f297", "color" : "default" },
+        { "id" : "f94", "to" : "f60" }
+      ]
+    }, {
+      "id" : "f60",
+      "type" : "Script",
+      "name" : "redirect to home page",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
+            "PortalNavigatorAPI.navigateToPortalHome();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 1600 }
       }
     } ]
 }
