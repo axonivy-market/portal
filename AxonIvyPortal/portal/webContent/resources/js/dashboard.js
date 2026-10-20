@@ -736,6 +736,7 @@ function updateDashboardWhenResizeWindow(isResponsiveDashboard) {
 function liveScroll(widgetId) {
   const datatable = PF(widgetId);
   if (datatable) {
+    //config scrolling behaviour for live scroll
     datatable.scrollOffset = 0;
     datatable.scrollBody.scrollTop(1);
     datatable.allLoadedLiveScroll = false;
