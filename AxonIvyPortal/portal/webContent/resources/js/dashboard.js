@@ -732,3 +732,12 @@ function updateDashboardWhenResizeWindow(isResponsiveDashboard) {
     }, 1000); // Delay execution by 1 sec to avoid send multiple requests
   });
 }
+
+function liveScroll(widgetId) {
+  datatable = PF(widgetId);
+  if (datatable != null) {
+    datatable.scrollOffset = 10;
+    datatable.scrollBody.scrollTop(1);
+    datatable.allLoadedLiveScroll = false;
+  }
+}
