@@ -87,8 +87,6 @@ Variables:
 
       # Query strategy for the related case subquery built by task widget case custom field filters.
       # LEGACY uses CaseQuery.create(), SPLIT uses businessCases()/subCases(). Has no effect on the case widget.
-      # With SPLIT, tasks without a separate technical case have blank case custom field values
-      # in both the task widget and Excel export.
       # [enum: LEGACY, SPLIT]
       RelatedCaseQueryStrategy: LEGACY
 

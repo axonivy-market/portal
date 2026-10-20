@@ -22,26 +22,12 @@
       <artifactId>web-tester</artifactId>
       <version>11.3.0</version>
       <scope>test</scope>
-      <exclusions>
-        <!-- Use the engine's version when running engine-backed tests. -->
-        <exclusion>
-          <groupId>org.apache.commons</groupId>
-          <artifactId>commons-lang3</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide-proxy</artifactId>
       <version>7.7.3</version>
       <scope>test</scope>
-      <exclusions>
-        <!-- Use the engine's version when running engine-backed tests. -->
-        <exclusion>
-          <groupId>org.apache.commons</groupId>
-          <artifactId>commons-lang3</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
   </dependencies>
   <build>
