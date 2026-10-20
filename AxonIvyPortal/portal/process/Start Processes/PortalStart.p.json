@@ -1371,7 +1371,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 944, "y" : 1760 },
+        "at" : { "x" : 1024, "y" : 1760 },
         "size" : { "width" : 128 }
       }
     }, {
@@ -1383,11 +1383,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 768, "y" : 1680 }
+        "at" : { "x" : 848, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f87", "to" : "f84" },
-        { "id" : "f90", "to" : "f80", "via" : [ { "x" : 768, "y" : 1760 } ] }
+        { "id" : "f90", "to" : "f80", "via" : [ { "x" : 848, "y" : 1760 } ] }
       ]
     }, {
       "id" : "f82",
@@ -1414,7 +1414,7 @@
         "labelOffset" : { "x" : -31, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f89", "to" : "f306" }
+        { "id" : "f89", "to" : "f309" }
       ]
     }, {
       "id" : "f83",
@@ -1436,7 +1436,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 472, "y" : 1680 }
+        "at" : { "x" : 552, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f88", "to" : "f86" }
@@ -1455,7 +1455,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 944, "y" : 1680 },
+        "at" : { "x" : 1024, "y" : 1680 },
         "size" : { "width" : 128 }
       }
     }, {
@@ -1466,7 +1466,7 @@
         "DefaultFramePage process will run"
       ],
       "visual" : {
-        "at" : { "x" : 240, "y" : 1759 },
+        "at" : { "x" : 160, "y" : 1759 },
         "size" : { "width" : 314, "height" : 63 }
       }
     }, {
@@ -1483,7 +1483,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 656, "y" : 1680 }
+        "at" : { "x" : 736, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f91", "to" : "f81" }
@@ -4318,7 +4318,7 @@
     }, {
       "id" : "f297",
       "type" : "Alternative",
-      "name" : "Is static page?",
+      "name" : "is static page?",
       "config" : {
         "conditions" : {
           "f300" : "in.callbackUrl != null && (in.callbackUrl.contains(\"faces/view\") || in.callbackUrl.contains(\"faces%2Fview\"))",
@@ -4326,11 +4326,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 368, "y" : 1680 }
+        "at" : { "x" : 400, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f298", "to" : "f83", "color" : "default" },
-        { "id" : "f300", "to" : "f299", "via" : [ { "x" : 368, "y" : 1600 } ] }
+        { "id" : "f300", "to" : "f299", "via" : [ { "x" : 448, "y" : 1600 } ] }
       ]
     }, {
       "id" : "f299",
@@ -4345,32 +4345,30 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 944, "y" : 1601 },
+        "at" : { "x" : 1024, "y" : 1601 },
         "size" : { "width" : 128, "height" : 62 }
       }
     }, {
-      "id" : "f306",
-      "type" : "Script",
-      "name" : "Safe relative url check",
+      "id" : "f308",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 272, "y" : 1584 }
+      }
+    }, {
+      "id" : "f309",
+      "type" : "Alternative",
+      "name" : "is safe url ?",
       "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.util.MenuUtils;",
-            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
-            "",
-            "",
-            "if (!MenuUtils.isSafeRelativePath(in.callbackUrl)){   ",
-            "  ivy.log.error(\"Unsafe url, redirect to Portal home: {0}\", in.callbackUrl);",
-            "  PortalNavigatorAPI.navigateToPortalHome();",
-            "}"
-          ]
+        "conditions" : {
+          "f310" : "com.axonivy.portal.util.MenuUtils.isSafeRelativePath(in.callbackUrl)"
         }
       },
       "visual" : {
-        "at" : { "x" : 240, "y" : 1680 }
+        "at" : { "x" : 272, "y" : 1680 }
       },
       "connect" : [
-        { "id" : "f307", "to" : "f297", "color" : "default" }
+        { "id" : "f310", "to" : "f297", "color" : "default" },
+        { "id" : "f311", "to" : "f308" }
       ]
     } ]
 }
