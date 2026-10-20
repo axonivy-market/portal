@@ -4,11 +4,14 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.util.CaseQueryUtils;
+
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
@@ -126,7 +129,11 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
     }
     ICustomFields customFields;
     if (type.equals(DashboardColumnFormat.CUSTOM_CASE.name())) {
-      customFields = taskItem.getCase().customFields();
+      ICase taskCase = taskItem.getCase();
+      if (!CaseQueryUtils.shouldDisplayCaseCustomFields(taskCase)) {
+        return null;
+      }
+      customFields = taskCase.customFields();
     } else if (type.equals(DashboardColumnFormat.CUSTOM_BUSINESS_CASE.name())) {
       customFields = taskItem.getCase().getBusinessCase().customFields();
     } else {
