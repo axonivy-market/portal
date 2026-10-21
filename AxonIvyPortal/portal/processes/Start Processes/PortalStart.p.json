@@ -3440,7 +3440,8 @@
             "  in.uuid = in.caseSelected.uuid();",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 332, "y" : 3672 },
@@ -3572,7 +3573,8 @@
             "  in.taskId = in.taskSelected.getId();",
             "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 332, "y" : 3488 },
