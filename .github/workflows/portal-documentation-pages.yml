@@ -1,0 +1,54 @@
+name: Documentation Pages experiment
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish the assembled site (master only; requires Pages setup)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Test static site assembly
+        run: python3 -m unittest discover -s build/portal-pages -v
+
+      - name: Assemble all configured releases
+        run: python3 build/portal-pages/build_site.py
+
+      - name: Upload complete site for preview or deployment
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: target/portal-pages/portal
+
+  deploy:
+    if: ${{ inputs.publish && github.ref == 'refs/heads/master' }}
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: portal-documentation-pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Deploy complete static site
+        id: deployment
+        uses: actions/deploy-pages@v4
