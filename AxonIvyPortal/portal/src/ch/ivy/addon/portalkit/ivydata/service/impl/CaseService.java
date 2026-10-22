@@ -31,7 +31,6 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.persistence.query.IPagedResult;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -66,17 +65,6 @@ public class CaseService{
     });
   }
 
-  public IvyCaseResultDTO findGlobalSearchCasesByCriteria(CaseSearchCriteria criteria, int startIndex, int count) {
-    return Sudo.get(() -> {
-      IvyCaseResultDTO result = new IvyCaseResultDTO();
-      CaseQuery finalQuery = extendQuery(criteria);
-      IPagedResult<ICase> iCase = Ivy.wf().getCaseQueryExecutor().getResultsPaged(finalQuery);
-      result.setCases(iCase.window(startIndex, count));
-      result.setTotalCases(iCase.count());
-      return result;
-    });
-  }
-
   private List<ICase> executeCaseQuery(CaseQuery query) {
     return Sudo.get(() -> {
       return Ivy.wf().getCaseQueryExecutor().getResults(query);
@@ -94,11 +82,17 @@ public class CaseService{
   }
 
   protected List<ICase> executeCaseQuery(CaseQuery query, Integer startIndex, Integer count) {
-    return Ivy.wf().getCaseQueryExecutor().getResults(query, startIndex, count);
+    long start = System.nanoTime(); // TODO remove GS-DEBUG
+    List<ICase> cases = Ivy.wf().getCaseQueryExecutor().getResults(query, startIndex, count);
+    Ivy.log().info("[GS-DEBUG] CaseService.executeCaseQuery WINDOW({0}, {1}) took {2} ms: {3}", startIndex, count, (System.nanoTime() - start) / 1_000_000, query); // TODO remove
+    return cases;
   }
 
   protected long countCases(CaseQuery query) {
-    return Ivy.wf().getCaseQueryExecutor().getCount(query);
+    long start = System.nanoTime(); // TODO remove GS-DEBUG
+    long total = Ivy.wf().getCaseQueryExecutor().getCount(query);
+    Ivy.log().info("[GS-DEBUG] CaseService.countCases COUNT took {0} ms: {1}", (System.nanoTime() - start) / 1_000_000, query); // TODO remove
+    return total;
   }
   
   protected CaseQuery queryForCurrentUser(boolean isTechnicalCase) {

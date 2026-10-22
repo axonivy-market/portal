@@ -46,28 +46,6 @@ public class DashboardTaskService extends TaskService {
     });
   }
 
-  public Long countByTaskQuery(TaskQuery query) {
-    return Sudo.get(() ->{
-      TaskQuery subQuery = TaskQuery.create();
-      boolean hasSubQueryChanged = false;
-      if(!PermissionUtils.checkReadAllTasksPermission()) {
-        subQuery.where().and(queryInvolvedTasks());
-        hasSubQueryChanged = true;
-      }
-      if (isHiddenTasksCasesExcluded()) {
-        subQuery.where().and(queryExcludeHiddenTasks());
-        hasSubQueryChanged = true;
-      }
-      if (!PermissionUtils.hasSystemTaskReadAllPermission()) {
-        subQuery.where().and(queryExcludeSystemTasks());
-        hasSubQueryChanged = true;
-      }
-      var finalQuery = hasSubQueryChanged ? query.where().and(subQuery) : query;
-      
-      return countTasks(finalQuery);
-    });
-  }
-
   public List<ITask> findDashboardTaskByCriteria(DashboardTaskSearchCriteria criteria, int startIndex, int count) {
     return Sudo.get(() -> {
       TaskQuery query = criteria.buildQuery();
@@ -95,35 +73,6 @@ public class DashboardTaskService extends TaskService {
 
       var finalQuery = hasSubQueryChanged ? query.where().and(subQuery) : query;
       return executeTaskQuery(finalQuery, startIndex, count);
-    });
-  }
-
-  public Long countDashboardTaskByCriteria(DashboardTaskSearchCriteria criteria) {
-    return Sudo.get(() -> {
-      TaskQuery query = criteria.buildQuery();
-      TaskQuery subQuery = TaskQuery.create();
-      boolean hasSubQueryChanged = false;
-      if (criteria.isFilterTasksByCurrentCaseOwner() && GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
-        CaseQuery subCaseQuery = CaseQuery.create().where().currentUserIsOwner();
-        query.where().cases(subCaseQuery);
-        hasSubQueryChanged = true;
-      } else if (!PermissionUtils.checkReadAllTasksPermission()) {
-        subQuery.where().and(queryInvolvedTasks());
-        hasSubQueryChanged = true;
-      }
-      if (isHiddenTasksCasesExcluded()) {
-        subQuery.where().and(queryExcludeHiddenTasks());
-        hasSubQueryChanged = true;
-      }
-
-      if (!PermissionUtils.hasSystemTaskReadAllPermission()) {
-        subQuery.where().and(queryExcludeSystemTasks());
-        hasSubQueryChanged = true;
-      }
-
-      var finalQuery = hasSubQueryChanged ? query.where().and(subQuery) : query;
-
-      return countTasks(finalQuery);
     });
   }
 }

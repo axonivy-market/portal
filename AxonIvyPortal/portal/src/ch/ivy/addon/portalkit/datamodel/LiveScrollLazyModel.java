@@ -63,4 +63,8 @@ public abstract class LiveScrollLazyModel<T> extends LazyDataModel<T> {
 
   public abstract List<T> getResults();
 
+  public static int estimateRowCount(int first, int pageSize, int loadedSize) {
+    return loadedSize >= pageSize ? first + pageSize + 1 : first + loadedSize;
+  }
+
 }

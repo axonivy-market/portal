@@ -34,7 +34,6 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.persistence.query.IPagedResult;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.exec.Sudo;
@@ -64,18 +63,6 @@ public class TaskService {
     });
   }
   
-  public IvyTaskResultDTO findGlobalSearchTasksByCriteria(TaskSearchCriteria criteria, int startIndex, int count) {
-    return Sudo.get(() -> {
-      IvyTaskResultDTO result = new IvyTaskResultDTO();
-      TaskQuery finalQuery = extendQueryWithUserHasPermissionToSee(criteria);
-      IPagedResult<ITask> iTask = Ivy.wf().getTaskQueryExecutor()
-          .getResultsPaged(finalQuery);
-      result.setTasks(iTask.window(startIndex, count));
-      result.setTotalTasks(iTask.count());
-      return result;
-    });
-  }
-
   public IvyTaskResultDTO countTasksByCriteria(TaskSearchCriteria criteria) { 
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
@@ -86,11 +73,17 @@ public class TaskService {
   }
   
   protected List<ITask> executeTaskQuery(TaskQuery query, Integer startIndex, Integer count) {
-    return Ivy.wf().getTaskQueryExecutor().getResults(query, startIndex, count);
+    long start = System.nanoTime(); // TODO remove GS-DEBUG
+    List<ITask> tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, startIndex, count);
+    Ivy.log().info("[GS-DEBUG] TaskService.executeTaskQuery WINDOW({0}, {1}) took {2} ms: {3}", startIndex, count, (System.nanoTime() - start) / 1_000_000, query); // TODO remove
+    return tasks;
   }
 
   protected long countTasks(TaskQuery query) {
-    return Ivy.wf().getTaskQueryExecutor().getCount(query);
+    long start = System.nanoTime(); // TODO remove GS-DEBUG
+    long total = Ivy.wf().getTaskQueryExecutor().getCount(query);
+    Ivy.log().info("[GS-DEBUG] TaskService.countTasks COUNT took {0} ms: {1}", (System.nanoTime() - start) / 1_000_000, query); // TODO remove
+    return total;
   }
   
   protected TaskQuery queryExcludeSystemTasks() {

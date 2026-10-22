@@ -11,6 +11,7 @@ import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
+import ch.ivy.addon.portalkit.datamodel.LiveScrollLazyModel;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
@@ -98,9 +99,9 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
     if (first == 0) {
       initializedDataModel();
     }
-    setRowCount(getTaskCount(criteria));
 
     List<ITask> foundTasks = findTasks(criteria, first, pageSize);
+    setRowCount(LiveScrollLazyModel.estimateRowCount(first, pageSize, foundTasks.size()));
     data.addAll(foundTasks);
     return foundTasks;
   }
@@ -124,17 +125,6 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
   private UIComponent findRelatedTaskComponent() {
     List<UIComponent> children = FacesContext.getCurrentInstance().getViewRoot().findComponent("case-item-details:case-details-container:widgets:case-details-related-running-tasks-card").getChildren();
     return children.stream().filter(child -> child.getId().equals(taskWidgetComponentId)).findFirst().orElse(null);
-  }
-
-  @Override
-  protected int getTaskCount(TaskSearchCriteria criteria) {
-    IvyComponentLogicCaller<Long> countTaskCaller = new IvyComponentLogicCaller<>();
-    UIComponent component = findRelatedTaskComponent();
-    if (component != null) {
-      Long taskCount = countTaskCaller.invokeComponentLogic(component, "#{logic.countTasks}", new Object[] {criteria});
-      return taskCount.intValue();
-    }
-    return 0;
   }
 
   private void initializedDataModel() {

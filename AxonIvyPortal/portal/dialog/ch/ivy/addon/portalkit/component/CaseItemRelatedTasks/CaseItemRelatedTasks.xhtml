@@ -29,7 +29,7 @@
           itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/ShowOnlyOpenTasks')}"
           styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
           <p:ajax process="@this" partialSubmit="true"
-            update="case-details-related-task-table" oncomplete="correctNavigatorWhenFilteringOpenTasks()" />
+            update="case-details-related-task-table" />
         </p:selectBooleanCheckbox>
         <h:form id="task-export-to-excel-form" styleClass="related-task-export-to-excel ui-sm-hidden">
           <p:commandLink ajax="false" id="related-task-export-to-excel"
@@ -51,13 +51,13 @@
       </h:panelGroup>
     </div>
     <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0 case-details-related-task-table" id="case-details-related-task-table">
-      <p:dataTable cellNavigation="false" id="related-tasks" widgetVar="related-tasks-table" lazy="true" value="#{data.dataModel}" var="task" paginator="true" rows="5"
-        paginatorPosition="bottom" paginatorAlwaysVisible="false" 
+      <p:dataTable cellNavigation="false" id="related-tasks" widgetVar="related-tasks-table" lazy="true" value="#{data.dataModel}" var="task"
+        scrollable="true" liveScroll="true" scrollRows="25" scrollHeight="265" styleClass="js-fit-card-height"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" sortBy="#{caseDetailsBean.sortById}"
-        rowIndexVar="rowIndex" rowHover="true" selectionMode="single"
-        currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
+        sortBy="#{caseDetailsBean.sortById}"
+        rowIndexVar="rowIndex" rowHover="true" selectionMode="single">
         <p:ajax event="rowSelect" listener="#{caseDetailsBean.handleRowSelectEventOnRelatedTaskList}" />
+        <p:ajax event="sort" update="related-tasks" onstart="resetLiveScroll('related-tasks-table')" />
         <p:column
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY')}"
           styleClass="priority-column u-truncate-text" field="PRIORITY" sortBy="#{PRIORITY}" filterable="false"
@@ -285,18 +285,13 @@
       statusDialog.hide();
     }
 
-    /**
-     * Handle case navigator not rendered when user not at the first page
-     * and click on filter open tasks on Related Tasks of Case panel
-     **/ 
-    function correctNavigatorWhenFilteringOpenTasks() {
-      var relatedTable = PF('related-tasks-table')
-      var currentPage = relatedTable.getPaginator();
-      if(!currentPage){
-        return;
+    function resetLiveScroll(widgetVar) {
+      var table = PF(widgetVar);
+      if (table) {
+        table.scrollOffset = 0;
+        table.scrollBody.scrollTop(1);
+        table.allLoadedLiveScroll = false;
       }
-      // reset to first page
-      relatedTable.filter(); 
     }
   </script>
 

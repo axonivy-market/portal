@@ -23,8 +23,6 @@ import com.axonivy.portal.util.SearchScopeUtils;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
-import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
-import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
@@ -33,6 +31,7 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class GlobalSearchService {
@@ -53,9 +52,9 @@ public class GlobalSearchService {
       return tooShortKeywordResponse();
     }
     TaskSearchCriteria criteria = buildTaskCriteria(payload);
-    IvyTaskResultDTO iTasks = TaskService.newInstance().findGlobalSearchTasksByCriteria(criteria, 0, PAGE_SIZE);
-    List<TaskData> results = iTasks.getTasks().stream().map(TaskData::new).toList();
-    return new GlobalSearchResponse(results, iTasks.getTotalTasks());
+    List<ITask> tasks = TaskService.newInstance().findTasksByCriteria(criteria, 0, PAGE_SIZE + 1).getTasks();
+    List<TaskData> results = tasks.stream().limit(PAGE_SIZE).map(TaskData::new).toList();
+    return new GlobalSearchResponse(results, tasks.size() > PAGE_SIZE);
   }
 
   public GlobalSearchResponse searchCases(SearchPayload payload) {
@@ -63,10 +62,10 @@ public class GlobalSearchService {
       return tooShortKeywordResponse();
     }
     CaseSearchCriteria criteria = buildCaseCriteria(payload);
-    IvyCaseResultDTO iCases = CaseService.newInstance().findGlobalSearchCasesByCriteria(criteria, 0, PAGE_SIZE);
+    List<ICase> cases = CaseService.newInstance().findCasesByCriteria(criteria, 0, PAGE_SIZE + 1).getCases();
     boolean canAccessBusinessDetails = CaseBehaviorUtils.canAccessBusinessDetails();
-    List<CaseData> results = iCases.getCases().stream().map(caze -> new CaseData(caze, buildCaseDataLink(caze, canAccessBusinessDetails))).toList();
-    return new GlobalSearchResponse(results, iCases.getTotalCases());
+    List<CaseData> results = cases.stream().limit(PAGE_SIZE).map(caze -> new CaseData(caze, buildCaseDataLink(caze, canAccessBusinessDetails))).toList();
+    return new GlobalSearchResponse(results, cases.size() > PAGE_SIZE);
   }
 
   private TaskSearchCriteria buildTaskCriteria(SearchPayload payload) {
@@ -103,12 +102,12 @@ public class GlobalSearchService {
     }
     String keyword = payload.getQuery().toLowerCase();
     List<IWebStartable> startableProcesses = ProcessService.getInstance().findProcesses();
-    List<ProcessData> processes = startableProcesses.stream()
+    List<IWebStartable> processes = startableProcesses.stream()
         .filter(process -> process.getName().toLowerCase().contains(keyword)
             || process.getDescription().toLowerCase().contains(keyword))
-        .map(ProcessData::new).sorted(Comparator.comparing(ProcessData::getName)).toList();
-    List<ProcessData> results = processes.isEmpty() ? processes : processes.subList(0, Math.min(processes.size(), PAGE_SIZE));
-    return new GlobalSearchResponse(results, processes.size());
+        .sorted(Comparator.comparing(IWebStartable::getName)).limit(PAGE_SIZE + 1).toList();
+    List<ProcessData> results = processes.stream().limit(PAGE_SIZE).map(ProcessData::new).toList();
+    return new GlobalSearchResponse(results, processes.size() > PAGE_SIZE);
   }
   
   public static int getMinimumKeywordLength() {
@@ -130,7 +129,7 @@ public class GlobalSearchService {
   }
 
   private static GlobalSearchResponse tooShortKeywordResponse() {
-    GlobalSearchResponse response = new GlobalSearchResponse(List.of(), 0);
+    GlobalSearchResponse response = new GlobalSearchResponse(List.of(), false);
     response.setNoResultsText(getMinimumKeywordMessage());
     return response;
   }
