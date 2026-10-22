@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
@@ -15,8 +16,16 @@ import org.apache.commons.lang3.Strings;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.UrlUtils;
+import ch.ivyteam.ivy.application.ActivityState;
+import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.IProcessModel;
+import ch.ivyteam.ivy.application.IProcessModelVersion;
+import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomStringField;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
@@ -120,8 +129,7 @@ public class BusinessDetailsUtils {
 
   private static void migrateCustomFieldForBusinessDetailsPage(ICase iCase, String customFieldValue) {
     String relativePathInLatestFormat = createRelativeLinkInLatestFormat(customFieldValue);
-    List<IWebStartable> iWebStartables = IWorkflowSession.current().getAllStartables().toList();
-    IWebStartable iWebStartable = findTargetStartable(iWebStartables, relativePathInLatestFormat);
+    IWebStartable iWebStartable = findWebStartableByRelativeLink(relativePathInLatestFormat);
     if (iWebStartable == null) {
       throw new PortalException(String.format("Cannot find IWebStartable by process path [%s].", relativePathInLatestFormat));
     }
@@ -129,6 +137,40 @@ public class BusinessDetailsUtils {
     String queryString = parts.length > 1 ? parts[1] : EMPTY;
 
     updateCustomFieldBusinessDetails(iCase, iWebStartable, queryString);
+  }
+
+  private static IWebStartable findWebStartableByRelativeLink(String relativeLink) {
+    return Sudo.get(() -> {
+      List<IApplication> applicationsInSecurityContext = IApplicationRepository.of(ISecurityContext.current()).all();
+
+      List<IProcessModel> processModels = applicationsInSecurityContext.stream()
+          .map(IApplication::getProcessModelsSortedByName).flatMap(List::stream).collect(Collectors.toList());
+
+      for (IProcessModel processModel : processModels) {
+        if (!isActive(processModel)) {
+          continue;
+        }
+        IProcessModelVersion pmv = processModel.getReleasedProcessModelVersion();
+        if (!isActive(pmv)) {
+          continue;
+        }
+        IWebStartable webStartable = IWorkflowProcessModelVersion.of(pmv).getAllStartables()
+            .filter(ws -> ws.getLink().getRelative().endsWith(relativeLink))
+            .findFirst().orElse(null);
+        if (webStartable != null) {
+          return webStartable;
+        }
+      }
+      return null;
+    });
+  }
+
+  private static boolean isActive(IProcessModel processModel) {
+    return processModel.getActivityState() == ActivityState.ACTIVE;
+  }
+
+  private static boolean isActive(IProcessModelVersion processModelVersion) {
+    return processModelVersion != null && processModelVersion.getActivityState() == ActivityState.ACTIVE;
   }
 
   private static String createRelativeLinkInLatestFormat(String customFieldValue) {
@@ -147,16 +189,6 @@ public class BusinessDetailsUtils {
       relativePathWithoutAppName = textAfterProThenSplitedByQuestionMark[0];
     }
     return String.format("%s/pro/%s", appName, relativePathWithoutAppName);
-  }
-
-  private static IWebStartable findTargetStartable(List<IWebStartable> iWebStartables, String targetPath) {
-    for (IWebStartable startable : iWebStartables) {
-      String startableRelativeLink = startable.getLink().getRelative();
-      if (startableRelativeLink.endsWith(targetPath)) {
-        return startable;
-      }
-    }
-    return null;
   }
 
   private static void updateCustomFieldBusinessDetails(ICase iCase, IWebStartable iWebStartable, String params) {
