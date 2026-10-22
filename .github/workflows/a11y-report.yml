@@ -4,6 +4,11 @@ run-name: Portal Pages prototype validation - ${{ github.ref_name }}
 
 on:
   workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish the PUBLIC prototype (experiment branch only)'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -25,7 +30,30 @@ jobs:
       - name: Assemble all configured releases
         run: python3 -B build/portal-pages/build_site.py
 
-      - name: Upload complete site for preview
+      - name: Upload complete site for preview or deployment
         uses: actions/upload-pages-artifact@v4
         with:
           path: target/portal-pages/portal
+          retention-days: 1
+
+  deploy:
+    name: Publish public Portal Pages prototype
+    if: ${{ inputs.publish && github.ref == 'refs/heads/build/MARP-4849-experiment-portal-github-pages' }}
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: portal-documentation-pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Deploy complete static site
+        id: deployment
+        uses: actions/deploy-pages@v4

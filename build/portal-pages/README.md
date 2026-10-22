@@ -54,9 +54,11 @@ site, so publishing one release does not silently discard the others.
 
 On this experiment branch, `.github/workflows/a11y-report.yml` temporarily runs
 these same tests, assembly, and Pages artifact upload instead of the A11y audit.
-It has read-only repository permissions and no deployment job. The existing
-workflow filename allows manual dispatch before the new Pages workflow exists
-on `master`.
+The build job has read-only repository permissions. A separate deployment job
+runs only when `publish` is explicitly enabled on
+`build/MARP-4849-experiment-portal-github-pages`; only that job receives
+`pages: write` and `id-token: write`. The existing workflow filename allows
+manual dispatch before the new Pages workflow exists on `master`.
 
 After pushing this branch, dispatch the existing workflow by filename:
 
@@ -66,7 +68,24 @@ gh workflow run a11y-report.yml --repo axonivy-market/portal \
 ```
 
 Download the `github-pages` artifact from the run to inspect the assembled site.
-Artifact upload does not publish a website. Restore `a11y-report.yml` before
+Artifact upload alone does not publish a website. The artifact expires after
+one day; this does not remove an already-deployed website.
+
+To publish the prototype publicly, first set Settings > Pages > Source to
+GitHub Actions. In Settings > Environments > github-pages, allow the exact
+experiment branch under Deployment branches and tags, retaining any existing
+`master` rule. Then explicitly request publication:
+
+```sh
+gh workflow run a11y-report.yml --repo axonivy-market/portal \
+  --ref build/MARP-4849-experiment-portal-github-pages -f publish=true
+```
+
+This replaces the repository's complete Pages site, not an isolated preview.
+The expected URL is `https://axonivy-market.github.io/portal/`; the deployment
+job exposes the actual URL. To take the demo offline afterward, use Settings >
+Pages > Unpublish site and avoid another publishing run. Restore
+`a11y-report.yml` and remove the temporary environment branch rule before
 merging; the permanent publisher remains `portal-documentation-pages.yml`.
 
 ## What this does not change
@@ -75,10 +94,11 @@ merging; the permanent publisher remains `portal-documentation-pages.yml`.
 - GitHub Pages settings, Marketplace links, or old documentation URL redirects.
 - Other branches or the DocFactory documentation.
 
-The new workflow is manual and defaults to **build only**. Its build job can
-read the repository; only its separate deploy job receives Pages publishing
-permissions. Publishing requires `master`, an explicit `publish` input, and
-Pages configured to use GitHub Actions. No `gh-pages` content branch is needed:
+The permanent `portal-documentation-pages.yml` workflow is manual and defaults
+to **build only**. Its build job can read the repository; only its separate
+deploy job receives Pages publishing permissions. Unlike the temporary harness,
+it requires `master`, an explicit `publish` input, and Pages configured to use
+GitHub Actions. No `gh-pages` content branch is needed:
 `actions/deploy-pages` publishes the assembled artifact directly.
 
 The generated-HTML URL replacement is deliberately limited to the existing
