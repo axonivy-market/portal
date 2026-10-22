@@ -109,4 +109,26 @@ public class UrlUtils {
     }).collect(Collectors.joining("&"));
     return queryString;
   }
+  
+  /**
+   * Static pages render inside the portal frame, so the path must stay within the
+   * application: absolute URLs, protocol-relative ({@code //}) and backslash variants
+   * are rejected to prevent framing external content or open redirects.
+   * @param path relative path
+   * @return is safe url ?
+   */
+  public static boolean isSafeRelativePath(String path) {
+    if (StringUtils.isBlank(path)) {
+      return false;
+    }
+    String trimmed = path.trim();
+    if (trimmed.contains("\\") || trimmed.startsWith("//")) {
+      return false;
+    }
+    try {
+      return URI.create(trimmed).getScheme() == null;
+    } catch (IllegalArgumentException ex) {
+      return false;
+    }
+  }
 }
