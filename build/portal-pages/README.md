@@ -50,6 +50,25 @@ be empty before a rebuild; remove only `target/portal-pages/portal/` to rebuild.
 The workflow uses a fresh runner each time and assembles the entire configured
 site, so publishing one release does not silently discard the others.
 
+## Temporary Actions validation before merge
+
+On this experiment branch, `.github/workflows/a11y-report.yml` temporarily runs
+these same tests, assembly, and Pages artifact upload instead of the A11y audit.
+It has read-only repository permissions and no deployment job. The existing
+workflow filename allows manual dispatch before the new Pages workflow exists
+on `master`.
+
+After pushing this branch, dispatch the existing workflow by filename:
+
+```sh
+gh workflow run a11y-report.yml --repo axonivy-market/portal \
+  --ref build/MARP-4849-experiment-portal-github-pages
+```
+
+Download the `github-pages` artifact from the run to inspect the assembled site.
+Artifact upload does not publish a website. Restore `a11y-report.yml` before
+merging; the permanent publisher remains `portal-documentation-pages.yml`.
+
 ## What this does not change
 
 - The existing Sphinx/screenshot workflows, Maven ZIP publication, and Market hosting.
