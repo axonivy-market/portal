@@ -1,8 +1,5 @@
 package ch.ivy.addon.portal.generic.bean;
 
-import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_DASHBOARD_ID;
-import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_SUB_DASHBOARD_ID;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,11 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import jakarta.annotation.PostConstruct;
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -45,6 +37,8 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_DASHBOARD_ID;
+import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_SUB_DASHBOARD_ID;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
@@ -61,6 +55,10 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @ViewScoped
 @Named
@@ -110,9 +108,10 @@ public class DashboardBean implements Serializable, IMultiLanguage {
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
 
-    // Set responsive option for default task list and case list
+    // Set responsive option for default task list, case list and full task list (view mode only)
     if (DashboardUtils.isDefaultCaseListDashboard(selectedDashboard)
-        || DashboardUtils.isDefaultTaskListDashboard(selectedDashboard)) {
+        || DashboardUtils.isDefaultTaskListDashboard(selectedDashboard)
+        || (isReadOnlyMode && DashboardUtils.isFullTaskListDashboardWithDefaultLayout(selectedDashboard))) {
       selectedDashboard.setIsResponsive(true);
     }
 
