@@ -50,21 +50,19 @@ be empty before a rebuild; remove only `target/portal-pages/portal/` to rebuild.
 The workflow uses a fresh runner each time and assembles the entire configured
 site, so publishing one release does not silently discard the others.
 
-## Temporary Actions validation before merge
+## GitHub Pages demo after merge
 
-On this experiment branch, `.github/workflows/a11y-report.yml` temporarily runs
-these same tests, assembly, and Pages artifact upload instead of the A11y audit.
-The build job has read-only repository permissions. A separate deployment job
-runs only when `publish` is explicitly enabled on
-`build/MARP-4849-experiment-portal-github-pages`; only that job receives
-`pages: write` and `id-token: write`. The existing workflow filename allows
-manual dispatch before the new Pages workflow exists on `master`.
+Merge this prototype to `master` before using manual dispatch. The dedicated
+`portal-documentation-pages.yml` workflow appears as **Documentation Pages
+experiment** in Actions. A11y Report remains unchanged and is not used to build
+or publish documentation. Merging alone does not trigger this manual workflow
+or publish a site.
 
-After pushing this branch, dispatch the existing workflow by filename:
+For build validation without publication:
 
 ```sh
-gh workflow run a11y-report.yml --repo axonivy-market/portal \
-  --ref build/MARP-4849-experiment-portal-github-pages
+gh workflow run portal-documentation-pages.yml --repo axonivy-market/portal \
+  --ref master
 ```
 
 Download the `github-pages` artifact from the run to inspect the assembled site.
@@ -72,21 +70,20 @@ Artifact upload alone does not publish a website. The artifact expires after
 one day; this does not remove an already-deployed website.
 
 To publish the prototype publicly, first set Settings > Pages > Source to
-GitHub Actions. In Settings > Environments > github-pages, allow the exact
-experiment branch under Deployment branches and tags, retaining any existing
-`master` rule. Then explicitly request publication:
+GitHub Actions. The `github-pages` environment must permit deployment from
+`master`; no experiment-branch exception is needed. Then run **Documentation
+Pages experiment** on `master` with `publish` enabled, or use:
 
 ```sh
-gh workflow run a11y-report.yml --repo axonivy-market/portal \
-  --ref build/MARP-4849-experiment-portal-github-pages -f publish=true
+gh workflow run portal-documentation-pages.yml --repo axonivy-market/portal \
+  --ref master -f publish=true
 ```
 
 This replaces the repository's complete Pages site, not an isolated preview.
 The expected URL is `https://axonivy-market.github.io/portal/`; the deployment
 job exposes the actual URL. To take the demo offline afterward, use Settings >
-Pages > Unpublish site and avoid another publishing run. Restore
-`a11y-report.yml` and remove the temporary environment branch rule before
-merging; the permanent publisher remains `portal-documentation-pages.yml`.
+Pages > Unpublish site and avoid another publishing run. If an experiment-branch
+exception was added to the environment during earlier testing, it can be removed.
 
 ## What this does not change
 
@@ -94,17 +91,18 @@ merging; the permanent publisher remains `portal-documentation-pages.yml`.
 - GitHub Pages settings, Marketplace links, or old documentation URL redirects.
 - Other branches or the DocFactory documentation.
 
-The permanent `portal-documentation-pages.yml` workflow is manual and defaults
-to **build only**. Its build job can read the repository; only its separate
-deploy job receives Pages publishing permissions. Unlike the temporary harness,
-it requires `master`, an explicit `publish` input, and Pages configured to use
-GitHub Actions. No `gh-pages` content branch is needed:
+The `portal-documentation-pages.yml` workflow is manual and defaults to
+**build only**. Its build job can read the repository; only its separate deploy
+job receives Pages publishing permissions. Publishing requires `master`, an
+explicit `publish` input, and Pages configured to use GitHub Actions.
+No `gh-pages` content branch is needed:
 `actions/deploy-pages` publishes the assembled artifact directly.
 
 The generated-HTML URL replacement is deliberately limited to the existing
-selector format and fails if that format changes. If this hosting approach is
-accepted, integrating static selector generation into the source build is a
-separate follow-up, not something this experiment silently changes.
+selector format and fails if that format changes. The next phase is to connect
+the existing Sphinx, screenshot, and Javadoc build directly to Pages assembly,
+without publishing the documentation ZIP to Maven and downloading it back.
+This hosting pilot deliberately does not implement that connection yet.
 
 The 1 GB check uses the **uncompressed, complete site**, not ZIP download sizes.
 Exceeding it fails the build before deployment; the publisher does not delete

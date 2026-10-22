@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       publish:
-        description: 'Publish the assembled site (master only; requires Pages setup)'
+        description: 'Publish the PUBLIC prototype (master only; requires Pages setup)'
         type: boolean
         default: false
 
@@ -31,6 +31,7 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: target/portal-pages/portal
+          retention-days: 1
 
   deploy:
     if: ${{ inputs.publish && github.ref == 'refs/heads/master' }}
