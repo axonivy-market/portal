@@ -1,6 +1,5 @@
 """Prepare static selectors and navigation for documentation unpacked by Maven."""
 import argparse
-import html
 import json
 import re
 from pathlib import Path
@@ -39,7 +38,6 @@ def build_site(output, base_path="/portal"):
         if "en" not in languages[version]:
             raise ValueError(f"Missing English documentation for {version}")
 
-    links = []
     for version in ordered_versions:
         for language in languages[version]:
             language_root = output / version_path(version) / language
@@ -67,14 +65,10 @@ def build_site(output, base_path="/portal"):
                     replacements += count
             if not replacements:
                 raise ValueError(f"No supported version selector found for {version}/{language}")
-            url = html.escape(page_url(base_path, version, language), quote=True)
-            links.append(f'<li><a href="{url}">Portal {version} ({language})</a></li>')
 
-    landing = ('<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
-               '<meta name="viewport" content="width=device-width, initial-scale=1">'
-               '<title>Portal documentation</title></head><body>'
-               '<h1>Portal documentation</h1><ul>' + "".join(links) + '</ul></body></html>\n')
-    (output / "index.html").write_text(landing, encoding="utf-8")
+    landing = Path(__file__).with_name("index.html").read_text(encoding="utf-8")
+    latest_url = page_url(base_path, ordered_versions[0], "en")
+    (output / "index.html").write_text(landing.replace("@latest@", latest_url), encoding="utf-8")
     (output / ".nojekyll").touch()
     (output / "versions.json").write_text(json.dumps(versions, indent=2) + "\n", encoding="utf-8")
     print(f"Prepared documentation versions {', '.join(ordered_versions)} at {output}")

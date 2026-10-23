@@ -51,13 +51,18 @@ class TestBuildSite(unittest.TestCase):
                 for page in [root / "index.html", root / "guide/deep-page.html"]:
                     self.assertIn(f'url: "/portal/release/{version}/{language}/versions.json"', page.read_text())
                     self.assertNotIn("/api/docs/", page.read_text())
-        self.assertIn("Portal 14.0 (ja)", (self.output / "index.html").read_text())
+        landing = (self.output / "index.html").read_text()
+        self.assertIn('content="0; url=/portal/release/14.0/en/index.html"', landing)
+        self.assertIn('href="/portal/release/14.0/en/index.html"', landing)
+        self.assertNotIn("@latest@", landing)
         self.assertTrue((self.output / ".nojekyll").is_file())
 
     def test_supports_a_different_project_prefix(self):
         build_site(self.output, "/preview/portal")
         content = (self.output / "release/12.0/en/index.html").read_text()
         self.assertIn('url: "/preview/portal/release/12.0/en/versions.json"', content)
+        self.assertIn('content="0; url=/preview/portal/release/14.0/en/index.html"',
+                      (self.output / "index.html").read_text())
 
     def test_requires_english_documentation(self):
         (self.output / "release/12.0/en/index.html").unlink()
@@ -83,6 +88,15 @@ class TestBuildSite(unittest.TestCase):
         build_site(self.output)
         selector = json.loads((self.output / "release/14.0/ja/versions.json").read_text())
         self.assertEqual(selector["versions"][-1], {"version": "dev", "url": "/portal/snapshot/dev/en/index.html"})
+
+    def test_redirects_to_latest_release_numerically_not_dev_or_manifest_order(self):
+        (self.output / "versions.json").write_text(json.dumps({"9.0": "9.0.1", **self.versions}))
+        self.create_documentation(self.output / "release/9.0/en", "9.0", "en")
+        self.create_documentation(self.output / "snapshot/dev/en", "dev", "en")
+        build_site(self.output)
+        landing = (self.output / "index.html").read_text()
+        self.assertIn('content="0; url=/portal/release/14.0/en/index.html"', landing)
+        self.assertNotIn("snapshot/dev", landing)
 
     def test_rejects_incomplete_dev_documentation(self):
         (self.output / "snapshot/dev").mkdir(parents=True)

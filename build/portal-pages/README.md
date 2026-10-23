@@ -52,7 +52,7 @@ Open `http://localhost:8000/portal/` yourself. The generated layout is:
 
 ```text
 target/portal-pages/portal/
-  index.html
+  index.html                          # forwards to latest released English guide
   versions.json                       # resolved artifact mapping
   release/12.0/{en,ja}/index.html
   release/12.0/{en,ja}/versions.json    # static selector data
@@ -68,6 +68,14 @@ Marketplace's `/api/docs/...` endpoint. Its links include the `/portal` prefix.
 The helper fails if the upstream selector format changes instead of silently
 publishing a broken selector. The root manifest describes released artifacts;
 per-language selector JSON also includes dev when present.
+
+The root `/portal/` page immediately forwards to the highest configured release
+in English, currently `release/14.0/en/index.html`. The helper fills the
+`@latest@` placeholder in `index.html` at build time, following the reference
+project-build-plugin pattern. This is an HTML meta refresh, not a server-side
+HTTP redirect; a fallback link is included. Releases are sorted numerically,
+and dev is never selected as the default. Other versions and languages remain
+available through the documentation's selector.
 
 To include a locally available ZIP from the existing documentation build, use
 an absolute path outside `target/portal-pages/` (which `clean` removes):
