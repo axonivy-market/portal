@@ -37,22 +37,4 @@ public class DashboardCaseService extends CaseService {
       return executeCaseQuery(finalQuery, startIndex, count);
     });
   }
-
-  public Long countByCaseQuery(CaseQuery query) {
-    return Sudo.get(() -> {
-      var subQuery = CaseQuery.businessCases();
-      boolean hasSubQueryChanged = false;
-      if (!PermissionUtils.checkReadAllCasesPermission()) {
-        subQuery.where().and(queryForCurrentUser(false));
-        hasSubQueryChanged = true;
-      }
-  
-      if (isHiddenTasksCasesExcluded()) {
-        subQuery.where().and(queryExcludeHiddenCases());
-        hasSubQueryChanged = true;
-      }
-      var finalQuery = hasSubQueryChanged ? query.where().and(subQuery) : query;
-      return countCases(finalQuery);
-    });
-  }
 }

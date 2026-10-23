@@ -6,13 +6,11 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class GlobalSearchResponse {
   private List<? extends Object> results;
-  private long totalResult;
   private String viewAllText;
   private String noResultsText;
 
-  public GlobalSearchResponse(List<? extends Object> results, long totalResult) {
+  public GlobalSearchResponse(List<? extends Object> results) {
     this.results = results;
-    this.totalResult = totalResult;
     this.viewAllText = Ivy.cms().co("/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/ViewAllResults");
     this.noResultsText = Ivy.cms().co("/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/noResultsText");
   }
@@ -39,14 +37,6 @@ public class GlobalSearchResponse {
 
   public void setResults(List<? extends Object> results) {
     this.results = results;
-  }
-
-  public long getTotalResult() {
-    return totalResult;
-  }
-
-  public void setTotalResult(long totalResult) {
-    this.totalResult = totalResult;
   }
 
 }
