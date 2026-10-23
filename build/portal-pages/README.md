@@ -1,4 +1,4 @@
-# Portal Pages experiment
+# Portal documentation on GitHub Pages
 
 Maven fetches and unpacks released documentation. A small Python helper prepares
 static version/language selectors and the site's entry page. The existing
@@ -96,7 +96,7 @@ the complete site, preventing stale or removed releases from lingering.
 ## GitHub Pages publication
 
 The dedicated `portal-documentation-pages.yml` workflow appears as
-**Documentation Pages experiment** in Actions. It runs manually and defaults to
+**Publish Documentation Pages** in Actions. It runs manually and defaults to
 build-only. A11y Report is unchanged. Merging alone does not publish a site.
 
 For validation without publication:

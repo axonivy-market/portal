@@ -1,10 +1,10 @@
-name: Documentation Pages experiment
+name: Publish Documentation Pages
 
 on:
   workflow_dispatch:
     inputs:
       publish:
-        description: 'Publish the PUBLIC prototype (master only; requires Pages setup)'
+        description: 'Publish PUBLIC documentation to GitHub Pages (master only)'
         type: boolean
         default: false
       include_dev:
