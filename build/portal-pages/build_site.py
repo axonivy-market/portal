@@ -1,23 +1,20 @@
-"""Assemble released Portal documentation ZIPs into a standalone static site."""
+"""Prepare static selectors and navigation for documentation unpacked by Maven."""
 import argparse
 import html
 import json
 import re
-import stat
-import urllib.request
-import zipfile
-from pathlib import Path, PurePosixPath
+from pathlib import Path
 
 MAX_SITE_BYTES = 1_000_000_000
 API_URL = re.compile(r'''url:\s*(["'])/api/docs/[^"']+\1''')
-MAVEN_URL = "https://maven.axonivy.com/com/axonivy/portal/portal-guide"
 
 
 def page_url(base_path, version, language):
     return f"{base_path}/release/{version}/{language}/index.html"
 
 
-def build_site(versions, archives, output, base_path="/portal"):
+def build_site(output, base_path="/portal"):
+    versions = json.loads((output / "versions.json").read_text(encoding="utf-8"))
     if not versions:
         raise ValueError("At least one documentation version is required")
     for version, artifact in versions.items():
@@ -27,35 +24,14 @@ def build_site(versions, archives, output, base_path="/portal"):
             raise ValueError(f"Expected a released artifact of {version}, got {artifact}")
     if not re.fullmatch(r"(?:/[A-Za-z0-9_-]+)*", base_path):
         raise ValueError("Base path must be empty or a path such as /portal")
-    if output.exists() and any(output.iterdir()):
-        raise ValueError(f"Output directory must be empty: {output}")
 
-    output.mkdir(parents=True, exist_ok=True)
-    archives.mkdir(parents=True, exist_ok=True)
     languages = {}
-    total_bytes = 0
-    for version, artifact in versions.items():
-        archive = archives / f"portal-guide-{artifact}.zip"
-        if not archive.exists():
-            url = f"{MAVEN_URL}/{artifact}/{archive.name}"
-            print(f"Downloading {url}")
-            partial = archive.with_suffix(".zip.part")
-            urllib.request.urlretrieve(url, partial)
-            partial.replace(archive)
-        with zipfile.ZipFile(archive) as document:
-            for entry in document.infolist():
-                path = PurePosixPath(entry.filename)
-                if path.is_absolute() or ".." in path.parts or stat.S_ISLNK(entry.external_attr >> 16):
-                    raise ValueError(f"Unsafe ZIP entry: {entry.filename}")
-                total_bytes += entry.file_size
-            if total_bytes > MAX_SITE_BYTES:
-                raise ValueError("Documentation exceeds the 1 GB Pages site budget; retain fewer versions")
-            destination = output / "release" / version
-            document.extractall(destination)
+    for version in versions:
+        destination = output / "release" / version
         languages[version] = [language for language in ("en", "ja")
                               if (destination / language / "index.html").is_file()]
         if "en" not in languages[version]:
-            raise ValueError(f"Missing English documentation in {archive.name}")
+            raise ValueError(f"Missing English documentation for {version}")
 
     ordered_versions = sorted(versions, key=lambda version: tuple(map(int, version.split("."))), reverse=True)
     links = []
@@ -104,12 +80,10 @@ def build_site(versions, archives, output, base_path="/portal"):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--versions", type=Path, default=Path(__file__).with_name("versions.json"))
-    parser.add_argument("--archives", type=Path, default=Path("target/portal-pages-cache"))
     parser.add_argument("--output", type=Path, default=Path("target/portal-pages/portal"))
     parser.add_argument("--base-path", default="/portal")
     args = parser.parse_args()
-    build_site(json.loads(args.versions.read_text(encoding="utf-8")), args.archives, args.output, args.base_path)
+    build_site(args.output, args.base_path)
 
 
 if __name__ == "__main__":

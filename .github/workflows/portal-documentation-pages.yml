@@ -17,6 +17,15 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      - uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+
+      - uses: stCarolas/setup-maven@v5.1
+        with:
+          maven-version: 3.9.16
+
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
@@ -24,7 +33,10 @@ jobs:
       - name: Test static site assembly
         run: python3 -m unittest discover -s build/portal-pages -v
 
-      - name: Assemble all configured releases
+      - name: Unpack all configured releases with Maven
+        run: mvn -B -ntp clean generate-resources -f build/portal-pages/pom.xml
+
+      - name: Prepare static selectors and navigation
         run: python3 build/portal-pages/build_site.py
 
       - name: Upload complete site for preview or deployment
