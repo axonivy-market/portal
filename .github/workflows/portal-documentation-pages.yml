@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       publish:
-        description: 'Publish PUBLIC documentation to GitHub Pages (master only)'
+        description: 'Publish PUBLIC documentation to GitHub Pages'
         type: boolean
         default: false
       include_dev:
