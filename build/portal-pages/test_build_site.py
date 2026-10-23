@@ -3,7 +3,6 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import patch
 
 from build_site import build_site
 
@@ -64,11 +63,6 @@ class TestBuildSite(unittest.TestCase):
         (self.output / "release/12.0/en/index.html").unlink()
         with self.assertRaisesRegex(ValueError, "Missing English documentation"):
             build_site(self.output)
-
-    def test_rejects_an_oversized_site(self):
-        with patch("build_site.MAX_SITE_BYTES", 1):
-            with self.assertRaisesRegex(ValueError, "1 GB"):
-                build_site(self.output)
 
     def test_fails_if_the_upstream_selector_format_changes(self):
         (self.output / "release/12.0/en/index.html").write_text('<script>fetch("/api/docs/new-format")</script>')

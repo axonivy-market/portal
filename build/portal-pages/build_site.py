@@ -5,7 +5,6 @@ import json
 import re
 from pathlib import Path
 
-MAX_SITE_BYTES = 1_000_000_000
 API_URL = re.compile(r'''url:\s*(["'])/api/docs/[^"']+\1''')
 
 
@@ -72,10 +71,7 @@ def build_site(output, base_path="/portal"):
     (output / "index.html").write_text(landing, encoding="utf-8")
     (output / ".nojekyll").touch()
     (output / "versions.json").write_text(json.dumps(versions, indent=2) + "\n", encoding="utf-8")
-    size = sum(path.stat().st_size for path in output.rglob("*") if path.is_file())
-    if size > MAX_SITE_BYTES:
-        raise ValueError("Assembled site exceeds the 1 GB Pages site budget")
-    print(f"Built {len(versions)} versions: {size / 1024 ** 2:.2f} MiB at {output}")
+    print(f"Prepared {len(versions)} releases at {output}")
 
 
 def main():

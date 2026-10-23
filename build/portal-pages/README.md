@@ -93,5 +93,5 @@ or DocFactory documentation are changed by this build.
 Connecting fresh Sphinx/screenshots/Javadoc output directly to Pages is a
 follow-up; this release-only build still consumes published ZIPs.
 
-The helper currently checks the complete uncompressed site against a 1 GB budget
-before deployment; it does not automatically delete old versions.
+GitHub Pages enforces its own site-size limit. The helper does not duplicate
+that limit or automatically delete old versions.
