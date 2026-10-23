@@ -64,6 +64,31 @@ class TestBuildSite(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Missing English documentation"):
             build_site(self.output)
 
+    def test_includes_dev_without_replacing_released_documentation(self):
+        for language in ("en", "ja"):
+            self.create_documentation(self.output / "snapshot/dev" / language, "dev", language)
+        build_site(self.output)
+        for directory in ("release/12.0", "release/14.0", "snapshot/dev"):
+            for language in ("en", "ja"):
+                root = self.output / directory / language
+                selector = json.loads((root / "versions.json").read_text())
+                self.assertEqual([item["version"] for item in selector["versions"]], ["14.0", "12.0", "dev"])
+                self.assertIn(f'url: "/portal/{directory}/{language}/versions.json"', (root / "index.html").read_text())
+                self.assertEqual((root / "portal-developer-guide/public-api/index.html").read_text(), "Javadoc")
+                for item in selector["versions"] + selector["languages"]:
+                    self.assertTrue((self.output / item["url"].removeprefix("/portal/")).is_file())
+
+    def test_falls_back_to_english_when_dev_has_no_japanese_translation(self):
+        self.create_documentation(self.output / "snapshot/dev/en", "dev", "en")
+        build_site(self.output)
+        selector = json.loads((self.output / "release/14.0/ja/versions.json").read_text())
+        self.assertEqual(selector["versions"][-1], {"version": "dev", "url": "/portal/snapshot/dev/en/index.html"})
+
+    def test_rejects_incomplete_dev_documentation(self):
+        (self.output / "snapshot/dev").mkdir(parents=True)
+        with self.assertRaisesRegex(ValueError, "Missing English documentation for dev"):
+            build_site(self.output)
+
     def test_fails_if_the_upstream_selector_format_changes(self):
         (self.output / "release/12.0/en/index.html").write_text('<script>fetch("/api/docs/new-format")</script>')
         with self.assertRaisesRegex(ValueError, "Unrecognized documentation API reference"):

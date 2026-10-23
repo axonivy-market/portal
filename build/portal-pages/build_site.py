@@ -8,8 +8,12 @@ from pathlib import Path
 API_URL = re.compile(r'''url:\s*(["'])/api/docs/[^"']+\1''')
 
 
+def version_path(version):
+    return f"snapshot/{version}" if version == "dev" else f"release/{version}"
+
+
 def page_url(base_path, version, language):
-    return f"{base_path}/release/{version}/{language}/index.html"
+    return f"{base_path}/{version_path(version)}/{language}/index.html"
 
 
 def build_site(output, base_path="/portal"):
@@ -24,19 +28,21 @@ def build_site(output, base_path="/portal"):
     if not re.fullmatch(r"(?:/[A-Za-z0-9_-]+)*", base_path):
         raise ValueError("Base path must be empty or a path such as /portal")
 
+    ordered_versions = sorted(versions, key=lambda version: tuple(map(int, version.split("."))), reverse=True)
+    if (output / "snapshot/dev").is_dir():
+        ordered_versions.append("dev")
     languages = {}
-    for version in versions:
-        destination = output / "release" / version
+    for version in ordered_versions:
+        destination = output / version_path(version)
         languages[version] = [language for language in ("en", "ja")
                               if (destination / language / "index.html").is_file()]
         if "en" not in languages[version]:
             raise ValueError(f"Missing English documentation for {version}")
 
-    ordered_versions = sorted(versions, key=lambda version: tuple(map(int, version.split("."))), reverse=True)
     links = []
     for version in ordered_versions:
         for language in languages[version]:
-            language_root = output / "release" / version / language
+            language_root = output / version_path(version) / language
             selector = {
                 "versions": [
                     {"version": other, "url": page_url(base_path, other,
@@ -49,7 +55,7 @@ def build_site(output, base_path="/portal"):
                 ],
             }
             (language_root / "versions.json").write_text(json.dumps(selector, indent=2) + "\n", encoding="utf-8")
-            selector_url = f"{base_path}/release/{version}/{language}/versions.json"
+            selector_url = f"{base_path}/{version_path(version)}/{language}/versions.json"
             replacements = 0
             for page in language_root.rglob("*.html"):
                 content = page.read_text(encoding="utf-8")
@@ -71,7 +77,7 @@ def build_site(output, base_path="/portal"):
     (output / "index.html").write_text(landing, encoding="utf-8")
     (output / ".nojekyll").touch()
     (output / "versions.json").write_text(json.dumps(versions, indent=2) + "\n", encoding="utf-8")
-    print(f"Prepared {len(versions)} releases at {output}")
+    print(f"Prepared documentation versions {', '.join(ordered_versions)} at {output}")
 
 
 def main():
