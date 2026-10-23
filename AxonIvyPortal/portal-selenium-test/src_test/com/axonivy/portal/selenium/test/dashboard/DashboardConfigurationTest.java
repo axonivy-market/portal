@@ -23,8 +23,6 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.$;
 
 @IvyWebTest
 public class DashboardConfigurationTest extends BaseTest {
@@ -233,7 +231,7 @@ public class DashboardConfigurationTest extends BaseTest {
     taskWidget.deleteTaskWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectCaseWidget(" ").expand().shouldHave(size(8));
+    newDashboardDetailsEditPage.getWidgets().shouldHave(size(9), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -245,7 +243,7 @@ public class DashboardConfigurationTest extends BaseTest {
     caseWidget.deleteCaseWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(8));
+    newDashboardDetailsEditPage.getWidgets().shouldHave(size(9), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -257,7 +255,7 @@ public class DashboardConfigurationTest extends BaseTest {
     processWidget.deleteProcessWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(8));
+    newDashboardDetailsEditPage.getWidgets().shouldHave(size(9), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -269,7 +267,7 @@ public class DashboardConfigurationTest extends BaseTest {
     taskWidget.deleteTaskWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectCaseWidget(" ").expand().shouldHave(size(8));
+    newDashboardDetailsEditPage.getWidgets().shouldHave(size(9), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -282,23 +280,7 @@ public class DashboardConfigurationTest extends BaseTest {
     caseWidget.deleteCaseWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-
-    waitForDashboardStableAfterWidgetRemoval();
-    
-    // Verify that total number of widgets is 9 (originally 10, now deleted 1)
-    $$(".grid-stack-item").shouldHave(size(9));
-  }
-
-  private void waitForDashboardStableAfterWidgetRemoval() {
-    // Wait a bit for the DOM to update after widget removal
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-    }
-    newDashboardPage.waitPageLoaded();
-    $(".js-dashboard__wrapper").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    $$(".grid-stack-item").shouldBe(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+    newDashboardDetailsEditPage.getWidgets().shouldHave(size(9), DEFAULT_TIMEOUT);
   }
 
 
@@ -312,11 +294,7 @@ public class DashboardConfigurationTest extends BaseTest {
     processWidget.deleteProcessWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    
-    waitForDashboardStableAfterWidgetRemoval();
-    // Verify that total number of widgets is 9 (originally 10, now deleted 1)
-    // This is more robust than looking for specific widget types
-    $$(".grid-stack-item").shouldHave(size(9));
+    newDashboardDetailsEditPage.getWidgets().shouldHave(size(9), DEFAULT_TIMEOUT);
   }
 
   @Test
