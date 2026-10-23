@@ -97,15 +97,12 @@ function ProcessWidget() {
       $(".js-process-nav-item.selected").removeClass("selected");
       var processItems = $('.js-process-start-list-item');
       $(processItems).show();
-      $.each(processItems, function(index) {
+      $.each(processItems, function() {
         var processName = $('.js-process-start-list-item-name', this).text().toLowerCase();
+        var processDescription = ($('.js-process-start-list-item-description', this).attr('title') || '').toLowerCase();
         var keyword = $('.js-filter-process-widget-list-item').val().toLowerCase();
-        let descriptionTooltip = $('.js-process-start-list-item-description .ui-tooltip-text');
-        if (descriptionTooltip.length > 0) {
-          var processDescription = descriptionTooltip.get(index).innerText.toLowerCase();
-          if (!contain(processName, keyword) && !contain(processDescription, keyword)) {
-            $(this).hide();
-          }
+        if (!contain(processName, keyword) && !contain(processDescription, keyword)) {
+          $(this).hide();
         }
 
         var externalLinkKeyToSearch = "link";
