@@ -82,17 +82,11 @@ public class CaseService{
   }
 
   protected List<ICase> executeCaseQuery(CaseQuery query, Integer startIndex, Integer count) {
-    long start = System.nanoTime(); // TODO remove GS-DEBUG
-    List<ICase> cases = Ivy.wf().getCaseQueryExecutor().getResults(query, startIndex, count);
-    Ivy.log().info("[GS-DEBUG] CaseService.executeCaseQuery WINDOW({0}, {1}) took {2} ms: {3}", startIndex, count, (System.nanoTime() - start) / 1_000_000, query); // TODO remove
-    return cases;
+    return Ivy.wf().getCaseQueryExecutor().getResults(query, startIndex, count);
   }
 
   protected long countCases(CaseQuery query) {
-    long start = System.nanoTime(); // TODO remove GS-DEBUG
-    long total = Ivy.wf().getCaseQueryExecutor().getCount(query);
-    Ivy.log().info("[GS-DEBUG] CaseService.countCases COUNT took {0} ms: {1}", (System.nanoTime() - start) / 1_000_000, query); // TODO remove
-    return total;
+    return Ivy.wf().getCaseQueryExecutor().getCount(query);
   }
   
   protected CaseQuery queryForCurrentUser(boolean isTechnicalCase) {

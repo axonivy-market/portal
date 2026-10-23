@@ -57,7 +57,6 @@
         sortBy="#{caseDetailsBean.sortById}"
         rowIndexVar="rowIndex" rowHover="true" selectionMode="single">
         <p:ajax event="rowSelect" listener="#{caseDetailsBean.handleRowSelectEventOnRelatedTaskList}" />
-        <p:ajax event="sort" update="related-tasks" onstart="resetLiveScroll('related-tasks-table')" />
         <p:column
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY')}"
           styleClass="priority-column u-truncate-text" field="PRIORITY" sortBy="#{PRIORITY}" filterable="false"
@@ -285,14 +284,6 @@
       statusDialog.hide();
     }
 
-    function resetLiveScroll(widgetVar) {
-      var table = PF(widgetVar);
-      if (table) {
-        table.scrollOffset = 0;
-        table.scrollBody.scrollTop(1);
-        table.allLoadedLiveScroll = false;
-      }
-    }
   </script>
 
   <p:dialog modal="true" id="related-task-status-dialog" widgetVar="related-task-status-dialog"

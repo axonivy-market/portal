@@ -52,9 +52,9 @@ public class GlobalSearchService {
       return tooShortKeywordResponse();
     }
     TaskSearchCriteria criteria = buildTaskCriteria(payload);
-    List<ITask> tasks = TaskService.newInstance().findTasksByCriteria(criteria, 0, PAGE_SIZE + 1).getTasks();
-    List<TaskData> results = tasks.stream().limit(PAGE_SIZE).map(TaskData::new).toList();
-    return new GlobalSearchResponse(results, tasks.size() > PAGE_SIZE);
+    List<ITask> tasks = TaskService.newInstance().findTasksByCriteria(criteria, 0, PAGE_SIZE).getTasks();
+    List<TaskData> results = tasks.stream().map(TaskData::new).toList();
+    return new GlobalSearchResponse(results);
   }
 
   public GlobalSearchResponse searchCases(SearchPayload payload) {
@@ -62,10 +62,10 @@ public class GlobalSearchService {
       return tooShortKeywordResponse();
     }
     CaseSearchCriteria criteria = buildCaseCriteria(payload);
-    List<ICase> cases = CaseService.newInstance().findCasesByCriteria(criteria, 0, PAGE_SIZE + 1).getCases();
+    List<ICase> cases = CaseService.newInstance().findCasesByCriteria(criteria, 0, PAGE_SIZE).getCases();
     boolean canAccessBusinessDetails = CaseBehaviorUtils.canAccessBusinessDetails();
-    List<CaseData> results = cases.stream().limit(PAGE_SIZE).map(caze -> new CaseData(caze, buildCaseDataLink(caze, canAccessBusinessDetails))).toList();
-    return new GlobalSearchResponse(results, cases.size() > PAGE_SIZE);
+    List<CaseData> results = cases.stream().map(caze -> new CaseData(caze, buildCaseDataLink(caze, canAccessBusinessDetails))).toList();
+    return new GlobalSearchResponse(results);
   }
 
   private TaskSearchCriteria buildTaskCriteria(SearchPayload payload) {
@@ -102,12 +102,11 @@ public class GlobalSearchService {
     }
     String keyword = payload.getQuery().toLowerCase();
     List<IWebStartable> startableProcesses = ProcessService.getInstance().findProcesses();
-    List<IWebStartable> processes = startableProcesses.stream()
+    List<ProcessData> results = startableProcesses.stream()
         .filter(process -> process.getName().toLowerCase().contains(keyword)
             || process.getDescription().toLowerCase().contains(keyword))
-        .sorted(Comparator.comparing(IWebStartable::getName)).limit(PAGE_SIZE + 1).toList();
-    List<ProcessData> results = processes.stream().limit(PAGE_SIZE).map(ProcessData::new).toList();
-    return new GlobalSearchResponse(results, processes.size() > PAGE_SIZE);
+        .sorted(Comparator.comparing(IWebStartable::getName)).limit(PAGE_SIZE).map(ProcessData::new).toList();
+    return new GlobalSearchResponse(results);
   }
   
   public static int getMinimumKeywordLength() {
@@ -129,7 +128,7 @@ public class GlobalSearchService {
   }
 
   private static GlobalSearchResponse tooShortKeywordResponse() {
-    GlobalSearchResponse response = new GlobalSearchResponse(List.of(), false);
+    GlobalSearchResponse response = new GlobalSearchResponse(List.of());
     response.setNoResultsText(getMinimumKeywordMessage());
     return response;
   }

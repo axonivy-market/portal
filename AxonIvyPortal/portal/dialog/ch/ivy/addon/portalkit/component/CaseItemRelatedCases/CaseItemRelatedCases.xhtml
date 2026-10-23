@@ -45,11 +45,10 @@
     
     <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0 related-cases-container" id="related-cases-container">
     
-      <p:dataTable cellNavigation="false" id="related-cases" widgetVar="related-cases-table" lazy="true" value="#{data.caseLazyDataModel}" var="case"
+      <p:dataTable cellNavigation="false" id="related-cases" lazy="true" value="#{data.caseLazyDataModel}" var="case"
         scrollable="true" liveScroll="true" scrollRows="25" scrollHeight="265" sortMode="single"
         sortBy="#{caseDetailsBean.sortById}" styleClass="related-cases js-fit-card-height" rowHover="true" selectionMode="single">
         <p:ajax event="rowSelect" listener="#{caseDetailsBean.navigateToSelectedCaseDetails}" />
-        <p:ajax event="sort" update="related-cases" onstart="resetLiveScroll('related-cases-table')" />
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" field="NAME" sortBy="#{NAME}" filterable="false" styleClass="name-column u-truncate-text"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}">
           <h:outputText id="case-name" value="#{case.names().current()}" title="#{case.names().current()}" styleClass="case-name-value"/>
@@ -154,15 +153,6 @@
   </ui:decorate>
     
   <script type="text/javascript">
-    function resetLiveScroll(widgetVar) {
-      var table = PF(widgetVar);
-      if (table) {
-        table.scrollOffset = 0;
-        table.scrollBody.scrollTop(1);
-        table.allLoadedLiveScroll = false;
-      }
-    }
-
     function startRelatedCaseExportToExcel() {
       var statusDialog = PF('related-case-status-dialog');
       statusDialog.jq.removeAttr("download-status");

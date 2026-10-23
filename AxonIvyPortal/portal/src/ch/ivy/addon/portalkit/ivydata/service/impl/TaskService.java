@@ -73,17 +73,11 @@ public class TaskService {
   }
   
   protected List<ITask> executeTaskQuery(TaskQuery query, Integer startIndex, Integer count) {
-    long start = System.nanoTime(); // TODO remove GS-DEBUG
-    List<ITask> tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, startIndex, count);
-    Ivy.log().info("[GS-DEBUG] TaskService.executeTaskQuery WINDOW({0}, {1}) took {2} ms: {3}", startIndex, count, (System.nanoTime() - start) / 1_000_000, query); // TODO remove
-    return tasks;
+    return Ivy.wf().getTaskQueryExecutor().getResults(query, startIndex, count);
   }
 
   protected long countTasks(TaskQuery query) {
-    long start = System.nanoTime(); // TODO remove GS-DEBUG
-    long total = Ivy.wf().getTaskQueryExecutor().getCount(query);
-    Ivy.log().info("[GS-DEBUG] TaskService.countTasks COUNT took {0} ms: {1}", (System.nanoTime() - start) / 1_000_000, query); // TODO remove
-    return total;
+    return Ivy.wf().getTaskQueryExecutor().getCount(query);
   }
   
   protected TaskQuery queryExcludeSystemTasks() {
