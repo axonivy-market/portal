@@ -1,21 +1,35 @@
-name: Documentation Pages experiment
+name: Publish Documentation Pages
 
 on:
   workflow_dispatch:
     inputs:
       publish:
-        description: 'Publish the PUBLIC prototype (master only; requires Pages setup)'
+        description: 'Publish PUBLIC documentation to GitHub Pages'
         type: boolean
         default: false
+      include_dev:
+        description: 'Include the latest successful master Documentation SNAPSHOT build'
+        type: boolean
+        default: true
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+
+      - uses: stCarolas/setup-maven@v5.1
+        with:
+          maven-version: 3.9.16
 
       - uses: actions/setup-python@v6
         with:
@@ -24,7 +38,41 @@ jobs:
       - name: Test static site assembly
         run: python3 -m unittest discover -s build/portal-pages -v
 
-      - name: Assemble all configured releases
+      - name: Download development documentation from its source build
+        if: ${{ inputs.include_dev }}
+        id: dev
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          DEV_RUN=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/portal-documentation.yml/runs?branch=master&event=workflow_dispatch&status=success&per_page=20" --jq '
+            [.workflow_runs[] | select(.head_branch == "master" and .event == "workflow_dispatch" and .conclusion == "success")][0] // empty')
+          if [ -z "$DEV_RUN" ]; then
+            echo "::error::Build Documentation on master successfully before including dev docs."
+            exit 1
+          fi
+          RUN_ID=$(jq -r '.id' <<< "$DEV_RUN")
+          gh run download "$RUN_ID" --repo "$GITHUB_REPOSITORY" \
+            --pattern 'Documentation-*-SNAPSHOT' --dir target/portal-pages-dev
+          mapfile -t ARCHIVES < <(find "$PWD/target/portal-pages-dev" -type f -name 'portal-guide-*-SNAPSHOT.zip')
+          if [ "${#ARCHIVES[@]}" -ne 1 ]; then
+            echo "::error::Expected exactly one development documentation ZIP."
+            exit 1
+          fi
+          echo "archive=${ARCHIVES[0]}" >> "$GITHUB_OUTPUT"
+          jq -r '"- Development docs: [run #\(.run_number)](\(.html_url)) from master @ `\(.head_sha)`"' \
+            <<< "$DEV_RUN" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Unpack configured releases and optional development docs with Maven
+        env:
+          DEV_ARCHIVE: ${{ steps.dev.outputs.archive }}
+        run: |
+          ARGS=()
+          if [ -n "$DEV_ARCHIVE" ]; then
+            ARGS+=("-Ddev.archive=$DEV_ARCHIVE")
+          fi
+          mvn -B -ntp clean generate-resources -f build/portal-pages/pom.xml "${ARGS[@]}"
+
+      - name: Prepare static selectors and navigation
         run: python3 build/portal-pages/build_site.py
 
       - name: Upload complete site for preview or deployment

@@ -1,10 +1,8 @@
-"""Exercise the publisher with tiny ZIPs; no network or Ivy engine required."""
+"""Exercise static navigation with unpacked documentation; no network required."""
 import json
 import tempfile
 import unittest
-import zipfile
 from pathlib import Path
-from unittest.mock import patch
 
 from build_site import build_site
 
@@ -13,25 +11,32 @@ class TestBuildSite(unittest.TestCase):
     def setUp(self):
         self.directory = tempfile.TemporaryDirectory()
         self.addCleanup(self.directory.cleanup)
-        self.root = Path(self.directory.name)
-        self.archives = self.root / "archives"
-        self.archives.mkdir()
-        self.output = self.root / "site"
+        self.output = Path(self.directory.name) / "site"
+        self.output.mkdir()
         self.versions = {"12.0": "12.0.18.1", "14.0": "14.0.0"}
-        for version, artifact in self.versions.items():
-            with zipfile.ZipFile(self.archives / f"portal-guide-{artifact}.zip", "w") as archive:
-                for language in ("en", "ja"):
-                    page = ('<html><script>const request = {url: '
-                            f'"/api/docs/Portal Guide/{version}/{language}"'
-                            '};</script></html>')
-                    archive.writestr(f"{language}/index.html", page)
-                    archive.writestr(f"{language}/guide/deep-page.html", page)
-                    archive.writestr(f"{language}/_static/theme.css", "body {}")
-                    archive.writestr(f"{language}/searchindex.js", "Search.setIndex({});")
-                    archive.writestr(f"{language}/portal-developer-guide/public-api/index.html", "Javadoc")
+        (self.output / "versions.json").write_text(json.dumps(self.versions))
+        for version in self.versions:
+            for language in ("en", "ja"):
+                self.create_documentation(self.output / "release" / version / language, version, language)
+
+    def create_documentation(self, root, version, language):
+        page = ('<html><script>const request = {url: '
+                f'"/api/docs/Portal Guide/{version}/{language}"'
+                '};</script></html>')
+        resources = {
+            "index.html": page,
+            "guide/deep-page.html": page,
+            "_static/theme.css": "body {}",
+            "searchindex.js": "Search.setIndex({});",
+            "portal-developer-guide/public-api/index.html": "Javadoc",
+        }
+        for name, content in resources.items():
+            path = root / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(content)
 
     def test_builds_both_versions_and_languages_without_losing_resources(self):
-        build_site(self.versions, self.archives, self.output)
+        build_site(self.output)
         for version in self.versions:
             for language in ("en", "ja"):
                 root = self.output / "release" / version / language
@@ -46,43 +51,67 @@ class TestBuildSite(unittest.TestCase):
                 for page in [root / "index.html", root / "guide/deep-page.html"]:
                     self.assertIn(f'url: "/portal/release/{version}/{language}/versions.json"', page.read_text())
                     self.assertNotIn("/api/docs/", page.read_text())
-        self.assertIn("Portal 14.0 (ja)", (self.output / "index.html").read_text())
+        landing = (self.output / "index.html").read_text()
+        self.assertIn('content="0; url=/portal/release/14.0/en/index.html"', landing)
+        self.assertIn('href="/portal/release/14.0/en/index.html"', landing)
+        self.assertNotIn("@latest@", landing)
         self.assertTrue((self.output / ".nojekyll").is_file())
 
     def test_supports_a_different_project_prefix(self):
-        build_site(self.versions, self.archives, self.output, "/preview/portal")
+        build_site(self.output, "/preview/portal")
         content = (self.output / "release/12.0/en/index.html").read_text()
         self.assertIn('url: "/preview/portal/release/12.0/en/versions.json"', content)
+        self.assertIn('content="0; url=/preview/portal/release/14.0/en/index.html"',
+                      (self.output / "index.html").read_text())
 
-    def test_refuses_to_overwrite_existing_output(self):
-        self.output.mkdir()
-        (self.output / "keep.txt").write_text("unrelated")
-        with self.assertRaisesRegex(ValueError, "must be empty"):
-            build_site(self.versions, self.archives, self.output)
-        self.assertEqual((self.output / "keep.txt").read_text(), "unrelated")
+    def test_requires_english_documentation(self):
+        (self.output / "release/12.0/en/index.html").unlink()
+        with self.assertRaisesRegex(ValueError, "Missing English documentation"):
+            build_site(self.output)
 
-    def test_rejects_a_zip_path_outside_the_site(self):
-        with zipfile.ZipFile(self.archives / "portal-guide-12.0.18.1.zip", "a") as archive:
-            archive.writestr("../../escaped.txt", "unsafe")
-        with self.assertRaisesRegex(ValueError, "Unsafe ZIP entry"):
-            build_site(self.versions, self.archives, self.output)
-        self.assertFalse((self.root / "escaped.txt").exists())
+    def test_includes_dev_without_replacing_released_documentation(self):
+        for language in ("en", "ja"):
+            self.create_documentation(self.output / "snapshot/dev" / language, "dev", language)
+        build_site(self.output)
+        for directory in ("release/12.0", "release/14.0", "snapshot/dev"):
+            for language in ("en", "ja"):
+                root = self.output / directory / language
+                selector = json.loads((root / "versions.json").read_text())
+                self.assertEqual([item["version"] for item in selector["versions"]], ["14.0", "12.0", "dev"])
+                self.assertIn(f'url: "/portal/{directory}/{language}/versions.json"', (root / "index.html").read_text())
+                self.assertEqual((root / "portal-developer-guide/public-api/index.html").read_text(), "Javadoc")
+                for item in selector["versions"] + selector["languages"]:
+                    self.assertTrue((self.output / item["url"].removeprefix("/portal/")).is_file())
 
-    def test_stops_before_extracting_an_oversized_site(self):
-        with patch("build_site.MAX_SITE_BYTES", 1):
-            with self.assertRaisesRegex(ValueError, "1 GB"):
-                build_site(self.versions, self.archives, self.output)
-        self.assertFalse((self.output / "release").exists())
+    def test_falls_back_to_english_when_dev_has_no_japanese_translation(self):
+        self.create_documentation(self.output / "snapshot/dev/en", "dev", "en")
+        build_site(self.output)
+        selector = json.loads((self.output / "release/14.0/ja/versions.json").read_text())
+        self.assertEqual(selector["versions"][-1], {"version": "dev", "url": "/portal/snapshot/dev/en/index.html"})
+
+    def test_redirects_to_latest_release_numerically_not_dev_or_manifest_order(self):
+        (self.output / "versions.json").write_text(json.dumps({"9.0": "9.0.1", **self.versions}))
+        self.create_documentation(self.output / "release/9.0/en", "9.0", "en")
+        self.create_documentation(self.output / "snapshot/dev/en", "dev", "en")
+        build_site(self.output)
+        landing = (self.output / "index.html").read_text()
+        self.assertIn('content="0; url=/portal/release/14.0/en/index.html"', landing)
+        self.assertNotIn("snapshot/dev", landing)
+
+    def test_rejects_incomplete_dev_documentation(self):
+        (self.output / "snapshot/dev").mkdir(parents=True)
+        with self.assertRaisesRegex(ValueError, "Missing English documentation for dev"):
+            build_site(self.output)
 
     def test_fails_if_the_upstream_selector_format_changes(self):
-        with zipfile.ZipFile(self.archives / "portal-guide-12.0.18.1.zip", "w") as archive:
-            archive.writestr("en/index.html", '<script>fetch("/api/docs/new-format")</script>')
+        (self.output / "release/12.0/en/index.html").write_text('<script>fetch("/api/docs/new-format")</script>')
         with self.assertRaisesRegex(ValueError, "Unrecognized documentation API reference"):
-            build_site(self.versions, self.archives, self.output)
+            build_site(self.output)
 
     def test_rejects_a_mismatched_artifact_version(self):
+        (self.output / "versions.json").write_text(json.dumps({"12.0": "14.0.0"}))
         with self.assertRaisesRegex(ValueError, "Expected a released artifact"):
-            build_site({"12.0": "14.0.0"}, self.archives, self.output)
+            build_site(self.output)
 
 
 if __name__ == "__main__":
