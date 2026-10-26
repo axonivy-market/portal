@@ -13567,7 +13567,7 @@ msgstr "**Stack Overflow**"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:25
 msgid "Problems related to common technologies like Java, JSF, and PrimeFaces are answered on `Stack Overflow <https://stackoverflow.com/>`__. Use tags like ``axon-ivy``, ``jsf``, ``primefaces``."
-msgstr "Java、JSF、PrimeFacesなどの一般的な技術に関する問題は、Stack Overflowの `で回答されております。<https://stackoverflow.com/>`__。以下のタグをご利用ください：``axon-ivy``、``jsf``、``primefaces``。"
+msgstr "Java、JSF、PrimeFacesなどの一般的な技術に関する問題は、`Stack Overflow <https://stackoverflow.com/>`__ で回答されております。以下のタグをご利用ください：``axon-ivy``、``jsf``、``primefaces``。"
 
 #: ../../source/portal-developer-guide/troubleshooting/index.rst:27
 msgid "**Support**"
