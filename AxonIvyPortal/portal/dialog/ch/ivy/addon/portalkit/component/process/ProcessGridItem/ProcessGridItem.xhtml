@@ -68,11 +68,13 @@
             <h:outputText id="process-name" value="#{process.name}" styleClass="line-clamp-text-2 process-grid-view-name" />
           </div>
         </p:commandLink>
+        <!-- Category (hidden), matched by the process category filter -->
+        <h:outputText styleClass="js-process-category" value="#{managedBean.getDisplayProcessCategory(process)}" style="display: none;" />
 
         <!-- Process Description -->
-        <div class="ui-g-12 process-description js-process-start-list-item-description">
+        <div class="ui-g-12 process-description">
           <h:outputText id="process-description" value="#{not empty process.description ? process.description : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noProcessDescription')}" title="#{not empty process.description ? process.description : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noProcessDescription')}"
-            styleClass="text-center line-clamp-text-5 process-description__text" />
+            styleClass="text-center line-clamp-text-5 process-description__text js-process-start-list-item-description" />
         </div>
         <!-- Start process -->
         <div class="ui-g-12 start-button-wrap flex align-items-center justify-content-center" id="start-button-wrap-#{status.index}">

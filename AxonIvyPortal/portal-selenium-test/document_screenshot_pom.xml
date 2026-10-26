@@ -4,12 +4,12 @@
   <parent>
     <groupId>com.axonivy.ivy.api</groupId>
     <artifactId>ivy-project-parent</artifactId>
-    <version>14.0.1-SNAPSHOT</version>
+    <version>14.0.1</version>
     <relativePath />
   </parent>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-document-screenshots-selenide</artifactId>
-  <version>14.0.1-SNAPSHOT</version>
+  <version>14.0.2-SNAPSHOT</version>
   <packaging>jar</packaging>
   <distributionManagement>
     <repository>
@@ -25,7 +25,7 @@
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
-      <version>14.0.1-SNAPSHOT</version>
+      <version>14.0.2-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
      <dependency>
@@ -46,7 +46,7 @@
     <dependency>
       <groupId>com.deque.html.axe-core</groupId>
       <artifactId>selenium</artifactId>
-      <version>4.11.3</version>
+      <version>4.13.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

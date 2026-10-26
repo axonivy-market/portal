@@ -1215,14 +1215,4 @@ function bindDialogKeysInIframe(iframe, widgetVar) {
   }
 }
 
-function handleFocusOnElementsInCaseDetailsPanel() {
-  const caseInfoDialog = document.getElementById('case-info-dialog');
-  if (caseInfoDialog.innerHTML.includes('i-frame-case-details')) {
-    const iframe = document.getElementById('i-frame-case-details');
-    setTimeout(() => {
-      initIframeFocusManagement(iframe);
-    }, 2000)
-  }
-}
-
 // END: FIX ACCESSIBILITY ISSUES  

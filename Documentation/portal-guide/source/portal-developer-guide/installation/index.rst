@@ -154,6 +154,15 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate 14.0.0 To 14.0.1
+------------------------
+
+#. The task, case and document action menus now follow the standard menu keyboard pattern:
+   **Arrow Down** / **Arrow Up** move between the items, **Home** / **End** jump to the first / last item,
+   **Enter** or **Space** runs the focused item, and **Esc** or **Tab** closes the menu and returns focus to
+   its actions button. **Alt + W** and **Alt + Q** no longer move through the items of an open action menu;
+   they only move to the next task or case. See :ref:`Accessibility <accessibility>`.
+
 Migrate To 14.0
 ---------------
 

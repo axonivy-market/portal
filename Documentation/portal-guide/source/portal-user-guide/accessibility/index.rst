@@ -16,6 +16,16 @@ Keyboard Shortcuts Quick Reference
    +-------------------+------------------------------------------------------------+
    | Shortcut          | Action                                                     |
    +===================+============================================================+
+   | **General**                                                                    |
+   +-------------------+------------------------------------------------------------+
+   | Tab               | Show the Skip to content link (first key on a page)        |
+   +-------------------+------------------------------------------------------------+
+   | Enter             | Jump to the main content (on the Skip to content link)     |
+   +-------------------+------------------------------------------------------------+
+   | Esc               | Close the open menu, panel or dialog; focus goes back      |
+   +-------------------+------------------------------------------------------------+
+   | Tab / Shift + Tab | Move between the items of the open user menu               |
+   +-------------------+------------------------------------------------------------+
    | **Navigation**                                                                 |
    +-------------------+------------------------------------------------------------+
    | Alt + 1           | Focus Dashboard in the sidebar                             |
@@ -42,7 +52,7 @@ Keyboard Shortcuts Quick Reference
    +-------------------+------------------------------------------------------------+
    | Alt + A           | Focus next process                                         |
    +-------------------+------------------------------------------------------------+
-   | **Action Menu**                                                                |
+   | **Action Menu** (task, case, document and widget menus)                        |
    +-------------------+------------------------------------------------------------+
    | Enter / Space     | Open context menu (when focused on task/case/document)     |
    +-------------------+------------------------------------------------------------+
@@ -102,6 +112,18 @@ Use these shortcuts to jump directly to major portal sections:
 
 When multiple dashboards are available in the navigation bar, use the **Tab key** to cycle through them. Press **Enter** to open the highlighted dashboard.
 
+Skip to Content
+^^^^^^^^^^^^^^^
+
+The first **Tab** on a page shows the **Skip to content** link. Press **Enter** to move focus to the main content and skip the header and the sidebar.
+
+Closing Menus, Panels and Dialogs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Press **Esc** to close the open action menu, widget menu, panel (for example **Manage columns** or the notification panel), user menu or dialog, including the **Case information** dialog. Focus returns to the button that opened it.
+
+In action menus and widget menus, use **Arrow Down** / **Arrow Up** and **Home** / **End** to move between the items. In the user menu, use **Tab** / **Shift + Tab**.
+
 Widget Navigation
 ^^^^^^^^^^^^^^^^^
 
@@ -116,6 +138,8 @@ Navigate within list widgets using these shortcuts:
    focus returns to the first item.
 
 **Multiple widgets**: If two Task or Case widgets are on screen, focus cycles through both sequentially.
+
+While an action menu is open, use the arrow keys to move between its items. **Alt + W** and **Alt + Q** only move to the next task or case when no menu is open.
 
 Accessing Context Menus
 ^^^^^^^^^^^^^^^^^^^^^^^^

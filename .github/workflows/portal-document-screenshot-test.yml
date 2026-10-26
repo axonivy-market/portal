@@ -47,7 +47,7 @@ jobs:
       - name: Set up Maven
         uses: stCarolas/setup-maven@v5.1
         with:
-          maven-version: 3.9.16
+          maven-version: 3.10.0
       - name: Export environment variables
         run: |
           echo "Check out code from ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
@@ -130,7 +130,7 @@ jobs:
             AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
       
       - name: Report
-        uses: dorny/test-reporter@v3.0.0
+        uses: dorny/test-reporter@v3.2.0
         with:
           artifact: screenshot-test-reports
           name: Screenshot Tests

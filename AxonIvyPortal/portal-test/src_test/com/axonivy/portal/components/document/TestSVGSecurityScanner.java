@@ -174,4 +174,22 @@ class TestSVGSecurityScanner {
     var stream = new ByteArrayInputStream(svg.getBytes(StandardCharsets.UTF_8));
     assertThat(new SVGSecurityScanner().isSafe(stream)).isFalse();
   }
+
+  @Test
+  void nonSvgXml_isNotSafe() {
+    String xml = "<document><!-- <svg/> --></document>";
+    assertThat(SVGSecurityScanner.isSafe(xml)).isFalse();
+  }
+
+  @Test
+  void nonSvgXmlWithSvgChild_isNotSafe() {
+    String xml = "<document><svg xmlns='http://www.w3.org/2000/svg'><rect width='10' height='10'/></svg></document>";
+    assertThat(SVGSecurityScanner.isSafe(xml)).isFalse();
+  }
+
+  @Test
+  void prefixedSvgRoot_isSafe() {
+    String svg = "<s:svg xmlns:s='http://www.w3.org/2000/svg'><s:rect width='10' height='10'/></s:svg>";
+    assertThat(SVGSecurityScanner.isSafe(svg)).isTrue();
+  }
 }

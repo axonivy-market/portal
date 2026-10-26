@@ -53,7 +53,6 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
-import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -159,7 +158,10 @@ public class DashboardBean implements Serializable, IMultiLanguage {
 
     String selectedDashboardName = "";
     if (CollectionUtils.isNotEmpty(selectedDashboard.getTitles())) {
-      selectedDashboardName = LanguageUtils.getLocalizedName(selectedDashboard.getTitles());
+      selectedDashboardName = selectedDashboard.getTitles()
+          .stream()
+          .filter(displayName -> displayName.getLocale().equals(LanguageService.getInstance().getUserLocale())).findFirst()
+          .orElseGet(() -> selectedDashboard.getTitles().get(0)).getValue();
     }
     setSelectedDashboardName(selectedDashboardName);
     initShareDashboardLink(selectedDashboard);
