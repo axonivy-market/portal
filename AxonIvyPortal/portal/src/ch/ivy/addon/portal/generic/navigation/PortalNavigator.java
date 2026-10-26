@@ -98,7 +98,8 @@ public final class PortalNavigator extends BaseNavigator{
       case MAIN_DASHBOARD -> PORTAL_DASHBOARD_PAGE;
       default -> StringUtils.EMPTY;
     };
-    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(subMenuUrl);
+    String relativeUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(subMenuUrl);
+    return relativeUrl;
   }
 
   public static void navigateToPortalEndPage(Long taskId) {
