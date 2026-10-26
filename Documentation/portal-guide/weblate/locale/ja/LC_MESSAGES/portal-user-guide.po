@@ -180,7 +180,7 @@ msgstr "次のプロセスにフォーカスします"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:55
 msgid "**Action Menu** (task, case, document and widget menus)"
-msgstr "**アクションメニュー**（タスク、ケース、ドキュメント、ウィジェットの各メニュー）"
+msgstr "**アクションメニュー** （タスク、ケース、ドキュメント、ウィジェットの各メニュー）"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:57
 #: ../../source/portal-user-guide/accessibility/index.rst:63
