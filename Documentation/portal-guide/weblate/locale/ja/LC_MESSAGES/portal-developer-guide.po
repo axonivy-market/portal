@@ -3009,9 +3009,8 @@ msgid "hsla(217, 91%, 60%, 0.1)"
 msgstr "hsla(217, 91%, 60%, 0.1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Background of the Open state indicator on the task, case list"
-msgstr "タスク、ケースリストにおける完了状態インジケーターの背景色"
+msgstr "タスクおよびケースリストのオープン状態インジケーターの背景色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-state-suspended-border-color``"
@@ -3022,23 +3021,20 @@ msgid "hsla(217, 91%, 60%, 0.25)"
 msgstr "hsla(217, 91%, 60%, 0.25)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Border color of the Open state indicator on the task, case list"
-msgstr "タスク、ケースリストにおける完了状態インジケーターの境界線の色"
+msgstr "タスクおよびケースリストのオープン状態インジケーターの境界線の色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-state-suspended-color``"
 msgstr "``--task-state-suspended-color``"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "hsla(217, 91%, 48%, 1)"
-msgstr "hsla(217, 91%, 60%, 1)"
+msgstr "hsla(217, 91%, 48%, 1)"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
-#, fuzzy
 msgid "Text color of the Open state indicator on the task, case list"
-msgstr "タスク、ケースリストにおける完了状態インジケーターの文字色"
+msgstr "タスクおよびケースリストのオープン状態インジケーターの文字色"
 
 #: ../../source/portal-developer-guide/customization/documents/available_css_variables.csv:1
 msgid "``--task-state-resumed-background``"
@@ -9236,13 +9232,12 @@ msgid "Redeploy Portal projects and customer project."
 msgstr "ポータルプロジェクトと顧客プロジェクトを再展開します。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:158
-#, fuzzy
 msgid "Migrate 14.0.0 To 14.0.1"
-msgstr "10.0 から 10.0.7 への移行"
+msgstr "14.0.0 から 14.0.1 への移行"
 
 #: ../../source/portal-developer-guide/installation/index.rst:160
 msgid "The task, case and document action menus now follow the standard menu keyboard pattern: **Arrow Down** / **Arrow Up** move between the items, **Home** / **End** jump to the first / last item, **Enter** or **Space** runs the focused item, and **Esc** or **Tab** closes the menu and returns focus to its actions button. **Alt + W** and **Alt + Q** no longer move through the items of an open action menu; they only move to the next task or case. See :ref:`Accessibility <accessibility>`."
-msgstr ""
+msgstr "タスク、ケース、ドキュメントのアクションメニューは、標準的なメニューのキーボード操作パターンに従うようになりました。**Arrow Down** / **Arrow Up** で項目間を移動し、**Home** / **End** で最初または最後の項目に移動します。**Enter** または **Space** でフォーカス中の項目を実行し、**Esc** または **Tab** でメニューを閉じてアクションボタンにフォーカスを戻します。**Alt + W** および **Alt + Q** は、開いているアクションメニューの項目間を移動しなくなり、次のタスクまたはケースへの移動にのみ使用されます。詳細は :ref:`アクセシビリティ <accessibility>` を参照してください。"
 
 #: ../../source/portal-developer-guide/installation/index.rst:167
 msgid "Migrate To 14.0"

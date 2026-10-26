@@ -48,9 +48,8 @@ msgid "Action"
 msgstr "アクション"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:19
-#, fuzzy
 msgid "**General**"
-msgstr "**外部ページ**"
+msgstr "**一般**"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:21
 #: ../../source/portal-user-guide/accessibility/index.rst:45
@@ -61,7 +60,7 @@ msgstr "タブ"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:21
 msgid "Show the Skip to content link (first key on a page)"
-msgstr ""
+msgstr "（ページで最初にキーを押すと）「コンテンツへスキップ」リンクを表示します"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:23
 msgid "Enter"
@@ -69,7 +68,7 @@ msgstr "Enter"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:23
 msgid "Jump to the main content (on the Skip to content link)"
-msgstr ""
+msgstr "「コンテンツへスキップ」リンク上でメインコンテンツに移動します"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:25
 msgid "Esc"
@@ -77,15 +76,15 @@ msgstr "Esc"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:25
 msgid "Close the open menu, panel or dialog; focus goes back"
-msgstr ""
+msgstr "開いているメニュー、パネル、またはダイアログを閉じ、フォーカスを元に戻します"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:27
 msgid "Tab / Shift + Tab"
-msgstr ""
+msgstr "Tab / Shift + Tab"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:27
 msgid "Move between the items of the open user menu"
-msgstr ""
+msgstr "開いているユーザーメニューの項目間を移動します"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:29
 msgid "**Navigation**"
@@ -181,46 +180,44 @@ msgstr "次のプロセスにフォーカスします"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:55
 msgid "**Action Menu** (task, case, document and widget menus)"
-msgstr ""
+msgstr "**アクションメニュー**（タスク、ケース、ドキュメント、ウィジェットの各メニュー）"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:57
 #: ../../source/portal-user-guide/accessibility/index.rst:63
 msgid "Enter / Space"
-msgstr ""
+msgstr "Enter / Space"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:57
-#, fuzzy
 msgid "Open context menu (when focused on task/case/document)"
-msgstr "コンテキストメニューを開く（タスク/ケースにフォーカスが当たっている場合）"
+msgstr "（タスク、ケース、またはドキュメントにフォーカスがあるとき）コンテキストメニューを開きます"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:59
 msgid "Arrow Down / Up"
-msgstr ""
+msgstr "Arrow Down / Up"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:59
 msgid "Move to the next / previous menu item"
-msgstr ""
+msgstr "次または前のメニュー項目に移動します"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:61
 msgid "Home / End"
-msgstr ""
+msgstr "Home / End"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:61
-#, fuzzy
 msgid "Move to the first / last menu item"
-msgstr "ハウツー：サイドバーメニュー項目の編集"
+msgstr "最初または最後のメニュー項目に移動します"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:63
 msgid "Run the focused menu item"
-msgstr ""
+msgstr "フォーカス中のメニュー項目を実行します"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:65
 msgid "Esc / Tab"
-msgstr ""
+msgstr "Esc / Tab"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:65
 msgid "Close context menu and return to its actions button"
-msgstr ""
+msgstr "コンテキストメニューを閉じ、対応するアクションボタンに戻ります"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:69
 msgid "**Browser compatibility**: Chrome, Firefox, and Edge."
@@ -316,23 +313,23 @@ msgstr "ナビゲーションバーに複数のダッシュボードが表示さ
 
 #: ../../source/portal-user-guide/accessibility/index.rst:116
 msgid "Skip to Content"
-msgstr ""
+msgstr "コンテンツへスキップ"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:118
 msgid "The first **Tab** on a page shows the **Skip to content** link. Press **Enter** to move focus to the main content and skip the header and the sidebar."
-msgstr ""
+msgstr "ページで最初に **Tab** キーを押すと、**コンテンツへスキップ** リンクが表示されます。**Enter** を押すと、ヘッダーとサイドバーを飛ばしてメインコンテンツにフォーカスを移動できます。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:121
 msgid "Closing Menus, Panels and Dialogs"
-msgstr ""
+msgstr "メニュー、パネル、ダイアログを閉じる"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:123
 msgid "Press **Esc** to close the open action menu, widget menu, panel (for example **Manage columns** or the notification panel), user menu or dialog, including the **Case information** dialog. Focus returns to the button that opened it."
-msgstr ""
+msgstr "**Esc** を押すと、開いているアクションメニュー、ウィジェットメニュー、パネル（**列の管理** や通知パネルなど）、ユーザーメニュー、または **ケース情報** ダイアログを含むダイアログを閉じます。フォーカスは、それを開いたボタンに戻ります。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:125
 msgid "In action menus and widget menus, use **Arrow Down** / **Arrow Up** and **Home** / **End** to move between the items. In the user menu, use **Tab** / **Shift + Tab**."
-msgstr ""
+msgstr "アクションメニューとウィジェットメニューでは、**Arrow Down** / **Arrow Up** および **Home** / **End** を使って項目間を移動します。ユーザーメニューでは、**Tab** / **Shift + Tab** を使います。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:128
 msgid "Widget Navigation"
@@ -364,7 +361,7 @@ msgstr "**複数のウィジェット**: 画面上に2つのタスクまたは�
 
 #: ../../source/portal-user-guide/accessibility/index.rst:142
 msgid "While an action menu is open, use the arrow keys to move between its items. **Alt + W** and **Alt + Q** only move to the next task or case when no menu is open."
-msgstr ""
+msgstr "アクションメニューが開いている間は、矢印キーを使って項目間を移動します。**Alt + W** および **Alt + Q** は、メニューが開いていない場合にのみ次のタスクまたはケースに移動します。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:145
 msgid "Accessing Context Menus"
@@ -384,17 +381,15 @@ msgstr "**を押して、** と入力し、コンテキストメニューを開�
 
 #: ../../source/portal-user-guide/accessibility/index.rst:151
 msgid "Press **Arrow Down** / **Arrow Up** to navigate through menu items (**Home** / **End** jump to the first / last item)"
-msgstr ""
+msgstr "**Arrow Down** / **Arrow Up** を押してメニュー項目間を移動します（**Home** / **End** で最初または最後の項目に移動します）。"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:152
-#, fuzzy
 msgid "Press **Enter** or **Space** to run the focused menu item"
-msgstr "**を押して、** と入力し、コンテキストメニューを開いてください"
+msgstr "**Enter** または **Space** を押して、フォーカス中のメニュー項目を実行します"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:153
-#, fuzzy
 msgid "Press **Esc** or **Tab** to close the menu; focus returns to the actions button"
-msgstr "**Tab** キーを押すと、アクション列にフォーカスが移動します。"
+msgstr "**Esc** または **Tab** を押してメニューを閉じます。フォーカスはアクションボタンに戻ります"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:155
 msgid "Example: Task Navigation"
@@ -414,9 +409,8 @@ msgstr "プレス **タブ** 以降 **入力** コンテキストメニューを
 
 #: ../../source/portal-user-guide/accessibility/index.rst:162
 #: ../../source/portal-user-guide/accessibility/index.rst:174
-#, fuzzy
 msgid "Press **Arrow Down** / **Arrow Up** to navigate menu options"
-msgstr "メニューオプションを移動するには、**Alt + W** を繰り返し押してください。"
+msgstr "**Arrow Down** / **Arrow Up** を押してメニュー項目間を移動します"
 
 #: ../../source/portal-user-guide/accessibility/index.rst:163
 #: ../../source/portal-user-guide/accessibility/index.rst:175
