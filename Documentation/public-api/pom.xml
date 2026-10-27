@@ -4,12 +4,12 @@
   <parent>
     <groupId>com.axonivy.ivy.api</groupId>
     <artifactId>ivy-project-parent</artifactId>
-    <version>14.0.1-SNAPSHOT</version>
+    <version>14.0.1</version>
     <relativePath />
   </parent>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>public-api</artifactId>
-  <version>14.0.1-SNAPSHOT</version>
+  <version>14.0.2-SNAPSHOT</version>
   <properties>
     <ivy.engine.version>14.0.0</ivy.engine.version>
   </properties>
