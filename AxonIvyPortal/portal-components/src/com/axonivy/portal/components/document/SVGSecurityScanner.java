@@ -59,6 +59,11 @@ public class SVGSecurityScanner implements DocumentDetector {
 
       Document doc = Jsoup.parse(svgContent, "", org.jsoup.parser.Parser.xmlParser());
 
+      Element root = doc.firstElementChild();
+      if (root == null || !"svg".equals(localName(root))) {
+        return false;
+      }
+
       for (Element el : doc.getAllElements()) {
         if (FORBIDDEN_ELEMENTS.contains(localName(el))) {
           return false;

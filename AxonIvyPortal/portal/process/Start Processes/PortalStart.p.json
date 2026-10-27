@@ -1371,7 +1371,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 808, "y" : 1760 },
+        "at" : { "x" : 1024, "y" : 1760 },
         "size" : { "width" : 128 }
       }
     }, {
@@ -1383,11 +1383,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 632, "y" : 1680 }
+        "at" : { "x" : 848, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f87", "to" : "f84" },
-        { "id" : "f90", "to" : "f80", "via" : [ { "x" : 632, "y" : 1760 } ] }
+        { "id" : "f90", "to" : "f80", "via" : [ { "x" : 848, "y" : 1760 } ] }
       ]
     }, {
       "id" : "f82",
@@ -1414,7 +1414,7 @@
         "labelOffset" : { "x" : -31, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f89", "to" : "f297" }
+        { "id" : "f89", "to" : "f309" }
       ]
     }, {
       "id" : "f83",
@@ -1427,7 +1427,8 @@
             "import ch.ivyteam.ivy.bpm.error.BpmError;",
             "",
             "ITask task = ivy.wf.findTask(Long.valueOf(in.endedTaskId));",
-            "if (!in.callbackUrl.startsWith(task.getApplication().contextPath())) {",
+            "if (task != null && task.getApplication() != null &&",
+            "  !in.callbackUrl.startsWith(task.getApplication().contextPath())) {",
             "  BpmError.create(\"frame:unsupported:url\").withMessage(\"only relative urls are supported (security reasons)\").throwError();",
             "}"
           ]
@@ -1435,7 +1436,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 336, "y" : 1680 }
+        "at" : { "x" : 552, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f88", "to" : "f86" }
@@ -1454,7 +1455,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 808, "y" : 1680 },
+        "at" : { "x" : 1024, "y" : 1680 },
         "size" : { "width" : 128 }
       }
     }, {
@@ -1465,7 +1466,7 @@
         "DefaultFramePage process will run"
       ],
       "visual" : {
-        "at" : { "x" : 240, "y" : 1759 },
+        "at" : { "x" : 160, "y" : 1759 },
         "size" : { "width" : 314, "height" : 63 }
       }
     }, {
@@ -1482,7 +1483,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 520, "y" : 1680 }
+        "at" : { "x" : 736, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f91", "to" : "f81" }
@@ -4317,19 +4318,19 @@
     }, {
       "id" : "f297",
       "type" : "Alternative",
-      "name" : "Is static page?",
+      "name" : "is static page?",
       "config" : {
         "conditions" : {
-          "f300" : "in.callbackUrl != null && in.callbackUrl.contains(\"faces/view\") || in.callbackUrl.contains(\"faces%2Fview\")",
+          "f300" : "in.callbackUrl != null && (in.callbackUrl.contains(\"faces/view\") || in.callbackUrl.contains(\"faces%2Fview\"))",
           "f298" : ""
         }
       },
       "visual" : {
-        "at" : { "x" : 200, "y" : 1680 }
+        "at" : { "x" : 400, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f298", "to" : "f83", "color" : "default" },
-        { "id" : "f300", "to" : "f299", "via" : [ { "x" : 200, "y" : 1600 } ] }
+        { "id" : "f300", "to" : "f299", "via" : [ { "x" : 448, "y" : 1600 } ] }
       ]
     }, {
       "id" : "f299",
@@ -4344,8 +4345,39 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 808, "y" : 1601 },
+        "at" : { "x" : 1024, "y" : 1601 },
         "size" : { "width" : 128, "height" : 62 }
+      }
+    }, {
+      "id" : "f309",
+      "type" : "Alternative",
+      "name" : "is safe url ?",
+      "config" : {
+        "conditions" : {
+          "f310" : "com.axonivy.portal.util.MenuUtils.isSafeRelativePath(in.callbackUrl)"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 1680 }
+      },
+      "connect" : [
+        { "id" : "f310", "to" : "f297", "color" : "default" },
+        { "id" : "f311", "to" : "f312" }
+      ]
+    }, {
+      "id" : "f312",
+      "type" : "Script",
+      "name" : "Redirect to home page",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
+            "PortalNavigatorAPI.navigateToPortalHome();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 1608 }
       }
     } ]
 }

@@ -11,15 +11,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import jakarta.faces.application.FacesMessage;
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 import org.primefaces.event.FileUploadEvent;
@@ -58,6 +53,10 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @Named
 @ViewScoped
@@ -97,22 +96,15 @@ public class ProcessWidgetBean extends AbstractProcessBean implements IMultiLang
   }
 
   private void initProcessViewMode() {
-    String userProcessSetting = UserSettingService.getInstance().getDefaultProcessMode();
-    if (StringUtils.isBlank(userProcessSetting)
-        || UserSettingService.getInstance().isDefaultProcessModeOption(userProcessSetting)) {
+    String userProcessMode = UserSettingService.getInstance().getDefaultProcessMode();
+    if (StringUtils.isBlank(userProcessMode)) {
       GlobalSetting defaultSetting = GlobalSettingService.getInstance()
           .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_MODE);
-      viewMode = getProcessModeByLabel(defaultSetting.getValue());
+      String globalProcessMode = defaultSetting.getValue();
+      viewMode = EnumUtils.isValidEnum(ProcessMode.class, globalProcessMode) ? globalProcessMode : ProcessMode.IMAGE.name();
     } else {
-      viewMode = getProcessModeByLabel(userProcessSetting);
+      viewMode = userProcessMode;
     }
-  }
-
-  private String getProcessModeByLabel(String processLabel) {
-    return Stream.of(ProcessMode.values())
-        .filter(e -> e.name().equals(processLabel))
-        .findFirst()
-        .orElse(ProcessMode.IMAGE).toString();
   }
 
   private void groupProcessesByAlphabetIndex(List<Process> processes) {
@@ -287,8 +279,13 @@ public class ProcessWidgetBean extends AbstractProcessBean implements IMultiLang
     removeTempExternalLinkImage();
     ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, ImageUploadUtils.EXTERNAL_LINK_IMAGE_DIRECTORY);
     if (imageInfo.isInvalid()) {
+      String messageKey = StringUtils.defaultIfBlank(imageInfo.message(),
+          "/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript");
+      String messageDetail = "/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize".equals(messageKey)
+          ? getFileUploadInvalidSizeMessage()
+          : Ivy.cms().co(messageKey);
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
+          messageDetail, null);
       FacesContext.getCurrentInstance().addMessage("edit-external-link-error-message", message);
     } else {
       this.editedExternalLink.setImageLocation(imageInfo.imageLocation());

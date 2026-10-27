@@ -1,8 +1,8 @@
 package ch.ivy.addon.portalkit.service;
 
+import static ch.ivy.addon.portalkit.fixture.Fakes.fake;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.lang.reflect.Proxy;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -172,28 +172,5 @@ class TestProjectVersionService {
     stubs.put("mavenCoordinates", coordinates);
     stubs.put("state", state);
     return fake(Project.class, stubs);
-  }
-
-  private static <T> T fake(Class<T> type, Map<String, Object> stubs) {
-    return type.cast(Proxy.newProxyInstance(type.getClassLoader(), new Class<?>[] {type}, (proxy, method, args) -> {
-      switch (method.getName()) {
-        case "equals":
-          return proxy == args[0];
-        case "hashCode":
-          return System.identityHashCode(proxy);
-        case "toString":
-          return type.getSimpleName() + "@" + Integer.toHexString(System.identityHashCode(proxy));
-        default:
-          break;
-      }
-      Object stub = stubs.get(method.getName());
-      if (stub instanceof Supplier<?> supplier) {
-        return supplier.get();
-      }
-      if (stubs.containsKey(method.getName())) {
-        return stub;
-      }
-      throw new UnsupportedOperationException(type.getSimpleName() + "#" + method.getName());
-    }));
   }
 }

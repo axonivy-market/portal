@@ -3,9 +3,10 @@ package com.axonivy.portal.migration.thirdpartyapplication.converter.v120;
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.ApplicationJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.ObjectNode;
 
 public class ThirdPartyApplicationConverter implements IJsonConverter {
 
@@ -17,7 +18,7 @@ public class ThirdPartyApplicationConverter implements IJsonConverter {
   @Override
   public void convert(JsonNode jsonNode) {
     if (jsonNode.isArray()) {
-      jsonNode.elements().forEachRemaining(this::addDefaultPermissions);
+      jsonNode.values().forEach(this::addDefaultPermissions);
     } else {
       addDefaultPermissions(jsonNode);
     }

@@ -2,7 +2,7 @@
   xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
   xmlns:cc="jakarta.faces.composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="primefaces" xmlns:pe="primefaces.extensions"
-  xmlns:c="jakarta.tags.core" xmlns:jsf="jakarta.faces">
+  xmlns:c="jakarta.tags.core" xmlns:jsf="jakarta.faces" xmlns:pt="jakarta.faces.passthrough">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
@@ -80,9 +80,10 @@
           <ic:com.axonivy.portal.component.ExpiryResponsible expiryResponsibles="#{task.expiry().responsibles()}" popupLink="true" onClick="PF('expiry-responsible-dialog').show()"/>
           <p:link rendered="#{taskActionBean.canChangeTaskExpiryActivator(task) and !cc.attrs.readOnly}"
             styleClass="task-expiry-activator-edit"
-            href="#"
+            href="#" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/editExpiryActivator')}"
+            pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/editExpiryActivator')}"
             onclick="#{cc.attrs.onEditTaskExpiryActivator}; return false;">
-            <i class="ti ti-pencil icon-compact-mode" />
+            <i class="ti ti-pencil icon-compact-mode" aria-hidden="true" />
           </p:link>
         </div>
       </h:panelGroup>
@@ -125,11 +126,15 @@
               <f:facet name="output">
                 <h:outputText value="#{formattingNullWrapperBean.format(task.getDelayTimestamp())}"/>
                 <i jsf:rendered="#{taskActionBean.canChangeDelayTimestamp(task)}"
-                  class="ti ti-pencil" />
+                  class="ti ti-pencil" aria-hidden="true" />
+                <h:outputText rendered="#{taskActionBean.canChangeDelayTimestamp(task)}" styleClass="ui-helper-hidden-accessible"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/editDelay')}" />
               </f:facet>
 
               <p:ajax event="save" listener="#{logic.updateDelayTimestamp(task)}"
                 update="delay-form #{cc.attrs.stateComponentToUpdate} #{cc.attrs.componentToUpdate}" resetValues="true" />
+              <p:outputLabel for="delay-date-calendar" styleClass="ui-helper-hidden-accessible"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/delayedUntil')}" />
               <p:datePicker id="delay-date-calendar" styleClass="delay-date-calendar" value="#{task.delayTimestamp}"
                 placeholder="#{dateTimePatternBean.getShortDateTimePattern(false)}"
                 showTime="#{!dateTimePatternBean.isTimeHidden}"  locale="#{localeBean.locale}" focusOnSelect="true">
@@ -157,11 +162,15 @@
                 disabled="#{cc.attrs.readOnly}" rendered="#{taskActionBean.canChangeExpiry(task)}">
                 <f:facet name="output">
                   <h:outputText value="#{formattingNullWrapperBean.format(task.expiryTimestamp)}"/>
-                  <i jsf:rendered="#{!cc.attrs.readOnly}" class="ti ti-pencil" />
+                  <i jsf:rendered="#{!cc.attrs.readOnly}" class="ti ti-pencil" aria-hidden="true" />
+                  <h:outputText rendered="#{!cc.attrs.readOnly}" styleClass="ui-helper-hidden-accessible"
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/editExpiry')}" />
                 </f:facet>
 
                 <p:ajax event="save" listener="#{logic.updateExpiryTime(task)}"
                   update="expiry-form #{cc.attrs.componentToUpdate}" process="@this expiry-calendar"/>
+                <p:outputLabel for="expiry-calendar" styleClass="ui-helper-hidden-accessible"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" />
                 <p:datePicker id="expiry-calendar" styleClass="task-details-data-expiry" value="#{data.expiryTimestamp}"
                   placeholder="#{dateTimePatternBean.getShortDateTimePattern(false)}"
                   showTime="#{!dateTimePatternBean.isTimeHidden}" locale="#{localeBean.locale}" focusOnSelect="true">

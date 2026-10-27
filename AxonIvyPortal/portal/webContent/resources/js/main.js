@@ -17,6 +17,7 @@ function Notifier() {
       }
       var container = $(document.createElement('div'));
       container.addClass('notification-container js-notification-container u-shadow-effect');
+      container.attr('role', 'alert');
       $('body').append(container);
     },
     
@@ -44,7 +45,9 @@ function Notifier() {
       var notificationContentAction = $(document.createElement('div'));
       notificationContentAction.addClass('notification-content-action');
 
-      var notificationContentActionClose = $(document.createElement('span'));
+      var notificationContentActionClose = $(document.createElement('button'));
+      notificationContentActionClose.attr('type', 'button');
+      notificationContentActionClose.attr('aria-label', $('.js-default-notification-error-close-text').text() || 'Close');
       notificationContentActionClose.addClass('notification-content-action-close');
       notificationContentActionClose.click(function() {
         $(this).parent().parent().parent().remove();

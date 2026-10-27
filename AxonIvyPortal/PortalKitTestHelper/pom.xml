@@ -4,12 +4,12 @@
   <parent>
     <groupId>com.axonivy.ivy.api</groupId>
     <artifactId>ivy-project-parent</artifactId>
-    <version>14.0.0</version>
+    <version>14.0.1</version>
     <relativePath />
   </parent>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portalKitTestHelper</artifactId>
-  <version>14.0.1-SNAPSHOT</version>
+  <version>14.0.2-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
     <ivy.engine.version>14.0.0</ivy.engine.version>
@@ -19,7 +19,7 @@
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
-      <version>14.0.1-SNAPSHOT</version>
+      <version>14.0.2-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
     <dependency>
@@ -44,9 +44,6 @@
       <url>https://repo.maven.apache.org/maven2</url>
     </repository>
     <repository>
-      <snapshots>
-        <updatePolicy>always</updatePolicy>
-      </snapshots>
       <id>maven.axonivy.com</id>
       <url>https://maven.axonivy.com</url>
     </repository>

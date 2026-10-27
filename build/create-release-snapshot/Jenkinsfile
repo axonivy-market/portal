@@ -18,7 +18,7 @@ pipeline {
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
     ''')
     booleanParam(name: 'deployToRepo', defaultValue: true, description: 'Should deploy artifacts to repo? If true, deployable modules are deployed to Nexus snapshots. If false, only local install.')
-    booleanParam(name: 'skipDocumentationCheck', defaultValue: true, description: 'Should skip waiting for and verifying the documentation workflow result? The documentation workflow is still triggered, but its outcome does not fail this build.')
+    booleanParam(name: 'skipDocumentationCheck', defaultValue: false, description: 'Should skip waiting for and verifying the documentation workflow result? The documentation workflow is still triggered, but its outcome does not fail this build.')
 }
 
   environment {

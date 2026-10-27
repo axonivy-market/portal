@@ -2,8 +2,10 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.util.Arrays;
 
-import jakarta.inject.Named;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -35,6 +37,16 @@ public class NavigationDashboardWidgetConfigurationBean extends NavigationDashbo
     
     // Upload new image
     ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
+    if (imageInfo.isInvalid()) {
+      String messageKey = StringUtils.defaultIfBlank(imageInfo.message(),
+          "/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript");
+      String messageDetail = "/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize".equals(messageKey)
+          ? getFileUploadInvalidSizeMessage()
+          : Ivy.cms().co(messageKey);
+      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, messageDetail, null);
+      FacesContext.getCurrentInstance().addMessage("config-custom-widget-message", message);
+      return;
+    }
     if (StringUtils.isNotBlank(imageInfo.imageLocation())) {
       getWidget().setImageLocation(imageInfo.imageLocation());
       getWidget().setImageType(imageInfo.imageType());
@@ -50,6 +62,16 @@ public class NavigationDashboardWidgetConfigurationBean extends NavigationDashbo
     
     // Upload new image
     ImageUploadResult imageInfo = ImageUploadUtils.handleImageUpload(event, ImageUploadUtils.NAVIGATION_WIDGET_IMAGE_DIRECTORY);
+    if (imageInfo.isInvalid()) {
+      String messageKey = StringUtils.defaultIfBlank(imageInfo.message(),
+          "/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript");
+      String messageDetail = "/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize".equals(messageKey)
+          ? getFileUploadInvalidSizeMessage()
+          : Ivy.cms().co(messageKey);
+      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, messageDetail, null);
+      FacesContext.getCurrentInstance().addMessage("config-custom-widget-message", message);
+      return;
+    }
     if (StringUtils.isNotBlank(imageInfo.imageLocation())) {
       getWidget().setImageLocationDarkMode(imageInfo.imageLocation());
       getWidget().setImageTypeDarkMode(imageInfo.imageType());

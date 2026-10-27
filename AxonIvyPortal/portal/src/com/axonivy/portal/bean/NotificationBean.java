@@ -6,10 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.faces.context.FacesContext;
-
 import org.apache.commons.lang3.math.NumberUtils;
 import org.primefaces.PrimeFaces;
 
@@ -31,6 +27,9 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @ViewScoped
 @Named
@@ -201,7 +200,7 @@ public class NotificationBean implements Serializable {
     }
     ITask task = TaskUtils.findTaskUserHasPermissionToSee(NumberUtils.toLong(taskId));
     if (task == null) {
-      return;
+      task = Ivy.wfTask();
     }
 
     executeCustomizedLogicIfExists(task, portalCustomSignature);

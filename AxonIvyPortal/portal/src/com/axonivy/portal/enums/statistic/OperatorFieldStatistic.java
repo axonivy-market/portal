@@ -1,7 +1,6 @@
 package com.axonivy.portal.enums.statistic;
 
 import java.util.Collections;
-
 import java.util.EnumSet;
 import java.util.Set;
 

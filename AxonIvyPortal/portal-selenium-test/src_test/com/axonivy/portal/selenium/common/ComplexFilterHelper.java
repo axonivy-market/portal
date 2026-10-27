@@ -3,6 +3,8 @@ package com.axonivy.portal.selenium.common;
 import java.time.Duration;
 import java.util.Arrays;
 
+import org.openqa.selenium.Keys;
+
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import static com.codeborne.selenide.Condition.and;
@@ -237,6 +239,7 @@ public class ComplexFilterHelper {
     trigger.click();
     $$(".ui-datepicker-group").shouldBe(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
     trigger.click();
+    input.sendKeys(Keys.TAB);
 
     closeAnyOpenDatePicker();
     $$(".ui-datepicker-group").filter(Condition.visible).shouldBe(CollectionCondition.empty, DEFAULT_TIMEOUT);

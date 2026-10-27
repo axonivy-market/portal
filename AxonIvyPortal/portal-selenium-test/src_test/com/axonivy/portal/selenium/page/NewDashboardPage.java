@@ -415,12 +415,18 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   private SelenideElement openCompactModeProcessActionsMenu() {
-    getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear).click();
-    SelenideElement actionsMenuButton = getCompactModeProcessActionsMenuButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    waitUntilElementToBeClickable(actionsMenuButton);
-    clickByJavaScript(actionsMenuButton);
-    String menuId = actionsMenuButton.getAttribute("id").replace("_button", "_menu");
-    return $("[id='" + menuId + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement actionsMenuButton =
+        getCompactModeProcessActionsMenuButton().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    String menuId = actionsMenuButton.shouldHave(Condition.attribute("aria-controls"), DEFAULT_TIMEOUT)
+        .getAttribute("aria-controls");
+    SelenideElement actionsMenuPanel = $("[id='" + menuId + "']");
+
+    // ArrowDown explicitly opens the menu instead of toggling its animation state.
+    if (!"true".equals(actionsMenuButton.getAttribute("aria-expanded"))) {
+      actionsMenuButton.sendKeys(Keys.ARROW_DOWN);
+    }
+    actionsMenuButton.shouldHave(Condition.attribute("aria-expanded", "true"), DEFAULT_TIMEOUT);
+    return actionsMenuPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCompactModeProcessActionsMenuButton() {
@@ -854,8 +860,13 @@ public class NewDashboardPage extends TemplatePage {
 
   // closes the actions menu opened by getWidgetNoti() so it doesn't block later clicks on the same button
   public void closeWidgetNotiActionsMenu() {
-    $("div[gs-id$='process_1']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("[id$=':actions-widget-form:actions-menu-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    SelenideElement actionsMenuButton =
+        getCompactModeProcessActionsMenuButton().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    String menuId = actionsMenuButton.shouldHave(Condition.attribute("aria-controls"), DEFAULT_TIMEOUT)
+        .getAttribute("aria-controls");
+    actionsMenuButton.sendKeys(Keys.ESCAPE);
+    $("[id='" + menuId + "']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    actionsMenuButton.shouldHave(Condition.attribute("aria-expanded", "false"), DEFAULT_TIMEOUT);
   }
 
   public DashboardNewsWidgetPage selectNewsFeedWidget(String newWidgetName) {
@@ -1161,7 +1172,7 @@ public class NewDashboardPage extends TemplatePage {
     $("[id$='dashboard-actions-task-task_1:side-steps-panel']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
     focusByJavascript($("[id$=':task-open-detail-command']"));
-    $("[id$=':task-open-detail-command']").sendKeys(Keys.TAB);
+    $("[id$=':task-open-detail-command']").sendKeys(Keys.ARROW_DOWN);
   }
 
   public void clickOnFirstCaseAction() {
@@ -1172,7 +1183,7 @@ public class NewDashboardPage extends TemplatePage {
     $("[id$=':action-steps-panel']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
     focusByJavascript($("[id$=':case-item-open-detail-link']"));
-    $("[id$=':case-item-open-detail-link']").sendKeys(Keys.TAB);
+    $("[id$=':case-item-open-detail-link']").sendKeys(Keys.ARROW_DOWN);
   }
 
   public void focusOnWarningResetTaskDialog() {

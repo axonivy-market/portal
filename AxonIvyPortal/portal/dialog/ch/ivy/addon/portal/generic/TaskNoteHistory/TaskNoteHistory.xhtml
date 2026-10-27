@@ -80,14 +80,15 @@
                 reflow="true" scrollable="true" lazy="false">
 
                 <p:column sortBy="#{note.content()}" filterBy="#{note.content()}" filterMatchMode="contains"
-                  width="65%">
+                  headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" width="65%">
                   <f:facet name="header">
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" />
                   </f:facet>
                   <h:outputText value="#{note.content()}" styleClass="case-task-note-histories" />
                 </p:column>
 
-                <p:column width="200px" sortBy="#{note.author().fullName}" filterBy="#{note.author().fullName}" filterMatchMode="contains"
+                <p:column width="200px" sortBy="#{note.author().fullName}"
+                  headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}" filterBy="#{note.author().fullName}" filterMatchMode="contains"
                   styleClass="note-history-fullname-column u-hidden-sm-down">
                   <f:facet name="header">
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}" />
@@ -97,7 +98,8 @@
                     displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(note.author(), note.authorName())}" />
                 </p:column>
 
-                <p:column width="150px" sortBy="#{note.createdAt().time}" field="creationTimestamp.time" filterable="false" styleClass="u-hidden-sm-down">
+                <p:column width="150px" sortBy="#{note.createdAt().time}"
+                  headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" field="creationTimestamp.time" filterable="false" styleClass="u-hidden-sm-down">
                   <f:facet name="header">
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />
                   </f:facet>

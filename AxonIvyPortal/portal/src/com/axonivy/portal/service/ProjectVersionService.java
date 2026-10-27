@@ -117,6 +117,7 @@ public class ProjectVersionService {
     return switch (mode) {
       case OK -> "pi-check-circle";
       case MISSING, OUTDATED, TOO_OLD, TOO_NEW -> "pi-exclamation-triangle";
+      case RUNNABLE -> "pi-history";
       case UNKNOWN -> "pi-question-circle";
     };
   }
