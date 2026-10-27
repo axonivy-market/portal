@@ -1,10 +1,11 @@
 # Portal documentation on GitHub Pages
 
-Maven writes the release manifest. The workflow downloads existing documentation
-ZIPs with `curl` and extracts them with Python's standard-library ZIP command.
-A small Python helper prepares static version/language selectors and the site's
-entry page. Pages assembly does not rebuild the documentation or change Market
-hosting.
+Maven writes the release manifest and optionally resolves/unpacks development
+documentation from its published SNAPSHOT. The workflow downloads retained
+release ZIPs with `curl` and extracts them with Python's standard-library ZIP
+command. A small Python helper prepares static version/language selectors and
+the site's entry page. Pages assembly does not rebuild the documentation or
+change Market hosting.
 
 ## Release configuration
 
@@ -21,19 +22,29 @@ patch-version URLs.
 
 ## Unreleased development documentation
 
-The workflow includes dev docs by default. It downloads the final
-`Documentation-*-SNAPSHOT` artifact from the latest successful, manually started
-`Documentation` run on `master`. This ZIP already contains the English and
-Japanese guides, screenshots, and Javadoc. No Maven SNAPSHOT publication or
-second source build is needed. The selected run and source commit appear in
-the job summary; "dev" means that successful build, which can lag current
-`master` until Documentation is rebuilt.
+The workflow includes dev docs by default. It evaluates `revision` from the
+checkout's `Documentation/pom.xml` and enables the Maven `dev` profile with that
+SNAPSHOT version. The standard dependency plugin resolves and unpacks the latest
+published `com.axonivy.portal:portal-guide:zip` for that version. Maven runs with
+`-U` to check for updated SNAPSHOTs; no separate dev-version property is maintained
+in the Pages project. The job summary reports the Maven coordinate and resolved
+timestamped build, not an inferred Git commit or workflow run.
+
+The complete ZIP contains English/Japanese guides, screenshots, and Javadoc.
+"Dev" means the latest published build of the configured revision, not necessarily
+the current master commit. Publication provenance belongs to the producer;
+Maven coordinates alone do not establish a source branch or commit.
+
+The existing `portal-release-snapshot` pipeline already invokes Documentation
+with `deploySnapshot` set from `deployToRepo`. Manual Documentation runs keep
+`deploySnapshot=false` by default. Pages does not change these controls or trigger
+a source build/publication. Publish a corrected SNAPSHOT from the intended master
+revision before consuming it, following the producer's screenshot prerequisites.
 
 The site keeps all configured releases and adds `snapshot/dev/{en,ja}/`. Version
-selectors link between releases and dev. Missing or expired dev artifacts fail
-the build before deployment rather than silently publishing an incomplete site.
-Run Documentation on `master` first when you need updated dev content, following
-its existing screenshot prerequisites. This does not publish arbitrary PR docs.
+selectors link between releases and dev. A non-SNAPSHOT revision or unresolvable
+dev package fails the build before deployment rather than silently publishing
+an incomplete site.
 
 For a release-only site, uncheck `include_dev` or pass `-f include_dev=false`.
 Because each deployment replaces the whole site, that explicitly removes any
@@ -90,19 +101,20 @@ HTTP redirect; a fallback link is included. Releases are sorted numerically,
 and dev is never selected as the default. Other versions and languages remain
 available through the documentation's selector.
 
-To include a locally available ZIP from the existing documentation build,
-extract it after downloading the releases above and before preparing selectors:
+The local commands above build a release-only site. To include Maven dev docs,
+replace the manifest-generation command with:
 
 ```sh
-python3 -m zipfile -e /absolute/path/to/portal-guide-14.0.1-SNAPSHOT.zip \
-  target/portal-pages/portal/snapshot/dev
-python3 -B build/portal-pages/build_site.py
+DEV_VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
+mvn -B -ntp -U clean generate-resources -f build/portal-pages/pom.xml \
+  -Pdev "-Dportal.dev.version=$DEV_VERSION"
 ```
 
-Use a fresh extraction when rerunning the helper: it rewrites the original
-selectors. Keep the dev ZIP outside `target/portal-pages/`, which Maven `clean`
-removes before writing the manifest and assembling the complete site. This also
-prevents stale or removed releases from lingering.
+Then continue with release downloads and selector preparation. The workflow also
+checks that the evaluated revision ends in `-SNAPSHOT`. Run `clean` before dev
+unpacking and release extraction, not afterward: it removes the entire site
+output, preventing stale or removed versions from lingering. Use fresh extraction
+when rerunning the helper because it rewrites the original selectors.
 
 ## Why direct ZIP downloads instead of dependency:unpack?
 
@@ -116,11 +128,13 @@ bypass parent resolution.
 
 Producer-side flattening fixes future publications, not these existing release
 POMs. Direct ZIP downloads preserve the retained versions without modifying
-Nexus metadata. The workflow therefore uses existing command-line tools rather
-than Ant or an additional Maven plugin. Maven still filters the release manifest.
-This removes `maven-antrun-plugin`, but does not implement the reviewer's exact
-`dependency:unpack` suggestion. Python's ZIP command extracts entries without
-recreating ZIP symlinks; it is already available for static site assembly.
+Nexus metadata. Retained releases therefore use existing command-line tools
+rather than Ant or a third-party downloader. Maven still filters the release
+manifest, and the `dev` profile uses `dependency:unpack` for corrected SNAPSHOT
+publications. This removes `maven-antrun-plugin`, but does not apply
+`dependency:unpack` to the broken legacy release POMs. Python's ZIP command
+extracts entries without recreating ZIP symlinks; it is already available for
+static site assembly.
 
 ## GitHub Pages publication
 
@@ -159,9 +173,10 @@ To take it offline, use Settings > Pages > Unpublish site and avoid another
 publishing run. No repository settings, Marketplace links, old URL redirects,
 or DocFactory documentation are changed by this build.
 
-Dev publication consumes the existing source-build artifact directly. Retained
-released versions still use published Maven ZIPs; rebuilding historical releases
-or changing the existing release publication pipeline is outside this change.
+Both dev and retained releases consume published Maven ZIPs; only dev uses Maven
+artifact resolution because the retained release POMs remain incompatible.
+Rebuilding historical releases, changing the existing producer pipeline, and
+automatically deploying Pages after producer completion are outside this change.
 
 GitHub Pages enforces its own site-size limit. The helper does not duplicate
 that limit or automatically delete old versions.

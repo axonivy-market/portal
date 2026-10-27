@@ -8,13 +8,12 @@ on:
         type: boolean
         default: false
       include_dev:
-        description: 'Include the latest successful master Documentation SNAPSHOT build'
+        description: 'Include the latest published Maven SNAPSHOT for the documentation revision'
         type: boolean
         default: true
 
 permissions:
   contents: read
-  actions: read
 
 jobs:
   build:
@@ -38,37 +37,38 @@ jobs:
       - name: Test static site assembly
         run: python3 -m unittest discover -s build/portal-pages -v
 
-      - name: Download development documentation from its source build
-        if: ${{ inputs.include_dev }}
-        id: dev
+      - name: Prepare release manifest and optional development documentation
         env:
-          GH_TOKEN: ${{ github.token }}
+          INCLUDE_DEV: ${{ inputs.include_dev }}
         run: |
-          DEV_RUN=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/portal-documentation.yml/runs?branch=master&event=workflow_dispatch&status=success&per_page=20" --jq '
-            [.workflow_runs[] | select(.head_branch == "master" and .event == "workflow_dispatch" and .conclusion == "success")][0] // empty')
-          if [ -z "$DEV_RUN" ]; then
-            echo "::error::Build Documentation on master successfully before including dev docs."
-            exit 1
+          MAVEN_OPTIONS=(-B -ntp -U clean generate-resources -f build/portal-pages/pom.xml)
+          if [ "$INCLUDE_DEV" = "true" ]; then
+            DEV_VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
+            if [[ "$DEV_VERSION" != *-SNAPSHOT ]]; then
+              echo "::error::Expected a documentation SNAPSHOT revision, got '$DEV_VERSION'."
+              exit 1
+            fi
+            MAVEN_OPTIONS+=(-Pdev "-Dportal.dev.version=$DEV_VERSION")
           fi
-          RUN_ID=$(jq -r '.id' <<< "$DEV_RUN")
-          gh run download "$RUN_ID" --repo "$GITHUB_REPOSITORY" \
-            --pattern 'Documentation-*-SNAPSHOT' --dir target/portal-pages-dev
-          mapfile -t ARCHIVES < <(find "$PWD/target/portal-pages-dev" -type f -name 'portal-guide-*-SNAPSHOT.zip')
-          if [ "${#ARCHIVES[@]}" -ne 1 ]; then
-            echo "::error::Expected exactly one development documentation ZIP."
-            exit 1
+          mvn "${MAVEN_OPTIONS[@]}"
+          if [ "$INCLUDE_DEV" = "true" ]; then
+            LOCAL_REPOSITORY=$(mvn help:evaluate -Dexpression=settings.localRepository -q -DforceStdout -f build/portal-pages/pom.xml)
+            python3 - "$LOCAL_REPOSITORY" "$DEV_VERSION" <<'PY' | tee -a "$GITHUB_STEP_SUMMARY"
+          import sys
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          version = sys.argv[2]
+          metadata = Path(sys.argv[1]) / "com/axonivy/portal/portal-guide" / version / "maven-metadata-axonivy-snapshots.xml"
+          entries = ET.parse(metadata).findall("versioning/snapshotVersions/snapshotVersion")
+          resolved = next(entry.findtext("value") for entry in entries
+                          if entry.findtext("extension") == "zip" and not entry.findtext("classifier"))
+          print(f"- Development docs: `com.axonivy.portal:portal-guide:zip:{version}` (resolved `{resolved}`)")
+          PY
           fi
-          echo "archive=${ARCHIVES[0]}" >> "$GITHUB_OUTPUT"
-          jq -r '"- Development docs: [run #\(.run_number)](\(.html_url)) from master @ `\(.head_sha)`"' \
-            <<< "$DEV_RUN" | tee -a "$GITHUB_STEP_SUMMARY"
 
-      - name: Prepare release manifest with Maven
-        run: mvn -B -ntp clean generate-resources -f build/portal-pages/pom.xml
-
-      - name: Download and extract documentation ZIPs
+      - name: Download and extract release documentation ZIPs
         shell: bash
-        env:
-          DEV_ARCHIVE: ${{ steps.dev.outputs.archive }}
         run: |
           SITE=target/portal-pages/portal
           ARCHIVES=target/portal-pages/archives
@@ -81,9 +81,6 @@ jobs:
                 --output "$ARCHIVE"
               python3 -m zipfile -e "$ARCHIVE" "$SITE/release/$VERSION"
             done
-          if [ -n "$DEV_ARCHIVE" ]; then
-            python3 -m zipfile -e "$DEV_ARCHIVE" "$SITE/snapshot/dev"
-          fi
 
       - name: Prepare static selectors and navigation
         run: python3 build/portal-pages/build_site.py
