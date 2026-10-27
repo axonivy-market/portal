@@ -204,6 +204,21 @@ The task details page consists of four widgets:
 
    |task-status-banner|
 
+Working on a Task
+=================
+
+.. important::
+
+   Do not use the browser's **Back** button while you work on a task.
+   When you submit a task, Axon Ivy completes it and removes its form from the session.
+   Going back does not reopen the task. The browser requests a form that no longer
+   exists, and Portal shows a **View Expired** page. For tasks shown in an iframe, the
+   header may even show the name of the previous task. Your data is not lost and the
+   workflow is not affected, because the task is already completed.
+   To navigate, use the Portal controls instead: the breadcrumb, the :guilabel:`Close`
+   button, or the task list. If you see **View Expired**, click
+   :guilabel:`Back to application` and open the next task from the task list.
+
 How-to
 ======
 
