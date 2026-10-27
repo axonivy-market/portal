@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
-import com.axonivy.portal.components.document.SVGSecurityScanner;
+import com.axonivy.portal.components.document.ImageDocumentDetector;
 import com.axonivy.portal.components.util.ImageUploadResult;
 
 import ch.ivyteam.ivy.application.IApplication;
@@ -26,18 +26,22 @@ public class ExternalLinkUtils {
   public static ImageUploadResult handleImageUpload(FileUploadEvent event) {
     UploadedFile file = event.getFile();
     if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
-      // save the image
-      String fileName = UUID.randomUUID().toString();
+      if (file.getSize() > UploadDocumentUtils.getImageUploadSizeLimit()) {
+        return new ImageUploadResult(null, null, true, "/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize");
+      }
+
       String fileExtension = FilenameUtils.getExtension(file.getFileName());
       byte[] content = file.getContent();
 
-      if ("svg".equalsIgnoreCase(fileExtension)) {
-        String fileContent = new String(content, StandardCharsets.UTF_8);
-        if (!SVGSecurityScanner.isSafe(fileContent)) {
-          return new ImageUploadResult(null, null, true);
-        }
+      if (!ImageDocumentDetector.isAllowedImageExtension(fileExtension)) {
+        return new ImageUploadResult(null, null, true, "/Dialogs/components/CaseDocument/invalidFileMessage");
       }
 
+      if (!ImageDocumentDetector.isImageSafe(content, fileExtension)) {
+        return new ImageUploadResult(null, null, true, "/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript");
+      }
+
+      String fileName = UUID.randomUUID().toString();
       ContentObject imageCMSObject =
           getApplicationCMS().child().folder(IMAGE_DIRECTORY).child().file(fileName, fileExtension);
 
@@ -58,7 +62,19 @@ public class ExternalLinkUtils {
 
   public static String imageBase64ToApplicationCMSFile(String base64Data, String imageType) {
     try {
+      if (UploadDocumentUtils.isBase64ImageSizeExceeded(base64Data)) {
+        Ivy.log().warn("Image rejected: size exceeded limit (base64 path).");
+        return StringUtils.EMPTY;
+      }
+      if (!ImageDocumentDetector.isAllowedImageExtension(imageType)) {
+        Ivy.log().warn("Image rejected: invalid image extension (base64 path): {0}", imageType);
+        return StringUtils.EMPTY;
+      }
       byte[] data = Base64.getDecoder().decode(base64Data.getBytes(StandardCharsets.UTF_8));
+      if (!ImageDocumentDetector.isImageSafe(data, imageType)) {
+        Ivy.log().warn("Image rejected: unsafe image content (base64 path).");
+        return StringUtils.EMPTY;
+      }
       String fileName = UUID.randomUUID().toString();
       ContentObject imageCMSObject = getApplicationCMS().child().folder(IMAGE_DIRECTORY).child().file(fileName, imageType);
 

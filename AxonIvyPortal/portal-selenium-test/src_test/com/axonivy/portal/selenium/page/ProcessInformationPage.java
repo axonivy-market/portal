@@ -38,8 +38,7 @@ public class ProcessInformationPage extends TemplatePage {
   }
 
   public String getProcessName() {
-    waitForElementDisplayed(By.cssSelector("[id$='header']"), true);
-    return findElementByCssSelector("[id='header'] > p").getText();
+    return $("#process-information #header > p").shouldBe(Condition.visible, DEFAULT_TIMEOUT).getText();
   }
 
   public String getProcessDescription() {

@@ -91,8 +91,13 @@ public class ExternalLinkBean implements Serializable, IMultiLanguage {
     removeImage();
     ImageUploadResult imageInfo = ExternalLinkUtils.handleImageUpload(event);
     if (imageInfo.isInvalid()) {
+      String messageKey = StringUtils.defaultIfBlank(imageInfo.message(),
+          "/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript");
+      String messageDetail = "/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize".equals(messageKey)
+          ? getFileUploadInvalidSizeMessage()
+          : Ivy.cms().co(messageKey);
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
+          messageDetail, null);
       FacesContext.getCurrentInstance().addMessage("external-link-dialog-message", message);
       return;
     }

@@ -14,9 +14,7 @@
 <cc:implementation>
   <h:panelGroup>
     <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}"
-      styleClass="category-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" />
-    <p:tooltip id="category-tooltip" for="#{cc.attrs.componentId}"
-      value="#{cc.attrs.tooltip}" styleClass="#{cc.attrs.categoryTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click"/>
+      styleClass="category-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" title="#{cc.attrs.tooltip}" />
   </h:panelGroup>
 </cc:implementation>
 </html>

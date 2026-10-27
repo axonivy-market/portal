@@ -1328,7 +1328,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1360 },
-        "labelOffset" : { "x" : -55, "y" : 41 }
+        "labelOffset" : { "x" : 105, "y" : 33 }
       },
       "connect" : [
         { "id" : "f198", "to" : "S12" }
@@ -1373,7 +1373,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 760, "y" : 1760 },
+        "at" : { "x" : 856, "y" : 1760 },
         "size" : { "width" : 128 }
       }
     }, {
@@ -1385,11 +1385,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 568, "y" : 1680 }
+        "at" : { "x" : 664, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f87", "to" : "f84" },
-        { "id" : "f90", "to" : "f80", "via" : [ { "x" : 568, "y" : 1760 } ] }
+        { "id" : "f90", "to" : "f80", "via" : [ { "x" : 664, "y" : 1760 } ] }
       ]
     }, {
       "id" : "f82",
@@ -1416,7 +1416,7 @@
         "labelOffset" : { "x" : -31, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f89", "to" : "f297" }
+        { "id" : "f89", "to" : "f56" }
       ]
     }, {
       "id" : "f83",
@@ -1437,7 +1437,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 320, "y" : 1680 }
+        "at" : { "x" : 416, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f88", "to" : "f86" }
@@ -1456,7 +1456,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 760, "y" : 1680 },
+        "at" : { "x" : 856, "y" : 1680 },
         "size" : { "width" : 128 }
       }
     }, {
@@ -1484,7 +1484,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 464, "y" : 1680 }
+        "at" : { "x" : 560, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f91", "to" : "f81" }
@@ -3300,9 +3300,11 @@
         "signature" : "TaskDetailsLink",
         "input" : {
           "params" : [
-            { "name" : "uuid", "type" : "String", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" },
+            { "name" : "taskDetailsId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
+            "out.taskId" : "param.taskDetailsId",
             "out.uuid" : "param.uuid"
           }
         },
@@ -3331,9 +3333,11 @@
         "signature" : "CaseDetailsLink",
         "input" : {
           "params" : [
-            { "name" : "uuid", "type" : "String", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" },
+            { "name" : "caseId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
+            "out.caseId" : "param.caseId",
             "out.uuid" : "param.uuid"
           }
         },
@@ -3419,12 +3423,25 @@
       "config" : {
         "output" : {
           "code" : [
-            "import org.apache.commons.lang3.ObjectUtils;",
+            "import org.apache.commons.lang3.StringUtils;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "import ch.ivyteam.ivy.environment.Ivy;",
+            "import ch.ivyteam.ivy.workflow.ICase;",
             "",
-            "in.caseSelected = CaseService.newInstance().findCaseByUUID(in.uuid);"
+            "if (StringUtils.isNotBlank(in.uuid)) {",
+            "  in.caseSelected = CaseService.newInstance().findCaseByUUID(in.uuid);",
+            "} else if (in.caseId != null) {",
+            "  ICase caze = Ivy.wf().findCase(in.caseId);",
+            "  if (caze != null) {",
+            "    in.caseSelected = CaseService.newInstance().findCaseByUUID(caze.uuid());",
+            "  }",
+            "}",
+            "if (in.caseSelected != null) {",
+            "  in.uuid = in.caseSelected.uuid();",
+            "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 332, "y" : 3672 },
@@ -3473,7 +3490,7 @@
           "connect" : [
             { "id" : "S73-f1", "to" : "S73-g1", "label" : {
                 "name" : "Yes"
-              }, "condition" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.taskId)" },
+              }, "condition" : "in.#taskSelected is initialized" },
             { "id" : "S73-f183", "to" : "S73-f182", "label" : {
                 "name" : "No",
                 "segment" : 0.39
@@ -3538,11 +3555,26 @@
       "config" : {
         "output" : {
           "code" : [
-            "import org.apache.commons.lang3.ObjectUtils;",
+            "import org.apache.commons.lang3.StringUtils;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
-            "in.taskSelected = TaskService.newInstance().findTaskByUUID(in.uuid);"
+            "import ch.ivyteam.ivy.environment.Ivy;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "",
+            "if (StringUtils.isNotBlank(in.uuid)) {",
+            "  in.taskSelected = TaskService.newInstance().findTaskByUUID(in.uuid);",
+            "} else if (in.taskId != null) {",
+            "  ITask task = Ivy.wf().findTask(in.taskId);",
+            "  if (task != null) {",
+            "    in.taskSelected = TaskService.newInstance().findTaskByUUID(task.uuid());",
+            "  }",
+            "}",
+            "if (in.taskSelected != null) {",
+            "  in.uuid = in.taskSelected.uuid();",
+            "  in.taskId = in.taskSelected.getId();",
+            "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 332, "y" : 3488 },
@@ -4253,11 +4285,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 192, "y" : 1680 }
+        "at" : { "x" : 288, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f298", "to" : "f83", "color" : "default" },
-        { "id" : "f300", "to" : "f299", "via" : [ { "x" : 192, "y" : 1600 } ] }
+        { "id" : "f300", "to" : "f299", "via" : [ { "x" : 288, "y" : 1600 } ] }
       ]
     }, {
       "id" : "f299",
@@ -4272,8 +4304,40 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 760, "y" : 1601 },
+        "at" : { "x" : 856, "y" : 1601 },
         "size" : { "width" : 128, "height" : 62 }
+      }
+    }, {
+      "id" : "f56",
+      "type" : "Alternative",
+      "name" : "is safe url?",
+      "config" : {
+        "conditions" : {
+          "f59" : "ch.ivy.addon.portalkit.util.UrlUtils.isSafeRelativePath(in.callbackUrl)"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 1680 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f59", "to" : "f297", "color" : "default" },
+        { "id" : "f94", "to" : "f60" }
+      ]
+    }, {
+      "id" : "f60",
+      "type" : "Script",
+      "name" : "redirect to home page",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
+            "PortalNavigatorAPI.navigateToPortalHome();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 1600 }
       }
     } ]
 }

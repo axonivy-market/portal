@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.util.Locale;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -14,11 +15,11 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class LocaleBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public String getLocale(){
+  public Locale getLocale(){
     
     if (Ivy.session().getFormattingLocale() != null && StringUtils.isNotBlank(Ivy.session().getFormattingLocale().toString())) {
-      return Ivy.session().getFormattingLocale().toString();
+      return Ivy.session().getFormattingLocale();
     } 
-    return Ivy.session().getContentLocale().toString();
+    return Ivy.session().getContentLocale();
   }
 }
