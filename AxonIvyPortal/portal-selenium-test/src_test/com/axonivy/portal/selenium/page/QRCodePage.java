@@ -26,10 +26,11 @@ public class QRCodePage extends TemplatePage {
 
   public void openApplePlatformDownload() {
     $("a[href*='apple-tab']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("[id$='apple-qr-code']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public boolean isAppleQRCodeDisplayed() {
-    return $("[id='apple-qr-code']").isDisplayed();
+    return $("[id$='apple-qr-code']").isDisplayed();
   }
 
 }
