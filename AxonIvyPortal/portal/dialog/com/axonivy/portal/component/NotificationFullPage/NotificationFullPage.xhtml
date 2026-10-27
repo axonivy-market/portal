@@ -20,7 +20,7 @@
           <h:panelGroup styleClass="ui-g-12 only-unread-block">
             <div class="flex align-items-center">
               <p:toggleSwitch id="toggle-only-unread" value="#{notificationBean.dataModel.onlyUnread}"
-                styleClass="only-unread-block-toggle">
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/onlyUnread')}" styleClass="only-unread-block-toggle">
                 <p:ajax listener="#{notificationBean.dataModel.onSelectedFilter()}" oncomplete="Portal.updateLayoutContent()"
                   update="notification-full-form #{unreadNotificationsId}" global="false" partialSubmit="true" />
               </p:toggleSwitch>
@@ -43,7 +43,8 @@
                   <div class="#{notification.style} notifications-container-top">
                     <div class="flex">
                       <div class="flex notifications-indicator">
-                        <p:commandLink id="notification-mark-as-read" actionListener="#{notificationBean.markAsRead(notification)}"
+                        <p:commandLink id="notification-mark-as-read" styleClass="notification-mark-as-read" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}"
+                          actionListener="#{notificationBean.markAsRead(notification)}"
                           process="@this" partialSubmit="true" global="false" onclick="markAsRead('#{htmlSanitizerBean.escapeForJS(notification.id)}')"
                           oncomplete="Portal.updateLayoutContent();" update="#{unreadNotificationsId} notification-mark-all-as-read">
                           <i class="notifications-indicator-icon tif #{notification.read ? '' : 'tif-circle'}" id="#{notification.id}" />

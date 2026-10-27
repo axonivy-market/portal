@@ -1,7 +1,11 @@
 package com.axonivy.portal.components.bean;
 
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.HexFormat;
 import java.util.Optional;
 
 import jakarta.inject.Named;
@@ -26,6 +30,8 @@ import jakarta.enterprise.context.RequestScoped;
 public class PortalComponentAvatarBean implements Serializable {
 
   private static final long serialVersionUID = 6793376941093725298L;
+  private static final String GRAVATAR_URL = "https://www.gravatar.com/avatar/";
+  private static final String GRAVATAR_CONFIG = "?d=blank";
 
   public boolean getPortalShowAvatarSettingOrDefault(boolean defaultIfEmpty) {
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_AVATAR, defaultIfEmpty);
@@ -105,6 +111,16 @@ public class PortalComponentAvatarBean implements Serializable {
 
   public String getEmailAddress(RoleDTO role, boolean useLowercaseEmail) {
     return "";
+  }
+
+  public String getGravatarUrl(String email) {
+    try {
+      MessageDigest md = MessageDigest.getInstance("MD5"); // NOSONAR
+      byte[] digest = md.digest(StringUtils.defaultString(email).getBytes(StandardCharsets.UTF_8));
+      return GRAVATAR_URL + HexFormat.of().formatHex(digest) + GRAVATAR_CONFIG;
+    } catch (NoSuchAlgorithmException e) {
+      throw new IllegalStateException("MD5 algorithm is not available", e);
+    }
   }
 
   public boolean getPortalShowTechnicalTooltipOrDefault(boolean defaultIfEmpty) {

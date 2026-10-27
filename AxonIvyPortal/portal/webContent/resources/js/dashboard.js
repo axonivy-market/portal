@@ -19,6 +19,15 @@ function calculateTableChunkSize() {
   return Math.min(maxTableChunkSize, Math.max(minTableChunkSize, rows));
 }
 
+function addDashboardTableChunkSize(config) {
+  if (!config.params) {
+    config.params = [];
+  }
+
+  const chunkSize = calculateTableChunkSize();
+  config.params.push({name: 'chunkSize', value: chunkSize});
+}
+
 function loadGrid(isResponsive) {
 
   // Set default height for cells
@@ -426,8 +435,6 @@ function loadCaseAndTaskWidgetFirstTime(loadingClass, widgetClass) {
     }
     $('.js-resizing').find('table[role="grid"]').addClass('w-min');
   }, 50);
-
-  setAltForAvatar();
 }
 
 function initTableWidget(table) {
@@ -724,4 +731,14 @@ function updateDashboardWhenResizeWindow(isResponsiveDashboard) {
       }
     }, 1000); // Delay execution by 1 sec to avoid send multiple requests
   });
+}
+
+function liveScroll(widgetId) {
+  const datatable = PF(widgetId);
+  if (datatable) {
+    //config scrolling behaviour for live scroll
+    datatable.scrollOffset = 0;
+    datatable.scrollBody.scrollTop(1);
+    datatable.allLoadedLiveScroll = false;
+  }
 }

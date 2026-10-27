@@ -6,6 +6,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
@@ -15,16 +16,8 @@ public class TaskColumnModel extends ColumnModel {
   private static final long serialVersionUID = -6363817685343055544L;
 
   public Object display(ITask task) {
-    if (type == DashboardColumnType.CUSTOM_CASE) {
-      ICustomFields customFields = task.getCase().customFields();
-      return getCustomFieldValue(customFields);
-    } else if (type == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
-      ICustomFields customFields = task.getCase().getBusinessCase().customFields();
-      return getCustomFieldValue(customFields);
-    } else {
-      ICustomFields customFields = task.customFields();
-      return getCustomFieldValue(customFields);
-    }
+    ICustomFields customFields = PortalCustomFieldUtils.getTaskColumnCustomFields(task, type);
+    return customFields == null ? null : getCustomFieldValue(customFields);
   }
 
   private Object getCustomFieldValue(ICustomFields customFields) {

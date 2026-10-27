@@ -44,7 +44,7 @@
               <p:selectOneButton value="#{processWidgetBean.viewMode}" unselectable="false" id="view-mode-selection" widgetVar="view-mode-selection">
                 <f:selectItems value="#{processWidgetBean.processViewModes}"  var="mode" itemValue="#{mode}" itemLabel="#{mode.label}" />
                 <p:ajax update="process-view-mode :#{cc.clientId}:process-list"
-                  oncomplete="processWidget.setup(); processWidget.hideLoadingText(); addMissingAttr('.ui-selectonebutton .ui-button', 'role', 'radio'); return false;" />
+                  oncomplete="processWidget.setup(); processWidget.hideLoadingText(); addMissingAttr('.ui-selectonebutton .ui-button', 'role', 'radio'); PF('view-mode-selection').jq.find('.ui-button.ui-state-active').trigger('focus'); return false;" />
               </p:selectOneButton>
             </h:form>
           </div>

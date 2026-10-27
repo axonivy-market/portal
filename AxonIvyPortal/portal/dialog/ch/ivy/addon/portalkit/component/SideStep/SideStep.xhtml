@@ -30,21 +30,22 @@
 </cc:interface>
 
 <cc:implementation>
+  <h:outputScript name="action-menu-component.js" library="js" />
   <c:set var="task" value="#{cc.attrs.task}" />
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
   <c:set var="isShowInTaskList" value="#{empty cc.attrs.showInTaskList ? true : cc.attrs.showInTaskList}" />
   <f:event listener="#{data.setCurrentPortalPage(cc.attrs.currentPortalPage)}" type="preRenderComponent" />
 
   <p:commandButton id="#{cc.attrs.actionLinkId}" type="button" disabled="#{cc.attrs.isDisabled or cc.attrs.isPreviewMode}"
-    onclick="event.stopPropagation(); return false;"
-    ariaLabel="#{not empty cc.attrs.ariaLabel ? cc.attrs.ariaLabel : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ti ti-dots"
+    onclick="PF('#{cc.attrs.panelWidgetVar}').toggle(); event.stopPropagation(); return false;"
+    ariaLabel="#{not empty cc.attrs.ariaLabel ? cc.attrs.ariaLabel : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ti ti-dots" pt:aria-haspopup="true"
     styleClass="#{cc.attrs.buttonStyleClass} rounded-button portal-icon-btn">
   </p:commandButton>
 
   <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" appendTo="@(body)"
     styleClass="portal-action-menu options-panel #{cc.attrs.sideStepsPanelStyleClass}" dynamic="true" rendered="#{!cc.attrs.isDisabled}"
-    my="right top" at="right bottom" showCloseIcon="false" dismissable="true" cache="false" collision="flip"
-    onShow="focusFirstVisibleElementInPanel('#{cc.attrs.panelWidgetVar}', 'a')"
+    my="right top" at="right bottom" showCloseIcon="false" dismissable="true" cache="false" collision="flip" showEvent="none" hideEvent="none"
+    onShow="initActionMenuKeyboard(this)"
     pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}">
 
     <p:commandLink id="task-open-detail-command" styleClass="portal-action-menu-item option-item ui-menu-items"

@@ -8,6 +8,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldValues.ValueLabel;
@@ -16,6 +18,22 @@ import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 public class PortalCustomFieldUtils {
 
   private static final String HAS_CMS_VALUES_ATTRIBUTE = "HasCmsValues";
+
+  /**
+   * Resolves the custom-field source for a task widget column and its export.
+   *
+   * @return null when a CUSTOM_CASE column has no technical case to read
+   */
+  public static ICustomFields getTaskColumnCustomFields(ITask task, DashboardColumnType type) {
+    if (type == DashboardColumnType.CUSTOM_CASE) {
+      ICase taskCase = task.getCase();
+      // The column filter is scoped to sub cases. Reading a business case here would contradict it.
+      return taskCase.isBusinessCase() ? null : taskCase.customFields();
+    } else if (type == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
+      return task.getCase().getBusinessCase().customFields();
+    }
+    return task.customFields();
+  }
 
   public static boolean isSupportMultiLanguageCaseField(String columnField) {
     return hasCmsValues(columnField, ICustomFieldMeta.cases());

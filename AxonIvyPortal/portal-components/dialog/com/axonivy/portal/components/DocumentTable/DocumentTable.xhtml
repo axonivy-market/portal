@@ -232,7 +232,7 @@
       </f:facet>
     </p:dialog>
 
-    <p:dialog id="document-renaming-dialog" widgetVar="document-renaming-dialog" appendTo="@(body)"
+    <p:dialog id="document-renaming-dialog" widgetVar="document-renaming-dialog" closeOnEscape="true" appendTo="@(body)"
       header="#{cc.attrs.renameTitle}"  modal="true" resizable="false" showEffect="fade" hideEffect="fade"
       width="50vw" dynamic="true" fitViewport="true" responsive="true">
       <h:form id="document-renaming-form">

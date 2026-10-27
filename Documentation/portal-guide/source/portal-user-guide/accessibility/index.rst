@@ -16,6 +16,16 @@ Keyboard Shortcuts Quick Reference
    +-------------------+------------------------------------------------------------+
    | Shortcut          | Action                                                     |
    +===================+============================================================+
+   | **General**                                                                    |
+   +-------------------+------------------------------------------------------------+
+   | Tab               | Show the Skip to content link (first key on a page)        |
+   +-------------------+------------------------------------------------------------+
+   | Enter             | Jump to the main content (on the Skip to content link)     |
+   +-------------------+------------------------------------------------------------+
+   | Esc               | Close the open menu, panel or dialog; focus goes back      |
+   +-------------------+------------------------------------------------------------+
+   | Tab / Shift + Tab | Move between the items of the open user menu               |
+   +-------------------+------------------------------------------------------------+
    | **Navigation**                                                                 |
    +-------------------+------------------------------------------------------------+
    | Alt + 1           | Focus Dashboard in the sidebar                             |
@@ -42,11 +52,17 @@ Keyboard Shortcuts Quick Reference
    +-------------------+------------------------------------------------------------+
    | Alt + A           | Focus next process                                         |
    +-------------------+------------------------------------------------------------+
-   | **Action Menu**                                                                |
+   | **Action Menu** (task, case, document and widget menus)                        |
    +-------------------+------------------------------------------------------------+
-   | Enter             | Open context menu (when focused on task/case)              |
+   | Enter / Space     | Open context menu (when focused on task/case/document)     |
    +-------------------+------------------------------------------------------------+
-   | Esc               | Close context menu                                         |
+   | Arrow Down / Up   | Move to the next / previous menu item                      |
+   +-------------------+------------------------------------------------------------+
+   | Home / End        | Move to the first / last menu item                         |
+   +-------------------+------------------------------------------------------------+
+   | Enter / Space     | Run the focused menu item                                  |
+   +-------------------+------------------------------------------------------------+
+   | Esc / Tab         | Close context menu and return to its actions button        |
    +-------------------+------------------------------------------------------------+
 
 .. note::
@@ -96,6 +112,18 @@ Use these shortcuts to jump directly to major portal sections:
 
 When multiple dashboards are available in the navigation bar, use the **Tab key** to cycle through them. Press **Enter** to open the highlighted dashboard.
 
+Skip to Content
+^^^^^^^^^^^^^^^
+
+The first **Tab** on a page shows the **Skip to content** link. Press **Enter** to move focus to the main content and skip the header and the sidebar.
+
+Closing Menus, Panels and Dialogs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Press **Esc** to close the open action menu, widget menu, panel (for example **Manage columns** or the notification panel), user menu or dialog, including the **Case information** dialog. Focus returns to the button that opened it.
+
+In action menus and widget menus, use **Arrow Down** / **Arrow Up** and **Home** / **End** to move between the items. In the user menu, use **Tab** / **Shift + Tab**.
+
 Widget Navigation
 ^^^^^^^^^^^^^^^^^
 
@@ -111,6 +139,8 @@ Navigate within list widgets using these shortcuts:
 
 **Multiple widgets**: If two Task or Case widgets are on screen, focus cycles through both sequentially.
 
+While an action menu is open, use the arrow keys to move between its items. **Alt + W** and **Alt + Q** only move to the next task or case when no menu is open.
+
 Accessing Context Menus
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -118,8 +148,9 @@ Once focused on a task or case:
 
 1. Press **Tab** to move focus to the actions column
 2. Press **Enter** to open the context menu
-3. Use the widget shortcut (Alt + W / Alt + Q) to navigate through menu items
-4. Press **Esc** to close the menu
+3. Press **Arrow Down** / **Arrow Up** to navigate through menu items (**Home** / **End** jump to the first / last item)
+4. Press **Enter** or **Space** to run the focused menu item
+5. Press **Esc** or **Tab** to close the menu; focus returns to the actions button
 
 .. admonition:: Example: Task Navigation
    :class: tip
@@ -128,7 +159,7 @@ Once focused on a task or case:
    
    1. Press **Alt + W** repeatedly until you reach the desired task
    2. Press **Tab** then **Enter** to open its context menu
-   3. Press **Alt + W** repeatedly to navigate menu options
+   3. Press **Arrow Down** / **Arrow Up** to navigate menu options
    4. Press **Esc** to close the menu
 
 |task-actions-popup|
@@ -140,7 +171,7 @@ Once focused on a task or case:
    
    1. Press **Alt + Q** repeatedly until you reach the desired case
    2. Press **Enter** to open its context menu
-   3. Press **Alt + Q** repeatedly to navigate menu options
+   3. Press **Arrow Down** / **Arrow Up** to navigate menu options
    4. Press **Esc** to close the menu
 
 |case-actions-popup|

@@ -137,6 +137,7 @@ public class BaseTest {
       "PortalKitTestHelper/14DE09882B540AD5/grantTaskDetailsShareLinkPermission.ivp";
   protected String denyShareLinkTaskDetailsPermission =
       "PortalKitTestHelper/14DE09882B540AD5/denyTaskDetailsShareLinkPermission.ivp";
+  protected String grantPortalSidebarConfigurationPermission = "PortalKitTestHelper/14DE09882B540AD5/grantPortalSidebarConfigurationPermission.ivp";
   protected String createSampleProcesses = "portalKitTestHelper/153CACC26D0D4C3D/createSampleProcesses.ivp";
   protected String showProcessViewerUrl = "portal/1549F58C18A6C562/PortalProcessViewer.ivp?caseId=%s&processKey=%s";
   protected String processViewerExampleInFrameUrl =

@@ -163,7 +163,7 @@
     <c:set var="selectedRoleName" value="#{creationMode ? '' : roleManagementBean.selectedRole.name}" scope="request"/>
 
     <f:facet name="header">
-      <h:outputLabel styleClass="role-details-header" value="#{roleManagementBean.roleInformationHeaderDialog}"/>
+      <h:outputText styleClass="role-details-header" value="#{roleManagementBean.roleInformationHeaderDialog}"/>
     </f:facet>
 
     <h:form id="manage-role-details-form" styleClass="manage-role-details-form MarTop5">
