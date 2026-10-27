@@ -1,9 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.axonivy.portal</groupId>
+  <parent>
+    <groupId>com.axonivy.portal</groupId>
+    <artifactId>doc-modules</artifactId>
+    <version>${revision}</version>
+    <relativePath>../../Documentation/pom.xml</relativePath>
+  </parent>
   <artifactId>portal-pages</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <properties>
@@ -48,6 +52,12 @@
   <profiles>
     <profile>
       <id>dev</id>
+      <activation>
+        <property>
+          <name>includeDev</name>
+          <value>true</value>
+        </property>
+      </activation>
       <repositories>
         <repository>
           <id>axonivy-snapshots</id>
@@ -64,6 +74,24 @@
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <version>3.6.3</version>
+            <executions>
+              <execution>
+                <id>require-development-snapshot</id>
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+                <configuration>
+                  <rules>
+                    <requireSnapshotVersion/>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
             <version>3.11.0</version>
             <executions>
@@ -78,7 +106,7 @@
                     <artifactItem>
                       <groupId>com.axonivy.portal</groupId>
                       <artifactId>portal-guide</artifactId>
-                      <version>${portal.dev.version}</version>
+                      <version>${revision}</version>
                       <type>zip</type>
                       <outputDirectory>${pages.directory}/snapshot/dev</outputDirectory>
                     </artifactItem>

@@ -22,13 +22,17 @@ patch-version URLs.
 
 ## Unreleased development documentation
 
-The workflow includes dev docs by default. It evaluates `revision` from the
-checkout's `Documentation/pom.xml` and enables the Maven `dev` profile with that
-SNAPSHOT version. The standard dependency plugin resolves and unpacks the latest
-published `com.axonivy.portal:portal-guide:zip` for that version. Maven runs with
-`-U` to check for updated SNAPSHOTs; no separate dev-version property is maintained
-in the Pages project. The job summary reports the Maven coordinate and resolved
-timestamped build, not an inferred Git commit or workflow run.
+The workflow includes dev docs by default by passing `-DincludeDev=true` to
+Maven. This activates the `dev` profile in `pom.xml`. The Pages project inherits
+`revision` from the existing documentation parent through Maven's normal POM
+inheritance; it does not build that parent's documentation modules. No independent
+dev version or shell-based version lookup is needed.
+
+Maven Enforcer's standard `requireSnapshotVersion` rule rejects a release revision
+when dev is enabled. The dependency plugin resolves and unpacks the latest
+published `com.axonivy.portal:portal-guide:zip:${revision}`. Maven runs with `-U`
+to check for updated SNAPSHOTs. The workflow does not parse Maven's cache for
+optional timestamp reporting or infer a source commit from Maven coordinates.
 
 The complete ZIP contains English/Japanese guides, screenshots, and Javadoc.
 "Dev" means the latest published build of the configured revision, not necessarily
@@ -105,16 +109,14 @@ The local commands above build a release-only site. To include Maven dev docs,
 replace the manifest-generation command with:
 
 ```sh
-DEV_VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
-mvn -B -ntp -U clean generate-resources -f build/portal-pages/pom.xml \
-  -Pdev "-Dportal.dev.version=$DEV_VERSION"
+mvn -B -ntp -U clean generate-resources -f build/portal-pages/pom.xml -DincludeDev=true
 ```
 
-Then continue with release downloads and selector preparation. The workflow also
-checks that the evaluated revision ends in `-SNAPSHOT`. Run `clean` before dev
-unpacking and release extraction, not afterward: it removes the entire site
-output, preventing stale or removed versions from lingering. Use fresh extraction
-when rerunning the helper because it rewrites the original selectors.
+Then continue with release downloads and selector preparation. Omitting
+`includeDev` or setting it to `false` leaves the dev profile inactive. Run `clean`
+before dev unpacking and release extraction, not afterward: it removes the entire
+site output, preventing stale or removed versions from lingering. Use fresh
+extraction when rerunning the helper because it rewrites the original selectors.
 
 ## Why direct ZIP downloads instead of dependency:unpack?
 
@@ -135,6 +137,13 @@ publications. This removes `maven-antrun-plugin`, but does not apply
 `dependency:unpack` to the broken legacy release POMs. Python's ZIP command
 extracts entries without recreating ZIP symlinks; it is already available for
 static site assembly.
+
+The remaining custom processing has two specific purposes: the small release
+ZIP download/extraction loop bypasses incompatible legacy POMs, and
+`build_site.py` replaces Marketplace's selector API with static JSON/navigation.
+Dev artifact resolution, profile activation, version inheritance, and SNAPSHOT
+validation use standard Maven configuration. The workflow does not rebuild docs,
+select Actions producer runs, or implement a second Maven resolver.
 
 ## GitHub Pages publication
 

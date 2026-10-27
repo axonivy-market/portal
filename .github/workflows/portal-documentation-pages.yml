@@ -38,36 +38,11 @@ jobs:
         run: python3 -m unittest discover -s build/portal-pages -v
 
       - name: Prepare release manifest and optional development documentation
-        env:
-          INCLUDE_DEV: ${{ inputs.include_dev }}
-        run: |
-          MAVEN_OPTIONS=(-B -ntp -U clean generate-resources -f build/portal-pages/pom.xml)
-          if [ "$INCLUDE_DEV" = "true" ]; then
-            DEV_VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
-            if [[ "$DEV_VERSION" != *-SNAPSHOT ]]; then
-              echo "::error::Expected a documentation SNAPSHOT revision, got '$DEV_VERSION'."
-              exit 1
-            fi
-            MAVEN_OPTIONS+=(-Pdev "-Dportal.dev.version=$DEV_VERSION")
-          fi
-          mvn "${MAVEN_OPTIONS[@]}"
-          if [ "$INCLUDE_DEV" = "true" ]; then
-            LOCAL_REPOSITORY=$(mvn help:evaluate -Dexpression=settings.localRepository -q -DforceStdout -f build/portal-pages/pom.xml)
-            python3 - "$LOCAL_REPOSITORY" "$DEV_VERSION" <<'PY' | tee -a "$GITHUB_STEP_SUMMARY"
-          import sys
-          import xml.etree.ElementTree as ET
-          from pathlib import Path
+        run: >-
+          mvn -U clean generate-resources -f build/portal-pages/pom.xml
+          -DincludeDev=${{ inputs.include_dev }}
 
-          version = sys.argv[2]
-          metadata = Path(sys.argv[1]) / "com/axonivy/portal/portal-guide" / version / "maven-metadata-axonivy-snapshots.xml"
-          entries = ET.parse(metadata).findall("versioning/snapshotVersions/snapshotVersion")
-          resolved = next(entry.findtext("value") for entry in entries
-                          if entry.findtext("extension") == "zip" and not entry.findtext("classifier"))
-          print(f"- Development docs: `com.axonivy.portal:portal-guide:zip:{version}` (resolved `{resolved}`)")
-          PY
-          fi
-
-      - name: Download and extract release documentation ZIPs
+      - name: Download and extract legacy release documentation ZIPs
         shell: bash
         run: |
           SITE=target/portal-pages/portal
