@@ -1,4 +1,4 @@
-"""Prepare static selectors and navigation for documentation unpacked by Maven."""
+"""Prepare static selectors and navigation for unpacked documentation."""
 import argparse
 import json
 import re

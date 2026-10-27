@@ -1,21 +1,23 @@
 # Portal documentation on GitHub Pages
 
-Maven fetches and unpacks released documentation. A small Python helper prepares
-static version/language selectors and the site's entry page. The existing
-Sphinx, screenshot, and Javadoc build, Maven publication, and Market hosting
-remain unchanged.
+Maven writes the release manifest. The workflow downloads existing documentation
+ZIPs with `curl` and extracts them with Python's standard-library ZIP command.
+A small Python helper prepares static version/language selectors and the site's
+entry page. Pages assembly does not rebuild the documentation or change Market
+hosting.
 
 ## Release configuration
 
-`pom.xml` defines the exact documentation artifact versions and their destination
-release directories. `versions.json` is a template: Maven replaces its property
-placeholders with those versions and writes the resolved manifest into the site.
-For example, `12.0` serves artifact `12.0.18.1` at `release/12.0/`.
+`pom.xml` defines the exact documentation artifact versions. `versions.json`
+maps release directories to Maven property placeholders; Maven filters this
+template and writes the resolved manifest into the site. For example, `12.0`
+serves artifact `12.0.18.1` at `release/12.0/`.
 
 To update a release, change its version property in `pom.xml`. To add or remove a
-release, update both the Maven download/unzip tasks and the manifest template. Patch
-versions replace content behind the same major.minor URL; this does not create
-immutable patch-version URLs.
+release, update the version properties and manifest template; the workflow reads
+the resolved manifest to download each configured ZIP. Patch versions replace
+content behind the same major.minor URL; this does not create immutable
+patch-version URLs.
 
 ## Unreleased development documentation
 
@@ -39,11 +41,22 @@ previously published dev directory.
 
 ## Try it locally
 
-From the repository root, with Java, Maven, and Python 3 installed:
+From the repository root, with Bash, Java, Maven, Python 3, `curl`, and `jq`
+installed:
 
-```sh
+```bash
 python3 -B -m unittest discover -s build/portal-pages -v
 mvn -B -ntp clean generate-resources -f build/portal-pages/pom.xml
+SITE=target/portal-pages/portal
+ARCHIVES=target/portal-pages/archives
+mkdir -p "$ARCHIVES"
+while IFS=$'\t' read -r VERSION ARTIFACT; do
+  ARCHIVE="$ARCHIVES/portal-guide-$ARTIFACT.zip"
+  curl --fail --location --retry 3 \
+    "https://maven.axonivy.com/com/axonivy/portal/portal-guide/$ARTIFACT/portal-guide-$ARTIFACT.zip" \
+    --output "$ARCHIVE"
+  python3 -m zipfile -e "$ARCHIVE" "$SITE/release/$VERSION"
+done < <(jq -r 'to_entries[] | [.key, .value] | @tsv' "$SITE/versions.json")
 python3 -B build/portal-pages/build_site.py
 python3 -m http.server 8000 --directory target/portal-pages
 ```
@@ -77,21 +90,37 @@ HTTP redirect; a fallback link is included. Releases are sorted numerically,
 and dev is never selected as the default. Other versions and languages remain
 available through the documentation's selector.
 
-To include a locally available ZIP from the existing documentation build, use
-an absolute path outside `target/portal-pages/` (which `clean` removes):
+To include a locally available ZIP from the existing documentation build,
+extract it after downloading the releases above and before preparing selectors:
 
 ```sh
-mvn -B -ntp clean generate-resources -f build/portal-pages/pom.xml \
-  -Ddev.archive=/absolute/path/to/portal-guide-14.0.1-SNAPSHOT.zip
+python3 -m zipfile -e /absolute/path/to/portal-guide-14.0.1-SNAPSHOT.zip \
+  target/portal-pages/portal/snapshot/dev
 python3 -B build/portal-pages/build_site.py
 ```
 
-Maven's standard Ant `get`/`unzip` tasks download the ZIPs into
-`target/portal-pages/archives/` and unpack them. Direct ZIP retrieval avoids
-resolving older published POMs whose parent version is still `${revision}`;
-`maven-dependency-plugin:unpack` fails on that metadata for `12.0.18.1`.
-`clean` removes only this build's `target/portal-pages/` output before assembling
-the complete site, preventing stale or removed releases from lingering.
+Use a fresh extraction when rerunning the helper: it rewrites the original
+selectors. Keep the dev ZIP outside `target/portal-pages/`, which Maven `clean`
+removes before writing the manifest and assembling the complete site. This also
+prevents stale or removed releases from lingering.
+
+## Why direct ZIP downloads instead of dependency:unpack?
+
+The published `portal-guide-12.0.18.1.pom` and `portal-guide-14.0.0.pom` both
+reference `com.axonivy.portal:doc-config` with the literal parent version
+`${revision}`. `maven-dependency-plugin:3.11.0:unpack` reads that descriptor and
+fails resolving the parent with HTTP 400, even though the ZIP itself is readable.
+The `resolve` goal also fails with `excludeTransitive=true`,
+`includeParents=false`, and a matching `-Drevision` value; these options do not
+bypass parent resolution.
+
+Producer-side flattening fixes future publications, not these existing release
+POMs. Direct ZIP downloads preserve the retained versions without modifying
+Nexus metadata. The workflow therefore uses existing command-line tools rather
+than Ant or an additional Maven plugin. Maven still filters the release manifest.
+This removes `maven-antrun-plugin`, but does not implement the reviewer's exact
+`dependency:unpack` suggestion. Python's ZIP command extracts entries without
+recreating ZIP symlinks; it is already available for static site assembly.
 
 ## GitHub Pages publication
 

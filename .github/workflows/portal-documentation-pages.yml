@@ -62,15 +62,28 @@ jobs:
           jq -r '"- Development docs: [run #\(.run_number)](\(.html_url)) from master @ `\(.head_sha)`"' \
             <<< "$DEV_RUN" | tee -a "$GITHUB_STEP_SUMMARY"
 
-      - name: Unpack configured releases and optional development docs with Maven
+      - name: Prepare release manifest with Maven
+        run: mvn -B -ntp clean generate-resources -f build/portal-pages/pom.xml
+
+      - name: Download and extract documentation ZIPs
+        shell: bash
         env:
           DEV_ARCHIVE: ${{ steps.dev.outputs.archive }}
         run: |
-          ARGS=()
+          SITE=target/portal-pages/portal
+          ARCHIVES=target/portal-pages/archives
+          mkdir -p "$ARCHIVES"
+          jq -r 'to_entries[] | [.key, .value] | @tsv' "$SITE/versions.json" |
+            while IFS=$'\t' read -r VERSION ARTIFACT; do
+              ARCHIVE="$ARCHIVES/portal-guide-$ARTIFACT.zip"
+              curl --fail --location --retry 3 \
+                "https://maven.axonivy.com/com/axonivy/portal/portal-guide/$ARTIFACT/portal-guide-$ARTIFACT.zip" \
+                --output "$ARCHIVE"
+              python3 -m zipfile -e "$ARCHIVE" "$SITE/release/$VERSION"
+            done
           if [ -n "$DEV_ARCHIVE" ]; then
-            ARGS+=("-Ddev.archive=$DEV_ARCHIVE")
+            python3 -m zipfile -e "$DEV_ARCHIVE" "$SITE/snapshot/dev"
           fi
-          mvn -B -ntp clean generate-resources -f build/portal-pages/pom.xml "${ARGS[@]}"
 
       - name: Prepare static selectors and navigation
         run: python3 build/portal-pages/build_site.py

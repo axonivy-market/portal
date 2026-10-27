@@ -9,7 +9,6 @@
   <properties>
     <portal12.version>12.0.18.1</portal12.version>
     <portal14.version>14.0.0</portal14.version>
-    <portal.guide.url>https://maven.axonivy.com/com/axonivy/portal/portal-guide</portal.guide.url>
     <pages.directory>${project.build.directory}/portal</pages.directory>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -17,34 +16,6 @@
   <build>
     <directory>${project.basedir}/../../target/portal-pages</directory>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>3.2.0</version>
-        <executions>
-          <execution>
-            <id>unpack-released-documentation</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <configuration>
-              <target>
-                <mkdir dir="${project.build.directory}/archives" />
-                <!-- Fetch ZIPs directly: older published POMs have unresolved ${revision} parents. -->
-                <get src="${portal.guide.url}/${portal12.version}/portal-guide-${portal12.version}.zip"
-                  dest="${project.build.directory}/archives/portal-guide-${portal12.version}.zip" />
-                <get src="${portal.guide.url}/${portal14.version}/portal-guide-${portal14.version}.zip"
-                  dest="${project.build.directory}/archives/portal-guide-${portal14.version}.zip" />
-                <unzip src="${project.build.directory}/archives/portal-guide-${portal12.version}.zip"
-                  dest="${pages.directory}/release/12.0" />
-                <unzip src="${project.build.directory}/archives/portal-guide-${portal14.version}.zip"
-                  dest="${pages.directory}/release/14.0" />
-              </target>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -73,37 +44,4 @@
       </plugin>
     </plugins>
   </build>
-
-  <profiles>
-    <profile>
-      <id>dev-documentation</id>
-      <activation>
-        <property>
-          <name>dev.archive</name>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>unpack-dev-documentation</id>
-                <phase>generate-resources</phase>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-                <configuration>
-                  <target>
-                    <unzip src="${dev.archive}" dest="${pages.directory}/snapshot/dev" />
-                  </target>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 </project>
