@@ -100,8 +100,8 @@ function ProcessWidget() {
       $.each(processItems, function(index) {
         var processName = $('.js-process-start-list-item-name', this).text().toLowerCase();
         var keyword = $('.js-filter-process-widget-list-item').val().toLowerCase();
-        var descriptionTooltip = $('.js-process-start-list-item-description .ui-tooltip-text', this);
-        var processDescription = descriptionTooltip.length > 0 ? descriptionTooltip.get(0).innerText.toLowerCase() : '';
+        var descriptionElement = $('.js-process-start-list-item-description', this);
+        var processDescription = descriptionElement.length > 0 ? (descriptionElement.attr('title') || '').toLowerCase() : '';
         if (!contain(processName, keyword) && !contain(processDescription, keyword)) {
           $(this).hide();
         }
