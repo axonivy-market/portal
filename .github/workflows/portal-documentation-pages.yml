@@ -43,19 +43,7 @@ jobs:
           -DincludeDev=${{ inputs.include_dev }}
 
       - name: Download and extract legacy release documentation ZIPs
-        shell: bash
-        run: |
-          SITE=target/portal-pages/portal
-          ARCHIVES=target/portal-pages/archives
-          mkdir -p "$ARCHIVES"
-          jq -r 'to_entries[] | [.key, .value] | @tsv' "$SITE/versions.json" |
-            while IFS=$'\t' read -r VERSION ARTIFACT; do
-              ARCHIVE="$ARCHIVES/portal-guide-$ARTIFACT.zip"
-              curl --fail --location --retry 3 \
-                "https://maven.axonivy.com/com/axonivy/portal/portal-guide/$ARTIFACT/portal-guide-$ARTIFACT.zip" \
-                --output "$ARCHIVE"
-              python3 -m zipfile -e "$ARCHIVE" "$SITE/release/$VERSION"
-            done
+        run: ./build/portal-pages/download-legacy-documentation.sh
 
       - name: Prepare static selectors and navigation
         run: python3 build/portal-pages/build_site.py
