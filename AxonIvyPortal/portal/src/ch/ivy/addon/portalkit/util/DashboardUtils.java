@@ -24,8 +24,6 @@ import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
 import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemplateMigrator;
 import com.axonivy.portal.util.UploadDocumentUtils;
-import tools.jackson.core.JacksonException;
-import tools.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
@@ -39,6 +37,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -48,6 +47,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
 
 public class DashboardUtils {
 
@@ -65,6 +66,7 @@ public class DashboardUtils {
   public final static String HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN = "highlightDashboardItem('%s')";
   public final static String DEFAULT_TASK_LIST_DASHBOARD = "default-task-list-dashboard";
   public final static String DEFAULT_CASE_LIST_DASHBOARD = "default-case-list-dashboard";
+  public final static String FULL_TASK_LIST_DASHBOARD_TEMPLATE = "full-task-list-dashboard-template";
 
   public static List<Dashboard> getVisibleDashboards(String dashboardJson) {
     List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
@@ -451,6 +453,15 @@ public class DashboardUtils {
   public static boolean isDefaultCaseListDashboard(Dashboard dashboard) {
     return Optional.ofNullable(dashboard).map(Dashboard::getId).orElseGet(() -> "")
         .contentEquals(DEFAULT_CASE_LIST_DASHBOARD);
+  }
+
+  public static boolean isFullTaskListDashboard(Dashboard dashboard) {
+    if (dashboard == null || !FULL_TASK_LIST_DASHBOARD_TEMPLATE.equals(dashboard.getTemplateId())
+        || dashboard.getWidgets() == null || dashboard.getWidgets().size() != 1) {
+      return false;
+    }
+    DashboardWidget widget = dashboard.getWidgets().get(0);
+    return widget != null && widget.getType() == DashboardWidgetType.TASK;
   }
 
   public static List<Dashboard> getPublicDashboards() {
