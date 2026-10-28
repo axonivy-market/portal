@@ -27,7 +27,6 @@ import com.axonivy.portal.util.UploadDocumentUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
-import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
@@ -68,11 +67,6 @@ public class DashboardUtils {
   public final static String DEFAULT_TASK_LIST_DASHBOARD = "default-task-list-dashboard";
   public final static String DEFAULT_CASE_LIST_DASHBOARD = "default-case-list-dashboard";
   public final static String FULL_TASK_LIST_DASHBOARD_TEMPLATE = "full-task-list-dashboard-template";
-
-  // Keep aligned with the full-task-list-dashboard-template layout in config/variables/Portal/DashboardTemplates.json.
-  private static final int FULL_TASK_LIST_DEFAULT_WIDTH = 12;
-  private static final int FULL_TASK_LIST_DEFAULT_HEIGHT = 12;
-  private static final int FULL_TASK_LIST_DEFAULT_ORIGIN = 0;
 
   public static List<Dashboard> getVisibleDashboards(String dashboardJson) {
     List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
@@ -461,25 +455,13 @@ public class DashboardUtils {
         .contentEquals(DEFAULT_CASE_LIST_DASHBOARD);
   }
 
-  /**
-   * Matches a dashboard created from the Full task list template that still has its original single task widget layout.
-   */
   public static boolean isFullTaskListDashboardWithDefaultLayout(Dashboard dashboard) {
     if (dashboard == null || !FULL_TASK_LIST_DASHBOARD_TEMPLATE.equals(dashboard.getTemplateId())
         || dashboard.getWidgets() == null || dashboard.getWidgets().size() != 1) {
       return false;
     }
     DashboardWidget widget = dashboard.getWidgets().get(0);
-    return widget != null && widget.getType() == DashboardWidgetType.TASK
-        && hasOriginalFullTaskListLayout(widget.getLayout());
-  }
-
-  private static boolean hasOriginalFullTaskListLayout(WidgetLayout layout) {
-    return layout != null
-        && layout.getWidth() == FULL_TASK_LIST_DEFAULT_WIDTH
-        && layout.getHeight() == FULL_TASK_LIST_DEFAULT_HEIGHT
-        && layout.getAxisX() == FULL_TASK_LIST_DEFAULT_ORIGIN
-        && layout.getAxisY() == FULL_TASK_LIST_DEFAULT_ORIGIN;
+    return widget != null && widget.getType() == DashboardWidgetType.TASK;
   }
 
   public static List<Dashboard> getPublicDashboards() {

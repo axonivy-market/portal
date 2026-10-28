@@ -13,7 +13,6 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -237,27 +236,6 @@ class TestDashboardUtils {
   void isFullTaskListDashboardWithDefaultLayout_nullWidget_returnsFalse() {
     Dashboard dashboard = buildFullTaskListDashboard();
     dashboard.setWidgets(Collections.singletonList(null));
-
-    assertThat(DashboardUtils.isFullTaskListDashboardWithDefaultLayout(dashboard)).isFalse();
-  }
-
-  @Test
-  void isFullTaskListDashboardWithDefaultLayout_nullLayout_returnsFalse() {
-    Dashboard dashboard = buildFullTaskListDashboard();
-    dashboard.getWidgets().get(0).setLayout(null);
-
-    assertThat(DashboardUtils.isFullTaskListDashboardWithDefaultLayout(dashboard)).isFalse();
-  }
-
-  @ParameterizedTest(name = "width={0}, height={1}, x={2}, y={3}")
-  @CsvSource({"11, 12, 0, 0", "12, 11, 0, 0", "12, 12, 1, 0", "12, 12, 0, 1"})
-  void isFullTaskListDashboardWithDefaultLayout_changedLayout_returnsFalse(int width, int height, int x, int y) {
-    Dashboard dashboard = buildFullTaskListDashboard();
-    WidgetLayout layout = dashboard.getWidgets().get(0).getLayout();
-    layout.setWidth(width);
-    layout.setHeight(height);
-    layout.setAxisX(x);
-    layout.setAxisY(y);
 
     assertThat(DashboardUtils.isFullTaskListDashboardWithDefaultLayout(dashboard)).isFalse();
   }
