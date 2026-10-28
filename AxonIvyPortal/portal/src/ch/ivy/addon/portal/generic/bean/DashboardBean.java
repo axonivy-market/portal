@@ -111,7 +111,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
     // Set responsive option for default task list, case list and full task list (view mode only)
     if (DashboardUtils.isDefaultCaseListDashboard(selectedDashboard)
         || DashboardUtils.isDefaultTaskListDashboard(selectedDashboard)
-        || (isReadOnlyMode && DashboardUtils.isFullTaskListDashboardWithDefaultLayout(selectedDashboard))) {
+        || (isReadOnlyMode && DashboardUtils.isFullTaskListDashboard(selectedDashboard))) {
       selectedDashboard.setIsResponsive(true);
     }
 

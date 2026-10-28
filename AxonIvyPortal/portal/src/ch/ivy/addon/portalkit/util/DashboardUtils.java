@@ -455,7 +455,7 @@ public class DashboardUtils {
         .contentEquals(DEFAULT_CASE_LIST_DASHBOARD);
   }
 
-  public static boolean isFullTaskListDashboardWithDefaultLayout(Dashboard dashboard) {
+  public static boolean isFullTaskListDashboard(Dashboard dashboard) {
     if (dashboard == null || !FULL_TASK_LIST_DASHBOARD_TEMPLATE.equals(dashboard.getTemplateId())
         || dashboard.getWidgets() == null || dashboard.getWidgets().size() != 1) {
       return false;
