@@ -82,6 +82,9 @@ public class DashboardProcessTaskSearchCriteria {
       if (criteria.isSortDescending()) {
         order.descending();
       }
+      if (order != null && !DashboardStandardTaskColumn.ID.getField().equalsIgnoreCase(criteria.getSortField())) {
+        query.orderBy().taskId().descending();
+      }
       return this;
     }
 
