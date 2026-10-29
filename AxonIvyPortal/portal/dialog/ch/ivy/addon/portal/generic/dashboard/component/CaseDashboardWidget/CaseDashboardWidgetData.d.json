@@ -7,10 +7,6 @@
     "type" : "ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget",
     "modifiers" : [ ]
   }, {
-    "name" : "totalCases",
-    "type" : "Long",
-    "modifiers" : [ ]
-  }, {
     "name" : "loopCounter",
     "type" : "Integer",
     "modifiers" : [ ]

@@ -35,10 +35,6 @@
     "type" : "Integer",
     "modifiers" : [ ]
   }, {
-    "name" : "totalCases",
-    "type" : "Long",
-    "modifiers" : [ ]
-  }, {
     "name" : "caseLazyDataModel",
     "type" : "ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel",
     "modifiers" : [ ]
