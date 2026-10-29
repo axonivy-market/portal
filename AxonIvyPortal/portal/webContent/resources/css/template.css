@@ -215,6 +215,19 @@ a.left-sidebar-menu-icon {
   overflow: auto;
 }
 
+@media (min-width: 992px) {
+  .layout-wrapper.layout-static .menu-wrapper {
+    width: 230px;
+  }
+  .layout-wrapper.layout-static .menu-wrapper .layout-menu > li {
+    min-width: 0;
+  }
+  .layout-wrapper:not(.layout-static) .menu-wrapper:not(.layout-sidebar-active) .sidebar-scroll-content {
+    width: 50px;
+    scrollbar-width: thin;
+  }
+}
+
 .sidebar-collapse-btn {
   display: none;
   align-items: center;
