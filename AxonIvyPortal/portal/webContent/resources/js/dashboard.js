@@ -632,3 +632,12 @@ function updateDashboardWhenResizeWindow(isResponsiveDashboard) {
     }, 1000); // Delay execution by 1 sec to avoid send multiple requests
   });
 }
+
+async function liveScroll(widgetId) {
+  const datatable = await PF(widgetId);
+  if (datatable) {
+    datatable.scrollOffset = 0;
+    datatable.scrollBody.scrollTop(1);
+    datatable.allLoadedLiveScroll = false;
+  }
+}
