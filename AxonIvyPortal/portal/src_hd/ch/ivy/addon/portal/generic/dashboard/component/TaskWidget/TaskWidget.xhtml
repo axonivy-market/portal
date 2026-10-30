@@ -64,7 +64,7 @@
         <p:ajax event="colResize" process="dashboard-tasks" global="false" partialSubmit="true"
           listener="#{dashboardDetailModificationBean.onResizeColumn}" disabled="#{!isResizing}" />
         <f:attribute name="widgetId" value="#{taskWidget.id}" />
-        <p:ajax event="sort" update="dashboard-tasks" onstart="liveScroll()" disabled="#{!isPreviewMode and !isReadOnlyMode}" />
+        <p:ajax event="sort" update="dashboard-tasks" onstart="liveScroll('#{cc.attrs.caseWidgetVar}-#{caseWidget.id}')" disabled="#{!isPreviewMode and !isReadOnlyMode}" />
 
         <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'} widget-column-header"
           visible="#{column.visible}" field="#{column.field}" filterable="false"
@@ -195,14 +195,6 @@
     </ui:define>
   </ui:decorate>
    <script type="text/javascript">
-      function liveScroll() {
-        if (PF('dashboard-tasks-#{taskWidget.id}') != null) {
-          PF('dashboard-tasks-#{taskWidget.id}').scrollOffset = 0;
-          PF('dashboard-tasks-#{taskWidget.id}').scrollBody.scrollTop(1);
-          PF('dashboard-tasks-#{taskWidget.id}').allLoadedLiveScroll = false;
-        }
-      }
-
     </script>
 </cc:implementation>
 </html>
