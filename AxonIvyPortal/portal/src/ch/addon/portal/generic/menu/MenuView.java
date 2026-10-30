@@ -240,6 +240,7 @@ public class MenuView implements Serializable {
         .map(p -> p.getStartLink())
         .orElse(def.getProcessStartPath());
     return new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.PROCESS, isWorkingOnATask)
+        .menuIndex(def.getIndex())
         .icon(buildIconClass(def.getIcon()))
         .url(StringUtils.defaultIfBlank(url, DEFAULT_LINK))
         .workingTaskId(workingTaskId)
@@ -251,6 +252,7 @@ public class MenuView implements Serializable {
     String safeUrl = MenuUtils.safeExternalUrl(def.getUrl());
     String url = StringUtils.defaultIfBlank(UrlUtils.buildUrl(safeUrl), DEFAULT_LINK);
     PortalMenuItem item = new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.EXTERNAL_LINK, isWorkingOnATask)
+        .menuIndex(def.getIndex())
         .icon(buildIconClass(def.getIcon()))
         .url(url)
         .target(target)
@@ -266,6 +268,7 @@ public class MenuView implements Serializable {
         ? PortalNavigatorAPI.buildPortalStaticPageUrl(def.getUrl())
         : DEFAULT_LINK;
     return new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.STATIC_PAGE, isWorkingOnATask)
+        .menuIndex(def.getIndex())
         .icon(buildIconClass(def.getIcon()))
         .url(url)
         .cleanParam(true)
@@ -275,6 +278,7 @@ public class MenuView implements Serializable {
 
   private MenuItem buildThirdPartyItem(ExternalLinkMenuItemDefinition def) {
     PortalMenuItem item = new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.THIRD_PARTY, isWorkingOnATask)
+        .menuIndex(def.getIndex())
         .icon(buildIconClass(def.getIcon()))
         .url(UrlUtils.buildUrl(def.getUrl()))
         .workingTaskId(workingTaskId)
