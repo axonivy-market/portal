@@ -19,11 +19,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.event.ActionEvent;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -48,21 +43,20 @@ import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
 import com.axonivy.portal.dto.menu.StaticPageMenuItemDefinition;
 import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
 import com.axonivy.portal.menu.management.MenuLoader;
-import com.axonivy.portal.util.MenuUtils;
 import com.axonivy.portal.menu.management.enums.MenuSource;
-
-import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
-import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.service.IvyCacheService;
+import com.axonivy.portal.util.MenuUtils;
 
 import ch.addon.portal.generic.menu.PortalMenuItem.PortalMenuBuilder;
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.MainMenuEntryService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -72,6 +66,10 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.ActionEvent;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @Named
 @ViewScoped
@@ -215,10 +213,13 @@ public class MenuView implements Serializable {
   private MenuItem buildStandardSimpleItem(StandardMenuItemDefinition std) {
     StandardMenuItemDefinitionType type = std.getStandardType();
     MenuKind kind = type == StandardMenuItemDefinitionType.PROCESS ? MenuKind.PROCESS_LIST : MenuKind.STANDARD;
+    String url = kind == MenuKind.PROCESS_LIST
+        ? PortalNavigator.getSubMenuItemUrlOfCurrentApplication(kind)
+        : "#";
     return new PortalMenuBuilder(Ivy.cms().co(type.getCmsUri()), kind, isWorkingOnATask)
         .icon(buildIconClass(std.getIcon()))
         .onClick(type.getOnClick())
-        .url("#")
+        .url(url)
         .workingTaskId(workingTaskId)
         .build();
   }
