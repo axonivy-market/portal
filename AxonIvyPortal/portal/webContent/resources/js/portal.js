@@ -213,7 +213,7 @@ var MainMenu = {
   },
 
   highlightMenuItem : function() {
-    if (this.getCurentPageByPageUrl !== "PORTAL_CONFIGURATION") {
+    if (this.getCurentPageByPageUrl() !== "PORTAL_CONFIGURATION") {
       deactivateMenuItemOnLeftMenu("dashboard-configuration-menuitem");
     }
     let $currentPageMenu = this.getMenuItemByCurrentPage();
