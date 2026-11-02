@@ -125,7 +125,9 @@ public class MenuView implements Serializable {
       }
     }
 
+    int nextIndex = definitions.size();
     for (PortalMenuItemDefinition def : MenuLoader.loadPrivateThirdPartyDefinitions()) {
+      def.setIndex(nextIndex++);
       MenuElement element = buildMenuElement(def, startableProcessLinks);
       if (element != null) {
         mainMenuModel.getElements().add(element);
