@@ -46,13 +46,6 @@
       at="right center"
       my="left center" />
 
-    <ui:fragment rendered="#{securityMemberDisplayNameBean.isRenderGroupUsersAsTooltip(securityMember, alwaysShowAsText)}">
-      <f:event listener="#{logic.loadUsersForTooltip(securityMember)}" type="preRenderComponent" />
-      <p:tooltip escape="false" value="#{htmlSanitizerBean.sanitize(data.usersInTooltips)}"
-        for="#{cc.clientId}:name-and-avatar:#{cc.attrs.textId}-text"
-        styleClass="security-member-tooltip"
-        hideEvent="mouseleave click" />
-    </ui:fragment>
     
     <h:panelGroup rendered="#{securityMemberDisplayNameBean.isRenderUsersOverlaySearch(securityMember, alwaysShowAsText)}"
       styleClass="#{cc.attrs.roleNameStyleClass} user-fullname-container">

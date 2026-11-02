@@ -41,12 +41,6 @@ public class SecurityMemberDisplayNameBean implements Serializable {
     return SecurityMemberDisplayNameUtils.generateFullDisplayNameForUserDTO(user);
   }
 
-  public boolean isRenderGroupUsersAsTooltip(ISecurityMember securityMember, String alwaysShowAsText) {
-    return BooleanUtils.toBoolean(alwaysShowAsText)
-        && isDisplayUserOfRole
-        && Objects.nonNull(securityMember) && !securityMember.isUser();
-  }
-
   public boolean isRenderDisplayNameTooltip(ISecurityMember securityMember) {
     return isDisplayUserOfRole
         && Objects.nonNull(securityMember) && securityMember.isUser();
