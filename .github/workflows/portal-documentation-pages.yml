@@ -1,4 +1,4 @@
-name: Publish Documentation Pages
+name: Deploy Portal Documentation to GitHub Pages
 
 on:
   workflow_dispatch:
