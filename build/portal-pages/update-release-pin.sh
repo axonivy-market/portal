@@ -34,7 +34,10 @@ if [[ "$property_count" -ne 1 ]]; then
 fi
 
 guide_url="https://maven.axonivy.com/com/axonivy/portal/portal-guide/${artifact_version}/portal-guide-${artifact_version}.zip"
-curl --fail --location --retry 3 --head "$guide_url"
+archive_file=$(mktemp)
+trap 'rm -f "$archive_file"' EXIT
+curl --fail --location --retry 3 "$guide_url" --output "$archive_file"
+unzip -tqq "$archive_file"
 
 mvn -B -ntp -f "$pom" \
     org.codehaus.mojo:versions-maven-plugin:2.23.0:set-property \
