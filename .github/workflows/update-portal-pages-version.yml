@@ -63,7 +63,7 @@ jobs:
         with:
           token: ${{ github.token }}
           base: master
-          branch: automation/portal-pages-${{ inputs.release_line }}
+          branch: build/portal-pages-${{ inputs.release_line }}
           add-paths: build/portal-pages/pom.xml
           commit-message: 'build: update Portal Pages documentation version pin'
           title: 'build: update Portal Pages ${{ inputs.release_line }} to ${{ inputs.artifact_version }}'
