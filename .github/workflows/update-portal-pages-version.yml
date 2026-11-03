@@ -1,0 +1,64 @@
+name: Update Portal Pages release version
+run-name: Update Portal Pages ${{ inputs.release_line }} to ${{ inputs.artifact_version }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_line:
+        description: 'Documentation release line to update'
+        required: true
+        type: choice
+        options:
+          - '12.0'
+          - '14.0'
+      artifact_version:
+        description: 'Published portal-guide artifact version, for example 12.0.18.1'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-release-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require master
+        run: |
+          if [[ "$GITHUB_REF" != "refs/heads/master" ]]; then
+            echo "::error::Run this workflow from master; Pages deployments use master."
+            exit 1
+          fi
+
+      - uses: actions/checkout@v7
+
+      - name: Validate release, locate artifact, and update the pin
+        env:
+          RELEASE_LINE: ${{ inputs.release_line }}
+          ARTIFACT_VERSION: ${{ inputs.artifact_version }}
+        run: bash build/portal-pages/update-release-pin.sh "$RELEASE_LINE" "$ARTIFACT_VERSION"
+
+      - name: Verify the generated release manifest
+        env:
+          RELEASE_LINE: ${{ inputs.release_line }}
+          ARTIFACT_VERSION: ${{ inputs.artifact_version }}
+        run: |
+          mvn -B -ntp -f build/portal-pages/pom.xml clean generate-resources -DincludeDev=false
+          jq -e --arg line "$RELEASE_LINE" --arg version "$ARTIFACT_VERSION" \
+            '.[$line] == $version' target/portal-pages/portal/versions.json
+          python3 -m unittest discover -s build/portal-pages -v
+
+      - name: Create or update release pin PR
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ github.token }}
+          base: master
+          branch: automation/portal-pages-${{ inputs.release_line }}
+          add-paths: build/portal-pages/pom.xml
+          commit-message: 'build: update Portal Pages documentation version pin'
+          title: 'build: update Portal Pages ${{ inputs.release_line }} to ${{ inputs.artifact_version }}'
+          body: |
+            Update the Portal Pages documentation artifact pinned for release line `${{ inputs.release_line }}` to `${{ inputs.artifact_version }}`.
+
+            The published artifact was checked before updating the manifest source.
