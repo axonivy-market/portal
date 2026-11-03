@@ -1,4 +1,4 @@
-name: Publish Documentation Pages
+name: Deploy Portal Documentation to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -28,7 +28,7 @@ jobs:
 
       - uses: stCarolas/setup-maven@v5.1
         with:
-          maven-version: 3.9.16
+          maven-version: 3.10.0
 
       - uses: actions/setup-python@v6
         with:
