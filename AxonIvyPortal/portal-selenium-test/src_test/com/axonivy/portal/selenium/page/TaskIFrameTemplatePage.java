@@ -118,6 +118,26 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     return isElementDisplayedById("horizontal-case-info");
   }
 
+  public SelenideElement getTaskHeaderContainer() {
+    switchToDefaultContent();
+    return $("[id$='header-container']");
+  }
+
+  public SelenideElement getTaskHeaderTitle() {
+    switchToDefaultContent();
+    return getTaskTitle();
+  }
+
+  public SelenideElement getTaskActionsElement() {
+    switchToDefaultContent();
+    return $("[id$='horizontal-task-actions']");
+  }
+
+  public SelenideElement getCaseInfoButtonElement() {
+    switchToDefaultContent();
+    return $("[id$='horizontal-case-info']");
+  }
+
   public NewDashboardPage finishCreateInvestmentTask() {
     WaitHelper.waitForIFrameAvailable(driver, "iFrame");
     waitForElementDisplayed(By.id("form:invested-amount"), true);
@@ -196,8 +216,12 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     return new NewDashboardPage();
   }
 
+  public SelenideElement getCaseItemDetails() {
+    return $("div[id$='case-item-details']");
+  }
+
   public boolean containsCaseDetails() {
-    return $("div[id$='case-item-details']").isDisplayed();
+    return getCaseItemDetails().isDisplayed();
   }
 
   public int countRelatedTasks() {

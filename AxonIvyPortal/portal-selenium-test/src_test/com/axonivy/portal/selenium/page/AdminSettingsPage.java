@@ -1,16 +1,17 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.axonivy.portal.selenium.common.Variable.GLOBAL_FOOTER_INFO;
-import static com.codeborne.selenide.Selenide.$;
-
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.Sleeper;
+import static com.axonivy.portal.selenium.common.Variable.GLOBAL_FOOTER_INFO;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ScrollIntoViewOptions;
+import com.codeborne.selenide.ScrollIntoViewOptions.Block;
+import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 
 public class AdminSettingsPage extends TemplatePage {
@@ -32,9 +33,16 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public void openSettingTab() {
-    waitForElementClickableThenClick("a[href$='#admin-setting-component:adminTabView:setting-tab']");
-    waitForElementDisplayed(By.cssSelector("[id$=':adminTabView:settingForm']"), true);
-    waitForFocusEffectComplete();
+    SelenideElement settingForm = $("[id$=':adminTabView:settingForm']");
+    // Editing a row can scroll the selected tab underneath the fixed page header.
+    // Only activate the tab when its content is not already displayed.
+    if (!settingForm.isDisplayed()) {
+      $("a[href$='#admin-setting-component:adminTabView:setting-tab']")
+          .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+          .scrollIntoView(ScrollIntoViewOptions.instant().block(Block.center))
+          .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    }
+    settingForm.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
@@ -55,6 +63,28 @@ public class AdminSettingsPage extends TemplatePage {
     openGlobalVariableEditDialog(variableName);
     waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
     setMultiSelectionItemStateAndSave(itemValue, shouldBeSelected);
+  }
+
+  public void updateGlobalSingleSelectionVariable(String variableName, String optionLabel) {
+    openSettingTab();
+    openGlobalVariableEditDialog(variableName);
+    waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
+    waitForElementClickableThenClick("[id='admin-setting-component:valueSetting_label']");
+    waitForElementDisplayed(By.id("admin-setting-component:valueSetting_panel"), true);
+    $("[id='admin-setting-component:valueSetting_panel']").$$("li.ui-selectonemenu-item")
+        .filter(Condition.exactText(optionLabel)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForElementClickableThenClick("[id='admin-setting-component:save-setting']");
+    waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), false);
+  }
+
+  public String getGlobalSingleSelectionLabel(String variableName) {
+    openSettingTab();
+    openGlobalVariableEditDialog(variableName);
+    waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
+    String label = $("[id='admin-setting-component:valueSetting_label']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .getText();
+    closeEditSettingDialog();
+    return label;
   }
 
   private void openGlobalVariableEditDialog(String variableName) {
