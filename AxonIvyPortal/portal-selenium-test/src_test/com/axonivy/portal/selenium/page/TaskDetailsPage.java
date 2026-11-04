@@ -420,6 +420,23 @@ public class TaskDetailsPage extends TemplatePage {
     return $("[id$=':responsibles-more']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public SelenideElement getUsersOfRoleButton() {
+    return $(".task-general-info-responsibles a[id$=':role-users-activator']");
+  }
+
+  public SelenideElement getUsersOfRoleOverlay() {
+    return $$("div[id$=':users-of-role-overlay']").findBy(Condition.visible);
+  }
+
+  public ElementsCollection getUsersOfRoleUsers() {
+    return getUsersOfRoleOverlay().$$(".ui-datascroller-item .name-after-avatar");
+  }
+
+  public void filterUsersOfRole(String keyword) {
+    getUsersOfRoleOverlay().$("input[id$=':ajax-keyword-filter']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).setValue(keyword);
+  }
+
   public SelenideElement getAllExpiryResponsible() {
     return $("[id$=':all-expiry-responsibles'] a");
   }

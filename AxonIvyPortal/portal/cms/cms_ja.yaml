@@ -770,11 +770,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       filterToSee: さらに表示するにはフィルタリング
       loadMore: さらに読み込む
       noUser: ユーザーがいません。
-      roleMemberItemFormat: <li class="tooltip-body-item">{0}</li>
-      roleMemberLineFormat: <p class="tooltip-body-item">{0}</p>
-      roleMembersTooltipFormat: |-
-        <p class="tooltip-header">{0}</p>
-        <ul style="margin: auto; {1}">{2}</ul>
       tooltipHelper: クリックすると、このロールを直接または間接的に所有するすべてのユーザーが表示されます
       userOfRoleTitle: '{0} グループのユーザー'
     passwordValidation:
