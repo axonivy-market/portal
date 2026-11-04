@@ -442,6 +442,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       this.getSelectedDashboard().setWidgets(new ArrayList<>());
     }
     List<DashboardWidget> widgets = this.getSelectedDashboard().getWidgets();
+    Ivy.log().error("SAVE WIDGET WITH TYPE {0}", widget.getType());
     switch (widget.getType()) {
       case PROCESS -> {
         ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
