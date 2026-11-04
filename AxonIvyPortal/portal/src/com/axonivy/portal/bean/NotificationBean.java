@@ -201,7 +201,7 @@ public class NotificationBean implements Serializable {
     }
     ITask task = TaskUtils.findTaskUserHasPermissionToSee(NumberUtils.toLong(taskId));
     if (task == null) {
-      return;
+      task = Ivy.wfTask();
     }
 
     executeCustomizedLogicIfExists(task, portalCustomSignature);
