@@ -12,7 +12,7 @@
 
   <properties>
     <portal12.version>12.0.18.1</portal12.version>
-    <portal14.version>14.0.0</portal14.version>
+    <portal14.version>14.0.1.2</portal14.version>
     <pages.directory>${project.build.directory}/portal</pages.directory>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
