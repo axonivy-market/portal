@@ -307,6 +307,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
       showTooltipTechnicalName: Enable to show users' technical name on tooltips.
       sidebarMode: Controls how the sidebar navigation behaves. Hover expands on hover, Click uses a toggle button, Stick keeps it always expanded, Hidden removes the sidebar completely.
+      taskHeaderMode: Controls the header bar above the task content. Default shows the current header, Legacy shows the previous compact header, Hide removes the header completely.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
     key: Key
     loading: LOADING
@@ -2057,6 +2058,10 @@ Labels:
       HIDDEN: Hidden
       HOVER: Hover
       STICK: Stick
+    TaskHeaderMode:
+      DEFAULT: Default
+      HIDDEN: Hide
+      LEGACY: Legacy
     ThemeMode:
       DARK: Dark
       LIGHT: Light

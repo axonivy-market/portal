@@ -11,10 +11,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import com.axonivy.portal.components.enums.SessionAttribute;
+import com.axonivy.portal.enums.TaskHeaderMode;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -50,6 +53,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean {
   private static final String TASK_NAME = "taskName";
   public static final String PORTAL_GROWL_MESSGE_PARAM = "portalGrowlMessage";
   private static final String DEFAULT_TASK_ICON = "ti ti-list-check";
+  private static final String LEGACY_DEFAULT_TASK_ICON = "si si-task-list-edit";
   private static final String TASK_ICON = "taskIcon";
   private static final String TASK_URL = "taskUrl";
 
@@ -70,6 +74,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean {
   private String taskIcon;
 
   private Long caseId = null;
+  private TaskHeaderMode taskHeaderMode;
 
   public String getTaskUrl() {
     return Optional.ofNullable(FacesContext.getCurrentInstance()
@@ -243,5 +248,24 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean {
 
   public void setTaskIcon(String taskIcon) {
     this.taskIcon = taskIcon;
+  }
+
+  public TaskHeaderMode getTaskHeaderMode() {
+    if (taskHeaderMode == null) {
+      taskHeaderMode = TaskHeaderMode.parse(GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.TASK_HEADER_MODE));
+    }
+    return taskHeaderMode;
+  }
+
+  public boolean isTaskHeaderHidden() {
+    return getTaskHeaderMode() == TaskHeaderMode.HIDDEN;
+  }
+
+  public boolean isLegacyTaskHeader() {
+    return getTaskHeaderMode() == TaskHeaderMode.LEGACY;
+  }
+
+  public String getLegacyTaskIcon() {
+    return DEFAULT_TASK_ICON.equals(taskIcon) ? LEGACY_DEFAULT_TASK_ICON : taskIcon;
   }
 }
