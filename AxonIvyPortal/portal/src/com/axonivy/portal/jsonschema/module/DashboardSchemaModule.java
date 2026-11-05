@@ -14,7 +14,8 @@ public class DashboardSchemaModule implements Module {
     builder.forFields().withIgnoreCheck(this::shouldIgnore);
     builder.forMethods()
         .withIgnoreCheck(this::shouldIgnore)
-        .withIgnoreCheck(method -> method.getAnnotation(PortalSchemaInclude.class) == null);
+        .withIgnoreCheck(method -> !method.isPublic() || method.getArgumentCount() != 0 ||
+            method.getAnnotation(PortalSchemaInclude.class) == null);
   }
 
   private boolean shouldIgnore(MemberScope<?, ?> member) {

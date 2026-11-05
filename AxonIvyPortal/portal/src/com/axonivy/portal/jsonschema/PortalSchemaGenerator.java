@@ -40,7 +40,8 @@ public class PortalSchemaGenerator {
            Option.ALLOF_CLEANUP_AT_THE_END,
            Option.GETTER_METHODS,
            Option.NONSTATIC_NONVOID_NONGETTER_METHODS,
-           Option.DUPLICATE_MEMBER_ATTRIBUTE_CLEANUP_AT_THE_END
+           Option.DUPLICATE_MEMBER_ATTRIBUTE_CLEANUP_AT_THE_END,
+           Option.FORBIDDEN_ADDITIONAL_PROPERTIES_BY_DEFAULT
     );
   }
 
