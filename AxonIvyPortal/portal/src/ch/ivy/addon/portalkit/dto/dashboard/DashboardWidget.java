@@ -12,6 +12,7 @@ import org.apache.commons.lang3.Strings;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
+import com.axonivy.portal.jsonschema.annotation.PortalSchemaIgnoreFields;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -48,6 +49,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
+@PortalSchemaIgnoreFields({"name", "header"})
 public abstract class DashboardWidget implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;

@@ -16,7 +16,6 @@ import org.primefaces.model.SortMeta;
 
 import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.jsonschema.annotation.PortalSchemaIgnoreFields;
 import com.axonivy.portal.jsonschema.annotation.PortalSchemaInclude;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -32,7 +31,6 @@ import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
-@PortalSchemaIgnoreFields({"name", "header"})
 public class TaskDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 3246735956282078091L;
