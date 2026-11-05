@@ -17,9 +17,9 @@ import org.primefaces.model.SortMeta;
 import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.jsonschema.annotation.PortalSchemaIgnoreFields;
+import com.axonivy.portal.jsonschema.annotation.PortalSchemaInclude;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
@@ -118,7 +118,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   }
 
   @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-  @JsonProperty("canWorkOn")
+  @PortalSchemaInclude
   public boolean getCanWorkOn() {
     return this.dataModel.getCanWorkOn();
   }
@@ -128,6 +128,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   }
 
   @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+  @PortalSchemaInclude
   public boolean isFilterTasksByCurrentCaseOwner() {
     return this.dataModel.isFilterTasksByCurrentCaseOwner();
   }
@@ -155,6 +156,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     return null;
   }
 
+  @PortalSchemaInclude
   public String getSortField() {
     return this.dataModel.getCriteria().getSortField();
   }
@@ -164,6 +166,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   }
   
   @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+  @PortalSchemaInclude
   public boolean isSortDescending() {
     return this.dataModel.getCriteria().isSortDescending();
   }
@@ -180,6 +183,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.dataModel = dataModel;
   }
   
+  @PortalSchemaInclude
   public List<TaskColumnModel> getColumns() {
     return this.dataModel.getCriteria().getColumns();
   }
@@ -259,7 +263,8 @@ public class TaskDashboardWidget extends DashboardWidget {
       else {
         this.setQuickSearchKeyword(StringUtils.EMPTY);
   }}
-
+  
+  @PortalSchemaInclude
   public List<DashboardFilter> getFilters() {
     return this.dataModel.getCriteria().getFilters();
   }

@@ -21,12 +21,12 @@ public class PortalSchemaGenerator {
   
   private static SchemaGeneratorConfigBuilder config() {
     return new SchemaGeneratorConfigBuilder(SchemaVersion.DRAFT_2020_12, exportPreset())
-        .with(new JacksonSchemaModule(JacksonOption.ALWAYS_REF_SUBTYPES, JacksonOption.INCLUDE_ONLY_JSONPROPERTY_ANNOTATED_METHODS))
+        .with(new JacksonSchemaModule(JacksonOption.ALWAYS_REF_SUBTYPES))
         .with(new DashboardSchemaModule());
   }
 
   private static OptionPreset exportPreset() {
-       OptionPreset exportPreset = new OptionPreset(
+    return new OptionPreset(
            Option.SCHEMA_VERSION_INDICATOR,
            Option.ADDITIONAL_FIXED_TYPES,
            Option.STANDARD_FORMATS,
@@ -37,9 +37,8 @@ public class PortalSchemaGenerator {
            Option.FIELDS_DERIVED_FROM_ARGUMENTFREE_METHODS,
            Option.ALLOF_CLEANUP_AT_THE_END,
            Option.GETTER_METHODS,
+           Option.NONSTATIC_NONVOID_NONGETTER_METHODS,
            Option.DUPLICATE_MEMBER_ATTRIBUTE_CLEANUP_AT_THE_END
-   );
-   return exportPreset; 
+    );
   }
-
 }

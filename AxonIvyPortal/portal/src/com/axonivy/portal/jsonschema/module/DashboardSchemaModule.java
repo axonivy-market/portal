@@ -3,6 +3,7 @@ package com.axonivy.portal.jsonschema.module;
 import java.util.Arrays;
 
 import com.axonivy.portal.jsonschema.annotation.PortalSchemaIgnoreFields;
+import com.axonivy.portal.jsonschema.annotation.PortalSchemaInclude;
 import com.github.victools.jsonschema.generator.MemberScope;
 import com.github.victools.jsonschema.generator.Module;
 import com.github.victools.jsonschema.generator.SchemaGeneratorConfigBuilder;
@@ -11,6 +12,9 @@ public class DashboardSchemaModule implements Module {
   @Override
   public void applyToConfigBuilder(SchemaGeneratorConfigBuilder builder) {
     builder.forFields().withIgnoreCheck(this::shouldIgnore);
+    builder.forMethods()
+        .withIgnoreCheck(this::shouldIgnore)
+        .withIgnoreCheck(method -> method.getAnnotation(PortalSchemaInclude.class) == null);
   }
 
   private boolean shouldIgnore(MemberScope<?, ?> member) {
