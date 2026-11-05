@@ -582,6 +582,18 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of Axon Ivy.
 
+Changes in 14.0.2
+-----------------
+
+- Improved the performance of global search, case details and Excel export by no longer counting all matching tasks and cases:
+
+  - The global search results no longer show the number of results in the **View all results** link.
+  - The global search result page no longer counts the total number of tasks and cases. If your customized search
+    result page displays the row count, override ``SearchResultsDataModel.isCountDisabled()`` to return ``false``.
+  - The **Related Tasks** and **Technical Cases** panels in the case details page load more entries while scrolling
+    instead of showing a paginator.
+  - Exporting tasks and cases to Excel no longer counts them before exporting.
+
 Changes in 14.0.0
 -----------------
 
