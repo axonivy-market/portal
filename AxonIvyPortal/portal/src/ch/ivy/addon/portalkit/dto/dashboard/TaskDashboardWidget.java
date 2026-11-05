@@ -16,8 +16,10 @@ import org.primefaces.model.SortMeta;
 
 import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.jsonschema.annotation.PortalSchemaIgnoreFields;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
@@ -30,6 +32,7 @@ import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
+@PortalSchemaIgnoreFields({"name"})
 public class TaskDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 3246735956282078091L;
@@ -115,6 +118,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   }
 
   @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+  @JsonProperty("canWorkOn")
   public boolean getCanWorkOn() {
     return this.dataModel.getCanWorkOn();
   }

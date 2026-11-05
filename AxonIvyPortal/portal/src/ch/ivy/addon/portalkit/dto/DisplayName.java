@@ -5,8 +5,12 @@ import java.util.Locale;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-public class DisplayName {
+import io.github.axonivy.json.schema.annotations.CustomType;
+import io.github.axonivy.json.schema.annotations.Examples;
 
+public class DisplayName {
+  @CustomType(String.class)
+  @Examples({"en", "de", "fr", "es", "ja"})
   private Locale locale;
   private String value;
 
