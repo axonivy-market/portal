@@ -261,6 +261,19 @@ public class AdminSettingsPage extends TemplatePage {
     return findElementById("admin-setting-component:settingDialog");
   }
 
+  public SelenideElement getEditSettingDialog(String variableName) {
+    openSettingTab();
+    openGlobalVariableEditDialog(variableName);
+    waitForElementDisplayed(By.id("admin-setting-component:settingDialog"), true);
+    return $(By.id("admin-setting-component:settingDialog"));
+  }
+
+  public SelenideElement openSingleSelectionOptions() {
+    waitForElementClickableThenClick("[id='admin-setting-component:valueSetting_label']");
+    waitForElementDisplayed(By.id("admin-setting-component:valueSetting_panel"), true);
+    return $(By.id("admin-setting-component:valueSetting_panel"));
+  }
+
   public void closeEditSettingDialog() {
     $("[id='admin-setting-component:settingDialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();

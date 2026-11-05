@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import jakarta.annotation.PostConstruct;
 import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
@@ -16,6 +15,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.codeborne.selenide.WebDriverRunner;
+
+import jakarta.annotation.PostConstruct;
 
 public class ScreenshotUtils {
   private static final String SCREENSHOT_EXTENSION = ".png";
