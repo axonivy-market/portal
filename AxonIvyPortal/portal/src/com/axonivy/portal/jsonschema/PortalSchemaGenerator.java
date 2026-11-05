@@ -9,6 +9,7 @@ import com.github.victools.jsonschema.generator.SchemaVersion;
 import com.github.victools.jsonschema.module.jackson.JacksonOption;
 import com.github.victools.jsonschema.module.jackson.JacksonSchemaModule;
 
+import io.github.axonivy.json.schema.ExpressiveSchemaModule;
 import tools.jackson.databind.node.ObjectNode;
 
 public class PortalSchemaGenerator {
@@ -21,8 +22,9 @@ public class PortalSchemaGenerator {
   
   private static SchemaGeneratorConfigBuilder config() {
     return new SchemaGeneratorConfigBuilder(SchemaVersion.DRAFT_2020_12, exportPreset())
-        .with(new JacksonSchemaModule(JacksonOption.ALWAYS_REF_SUBTYPES))
-        .with(new DashboardSchemaModule());
+        .with(getJacksonSchemaModule())
+        .with(getDashboardSchemaModule())
+        .with(new ExpressiveSchemaModule());
   }
 
   private static OptionPreset exportPreset() {
@@ -40,5 +42,15 @@ public class PortalSchemaGenerator {
            Option.NONSTATIC_NONVOID_NONGETTER_METHODS,
            Option.DUPLICATE_MEMBER_ATTRIBUTE_CLEANUP_AT_THE_END
     );
+  }
+
+  private static JacksonSchemaModule getJacksonSchemaModule() {
+    return new JacksonSchemaModule(
+        JacksonOption.ALWAYS_REF_SUBTYPES,
+        JacksonOption.FLATTENED_ENUMS_FROM_JSONVALUE);
+  }
+
+  private static DashboardSchemaModule getDashboardSchemaModule() {
+    return new DashboardSchemaModule();
   }
 }
