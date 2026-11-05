@@ -79,6 +79,38 @@ HowTo: Update Portal Settings
   :class: longtable
   :widths: 20 20 60
 
+HowTo: Change the Task Header Mode
+==================================
+
+Use the :guilabel:`Portal.Tasks.HeaderMode` setting to control the header of the task view.
+The setting applies to tasks displayed with the iframe task template.
+
+#. Select the :guilabel:`Settings` tab.
+
+#. Open the |actions-menu-icon| menu of the :guilabel:`Portal.Tasks.HeaderMode` setting in the Actions column and select :guilabel:`Edit`.
+
+#. Select the value and click :guilabel:`Save`.
+
+   |task-header-mode|
+
+#. To reset the header mode to its default value, open the |actions-menu-icon| menu and select :guilabel:`Restore to default`.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 80
+
+   * - Value
+     - Effect on the task view
+   * - Default
+     - Shows the task name, process chain, case information button, and task actions menu.
+   * - Legacy
+     - Shows the compact task header known from Portal 12.
+   * - Hide
+     - Hides the task header, including the case information button and the task actions menu.
+
+.. warning::
+   With **Hide**, users cannot open case information or task actions from the task view.
+
 HowTo: Show/Hide the Announcement
 =================================
 
@@ -195,3 +227,5 @@ Steps to Configure Password Validation
    :alt: Admin setting: role creation dialog
 .. |password-validation-tab| image:: ../../screenshots/settings/password-validation-tab.png
    :alt: Admin setting: Password Validation
+.. |task-header-mode| image:: ../../screenshots/settings/task-header-mode.png
+   :alt: Task header mode setting with Default, Legacy, and Hide options

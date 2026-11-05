@@ -52,12 +52,16 @@
         <c:set var="headerStages" value="#{abstractTaskTemplateBean.getStagesBaseOnCurrentStage(case, steps)}" scope="request" />
         <c:set var="headerCurrentStageIndex" value="#{abstractTaskTemplateBean.getIndexOfCurrentStage(case)}" scope="request" />
         <c:set var="isHeaderEmpty" value="#{(isHideTaskName or currentTask eq null) and empty steps and empty headerStages and isHideCaseInfo and isHideTaskAction}" scope="request" />
-        <h:panelGroup id="header-container" layout="block" styleClass="task-header-container js-task-header-container #{isHeaderEmpty ? '' : 'task-template-title-horizontal-container card'}">
+        <h:panelGroup id="header-container" layout="block" rendered="#{!taskHeaderHidden}"
+          styleClass="task-header-container js-task-header-container #{isHeaderEmpty ? '' : 'task-template-title-horizontal-container'} #{isHeaderEmpty or isLegacyTaskHeader ? '' : 'card'} #{isLegacyTaskHeader ? 'task-header-legacy' : ''}">
           <h:panelGroup id="task-template-title" layout="block" rendered="#{currentTask ne null}"
             styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'js-task-name-vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
             <ui:insert name="taskName">
               <ui:fragment rendered="#{!isHideTaskName}">
-                <span class="portal-icon-container task-template-title-icon"><i class="#{taskIcon}" /></span>
+                <h:panelGroup layout="inline" rendered="#{isLegacyTaskHeader}" styleClass="#{legacyTaskIcon} task-template-title-icon" />
+                <ui:fragment rendered="#{!isLegacyTaskHeader}">
+                  <span class="portal-icon-container task-template-title-icon"><i class="#{taskIcon}" /></span>
+                </ui:fragment>
                 <h:outputText id="title" title="#{currentTask.names().current()}" value="#{not empty taskName ? taskName : currentTask.names().current()}" styleClass="task-title" />
               </ui:fragment>
             </ui:insert>
@@ -78,14 +82,14 @@
           </h:panelGroup>
   
           <h:panelGroup id="horizontal-task-template-tasks-command" styleClass="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction)}">
-            <p:commandButton id="horizontal-case-info" type="button" styleClass="rounded-button portal-icon-btn portal-icon-btn--lg"
+            <p:commandButton id="horizontal-case-info" type="button" styleClass="#{isLegacyTaskHeader ? 'rounded-button ui-button-outlined' : 'rounded-button portal-icon-btn portal-icon-btn--lg'}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}"
-              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="ti ti-folders"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="#{isLegacyTaskHeader ? 'si si-folder-search' : 'ti ti-folders'}"
               onclick="openCaseInfo()" rendered="#{!isHideCaseInfo}"
               global="false" />
-            <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="rounded-button portal-icon-btn portal-icon-btn--lg"
+            <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="#{isLegacyTaskHeader ? 'rounded-button ui-button-outlined' : 'rounded-button portal-icon-btn portal-icon-btn--lg'}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ti ti-list-search" />
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="#{isLegacyTaskHeader ? 'si si-navigation-menu' : 'ti ti-list-search'}" />
           
             <h:form id="horizontal-task-action-form">
               <p:menu id="horizontal-task-action-menu" overlay="true" trigger="horizontal-task-actions" my="right top" at="right bottom"

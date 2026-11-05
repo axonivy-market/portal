@@ -310,6 +310,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
       showTooltipTechnicalName: Activer l'affichage du nom technique des utilisateurs dans les infobulles.
       sidebarMode: Contrôle le mode de la barre latérale. Survol s'ouvre au survol, Clic utilise un bouton bascule, Fixe la garde toujours ouverte, Masqué supprime complètement la barre latérale.
+      taskHeaderMode: Contrôle la barre d'en-tête au-dessus du contenu de la tâche. Par défaut affiche l'en-tête actuel, Legacy affiche l'ancien en-tête compact, Masqué supprime complètement l'en-tête.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
     key: Clé
     loading: CHARGEMENT
@@ -2074,6 +2075,10 @@ Labels:
       HIDDEN: Masqué
       HOVER: Survol
       STICK: Fixe
+    TaskHeaderMode:
+      DEFAULT: Par défaut
+      HIDDEN: Masqué
+      LEGACY: Legacy
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
