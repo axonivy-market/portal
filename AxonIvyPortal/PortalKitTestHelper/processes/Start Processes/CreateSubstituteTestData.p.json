@@ -1,0 +1,54 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "19A4B7C802DA0012",
+  "config" : {
+    "data" : "portalKit_test.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "createSubstituteTestData.ivp",
+      "config" : {
+        "signature" : "createSubstituteTestData",
+        "request" : {
+          "name" : "Make Marissa Accountant a substitute for all portal users"
+        },
+        "case" : {
+          "name" : "Create substitute test data with Marissa Accountant",
+          "attachToBusinessCase" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 120, "y" : 80 }
+      },
+      "connect" : [
+        { "id" : "f1", "to" : "f2" }
+      ]
+    }, {
+      "id" : "f2",
+      "type" : "Script",
+      "name" : "Add Marissa as substitute for every user",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.test.util.SubstituteTestData;",
+            "int created = SubstituteTestData.createSubstitutes();",
+            "ivy.log.info(\"Created \" + created + \" substitute entries using existing users and roles; Marissa is assigned as substitute for all users.\");"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 120, "y" : 200 }
+      },
+      "connect" : [
+        { "id" : "f3", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 120, "y" : 320 }
+      }
+    } ]
+}
