@@ -1,6 +1,6 @@
 package com.axonivy.portal.jsonschema;
 
-import com.axonivy.portal.jsonschema.module.DashboardSchemaModule;
+import com.axonivy.portal.jsonschema.module.PortalSchemaModule;
 import com.github.victools.jsonschema.generator.Option;
 import com.github.victools.jsonschema.generator.OptionPreset;
 import com.github.victools.jsonschema.generator.SchemaGenerator;
@@ -23,7 +23,7 @@ public class PortalSchemaGenerator {
   private static SchemaGeneratorConfigBuilder config() {
     return new SchemaGeneratorConfigBuilder(SchemaVersion.DRAFT_2020_12, exportPreset())
         .with(getJacksonSchemaModule())
-        .with(getDashboardSchemaModule())
+        .with(new PortalSchemaModule())
         .with(new ExpressiveSchemaModule());
   }
 
@@ -33,7 +33,6 @@ public class PortalSchemaGenerator {
            Option.ADDITIONAL_FIXED_TYPES,
            Option.STANDARD_FORMATS,
            Option.FLATTENED_ENUMS,
-           Option.FLATTENED_OPTIONALS,
            Option.PUBLIC_NONSTATIC_FIELDS,
            Option.NONPUBLIC_NONSTATIC_FIELDS_WITH_GETTERS,
            Option.FIELDS_DERIVED_FROM_ARGUMENTFREE_METHODS,
@@ -49,9 +48,5 @@ public class PortalSchemaGenerator {
     return new JacksonSchemaModule(
         JacksonOption.ALWAYS_REF_SUBTYPES,
         JacksonOption.FLATTENED_ENUMS_FROM_JSONVALUE);
-  }
-
-  private static DashboardSchemaModule getDashboardSchemaModule() {
-    return new DashboardSchemaModule();
   }
 }

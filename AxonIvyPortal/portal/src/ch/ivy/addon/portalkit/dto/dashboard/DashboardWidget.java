@@ -12,7 +12,6 @@ import org.apache.commons.lang3.Strings;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
-import com.axonivy.portal.jsonschema.annotation.PortalSchemaIgnoreFields;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -49,12 +48,11 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@PortalSchemaIgnoreFields({"name", "header"})
 public abstract class DashboardWidget implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;
   private static final Integer NUMBER_OF_MOCK_ITEMS = LiveScrollLazyModel.DEFAULT_CHUNK_SIZE;
-  
+
   protected String id;
   @Deprecated(since = "10.0", forRemoval = true)
   @JsonProperty(access = Access.WRITE_ONLY)
@@ -101,8 +99,7 @@ public abstract class DashboardWidget implements Serializable {
   public void buildStatisticInfos() {}
 
   @JsonIgnore
-  public void setQuickSearchKeyword() {
-  }
+  public void setQuickSearchKeyword() {}
 
   @JsonIgnore
   public void updateQuickSearchKeyword() {
@@ -123,14 +120,14 @@ public abstract class DashboardWidget implements Serializable {
     this.setUserDefinedFiltersCount(Optional.empty());
     resetWidgetFilters();
     userFilterCollection = new UserFilterCollection(id, getType());
-    
+
     if (StringUtils.isNotBlank(this.quickSearchKeyword)) {
       userFilterCollection.setQuickSearchKeyword(this.quickSearchKeyword);
     }
 
     onApplyUserFilters();
   }
-  
+
   @JsonIgnore
   public abstract void resetWidgetFilters();
 
@@ -240,11 +237,11 @@ public abstract class DashboardWidget implements Serializable {
   public void setLayout(WidgetLayout layout) {
     this.layout = layout;
   }
-  
+
   public boolean getAutoPosition() {
     return autoPosition;
   }
-  
+
   public void setAutoPosition(boolean autoPosition) {
     this.autoPosition = autoPosition;
   }
