@@ -25,7 +25,6 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -44,7 +43,7 @@ public class DashboardTaskSearchCriteria {
   private boolean isInConfiguration;
   private String quickSearchKeyword;
   private boolean showPinnedItem;
-  private List<String> excludeTechnicalTaskStates;// = Arrays.asList(TaskState.CREATED);
+  private List<String> excludeTechnicalTaskStates;
 
   public TaskQuery buildQuery() {
     TaskQuery query = buildQueryWithoutOrderByClause();
@@ -66,14 +65,12 @@ public class DashboardTaskSearchCriteria {
   }
   
   private void queryExcludeTechnicalStates(TaskQuery query) {
-    Ivy.log().error("EXCLUDE INPUT: " + excludeTechnicalTaskStates);
     if (CollectionUtils.isNotEmpty(excludeTechnicalTaskStates)) {
       List<TaskState> convertedTechnicalTaskStates = excludeTechnicalTaskStates.stream()
           .flatMap(state -> Arrays.stream(TaskState.values())
               .filter(taskState -> taskState.name().equalsIgnoreCase(state)))
           .collect(Collectors.toList());
   
-      Ivy.log().error("EXCLUDE REAL: " + convertedTechnicalTaskStates);
       if (CollectionUtils.isNotEmpty(convertedTechnicalTaskStates)) {
         query.where().state().isNotIn(convertedTechnicalTaskStates);
       }
