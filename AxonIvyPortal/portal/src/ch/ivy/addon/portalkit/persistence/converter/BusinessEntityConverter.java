@@ -49,7 +49,7 @@ public class BusinessEntityConverter {
   
   private static String objectEntityToJsonValueExcludeInternalView(Object entity) {
     try {
-      return getObjectMapper().writerWithView(PortalJsonViews.Public.class).writeValueAsString(wrapIfList(entity));
+      return getObjectMapper().writerWithView(PortalJsonViews.Public.class).withDefaultPrettyPrinter().writeValueAsString(wrapIfList(entity));
     } catch (JacksonException e) {
       throw new PortalException(e);
     }
