@@ -67,6 +67,38 @@ public class AbsencePage extends TemplatePage {
     return $(deputiesSelector).shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
+  public void searchSubstitutes(String keyword) {
+    $(".substitute-table input[id$='globalFilter']").shouldBe(appear, DEFAULT_TIMEOUT).setValue(keyword);
+  }
+
+  public void searchSubstitutions(String keyword) {
+    $(".substitution-table input[id$='globalFilter']").shouldBe(appear, DEFAULT_TIMEOUT).setValue(keyword);
+  }
+
+  public void waitForSubstituteDeputy(int rowIndex, String deputyName) {
+    $$("tbody[id$='substitute-table_data'] tr:not(.ui-datatable-empty-message)")
+        .get(rowIndex).shouldHave(Condition.text(deputyName), DEFAULT_TIMEOUT);
+  }
+
+  public void waitForSubstituteRowCount(int expectedRowCount) {
+    $$("tbody[id$='substitute-table_data'] tr:not(.ui-datatable-empty-message)")
+        .shouldHave(CollectionCondition.size(expectedRowCount), DEFAULT_TIMEOUT);
+  }
+
+  public void waitForSubstitutionOwner(int rowIndex, String ownerName) {
+    $$("tbody[id$='substitution-table_data'] tr:not(.ui-datatable-empty-message)")
+        .get(rowIndex).shouldHave(Condition.text(ownerName), DEFAULT_TIMEOUT);
+  }
+
+  public void waitForSubstitutionRowCount(int expectedRowCount) {
+    $$("tbody[id$='substitution-table_data'] tr:not(.ui-datatable-empty-message)")
+        .shouldHave(CollectionCondition.size(expectedRowCount), DEFAULT_TIMEOUT);
+  }
+
+  public void openLastSubstitutionPage() {
+    $(".substitution-table .ui-paginator-last").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
+
   public String getIAMDeputyFor() {
     ElementsCollection noteAuthorElements = $$("tbody[id*='substitution-table_data'] > tr > td");
     return noteAuthorElements.asFixedIterable().stream().map(w -> w.getText()).collect(Collectors.joining());
