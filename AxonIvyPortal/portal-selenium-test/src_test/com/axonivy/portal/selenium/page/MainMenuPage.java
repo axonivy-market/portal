@@ -118,7 +118,8 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public void clickMainMenuItem(String name) {
-    $("[title='" + name + "']").click();
+    $("[id$='main-navigator:main-menu']").$("a[aria-label='" + name + "']")
+        .shouldBe(clickable(), DEFAULT_TIMEOUT).click();
   }
 
   public void assertThirdPartyApp(String url) {
