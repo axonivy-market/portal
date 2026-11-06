@@ -237,15 +237,12 @@
                   </div>
                   <div id="deputy-management" class="w-full" jsf:rendered="#{absenceManagementBean.canReadSubstitute(absenceManagementBean.selectedAbsenceUser)}">
                     <div id="username-deputy" class="w-full your-deputy">
-                      <div class="setting-header w-full">
-                        <p class="mb-0 text-style-h3">#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/definedDeputies'
-                          : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myDeputies')}</p>
-                      </div>
                       <div class="w-full pl-0">
-                        <p:dataTable cellNavigation="false" id="substitute-table"
+                        <p:dataTable cellNavigation="false" id="substitute-table" widgetVar="substituteTable" partialUpdate="false"
                           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/noSubstitutesDefined')}"
                           styleClass="substitute-table" reflow="true"
-                          value="#{absenceManagementBean.filteredDeputyRoleList}" var="deputyRole"
+                          value="#{absenceManagementBean.deputyRoleList}" var="deputyRole"
+                          globalFilterOnly="true" globalFilterFunction="#{absenceManagementBean.filterSubstitutes}"
                           rendered="#{absenceManagementBean.canReadSubstitute(absenceManagementBean.selectedUser)}"
                           paginator="true" rows="4"
                           paginatorAlwaysVisible="false"
@@ -253,6 +250,22 @@
                           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
                           lazy="false">
+                          <p:ajax event="page" global="false" />
+                          <p:ajax event="filter" global="false" />
+                          <f:facet name="header">
+                            <div class="setting-header w-full flex align-items-center justify-content-between flex-wrap gap-2">
+                              <p class="mb-0 text-style-h3">#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/definedDeputies'
+                                : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myDeputies')}</p>
+                              <h:panelGroup styleClass="ui-input-icon-left">
+                                <i class="ti ti-search" aria-hidden="true" />
+                                <p:inputText id="globalFilter" styleClass="substitute-search"
+                                  placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/SearchSubstitutes')}"
+                                  aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/SearchSubstitutes')}"
+                                  onkeypress="if (event.keyCode == 13) { return false; }"
+                                  oninput="PrimeFaces.debounce(function() { PF('substituteTable').filter(); }, 300)" />
+                              </h:panelGroup>
+                            </div>
+                          </f:facet>
                           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}"
                             sortBy="#{deputyRole.deputyRoleDisplayName}" sortOrder="ASC">
                             <h:outputText value="#{deputyRole.deputyRoleDisplayName}"
@@ -298,21 +311,34 @@
                   <!--     END OF DEPUTY ============ -->
                   <!-- Deputy-For setting-->
                   <div id="deputy-for-container" class="w-full your-deputy-for" jsf:rendered="#{absenceManagementBean.substitutionCapable}">
-                    <div class="setting-header w-full">
-                      <p class="mb-0 text-style-h3">#{ivy.cms.co(absenceManagementBean.supervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedDeputyFor'
-                        : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}</p>
-                    </div>
                     <div class="w-full pl-0">
-                      <p:dataTable cellNavigation="false" id="substitution-table"
+                      <p:dataTable cellNavigation="false" id="substitution-table" widgetVar="substitutionTable" partialUpdate="false"
                         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/notSubstitutingAnybody')}"
                         styleClass="substitution-table w-full pl-0"
                         reflow="true" value="#{absenceManagementBean.substitutions}"
+                        globalFilterOnly="true" globalFilterFunction="#{absenceManagementBean.filterSubstituteForSelectedUser}"
                         var="substitution" paginator="true" rows="4"
                         paginatorAlwaysVisible="false" paginatorPosition="bottom" pageLinks="3"
                         sortMode="single"
                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
                         lazy="false">
+                        <p:ajax event="page" global="false" />
+                        <p:ajax event="filter" global="false" />
+                        <f:facet name="header">
+                          <div class="setting-header w-full flex align-items-center justify-content-between flex-wrap gap-2">
+                            <p class="mb-0 text-style-h3">#{ivy.cms.co(absenceManagementBean.supervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedDeputyFor'
+                              : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}</p>
+                            <h:panelGroup styleClass="ui-input-icon-left">
+                              <i class="ti ti-search" aria-hidden="true" />
+                              <p:inputText id="globalFilter" styleClass="substitute-search"
+                                placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/SearchSubstitutes')}"
+                                aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/SearchSubstitutes')}"
+                                onkeypress="if (event.keyCode == 13) { return false; }"
+                                oninput="PrimeFaces.debounce(function() { PF('substitutionTable').filter(); }, 300)" />
+                            </h:panelGroup>
+                          </div>
+                        </f:facet>
                         <p:column
                           headerText="#{ivy.cms.co(absenceManagementBean.supervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedDeputyFor' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}"
                           sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(substitution.ownerUser, substitution.ownerUser.name)}">
