@@ -32,6 +32,7 @@ public class CaseBehaviorsTest extends BaseTest {
     super.setup();
     login(TestAccount.ADMIN_USER);
     grantSpecificPortalPermission(PortalPermission.SHOW_CASE_DETAILS);
+    updateGlobalVariable(Variable.CASE_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_CASE_LIST.getKey(), ACCESS_CASE_DETAILS);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
   }
 
