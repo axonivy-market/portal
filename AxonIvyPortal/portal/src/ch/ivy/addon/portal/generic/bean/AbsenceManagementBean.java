@@ -12,6 +12,9 @@ import static ch.ivyteam.ivy.security.IPermission.USER_READ_OWN_SUBSTITUTES;
 import static ch.ivyteam.ivy.security.IPermission.USER_READ_SUBSTITUTES;
 
 import java.io.Serializable;
+import java.util.Locale;
+
+import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -19,7 +22,10 @@ import javax.faces.bean.ViewScoped;
 
 import com.axonivy.portal.components.dto.UserDTO;
 
+import ch.ivy.addon.portalkit.dto.DeputyRole;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
+import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
+import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -128,6 +134,30 @@ public class AbsenceManagementBean implements Serializable{
     this.absencesDeletable = absencesDeletable;
   }
   
+  public boolean filterSubstitutes(Object value, Object filter, Locale ignoredLocale) {
+    String keyword = StringUtils.trimToEmpty(filter == null ? null : filter.toString());
+    if (keyword.isEmpty()) {
+      return true;
+    }
+    DeputyRole deputyRole = (DeputyRole) value;
+    return StringUtils.containsIgnoreCase(deputyRole.getDeputyRoleDisplayName(), keyword)
+        || deputyRole.getDeputies().stream().anyMatch(deputy -> StringUtils.containsIgnoreCase(
+            SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(deputy, deputy.getMemberName()),
+            keyword));
+  }
+
+  public boolean filterSubstituteForSelectedUser(Object value, Object filter, Locale ignoredLocale) {
+    String keyword = StringUtils.trimToEmpty(filter == null ? null : filter.toString());
+    if (keyword.isEmpty()) {
+      return true;
+    }
+    IvySubstitute substitution = (IvySubstitute) value;
+    IUser owner = substitution.getOwnerUser();
+    return (owner != null && (StringUtils.containsIgnoreCase(owner.getDisplayName(), keyword)
+        || StringUtils.containsIgnoreCase(owner.getName(), keyword)))
+        || StringUtils.containsIgnoreCase(substitution.getSubstitionRoleDisplayName(), keyword);
+  }
+
   private UserDTO getCurrentUserAsDefaultIfEmpty(UserDTO selectedUser) {
     if (selectedUser == null || selectedUser.getName() == null) {
       return new UserDTO(Ivy.session().getSessionUser());
