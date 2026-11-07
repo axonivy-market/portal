@@ -180,14 +180,15 @@ public class AbsencePage extends TemplatePage {
   public void canDeleteAbsence(int index) {
     clickOnAbsenceAction(index);
     waitForElementDisplayed($(By.id(String.format(DELETE_ABSENCE__LINK_ID_PATTERN, index))), true);
-    //Click to close
-    clickOnAbsenceAction(index);
+    $(".absence-table thead th.absences-table-action-column").click();
+    $(By.id(String.format(DELETE_ABSENCE__LINK_ID_PATTERN, index))).shouldBe(Condition.hidden, DEFAULT_TIMEOUT);
   }
 
   public void canEditAbsence(int index) {
     clickOnAbsenceAction(index);
     waitForElementDisplayed($(By.id(String.format(EDIT_ABSENCE__LINK_ID_PATTERN, index))), true);
-    clickOnAbsenceAction(index);
+    $(".absence-table thead th.absences-table-action-column").click();
+    $(By.id(String.format(EDIT_ABSENCE__LINK_ID_PATTERN, index))).shouldBe(Condition.hidden, DEFAULT_TIMEOUT);
   }
 
   public void isDeputySettingSectionDisplayed(boolean isDisplay) {
