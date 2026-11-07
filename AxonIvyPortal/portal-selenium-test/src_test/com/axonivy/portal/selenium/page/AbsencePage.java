@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -176,18 +177,21 @@ public class AbsencePage extends TemplatePage {
 
   public void clickOnAbsenceAction(int index) {
     $(By.id(String.format(ABSENCE_ACTION_BUTTON_PATTERN, index))).click();
+    WaitHelper.waitPageNoAjaxAndAnimation();
   }
   public void canDeleteAbsence(int index) {
     clickOnAbsenceAction(index);
     waitForElementDisplayed($(By.id(String.format(DELETE_ABSENCE__LINK_ID_PATTERN, index))), true);
     //Click to close
     clickOnAbsenceAction(index);
+    waitForElementDisplayed($(By.id(String.format(DELETE_ABSENCE__LINK_ID_PATTERN, index))), false);
   }
 
   public void canEditAbsence(int index) {
     clickOnAbsenceAction(index);
     waitForElementDisplayed($(By.id(String.format(EDIT_ABSENCE__LINK_ID_PATTERN, index))), true);
     clickOnAbsenceAction(index);
+    waitForElementDisplayed($(By.id(String.format(EDIT_ABSENCE__LINK_ID_PATTERN, index))), false);
   }
 
   public void isDeputySettingSectionDisplayed(boolean isDisplay) {
