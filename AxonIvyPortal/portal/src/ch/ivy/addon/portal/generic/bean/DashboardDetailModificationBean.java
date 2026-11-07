@@ -442,6 +442,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       this.getSelectedDashboard().setWidgets(new ArrayList<>());
     }
     List<DashboardWidget> widgets = this.getSelectedDashboard().getWidgets();
+    List<String> excludeTechnicalTaskStates = null;
     switch (widget.getType()) {
       case PROCESS -> {
         ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
@@ -492,6 +493,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       case CASE -> {
         updateCaseWidget(widget);
       }
+      case TASK -> {
+        TaskDashboardWidget taskDashboardWidget = (TaskDashboardWidget) widget;
+        excludeTechnicalTaskStates = taskDashboardWidget.getExcludeTechnicalTaskStates();
+      }
       default -> {}
     }
     updateWidgetPosition(widget);
@@ -505,6 +510,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       widgets.set(widgets.indexOf(this.widget), this.widget);
     } else {
       widgets.add(widget);
+    }
+    
+    if (widget.getType() == DashboardWidgetType.TASK && CollectionUtils.isNotEmpty(excludeTechnicalTaskStates)) {
+      ((TaskDashboardWidget) widget).setExcludeTechnicalTaskStates(excludeTechnicalTaskStates);;
     }
     saveSelectedWidget();
     newWidgetId = widget.getId();

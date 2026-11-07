@@ -69,3 +69,4 @@ The ``portal-developer-examples`` project provides working examples of all custo
    side-step
    extend-task-leave-and-reserve-actions
    growl-message-customization
+   exclude-technical-task-state
