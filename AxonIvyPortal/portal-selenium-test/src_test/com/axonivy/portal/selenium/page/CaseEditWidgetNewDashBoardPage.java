@@ -112,7 +112,10 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement openColumnManagementDialog() {
-    $("div[id$='case-widget-preview:dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    // During closing, the filter's click handler can apply again and replace the column dialog.
+    $(caseEditWidgetId).$("div[id$='widget-filter-content']")
+        .shouldHave(Condition.cssValue("width", "0px"), DEFAULT_TIMEOUT);
+    waitPreviewTableLoaded();
     $("button[id$=':manage-column']").shouldBe(getClickableCondition()).click();
     return getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
   }
