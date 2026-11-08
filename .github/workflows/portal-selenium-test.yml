@@ -373,14 +373,21 @@ jobs:
       
         - name: Run test
           id: run-test
+          shell: bash
           run: |
-            mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Divy.engine.download.url=${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2
+            mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Divy.engine.download.url=${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2 2>&1 | tee "$RUNNER_TEMP/selenium-test-run.log"
           continue-on-error: true
 
-        - name: Log out on failures
-          if: steps.run-test.outcome == 'failure'
-          run: |
-            cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
+        - name: Archive test diagnostics
+          if: always()
+          uses: actions/upload-artifact@v7
+          with:
+            name: selenium-test-diagnostics
+            retention-days: 5
+            path: |
+              ${{ runner.temp }}/selenium-test-run.log
+              AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
+              ${{ env.ENGINE_DIR }}/logs/
 
         - name: Archive screenshot image
           uses: actions/upload-artifact@v7
