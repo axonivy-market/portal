@@ -31,7 +31,7 @@ import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardTaskWidgetTest extends BaseTest {
 
   // WIDGET
