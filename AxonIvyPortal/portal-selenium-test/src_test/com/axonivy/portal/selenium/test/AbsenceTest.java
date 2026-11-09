@@ -199,13 +199,13 @@ public class AbsenceTest extends BaseTest {
     absencePage.setSubstitutedByAdmin(TestAccount.GUEST_USER.getFullName());
     absencePage.waitForSubstitutionRowCount(0);
     absencePage.searchSubstitutions("");
-    absencePage.waitForSubstitutionRowCount(4);
+    absencePage.waitForSubstitutionRowCount(5);
     absencePage.openLastSubstitutionPage();
     absencePage.waitForSubstitutionRowCount(1);
     absencePage.searchSubstitutions(TestAccount.CASE_OWNER_USER.getFullName());
     absencePage.waitForSubstitutionOwner(0, TestAccount.CASE_OWNER_USER.getFullName());
     absencePage.searchSubstitutions("");
-    absencePage.waitForSubstitutionRowCount(4);
+    absencePage.waitForSubstitutionRowCount(5);
   }
 
   private void createSearchSubstitution(TestAccount owner, TestAccount deputy, DeputyRoleType roleType) {

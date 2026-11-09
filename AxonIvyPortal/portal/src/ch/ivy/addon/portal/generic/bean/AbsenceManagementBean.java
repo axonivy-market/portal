@@ -153,7 +153,8 @@ public class AbsenceManagementBean implements Serializable{
     }
     IvySubstitute substitution = (IvySubstitute) value;
     IUser owner = substitution.getOwnerUser();
-    return (owner != null && (StringUtils.containsIgnoreCase(owner.getDisplayName(), keyword)
+    return (owner != null && (StringUtils.containsIgnoreCase(
+            SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(owner, owner.getName()), keyword)
         || StringUtils.containsIgnoreCase(owner.getName(), keyword)))
         || StringUtils.containsIgnoreCase(substitution.getSubstitionRoleDisplayName(), keyword);
   }
