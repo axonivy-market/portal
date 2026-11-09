@@ -68,11 +68,21 @@ public class AbsencePage extends TemplatePage {
   }
 
   public void searchSubstitutes(String keyword) {
-    $(".substitute-table input[id$='globalFilter']").shouldBe(appear, DEFAULT_TIMEOUT).setValue(keyword);
+    SelenideElement searchField = $(".substitute-table input[id$='globalFilter']").shouldBe(appear, DEFAULT_TIMEOUT);
+    if (keyword.isEmpty()) {
+      searchField.clear();
+      return;
+    }
+    searchField.setValue(keyword);
   }
 
   public void searchSubstitutions(String keyword) {
-    $(".substitution-table input[id$='globalFilter']").shouldBe(appear, DEFAULT_TIMEOUT).setValue(keyword);
+    SelenideElement searchField = $(".substitution-table input[id$='globalFilter']").shouldBe(appear, DEFAULT_TIMEOUT);
+    if (keyword.isEmpty()) {
+      searchField.clear();
+      return;
+    }
+    searchField.setValue(keyword);
   }
 
   public void waitForSubstituteDeputy(int rowIndex, String deputyName) {
