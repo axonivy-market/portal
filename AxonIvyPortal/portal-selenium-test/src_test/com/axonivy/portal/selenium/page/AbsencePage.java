@@ -182,12 +182,14 @@ public class AbsencePage extends TemplatePage {
     waitForElementDisplayed($(By.id(String.format(DELETE_ABSENCE__LINK_ID_PATTERN, index))), true);
     //Click to close
     clickOnAbsenceAction(index);
+    waitForElementDisplayed($(By.id(String.format(DELETE_ABSENCE__LINK_ID_PATTERN, index))), false);
   }
 
   public void canEditAbsence(int index) {
     clickOnAbsenceAction(index);
     waitForElementDisplayed($(By.id(String.format(EDIT_ABSENCE__LINK_ID_PATTERN, index))), true);
     clickOnAbsenceAction(index);
+    waitForElementDisplayed($(By.id(String.format(EDIT_ABSENCE__LINK_ID_PATTERN, index))), false);
   }
 
   public void isDeputySettingSectionDisplayed(boolean isDisplay) {
