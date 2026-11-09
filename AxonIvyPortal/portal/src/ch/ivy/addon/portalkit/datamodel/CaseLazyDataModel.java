@@ -138,6 +138,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
       }
     }
 
+    criteria.setColumns(selectedColumns);
     List<ICase> foundCases = findCases(criteria, first, pageSize);
     if (disableCaseCount) {
       int rowCount = 0;

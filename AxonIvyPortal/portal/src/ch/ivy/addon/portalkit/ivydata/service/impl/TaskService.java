@@ -24,6 +24,7 @@ import java.util.Map;
 import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.bo.ItemByCategoryStatistic;
+import com.axonivy.portal.util.EagerlyFetchUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
@@ -62,6 +63,9 @@ public class TaskService {
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithUserHasPermissionToSee(criteria);
+      if (EagerlyFetchUtils.shouldEagerlyFetch(count)) {
+        EagerlyFetchUtils.eagerlyFetchDataOfColumnNames(finalQuery, criteria.getColumns());
+      }
       result.setTasks(executeTaskQuery(finalQuery, startIndex, count));
       return result;
     });

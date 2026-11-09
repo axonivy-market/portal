@@ -240,6 +240,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       }
     }
 
+    criteria.setColumns(selectedColumns);
     List<ITask> foundTasks = findTasks(criteria, first, pageSize);
     if (disableTaskCount) {
       int rowCount = 0;

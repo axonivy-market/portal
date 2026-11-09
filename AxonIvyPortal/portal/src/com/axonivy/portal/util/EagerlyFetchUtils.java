@@ -5,9 +5,11 @@ import java.util.List;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
+import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -59,6 +61,37 @@ public final class EagerlyFetchUtils {
       } else if (column.getType() == DashboardColumnType.CUSTOM) {
         eagerlyFetchCustomFields(column, query.eagerlyFetch()::customStringFields,
             query.eagerlyFetch()::customNumberFields, query.eagerlyFetch()::customTimestampFields);
+      }
+    }
+    return query;
+  }
+
+  public static TaskQuery eagerlyFetchDataOfColumnNames(TaskQuery query, List<String> columns) {
+    if (columns == null) {
+      return query;
+    }
+    for (String column : columns) {
+      if (TaskSortField.NAME.name().equalsIgnoreCase(column)) {
+        query.eagerlyFetch().tasks().nameAndDescription();
+      } else if (TaskSortField.CATEGORY.name().equalsIgnoreCase(column)
+          || TaskSortField.TECHNICAL_CASE_ID.name().equalsIgnoreCase(column)) {
+        query.eagerlyFetch().cases().data();
+      } else if (TaskSortField.BUSINESS_CASE_ID.name().equalsIgnoreCase(column)) {
+        query.eagerlyFetch().businessCases().data();
+      }
+    }
+    return query;
+  }
+
+  public static CaseQuery eagerlyFetchDataOfColumnNames(CaseQuery query, List<String> columns) {
+    if (columns == null) {
+      return query;
+    }
+    for (String column : columns) {
+      if (CaseSortField.NAME.name().equalsIgnoreCase(column)) {
+        query.eagerlyFetch().nameAndDescription();
+      } else if (CaseSortField.OWNER.name().equalsIgnoreCase(column)) {
+        query.eagerlyFetch().owners();
       }
     }
     return query;
