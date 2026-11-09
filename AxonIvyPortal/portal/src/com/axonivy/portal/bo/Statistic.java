@@ -1,7 +1,6 @@
 package com.axonivy.portal.bo;
 
 import java.io.Serializable;
-
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -18,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import ch.ivy.addon.portalkit.bo.PortalJsonViews;
@@ -101,6 +101,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
     this.filter = filter;
   }
 
+  @JsonPropertyDescription("Auto-refresh interval in seconds.")
   public Integer getRefreshInterval() {
     return refreshInterval;
   }
@@ -241,6 +242,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
     this.isCustom = isCustom;
   }
 
+  @JsonPropertyDescription("Defines how data is grouped and calculated.")
   public StatisticAggregation getStatisticAggregation() {
     return statisticAggregation;
   }
@@ -249,6 +251,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
     this.statisticAggregation = statisticAggregation;
   }
   
+  @JsonPropertyDescription("Apply dynamic coloring rules to your charts based on data conditions.")
   public List<ThresholdStatisticChart> getThresholdStatisticCharts() {
     return thresholdStatisticCharts;
   }
@@ -289,6 +292,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
     return chartDrillDownEnabled && StringUtils.isEmpty(aggregates) && StringUtils.isEmpty(filter) && supportedDrillDownAggregation && hasRequiredReadAllPermission;
   }
 
+  @JsonPropertyDescription("Enable drill-down functionality for interactive data exploration.")
   public boolean getChartDrillDownEnabled() {
     return chartDrillDownEnabled;
   }

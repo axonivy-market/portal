@@ -7,8 +7,11 @@ import com.axonivy.portal.enums.statistic.AggregationInterval;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import io.github.axonivy.json.schema.annotations.CustomType;
+import io.github.axonivy.json.schema.annotations.Examples;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class StatisticAggregation implements Serializable {
@@ -18,6 +21,8 @@ public class StatisticAggregation implements Serializable {
   private String field;
   @JsonProperty(access = Access.WRITE_ONLY)
   private String customFieldValue;
+
+  @CustomType(StatisticAggregationColumnType.class)
   private DashboardColumnType type;
   private AggregationInterval interval;
 
@@ -32,6 +37,8 @@ public class StatisticAggregation implements Serializable {
     this.interval = interval;
   }
 
+  @JsonPropertyDescription("Field to group by.")
+  @Examples({"state", "priority"})
   public String getField() {
     return field;
   }
@@ -56,6 +63,8 @@ public class StatisticAggregation implements Serializable {
     this.customFieldValue = customFieldValue;
   }
 
+  @JsonPropertyDescription("Numeric custom field for calculations.")
+  @Examples({"InvoiceTotalAmount"})
   public String getKpiField() {
     return kpiField;
   }
@@ -64,6 +73,8 @@ public class StatisticAggregation implements Serializable {
     this.kpiField = kpiField;
   }
 
+  @JsonPropertyDescription("Calculation method.")
+  @Examples({"sum", "avg", "max", "min"})
   public String getAggregationMethod() {
     return Objects.isNull(this.kpiField) || this.kpiField.isEmpty() ? "" : aggregationMethod;
   }
@@ -72,4 +83,7 @@ public class StatisticAggregation implements Serializable {
     this.aggregationMethod = aggregationMethod;
   }
 
+  private enum StatisticAggregationColumnType {
+    STANDARD, CUSTOM;
+  }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
@@ -53,6 +54,7 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
   @Override
   public void resetWidgetFilters() {}
 
+  @JsonPropertyDescription("IWebStartable identifier of the process to display.")
   public String getProcessPath() {
     return processPath;
   }

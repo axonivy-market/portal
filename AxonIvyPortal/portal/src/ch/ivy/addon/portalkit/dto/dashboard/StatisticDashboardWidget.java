@@ -2,9 +2,11 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeTrue;
+import io.github.axonivy.json.schema.annotations.RemoteRef;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class StatisticDashboardWidget extends DashboardWidget {
@@ -27,6 +29,8 @@ public class StatisticDashboardWidget extends DashboardWidget {
     return DashboardWidgetType.STATISTIC;
   }
 
+  @JsonPropertyDescription("ID of an existing statistic chart. Define the chart in the statistics JSON configuration first, then set this field to the chart's id.")
+  @RemoteRef("/schemas/statisic-schema.json")
   public String getChartId() {
     return chartId;
   }

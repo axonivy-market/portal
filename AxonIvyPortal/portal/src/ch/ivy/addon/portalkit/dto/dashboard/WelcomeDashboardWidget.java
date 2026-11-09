@@ -8,6 +8,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
@@ -18,6 +19,7 @@ import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivyteam.ivy.cm.ContentObject;
+import io.github.axonivy.json.schema.annotations.Examples;
 
 public class WelcomeDashboardWidget extends DashboardWidget {
 
@@ -100,6 +102,7 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     return result;
   }
 
+  @JsonPropertyDescription("Light mode image filename.")
   public String getImageLocation() {
     return imageLocation;
   }
@@ -116,6 +119,7 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     this.welcomeText = welcomeText;
   }
 
+  @JsonPropertyDescription("Multilingual welcome messages.")
   public List<DisplayName> getWelcomeTexts() {
     return welcomeTexts;
   }
@@ -140,6 +144,8 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     this.welcomeTextPosition = welcomeTextPosition;
   }
 
+  @JsonPropertyDescription("Text color in light mode (CSS color value).")
+  @Examples("#FFFFFF")
   public String getWelcomeTextColor() {
     if (StringUtils.isNotBlank(welcomeTextColor)
         && !welcomeTextColor.startsWith("#")) {
@@ -216,6 +222,7 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     this.imageInlineStyle = imageInlineStyle;
   }
 
+  @JsonPropertyDescription("Base64-encoded light-mode image.")
   public String getImageContent() {
     return imageContent;
   }
@@ -237,6 +244,7 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     
   }
 
+  @JsonPropertyDescription("Base64-encoded dark-mode image.")
   public String getImageContentDarkMode() {
     return imageContentDarkMode;
   }
@@ -253,6 +261,7 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     this.imageContentObjectDarkMode = imageContentObjectDarkMode;
   }
 
+  @JsonPropertyDescription("Dark mode image filename.")
   public String getImageLocationDarkMode() {
     return imageLocationDarkMode;
   }
@@ -269,6 +278,8 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     this.imageTypeDarkMode = imageTypeDarkMode;
   }
 
+  @JsonPropertyDescription("Text color in dark mode (CSS color value).")
+  @Examples("#FFFFFF")
   public String getWelcomeTextColorDarkMode() {
     if (StringUtils.isNotBlank(welcomeTextColorDarkMode)
         && !welcomeTextColorDarkMode.startsWith("#")) {
