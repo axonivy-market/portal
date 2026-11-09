@@ -48,6 +48,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       removedAbsences: Abwesenheit ist für {0} entfernt worden
       saveAbsenceSetting: Abwesenheitseinstellungen erfolgreich gespeichert.
       updateAbsence: Abwesenheit erfolgreich aktualisiert
+    SearchSubstitutes: Stellvertreter suchen
     absenceAndDeputy: Abwesenheiten und Vertretungen
     activeAbsence: Aktive abwesenheit
     allAbsences: Abwesenheiten aller Benutzer
