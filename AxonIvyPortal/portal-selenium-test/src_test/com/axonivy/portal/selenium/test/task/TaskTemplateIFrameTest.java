@@ -121,6 +121,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     updatePortalSetting(Variable.TASK_HEADER_MODE.getKey(), headerMode);
     redirectToRelativeLink(IFRAME_TASK_URL);
     waitForTemplateRender();
+    WaitHelper.waitForIFrameAvailable(WebDriverRunner.getWebDriver(), "iFrame");
     return new TaskIFrameTemplatePage();
   }
 
