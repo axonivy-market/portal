@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.test.util;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import ch.ivy.addon.portalkit.ivydata.service.impl.SubstituteService;
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -29,10 +29,13 @@ public class SubstituteTestData {
     }
 
     int created = 0;
-    SubstituteService substituteService = SubstituteService.newInstance();
     for (int ownerIndex = 0; ownerIndex < users.size(); ownerIndex++) {
       IUser owner = users.get(ownerIndex);
-      List<IRole> roles = substituteService.getAllRoles(owner);
+      // Keep aligned with SubstituteService.getAllRoles: exclude Everybody and hidden roles.
+      List<IRole> roles = owner.getAllRoles().stream()
+          .filter(role -> !"Everybody".equals(role.getName()))
+          .filter(role -> role.getProperty(AdditionalProperty.HIDE.toString()) == null)
+          .collect(Collectors.toList());
       if (!owner.equals(marissa)) {
         if (roles.isEmpty()) {
           created += createPersonalSubstitute(owner, marissa);

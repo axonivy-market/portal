@@ -85,7 +85,7 @@ public class SubstituteService{
     return substitute;
   }
   
-  public List<IRole> getAllRoles(IUser user) {
+  private List<IRole> getAllRoles(IUser user) {
     if (user == null) {
       return new ArrayList<>();
     }
