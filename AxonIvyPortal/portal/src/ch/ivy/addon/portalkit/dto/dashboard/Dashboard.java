@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -157,6 +158,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     this.displayedPermission = displayedPermission;
   }
 
+  @JsonPropertyDescription("Reference to predefined dashboard template.")
   public String getTemplateId() {
     return templateId;
   }

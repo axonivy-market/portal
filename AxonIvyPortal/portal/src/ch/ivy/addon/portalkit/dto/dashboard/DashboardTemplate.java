@@ -5,11 +5,13 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
+import io.github.axonivy.json.schema.annotations.RemoteRef;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class DashboardTemplate extends AbstractConfiguration implements Serializable {
@@ -18,6 +20,8 @@ public class DashboardTemplate extends AbstractConfiguration implements Serializ
   private List<DisplayName> titles;
   private List<DisplayName> descriptions;
   private String icon;
+  @RemoteRef("/schemas/dashboard-schema.json")
+  @JsonPropertyDescription("Dashboard configuration, including widgets, layout, and access permissions.")
   private Dashboard dashboard;
 
   @JsonIgnore
