@@ -121,7 +121,7 @@
         </h:panelGroup>
 
         <h:panelGroup id="vertical-process-chain-container" layout="block" rendered="#{!taskHeaderHidden}"
-          styleClass="#{processChainDirection eq 'VERTICAL' ? 'process-chain-container vertical-process-chain-container' : ''} #{processChainDirection eq 'VERTICAL' and processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
+          styleClass="#{processChainDirection eq 'VERTICAL' ? 'process-chain-container vertical-process-chain-container' : ''} #{processChainDirection eq 'VERTICAL' and processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''} #{isLegacyTaskHeader ? 'task-header-legacy' : ''}">
           <ic:com.axonivy.portal.components.ProcessChain id="vertical-process-chain-component"
             rendered="#{processChainDirection eq 'VERTICAL'}"
             startMethod="start" componentId="process-chain-component-id"
