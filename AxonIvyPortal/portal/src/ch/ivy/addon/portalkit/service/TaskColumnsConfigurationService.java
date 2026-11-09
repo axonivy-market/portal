@@ -11,13 +11,17 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class TaskColumnsConfigurationService extends BusinessDataService<TaskColumnsConfiguration> {
   
   private static final String APP_ID = "applicationId";
-  private static TaskColumnsConfigurationService instance;
+  private static volatile TaskColumnsConfigurationService instance;
 
   private TaskColumnsConfigurationService() {}
 
   public static TaskColumnsConfigurationService getInstance() {
     if (instance == null) {
-      instance = new TaskColumnsConfigurationService();
+      synchronized (TaskColumnsConfigurationService.class) {
+        if (instance == null) {
+          instance = new TaskColumnsConfigurationService();
+        }
+      }
     }
     return instance;
   }
