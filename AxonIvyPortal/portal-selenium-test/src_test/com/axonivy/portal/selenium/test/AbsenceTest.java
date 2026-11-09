@@ -253,6 +253,143 @@ public class AbsenceTest extends BaseTest {
     assertTrue(addedSubstitutes.contains(TestAccount.GUEST_USER.getFullName()));
   }
 
+  @Test
+  public void testSearchMySubstitutesByRoleAndSubstituteName() {
+    grantNormalUserAbsencePermissions();
+    grantNormalUserSubstitutePermissions();
+    AbsencePage absencePage = openAbsencePage();
+    absencePage.openSubstitutesTab();
+    absencePage.addSubstitute(PERMANENT_SUBSTITUTE_TYPE, Arrays.asList(TestAccount.GUEST_USER.getFullName()));
+    absencePage.addSubstitute(DURING_ABSENCE_SUBSTITUTE_TYPE, Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName()));
+    absencePage.waitForSubstituteRowCount(2);
+    absencePage.pressEnterInMySubstitutesSearch();
+    assertTrue(!absencePage.isAddSubstituteDialogDisplayed());
+
+    absencePage.searchMySubstitutes("during the absence");
+    absencePage.waitForSubstituteRowCount(1);
+    assertTrue(absencePage.getDeputiesByRoleIndex(0).contains(TestAccount.CASE_OWNER_USER.getFullName()));
+
+    absencePage.searchMySubstitutes(TestAccount.GUEST_USER.getFullName().toUpperCase());
+    absencePage.waitForSubstituteRowCount(1);
+    assertTrue(absencePage.getDeputiesByRoleIndex(0).contains(TestAccount.GUEST_USER.getFullName()));
+
+    absencePage.searchMySubstitutes("no such substitute");
+    absencePage.waitForSubstituteRowCount(0);
+    assertTrue(absencePage.isSubstituteEmptyMessageDisplayed());
+
+    absencePage.clearMySubstitutesSearch();
+    absencePage.waitForSubstituteRowCount(2);
+  }
+
+  @Test
+  public void testSearchSubstitutionsByOwnerAndRole() {
+    createSubstitutionFor(TestAccount.GUEST_USER, TestAccount.DEMO_USER, PERMANENT_SUBSTITUTE_TYPE);
+    createSubstitutionFor(TestAccount.CASE_OWNER_USER, TestAccount.DEMO_USER, DURING_ABSENCE_SUBSTITUTE_TYPE);
+
+    login(TestAccount.DEMO_USER);
+    grantNormalUserAbsencePermissions();
+    grantNormalUserSubstitutePermissions();
+    AbsencePage absencePage = openAbsencePage();
+    absencePage.openSubstitutesTab();
+    absencePage.waitForSubstitutionRowCount(2);
+    absencePage.pressEnterInSubstitutionSearch();
+    assertTrue(!absencePage.isAddSubstituteDialogDisplayed());
+
+    absencePage.searchSubstitutions("during the absence");
+    absencePage.waitForSubstitutionRowCount(1);
+    assertTrue(absencePage.getSubstitutionRowText(0).contains(TestAccount.CASE_OWNER_USER.getFullName()));
+
+    absencePage.searchSubstitutions(TestAccount.GUEST_USER.getFullName().toUpperCase());
+    absencePage.waitForSubstitutionOwner(0, TestAccount.GUEST_USER.getFullName());
+    assertTrue(absencePage.getSubstitutionRowText(0).contains(TestAccount.GUEST_USER.getFullName()));
+
+    absencePage.searchSubstitutions("no such substitute");
+    absencePage.waitForSubstitutionRowCount(0);
+    assertTrue(absencePage.isSubstitutionEmptyMessageDisplayed());
+
+    absencePage.clearSubstitutionSearch();
+    absencePage.waitForSubstitutionRowCount(2);
+  }
+
+  @Test
+  public void testPaginateSubstitutionsAfterClearingSearch() {
+    TestAccount[] owners = {TestAccount.GUEST_USER, TestAccount.ADMIN_USER, TestAccount.CASE_OWNER_USER,
+        TestAccount.HR_ROLE_USER, TestAccount.GM_USER};
+    for (TestAccount owner : owners) {
+      createSubstitutionFor(owner, TestAccount.DEMO_USER, PERMANENT_SUBSTITUTE_TYPE);
+    }
+
+    login(TestAccount.DEMO_USER);
+    grantNormalUserAbsencePermissions();
+    grantNormalUserSubstitutePermissions();
+    AbsencePage absencePage = openAbsencePage();
+    absencePage.openSubstitutesTab();
+    absencePage.waitForSubstitutionRowCount(4);
+
+    absencePage.searchSubstitutions(TestAccount.GUEST_USER.getFullName());
+    absencePage.waitForSubstitutionRowCount(1);
+    absencePage.waitForSubstitutionOwner(0, TestAccount.GUEST_USER.getFullName());
+    absencePage.clearSubstitutionSearch();
+    absencePage.waitForSubstitutionRowCount(4);
+
+    absencePage.openLastSubstitutionPage();
+    absencePage.waitForSubstitutionRowCount(1);
+    String lastRow = absencePage.getSubstitutionRowText(0);
+    assertTrue(Arrays.stream(owners).anyMatch(owner -> lastRow.contains(owner.getFullName())));
+    assertTrue(lastRow.contains(PERMANENT_SUBSTITUTE_TYPE));
+
+    absencePage.searchSubstitutions(TestAccount.GUEST_USER.getFullName());
+    absencePage.waitForSubstitutionOwner(0, TestAccount.GUEST_USER.getFullName());
+    absencePage.clearSubstitutionSearch();
+    absencePage.waitForSubstitutionRowCount(4);
+  }
+
+  @Test
+  public void testSearchSubstitutionsKeepsSelectedUserScope() {
+    createSubstitutionFor(TestAccount.GUEST_USER, TestAccount.DEMO_USER, PERMANENT_SUBSTITUTE_TYPE);
+    TestAccount[] owners = {TestAccount.CASE_OWNER_USER, TestAccount.ADMIN_USER, TestAccount.HR_ROLE_USER,
+        TestAccount.GM_USER, TestAccount.DEMO_USER};
+    for (TestAccount owner : owners) {
+      createSubstitutionFor(owner, TestAccount.GUEST_USER, DURING_ABSENCE_SUBSTITUTE_TYPE);
+    }
+
+    login(TestAccount.ADMIN_USER);
+    grantAdminAbsencePermissions();
+    AbsencePage adminAbsencePage = openAbsencePage();
+    adminAbsencePage.openSubstitutesTab();
+    adminAbsencePage.setSelectedUserInSubstitutesTab(TestAccount.DEMO_USER.getFullName());
+    adminAbsencePage.waitForSubstitutionRowCount(1);
+
+    adminAbsencePage.searchSubstitutions("no such substitute");
+    adminAbsencePage.waitForSubstitutionRowCount(0);
+    assertEquals(TestAccount.DEMO_USER.getFullName(), adminAbsencePage.getSelectedSubstituteUser());
+
+    adminAbsencePage.searchSubstitutions(TestAccount.GUEST_USER.getFullName());
+    adminAbsencePage.waitForSubstitutionRowCount(1);
+    assertEquals(TestAccount.DEMO_USER.getFullName(), adminAbsencePage.getSelectedSubstituteUser());
+
+    adminAbsencePage.setSelectedUserInSubstitutesTab(TestAccount.GUEST_USER.getFullName());
+    adminAbsencePage.waitForSubstitutionRowCount(0);
+    adminAbsencePage.clearSubstitutionSearch();
+    adminAbsencePage.waitForSubstitutionRowCount(4);
+    assertEquals(TestAccount.GUEST_USER.getFullName(), adminAbsencePage.getSelectedSubstituteUser());
+    adminAbsencePage.openLastSubstitutionPage();
+    adminAbsencePage.waitForSubstitutionRowCount(1);
+    String lastRow = adminAbsencePage.getSubstitutionRowText(0);
+    assertTrue(Arrays.stream(owners).anyMatch(owner -> lastRow.contains(owner.getFullName())));
+    assertTrue(lastRow.contains(DURING_ABSENCE_SUBSTITUTE_TYPE));
+  }
+
+  private void createSubstitutionFor(TestAccount owner, TestAccount deputy, String deputyRole) {
+    login(owner);
+    grantNormalUserAbsencePermissions();
+    grantNormalUserSubstitutePermissions();
+    AbsencePage absencePage = openAbsencePage();
+    absencePage.openSubstitutesTab();
+    absencePage.addSubstitute(deputyRole, Arrays.asList(deputy.getFullName()));
+    absencePage.waitForSubstituteRowCountToChange(1);
+  }
+
   private void createAbsence(String fullname, LocalDate from, LocalDate till, String comment, AbsencePage absencePage) {
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
     newAbsencePage.input(fullname, from, till, comment);
