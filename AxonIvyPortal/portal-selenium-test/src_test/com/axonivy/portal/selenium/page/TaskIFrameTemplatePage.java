@@ -138,6 +138,26 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     return $("[id$='horizontal-case-info']");
   }
 
+  public SelenideElement getVerticalProcessChainContainer() {
+    switchToDefaultContent();
+    return $(".task-template-container [id$='vertical-process-chain-container']");
+  }
+
+  public ElementsCollection getVerticalProcessChainSteps() {
+    switchToDefaultContent();
+    return $$(".task-template-container [id$='vertical-process-chain-container'] [role='listitem']");
+  }
+
+  public SelenideElement getTaskContentContainer() {
+    switchToDefaultContent();
+    return $(".task-template-container > [id$='content-container']");
+  }
+
+  public SelenideElement getIFrameLayoutContainer() {
+    switchToDefaultContent();
+    return $(".task-template-container .js-task-frame-container");
+  }
+
   public NewDashboardPage finishCreateInvestmentTask() {
     WaitHelper.waitForIFrameAvailable(driver, "iFrame");
     waitForElementDisplayed(By.id("form:invested-amount"), true);

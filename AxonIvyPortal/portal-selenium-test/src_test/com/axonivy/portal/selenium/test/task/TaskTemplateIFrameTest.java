@@ -18,6 +18,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.WebDriverRunner;
@@ -75,6 +76,52 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskTemplatePage.getTaskHeaderTitle().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
     taskTemplatePage.getTaskActionsElement().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
     taskTemplatePage.getCaseInfoButtonElement().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testHiddenTaskHeaderModeRemovesVerticalProcessChain() {
+    TaskIFrameTemplatePage taskTemplatePage = startVerticalLineChainTaskWithHeaderMode(HEADER_MODE_HIDDEN);
+    taskTemplatePage.getTaskHeaderContainer().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
+    taskTemplatePage.getTaskHeaderTitle().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
+    taskTemplatePage.getTaskActionsElement().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
+    taskTemplatePage.getCaseInfoButtonElement().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
+    taskTemplatePage.getVerticalProcessChainContainer().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
+    taskTemplatePage.getTaskContentContainer().shouldBe(Condition.visible, DEFAULT_TIMEOUT)
+        .shouldNotHave(Condition.cssClass("vertical-process-chain"))
+        .shouldNotHave(Condition.cssClass("vertical-chain-shape-line"));
+    taskTemplatePage.getIFrameLayoutContainer()
+        .shouldNotHave(Condition.cssClass("vertical-process-chain"))
+        .shouldNotHave(Condition.cssClass("vertical-chain-shape-line"));
+    taskTemplatePage.getElementInPortalIFramTask("[id='form:invested-amount']")
+        .shouldBe(Condition.visible, DEFAULT_TIMEOUT).shouldBe(Condition.editable)
+        .setValue("1").shouldHave(Condition.value("1"));
+  }
+
+  @Test
+  public void testVisibleTaskHeaderModeKeepsVerticalLineProcessChain() {
+    resizeBrowserToFullHDResolution();
+    TaskIFrameTemplatePage taskTemplatePage = startVerticalLineChainTaskWithHeaderMode(HEADER_MODE_DEFAULT);
+    taskTemplatePage.getTaskHeaderContainer().shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    taskTemplatePage.getTaskHeaderTitle().shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    taskTemplatePage.getVerticalProcessChainContainer().shouldBe(Condition.visible, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.cssClass("vertical-chain-shape-line"));
+    taskTemplatePage.getVerticalProcessChainSteps().shouldHave(CollectionCondition.sizeGreaterThan(0));
+    taskTemplatePage.getTaskContentContainer().shouldBe(Condition.visible, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.cssClass("vertical-process-chain"))
+        .shouldHave(Condition.cssClass("vertical-chain-shape-line"));
+    taskTemplatePage.getIFrameLayoutContainer()
+        .shouldHave(Condition.cssClass("vertical-process-chain"))
+        .shouldHave(Condition.cssClass("vertical-chain-shape-line"));
+    taskTemplatePage.getElementInPortalIFramTask("[id='form:invested-amount']")
+        .shouldBe(Condition.visible, DEFAULT_TIMEOUT).shouldBe(Condition.editable)
+        .setValue("1").shouldHave(Condition.value("1"));
+  }
+
+  private TaskIFrameTemplatePage startVerticalLineChainTaskWithHeaderMode(String headerMode) {
+    updatePortalSetting(Variable.TASK_HEADER_MODE.getKey(), headerMode);
+    redirectToRelativeLink(IFRAME_TASK_URL);
+    waitForTemplateRender();
+    return new TaskIFrameTemplatePage();
   }
 
   private TaskIFrameTemplatePage startApproveInvestmentTaskWithHeaderMode(String headerMode) {
