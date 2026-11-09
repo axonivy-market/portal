@@ -312,6 +312,8 @@ a.left-sidebar-menu-icon {
 /* Legacy title size and process chain colors, matching Portal 12 */
 .task-header-legacy .task-template-title {
   font-size: var(--large-font-size);
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .task-header-legacy .task-title {
