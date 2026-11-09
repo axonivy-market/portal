@@ -1,13 +1,11 @@
-package com.axonivy.portal.jsonschema;
+package com.axonivy.portal.jsonschema.generator;
 
-import com.axonivy.portal.jsonschema.module.PortalSchemaModule;
+import com.axonivy.portal.jsonschema.module.PortalJacksonSchemaModule;
 import com.github.victools.jsonschema.generator.Option;
 import com.github.victools.jsonschema.generator.OptionPreset;
 import com.github.victools.jsonschema.generator.SchemaGenerator;
 import com.github.victools.jsonschema.generator.SchemaGeneratorConfigBuilder;
 import com.github.victools.jsonschema.generator.SchemaVersion;
-import com.github.victools.jsonschema.module.jackson.JacksonOption;
-import com.github.victools.jsonschema.module.jackson.JacksonSchemaModule;
 
 import io.github.axonivy.json.schema.ExpressiveSchemaModule;
 import tools.jackson.databind.node.ObjectNode;
@@ -22,8 +20,7 @@ public class PortalSchemaGenerator {
   
   private static SchemaGeneratorConfigBuilder config() {
     return new SchemaGeneratorConfigBuilder(SchemaVersion.DRAFT_2020_12, exportPreset())
-        .with(getJacksonSchemaModule())
-        .with(new PortalSchemaModule())
+        .with(new PortalJacksonSchemaModule())
         .with(new ExpressiveSchemaModule());
   }
 
@@ -42,11 +39,5 @@ public class PortalSchemaGenerator {
            Option.DUPLICATE_MEMBER_ATTRIBUTE_CLEANUP_AT_THE_END,
            Option.FORBIDDEN_ADDITIONAL_PROPERTIES_BY_DEFAULT
     );
-  }
-
-  private static JacksonSchemaModule getJacksonSchemaModule() {
-    return new JacksonSchemaModule(
-        JacksonOption.ALWAYS_REF_SUBTYPES,
-        JacksonOption.FLATTENED_ENUMS_FROM_JSONVALUE);
   }
 }
