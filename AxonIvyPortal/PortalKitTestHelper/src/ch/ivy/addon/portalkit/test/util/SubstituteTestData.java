@@ -31,6 +31,7 @@ public class SubstituteTestData {
     int created = 0;
     for (int ownerIndex = 0; ownerIndex < users.size(); ownerIndex++) {
       IUser owner = users.get(ownerIndex);
+      // Keep aligned with SubstituteService.getAllRoles: exclude Everybody and hidden roles.
       List<IRole> roles = owner.getAllRoles().stream()
           .filter(role -> !"Everybody".equals(role.getName()))
           .filter(role -> role.getProperty(AdditionalProperty.HIDE.toString()) == null)
