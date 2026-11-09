@@ -6,8 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import org.apache.commons.lang3.SystemUtils;
-
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.jsonschema.generator.PortalSchemaGenerator;
 
@@ -23,16 +21,18 @@ public class PortalSchemaBuilder {
       new SchemaDefinition("dashboard-template-schema.json", DashboardTemplate.class));
 
   public static void main(String[] args) {
-    Path outDir = SystemUtils.getJavaIoTmpDir().toPath();
-    if (args.length > 0) {
-      outDir = Path.of(args[0]);
+    if (args.length != 2 || args[0].isBlank() || args[1].isBlank()) {
+      throw new IllegalArgumentException(
+          "Usage: PortalSchemaBuilder <output-directory> <portal-version>");
     }
-
+    Path outDir = Path.of(args[0]);
+    String portalVersion = args[1];
+    Path versionDir = outDir.resolve(portalVersion);
     try {
-      Files.createDirectories(outDir);
+      Files.createDirectories(versionDir);
       var generator = new PortalSchemaGenerator();
       for (SchemaDefinition def : SCHEMAS) {
-        writeSchema(generator, def, outDir);
+        writeSchema(generator, def, versionDir);
       }
     } catch (IOException ex) {
       ex.printStackTrace();
@@ -42,7 +42,6 @@ public class PortalSchemaBuilder {
   private static void writeSchema(PortalSchemaGenerator generator, SchemaDefinition definition, Path outputDir) throws IOException {
     Path outputFile = outputDir.resolve(definition.fileName());
     var schema = generator.generateSchema(definition.rootType());
-
     Files.writeString(
         outputFile,
         schema.toPrettyString() + System.lineSeparator(),
