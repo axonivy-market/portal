@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.test.util;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import ch.ivy.addon.portalkit.ivydata.service.impl.SubstituteService;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -28,9 +29,10 @@ public class SubstituteTestData {
     }
 
     int created = 0;
+    SubstituteService substituteService = SubstituteService.newInstance();
     for (int ownerIndex = 0; ownerIndex < users.size(); ownerIndex++) {
       IUser owner = users.get(ownerIndex);
-      List<IRole> roles = owner.getAllRoles().stream().collect(Collectors.toList());
+      List<IRole> roles = substituteService.getAllRoles(owner);
       if (!owner.equals(marissa)) {
         if (roles.isEmpty()) {
           created += createPersonalSubstitute(owner, marissa);
@@ -42,6 +44,16 @@ public class SubstituteTestData {
       }
 
       int missing = Math.max(0, TARGET_SUBSTITUTES_PER_USER - owner.getSubstitutes().size());
+      if (roles.isEmpty()) {
+        for (SubstitutionType type : SubstitutionType.values()) {
+          for (int deputyOffset = 1; deputyOffset < users.size() && missing > 0; deputyOffset++) {
+            IUser deputy = users.get((ownerIndex + deputyOffset) % users.size());
+            int added = createPersonalSubstitute(owner, deputy, type);
+            created += added;
+            missing -= added;
+          }
+        }
+      }
       for (int roleRound = 0; roleRound < roles.size() && missing > 0; roleRound++) {
         for (int deputyOffset = 1; deputyOffset < users.size() && missing > 0; deputyOffset++) {
           IUser deputy = users.get((ownerIndex + deputyOffset) % users.size());
@@ -56,14 +68,18 @@ public class SubstituteTestData {
   }
 
   private static int createPersonalSubstitute(IUser owner, IUser deputy) {
+    return createPersonalSubstitute(owner, deputy, SubstitutionType.PERMANENT);
+  }
+
+  private static int createPersonalSubstitute(IUser owner, IUser deputy, SubstitutionType type) {
     boolean exists = owner.getSubstitutes().stream()
         .anyMatch(substitute -> substitute.isPersonallyOnly()
-            && SubstitutionType.PERMANENT.equals(substitute.getSubstitutionType())
+            && type.equals(substitute.getSubstitutionType())
             && deputy.equals(substitute.getSubstituteUser()));
     if (exists) {
       return 0;
     }
-    owner.createSubstitute(deputy, "", SubstitutionType.PERMANENT);
+    owner.createSubstitute(deputy, "", type);
     return 1;
   }
 
