@@ -28,7 +28,6 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   private String templateId;
   @JsonProperty(access = Access.WRITE_ONLY)
   private String title;
-  @JsonProperty(required = true)
   private List<DisplayName> titles;
   private String icon;
   private String description;

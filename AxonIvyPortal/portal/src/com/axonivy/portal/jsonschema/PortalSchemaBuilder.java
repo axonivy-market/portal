@@ -41,7 +41,6 @@ public class PortalSchemaBuilder {
   private static void writeSchema(PortalSchemaGenerator generator, SchemaDefinition definition, Path outputDir) throws IOException {
     Path outputFile = outputDir.resolve(definition.fileName());
     var schema = generator.generateSchema(definition.rootType());
-    schema.withObject("/properties").putObject("$schema").put("type", "string");
     schema.put("$id", outputFile.toAbsolutePath().toString());
     Files.writeString(
         outputFile,
