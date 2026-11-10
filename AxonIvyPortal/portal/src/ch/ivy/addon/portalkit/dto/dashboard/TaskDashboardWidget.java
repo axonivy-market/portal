@@ -255,7 +255,7 @@ public class TaskDashboardWidget extends DashboardWidget {
       this.setQuickSearchKeyword(StringUtils.EMPTY);
     }
   }
-
+  
   public List<DashboardFilter> getFilters() {
     return this.dataModel.getCriteria().getFilters();
   }

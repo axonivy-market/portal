@@ -36,7 +36,7 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   private String welcomeTextColor;
   private String welcomeTextColorDarkMode;
   private List<DisplayName> welcomeTexts;
-  private boolean isGreeting;
+  private boolean greeting;
   private String welcomeTextStyleClass;
   private String imageStyleClass;
   private WelcomeImageFit welcomeImageFit;
@@ -71,7 +71,7 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     welcomeTexts = CollectionUtils.emptyIfNull(widget.welcomeTexts).stream()
         .map(name -> new DisplayName(name.getLocale(), name.getValue()))
         .collect(Collectors.toCollection(ArrayList::new));
-    isGreeting = widget.isGreeting;
+    greeting = widget.greeting;
     welcomeTextStyleClass = widget.welcomeTextStyleClass;
     imageStyleClass = widget.imageStyleClass;
     welcomeImageFit = widget.welcomeImageFit;
@@ -175,11 +175,11 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   }
 
   public boolean isGreeting() {
-    return isGreeting;
+    return greeting;
   }
 
   public void setGreeting(boolean isGreeting) {
-    this.isGreeting = isGreeting;
+    this.greeting = isGreeting;
   }
 
   public String getWelcomeTextStyleClass() {

@@ -6,19 +6,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import com.axonivy.portal.bo.Statistic;
-import com.axonivy.portal.jsonschema.dto.PortalDashboard;
+import com.axonivy.portal.jsonschema.definition.PortalCustomStatistic;
+import com.axonivy.portal.jsonschema.definition.PortalDashboard;
+import com.axonivy.portal.jsonschema.definition.PortalDashboardTemplate;
 import com.axonivy.portal.jsonschema.generator.PortalSchemaGenerator;
-
-import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 
 public class PortalSchemaBuilder {
   private record SchemaDefinition(String fileName, Class<?> rootType) {}
 
   private static final List<SchemaDefinition> SCHEMAS = List.of(
       new SchemaDefinition("portal-dashboard-schema.json", PortalDashboard.class),
-      new SchemaDefinition("statistic-schema.json", Statistic.class),
-      new SchemaDefinition("dashboard-template-schema.json", DashboardTemplate.class));
+      new SchemaDefinition("portal-statistic-schema.json", PortalCustomStatistic.class),
+      new SchemaDefinition("portal-dashboard-template-schema.json", PortalDashboardTemplate.class));
 
   public static void main(String[] args) {
     if (args.length != 2 || args[0].isBlank() || args[1].isBlank()) {

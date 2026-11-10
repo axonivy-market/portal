@@ -12,9 +12,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
-import com.fasterxml.jackson.annotation.JsonView;
 
-import ch.ivy.addon.portalkit.bo.PortalJsonViews;
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
@@ -30,6 +28,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   private String templateId;
   @JsonProperty(access = Access.WRITE_ONLY)
   private String title;
+  @JsonProperty(required = true)
   private List<DisplayName> titles;
   private String icon;
   private String description;
@@ -72,7 +71,6 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     return LanguageUtils.getLocalizedName(titles, title);
   }
 
-  @JsonView(PortalJsonViews.Internal.class)
   public String getOldId() {
     return oldId;
   }
