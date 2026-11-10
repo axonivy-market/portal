@@ -3,6 +3,9 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
+
 import org.apache.commons.lang3.BooleanUtils;
 
 import com.axonivy.portal.components.dto.UserDTO;
@@ -10,11 +13,8 @@ import com.axonivy.portal.components.dto.UserDTO;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
-import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ICase;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Named;
 
 @Named
 @ViewScoped
@@ -41,6 +41,12 @@ public class SecurityMemberDisplayNameBean implements Serializable {
     return SecurityMemberDisplayNameUtils.generateFullDisplayNameForUserDTO(user);
   }
 
+  public boolean isRenderGroupUsersAsTooltip(ISecurityMember securityMember, String alwaysShowAsText) {
+    return BooleanUtils.toBoolean(alwaysShowAsText)
+        && isDisplayUserOfRole
+        && Objects.nonNull(securityMember) && !securityMember.isUser();
+  }
+
   public boolean isRenderDisplayNameTooltip(ISecurityMember securityMember) {
     return isDisplayUserOfRole
         && Objects.nonNull(securityMember) && securityMember.isUser();
@@ -49,8 +55,7 @@ public class SecurityMemberDisplayNameBean implements Serializable {
   public boolean isRenderUsersOverlaySearch(ISecurityMember securityMember, String alwaysShowAsText) {
     return isDisplayUserOfRole
         && Objects.nonNull(securityMember) && !securityMember.isUser()
-        && !BooleanUtils.toBoolean(alwaysShowAsText)
-        && !ISecurityConstants.TOP_LEVEL_ROLE_NAME.equals(securityMember.getMemberName());
+        && !BooleanUtils.toBoolean(alwaysShowAsText);
   }
 
   public boolean isDisplayUserOfRole() {
