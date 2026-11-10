@@ -27,7 +27,8 @@ public class PortalJacksonSchemaModule extends JacksonSchemaModule {
   public PortalJacksonSchemaModule() {
     super(
         JacksonOption.ALWAYS_REF_SUBTYPES,
-        JacksonOption.FLATTENED_ENUMS_FROM_JSONVALUE);
+        JacksonOption.FLATTENED_ENUMS_FROM_JSONVALUE,
+        JacksonOption.RESPECT_JSONPROPERTY_REQUIRED);
   }
 
   @Override
