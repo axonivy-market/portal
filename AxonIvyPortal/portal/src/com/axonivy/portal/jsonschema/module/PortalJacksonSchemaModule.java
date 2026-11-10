@@ -13,13 +13,11 @@ import com.github.victools.jsonschema.module.jackson.JacksonSchemaModule;
 
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
-import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 
 public class PortalJacksonSchemaModule extends JacksonSchemaModule {
 
   private static final Map<Class<?>, Set<String>> EXCLUDED_PROPERTIES =
       Map.of(
-          Dashboard.class, Set.of("oldId"),
           ColumnModel.class, Set.of("filter", "filterFrom", "filterList", "filterTo"),
           WidgetLayout.class, Set.of("id"),
           Statistic.class, Set.of("canDrillDown", "additionalConfigs"));
