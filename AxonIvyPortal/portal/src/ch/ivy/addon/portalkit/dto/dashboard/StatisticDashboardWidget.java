@@ -30,7 +30,7 @@ public class StatisticDashboardWidget extends DashboardWidget {
   }
 
   @JsonPropertyDescription("ID of an existing statistic chart. Define the chart in the statistics JSON configuration first, then set this field to the chart's id.")
-  @RemoteRef("/schemas/statisic-schema.json")
+  @RemoteRef("./statisic-schema.json")
   public String getChartId() {
     return chartId;
   }
