@@ -3,7 +3,6 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -71,8 +70,7 @@ public class AbsencePage extends TemplatePage {
   public void searchSubstitutes(String keyword) {
     SelenideElement searchField = $(".substitute-table input[id$='globalFilter']").shouldBe(appear, DEFAULT_TIMEOUT);
     if (keyword.isEmpty()) {
-      executeJavaScript("arguments[0].value = ''; clearTimeout(arguments[0].filterTimeout); PF('substituteTable').filter()",
-          searchField);
+      searchField.clear();
       return;
     }
     searchField.setValue(keyword);
@@ -81,8 +79,7 @@ public class AbsencePage extends TemplatePage {
   public void searchSubstitutions(String keyword) {
     SelenideElement searchField = $(".substitution-table input[id$='globalFilter']").shouldBe(appear, DEFAULT_TIMEOUT);
     if (keyword.isEmpty()) {
-      executeJavaScript("arguments[0].value = ''; clearTimeout(arguments[0].filterTimeout); PF('substitutionTable').filter()",
-          searchField);
+      searchField.clear();
       return;
     }
     searchField.setValue(keyword);
