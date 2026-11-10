@@ -143,6 +143,7 @@ public class AbsenceTest extends BaseTest {
         DeputyRoleType.PERSONAL_TASK_PERMANENT);
     absencePage.saveSubstitute();
 
+    int unfilteredRowCount = absencePage.getSubstituteRowCount();
     absencePage.searchSubstitutes("  " + TestAccount.CASE_OWNER_USER.getFullName().toUpperCase() + "  ");
     absencePage.waitForSubstituteRowCount(1);
     absencePage.waitForSubstituteDeputy(0, TestAccount.CASE_OWNER_USER.getFullName());
@@ -153,7 +154,7 @@ public class AbsenceTest extends BaseTest {
     absencePage.searchSubstitutes("no such substitute");
     absencePage.waitForSubstituteRowCount(0);
     absencePage.searchSubstitutes("");
-    absencePage.waitForSubstituteRowCount(2);
+    absencePage.waitForSubstituteRowCount(unfilteredRowCount);
   }
 
   @Test

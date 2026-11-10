@@ -93,6 +93,11 @@ public class AbsencePage extends TemplatePage {
         .get(rowIndex).shouldHave(Condition.text(deputyName), DEFAULT_TIMEOUT);
   }
 
+  public int getSubstituteRowCount() {
+    return $("tbody[id$='substitute-table_data']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("tr:not(.ui-datatable-empty-message)").size();
+  }
+
   public void waitForSubstituteRowCount(int expectedRowCount) {
     $$("tbody[id$='substitute-table_data'] tr:not(.ui-datatable-empty-message)")
         .shouldHave(CollectionCondition.size(expectedRowCount), DEFAULT_TIMEOUT);
