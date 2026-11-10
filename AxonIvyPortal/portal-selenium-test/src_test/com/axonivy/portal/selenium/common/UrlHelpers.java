@@ -44,7 +44,10 @@ public class UrlHelpers {
         // Make sure the engine URL end with slash (/).
         // Example: https://localhost:8081/
         String newURLStr = newURL.toString();
-        return newURLStr.endsWith("/") ? newURLStr : newURLStr + "/";
+        String engineUrl = newURLStr.endsWith("/") ? newURLStr : newURLStr + "/";
+        // Designer supplies the workspace-specific context through ivyTestRuntime.properties.
+        String context = System.getProperty("test.engine.context", "").replaceAll("^/+|/+$", "");
+        return context.isEmpty() ? engineUrl : engineUrl + context + "/";
       } catch (MalformedURLException e) {
         throw new PortalGUITestException("Wrong Engine URL");
       }
