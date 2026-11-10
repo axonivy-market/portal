@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -70,7 +71,8 @@ public class AbsencePage extends TemplatePage {
   public void searchSubstitutes(String keyword) {
     SelenideElement searchField = $(".substitute-table input[id$='globalFilter']").shouldBe(appear, DEFAULT_TIMEOUT);
     if (keyword.isEmpty()) {
-      searchField.clear();
+      searchField.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+      searchField.sendKeys(Keys.BACK_SPACE);
       return;
     }
     searchField.setValue(keyword);
@@ -79,7 +81,8 @@ public class AbsencePage extends TemplatePage {
   public void searchSubstitutions(String keyword) {
     SelenideElement searchField = $(".substitution-table input[id$='globalFilter']").shouldBe(appear, DEFAULT_TIMEOUT);
     if (keyword.isEmpty()) {
-      searchField.clear();
+      searchField.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+      searchField.sendKeys(Keys.BACK_SPACE);
       return;
     }
     searchField.setValue(keyword);
