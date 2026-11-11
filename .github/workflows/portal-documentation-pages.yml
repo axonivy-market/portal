@@ -1,10 +1,10 @@
-name: Publish Documentation Pages
+name: Deploy Portal Documentation and Schemas to GitHub Pages
 
 on:
   workflow_dispatch:
     inputs:
       publish:
-        description: 'Publish PUBLIC documentation to GitHub Pages'
+        description: 'Publish PUBLIC documentation and schemas to GitHub Pages'
         type: boolean
         default: false
       include_dev:
@@ -28,7 +28,7 @@ jobs:
 
       - uses: stCarolas/setup-maven@v5.1
         with:
-          maven-version: 3.9.16
+          maven-version: 3.10.0
 
       - uses: actions/setup-python@v6
         with:
@@ -47,6 +47,24 @@ jobs:
 
       - name: Prepare static selectors and navigation
         run: python3 build/portal-pages/build_site.py
+
+      - name: Generate schemas
+        run: >-
+          mvn -B -ntp -f AxonIvyPortal/portal/pom.xml
+          -Pjson.schema process-classes
+
+      - name: Copy generated schemas into the complete site
+        run: |
+          SCHEMA_DIR="AxonIvyPortal/portal/target/schemas"
+          test -n "$(find "$SCHEMA_DIR" -mindepth 1 -maxdepth 1 -type d -print -quit)"
+          for VERSION_DIR in "$SCHEMA_DIR"/*/; do
+            for SCHEMA in portal-dashboard-schema.json portal-statistic-schema.json portal-dashboard-template-schema.json; do
+              test -s "$VERSION_DIR$SCHEMA"
+              python3 -m json.tool "$VERSION_DIR$SCHEMA" > /dev/null
+            done
+          done
+          mkdir -p target/portal-pages/portal/schemas
+          cp -R "$SCHEMA_DIR"/. target/portal-pages/portal/schemas/
 
       - name: Upload complete site for preview or deployment
         uses: actions/upload-pages-artifact@v4
