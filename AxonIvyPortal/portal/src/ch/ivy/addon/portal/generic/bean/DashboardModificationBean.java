@@ -28,6 +28,7 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.menu.MenuOrderEntry;
+import com.axonivy.portal.jsonschema.definition.PortalDashboard;
 import com.axonivy.portal.menu.management.enums.MenuSource;
 import com.axonivy.portal.service.IvyTranslationService;
 import com.axonivy.portal.service.MenuOrderService;
@@ -351,13 +352,11 @@ public class DashboardModificationBean extends DashboardBean {
   }
 
   public boolean hasExportDashboardPermission() {
-    return isPublicDashboard ?
-        PermissionUtils.hasDashboardExportPublicPermission() : PermissionUtils.hasDashboardExportOwnPermission();
+    return isPublicDashboard ? PermissionUtils.hasDashboardExportPublicPermission() : PermissionUtils.hasDashboardExportOwnPermission();
   }
 
   public boolean hasImportDashboardPermission(boolean isPublicDashboard) {
-    return isPublicDashboard ?
-        PermissionUtils.hasDashboardImportPublicPermission() : PermissionUtils.hasDashboardImportOwnPermission();
+    return isPublicDashboard ? PermissionUtils.hasDashboardImportPublicPermission() : PermissionUtils.hasDashboardImportOwnPermission();
   }
 
   public void prepareExportInfo(Dashboard dashboard) {
@@ -384,14 +383,19 @@ public class DashboardModificationBean extends DashboardBean {
     Dashboard dashboardForExport = detachFromCache(dashboard);
     prepareDashboardForExport(dashboardForExport);
 
+    PortalDashboard portalDashboard = getPortalDashboardDefinition(dashboardForExport);
     return DefaultStreamedContent
         .builder()
         .stream(() -> new ByteArrayInputStream(
-            BusinessEntityConverter.entityToJsonValueExcludeInternalView(dashboardForExport)
+            BusinessEntityConverter.entityToJsonValueExcludeInternalView(portalDashboard)
                 .getBytes(StandardCharsets.UTF_8)))
         .contentType(MediaType.APPLICATION_JSON)
         .name(getFileName(dashboard.getTitle()))
         .build();
+  }
+
+  private PortalDashboard getPortalDashboardDefinition(Dashboard dashboardForExport) {
+    return new PortalDashboard(List.of(dashboardForExport));
   }
 
   private Dashboard detachFromCache(Dashboard dashboard) {

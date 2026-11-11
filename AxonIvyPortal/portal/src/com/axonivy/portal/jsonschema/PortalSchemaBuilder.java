@@ -9,6 +9,7 @@ import java.util.List;
 import com.axonivy.portal.jsonschema.definition.PortalCustomStatistic;
 import com.axonivy.portal.jsonschema.definition.PortalDashboard;
 import com.axonivy.portal.jsonschema.definition.PortalDashboardTemplate;
+import com.axonivy.portal.jsonschema.definition.PortalDefinition;
 import com.axonivy.portal.jsonschema.generator.PortalSchemaGenerator;
 
 public class PortalSchemaBuilder {
@@ -41,7 +42,7 @@ public class PortalSchemaBuilder {
   private static void writeSchema(PortalSchemaGenerator generator, SchemaDefinition definition, Path outputDir) throws IOException {
     Path outputFile = outputDir.resolve(definition.fileName());
     var schema = generator.generateSchema(definition.rootType());
-    schema.put("$id", outputFile.toAbsolutePath().toString());
+    schema.put("$id", PortalDefinition.SCHEMA_BASE_URL + outputDir.getFileName() + "/" + definition.fileName());
     Files.writeString(
         outputFile,
         schema.toPrettyString() + System.lineSeparator(),
