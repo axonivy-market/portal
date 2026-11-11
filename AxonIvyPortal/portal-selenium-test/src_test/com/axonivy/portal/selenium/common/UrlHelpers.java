@@ -41,11 +41,8 @@ public class UrlHelpers {
       try {
         URL originalURL = new URL(vmArgUrl);
         URL newURL = new URL(originalURL.getProtocol(), originalURL.getHost(), originalURL.getPort(), originalURL.getFile());
-        // Make sure the engine URL end with slash (/).
-        // Example: https://localhost:8081/
         String newURLStr = newURL.toString();
         String engineUrl = newURLStr.endsWith("/") ? newURLStr : newURLStr + "/";
-        // Designer supplies the workspace-specific context through ivyTestRuntime.properties.
         String context = System.getProperty("test.engine.context", "").replaceAll("^/+|/+$", "");
         return context.isEmpty() ? engineUrl : engineUrl + context + "/";
       } catch (MalformedURLException e) {
