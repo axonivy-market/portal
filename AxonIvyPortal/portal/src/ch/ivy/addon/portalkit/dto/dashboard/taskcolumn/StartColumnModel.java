@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivyteam.ivy.workflow.ITask;
 
 public class StartColumnModel extends TaskColumnModel {
 
@@ -38,5 +39,10 @@ public class StartColumnModel extends TaskColumnModel {
   @Override
   public boolean canFilter() {
     return false;
+  }
+
+  @Override
+  public Object display(ITask task) {
+    return null;
   }
 }
