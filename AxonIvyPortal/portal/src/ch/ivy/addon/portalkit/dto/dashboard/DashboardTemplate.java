@@ -20,7 +20,7 @@ public class DashboardTemplate extends AbstractConfiguration implements Serializ
   private List<DisplayName> titles;
   private List<DisplayName> descriptions;
   private String icon;
-  @RemoteRef("./dashboard-schema.json")
+  @RemoteRef("portal-dashboard-schema.json")
   @JsonPropertyDescription("Dashboard configuration, including widgets, layout, and access permissions.")
   private Dashboard dashboard;
 
