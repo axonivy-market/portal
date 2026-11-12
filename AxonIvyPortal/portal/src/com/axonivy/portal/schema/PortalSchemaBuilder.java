@@ -17,7 +17,7 @@ public class PortalSchemaBuilder {
 
   private static final List<SchemaDefinition> SCHEMAS = List.of(
       new SchemaDefinition("portal-dashboard-schema.json", PortalDashboard.class),
-      new SchemaDefinition("portal-statistic-schema.json", PortalCustomStatistic.class),
+      new SchemaDefinition("portal-custom-statistic-schema.json", PortalCustomStatistic.class),
       new SchemaDefinition("portal-dashboard-template-schema.json", PortalDashboardTemplate.class));
 
   public static void main(String[] args) {
