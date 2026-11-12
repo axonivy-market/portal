@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
@@ -30,6 +31,7 @@ import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
+import io.github.axonivy.json.schema.annotations.Examples;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class AbstractColumn implements Serializable {
@@ -209,6 +211,8 @@ public abstract class AbstractColumn implements Serializable {
     this.headers = headers;
   }
 
+  @JsonPropertyDescription("The column name displayed in the widget.")
+  @Examples({"id", "name", "description"})
   public String getField() {
     return field;
   }
