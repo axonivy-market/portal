@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({"$schema", "version", "items"})
 public abstract class PortalDefinition<T> {
-  public static final String SCHEMA_BASE_URL = "https://axonivy-market.github.io/portal/schemas/";
+  public static final String SCHEMA_BASE_URL = "https://lmluat-axonivy.github.io/portal/schemas/";
 
   private String schema;
   private String version;
