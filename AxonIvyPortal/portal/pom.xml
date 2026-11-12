@@ -144,7 +144,7 @@
               </execution>
             </executions>
             <configuration>
-              <mainClass>com.axonivy.portal.jsonschema.PortalSchemaBuilder</mainClass>
+              <mainClass>com.axonivy.portal.schema.PortalSchemaBuilder</mainClass>
               <arguments>
                 <argument>${project.build.directory}/schemas</argument>
                 <argument>${project.version}</argument>

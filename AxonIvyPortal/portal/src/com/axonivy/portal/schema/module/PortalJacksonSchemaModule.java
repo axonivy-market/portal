@@ -16,7 +16,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 
 public class PortalJacksonSchemaModule extends JacksonSchemaModule {
 
-  private static final Map<Class<?>, Set<String>> EXCLUDED_PROPERTIES =
+  public static final Map<Class<?>, Set<String>> EXCLUDED_PROPERTIES =
       Map.of(
           ColumnModel.class, Set.of("filter", "filterFrom", "filterList", "filterTo"),
           WidgetLayout.class, Set.of("id"),
