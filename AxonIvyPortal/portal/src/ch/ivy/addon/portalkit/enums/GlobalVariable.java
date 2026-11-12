@@ -98,7 +98,7 @@ public enum GlobalVariable {
       "enablePinCase"),ALLOW_KEYBOARD_SHORTCUTS_CONFIGURATION(
           "Portal.Accessibility.AllowKeyboardShortcutsConfiguration", GlobalVariableType.SELECTION, Option.TRUE.toString(), "allowKeyboardShortcutsConfiguration"),
   SIDEBAR_MODE("Portal.Sidebar.Mode", GlobalVariableType.EXTERNAL_SELECTION, SidebarMode.HOVER.name(), "sidebarMode", getSidebarModes()),
-  TASK_HEADER_MODE("Portal.Tasks.HeaderMode", GlobalVariableType.EXTERNAL_SELECTION, TaskHeaderMode.DEFAULT.name(), "taskHeaderMode", getTaskHeaderModes()),
+  TASK_HEADER_MODE("Portal.TaskTemplate.HeaderMode", GlobalVariableType.EXTERNAL_SELECTION, TaskHeaderMode.DEFAULT.name(), "taskHeaderMode", getTaskHeaderModes()),
   MAXIMUM_SELECTED_TASKS("Portal.Tasks.MaximumSelectedTasks", GlobalVariableType.NUMBER, "20", "maximumSelectedTasks"),
   FILTER_OPERATOR_POLICY("Portal.ComplexFilter.Operators", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS,
       getFilterOperatorOptions(), "DashboardFilterOperatorPolicy", getFilterOperatorOptions());

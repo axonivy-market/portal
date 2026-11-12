@@ -82,12 +82,12 @@ HowTo: Update Portal Settings
 HowTo: Change the Task Header Mode
 ==================================
 
-Use the :guilabel:`Portal.Tasks.HeaderMode` setting to control the header of the task view.
+Use the :guilabel:`Portal.TaskTemplate.HeaderMode` setting to control the header of the task view.
 The setting applies to tasks displayed with the iframe task template.
 
 #. Select the :guilabel:`Settings` tab.
 
-#. Open the |actions-menu-icon| menu of the :guilabel:`Portal.Tasks.HeaderMode` setting in the Actions column and select :guilabel:`Edit`.
+#. Open the |actions-menu-icon| menu of the :guilabel:`Portal.TaskTemplate.HeaderMode` setting in the Actions column and select :guilabel:`Edit`.
 
 #. Select the value and click :guilabel:`Save`.
 

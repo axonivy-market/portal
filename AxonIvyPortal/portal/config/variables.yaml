@@ -84,6 +84,7 @@ Variables:
       # Set this property to true to enable the ability to pin tasks.
       EnablePinnedTask: "true"
       MaximumSelectedTasks: "20"
+    TaskTemplate:
       # Controls the task header: DEFAULT, LEGACY (Portal 12 compact style) or HIDDEN (header not rendered).
       # [enum: DEFAULT, LEGACY, HIDDEN]
       HeaderMode: DEFAULT
