@@ -15,6 +15,7 @@ import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
+import ch.ivy.addon.portalkit.datamodel.LiveScrollLazyModel;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -58,9 +59,9 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
     if (first == 0) {
       initializedDataModel();
     }
-    setRowCount(getCaseCount(criteria));
-  
+
     List<ICase> foundCases = findCases(criteria, first, pageSize);
+    setRowCount(LiveScrollLazyModel.estimateRowCount(first, pageSize, foundCases.size()));
     data.addAll(foundCases);
     return foundCases;
   }
@@ -113,16 +114,6 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
 
   private void initializedDataModel() {
     data.clear();
-  }
-
-  private int getCaseCount(CaseSearchCriteria criteria) {
-    IvyComponentLogicCaller<Long> countCaseCaller = new IvyComponentLogicCaller<>();
-    UIComponent component = findRelatedCaseComponent();
-    if (component != null) {
-      Long caseCount = countCaseCaller.invokeComponentLogic(component, "#{logic.countCases}", new Object[] {criteria});
-      return caseCount.intValue();
-    }
-    return 0;
   }
 
   private void buildCriteria(Long businessCaseId) {

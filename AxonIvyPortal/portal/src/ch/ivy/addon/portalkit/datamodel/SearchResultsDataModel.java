@@ -42,9 +42,11 @@ public class SearchResultsDataModel implements Serializable {
     taskDataModel = initTaskDataModel();
     taskDataModel.setAdminQuery(hasReadAllTasksPermisson);
     taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
+    taskDataModel.setDisableTaskCount(isCountDisabled());
 
     caseDataModel = initCaseDataModel();
     caseDataModel.setIsAdminQuery(hasReadAllCasesPermission);
+    caseDataModel.setDisableCaseCount(isCountDisabled());
 
     searchScopeTaskFields = SearchScopeUtils.getSearchScopeTaskFields();
     searchScopeCaseFields = SearchScopeUtils.getSearchScopeCaseFields();
@@ -69,6 +71,10 @@ public class SearchResultsDataModel implements Serializable {
     // Placeholder for customization
   }
   
+  protected boolean isCountDisabled() {
+    return true;
+  }
+
   protected TaskLazyDataModel initTaskDataModel() {
     return new TaskLazyDataModel(TASK_WIDGET_COMPONENT_ID);
   }

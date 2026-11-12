@@ -72,7 +72,7 @@
         "at" : { "x" : 96, "y" : 248 }
       },
       "connect" : [
-        { "id" : "f8", "to" : "f7" }
+        { "id" : "f8", "to" : "f76" }
       ]
     }, {
       "id" : "f76",
@@ -112,14 +112,14 @@
       "type" : "Alternative",
       "config" : {
         "conditions" : {
-          "f11" : "in.loopCounter <= in.totalTasks / in.maxResultNumberPerQuery"
+          "f11" : "in.collectedTasksForExporting.size() == in.loopCounter * in.maxResultNumberPerQuery"
         }
       },
       "visual" : {
         "at" : { "x" : 512, "y" : 248 }
       },
       "connect" : [
-        { "id" : "f11", "to" : "f10", "condition" : "in.loopCounter <= in.totalTasks/ in.maxResultNumberPerQuery" },
+        { "id" : "f11", "to" : "f10", "condition" : "in.collectedTasksForExporting.size() == in.loopCounter * in.maxResultNumberPerQuery" },
         { "id" : "f14", "to" : "f13" }
       ]
     }, {
@@ -136,28 +136,6 @@
       },
       "connect" : [
         { "id" : "f16", "to" : "f78" }
-      ]
-    }, {
-      "id" : "f7",
-      "type" : "Script",
-      "name" : "count tasks",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;",
-            "import ch.ivyteam.ivy.environment.Ivy;",
-            "import org.primefaces.PrimeFaces;",
-            "",
-            "in.totalTasks = DashboardTaskService.getInstance().countDashboardTaskByCriteria(in.widget.dataModel.criteria);"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 224, "y" : 248 }
-      },
-      "connect" : [
-        { "id" : "f9", "to" : "f76" }
       ]
     }, {
       "id" : "f10",

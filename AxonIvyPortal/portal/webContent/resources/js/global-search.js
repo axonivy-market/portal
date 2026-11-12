@@ -233,9 +233,9 @@ if (document) {
   function handleUISearchResults($parent, data) {
     let viewAllLink = $parent.siblings('.global-search-all-results')[0];
     let noResults = $parent.siblings('.global-search-no-results')[0];
-    if (data && data.totalResult > 0) {
+    if (data && data.results && data.results.length > 0) {
       $(viewAllLink).removeClass('hidden');
-      $(viewAllLink).find('a').html(data.viewAllText + ' (' + data.totalResult + ')')
+      $(viewAllLink).find('a').html(data.viewAllText)
       $(noResults).addClass('hidden');
     } else {
       $(viewAllLink).addClass('hidden');
