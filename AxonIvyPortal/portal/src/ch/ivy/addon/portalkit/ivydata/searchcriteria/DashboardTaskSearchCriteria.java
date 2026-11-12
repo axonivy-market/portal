@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +25,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.ICustomFieldOrderBy;
@@ -41,6 +43,7 @@ public class DashboardTaskSearchCriteria {
   private boolean isInConfiguration;
   private String quickSearchKeyword;
   private boolean showPinnedItem;
+  private List<String> excludeTechnicalTaskStates;
 
   public TaskQuery buildQuery() {
     TaskQuery query = buildQueryWithoutOrderByClause();
@@ -57,7 +60,21 @@ public class DashboardTaskSearchCriteria {
     if (showPinnedItem) {
       queryPinnedTasks(query);
     }
+    queryExcludeTechnicalStates(query);
     return query;
+  }
+  
+  private void queryExcludeTechnicalStates(TaskQuery query) {
+    if (CollectionUtils.isNotEmpty(excludeTechnicalTaskStates)) {
+      List<TaskState> convertedTechnicalTaskStates = excludeTechnicalTaskStates.stream()
+          .flatMap(state -> Arrays.stream(TaskState.values())
+              .filter(taskState -> taskState.name().equalsIgnoreCase(state)))
+          .collect(Collectors.toList());
+  
+      if (CollectionUtils.isNotEmpty(convertedTechnicalTaskStates)) {
+        query.where().state().isNotIn(convertedTechnicalTaskStates);
+      }
+    }
   }
 
   private void queryCanWorkOn(TaskQuery query) {
@@ -417,6 +434,14 @@ public class DashboardTaskSearchCriteria {
       String[] uuidArray = pinnedTaskUuids.toArray(new String[0]);
       query.where().uuid().isIn(uuidArray);
     }
+  }
+
+  public List<String> getExcludeTechnicalTaskStates() {
+    return excludeTechnicalTaskStates;
+  }
+
+  public void setExcludeTechnicalTaskStates(List<String> excludeTechnicalTaskStates) {
+    this.excludeTechnicalTaskStates = excludeTechnicalTaskStates;
   }
 
 }
