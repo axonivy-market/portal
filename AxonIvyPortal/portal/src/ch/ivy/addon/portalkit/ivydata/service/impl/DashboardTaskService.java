@@ -4,6 +4,8 @@ import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCa
 
 import java.util.List;
 
+import com.axonivy.portal.util.EagerlyFetchUtils;
+
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardTaskSearchCriteria;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -71,6 +73,9 @@ public class DashboardTaskService extends TaskService {
   public List<ITask> findDashboardTaskByCriteria(DashboardTaskSearchCriteria criteria, int startIndex, int count) {
     return Sudo.get(() -> {
       TaskQuery query = criteria.buildQuery();
+      if (EagerlyFetchUtils.shouldEagerlyFetch(count)) {
+        EagerlyFetchUtils.eagerlyFetchDataOfColumns(query, criteria.getColumns());
+      }
       var subQuery = TaskQuery.create();
       boolean hasSubQueryChanged = false;
 
