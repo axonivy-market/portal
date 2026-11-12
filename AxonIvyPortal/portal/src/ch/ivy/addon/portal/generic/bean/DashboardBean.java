@@ -1,5 +1,8 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_DASHBOARD_ID;
+import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_SUB_DASHBOARD_ID;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -37,8 +40,6 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_DASHBOARD_ID;
-import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_SUB_DASHBOARD_ID;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
@@ -546,7 +547,8 @@ public class DashboardBean implements Serializable, IMultiLanguage {
       return;
     }
     selectedDashboardId = (String) Ivy.session().getAttribute(SELECTED_SUB_DASHBOARD_ID.name());
-    if (StringUtils.isNotBlank(selectedDashboardId) && !DashboardUtils.isSubMenuDashboard(dashboards, selectedDashboardId)) {
+    if (StringUtils.isNotBlank(selectedDashboardId) && !DashboardUtils.isSubMenuDashboard(dashboards, selectedDashboardId)
+        && !DashboardUtils.isHiddenDashboard(selectedDashboardId)) {
       // The remembered dashboard was later changed to a non-submenu display type (e.g. promoted to
       // a sidebar entry) - the stale id must not be trusted, or this submenu entry point would keep
       // rendering a dashboard that is no longer a valid submenu dashboard.
