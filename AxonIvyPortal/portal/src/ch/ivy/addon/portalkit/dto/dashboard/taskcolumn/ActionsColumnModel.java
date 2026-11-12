@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivyteam.ivy.workflow.ITask;
 
 public class ActionsColumnModel extends TaskColumnModel implements Serializable {
 
@@ -47,5 +48,10 @@ public class ActionsColumnModel extends TaskColumnModel implements Serializable 
   @Override
   public boolean canFilter() {
     return false;
+  }
+
+  @Override
+  public Object display(ITask task) {
+    return null;
   }
 }

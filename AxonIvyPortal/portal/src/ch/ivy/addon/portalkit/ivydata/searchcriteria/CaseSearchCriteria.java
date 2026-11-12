@@ -51,6 +51,7 @@ public class CaseSearchCriteria {
   private List<SearchScopeCaseField> searchScopeCaseFields;
   
   private List<CaseFilter> legacyFilters;
+  private List<String> columns;
 
   public CaseQuery createQuery() {
     CaseQuery finalQuery;
@@ -417,6 +418,14 @@ public class CaseSearchCriteria {
 
   public void setLegacyFilters(List<CaseFilter> legacyFilters) {
     this.legacyFilters = legacyFilters;
+  }
+
+  public List<String> getColumns() {
+    return columns;
+  }
+
+  public void setColumns(List<String> columns) {
+    this.columns = columns;
   }
 
 }

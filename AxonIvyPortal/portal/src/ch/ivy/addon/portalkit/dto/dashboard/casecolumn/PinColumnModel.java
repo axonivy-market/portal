@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivyteam.ivy.workflow.ICase;
 
 public class PinColumnModel extends CaseColumnModel implements Serializable {
 
@@ -44,4 +45,8 @@ public class PinColumnModel extends CaseColumnModel implements Serializable {
     return false;
   }
 
+  @Override
+  public Object display(ICase caze) {
+    return null;
+  }
 }
