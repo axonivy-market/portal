@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +21,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.text;
@@ -414,5 +416,16 @@ public class DashboardTaskWidgetTest extends BaseTest {
     assertTrue(taskWidget.isCustomFieldsDialogDisplayed());
     List<String> taskCustomFieldNames = taskWidget.getCustomFieldNamesOnTaskCustomFieldsDialog();
     assertFalse(taskCustomFieldNames.isEmpty());
+  }
+
+  @Test
+  public void testTaskWidgetWithExcludeTechnicalState() throws IOException {
+    ConfigurationJsonUtils.updateJSONSetting("dashboard-task-widget-exclude-technical-task-state.json", Variable.DASHBOARD);
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    // See only the DONE task; SUSPENDED tasks are excluded.
+    assertEquals(1, taskWidget.countAllTasks().size());
   }
 }
