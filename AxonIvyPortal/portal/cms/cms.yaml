@@ -42,6 +42,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       removedAbsences: Removed absence for {0}
       saveAbsenceSetting: Absences settings saved successfully.
       updateAbsence: Absence updated successfully
+    SearchSubstitutes: Search substitutes
     absenceAndDeputy: Absences and substitutes
     allAbsences: Absences of all users
     applicationAndRole: Application and role
@@ -563,11 +564,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       filterToSee: Filter to see more
       loadMore: Load more
       noUser: There are no users.
-      roleMemberItemFormat: <li class="tooltip-body-item">{0}</li>
-      roleMemberLineFormat: <p class="tooltip-body-item">{0}</p>
-      roleMembersTooltipFormat: |-
-        <p class="tooltip-header">{0}</p>
-        <ul style="margin: auto; {1}">{2}</ul>
       tooltipHelper: Click to show all users which own this role directly or indirectly
       userOfRoleTitle: User of {0} group
     processChain:

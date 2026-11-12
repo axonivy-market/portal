@@ -1,7 +1,5 @@
 package com.axonivy.portal.selenium.test;
 
-import static com.codeborne.selenide.CollectionCondition.size;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,6 +18,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
+import static com.codeborne.selenide.CollectionCondition.size;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
@@ -51,15 +50,26 @@ public class PortalPermissionTest extends BaseTest {
   public void testShowHideSubMenuItems() {
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     denyAccessFullListPermissions();
-    assertFalse(mainMenuPage.isProcessesDisplayed());
     assertFalse(mainMenuPage.isTasksDisplayed());
     assertFalse(mainMenuPage.isCasesDisplayed());
 
     grantAccessFullListPermissions();
     newDashboardPage = new NewDashboardPage();
-    WaitHelper.assertTrueWithWait(() -> mainMenuPage.isProcessesDisplayed());
     assertTrue(mainMenuPage.isTasksDisplayed());
     assertTrue(mainMenuPage.isCasesDisplayed());
+  }
+
+  @Test
+  public void testShowHideProcessMenuByPermission() {
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+    assertTrue(mainMenuPage.isProcessesDisplayed());
+
+    denyAccessFullListPermissions();
+    assertFalse(mainMenuPage.isProcessesDisplayed());
+
+    grantAccessFullListPermissions();
+    newDashboardPage = new NewDashboardPage();
+    WaitHelper.assertTrueWithWait(() -> mainMenuPage.isProcessesDisplayed());
   }
 
   @Test

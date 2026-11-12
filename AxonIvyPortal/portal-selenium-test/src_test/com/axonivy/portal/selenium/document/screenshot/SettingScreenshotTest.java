@@ -1,9 +1,7 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Selenide.$;
-
 import java.io.IOException;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
@@ -22,6 +20,10 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProjectVersionPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
+import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Selenide.$;
+import com.codeborne.selenide.SelenideElement;
 
 @IvyWebTest
 public class SettingScreenshotTest extends ScreenshotBaseTest {
@@ -61,6 +63,27 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     ProjectVersionPage projectVersionPage = homePage.openProjectVersionPage();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(projectVersionPage.getProjectVersionDialog(),
         ScreenshotUtils.SETTINGS_FOLDER + "portal-version-information", new ScreenshotMargin(20));
+  }
+
+  @Test
+  public void screenshotTaskHeaderMode() throws IOException {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    showNewDashboard();
+    NewDashboardPage homePage = new NewDashboardPage();
+    homePage.waitForCaseWidgetLoaded();
+
+    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    ScreenshotUtils.resizeBrowser(new Dimension(1366, 1000));
+    SelenideElement settingDialog = adminSettingsPage.getEditSettingDialog(Variable.TASK_HEADER_MODE.getKey());
+    SelenideElement optionPanel = adminSettingsPage.openSingleSelectionOptions();
+    for (String option : List.of("Default", "Legacy", "Hide")) {
+      optionPanel.$$("li.ui-selectonemenu-item").filter(Condition.exactText(option)).first()
+          .shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    }
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(settingDialog,
+        ScreenshotUtils.SETTINGS_FOLDER + "task-header-mode", new ScreenshotMargin(20));
+    adminSettingsPage.closeEditSettingDialog();
   }
 
   @Test
