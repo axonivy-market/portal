@@ -1,6 +1,6 @@
-package com.axonivy.portal.jsonschema.generator;
+package com.axonivy.portal.schema.generator;
 
-import com.axonivy.portal.jsonschema.module.PortalJacksonSchemaModule;
+import com.axonivy.portal.schema.module.PortalJacksonSchemaModule;
 import com.github.victools.jsonschema.generator.Option;
 import com.github.victools.jsonschema.generator.OptionPreset;
 import com.github.victools.jsonschema.generator.SchemaGenerator;

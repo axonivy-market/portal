@@ -1,4 +1,4 @@
-package com.axonivy.portal.jsonschema;
+package com.axonivy.portal.schema;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -6,11 +6,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import com.axonivy.portal.jsonschema.definition.PortalCustomStatistic;
-import com.axonivy.portal.jsonschema.definition.PortalDashboard;
-import com.axonivy.portal.jsonschema.definition.PortalDashboardTemplate;
-import com.axonivy.portal.jsonschema.definition.PortalDefinition;
-import com.axonivy.portal.jsonschema.generator.PortalSchemaGenerator;
+import com.axonivy.portal.dto.definition.PortalCustomStatistic;
+import com.axonivy.portal.dto.definition.PortalDashboard;
+import com.axonivy.portal.dto.definition.PortalDashboardTemplate;
+import com.axonivy.portal.dto.definition.PortalDefinition;
+import com.axonivy.portal.schema.generator.PortalSchemaGenerator;
 
 public class PortalSchemaBuilder {
   private record SchemaDefinition(String fileName, Class<?> rootType) {}

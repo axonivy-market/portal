@@ -1,4 +1,4 @@
-package com.axonivy.portal.jsonschema.module;
+package com.axonivy.portal.schema.module;
 
 import java.util.Map;
 import java.util.Objects;

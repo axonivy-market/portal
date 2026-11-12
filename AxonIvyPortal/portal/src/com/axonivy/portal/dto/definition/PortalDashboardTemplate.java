@@ -1,4 +1,4 @@
-package com.axonivy.portal.jsonschema.definition;
+package com.axonivy.portal.dto.definition;
 
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 

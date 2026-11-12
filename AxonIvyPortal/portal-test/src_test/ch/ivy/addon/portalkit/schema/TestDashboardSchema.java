@@ -8,7 +8,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.portal.bo.Statistic;
-import com.axonivy.portal.jsonschema.generator.PortalSchemaGenerator;
+import com.axonivy.portal.schema.generator.PortalSchemaGenerator;
 
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import tools.jackson.databind.JsonNode;
