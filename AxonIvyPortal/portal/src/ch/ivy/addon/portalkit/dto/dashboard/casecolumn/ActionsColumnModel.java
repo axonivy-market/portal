@@ -40,10 +40,7 @@ public class ActionsColumnModel extends CaseColumnModel {
 
   @Override
   public Object display(ICase caze) {
-    if (caze == null) {
-      return "";
-    }
-    return caze.getCategory().getName();
+    return null;
   }
 
   @Override
