@@ -33,7 +33,11 @@ public class WelcomeDashboardWidget extends DashboardWidget {
 
   private WelcomeTextPosition welcomeTextPosition;
   private WelcomeTextSize welcomeTextSize;
+  @JsonPropertyDescription("Text color in light mode (CSS color value).")
+  @Examples("#FFFFFF")
   private String welcomeTextColor;
+  @JsonPropertyDescription("Text color in dark mode (CSS color value).")
+  @Examples("#FFFFFF")
   private String welcomeTextColorDarkMode;
   private List<DisplayName> welcomeTexts;
   private boolean greeting;
@@ -144,8 +148,6 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     this.welcomeTextPosition = welcomeTextPosition;
   }
 
-  @JsonPropertyDescription("Text color in light mode (CSS color value).")
-  @Examples("#FFFFFF")
   public String getWelcomeTextColor() {
     if (StringUtils.isNotBlank(welcomeTextColor)
         && !welcomeTextColor.startsWith("#")) {
@@ -278,8 +280,6 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     this.imageTypeDarkMode = imageTypeDarkMode;
   }
 
-  @JsonPropertyDescription("Text color in dark mode (CSS color value).")
-  @Examples("#FFFFFF")
   public String getWelcomeTextColorDarkMode() {
     if (StringUtils.isNotBlank(welcomeTextColorDarkMode)
         && !welcomeTextColorDarkMode.startsWith("#")) {

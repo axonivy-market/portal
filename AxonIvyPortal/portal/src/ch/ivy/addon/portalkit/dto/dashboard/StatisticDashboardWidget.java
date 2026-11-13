@@ -12,6 +12,7 @@ import io.github.axonivy.json.schema.annotations.RemoteRef;
 public class StatisticDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 1L;
+  @RemoteRef("portal-custom-statistic-schema.json")
   private String chartId;
   @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showFullscreenMode;
@@ -29,7 +30,6 @@ public class StatisticDashboardWidget extends DashboardWidget {
     return DashboardWidgetType.STATISTIC;
   }
 
-  @RemoteRef("portal-custom-statistic-schema.json")
   @JsonPropertyDescription("ID of an existing statistic chart. Define the chart in the statistics JSON configuration first, then set this field to the chart's id.")
   public String getChartId() {
     return chartId;
