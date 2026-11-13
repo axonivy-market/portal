@@ -5,6 +5,7 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class WidgetLayout implements Serializable {
@@ -34,6 +35,7 @@ public class WidgetLayout implements Serializable {
     this.id = id;
   }
 
+  @JsonPropertyDescription("CSS classes for custom styling")
   public String getStyleClass() {
     return styleClass;
   }
@@ -42,6 +44,7 @@ public class WidgetLayout implements Serializable {
     this.styleClass = styleClass;
   }
 
+  @JsonPropertyDescription("Inline CSS styles")
   public String getStyle() {
     return style;
   }

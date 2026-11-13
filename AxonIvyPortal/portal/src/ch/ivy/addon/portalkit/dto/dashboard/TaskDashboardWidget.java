@@ -18,6 +18,7 @@ import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
@@ -118,7 +119,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   public boolean getCanWorkOn() {
     return this.dataModel.getCanWorkOn();
   }
-  
+
   public void setCanWorkOn(boolean canWorkOn) {
     this.dataModel.setCanWorkOn(canWorkOn);
   }
@@ -154,16 +155,16 @@ public class TaskDashboardWidget extends DashboardWidget {
   public String getSortField() {
     return this.dataModel.getCriteria().getSortField();
   }
-  
+
   public void setSortField(String sortField) {
     this.dataModel.getCriteria().setSortField(sortField);
   }
-  
+
   @JsonInclude(JsonInclude.Include.NON_DEFAULT)
   public boolean isSortDescending() {
     return this.dataModel.getCriteria().isSortDescending();
   }
-  
+
   public void setSortDescending(boolean sortDescending) {
     this.dataModel.getCriteria().setSortDescending(sortDescending);
   }
@@ -171,11 +172,12 @@ public class TaskDashboardWidget extends DashboardWidget {
   public DashboardTaskLazyDataModel getDataModel() {
     return dataModel;
   }
-  
+
   public void setDataModel(DashboardTaskLazyDataModel dataModel) {
     this.dataModel = dataModel;
   }
-  
+
+  @JsonPropertyDescription("An array of predefined column configurations rendered in the task widget, requiring at least one item. Each column object must define a field and a type.")
   public List<TaskColumnModel> getColumns() {
     return this.dataModel.getCriteria().getColumns();
   }
@@ -198,12 +200,12 @@ public class TaskDashboardWidget extends DashboardWidget {
   public int getTaskCount() {
     return getDataModel().getRowCount();
   }
-  
+
   @JsonIgnore
   public boolean isInConfiguration() {
     return this.dataModel.getCriteria().isInConfiguration();
   }
-  
+
   public void setInConfiguration(boolean isInConfiguration) {
     this.dataModel.getCriteria().setInConfiguration(isInConfiguration);
   }
@@ -251,11 +253,11 @@ public class TaskDashboardWidget extends DashboardWidget {
   public void setQuickSearchKeyword() {
     if (BooleanUtils.isTrue(this.enableQuickSearch)) {
       this.dataModel.getCriteria().setQuickSearchKeyword(this.getQuickSearchKeyword());
+    } else {
+      this.setQuickSearchKeyword(StringUtils.EMPTY);
     }
-      else {
-        this.setQuickSearchKeyword(StringUtils.EMPTY);
-  }}
-
+  }
+  
   public List<DashboardFilter> getFilters() {
     return this.dataModel.getCriteria().getFilters();
   }
@@ -263,7 +265,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   public void setFilters(List<DashboardFilter> filters) {
     this.dataModel.getCriteria().setFilters(filters);
   }
-  
+
   @JsonIgnore
   public List<DashboardFilter> getUserFilters() {
     return this.dataModel.getCriteria().getUserFilters();
@@ -281,19 +283,19 @@ public class TaskDashboardWidget extends DashboardWidget {
   public void setEnableQuickSearch(boolean enableQuickSearch) {
     this.enableQuickSearch = enableQuickSearch;
   }
-  
+
   public void setShowWidgetInfo(boolean showWidgetInfo) {
     this.showWidgetInfo = showWidgetInfo;
   }
-  
+
   public boolean isShowWidgetInfo() {
     return showWidgetInfo;
   }
-  
+
   public void setShowFullscreenMode(boolean showFullscreenMode) {
     this.showFullscreenMode = showFullscreenMode;
   }
-  
+
   public boolean isShowFullscreenMode() {
     return showFullscreenMode;
   }
@@ -315,19 +317,19 @@ public class TaskDashboardWidget extends DashboardWidget {
     var latestUserFilterOptions = getUserFilterCollection().getLatestFilterOption();
     WidgetFilterService.getInstance().updateFilterOptionsData(this, latestUserFilterOptions);
   }
-  
+
   @JsonIgnore
   @Override
   public void onApplyUserFilters() {
     setUserFilters(this.getUserFilters().stream()
-      .filter(Objects::nonNull)
+        .filter(Objects::nonNull)
         .filter(filter -> StringUtils.isNotBlank(filter.getField()))
-      .collect(Collectors.toList()));
+        .collect(Collectors.toList()));
 
     getUserFilters().forEach(filter -> filter.setTemp(false));
 
     var filterService = WidgetFilterService.getInstance();
-    userFilterCollection.updateUserFilterOptionValue(this);    
+    userFilterCollection.updateUserFilterOptionValue(this);
     filterService.storeUserSelectedFiltersToSession(id, getType(), userFilterCollection);
     userDefinedFiltersCount = DashboardWidgetUtils.countDefinedUserFilter(this);
   }
@@ -336,7 +338,6 @@ public class TaskDashboardWidget extends DashboardWidget {
   public void cancelUserFilter() {
     setUserFilters(getUserFilters().stream().filter(filter -> !filter.isTemp()).collect(Collectors.toList()));
   }
-
 
   public List<String> getErrors() {
     return errors;

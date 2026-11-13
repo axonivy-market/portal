@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -52,7 +53,7 @@ public abstract class DashboardWidget implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;
   private static final Integer NUMBER_OF_MOCK_ITEMS = LiveScrollLazyModel.DEFAULT_CHUNK_SIZE;
-  
+
   protected String id;
   @Deprecated(since = "10.0", forRemoval = true)
   @JsonProperty(access = Access.WRITE_ONLY)
@@ -99,8 +100,7 @@ public abstract class DashboardWidget implements Serializable {
   public void buildStatisticInfos() {}
 
   @JsonIgnore
-  public void setQuickSearchKeyword() {
-  }
+  public void setQuickSearchKeyword() {}
 
   @JsonIgnore
   public void updateQuickSearchKeyword() {
@@ -121,14 +121,14 @@ public abstract class DashboardWidget implements Serializable {
     this.setUserDefinedFiltersCount(Optional.empty());
     resetWidgetFilters();
     userFilterCollection = new UserFilterCollection(id, getType());
-    
+
     if (StringUtils.isNotBlank(this.quickSearchKeyword)) {
       userFilterCollection.setQuickSearchKeyword(this.quickSearchKeyword);
     }
 
     onApplyUserFilters();
   }
-  
+
   @JsonIgnore
   public abstract void resetWidgetFilters();
 
@@ -223,6 +223,7 @@ public abstract class DashboardWidget implements Serializable {
     this.name = nameResult.name();
   }
 
+  @JsonPropertyDescription("Multilingual display names.")
   public List<DisplayName> getNames() {
     return names;
   }
@@ -238,11 +239,11 @@ public abstract class DashboardWidget implements Serializable {
   public void setLayout(WidgetLayout layout) {
     this.layout = layout;
   }
-  
+
   public boolean getAutoPosition() {
     return autoPosition;
   }
-  
+
   public void setAutoPosition(boolean autoPosition) {
     this.autoPosition = autoPosition;
   }

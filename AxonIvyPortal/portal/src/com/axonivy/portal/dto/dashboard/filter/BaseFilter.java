@@ -61,7 +61,7 @@ public class BaseFilter implements Serializable{
 
   private FilterOperator operator;
 
-  @JsonProperty("type")
+  @JsonProperty(required = true, value = "type")
   private DashboardColumnType filterType;
 
   @JsonIgnore

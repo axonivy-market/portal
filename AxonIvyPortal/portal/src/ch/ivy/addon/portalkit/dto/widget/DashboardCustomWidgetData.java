@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidgetParam;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
@@ -31,6 +32,7 @@ public class DashboardCustomWidgetData implements Serializable {
   @JsonIgnore
   private boolean hasParamChanged;
 
+  @JsonPropertyDescription("External webpage URL to display in iframe")
   public String getUrl() {
     return url;
   }
@@ -40,6 +42,7 @@ public class DashboardCustomWidgetData implements Serializable {
     this.url = UrlUtils.isSafeIframeUrl(trimmed) ? trimmed : "";
   }
 
+  @JsonPropertyDescription("IWebStartable identifier of the Ivy process")
   public String getProcessPath() {
     return processPath;
   }
@@ -64,6 +67,7 @@ public class DashboardCustomWidgetData implements Serializable {
     this.type = type;
   }
 
+  @JsonPropertyDescription("Process parameters")
   public List<CustomDashboardWidgetParam> getParams() {
     return params;
   }

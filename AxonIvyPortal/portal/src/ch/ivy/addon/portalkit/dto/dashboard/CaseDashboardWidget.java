@@ -19,6 +19,7 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.CaseQueryType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardCaseLazyDataModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
@@ -132,6 +133,7 @@ public class CaseDashboardWidget extends DashboardWidget {
     this.dataModel = dataModel;
   }
 
+  @JsonPropertyDescription("An array of predefined column configurations rendered in the task widget, requiring at least one item. Each column object must define a field and a type.")
   public List<CaseColumnModel> getColumns() {
     return this.dataModel.getCriteria().getColumns();
   }
