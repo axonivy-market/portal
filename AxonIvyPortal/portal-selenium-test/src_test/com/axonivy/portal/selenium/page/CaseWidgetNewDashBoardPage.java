@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -74,11 +75,11 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private ElementsCollection getColumnsOfTableWidget() {
-    return $(caseWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr td");
+    return $(caseWidgetId).shouldBe(visible, DEFAULT_TIMEOUT).$$("table tbody tr td");
   }
 
   private ElementsCollection getColumnOfTableWidget(int rowIndex) {
-    return $(caseWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr ").get(rowIndex).$$("td");
+    return $(caseWidgetId).shouldBe(visible, DEFAULT_TIMEOUT).$$("table tbody tr ").get(rowIndex).$$("td");
   }
 
   public ElementsCollection expand() {
