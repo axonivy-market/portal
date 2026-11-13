@@ -43,11 +43,15 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
 
   public static final String WIDGET_FILTER_KEY_PATTERN = "WIDGET_FILTER_KEY_%s_%s";
 
-  private static WidgetFilterService instance;
+  private static volatile WidgetFilterService instance;
 
   public static WidgetFilterService getInstance() {
     if (instance == null) {
-      instance = new WidgetFilterService();
+      synchronized (WidgetFilterService.class) {
+        if (instance == null) {
+          instance = new WidgetFilterService();
+        }
+      }
     }
     return instance;
   }

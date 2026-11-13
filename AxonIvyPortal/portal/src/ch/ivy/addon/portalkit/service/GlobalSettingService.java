@@ -18,7 +18,7 @@ import ch.ivyteam.ivy.vars.Variable;
 
 public class GlobalSettingService {
 
-  private static GlobalSettingService instance;
+  private static volatile GlobalSettingService instance;
 
   public GlobalSettingService() {
   }

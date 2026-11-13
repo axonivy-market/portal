@@ -25,13 +25,17 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 public class AnnouncementService {
   private static final String ANNOUNCEMENT = PortalVariable.ANNOUNCEMENT.key;
   private static final String ANNOUNCEMENT_CACHE_ENTRY = "ANNOUNCEMENT";
-  private static AnnouncementService instance;
+  private static volatile AnnouncementService instance;
 
   private AnnouncementService() {}
 
   public static final AnnouncementService getInstance() {
     if (instance == null) {
-      instance = new AnnouncementService();
+      synchronized (AnnouncementService.class) {
+        if (instance == null) {
+          instance = new AnnouncementService();
+        }
+      }
     }
     return instance;
   }

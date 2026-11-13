@@ -8,11 +8,15 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 public class DashboardService extends JsonConfigurationService<Dashboard> {
 
-  private static DashboardService instance;
+  private static volatile DashboardService instance;
 
   public static DashboardService getInstance() {
     if (instance == null) {
-      instance = new DashboardService();
+      synchronized (DashboardService.class) {
+        if (instance == null) {
+          instance = new DashboardService();
+        }
+      }
     }
     return instance;
   }

@@ -27,7 +27,7 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class LanguageService {
 
-  private static LanguageService instance;
+  private static volatile LanguageService instance;
   private static final String DEFAULT_LOCALE_CODE = "en";
   
   private LanguageService() {}

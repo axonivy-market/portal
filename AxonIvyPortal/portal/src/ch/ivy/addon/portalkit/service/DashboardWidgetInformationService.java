@@ -45,11 +45,15 @@ public class DashboardWidgetInformationService {
   private static final String ANALYZE_CASE_STATE = "analyzeCaseBusinessStateStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)";
   private static final String ANALYZE_CASE_CATEGORY = "analyzeCaseCategoryStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)";
 
-  private static DashboardWidgetInformationService instance;
+  private static volatile DashboardWidgetInformationService instance;
 
   public static DashboardWidgetInformationService getInstance() {
     if (instance == null) {
-      instance = new DashboardWidgetInformationService();
+      synchronized (DashboardWidgetInformationService.class) {
+        if (instance == null) {
+          instance = new DashboardWidgetInformationService();
+        }
+      }
     }
     return instance;
   }
