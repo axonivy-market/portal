@@ -76,6 +76,7 @@ public class CaseDetailsTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    resizeBrowserToFullHDResolution();
     login(TestAccount.ADMIN_USER);
     newDashboardPage = new NewDashboardPage();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
@@ -394,7 +395,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.relatedTaskListColumnShouldBeExist(RELATED_TASK_EXPIRY_COLUMN, true);
     detailsPage.relatedTaskListColumnShouldBeExist(RELATED_TASK_STATE_COLUMN, false);
   }
-
+ 
   @Test
   public void testHistoryAuthorIsUserFullName() {
     createTestingTask();

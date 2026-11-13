@@ -96,6 +96,7 @@ public class CaseDetailsPage extends TemplatePage {
     textArea.sendKeys(noteContent);
     SelenideElement saveButton = addNoteDialog.$("button[id$='save-add-note-command']");
     saveButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    WaitHelper.waitPageNoAjaxAndAnimation();
     addNoteDialog.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
@@ -1147,6 +1148,7 @@ public class CaseDetailsPage extends TemplatePage {
       return;
     } else {
       systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
+      WaitHelper.waitPageNoAjaxAndAnimation();
       clickOnSystemNotesCheckbox(checkboxShouldBeChecked);
     }
   }
@@ -1160,8 +1162,7 @@ public class CaseDetailsPage extends TemplatePage {
       return;
     } else {
       systemNotesCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
-      // Cannot identify when the ajax request of select checkbox is finished
-      // So we need to wait for Ajax Indicator disappear
+      WaitHelper.waitPageNoAjaxAndAnimation();
       clickOnSystemTasksCheckbox(checkboxShouldBeChecked);
     }
   }
