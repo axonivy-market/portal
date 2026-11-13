@@ -359,4 +359,12 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.showPinnedToggle = showPinnedToggle;
   }
 
+  public List<String> getExcludeTechnicalTaskStates() {
+    return this.dataModel.getExcludeTechnicalTaskStates();
+  }
+
+  public void setExcludeTechnicalTaskStates(List<String> excludeTechnicalTaskStates) {
+    this.dataModel.setExcludeTechnicalTaskStates(excludeTechnicalTaskStates);
+  }
+
 }
