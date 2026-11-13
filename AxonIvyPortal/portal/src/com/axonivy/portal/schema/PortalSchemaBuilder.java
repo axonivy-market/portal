@@ -16,7 +16,7 @@ import com.axonivy.portal.schema.helper.PortalSchemaHelper;
 public class PortalSchemaBuilder {
   private record SchemaDefinition(String fileName, Class<?> rootType) {}
 
-  private static final List<SchemaDefinition> SCHEMAS = List.of(
+  private static final List<SchemaDefinition> SCHEMA_FILE_LIST = List.of(
       new SchemaDefinition("portal-dashboard-schema.json", PortalDashboard.class),
       new SchemaDefinition("portal-custom-statistic-schema.json", PortalCustomStatistic.class),
       new SchemaDefinition("portal-dashboard-template-schema.json", PortalDashboardTemplate.class));
@@ -32,7 +32,7 @@ public class PortalSchemaBuilder {
     try {
       Files.createDirectories(versionDir);
       var generator = new PortalSchemaGenerator();
-      for (SchemaDefinition def : SCHEMAS) {
+      for (SchemaDefinition def : SCHEMA_FILE_LIST) {
         writeSchema(generator, def, versionDir);
       }
     } catch (IOException ex) {

@@ -146,7 +146,7 @@
             <configuration>
               <mainClass>com.axonivy.portal.schema.PortalSchemaBuilder</mainClass>
               <arguments>
-                <argument>${project.build.directory}/schemas</argument>
+                <argument>${project.build.directory}/schema</argument>
                 <argument>${project.version}</argument>
               </arguments>
               <classpathScope>compile</classpathScope>
