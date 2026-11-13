@@ -209,7 +209,7 @@ Working on a Task
 
 .. important::
 
-   Do not use the browser's **Back** button while you work on a task.
+   try to avoid using back button while you work on a task
    When you submit a task, Axon Ivy completes it and removes its form from the session.
    Going back does not reopen the task. The browser requests a form that no longer
    exists, and Portal shows a **View Expired** page. For tasks shown in an iframe, the
