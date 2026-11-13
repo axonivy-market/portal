@@ -70,6 +70,10 @@ public class GlobalSettingService {
     return findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_CREATOR);
   }
 
+  public boolean isHideDisabledApplicationTasksAndCases() {
+    return findBooleanGlobalSettingValue(GlobalVariable.HIDE_DISABLED_APPLICATION_TASKS_AND_CASES);
+  }
+
   public GlobalSetting save(GlobalSetting entity) {
     if (entity.getIsPublic()) {
       Ivy.var().set(entity.getKey(), entity.getValue());

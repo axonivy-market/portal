@@ -287,6 +287,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。
       hideCaseDocument: true に設定すると、ケース詳細ページのドキュメントセクションは非表示になり、それ以外の場合は表示されます。
       hideChangePasswordButtonNote: この変数を true に設定すると、トップメニューの「パスワードの変更」オプションとログインページの「パスワードを忘れた場合」オプションが非表示になります。false に設定すると、これらのオプションが表示されます。
+      hideDisabledApplicationTasksAndCases: true に設定すると、無効化または非推奨のアプリケーションのタスクとケースを、一覧、検索、件数、エクスポート、統計から非表示にします。保存済みデータは保持されます。デフォルトは false です。
       hideLogoutButtonNote: true の場合、トップメニューのログアウトボタンは非表示になり、それ以外の場合は表示されます。
       hideRelatedCaseInfoFromHistory: true の場合、ケース履歴は関連するケース情報を履歴テーブルに表示しません。
       hideSystemTasksFromHistory: true の場合、管理者以外のユーザーに対してケースノートは何のシステムタスクも表示しません。

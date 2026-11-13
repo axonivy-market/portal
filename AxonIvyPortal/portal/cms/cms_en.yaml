@@ -286,6 +286,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         This setting affects all case queries, e.g. for case list, global search, statistic.
       hideCaseDocument: Set to true, the document section in case detail page will be hidden, otherwise it will be shown.
       hideChangePasswordButtonNote: Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
+      hideDisabledApplicationTasksAndCases: Set to true to hide tasks and cases of deactivated or deprecated applications from lists, search, counts, exports and statistics. Stored data is retained. Default is false.
       hideLogoutButtonNote: If true, the logout button on top menu will be hidden, otherwise it will be shown.
       hideRelatedCaseInfoFromHistory: If true, case history does not display the related case information in the history table.
       hideSystemTasksFromHistory: If true, case note does not display any system tasks for non-administrator users.

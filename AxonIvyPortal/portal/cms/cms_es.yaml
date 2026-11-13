@@ -288,6 +288,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         Este ajuste afecta a todas las consultas de casos, por ejemplo, para la lista de casos, la búsqueda global o la estadística.
       hideCaseDocument: Cambiar a "true" para ocultar el área de documentos en detalle de casos
       hideChangePasswordButtonNote: Establezca esta variable a true para ocultar la opción "Cambiar contraseña" en el menú superior y la opción "Contraseña olvidada" en la página de inicio de sesión. Si se establece en false, estas opciones se mostrarán.
+      hideDisabledApplicationTasksAndCases: Cambiar a "true" para ocultar tareas y casos de aplicaciones desactivadas u obsoletas en listas, búsqueda, contadores, exportaciones y estadísticas. Los datos almacenados se conservan. El valor predeterminado es false.
       hideLogoutButtonNote: Cambiar a "true" para ocultar la opción de logout.
       hideRelatedCaseInfoFromHistory: Si es verdadero, el historial de casos no muestra la información de los casos relacionados en la tabla de historial.
       hideSystemTasksFromHistory: Cambiar a "true" para ocultar notas técnicas del historial de tareas del caso para usuarios

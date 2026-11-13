@@ -240,6 +240,8 @@ Variables:
   # (stored in either an additional property or a custom field).
   # Setting this to false will ignore this feature.
   PortalHiddenTaskCaseExcluded: "true"
+  # Hides tasks and cases of deactivated or deprecated applications when true.
+  Portal.HideDisabledApplicationTasksAndCases: "false"
   # By default, Portal will redirect to Login Page if login is required and user is unknown.
   # If set to false, redirect to login error page.
   PortalLoginPageDisplay: "true"
