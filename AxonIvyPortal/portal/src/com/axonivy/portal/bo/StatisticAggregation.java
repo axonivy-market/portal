@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import io.github.axonivy.json.schema.annotations.CustomType;
 import io.github.axonivy.json.schema.annotations.Examples;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -20,6 +21,7 @@ public class StatisticAggregation implements Serializable {
   private String field;
   @JsonProperty(access = Access.WRITE_ONLY)
   private String customFieldValue;
+  @CustomType(StatisticAggregationType.class)
   private DashboardColumnType type;
   private AggregationInterval interval;
 
@@ -80,5 +82,9 @@ public class StatisticAggregation implements Serializable {
 
   public void setAggregationMethod(String aggregationMethod) {
     this.aggregationMethod = aggregationMethod;
+  }
+
+  private enum StatisticAggregationType {
+    standard, custom;
   }
 }
