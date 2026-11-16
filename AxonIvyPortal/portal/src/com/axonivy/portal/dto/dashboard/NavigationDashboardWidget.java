@@ -69,6 +69,7 @@ public class NavigationDashboardWidget extends DashboardWidget {
   }
 
   @JsonPropertyDescription("ID of the dashboard to navigate to when clicked.")
+  @JsonProperty(required = true)
   public String getTargetDashboardId() {
     return this.targetDashboardId;
   }
