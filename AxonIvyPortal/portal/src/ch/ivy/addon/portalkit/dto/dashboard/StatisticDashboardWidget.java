@@ -6,13 +6,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeTrue;
-import io.github.axonivy.json.schema.annotations.RemoteRef;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class StatisticDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 1L;
-  @RemoteRef("portal-custom-statistic-schema.json")
   private String chartId;
   @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showFullscreenMode;
