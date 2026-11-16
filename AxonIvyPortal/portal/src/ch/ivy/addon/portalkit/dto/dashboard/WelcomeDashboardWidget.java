@@ -8,6 +8,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -124,6 +125,7 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   }
 
   @JsonPropertyDescription("Multilingual welcome messages.")
+  @JsonProperty(required = true)
   public List<DisplayName> getWelcomeTexts() {
     return welcomeTexts;
   }
