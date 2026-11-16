@@ -552,6 +552,7 @@ public class DashboardBean implements Serializable, IMultiLanguage {
       // The remembered dashboard was later changed to a non-submenu display type (e.g. promoted to
       // a sidebar entry) - the stale id must not be trusted, or this submenu entry point would keep
       // rendering a dashboard that is no longer a valid submenu dashboard.
+      // Hidden dashboards are kept: they are opened from the navigation widget and never are submenu entries.
       selectedDashboardId = null;
     }
   }
