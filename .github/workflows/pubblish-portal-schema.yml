@@ -1,0 +1,125 @@
+name: Build and Publish Portal Schemas
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish schema to GitHub Packages'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - uses: stCarolas/setup-maven@v5.1
+        with:
+          maven-version: 3.10.0
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Set package version from Portal
+        run: |
+          python3 - <<'PY'
+          import os
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          ns = {"m": "http://maven.apache.org/POM/4.0.0"}
+          portal = ET.parse("AxonIvyPortal/portal/pom.xml").getroot()
+          portal_version = portal.findtext("m:version", namespaces=ns)
+          if not portal_version:
+              raise SystemExit("Portal POM must declare a version")
+          package_path = Path(".github/scripts/schema/pom.xml")
+          package = ET.parse(package_path)
+          package.getroot().find("m:version", ns).text = portal_version
+          ET.register_namespace("", ns["m"])
+          package.write(package_path, encoding="utf-8", xml_declaration=True)
+          schema_directory = (
+              Path(os.environ["GITHUB_WORKSPACE"])
+              / "AxonIvyPortal/portal/target/schema"
+              / portal_version
+          ).resolve()
+          with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as environment:
+              environment.write(f"SCHEMAS_DIRECTORY={schema_directory}\n")
+          print(f"Building schemas for Portal {portal_version}")
+          print(f"Schema directory: {schema_directory}")
+          PY
+
+      - name: Generate schemas
+        run: >-
+          mvn -B -ntp -f AxonIvyPortal/portal/pom.xml
+          -Pjson.schema clean process-classes
+
+      - name: Check generated JSON files exist
+        run: |
+          for SCHEMA in portal-dashboard-schema.json portal-custom-statistic-schema.json portal-dashboard-template-schema.json; do
+            test -f "${SCHEMAS_DIRECTORY}/${SCHEMA}"
+          done
+
+      - name: Package schemas
+        run: >-
+          mvn -B -ntp -f .github/scripts/schema/pom.xml
+          "-Dschema.directory=${SCHEMAS_DIRECTORY}"
+          clean package
+
+      - name: Upload schema ZIP and publishing POM
+        uses: actions/upload-artifact@v4
+        with:
+          name: portal-schemas
+          include-hidden-files: true
+          if-no-files-found: error
+          path: |
+            .github/scripts/schema/target/portal-schema-*.zip
+            .github/scripts/schema/pom.xml
+
+  publish:
+    if: ${{ inputs.publish && github.ref == 'refs/heads/master' }}
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    concurrency:
+      group: publish-portal-schemas
+      cancel-in-progress: false
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: portal-schemas
+          path: package
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25'
+          server-id: github
+          server-username: GITHUB_ACTOR
+          server-password: GITHUB_TOKEN
+
+      - uses: stCarolas/setup-maven@v5.1
+        with:
+          maven-version: 3.10.0
+
+      - name: Publish ZIP and POM
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn -B -ntp org.apache.maven.plugins:maven-deploy-plugin:3.1.3:deploy-file \
+            -Dfile="$(find package/target -maxdepth 1 -name 'portal-schema-*.zip' -type f)" \
+            -DpomFile=package/pom.xml \
+            -Dpackaging=zip \
+            -DrepositoryId=github \
+            -Durl=https://maven.pkg.github.com/axonivy-market/portal
