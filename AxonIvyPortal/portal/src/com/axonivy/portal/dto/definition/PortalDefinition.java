@@ -4,40 +4,40 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.service.ProjectVersionService;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({"$schema", "version", "items"})
-public abstract class PortalDefinition<T> {
+public abstract class PortalDefinition<T> extends JsonListWrapper<T> {
   public static final String SCHEMA_BASE_URL = "https://axonivy-market.github.io/portal/schemas/";
 
   @JsonProperty(required = true, value = "$schema")
   private String schema;
-  @JsonProperty(required = true)
-  private String version = "14.0.0";
-  @JsonProperty(required = true)
-  private List<T> items;
 
   public PortalDefinition() {};
-
-  public PortalDefinition(String schema, List<T> items) {
-    this.schema = schemaUrl(schema);
-    this.items = items;
+  
+  public PortalDefinition(String schemaFile, List<T> items) {
+    super(JsonListWrapper.FORMAT_VERSION, items);
+    schema = schemaUrl(schemaFile);
   }
 
   public String getSchema() {
     return schema;
   }
 
+  @Override
+  @JsonProperty(required = true)
   public String getVersion() {
-    return version;
-  }
-
-
-  public List<T> getItems() {
-    return items;
+    return super.getVersion();
   };
+
+  @Override
+  @JsonProperty(required = true)
+  public List<T> getItems() {
+    return super.getItems();
+  }
 
   private String getPortalVersion() {
     String portalVersion = ProjectVersionService.getInstance().getPortalVersion();
