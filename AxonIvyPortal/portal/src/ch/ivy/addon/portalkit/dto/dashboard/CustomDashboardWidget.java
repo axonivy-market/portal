@@ -10,6 +10,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
@@ -44,6 +45,7 @@ public class CustomDashboardWidget extends DashboardWidget {
   }
 
   @JsonPropertyDescription("Custom widget content definition")
+  @JsonProperty(required = true)
   public DashboardCustomWidgetData getData() {
     return data;
   }

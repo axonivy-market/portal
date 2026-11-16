@@ -18,6 +18,7 @@ import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
@@ -30,6 +31,7 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
+import io.github.axonivy.json.schema.annotations.Examples;
 
 public class TaskDashboardWidget extends DashboardWidget {
 
@@ -178,6 +180,8 @@ public class TaskDashboardWidget extends DashboardWidget {
   }
 
   @JsonPropertyDescription("An array of predefined column configurations rendered in the task widget, requiring at least one item. Each column object must define a field and a type.")
+  @JsonProperty(required = true)
+  @Examples({"name", "state", "description", "start"})
   public List<TaskColumnModel> getColumns() {
     return this.dataModel.getCriteria().getColumns();
   }

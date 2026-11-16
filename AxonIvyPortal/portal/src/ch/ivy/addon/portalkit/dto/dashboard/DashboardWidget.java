@@ -205,6 +205,7 @@ public abstract class DashboardWidget implements Serializable {
     return Ivy.cms().co(cmsUri);
   }
 
+  @JsonProperty(required = true)
   public String getId() {
     return id;
   }
@@ -224,6 +225,7 @@ public abstract class DashboardWidget implements Serializable {
   }
 
   @JsonPropertyDescription("Multilingual display names.")
+  @JsonProperty(required = true)
   public List<DisplayName> getNames() {
     return names;
   }
@@ -232,6 +234,8 @@ public abstract class DashboardWidget implements Serializable {
     this.names = names;
   }
 
+  @JsonPropertyDescription("Configure the widget layout.")
+  @JsonProperty(required = true)
   public WidgetLayout getLayout() {
     return layout;
   }

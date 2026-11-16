@@ -3,6 +3,7 @@ package com.axonivy.portal.dto.dashboard;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -107,6 +108,7 @@ public class NavigationDashboardWidget extends DashboardWidget {
   }
 
   @JsonPropertyDescription("Multilingual button labels.")
+  @JsonProperty(required = true)
   public List<DisplayName> getButtonNames() {
     return this.buttonNames;
   }
