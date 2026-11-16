@@ -15,6 +15,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public final class EagerlyFetchUtils {
 
+  // Engine puts all fetched ids into one IN clause without batching; stay well below the MSSQL limit of 2100 bind parameters
   public static final int MAX_EAGERLY_FETCH_COUNT = 1000;
 
   private EagerlyFetchUtils() {
