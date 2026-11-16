@@ -153,7 +153,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
-    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+    if (shouldDisplayWorkingTaskWarning(isWorkingOnATask, task)) {
       targetPage = getHomePageURL();
       openTaskLosingConfirmationDialog();
     } else {
@@ -161,8 +161,16 @@ public class UserMenuBean implements Serializable {
     }
   }
 
+  /**
+   * The working task can be null although the user is still on a task page, e.g. when the session owning the task
+   * timed out and the engine reset the task. There is nothing left to reserve or leave, so navigate directly.
+   */
+  private boolean shouldDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) {
+    return isWorkingOnATask && task != null && task.getState() != TaskState.DONE;
+  }
+
   public void navigateToPortalManagementDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
-    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+    if (shouldDisplayWorkingTaskWarning(isWorkingOnATask, task)) {
       openTaskLosingConfirmationDialog();
       targetPage = getPortalManagementUrl();
     } else {
@@ -172,7 +180,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public void navigateToUserProfileOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
-    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+    if (shouldDisplayWorkingTaskWarning(isWorkingOnATask, task)) {
       openTaskLosingConfirmationDialog();
       targetPage = getUserProfileUrl();
     } else {
@@ -182,7 +190,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public void navigateToAbsencesOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
-    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+    if (shouldDisplayWorkingTaskWarning(isWorkingOnATask, task)) {
       openTaskLosingConfirmationDialog();
       targetPage = getAbsencesUrl();
     } else {
@@ -193,7 +201,7 @@ public class UserMenuBean implements Serializable {
 
   public void navigateToDashboardConfigurationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
     var url = PortalNavigator.buildDashboardConfigurationUrl();
-    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+    if (shouldDisplayWorkingTaskWarning(isWorkingOnATask, task)) {
       openTaskLosingConfirmationDialog();
       targetPage = url;
     } else {
@@ -213,6 +221,10 @@ public class UserMenuBean implements Serializable {
   public void reserveTaskAndNavigateWithGrowl(ITask task) throws IOException {
     IvyComponentLogicCaller<ITask> reserveTask = new IvyComponentLogicCaller<>();
     ITask relatedTask = task != null ? task : Ivy.wfTask();
+    if (relatedTask == null) {
+      navigateToTargetPage();
+      return;
+    }
     String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
     reserveTask.invokeComponentLogic(componentId, "#{logic.reserve}", new Object[] {relatedTask.getCase()});
     executeCustomizedLogicIfExists(relatedTask, PortalCustomSignature.EXTEND_TASK_RESERVE);
@@ -223,6 +235,10 @@ public class UserMenuBean implements Serializable {
   public void resetTaskAndNavigateWithGrowl(ITask task) throws IOException {
     IvyComponentLogicCaller<ITask> leaveTask = new IvyComponentLogicCaller<>();
     ITask relatedTask = task != null ? task : Ivy.wfTask();
+    if (relatedTask == null) {
+      navigateToTargetPage();
+      return;
+    }
     String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
     leaveTask.invokeComponentLogic(componentId, "#{logic.leave}", new Object[] {relatedTask.getCase()});
     executeCustomizedLogicIfExists(relatedTask, PortalCustomSignature.EXTEND_TASK_LEAVE);
@@ -317,7 +333,7 @@ public class UserMenuBean implements Serializable {
   }
   
   public void navigateToURLOrDisplayWorkingTaskWarning(UserMenu menu, boolean isWorkingOnATask, ITask task) throws IOException {
-    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+    if (shouldDisplayWorkingTaskWarning(isWorkingOnATask, task)) {
       openTaskLosingConfirmationDialog();
       targetPage = getURLFromUserMenu(menu);
     } else {
@@ -346,7 +362,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public void navigateToNotificationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) {
-    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+    if (shouldDisplayWorkingTaskWarning(isWorkingOnATask, task)) {
       openTaskLosingConfirmationDialog();
       targetPage = getNotificationFullPageUrl();
     } else {
@@ -405,7 +421,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public void navigateToChatBotOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
-    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+    if (shouldDisplayWorkingTaskWarning(isWorkingOnATask, task)) {
       openTaskLosingConfirmationDialog();
       targetPage = getAssistantDashboardUrl();
     } else {
