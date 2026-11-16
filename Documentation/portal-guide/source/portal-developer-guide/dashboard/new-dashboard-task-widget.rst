@@ -163,7 +163,7 @@ JSON Configuration Reference
    Filter only tasks the current user can work on
 
 ``excludeTechnicalTaskStates`` (list, default empty)
-   This setting can only be configured in JSON. It lets you exclude specific technical task states :dev-url:`Task state </doc/12.0/public-api/ch/ivyteam/ivy/workflow/TaskState.html>`.
+   This setting can only be configured in JSON. It lets you exclude specific technical task states :doc-url:`Task state </reference/public-api/ch/ivyteam/ivy/workflow/TaskState.html>`.
    For example, ``"excludeTechnicalTaskStates": ["CREATED", "SUSPENDED"]`` filters out all tasks in the ``CREATED`` or ``SUSPENDED`` state, even when ``canWorkOn`` is enabled.
 
 ``filterTasksByCurrentCaseOwner`` (boolean, default: ``false``)
