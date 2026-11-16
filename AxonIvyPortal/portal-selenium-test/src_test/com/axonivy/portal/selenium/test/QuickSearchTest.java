@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Condition.text;
 
 import java.io.IOException;
 import java.util.List;
@@ -385,10 +386,12 @@ public class QuickSearchTest extends BaseTest {
     assertTrue(processWidget.isQuickSearchInputShow());
     ScreenshotUtils.maximizeBrowser();
     processWidget.setQuickSearchKeyword("appraisal");
-    assertEquals(1, processWidget.getNumberOfProcessListInWidget());
+    processWidget.getProcessesInWidget().shouldHave(size(1), DEFAULT_TIMEOUT)
+        .first().shouldHave(text("appraisal"), DEFAULT_TIMEOUT);
     processWidget.clearQuickSearchInput();
     processWidget.setQuickSearchKeyword("pizza");
-    assertEquals(1, processWidget.getNumberOfProcessListInWidget());
+    processWidget.getProcessesInWidget().shouldHave(size(1), DEFAULT_TIMEOUT)
+        .first().shouldHave(text("pizza"), DEFAULT_TIMEOUT);
   }
   
   @Test

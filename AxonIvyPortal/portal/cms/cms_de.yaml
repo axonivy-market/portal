@@ -35,6 +35,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskForRole: 'Aufgabe für Rolle: '
     till: Bis
   AbsenceManagement:
+    SearchSubstitutes: Stellvertreter suchen
     Messages:
       addNewAbsence: Neue Abwesenheit ist für {0} hinzugefügt worden
       removedAbsences: Abwesenheit ist für {0} entfernt worden

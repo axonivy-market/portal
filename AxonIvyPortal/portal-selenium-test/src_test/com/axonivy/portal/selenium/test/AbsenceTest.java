@@ -134,6 +134,88 @@ public class AbsenceTest extends BaseTest {
     assertEquals(absencePage.getIAMDeputyFor().contains(TestAccount.ADMIN_USER.getFullName()), true);
   }
 
+  @Test
+  public void testSearchSubstitutesByDeputyAndRole() {
+    AbsencePage absencePage = openAbsencePage();
+    absencePage.setDeputy(Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName()),
+        DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    absencePage.setDeputy(Arrays.asList(TestAccount.GUEST_USER.getFullName()),
+        DeputyRoleType.PERSONAL_TASK_PERMANENT);
+    absencePage.saveSubstitute();
+
+    absencePage.searchSubstitutes("  " + TestAccount.CASE_OWNER_USER.getFullName().toUpperCase() + "  ");
+    absencePage.waitForSubstituteRowCount(1);
+    absencePage.waitForSubstituteDeputy(0, TestAccount.CASE_OWNER_USER.getFullName());
+    absencePage.searchSubstitutes(TestAccount.GUEST_USER.getFullName());
+    absencePage.waitForSubstituteDeputy(0, TestAccount.GUEST_USER.getFullName());
+    absencePage.searchSubstitutes("during the absence");
+    absencePage.waitForSubstituteDeputy(0, TestAccount.CASE_OWNER_USER.getFullName());
+    absencePage.searchSubstitutes("no such substitute");
+    absencePage.waitForSubstituteRowCount(0);
+    absencePage.searchSubstitutes("");
+    absencePage.waitForSubstituteRowCount(2);
+  }
+
+  @Test
+  public void testSearchSubstitutionsByOwnerAndRole() {
+    createSearchSubstitution(TestAccount.GUEST_USER, TestAccount.DEMO_USER,
+        DeputyRoleType.PERSONAL_TASK_PERMANENT);
+    createSearchSubstitution(TestAccount.CASE_OWNER_USER, TestAccount.DEMO_USER,
+        DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    login(TestAccount.DEMO_USER);
+    AbsencePage absencePage = openAbsencePage();
+    absencePage.waitForSubstitutionRowCount(2);
+    absencePage.searchSubstitutions("during the absence");
+    absencePage.waitForSubstitutionRowCount(1);
+    absencePage.waitForSubstitutionOwner(0, TestAccount.CASE_OWNER_USER.getFullName());
+    absencePage.searchSubstitutions("  " + TestAccount.GUEST_USER.getFullName().toUpperCase() + "  ");
+    absencePage.waitForSubstitutionOwner(0, TestAccount.GUEST_USER.getFullName());
+    absencePage.searchSubstitutions("no such substitute");
+    absencePage.waitForSubstitutionRowCount(0);
+    absencePage.searchSubstitutions("");
+    absencePage.waitForSubstitutionRowCount(2);
+  }
+
+  @Test
+  public void testPaginateSubstitutionsAfterChangingSelectedUserAndClearingSearch() {
+    TestAccount[] owners = {TestAccount.CASE_OWNER_USER, TestAccount.ADMIN_USER, TestAccount.HR_ROLE_USER,
+        TestAccount.HR_ROLE_USER_2, TestAccount.DEMO_USER};
+    for (TestAccount owner : owners) {
+      createSearchSubstitution(owner, TestAccount.GUEST_USER, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    }
+    createSearchSubstitution(TestAccount.GUEST_USER, TestAccount.DEMO_USER,
+        DeputyRoleType.PERSONAL_TASK_PERMANENT);
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateSubstitutePermission.ivp");
+    AbsencePage absencePage = openAbsencePage();
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+    absencePage.waitForSubstitutionOwner(0, TestAccount.GUEST_USER.getFullName());
+    absencePage.searchSubstitutions(TestAccount.GUEST_USER.getFullName());
+    absencePage.waitForSubstitutionRowCount(1);
+    absencePage.searchSubstitutions("no such substitute");
+    absencePage.waitForSubstitutionRowCount(0);
+    absencePage.searchSubstitutions(TestAccount.GUEST_USER.getFullName());
+    absencePage.waitForSubstitutionOwner(0, TestAccount.GUEST_USER.getFullName());
+    absencePage.setSubstitutedByAdmin(TestAccount.GUEST_USER.getFullName());
+    absencePage.waitForSubstitutionRowCount(0);
+    absencePage.searchSubstitutions("");
+    absencePage.waitForSubstitutionRowCount(4);
+    absencePage.openLastSubstitutionPage();
+    absencePage.waitForSubstitutionRowCount(1);
+    absencePage.searchSubstitutions(TestAccount.CASE_OWNER_USER.getFullName());
+    absencePage.waitForSubstitutionOwner(0, TestAccount.CASE_OWNER_USER.getFullName());
+    absencePage.searchSubstitutions("");
+    absencePage.waitForSubstitutionRowCount(4);
+  }
+
+  private void createSearchSubstitution(TestAccount owner, TestAccount deputy, DeputyRoleType roleType) {
+    login(owner);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateOwnSubstitutePermission.ivp");
+    AbsencePage absencePage = openAbsencePage();
+    absencePage.setDeputy(Arrays.asList(deputy.getFullName()), roleType);
+    absencePage.saveSubstitute();
+  }
+
   private String joinDeputyNames(List<String> deputyNames) {
     return String.join(", ", deputyNames);
   }

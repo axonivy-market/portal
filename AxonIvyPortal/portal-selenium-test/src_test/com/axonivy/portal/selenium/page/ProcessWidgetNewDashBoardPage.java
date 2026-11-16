@@ -71,9 +71,12 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public int getNumberOfProcessListInWidget() {
+    return getProcessesInWidget().size();
+  }
+
+  public ElementsCollection getProcessesInWidget() {
     return getProcessWidgetHeader().$("div[id*='widget-content']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("div[id*='process-list']").shouldBe(appear, DEFAULT_TIMEOUT).$$("span.process-start-list-item")
-        .size();
+        .$("div[id*='process-list']").shouldBe(appear, DEFAULT_TIMEOUT).$$("span.process-start-list-item");
   }
 
   public void clearQuickSearchInput() {
