@@ -21,7 +21,7 @@ public class PortalSchemaBuilder {
       new SchemaDefinition("portal-custom-statistic-schema.json", PortalCustomStatistic.class),
       new SchemaDefinition("portal-dashboard-template-schema.json", PortalDashboardTemplate.class));
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
     if (args.length != 2 || args[0].isBlank() || args[1].isBlank()) {
       throw new IllegalArgumentException(
           "Usage: PortalSchemaBuilder <output-directory> <portal-version>");
@@ -29,14 +29,10 @@ public class PortalSchemaBuilder {
     Path outDir = Path.of(args[0]);
     String portalVersion = args[1];
     Path versionDir = outDir.resolve(portalVersion);
-    try {
-      Files.createDirectories(versionDir);
-      var generator = new PortalSchemaGenerator();
-      for (SchemaDefinition def : SCHEMA_FILE_LIST) {
-        writeSchema(generator, def, versionDir);
-      }
-    } catch (IOException ex) {
-      ex.printStackTrace();
+    Files.createDirectories(versionDir);
+    var generator = new PortalSchemaGenerator();
+    for (SchemaDefinition def : SCHEMA_FILE_LIST) {
+      writeSchema(generator, def, versionDir);
     }
   }
 
