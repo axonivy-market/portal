@@ -6,7 +6,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.service.ProjectVersionService;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({"$schema", "version", "items"})
@@ -16,17 +15,13 @@ public abstract class PortalDefinition<T> {
   @JsonProperty(required = true, value = "$schema")
   private String schema;
   @JsonProperty(required = true)
-  @JsonPropertyDescription("The Portal version")
-  private String version;
+  private String version = "14.0.0";
   @JsonProperty(required = true)
   private List<T> items;
 
   public PortalDefinition() {};
 
   public PortalDefinition(String schema, List<T> items) {
-    if (this.version == null) {
-      this.version = getPortalVersion();
-    }
     this.schema = schemaUrl(schema);
     this.items = items;
   }
@@ -53,6 +48,6 @@ public abstract class PortalDefinition<T> {
   }
 
   public String schemaUrl(String fileName) {
-    return SCHEMA_BASE_URL + this.version + "/" + fileName;
+    return SCHEMA_BASE_URL + getPortalVersion() + "/" + fileName;
   }
 }
