@@ -54,6 +54,7 @@ public abstract class AbstractColumn implements Serializable {
   @JsonProperty(access = Access.WRITE_ONLY)
   protected String header;
   protected List<DisplayName> headers;
+  @Examples({"id", "name", "description"})
   protected String field;
   protected String styleClass;
   protected String fieldStyleClass;
@@ -212,7 +213,6 @@ public abstract class AbstractColumn implements Serializable {
   }
 
   @JsonPropertyDescription("The column name displayed in the widget.")
-  @Examples({"id", "name", "description"})
   public String getField() {
     return field;
   }

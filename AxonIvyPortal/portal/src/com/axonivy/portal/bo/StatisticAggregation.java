@@ -17,15 +17,16 @@ import io.github.axonivy.json.schema.annotations.Examples;
 public class StatisticAggregation implements Serializable {
 
   private static final long serialVersionUID = 1L;
-
+  @Examples({"state", "priority"})
   private String field;
   @JsonProperty(access = Access.WRITE_ONLY)
   private String customFieldValue;
   @CustomType(StatisticAggregationType.class)
   private DashboardColumnType type;
   private AggregationInterval interval;
-
+  @Examples({"InvoiceTotalAmount"})
   private String kpiField;
+  @Examples({"sum", "avg", "max", "min"})
   private String aggregationMethod;
 
   public AggregationInterval getInterval() {
@@ -38,7 +39,6 @@ public class StatisticAggregation implements Serializable {
 
   @JsonPropertyDescription("Field to group by.")
   @JsonProperty(required = true)
-  @Examples({"state", "priority"})
   public String getField() {
     return field;
   }
@@ -65,7 +65,6 @@ public class StatisticAggregation implements Serializable {
   }
 
   @JsonPropertyDescription("Numeric custom field for calculations.")
-  @Examples({"InvoiceTotalAmount"})
   public String getKpiField() {
     return kpiField;
   }
@@ -75,7 +74,6 @@ public class StatisticAggregation implements Serializable {
   }
 
   @JsonPropertyDescription("Calculation method.")
-  @Examples({"sum", "avg", "max", "min"})
   public String getAggregationMethod() {
     return Objects.isNull(this.kpiField) || this.kpiField.isEmpty() ? "" : aggregationMethod;
   }

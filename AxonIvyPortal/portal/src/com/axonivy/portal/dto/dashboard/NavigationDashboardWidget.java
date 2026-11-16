@@ -30,6 +30,7 @@ public class NavigationDashboardWidget extends DashboardWidget {
   private VisualType visualType;
 
   private String imageLocation;
+  @Examples({"jpeg", "png"})
   private String imageType;
 
   private String imageLocationDarkMode;
@@ -134,7 +135,6 @@ public class NavigationDashboardWidget extends DashboardWidget {
     this.imageLocation = imageLocation;
   }
 
-  @Examples({"jpeg", "png"})
   public String getImageType() {
     return imageType;
   }
