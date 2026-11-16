@@ -387,7 +387,7 @@ public class DashboardModificationBean extends DashboardBean {
     return DefaultStreamedContent
         .builder()
         .stream(() -> new ByteArrayInputStream(
-            BusinessEntityConverter.entityToJsonValueExcludeInternalView(portalDashboard)
+            BusinessEntityConverter.entityToJsonValue(portalDashboard)
                 .getBytes(StandardCharsets.UTF_8)))
         .contentType(MediaType.APPLICATION_JSON)
         .name(getFileName(dashboard.getTitle()))
@@ -417,6 +417,7 @@ public class DashboardModificationBean extends DashboardBean {
   }
 
   private void prepareDashboardForExport(Dashboard dashboard) {
+    dashboard.setOldId(null);
     // Versioning now lives on the export wrapper container, not on individual entities.
     if (!dashboard.getIsPublic()) {
       dashboard.setPermissions(null);
