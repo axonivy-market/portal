@@ -26,9 +26,11 @@ public class WelcomeDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 2688408047581268704L;
 
+  @JsonPropertyDescription("Light mode image filename.")
   private String imageLocation;
   private String imageType;
   
+  @JsonPropertyDescription("Dark mode image filename.")
   private String imageLocationDarkMode;
   private String imageTypeDarkMode;
 
@@ -40,13 +42,17 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   @JsonPropertyDescription("Text color in dark mode (CSS color value).")
   @Examples("#FFFFFF")
   private String welcomeTextColorDarkMode;
+  @JsonPropertyDescription("Multilingual welcome messages.")
+  @JsonProperty(required = true)
   private List<DisplayName> welcomeTexts;
   private boolean greeting;
   private String welcomeTextStyleClass;
   private String imageStyleClass;
   private WelcomeImageFit welcomeImageFit;
   private String imageInlineStyle;
+  @JsonPropertyDescription("Base64-encoded light-mode image.")
   private String imageContent;
+  @JsonPropertyDescription("Base64-encoded dark-mode image.")
   private String imageContentDarkMode;
   private List<DisplayName> altTexts;
 
@@ -107,7 +113,6 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     return result;
   }
 
-  @JsonPropertyDescription("Light mode image filename.")
   public String getImageLocation() {
     return imageLocation;
   }
@@ -124,8 +129,6 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     this.welcomeText = welcomeText;
   }
 
-  @JsonPropertyDescription("Multilingual welcome messages.")
-  @JsonProperty(required = true)
   public List<DisplayName> getWelcomeTexts() {
     return welcomeTexts;
   }
@@ -226,7 +229,6 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     this.imageInlineStyle = imageInlineStyle;
   }
 
-  @JsonPropertyDescription("Base64-encoded light-mode image.")
   public String getImageContent() {
     return imageContent;
   }
@@ -248,7 +250,6 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     
   }
 
-  @JsonPropertyDescription("Base64-encoded dark-mode image.")
   public String getImageContentDarkMode() {
     return imageContentDarkMode;
   }
@@ -265,7 +266,6 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     this.imageContentObjectDarkMode = imageContentObjectDarkMode;
   }
 
-  @JsonPropertyDescription("Dark mode image filename.")
   public String getImageLocationDarkMode() {
     return imageLocationDarkMode;
   }

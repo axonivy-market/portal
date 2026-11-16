@@ -17,6 +17,8 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 public class ProcessViewerDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = -6515048307703164743L;
+  @JsonPropertyDescription("IWebStartable identifier of the process to display.")
+  @JsonProperty(required = true)
   private String processPath;
   @JsonIgnore
   private DashboardProcess process;
@@ -55,8 +57,6 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
   @Override
   public void resetWidgetFilters() {}
 
-  @JsonPropertyDescription("IWebStartable identifier of the process to display.")
-  @JsonProperty(required = true)
   public String getProcessPath() {
     return processPath;
   }

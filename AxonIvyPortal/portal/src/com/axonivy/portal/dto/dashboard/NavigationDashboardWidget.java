@@ -19,6 +19,8 @@ public class NavigationDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = -565012312312361L;
 
+  @JsonPropertyDescription("ID of the dashboard to navigate to when clicked.")
+  @JsonProperty(required = true)
   private String targetDashboardId;
   @JsonIgnore
   private String targetDashboardName;
@@ -26,6 +28,8 @@ public class NavigationDashboardWidget extends DashboardWidget {
   private String icon;
   @JsonIgnore
   private String buttonName;
+  @JsonPropertyDescription("Multilingual button labels.")
+  @JsonProperty(required = true)
   private List<DisplayName> buttonNames;
   private VisualType visualType;
 
@@ -36,7 +40,9 @@ public class NavigationDashboardWidget extends DashboardWidget {
   private String imageLocationDarkMode;
   private String imageTypeDarkMode;
 
+  @JsonPropertyDescription("Base64-encoded light-mode image.")
   private String imageContent;
+  @JsonPropertyDescription("Base64-encoded dark-mode image.")
   private String imageContentDarkMode;
 
   @Override
@@ -69,8 +75,6 @@ public class NavigationDashboardWidget extends DashboardWidget {
     this.targetDashboardId = targetDashboardId;
   }
 
-  @JsonPropertyDescription("ID of the dashboard to navigate to when clicked.")
-  @JsonProperty(required = true)
   public String getTargetDashboardId() {
     return this.targetDashboardId;
   }
@@ -109,8 +113,6 @@ public class NavigationDashboardWidget extends DashboardWidget {
     this.buttonName = nameResult.name();
   }
 
-  @JsonPropertyDescription("Multilingual button labels.")
-  @JsonProperty(required = true)
   public List<DisplayName> getButtonNames() {
     return this.buttonNames;
   }
@@ -159,7 +161,6 @@ public class NavigationDashboardWidget extends DashboardWidget {
     this.imageTypeDarkMode = imageTypeDarkMode;
   }
 
-  @JsonPropertyDescription("Base64-encoded light-mode image.")
   public String getImageContent() {
     return imageContent;
   }
@@ -168,7 +169,6 @@ public class NavigationDashboardWidget extends DashboardWidget {
     this.imageContent = imageContent;
   }
 
-  @JsonPropertyDescription("Base64-encoded dark-mode image.")
   public String getImageContentDarkMode() {
     return imageContentDarkMode;
   }

@@ -26,7 +26,10 @@ import ch.ivyteam.ivy.workflow.start.StartParameter;
 public class CustomDashboardWidget extends DashboardWidget {
   private static final long serialVersionUID = 6901163427361921809L;
 
+  @JsonPropertyDescription("Custom widget content definition")
+  @JsonProperty(required = true)
   private DashboardCustomWidgetData data;
+  @JsonPropertyDescription("Text displayed in the widget information panel. If omitted or empty, the information control is hidden.")
   private String info;
   @JsonIgnore
   private String errorMessage;
@@ -44,8 +47,6 @@ public class CustomDashboardWidget extends DashboardWidget {
     return DashboardWidgetType.CUSTOM;
   }
 
-  @JsonPropertyDescription("Custom widget content definition")
-  @JsonProperty(required = true)
   public DashboardCustomWidgetData getData() {
     return data;
   }
@@ -54,7 +55,6 @@ public class CustomDashboardWidget extends DashboardWidget {
     this.data = data;
   }
 
-  @JsonPropertyDescription("Text displayed in the widget information panel. If omitted or empty, the information control is hidden.")
   public String getInfo() {
     return info;
   }

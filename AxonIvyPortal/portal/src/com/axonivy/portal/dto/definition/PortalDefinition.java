@@ -13,8 +13,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public abstract class PortalDefinition<T> {
   public static final String SCHEMA_BASE_URL = "https://axonivy-market.github.io/portal/schemas/";
 
+  @JsonProperty(required = true, value = "$schema")
   private String schema;
+  @JsonProperty(required = true)
+  @JsonPropertyDescription("The Portal version")
   private String version;
+  @JsonProperty(required = true)
   private List<T> items;
 
   public PortalDefinition() {};
@@ -27,19 +31,15 @@ public abstract class PortalDefinition<T> {
     this.items = items;
   }
 
-  @JsonProperty(required = true, value = "$schema")
   public String getSchema() {
     return schema;
   }
 
-  @JsonProperty(required = true)
-  @JsonPropertyDescription("The Portal version")
   public String getVersion() {
     return version;
   }
 
 
-  @JsonProperty(required = true)
   public List<T> getItems() {
     return items;
   };

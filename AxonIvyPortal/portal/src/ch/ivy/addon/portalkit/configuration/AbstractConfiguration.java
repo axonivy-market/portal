@@ -3,8 +3,10 @@ package ch.ivy.addon.portalkit.configuration;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public abstract class AbstractConfiguration {
+  @JsonProperty(required = true)
   private String id;
   private String version;
 

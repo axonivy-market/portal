@@ -20,10 +20,13 @@ public class DashboardCustomWidgetData implements Serializable {
 
   private static final long serialVersionUID = -5961158791241330155L;
 
+  @JsonPropertyDescription("External webpage URL to display in iframe")
   private String url;
+  @JsonPropertyDescription("IWebStartable identifier of the Ivy process")
   private String processPath;
   @JsonIgnore
   private String startRequestPath;
+  @JsonPropertyDescription("Process parameters")
   private List<CustomDashboardWidgetParam> params;
   @JsonIgnore
   private DashboardCustomWidgetType type;
@@ -32,7 +35,6 @@ public class DashboardCustomWidgetData implements Serializable {
   @JsonIgnore
   private boolean hasParamChanged;
 
-  @JsonPropertyDescription("External webpage URL to display in iframe")
   public String getUrl() {
     return url;
   }
@@ -42,7 +44,6 @@ public class DashboardCustomWidgetData implements Serializable {
     this.url = UrlUtils.isSafeIframeUrl(trimmed) ? trimmed : "";
   }
 
-  @JsonPropertyDescription("IWebStartable identifier of the Ivy process")
   public String getProcessPath() {
     return processPath;
   }
@@ -67,7 +68,6 @@ public class DashboardCustomWidgetData implements Serializable {
     this.type = type;
   }
 
-  @JsonPropertyDescription("Process parameters")
   public List<CustomDashboardWidgetParam> getParams() {
     return params;
   }

@@ -54,11 +54,16 @@ public abstract class DashboardWidget implements Serializable {
   private static final long serialVersionUID = 4580715578128184706L;
   private static final Integer NUMBER_OF_MOCK_ITEMS = LiveScrollLazyModel.DEFAULT_CHUNK_SIZE;
 
+  @JsonProperty(required = true)
   protected String id;
   @Deprecated(since = "10.0", forRemoval = true)
   @JsonProperty(access = Access.WRITE_ONLY)
   protected String name;
+  @JsonPropertyDescription("Multilingual display names.")
+  @JsonProperty(required = true)
   protected List<DisplayName> names;
+  @JsonPropertyDescription("Configure the widget layout.")
+  @JsonProperty(required = true)
   private WidgetLayout layout;
 
   @JsonIgnore
@@ -205,7 +210,6 @@ public abstract class DashboardWidget implements Serializable {
     return Ivy.cms().co(cmsUri);
   }
 
-  @JsonProperty(required = true)
   public String getId() {
     return id;
   }
@@ -224,8 +228,6 @@ public abstract class DashboardWidget implements Serializable {
     this.name = nameResult.name();
   }
 
-  @JsonPropertyDescription("Multilingual display names.")
-  @JsonProperty(required = true)
   public List<DisplayName> getNames() {
     return names;
   }
@@ -234,8 +236,6 @@ public abstract class DashboardWidget implements Serializable {
     this.names = names;
   }
 
-  @JsonPropertyDescription("Configure the widget layout.")
-  @JsonProperty(required = true)
   public WidgetLayout getLayout() {
     return layout;
   }

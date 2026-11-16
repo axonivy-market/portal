@@ -23,6 +23,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;
   private String oldId;
+  @JsonPropertyDescription("Reference to predefined dashboard template.")
   private String templateId;
   @JsonProperty(access = Access.WRITE_ONLY)
   private String title;
@@ -153,7 +154,6 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     this.displayedPermission = displayedPermission;
   }
 
-  @JsonPropertyDescription("Reference to predefined dashboard template.")
   public String getTemplateId() {
     return templateId;
   }

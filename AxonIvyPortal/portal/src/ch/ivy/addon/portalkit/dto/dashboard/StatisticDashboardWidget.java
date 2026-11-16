@@ -11,6 +11,7 @@ import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeTrue
 public class StatisticDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 1L;
+  @JsonPropertyDescription("ID of an existing statistic chart. Define the chart in the statistics JSON configuration first, then set this field to the chart's id.")
   private String chartId;
   @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showFullscreenMode;
@@ -28,7 +29,6 @@ public class StatisticDashboardWidget extends DashboardWidget {
     return DashboardWidgetType.STATISTIC;
   }
 
-  @JsonPropertyDescription("ID of an existing statistic chart. Define the chart in the statistics JSON configuration first, then set this field to the chart's id.")
   public String getChartId() {
     return chartId;
   }

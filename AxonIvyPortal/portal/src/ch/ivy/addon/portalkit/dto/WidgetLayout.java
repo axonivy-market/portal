@@ -13,7 +13,9 @@ public class WidgetLayout implements Serializable {
   private static final long serialVersionUID = 1734727544534129141L;
 
   private String id;
+  @JsonPropertyDescription("CSS classes for custom styling")
   private String styleClass;
+  @JsonPropertyDescription("Inline CSS styles")
   private String style;
 
   @JsonProperty("w")
@@ -35,7 +37,6 @@ public class WidgetLayout implements Serializable {
     this.id = id;
   }
 
-  @JsonPropertyDescription("CSS classes for custom styling")
   public String getStyleClass() {
     return styleClass;
   }
@@ -44,7 +45,6 @@ public class WidgetLayout implements Serializable {
     this.styleClass = styleClass;
   }
 
-  @JsonPropertyDescription("Inline CSS styles")
   public String getStyle() {
     return style;
   }

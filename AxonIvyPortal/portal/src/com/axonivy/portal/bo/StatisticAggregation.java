@@ -17,15 +17,20 @@ import io.github.axonivy.json.schema.annotations.Examples;
 public class StatisticAggregation implements Serializable {
 
   private static final long serialVersionUID = 1L;
+  @JsonPropertyDescription("Field to group by.")
+  @JsonProperty(required = true)
   @Examples({"state", "priority"})
   private String field;
   @JsonProperty(access = Access.WRITE_ONLY)
   private String customFieldValue;
+  @JsonProperty(required = true)
   @CustomType(StatisticAggregationType.class)
   private DashboardColumnType type;
   private AggregationInterval interval;
+  @JsonPropertyDescription("Numeric custom field for calculations.")
   @Examples({"InvoiceTotalAmount"})
   private String kpiField;
+  @JsonPropertyDescription("Calculation method.")
   @Examples({"sum", "avg", "max", "min"})
   private String aggregationMethod;
 
@@ -37,8 +42,6 @@ public class StatisticAggregation implements Serializable {
     this.interval = interval;
   }
 
-  @JsonPropertyDescription("Field to group by.")
-  @JsonProperty(required = true)
   public String getField() {
     return field;
   }
@@ -47,7 +50,6 @@ public class StatisticAggregation implements Serializable {
     this.field = field;
   }
 
-  @JsonProperty(required = true)
   public DashboardColumnType getType() {
     return type;
   }
@@ -64,7 +66,6 @@ public class StatisticAggregation implements Serializable {
     this.customFieldValue = customFieldValue;
   }
 
-  @JsonPropertyDescription("Numeric custom field for calculations.")
   public String getKpiField() {
     return kpiField;
   }
@@ -73,7 +74,6 @@ public class StatisticAggregation implements Serializable {
     this.kpiField = kpiField;
   }
 
-  @JsonPropertyDescription("Calculation method.")
   public String getAggregationMethod() {
     return Objects.isNull(this.kpiField) || this.kpiField.isEmpty() ? "" : aggregationMethod;
   }
