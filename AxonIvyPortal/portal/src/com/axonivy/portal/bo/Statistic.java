@@ -64,6 +64,12 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private ConditionBasedColoringScope conditionBasedColoringScope;
   private boolean chartDrillDownEnabled;
   
+  @Override
+  @JsonProperty(required = true)
+  public String getId() {
+    return super.getId();
+  }
+
   public Statistic() {
     icon = DEFAULT_ICON;
     isCustom = true;
@@ -85,6 +91,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
     this.numberChartConfig = numberChartConfig;
   }
 
+  @JsonProperty(required = true)
   public ChartType getChartType() {
     return chartType;
   }
@@ -158,6 +165,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
     this.aggregates = aggregates;
   }
 
+  @JsonProperty(required = true)
   public ChartTarget getChartTarget() {
     return chartTarget;
   }
@@ -166,6 +174,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
     this.chartTarget = chartTarget;
   }
 
+  @JsonProperty(required = true)
   public List<DisplayName> getNames() {
     return names;
   }
@@ -243,6 +252,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   }
 
   @JsonPropertyDescription("Defines how data is grouped and calculated.")
+  @JsonProperty(required = true)
   public StatisticAggregation getStatisticAggregation() {
     return statisticAggregation;
   }
