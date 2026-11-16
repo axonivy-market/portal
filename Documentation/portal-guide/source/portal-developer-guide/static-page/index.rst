@@ -81,23 +81,29 @@ Static Page Link
     {applicationPath}/faces/view/{projectName}/{path in webContent/view}
 
 - **Engine:** ``{applicationPath}`` is the application name, e.g. ``Portal``
-- **Designer:** ``{applicationPath}`` is ``~Developer-{name}/Developer-{name}``. Only the first part starts with ``~``.
+- **Designer:** ``{applicationPath}`` is ``~Developer-{workspace}/Developer-{workspace}``, where
+  ``{workspace}`` is the name of the folder opened in the Designer (not the project name).
+  Only the first part starts with ``~``.
 
-**Example:** file ``webContent/view/help/user-guide.xhtml`` in project ``portal-components-examples``
+**Example:** file ``webContent/view/help/user-guide.xhtml`` in project ``portal-components-examples``,
+Designer workspace folder ``my-workspace``
 
 - Engine: ``Portal/faces/view/portal-components-examples/help/user-guide.xhtml``
-- Designer: ``~Developer-my-app/Developer-my-app/faces/view/portal-components-examples/help/user-guide.xhtml``
+- Designer: ``~Developer-my-workspace/Developer-my-workspace/faces/view/portal-components-examples/help/user-guide.xhtml``
 
 .. tip::
    Open the page directly in the browser. If it loads, copy the URL path after the host and port,
-   without the leading ``/``, and use it as the link.
+   without the leading ``/`` and without the application version segment
+   (e.g. remove ``/1/`` in ``Portal/1/faces/view/...``), and use it as the link.
 
 .. warning::
    Avoid:
 
-   - ``~`` on both parts in Designer, e.g. ``~Developer-my-app/~Developer-my-app/...``
+   - ``~`` on both parts in Designer, e.g. ``~Developer-my-workspace/~Developer-my-workspace/...``
    - A leading ``/``
    - A full URL such as ``https://your-server/...``
+   - The application version, e.g. ``Portal/1/faces/view/...``. Without it, the engine redirects
+     to the currently released version, so the link keeps working after a redeployment.
 
 .. _static-page-integration:
 
