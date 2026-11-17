@@ -80,7 +80,7 @@ public class JsonListWrapper<T> {
       try {
         Method setVersion = item.getClass().getMethod("setVersion", String.class);
         setVersion.invoke(item, (String) null);
-      } catch (NoSuchMethodException e) {
+      } catch (NoSuchMethodException ignored) {
         // This item type has no per-item "version" property - nothing to clear.
       } catch (IllegalAccessException | InvocationTargetException e) {
         // Unexpected - don't fail the whole export/serialization over this.
