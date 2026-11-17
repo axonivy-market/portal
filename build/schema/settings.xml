@@ -5,7 +5,7 @@
   <servers>
     <server>
       <id>github</id>
-      <username>lmluat-axonivy</username>
+      <username>wawa-axonivy</username>
       <password>${env.GITHUB_TOKEN}</password>
     </server>
   </servers>
