@@ -1,8 +1,10 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -211,6 +213,15 @@ public abstract class DashboardWidget implements Serializable {
 
   public void setId(String id) {
     this.id = id;
+  }
+
+  @JsonIgnore
+  public String getSafeId() {
+    if (StringUtils.isEmpty(id)) {
+      return "";
+    }
+
+    return "w" + UUID.nameUUIDFromBytes(id.getBytes(StandardCharsets.UTF_8)).toString().replace("-", "");
   }
 
   public String getName() {
