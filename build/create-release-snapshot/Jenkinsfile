@@ -19,6 +19,7 @@ pipeline {
     ''')
     booleanParam(name: 'deployToRepo', defaultValue: true, description: 'Should deploy artifacts to repo? If true, deployable modules are deployed to Nexus snapshots. If false, only local install.')
     booleanParam(name: 'skipDocumentationCheck', defaultValue: false, description: 'Should skip waiting for and verifying the documentation workflow result? The documentation workflow is still triggered, but its outcome does not fail this build.')
+    booleanParam(name: 'publishSchemaFromBranch', defaultValue: false, description: 'TEST ONLY: publish schemas to GitHub Packages even when portalBranch is not master. Overwrites the master snapshot schema if the version is the same.')
 }
 
   environment {
@@ -108,7 +109,7 @@ pipeline {
           withBuildImage {
             def portalVersion = readMavenPom(file: 'AxonIvyPortal/portal/pom.xml').version
             def schemaDir = "${pwd()}/AxonIvyPortal/portal/target/schema/${portalVersion}"
-            def publish = params.deployToRepo && params.portalBranch == 'master'
+            def publish = params.deployToRepo && (params.portalBranch == 'master' || params.publishSchemaFromBranch)
 
             echo "====================Build schemas for Portal ${portalVersion}===================="
             sh """
