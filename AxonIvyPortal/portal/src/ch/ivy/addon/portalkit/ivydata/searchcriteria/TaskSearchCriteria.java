@@ -65,6 +65,7 @@ public class TaskSearchCriteria {
   private boolean isGlobalSearchScope;
 
   private List<TaskFilter> legacyFilters;
+  private List<String> columns;
 
   @SuppressWarnings("deprecation")
   public TaskQuery createQueryToFindLatestTasks(TaskQuery taskQuery, Date timeStamp) {
@@ -574,5 +575,13 @@ public class TaskSearchCriteria {
 
   public void setLegacyFilters(List<TaskFilter> legacyFilters) {
     this.legacyFilters = legacyFilters;
+  }
+
+  public List<String> getColumns() {
+    return columns;
+  }
+
+  public void setColumns(List<String> columns) {
+    this.columns = columns;
   }
 }

@@ -42,10 +42,7 @@ public class ActionsColumnModel extends CaseColumnModel implements Serializable 
 
   @Override
   public Object display(ICase caze) {
-    if (caze == null) {
-      return "";
-    }
-    return caze.getCategory().getName();
+    return null;
   }
 
   @Override

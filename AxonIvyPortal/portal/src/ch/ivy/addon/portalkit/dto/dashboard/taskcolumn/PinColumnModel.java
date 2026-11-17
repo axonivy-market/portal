@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivyteam.ivy.workflow.ITask;
 
 public class PinColumnModel extends TaskColumnModel implements Serializable {
 
@@ -44,4 +45,8 @@ public class PinColumnModel extends TaskColumnModel implements Serializable {
     return false;
   }
 
+  @Override
+  public Object display(ITask task) {
+    return null;
+  }
 }
