@@ -24,6 +24,7 @@ import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
+import com.axonivy.portal.dto.definition.PortalDashboard;
 import com.axonivy.portal.dto.menu.MenuOrder;
 import com.axonivy.portal.migration.casedetails.migrator.JsonCaseDetailsMigrator;
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
@@ -116,8 +117,8 @@ public class PortalPackageService {
       return;
     }
     dashboards.forEach(this::prepareDashboardForExport);
-    JsonListWrapper<Dashboard> wrapper = new JsonListWrapper<>(JsonListWrapper.FORMAT_VERSION, dashboards);
-    writeEntry(zos, PortalPackageFile.DASHBOARD.getFilename(), BusinessEntityConverter.entityToJsonValue(wrapper));
+    PortalDashboard portalDashboard = new PortalDashboard(dashboards);
+    writeEntry(zos, PortalPackageFile.DASHBOARD.getFilename(), BusinessEntityConverter.entityToJsonValue(portalDashboard));
   }
 
   private void writeRawVariable(ZipOutputStream zos, PortalPackageFile file) throws IOException {
