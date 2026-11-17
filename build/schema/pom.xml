@@ -12,7 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <schema.directory>${project.basedir}/../../../AxonIvyPortal/portal/target/schema/${project.version}</schema.directory>
+    <schema.directory>${project.basedir}/../../AxonIvyPortal/portal/target/schema/${project.version}</schema.directory>
   </properties>
 
   <repositories>

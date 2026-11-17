@@ -12,9 +12,7 @@
       <directory>${schema.directory}</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
-        <include>portal-dashboard-schema.json</include>
-        <include>portal-custom-statistic-schema.json</include>
-        <include>portal-dashboard-template-schema.json</include>
+        <include>*.json</include>
       </includes>
     </fileSet>
   </fileSets>

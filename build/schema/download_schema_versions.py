@@ -36,7 +36,7 @@ def main():
     for version in versions:
         subprocess.run([
             "mvn", "-B", "-ntp", "-U",
-            "-f", ".github/scripts/schema/pom.xml",
+            "-f", "build/schema/pom.xml",
             "org.apache.maven.plugins:maven-dependency-plugin:3.8.1:unpack",
             f"-Dartifact=com.axonivy.portal:portal-schema:{version}:zip",
             f"-DoutputDirectory={(site / 'schemas' / version).resolve()}",
