@@ -387,7 +387,7 @@ public class DashboardModificationBean extends DashboardBean {
     return DefaultStreamedContent
         .builder()
         .stream(() -> new ByteArrayInputStream(
-            BusinessEntityConverter.entityToJsonValue(portalDashboard)
+            BusinessEntityConverter.prettyPrintEntityToJsonValue(portalDashboard)
                 .getBytes(StandardCharsets.UTF_8)))
         .contentType(MediaType.APPLICATION_JSON)
         .name(getFileName(dashboard.getTitle()))

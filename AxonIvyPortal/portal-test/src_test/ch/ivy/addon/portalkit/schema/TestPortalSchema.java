@@ -8,6 +8,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Objects;
@@ -89,6 +90,48 @@ class TestPortalSchema {
             .isFalse();
       }
     }
+  }
+
+  @Test
+  void rootSchema_requiresSchemaVersionAndItems() {
+    for (Class<?> definition : List.of(PortalDashboard.class, PortalCustomStatistic.class, PortalDashboardTemplate.class)) {
+      ObjectNode schema = schemaGenerator.generateSchema(definition);
+
+      assertThat(requiredNames(schema))
+          .as("required root properties of %s", definition.getSimpleName())
+          .containsExactlyInAnyOrder("$schema", "version", "items");
+    }
+  }
+
+  @Test
+  void statisticAggregationType_allowsOnlyStandardAndCustom() {
+    ObjectNode schema = schemaGenerator.generateSchema(PortalCustomStatistic.class);
+    JsonNode statisticAggregation = schema.path("properties").path("items").path("items")
+        .path("properties").path("statisticAggregation");
+    assertThat(statisticAggregation.isObject())
+        .as("statisticAggregation in the PortalCustomStatistic schema")
+        .isTrue();
+
+    JsonNode typeSchema = statisticAggregation.path("properties").path("type");
+    assertThat(enumValues(typeSchema))
+        .as("allowed values of statistic aggregation 'type'")
+        .containsExactlyInAnyOrder("standard", "custom");
+  }
+
+  private static Set<String> requiredNames(ObjectNode schema) {
+    Set<String> names = new HashSet<>();
+    for (JsonNode name : schema.path("required")) {
+      names.add(name.asString());
+    }
+    return names;
+  }
+
+  private static Set<String> enumValues(JsonNode propertySchema) {
+    Set<String> values = new HashSet<>();
+    for (JsonNode value : propertySchema.path("enum")) {
+      values.add(value.asString());
+    }
+    return values;
   }
 
   private static void assertSchemaDraft(ObjectNode schema) {

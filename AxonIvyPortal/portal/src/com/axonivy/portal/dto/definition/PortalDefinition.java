@@ -20,7 +20,7 @@ public abstract class PortalDefinition<T> extends JsonListWrapper<T> {
   
   public PortalDefinition(String schemaFile, List<T> items) {
     super(JsonListWrapper.FORMAT_VERSION, items);
-    schema = schemaFile;
+    schema = schemaUrl(schemaFile);
   }
 
   public String getSchema() {
