@@ -119,9 +119,6 @@ pipeline {
             """
 
             if (publish) {
-              if (!env.GITHUB_ACTOR) {
-                error('GITHUB_ACTOR must be set to the GitHub login that owns the github-token credential')
-              }
               withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                 sh "mvn -B -ntp -s build/schema/settings.xml -f build/schema/pom.xml -Dschema.directory=${schemaDir} clean deploy"
               }
