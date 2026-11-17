@@ -307,6 +307,39 @@ a.left-sidebar-menu-icon {
   text-align: center;
 }
 
+/* Legacy task header (Portal 12 compact layout), scoped by .task-header-legacy */
+.task-header-container.task-header-legacy.task-template-title-horizontal-container {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-header-legacy .task-template-title-icon {
+  margin-right: 5px;
+  font-weight: bold !important;
+}
+
+.task-header-legacy.task-template-title-horizontal-container > .task-template-tasks-command > .ui-button + .ui-button {
+  margin-left: 10px;
+}
+
+/* Legacy title size and process chain colors, matching Portal 12 */
+.task-header-legacy .task-template-title {
+  font-size: var(--large-font-size);
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.task-header-legacy .task-title {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.task-header-legacy {
+  --process-chain-menu-color: var(--primary-color);
+  --process-chain-body-background-color: var(--body-background-color);
+  --process-chain-line-waiting-step-background-color: var(--ivy-primary-color-grey-light);
+}
+
 /* Process chain wrapper */
 .process-chain-container {
   flex: 1 0 auto;

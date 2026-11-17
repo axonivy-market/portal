@@ -311,6 +311,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Aufgabendetailseite.
       showTooltipTechnicalName: Ermöglicht die Anzeige des technischen Namens der Benutzer in den Tooltips.
       sidebarMode: Steuert den Modus der Seitenleiste. Hover öffnet beim Darüberfahren, Klick verwendet eine Umschalttaste, Fixiert hält sie immer geöffnet, Versteckt entfernt die Seitenleiste vollständig.
+      taskHeaderMode: Steuert die Kopfzeile über dem Aufgabeninhalt. Standard zeigt die aktuelle Kopfzeile, Legacy zeigt die frühere kompakte Kopfzeile, Ausblenden entfernt die Kopfzeile vollständig.
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
     key: Schlüssel
     loading: WIRD GELADEN
@@ -2072,6 +2073,10 @@ Labels:
       HIDDEN: Versteckt
       HOVER: Hover
       STICK: Fixiert
+    TaskHeaderMode:
+      DEFAULT: Standard
+      HIDDEN: Ausblenden
+      LEGACY: Legacy
     ThemeMode:
       DARK: Dunkel
       LIGHT: Hell

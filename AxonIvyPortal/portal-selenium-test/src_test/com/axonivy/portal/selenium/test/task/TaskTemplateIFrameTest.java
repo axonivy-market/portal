@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.test.task;
 
 import java.time.Duration;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -17,8 +18,10 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import static com.codeborne.selenide.Selenide.$;
+import com.codeborne.selenide.WebDriverRunner;
 
 @IvyWebTest
 public class TaskTemplateIFrameTest extends BaseTest {
@@ -27,11 +30,115 @@ public class TaskTemplateIFrameTest extends BaseTest {
   private static final String IFRAME_TASK_URL =
       "portal-developer-examples/16E5DB746865BCEC/CreateInvestment.ivp?embedInFrame";
 
+  private static final String HEADER_MODE_DEFAULT = "DEFAULT";
+  private static final String HEADER_MODE_LEGACY = "LEGACY";
+  private static final String HEADER_MODE_HIDDEN = "HIDDEN";
+
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
+    updatePortalSetting(Variable.TASK_HEADER_MODE.getKey(), HEADER_MODE_DEFAULT);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+  }
+
+  @AfterEach
+  public void restoreTaskHeaderMode() {
+    WebDriverRunner.getWebDriver().switchTo().defaultContent();
+    updatePortalSetting(Variable.TASK_HEADER_MODE.getKey(), HEADER_MODE_DEFAULT);
+  }
+
+  @Test
+  public void testDefaultTaskHeaderModeShowsHeader() {
+    TaskIFrameTemplatePage taskTemplatePage = startApproveInvestmentTaskWithHeaderMode(HEADER_MODE_DEFAULT);
+    taskTemplatePage.getTaskHeaderContainer().shouldBe(Condition.visible, DEFAULT_TIMEOUT)
+        .shouldNot(Condition.cssClass("task-header-legacy"));
+    taskTemplatePage.getTaskHeaderTitle().shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    taskTemplatePage.getTaskActionsElement().shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    taskTemplatePage.getCaseInfoButtonElement().shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testLegacyTaskHeaderModeKeepsHeaderControlsFunctional() {
+    TaskIFrameTemplatePage taskTemplatePage = startApproveInvestmentTaskWithHeaderMode(HEADER_MODE_LEGACY);
+    taskTemplatePage.getTaskHeaderContainer().shouldBe(Condition.visible, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.cssClass("task-header-legacy"));
+    taskTemplatePage.getTaskActionsElement().shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    taskTemplatePage.getCaseInfoButtonElement().shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    taskTemplatePage.openCaseInfo();
+    taskTemplatePage.getCaseItemDetails().shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testHiddenTaskHeaderModeRemovesHeaderElements() {
+    TaskIFrameTemplatePage taskTemplatePage = startApproveInvestmentTaskWithHeaderMode(HEADER_MODE_HIDDEN);
+    taskTemplatePage.getTaskHeaderContainer().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
+    taskTemplatePage.getTaskHeaderTitle().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
+    taskTemplatePage.getTaskActionsElement().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
+    taskTemplatePage.getCaseInfoButtonElement().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testHiddenTaskHeaderModeRemovesVerticalProcessChain() {
+    TaskIFrameTemplatePage taskTemplatePage = startVerticalLineChainTaskWithHeaderMode(HEADER_MODE_HIDDEN);
+    taskTemplatePage.getTaskHeaderContainer().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
+    taskTemplatePage.getTaskHeaderTitle().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
+    taskTemplatePage.getTaskActionsElement().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
+    taskTemplatePage.getCaseInfoButtonElement().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
+    taskTemplatePage.getVerticalProcessChainContainer().shouldNot(Condition.exist, DEFAULT_TIMEOUT);
+    taskTemplatePage.getTaskContentContainer().shouldBe(Condition.visible, DEFAULT_TIMEOUT)
+        .shouldNotHave(Condition.cssClass("vertical-process-chain"))
+        .shouldNotHave(Condition.cssClass("vertical-chain-shape-line"));
+    taskTemplatePage.getIFrameLayoutContainer()
+        .shouldNotHave(Condition.cssClass("vertical-process-chain"))
+        .shouldNotHave(Condition.cssClass("vertical-chain-shape-line"));
+    taskTemplatePage.getElementInPortalIFramTask("[id='form:invested-amount']")
+        .shouldBe(Condition.visible, DEFAULT_TIMEOUT).shouldBe(Condition.editable)
+        .setValue("1").shouldHave(Condition.value("1"));
+  }
+
+  @Test
+  public void testVisibleTaskHeaderModeKeepsVerticalLineProcessChain() {
+    resizeBrowserToFullHDResolution();
+    TaskIFrameTemplatePage taskTemplatePage = startVerticalLineChainTaskWithHeaderMode(HEADER_MODE_DEFAULT);
+    taskTemplatePage.getTaskHeaderContainer().shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    taskTemplatePage.getTaskHeaderTitle().shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    taskTemplatePage.getVerticalProcessChainContainer().shouldBe(Condition.visible, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.cssClass("vertical-chain-shape-line"));
+    taskTemplatePage.getVerticalProcessChainSteps().shouldHave(CollectionCondition.sizeGreaterThan(0));
+    taskTemplatePage.getTaskContentContainer().shouldBe(Condition.visible, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.cssClass("vertical-process-chain"))
+        .shouldHave(Condition.cssClass("vertical-chain-shape-line"));
+    taskTemplatePage.getIFrameLayoutContainer()
+        .shouldHave(Condition.cssClass("vertical-process-chain"))
+        .shouldHave(Condition.cssClass("vertical-chain-shape-line"));
+    taskTemplatePage.getElementInPortalIFramTask("[id='form:invested-amount']")
+        .shouldBe(Condition.visible, DEFAULT_TIMEOUT).shouldBe(Condition.editable)
+        .setValue("1").shouldHave(Condition.value("1"));
+  }
+
+  private TaskIFrameTemplatePage startVerticalLineChainTaskWithHeaderMode(String headerMode) {
+    updatePortalSetting(Variable.TASK_HEADER_MODE.getKey(), headerMode);
+    redirectToRelativeLink(IFRAME_TASK_URL);
+    waitForTemplateRender();
+    WaitHelper.waitForIFrameAvailable(WebDriverRunner.getWebDriver(), "iFrame");
+    return new TaskIFrameTemplatePage();
+  }
+
+  private TaskIFrameTemplatePage startApproveInvestmentTaskWithHeaderMode(String headerMode) {
+    updatePortalSetting(Variable.TASK_HEADER_MODE.getKey(), headerMode);
+    redirectToRelativeLink(IFRAME_TASK_URL);
+    waitForTemplateRender();
+    new TaskTemplatePage().finishCreateInvestmentTask();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.CONTAINS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Approve Investment");
+    taskWidget.applyFilter();
+    TaskIFrameTemplatePage taskTemplatePage = taskWidget.startTaskIFrameByIndex(0);
+    taskTemplatePage.switchToDefaultContent();
+    waitForTemplateRender();
+    return taskTemplatePage;
   }
 
   @Test
