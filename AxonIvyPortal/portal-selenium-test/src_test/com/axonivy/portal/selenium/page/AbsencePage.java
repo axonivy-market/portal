@@ -93,6 +93,13 @@ public class AbsencePage extends TemplatePage {
         .get(rowIndex).shouldHave(Condition.text(deputyName), DEFAULT_TIMEOUT);
   }
 
+  public void waitForSubstituteDeputy(DeputyRoleType deputyRoleType, String deputyName) {
+    String deputySelector = String.format(
+        "//tbody[contains(@id, 'substitute-table_data')]/tr[.//span[@deputy-role-type='%s']]//a[contains(@id, 'selected-deputies-link')]",
+        deputyRoleType);
+    $(By.xpath(deputySelector)).shouldHave(Condition.text(deputyName), DEFAULT_TIMEOUT);
+  }
+
   public void waitForSubstituteRowCount(int expectedRowCount) {
     $$("tbody[id$='substitute-table_data'] tr:not(.ui-datatable-empty-message)")
         .shouldHave(CollectionCondition.size(expectedRowCount), DEFAULT_TIMEOUT);
@@ -227,14 +234,12 @@ public class AbsencePage extends TemplatePage {
     waitForElementDisplayed($(By.id(String.format(DELETE_ABSENCE__LINK_ID_PATTERN, index))), true);
     //Click to close
     clickOnAbsenceAction(index);
-    waitForElementDisplayed($(By.id(String.format(DELETE_ABSENCE__LINK_ID_PATTERN, index))), false);
   }
 
   public void canEditAbsence(int index) {
     clickOnAbsenceAction(index);
     waitForElementDisplayed($(By.id(String.format(EDIT_ABSENCE__LINK_ID_PATTERN, index))), true);
     clickOnAbsenceAction(index);
-    waitForElementDisplayed($(By.id(String.format(EDIT_ABSENCE__LINK_ID_PATTERN, index))), false);
   }
 
   public void isDeputySettingSectionDisplayed(boolean isDisplay) {

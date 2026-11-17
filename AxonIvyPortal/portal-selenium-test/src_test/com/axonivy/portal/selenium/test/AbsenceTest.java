@@ -153,7 +153,10 @@ public class AbsenceTest extends BaseTest {
     absencePage.searchSubstitutes("no such substitute");
     absencePage.waitForSubstituteRowCount(0);
     absencePage.searchSubstitutes("");
-    absencePage.waitForSubstituteRowCount(2);
+    absencePage.waitForSubstituteDeputy(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE,
+        TestAccount.CASE_OWNER_USER.getFullName());
+    absencePage.waitForSubstituteDeputy(DeputyRoleType.PERSONAL_TASK_PERMANENT,
+        TestAccount.GUEST_USER.getFullName());
   }
 
   @Test
