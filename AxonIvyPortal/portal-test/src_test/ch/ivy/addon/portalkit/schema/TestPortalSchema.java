@@ -18,9 +18,10 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
-import com.axonivy.portal.dto.definition.PortalCustomStatistic;
-import com.axonivy.portal.dto.definition.PortalDashboard;
-import com.axonivy.portal.dto.definition.PortalDashboardTemplate;
+
+import com.axonivy.portal.dto.jsondefinition.PortalCustomStatistic;
+import com.axonivy.portal.dto.jsondefinition.PortalDashboard;
+import com.axonivy.portal.dto.jsondefinition.PortalDashboardTemplate;
 import com.axonivy.portal.schema.generator.PortalSchemaGenerator;
 import com.axonivy.portal.schema.module.PortalJacksonSchemaModule;
 import com.fasterxml.jackson.annotation.JsonProperty;

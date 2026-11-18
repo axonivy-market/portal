@@ -46,8 +46,6 @@ pipeline {
 
                 echo "====================Build schemas for Portal ${params.releaseVersion}===================="
                 sh """
-                  xmlstarlet ed --inplace -N n=http://maven.apache.org/POM/4.0.0 \
-                    -u /n:project/n:version -v "${params.releaseVersion}" build/schema/pom.xml
                   mvn -B -ntp -f AxonIvyPortal/portal/pom.xml -Pjson.schema process-classes
                 """
                 sh "mvn -B -ntp -f build/schema/pom.xml -Dschema.directory=${pwd()}/AxonIvyPortal/portal/target/schema/${params.releaseVersion} clean package"
@@ -118,6 +116,7 @@ def updateVersion(def releaseVersion) {
   def POM_PATTERN_FILES = [
     'AxonIvyPortal/*/pom.xml',
     'Showcase/*/pom.xml',
+    'build/schema/pom.xml',
     'AxonIvyPortal/portal-selenium-test/customized_pom.xml',
     'AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml',
     'Documentation/public-api/pom.xml'

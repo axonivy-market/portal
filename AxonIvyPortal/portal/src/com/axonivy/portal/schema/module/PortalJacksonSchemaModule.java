@@ -34,6 +34,7 @@ public class PortalJacksonSchemaModule extends JacksonSchemaModule {
         JacksonOption.RESPECT_JSONPROPERTY_REQUIRED);// add properties marked @JsonProperty(required = true) to the "required" list
   }
 
+  // keep only public, no-arg getters that Jackson actually serializes
   @Override
   protected boolean shouldIgnoreMethod(MethodScope method) {
     if (!method.isPublic() || method.getArgumentCount() != 0 || super.shouldIgnoreMethod(method) || isExcluded(method)) {
@@ -52,6 +53,7 @@ public class PortalJacksonSchemaModule extends JacksonSchemaModule {
         .noneMatch(getter -> getter.getAnnotated().equals(method.getRawMember()));
   }
 
+  // skip fields that are listed in EXCLUDED_PROPERTIES
   @Override
   protected boolean shouldIgnoreField(FieldScope field) {
     return super.shouldIgnoreField(field) || isExcluded(field);

@@ -24,7 +24,7 @@ import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
-import com.axonivy.portal.dto.definition.PortalDashboard;
+import com.axonivy.portal.dto.jsondefinition.PortalDashboard;
 import com.axonivy.portal.dto.menu.MenuOrder;
 import com.axonivy.portal.migration.casedetails.migrator.JsonCaseDetailsMigrator;
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;

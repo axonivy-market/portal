@@ -6,10 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import com.axonivy.portal.dto.definition.PortalCustomStatistic;
-import com.axonivy.portal.dto.definition.PortalDashboard;
-import com.axonivy.portal.dto.definition.PortalDashboardTemplate;
-import com.axonivy.portal.dto.definition.PortalDefinition;
+import com.axonivy.portal.dto.jsondefinition.PortalCustomStatistic;
+import com.axonivy.portal.dto.jsondefinition.PortalDashboard;
+import com.axonivy.portal.dto.jsondefinition.PortalDashboardTemplate;
+import com.axonivy.portal.dto.jsondefinition.PortalJsonDefinition;
 import com.axonivy.portal.schema.generator.PortalSchemaGenerator;
 
 public class PortalSchemaBuilder {
@@ -39,7 +39,7 @@ public class PortalSchemaBuilder {
     Path outputFile = outputDir.resolve(definition.fileName());
     var schema = generator.generateSchema(definition.rootType());
     String portalVersion = outputDir.getFileName().toString();
-    schema.put("$id", PortalDefinition.SCHEMA_BASE_URL + portalVersion + "/" + definition.fileName());
+    schema.put("$id", PortalJsonDefinition.SCHEMA_BASE_URL + portalVersion + "/" + definition.fileName());
     Files.writeString(
         outputFile,
         schema.toPrettyString() + System.lineSeparator(),

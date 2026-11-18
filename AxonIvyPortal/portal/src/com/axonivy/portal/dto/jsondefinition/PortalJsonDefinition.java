@@ -1,4 +1,4 @@
-package com.axonivy.portal.dto.definition;
+package com.axonivy.portal.dto.jsondefinition;
 
 import java.util.List;
 
@@ -10,15 +10,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({"$schema", "version", "items"})
-public abstract class PortalDefinition<T> extends JsonListWrapper<T> {
+public abstract class PortalJsonDefinition<T> extends JsonListWrapper<T> {
   public static final String SCHEMA_BASE_URL = "https://axonivy-market.github.io/portal/schema/";
 
   @JsonProperty(required = true, value = "$schema")
   private String schema;
 
-  public PortalDefinition() {};
+  public PortalJsonDefinition() {};
   
-  public PortalDefinition(String schemaFile, List<T> items) {
+  public PortalJsonDefinition(String schemaFile, List<T> items) {
     super(JsonListWrapper.FORMAT_VERSION, items);
     schema = schemaUrl(schemaFile);
   }
