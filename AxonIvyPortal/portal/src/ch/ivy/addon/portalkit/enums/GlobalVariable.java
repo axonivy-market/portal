@@ -101,7 +101,8 @@ public enum GlobalVariable {
   TASK_HEADER_MODE("Portal.TaskTemplate.HeaderMode", GlobalVariableType.EXTERNAL_SELECTION, TaskHeaderMode.DEFAULT.name(), "taskHeaderMode", getTaskHeaderModes()),
   MAXIMUM_SELECTED_TASKS("Portal.Tasks.MaximumSelectedTasks", GlobalVariableType.NUMBER, "20", "maximumSelectedTasks"),
   FILTER_OPERATOR_POLICY("Portal.ComplexFilter.Operators", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS,
-      getFilterOperatorOptions(), "DashboardFilterOperatorPolicy", getFilterOperatorOptions());
+      getFilterOperatorOptions(), "DashboardFilterOperatorPolicy", getFilterOperatorOptions()),
+  SCHEMA_BASE_URL("Portal.Schema.BaseURL", GlobalVariableType.TEXT, "https://axonivy-market.github.io/portal/schema/", "schemaBaseUrlDescription");
 
   private String key;
   private GlobalVariableType type;

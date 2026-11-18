@@ -9,9 +9,11 @@ import com.axonivy.portal.service.ProjectVersionService;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+
 @JsonPropertyOrder({"$schema", "version", "items"})
 public abstract class PortalJsonDefinition<T> extends JsonListWrapper<T> {
-  public static final String SCHEMA_BASE_URL = "https://axonivy-market.github.io/portal/schema/";
 
   @JsonProperty(required = true, value = "$schema")
   private String schema;
@@ -48,6 +50,14 @@ public abstract class PortalJsonDefinition<T> extends JsonListWrapper<T> {
   }
 
   public String schemaUrl(String fileName) {
-    return SCHEMA_BASE_URL + getPortalVersion() + "/" + fileName;
+    return schemaBaseUrl() + getPortalVersion() + "/" + fileName;
+  }
+
+  private String schemaBaseUrl() {
+    String baseUrl = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.SCHEMA_BASE_URL);
+    if (StringUtils.isBlank(baseUrl)) {
+      baseUrl = GlobalVariable.SCHEMA_BASE_URL.getDefaultValue();
+    }
+    return baseUrl.endsWith("/") ? baseUrl : baseUrl + "/";
   }
 }
