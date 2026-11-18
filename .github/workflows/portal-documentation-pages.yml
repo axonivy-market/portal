@@ -57,7 +57,7 @@ jobs:
       - name: Download published schemas and add them to the complete site
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 build/schema/download_schema_versions.py
+        run: python3 build/schema/download_schema_packages.py
 
       - name: Upload complete site for preview or deployment
         uses: actions/upload-pages-artifact@v4
