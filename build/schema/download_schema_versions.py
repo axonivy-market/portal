@@ -39,7 +39,7 @@ def main():
             "-f", "build/schema/pom.xml",
             "org.apache.maven.plugins:maven-dependency-plugin:3.8.1:unpack",
             f"-Dartifact=com.axonivy.portal:portal-schema:{version}:zip",
-            f"-DoutputDirectory={(site / 'schemas' / version).resolve()}",
+            f"-DoutputDirectory={(site / 'schema' / version).resolve()}",
         ], check=True)
         print(f"Added schemas for Portal {version}", flush=True)
 
