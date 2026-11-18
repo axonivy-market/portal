@@ -47,7 +47,7 @@ pipeline {
                 echo "====================Build schemas for Portal ${params.releaseVersion}===================="
                 sh """
                   xmlstarlet ed --inplace -N n=http://maven.apache.org/POM/4.0.0 \
-                    -u /n:project/n:version -v ${params.releaseVersion} build/schema/pom.xml
+                    -u /n:project/n:version -v "${params.releaseVersion}" build/schema/pom.xml
                   mvn -B -ntp -f AxonIvyPortal/portal/pom.xml -Pjson.schema process-classes
                 """
                 sh "mvn -B -ntp -f build/schema/pom.xml -Dschema.directory=${pwd()}/AxonIvyPortal/portal/target/schema/${params.releaseVersion} clean package"
