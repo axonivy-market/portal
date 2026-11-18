@@ -48,6 +48,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       removedAbsences: '{0}から削除された不在者'
       saveAbsenceSetting: 不在設定の保存に成功しました。
       updateAbsence: 不在の更新に成功しました
+    SearchSubstitutes: 代行者を検索
     absenceAndDeputy: 不在者と代行者
     activeAbsence: 欠席中
     allAbsences: すべてのユーザーの不在状況
@@ -308,6 +309,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: タスク詳細ページでの所要時間の表示のオン／オフを切り替えます。
       showTooltipTechnicalName: ツールチップにユーザーの技術名を表示できるようにする。
       sidebarMode: サイドバーのモードを制御します。ホバーはマウスオーバーで展開、クリックはトグルボタンで切り替え、固定は常に展開、非表示はサイドバーを完全に非表示にします。
+      taskHeaderMode: タスク内容の上にあるヘッダーバーを制御します。デフォルトは現在のヘッダー、レガシーは以前のコンパクトなヘッダー、非表示はヘッダーを完全に削除します。
       uploadDocumentWhiteListExtensionNote: すべての拡張子を許可する場合は、空欄にしてください。一部の拡張子のみを許可する場合は、対象の拡張子をカンマで区切って入力してください。（例：pdf, txt, doc, docx）
     key: キー
     loading: 読み込み中
@@ -770,11 +772,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       filterToSee: さらに表示するにはフィルタリング
       loadMore: さらに読み込む
       noUser: ユーザーがいません。
-      roleMemberItemFormat: <li class="tooltip-body-item">{0}</li>
-      roleMemberLineFormat: <p class="tooltip-body-item">{0}</p>
-      roleMembersTooltipFormat: |-
-        <p class="tooltip-header">{0}</p>
-        <ul style="margin: auto; {1}">{2}</ul>
       tooltipHelper: クリックすると、このロールを直接または間接的に所有するすべてのユーザーが表示されます
       userOfRoleTitle: '{0} グループのユーザー'
     passwordValidation:
@@ -2051,6 +2048,10 @@ Labels:
       HIDDEN: 非表示
       HOVER: ホバー
       STICK: 固定
+    TaskHeaderMode:
+      DEFAULT: デフォルト
+      HIDDEN: 非表示
+      LEGACY: レガシー
     ThemeMode:
       DARK: 暗い
       LIGHT: 明るい

@@ -17,17 +17,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.application.FacesMessage;
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.faces.context.FacesContext;
-
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.context.PrimeFacesContext;
 import org.primefaces.event.TabChangeEvent;
 
@@ -44,11 +41,17 @@ import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivy.addon.portalkit.util.DeputyRoleUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @Named
 @ViewScoped
@@ -458,10 +461,34 @@ public class AbsenceManagementBean implements Serializable {
     }
   }
 
-  public List<DeputyRole> getFilteredDeputyRoleList() {
+  public List<DeputyRole> getDeputyRoleList() {
     return CollectionUtils.emptyIfNull(deputyRoles).stream()
         .filter(item -> !item.getDeputies().isEmpty())
         .collect(Collectors.toList());
+  }
+
+  public boolean filterSubstitutes(Object value, Object filter, Locale ignoredLocale) {
+    String keyword = StringUtils.trimToEmpty(filter == null ? null : filter.toString());
+    if (keyword.isEmpty()) {
+      return true;
+    }
+    DeputyRole deputyRole = (DeputyRole) value;
+    return Strings.CI.contains(deputyRole.getDeputyRoleDisplayName(), keyword)
+        || deputyRole.getDeputies().stream().anyMatch(deputy -> Strings.CI.contains(
+            SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(deputy, deputy.getMemberName()),
+            keyword));
+  }
+
+  public boolean filterSubstituteForSelectedUser(Object value, Object filter, Locale ignoredLocale) {
+    String keyword = StringUtils.trimToEmpty(filter == null ? null : filter.toString());
+    if (keyword.isEmpty()) {
+      return true;
+    }
+    IvySubstitute substitution = (IvySubstitute) value;
+    IUser owner = substitution.getOwnerUser();
+    return (owner != null && (Strings.CI.contains(owner.getDisplayName(), keyword)
+        || Strings.CI.contains(owner.getName(), keyword)))
+        || Strings.CI.contains(substitution.getSubstitionRoleDisplayName(), keyword);
   }
 
   private void saveAbsenceSubstitutes() {

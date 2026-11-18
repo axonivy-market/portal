@@ -1,12 +1,13 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
@@ -39,6 +40,13 @@ class TestSortableFieldRegression {
 
   private String processTaskQuery(String sortField, boolean descending) {
     DashboardProcessTaskSearchCriteria criteria = new DashboardProcessTaskSearchCriteria(null);
+    criteria.setSortField(sortField);
+    criteria.setSortDescending(descending);
+    return criteria.buildQuery().toString();
+  }
+
+  private String processCaseQuery(String sortField, boolean descending) {
+    DashboardProcessCaseSearchCriteria criteria = new DashboardProcessCaseSearchCriteria(null);
     criteria.setSortField(sortField);
     criteria.setSortDescending(descending);
     return criteria.buildQuery().toString();
@@ -104,5 +112,61 @@ class TestSortableFieldRegression {
     for (CustomFieldType type : CustomFieldType.values()) {
       assertThat(DashboardColumnFormat.valueOf(type.name())).isNotNull();
     }
+  }
+
+  @Test
+  void taskWidget_sortByName_ordersByNameThenIdDescending() {
+    String query = taskQuery("name", false);
+    assertThat(query).contains(
+        "ORDER BY Column(IWA_TaskLocalized.Name) ASCENDING, Column(IWA_Task.TaskId) DESCENDING");
+  }
+
+  @Test
+  void taskWidget_sortByIdField_doesNotDoublesort() {
+    String query = taskQuery("id", false);
+    assertThat(query).contains("ORDER BY Column(IWA_Task.TaskId) ASCENDING");
+    int count = query.split("Column\\(IWA_Task.TaskId\\)").length - 1;
+    assertThat(count).isEqualTo(1);
+  }
+
+  @Test
+  void taskWidget_sortByPriority_includesSecondaryIdSort() {
+    String query = taskQuery("priority", true);
+    assertThat(query).contains(
+        "ORDER BY Column(IWA_Task.Priority) DESCENDING, Column(IWA_Task.TaskId) DESCENDING");
+  }
+
+  @ParameterizedTest
+  @ValueSource(booleans = {false, true})
+  void processCaseWidget_sortByName_ordersByNameThenIdDescending(boolean descending) {
+    String direction = descending ? "DESCENDING" : "ASCENDING";
+    assertThat(processCaseQuery("name", descending)).contains(
+        "ORDER BY Column(IWA_CaseLocalized.Name) " + direction + ", Column(IWA_Case.CaseId) DESCENDING");
+  }
+
+  @ParameterizedTest
+  @ValueSource(booleans = {false, true})
+  void processCaseWidget_sortById_ordersByIdOnce(boolean descending) {
+    String direction = descending ? "DESCENDING" : "ASCENDING";
+    String query = processCaseQuery("id", descending);
+    String orderBy = query.substring(query.indexOf("ORDER BY"));
+    assertThat(orderBy).contains("ORDER BY Column(IWA_Case.CaseId) " + direction);
+    assertThat(orderBy.split("Column\\(IWA_Case.CaseId\\)", -1)).hasSize(2);
+  }
+
+  @ParameterizedTest
+  @ValueSource(booleans = {false, true})
+  void processCaseWidget_withoutSupportedSort_appliesNoOrdering(boolean descending) {
+    assertThat(processCaseQuery(null, descending)).doesNotContain("ORDER BY");
+    assertThat(processCaseQuery("description", descending)).isEqualTo(processCaseQuery(null, descending));
+  }
+
+  @ParameterizedTest
+  @ValueSource(booleans = {false, true})
+  void processWidget_sortByName_ordersByNameThenIdDescending(boolean descending) {
+    String query = processTaskQuery("name", descending);
+    String direction = descending ? "DESCENDING" : "ASCENDING";
+    assertThat(query).contains(
+        "ORDER BY Column(IWA_TaskLocalized.Name) " + direction + ", Column(IWA_Task.TaskId) DESCENDING");
   }
 }

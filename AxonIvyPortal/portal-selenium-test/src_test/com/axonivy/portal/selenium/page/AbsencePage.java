@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -118,6 +119,69 @@ public class AbsencePage extends TemplatePage {
   public void waitForSubstituteRowCountToChange(int newRowCount) {
     $("tbody[id$='substitute-table_data']").shouldBe(appear, DEFAULT_TIMEOUT);
     $$("tbody[id$='substitute-table_data'] tr").shouldHave(CollectionCondition.size(newRowCount), DEFAULT_TIMEOUT);
+  }
+
+  public void searchMySubstitutes(String keyword) {
+    $(".substitute-table input[id$='globalFilter']").shouldBe(appear, DEFAULT_TIMEOUT).setValue(keyword);
+  }
+
+  public void clearMySubstitutesSearch() {
+    $(".substitute-table input[id$='globalFilter']").shouldBe(appear, DEFAULT_TIMEOUT).clear();
+  }
+
+  public void pressEnterInMySubstitutesSearch() {
+    $(".substitute-table input[id$='globalFilter']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(Keys.ENTER);
+  }
+
+  public void searchSubstitutions(String keyword) {
+    $(".substitution-table input[id$='globalFilter']").shouldBe(appear, DEFAULT_TIMEOUT).setValue(keyword);
+  }
+
+  public void clearSubstitutionSearch() {
+    $(".substitution-table input[id$='globalFilter']").shouldBe(appear, DEFAULT_TIMEOUT).clear();
+  }
+
+  public void pressEnterInSubstitutionSearch() {
+    $(".substitution-table input[id$='globalFilter']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(Keys.ENTER);
+  }
+
+  public boolean isAddSubstituteDialogDisplayed() {
+    SelenideElement dialog = $(By.id("choose-deputy-dialog"));
+    return dialog.exists() && dialog.isDisplayed();
+  }
+
+  public void waitForSubstitutionRowCount(int expectedRowCount) {
+    $$("tbody[id$='substitution-table_data'] tr:not(.ui-datatable-empty-message)")
+        .shouldHave(CollectionCondition.size(expectedRowCount), DEFAULT_TIMEOUT);
+  }
+
+  public void openLastSubstitutionPage() {
+    $(".substitution-table .ui-paginator-last").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
+
+  public void waitForSubstitutionOwner(int rowIndex, String ownerName) {
+    $$("tbody[id$='substitution-table_data'] tr:not(.ui-datatable-empty-message)")
+        .get(rowIndex).shouldHave(Condition.text(ownerName), DEFAULT_TIMEOUT);
+  }
+
+  public String getSubstitutionRowText(int rowIndex) {
+    return $$("tbody[id$='substitution-table_data'] tr:not(.ui-datatable-empty-message)")
+        .get(rowIndex).getText();
+  }
+
+  public boolean isSubstitutionEmptyMessageDisplayed() {
+    return $("tbody[id$='substitution-table_data'] tr.ui-datatable-empty-message").shouldBe(appear, DEFAULT_TIMEOUT)
+        .exists();
+  }
+
+  public void waitForSubstituteRowCount(int expectedRowCount) {
+    $$("tbody[id$='substitute-table_data'] tr:not(.ui-datatable-empty-message)")
+        .shouldHave(CollectionCondition.size(expectedRowCount), DEFAULT_TIMEOUT);
+  }
+
+  public boolean isSubstituteEmptyMessageDisplayed() {
+    return $("tbody[id$='substitute-table_data'] tr.ui-datatable-empty-message").shouldBe(appear, DEFAULT_TIMEOUT)
+        .exists();
   }
 
   public String getAbsenceSubstitutesText(int rowIndex) {

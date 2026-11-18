@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html"
+  xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces"
+  xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:pc="jakarta.faces.composite/components">
+
+  <p:overlayPanel id="users-of-role-overlay"
+    widgetVar="#{empty usersOfRoleOverlayWidgetVar ? 'users-of-role-overlay' : usersOfRoleOverlayWidgetVar}"
+    styleClass="user-of-role u-padding-0" dismissable="true"
+    my="left top" at="left bottom" appendTo="@(body)" dynamic="false">
+    <h:form id="users-of-role-form" styleClass="ui-g" onsubmit="return false;">
+      <div class="ui-g-12">
+        <h:outputText styleClass="role-name"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/userOfRoleTitle', [usersOfRoleBean.selectedRoleDisplayName])}" />
+      </div>
+      <h:panelGroup layout="block" styleClass="ui-g-12">
+        <ic:ch.ivy.addon.portalkit.component.Filter id="filter-container"
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/filterByUsername')}"
+          styleClass="widget-header-filter-input" keywordStoresIn="#{usersOfRoleBean.keyword}"
+          listener="#{usersOfRoleBean.filterUserByName(usersOfRoleBean.keyword)}"
+          updateComponent="@form:user-data-container" />
+      </h:panelGroup>
+      <h:panelGroup id="user-data-container" layout="block" styleClass="ui-g-12 u-padding-0">
+        <p:dataScroller id="user-data"
+          widgetVar="#{empty usersOfRoleDataWidgetVar ? 'users-of-role-data' : usersOfRoleDataWidgetVar}"
+          value="#{usersOfRoleBean.memberNames}" var="user" chunkSize="21"
+          rendered="#{not empty usersOfRoleBean.memberNames}" styleClass="user-data-scroller ui-g-12">
+          <pc:securityMemberNameAndAvatar securityMember="#{user}"
+            displayName="#{securityMemberDisplayNameBean.getFullDisplayNameForUserDTO(user)}" />
+          <f:facet name="loader">
+            <p:link rendered="#{usersOfRoleBean.memberNames.size() gt 20}" href="#">
+              <i class="ti ti-chevrons-down u-mar-right-5" />
+              <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/loadMore')}</span>
+            </p:link>
+          </f:facet>
+        </p:dataScroller>
+        <h:outputText rendered="#{usersOfRoleBean.userLimitReached}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/filterToSee')} ..."
+          styleClass="ui-g-12" />
+        <h:outputText rendered="#{empty usersOfRoleBean.memberNames}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/noUser')}"
+          styleClass="ui-g-12" />
+      </h:panelGroup>
+    </h:form>
+  </p:overlayPanel>
+</ui:composition>

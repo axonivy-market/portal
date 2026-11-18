@@ -1,6 +1,6 @@
 /*
-When iframe loads in dark mode, iframe shows white page. Portal handles by register iframe load, unload events.
-It makes iframe invisible when on unload, and visible when on load.
+When iframe loads in dark mode, iframe shows white page. Portal handles iframe load and pagehide events.
+It makes iframe invisible on pagehide, and visible on load or pageshow (including back/forward cache restores).
 
 If iframe reaches /default/redirect.xhtml$, Portal stops processing inside iframe.
 Portal navigates in main page, also not execute unnecessary JS.
@@ -16,6 +16,12 @@ var invalidIFrameSrcPath = false;
 var isMainPageNavigating = false;
 function loadIframe() {
   var iframe = getPortalIframe();
+  const pageHideHandler = () => {
+    iframe.style.visibility = 'hidden';
+  };
+  const pageShowHandler = () => {
+    iframe.style.visibility = 'visible';
+  };
 
   const onIframeLoad = function () {
     var appName = $('#application-name-for-title').get(0).value;
@@ -26,13 +32,10 @@ function loadIframe() {
     processIFrameData(iframe);
     iframe.style.visibility = 'visible';
 
-    const unloadHandler = () => {
-      iframe.style.visibility = "hidden";
-    };
-
-    // Remove the unloadHandler in case it was already attached, could happen with skip task list.
-    iframe.contentWindow.removeEventListener("unload", unloadHandler);
-    iframe.contentWindow.addEventListener("unload", unloadHandler);
+    iframe.contentWindow.removeEventListener('pagehide', pageHideHandler);
+    iframe.contentWindow.addEventListener('pagehide', pageHideHandler);
+    iframe.contentWindow.removeEventListener('pageshow', pageShowHandler);
+    iframe.contentWindow.addEventListener('pageshow', pageShowHandler);
     return;
   };
 

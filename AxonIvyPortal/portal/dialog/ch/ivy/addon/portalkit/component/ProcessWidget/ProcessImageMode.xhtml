@@ -12,7 +12,7 @@
         <div class="process-category-and-icon-container">
             <h:panelGroup id="process-category" layout="block"
                 rendered="#{processItemActionBean.isRenderedCategory(process.category)}"
-                styleClass="rounded-button process-category ui-button ui-widget #{buttonStyle}">
+                styleClass="rounded-button process-category js-process-category ui-button ui-widget #{buttonStyle}">
                 <span>#{processCategoryDisplay}</span>
             </h:panelGroup>
             <p:tooltip for="process-category"
@@ -45,9 +45,9 @@
                             styleClass="line-clamp-text-2 process-image-view-name" />
                     </div>
             <!-- Process Description -->
-            <div class="process-description js-process-start-list-item-description">
+            <div class="process-description">
               <h:outputText id="process-description" value="#{not empty process.description ? process.description : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noProcessDescription')}" title="#{process.description}"
-                styleClass="process-item-description line-clamp-text-3" />
+                styleClass="process-item-description line-clamp-text-3 js-process-start-list-item-description" />
             </div>
                 </div>
             </div>

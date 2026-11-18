@@ -100,6 +100,7 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
       initializedDataModel();
     }
 
+    criteria.setColumns(allColumns);
     List<ITask> foundTasks = findTasks(criteria, first, pageSize);
     setRowCount(LiveScrollLazyModel.estimateRowCount(first, pageSize, foundTasks.size()));
     data.addAll(foundTasks);

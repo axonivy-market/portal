@@ -48,6 +48,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       removedAbsences: Absence supprimée pour {0}
       saveAbsenceSetting: Les paramètres d'absence ont été sauvegardés avec succès.
       updateAbsence: Absence mise à jour avec succès
+    SearchSubstitutes: Rechercher des remplaçants
     absenceAndDeputy: Absences et remplacements
     activeAbsence: Absence active
     allAbsences: Absences de tous les utilisateurs
@@ -310,6 +311,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
       showTooltipTechnicalName: Activer l'affichage du nom technique des utilisateurs dans les infobulles.
       sidebarMode: Contrôle le mode de la barre latérale. Survol s'ouvre au survol, Clic utilise un bouton bascule, Fixe la garde toujours ouverte, Masqué supprime complètement la barre latérale.
+      taskHeaderMode: Contrôle la barre d'en-tête au-dessus du contenu de la tâche. Par défaut affiche l'en-tête actuel, Legacy affiche l'ancien en-tête compact, Masqué supprime complètement l'en-tête.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
     key: Clé
     loading: CHARGEMENT
@@ -773,11 +775,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       filterToSee: Filtrer pour en savoir plus
       loadMore: En savoir plus
       noUser: Il n'y a pas d'utilisateurs.
-      roleMemberItemFormat: <li class="tooltip-body-item">{0}</li>
-      roleMemberLineFormat: <p class="tooltip-body-item">{0}</p> <p class="tooltip-body-item">{0}<p>.
-      roleMembersTooltipFormat: |-
-        <p class="tooltip-header">{0}</p> <p>
-        <ul style="margin : auto ; {1}">{2}</ul>
       tooltipHelper: Cliquez pour afficher tous les utilisateurs qui possèdent ce rôle directement ou indirectement
       userOfRoleTitle: Utilisateur du groupe {0}
     passwordValidation:
@@ -2074,6 +2071,10 @@ Labels:
       HIDDEN: Masqué
       HOVER: Survol
       STICK: Fixe
+    TaskHeaderMode:
+      DEFAULT: Par défaut
+      HIDDEN: Masqué
+      LEGACY: Legacy
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière

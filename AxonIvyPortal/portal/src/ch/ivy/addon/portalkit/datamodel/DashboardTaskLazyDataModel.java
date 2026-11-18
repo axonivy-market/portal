@@ -156,6 +156,14 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
   }
   
   public void setShowPinnedItem(boolean showPinnedItem) {
-    criteria.setShowPinnedItem(showPinnedItem);
+    this.criteria.setShowPinnedItem(showPinnedItem);
+  }
+
+  public List<String> getExcludeTechnicalTaskStates() {
+    return this.criteria.getExcludeTechnicalTaskStates();
+  }
+
+  public void setExcludeTechnicalTaskStates(List<String> excludeTechnicalTaskStates) {
+    this.criteria.setExcludeTechnicalTaskStates(excludeTechnicalTaskStates);
   }
 }

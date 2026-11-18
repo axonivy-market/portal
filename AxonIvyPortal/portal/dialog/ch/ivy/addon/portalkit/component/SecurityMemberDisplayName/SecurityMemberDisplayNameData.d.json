@@ -7,17 +7,7 @@
     "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
     "modifiers" : [ ]
   }, {
-    "name" : "roleName",
-    "modifiers" : [ ]
-  }, {
     "name" : "keyword",
-    "modifiers" : [ ]
-  }, {
-    "name" : "usersInTooltips",
-    "modifiers" : [ ]
-  }, {
-    "name" : "isRenderUserOfRole",
-    "type" : "Boolean",
     "modifiers" : [ ]
   }, {
     "name" : "securityMember",

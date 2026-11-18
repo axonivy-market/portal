@@ -4,6 +4,7 @@ import java.util.Objects;
 
 
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
@@ -64,7 +65,15 @@ public class CaseColumnModel extends ColumnModel {
     return column;
   }
 
+  @JsonIgnore
+  public boolean isCustomActionColumn() {
+    return type == DashboardColumnType.CUSTOM && Boolean.TRUE.equals(isCustomAction);
+  }
+
   public Boolean caseWithCustomAction(ICase caze) {
+    if (!isCustomActionColumn()) {
+      return false;
+    }
     ICustomFieldMeta metaData = caze.customFields().all().stream().filter(f -> f.name().equals(field)).map(f -> f.meta()).findFirst().orElse(null);
     return Objects.nonNull(metaData) ? Boolean.valueOf(metaData.attribute(DashboardWidgetUtils.IS_CUSTOM_ACTION_ATTRIBUTE)) : false;
   }

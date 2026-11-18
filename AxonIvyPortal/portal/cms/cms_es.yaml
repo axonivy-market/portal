@@ -48,6 +48,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       removedAbsences: Ausencia removida para {0}
       saveAbsenceSetting: Configuración para ausencias guardada con éxito.
       updateAbsence: Ausencia actualizada con éxito
+    SearchSubstitutes: Buscar sustitutos
     absenceAndDeputy: Ausencias y sustituciones
     activeAbsence: Ausencia activa
     allAbsences: Ausencias de todos los usuarios
@@ -310,6 +311,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: Activar o desactivar la visibilidad de la duración de la tarea en detalles de tarea.
       showTooltipTechnicalName: Habilitar para mostrar el nombre técnico de los usuarios en los tooltips.
       sidebarMode: Controla el modo de la barra lateral. Hover se expande al pasar el ratón, Clic usa un botón de alternancia, Fijar la mantiene siempre expandida, Oculto elimina la barra lateral por completo.
+      taskHeaderMode: Controla la barra de cabecera sobre el contenido de la tarea. Predeterminado muestra la cabecera actual, Legacy muestra la cabecera compacta anterior, Ocultar elimina la cabecera por completo.
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
     key: Llave
     loading: CARGANDO
@@ -772,11 +774,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       filterToSee: Filtrar para ver más
       loadMore: Cargar más
       noUser: No hay usuarios
-      roleMemberItemFormat: <li class="tooltip-body-item">{0}</li>
-      roleMemberLineFormat: <p class="tooltip-body-item">{0}</p>
-      roleMembersTooltipFormat: |-
-        <p class="tooltip-header">{0}</p>
-        <ul style="margin: auto; {1}">{2}</ul>
       tooltipHelper: Click para ver todos los usuarios que tienen este rol de forma directa o indirecta
       userOfRoleTitle: 'Usuarios del rol {0} '
     passwordValidation:
@@ -2076,6 +2073,10 @@ Labels:
       HIDDEN: Oculto
       HOVER: Hover
       STICK: Fijar
+    TaskHeaderMode:
+      DEFAULT: Predeterminado
+      HIDDEN: Ocultar
+      LEGACY: Legacy
     ThemeMode:
       DARK: Oscuro
       LIGHT: Luz

@@ -1,21 +1,25 @@
 package ch.ivy.addon.portalkit.util;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
@@ -158,6 +162,81 @@ class TestDashboardUtils {
   @Test
   void isDefaultTaskListDashboard_nullDashboard_returnsFalse() {
     assertThat(DashboardUtils.isDefaultTaskListDashboard(null)).isFalse();
+  }
+
+  private Dashboard buildFullTaskListDashboard() {
+    WidgetLayout layout = new WidgetLayout();
+    layout.setWidth(12);
+    layout.setHeight(12);
+    layout.setAxisX(0);
+    layout.setAxisY(0);
+    TaskDashboardWidget widget = new TaskDashboardWidget();
+    widget.setLayout(layout);
+    Dashboard dashboard = buildDashboard(widget);
+    dashboard.setTemplateId(DashboardUtils.FULL_TASK_LIST_DASHBOARD_TEMPLATE);
+    return dashboard;
+  }
+
+  @Test
+  void isFullTaskListDashboard_matchingTemplateTaskAndLayout_returnsTrue() {
+    assertThat(DashboardUtils.isFullTaskListDashboard(buildFullTaskListDashboard())).isTrue();
+  }
+
+  @Test
+  void isFullTaskListDashboard_nullDashboard_returnsFalse() {
+    assertThat(DashboardUtils.isFullTaskListDashboard(null)).isFalse();
+  }
+
+  @ParameterizedTest
+  @NullSource
+  @ValueSource(strings = {"", "full-case-list-dashboard-template"})
+  void isFullTaskListDashboard_wrongTemplate_returnsFalse(String templateId) {
+    Dashboard dashboard = buildFullTaskListDashboard();
+    dashboard.setTemplateId(templateId);
+
+    assertThat(DashboardUtils.isFullTaskListDashboard(dashboard)).isFalse();
+  }
+
+  @Test
+  void isFullTaskListDashboard_nullWidgets_returnsFalse() {
+    Dashboard dashboard = buildFullTaskListDashboard();
+    dashboard.setWidgets(null);
+
+    assertThat(DashboardUtils.isFullTaskListDashboard(dashboard)).isFalse();
+  }
+
+  @Test
+  void isFullTaskListDashboard_emptyWidgets_returnsFalse() {
+    Dashboard dashboard = buildFullTaskListDashboard();
+    dashboard.setWidgets(List.of());
+
+    assertThat(DashboardUtils.isFullTaskListDashboard(dashboard)).isFalse();
+  }
+
+  @Test
+  void isFullTaskListDashboard_multipleTaskWidgets_returnsFalse() {
+    Dashboard dashboard = buildFullTaskListDashboard();
+    dashboard.setWidgets(List.of(dashboard.getWidgets().get(0), buildFullTaskListDashboard().getWidgets().get(0)));
+
+    assertThat(DashboardUtils.isFullTaskListDashboard(dashboard)).isFalse();
+  }
+
+  @Test
+  void isFullTaskListDashboard_nonTaskWidget_returnsFalse() {
+    Dashboard dashboard = buildFullTaskListDashboard();
+    WelcomeDashboardWidget widget = new WelcomeDashboardWidget();
+    widget.setLayout(dashboard.getWidgets().get(0).getLayout());
+    dashboard.setWidgets(List.of(widget));
+
+    assertThat(DashboardUtils.isFullTaskListDashboard(dashboard)).isFalse();
+  }
+
+  @Test
+  void isFullTaskListDashboard_nullWidget_returnsFalse() {
+    Dashboard dashboard = buildFullTaskListDashboard();
+    dashboard.setWidgets(Collections.singletonList(null));
+
+    assertThat(DashboardUtils.isFullTaskListDashboard(dashboard)).isFalse();
   }
 
   @Test

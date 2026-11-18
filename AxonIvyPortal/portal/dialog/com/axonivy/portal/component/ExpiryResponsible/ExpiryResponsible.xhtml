@@ -7,6 +7,8 @@
   <cc:attribute name="expiryResponsibles" type="ch.ivyteam.ivy.workflow.task.expiry.responsible.ExpiryResponsibles" required="true" />
   <cc:attribute name="popupLink" type="java.lang.Boolean" default="false"/>
   <cc:attribute name="onClick" />
+  <cc:attribute name="alwaysShowAsText" type="java.lang.Boolean" default="true" />
+  <cc:attribute name="roleNameStyleClass" />
   <cc:attribute name="isShowTechnicalDisplayNameOnTooltip" default="#{portalComponentAvatarBean.getPortalShowTechnicalTooltipOrDefault(false)}" />
   <cc:attribute name="isShowAvatar" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
 </cc:interface>
@@ -14,6 +16,9 @@
 <cc:implementation>
   <c:set var="responsibleSize" value="#{expiryRepsonsibleBean.getResponsiblesSize(cc.attrs.expiryResponsibles)}" />
   <c:set var="expiryResponsibles" value="#{cc.attrs.expiryResponsibles}" />
+  <c:set var="securityMember" value="#{responsibleSize eq 1 ? expiryRepsonsibleBean.getFirstResponsible(expiryResponsibles) : null}" />
+  <c:set var="alwaysShowAsText" value="#{cc.attrs.alwaysShowAsText}" />
+  <f:event listener="#{securityMemberDisplayNameBean.init()}" type="preRenderComponent" />
   
   <pc:securityMemberNameAndAvatar 
   	displayName="#{responsibleSize gt 1 ? (cc.attrs.isShowAvatar ? null : ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple')) : expiryRepsonsibleBean.getFirstDisplayName(expiryResponsibles)}" 
@@ -69,6 +74,26 @@
       </h:panelGroup>
      </f:facet>
   </pc:securityMemberNameAndAvatar>
+  <h:panelGroup rendered="#{securityMemberDisplayNameBean.isRenderUsersOverlaySearch(securityMember, alwaysShowAsText)}"
+    styleClass="#{cc.attrs.roleNameStyleClass} user-fullname-container">
+    <p:commandLink id="role-users-activator" styleClass="user-fullname-link"
+      form="users-of-role-form" update="users-of-role-form" resetValues="true"
+      actionListener="#{usersOfRoleBean.loadUsersOfRole(securityMember.getMemberName())}"
+      oncomplete="PF('users-of-role-#{cc.clientId}').show('#{component.clientId}')"
+      process="@this" immediate="true"
+      ariaLabel="#{expiryRepsonsibleBean.getDisplayName(securityMember)} - #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/tooltipHelper')}">
+      <i class="ti ti-info-circle icon-compact-mode" />
+    </p:commandLink>
+    <p:tooltip for="role-users-activator"
+      value="#{expiryRepsonsibleBean.getDisplayName(securityMember)} - #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/tooltipHelper')}"
+      trackMouse="false" hideEvent="mouseleave click" />
+  </h:panelGroup>
   <cc:renderFacet name="after" />
+  <h:panelGroup rendered="#{securityMemberDisplayNameBean.isRenderUsersOverlaySearch(securityMember, alwaysShowAsText)}">
+    <ui:include src="/layouts/includes/usersOfRoleOverlay.xhtml">
+      <ui:param name="usersOfRoleOverlayWidgetVar" value="users-of-role-#{cc.clientId}" />
+      <ui:param name="usersOfRoleDataWidgetVar" value="users-of-role-data-#{cc.clientId}" />
+    </ui:include>
+  </h:panelGroup>
 </cc:implementation>
 </html>

@@ -15,6 +15,7 @@ import com.axonivy.portal.enums.GlobalSearchScopeCategory;
 import com.axonivy.portal.enums.SearchScopeCaseField;
 import com.axonivy.portal.enums.SearchScopeTaskField;
 import com.axonivy.portal.enums.SidebarMode;
+import com.axonivy.portal.enums.TaskHeaderMode;
 import com.axonivy.portal.enums.ThemeMode;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
@@ -97,6 +98,7 @@ public enum GlobalVariable {
       "enablePinCase"),ALLOW_KEYBOARD_SHORTCUTS_CONFIGURATION(
           "Portal.Accessibility.AllowKeyboardShortcutsConfiguration", GlobalVariableType.SELECTION, Option.TRUE.toString(), "allowKeyboardShortcutsConfiguration"),
   SIDEBAR_MODE("Portal.Sidebar.Mode", GlobalVariableType.EXTERNAL_SELECTION, SidebarMode.HOVER.name(), "sidebarMode", getSidebarModes()),
+  TASK_HEADER_MODE("Portal.TaskTemplate.HeaderMode", GlobalVariableType.EXTERNAL_SELECTION, TaskHeaderMode.DEFAULT.name(), "taskHeaderMode", getTaskHeaderModes()),
   MAXIMUM_SELECTED_TASKS("Portal.Tasks.MaximumSelectedTasks", GlobalVariableType.NUMBER, "20", "maximumSelectedTasks"),
   FILTER_OPERATOR_POLICY("Portal.ComplexFilter.Operators", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS,
       getFilterOperatorOptions(), "DashboardFilterOperatorPolicy", getFilterOperatorOptions());
@@ -305,6 +307,14 @@ public enum GlobalVariable {
   private static Map<String, Object> getSidebarModes() {
     Map<String, Object> result = new HashMap<>();
     for (SidebarMode mode : SidebarMode.values()) {
+      result.put(mode.name(), mode);
+    }
+    return result;
+  }
+
+  private static Map<String, Object> getTaskHeaderModes() {
+    Map<String, Object> result = new LinkedHashMap<>();
+    for (TaskHeaderMode mode : TaskHeaderMode.values()) {
       result.put(mode.name(), mode);
     }
     return result;

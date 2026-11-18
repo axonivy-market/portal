@@ -19,11 +19,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.event.ActionEvent;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -48,21 +43,20 @@ import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
 import com.axonivy.portal.dto.menu.StaticPageMenuItemDefinition;
 import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
 import com.axonivy.portal.menu.management.MenuLoader;
-import com.axonivy.portal.util.MenuUtils;
 import com.axonivy.portal.menu.management.enums.MenuSource;
-
-import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
-import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.service.IvyCacheService;
+import com.axonivy.portal.util.MenuUtils;
 
 import ch.addon.portal.generic.menu.PortalMenuItem.PortalMenuBuilder;
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.MainMenuEntryService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -72,6 +66,10 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.ActionEvent;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @Named
 @ViewScoped
@@ -125,7 +123,9 @@ public class MenuView implements Serializable {
       }
     }
 
+    int nextIndex = definitions.size();
     for (PortalMenuItemDefinition def : MenuLoader.loadPrivateThirdPartyDefinitions()) {
+      def.setIndex(nextIndex++);
       MenuElement element = buildMenuElement(def, startableProcessLinks);
       if (element != null) {
         mainMenuModel.getElements().add(element);
@@ -214,7 +214,13 @@ public class MenuView implements Serializable {
 
   private MenuItem buildStandardSimpleItem(StandardMenuItemDefinition std) {
     StandardMenuItemDefinitionType type = std.getStandardType();
-    MenuKind kind = type == StandardMenuItemDefinitionType.PROCESS ? MenuKind.PROCESS_LIST : MenuKind.STANDARD;
+    MenuKind kind = MenuKind.STANDARD;
+    if (type == StandardMenuItemDefinitionType.PROCESS) {
+      if (!PermissionUtils.checkAccessFullProcessListPermission()) {
+        return null;
+      }
+      kind = MenuKind.PROCESS_LIST;
+    }
     return new PortalMenuBuilder(Ivy.cms().co(type.getCmsUri()), kind, isWorkingOnATask)
         .icon(buildIconClass(std.getIcon()))
         .onClick(type.getOnClick())
@@ -240,6 +246,7 @@ public class MenuView implements Serializable {
         .map(p -> p.getStartLink())
         .orElse(def.getProcessStartPath());
     return new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.PROCESS, isWorkingOnATask)
+        .menuIndex(def.getIndex())
         .icon(buildIconClass(def.getIcon()))
         .url(StringUtils.defaultIfBlank(url, DEFAULT_LINK))
         .workingTaskId(workingTaskId)
@@ -251,6 +258,7 @@ public class MenuView implements Serializable {
     String safeUrl = MenuUtils.safeExternalUrl(def.getUrl());
     String url = StringUtils.defaultIfBlank(UrlUtils.buildUrl(safeUrl), DEFAULT_LINK);
     PortalMenuItem item = new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.EXTERNAL_LINK, isWorkingOnATask)
+        .menuIndex(def.getIndex())
         .icon(buildIconClass(def.getIcon()))
         .url(url)
         .target(target)
@@ -266,6 +274,7 @@ public class MenuView implements Serializable {
         ? PortalNavigatorAPI.buildPortalStaticPageUrl(def.getUrl())
         : DEFAULT_LINK;
     return new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.STATIC_PAGE, isWorkingOnATask)
+        .menuIndex(def.getIndex())
         .icon(buildIconClass(def.getIcon()))
         .url(url)
         .cleanParam(true)
@@ -275,6 +284,7 @@ public class MenuView implements Serializable {
 
   private MenuItem buildThirdPartyItem(ExternalLinkMenuItemDefinition def) {
     PortalMenuItem item = new PortalMenuBuilder(def.getDisplayTitle(), MenuKind.THIRD_PARTY, isWorkingOnATask)
+        .menuIndex(def.getIndex())
         .icon(buildIconClass(def.getIcon()))
         .url(UrlUtils.buildUrl(def.getUrl()))
         .workingTaskId(workingTaskId)

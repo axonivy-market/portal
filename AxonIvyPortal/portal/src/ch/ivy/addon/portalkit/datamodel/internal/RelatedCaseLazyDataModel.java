@@ -60,6 +60,7 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
       initializedDataModel();
     }
 
+    criteria.setColumns(allColumns);
     List<ICase> foundCases = findCases(criteria, first, pageSize);
     setRowCount(LiveScrollLazyModel.estimateRowCount(first, pageSize, foundCases.size()));
     data.addAll(foundCases);

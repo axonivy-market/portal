@@ -358,6 +358,9 @@ HowTo: add a sidebar menu item
 
 #. Depending on the selected menu type, select the corresponding value (e.g. the process, dashboard, URL, or static page to link to).
 
+   For a static page, enter its link, e.g. ``Portal/faces/view/my-project/help.xhtml``.
+   The link differs between Engine and Designer, see :ref:`static-page-link-format`.
+
 #. Enter a title for the item. To provide translations, use the multi-language input (see :ref:`portal-multi-language`).
 
 #. Select an icon to represent the item in the sidebar.

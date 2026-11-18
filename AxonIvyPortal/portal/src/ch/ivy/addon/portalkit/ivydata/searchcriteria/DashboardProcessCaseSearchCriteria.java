@@ -91,6 +91,9 @@ public class DashboardProcessCaseSearchCriteria {
       if (order != null && criteria.isSortDescending()) {
         order.descending();
       }
+      if (order != null && !DashboardStandardCaseColumn.ID.getField().equalsIgnoreCase(criteria.getSortField())) {
+        query.orderBy().caseId().descending();
+      }
       return this;
     }
 

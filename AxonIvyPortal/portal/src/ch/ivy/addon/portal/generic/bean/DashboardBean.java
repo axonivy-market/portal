@@ -11,11 +11,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-import jakarta.faces.context.FacesContext;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
@@ -61,6 +56,10 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @ViewScoped
 @Named
@@ -110,9 +109,10 @@ public class DashboardBean implements Serializable, IMultiLanguage {
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
 
-    // Set responsive option for default task list and case list
+    // Set responsive option for default task list, case list and full task list (view mode only)
     if (DashboardUtils.isDefaultCaseListDashboard(selectedDashboard)
-        || DashboardUtils.isDefaultTaskListDashboard(selectedDashboard)) {
+        || DashboardUtils.isDefaultTaskListDashboard(selectedDashboard)
+        || (isReadOnlyMode && DashboardUtils.isFullTaskListDashboard(selectedDashboard))) {
       selectedDashboard.setIsResponsive(true);
     }
 
@@ -547,10 +547,12 @@ public class DashboardBean implements Serializable, IMultiLanguage {
       return;
     }
     selectedDashboardId = (String) Ivy.session().getAttribute(SELECTED_SUB_DASHBOARD_ID.name());
-    if (StringUtils.isNotBlank(selectedDashboardId) && !DashboardUtils.isSubMenuDashboard(dashboards, selectedDashboardId)) {
+    if (StringUtils.isNotBlank(selectedDashboardId) && !DashboardUtils.isSubMenuDashboard(dashboards, selectedDashboardId)
+        && !DashboardUtils.isHiddenDashboard(selectedDashboardId)) {
       // The remembered dashboard was later changed to a non-submenu display type (e.g. promoted to
       // a sidebar entry) - the stale id must not be trusted, or this submenu entry point would keep
       // rendering a dashboard that is no longer a valid submenu dashboard.
+      // Hidden dashboards are kept: they are opened from the navigation widget and never are submenu entries.
       selectedDashboardId = null;
     }
   }
