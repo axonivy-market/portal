@@ -11,7 +11,6 @@ import com.axonivy.portal.dto.definition.PortalDashboard;
 import com.axonivy.portal.dto.definition.PortalDashboardTemplate;
 import com.axonivy.portal.dto.definition.PortalDefinition;
 import com.axonivy.portal.schema.generator.PortalSchemaGenerator;
-import com.axonivy.portal.schema.helper.PortalSchemaHelper;
 
 public class PortalSchemaBuilder {
   private record SchemaDefinition(String fileName, Class<?> rootType) {}
@@ -40,7 +39,6 @@ public class PortalSchemaBuilder {
     Path outputFile = outputDir.resolve(definition.fileName());
     var schema = generator.generateSchema(definition.rootType());
     String portalVersion = outputDir.getFileName().toString();
-    PortalSchemaHelper.resolveRemoteReferences(schema, portalVersion);
     schema.put("$id", PortalDefinition.SCHEMA_BASE_URL + portalVersion + "/" + definition.fileName());
     Files.writeString(
         outputFile,
