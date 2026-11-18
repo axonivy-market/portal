@@ -3,6 +3,7 @@
  */
 package ch.ivyteam.ivy.process.intermediateevent;
 
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 
 public final class TestNewProcessIntermediateEventBean extends AbstractProcessIntermediateEventBean {
@@ -39,6 +40,7 @@ public final class TestNewProcessIntermediateEventBean extends AbstractProcessIn
       try {
         getEventBeanRuntime().fireProcessIntermediateEventEx(eventIdentifier, resultObject, additionalInformation);
       } catch (PersistencyException ex) {
+        Ivy.log().error("Cannot fire intermediate event " + eventIdentifier, ex);
         // ===> Add here your exception handling code if the event cannot be processed <===
 
       }

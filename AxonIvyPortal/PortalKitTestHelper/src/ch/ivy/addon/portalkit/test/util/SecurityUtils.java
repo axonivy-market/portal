@@ -127,7 +127,8 @@ public class SecurityUtils {
               try {
                 Thread.sleep(1000 * s); // wait N secs
               } catch (InterruptedException ie) {
-                // NOP
+                Thread.currentThread().interrupt();
+                return false;
               }
             }
           }
@@ -169,7 +170,8 @@ public class SecurityUtils {
               try {
                 Thread.sleep(1000 * s); // wait N secs
               } catch (InterruptedException ie) {
-                // NOP
+                Thread.currentThread().interrupt();
+                return false;
               }
             }
           }
