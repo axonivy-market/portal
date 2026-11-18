@@ -18,6 +18,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 
 public class PortalJacksonSchemaModule extends JacksonSchemaModule {
 
+  // properties hidden from the schema (e.g. internal or deprecated fields), per class
   public static final Map<Class<?>, Set<String>> EXCLUDED_PROPERTIES =
       Map.of(
           AbstractColumn.class, Set.of("header"),
@@ -28,9 +29,9 @@ public class PortalJacksonSchemaModule extends JacksonSchemaModule {
 
   public PortalJacksonSchemaModule() {
     super(
-        JacksonOption.ALWAYS_REF_SUBTYPES,
-        JacksonOption.FLATTENED_ENUMS_FROM_JSONVALUE,
-        JacksonOption.RESPECT_JSONPROPERTY_REQUIRED);
+        JacksonOption.ALWAYS_REF_SUBTYPES,           // put every widget subtype (@JsonSubTypes) in $defs and reference it with $ref, instead of inlining it
+        JacksonOption.FLATTENED_ENUMS_FROM_JSONVALUE,// use the @JsonValue of an enum as its schema value (e.g. "today"), the same value Jackson writes to JSON
+        JacksonOption.RESPECT_JSONPROPERTY_REQUIRED);// add properties marked @JsonProperty(required = true) to the "required" list
   }
 
   @Override
