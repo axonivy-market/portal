@@ -100,6 +100,7 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
     }
     setRowCount(getTaskCount(criteria));
 
+    criteria.setColumns(allColumns);
     List<ITask> foundTasks = findTasks(criteria, first, pageSize);
     data.addAll(foundTasks);
     return foundTasks;

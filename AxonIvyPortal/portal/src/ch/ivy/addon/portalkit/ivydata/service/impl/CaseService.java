@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.bo.ItemByCategoryStatistic;
+import com.axonivy.portal.util.EagerlyFetchUtils;
 
 import ch.ivy.addon.portalkit.bo.CaseCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
@@ -52,6 +53,9 @@ public class CaseService{
     return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
+      if (EagerlyFetchUtils.shouldEagerlyFetch(count)) {
+        EagerlyFetchUtils.eagerlyFetchDataOfColumnNames(finalQuery, criteria.getColumns());
+      }
       result.setCases(executeCaseQuery(finalQuery, startIndex, count));
       return result;
     });

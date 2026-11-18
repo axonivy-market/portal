@@ -63,7 +63,7 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
           }
         }
       }
-      foundCases = DashboardCaseService.getInstance().findByCaseQuery(criteria.buildQuery(), first, pageSize);
+      foundCases = DashboardCaseService.getInstance().findByCaseCriteria(criteria, first, pageSize);
       addDistict(cases, foundCases);
       mapCases.putAll(foundCases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
     }
@@ -84,7 +84,7 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      foundCases = DashboardCaseService.getInstance().findByCaseQuery(criteria.buildQuery(), 0, pageSize);
+      foundCases = DashboardCaseService.getInstance().findByCaseCriteria(criteria, 0, pageSize);
       addDistict(cases, foundCases);
       mapCases.putAll(foundCases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
       IvyThreadContext.reset();

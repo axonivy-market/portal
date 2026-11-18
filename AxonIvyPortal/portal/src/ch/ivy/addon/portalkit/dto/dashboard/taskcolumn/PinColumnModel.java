@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivyteam.ivy.workflow.ITask;
 
 public class PinColumnModel extends TaskColumnModel {
 
@@ -42,4 +43,8 @@ public class PinColumnModel extends TaskColumnModel {
     return false;
   }
 
+  @Override
+  public Object display(ITask task) {
+    return null;
+  }
 }
