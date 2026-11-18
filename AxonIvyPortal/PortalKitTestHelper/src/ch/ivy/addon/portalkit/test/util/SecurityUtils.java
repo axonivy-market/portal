@@ -199,6 +199,7 @@ public class SecurityUtils {
                 return result1;
               });
     } catch (Exception e) {
+      Ivy.log().error("Cannot find users for role {0}, returning empty list", e, rolename);
     }
     return result;
   }
@@ -223,6 +224,7 @@ public class SecurityUtils {
             return result1;
           });
     } catch (Exception e) {
+      Ivy.log().error("Cannot find all users, returning empty list", e);
     }
     return result;
 

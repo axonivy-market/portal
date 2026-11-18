@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Objects;
 
+import ch.ivyteam.ivy.environment.Ivy;
 import tools.jackson.databind.JsonNode;
 
 /**
@@ -84,6 +85,7 @@ public class JsonListWrapper<T> {
         // This item type has no per-item "version" property - nothing to clear.
       } catch (IllegalAccessException | InvocationTargetException e) {
         // Unexpected - don't fail the whole export/serialization over this.
+        Ivy.log().warn("Cannot clear version of {0}", e, item.getClass().getName());
       }
     }
   }
