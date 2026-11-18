@@ -44,6 +44,14 @@ pipeline {
                 def mavenGoal = params.deployToRepo ? 'deploy' : 'install'
                 maven cmd: "clean ${mavenGoal} -Prelease -f pom.xml -pl '!AxonIvyPortal/portal-test,!AxonIvyPortal/portal-selenium-test' -Divy.engine.directory=${env.engineDir} -Divy.engine.version=[7.0.0,] -Divy.compiler.engine.start.timeout=120 ${params.engineDownloadURL}"
 
+                echo "====================Build schemas for Portal ${params.releaseVersion}===================="
+                sh """
+                  xmlstarlet ed --inplace -N n=http://maven.apache.org/POM/4.0.0 \
+                    -u /n:project/n:version -v ${params.releaseVersion} build/schema/pom.xml
+                  mvn -B -ntp -f AxonIvyPortal/portal/pom.xml -Pjson.schema process-classes
+                """
+                sh "mvn -B -ntp -f build/schema/pom.xml -Dschema.directory=${pwd()}/AxonIvyPortal/portal/target/schema/${params.releaseVersion} clean package"
+
                 echo "====================Create release tag ${params.releaseVersion}===================="
 
                   sh """
@@ -60,6 +68,13 @@ pipeline {
                     git push origin "${params.releaseVersion}"
                     """
                 }
+            }
+
+            if (params.deployToRepo && env.BRANCH_NAME == 'master') {
+              echo "====================Publish schemas ${params.releaseVersion}===================="
+              withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                sh "mvn -B -ntp -s build/schema/settings.xml -f build/schema/pom.xml -Dschema.directory=${pwd()}/AxonIvyPortal/portal/target/schema/${params.releaseVersion} clean deploy"
+              }
             }
 
             echo "====================Update Portal version for development after release ${params.releaseVersion} ===================="
@@ -94,7 +109,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: '**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip,*/*/pom.xml'
+      archiveArtifacts artifacts: '**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip,**/target/portal-schema-*.zip,*/*/pom.xml'
     }
   }
 }
