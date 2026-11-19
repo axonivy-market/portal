@@ -100,8 +100,8 @@ public class CaseSearchCriteria {
       long idKeyword = Long.parseLong(keyword.trim());
       String containingIdKeyword = String.format("%%%d%%", idKeyword);
       filterByKeywordQuery.where().or().caseId().isLike(containingIdKeyword);
-    } catch (NumberFormatException e) {
-      // do nothing
+    } catch (NumberFormatException ignored) {
+      // Keyword is not numeric, so no ID filter is added.
     }
     return filterByKeywordQuery;
   }
