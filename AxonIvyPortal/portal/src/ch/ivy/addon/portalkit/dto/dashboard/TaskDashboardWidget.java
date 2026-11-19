@@ -82,9 +82,10 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   @Override
   public void buildStatisticInfos() {
-    String combinedAjaxCommand = String.format(REMOTE_COMMAND_PATTERN, "buildStatisticTaskExpiry", id)
-        .concat(String.format(REMOTE_COMMAND_PATTERN, "buildStatisticTaskStates", id))
-        .concat(String.format(REMOTE_COMMAND_PATTERN, "buildStatisticTaskCategory", id));
+    String safeId = getSafeId();
+    String combinedAjaxCommand = String.format(REMOTE_COMMAND_PATTERN, "buildStatisticTaskExpiry", safeId)
+        .concat(String.format(REMOTE_COMMAND_PATTERN, "buildStatisticTaskStates", safeId))
+        .concat(String.format(REMOTE_COMMAND_PATTERN, "buildStatisticTaskCategory", safeId));
     PrimeFaces.current().executeScript(combinedAjaxCommand);
   }
 
