@@ -72,27 +72,7 @@
         "at" : { "x" : 96, "y" : 272 }
       },
       "connect" : [
-        { "id" : "f8", "to" : "f7" }
-      ]
-    }, {
-      "id" : "f7",
-      "type" : "Script",
-      "name" : "count cases",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;",
-            "",
-            "in.totalCases = DashboardCaseService.getInstance().countByCaseQuery(in.widget.dataModel.criteria.buildQuery());"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 320, "y" : 272 }
-      },
-      "connect" : [
-        { "id" : "f10", "to" : "f9" }
+        { "id" : "f8", "to" : "f9" }
       ]
     }, {
       "id" : "f9",
@@ -187,7 +167,7 @@
       "type" : "Alternative",
       "config" : {
         "conditions" : {
-          "f17" : "in.loopCounter <= in.totalCases / in.maxResultNumberPerQuery"
+          "f17" : "in.collectedCasesForExporting.size() == in.loopCounter * in.maxResultNumberPerQuery"
         }
       },
       "visual" : {

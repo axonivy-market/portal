@@ -544,12 +544,6 @@
         "at" : { "x" : 416, "y" : 1152 }
       }
     }, {
-      "id" : "f53",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 416, "y" : 1248 }
-      }
-    }, {
       "id" : "f30",
       "type" : "SubProcessCall",
       "name" : "Find tasks",
@@ -574,60 +568,6 @@
       },
       "connect" : [
         { "id" : "f52", "to" : "f44" }
-      ]
-    }, {
-      "id" : "f32",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "countTasks(TaskSearchCriteria)",
-      "config" : {
-        "signature" : "countTasks",
-        "input" : {
-          "params" : [
-            { "name" : "criteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria", "desc" : "" }
-          ],
-          "map" : {
-            "out.taskSearchCriteria" : "param.criteria"
-          }
-        },
-        "result" : {
-          "params" : [
-            { "name" : "totalTasks", "type" : "Long", "desc" : "" }
-          ],
-          "map" : {
-            "result.totalTasks" : "in.totalTasks"
-          }
-        },
-        "guid" : "178019346DF34FD9"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 1248 }
-      },
-      "connect" : [
-        { "id" : "f55", "to" : "f34" }
-      ]
-    }, {
-      "id" : "f34",
-      "type" : "SubProcessCall",
-      "name" : "Count tasks",
-      "config" : {
-        "processCall" : "Ivy Data Processes/TaskService:countTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)",
-        "call" : {
-          "map" : {
-            "param.taskSearchCriteria" : "in.taskSearchCriteria"
-          }
-        },
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.totalTasks" : "result.totalTasks"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 256, "y" : 1248 }
-      },
-      "connect" : [
-        { "id" : "f37", "to" : "f53" }
       ]
     }, {
       "id" : "f35",
@@ -713,7 +653,7 @@
         "labelOffset" : { "x" : 41 }
       },
       "connect" : [
-        { "id" : "f23", "to" : "f19" }
+        { "id" : "f23", "to" : "f76" }
       ]
     }, {
       "id" : "f75",
@@ -737,30 +677,6 @@
       },
       "connect" : [
         { "id" : "f90", "to" : "f82" }
-      ]
-    }, {
-      "id" : "f19",
-      "type" : "SubProcessCall",
-      "name" : "count tasks",
-      "config" : {
-        "processCall" : "Ivy Data Processes/TaskService:countTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)",
-        "call" : {
-          "map" : {
-            "param.taskSearchCriteria" : "in.taskSearchCriteria"
-          }
-        },
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.totalTasks" : "result.totalTasks"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 232, "y" : 960 }
-      },
-      "connect" : [
-        { "id" : "f83", "to" : "f76" }
       ]
     }, {
       "id" : "f82",
@@ -813,7 +729,7 @@
       "type" : "Alternative",
       "config" : {
         "conditions" : {
-          "f89" : "in.loopCounter <= in.totalTasks / in.maxResultNumberPerQuery"
+          "f89" : "in.collectedTasksForExporting.size() == in.loopCounter * in.maxResultNumberPerQuery"
         }
       },
       "visual" : {

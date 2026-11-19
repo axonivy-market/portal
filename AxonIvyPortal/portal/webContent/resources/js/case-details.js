@@ -2,9 +2,14 @@ var caseDetailsGrid;
 $(function () {
   setTimeout(() => {
     loadCaseDetailsGrid();
+    fitCaseDetailsTables();
   }, 0);
   handleCaseDetailsTable();
 })
+
+$(document).on('pfAjaxComplete', function () {
+  fitCaseDetailsTables();
+});
 
 function loadCaseDetailsGrid() {
   initCaseDetailsGrid();
@@ -29,6 +34,44 @@ function initCaseDetailsGrid() {
       ResponsiveTable.init(":case-histories:case-histories");
     }
   });
+}
+
+let caseDetailsTableObserver;
+function fitCaseDetailsTables() {
+  if (!caseDetailsTableObserver) {
+    caseDetailsTableObserver = new ResizeObserver(entries => {
+      requestAnimationFrame(() => {
+        entries.forEach(entry => fitCaseDetailsCardTable($(entry.target)));
+      });
+    });
+  }
+  $('.js-fit-card-height').closest('.grid-stack-item-content.case-detail-card').each(function () {
+    caseDetailsTableObserver.observe(this);
+    fitCaseDetailsCardTable($(this));
+  });
+}
+
+function fitCaseDetailsCardTable(card) {
+  card.find('.js-fit-card-height .ui-datatable-scrollable-body').each(function () {
+    const tableBody = $(this);
+    const cardContentBottom = card.offset().top + card.innerHeight() - parseFloat(card.css('padding-bottom'));
+    const scrollableFooter = tableBody.siblings('.ui-datatable-scrollable-footer').outerHeight(true) || 0;
+    const targetHeight = Math.max(0, Math.floor(cardContentBottom - tableBody.offset().top - scrollableFooter));
+    if (Math.round(tableBody.height()) !== targetHeight) {
+      tableBody.css({ 'height': targetHeight, 'max-height': targetHeight });
+    }
+    loadMoreCaseDetailsRowsWhenNotEnough(tableBody);
+  });
+}
+
+function loadMoreCaseDetailsRowsWhenNotEnough(tableBody) {
+  if (tableBody.get(0).scrollHeight > tableBody.get(0).clientHeight) {
+    return;
+  }
+  const table = PrimeFaces.getWidgetById(tableBody.closest('.js-fit-card-height').attr('id'));
+  if (table && table.cfg.liveScroll && table.shouldLiveScroll && !table.loadingLiveScroll && !table.allLoadedLiveScroll) {
+    table.loadLiveRows();
+  }
 }
 
 function saveCaseDetailsGrid() {

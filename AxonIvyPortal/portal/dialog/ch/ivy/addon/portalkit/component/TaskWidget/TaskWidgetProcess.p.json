@@ -584,14 +584,14 @@
         "labelOffset" : { "x" : 41 }
       },
       "connect" : [
-        { "id" : "f87", "to" : "f80" }
+        { "id" : "f87", "to" : "f76" }
       ]
     }, {
       "id" : "f78",
       "type" : "Alternative",
       "config" : {
         "conditions" : {
-          "f89" : "in.loopCounter <= in.totalTasks / in.maxResultNumberPerQuery"
+          "f89" : "in.collectedTasksForExporting.size() == in.loopCounter * in.maxResultNumberPerQuery"
         }
       },
       "visual" : {
@@ -607,30 +607,6 @@
       "visual" : {
         "at" : { "x" : 920, "y" : 832 }
       }
-    }, {
-      "id" : "f80",
-      "type" : "SubProcessCall",
-      "name" : "count tasks",
-      "config" : {
-        "processCall" : "Ivy Data Processes/TaskService:countTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)",
-        "call" : {
-          "map" : {
-            "param.taskSearchCriteria" : "in.taskSearchCriteria"
-          }
-        },
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.totalTasks" : "result.totalTasks"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 256, "y" : 832 }
-      },
-      "connect" : [
-        { "id" : "f83", "to" : "f76" }
-      ]
     }, {
       "id" : "f82",
       "type" : "Script",

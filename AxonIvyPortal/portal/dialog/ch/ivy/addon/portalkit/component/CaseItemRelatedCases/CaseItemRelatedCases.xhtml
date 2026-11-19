@@ -45,10 +45,9 @@
     
     <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0 related-cases-container" id="related-cases-container">
     
-      <p:dataTable cellNavigation="false" id="related-cases" lazy="true" value="#{data.caseLazyDataModel}" var="case" paginator="true" rows="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
-        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" sortMode="single"
-        sortBy="#{caseDetailsBean.sortById}" styleClass="related-cases" rowHover="true" selectionMode="single"
-        currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
+      <p:dataTable cellNavigation="false" id="related-cases" lazy="true" value="#{data.caseLazyDataModel}" var="case"
+        scrollable="true" liveScroll="true" scrollRows="25" scrollHeight="265" sortMode="single"
+        sortBy="#{caseDetailsBean.sortById}" styleClass="related-cases js-fit-card-height" rowHover="true" selectionMode="single">
         <p:ajax event="rowSelect" listener="#{caseDetailsBean.navigateToSelectedCaseDetails}" />
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" field="NAME" sortBy="#{NAME}" filterable="false" styleClass="name-column u-truncate-text"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}">
