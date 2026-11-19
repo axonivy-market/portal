@@ -456,7 +456,7 @@ Filename: ``variables.Portal.CustomStatistic.json``
 The file's value is a wrapper object: ``{"version": ..., "items": [...]}``, where ``version``
 identifies the format of the JSON collection itself and ``items`` holds the list of charts below.
 This wrapper-level ``version`` is what Portal reads (and migrates) on import - individual charts do
-not carry their own ``version`` field. Data model of a single chart entry in ``items``:
+not carry their own ``version`` field. Example file:
 
 .. code-block:: javascript
 
@@ -557,36 +557,36 @@ not carry their own ``version`` field. Data model of a single chart entry in ``i
          } ],
          "lineChartConfig" : {
             "xTitles" : [ {
-            "locale" : "en",
-            "value" : "Month of year"
+               "locale" : "en",
+               "value" : "Month of year"
             }, {
-            "locale" : "fr",
-            "value" : "Mois de l'année"
+               "locale" : "fr",
+               "value" : "Mois de l'année"
             }, {
-            "locale" : "de",
-            "value" : "Monat des Jahres"
+               "locale" : "de",
+               "value" : "Monat des Jahres"
             }, {
-            "locale" : "ja",
-            "value" : "年の月"
+               "locale" : "ja",
+               "value" : "年の月"
             }, {
-            "locale" : "es",
-            "value" : "Mes del año"
+               "locale" : "es",
+               "value" : "Mes del año"
             } ],
             "yTitles" : [ {
-            "locale" : "en",
-            "value" : "Number of orders"
+               "locale" : "en",
+               "value" : "Number of orders"
             }, {
-            "locale" : "fr",
-            "value" : "Nombre de commandes"
+               "locale" : "fr",
+               "value" : "Nombre de commandes"
             }, {
-            "locale" : "de",
-            "value" : "Anzahl der Bestellungen"
+               "locale" : "de",
+               "value" : "Anzahl der Bestellungen"
             }, {
-            "locale" : "ja",
-            "value" : "注文数"
+               "locale" : "ja",
+               "value" : "注文数"
             }, {
-            "locale" : "es",
-            "value" : "Número de pedidos"
+               "locale" : "es",
+               "value" : "Número de pedidos"
             } ],
             "backgroundColors" : [ "#98bffa", "#f8da96", "#bee3cb", "#f9908c", "#c8befa", "#8dc261", "#6299f7", "#f5bf9f" ]
          },
@@ -597,7 +597,7 @@ not carry their own ``version`` field. Data model of a single chart entry in ``i
    }
 ..
 
-- ``id``: ID of the widget.
+- ``id``: ID of the chart. A statistic widget references it with ``chartId``.
 
 - ``statisticAggregation``: statistic's aggregation.
 
@@ -611,6 +611,8 @@ not carry their own ``version`` field. Data model of a single chart entry in ``i
 
    When ``kpiField`` and ``aggregationMethod`` are not provided, returns count statistics (counting number of tasks or cases).
    In contrast, the system applies the specified aggregation method to the numeric values in ``kpiField``.
+
+   - ``interval`` (optional): time grouping for date fields, could be `day`, `week`, `month` or `year`.
 
 - ``filters``: filters for the statistic chart.
 
@@ -626,9 +628,9 @@ not carry their own ``version`` field. Data model of a single chart entry in ``i
 
 - ``chartTarget``: chart's target, could be `case` or `task`.
 
-- ``icon``: icon for the statistic chart.
+- ``icon``: icon for the statistic chart. Default is ``ti-chart-pie``.
 
-- ``refreshInterval``: number of seconds for the chart auto-refreshed, minimum value is 60.
+- ``refreshInterval``: number of seconds for the chart auto-refreshed, minimum value is 60. Default is 300. Values below 60 disable auto-refresh.
 
 - ``names``: name for the statistic chart, multi-language supported.
 
@@ -673,11 +675,51 @@ For some specific charts such as ``Bar``, ``Pie``, ``Line`` or ``Number``, there
 - ``pieChartConfig``: additional fields for configuring the ``Pie`` chart, you can add if chart type is ``pie``
 
    - ``backgroundColors`` : the colors to display the chart
+   - ``defaultBackgroundColor``: the color used when no coloring rule matches
+   - ``conditionBasedColoringEnabled``: toggle to enable coloring rules for the pie slices
+   - ``thresholds``: coloring rules, see :ref:`statistic-chart-coloring-rules`
 
 - ``numberChartConfig``: additional fields for configuring the ``Number`` chart, you can add if chart type is ``number``
 
    - ``hideLabel``: toggle to show label of the number chart
-   
+   - ``suffixSymbol``: symbol shown after the number, e.g. ``%``
+
+.. important::
+   Make sure your custom fields are declared in the ``custom-fields.yaml`` file of your project, so that
+   they are displayed in the KPI and Group by lists when a user creates a chart on the UI.
+   Refer to :doc-url:`Custom Fields </reference/configuration/custom-fields.html>` for more information.
+
+   For a sample declaration of the custom fields used in the examples above, see
+   :ref:`statistic-sample-kpi-procurement-overview`.
+
+.. _statistic-chart-drill-down:
+
+Drill-down
+""""""""""
+
+- ``chartDrillDownEnabled``: lets users click a chart to see the underlying tasks or cases. Default is ``false``.
+
+Drill-down is only available when all of these are true:
+
+- ``aggregates`` and ``filter`` are empty
+- The grouping field supports drill-down
+- The user has the read-all permission for tasks (or for cases, when ``chartTarget`` is ``case``)
+
+.. _statistic-chart-coloring-rules:
+
+Condition-based coloring
+"""""""""""""""""""""""""
+
+- ``conditionBasedColoringEnabled``: enables coloring rules. Default is ``false``.
+- ``conditionBasedColoringScope``: scope of the coloring rules, could be ``all`` or ``specific``.
+- ``defaultBackgroundColor``: hex color used when no rule matches, e.g. ``#6299f7``.
+- ``thresholdStatisticCharts``: list of coloring rules. Each rule has:
+
+   - ``operator``: one of ``greater``, ``less``, ``greaterOrEqual``, ``lessOrEqual``, ``equal``
+   - ``value``: integer to compare against
+   - ``targetValue``: target value of the rule
+   - ``backgroundColor``: hex color used when the rule matches
+
 .. _portal-process-external-link:
 
 Portal Processes External Links
