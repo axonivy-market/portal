@@ -12,7 +12,6 @@ import com.github.victools.jsonschema.module.jackson.JacksonOption;
 import com.github.victools.jsonschema.module.jackson.JacksonSchemaModule;
 
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
-import ch.ivy.addon.portalkit.dto.dashboard.AbstractColumn;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 
@@ -21,7 +20,6 @@ public class PortalJacksonSchemaModule extends JacksonSchemaModule {
   // properties hidden from the schema (e.g. internal or deprecated fields), per class
   public static final Map<Class<?>, Set<String>> EXCLUDED_PROPERTIES =
       Map.of(
-          AbstractColumn.class, Set.of("header"),
           ColumnModel.class, Set.of("filter", "filterFrom", "filterList", "filterTo"),
           DashboardWidget.class, Set.of("name"),
           WidgetLayout.class, Set.of("id"),
@@ -56,7 +54,7 @@ public class PortalJacksonSchemaModule extends JacksonSchemaModule {
   // skip fields that are listed in EXCLUDED_PROPERTIES
   @Override
   protected boolean shouldIgnoreField(FieldScope field) {
-    return super.shouldIgnoreField(field) || isExcluded(field);
+    return super.shouldIgnoreField(field) || isExcluded(field) || isDeprecated(field);
   }
 
   private boolean isExcluded(MemberScope<?, ?> member) {
@@ -70,5 +68,9 @@ public class PortalJacksonSchemaModule extends JacksonSchemaModule {
     return EXCLUDED_PROPERTIES.entrySet().stream()
         .anyMatch(entry -> entry.getKey().isAssignableFrom(targetClass)
             && entry.getValue().contains(propertyName));
+  }
+
+  private boolean isDeprecated(MemberScope<?, ?> member) {
+    return member.getAnnotationConsideringFieldAndGetterIfSupported(Deprecated.class) != null;
   }
 }
