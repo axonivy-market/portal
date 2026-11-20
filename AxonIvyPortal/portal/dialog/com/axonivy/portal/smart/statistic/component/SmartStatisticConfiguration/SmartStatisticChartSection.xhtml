@@ -1,0 +1,99 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces">
+
+  <!-- Where the data comes from, what kind of chart it is, and what it aggregates. -->
+  <p:panel id="chart-section" toggleable="true" toggleableHeader="true" collapsed="false"
+    toggleSpeed="500" widgetVar="chart-panel" styleClass="w-full smart-section"
+    header="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartConfiguration')}">
+
+    <h:panelGroup styleClass="field col-12 mb-3" id="chart-aggregation">
+
+      <h:panelGroup layout="block" styleClass="field col-12 px-0"
+        rendered="#{not managedBean.statistic.providerBacked}">
+        <p:outputLabel for="@next"
+          value="Data source" />
+
+        <p:selectOneMenu id="data-source" value="#{managedBean.dataSource}"
+          styleClass="w-full">
+          <f:selectItems value="#{managedBean.dataSources}" />
+          <p:ajax event="itemSelect" process="@this"
+            listener="#{managedBean.onSelectDataSource}"
+            update="schema-section chart-aggregation provider-filter-section
+                    filter-section-wrapper refresh-interval-section
+                    chart-drill-down-container condition-based-coloring-container
+                    condition-based-coloring-scope chart-background-colors
+                    errors-message" />
+        </p:selectOneMenu>
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" styleClass="flex"
+        rendered="#{managedBean.statistic.providerBacked}">
+        <div class="field col-6 pl-0">
+          <p:outputLabel
+            value="Process signature" />
+          <h:panelGroup layout="block" styleClass="smart-source">
+            <h:outputText styleClass="smart-source__signature" escape="true"
+              value="#{managedBean.providerForm.providerSignature}" />
+          </h:panelGroup>
+        </div>
+        <div class="field col-6 pr-0">
+          <p:outputLabel
+            value="Application" />
+          <h:panelGroup layout="block" styleClass="smart-source">
+            <h:outputText styleClass="smart-source__application" escape="true"
+              value="#{managedBean.providerForm.applicationLabel}" />
+          </h:panelGroup>
+        </div>
+      </h:panelGroup>
+
+      <div class="flex">
+        <div class="field col-6 pl-0">
+          <p:outputLabel for="@next"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartType')}" />
+          <p:selectOneMenu id="type" value="#{managedBean.statistic.chartType}"
+            styleClass="w-full">
+            <f:selectItems value="#{managedBean.allChartTypes}" var="chartType"
+              itemLabel="#{chartType.getCmsName()}" itemValue="#{chartType}" />
+            <p:ajax event="itemSelect"
+              process="#{managedBean.statistic.providerBacked ? 'chart-aggregation' : '@this'}"
+              listener="#{managedBean.onSelectChartType(managedBean.statistic.chartType)}"
+              update="x-axis-title-container y-axis-title-container hide-label-container chart-background-colors condition-based-coloring-container condition-based-coloring-scope errors-message chart-aggregation" />
+          </p:selectOneMenu>
+        </div>
+
+        <h:panelGroup layout="block" styleClass="field col-6 pr-0"
+          rendered="#{managedBean.statistic.providerBacked
+                      and managedBean.statistic.chartType.name() ne 'NUMBER'
+                      and not empty managedBean.providerForm.groupableFields}">
+          <p:outputLabel for="@next"
+            value="Group by" />
+          <p:selectOneMenu id="provider-label" styleClass="w-full"
+            value="#{managedBean.providerForm.labelPath}">
+            <f:selectItems value="#{managedBean.providerForm.groupableFields}"
+              var="groupable" itemValue="#{groupable.fieldName}"
+              itemLabel="#{groupable.title}" itemDescription="#{managedBean.describeField(groupable)}" />
+            <p:ajax listener="#{managedBean.onSelectProviderLabel}"
+              process="chart-aggregation" update="chart-aggregation" />
+          </p:selectOneMenu>
+        </h:panelGroup>
+      </div>
+
+      <h:panelGroup layout="block"
+        rendered="#{not managedBean.statistic.providerBacked}">
+        <ui:include src="SmartStatisticTaskCaseFields.xhtml">
+          <ui:param name="managedBean" value="#{managedBean}" />
+        </ui:include>
+      </h:panelGroup>
+
+      <h:panelGroup id="provider-fields" layout="block">
+        <h:panelGroup layout="block"
+          rendered="#{managedBean.statistic.providerBacked}">
+          <ui:include src="SmartStatisticProviderFields.xhtml">
+            <ui:param name="managedBean" value="#{managedBean}" />
+          </ui:include>
+        </h:panelGroup>
+      </h:panelGroup>
+    </h:panelGroup>
+  </p:panel>
+
+</ui:composition>

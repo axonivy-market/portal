@@ -1,0 +1,16 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0/project/data-class.json",
+  "simpleName" : "MockLoadCustomerProjectData",
+  "namespace" : "com.axonivy.portal",
+  "fields" : [ {
+    "name" : "customerProjectJson",
+    "type" : "String",
+    "comment" : "Customer projects of the fiscal year as a JSON array",
+    "modifiers" : [ ]
+  }, {
+    "name" : "projectTimeBookingJson",
+    "type" : "String",
+    "comment" : "Time booked on customer projects in the fiscal year as a JSON array",
+    "modifiers" : [ ]
+  } ]
+}

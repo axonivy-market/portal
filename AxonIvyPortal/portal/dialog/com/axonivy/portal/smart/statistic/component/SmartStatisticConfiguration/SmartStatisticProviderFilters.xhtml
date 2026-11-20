@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces">
+
+  <!-- Which provider records reach the chart. -->
+  <h:panelGroup styleClass="field col-12" layout="block">
+    <h:panelGroup id="provider-filter-list" layout="block" styleClass="dashboard-widget-filter__main-panel">
+
+      <h:panelGroup layout="block" styleClass="dashboard-widget-filter__list"
+        rendered="#{not empty managedBean.providerForm.filters}">
+        <ui:repeat var="providerFilter" varStatus="status"
+          value="#{managedBean.providerForm.filters}">
+          <div class="dashboard-widget-filter__condition smart-provider-filter">
+            <div class="dashboard-widget-filter__connector">
+              <h:panelGroup layout="block" styleClass="filter-and-badge" rendered="#{status.index gt 0}">
+                #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/And')}
+              </h:panelGroup>
+            </div>
+
+            <p:selectOneMenu styleClass="w-full" value="#{providerFilter.path}"
+              ariaLabel="Group by">
+              <f:selectItems value="#{managedBean.providerForm.allFields}"
+                var="filterField" itemValue="#{filterField.fieldName}"
+                itemLabel="#{filterField.title}" itemDescription="#{managedBean.describeField(filterField)}" />
+            </p:selectOneMenu>
+
+            <p:selectOneMenu styleClass="w-full" value="#{providerFilter.operator}">
+              <f:selectItems value="#{managedBean.providerFilterOperators}" />
+            </p:selectOneMenu>
+
+            <p:inputText styleClass="w-full" maxlength="200" value="#{providerFilter.value}"
+              placeholder="Value" />
+
+            <p:commandButton icon="ti ti-trash" styleClass="dashboard-widget-filter__remove-filter"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+              actionListener="#{managedBean.removeProviderFilter(providerFilter)}"
+              process="#{cfg}:provider-filter-list"
+              update="#{cfg}:provider-filter-list" global="false" />
+          </div>
+        </ui:repeat>
+      </h:panelGroup>
+
+      <div>
+        <p:commandButton id="add-provider-filter" styleClass="add-condition-button"
+          icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
+          actionListener="#{managedBean.addProviderFilter()}"
+          value="Add filter"
+          ariaLabel="Add filter"
+          title="Add filter"
+          process="#{cfg}:provider-filter-list"
+          update="#{cfg}:provider-filter-list" />
+      </div>
+    </h:panelGroup>
+  </h:panelGroup>
+
+</ui:composition>

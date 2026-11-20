@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="jakarta.faces.facelets" xmlns:p="primefaces">
+
+  <span class="smart-card__actions" onmousedown="event.stopPropagation();">
+
+    <p:commandButton id="card-insight-action"
+      styleClass="smart-insight-offer rounded-button ui-button-widget ui-button-outlined widget-icon-button ui-button-icon-only"
+      icon="ti ti-sparkles" process="@this"
+      rendered="#{cc.attrs.card.available and cc.attrs.managedBean.agentAvailable}"
+      title="#{cc.attrs.card.insightActionLabel}"
+      ariaLabel="#{cc.attrs.card.insightActionLabel}"
+      actionListener="#{cc.attrs.managedBean.generateInsight(cc.attrs.card.chartId)}"
+      onclick="smartStatInsightBusy(this);"
+      global="false" oncomplete="smartStatShowInsight(xhr, status, args);" />
+
+    <p:menuButton id="card-actions" collision="flipfit" icon="ti ti-dots"
+      menuStyleClass="actions-menu-panel smart-card__actions-menu"
+      buttonStyleClass="rounded-button ui-button-widget ui-button-outlined widget-icon-button ui-button-icon-only"
+      title="Chart actions">
+
+      <p:menuitem id="card-unpin" icon="ti ti-pinned-off" rendered="#{cc.attrs.card.pinned}"
+        value="Unpin"
+        actionListener="#{cc.attrs.managedBean.unpinChart(cc.attrs.card.chartId)}"
+        process="@this" update="#{cc.attrs.componentToUpdate}" oncomplete="smartStatAfterModeSwitch();" />
+
+      <p:menuitem id="card-pin" icon="ti ti-pin"
+        rendered="#{cc.attrs.card.pinnable and not cc.attrs.pinFull}"
+        value="Pin to the top"
+        actionListener="#{cc.attrs.managedBean.pinChart(cc.attrs.card.chartId)}"
+        process="@this" update="#{cc.attrs.componentToUpdate}" oncomplete="smartStatAfterModeSwitch();" />
+
+      <p:menuitem id="card-pin-full" icon="ti ti-pin" disabled="true"
+        rendered="#{cc.attrs.card.pinnable and cc.attrs.pinFull}"
+        value="You can pin #{cc.attrs.managedBean.maxPinned} charts. Unpin one first." />
+
+      <p:divider id="card-divider-pin" rendered="#{cc.attrs.card.available}" />
+
+      <p:menuitem id="card-swap-axes"
+        icon="#{cc.attrs.card.swapAxesIcon}"
+        rendered="#{cc.attrs.card.barChart}"
+        value="Swap axes"
+        actionListener="#{cc.attrs.managedBean.toggleAxes(cc.attrs.card.chartId)}"
+        process="@this" update="#{cc.attrs.componentToUpdate}" global="false" oncomplete="smartStatAfterModeSwitch();" />
+
+      <p:divider id="card-divider-edit" rendered="#{cc.attrs.card.available}" />
+
+      <p:menuitem id="card-edit" icon="ti ti-pencil" rendered="#{cc.attrs.card.available}"
+        value="Edit chart"
+        actionListener="#{cc.attrs.managedBean.editChart(cc.attrs.card.chartId)}"
+        process="@this" update="#{cc.attrs.componentToUpdate}" oncomplete="smartStatAfterModeSwitch();" />
+
+      <p:menuitem id="card-remove" icon="ti ti-trash" styleClass="color-destroy"
+        value="Remove from my charts"
+        actionListener="#{cc.attrs.managedBean.removeChart(cc.attrs.card.chartId)}"
+        process="@this" update="#{cc.attrs.componentToUpdate}" oncomplete="smartStatAfterModeSwitch();" />
+    </p:menuButton>
+  </span>
+
+</ui:composition>

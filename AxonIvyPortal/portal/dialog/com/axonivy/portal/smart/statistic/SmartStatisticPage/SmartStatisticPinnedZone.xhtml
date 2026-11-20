@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets" xmlns:ic="http://ivyteam.ch/jsf/component">
+
+  <!-- Charts pinned above the board. A fixed row, hidden entirely when nothing is pinned. -->
+  <h:panelGroup id="pinned-zone" layout="block" styleClass="smart-zone"
+    rendered="#{not smartStatisticManagementBean.pinnedEmpty}">
+
+    <h:panelGroup id="pinned-head" layout="block" styleClass="smart-zone__head">
+      <h:panelGroup id="pinned-eyebrow" styleClass="smart-eyebrow">Pinned</h:panelGroup>
+      <h:panelGroup id="pinned-meta" styleClass="smart-zone__meta">Up to #{smartStatisticManagementBean.maxPinned} charts</h:panelGroup>
+    </h:panelGroup>
+
+    <h:panelGroup id="pinned-row" layout="block" styleClass="smart-pinned">
+      <ui:repeat var="card" value="#{smartStatisticManagementBean.pinnedCards}">
+        <ic:com.axonivy.portal.smart.statistic.component.SmartStatisticCardLayout
+          id="card" card="#{card}"
+          managedBean="#{smartStatisticManagementBean}"
+          componentToUpdate=":smart-statistic-form:page-modes"
+          pinFull="#{smartStatisticManagementBean.pinFull}" />
+      </ui:repeat>
+    </h:panelGroup>
+  </h:panelGroup>
+
+</ui:composition>

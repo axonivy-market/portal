@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
+  xmlns:cc="jakarta.faces.composite">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="card" required="true"
+    type="com.axonivy.portal.smart.statistic.dto.SmartStatisticGridCard" />
+  <cc:attribute name="managedBean" required="true" />
+  <cc:attribute name="componentToUpdate" required="true" />
+  <cc:attribute name="pinFull" type="java.lang.Boolean" default="false" />
+</cc:interface>
+
+<cc:implementation>
+  <h:panelGroup id="card-frame" layout="block" styleClass="smart-card">
+    <f:passThroughAttribute name="data-layout" value="#{cc.attrs.card.layout}" />
+
+    <h:panelGroup id="card-head" layout="block" styleClass="smart-card__head">
+      <span class="smart-card__handle">
+        <span class="smart-card__title" title="#{cc.attrs.card.title}">#{cc.attrs.card.title}</span>
+        <h:panelGroup id="card-scope" layout="block"
+          styleClass="smart-region smart-region--scope smart-card__scope"
+          rendered="#{not empty cc.attrs.card.description}">
+          <f:passThroughAttribute name="title" value="#{cc.attrs.card.description}" />#{cc.attrs.card.description}</h:panelGroup>
+      </span>
+
+      <ui:include src="SmartStatisticCardActions.xhtml" />
+    </h:panelGroup>
+
+    <h:panelGroup id="card-body" layout="block" styleClass="smart-card__body">
+      <h:panelGroup id="card-layout" layout="block"
+        styleClass="smart-layout #{cc.attrs.card.layoutStyleClass}">
+        <ui:include src="SmartStatisticCardChart.xhtml" />
+        <ui:include src="SmartStatisticCardInsight.xhtml" />
+      </h:panelGroup>
+    </h:panelGroup>
+  </h:panelGroup>
+</cc:implementation>
+
+</html>

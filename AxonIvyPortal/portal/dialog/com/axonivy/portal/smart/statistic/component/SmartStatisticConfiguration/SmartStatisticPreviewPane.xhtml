@@ -1,0 +1,107 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="primefaces">
+
+  <!-- Right column of the editor: the live preview, and the actions that decide
+       whether the chart exists. -->
+  <div class="col-6 grid statistic-configuration__preview w-full">
+    <div class="col-12 flex grid-nogutter p-0">
+      <div class="col-6">
+        <p class="mb-0 text-style-h4">#{ivy.cms.co('/Labels/Preview')}</p>
+      </div>
+      <div class="col-6 ml-3 text-right">
+        <!-- global="false" keeps the page-wide progress loader out of the way: the wait is
+             shown where the answer will appear, as a skeleton over the chart frame. -->
+        <p:commandButton widgetVar="previewButton" id="generate-statistic-chart"
+          value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GeneratePreview')}"
+          ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GeneratePreview')}"
+          actionListener="#{managedBean.getPreviewData()}"
+          update="config-panel errors-message" global="false"
+          onstart="smartStatPreviewBusy(true);"
+          oncomplete="smartStatPreviewBusy(false); handlePreviewChart(xhr, status, args);"
+          process="config-panel"
+          styleClass="ui-leave-button" />
+      </div>
+    </div>
+    <div class="col-12">
+      <h:panelGroup id="stat-chart-widget__content" layout="block"
+        styleClass="preview-statistic-chart-widget__content widget__content widget__content mt-10">
+        <h:panelGroup id="chart-description-preview" layout="block">
+          <h:outputText styleClass="smart-card__scope" escape="true"
+            value="#{managedBean.answerScope}"
+            rendered="#{not empty managedBean.answerScope}" />
+        </h:panelGroup>
+
+        <!-- The skeleton is a sibling of the canvas, never a child: previewChart() empties the
+             canvas element before it draws, which would take the skeleton with it. -->
+        <h:panelGroup id="preview-frame" layout="block" styleClass="smart-preview__frame">
+          <h:panelGroup styleClass="statistic-chart-widget__chart flex align-items-center" layout="block">
+            <div class="ui-chart js-statistic-chart statistic-chart-widget__canvas preview-chart-box preview-statistic-chart pointer-events-none"
+              data-chart-id="preview-statistic-chart">
+              <div class="empty-message-container w-35rem">
+                <i class="ti ti-chart-pie empty-message-icon" />
+                <p class="empty-message-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/firstConfigChartMessage')}</p>
+              </div>
+            </div>
+          </h:panelGroup>
+
+          <!-- Bars rather than one flat block: the placeholder should read as "a chart is
+               coming", and a single rectangle the colour of the card is easy to miss. -->
+          <h:panelGroup id="preview-skeleton" layout="block" styleClass="smart-preview__skeleton">
+            <div class="smart-preview__bars">
+              <p:skeleton styleClass="smart-preview__bar" height="45%" />
+              <p:skeleton styleClass="smart-preview__bar" height="80%" />
+              <p:skeleton styleClass="smart-preview__bar" height="60%" />
+              <p:skeleton styleClass="smart-preview__bar" height="95%" />
+              <p:skeleton styleClass="smart-preview__bar" height="35%" />
+            </div>
+            <p:skeleton styleClass="smart-preview__axis" height="3px" />
+          </h:panelGroup>
+        </h:panelGroup>
+      </h:panelGroup>
+    </div>
+  </div>
+
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="name-language-config"
+    titles="#{managedBean.getNames()}" managedBean="#{managedBean}"
+    dynamic="true" updateCurrentLanguage="#{managedBean.updateNameForCurrentLanguage()}"
+    componentToUpdateOnModify="#{cfg}:name" componentToUpdateOnCreate="#{cfg}:name" />
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+    id="description-language-config" titles="#{managedBean.getDescriptions()}"
+    managedBean="#{managedBean}" dynamic="true"
+    updateCurrentLanguage="#{managedBean.updateDescriptionForCurrentLanguage()}"
+    componentToUpdateOnModify="#{cfg}:description"
+    componentToUpdateOnCreate="#{cfg}:description" titleRequired="false" />
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+    id="x-title-language-config" titles="#{managedBean.getxTitles()}"
+    managedBean="#{managedBean}" dynamic="true"
+    updateCurrentLanguage="#{managedBean.updateXTitleForCurrentLanguage()}"
+    componentToUpdateOnModify="#{cfg}:x-title" componentToUpdateOnCreate="#{cfg}:x-title"
+    titleRequired="false" />
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+    id="y-title-language-config" titles="#{managedBean.getyTitles()}"
+    managedBean="#{managedBean}" dynamic="true"
+    updateCurrentLanguage="#{managedBean.updateYTitleForCurrentLanguage()}"
+    componentToUpdateOnModify="#{cfg}:y-title" componentToUpdateOnCreate="#{cfg}:y-title"
+    titleRequired="false" />
+
+  <div class="col-12 text-right mt-6 p-0 ">
+    <p:commandLink value="Remove from my charts"
+      ariaLabel="Remove from my charts"
+      styleClass="u-mar-right-15 portal-link color-destroy"
+      rendered="#{managedBean.editMode}"
+      actionListener="#{managedBean.removeCurrentChart}" immediate="true"
+      process="@this" update="#{componentToUpdate}" oncomplete="smartStatAfterModeSwitch();" />
+    <p:commandLink id="cancel-config" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      styleClass="u-mar-right-15 portal-link smart-config__cancel"
+      actionListener="#{managedBean.cancel}" immediate="true"
+      process="@this" update="#{componentToUpdate}" oncomplete="smartStatAfterModeSwitch();" />
+    <p:commandButton id="create-statistic-chart"
+      value="#{managedBean.saveActionLabel}"
+      ariaLabel="#{managedBean.saveActionLabel}"
+      action="#{managedBean.save}"
+      update="#{componentToUpdate}" oncomplete="smartStatAfterModeSwitch();" />
+  </div>
+
+</ui:composition>

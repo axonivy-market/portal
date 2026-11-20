@@ -35,6 +35,8 @@ import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.migration.statistic.migrator.JsonStatisticMigrator;
+import com.axonivy.portal.smart.statistic.provider.ProviderChartProjector;
+import com.axonivy.portal.smart.statistic.provider.ProviderRunner;
 import com.axonivy.portal.util.AggregationResultMapper;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
@@ -91,10 +93,30 @@ public class StatisticService {
       throws NotFoundException {
     Statistic chart = findByStatisticId(payload.getChartId());
     validateChart(payload.getChartId(), chart);
-    AggregationResultDTO chartResult = AggregationResultMapper.toAggResultDTO(this.getChartData(chart));
-    this.localizeChartKeys(chartResult, chart.getChartTarget(), chart.getStatisticAggregation());
+    AggregationResultDTO chartResult = resolveChartResult(chart);
     chart.setAdditionalConfigs(this.getAdditionalConfig(chart));
     return new StatisticResponse(chartResult, chart);
+  }
+
+  /**
+   * The buckets a chart renders from, whichever kind of chart it is.
+   *
+   * The single place task/case charts and provider-backed ones diverge. Every caller that used to
+   * pair {@code getChartData} with {@code localizeChartKeys} goes through here instead, which is
+   * what lets the grid, the preview and the AI insight all handle custom charts without each
+   * growing its own branch.
+   */
+  public AggregationResultDTO resolveChartResult(Statistic chart) {
+    if (chart.isProviderBacked()) {
+      // Localisation is deliberately skipped: it translates task and case enum keys, and a
+      // provider's labels are already the business terms the data was published with.
+      return ProviderChartProjector.project(
+          ProviderRunner.fetchData(chart.getCustomChart().getProviderSignature()).orElse(null),
+          chart.getCustomChart());
+    }
+    AggregationResultDTO chartResult = AggregationResultMapper.toAggResultDTO(this.getChartData(chart));
+    this.localizeChartKeys(chartResult, chart.getChartTarget(), chart.getStatisticAggregation());
+    return chartResult;
   }
 
   private void validateChart(String chartId, Statistic chart) {
@@ -172,10 +194,13 @@ public class StatisticService {
     entries.add(new SimpleEntry<>(AdditionalChartConfig.FAIL_TO_RENDER_CHART_MESSAGE.getKey(),
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/failToRenderChartMessage")));
     Optional.ofNullable(getManipulateValueBy(chart)).ifPresent(entries::add);
+    // Both tooltip labels phrase themselves in tasks or cases ("Total tasks: {0}") and resolve the
+    // KPI name against the task and case field metadata, neither of which a provider's data has.
     entries.add(new SimpleEntry<>(AdditionalChartConfig.TOOLTIP_TOTAL_LABEL.getKey(),
-        this.getTooltipTotalLabel(chart.getChartTarget())));
+        chart.isProviderBacked() ? StringUtils.EMPTY : this.getTooltipTotalLabel(chart.getChartTarget())));
     entries.add(new SimpleEntry<>(AdditionalChartConfig.TOOLTIP_KPI_LABEL.getKey(),
-        this.getTooltipKpiLabel(chart.getChartTarget(), chart.getStatisticAggregation())));
+        chart.isProviderBacked() ? StringUtils.EMPTY
+            : this.getTooltipKpiLabel(chart.getChartTarget(), chart.getStatisticAggregation())));
     entries.add(new SimpleEntry<>(AdditionalChartConfig.EXPAND_LABEL_TEMPLATE.getKey(),
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/expandWidgetContext", Arrays.asList("{0}"))));
     entries.add(new SimpleEntry<>(AdditionalChartConfig.COLLAPSE_LABEL_TEMPLATE.getKey(),
