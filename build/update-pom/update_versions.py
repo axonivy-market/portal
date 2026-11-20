@@ -1,9 +1,16 @@
 """Updates Portal POM files: project/parent versions, portal dependencies, and Maven properties."""
 import xml.etree.ElementTree as ET
-import argparse, sys
+import argparse, re, sys
 from pathlib import Path
 
 MAVEN_NS = '{http://maven.apache.org/POM/4.0.0}'
+
+PORTAL_SCHEMA_JAVA = Path('AxonIvyPortal/portal/src/com/axonivy/portal/enums/PortalSchema.java')
+PORTAL_VARIABLE_JAVA = Path('AxonIvyPortal/portal/src/ch/ivy/addon/portalkit/enums/PortalVariable.java')
+VARIABLES_DIR = Path('AxonIvyPortal/portal/config/variables')
+SCHEMA_ENTRY_PATTERN = re.compile(r'^\s*\w+\(\s*PortalVariable\.(\w+)\s*,', re.MULTILINE)
+VARIABLE_KEY_PATTERN = re.compile(r'(\w+)\(\s*"([^"]+)"\s*\)')
+SCHEMA_URL_PATTERN = re.compile(r'("\$schema": "https://axonivy-market\.github\.io/portal/schema/)[^/"]+(/)')
 
 def update_property(file_path, property_name, new_value):
     if not new_value:
@@ -19,6 +26,30 @@ def update_property(file_path, property_name, new_value):
     if element.text != new_value:
         element.text = new_value
         tree.write(file_path, encoding="utf-8", xml_declaration=True)
+
+def schema_variable_files():
+    """Resolves the config file of every variable that has a PortalSchema, e.g. Portal.Dashboard -> variables/Portal/Dashboard.json."""
+    schema_variables = SCHEMA_ENTRY_PATTERN.findall(PORTAL_SCHEMA_JAVA.read_text(encoding='utf-8'))
+    variable_keys = dict(VARIABLE_KEY_PATTERN.findall(PORTAL_VARIABLE_JAVA.read_text(encoding='utf-8')))
+    files = []
+    for constant in schema_variables:
+        if constant not in variable_keys:
+            raise ValueError(f'PortalVariable.{constant} has no key in {PORTAL_VARIABLE_JAVA}')
+        files.append(VARIABLES_DIR / (variable_keys[constant].replace('.', '/') + '.json'))
+    if not files:
+        raise ValueError(f'No schema variables found in {PORTAL_SCHEMA_JAVA}')
+    return files
+
+def update_schema_urls(file_path, portal_version):
+    if not portal_version:
+        return
+    path = Path(file_path)
+    if not path.exists():
+        return
+    content = path.read_text(encoding='utf-8')
+    updated = SCHEMA_URL_PATTERN.sub(lambda m: f'{m.group(1)}{portal_version}{m.group(2)}', content)
+    if updated != content:
+        path.write_text(updated, encoding='utf-8')
 
 def update_versions(file_path, portal_version=None, parent_version=None):
     if not portal_version and not parent_version:
@@ -87,6 +118,9 @@ def main():
         update_versions(str(pom_file), args.portal_version, args.parent_version)
     
     update_property(str(root_dir / 'Documentation/maven/pom.xml'), 'revision', args.portal_version)
+
+    for schema_file in schema_variable_files():
+        update_schema_urls(schema_file, args.portal_version)
     
     return 0
 
