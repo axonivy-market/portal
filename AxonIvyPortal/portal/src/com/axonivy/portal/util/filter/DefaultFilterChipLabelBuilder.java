@@ -89,9 +89,11 @@ public final class DefaultFilterChipLabelBuilder {
     if (filter.getFilterFormat() == FilterFormat.DATE) {
       return formatDate(value);
     }
-    if (filter.isState()) {
-      return ((WidgetStateFilterBean) ManagedBeans.get("widgetStateFilterBean"))
-          .getUserFriendlyState(value, widgetType);
+    if (filter.isState() || filter.isTechnicalState()) {
+      WidgetStateFilterBean stateFilterBean = (WidgetStateFilterBean) ManagedBeans.get("widgetStateFilterBean");
+      return filter.isTechnicalState()
+          ? stateFilterBean.getUserFriendlyTechnicalState(value)
+          : stateFilterBean.getUserFriendlyState(value, widgetType);
     }
     if (filter.isPriority()) {
       return ((WidgetPriorityFilterBean) ManagedBeans.get("widgetPriorityFilterBean"))

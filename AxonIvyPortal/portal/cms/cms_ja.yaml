@@ -2079,6 +2079,7 @@ Labels:
   Task: タスク
   TaskItemDetail: タスクの詳細
   TaskUser-Explain: カンマ区切りのユーザーリスト
+  TechnicalState: 技術ステータス
   ToggleMenu: メニューを切り替える
   ViewAllResults: すべての結果を表示
   disabledUserPrefix: （無効）
