@@ -37,6 +37,7 @@ public class JsonListWrapper<T> {
 
   public static final String VERSION_FIELD_NAME = "version";
   public static final String ITEMS_FIELD_NAME = "items";
+  public static final String SCHEMA_FIELD_NAME = "$schema";
 
   /**
    * Version of this wrapper's own JSON <em>collection format</em> - i.e. the shape

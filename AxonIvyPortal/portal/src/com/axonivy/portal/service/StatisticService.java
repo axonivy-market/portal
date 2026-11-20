@@ -27,6 +27,7 @@ import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.StatisticDTO;
 import com.axonivy.portal.dto.StatisticDrillDownDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.dto.jsondefinition.PortalCustomStatistic;
 import com.axonivy.portal.dto.statistic.AggregationDTO;
 import com.axonivy.portal.dto.statistic.AggregationResultDTO;
 import com.axonivy.portal.dto.statistic.BucketDTO;
@@ -210,7 +211,8 @@ public class StatisticService {
   }
 
   public void saveJsonToVariable(List<Statistic> statistics) {
-    String statisticsJson = BusinessEntityConverter.entityToJsonValueExcludeInternalView(statistics);
+    PortalCustomStatistic portalCustomStatistic = new PortalCustomStatistic(statistics);
+    String statisticsJson = BusinessEntityConverter.entityToJsonValueExcludeInternalView(portalCustomStatistic);
     Ivy.var().set(CUSTOM_STATISTIC_KEY, statisticsJson);
   }
 
@@ -245,8 +247,8 @@ public class StatisticService {
           Set<String> seenIds = new HashSet<>();
           customStatistics = customStatistics.stream().filter(statistic -> seenIds.add(statistic.getId())).collect(Collectors.toList());
           clientStatistics.stream().filter(obj -> seenIds.add(obj.getId())).forEach(customStatistics::add);
-
-          String statisticsJson = BusinessEntityConverter.entityToJsonValue(customStatistics);
+          PortalCustomStatistic portalCustomStatistic = new PortalCustomStatistic(customStatistics);
+          String statisticsJson = BusinessEntityConverter.entityToJsonValue(portalCustomStatistic);
           Ivy.var().set(CUSTOM_STATISTIC_KEY, statisticsJson);
         }
         Ivy.var().reset(CLIENT_STATISTIC_KEY);
