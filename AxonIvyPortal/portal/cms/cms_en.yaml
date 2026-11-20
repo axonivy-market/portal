@@ -2085,6 +2085,7 @@ Labels:
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users
+  TechnicalState: Technical state
   ToggleMenu: Toggle menu
   ViewAllResults: View all results
   disabledUserPrefix: (disabled)

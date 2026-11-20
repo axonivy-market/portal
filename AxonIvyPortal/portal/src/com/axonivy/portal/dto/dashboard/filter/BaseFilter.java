@@ -42,6 +42,8 @@ public class BaseFilter implements Serializable{
   public static final String DMY_DATE_FORMAT_WITHOUT_TIME = "dd.MM.yyyy";
   @JsonIgnore
   public static final String DEFAULT = "default";
+  @JsonIgnore
+  public static final String TECHNICAL_STATE = "technicalState";
 
   private String field;
 
@@ -210,6 +212,11 @@ public class BaseFilter implements Serializable{
   @JsonIgnore
   public boolean isState() {
     return DashboardStandardTaskColumn.STATE.getField().equals(getField());
+  }
+
+  @JsonIgnore
+  public boolean isTechnicalState() {
+    return TECHNICAL_STATE.equals(getField());
   }
   
   @JsonIgnore

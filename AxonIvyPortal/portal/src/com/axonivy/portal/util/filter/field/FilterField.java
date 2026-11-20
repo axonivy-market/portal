@@ -32,6 +32,10 @@ public abstract class FilterField {
     return name;
   }
 
+  public boolean isColumnDependent() {
+    return true;
+  }
+
   public abstract void initFilter(DashboardFilter filter);
 
   public abstract void addNewFilter(DashboardFilter filter);

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.service.filter.operatorpolicy.service.BaselineOperatorService;
@@ -94,6 +95,12 @@ class TestBaselineOperatorService {
   @Test
   void resolveByField_returnsStateOperators_forStateField() {
     assertThat(service.resolveByField(DashboardStandardTaskColumn.STATE.getField()))
+        .containsExactlyInAnyOrderElementsOf(FilterOperator.STATE_OPERATORS);
+  }
+
+  @Test
+  void resolveByField_returnsStateOperators_forTechnicalStateField() {
+    assertThat(service.resolveByField(BaseFilter.TECHNICAL_STATE))
         .containsExactlyInAnyOrderElementsOf(FilterOperator.STATE_OPERATORS);
   }
 
