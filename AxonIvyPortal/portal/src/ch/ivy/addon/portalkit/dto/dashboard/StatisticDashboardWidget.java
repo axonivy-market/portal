@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeTrue;
@@ -10,6 +11,7 @@ import ch.ivy.addon.portalkit.persistence.converter.JsonValueFilters.ExcludeTrue
 public class StatisticDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 1L;
+  @JsonPropertyDescription("ID of an existing statistic chart. Define the chart in the statistics JSON configuration first, then set this field to the chart's id.")
   private String chartId;
   @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeTrue.class)
   private boolean showFullscreenMode;

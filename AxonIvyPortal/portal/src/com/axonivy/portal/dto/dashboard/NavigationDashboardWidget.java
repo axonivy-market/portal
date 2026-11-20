@@ -3,6 +3,8 @@ package com.axonivy.portal.dto.dashboard;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
@@ -11,11 +13,14 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.VisualType;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
+import io.github.axonivy.json.schema.annotations.Examples;
 
 public class NavigationDashboardWidget extends DashboardWidget {
-  
+
   private static final long serialVersionUID = -565012312312361L;
 
+  @JsonPropertyDescription("ID of the dashboard to navigate to when clicked.")
+  @JsonProperty(required = true)
   private String targetDashboardId;
   @JsonIgnore
   private String targetDashboardName;
@@ -23,30 +28,36 @@ public class NavigationDashboardWidget extends DashboardWidget {
   private String icon;
   @JsonIgnore
   private String buttonName;
+  @JsonPropertyDescription("Multilingual button labels.")
+  @JsonProperty(required = true)
   private List<DisplayName> buttonNames;
   private VisualType visualType;
 
   private String imageLocation;
+  @Examples({"jpeg", "png"})
   private String imageType;
-  
+
   private String imageLocationDarkMode;
   private String imageTypeDarkMode;
-  
+
+  @JsonPropertyDescription("Base64-encoded light-mode image.")
   private String imageContent;
+  @JsonPropertyDescription("Base64-encoded dark-mode image.")
   private String imageContentDarkMode;
 
   @Override
   public void resetWidgetFilters() {}
+
   @Override
   public void cancelUserFilter() {}
+
   @Override
   public DashboardWidgetType getType() {
     return DashboardWidgetType.NAVIGATION_DASHBOARD;
   }
-  
-  public NavigationDashboardWidget() {
-  }
-  
+
+  public NavigationDashboardWidget() {}
+
   public static NavigationDashboardWidget buildDefaultWidget(String widgetId, String buttonName) {
     var widget = new NavigationDashboardWidget();
     widget.setId(widgetId);
@@ -59,11 +70,11 @@ public class NavigationDashboardWidget extends DashboardWidget {
     widget.getLayout().setAxisY(0);
     return widget;
   }
-  
+
   public void setTargetDashboardId(String targetDashboardId) {
     this.targetDashboardId = targetDashboardId;
   }
-  
+
   public String getTargetDashboardId() {
     return this.targetDashboardId;
   }
@@ -71,7 +82,7 @@ public class NavigationDashboardWidget extends DashboardWidget {
   public String getDescription() {
     return this.description;
   }
-  
+
   public void setDescription(String description) {
     this.description = description;
   }
@@ -79,74 +90,89 @@ public class NavigationDashboardWidget extends DashboardWidget {
   public String getTargetDashboardName() {
     return this.targetDashboardName;
   }
-  
+
   public void setTargetDashboardName(String targetDashboardName) {
     this.targetDashboardName = targetDashboardName;
   }
-  
+
   public String getIcon() {
     return this.icon;
   }
-  
+
   public void setIcon(String icon) {
     this.icon = icon;
   }
-  
+
   public String getButtonName() {
     return LanguageUtils.getLocalizedName(buttonNames);
   }
-  
+
   public void setButtonName(String buttonName) {
     NameResult nameResult = LanguageUtils.collectMultilingualNames(buttonNames, buttonName);
     this.buttonNames = nameResult.names();
-    this.buttonName = nameResult.name();  }
-  
+    this.buttonName = nameResult.name();
+  }
+
   public List<DisplayName> getButtonNames() {
     return this.buttonNames;
   }
-  
+
   public void setButtonNames(List<DisplayName> buttonNames) {
     this.buttonNames = buttonNames;
   }
+
   public VisualType getVisualType() {
     return visualType;
   }
+
   public void setVisualType(VisualType visualType) {
     this.visualType = visualType;
   }
+
   public String getImageLocation() {
     return imageLocation;
   }
+
   public void setImageLocation(String imageLocation) {
     this.imageLocation = imageLocation;
   }
+
   public String getImageType() {
     return imageType;
   }
+
   public void setImageType(String imageType) {
     this.imageType = imageType;
   }
+
   public String getImageLocationDarkMode() {
     return imageLocationDarkMode;
   }
+
   public void setImageLocationDarkMode(String imageLocationDarkMode) {
     this.imageLocationDarkMode = imageLocationDarkMode;
   }
+
   public String getImageTypeDarkMode() {
     return imageTypeDarkMode;
   }
+
   public void setImageTypeDarkMode(String imageTypeDarkMode) {
     this.imageTypeDarkMode = imageTypeDarkMode;
   }
+
   public String getImageContent() {
     return imageContent;
   }
+
   public void setImageContent(String imageContent) {
     this.imageContent = imageContent;
   }
+
   public String getImageContentDarkMode() {
     return imageContentDarkMode;
   }
+
   public void setImageContentDarkMode(String imageContentDarkMode) {
     this.imageContentDarkMode = imageContentDarkMode;
   }

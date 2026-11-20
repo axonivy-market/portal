@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -22,6 +23,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;
   private String oldId;
+  @JsonPropertyDescription("Reference to predefined dashboard template.")
   private String templateId;
   @JsonProperty(access = Access.WRITE_ONLY)
   private String title;

@@ -1,7 +1,7 @@
 FROM maven:3.10.0-eclipse-temurin-25
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    passwd adduser openssh-client curl gnupg \
+    passwd adduser openssh-client curl gnupg xmlstarlet \
     && addgroup --gid 1001 build && adduser --uid 1001 --gid 1001 --disabled-password --gecos "" build \
     && curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
     && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \

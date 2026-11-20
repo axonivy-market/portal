@@ -8,6 +8,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
@@ -18,28 +20,39 @@ import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivyteam.ivy.cm.ContentObject;
+import io.github.axonivy.json.schema.annotations.Examples;
 
 public class WelcomeDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 2688408047581268704L;
 
+  @JsonPropertyDescription("Light mode image filename.")
   private String imageLocation;
   private String imageType;
   
+  @JsonPropertyDescription("Dark mode image filename.")
   private String imageLocationDarkMode;
   private String imageTypeDarkMode;
 
   private WelcomeTextPosition welcomeTextPosition;
   private WelcomeTextSize welcomeTextSize;
+  @JsonPropertyDescription("Text color in light mode (CSS color value).")
+  @Examples("#FFFFFF")
   private String welcomeTextColor;
+  @JsonPropertyDescription("Text color in dark mode (CSS color value).")
+  @Examples("#FFFFFF")
   private String welcomeTextColorDarkMode;
+  @JsonPropertyDescription("Multilingual welcome messages.")
+  @JsonProperty(required = true)
   private List<DisplayName> welcomeTexts;
-  private boolean isGreeting;
+  private boolean greeting;
   private String welcomeTextStyleClass;
   private String imageStyleClass;
   private WelcomeImageFit welcomeImageFit;
   private String imageInlineStyle;
+  @JsonPropertyDescription("Base64-encoded light-mode image.")
   private String imageContent;
+  @JsonPropertyDescription("Base64-encoded dark-mode image.")
   private String imageContentDarkMode;
   private List<DisplayName> altTexts;
 
@@ -69,7 +82,7 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     welcomeTexts = CollectionUtils.emptyIfNull(widget.welcomeTexts).stream()
         .map(name -> new DisplayName(name.getLocale(), name.getValue()))
         .collect(Collectors.toCollection(ArrayList::new));
-    isGreeting = widget.isGreeting;
+    greeting = widget.greeting;
     welcomeTextStyleClass = widget.welcomeTextStyleClass;
     imageStyleClass = widget.imageStyleClass;
     welcomeImageFit = widget.welcomeImageFit;
@@ -169,11 +182,11 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   }
 
   public boolean isGreeting() {
-    return isGreeting;
+    return greeting;
   }
 
   public void setGreeting(boolean isGreeting) {
-    this.isGreeting = isGreeting;
+    this.greeting = isGreeting;
   }
 
   public String getWelcomeTextStyleClass() {
