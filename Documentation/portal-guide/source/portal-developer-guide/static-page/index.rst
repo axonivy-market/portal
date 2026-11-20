@@ -69,6 +69,42 @@ Static pages should be organized in the ``webContent/view/`` directory of your p
 .. tip::
    Organize related pages in subdirectories (e.g., ``help/``, ``documentation/``) to maintain a clean structure.
 
+.. _static-page-link-format:
+
+Static Page Link
+----------------
+
+**Format:**
+
+.. code-block:: text
+
+    {applicationPath}/faces/view/{projectName}/{path in webContent/view}
+
+- **Engine:** ``{applicationPath}`` is the application name, e.g. ``Portal``
+- **Designer:** ``{applicationPath}`` is ``~Developer-{workspace}/Developer-{workspace}``, where
+  ``{workspace}`` is the name of the folder opened in the Designer (not the project name).
+  Only the first part starts with ``~``.
+
+**Example:** file ``webContent/view/help/user-guide.xhtml`` in project ``portal-components-examples``,
+Designer workspace folder ``my-workspace``
+
+- Engine: ``Portal/faces/view/portal-components-examples/help/user-guide.xhtml``
+- Designer: ``~Developer-my-workspace/Developer-my-workspace/faces/view/portal-components-examples/help/user-guide.xhtml``
+
+.. tip::
+   Open the page directly in the browser. If it loads, copy the URL path after the host and port,
+   without the leading ``/`` and without the application version segment
+   (e.g. remove ``/1/`` in ``Portal/1/faces/view/...``), and use it as the link.
+
+.. warning::
+   Avoid:
+
+   - ``~`` on both parts in Designer, e.g. ``~Developer-my-workspace/~Developer-my-workspace/...``
+   - A leading ``/``
+   - A full URL such as ``https://your-server/...``
+   - The application version, e.g. ``Portal/1/faces/view/...``. Without it, the engine redirects
+     to the currently released version, so the link keeps working after a redeployment.
+
 .. _static-page-integration:
 
 Integrating Static Pages into Portal
@@ -125,9 +161,10 @@ migrates) on import, individual menu items do not carry their own ``version`` fi
         Must be set to ``"STATIC_PAGE"`` for static page menu items
 
     ``link`` (string, required)
-        Relative path to your static page from the application view directory
-        
-        - Format: ``<application>/faces/view/<process model>/{path-to-file in webContent/view}.xhtml``
+        Link to your static page
+
+        - Format: ``{applicationPath}/faces/view/{projectName}/{path in webContent/view}``,
+          see :ref:`static-page-link-format`
         - Example: ``Portal/faces/view/portal-components-examples/static.xhtml``
 
     ``label`` (string, required)
@@ -258,9 +295,10 @@ reads (and migrates) on import, individual menu items do not carry their own ``v
         - Default: If omitted, all users can see the item
 
     ``url`` (string, required)
-        Relative path to your static page
-        
-        - Format: ``<application>/faces/view/<process model>/{path-to-file in webContent/view}.xhtml``
+        Link to your static page
+
+        - Format: ``{applicationPath}/faces/view/{projectName}/{path in webContent/view}``,
+          see :ref:`static-page-link-format`
         - Example: ``Portal/faces/view/portal-components-examples/static.xhtml``
 
     ``icon`` (string, optional)
@@ -278,19 +316,19 @@ Portal automatically converts static page links to the proper format when displa
 
 **Conversion Process:**
 
-#. **Input Format**: Relative path from application view directory
-   
+#. **Input Format**: Static page link, see :ref:`static-page-link-format`
+
    - Example: ``Portal/faces/view/portal-components-examples/help/user-guide.xhtml``
 
-#. **Conversion**: Portal uses ``StaticPageUtils.buildUrl()`` method
-   
+#. **Conversion**: Portal uses the ``PortalNavigatorAPI.buildPortalStaticPageUrl()`` method
+
    - Wraps page in Portal's iframe container
    - Applies Portal styling and navigation
 
-#. **Output Format**: Full Portal URL with proper context
-   
-   - Template: ``{baseUrl}?relativeUrl=/{applicationName}/faces/view/{PM}/{staticPage}``
-   - Example: ``https://server/ivy/pro/portal/?relativeUrl=/Portal/faces/view/portal-components-examples/help/user-guide.xhtml``
+#. **Output Format**: URL of Portal's frame page, with the URL-encoded link in the ``relativeUrl`` parameter
+
+   - Template: ``{frame page URL}?relativeUrl=/{encoded link}``
+   - Example: ``/Portal/pro/portal/1549F58C18A6C562/DefaultFramePage.ivp?relativeUrl=/Portal%2Ffaces%2Fview%2Fportal-components-examples%2Fhelp%2Fuser-guide.xhtml``
 
 
 .. _static-page-examples:

@@ -29,11 +29,8 @@ main() {
     printf '\nTesting static site assembly...\n'
     python3 -B -m unittest discover -s build/portal-pages -v
 
-    printf '\nPreparing the release manifest and optional dev documentation with Maven...\n'
+    printf '\nAssembling releases and optional dev documentation with Maven...\n'
     mvn -U clean generate-resources -f build/portal-pages/pom.xml "$@"
-
-    printf '\nDownloading and extracting legacy releases...\n'
-    ./build/portal-pages/download-legacy-documentation.sh
 
     printf '\nPreparing static selectors and navigation...\n'
     python3 -B build/portal-pages/build_site.py

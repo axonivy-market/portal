@@ -48,6 +48,7 @@ public class CaseSearchCriteria {
   private boolean isGlobalSearch;
   private boolean isGlobalSearchScope;
   private List<SearchScopeCaseField> searchScopeCaseFields;
+  private List<String> columns;
 
   public CaseQuery createQuery() {
     CaseQuery finalQuery;
@@ -393,5 +394,13 @@ public class CaseSearchCriteria {
 
   public void setGlobalSearchScope(boolean isGlobalSearchScope) {
     this.isGlobalSearchScope = isGlobalSearchScope;
+  }
+
+  public List<String> getColumns() {
+    return columns;
+  }
+
+  public void setColumns(List<String> columns) {
+    this.columns = columns;
   }
 }

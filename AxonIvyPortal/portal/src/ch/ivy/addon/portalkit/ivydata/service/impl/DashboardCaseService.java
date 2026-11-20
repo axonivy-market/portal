@@ -4,6 +4,9 @@ import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCa
 
 import java.util.List;
 
+import com.axonivy.portal.util.EagerlyFetchUtils;
+
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardCaseSearchCriteria;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -18,6 +21,14 @@ public class DashboardCaseService extends CaseService {
       instance = new DashboardCaseService();
     }
     return instance;
+  }
+
+  public List<ICase> findByCaseCriteria(DashboardCaseSearchCriteria criteria, int startIndex, int count) {
+    CaseQuery query = criteria.buildQuery();
+    if (EagerlyFetchUtils.shouldEagerlyFetch(count)) {
+      EagerlyFetchUtils.eagerlyFetchDataOfColumns(query, criteria.getColumns());
+    }
+    return findByCaseQuery(query, startIndex, count);
   }
 
   public List<ICase> findByCaseQuery(CaseQuery query, int startIndex, int count) {

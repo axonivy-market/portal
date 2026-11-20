@@ -43,13 +43,10 @@ jobs:
       - name: Test static site assembly
         run: python3 -m unittest discover -s build/portal-pages -v
 
-      - name: Prepare release manifest and optional development documentation
+      - name: Assemble release and optional development documentation
         run: >-
           mvn -U clean generate-resources -f build/portal-pages/pom.xml
           -DincludeDev=${{ inputs.include_dev }}
-
-      - name: Download and extract legacy release documentation ZIPs
-        run: ./build/portal-pages/download-legacy-documentation.sh
 
       - name: Prepare static selectors and navigation
         run: python3 build/portal-pages/build_site.py

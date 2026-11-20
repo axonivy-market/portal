@@ -62,6 +62,7 @@ public class TaskSearchCriteria {
   private List<SearchScopeTaskField> searchScopeTaskFields;
   private boolean isGlobalSearch;
   private boolean isGlobalSearchScope;
+  private List<String> columns;
 
   @SuppressWarnings("deprecation")
   public TaskQuery createQueryToFindLatestTasks(TaskQuery taskQuery, Date timeStamp) {
@@ -523,5 +524,13 @@ public class TaskSearchCriteria {
 
   public void setOnlyShowOpenTask(boolean isOnlyShowOpenTask) {
     this.isOnlyShowOpenTask = isOnlyShowOpenTask;
+  }
+
+  public List<String> getColumns() {
+    return columns;
+  }
+
+  public void setColumns(List<String> columns) {
+    this.columns = columns;
   }
 }

@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivyteam.ivy.workflow.ICase;
 
 public class PinColumnModel extends CaseColumnModel {
 
@@ -42,4 +43,8 @@ public class PinColumnModel extends CaseColumnModel {
     return false;
   }
 
+  @Override
+  public Object display(ICase caze) {
+    return null;
+  }
 }
