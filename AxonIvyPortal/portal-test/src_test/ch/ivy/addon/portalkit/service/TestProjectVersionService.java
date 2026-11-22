@@ -147,6 +147,8 @@ class TestProjectVersionService {
     assertThat(service.translateReleaseState(ReleaseState.RELEASED)).isEqualTo("Released");
     assertThat(service.translateActivityState(ActivityState.ACTIVE)).isEqualTo("Active");
     assertThat(service.translateProjectMode(ProjectMode.OK)).isEqualTo("OK");
+    assertThat(service.translateProjectMode(ProjectMode.ERROR)).isEqualTo("Error");
+    assertThat(service.translateProjectMode(ProjectMode.RUNNABLE)).isEqualTo("Runnable");
   }
 
   private static Application fakeApplication(int version, ReleaseState releaseState, ActivityState activityState) {
