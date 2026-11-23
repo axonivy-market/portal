@@ -11,6 +11,14 @@
     "type" : "List<ch.ivy.addon.portalkit.bo.History>",
     "modifiers" : [ ]
   }, {
+    "name" : "historiesLoaded",
+    "type" : "Boolean",
+    "modifiers" : [ ]
+  }, {
+    "name" : "historiesLoadFailed",
+    "type" : "Boolean",
+    "modifiers" : [ ]
+  }, {
     "name" : "noteContent",
     "modifiers" : [ ]
   }, {

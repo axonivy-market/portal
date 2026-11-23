@@ -2,22 +2,22 @@ package ch.ivy.addon.portalkit.datamodel.internal;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import jakarta.faces.component.UIComponent;
-import jakarta.faces.context.FacesContext;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.primefaces.PrimeFaces;
 import org.primefaces.model.FilterMeta;
-import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
-import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.datamodel.LiveScrollLazyModel;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -25,15 +25,18 @@ import ch.ivyteam.ivy.jsf.primefaces.sort.SortMetaConverter;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 
-public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
+public class RelatedCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
 
   private static final long serialVersionUID = 1L;
 
   public static final String DESCRIPTION = "DESCRIPTION";
 
-  private final List<ICase> data;
+  private final List<ICase> cases;
+  private final Map<Long, ICase> mapCases;
+  private List<ICase> foundCases;
+  private boolean isFirstTime = true;
+  private List<ICase> firstChunk;
 
-  private String caseWidgetComponentId;
   private CaseSearchCriteria criteria;
   private List<String> allColumns = new ArrayList<>();
   private List<String> selectedColumns = new ArrayList<>();
@@ -44,8 +47,9 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
 
   public RelatedCaseLazyDataModel(Long businessCaseId) {
     super();
-    data = new ArrayList<>();
-    caseWidgetComponentId = "related-cases-widget";
+    cases = new ArrayList<>();
+    mapCases = new HashMap<>();
+    foundCases = new ArrayList<>();
     buildCriteria(businessCaseId);
     setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     initColumnsConfiguration();
@@ -53,20 +57,44 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
 
   @Override
   public List<ICase> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
-    SortMetaConverter sort = new SortMetaConverter(sortBy);
-    criteria.setSortField(sort.toField());
-    criteria.setSortDescending(sort.toOrder() == SortOrder.DESCENDING);
     if (first == 0) {
-      initializedDataModel();
+      PrimeFaces.current().executeScript("resizeCaseDetailsTableBody();");
     }
+    if (isFirstTime) {
+      isFirstTime = false;
+      foundCases = firstChunk == null ? new ArrayList<>() : firstChunk;
+      firstChunk = null;
+      cases.clear();
+      mapCases.clear();
+    } else {
+      if (first == 0) {
+        cases.clear();
+        mapCases.clear();
+        SortMetaConverter sort = new SortMetaConverter(sortBy);
+        criteria.setSortField(sort.toField());
+        criteria.setSortDescending(sort.toOrder() == SortOrder.DESCENDING);
+      }
+      foundCases = findCases(first, pageSize);
+    }
+    cases.addAll(foundCases);
+    mapCases.putAll(foundCases.stream().collect(Collectors.toMap(ICase::getId, Function.identity())));
 
-    criteria.setColumns(allColumns);
-    List<ICase> foundCases = findCases(criteria, first, pageSize);
-    setRowCount(LiveScrollLazyModel.estimateRowCount(first, pageSize, foundCases.size()));
-    data.addAll(foundCases);
+    if (foundCases.size() >= pageSize) {
+      setRowCount(first + pageSize + 1);
+    } else {
+      setRowCount(first + foundCases.size());
+    }
     return foundCases;
   }
-  
+
+  public void loadFirstTime() {
+    readChunkSizeFromRequest();
+    criteria.setSortField(CaseSortField.ID.name());
+    criteria.setSortDescending(true);
+    firstChunk = findCases(0, getChunkSize());
+    isFirstTime = true;
+  }
+
   private void setAdminQuery(boolean isAdminQuery) {
     criteria.extendStatesQueryByPermission(isAdminQuery);
   }
@@ -93,28 +121,9 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
     setDisableSelectionCheckboxes(isAutoHideColumns);
   }
 
-  private List<ICase> findCases(CaseSearchCriteria criteria, int first, int pageSize) {
-    IvyComponentLogicCaller<List<ICase>> findCaseCaller = new IvyComponentLogicCaller<>();
-    int startIndex = first;
-    int count = pageSize;
-    if (startIndex < 0) {
-      startIndex = 0;
-      count = first + pageSize;
-    }
-    UIComponent component = findRelatedCaseComponent();
-    if (component != null) {
-      return findCaseCaller.invokeComponentLogic(component, "#{logic.findCases}", new Object[] {criteria, startIndex, count});
-    }
-    return new ArrayList<>();
-  }
-
-  private UIComponent findRelatedCaseComponent() {
-    List<UIComponent> children = FacesContext.getCurrentInstance().getViewRoot().findComponent("case-item-details:case-details-container:widgets:case-details-technical-case-card").getChildren();
-    return children.stream().filter(child -> child.getId().equals(caseWidgetComponentId)).findFirst().orElse(null);
-  }
-
-  private void initializedDataModel() {
-    data.clear();
+  private List<ICase> findCases(int first, int pageSize) {
+    criteria.setColumns(allColumns);
+    return CaseService.newInstance().findCasesByCriteria(criteria, Math.max(first, 0), pageSize).getCases();
   }
 
   private void buildCriteria(Long businessCaseId) {
@@ -190,16 +199,16 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
 
   @Override
   public ICase getRowData(String rowKey) {
-    for (ICase icase : data) {
-      if (icase.getId() == Long.valueOf(rowKey)) {
-        return icase;
-      }
-    }
-    return null;
+    return mapCases.get(Long.valueOf(rowKey));
+  }
+
+  @Override
+  public List<ICase> getResults() {
+    return cases;
   }
 
   @Override
   public int count(Map<String, FilterMeta> filterBy) {
-    return 0;
+    return getRowCount();
   }
 }

@@ -1,15 +1,15 @@
 var caseDetailsGrid;
+
+const caseDetailsTableRowHeight = 53;
+const minCaseDetailsTableChunkSize = 25;
+const maxCaseDetailsTableChunkSize = 100;
+
 $(function () {
   setTimeout(() => {
     loadCaseDetailsGrid();
-    fitCaseDetailsTables();
   }, 0);
   handleCaseDetailsTable();
 })
-
-$(document).on('pfAjaxComplete', function () {
-  fitCaseDetailsTables();
-});
 
 function loadCaseDetailsGrid() {
   initCaseDetailsGrid();
@@ -36,42 +36,85 @@ function initCaseDetailsGrid() {
   });
 }
 
-let caseDetailsTableObserver;
-function fitCaseDetailsTables() {
-  if (!caseDetailsTableObserver) {
-    caseDetailsTableObserver = new ResizeObserver(entries => {
+function calculateCaseDetailsTableChunkSize() {
+  const rows = Math.ceil(window.innerHeight / caseDetailsTableRowHeight) + 2;
+  return Math.min(maxCaseDetailsTableChunkSize, Math.max(minCaseDetailsTableChunkSize, rows));
+}
+
+function addCaseDetailsTableChunkSize(config) {
+  if (!config.params) {
+    config.params = [];
+  }
+  config.params.push({name: 'chunkSize', value: calculateCaseDetailsTableChunkSize()});
+}
+
+function loadCaseDetailsTableFirstTime(loadingClass, containerClass, widgetVar) {
+  setTimeout(function() {
+    $('.' + loadingClass).addClass('hidden');
+    $('.' + containerClass).removeClass('hidden');
+    const table = PF(widgetVar);
+    if (table) {
+      table.renderDeferred();
+    }
+    resizeCaseDetailsTableBody();
+  }, 50);
+}
+
+function getCaseDetailsCard(tableBody) {
+  return tableBody.closest('.grid-stack-item-content.case-detail-card');
+}
+
+function getReservedHeightForCaseDetailsTableBody(tableBody) {
+  const card = getCaseDetailsCard(tableBody);
+  const widgetHeader = card.find('.portal-detail-widget-header').outerHeight(true) || 0;
+  const scrollableHeader = tableBody.siblings('.ui-datatable-scrollable-header').outerHeight(true) || 0;
+  const scrollableFooter = tableBody.siblings('.ui-datatable-scrollable-footer').outerHeight(true) || 0;
+  return widgetHeader + scrollableHeader + scrollableFooter;
+}
+
+let caseDetailsTableResizeObserver;
+function resizeCaseDetailsTableBody() {
+  if (!caseDetailsTableResizeObserver) {
+    caseDetailsTableResizeObserver = new ResizeObserver(entries => {
       requestAnimationFrame(() => {
-        entries.forEach(entry => fitCaseDetailsCardTable($(entry.target)));
+        entries.forEach(entry => {
+          const tableBody = $(entry.target);
+          const parentHeight = getCaseDetailsCard(tableBody).height();
+          if (!parentHeight) {
+            return;
+          }
+
+          const targetHeight = Math.max(0, Math.round(parentHeight - getReservedHeightForCaseDetailsTableBody(tableBody)));
+          if (Math.round(tableBody.height()) !== targetHeight) {
+            tableBody.css({'height': targetHeight, 'max-height': targetHeight});
+          }
+          loadMoreCaseDetailsRowsWhenNotEnough(tableBody);
+        });
       });
     });
   }
-  $('.js-fit-card-height').closest('.grid-stack-item-content.case-detail-card').each(function () {
-    caseDetailsTableObserver.observe(this);
-    fitCaseDetailsCardTable($(this));
-  });
-}
-
-function fitCaseDetailsCardTable(card) {
-  card.find('.js-fit-card-height .ui-datatable-scrollable-body').each(function () {
-    const tableBody = $(this);
-    const cardContentBottom = card.offset().top + card.innerHeight() - parseFloat(card.css('padding-bottom'));
-    const scrollableFooter = tableBody.siblings('.ui-datatable-scrollable-footer').outerHeight(true) || 0;
-    const targetHeight = Math.max(0, Math.floor(cardContentBottom - tableBody.offset().top - scrollableFooter));
-    if (Math.round(tableBody.height()) !== targetHeight) {
-      tableBody.css({ 'height': targetHeight, 'max-height': targetHeight });
-    }
-    loadMoreCaseDetailsRowsWhenNotEnough(tableBody);
+  document.querySelectorAll('.case-detail-card .ui-datatable-scrollable-body').forEach(scrollableBody => {
+    caseDetailsTableResizeObserver.observe(scrollableBody);
   });
 }
 
 function loadMoreCaseDetailsRowsWhenNotEnough(tableBody) {
-  if (tableBody.get(0).scrollHeight > tableBody.get(0).clientHeight) {
-    return;
-  }
-  const table = PrimeFaces.getWidgetById(tableBody.closest('.js-fit-card-height').attr('id'));
-  if (table && table.cfg.liveScroll && table.shouldLiveScroll && !table.loadingLiveScroll && !table.allLoadedLiveScroll) {
-    table.loadLiveRows();
-  }
+  setTimeout(function() {
+    const scrollableBody = tableBody.get(0);
+    if (!scrollableBody || scrollableBody.scrollHeight > scrollableBody.clientHeight) {
+      return;
+    }
+
+    const widgetName = getCaseDetailsCard(tableBody).find('.js-table-widget-var').val();
+    if (!widgetName) {
+      return;
+    }
+
+    const table = PF(widgetName);
+    if (table && table.cfg.liveScroll && table.shouldLiveScroll && !table.loadingLiveScroll && !table.allLoadedLiveScroll) {
+      table.loadLiveRows();
+    }
+  }, 200);
 }
 
 function saveCaseDetailsGrid() {

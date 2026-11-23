@@ -50,9 +50,22 @@
         </div>
       </h:panelGroup>
     </div>
+    <h:form id="related-tasks-first-load-form">
+      <p:remoteCommand id="rc-load-related-tasks-first-time" autoRun="true" async="true" global="false" process="@this"
+        onstart="addCaseDetailsTableChunkSize(cfg)" actionListener="#{data.dataModel.loadFirstTime()}"
+        update="#{p:resolveFirstComponentWithId('case-details-related-task-table', view).clientId}"
+        oncomplete="loadCaseDetailsTableFirstTime('js-related-tasks-loading', 'js-related-tasks-container', 'related-tasks-table')" />
+    </h:form>
+    <input type="hidden" class="js-table-widget-var" value="related-tasks-table" />
+    <div class="js-related-tasks-loading ui-g-12">
+      <c:forEach begin="1" end="5">
+        <p:skeleton styleClass="MarTop20" height="4rem" />
+      </c:forEach>
+    </div>
+    <div class="js-related-tasks-container hidden">
     <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0 case-details-related-task-table" id="case-details-related-task-table">
       <p:dataTable cellNavigation="false" id="related-tasks" widgetVar="related-tasks-table" lazy="true" value="#{data.dataModel}" var="task"
-        scrollable="true" liveScroll="true" scrollRows="25" scrollHeight="265" styleClass="js-fit-card-height"
+        scrollable="true" liveScroll="true" scrollRows="#{data.dataModel.chunkSize}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         sortBy="#{caseDetailsBean.sortById}"
         rowIndexVar="rowIndex" rowHover="true" selectionMode="single">
@@ -166,6 +179,7 @@
         </p:column>
       </p:dataTable>
     </h:panelGroup>
+    </div>
   </div>
 
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">

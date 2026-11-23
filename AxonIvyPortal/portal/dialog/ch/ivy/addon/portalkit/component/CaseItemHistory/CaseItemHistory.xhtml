@@ -42,7 +42,7 @@
           icon="#{visibilityBean.generateButtonIcon('ti ti-plus')}"
           rendered="#{caseTaskNoteHistoryBean.showAddNote}" onclick="PF('add-note-dialog-#{case.id}').show()"
           actionListener="#{data.setCaze(case)}" />
-        <p:button id="show-more-note-link" disabled="#{empty data.histories}"
+        <p:button id="show-more-note-link" disabled="#{not data.historiesLoaded or empty data.histories}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}"
           icon="ti ti-external-link"
           styleClass="portal-detail-show-more-btn js-note-show-more-link portal-pill-btn" target="_blank"
@@ -51,8 +51,20 @@
       </h:panelGroup>
     </div>
 
+    <h:form id="case-histories-first-load-form" rendered="#{not data.historiesLoaded}">
+      <p:remoteCommand id="rc-load-case-histories-first-time" autoRun="true" async="true" global="false" process="@this"
+        actionListener="#{logic.loadHistories()}"
+        update="#{p:resolveFirstComponentWithId('case-histories-table', view).clientId} #{p:resolveFirstComponentWithId('show-more-note-link', view).clientId}"
+        oncomplete="ResponsiveTable.init(':case-histories');" />
+    </h:form>
+
     <h:panelGroup id="case-histories-table" class="ui-g-12 u-padding-0 portal-detail-widget-body">
-      <p:dataTable cellNavigation="false" id="case-histories" rendered="#{not empty data.histories}" value="#{data.histories}" var="history"
+      <h:panelGroup layout="block" rendered="#{not data.historiesLoaded}">
+        <c:forEach begin="1" end="5">
+          <p:skeleton styleClass="MarTop20" height="4rem" />
+        </c:forEach>
+      </h:panelGroup>
+      <p:dataTable cellNavigation="false" id="case-histories" rendered="#{data.historiesLoaded and not empty data.histories}" value="#{data.histories}" var="history"
         paginator="true" rows="5" paginatorAlwaysVisible="false" paginatorPosition="bottom" pageLinks="3"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
@@ -118,7 +130,7 @@
         </p:column>
       </p:dataTable>
 
-      <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{empty data.histories}">
+      <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{data.historiesLoaded and not data.historiesLoadFailed and empty data.histories}">
         <i class="ti ti-edit" />
         <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noNoteAvailable')}" />
         <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddNote')}" />
@@ -129,6 +141,11 @@
           <i class="ti ti-circle-plus" />
           <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
         </p:commandLink>
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{data.historiesLoadFailed}">
+        <i class="ti ti-alert-triangle" />
+        <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/defaultNotificationMessage')}" />
       </h:panelGroup>
 
     </h:panelGroup>
