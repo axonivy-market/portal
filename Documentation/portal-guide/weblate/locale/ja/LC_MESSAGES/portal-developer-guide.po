@@ -944,7 +944,7 @@ msgstr "カスタムアプリケーション名でPortalをデプロイする場
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:251
 #: ../../source/portal-developer-guide/customization/task-item-details.rst:302
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:767
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:726
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:730
 msgid "Result"
 msgstr "結果"
 
@@ -3728,7 +3728,7 @@ msgstr "**必須プロパティ:**"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:63
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:102
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:223
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:227
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:65
 msgid "``type`` (string)"
 msgstr "``type`` (文字列)"
@@ -3906,7 +3906,7 @@ msgstr "例:``\"news-widget-custom highlight-border\"``"
 
 #: ../../source/portal-developer-guide/dashboard/dashboard-newsfeed-widget.rst:122
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:134
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:207
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:211
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-welcome-widget.rst:94
 msgid "``style`` (string, optional)"
 msgstr "``style`` (文字列、オプション)"
@@ -4866,17 +4866,17 @@ msgid "``isTopMenu``"
 msgstr "``isTopMenu``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:198
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:167
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:171
 msgid "``true`` = top-level nav item, ``false`` = under Dashboard menu"
 msgstr "``true`` = トップレベルナビゲーション項目、``false`` = ダッシュボードメニュー内項目"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:200
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:169
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:173
 msgid "**Columns Configuration**"
 msgstr "**列の設定**"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:202
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:171
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:175
 msgid "Each column object in the ``columns`` array:"
 msgstr "``columns`` 配列内の各列オブジェクト："
 
@@ -4903,7 +4903,7 @@ msgid "``\"true\"``"
 msgstr "``\"true\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:219
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:193
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:197
 msgid "Column visibility: ``\"true\"`` or ``\"false\"``"
 msgstr "列の可視性: ``\"true\"`` または ``\"false\"``"
 
@@ -4916,7 +4916,7 @@ msgid "``\"false\"``"
 msgstr "``\"false\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:223
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:196
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:200
 msgid "Include in quick search: ``\"true\"`` or ``\"false\"``"
 msgstr "クイック検索に含める: ``` `\"true\"`` または ``` `\"false\"``"
 
@@ -4925,7 +4925,7 @@ msgid "``enableFilter``"
 msgstr "``enableFilter``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:227
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:199
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:203
 msgid "Allow filtering on this column in complex filter."
 msgstr "複合フィルターにおいて、この列でのフィルタリングを許可します。"
 
@@ -4934,7 +4934,7 @@ msgid "``headers``"
 msgstr "``headers``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:231
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:202
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:206
 #, python-brace-format
 msgid "Multilingual column headers: ``[{\"locale\": \"en\", \"value\": \"Header\"}]``"
 msgstr "多言語の列見出し:``[{\"locale\": \"en\", \"value\": \"Header\"}]``"
@@ -4944,12 +4944,12 @@ msgid "``\"STANDARD\"``"
 msgstr "``\"STANDARD\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:235
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:205
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:209
 msgid "Column type: ``\"STANDARD\"`` or ``\"CUSTOM\"``"
 msgstr "列タイプ： ``\"STANDARD\"`` または ``\"CUSTOM\"``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:239
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:208
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:212
 msgid "Inline CSS for custom columns (e.g., ``\"width: 110px\"``)"
 msgstr "カスタム列用のインラインCSS（例：``\"width: 110px\"``）"
 
@@ -4982,12 +4982,12 @@ msgid "``creator`` - Case creator"
 msgstr "``creator`` - ケース作成者"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:249
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:184
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:188
 msgid "``startTimestamp`` - Creation date and time"
 msgstr "``startTimestamp`` - 作成日時"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:250
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:185
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:189
 msgid "``endTimestamp`` - End date and time"
 msgstr "``endTimestamp`` - 終了日時"
 
@@ -5004,17 +5004,17 @@ msgid "``actions`` - Action buttons (details, destroy, etc.)"
 msgstr "``actions`` - アクションボタン（詳細、破棄など）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:255
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:210
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:214
 msgid "**Filters Configuration**"
 msgstr "**フィルターの設定**"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:257
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:212
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:216
 msgid "The ``filters`` array defines pre-configured filter conditions:"
 msgstr "``filters`` 配列は事前設定されたフィルタ条件を定義します："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:268
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:215
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:219
 msgid "Column field name to filter"
 msgstr "列フィールド名によるフィルタリング"
 
@@ -5023,7 +5023,7 @@ msgid "``values``"
 msgstr "``values``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:271
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:218
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:222
 msgid "Filter values (format depends on field type)"
 msgstr "値をフィルタリング（形式はフィールドタイプに依存）"
 
@@ -5032,12 +5032,12 @@ msgid "``operator``"
 msgstr "``operator``"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:274
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:221
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:225
 msgid "Filter operator (see Filter Conditions section)"
 msgstr "フィルター演算子（フィルター条件セクションを参照）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:277
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:224
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:228
 msgid "``\"standard\"`` or ``\"custom\"``"
 msgstr "``\"standard\"`` または ``\"custom\"``"
 
@@ -5046,7 +5046,7 @@ msgid "For detailed filter configuration, see the :ref:`Filter Conditions <confi
 msgstr "詳細なフィルタ設定については、下記の「:ref:`Filter Conditions <configure-new-dashboard-case-widget-filter-structure>` 」セクションを参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:285
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:233
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:237
 msgid "Custom Columns"
 msgstr "カスタム列"
 
@@ -5067,7 +5067,7 @@ msgid "Besides the attributes explained in the previous section, a custom column
 msgstr "カスタム列には、前のセクションで説明した属性のほかに、以下の 2 つの違いがあります。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:317
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:259
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:263
 msgid "``type``: type of the widget column. There are two options: ``STANDARD`` and ``CUSTOM``."
 msgstr "``type``：ウィジェットの列のタイプ。 ``STANDARD`` と ``CUSTOM`` の 2 つのオプションがあります。"
 
@@ -5076,7 +5076,7 @@ msgid "``field``: this attribute is the name of the case's custom field which wi
 msgstr "``field``：この属性は、列のデータを取得するのに使用されるケースのカスタムフィールドの名前です。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:323
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:265
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:269
 msgid "Portal only displays custom fields declared in the ``custom-fields.yaml`` file. Refer to :dev-url:`Custom Fields Meta Information </doc/12.0/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information."
 msgstr "ポータルでは、 ``custom-fields.yaml`` ファイルで宣言されたカスタムフィールドのみ表示されます。詳細については、 :dev-url:`カスタムフィールドのメタ情報 </doc/12.0/designer-guide/how-to/workflow/custom-fields.html#meta-information>` を参照してください。"
 
@@ -5141,7 +5141,7 @@ msgid "custom-action-button-custom-field"
 msgstr "custom-action-button-custom-field"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:362
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:269
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:273
 msgid "Filter Conditions"
 msgstr "フィルター条件"
 
@@ -5150,37 +5150,37 @@ msgid "You can predefine filter conditions for most columns of the case widget. 
 msgstr "ケースウィジェットのほとんどの列でフィルター条件を事前に定義できます。条件は列ごとに異なり、リストのみ、文字列のみを受け入れる列もあれば、日時など、特定の形式の文字列を必要とする列もあります。詳細については、 :ref:`複合フィルター <complex-filter>` を参照してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:369
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:276
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:280
 msgid "Base structure of filter json:"
 msgstr "Json フィルターの基本構造："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:395
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:302
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:306
 msgid "``field``: filter field name corresponding with column name"
 msgstr "``field``：列名に対応するフィルターのフィールド名"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:397
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:303
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:307
 msgid "``values``: filter value, could be a list, a string or a number"
 msgstr "``values``：フィルターの値（リスト、文字列または数値）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:399
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:304
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:308
 msgid "``operator``: filter operator, operators can be difference depend on each field type."
 msgstr "``operator``：フィルター演算子。演算子はフィールドのタイプによって異なります。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:401
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:306
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:310
 msgid "**String column**: is, is_not, empty, not_empty, contains, not_contains, start_with, not_start_with, end_with, not_end_with"
 msgstr "**文字列列**：is、is_not、empty、not_empty、contains、not_contains、start_with、not_start_with、end_with、not_end_with"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:403
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:308
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:312
 msgid "**Number column**: between, not_between, empty, not_empty, equal, not_equal, less, less_or_equal, greater, greater_or_equal"
 msgstr "**数値列**：between、not_between、empty、not_empty、equal、not_equal、less、less_or_equal、greater、greater_or_equal"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:405
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:310
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:314
 msgid "**Date column**: today, yesterday, is, is_not, before, after, between, not_between, current, last, next, empty, not_empty"
 msgstr "**日付列**：today、yesterday、is、is_not、before、after、between、not_between、current、last、next、empty、not_empty"
 
@@ -5189,7 +5189,7 @@ msgid "``type``: ``standard`` for a standard column or ``custom`` for a custom c
 msgstr "``type``： ``standard`` （標準の列）または ``custom`` （カスタム列）"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:409
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:314
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:318
 msgid "Date type additional field:"
 msgstr "日付タイプの追加フィールド："
 
@@ -5218,23 +5218,23 @@ msgid "``to``: string value. E.g.: \"55.2\""
 msgstr "``to``：文字列値。例：「55.2」"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:424
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:322
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:326
 msgid "There are additional fields dependent on the operator and many specific filters for each field type. Below is the list of filterable columns and their corresponding filter conditions."
 msgstr "追加フィールドは、各フィールドタイプの演算子やフィルターに依存します。以下はフィルター設定可能な列とそれに対応するフィルター条件のリストです。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:428
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:327
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:331
 msgid "We encourage utilizing dashboard configurations to edit widgets and then leveraging the export dashboard feature to ensure better expectations when customizing these widgets."
 msgstr "これらのウィジェットをカスタマイズする際は、期待どおりに動作するように、ダッシュボード設定を使用してウィジェットを編集してから、ダッシュボードのエクスポート機能を利用することを推奨します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:430
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:329
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:333
 msgid "Standard Column:"
 msgstr "標準の列："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:432
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:202
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:365
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:369
 msgid "``name``"
 msgstr "``name``"
 
@@ -5244,7 +5244,7 @@ msgid "This column accepts all operators available for String column. Additional
 msgstr "この列は、文字列列で利用可能なすべての演算子を受け入れます。さらに、文字列のリストとして ``値`` も受け入れます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:458
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:391
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:395
 msgid "``description``"
 msgstr "``description``"
 
@@ -5293,7 +5293,7 @@ msgid "``type`` field must be ``custom``"
 msgstr "``type`` フィールドは ``custom`` になります。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:658
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:617
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:621
 msgid "Quick Search"
 msgstr "クイック検索"
 
@@ -5302,17 +5302,17 @@ msgid "The Quick search is a useful function for users to quickly search the cas
 msgstr "クイック検索は、ユーザーがケースウィジェット内のケースを素早く検索できる便利な機能です。クイック検索の設定には以下の 2 つの属性があります。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:663
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:622
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:626
 msgid "``enableQuickSearch``: enables the quick search feature for the widget."
 msgstr "``enableQuickSearch``：ウィジェットのクイック検索機能を有効にします。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:665
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:624
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:628
 msgid "``quickSearch``: indicates that a column is searchable using the quick search feature."
 msgstr "``quickSearch``：クイック検索機能を使用した列の検索が可能なことを示します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:667
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:626
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:630
 msgid "If you set the ``enableQuickSearch`` attribute to ``false``, the quick search feature will be disabled, regardless of the ``quickSearch`` attribute's value."
 msgstr "``enableQuickSearch`` 属性を ``false`` に設定すると、 ``quickSearch`` 属性の値にかかわらず、クイック検索機能が無効になります。"
 
@@ -5321,7 +5321,7 @@ msgid "Conversely, if you set the ``enableQuickSearch`` attribute to ``true``, t
 msgstr "逆に、 ``enableQuickSearch`` 属性を ``true`` に設定した場合は、 ``quickSearch`` 属性が ``true`` に設定されているすべての列の値でクイック検索機能による検索が可能になります。 ``quickSearch`` 属性をケースウィジェットのいずれの列にも割り当てていない場合、クイック検索機能はデフォルトで名前フィールドと説明フィールドを検索します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:675
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:634
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:638
 msgid "Below are the definition of these attributes:"
 msgstr "これらの属性の定義は以下のとおりです。"
 
@@ -5331,68 +5331,68 @@ msgstr "``enableQuickSearch``：クイック検索機能を有効／無効にし
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:693
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:721
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:652
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:680
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:656
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:684
 msgid "Valid values:"
 msgstr "有効な値："
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:695
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:654
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:658
 msgid "``true``: show the quick search text box."
 msgstr "``true``：クイック検索テキストボックスを表示します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:696
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:655
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:659
 msgid "``false``: hide the quick search text box."
 msgstr "``false``：クイック検索テキストボックスを非表示にします。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:697
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:656
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:660
 msgid "``not defined``: hide the quick search text box."
 msgstr "``not defined``：クイック検索テキストボックスを非表示にします。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:699
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:658
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:662
 msgid "``quickSearch``: to choose which columns can be searched by the quick search feature, set the ``quickSearch`` field for each column as shown below."
 msgstr "``quickSearch``：クイック検索機能で検索できる列を選択します。以下のように各列の ``quickSearch`` フィールドを設定してください。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:723
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:682
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:686
 msgid "``true``: apply quick search for this column."
 msgstr "``true``：この列にクイック検索を適用します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:724
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:683
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:687
 msgid "``false``: do not apply quick search for this column."
 msgstr "``false``：この列にクイック検索を適用しません。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:725
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:684
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:688
 msgid "``not defined``: the ``name`` and ``description`` columns are ``true``, other columns are ``false`` by default."
 msgstr "``not defined``： ``name`` 列と ``description`` 列は ``true``、その他の列は自動的に ``false`` になります。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:728
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:687
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:691
 msgid "Multi-Language Support for Custom String Fields"
 msgstr "カスタム文字列フィールドの多言語サポート"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:730
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:689
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:693
 msgid "With the **Multi-Language Support for Custom Fields** feature, we enable the provision of values in a custom field in multiple languages. The field content is displayed based on the language selected in the custom field."
 msgstr "**カスタムフィールドの多言語対応** 機能により、カスタムフィールドの値を多言語で提供できるようになります。フィールドの内容は、カスタムフィールドで選択された言語に基づいて表示されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:734
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:693
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:697
 msgid "Portal only supports Multi-Language for Custom Fields with ``TYPE: STRING``."
 msgstr "ポータルでは、 ``TYPE: STRING`` のカスタムフィールドのみ多言語をサポートします。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:737
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:696
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:700
 msgid "Enabling Multi-Language Support"
 msgstr "多言語サポートの有効化"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:739
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:698
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:702
 msgid "To allow a custom field to retrieve multilingual values from the CMS, set the ``HasCmsValue`` attribute to ``true`` in the corresponding ``custom-field`` yaml file configuration. Otherwise, the logic remains unchanged, and the custom field uses the static value. Additionally, the value must be entered and maintained in the CMS in multiple languages."
 msgstr "カスタムフィールドが CMS から多言語の値を取得できるようにするには、対応する ``custom-field`` yaml ファイルの設定で ``HasCmsValue`` 属性を ``true`` に設定してください。そうでない場合、ロジックは変更されず、カスタムフィールドは静的値を使用します。さらに、値は CMS に複数の言語で入力して維持する必要があります。"
 
@@ -5402,7 +5402,7 @@ msgid "Following this path to add your custom field values: ``/CustomFields/Case
 msgstr "カスタムフィールドの値を追加するには、次のパスに従ってください：``/CustomFields/Cases/{fieldName}/Values/{value}``。詳細については、次を参照してください： :dev-url:`ラベル、説明、カテゴリ、および値をローカライズする </doc/12.0/designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>`。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:749
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:708
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:712
 msgid "Example YAML Configuration"
 msgstr "YAML設定例"
 
@@ -5419,57 +5419,57 @@ msgid "case-field-cms"
 msgstr "case-field-cms"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:769
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:728
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:732
 msgid "If ``HasCmsValues`` is set with ``true``, the values from the CMS are used."
 msgstr "``HasCmsValues`` が ``true`` に設定されている場合、CMS の値が使用されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:770
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:729
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:733
 msgid "If the values are entered and translated in the CMS, then the custom field is displayed based on the selected language."
 msgstr "値が CMS に入力され翻訳されている場合、カスタムフィールドは選択された言語に基づいて表示されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:771
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:730
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:734
 msgid "If the translation for a value is missing in the CMS, the static value from the entry is used instead."
 msgstr "値の翻訳が CMS に存在しない場合は、エントリの静的な値が代わりに使用されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:774
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:733
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:737
 msgid "Sorting, Filtering, and Searching with Multi-Language Custom Fields"
 msgstr "多言語カスタムフィールドによる並べ替え、フィルタリング、検索"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:777
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:736
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:740
 msgid "Sorting"
 msgstr "ソート"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:779
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:738
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:742
 msgid "``HasCmsValues = false`` or not set. Sorting is performed as usual based on the stored values."
 msgstr "``HasCmsValues = false`` または未設定の場合。ソートは保存された値に基づいて通常どおり実行されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:780
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:739
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:743
 msgid "``HasCmsValues = true``. Sorting is performed based on values translated in the currently selected language."
 msgstr "``HasCmsValues = true`` の場合は、現在選択されている言語に翻訳された値に基づいてソートが実行されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:784
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:743
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:747
 msgid "If ``HasCmsValues = true`` but a translation is missing in a specific language, only the translated values are sorted."
 msgstr "``HasCmsValues = true`` で特定の言語に翻訳が存在しない場合、翻訳された値のみがソートされます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:787
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:747
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:751
 msgid "Searching"
 msgstr "検索"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:789
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:749
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:753
 msgid "``HasCmsValues = false`` or not set. The search is performed as usual based on the stored value."
 msgstr "``HasCmsValues = false`` または未設定の場合、検索は保存された値に基づいて通常どおり実行されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:790
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:750
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:754
 msgid "``HasCmsValues = true``. The search is conducted in both the CMS translations and the original value."
 msgstr "``HasCmsValues = true`` の場合、検索は CMS の翻訳と元の値の両方で実行されます。"
 
@@ -5478,37 +5478,37 @@ msgid "Example: When language is Spanish, a user can search for **Corea** or the
 msgstr "例：言語がスペイン語の場合、ユーザーは **Corea** または元の値 **Korea** で検索できます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:795
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:755
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:759
 msgid "Filtering"
 msgstr "フィルタリング"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:797
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:757
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:761
 msgid "``HasCmsValues = false`` or not set. Filtering is performed as usual based on the stored value."
 msgstr "``HasCmsValues = false`` または未設定の場合、フィルタリングは保存された値に基づいて通常どおり実行されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:798
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:758
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:762
 msgid "``HasCmsValues = true``. The filter is conducted in both the CMS translations and the original value."
 msgstr "``HasCmsValues = true`` の場合、フィルターは CMS の翻訳と元の値の両方で実行されます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:802
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:762
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:766
 msgid "When enabling the Multi-Language for Custom Fields, only accepted ``CONTAINS`` operator."
 msgstr "カスタムフィールドの多言語化を有効にする場合、``CONTAINS`` 演算子のみ受け付けます。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:806
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:766
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:770
 msgid "If a value needs to be filtered in multiple languages, all corresponding translations must be in the filter."
 msgstr "値を複数の言語でフィルタリングする必要がある場合は、すべての対応する翻訳がフィルターに含まれている必要があります。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:809
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:769
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:773
 msgid "Conclusion"
 msgstr "結論"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:811
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:771
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:775
 msgid "With Multi-Language Support for Custom Fields, we enable flexible and dynamic provision of field content in multiple languages. The functionalities for searching, sorting, and filtering have been adapted accordingly to ensure consistent behavior for multilingual content."
 msgstr "カスタムフィールドの多言語サポートにより、多言語でのフィールドコンテンツの柔軟かつダイナミックな提供が可能になりました。検索、ソート、フィルタリングの機能は、多言語コンテンツの一貫した動作を保証するために、それに応じて適応されています。"
 
@@ -6291,252 +6291,260 @@ msgid "Filter only tasks the current user can work on"
 msgstr "現在のユーザーが作業可能なタスクのみをフィルタリングする"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:163
+msgid "``excludeTechnicalTaskStates`` (list, default empty)"
+msgstr ""
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:164
+msgid "This setting can only be configured in JSON. It lets you exclude specific technical task states :dev-url:`Task state </doc/12.0/public-api/ch/ivyteam/ivy/workflow/TaskState.html>`. For example, ``\"excludeTechnicalTaskStates\": [\"CREATED\", \"SUSPENDED\"]`` filters out all tasks in the ``CREATED`` or ``SUSPENDED`` state, even when ``canWorkOn`` is enabled."
+msgstr ""
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:167
 msgid "``filterTasksByCurrentCaseOwner`` (boolean, default: ``false``)"
 msgstr "``filterTasksByCurrentCaseOwner`` (ブール値、デフォルト: ``` `false``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:164
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:168
 msgid "Filter only tasks where current user is case owner (requires ``Portal.Cases.EnableOwner`` setting)"
 msgstr "現在のユーザーがケース所有者であるタスクのみをフィルタリング（``Portal.Cases.EnableOwner`` 設定が必要）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:166
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:170
 msgid "``isTopMenu`` (boolean, default: ``false``)"
 msgstr "``isTopMenu`` (ブール値、デフォルト: ``` `false``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:173
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:177
 msgid "``field`` (string, required)"
 msgstr "``field`` (文字列, 必須)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:174
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:178
 msgid "Column field name. Use one of the standard fields below for built-in values, or the name of your custom field:"
 msgstr "列フィールド名。組み込み値には以下の標準フィールドのいずれかを使用するか、カスタムフィールド名を使用してください："
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:176
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:180
 msgid "``start`` - Start button to begin task execution"
 msgstr "``start`` - タスク実行を開始するスタートボタン"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:177
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:181
 msgid "``Pin`` - Pin button for task"
 msgstr "``Pin`` - タスク用ピンボタン"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:178
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:182
 msgid "``priority`` - Task priority"
 msgstr "``priority`` - タスク優先度"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:179
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:183
 msgid "``id`` - Task ID"
 msgstr "``id`` - タスクID"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:180
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:184
 msgid "``name`` - Task name"
 msgstr "``name`` - タスク名"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:181
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:185
 msgid "``description`` - Task description"
 msgstr "``description`` - タスクの説明"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:182
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:186
 msgid "``activator`` - Task activator"
 msgstr "``activator`` - タスク起動ツール"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:183
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:187
 msgid "``state`` - Task business state"
 msgstr "``state`` - タスクのビジネス状態"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:186
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:190
 msgid "``expiryTimestamp`` - Expiry date and time"
 msgstr "``expiryTimestamp`` - 有効期限と時刻"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:187
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:191
 msgid "``application`` - Application name"
 msgstr "``application`` - アプリケーション名"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:188
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:192
 msgid "``actions`` - Action buttons (details, reset, delegate, reserve, destroy, etc.)"
 msgstr "``actions`` - アクションボタン（詳細、リセット、委任、予約、破棄など）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:189
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:193
 msgid "``businessCaseId`` - Business Case ID (hidden by default; sortable; quick search supported)"
 msgstr "``businessCaseId`` - ビジネスケースID（デフォルトでは非表示、ソート可能、クイック検索対応）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:190
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:194
 msgid "``technicalCaseId`` - Technical Case ID (hidden by default; sortable; quick search supported)"
 msgstr "``technicalCaseId`` - 技術ケースID（デフォルトでは非表示、ソート可能、クイック検索対応）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:192
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:196
 msgid "``visible`` (string, default: ``\"true\"``)"
 msgstr "``visible`` (文字列、デフォルト:``\"true\"``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:195
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:199
 msgid "``quickSearch`` (string, default: ``\"false\"``)"
 msgstr "``quickSearch`` (文字列、デフォルト:``\"false\"``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:198
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:202
 msgid "``enableFilter`` (boolean, default: ``true``)"
 msgstr "``enableFilter`` (ブール値、デフォルト:``true``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:201
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:205
 msgid "``headers`` (array, optional)"
 msgstr "``headers`` (配列、オプション)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:204
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:208
 msgid "``type`` (string, default: ``\"STANDARD\"``)"
 msgstr "``type`` (文字列、デフォルト:``\"STANDARD\"``)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:214
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:218
 msgid "``field`` (string)"
 msgstr "``field`` (文字列)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:217
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:221
 msgid "``values`` (array)"
 msgstr "``values`` (配列)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:220
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:224
 msgid "``operator`` (string)"
 msgstr "``operator`` (文字列)"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:227
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:231
 msgid "For detailed filter configuration, see the :ref:`Filter Conditions <configure-new-dashboard-task-widget-filter-structure>` section below."
 msgstr "詳細なフィルタ設定については、下記の「:ref:`Filter Conditions <configure-new-dashboard-task-widget-filter-structure>` 」セクションを参照してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:235
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:239
 msgid "Axon Ivy supports custom fields for tasks. You can show them in the Task widget as a column."
 msgstr "Axon Ivy は、タスクのカスタムフィールドをサポートします。タスクウィジェットでは列として表示できます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:238
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:242
 msgid "You can predefine which column to show, and other attributes such as filter, format, and style. Below is a standard JSON of a custom column."
 msgstr "表示する列と、フィルター、形式、スタイルなどの他の属性を事前に定義できます。以下はカスタム列の標準的な JSON です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:256
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:260
 msgid "Besides attributes explained in the previous section, a custom column has two differences:"
 msgstr "カスタム列には、前のセクションで説明した属性のほかに、以下の 2 つの違いがあります。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:261
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:265
 msgid "``field``: this attribute is the name of the task's custom field which will be used to get data for the column."
 msgstr "``field``：この属性は、列のデータを取得するのに使用されるタスクのカスタムフィールドの名前です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:271
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:275
 msgid "You can predefine filter conditions for most columns of the task widget. Each column has different requirements: some accept only a list, some accept only a string, and others require a string in a specific format, such as date-time. Please refer to :ref:`Complex Filter <complex-filter>` for more details."
 msgstr "タスクウィジェットのほとんどの列でフィルター条件を事前に定義できます。要件は列ごとに異なり、リストのみ、文字列のみを受け入れる列もあれば、日時など、特定の形式の文字列を必要とする列もあります。詳細については、 :ref:`複合フィルター <complex-filter>` を参照してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:312
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:316
 msgid "``type``: ``standard`` for standard column or ``custom`` for custom column"
 msgstr "``type``： ``standard`` （標準の列）または ``custom`` （カスタム列）"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:316
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:320
 msgid "``periodType``: string value. E.g.: ``YEAR``, ``MONTH``, ``WEEK``, ``DAY``"
 msgstr "``periodType``：文字列値。例： ``YEAR``、 ``MONTH``、 ``WEEK``、 ``DAY``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:318
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:322
 msgid "``from``: string value. E.g.: \"04/04/2024\""
 msgstr "``from``：文字列値。例：\"2024/04/04\""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:320
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:324
 msgid "``to``: string value. E.g.: \"05/05/2024\""
 msgstr "``to``：文字列値。例：\"2024/05/05\""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:331
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:335
 msgid "``activator`` and ``worker``"
 msgstr "``activator`` および``worker``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:361
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:365
 msgid "These columns only accept a list of role names or usernames as filter conditions for the task's responsible username or working username. The available filter operators are ``in``, ``not_in`` and ``current_user``. The ``current_user`` operator does not require value field."
 msgstr "これらの列では、タスクの担当ユーザー名または作業ユーザー名のフィルタ条件として、ロール名またはユーザー名のリストのみを受け付けます。使用可能なフィルタ演算子は ``in``、 ``not_in``、 ``current_user`` です。 ``current_user`` 演算子では、valueフィールドは不要です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:388
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:417
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:392
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:421
 msgid "This column accepts all operators available for String column. Additionally, it accepts ``value`` as a list of string."
 msgstr "この列は、文字列列で利用可能なすべての演算子を受け入れます。さらに、文字列のリストとして ``値`` も受け入れます。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:419
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:423
 msgid "``priority``"
 msgstr "``priority``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:443
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:447
 msgid "This column only accepts a list of priorities' names as the filter condition. The available filter operator is ``in``."
 msgstr "この列は、フィルター条件として優先度名のリストのみ受け入れます。利用可能なフィルターの演算子は ``in`` です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:446
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:450
 msgid "Refer to :dev-url:`Task Priority </doc/12.0/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for available task priorities."
 msgstr "利用可能なタスクの優先度については、:dev-url:`タスクの優先度 </doc/12.0/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` を参照してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:449
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:453
 msgid "``state``"
 msgstr "``state``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:472
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:476
 msgid "This column only accepts a list of task business state names as its filter condition. The available filter operator is ``in``."
 msgstr "この列は、フィルター条件としてタスクのビジネスの状態名のリストのみ受け入れます。利用可能なフィルターの演算子は ``in`` です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:475
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:479
 msgid "Refer to :dev-url:`Task Business States </doc/12.0/public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` for available task business states."
 msgstr "利用可能なタスクのビジネス状態については、:dev-url:`Task Business States </doc/12.0/public-api/ch/ivyteam/ivy/workflow/task/TaskBusinessState.html>` を参照してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:479
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:483
 msgid "``startTimestamp`` and ``expiryTimestamp`` : created date and finished date of the Task"
 msgstr "``startTimestamp``、 ``expiryTimestamp``：タスクの作成日と終了日"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:522
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:526
 msgid "These columns accept all operators available for Date column. Fields may vary depending on the operator. The JSON example above covers most use cases for the Date field. Acceptable date formats: ``dd.MM.yyyy``, ``dd.MM.yyyy HH:mm``, ``MM/dd/yyyy`` and ``MM/dd/yyyy HH:mm``."
 msgstr "これらの列は、日付列で利用可能なすべての演算子を受け入れます。フィールドは演算子によって異なります。上記のJSONの例は、日付フィールドのほとんどのユースケースをカバーします。受け入れ可能な日付の形式は、 ``dd.MM.yyyy``、 ``dd.MM.yyyy HH:mm``、 ``MM/dd/yyyy``、 ``MM/dd/yyyy HH:mm`` です。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:527
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:531
 msgid "``application``"
 msgstr "``application``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:549
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:553
 msgid "``businessCaseId`` and ``technicalCaseId``"
 msgstr "``businessCaseId`` および``technicalCaseId``"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:579
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:583
 msgid "These columns display the Business Case ID and Technical Case ID of the task's associated case, respectively. The ``contains`` operator performs a substring match against the string representation of the numeric ID. This is consistent with how the task ``id`` filter works. The only available filter operator is ``contains``."
 msgstr "これらの列には、それぞれタスクに関連付けられたケースのビジネスケースIDとテクニカルケースIDが表示されます。``contains`` 演算子は、数値IDの文字列表現に対して部分文字列の一致チェックを行います。これは、タスクの``id`` フィルターの動作と一貫しています。利用可能なフィルター演算子は、``contains`` のみです。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:585
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:589
 msgid "These columns support sorting and quick search (quick search is disabled by default; set ``quickSearch: \"true\"`` on the column to enable it)."
 msgstr "これらの列は、並べ替えとクイック検索に対応しています（クイック検索はデフォルトで無効になっています。有効にするには、列に対して ``` `quickSearch: \"true\"`` を設定してください）。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:587
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:591
 msgid "Custom Field Column :"
 msgstr "カスタムフィールド列："
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:589
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:593
 msgid ":ref:`configure-new-dashboard-task-widget-custom-columns` are using the same operator as :ref:`Standard Column <configure-new-dashboard-task-widget-filter-structure>`."
 msgstr ":ref:`configure-new-dashboard-task-widget-custom-columns` は、:ref:`標準の列 <configure-new-dashboard-task-widget-filter-structure>` と同じ演算子を使用しています。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:593
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:597
 msgid "``type`` field must be ``custom`` for Custom Field and ``custom_case`` for Custom Case Field."
 msgstr "``type`` フィールドは ``custom`` （カスタムフィールド）、 ``custom_case`` （カスタムケースフィールド）になります。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:619
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:623
 msgid "The quick search is a useful function for users to quickly search the tasks within the task widget. The configuration of the quick search has two attributes:"
 msgstr "クイック検索は、ユーザーがタスクウィジェット内のタスクを素早く検索できる便利な機能です。クイック検索の設定には以下の 2 つの属性があります。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:629
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:633
 msgid "Conversely, if you set the ``enableQuickSearch`` attribute to ``true``, the quick search feature will search within the values of all columns that have the ``quickSearch`` attribute set to ``true``. If you haven't assigned the ``quickSearch`` attribute to any column in the task widget, the quick search feature will default to searching the name and description fields."
 msgstr "逆に、 ``enableQuickSearch`` 属性を ``true`` に設定した場合は、 ``quickSearch`` 属性が ``true`` に設定されているすべての列の値でクイック検索機能による検索が可能になります。``quickSearch`` 属性をタスクウィジェットのいずれの列にも割り当てていない場合、クイック検索機能はデフォルトで名前フィールドと説明フィールドを検索します。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:636
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:640
 msgid "``enableQuickSearch``: to enable/disable the quick search feature, set the ``enableQuickSearch`` field of the Task widget as shown below."
 msgstr "``enableQuickSearch``：クイック検索機能を有効／無効にします。以下のようにタスクウィジェットの ``enableQuickSearch`` フィールドを設定してください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:702
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:706
 #, python-brace-format
 msgid "Following this path to add your custom field values: ``/CustomFields/Tasks/{fieldName}/Values/{value}`` Please follow this :dev-url:`Localize Label, Description, Category and Values </doc/12.0/designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>` to get more information."
 msgstr "カスタム・フィールドの値を追加するには、以下のパスに従ってください：``/CustomFields/Tasks/{fieldName}/Values/{value}`` :dev-url:`Localize Label, Description, Category and Values </doc/12.0/designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>` に従ってください。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:718
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:722
 msgid "In your CMS, the path should be ``/CustomFields/Tasks/DriversVehicle/Values/Bike``, ``/CustomFields/Tasks/DriversVehicle/Values/Car`` or ``/CustomFields/Tasks/DriversVehicle/Values/MonsterTruck``."
 msgstr "あなたのCMSでは、パスは ``/CustomFields/Tasks/DriversVehicle/Values/Bike``, ``/CustomFields/Tasks/DriversVehicle/Values/Car`` または ``/CustomFields/Tasks/DriversVehicle/Values/MonsterTruck`` であるべきです。"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:723
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:727
 msgid "|task-field-cms|"
 msgstr "|task-field-cms|"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:777
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:781
 msgid "task-field-cms"
 msgstr "task-field-cms"
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:752
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:756
 msgid "Example: When language is German, a user can search for **Fahrrad** or the original value **Bike**."
 msgstr "例言語がドイツ語の場合、ユーザーは **Fahrrad** または元の値 **Bike** を検索できる。"
 
