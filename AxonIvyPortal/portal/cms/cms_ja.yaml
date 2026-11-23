@@ -137,12 +137,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       FULL_MODE: フル モード
       IMAGE_MODE: イメージ モード
     ProjectMode:
-      MISSING: 見つかりません
+      ERROR: エラー
       OK: OK
       OUTDATED: 古い
       TOO_NEW: 新しすぎる
       TOO_OLD: 古すぎる
-      UNKNOWN: 不明
+      RUNNABLE: 実行可能
     ReleaseState:
       ARCHIVED: アーカイブ済み
       CREATED: 作成済み

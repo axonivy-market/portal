@@ -24,10 +24,10 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
   public void initialize(IProcessStartEventBeanRuntime eventRuntime, ProgramConfig configuration) {
     super.initialize(eventRuntime, configuration);
     try {
-      Variable var =
-          Variables.of(eventRuntime.getProcessModelVersion().app()).variable(configuration.get(VARIABLE));
-      Variable deleteAllFinishedHiddenCasesVar = Variables.of(eventRuntime.getProcessModelVersion().app())
-          .variable(PORTAL_DELETE_ALL_FINISHED_HIDDEN_CASE);
+      // Ivy initializes the event bean in the owning project's application context.
+      Variables variables = Variables.current();
+      Variable var = variables.variable(configuration.get(VARIABLE));
+      Variable deleteAllFinishedHiddenCasesVar = variables.variable(PORTAL_DELETE_ALL_FINISHED_HIDDEN_CASE);
       if (var != null) {
         String pattern = var.value();
         Boolean isJobTrigger = Optional.of(deleteAllFinishedHiddenCasesVar).map(Variable::value).map(Boolean::parseBoolean).orElse(false);
