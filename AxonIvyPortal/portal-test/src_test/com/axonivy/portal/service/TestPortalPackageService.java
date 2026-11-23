@@ -114,7 +114,7 @@ public class TestPortalPackageService {
   @Test
   void exportPackage_packageContentType_isZipType() throws IOException {
     StreamedContent content = service.exportPackage();
-    assertThat(content.getContentType().equals("application/zip"));
+    assertThat(content.getContentType()).isEqualTo("application/zip");
   }
 
   @Test
@@ -147,7 +147,7 @@ public class TestPortalPackageService {
   @Test
   void importPackage_dashboard_validJson_setsIvyVariable() throws IOException {
     Dashboard dashboard = buildDashboard("dashboard-1", "My Dashboard", "task_1", "Your Tasks");
-    String json = toJson(List.of(dashboard));
+    String json = toJson(List.of(dashboard), PortalPackageFile.DASHBOARD.getVariableKey());
     byte[] zipBytes = buildZip(Map.of(PortalPackageFile.DASHBOARD.getFilename(), json));
 
     Map<String, Boolean> results = service.importPackage(zipBytes);
@@ -269,7 +269,7 @@ public class TestPortalPackageService {
   @Test
   void importPackage_customStatistic_validJson_setsIvyVariable() throws IOException {
     Statistic statistic = buildStatistic("statistic-1", "My Statistic", "priority");
-    String json = toJson(List.of(statistic));
+    String json = toJson(List.of(statistic), PortalPackageFile.CUSTOM_STATISTIC.getVariableKey());
     byte[] zipBytes = buildZip(Map.of(PortalPackageFile.CUSTOM_STATISTIC.getFilename(), json));
 
     Map<String, Boolean> results = service.importPackage(zipBytes);
@@ -424,7 +424,7 @@ public class TestPortalPackageService {
   @Test
   void importPackage_mixedValidAndInvalidAcrossTypes_appliesOnlyValid() throws IOException {
     Dashboard dashboard = buildDashboard("dashboard-1", "My Dashboard", "task_1", "Your Tasks");
-    String validDashboardJson = toJson(List.of(dashboard));
+    String validDashboardJson = toJson(List.of(dashboard), PortalPackageFile.DASHBOARD.getVariableKey());
     byte[] zipBytes = buildZip(Map.of(
         PortalPackageFile.DASHBOARD.getFilename(), validDashboardJson,
         PortalPackageFile.CASE_DETAIL.getFilename(), MALFORMED_JSON,
