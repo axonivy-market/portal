@@ -6292,11 +6292,11 @@ msgstr "現在のユーザーが作業可能なタスクのみをフィルタリ
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:163
 msgid "``excludeTechnicalTaskStates`` (list, default empty)"
-msgstr ""
+msgstr "``excludeTechnicalTaskStates`` (リスト、デフォルトは空)"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:164
 msgid "This setting can only be configured in JSON. It lets you exclude specific technical task states :dev-url:`Task state </doc/12.0/public-api/ch/ivyteam/ivy/workflow/TaskState.html>`. For example, ``\"excludeTechnicalTaskStates\": [\"CREATED\", \"SUSPENDED\"]`` filters out all tasks in the ``CREATED`` or ``SUSPENDED`` state, even when ``canWorkOn`` is enabled."
-msgstr ""
+msgstr "この設定は JSON でのみ構成できます。特定の技術的なタスク状態 :dev-url:`Task state </doc/12.0/public-api/ch/ivyteam/ivy/workflow/TaskState.html>` を除外できます。例えば、``\"excludeTechnicalTaskStates\": [\"CREATED\", \"SUSPENDED\"]`` は、``canWorkOn`` が有効な場合でも、``CREATED`` または ``SUSPENDED`` 状態のすべてのタスクを除外します。"
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:167
 msgid "``filterTasksByCurrentCaseOwner`` (boolean, default: ``false``)"
