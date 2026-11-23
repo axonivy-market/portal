@@ -20,6 +20,7 @@ import com.axonivy.portal.util.filter.field.task.TaskFilterFieldResponsible;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldState;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldBusinessCaseId;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldTechnicalCaseId;
+import com.axonivy.portal.util.filter.field.task.TaskFilterFieldTechnicalState;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldWorker;
 import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomNumber;
 import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomString;
@@ -58,6 +59,7 @@ public class TaskFilterFieldFactory {
     standarFieldMap.put(DashboardStandardTaskColumn.CATEGORY.getField(), new TaskFilterFieldCategory());
     standarFieldMap.put(DashboardStandardTaskColumn.PRIORITY.getField(), new TaskFilterFieldPriority());
     standarFieldMap.put(DashboardStandardTaskColumn.STATE.getField(), new TaskFilterFieldState());
+    standarFieldMap.put(BaseFilter.TECHNICAL_STATE, new TaskFilterFieldTechnicalState());
     standarFieldMap.put(DashboardStandardTaskColumn.APPLICATION.getField(), new TaskFilterFieldApplication());
     standarFieldMap.put(DashboardStandardTaskColumn.WORKER.getField(), new TaskFilterFieldWorker());
     standarFieldMap.put(DashboardStandardTaskColumn.BUSINESS_CASE_ID.getField(), new TaskFilterFieldBusinessCaseId());

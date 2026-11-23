@@ -2104,6 +2104,7 @@ Labels:
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
   TaskUser-Explain: Kommaseparierte Liste von Benutzern
+  TechnicalState: Technischer Status
   ToggleMenu: Menü umschalten
   ViewAllResults: Alle Ergebnisse anzeigen
   disabledUserPrefix: (inaktiv)

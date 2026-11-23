@@ -36,9 +36,12 @@ public class WidgetStateFilterBean implements Serializable {
   private List<String> states;
   private String statesString;
 
+  @SuppressWarnings("deprecation")
   public void init(BaseFilter filter, String widgetType) {
     if (PortalConstants.TASK.equals(StringUtils.lowerCase(widgetType))) {
-      states = TaskUtils.getValidStates().stream().map(businessState -> businessState.name()).toList();
+      states = filter.isTechnicalState()
+          ? TaskUtils.getOldValidStates().stream().map(Enum::name).toList()
+          : TaskUtils.getValidStates().stream().map(Enum::name).toList();
     } else {
       states = CaseUtils.getValidStates().stream().map(businessState -> businessState.name()).toList();
     }
@@ -50,6 +53,11 @@ public class WidgetStateFilterBean implements Serializable {
         ? "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/"
         : "/ch.ivy.addon.portalkit.ui.jsf/businessCaseState/";
     String displayState = Ivy.cms().co(cmsUri + state.toString());
+    return StringUtils.isBlank(displayState) ? state : displayState;
+  }
+
+  public String getUserFriendlyTechnicalState(String state) {
+    String displayState = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state);
     return StringUtils.isBlank(displayState) ? state : displayState;
   }
 

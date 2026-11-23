@@ -59,7 +59,7 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
     this.filterFields = new ArrayList<>();
     this.filterFields.add(TaskFilterFieldFactory.getDefaultFilterField());
     this.filterFields.addAll(TaskFilterFieldFactory.getStandardFilterableFields(this.widget.getId()).stream()
-      .filter(field -> enabledFilterFieldNames.contains(field.getName()))
+      .filter(field -> !field.isColumnDependent() || enabledFilterFieldNames.contains(field.getName()))
       .collect(Collectors.toList()));
 
     updateFilterLabels();

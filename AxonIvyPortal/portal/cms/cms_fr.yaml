@@ -2102,6 +2102,7 @@ Labels:
   Task: Tâche
   TaskItemDetail: Détails de la tâche
   TaskUser-Explain: Liste d’utilisateurs séparés par des virgules
+  TechnicalState: État technique
   ToggleMenu: Menu à bascule
   ViewAllResults: Voir tous les résultats
   disabledUserPrefix: (désactivé)

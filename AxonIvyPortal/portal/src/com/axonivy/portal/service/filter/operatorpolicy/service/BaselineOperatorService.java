@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
@@ -25,6 +26,7 @@ public class BaselineOperatorService implements Serializable {
   static {
     Map<String, Set<FilterOperator>> map = new HashMap<>();
     map.put(DashboardStandardTaskColumn.STATE.getField(), FilterOperator.STATE_OPERATORS);
+    map.put(BaseFilter.TECHNICAL_STATE, FilterOperator.STATE_OPERATORS);
     map.put(DashboardStandardTaskColumn.PRIORITY.getField(), FilterOperator.PRIORITY_OPERATORS);
     map.put(DashboardStandardTaskColumn.RESPONSIBLE.getField(), FilterOperator.RESPONSIBLE_OPERATORS);
     map.put(DashboardStandardTaskColumn.WORKER.getField(), FilterOperator.WORKER_OPERATORS);
