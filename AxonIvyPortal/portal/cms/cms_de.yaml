@@ -136,12 +136,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       FULL_MODE: Voller Modus
       IMAGE_MODE: Bild-Modus
     ProjectMode:
-      MISSING: Fehlt
+      ERROR: Fehler
       OK: OK
       OUTDATED: Veraltet
       TOO_NEW: Zu neu
       TOO_OLD: Zu alt
-      UNKNOWN: Unbekannt
+      RUNNABLE: Ausführbar
     ReleaseState:
       ARCHIVED: Archiviert
       CREATED: Erstellt
