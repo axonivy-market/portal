@@ -105,7 +105,8 @@ def main():
         'AxonIvyPortal/portal-selenium-test/customized_pom.xml',
         'AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml',
         'AxonIvyPortal/portal-selenium-test/deployment-pom.xml',
-        'Documentation/public-api/pom.xml'
+        'Documentation/public-api/pom.xml',
+        'build/schema/pom.xml'
     ]
     
     pom_files = []

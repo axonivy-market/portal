@@ -25,13 +25,12 @@ import com.axonivy.portal.dto.jsondefinition.PortalDashboardTemplate;
 import com.axonivy.portal.schema.generator.PortalSchemaGenerator;
 import com.axonivy.portal.schema.module.PortalJacksonSchemaModule;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.victools.jsonschema.generator.SchemaVersion;
 
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.node.ObjectNode;
 
 class TestPortalSchema {
-
-  private static final String SCHEMA_DRAFT = "https://json-schema.org/draft/2020-12/schema";
 
   private final PortalSchemaGenerator schemaGenerator = new PortalSchemaGenerator();
 
@@ -136,7 +135,7 @@ class TestPortalSchema {
   }
 
   private static void assertSchemaDraft(ObjectNode schema) {
-    assertThat(schema.get("$schema").asString()).isEqualTo(SCHEMA_DRAFT);
+    assertThat(schema.get("$schema").asString()).isEqualTo(SchemaVersion.DRAFT_2020_12.getIdentifier());
   }
 
   private static Set<String> beanPropertyNames(Class<?> type) throws IntrospectionException {
