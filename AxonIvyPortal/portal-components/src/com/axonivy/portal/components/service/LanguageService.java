@@ -21,7 +21,7 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 
 public class LanguageService {
-  private static LanguageService instance;
+  private static volatile LanguageService instance;
   private String DEFAULT_LOCALE_CODE = "en";
   
   public static LanguageService getInstance() {

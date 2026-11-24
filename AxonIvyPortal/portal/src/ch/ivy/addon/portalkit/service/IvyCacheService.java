@@ -16,7 +16,7 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class IvyCacheService {
   
-  private static IvyCacheService instance;
+  private static volatile IvyCacheService instance;
 
   private IvyCacheService() {}
 

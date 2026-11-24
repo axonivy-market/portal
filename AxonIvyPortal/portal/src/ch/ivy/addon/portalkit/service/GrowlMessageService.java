@@ -28,7 +28,7 @@ public class GrowlMessageService {
   public static final String PORTAL_GLOBAL_GROWL = "portal-global-growl";
   private static final String CASE_DETAILS = "/ch.ivy.addon.portalkit.ui.jsf/common/linkToCaseDetails";
 
-  private static GrowlMessageService instance;
+  private static volatile GrowlMessageService instance;
 
   private GrowlMessageService() {
   }

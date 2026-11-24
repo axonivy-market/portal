@@ -13,13 +13,17 @@ import ch.ivyteam.ivy.security.IUser;
 
 public class ExternalLinkService extends JsonConfigurationService<ExternalLink> {
   private static final String EXTERNAL_LINKS = PortalVariable.EXTERNAL_LINK.key;
-  private static ExternalLinkService instance;
+  private static volatile ExternalLinkService instance;
 
   private ExternalLinkService() {}
 
   public static ExternalLinkService getInstance() {
     if (instance == null) {
-      instance = new ExternalLinkService();
+      synchronized (ExternalLinkService.class) {
+        if (instance == null) {
+          instance = new ExternalLinkService();
+        }
+      }
     }
     return instance;
   }

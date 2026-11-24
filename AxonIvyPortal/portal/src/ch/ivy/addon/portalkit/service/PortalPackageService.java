@@ -75,13 +75,17 @@ public class PortalPackageService {
   private static final String PACKAGE_NAME = "Portal_Package.zip";
   public static final String ACCEPTED_FILE_TYPE = ".zip";
 
-  private static PortalPackageService instance;
+  private static volatile PortalPackageService instance;
 
   private PortalPackageService() {}
 
   public static PortalPackageService getInstance() {
     if (instance == null) {
-      instance = new PortalPackageService();
+      synchronized (PortalPackageService.class) {
+        if (instance == null) {
+          instance = new PortalPackageService();
+        }
+      }
     }
     return instance;
   }

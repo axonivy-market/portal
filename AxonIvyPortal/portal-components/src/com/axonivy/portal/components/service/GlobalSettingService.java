@@ -8,7 +8,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class GlobalSettingService {
 
-  private static GlobalSettingService instance;
+  private static volatile GlobalSettingService instance;
 
   private GlobalSettingService() {}
 

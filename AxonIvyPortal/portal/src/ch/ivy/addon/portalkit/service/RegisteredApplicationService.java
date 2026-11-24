@@ -8,13 +8,17 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 public class RegisteredApplicationService extends JsonConfigurationService<Application> {
 
   private static final String THIRD_PARTY_APPLICATIONS = PortalVariable.THIRD_PARTY_APP.key;
-  private static RegisteredApplicationService instance;
+  private static volatile RegisteredApplicationService instance;
 
   private RegisteredApplicationService() {}
 
   public static RegisteredApplicationService getInstance() {
     if (instance == null) {
-      instance = new RegisteredApplicationService();
+      synchronized (RegisteredApplicationService.class) {
+        if (instance == null) {
+          instance = new RegisteredApplicationService();
+        }
+      }
     }
     return instance;
   }
