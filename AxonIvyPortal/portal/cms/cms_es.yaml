@@ -72,6 +72,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectedDeputyFor: El usuario seleccionado es el sustituto de
     selectedUser: Usuario seleccionado
     substitutes: Sustitutos
+    duration: ''
   AccessibilityShortcuts:
     processName: Atajos de accesibilidad de widgets
   AllTasks:
