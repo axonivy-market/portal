@@ -198,7 +198,8 @@
             "import java.util.ArrayList;",
             "in.loopCounter = 0;",
             "in.maxResultNumberPerQuery = 100000;",
-            "in.collectedCasesForExporting = new ArrayList();"
+            "in.collectedCasesForExporting = new ArrayList();",
+            "in.caseSearchCriteria = in.caseLazyDataModel.getCriteria();"
           ]
         }
       },
