@@ -95,6 +95,10 @@ public class RelatedCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
     isFirstTime = true;
   }
 
+  public CaseSearchCriteria getCriteria() {
+    return criteria;
+  }
+
   private void setAdminQuery(boolean isAdminQuery) {
     criteria.extendStatesQueryByPermission(isAdminQuery);
   }

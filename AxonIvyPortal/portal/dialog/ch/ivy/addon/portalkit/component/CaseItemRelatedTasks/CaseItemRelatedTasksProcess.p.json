@@ -547,7 +547,8 @@
             "import java.util.ArrayList;",
             "in.loopCounter = 0;",
             "in.maxResultNumberPerQuery = 100000;",
-            "in.collectedTasksForExporting = new ArrayList();"
+            "in.collectedTasksForExporting = new ArrayList();",
+            "in.taskSearchCriteria = in.dataModel.getCriteria();"
           ]
         }
       },
