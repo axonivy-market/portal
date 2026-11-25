@@ -255,6 +255,9 @@ Other Permissions
  |           | left menu and link "Show all    |                                                                           |
  |           | processes" on Dashboard         |                                                                           |
  |           +---------------------------------+---------------------------------------------------------------------------+
+ |           | Access to the Dashboard         | :ref:`🔑AccessDashboard <AccessDashboard>`                                |
+ |           | menu and its dashboards         |                                                                           |
+ |           +---------------------------------+---------------------------------------------------------------------------+
  |           | Add note to task/case           | :ref:`🔑TaskCaseAddNote <TaskCaseAddNote>`                                |
  |           +---------------------------------+---------------------------------------------------------------------------+
  |           | Display show more note          | :ref:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`                      |

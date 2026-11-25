@@ -25,12 +25,14 @@
                   <div class="setting-header">
                     <p class="text-style-h5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/General')}</p>
                   </div>
-                  <p:outputLabel for="homepage" styleClass="user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage')}</p:outputLabel >
-                  <div class="ui-fluid">
-                    <p:selectOneMenu id="homepage" value="#{data.selectedHomepage}" converter="pojoConverter">
-                      <f:selectItems value="#{data.homepages}" var="homepage" itemValue="#{homepage}" itemLabel="#{homepage.label}" />
-                    </p:selectOneMenu>
-                  </div>
+                  <h:panelGroup layout="block" rendered="#{not empty data.homepages}">
+                    <p:outputLabel for="homepage" styleClass="user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage')}</p:outputLabel >
+                    <div class="ui-fluid">
+                      <p:selectOneMenu id="homepage" value="#{data.selectedHomepage}" converter="pojoConverter">
+                        <f:selectItems value="#{data.homepages}" var="homepage" itemValue="#{homepage}" itemLabel="#{homepage.label}" />
+                      </p:selectOneMenu>
+                    </div>
+                  </h:panelGroup>
                 </h:panelGroup>
 
                 <!-- Process List Setting -->

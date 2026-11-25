@@ -161,6 +161,10 @@ public class MainMenuPage extends TemplatePage {
     return isMenuItemDisplayed("Cases");
   }
 
+  public boolean isDashboardDisplayed() {
+    return isMenuItemDisplayed("Dashboard");
+  }
+
   public NewDashboardPage selectDashboardMenu() {
     $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
     WaitHelper.waitForNavigation(() -> $(By.cssSelector("li[id$='dashboard_0-parent-dashboard']"))

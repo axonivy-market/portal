@@ -797,6 +797,28 @@ Portal General Permissions
        | **Granted by default** | Yes - Role ``Everybody``                                    |     
        +------------------------+-------------------------------------------------------------+
 
+.. _AccessDashboard:
+
+   :ref:`🔑AccessDashboard <AccessDashboard>`
+       +------------------------+-------------------------------------------------------------+
+       | Field                  | Description                                                 |
+       +========================+=============================================================+
+       | **Type**               | Portal permission                                           |
+       +------------------------+-------------------------------------------------------------+
+       | **Category**           | Portal Page Access                                          |
+       +------------------------+-------------------------------------------------------------+
+       | **Description**        | Controls the visibility of the **Dashboard** entry in the   |
+       |                        | left navigation menu, including its public and private      |
+       |                        | dashboards. Without this permission the Dashboard menu      |
+       |                        | item is hidden and the Homepage falls back to another page. |
+       +------------------------+-------------------------------------------------------------+
+       | **Use case**           | Used to **hide the built-in Dashboard** for specific users  |
+       |                        | or roles, for example to let them work only with Tasks,     |
+       |                        | Cases or Processes.                                         |
+       +------------------------+-------------------------------------------------------------+
+       | **Granted by default** | Yes - Role ``Everybody``                                    |
+       +------------------------+-------------------------------------------------------------+
+
 
 .. _DashboardWriteOwn:
 
@@ -845,6 +867,8 @@ Portal General Permissions
 .. note::
    If a user is not granted either **DashboardWriteOwn** or **DashboardWritePublic** permission, 
    the **Dashboard configuration** menu option will be hidden from the user profile dropdown menu.
+
+   Private dashboards are only reachable through the Dashboard, so users also need :ref:`🔑AccessDashboard <AccessDashboard>` to manage them.
 
 .. _DashboardExportOwn:
 

@@ -6,6 +6,8 @@ Portal Configuration
 .. important::
    **Access Requirements**: The :guilabel:`Portal Configuration` sidebar entry is visible to users with at least one of the following permissions: :ref:`🔑DashboardWriteOwn <DashboardWriteOwn>`, :ref:`🔑DashboardWritePublic <DashboardWritePublic>`, :ref:`🔑PortalSidebarConfiguration <PortalSidebarConfiguration>`, or :ref:`🔑PortalPackageManagement <PortalPackageManagement>`. Each tab within the page is independently gated by its own permission — see the table below.
 
+   Private dashboards also require the :ref:`🔑AccessDashboard <AccessDashboard>` permission, because they are only reachable through the Dashboard entry.
+
 Portal Configuration provides centralized management of your personal and organization-wide dashboards, as well as the sidebar navigation menu.
 Access it through the :guilabel:`Portal Configuration` entry pinned to the bottom of the left sidebar navigation (see :ref:`axon-ivy-portal`).
 

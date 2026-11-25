@@ -122,7 +122,8 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   public boolean isNoDashboardAvailable() {
     // Dashboards are accessible but none is left for this page (e.g. all of them
     // were converted to main-dashboard menu entries) — not a permission problem.
-    return CollectionUtils.isNotEmpty(dashboards)
+    return PermissionUtils.checkAccessDashboardPermission()
+        && CollectionUtils.isNotEmpty(dashboards)
         && CollectionUtils.isEmpty(DashboardUtils.getDashboardsWithoutMenuItem());
   }
 
@@ -179,6 +180,11 @@ public class DashboardBean implements Serializable, IMultiLanguage {
 
   protected List<Dashboard> collectDashboards() {
     List<Dashboard> dashboards = DashboardUtils.collectDashboards();
+    if (!PermissionUtils.checkAccessDashboardPermission()) {
+      // Public SUB_MENU and private dashboards live under the Dashboard entry; MAIN_DASHBOARD, HIDDEN and
+      // drill-down dashboards keep their own permission checks.
+      dashboards.removeIf(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType()));
+    }
     Dashboard drillDownDashboard = retrieveDrillDownDashboard();
     if (drillDownDashboard != null) {
       dashboards.add(drillDownDashboard);

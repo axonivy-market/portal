@@ -15,6 +15,9 @@ showing tasks, cases, processes, and statistics.
 - Click **Dashboard** in the Portal navigation menu
 - Click the logo image at the top left of the header
 
+.. important::
+   **Access Requirement**: Only users with the :ref:`🔑AccessDashboard <AccessDashboard>` permission can see the :guilabel:`Dashboard` menu item.
+
 Available Widgets
 =================
 

@@ -106,6 +106,25 @@ public class PermissionUtils {
   }
 
   /**
+   * Check if current user has permission to access the built-in Dashboard
+   *
+   * @return true if user has permission to access the Dashboard
+   */
+  public static boolean checkAccessDashboardPermission() {
+    return hasPortalPermission(PortalPermission.ACCESS_DASHBOARD);
+  }
+
+  /**
+   * Check if current user can manage private dashboards. Private dashboards are only reachable through the
+   * Dashboard, so this requires both DashboardWriteOwn and AccessDashboard.
+   *
+   * @return true if user can manage private dashboards
+   */
+  public static boolean canManagePrivateDashboard() {
+    return checkAccessDashboardPermission() && hasDashboardWriteOwnPermission();
+  }
+
+  /**
    * Check if current user has permission to create public external link
    *
    * @return true if current user has permission to create public external link

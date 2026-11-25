@@ -262,7 +262,7 @@ public class UserMenuBean implements Serializable {
   
   public boolean isShowDashboardConfigurationMenu() {
     return !RequestUtils.isMobileDevice()
-        && (PermissionUtils.hasDashboardWriteOwnPermission() || PermissionUtils.hasDashboardWritePublicPermission() ||
+        && (PermissionUtils.canManagePrivateDashboard() || PermissionUtils.hasDashboardWritePublicPermission() ||
       PermissionUtils.hasPortalSidebarConfigurationPermission() || PermissionUtils.hasPortalPackageManagementPermission());
   }
 
