@@ -31,15 +31,35 @@ HowTo: Add a New Language to Portal
           absences: Assenze
           addAbsence: Aggiungi assenza
 
+#. **Translate the default dashboards**
+
+   The default task list and case list dashboards are not CMS entries. Portal creates them from built-in definitions with ``en``, ``de``, ``fr``, ``es`` and ``ja`` texts only,
+   and only if the **Portal.Dashboard** variable has no dashboard with the ID ``default-task-list-dashboard`` or ``default-case-list-dashboard``.
+   To provide ``it`` texts without editing Portal, define these dashboards yourself:
+
+   - In the **Portal.Dashboard** variable of your customization project, add dashboards with the IDs ``default-task-list-dashboard`` and ``default-case-list-dashboard``.
+   - Add an ``it`` entry to each ``titles`` array and to each widget ``names`` array.
+     See :ref:`customization-dashboards-customization` for the JSON structure.
+
+   .. code-block:: javascript
+
+      {
+        "id": "default-task-list-dashboard",
+        "titles": [
+          { "locale": "en", "value": "Tasks" },
+          { "locale": "it", "value": "Attività" }
+        ]
+      }
+
+   .. note::
+      The example is shortened. Copy the complete default definition (columns, layout, widgets) and add the ``it`` values.
+      Portal then uses your dashboards instead of the built-in ones.
+      Other dashboards and widgets you define need ``it`` values in the same way.
+
 #. **Deploy**
 
-   Deploy your project together with Portal, then open :guilabel:`My profile` in Portal and select the new language to verify the translations.
-
-.. warning::
-   This guide covers CMS content only. Some user-visible texts are not CMS entries: the default dashboard titles and widgets are defined in the ``portal/config/variables/`` JSON files and in ``DefaultDashboardUtils.java``,
-   which contain locale/value pairs only for ``en``, ``de``, ``fr``, ``es`` and ``ja``.
-   Without further changes, users can select the new language but the default dashboards remain in a fallback language.
-   To translate them too, follow all steps in :ref:`settings-language`.
+   Deploy your customization project to the **same application** as Portal. Portal reads CMS entries and variables only from projects of its own application.
+   Then open :guilabel:`My profile` in Portal and select the new language to verify the translations.
 
 .. tip::
    Content Objects without a value in the new language are displayed in the default language.
