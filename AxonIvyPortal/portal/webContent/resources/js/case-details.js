@@ -72,27 +72,44 @@ function getReservedHeightForCaseDetailsTableBody(tableBody) {
   return widgetHeader + scrollableHeader + scrollableFooter;
 }
 
+function updateCaseDetailsTableBodyHeight(tableBody) {
+  const parentHeight = getCaseDetailsCard(tableBody).height();
+  if (!parentHeight) {
+    return;
+  }
+
+  const targetHeight = Math.max(0, Math.round(parentHeight - getReservedHeightForCaseDetailsTableBody(tableBody)));
+  if (Math.round(tableBody.height()) !== targetHeight) {
+    tableBody.css({'height': targetHeight, 'max-height': targetHeight});
+  }
+  loadMoreCaseDetailsRowsWhenNotEnough(tableBody);
+}
+
 let caseDetailsTableResizeObserver;
 function resizeCaseDetailsTableBody() {
   if (!caseDetailsTableResizeObserver) {
     caseDetailsTableResizeObserver = new ResizeObserver(entries => {
       requestAnimationFrame(() => {
+        // The body has a fixed pixel height, so a vertical resize of the card alone does not
+        // resize the body. Both the card and its bodies are observed; collect the distinct
+        // bodies affected and recalculate each one once.
+        const tableBodies = new Set();
         entries.forEach(entry => {
-          const tableBody = $(entry.target);
-          const parentHeight = getCaseDetailsCard(tableBody).height();
-          if (!parentHeight) {
-            return;
+          if (entry.target.classList.contains('case-detail-card')) {
+            entry.target.querySelectorAll('.ui-datatable-scrollable-body').forEach(body => tableBodies.add(body));
+          } else {
+            tableBodies.add(entry.target);
           }
-
-          const targetHeight = Math.max(0, Math.round(parentHeight - getReservedHeightForCaseDetailsTableBody(tableBody)));
-          if (Math.round(tableBody.height()) !== targetHeight) {
-            tableBody.css({'height': targetHeight, 'max-height': targetHeight});
-          }
-          loadMoreCaseDetailsRowsWhenNotEnough(tableBody);
         });
+        tableBodies.forEach(body => updateCaseDetailsTableBodyHeight($(body)));
       });
     });
   }
+  document.querySelectorAll('.case-detail-card').forEach(card => {
+    if (card.querySelector('.ui-datatable-scrollable-body')) {
+      caseDetailsTableResizeObserver.observe(card);
+    }
+  });
   document.querySelectorAll('.case-detail-card .ui-datatable-scrollable-body').forEach(scrollableBody => {
     caseDetailsTableResizeObserver.observe(scrollableBody);
   });
