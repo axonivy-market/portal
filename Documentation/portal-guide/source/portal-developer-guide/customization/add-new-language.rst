@@ -34,7 +34,8 @@ HowTo: Add a New Language to Portal
 
      |cms-language-browser-search|
 
-   - Check the new language and click :guilabel:`Save`.
+   - Click :guilabel:`Save`. You do not need to select the new language as the displayed language here.
+     You can choose it later in :guilabel:`My Profile` in Portal.
 
      |cms-language-manager-select-italian|
 
@@ -50,7 +51,7 @@ HowTo: Add a New Language to Portal
 
 #. **Deploy**
 
-   Deploy your project together with Portal, then select the new language in the user settings to verify the translations.
+   Deploy your project together with Portal, then select the new language in :guilabel:`My Profile` to verify the translations.
 
 .. tip::
    Content Objects without a value in the new language are displayed in the default language.
