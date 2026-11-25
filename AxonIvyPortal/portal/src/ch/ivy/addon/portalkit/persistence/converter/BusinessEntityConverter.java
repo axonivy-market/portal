@@ -11,8 +11,10 @@ import com.axonivy.portal.components.dto.JsonListWrapper;
 
 import ch.ivy.addon.portalkit.bo.PortalJsonViews;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
+import ch.ivy.addon.portalkit.util.PortalSchemaUtils;
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.DeserializationFeature;
 import tools.jackson.databind.JavaType;
@@ -49,7 +51,7 @@ public class BusinessEntityConverter {
   
   private static String objectEntityToJsonValueExcludeInternalView(Object entity) {
     try {
-      return getObjectMapper().writerWithView(PortalJsonViews.Public.class).writeValueAsString(wrapIfList(entity));
+      return getObjectMapper().writerWithView(PortalJsonViews.Public.class).withDefaultPrettyPrinter().writeValueAsString(wrapIfList(entity));
     } catch (JacksonException e) {
       throw new PortalException(e);
     }
@@ -62,8 +64,16 @@ public class BusinessEntityConverter {
    * fallback. Non-list entities pass through unchanged.
    */
   private static Object wrapIfList(Object entity) {
+    return wrapIfList(entity, StringUtils.EMPTY);
+  }
+
+  /**
+   * Same as {@link #wrapIfList(Object)}, but also sets the {@code $schema} of the wrapper.
+   * An empty schema is not written to the JSON.
+   */
+  private static Object wrapIfList(Object entity, String schema) {
     if (entity instanceof List<?> list) {
-      return new JsonListWrapper<>(JsonListWrapper.FORMAT_VERSION, list);
+      return new JsonListWrapper<>(JsonListWrapper.FORMAT_VERSION, list, schema);
     }
     return entity;
   }
@@ -247,9 +257,25 @@ public class BusinessEntityConverter {
     }
   }
 
+  /**
+   * Serializes the entity of the given Portal variable key. A list is wrapped as
+   * {@code {"$schema": ..., "version": ..., "items": [...]}}. The {@code $schema} is written only
+   * when the variable has a {@code PortalSchema}. Dashboards are cleaned of default values first.
+   */
+  public static String entityToJsonValueForVariable(Object entity, String variableKey) {
+    if (PortalVariable.DASHBOARD.key.equals(variableKey) && entity instanceof List<?> list) {
+      DashboardUtils.updatePropertiesToNullIfCurrentValueIsDefaultValue(
+          list.stream().filter(Dashboard.class::isInstance).map(Dashboard.class::cast).toList());
+    }
+    try {
+      return getObjectMapper().writeValueAsString(wrapIfList(entity, PortalSchemaUtils.schemaFor(variableKey)));
+    } catch (JacksonException e) {
+      throw new PortalException(e);
+    }
+  }
+
   public static String entityToJsonValue(List<Dashboard> dashboards) {
-    DashboardUtils.updatePropertiesToNullIfCurrentValueIsDefaultValue(dashboards);
-    return entityToJsonValue(dashboards, JsonListWrapper.FORMAT_VERSION);
+    return entityToJsonValueForVariable(dashboards, PortalVariable.DASHBOARD.key);
   }
 
   public static String prettyPrintEntityToJsonValue(List<Dashboard> dashboards) {

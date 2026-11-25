@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -18,6 +19,7 @@ public class DashboardTemplate extends AbstractConfiguration implements Serializ
   private List<DisplayName> titles;
   private List<DisplayName> descriptions;
   private String icon;
+  @JsonPropertyDescription("Dashboard configuration, including widgets, layout, and access permissions.")
   private Dashboard dashboard;
 
   @JsonIgnore

@@ -145,11 +145,11 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
   public abstract String getConfigKey();
 
   protected void savePublicConfig(Object object) {
-    Ivy.var().set(getConfigKey(), BusinessEntityConverter.entityToJsonValue(object));
+    Ivy.var().set(getConfigKey(), BusinessEntityConverter.entityToJsonValueForVariable(object, getConfigKey()));
   }
 
   protected void savePrivateConfig(Object object) {
-    sessionUser().setProperty(getConfigKey(), BusinessEntityConverter.entityToJsonValue(object));
+    sessionUser().setProperty(getConfigKey(), BusinessEntityConverter.entityToJsonValueForVariable(object, getConfigKey()));
   }
 
   protected IUser sessionUser() {

@@ -233,6 +233,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: 処理／タスクをIFrameモードで開始
     emptySupportedLanguages: 追加の言語はサポートされていません
     globalVariableNote:
+      schemaBaseUrlDescription: ポータルのJSONスキーマが公開されているベースURL。
       AppleStoreURL: Apple Store で Axon Ivy モバイル アプリをダウンロードするための URL を設定します。
       ApplicationName: ページタイトルに表示されるアプリケーション名。
       BaseQRCodeUrl: 表示するQRコードのベースURLを設定します。

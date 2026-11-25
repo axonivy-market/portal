@@ -1,0 +1,76 @@
+package com.axonivy.portal.schema.module;
+
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+
+import com.axonivy.portal.bo.Statistic;
+import com.github.victools.jsonschema.generator.FieldScope;
+import com.github.victools.jsonschema.generator.MemberScope;
+import com.github.victools.jsonschema.generator.MethodScope;
+import com.github.victools.jsonschema.module.jackson.JacksonOption;
+import com.github.victools.jsonschema.module.jackson.JacksonSchemaModule;
+
+import ch.ivy.addon.portalkit.dto.WidgetLayout;
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+
+public class PortalJacksonSchemaModule extends JacksonSchemaModule {
+
+  // properties hidden from the schema (e.g. internal or deprecated fields), per class
+  public static final Map<Class<?>, Set<String>> EXCLUDED_PROPERTIES =
+      Map.of(
+          ColumnModel.class, Set.of("filter", "filterFrom", "filterList", "filterTo"),
+          DashboardWidget.class, Set.of("name"),
+          WidgetLayout.class, Set.of("id"),
+          Statistic.class, Set.of("canDrillDown", "additionalConfigs"));
+
+  public PortalJacksonSchemaModule() {
+    super(
+        JacksonOption.ALWAYS_REF_SUBTYPES,           // put every widget subtype (@JsonSubTypes) in $defs and reference it with $ref, instead of inlining it
+        JacksonOption.FLATTENED_ENUMS_FROM_JSONVALUE,// use the @JsonValue of an enum as its schema value (e.g. "today"), the same value Jackson writes to JSON
+        JacksonOption.RESPECT_JSONPROPERTY_REQUIRED);// add properties marked @JsonProperty(required = true) to the "required" list
+  }
+
+  // keep only public, no-arg getters that Jackson actually serializes
+  @Override
+  protected boolean shouldIgnoreMethod(MethodScope method) {
+    if (!method.isPublic() || method.getArgumentCount() != 0 || super.shouldIgnoreMethod(method) || isExcluded(method)) {
+      return true;
+    }
+
+    var targetType =
+        method.getDeclarationDetails().getSchemaTargetType();
+
+    var beanDescription = getBeanDescriptionForClass(targetType);
+
+    return beanDescription.findProperties().stream()
+        .filter(property -> property.couldSerialize())
+        .map(property -> property.getGetter())
+        .filter(Objects::nonNull)
+        .noneMatch(getter -> getter.getAnnotated().equals(method.getRawMember()));
+  }
+
+  // skip fields that are listed in EXCLUDED_PROPERTIES
+  @Override
+  protected boolean shouldIgnoreField(FieldScope field) {
+    return super.shouldIgnoreField(field) || isExcluded(field) || isDeprecated(field);
+  }
+
+  private boolean isExcluded(MemberScope<?, ?> member) {
+    Class<?> targetClass =
+        member.getDeclarationDetails()
+            .getSchemaTargetType()
+            .getErasedType();
+
+    String propertyName = member.getSchemaPropertyName();
+
+    return EXCLUDED_PROPERTIES.entrySet().stream()
+        .anyMatch(entry -> entry.getKey().isAssignableFrom(targetClass)
+            && entry.getValue().contains(propertyName));
+  }
+
+  private boolean isDeprecated(MemberScope<?, ?> member) {
+    return member.getAnnotationConsideringFieldAndGetterIfSupported(Deprecated.class) != null;
+  }
+}

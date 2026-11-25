@@ -233,6 +233,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Start a process/task in IFrame mode
     emptySupportedLanguages: No additional languages are supported
     globalVariableNote:
+      schemaBaseUrlDescription: Base URL where Portal JSON schemas are published.
       AppleStoreURL: Set URL to download Axon Ivy mobile app on Apple Store.
       ApplicationName: The application name that will be displayed on the page title.
       BaseQRCodeUrl: Set Base URL for QR code to display.
