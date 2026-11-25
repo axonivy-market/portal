@@ -10,6 +10,16 @@
   <artifactId>portal-pages</artifactId>
   <packaging>pom</packaging>
 
+  <repositories>
+    <repository>
+      <id>axonivy-releases</id>
+      <url>https://maven.axonivy.com</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+  </repositories>
+
   <properties>
     <portal12.version>12.0.19</portal12.version>
     <portal14.version>14.0.1.2</portal14.version>
@@ -46,6 +56,38 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.11.0</version>
+        <executions>
+          <execution>
+            <id>unpack-release-documentation</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.axonivy.portal</groupId>
+                  <artifactId>portal-guide</artifactId>
+                  <version>${portal12.version}</version>
+                  <type>zip</type>
+                  <outputDirectory>${pages.directory}/release/12.0</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>com.axonivy.portal</groupId>
+                  <artifactId>portal-guide</artifactId>
+                  <version>${portal14.version}</version>
+                  <type>zip</type>
+                  <outputDirectory>${pages.directory}/release/14.0</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
@@ -75,7 +117,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-enforcer-plugin</artifactId>
-            <version>3.6.3</version>
+            <version>3.7.0</version>
             <executions>
               <execution>
                 <id>require-development-snapshot</id>

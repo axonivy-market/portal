@@ -3301,9 +3301,11 @@
         "signature" : "TaskDetailsLink",
         "input" : {
           "params" : [
-            { "name" : "uuid", "type" : "String", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" },
+            { "name" : "taskDetailsId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
+            "out.taskId" : "param.taskDetailsId",
             "out.uuid" : "param.uuid"
           }
         },
@@ -3332,9 +3334,11 @@
         "signature" : "CaseDetailsLink",
         "input" : {
           "params" : [
-            { "name" : "uuid", "type" : "String", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" },
+            { "name" : "caseId", "type" : "Long", "desc" : "" }
           ],
           "map" : {
+            "out.caseId" : "param.caseId",
             "out.uuid" : "param.uuid"
           }
         },
@@ -3420,12 +3424,25 @@
       "config" : {
         "output" : {
           "code" : [
-            "import org.apache.commons.lang3.ObjectUtils;",
+            "import org.apache.commons.lang3.StringUtils;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "import ch.ivyteam.ivy.environment.Ivy;",
+            "import ch.ivyteam.ivy.workflow.ICase;",
             "",
-            "in.caseSelected = CaseService.newInstance().findCaseByUUID(in.uuid);"
+            "if (StringUtils.isNotBlank(in.uuid)) {",
+            "  in.caseSelected = CaseService.newInstance().findCaseByUUID(in.uuid);",
+            "} else if (in.caseId != null) {",
+            "  ICase caze = Ivy.wf().findCase(in.caseId);",
+            "  if (caze != null) {",
+            "    in.caseSelected = CaseService.newInstance().findCaseByUUID(caze.uuid());",
+            "  }",
+            "}",
+            "if (in.caseSelected != null) {",
+            "  in.uuid = in.caseSelected.uuid();",
+            "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 332, "y" : 3672 },
@@ -3474,7 +3491,7 @@
           "connect" : [
             { "id" : "S73-f1", "to" : "S73-g1", "label" : {
                 "name" : "Yes"
-              }, "condition" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.taskId)" },
+              }, "condition" : "in.#taskSelected is initialized" },
             { "id" : "S73-f183", "to" : "S73-f182", "label" : {
                 "name" : "No",
                 "segment" : 0.39
@@ -3539,11 +3556,26 @@
       "config" : {
         "output" : {
           "code" : [
-            "import org.apache.commons.lang3.ObjectUtils;",
+            "import org.apache.commons.lang3.StringUtils;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
-            "in.taskSelected = TaskService.newInstance().findTaskByUUID(in.uuid);"
+            "import ch.ivyteam.ivy.environment.Ivy;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "",
+            "if (StringUtils.isNotBlank(in.uuid)) {",
+            "  in.taskSelected = TaskService.newInstance().findTaskByUUID(in.uuid);",
+            "} else if (in.taskId != null) {",
+            "  ITask task = Ivy.wf().findTask(in.taskId);",
+            "  if (task != null) {",
+            "    in.taskSelected = TaskService.newInstance().findTaskByUUID(task.uuid());",
+            "  }",
+            "}",
+            "if (in.taskSelected != null) {",
+            "  in.uuid = in.taskSelected.uuid();",
+            "  in.taskId = in.taskSelected.getId();",
+            "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 332, "y" : 3488 },
