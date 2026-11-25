@@ -35,6 +35,12 @@ HowTo: Add a New Language to Portal
 
    Deploy your project together with Portal, then open :guilabel:`My profile` in Portal and select the new language to verify the translations.
 
+.. warning::
+   This guide covers CMS content only. Some user-visible texts are not CMS entries: the default dashboard titles and widgets are defined in the ``portal/config/variables/`` JSON files and in ``DefaultDashboardUtils.java``,
+   which contain locale/value pairs only for ``en``, ``de``, ``fr``, ``es`` and ``ja``.
+   Without further changes, users can select the new language but the default dashboards remain in a fallback language.
+   To translate them too, follow all steps in :ref:`settings-language`.
+
 .. tip::
    Content Objects without a value in the new language are displayed in the default language.
    Translate all entries that users see before you release the language.
