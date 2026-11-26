@@ -20,6 +20,7 @@ import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
@@ -198,12 +199,14 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
                 ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "dashboard");
 
                 homePage.openWidgetActionsMenu(0);
+                Sleeper.sleep(500); // Explicitly wait for better screenshots
                 ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getDashboardWidget(0),
                                 ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-actions-menu-panel",
                                 new ScreenshotMargin(20, 300, 20, 20));
                 homePage.closeWidgetActionsMenu(0);
 
                 homePage.openWidgetActionsMenu(1);
+                Sleeper.sleep(500); // Explicitly wait for better screenshots
                 ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getDashboardWidget(1),
                                 ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-widget-actions-menu-panel",
                                 new ScreenshotMargin(20, 300, 20, 20));
@@ -531,6 +534,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
                 var taskConfigPanel = taskConfigurationPage.getWidgetConfigurationPanel();
                 taskConfigPanel.$("div[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
                 taskConfigurationPage.waitUntilElementToBeClickable(taskConfigPanel);
+                Sleeper.sleep(500); // Explicitly wait for better screenshots
                 ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskConfigPanel,
                                 ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-configuration-panel", new ScreenshotMargin(200));
                 taskConfigurationPage.closeConfigurationDialog();
@@ -542,6 +546,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
                 var caseConfigPanel = caseConfigurationPage.getWidgetConfigurationPanel();
                 caseConfigPanel.$("div[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
                 caseConfigurationPage.waitUntilElementToBeClickable(caseConfigPanel);
+                Sleeper.sleep(500); // Explicitly wait for better screenshots
                 ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigPanel,
                                 ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-widget-configuration-panel", new ScreenshotMargin(200));
         }

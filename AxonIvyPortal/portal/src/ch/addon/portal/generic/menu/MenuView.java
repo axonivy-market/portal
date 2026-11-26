@@ -221,10 +221,13 @@ public class MenuView implements Serializable {
       }
       kind = MenuKind.PROCESS_LIST;
     }
+    String url = kind == MenuKind.PROCESS_LIST
+        ? PortalNavigator.getSubMenuItemUrlOfCurrentApplication(kind)
+        : "#";
     return new PortalMenuBuilder(Ivy.cms().co(type.getCmsUri()), kind, isWorkingOnATask)
         .icon(buildIconClass(std.getIcon()))
         .onClick(type.getOnClick())
-        .url("#")
+        .url(url)
         .workingTaskId(workingTaskId)
         .build();
   }

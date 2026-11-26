@@ -1,7 +1,6 @@
 package com.axonivy.portal.bo;
 
 import java.io.Serializable;
-
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -18,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import ch.ivy.addon.portalkit.bo.PortalJsonViews;
@@ -33,14 +33,20 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private static final long serialVersionUID = -8416553636564399910L;
   public static final String DEFAULT_ICON = "ti-chart-pie";
   private String aggregates;
+  @JsonPropertyDescription("Defines how data is grouped and calculated.")
+  @JsonProperty(required = true)
   private StatisticAggregation statisticAggregation;
   private String filter;
   private List<DashboardFilter> filters;
   private List<String> permissions;
+  @JsonProperty(required = true)
   private ChartTarget chartTarget;
+  @JsonProperty(required = true)
   private ChartType chartType;
   private String icon;
+  @JsonPropertyDescription("Auto-refresh interval in seconds.")
   private Integer refreshInterval; // in seconds
+  @JsonProperty(required = true)
   private List<DisplayName> names;
   private List<DisplayName> descriptions;
   private BarChartConfig barChartConfig;
@@ -58,12 +64,14 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private Boolean isCustom;
   @JsonIgnore
   private List<SecurityMemberDTO> permissionDTOs;
+  @JsonPropertyDescription("Apply dynamic coloring rules to your charts based on data conditions.")
   private List<ThresholdStatisticChart> thresholdStatisticCharts;
   private String defaultBackgroundColor;
   private boolean conditionBasedColoringEnabled;
   private ConditionBasedColoringScope conditionBasedColoringScope;
+  @JsonPropertyDescription("Enable drill-down functionality for interactive data exploration.")
   private boolean chartDrillDownEnabled;
-  
+
   public Statistic() {
     icon = DEFAULT_ICON;
     isCustom = true;
@@ -248,7 +256,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   public void setStatisticAggregation(StatisticAggregation statisticAggregation) {
     this.statisticAggregation = statisticAggregation;
   }
-  
+
   public List<ThresholdStatisticChart> getThresholdStatisticCharts() {
     return thresholdStatisticCharts;
   }

@@ -137,12 +137,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       FULL_MODE: Full mode
       IMAGE_MODE: Image mode
     ProjectMode:
-      MISSING: Missing
+      ERROR: Error
       OK: OK
       OUTDATED: Outdated
       TOO_NEW: Too new
       TOO_OLD: Too old
-      UNKNOWN: Unknown
+      RUNNABLE: Runnable
     ReleaseState:
       ARCHIVED: Archived
       CREATED: Created
@@ -233,6 +233,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Start a process/task in IFrame mode
     emptySupportedLanguages: No additional languages are supported
     globalVariableNote:
+      schemaBaseUrlDescription: Base URL where Portal JSON schemas are published.
       AppleStoreURL: Set URL to download Axon Ivy mobile app on Apple Store.
       ApplicationName: The application name that will be displayed on the page title.
       BaseQRCodeUrl: Set Base URL for QR code to display.

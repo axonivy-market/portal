@@ -10,6 +10,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.widget.DashboardCustomWidgetData;
@@ -24,7 +26,10 @@ import ch.ivyteam.ivy.workflow.start.StartParameter;
 public class CustomDashboardWidget extends DashboardWidget {
   private static final long serialVersionUID = 6901163427361921809L;
 
+  @JsonPropertyDescription("Custom widget content definition")
+  @JsonProperty(required = true)
   private DashboardCustomWidgetData data;
+  @JsonPropertyDescription("Text displayed in the widget information panel. If omitted or empty, the information control is hidden.")
   private String info;
   @JsonIgnore
   private String errorMessage;

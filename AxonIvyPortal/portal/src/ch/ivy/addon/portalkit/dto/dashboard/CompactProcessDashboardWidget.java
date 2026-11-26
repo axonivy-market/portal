@@ -10,6 +10,7 @@ import org.apache.commons.lang3.BooleanUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.ProcessSorting;
@@ -26,6 +27,9 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
 
   private static final long serialVersionUID = 1L;
 
+  @JsonPropertyDescription("IWebStartable identifiers of specific processes to display. "
+      + "Takes precedence over categories. "
+      + "If neither processPaths nor categories is configured, all available processes are displayed.")
   private List<String> processPaths;
   @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ExcludeAlphabeticalSorting.class)
   protected String sorting;
@@ -99,6 +103,9 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
     this.criteria.setSelectedAllProcess(isSelectedAllProcess);
   }
 
+  @JsonPropertyDescription("CMS URIs of process categories to display. "
+      + "Used when processPaths is not configured. "
+      + "If neither categories nor processPaths is configured, all available processes are displayed.")
   public List<String> getCategories() {
     return this.criteria.getCategories();
   }

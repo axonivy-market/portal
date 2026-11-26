@@ -5,7 +5,11 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Objects;
 
-import ch.ivyteam.ivy.environment.Ivy;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import tools.jackson.databind.JsonNode;
 
 /**
@@ -28,10 +32,12 @@ import tools.jackson.databind.JsonNode;
  *
  * @param <T> the type of elements in the wrapped list
  */
+@JsonPropertyOrder({"$schema", "version", "items"})
 public class JsonListWrapper<T> {
 
   public static final String VERSION_FIELD_NAME = "version";
   public static final String ITEMS_FIELD_NAME = "items";
+  public static final String SCHEMA_FIELD_NAME = "$schema";
 
   /**
    * Version of this wrapper's own JSON <em>collection format</em> - i.e. the shape
@@ -47,13 +53,20 @@ public class JsonListWrapper<T> {
 
   private String version;
   private List<T> items;
+  private String schema;
 
-  public JsonListWrapper() {
-  }
+  public JsonListWrapper() {}
 
   public JsonListWrapper(String version, List<T> items) {
     this.version = version;
     this.items = items;
+    clearItemVersions();
+  }
+
+  public JsonListWrapper(String version, List<T> items, String schema) {
+    this.version = version;
+    this.items = items;
+    this.schema = schema;
     clearItemVersions();
   }
 
@@ -81,11 +94,10 @@ public class JsonListWrapper<T> {
       try {
         Method setVersion = item.getClass().getMethod("setVersion", String.class);
         setVersion.invoke(item, (String) null);
-      } catch (NoSuchMethodException ignored) {
+      } catch (NoSuchMethodException e) {
         // This item type has no per-item "version" property - nothing to clear.
       } catch (IllegalAccessException | InvocationTargetException e) {
         // Unexpected - don't fail the whole export/serialization over this.
-        Ivy.log().warn("Cannot clear version of {0}", e, item.getClass().getName());
       }
     }
   }
@@ -116,6 +128,16 @@ public class JsonListWrapper<T> {
     this.items = items;
   }
 
+  @JsonProperty("$schema")
+  @JsonInclude(Include.NON_EMPTY)
+  public String getSchema() {
+    return this.schema;
+  }
+
+  public void setSchema(String schema) {
+    this.schema = schema;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -124,16 +146,16 @@ public class JsonListWrapper<T> {
     if (!(o instanceof JsonListWrapper<?> other)) {
       return false;
     }
-    return Objects.equals(version, other.version) && Objects.equals(items, other.items);
+    return Objects.equals(schema, other.schema) && Objects.equals(version, other.version) && Objects.equals(items, other.items);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(version, items);
+    return Objects.hash(schema, version, items);
   }
 
   @Override
   public String toString() {
-    return getClass().getSimpleName() + "{version='" + version + "', items=" + items + "}";
+    return getClass().getSimpleName() + "{schema='" + schema + "', version='" + version + "', items=" + items + "}";
   }
 }
