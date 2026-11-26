@@ -33,7 +33,11 @@ if [[ "$property_count" -ne 1 ]]; then
     exit 1
 fi
 
-guide_url="https://maven.axonivy.com/com/axonivy/portal/portal-guide/${artifact_version}/portal-guide-${artifact_version}.zip"
+group_path=com/axonivy/portal
+if [[ "$release_line" == 10.0 ]]; then
+    group_path=ch/ivyteam/ivy/project/portal
+fi
+guide_url="https://maven.axonivy.com/$group_path/portal-guide/$artifact_version/portal-guide-$artifact_version.zip"
 archive_file=$(mktemp)
 trap 'rm -f "$archive_file"' EXIT
 curl --fail --location --retry 3 "$guide_url" --output "$archive_file"

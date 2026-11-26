@@ -7,7 +7,8 @@ version=$(jq -er '.["10.0"] | select(test("^10\\.0\\.[0-9]+(\\.[0-9]+)?$"))' "$s
 archive=$(mktemp)
 trap 'rm -f "$archive"' EXIT
 
-# The published LTS10 POM has an unresolved ${revision} parent. Fetch the ZIP directly.
+# LTS10 uses the legacy group ID ch.ivyteam.ivy.project.portal, unlike 12.0 and 14.0.
+# The pinned release POM has an unresolved ${revision} parent. Fetch the ZIP directly.
 guide_url=https://maven.axonivy.com/ch/ivyteam/ivy/project/portal/portal-guide
 curl --fail --location --retry 3 "$guide_url/$version/portal-guide-$version.zip" --output "$archive"
 python3 -m zipfile -e "$archive" "$site_directory/release/10.0"
