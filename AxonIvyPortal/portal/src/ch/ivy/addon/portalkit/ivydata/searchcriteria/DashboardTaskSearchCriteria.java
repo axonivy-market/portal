@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -50,6 +51,7 @@ public class DashboardTaskSearchCriteria {
     TaskSortingQueryAppender appender = new TaskSortingQueryAppender(query);
     query = appender.appendSorting(this).toQuery();
     appendQuickSearchQuery(query);
+    ch.ivyteam.ivy.environment.Ivy.log().warn("[QUERYDIFF][TASK] sortField=" + sortField + " desc=" + sortDescending + " query=" + query); // TEMP-QUERYDIFF
     return query;
   }
 
@@ -340,6 +342,9 @@ public class DashboardTaskSearchCriteria {
       DashboardColumnFormat format =
           columns.stream().filter(c -> Strings.CI.equals(sortField, c.getField()))
               .map(ColumnModel::getFormat).findFirst().orElse(DashboardColumnFormat.STRING);
+      if (isAlwaysNullByEmptyFilter(sortField, format)) {
+        return;
+      }
       final ICustomFieldOrderBy customField = query.orderBy().customField();
 
       switch (format) {
@@ -356,6 +361,23 @@ public class DashboardTaskSearchCriteria {
             order = customField.stringField(sortField);
           }
       }
+    }
+
+    /**
+     * An EMPTY filter on a number/timestamp task custom field produces a pure IS NULL condition.
+     * Since dashboard filters are ANDed, every result row is NULL on that field, so ordering by it
+     * has no effect. Skipping the ORDER BY lets the engine optimize the IS NULL query.
+     */
+    private boolean isAlwaysNullByEmptyFilter(String field, DashboardColumnFormat format) {
+      if (format != DashboardColumnFormat.NUMBER && format != DashboardColumnFormat.TIMESTAMP) {
+        return false;
+      }
+      return CollectionUtils.union(Optional.ofNullable(filters).orElse(List.of()),
+          Optional.ofNullable(userFilters).orElse(List.of())).stream()
+          .filter(Objects::nonNull)
+          .anyMatch(filter -> filter.getOperator() == FilterOperator.EMPTY
+              && filter.getFilterType() == DashboardColumnType.CUSTOM
+              && Strings.CI.equals(field, filter.getField()));
     }
   }
 

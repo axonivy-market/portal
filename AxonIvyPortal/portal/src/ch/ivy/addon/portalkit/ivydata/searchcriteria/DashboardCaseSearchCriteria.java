@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -46,6 +47,7 @@ public class DashboardCaseSearchCriteria {
     CaseQuery query = buildQueryWithoutOrderByClause();
     CaseSortingQueryAppender appender = new CaseSortingQueryAppender(query);
     query = appender.appendSorting(this).toQuery();
+    ch.ivyteam.ivy.environment.Ivy.log().warn("[QUERYDIFF][CASE] sortField=" + sortField + " desc=" + sortDescending + " query=" + query); // TEMP-QUERYDIFF
     return query;
   }
 
@@ -272,6 +274,9 @@ public class DashboardCaseSearchCriteria {
         .map(ColumnModel::getFormat)
         .findFirst()
         .orElse(DashboardColumnFormat.STRING);
+    if (isAlwaysNullByEmptyFilter(sortField, format)) {
+      return;
+    }
     final ICustomFieldOrderBy customField = query.orderBy().customField();
     
     switch (format) {
@@ -290,6 +295,23 @@ public class DashboardCaseSearchCriteria {
         break;
     }
 }
+
+  /**
+   * An EMPTY filter on a number/timestamp case custom field produces a pure IS NULL condition.
+   * Since dashboard filters are ANDed, every result row is NULL on that field, so ordering by it
+   * has no effect. Skipping the ORDER BY lets the engine optimize the IS NULL query.
+   */
+  private boolean isAlwaysNullByEmptyFilter(String field, DashboardColumnFormat format) {
+    if (format != DashboardColumnFormat.NUMBER && format != DashboardColumnFormat.TIMESTAMP) {
+      return false;
+    }
+    return CollectionUtils.union(Optional.ofNullable(filters).orElse(List.of()),
+        Optional.ofNullable(userFilters).orElse(List.of())).stream()
+        .filter(Objects::nonNull)
+        .anyMatch(filter -> filter.getOperator() == FilterOperator.EMPTY
+            && filter.getFilterType() != DashboardColumnType.STANDARD
+            && Strings.CI.equals(field, filter.getField()));
+  }
 }
 
   public List<CaseColumnModel> getColumns() {

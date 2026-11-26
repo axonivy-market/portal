@@ -17,9 +17,7 @@ public class CustomTimestampEmptyOperatorHandler {
   }
 
   public CaseQuery buildEmptyQuery(DashboardFilter filter) {
-    CaseQuery query = initCaseQuery(filter.getFilterType());
-    query.where().not(CaseQuery.create().where().customField().timestampField(filter.getField()).isNotNull());
-    return query;
+    return initCaseQuery(filter.getFilterType()).where().customField().timestampField(filter.getField()).isNull();
   }
 
   public CaseQuery buildNotEmptyQuery(DashboardFilter filter) {

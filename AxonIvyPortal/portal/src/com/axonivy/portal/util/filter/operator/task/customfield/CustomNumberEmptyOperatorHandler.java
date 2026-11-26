@@ -17,7 +17,7 @@ public class CustomNumberEmptyOperatorHandler {
 
   public TaskQuery buildEmptyQuery(DashboardFilter filter) {
     TaskQuery query = TaskQuery.create();
-    query.where().not(TaskQuery.create().where().customField().numberField(filter.getField()).isNotNull());
+    query.where().customField().numberField(filter.getField()).isNull();
     return query;
   }
 
