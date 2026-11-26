@@ -5,7 +5,7 @@ The code and configuration below define how assembly and publication work.
 
 ## Local preview
 
-Requires Bash, Java, Maven, and Python 3 on your machine. Maven resolves and unpacks both retained release ZIPs and, optionally, the development SNAPSHOT.
+Requires Bash, Java, Maven, Python 3, curl, and jq. Maven unpacks the 12.0 and 14.0 releases and, optionally, the development SNAPSHOT. The preview downloads the English-only 10.0 archive directly because its published Maven POM cannot be resolved.
 From the repository root:
 
 ```sh

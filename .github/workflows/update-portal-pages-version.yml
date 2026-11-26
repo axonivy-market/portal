@@ -9,6 +9,7 @@ on:
         required: true
         type: choice
         options:
+          - '10.0'
           - '12.0'
           - '14.0'
       artifact_version:
@@ -48,7 +49,7 @@ jobs:
           ARTIFACT_VERSION: ${{ inputs.artifact_version }}
         run: bash build/portal-pages/update-release-pin.sh "$RELEASE_LINE" "$ARTIFACT_VERSION"
 
-      - name: Verify the generated release manifest
+      - name: Verify the updated release pin and assemble the site
         env:
           RELEASE_LINE: ${{ inputs.release_line }}
           ARTIFACT_VERSION: ${{ inputs.artifact_version }}
@@ -56,6 +57,8 @@ jobs:
           mvn -B -ntp -f build/portal-pages/pom.xml clean generate-resources -DincludeDev=false
           jq -e --arg line "$RELEASE_LINE" --arg version "$ARTIFACT_VERSION" \
             '.[$line] == $version' target/portal-pages/portal/versions.json
+          bash build/portal-pages/download-lts10-documentation.sh
+          python3 build/portal-pages/build_site.py
           python3 -m unittest discover -s build/portal-pages -v
 
       - name: Create or update release pin PR

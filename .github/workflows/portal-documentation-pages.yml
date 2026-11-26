@@ -48,6 +48,9 @@ jobs:
           mvn -U clean generate-resources -f build/portal-pages/pom.xml
           -DincludeDev=${{ inputs.include_dev }}
 
+      - name: Unpack legacy LTS10 documentation
+        run: bash build/portal-pages/download-lts10-documentation.sh
+
       - name: Prepare static selectors and navigation
         run: python3 build/portal-pages/build_site.py
 

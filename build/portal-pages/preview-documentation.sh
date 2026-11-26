@@ -31,6 +31,7 @@ main() {
 
     printf '\nAssembling releases and optional dev documentation with Maven...\n'
     mvn -U clean generate-resources -f build/portal-pages/pom.xml "$@"
+    bash build/portal-pages/download-lts10-documentation.sh
 
     printf '\nPreparing static selectors and navigation...\n'
     python3 -B build/portal-pages/build_site.py
