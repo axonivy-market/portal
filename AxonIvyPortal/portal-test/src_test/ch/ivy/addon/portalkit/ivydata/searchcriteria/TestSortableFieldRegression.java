@@ -9,6 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+
+import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
@@ -24,6 +28,55 @@ class TestSortableFieldRegression {
     model.setType(type);
     model.initDefaultValue();
     return model;
+  }
+
+  private DashboardFilter customFieldFilter(String field, DashboardColumnType filterType, FilterOperator operator) {
+    DashboardFilter filter = new DashboardFilter();
+    filter.setField(field);
+    filter.setFilterType(filterType);
+    filter.setOperator(operator);
+    return filter;
+  }
+
+  private String taskQueryWithCustomFieldFilter(String field, DashboardColumnFormat format,
+      DashboardColumnType filterType, FilterOperator operator, boolean userFilter) {
+    return taskQueryWithCustomFieldFilter(field, field, format, filterType, operator, userFilter);
+  }
+
+  private String taskQueryWithCustomFieldFilter(String field, String filterField, DashboardColumnFormat format,
+      DashboardColumnType filterType, FilterOperator operator, boolean userFilter) {
+    DashboardTaskSearchCriteria criteria = new DashboardTaskSearchCriteria();
+    TaskColumnModel column = column(field, DashboardColumnType.CUSTOM);
+    column.setFormat(format);
+    criteria.setColumns(new ArrayList<>(List.of(column)));
+    DashboardFilter filter = customFieldFilter(filterField, filterType, operator);
+    criteria.setFilters(userFilter ? new ArrayList<>() : new ArrayList<>(List.of(filter)));
+    criteria.setUserFilters(userFilter ? new ArrayList<>(List.of(filter)) : new ArrayList<>());
+    criteria.setSortField(field);
+    return criteria.buildQuery().toString();
+  }
+
+  private String caseQueryWithCustomFieldFilter(String field, DashboardColumnFormat format,
+      DashboardColumnType filterType, FilterOperator operator) {
+    return caseQueryWithCustomFieldFilter(field, field, format, filterType, operator);
+  }
+
+  private String caseQueryWithCustomFieldFilter(String field, String filterField, DashboardColumnFormat format,
+      DashboardColumnType filterType, FilterOperator operator) {
+    DashboardCaseSearchCriteria criteria = new DashboardCaseSearchCriteria();
+    CaseColumnModel column = new CaseColumnModel();
+    column.setField(field);
+    column.setType(DashboardColumnType.CUSTOM);
+    column.setFormat(format);
+    criteria.setColumns(new ArrayList<>(List.of(column)));
+    criteria.setFilters(new ArrayList<>(List.of(customFieldFilter(filterField, filterType, operator))));
+    criteria.setUserFilters(new ArrayList<>());
+    criteria.setSortField(field);
+    return criteria.buildQuery().toString();
+  }
+
+  private String orderByClause(String query) {
+    return query.substring(query.indexOf("ORDER BY"));
   }
 
   private String taskQuery(String sortField, boolean descending) {
@@ -74,6 +127,92 @@ class TestSortableFieldRegression {
 
     assertThat(criteria.buildQuery().toString())
         .contains("ORDER BY Column(TskCstmStrngFld_Citizenship.Value) ASCENDING");
+  }
+
+  @Test
+  void taskWidget_emptyNumberFilterOnSortedCustomField_skipsCustomFieldOrdering() {
+    String query = taskQueryWithCustomFieldFilter("AccountNumber", DashboardColumnFormat.NUMBER,
+        DashboardColumnType.CUSTOM, FilterOperator.EMPTY, false);
+
+    assertThat(orderByClause(query))
+        .contains("ORDER BY Column(IWA_Task.TaskId) DESCENDING")
+        .doesNotContain("AccountNumber");
+  }
+
+  @Test
+  void taskWidget_emptyTimestampUserFilterOnSortedCustomField_skipsCustomFieldOrdering() {
+    String query = taskQueryWithCustomFieldFilter("ShipmentDate", DashboardColumnFormat.TIMESTAMP,
+        DashboardColumnType.CUSTOM, FilterOperator.EMPTY, true);
+
+    assertThat(orderByClause(query))
+        .contains("ORDER BY Column(IWA_Task.TaskId) DESCENDING")
+        .doesNotContain("ShipmentDate");
+  }
+
+  @Test
+  void taskWidget_emptyStringFilterOnSortedCustomField_keepsCustomFieldOrdering() {
+    String query = taskQueryWithCustomFieldFilter("CustomerName", DashboardColumnFormat.STRING,
+        DashboardColumnType.CUSTOM, FilterOperator.EMPTY, false);
+
+    assertThat(orderByClause(query)).contains("CustomerName");
+  }
+
+  @Test
+  void taskWidget_notEmptyNumberFilterOnSortedCustomField_keepsCustomFieldOrdering() {
+    String query = taskQueryWithCustomFieldFilter("AccountNumber", DashboardColumnFormat.NUMBER,
+        DashboardColumnType.CUSTOM, FilterOperator.NOT_EMPTY, false);
+
+    assertThat(orderByClause(query)).contains("AccountNumber");
+  }
+
+  @Test
+  void taskWidget_emptyCaseFieldFilterDoesNotSuppressTaskFieldOrdering() {
+    String query = taskQueryWithCustomFieldFilter("AccountNumber", DashboardColumnFormat.NUMBER,
+        DashboardColumnType.CUSTOM_CASE, FilterOperator.EMPTY, false);
+
+    assertThat(orderByClause(query)).contains("AccountNumber");
+  }
+
+  @Test
+  void caseWidget_emptyTimestampFilterOnSortedCustomField_skipsCustomFieldOrdering() {
+    String query = caseQueryWithCustomFieldFilter("ShipmentDate", DashboardColumnFormat.TIMESTAMP,
+        DashboardColumnType.CUSTOM, FilterOperator.EMPTY);
+
+    assertThat(orderByClause(query))
+        .contains("ORDER BY Column(IWA_Case.CaseId) DESCENDING")
+        .doesNotContain("ShipmentDate");
+  }
+
+  @Test
+  void taskWidget_emptyFilterOnOtherCustomField_keepsSortedCustomFieldOrdering() {
+    String query = taskQueryWithCustomFieldFilter("AccountNumber", "ShipmentDate", DashboardColumnFormat.NUMBER,
+        DashboardColumnType.CUSTOM, FilterOperator.EMPTY, false);
+
+    assertThat(orderByClause(query)).contains("AccountNumber");
+  }
+
+  @Test
+  void caseWidget_emptyFilterOnOtherCustomField_keepsSortedCustomFieldOrdering() {
+    String query = caseQueryWithCustomFieldFilter("AccountNumber", "InvoiceDate", DashboardColumnFormat.NUMBER,
+        DashboardColumnType.CUSTOM, FilterOperator.EMPTY);
+
+    assertThat(orderByClause(query)).contains("AccountNumber");
+  }
+
+  @Test
+  void caseWidget_emptyStringFilterOnSortedCustomField_keepsCustomFieldOrdering() {
+    String query = caseQueryWithCustomFieldFilter("CustomerName", DashboardColumnFormat.STRING,
+        DashboardColumnType.CUSTOM, FilterOperator.EMPTY);
+
+    assertThat(orderByClause(query)).contains("CustomerName");
+  }
+
+  @Test
+  void caseWidget_notEmptyNumberFilterOnSortedCustomField_keepsCustomFieldOrdering() {
+    String query = caseQueryWithCustomFieldFilter("AccountNumber", DashboardColumnFormat.NUMBER,
+        DashboardColumnType.CUSTOM, FilterOperator.NOT_EMPTY);
+
+    assertThat(orderByClause(query)).contains("AccountNumber");
   }
 
   @Test

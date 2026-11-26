@@ -337,9 +337,13 @@ public class DashboardTaskSearchCriteria {
         return;
       }
       
-      DashboardColumnFormat format =
-          columns.stream().filter(c -> Strings.CI.equals(sortField, c.getField()))
-              .map(ColumnModel::getFormat).findFirst().orElse(DashboardColumnFormat.STRING);
+      TaskColumnModel sortColumn = columns.stream().filter(c -> Strings.CI.equals(sortField, c.getField()))
+          .findFirst().orElse(null);
+      DashboardColumnFormat format = sortColumn == null ? DashboardColumnFormat.STRING : sortColumn.getFormat();
+      if (sortColumn != null && sortColumn.getType() == DashboardColumnType.CUSTOM
+          && hasEmptyCustomFieldFilter(criteria, sortField, format)) {
+        return;
+      }
       final ICustomFieldOrderBy customField = query.orderBy().customField();
 
       switch (format) {
@@ -356,6 +360,28 @@ public class DashboardTaskSearchCriteria {
             order = customField.stringField(sortField);
           }
       }
+    }
+
+    private boolean hasEmptyCustomFieldFilter(DashboardTaskSearchCriteria criteria, String sortField,
+        DashboardColumnFormat format) {
+      if (format != DashboardColumnFormat.NUMBER && format != DashboardColumnFormat.TIMESTAMP) {
+        return false;
+      }
+      return containsEmptyCustomFieldFilter(criteria.filters, sortField)
+          || containsEmptyCustomFieldFilter(criteria.userFilters, sortField);
+    }
+
+    private boolean containsEmptyCustomFieldFilter(List<DashboardFilter> filterList, String sortField) {
+      if (CollectionUtils.isEmpty(filterList)) {
+        return false;
+      }
+      for (DashboardFilter filter : filterList) {
+        if (filter != null && filter.getFilterType() == DashboardColumnType.CUSTOM
+            && filter.getOperator() == FilterOperator.EMPTY && Strings.CI.equals(sortField, filter.getField())) {
+          return true;
+        }
+      }
+      return false;
     }
   }
 

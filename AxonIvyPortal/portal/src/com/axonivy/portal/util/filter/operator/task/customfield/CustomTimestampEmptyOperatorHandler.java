@@ -16,7 +16,7 @@ public class CustomTimestampEmptyOperatorHandler {
 
   public TaskQuery buildEmptyQuery(DashboardFilter filter) {
     TaskQuery query = TaskQuery.create();
-    query.where().not(TaskQuery.create().where().customField().timestampField(filter.getField()).isNotNull());
+    query.where().customField().timestampField(filter.getField()).isNull();
     return query;
   }
 
