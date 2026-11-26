@@ -1782,6 +1782,7 @@ Dialogs:
             Hidden: Masqué
             Show: Afficher
             Visible: Visible
+            RefreshToApplyVisibility: 'Visibilité mise à jour. Actualisez la page pour que la modification prenne effet.'
             NoAvailableHomepage: 'Aucune page d''accueil n''est disponible pour vous. Demandez à un administrateur de rendre une entrée visible dans la barre latérale ou de vous en donner l''accès.'
             Status: Statut
             AddNewMenu: Ajouter un nouveau menu

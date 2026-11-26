@@ -1769,6 +1769,7 @@ Dialogs:
             Hidden: 非表示
             Show: 表示する
             Visible: 表示
+            RefreshToApplyVisibility: 表示設定を更新しました。変更を反映するにはページを再読み込みしてください。
             NoAvailableHomepage: 利用可能なホームページがありません。管理者にサイドバーへの表示またはアクセス権の付与を依頼してください。
             Status: ステータス
             AddNewMenu: 新しいメニューの追加

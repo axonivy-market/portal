@@ -7,20 +7,22 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.ReorderEvent;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.enums.MenuKind;
+import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.dto.menu.CustomMenuItemDefinition;
 import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
-import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
 import com.axonivy.portal.enums.SidebarMode;
-import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
 import com.axonivy.portal.menu.management.MenuLoader;
 import com.axonivy.portal.menu.management.MenuRemovalHandler;
 import com.axonivy.portal.menu.management.enums.MenuSource;
@@ -29,6 +31,7 @@ import com.axonivy.portal.service.MenuOrderService;
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.GrowlMessageService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -112,13 +115,7 @@ public class MenuManagementBean extends AbstractMenuBean {
   }
 
   public boolean canToggleMenuVisibility(PortalMenuItemDefinition menuDefinition) {
-    if (MenuSource.CALLABLE == menuDefinition.getSource()) {
-      return true;
-    }
-    return menuDefinition instanceof StandardMenuItemDefinition standard
-        && MenuSource.STANDARD == standard.getSource()
-        && (standard.getStandardType() == StandardMenuItemDefinitionType.DASHBOARD
-            || standard.getStandardType() == StandardMenuItemDefinitionType.PROCESS);
+    return menuDefinition.getSource() != null && StringUtils.isNotBlank(menuDefinition.getId());
   }
 
   public void disableMenu(PortalMenuItemDefinition menuDefinition) {
@@ -132,9 +129,13 @@ public class MenuManagementBean extends AbstractMenuBean {
   private void setMenuVisibility(PortalMenuItemDefinition menuDefinition, boolean visible) {
     verifySidebarManagementPermission();
     if (!canToggleMenuVisibility(menuDefinition)) {
-      throw new PortalException("Only the standard Dashboard and Processes entries and callable process entries have a sidebar visibility");
+      throw new PortalException("Menu entry has no source or ID, so its sidebar visibility cannot be changed");
     }
     MenuOrderService.getInstance().setVisibility(menuDefinition.getSource(), menuDefinition.getId(), visible);
+    FacesContext.getCurrentInstance().addMessage(GrowlMessageService.PORTAL_GLOBAL_GROWL_MESSAGE,
+        FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO,
+            Ivy.cms().co("/Dialogs/com/axonivy/portal/page/MenuManagement/RefreshToApplyVisibility"), null));
+    PrimeFaces.current().ajax().update(GrowlMessageService.PORTAL_GLOBAL_GROWL);
     loadMenus();
   }
 

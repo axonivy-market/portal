@@ -1785,6 +1785,7 @@ Dialogs:
             Hidden: Ausgeblendet
             Show: Einblenden
             Visible: Sichtbar
+            RefreshToApplyVisibility: 'Sichtbarkeit aktualisiert. Aktualisiere die Seite, damit die Änderung wirksam wird.'
             NoAvailableHomepage: 'Für dich ist keine Startseite verfügbar. Bitte wende dich an einen Administrator, damit ein Eintrag in der Seitenleiste sichtbar wird oder du Zugriff erhältst.'
             Status: Status
             AddNewMenu: Füge ein neues Menü hinzu

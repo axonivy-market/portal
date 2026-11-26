@@ -55,7 +55,7 @@ class TestMenuVisibility {
   }
 
   @Test
-  void canToggleMenuVisibility_builtInAndCallableRows() {
+  void canToggleMenuVisibility_everyRowWithIdentity() {
     MenuManagementBean bean = new MenuManagementBean();
 
     assertThat(bean.canToggleMenuVisibility(standard(StandardMenuItemDefinitionType.DASHBOARD, MenuSource.STANDARD)))
@@ -65,7 +65,7 @@ class TestMenuVisibility {
     assertThat(bean.canToggleMenuVisibility(standard(StandardMenuItemDefinitionType.DASHBOARD, MenuSource.CALLABLE)))
         .isTrue();
     assertThat(bean.canToggleMenuVisibility(standard(StandardMenuItemDefinitionType.DASHBOARD, MenuSource.CUSTOM_MENU_CONFIGURATION)))
-        .isFalse();
+        .isTrue();
   }
 
   private static StandardMenuItemDefinition standard(StandardMenuItemDefinitionType type, MenuSource source) {
