@@ -83,6 +83,21 @@ class TestBuildSite(unittest.TestCase):
                 for item in selector["versions"] + selector["languages"]:
                     self.assertTrue((self.output / item["url"].removeprefix("/portal/")).is_file())
 
+    def test_includes_english_only_lts10_in_release_selectors(self):
+        (self.output / "versions.json").write_text(json.dumps({"10.0": "10.0.37", **self.versions}))
+        lts10 = self.output / "release/10.0/en"
+        self.create_documentation(lts10, "10.0", "en")
+        build_site(self.output)
+
+        for language in ("en", "ja"):
+            selector = json.loads((self.output / "release/14.0" / language / "versions.json").read_text())
+            self.assertEqual(selector["versions"][-1],
+                             {"version": "10.0", "url": "/portal/release/10.0/en/index.html"})
+        selector = json.loads((lts10 / "versions.json").read_text())
+        self.assertEqual(selector["languages"], [{"language": "en", "url": "/portal/release/10.0/en/index.html"}])
+        self.assertIn('url: "/portal/release/10.0/en/versions.json"', (lts10 / "index.html").read_text())
+        self.assertIn('content="0; url=/portal/release/14.0/en/index.html"', (self.output / "index.html").read_text())
+
     def test_falls_back_to_english_when_dev_has_no_japanese_translation(self):
         self.create_documentation(self.output / "snapshot/dev/en", "dev", "en")
         build_site(self.output)

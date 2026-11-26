@@ -1,4 +1,5 @@
 {
+  "10.0": "${portal10.version}",
   "12.0": "${portal12.version}",
   "14.0": "${portal14.version}"
 }
