@@ -68,7 +68,7 @@ pipeline {
                 }
             }
 
-            if (params.deployToRepo && env.BRANCH_NAME == 'master') {
+            if (params.deployToRepo) {
               echo "====================Publish schemas ${params.releaseVersion}===================="
               withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                 sh "mvn -B -ntp -s build/schema/settings.xml -f build/schema/pom.xml -Dschema.directory=${pwd()}/AxonIvyPortal/portal/target/schema/${params.releaseVersion} clean deploy"
