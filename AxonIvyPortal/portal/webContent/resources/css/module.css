@@ -4625,7 +4625,12 @@ body .process-compact-mode > .ui-fieldset-content {
   display: inline-flex;
   align-items: center;
   justify-content: flex-end;
-  padding-top: .9rem;}
+  padding-top: .9rem;
+}
+
+.process-action-group .ui-button.rounded-button.portal-icon-btn {
+  margin-bottom: 0.5rem;
+}
 
 .process-action-group .process-category.has-menu-button,
 .image-view-action-group-form .process-action-group .image-process-category.has-menu-button {
