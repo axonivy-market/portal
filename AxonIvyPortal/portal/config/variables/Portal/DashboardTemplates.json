@@ -1,5 +1,5 @@
 {
-  "$schema": "https://axonivy-market.github.io/portal/schema/14.0.2-SNAPSHOT/portal-dashboard-template-schema.json",
+  "$schema": "https://axonivy-market.github.io/portal/schema/14.0.2/portal-dashboard-template-schema.json",
   "version": "14.0.0",
   "items": [
     {
