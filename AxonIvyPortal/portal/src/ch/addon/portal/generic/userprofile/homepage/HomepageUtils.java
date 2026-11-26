@@ -22,7 +22,6 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import com.axonivy.portal.components.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -34,9 +33,7 @@ public class HomepageUtils {
   public static List<Homepage> loadHomepages() {
     List<Homepage> homepages = new ArrayList<>();
     List<SubMenuItem> subMenuItems = PortalMenuNavigator.callSubMenuItemsProcess();
-    if (PermissionUtils.checkAccessDashboardPermission()) {
-      homepages.add(defaultHompage());
-    }
+    homepages.add(defaultHompage());
     for (SubMenuItem item : subMenuItems) {
       if (item.getMenuKind() != MenuKind.EXTERNAL_LINK) {
         homepages.add(HomepageMapper.toHomepage(item));
@@ -70,9 +67,6 @@ public class HomepageUtils {
 
     List<Homepage> homepages = loadHomepages();
     homepage.setName(homepageName);
-    if (homepages.isEmpty()) {
-      return homepage;
-    }
     int index = homepages.indexOf(homepage);
     if (index == -1) {
       index = 0;
@@ -106,45 +100,21 @@ public class HomepageUtils {
     List<Homepage> homepages = loadHomepages();
     Boolean isPortalInTeams =
         (Boolean) SecurityServiceUtils.getSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString());
-    String personalHomepageName;
+    Homepage homepage = new Homepage();
     if (BooleanUtils.isTrue(isPortalInTeams)) {
-      personalHomepageName =
+      String homePageName =
           SecurityServiceUtils.getSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString()).toString();
+      homepage.setName(homePageName);
     } else {
-      personalHomepageName = getHomepageName();
+      homepage.setName(getHomepageName());
     }
-    Homepage selectedHomepage = resolveHomepage(homepages, personalHomepageName, findHomepageSetting());
-    if (selectedHomepage != null) {
-      adjustHomepageStartLink(selectedHomepage);
+    if (homepages.contains(homepage)) {
+      Homepage seletedHomepage = homepages.get(homepages.indexOf(homepage));
+      adjustHomepageStartLink(seletedHomepage);
+      return seletedHomepage;
+    } else {
+      return defaultHompage();
     }
-    return selectedHomepage;
-  }
-
-  /**
-   * Picks the homepage to open: the personal homepage if accessible, else the global default homepage if accessible,
-   * else the first accessible homepage.
-   *
-   * @return the selected homepage, or {@code null} if the session user can access no homepage
-   */
-  static Homepage resolveHomepage(List<Homepage> homepages, String personalHomepageName, String globalHomepageName) {
-    Homepage selectedHomepage = findHomepageByName(homepages, personalHomepageName);
-    if (selectedHomepage == null) {
-      selectedHomepage = findHomepageByName(homepages, globalHomepageName);
-    }
-    if (selectedHomepage == null && !homepages.isEmpty()) {
-      selectedHomepage = homepages.getFirst();
-    }
-    return selectedHomepage;
-  }
-
-  private static Homepage findHomepageByName(List<Homepage> homepages, String name) {
-    if (StringUtils.isBlank(name)) {
-      return null;
-    }
-    Homepage key = new Homepage();
-    key.setName(name);
-    int index = homepages.indexOf(key);
-    return index == -1 ? null : homepages.get(index);
   }
 
   private static void adjustHomepageStartLink(Homepage homepage) {
@@ -178,9 +148,6 @@ public class HomepageUtils {
     List<Homepage> homepages = loadHomepages();
     Homepage homepage = new Homepage();
     homepage.setName(findHomepageSetting());
-    if (homepages.isEmpty()) {
-      return homepage;
-    }
     int index = homepages.indexOf(homepage);
     if (index == -1) {
       index = 0;

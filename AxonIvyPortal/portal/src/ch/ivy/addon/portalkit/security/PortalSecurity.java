@@ -68,7 +68,6 @@ public enum PortalSecurity {
 
     private static final List<PortalPermission> EVERYBODY_PERMISSIONS = Arrays.asList(
         PortalPermission.ACCESS_FULL_PROCESS_LIST,
-        PortalPermission.ACCESS_DASHBOARD,
         PortalPermission.TASK_CASE_ADD_NOTE, PortalPermission.TASK_CASE_SHOW_MORE_NOTE,
         PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS,
         PortalPermission.TASK_DISPLAY_RESET_ACTION, PortalPermission.TASK_DISPLAY_RESERVE_ACTION,

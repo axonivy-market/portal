@@ -313,9 +313,6 @@ public class MenuView implements Serializable {
   // --- Default-dashboard dropdown -------------------------------------------------
 
   private MenuElement buildDashboardItem() {
-    if (!PermissionUtils.checkAccessDashboardPermission()) {
-      return null;
-    }
     var dashboardTitle = translate(DASHBOARD);
     String dashboardLink = determineDashboardLink();
     String currentLanguage = UserUtils.getUserLanguage();

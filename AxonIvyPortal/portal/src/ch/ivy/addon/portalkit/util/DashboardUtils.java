@@ -326,9 +326,6 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> getDashboardsWithoutMenuItem() {
-    if (!PermissionUtils.checkAccessDashboardPermission()) {
-      return List.of();
-    }
     return collectDashboards().stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())).toList();
   }
 

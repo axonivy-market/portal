@@ -177,9 +177,7 @@
                 "defaultHomepage.setName(\"\");",
                 "defaultHomepage.setLabel(ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption\", [defaultHomepage.getLabel()]));",
                 "out.homepages = HomepageUtils.loadHomepages();",
-                "if (!out.homepages.isEmpty()) {",
-                "  out.homepages.add(0, defaultHomepage);",
-                "}",
+                "out.homepages.add(0, defaultHomepage);",
                 "out.selectedHomepage = HomepageUtils.findHomepageInMyProfile();"
               ]
             }

@@ -33,7 +33,6 @@ public class PortalPermissionTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
-    permissions().grantSpecificPortalPermission(PortalPermission.ACCESS_DASHBOARD);
     grantAccessFullListPermissions();
     newDashboardPage = new NewDashboardPage();
   }
@@ -41,7 +40,6 @@ public class PortalPermissionTest extends BaseTest {
   @AfterEach
   public void tearDown() {
     grantTaskActionsPermissions();
-    permissions().grantSpecificPortalPermission(PortalPermission.ACCESS_DASHBOARD);
     grantAccessFullListPermissions();
     grantShowHideNotePermissions();
     permissions().grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
@@ -72,20 +70,6 @@ public class PortalPermissionTest extends BaseTest {
     grantAccessFullListPermissions();
     newDashboardPage = new NewDashboardPage();
     WaitHelper.assertTrueWithWait(() -> mainMenuPage.isProcessesDisplayed());
-  }
-
-  @Test
-  public void testShowHideDashboardMenuByPermission() {
-    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    assertTrue(mainMenuPage.isDashboardDisplayed());
-
-    permissions().denySpecificPortalPermission(PortalPermission.ACCESS_DASHBOARD);
-    assertFalse(mainMenuPage.isDashboardDisplayed());
-    assertTrue(mainMenuPage.isProcessesDisplayed());
-
-    permissions().grantSpecificPortalPermission(PortalPermission.ACCESS_DASHBOARD);
-    newDashboardPage = new NewDashboardPage();
-    WaitHelper.assertTrueWithWait(() -> mainMenuPage.isDashboardDisplayed());
   }
 
   @Test

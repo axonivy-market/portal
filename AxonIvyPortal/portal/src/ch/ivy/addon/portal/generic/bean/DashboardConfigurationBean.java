@@ -52,7 +52,7 @@ public class DashboardConfigurationBean implements Serializable {
   private void initPermissions() {
     isMobileDevice = RequestUtils.isMobileDevice();
     if (!isMobileDevice) {
-      canEditPrivateDashboard = PermissionUtils.canManagePrivateDashboard();
+      canEditPrivateDashboard = PermissionUtils.hasDashboardWriteOwnPermission();
       canEditPublicDashboard = PermissionUtils.hasDashboardWritePublicPermission();
       canManageSidebarNavigation = PermissionUtils.hasPortalSidebarConfigurationPermission();
       canManagePackages = PermissionUtils.hasPortalPackageManagementPermission();
