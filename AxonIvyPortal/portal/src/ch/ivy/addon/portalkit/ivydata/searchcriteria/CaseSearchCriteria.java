@@ -122,11 +122,10 @@ public class CaseSearchCriteria {
       long idKeyword = Long.parseLong(keyword.trim());
       String containingIdKeyword = String.format("%%%d%%", idKeyword);
       filterByKeywordQuery.where().or().caseId().isLike(containingIdKeyword);
-    } catch (NumberFormatException e) {
+    } catch (NumberFormatException ignored) {
       if (isGlobalSearch()) {
         filterByKeywordQuery.where().or().caseId().isEqual(-1L);
       }
-      // do nothing
     }
     return filterByKeywordQuery;
   }

@@ -1,1 +1,5 @@
-{}
+{
+    "$schema": "https://axonivy-market.github.io/portal/schema/14.0.2-SNAPSHOT/portal-custom-statistic-schema.json",
+    "version": "14.0.0",
+    "items": []
+}

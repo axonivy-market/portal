@@ -127,7 +127,8 @@ public class SecurityUtils {
               try {
                 Thread.sleep(1000 * s); // wait N secs
               } catch (InterruptedException ie) {
-                // NOP
+                Thread.currentThread().interrupt();
+                return false;
               }
             }
           }
@@ -169,7 +170,8 @@ public class SecurityUtils {
               try {
                 Thread.sleep(1000 * s); // wait N secs
               } catch (InterruptedException ie) {
-                // NOP
+                Thread.currentThread().interrupt();
+                return false;
               }
             }
           }
@@ -197,6 +199,7 @@ public class SecurityUtils {
                 return result1;
               });
     } catch (Exception e) {
+      Ivy.log().error("Cannot find users for role {0}, returning empty list", e, rolename);
     }
     return result;
   }
@@ -221,6 +224,7 @@ public class SecurityUtils {
             return result1;
           });
     } catch (Exception e) {
+      Ivy.log().error("Cannot find all users, returning empty list", e);
     }
     return result;
 

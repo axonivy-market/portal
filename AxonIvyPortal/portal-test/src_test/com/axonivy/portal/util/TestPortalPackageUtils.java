@@ -13,16 +13,6 @@ import java.util.zip.ZipOutputStream;
 
 import org.primefaces.model.StreamedContent;
 
-import ch.ivy.addon.portalkit.configuration.Application;
-import ch.ivy.addon.portalkit.configuration.ExternalLink;
-import ch.ivy.addon.portalkit.dto.DisplayName;
-import ch.ivy.addon.portalkit.dto.UserMenu;
-import ch.ivy.addon.portalkit.dto.casedetails.CaseDetails;
-import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
-import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
-import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
-
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
@@ -34,12 +24,26 @@ import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.menu.management.enums.MenuSource;
 
+import ch.ivy.addon.portalkit.configuration.Application;
+import ch.ivy.addon.portalkit.configuration.ExternalLink;
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.dto.UserMenu;
+import ch.ivy.addon.portalkit.dto.casedetails.CaseDetails;
+import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
+import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
+import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+
 public class TestPortalPackageUtils {
 
   private TestPortalPackageUtils() {}
 
   public static String toJson(Object entity) {
     return BusinessEntityConverter.entityToJsonValue(entity);
+  }
+
+  public static String toJson(Object entity, String variableKey) {
+    return BusinessEntityConverter.entityToJsonValueForVariable(entity, variableKey);
   }
 
   public static UserMenu buildUserMenu(String id, String title, String url) {

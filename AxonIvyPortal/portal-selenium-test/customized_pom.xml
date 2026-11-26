@@ -26,7 +26,7 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide-proxy</artifactId>
-      <version>7.19.0</version>
+      <version>7.19.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -36,7 +36,7 @@
     <dependency>
       <groupId>com.deque.html.axe-core</groupId>
       <artifactId>selenium</artifactId>
-      <version>4.13.0</version>
+      <version>4.14.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

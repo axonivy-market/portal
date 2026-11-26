@@ -24,6 +24,7 @@ import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.axonivy.portal.components.dto.JsonListWrapper;
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
+import com.axonivy.portal.dto.jsondefinition.PortalDashboard;
 import com.axonivy.portal.dto.menu.MenuOrder;
 import com.axonivy.portal.migration.casedetails.migrator.JsonCaseDetailsMigrator;
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
@@ -46,6 +47,7 @@ import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.NavigationWidgetUtils;
+import ch.ivy.addon.portalkit.util.PortalSchemaUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.JsonNode;
@@ -116,8 +118,8 @@ public class PortalPackageService {
       return;
     }
     dashboards.forEach(this::prepareDashboardForExport);
-    JsonListWrapper<Dashboard> wrapper = new JsonListWrapper<>(JsonListWrapper.FORMAT_VERSION, dashboards);
-    writeEntry(zos, PortalPackageFile.DASHBOARD.getFilename(), BusinessEntityConverter.entityToJsonValue(wrapper));
+    PortalDashboard portalDashboard = new PortalDashboard(dashboards);
+    writeEntry(zos, PortalPackageFile.DASHBOARD.getFilename(), BusinessEntityConverter.entityToJsonValue(portalDashboard));
   }
 
   private void writeRawVariable(ZipOutputStream zos, PortalPackageFile file) throws IOException {
@@ -150,19 +152,29 @@ public class PortalPackageService {
       return json;
     }
     JsonNode node = BusinessEntityConverter.getObjectMapper().readTree(json.trim());
+    String schema = PortalSchemaUtils.schemaFor(file.getVariableKey());
     if (JsonListWrapper.isListWrapper(node)) {
       JsonNode items = node.get(JsonListWrapper.ITEMS_FIELD_NAME);
-      if (!hasPerItemVersion(items)) {
+      String existingSchema = node.path(JsonListWrapper.SCHEMA_FIELD_NAME).asString("");
+      if (!hasPerItemVersion(items) && schema.equals(existingSchema)) {
         return json;
       }
+      String version = node.path(JsonListWrapper.VERSION_FIELD_NAME).asString(JsonListWrapper.FORMAT_VERSION);
       stripPerItemVersion(items);
-      return BusinessEntityConverter.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(node);
+      return toWrapperJson(schema, version, items);
     }
     JsonNode migrated = migrateRawVariable(file, node);
     JsonNode items = toItemsArray(file, migrated);
     stripPerItemVersion(items);
+    return toWrapperJson(schema, JsonListWrapper.FORMAT_VERSION, items);
+  }
+
+  private String toWrapperJson(String schema, String version, JsonNode items) throws IOException {
     ObjectNode wrapped = BusinessEntityConverter.getObjectMapper().createObjectNode();
-    wrapped.put("version", JsonListWrapper.FORMAT_VERSION);
+    if (StringUtils.isNotBlank(schema)) {
+      wrapped.put(JsonListWrapper.SCHEMA_FIELD_NAME, schema);
+    }
+    wrapped.put(JsonListWrapper.VERSION_FIELD_NAME, version);
     wrapped.set(JsonListWrapper.ITEMS_FIELD_NAME, items);
     return BusinessEntityConverter.getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(wrapped);
   }
@@ -303,7 +315,7 @@ public class PortalPackageService {
       if (JsonListWrapper.isListWrapper(node)) {
         return node.get(JsonListWrapper.ITEMS_FIELD_NAME).isEmpty();
       }
-    } catch (JacksonException e) {
+    } catch (JacksonException ignored) {
       // Not parseable JSON - treat as non-empty raw content rather than fail export/import.
     }
     return false;
@@ -343,13 +355,11 @@ public class PortalPackageService {
       switch (file) {
         case DASHBOARD -> importDashboards(migrate(json, node -> new JsonDashboardMigrator(node).migrate()));
         case EXTERNAL_LINK -> importExternalLinks(json);
-        case CUSTOM_STATISTIC ->
-            importList(migrate(json, node -> new JsonStatisticMigrator(node).migrate()), Statistic.class,
-                file.getVariableKey());
+        case CUSTOM_STATISTIC -> importList(migrate(json, node -> new JsonStatisticMigrator(node).migrate()), Statistic.class,
+            file.getVariableKey());
         case USER_MENU -> importList(json, UserMenu.class, file.getVariableKey());
-        case CASE_DETAIL ->
-            importList(migrate(json, node -> new JsonCaseDetailsMigrator(node).migrate()), CaseDetails.class,
-                file.getVariableKey());
+        case CASE_DETAIL -> importList(migrate(json, node -> new JsonCaseDetailsMigrator(node).migrate()), CaseDetails.class,
+            file.getVariableKey());
         case THIRD_PARTY_APP -> importList(
             migrate(json, node -> new JsonThirdPartyApplicationMigrator(node).migrate()), Application.class,
             file.getVariableKey());
@@ -377,7 +387,7 @@ public class PortalPackageService {
 
   private <T> void importList(String json, Class<T> type, String variableKey) {
     List<T> entities = BusinessEntityConverter.jsonValueToEntities(json, type);
-    Ivy.var().set(variableKey, BusinessEntityConverter.entityToJsonValue(entities));
+    Ivy.var().set(variableKey, BusinessEntityConverter.entityToJsonValueForVariable(entities, variableKey));
   }
 
   private <T> void importSingle(String json, Class<T> type, String variableKey) {

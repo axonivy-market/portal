@@ -5,6 +5,7 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class WidgetLayout implements Serializable {
@@ -12,7 +13,9 @@ public class WidgetLayout implements Serializable {
   private static final long serialVersionUID = 1734727544534129141L;
 
   private String id;
+  @JsonPropertyDescription("CSS classes for custom styling")
   private String styleClass;
+  @JsonPropertyDescription("Inline CSS styles")
   private String style;
 
   @JsonProperty("w")

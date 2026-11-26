@@ -129,11 +129,11 @@ class TestProjectVersionService {
   @ParameterizedTest(name = "projectMode_mapsToStyleAndIcon_for__{0}")
   @CsvSource({
       "OK,       ok,       pi-check-circle",
-      "MISSING,  missing,  pi-exclamation-triangle",
+      "ERROR,    error,    pi-exclamation-triangle",
       "OUTDATED, outdated, pi-exclamation-triangle",
       "TOO_OLD,  too_old,  pi-exclamation-triangle",
       "TOO_NEW,  too_new,  pi-exclamation-triangle",
-      "UNKNOWN,  unknown,  pi-question-circle"
+      "RUNNABLE, runnable, pi-history"
   })
   void projectMode_mapsToExpectedStyleAndIcon(ProjectMode mode, String style, String icon) {
     Project project = fakeProject("p", "id", "1.0", mode);
@@ -147,6 +147,8 @@ class TestProjectVersionService {
     assertThat(service.translateReleaseState(ReleaseState.RELEASED)).isEqualTo("Released");
     assertThat(service.translateActivityState(ActivityState.ACTIVE)).isEqualTo("Active");
     assertThat(service.translateProjectMode(ProjectMode.OK)).isEqualTo("OK");
+    assertThat(service.translateProjectMode(ProjectMode.ERROR)).isEqualTo("Error");
+    assertThat(service.translateProjectMode(ProjectMode.RUNNABLE)).isEqualTo("Runnable");
   }
 
   private static Application fakeApplication(int version, ReleaseState releaseState, ActivityState activityState) {

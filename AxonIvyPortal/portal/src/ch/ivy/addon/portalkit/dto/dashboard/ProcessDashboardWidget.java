@@ -10,6 +10,7 @@ import org.primefaces.model.SortMeta;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import ch.ivy.addon.portalkit.dto.dashboard.process.ProcessColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
@@ -120,6 +121,8 @@ public class ProcessDashboardWidget extends DashboardWidget {
     this.criteria.setInConfiguration(isInConfiguration);
   }
   
+  @JsonPropertyDescription("Application names used to filter the process list. "
+      + "If omitted or empty, no application filter is applied.")
   public List<String> getApplications() {
     return this.criteria.getApplications();
   }

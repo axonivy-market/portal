@@ -29,10 +29,12 @@ public class DisplayNameAdaptor {
   private boolean isValidJson(String jsonString) {
 		try {
 			new JSONObject(jsonString);
-		} catch (JSONException e) {
+		} catch (JSONException ignored) {
+			// Not a JSON object; try an array.
 			try {
 				new JSONArray(jsonString);
-			} catch(JSONException e1) {
+			} catch (JSONException ignoredAsArray) {
+				// Neither object nor array; treat as plain text.
 				return false;
 			}
 		}

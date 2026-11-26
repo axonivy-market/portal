@@ -32,7 +32,7 @@ public class MenuUtils {
       if (scheme == null || SAFE_URL_SCHEMES.contains(scheme.toLowerCase())) {
         return trimmed;
       }
-    } catch (IllegalArgumentException ex) {
+    } catch (IllegalArgumentException ignored) {
       // fall through - treat unparsable URLs as unsafe
     }
     return null;
@@ -53,7 +53,7 @@ public class MenuUtils {
     }
     try {
       return URI.create(trimmed).getScheme() == null;
-    } catch (IllegalArgumentException ex) {
+    } catch (IllegalArgumentException ignored) {
       return false;
     }
   }

@@ -4,13 +4,12 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.regex.Pattern;
 
-import jakarta.faces.context.FacesContext;
-import jakarta.servlet.http.HttpServletRequest;
-
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpResponse;
+import jakarta.faces.context.FacesContext;
+import jakarta.servlet.http.HttpServletRequest;
 
 public class RequestUtils {
 
@@ -65,7 +64,8 @@ public class RequestUtils {
       return target.getHost().equalsIgnoreCase(current.getHost())
           && target.getScheme().equalsIgnoreCase(current.getScheme())
           && effectivePort(target) == effectivePort(current);
-    } catch (URISyntaxException ex) {
+    } catch (URISyntaxException ignored) {
+      // Malformed URL is not a safe same-origin redirect target.
       return false;
     }
   }

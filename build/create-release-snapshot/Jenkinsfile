@@ -101,13 +101,36 @@ pipeline {
         }
       }
     }
+
+    stage('Publish schemas') {
+      steps {
+        script {
+          withBuildImage {
+            def portalVersion = readMavenPom(file: 'AxonIvyPortal/portal/pom.xml').version
+            def schemaDir = "${pwd()}/AxonIvyPortal/portal/target/schema/${portalVersion}"
+            def publish = params.deployToRepo && params.portalBranch == 'master'
+
+            echo "====================Build schemas for Portal ${portalVersion}===================="
+            sh "mvn -B -ntp -f AxonIvyPortal/portal/pom.xml -Pjson.schema process-classes"
+
+            if (publish) {
+              withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                sh "mvn -B -ntp -s build/schema/settings.xml -f build/schema/pom.xml -Dschema.directory=${schemaDir} clean deploy"
+              }
+            } else {
+              sh "mvn -B -ntp -f build/schema/pom.xml -Dschema.directory=${schemaDir} clean package"
+            }
+          }
+        }
+      }
+    }
   }
 
   post {
     always {
       script {
         if (currentBuild.currentResult == 'SUCCESS') {
-          archiveArtifacts artifacts: '**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip,*/*/pom.xml', allowEmptyArchive: true
+          archiveArtifacts artifacts: '**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip,**/target/portal-schema-*.zip,*/*/pom.xml', allowEmptyArchive: true
         }
       }
     }
