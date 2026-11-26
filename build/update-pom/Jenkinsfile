@@ -87,4 +87,15 @@ def updateVersion() {
   sh """
     ${command}
   """
+
+  if (!params.portalVersion?.trim().isEmpty()) {
+    def schemaUrlPattern = '("\\$schema": "https://axonivy-market\\.github\\.io/portal/schema/)[^/"]+(/)'
+    def variableFiles = sh(script: "find AxonIvyPortal/portal/config/variables -name '*.json'", returnStdout: true).trim().split('\n')
+    variableFiles.each { file ->
+      def content = readFile(file)
+      if (content.contains('"$schema"')) {
+        writeFile file: file, text: content.replaceAll(schemaUrlPattern, "\$1${params.portalVersion}\$2")
+      }
+    }
+  }
 }
