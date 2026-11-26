@@ -4,7 +4,7 @@
   xmlns:pc="jakarta.faces.composite/components">
 
 <p:tab id="expiry-tab">
-  <p:remoteCommand id="build-statistic-task-expiry-#{widget.id}" name="buildStatisticTaskExpiry#{widget.id}"
+  <p:remoteCommand id="build-statistic-task-expiry-#{widget.id}" name="buildStatisticTaskExpiry#{widget.safeId}"
     async="true" process="@this" partialSubmit="true" immediate="true" global="false"
     actionListener="#{widget.buildTaskExpiryStatistic()}"
     update="task-expiry-statistic-#{widget.id}"
@@ -54,7 +54,7 @@
 </p:tab>
 
 <p:tab id="state-tab">
-  <p:remoteCommand id="build-statistic-task-states-#{widget.id}" name="buildStatisticTaskStates#{widget.id}"
+  <p:remoteCommand id="build-statistic-task-states-#{widget.id}" name="buildStatisticTaskStates#{widget.safeId}"
     async="true" process="@this" partialSubmit="true" immediate="true" global="false"
     actionListener="#{widget.buildTaskByStateStatistic()}"
     update="task-states-statistic-#{widget.id}"
@@ -85,7 +85,7 @@
 </p:tab>
 
 <p:tab id="category-tab">
-  <p:remoteCommand id="build-statistic-task-category-#{widget.id}" name="buildStatisticTaskCategory#{widget.id}"
+  <p:remoteCommand id="build-statistic-task-category-#{widget.id}" name="buildStatisticTaskCategory#{widget.safeId}"
     async="true" process="@this" partialSubmit="true" immediate="true" global="false"
     actionListener="#{widget.buildTaskByCategoryStatistic()}"
     update="task-category-statistic-#{widget.id}"
