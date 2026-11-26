@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -338,10 +337,11 @@ public class DashboardTaskSearchCriteria {
         return;
       }
       
-      DashboardColumnFormat format =
-          columns.stream().filter(c -> Strings.CI.equals(sortField, c.getField()))
-              .map(ColumnModel::getFormat).findFirst().orElse(DashboardColumnFormat.STRING);
-      if (isAlwaysNullByEmptyFilter(sortField, format)) {
+      TaskColumnModel sortColumn = columns.stream().filter(c -> Strings.CI.equals(sortField, c.getField()))
+          .findFirst().orElse(null);
+      DashboardColumnFormat format = sortColumn == null ? DashboardColumnFormat.STRING : sortColumn.getFormat();
+      if (sortColumn != null && sortColumn.getType() == DashboardColumnType.CUSTOM
+          && hasEmptyCustomFieldFilter(criteria, sortField, format)) {
         return;
       }
       final ICustomFieldOrderBy customField = query.orderBy().customField();
@@ -362,21 +362,26 @@ public class DashboardTaskSearchCriteria {
       }
     }
 
-    /**
-     * An EMPTY filter on a number/timestamp task custom field produces a pure IS NULL condition.
-     * Since dashboard filters are ANDed, every result row is NULL on that field, so ordering by it
-     * has no effect. Skipping the ORDER BY lets the engine optimize the IS NULL query.
-     */
-    private boolean isAlwaysNullByEmptyFilter(String field, DashboardColumnFormat format) {
+    private boolean hasEmptyCustomFieldFilter(DashboardTaskSearchCriteria criteria, String sortField,
+        DashboardColumnFormat format) {
       if (format != DashboardColumnFormat.NUMBER && format != DashboardColumnFormat.TIMESTAMP) {
         return false;
       }
-      return CollectionUtils.union(Optional.ofNullable(filters).orElse(List.of()),
-          Optional.ofNullable(userFilters).orElse(List.of())).stream()
-          .filter(Objects::nonNull)
-          .anyMatch(filter -> filter.getOperator() == FilterOperator.EMPTY
-              && filter.getFilterType() == DashboardColumnType.CUSTOM
-              && Strings.CI.equals(field, filter.getField()));
+      return containsEmptyCustomFieldFilter(criteria.filters, sortField)
+          || containsEmptyCustomFieldFilter(criteria.userFilters, sortField);
+    }
+
+    private boolean containsEmptyCustomFieldFilter(List<DashboardFilter> filterList, String sortField) {
+      if (CollectionUtils.isEmpty(filterList)) {
+        return false;
+      }
+      for (DashboardFilter filter : filterList) {
+        if (filter != null && filter.getFilterType() == DashboardColumnType.CUSTOM
+            && filter.getOperator() == FilterOperator.EMPTY && Strings.CI.equals(sortField, filter.getField())) {
+          return true;
+        }
+      }
+      return false;
     }
   }
 
