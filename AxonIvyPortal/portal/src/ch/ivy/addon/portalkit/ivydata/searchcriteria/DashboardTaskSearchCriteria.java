@@ -51,7 +51,6 @@ public class DashboardTaskSearchCriteria {
     TaskSortingQueryAppender appender = new TaskSortingQueryAppender(query);
     query = appender.appendSorting(this).toQuery();
     appendQuickSearchQuery(query);
-    ch.ivyteam.ivy.environment.Ivy.log().warn("[QUERYDIFF][TASK] sortField=" + sortField + " desc=" + sortDescending + " query=" + query); // TEMP-QUERYDIFF
     return query;
   }
 

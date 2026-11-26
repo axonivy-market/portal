@@ -47,7 +47,6 @@ public class DashboardCaseSearchCriteria {
     CaseQuery query = buildQueryWithoutOrderByClause();
     CaseSortingQueryAppender appender = new CaseSortingQueryAppender(query);
     query = appender.appendSorting(this).toQuery();
-    ch.ivyteam.ivy.environment.Ivy.log().warn("[QUERYDIFF][CASE] sortField=" + sortField + " desc=" + sortDescending + " query=" + query); // TEMP-QUERYDIFF
     return query;
   }
 
