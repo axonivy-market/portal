@@ -108,7 +108,7 @@ pipeline {
           withBuildImage {
             def portalVersion = readMavenPom(file: 'AxonIvyPortal/portal/pom.xml').version
             def schemaDir = "${pwd()}/AxonIvyPortal/portal/target/schema/${portalVersion}"
-            def publish = params.deployToRepo && params.portalBranch == 'master'
+            def publish = params.deployToRepo
 
             echo "====================Build schemas for Portal ${portalVersion}===================="
             sh "mvn -B -ntp -f AxonIvyPortal/portal/pom.xml -Pjson.schema process-classes"
