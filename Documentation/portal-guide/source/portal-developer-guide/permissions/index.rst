@@ -786,13 +786,14 @@ Portal General Permissions
        +------------------------+-------------------------------------------------------------+
        | **Category**           | Portal Page Access                                          |
        +------------------------+-------------------------------------------------------------+
-       | **Description**        | Controls the visibility of the **Processes** page in the    |
+       | **Description**        | Controls authorization to the **Processes** page in the     |
        |                        | left navigation menu and the **Processes** tab in the       |
-       |                        | global search.                                              |
+       |                        | global search. Hiding the Processes menu entry does not     |
+       |                        | grant or revoke this permission.                            |
        +------------------------+-------------------------------------------------------------+
-       | **Use case**           | Used to **show or hide access to the Processes list** for   |
-       |                        | specific users or roles, for example to simplify the user   |
-       |                        | interface or restrict access to process overviews.          |
+       | **Use case**           | Used to **restrict access to the Processes list** for       |
+       |                        | specific users or roles, for example to restrict access to  |
+       |                        | process overviews.                                          |
        +------------------------+-------------------------------------------------------------+
        | **Granted by default** | Yes - Role ``Everybody``                                    |     
        +------------------------+-------------------------------------------------------------+

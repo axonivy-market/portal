@@ -1,6 +1,7 @@
 package com.axonivy.portal.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.enums.PortalCustomSignature;
 import com.axonivy.portal.menu.MenuId;
+import com.axonivy.portal.menu.management.enums.MenuSource;
 
 import ch.addon.portal.generic.menu.SubMenuItem;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
@@ -35,15 +37,19 @@ public class CustomSubMenuItemService {
   public final static String DEFAULT_ICON = "ti ti-sitemap ti-rotate-270";
 
   public static List<SubMenuItem> findAll() {
-    List<CustomSubMenuItem> customMenus = loadFromSubProcess();
-    customMenus.addAll(loadFromConfiguration());
+    List<SourcedMenu> customMenus = new ArrayList<>();
+    loadFromSubProcess().forEach(item -> customMenus.add(new SourcedMenu(item, MenuSource.CALLABLE)));
+    loadFromConfiguration()
+        .forEach(item -> customMenus.add(new SourcedMenu(item, MenuSource.CUSTOM_MENU_CONFIGURATION)));
 
     return customMenus.stream()
-        .sorted(new CustomSubMenuItemComparator())
-        .map(convertToSubmenuItem())
+        .sorted(Comparator.comparing(SourcedMenu::item, new CustomSubMenuItemComparator()))
+        .map(sourced -> convertToSubmenuItem(sourced.source()).apply(sourced.item()))
         .filter(Objects::nonNull)
         .collect(Collectors.toList());
   }
+
+  private record SourcedMenu(CustomSubMenuItem item, MenuSource source) {}
 
   @SuppressWarnings("unchecked")
   public static List<CustomSubMenuItem> loadFromSubProcess() {
@@ -67,7 +73,7 @@ public class CustomSubMenuItemService {
     });
   }
 
-  private static Function<CustomSubMenuItem, SubMenuItem> convertToSubmenuItem() {
+  private static Function<CustomSubMenuItem, SubMenuItem> convertToSubmenuItem(MenuSource source) {
     return customMenu -> {
       if (Optional.ofNullable(customMenu).isEmpty()
           || StringUtils.isBlank(customMenu.getLink())
@@ -95,6 +101,7 @@ public class CustomSubMenuItemService {
       String hashId = MenuId.compute(customMenu);
       result.setId(StringUtils.isNotBlank(customMenu.getId()) ? customMenu.getId() : hashId);
       result.setName(HomepageUtils.generateHomepageId(result.getMenuKind(), result.getId()));
+      result.setSource(source);
 
       return result;
     };

@@ -333,11 +333,27 @@ The menu items table displays all sidebar navigation entries with the following 
 - **Permissions**: The permissions set for each item. Not all item types have permissions. This depends on the item's **Type**, items without permissions show ``-``
 - **Type**: The kind of item (Standard, External Link, Main Dashboard, Static Page, etc.)
 - **Source**: Where the item was created (Built-in, Dashboard configuration, Callable process, Configuration, etc.)
-- **Actions**: Edit and Delete operations accessible via the overflow menu
+- **Status**: Shows **Visible** or **Hidden** for every row, based on the entry's sidebar visibility
+- **Actions**: Edit and Delete operations accessible via the overflow menu for custom rows. For the built-in **Dashboard** and **Processes** rows and for callable process rows, the menu offers only **Hide** (when visible) or **Show** (when hidden)
 - **Reorder**: Drag handle (|reorder-dashboard-icon|) to reorder items
 
 .. note::
-   Built-in items such as **Dashboard** and **Processes** are Standard items and cannot be edited or deleted. The Actions menu is not available for these items.
+   Built-in items such as **Dashboard** and **Processes** are Standard items and cannot be edited or deleted. Hiding a built-in item removes it from the sidebar but keeps its row and position in the table.
+
+.. note::
+   Hide and Show change sidebar visibility for all users of the application. They do not grant or revoke permissions. Hidden entries are not offered as the homepage. If no homepage is available, users see a message that no homepage is available.
+
+.. note::
+   Hidden entries remain reachable through a directly opened URL if the user is already authorized for that page. Direct URL access is still governed by the existing page, process, and dashboard permissions.
+
+HowTo: show or hide a built-in menu item
+----------------------------------------
+
+#. In the menu items table, click |actions-menu-icon| next to the **Dashboard**, **Processes**, or callable process row.
+
+#. Select **Hide** to hide the entry from the sidebar, or **Show** to show it again.
+
+#. The change applies to all users. The entry keeps its position in the table.
 
 HowTo: add a sidebar menu item
 -------------------------------

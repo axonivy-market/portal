@@ -30,25 +30,17 @@ public class HomepageUtils {
   public static final String HOMEPAGE_ID_PATTERN = "%s_%s";
   private static final String USER_GUIDE_HOMEPAGE_NAME = "MAIN_DASHBOARD_default-user-guide-dashboard";
 
+  /**
+   * Visible and accessible homepage candidates in sidebar order. Empty when no candidate is available.
+   */
   public static List<Homepage> loadHomepages() {
     List<Homepage> homepages = new ArrayList<>();
-    List<SubMenuItem> subMenuItems = PortalMenuNavigator.callSubMenuItemsProcess();
-    homepages.add(defaultHompage());
-    for (SubMenuItem item : subMenuItems) {
+    for (SubMenuItem item : PortalMenuNavigator.callSubMenuItemsProcess()) {
       if (item.getMenuKind() != MenuKind.EXTERNAL_LINK) {
         homepages.add(HomepageMapper.toHomepage(item));
       }
     }
     return homepages;
-  }
-
-  private static Homepage defaultHompage() {
-    Homepage dashboard = new Homepage();
-    dashboard.setName(HomepageType.DASHBOARD.name());
-    dashboard.setLabel(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard"));
-    dashboard.setLink(PortalNavigator.getPortalStartUrl());
-    dashboard.setType(HomepageType.DASHBOARD);
-    return dashboard;
   }
 
   private static String findRelativeUrlByKeywork(String keyword) {
@@ -58,20 +50,9 @@ public class HomepageUtils {
   }
 
   public static Homepage findHomepageInMyProfile() {
-    Homepage homepage = new Homepage();
     String homepageName = getHomepageId();
-    if (StringUtils.isBlank(homepageName)) {
-      homepage.setName(StringUtils.EMPTY);
-      return homepage;
-    }
-
-    List<Homepage> homepages = loadHomepages();
-    homepage.setName(homepageName);
-    int index = homepages.indexOf(homepage);
-    if (index == -1) {
-      index = 0;
-    }
-    return homepages.get(index);
+    Homepage homepage = StringUtils.isBlank(homepageName) ? null : findVisibleHomepage(loadHomepages(), homepageName);
+    return homepage != null ? homepage : new Homepage();
   }
 
   public static String generateHomepageId(MenuKind menuKind, String dashboardId) {
@@ -98,23 +79,43 @@ public class HomepageUtils {
 
   public static Homepage findHomepage() {
     List<Homepage> homepages = loadHomepages();
+    Homepage homepage = findVisibleHomepage(homepages, findSelectedHomepageName());
+    if (homepage == null) {
+      homepage = findGlobalOrFirst(homepages);
+    }
+    if (homepage != null) {
+      adjustHomepageStartLink(homepage);
+    }
+    return homepage;
+  }
+
+  private static String findSelectedHomepageName() {
     Boolean isPortalInTeams =
         (Boolean) SecurityServiceUtils.getSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString());
-    Homepage homepage = new Homepage();
     if (BooleanUtils.isTrue(isPortalInTeams)) {
-      String homePageName =
-          SecurityServiceUtils.getSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString()).toString();
-      homepage.setName(homePageName);
-    } else {
-      homepage.setName(getHomepageName());
+      Object defaultPageInTeams =
+          SecurityServiceUtils.getSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString());
+      return defaultPageInTeams == null ? null : defaultPageInTeams.toString();
     }
-    if (homepages.contains(homepage)) {
-      Homepage seletedHomepage = homepages.get(homepages.indexOf(homepage));
-      adjustHomepageStartLink(seletedHomepage);
-      return seletedHomepage;
-    } else {
-      return defaultHompage();
+    return getHomepageName();
+  }
+
+  private static Homepage findVisibleHomepage(List<Homepage> homepages, String homepageName) {
+    if (StringUtils.isBlank(homepageName)) {
+      return null;
     }
+    Homepage probe = new Homepage();
+    probe.setName(homepageName);
+    int index = homepages.indexOf(probe);
+    return index == -1 ? null : homepages.get(index);
+  }
+
+  private static Homepage findGlobalOrFirst(List<Homepage> homepages) {
+    Homepage homepage = findVisibleHomepage(homepages, findHomepageSetting());
+    if (homepage == null && !homepages.isEmpty()) {
+      return homepages.getFirst();
+    }
+    return homepage;
   }
 
   private static void adjustHomepageStartLink(Homepage homepage) {
@@ -145,14 +146,7 @@ public class HomepageUtils {
 
 
   public static Homepage findDefaultHomepage() {
-    List<Homepage> homepages = loadHomepages();
-    Homepage homepage = new Homepage();
-    homepage.setName(findHomepageSetting());
-    int index = homepages.indexOf(homepage);
-    if (index == -1) {
-      index = 0;
-    }
-    return homepages.get(index);
+    return findGlobalOrFirst(loadHomepages());
   }
 
   private static String findHomepageSetting() {
@@ -169,6 +163,14 @@ public class HomepageUtils {
 
   public static boolean isShowDashboard(Homepage homepage, boolean isClickOnDashboard) {
     return homepage == null || homepage.getType() == HomepageType.DASHBOARD || isClickOnDashboard;
+  }
+
+  /**
+   * No homepage candidate is available for an automatic route. Explicit dashboard requests keep their own routing.
+   */
+  public static boolean isNoHomepageAvailable(Homepage homepage, boolean isClickOnDashboard,
+      boolean isOpenDashboardFromLink) {
+    return homepage == null && !isClickOnDashboard && !isOpenDashboardFromLink;
   }
 
 }

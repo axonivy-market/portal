@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.dto.menu.MenuOrder;
 import com.axonivy.portal.dto.menu.MenuOrderEntry;
+import com.axonivy.portal.menu.management.enums.MenuSource;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -39,5 +40,23 @@ public class MenuOrderService {
   public void save(List<MenuOrderEntry> menus) {
     MenuOrder menuOrder = new MenuOrder(AbstractJsonVersion.LATEST, menus);
     Ivy.var().set(PortalVariable.MENU_ORDER.key, BusinessEntityConverter.entityToJsonValue(menuOrder));
+  }
+
+  /**
+   * Sets the visibility of one entry in the latest manifest. Other entries keep their order and
+   * state. A missing entry is appended, which is where the loader reconciles a discovered item.
+   */
+  public void setVisibility(MenuSource source, String id, boolean visible) {
+    List<MenuOrderEntry> manifest = new ArrayList<>(findAll());
+    MenuOrderEntry target = manifest.stream()
+        .filter(entry -> entry.getSource() == source && StringUtils.equals(entry.getId(), id))
+        .findFirst()
+        .orElse(null);
+    if (target == null) {
+      manifest.add(new MenuOrderEntry(id, source, visible));
+    } else {
+      manifest.set(manifest.indexOf(target), new MenuOrderEntry(id, source, visible));
+    }
+    save(manifest);
   }
 }

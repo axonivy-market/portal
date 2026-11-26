@@ -67,6 +67,7 @@ public final class MenuLoader implements Serializable {
       if (def == null) {
         continue;
       }
+      def.setVisible(entry.visible());
       def.setIndex(ordered.size());
       ordered.add(def);
     }
@@ -79,9 +80,21 @@ public final class MenuLoader implements Serializable {
     return ordered;
   }
 
+  /**
+   * Persists the given order. Visibility is not taken from the in-memory definitions: it is
+   * reconciled by (source, id) against the persisted manifest, so a reorder based on a stale view
+   * cannot revert a visibility change made since. Entries not yet persisted default to visible.
+   */
   public static void persistManifest(List<PortalMenuItemDefinition> ordered) {
+    Map<String, Boolean> persistedVisibility = new LinkedHashMap<>();
+    for (MenuOrderEntry entry : MenuOrderService.getInstance().findAll()) {
+      if (entry.getSource() != null) {
+        persistedVisibility.put(refKey(entry.getSource(), entry.getId()), entry.visible());
+      }
+    }
     List<MenuOrderEntry> manifest = ordered.stream()
-        .map(def -> new MenuOrderEntry(def.getId(), def.getSource()))
+        .map(def -> new MenuOrderEntry(def.getId(), def.getSource(),
+            persistedVisibility.getOrDefault(refKey(def.getSource(), def.getId()), true)))
         .collect(Collectors.toList());
     MenuOrderService.getInstance().save(manifest);
   }

@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+  xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
+  xmlns:p="primefaces">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="isNotRequiredLogin" value="false" />
+
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}</ui:define>
+    <ui:define name="pageContent">
+
+      <div class="error-container container">
+        <div class="message card">
+          <div class="message-container">
+            <p>#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/NoAvailableHomepage')}</p>
+            <p:link rendered="#{not empty data.configurationUrl}" href="#{data.configurationUrl}"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}" />
+          </div>
+        </div>
+      </div>
+
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

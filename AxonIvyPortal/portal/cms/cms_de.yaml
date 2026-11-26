@@ -1781,6 +1781,12 @@ Dialogs:
             TaskIFrameTitle: Aufgabenrahmen
         page:
           MenuManagement:
+            Hide: Ausblenden
+            Hidden: Ausgeblendet
+            Show: Einblenden
+            Visible: Sichtbar
+            NoAvailableHomepage: 'Für dich ist keine Startseite verfügbar. Bitte wende dich an einen Administrator, damit ein Eintrag in der Seitenleiste sichtbar wird oder du Zugriff erhältst.'
+            Status: Status
             AddNewMenu: Füge ein neues Menü hinzu
             CallableMenuMessage: Dieses Menü wird programmgesteuert durch einen aufrufbaren Prozess generiert und kann nicht bearbeitet werden.
             CallableSourceHint: Dieser Eintrag wird durch einen aufrufbaren Prozess generiert. Wende dich an deinen Entwickler, um ihn zu ändern.

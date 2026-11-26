@@ -18,14 +18,18 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.dto.menu.CustomMenuItemDefinition;
 import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
+import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
 import com.axonivy.portal.enums.SidebarMode;
+import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
 import com.axonivy.portal.menu.management.MenuLoader;
 import com.axonivy.portal.menu.management.MenuRemovalHandler;
 import com.axonivy.portal.menu.management.enums.MenuSource;
+import com.axonivy.portal.service.MenuOrderService;
 
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @Named
@@ -105,6 +109,33 @@ public class MenuManagementBean extends AbstractMenuBean {
     // Callable-sourced items are defined by their process and can be neither edited nor deleted.
     return !MenuKind.STANDARD.equals(menuDefinition.getType())
         && !MenuSource.CALLABLE.equals(menuDefinition.getSource());
+  }
+
+  public boolean canToggleMenuVisibility(PortalMenuItemDefinition menuDefinition) {
+    if (MenuSource.CALLABLE == menuDefinition.getSource()) {
+      return true;
+    }
+    return menuDefinition instanceof StandardMenuItemDefinition standard
+        && MenuSource.STANDARD == standard.getSource()
+        && (standard.getStandardType() == StandardMenuItemDefinitionType.DASHBOARD
+            || standard.getStandardType() == StandardMenuItemDefinitionType.PROCESS);
+  }
+
+  public void disableMenu(PortalMenuItemDefinition menuDefinition) {
+    setMenuVisibility(menuDefinition, false);
+  }
+
+  public void enableMenu(PortalMenuItemDefinition menuDefinition) {
+    setMenuVisibility(menuDefinition, true);
+  }
+
+  private void setMenuVisibility(PortalMenuItemDefinition menuDefinition, boolean visible) {
+    verifySidebarManagementPermission();
+    if (!canToggleMenuVisibility(menuDefinition)) {
+      throw new PortalException("Only the standard Dashboard and Processes entries and callable process entries have a sidebar visibility");
+    }
+    MenuOrderService.getInstance().setVisibility(menuDefinition.getSource(), menuDefinition.getId(), visible);
+    loadMenus();
   }
 
   public int getLastIndex() {

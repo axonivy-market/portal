@@ -1779,6 +1779,12 @@ Dialogs:
             TaskIFrameTitle: Marco de tareas
         page:
           MenuManagement:
+            Hide: Ocultar
+            Hidden: Oculto
+            Show: Mostrar
+            Visible: Visible
+            NoAvailableHomepage: 'No hay una página de inicio disponible para ti. Pide a un administrador que muestre una entrada en la barra lateral o que te conceda acceso.'
+            Status: Estado
             AddNewMenu: Agrega un nuevo menú
             CallableMenuMessage: Este menú se genera mediante un proceso invocable y no se puede editar.
             CallableSourceHint: Este elemento se genera mediante un proceso invocable. Contacta a tu desarrollador para modificarlo.

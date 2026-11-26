@@ -2054,6 +2054,7 @@
           "config" : {
             "conditions" : {
               "S60-f7" : "in.isMainDashboard",
+              "S60-f55" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isNoHomepageAvailable(in.#homepage, in.#isShowDashboard, in.isOpenDashboardFromLink)",
               "S60-f5" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowDashboard(in.#homepage, in.#isShowDashboard)"
             }
           },
@@ -2066,6 +2067,7 @@
                 "segment" : 0.88,
                 "offset" : { "x" : 49, "y" : -22 }
               } },
+            { "id" : "S60-f55", "to" : "S60-f56" },
             { "id" : "S60-f5", "to" : "S60-f12", "label" : {
                 "name" : "dashboard",
                 "segment" : 0.65,
@@ -2149,6 +2151,16 @@
           "visual" : {
             "at" : { "x" : 488, "y" : 57 },
             "size" : { "width" : 160, "height" : 62 }
+          }
+        }, {
+          "id" : "S60-f56",
+          "type" : "DialogCall",
+          "name" : "NoAvailableHomepage",
+          "config" : {
+            "dialog" : "com.axonivy.portal.page.NoAvailableHomepage:start()"
+          },
+          "visual" : {
+            "at" : { "x" : 488, "y" : 352 }
           }
         } ],
       "visual" : {

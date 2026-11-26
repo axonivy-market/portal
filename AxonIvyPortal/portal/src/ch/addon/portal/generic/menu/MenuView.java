@@ -117,6 +117,9 @@ public class MenuView implements Serializable {
             : Set.of();
 
     for (PortalMenuItemDefinition def : definitions) {
+      if (!def.isVisible()) {
+        continue;
+      }
       MenuElement element = buildMenuElement(def, startableProcessLinks);
       if (element != null) {
         mainMenuModel.getElements().add(element);

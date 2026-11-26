@@ -1778,6 +1778,12 @@ Dialogs:
             TaskIFrameTitle: Cadre de travail
         page:
           MenuManagement:
+            Hide: Masquer
+            Hidden: Masqué
+            Show: Afficher
+            Visible: Visible
+            NoAvailableHomepage: 'Aucune page d''accueil n''est disponible pour vous. Demandez à un administrateur de rendre une entrée visible dans la barre latérale ou de vous en donner l''accès.'
+            Status: Statut
             AddNewMenu: Ajouter un nouveau menu
             CallableMenuMessage: Ce menu est généré automatiquement par un processus appelable et ne peut pas être modifié.
             CallableSourceHint: Cet élément est généré par un processus appelable. Contactez votre développeur pour le modifier.

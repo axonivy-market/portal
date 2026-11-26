@@ -1765,6 +1765,12 @@ Dialogs:
             TaskIFrameTitle: タスクフレーム
         page:
           MenuManagement:
+            Hide: 非表示にする
+            Hidden: 非表示
+            Show: 表示する
+            Visible: 表示
+            NoAvailableHomepage: 利用可能なホームページがありません。管理者にサイドバーへの表示またはアクセス権の付与を依頼してください。
+            Status: ステータス
             AddNewMenu: 新しいメニューの追加
             CallableMenuMessage: このメニューは呼び出し可能プロセスによってプログラム的に生成されているため、編集できません。
             CallableSourceHint: この項目は呼び出し可能プロセスによって生成されています。変更するには開発者にお問い合わせください。
