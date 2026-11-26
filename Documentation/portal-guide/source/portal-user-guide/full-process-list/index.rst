@@ -86,9 +86,9 @@ Values of Portal Setting Portal.Processes.DefaultImage
 ------------------------------------------------------
 
 #. You could refer to project ``portal-developer-examples`` for examples.
-#. Start Process ``PhotoLibraryOfDefaultProcessImageExample``
+#. Start Process: Default Process Image selection example
 
-|process-default-image-values|
+|photo-library-of-default-process-image-example|
 
 HowTo: Add an external link
 ---------------------------
@@ -226,7 +226,7 @@ Different process operations require specific permissions:
    :alt: Edit process menu item
 .. |edit-process-icon-dialog| image:: ../../screenshots/process/edit-process-dialog.png
    :alt: Edit process dialog
-.. |process-default-image-values| image:: images/process-default-image-values.png
+.. |photo-library-of-default-process-image-example| image:: ../../screenshots/process-image/customization/photo-library-of-default-process-image-example.png
    :alt: Photos of default process images
 .. |more-information-link| image:: ../../screenshots/process/information/more-information-link.png
    :alt: Process more information link
