@@ -88,7 +88,7 @@ public class PortalConfigurationPage extends TemplatePage {
   }
 
   public String getMenuTypeByTitle(String menuTitle) {
-    // Table columns: 1-Label, 2-Target, 3-Permissions, 4-Type, 5-Source, 6-Action, 7-Reorder
+    // Table columns: 1-Label, 2-Target, 3-Permissions, 4-Type, 5-Source, 6-Status, 7-Action, 8-Reorder
     return findMenuRowByTitle(menuTitle).$("td:nth-child(4)").getText();
   }
 
@@ -109,19 +109,9 @@ public class PortalConfigurationPage extends TemplatePage {
     return waitForRemoveMenuDialogVisible();
   }
 
-  public boolean isDeleteActionAvailableForMenuTitle(String menuTitle) {
-    if (!isActionButtonRenderedForMenuTitle(menuTitle)) {
-      return false;
-    }
-    SelenideElement overlayMenu = openActionMenuForRow(findMenuRowByTitle(menuTitle));
-    boolean visible = overlayMenu.$$("[id$='menu-delete']").filter(Condition.visible).size() > 0;
-    $("body").click();
-    return visible;
-  }
-
-  public boolean isActionButtonRenderedForMenuTitle(String menuTitle) {
-    SelenideElement row = findMenuRowByTitle(menuTitle);
-    return row.$$("button[id$='menu-action-button']").filter(Condition.visible).size() > 0;
+  public ElementsCollection getMenuActionsByTitle(String menuTitle) {
+    return openActionMenuForRow(findMenuRowByTitle(menuTitle))
+        .$$("a.ui-menuitem-link").filter(Condition.visible);
   }
 
   public void confirmRemoveMenu() {

@@ -1209,6 +1209,10 @@ Dialogs:
                 SelectPeriod: Select period
         page:
           MenuManagement:
+            Disable: Disable
+            Disabled: Disabled
+            Enable: Enable
+            Enabled: Enabled
             HelpText: Customize the menu in this section to match your specific needs or preferences.
             MenuIcon: Menu icon
             MenuType: Menu type
