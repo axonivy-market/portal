@@ -101,27 +101,21 @@ public class MenuManagementTest extends BaseTest {
   }
 
   @Test
-  public void testStandardMenuItemDashboardHasOnlyPermissionToggleAction() {
+  public void testStandardMenuItemDashboardHasNoDeleteAction() {
     PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
     page.selectMenuManagementTab();
 
-    var actions = page.getMenuActionsByTitle(STANDARD_MENU_DASHBOARD);
-    actions.shouldHave(size(1));
-    actions.first().shouldHave(Condition.matchText("^(Enable|Disable)$"));
-    page.findMenuRowByTitle(STANDARD_MENU_DASHBOARD).$("td:nth-child(6)")
-        .shouldHave(Condition.exactText("Disable".equals(actions.first().getText()) ? "Enabled" : "Disabled"));
+    boolean deleteAvailable = page.isDeleteActionAvailableForMenuTitle(STANDARD_MENU_DASHBOARD);
+    assertFalse(deleteAvailable, "STANDARD 'Dashboard' menu item must not expose a Delete action");
   }
 
   @Test
-  public void testStandardMenuItemProcessesHasOnlyPermissionToggleAction() {
+  public void testStandardMenuItemProcessesHasNoDeleteAction() {
     PortalConfigurationPage page = LinkNavigator.navigateToPortalConfiguration();
     page.selectMenuManagementTab();
 
-    var actions = page.getMenuActionsByTitle(STANDARD_MENU_PROCESSES);
-    actions.shouldHave(size(1));
-    actions.first().shouldHave(Condition.matchText("^(Enable|Disable)$"));
-    page.findMenuRowByTitle(STANDARD_MENU_PROCESSES).$("td:nth-child(6)")
-        .shouldHave(Condition.exactText("Disable".equals(actions.first().getText()) ? "Enabled" : "Disabled"));
+    boolean deleteAvailable = page.isDeleteActionAvailableForMenuTitle(STANDARD_MENU_PROCESSES);
+    assertFalse(deleteAvailable, "STANDARD 'Processes' menu item must not expose a Delete action");
   }
 
   @Test
@@ -325,15 +319,8 @@ public class MenuManagementTest extends BaseTest {
     header.$$("th").filter(text("Permissions")).first().shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th").filter(text("Type")).first().shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th").filter(text("Source")).first().shouldBe(appear, DEFAULT_TIMEOUT);
-    header.$$("th").get(5).shouldHave(Condition.exactText("Status"));
     header.$$("th").filter(text("Action")).first().shouldBe(appear, DEFAULT_TIMEOUT);
     header.$$("th.settings-table-reorder").first().shouldBe(appear, DEFAULT_TIMEOUT);
-    for (SelenideElement row : page.getMenuTableRows()) {
-      String label = row.$("td:first-child").getText();
-      if (!STANDARD_MENU_DASHBOARD.equals(label) && !STANDARD_MENU_PROCESSES.equals(label)) {
-        row.$("td:nth-child(6)").shouldBe(Condition.empty);
-      }
-    }
   }
 
   @Test

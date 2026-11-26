@@ -335,28 +335,11 @@ The menu items table displays all sidebar navigation entries with the following 
 - **Permissions**: The permissions set for each item. Not all item types have permissions. This depends on the item's **Type**, items without permissions show ``-``
 - **Type**: The kind of item (Standard, External Link, Main Dashboard, Static Page, etc.)
 - **Source**: Where the item was created (Built-in, Dashboard configuration, Callable process, Configuration, etc.)
-- **Status**: Enabled or Disabled for the built-in Dashboard and Processes entries, based on their controlling permission on role ``Everybody``. Blank for all other entries
-- **Actions**: Edit and Delete for configurable items; Disable or Enable for the built-in Dashboard and Processes entries
+- **Actions**: Edit and Delete operations accessible via the overflow menu
 - **Reorder**: Drag handle (|reorder-dashboard-icon|) to reorder items
 
 .. note::
-   Built-in **Dashboard** and **Processes** entries cannot be edited or deleted. Each three-dot Actions menu contains one action: :guilabel:`Disable` if the controlling permission is granted to role ``Everybody``, or :guilabel:`Enable` if it is denied or not granted. The action does not depend on the current user's effective permission.
-
-HowTo: disable or enable a built-in sidebar entry
-------------------------------------------------------------
-
-#. In the :guilabel:`Sidebar` tab, open the three-dot Actions menu for **Dashboard** or **Processes**.
-
-#. Select :guilabel:`Disable` to explicitly deny the permission, or :guilabel:`Enable` to grant it. The page reloads to apply the change and refresh the action.
-
-   - **Dashboard** changes ``AccessDashboard`` on role ``Everybody``.
-   - **Processes** changes ``AccessFullProcessList`` on role ``Everybody``.
-
-The built-in rows remain in the configuration table and can still be reordered. Disabling does not delete dashboards, change sidebar order, or modify other role/user permission entries. Runtime access follows the engine's effective permission rules.
-
-.. important::
-
-   This changes the permission for role ``Everybody``, not just the current user. Other role and user permission entries remain unchanged. The ``PortalSidebarConfiguration`` permission is unchanged, so authorized administrators retain access to the Sidebar tab and can re-enable either entry there.
+   Built-in items such as **Dashboard** and **Processes** are Standard items and cannot be edited or deleted. The Actions menu is not available for these items.
 
 HowTo: add a sidebar menu item
 -------------------------------

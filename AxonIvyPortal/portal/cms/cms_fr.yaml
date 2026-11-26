@@ -1781,10 +1781,6 @@ Dialogs:
             AddNewMenu: Ajouter un nouveau menu
             CallableMenuMessage: Ce menu est généré automatiquement par un processus appelable et ne peut pas être modifié.
             CallableSourceHint: Cet élément est généré par un processus appelable. Contactez votre développeur pour le modifier.
-            Disable: Désactiver
-            Disabled: Désactivé
-            Enable: Activer
-            Enabled: Activé
             HelpText: Personnalisez le menu dans cette section en fonction de vos besoins ou préférences.
             InvalidStaticPagePath: Le chemin doit être relatif à l'application (les URLs absolues ne sont pas autorisées).
             InvalidUrl: L'URL n'est pas valide.

@@ -34,8 +34,7 @@ public class DashboardConfigurationBean implements Serializable {
 
   @PostConstruct
   public void initConfigurationBean() {
-    isMobileDevice = RequestUtils.isMobileDevice();
-    refreshPermissions();
+    initPermissions();
     resetAllIndicators();
     String isPublicDashboardString = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", String.class);
     boolean requestedPublicDashboard = Optional.ofNullable(isPublicDashboardString).map(Boolean::parseBoolean).orElse(false);
@@ -50,7 +49,8 @@ public class DashboardConfigurationBean implements Serializable {
     }
   }
 
-  public void refreshPermissions() {
+  private void initPermissions() {
+    isMobileDevice = RequestUtils.isMobileDevice();
     if (!isMobileDevice) {
       canEditPrivateDashboard = PermissionUtils.canManagePrivateDashboard();
       canEditPublicDashboard = PermissionUtils.hasDashboardWritePublicPermission();

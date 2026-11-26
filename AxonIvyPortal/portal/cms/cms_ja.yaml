@@ -1768,10 +1768,6 @@ Dialogs:
             AddNewMenu: 新しいメニューの追加
             CallableMenuMessage: このメニューは呼び出し可能プロセスによってプログラム的に生成されているため、編集できません。
             CallableSourceHint: この項目は呼び出し可能プロセスによって生成されています。変更するには開発者にお問い合わせください。
-            Disable: 無効にする
-            Disabled: 無効
-            Enable: 有効にする
-            Enabled: 有効
             HelpText: このセクションでは、ニーズや好みに合わせてメニューをカスタマイズできます。
             InvalidStaticPagePath: パスはアプリケーションからの相対パスである必要があります（絶対URLは許可されていません）。
             InvalidUrl: URLが無効です。

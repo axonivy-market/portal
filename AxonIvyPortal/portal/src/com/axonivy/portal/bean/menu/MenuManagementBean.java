@@ -18,23 +18,15 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.dto.menu.CustomMenuItemDefinition;
 import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
-import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
 import com.axonivy.portal.enums.SidebarMode;
-import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
 import com.axonivy.portal.menu.management.MenuLoader;
 import com.axonivy.portal.menu.management.MenuRemovalHandler;
 import com.axonivy.portal.menu.management.enums.MenuSource;
 
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.AccessState;
-import ch.ivyteam.ivy.security.ISecurityConstants;
-import ch.ivyteam.ivy.security.ISecurityContext;
-import ch.ivyteam.ivy.security.exec.Sudo;
 
 @Named
 @ViewScoped
@@ -110,68 +102,9 @@ public class MenuManagementBean extends AbstractMenuBean {
   }
 
   public boolean hasAction(PortalMenuItemDefinition menuDefinition) {
-    // Callable-sourced items are defined by their process and cannot be changed here.
-    return canToggleMenuPermission(menuDefinition)
-        || (menuDefinition != null && menuDefinition.getType() != MenuKind.STANDARD
-            && menuDefinition.getSource() != MenuSource.CALLABLE);
-  }
-
-  public boolean canToggleMenuPermission(PortalMenuItemDefinition menuDefinition) {
-    return getStandardMenuPermission(menuDefinition) != null;
-  }
-
-  private PortalPermission getStandardMenuPermission(PortalMenuItemDefinition menuDefinition) {
-    if (!(menuDefinition instanceof StandardMenuItemDefinition standard)
-        || standard.getSource() != MenuSource.STANDARD) {
-      return null;
-    }
-    if (standard.getStandardType() == StandardMenuItemDefinitionType.DASHBOARD) {
-      return PortalPermission.ACCESS_DASHBOARD;
-    }
-    if (standard.getStandardType() == StandardMenuItemDefinitionType.PROCESS) {
-      return PortalPermission.ACCESS_FULL_PROCESS_LIST;
-    }
-    return null;
-  }
-
-  public boolean isStandardMenuEnabled(PortalMenuItemDefinition menuDefinition) {
-    PortalPermission portalPermission = getStandardMenuPermission(menuDefinition);
-    if (portalPermission == null) {
-      return false;
-    }
-    return Sudo.get(() -> {
-      var permission = portalPermission.getPermission();
-      var context = ISecurityContext.current();
-      var everybody = context.roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
-      if (permission == null || everybody == null) {
-        throw new PortalException("Cannot read the built-in entry state: permission or Everybody role is missing");
-      }
-      return context.securityDescriptor().getPermissionAccess(permission, everybody).getAccessState()
-          == AccessState.EXPLICIT_GRANTED;
-    });
-  }
-
-  public void setStandardMenuEnabled(PortalMenuItemDefinition menuDefinition, boolean enabled) {
-    // Authorize the session user before elevating the security-policy write.
-    verifySidebarManagementPermission();
-    PortalPermission portalPermission = getStandardMenuPermission(menuDefinition);
-    if (portalPermission == null) {
-      throw new PortalException("Only the built-in Dashboard and Processes entry permissions can be changed");
-    }
-    Sudo.get(() -> {
-      var permission = portalPermission.getPermission();
-      var context = ISecurityContext.current();
-      var everybody = context.roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
-      if (permission == null || everybody == null) {
-        throw new PortalException("Cannot change the built-in entry: permission or Everybody role is missing");
-      }
-      if (enabled) {
-        context.securityDescriptor().grantPermission(permission, everybody);
-      } else {
-        context.securityDescriptor().denyPermission(permission, everybody);
-      }
-      return Void.class;
-    });
+    // Callable-sourced items are defined by their process and can be neither edited nor deleted.
+    return !MenuKind.STANDARD.equals(menuDefinition.getType())
+        && !MenuSource.CALLABLE.equals(menuDefinition.getSource());
   }
 
   public int getLastIndex() {

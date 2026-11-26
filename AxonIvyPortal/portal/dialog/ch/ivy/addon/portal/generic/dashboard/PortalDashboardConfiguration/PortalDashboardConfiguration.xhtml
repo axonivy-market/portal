@@ -228,13 +228,6 @@
                     </h:panelGroup>
                   </p:column>
 
-                  <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" width="100">
-                    <h:outputText id="menu-status" rendered="#{menuManagementBean.canToggleMenuPermission(menu)}"
-                      value="#{menuManagementBean.isStandardMenuEnabled(menu)
-                        ? ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/Enabled')
-                        : ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/Disabled')}" />
-                  </p:column>
-
                   <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
                     width="100" styleClass="text-center">
                     <div class="w-full flex justify-content-center">
@@ -243,9 +236,8 @@
                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
                         styleClass="rounded-button portal-icon-btn portal-icon-btn--sm" type="button" />
                         <p:menu id="menu-configuration-action-menu" styleClass="w-10rem dashboard-action-menu" overlay="true" trigger="menu-action-button"
-                          rendered="#{menuManagementBean.hasAction(menu)}" my="right top" at="right bottom">
+                          my="right top" at="right bottom">
                           <p:menuitem id="menu-edit" process="@this"
-                            rendered="#{menu.type ne 'STANDARD'}"
                             actionListener="#{menuDetailsBean.onEditMenu(menu)}"
                             icon="ti ti-pencil" styleClass="dashboard-configuration-action-menu-icon"
                             update="menu-configuration-dialog" global="false"
@@ -259,22 +251,6 @@
                             update="remove-menu-dialog" oncomplete="PF('remove-menu-dialog').show()"
                             title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
-                          <p:menuitem id="menu-disable" process="@this"
-                            rendered="#{menuManagementBean.canToggleMenuPermission(menu) and menuManagementBean.isStandardMenuEnabled(menu)}"
-                            actionListener="#{menuManagementBean.setStandardMenuEnabled(menu, false)}" global="false"
-                            action="#{dashboardConfigurationBean.refreshPermissions}"
-                            update="menu-table dashboard-configuration-type :left-menu"
-                            icon="ti ti-ban" styleClass="dashboard-configuration-action-menu-icon"
-                            title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/Disable')}"
-                            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/Disable')}" />
-                          <p:menuitem id="menu-enable" process="@this"
-                            rendered="#{menuManagementBean.canToggleMenuPermission(menu) and not menuManagementBean.isStandardMenuEnabled(menu)}"
-                            actionListener="#{menuManagementBean.setStandardMenuEnabled(menu, true)}" global="false"
-                            action="#{dashboardConfigurationBean.refreshPermissions}"
-                            update="menu-table dashboard-configuration-type :left-menu"
-                            icon="ti ti-check" styleClass="dashboard-configuration-action-menu-icon"
-                            title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/Enable')}"
-                            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/MenuManagement/Enable')}" />
                         </p:menu>
                     </div>
                   </p:column>
