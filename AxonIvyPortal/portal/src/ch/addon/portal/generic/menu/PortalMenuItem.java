@@ -78,8 +78,8 @@ public class PortalMenuItem extends DefaultMenuItem {
         }
         this.setId(String.format(DashboardUtils.MAIN_DASHBOARD_MENU_PATTERN, dashboardId));
 
-      } catch (URISyntaxException e) {
-        // Just ignore
+      } catch (URISyntaxException ignored) {
+        // URL not parseable; falls back to the default menu ID below.
       }
     }
     if (StringUtils.isEmpty(this.getId())) {

@@ -315,7 +315,7 @@ public class PortalPackageService {
       if (JsonListWrapper.isListWrapper(node)) {
         return node.get(JsonListWrapper.ITEMS_FIELD_NAME).isEmpty();
       }
-    } catch (JacksonException e) {
+    } catch (JacksonException ignored) {
       // Not parseable JSON - treat as non-empty raw content rather than fail export/import.
     }
     return false;

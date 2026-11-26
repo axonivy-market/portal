@@ -171,7 +171,8 @@ public class TaskSearchCriteria {
         long idKeyword = Long.parseLong(keyword.trim());
         String containingIdKeyword = String.format("%%%d%%", idKeyword);
         filterByKeywordQuery.where().or().taskId().isLike(containingIdKeyword);
-      } catch (NumberFormatException e) {
+      } catch (NumberFormatException ignored) {
+        // Non-numeric keyword: global search matches no task ID.
         if (isGlobalSearch()) {
           filterByKeywordQuery.where().or().taskId().isEqual(-1L);
         }
