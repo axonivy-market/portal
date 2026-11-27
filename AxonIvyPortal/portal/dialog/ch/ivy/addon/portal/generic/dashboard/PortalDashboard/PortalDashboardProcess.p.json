@@ -16,8 +16,7 @@
             { "name" : "noHomepageAvailable", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
-            "out.noHomepageAvailable" : "param.noHomepageAvailable",
-            "out.configurationUrl" : "param.noHomepageAvailable && ch.ivy.addon.portalkit.util.PermissionUtils.hasPortalSidebarConfigurationPermission() ? ch.ivy.addon.portal.generic.navigation.PortalNavigator.buildDashboardConfigurationUrl() : \"\""
+            "out.noHomepageAvailable" : "param.noHomepageAvailable"
           }
         },
         "guid" : "17065CC71CC27C23"

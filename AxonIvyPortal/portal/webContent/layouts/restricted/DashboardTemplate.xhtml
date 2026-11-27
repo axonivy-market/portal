@@ -20,8 +20,6 @@
       <c:if test="#{noHomepageAvailable}">
         <div class="ui-g">
           <p class="ui-g-12 text-style-h1" role="status">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noPermission')}</p>
-          <p:link rendered="#{not empty noHomepageConfigurationUrl}" href="#{noHomepageConfigurationUrl}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}" />
         </div>
       </c:if>
       <c:if test="#{not noHomepageAvailable}">

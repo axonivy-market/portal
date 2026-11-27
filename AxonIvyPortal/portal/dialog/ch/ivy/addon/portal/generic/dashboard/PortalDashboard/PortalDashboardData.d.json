@@ -6,8 +6,5 @@
     "name" : "noHomepageAvailable",
     "type" : "Boolean",
     "modifiers" : [ ]
-  }, {
-    "name" : "configurationUrl",
-    "modifiers" : [ ]
   } ]
 }

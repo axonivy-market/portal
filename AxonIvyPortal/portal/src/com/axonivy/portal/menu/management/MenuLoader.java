@@ -80,7 +80,6 @@ public final class MenuLoader implements Serializable {
     return ordered;
   }
 
-  /** Persists the order and visibility of the given Sidebar configuration rows. */
   public static void persistManifest(List<PortalMenuItemDefinition> ordered) {
     List<MenuOrderEntry> manifest = ordered.stream()
         .map(def -> new MenuOrderEntry(def.getId(), def.getSource(), def.isVisible()))
