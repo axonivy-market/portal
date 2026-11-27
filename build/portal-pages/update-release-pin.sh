@@ -26,11 +26,18 @@ fi
 major=${release_line%%.*}
 property_name="portal${major}.version"
 pom=build/portal-pages/pom.xml
-property_count=$(grep -Ec "^[[:space:]]*<${property_name}>[^<]*</${property_name}>[[:space:]]*$" "$pom" || true)
-if [[ "$property_count" -ne 1 ]]; then
+mapfile -t current_versions < <(sed -nE "s|^[[:space:]]*<${property_name}>([^<]*)</${property_name}>[[:space:]]*$|\1|p" "$pom")
+if [[ ${#current_versions[@]} -ne 1 ]]; then
     printf 'Expected exactly one %s property in %s; found %s\n' \
-        "$property_name" "$pom" "$property_count" >&2
+        "$property_name" "$pom" "${#current_versions[@]}" >&2
     exit 1
+fi
+
+current_version=${current_versions[0]}
+if [[ "$artifact_version" == "$current_version" ]] ||
+   [[ $(printf '%s\n' "$current_version" "$artifact_version" | sort -V | tail -n 1) != "$artifact_version" ]]; then
+    printf 'Keeping %s for %s; %s is not newer\n' "$current_version" "$release_line" "$artifact_version"
+    exit 0
 fi
 
 group_path=com/axonivy/portal

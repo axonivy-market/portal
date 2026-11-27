@@ -24,6 +24,9 @@ permissions:
 jobs:
   update-release-version:
     runs-on: ubuntu-latest
+    concurrency:
+      group: portal-pages-pin-${{ inputs.release_line }}
+      queue: max
     steps:
       - name: Require master
         run: |
@@ -33,6 +36,8 @@ jobs:
           fi
 
       - uses: actions/checkout@v7
+        with:
+          ref: master
 
       - uses: actions/setup-java@v5
         with:
@@ -44,12 +49,18 @@ jobs:
           maven-version: 3.10.1
 
       - name: Validate release, locate artifact, and update the pin
+        id: update-pin
         env:
           RELEASE_LINE: ${{ inputs.release_line }}
           ARTIFACT_VERSION: ${{ inputs.artifact_version }}
-        run: bash build/portal-pages/update-release-pin.sh "$RELEASE_LINE" "$ARTIFACT_VERSION"
+        run: |
+          bash build/portal-pages/update-release-pin.sh "$RELEASE_LINE" "$ARTIFACT_VERSION"
+          if ! git diff --quiet -- build/portal-pages/pom.xml; then
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Verify the updated release pin and assemble the site
+        if: steps.update-pin.outputs.changed == 'true'
         env:
           RELEASE_LINE: ${{ inputs.release_line }}
           ARTIFACT_VERSION: ${{ inputs.artifact_version }}
@@ -62,6 +73,7 @@ jobs:
           python3 -m unittest discover -s build/portal-pages -v
 
       - name: Create or update release pin PR
+        if: steps.update-pin.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ github.token }}

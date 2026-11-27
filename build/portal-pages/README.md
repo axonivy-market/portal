@@ -21,6 +21,13 @@ To include development documentation:
 Open <http://localhost:8000/portal/> yourself; stop the preview with Ctrl+C.
 Use the script's `--help` option for usage.
 
+## Release publication
+
+1. Publish stable documentation from the matching branch: `master` (14.0), `release/12.0`, or `release/10.0`. The Documentation workflow proposes a Pages pin PR on `master` after the guide ZIP is published. Verify the guide on Nexus and merge the PR.
+2. Run Jenkins `create-release` on the same branch with `deployToRepo=true`. After deploying the release, Jenkins starts the Pages workflow on `master`, which requires the exact release pin.
+
+Merging a pin does not trigger Pages. A successful development documentation SNAPSHOT publication from `master` refreshes Pages directly, without a pin PR. Automated runs keep the live stable pins for lines they are not releasing, so a dev refresh cannot publish a staged stable guide early.
+
 ## Where to look
 
 - [preview-documentation.sh](preview-documentation.sh): local preparation and serving.
