@@ -27,7 +27,8 @@ pipeline {
           currentBuild.description = "On ${env.NODE_NAME}"
           echo "====================Update pom version to ${params.releaseVersion}===================="
 
-          docker.build('build-portal-modules', '-f build/create-release/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+          def releaseImage = docker.build('build-portal-modules', '-f build/create-release/Dockerfile .')
+          releaseImage.inside('-v /var/tools/maven-cache:/home/build/') {
             withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
                 sshagent(credentials: ['github-axonivy']) {
 
@@ -89,6 +90,32 @@ pipeline {
           if(params.deployToRepo) {
             docker.build('deploy-portal-bom', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
               maven cmd: "deploy:deploy-file -Dfile=${currentDir}/build/sbom/target/portal.bom.json -DgroupId=com.axonivy.portal -DartifactId=portal-bom -Dversion=${params.releaseVersion} -Dpackaging=json -DrepositoryId=nexus.axonivy.com -Durl=https://nexus.axonivy.com/repository/maven-releases"
+            }
+
+            if (env.BRANCH_NAME == 'release/12.0' && (params.releaseVersion ==~ /12\.0\.[0-9]+(\.[0-9]+)?/)) {
+              echo "====================Trigger Pages for Portal ${params.releaseVersion}===================="
+              def dispatch = writeJSON returnText: true, json: [
+                ref: 'master',
+                inputs: [publish: true, expected_release_version: params.releaseVersion],
+                return_run_details: true
+              ]
+              catchError(buildResult: 'UNSTABLE', catchInterruptions: false,
+                message: 'Portal release was deployed, but Pages dispatch failed. Dispatch Pages manually without rerunning the release.') {
+                releaseImage.inside {
+                  withEnv(["PAGES_DISPATCH=${dispatch}"]) {
+                    withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                      sh '''
+                        set +x
+                        curl --fail-with-body --silent --show-error \
+                          -H "Authorization: Bearer $GITHUB_TOKEN" \
+                          -H 'Accept: application/vnd.github+json' \
+                          --json "$PAGES_DISPATCH" \
+                          https://api.github.com/repos/axonivy-market/portal/actions/workflows/portal-documentation-pages.yml/dispatches
+                      '''
+                    }
+                  }
+                }
+              }
             }
           }
         }
