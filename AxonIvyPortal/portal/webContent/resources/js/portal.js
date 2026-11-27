@@ -242,7 +242,7 @@ var MainMenu = {
       }
       this.removeActiveMenu(activeMenuItemList);
       $currentPageMenu.parent().addClass('active-menuitem');
-      let pfMainMenu = PF('main-menu');
+      const pfMainMenu = PrimeFaces.widgets['main-menu'];
       if (pfMainMenu) {
         pfMainMenu.addMenuitem($currentPageMenu.parent().attr('id'));
       }
@@ -355,7 +355,7 @@ function executeStoreMenuRemoteCommand(menuItem, isWorkingOnATask, isOpenOnNewTa
 }
 
 function fireEventClickOnMenuItem(menuItem, prevMenuItemId) {
-  let pfMainMenu = PF('main-menu');
+  const pfMainMenu = PrimeFaces.widgets['main-menu'];
   if (pfMainMenu) {
     pfMainMenu.addMenuitem(menuItem);
     if (prevMenuItemId !== menuItem) {
@@ -372,7 +372,7 @@ function resetPortalLeftMenuState() {
 }
 
 function restorePortalLeftMenuState() {
-  let pfMainMenu = PF('main-menu');
+  const pfMainMenu = PrimeFaces.widgets['main-menu'];
   if (pfMainMenu) {
     pfMainMenu.restoreMenuState();
   }
@@ -403,7 +403,7 @@ function highlightDashboardItem(menuId) {
 }
 
 function activeMenuItemOnLeftMenu(menuId) {
-  let pfMainMenu = PF('main-menu');
+  const pfMainMenu = PrimeFaces.widgets['main-menu'];
   if (pfMainMenu) {
     pfMainMenu.addMenuitem(menuId);
   }
@@ -414,7 +414,7 @@ function activeMenuItemOnLeftMenu(menuId) {
 }
 
 function deactivateMenuItemOnLeftMenu(menuId) {
-  let pfMainMenu = PF('main-menu');
+  const pfMainMenu = PrimeFaces.widgets['main-menu'];
   if (pfMainMenu) {
     pfMainMenu.removeMenuitem(menuId);
   }
