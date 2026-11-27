@@ -48,16 +48,20 @@ public abstract class LiveScrollLazyModel<T> extends LazyDataModel<T> {
   }
 
   protected void readChunkSizeFromRequest() {
+    chunkSize = readChunkSizeFromRequest(chunkSize);
+  }
+
+  public static int readChunkSizeFromRequest(int currentChunkSize) {
     FacesContext facesContext = FacesContext.getCurrentInstance();
     if (facesContext == null) {
-      return;
+      return currentChunkSize;
     }
 
     String reportedSize = facesContext.getExternalContext().getRequestParameterMap().get(CHUNK_SIZE_PARAM);
     if (StringUtils.isBlank(reportedSize)) {
-      return;
+      return currentChunkSize;
     }
-    chunkSize = Math.min(MAX_CHUNK_SIZE,
+    return Math.min(MAX_CHUNK_SIZE,
         Math.max(DEFAULT_CHUNK_SIZE, NumberUtils.toInt(reportedSize, DEFAULT_CHUNK_SIZE)));
   }
 

@@ -51,10 +51,6 @@
     "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria",
     "modifiers" : [ ]
   }, {
-    "name" : "totalTasks",
-    "type" : "Integer",
-    "modifiers" : [ ]
-  }, {
     "name" : "loopCounter",
     "type" : "Integer",
     "modifiers" : [ ]

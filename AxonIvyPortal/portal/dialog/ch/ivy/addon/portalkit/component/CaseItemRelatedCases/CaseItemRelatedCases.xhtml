@@ -43,12 +43,24 @@
       </h:panelGroup>
     </div>
     
+    <h:form id="related-cases-first-load-form">
+      <p:remoteCommand id="rc-load-related-cases-first-time" autoRun="true" async="true" global="false" process="@this"
+        onstart="addCaseDetailsTableChunkSize(cfg)" actionListener="#{data.caseLazyDataModel.loadFirstTime()}"
+        update="#{p:resolveFirstComponentWithId('related-cases-container', view).clientId}"
+        oncomplete="loadCaseDetailsTableFirstTime('js-related-cases-loading', 'js-related-cases-container', 'related-cases-table')" />
+    </h:form>
+    <input type="hidden" class="js-table-widget-var" value="related-cases-table" />
+    <div class="js-related-cases-loading ui-g-12">
+      <c:forEach begin="1" end="5">
+        <p:skeleton styleClass="MarTop20" height="4rem" />
+      </c:forEach>
+    </div>
+    <div class="js-related-cases-container hidden">
     <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0 related-cases-container" id="related-cases-container">
     
-      <p:dataTable cellNavigation="false" id="related-cases" lazy="true" value="#{data.caseLazyDataModel}" var="case" paginator="true" rows="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
-        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" sortMode="single"
-        sortBy="#{caseDetailsBean.sortById}" styleClass="related-cases" rowHover="true" selectionMode="single"
-        currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
+      <p:dataTable cellNavigation="false" id="related-cases" widgetVar="related-cases-table" lazy="true" value="#{data.caseLazyDataModel}" var="case"
+        scrollable="true" liveScroll="true" scrollRows="#{data.caseLazyDataModel.chunkSize}" sortMode="single"
+        sortBy="#{caseDetailsBean.sortById}" styleClass="related-cases" rowHover="true" selectionMode="single">
         <p:ajax event="rowSelect" listener="#{caseDetailsBean.navigateToSelectedCaseDetails}" />
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" field="NAME" sortBy="#{NAME}" filterable="false" styleClass="name-column u-truncate-text"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}">
@@ -122,6 +134,7 @@
         </p:column>
       </p:dataTable>
     </h:panelGroup>
+    </div>
     
     
   </div>

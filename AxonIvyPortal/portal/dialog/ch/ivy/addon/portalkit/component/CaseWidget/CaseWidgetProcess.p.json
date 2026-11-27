@@ -230,7 +230,7 @@
         "labelOffset" : { "x" : 41 }
       },
       "connect" : [
-        { "id" : "f87", "to" : "f80" }
+        { "id" : "f87", "to" : "f76" }
       ]
     }, {
       "id" : "f81",
@@ -256,30 +256,6 @@
       },
       "connect" : [
         { "id" : "f88", "to" : "f79" }
-      ]
-    }, {
-      "id" : "f80",
-      "type" : "SubProcessCall",
-      "name" : "count cases",
-      "config" : {
-        "processCall" : "Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)",
-        "call" : {
-          "map" : {
-            "param.caseSearchCriteria" : "in.caseSearchCriteria"
-          }
-        },
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.totalCases" : "result.totalCases"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 256, "y" : 488 }
-      },
-      "connect" : [
-        { "id" : "f83", "to" : "f76" }
       ]
     }, {
       "id" : "f76",
@@ -312,7 +288,7 @@
       "type" : "Alternative",
       "config" : {
         "conditions" : {
-          "f89" : "in.loopCounter <= in.totalCases / in.maxResultNumberPerQuery"
+          "f89" : "in.collectedCasesForExporting.size() == in.loopCounter * in.maxResultNumberPerQuery"
         }
       },
       "visual" : {

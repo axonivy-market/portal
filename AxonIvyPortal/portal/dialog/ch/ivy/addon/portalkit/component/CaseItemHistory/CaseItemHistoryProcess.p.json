@@ -65,21 +65,29 @@
             "import ch.ivyteam.ivy.workflow.TaskState;",
             "import java.util.ArrayList;",
             "",
-            "List<ITask> finishedTasks = new ArrayList();",
-            "for (ITask task : in.caze.tasks().all()) {",
-            "  if (task.getState() == TaskState.DONE",
-            "  || task.getState() == TaskState.DESTROYED) {",
-            "    finishedTasks.add(task);",
+            "in.historiesLoadFailed = false;",
+            "try {",
+            "  List<ITask> finishedTasks = new ArrayList();",
+            "  for (ITask task : in.caze.tasks().all()) {",
+            "    if (task.getState() == TaskState.DONE",
+            "    || task.getState() == TaskState.DESTROYED) {",
+            "      finishedTasks.add(task);",
+            "    }",
             "  }",
+            "",
+            "  long selectedCaseId = in.caze.getId();",
+            "  List<ICase> cases = new ArrayList();",
+            "  cases.add(in.caze);",
+            "  cases.addAll(CaseUtils.findSubCasesByBusinessCaseId(selectedCaseId));",
+            "",
+            "  HistoryService historyService = new HistoryService();",
+            "  in.histories = historyService.getCaseHistories(selectedCaseId, finishedTasks, cases, !in.showSystemTasksChkbox, !in.showSystemNotesChkbox);",
+            "} catch (Exception e) {",
+            "  ivy.log.error(\"Cannot load case histories\", e);",
+            "  in.histories = new ArrayList();",
+            "  in.historiesLoadFailed = true;",
             "}",
-            "",
-            "long selectedCaseId = in.caze.getId();",
-            "List<ICase> cases = new ArrayList();",
-            "cases.add(in.caze);",
-            "cases.addAll(CaseUtils.findSubCasesByBusinessCaseId(selectedCaseId));",
-            "",
-            "HistoryService historyService = new HistoryService();",
-            "in.histories = historyService.getCaseHistories(selectedCaseId, finishedTasks, cases, !in.showSystemTasksChkbox, !in.showSystemNotesChkbox);",
+            "in.historiesLoaded = true;",
             "// Responsive table",
             "PrimeFaces.current().executeScript(\"ResponsiveTable.init(':case-histories')\");"
           ]
@@ -158,6 +166,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import jakarta.faces.context.FacesContext;",
             "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
             "import ch.ivy.addon.portalkit.util.PermissionUtils;",
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
@@ -175,7 +184,11 @@
             "out.showSystemNotesChkbox = out.showSystemNotes && service.isCheckSystemNotesByDefault();",
             "out.showSystemTasksChkbox = out.showSystemTasks && service.isCheckSystemTasksByDefault();",
             "",
-            "out.showRelatedCaseInfo= isAdmin && out.showRelatedCaseInfoCheckbox;"
+            "out.showRelatedCaseInfo= isAdmin && out.showRelatedCaseInfoCheckbox;",
+            "",
+            "if (!FacesContext.getCurrentInstance().getPartialViewContext().isAjaxRequest()) {",
+            "  out.historiesLoaded = false;",
+            "}"
           ]
         }
       },
@@ -184,7 +197,24 @@
         "size" : { "width" : 128 }
       },
       "connect" : [
-        { "id" : "f10", "to" : "f26" }
+        { "id" : "f10", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "Alternative",
+      "name" : "loaded?",
+      "config" : {
+        "conditions" : {
+          "f12" : "Boolean.valueOf(in.historiesLoaded)"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 192 },
+        "labelOffset" : { "x" : 0, "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f26" },
+        { "id" : "f13", "to" : "f28", "via" : [ { "x" : 320, "y" : 240 }, { "x" : 536, "y" : 240 } ] }
       ]
     } ]
 }
