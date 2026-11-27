@@ -6,14 +6,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.application.FacesMessage;
-import jakarta.faces.context.FacesContext;
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.ReorderEvent;
 
@@ -34,6 +29,11 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.GrowlMessageService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @Named
 @ViewScoped
@@ -43,6 +43,7 @@ public class MenuManagementBean extends AbstractMenuBean {
   private PortalMenuItemDefinition selectedMenuDefinition;
   private SidebarMode sidebarMode;
   private boolean sidebarSettingsSaved;
+  private long visibleMenuCount;
 
   @PostConstruct
   public void init() {
@@ -56,7 +57,7 @@ public class MenuManagementBean extends AbstractMenuBean {
    * table getter lazy-loads on first access and tab entry triggers an explicit refresh.
    */
   public void loadMenus() {
-    menuDefinitions = MenuLoader.loadMenuDefinitions();
+    setMenuDefinitions(MenuLoader.loadMenuDefinitions());
     menuDefinitions.forEach(this::initDisplayPermissions);
   }
 
@@ -118,6 +119,23 @@ public class MenuManagementBean extends AbstractMenuBean {
     return menuDefinition.getSource() != null && StringUtils.isNotBlank(menuDefinition.getId());
   }
 
+  public boolean isLastVisibleMenu(PortalMenuItemDefinition menuDefinition) {
+    getMenuDefinitions();
+    return menuDefinition != null && menuDefinition.isVisible() && visibleMenuCount == 1;
+  }
+
+  private boolean canRemoveVisibleMenu(PortalMenuItemDefinition target) {
+    loadMenus();
+    boolean lastVisible = menuDefinitions.stream()
+        .filter(menu -> menu.getSource() == target.getSource() && Strings.CS.equals(menu.getId(), target.getId()))
+        .anyMatch(this::isLastVisibleMenu);
+    if (lastVisible) {
+      showLastVisibleMenuWarning();
+      return false;
+    }
+    return true;
+  }
+
   public void disableMenu(PortalMenuItemDefinition menuDefinition) {
     setMenuVisibility(menuDefinition, false);
   }
@@ -131,12 +149,19 @@ public class MenuManagementBean extends AbstractMenuBean {
     if (!canToggleMenuVisibility(menuDefinition)) {
       throw new PortalException("Menu entry has no source or ID, so its sidebar visibility cannot be changed");
     }
+    if (!visible && !canRemoveVisibleMenu(menuDefinition)) {
+      return;
+    }
     MenuOrderService.getInstance().setVisibility(menuDefinition.getSource(), menuDefinition.getId(), visible);
-    FacesContext.getCurrentInstance().addMessage(GrowlMessageService.PORTAL_GLOBAL_GROWL_MESSAGE,
-        FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO,
-            Ivy.cms().co("/Dialogs/com/axonivy/portal/page/MenuManagement/RefreshToApplyVisibility"), null));
-    PrimeFaces.current().ajax().update(GrowlMessageService.PORTAL_GLOBAL_GROWL);
     loadMenus();
+    sidebarSettingsSaved = true;
+  }
+
+  protected void showLastVisibleMenuWarning() {
+    FacesContext.getCurrentInstance().addMessage(GrowlMessageService.PORTAL_GLOBAL_GROWL_MESSAGE,
+        FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN,
+            Ivy.cms().co("/Dialogs/com/axonivy/portal/page/MenuManagement/AtLeastOneMenuVisible"), null));
+    PrimeFaces.current().ajax().update(GrowlMessageService.PORTAL_GLOBAL_GROWL);
   }
 
   public int getLastIndex() {
@@ -146,6 +171,9 @@ public class MenuManagementBean extends AbstractMenuBean {
 
   public void removeMenu() {
     verifySidebarManagementPermission();
+    if (!canRemoveVisibleMenu(getSelectedMenuDefinition())) {
+      return;
+    }
     MenuRemovalHandler.removeMenu(getSelectedMenuDefinition());
     // The loader prunes the stale manifest entry in memory only, so re-persist here —
     // an explicit admin action — to keep the stored order converged.
@@ -162,6 +190,8 @@ public class MenuManagementBean extends AbstractMenuBean {
 
   public void setMenuDefinitions(List<PortalMenuItemDefinition> menuDefinitions) {
     this.menuDefinitions = menuDefinitions;
+    visibleMenuCount = menuDefinitions == null ? 0
+        : menuDefinitions.stream().filter(PortalMenuItemDefinition::isVisible).count();
   }
 
   public PortalMenuItemDefinition getSelectedMenuDefinition() {

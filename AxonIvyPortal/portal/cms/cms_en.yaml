@@ -1775,7 +1775,7 @@ Dialogs:
             Hidden: Hidden
             Show: Show
             Visible: Visible
-            RefreshToApplyVisibility: 'Sidebar visibility updated. Refresh the page to take effect.'
+            AtLeastOneMenuVisible: At least one menu item must remain visible.
             NoAvailableHomepage: 'No homepage is available for you. Ask an administrator to show a sidebar entry or grant you access to it.'
             Status: Status
             AddNewMenu: Add new menu

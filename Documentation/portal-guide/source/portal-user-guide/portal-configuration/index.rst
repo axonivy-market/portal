@@ -346,6 +346,14 @@ The menu items table displays all sidebar navigation entries with the following 
 .. note::
    Hidden entries remain reachable through a directly opened URL if the user is already authorized for that page. Direct URL access is still governed by the existing page, process, and dashboard permissions.
 
+.. note::
+
+   The Sidebar screen disables **Hide** and, where available, **Delete** for the last visible menu item:
+   "At least one menu item must remain visible." The server rechecks this rule before changing visibility
+   or deleting source data. **Show** remains available, including for an imported all-hidden configuration.
+   This guard applies only to Sidebar actions, not imports, direct variable edits, or source changes elsewhere.
+   A visible item does not guarantee that every user has access to it or an available homepage.
+
 HowTo: show or hide a built-in menu item
 ----------------------------------------
 
@@ -353,7 +361,7 @@ HowTo: show or hide a built-in menu item
 
 #. Select **Hide** to hide the entry from the sidebar, or **Show** to show it again.
 
-#. The change applies to all users after the page is refreshed. The entry keeps its position in the table.
+#. Use **Reload** in the Sidebar Settings notice to apply the change to the current page. The entry keeps its position in the table.
 
 HowTo: add a sidebar menu item
 -------------------------------

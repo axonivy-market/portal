@@ -1783,7 +1783,7 @@ Dialogs:
             Hidden: Oculto
             Show: Mostrar
             Visible: Visible
-            RefreshToApplyVisibility: 'Visibilidad actualizada. Actualiza la página para que el cambio surta efecto.'
+            AtLeastOneMenuVisible: Al menos un elemento del menú debe permanecer visible.
             NoAvailableHomepage: 'No hay una página de inicio disponible para ti. Pide a un administrador que muestre una entrada en la barra lateral o que te conceda acceso.'
             Status: Estado
             AddNewMenu: Agrega un nuevo menú
