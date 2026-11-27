@@ -16,13 +16,13 @@ on:
         description: 'Include the latest published Maven SNAPSHOT for the documentation revision'
         type: boolean
         default: true
-      expected_release_version:
-        description: 'Require this Portal release version to be pinned before publishing (used by Jenkins)'
-        type: string
       refresh_dev:
         description: 'Refresh dev documentation without changing live release versions'
         type: boolean
         default: false
+      expected_release_version:
+        description: 'Release pin to verify (set by Jenkins; leave blank for previews)'
+        type: string
 
 permissions:
   contents: read
