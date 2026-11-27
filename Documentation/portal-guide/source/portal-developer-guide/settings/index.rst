@@ -725,6 +725,48 @@ Data model:
 - ``imageType``: the extension of the process image. Basically, this should be handled by the engine
 - ``permissions``: users have these roles can see and start the external link. If you don't define it, default role is Everybody
 
+Portal Menu Order
+^^^^^^^^^^^^^^^^^
+
+The sidebar order and visibility of standard and dashboard menu entries are defined in the following variable:
+
+Filename: ``variables.Portal.Menu.Order.json``
+
+The value is a wrapper object: ``menus`` holds the ordered list of menu entries and ``version`` identifies the format of the JSON itself.
+
+.. code-block:: javascript
+
+   {
+     "menus": [
+       {
+         "id": "DASHBOARD",
+         "source": "standard",
+         "visibility": "false"
+       },
+       {
+         "id": "PROCESS",
+         "source": "standard",
+         "visibility": "false"
+       },
+       {
+         "id": "default-case-list-dashboard",
+         "source": "dashboard",
+         "visibility": "true"
+       }
+     ],
+     "version": "14.0.0"
+   }
+
+- ``id`` and ``source``: together identify the menu entry. Identity is the pair ``(source, id)``, not the title or row position
+- ``visibility``: a string, ``"true"`` or ``"false"``. Only ``"false"`` hides the entry from the sidebar. A missing, null, or blank value means visible, so existing configurations keep their current sidebar
+- A hidden entry keeps its position in the ``menus`` array. It is not deleted and is not added again as a newly discovered item
+- Visibility is application-wide. It is not configured per role or per user. Permissions still determine which visible entries a user can access
+- Hiding an entry does not grant or revoke any permission, including ``AccessFullProcessList`` for **Processes**
+
+.. note::
+   Use the Portal Configuration sidebar to change visibility of the built-in **Dashboard** and **Processes** entries (see :ref:`portal-configuration`).
+
+
 
 .. |portal-header| image:: ../../screenshots/settings/user-settings.png
 .. |global-settings| image:: ../../screenshots/settings/global-settings.png

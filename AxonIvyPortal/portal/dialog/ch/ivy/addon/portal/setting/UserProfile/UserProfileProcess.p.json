@@ -173,11 +173,13 @@
                 "import ch.addon.portal.generic.userprofile.homepage.Homepage;",
                 "import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;",
                 "",
-                "Homepage defaultHomepage = HomepageUtils.findDefaultHomepage();",
-                "defaultHomepage.setName(\"\");",
-                "defaultHomepage.setLabel(ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption\", [defaultHomepage.getLabel()]));",
                 "out.homepages = HomepageUtils.loadHomepages();",
-                "out.homepages.add(0, defaultHomepage);",
+                "Homepage defaultHomepage = HomepageUtils.findDefaultHomepage();",
+                "if (defaultHomepage != null) {",
+                "  defaultHomepage.setName(\"\");",
+                "  defaultHomepage.setLabel(ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption\", [defaultHomepage.getLabel()]));",
+                "  out.homepages.add(0, defaultHomepage);",
+                "}",
                 "out.selectedHomepage = HomepageUtils.findHomepageInMyProfile();"
               ]
             }

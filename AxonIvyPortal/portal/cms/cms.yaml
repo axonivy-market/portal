@@ -1209,6 +1209,12 @@ Dialogs:
                 SelectPeriod: Select period
         page:
           MenuManagement:
+            Hide: Hide
+            Hidden: Hidden
+            Show: Show
+            Visible: Visible
+            AtLeastOneMenuVisible: At least one menu item must remain visible.
+            Status: Status
             HelpText: Customize the menu in this section to match your specific needs or preferences.
             MenuIcon: Menu icon
             MenuType: Menu type

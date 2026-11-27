@@ -333,11 +333,35 @@ The menu items table displays all sidebar navigation entries with the following 
 - **Permissions**: The permissions set for each item. Not all item types have permissions. This depends on the item's **Type**, items without permissions show ``-``
 - **Type**: The kind of item (Standard, External Link, Main Dashboard, Static Page, etc.)
 - **Source**: Where the item was created (Built-in, Dashboard configuration, Callable process, Configuration, etc.)
-- **Actions**: Edit and Delete operations accessible via the overflow menu
+- **Status**: Shows **Visible** or **Hidden** for every row, based on the entry's sidebar visibility
+- **Actions**: Every row offers **Hide** (when visible) or **Show** (when hidden). Edit and Delete are available for custom rows only
 - **Reorder**: Drag handle (|reorder-dashboard-icon|) to reorder items
 
 .. note::
-   Built-in items such as **Dashboard** and **Processes** are Standard items and cannot be edited or deleted. The Actions menu is not available for these items.
+   Built-in items such as **Dashboard** and **Processes** are Standard items and cannot be edited or deleted. Hiding a built-in item removes it from the sidebar but keeps its row and position in the table.
+
+.. note::
+   Hide and Show change sidebar visibility for all users of the application. They do not grant or revoke permissions. Hidden entries are not offered as the homepage. If no homepage is available, Portal displays the existing dashboard access message without opening a dashboard.
+
+.. note::
+   Hidden entries remain reachable through a directly opened URL if the user is already authorized for that page. Direct URL access is still governed by the existing page, process, and dashboard permissions.
+
+.. note::
+
+   The Sidebar screen disables **Hide** and, where available, **Delete** for the last visible menu item:
+   "At least one menu item must remain visible." The server rechecks this rule before changing visibility
+   or deleting source data. **Show** remains available, including for an imported all-hidden configuration.
+   This guard applies only to Sidebar actions, not imports, direct variable edits, or source changes elsewhere.
+   A visible item does not guarantee that every user has access to it or an available homepage.
+
+HowTo: show or hide a built-in menu item
+----------------------------------------
+
+#. In the menu items table, click |actions-menu-icon| next to the row you want to change.
+
+#. Select **Hide** to hide the entry from the sidebar, or **Show** to show it again.
+
+#. Use **Reload** in the Sidebar Settings notice to apply the change to the current page. The entry keeps its position in the table.
 
 HowTo: add a sidebar menu item
 -------------------------------

@@ -2817,6 +2817,34 @@ body.dark .menu-type-static {
   font-weight: 600 !important;
 }
 
+/* Visibility status tag colors - light mode */
+.menu-status-visible {
+  background-color: #e6f6ec !important;
+  border: 1px solid #7cc596 !important;
+  color: var(--text-color) !important;
+  font-weight: 600 !important;
+}
+
+.menu-status-hidden {
+  background-color: #ffe9d6 !important;
+  border: 1px solid #e6a46b !important;
+  color: var(--text-color) !important;
+  font-weight: 600 !important;
+}
+
+/* Visibility status tag colors - dark mode */
+body.dark .menu-status-visible {
+  background-color: #0f2e1d !important;
+  border-color: #2f7a4a !important;
+  font-weight: 600 !important;
+}
+
+body.dark .menu-status-hidden {
+  background-color: #3a2410 !important;
+  border-color: #8a5a30 !important;
+  font-weight: 600 !important;
+}
+
 /* Info guide for the Portal Configuration page header.
    Same pattern as the Admin settings page: plain icon, info shown as hover tooltip. */
 .dashboard-configuration-info-circle {

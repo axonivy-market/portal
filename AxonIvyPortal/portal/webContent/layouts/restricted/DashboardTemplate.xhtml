@@ -10,13 +10,19 @@
       <h:outputScript name="statistic.js" library="js" />
     </ui:define>
 
-    <ui:define name="title">#{managedBean.getSelectedDashboardName()}</ui:define>
-    <ui:param name="loadGridStack" value="true" />
-    <ui:param name="isInDashboard" value="true"/>
-    <ui:param name="isEditMode" value="${managedBean.isReadOnlyMode == 'false'}"/>
+    <ui:define name="title">#{noHomepageAvailable ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard') : managedBean.getSelectedDashboardName()}</ui:define>
+    <ui:param name="loadGridStack" value="#{not noHomepageAvailable}" />
+    <ui:param name="isInDashboard" value="#{not noHomepageAvailable}" />
+    <ui:param name="isEditMode" value="${not noHomepageAvailable and managedBean.isReadOnlyMode == 'false'}"/>
 
 
     <ui:define name="pageContent">
+      <c:if test="#{noHomepageAvailable}">
+        <div class="ui-g">
+          <p class="ui-g-12 text-style-h1" role="status">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noPermission')}</p>
+        </div>
+      </c:if>
+      <c:if test="#{not noHomepageAvailable}">
         <script type="text/javascript">
           function initStatistics() {
             initClientCharts("#{managedBean.statisticApiUri}" , "#{managedBean.getSupportedUserLanguage()}", "#{dateTimePatternBean.datePattern}", "#{localeBean.locale}");
@@ -367,6 +373,7 @@
 
       </ui:fragment>
       </div>
+      </c:if>
     </ui:define>
   </ui:composition>
 </h:body>

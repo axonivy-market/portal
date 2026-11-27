@@ -83,6 +83,17 @@ function updateMenuHref() {
   });
 }
 
+$(function () {
+  // PrimeFaces renders only a placeholder for an empty menu, but Freya still needs to bind the topbar.
+  if (PrimeFaces.widgets['main-menu']) {
+    return;
+  }
+  const emptyMenu = document.querySelector('.layout-menu-form div[id$=":main-navigator:main-menu"]');
+  if (emptyMenu) {
+    PrimeFaces.cw('Freya', 'main-menu', { id: emptyMenu.id, closeDelay: 250 });
+  }
+});
+
 // Initial update when page loads
 updateMenuHref();
 updateMainMenuAriaLabel();

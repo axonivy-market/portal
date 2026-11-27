@@ -6,6 +6,7 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,9 +21,14 @@ import org.primefaces.model.menu.MenuItem;
 
 import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
+import com.axonivy.portal.dto.menu.DashboardMenuItemDefinition;
+import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
+import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
+import com.axonivy.portal.menu.management.MenuLoader;
 import com.axonivy.portal.service.CustomSubMenuItemService;
 import com.axonivy.portal.util.MenuUtils;
 
+import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
@@ -142,27 +148,63 @@ public class PortalMenuNavigator {
 
   private static List<SubMenuItem> getSubmenuList() {
     String currentLanguage = UserUtils.getUserLanguage();
-    List<SubMenuItem> subMenuItems = new ArrayList<>();
-
-    addProcessSubmenuItems(subMenuItems);
-
-    List<Dashboard> mainDashboards = DashboardUtils.collectMainDashboards();
-    for (Dashboard dashboard : mainDashboards) {
-      if (!DashboardUtils.canSessionUserAccessDashboard(dashboard)) {
-        continue;
-      }
-      subMenuItems.add(convertDashboardToSubMenuItem(dashboard, currentLanguage));
+    Map<String, SubMenuItem> customItems = new HashMap<>();
+    for (SubMenuItem item : CustomSubMenuItemService.findAll()) {
+      customItems.putIfAbsent(item.getId(), item);
     }
 
-    subMenuItems.addAll(CustomSubMenuItemService.findAll());
-
+    List<SubMenuItem> subMenuItems = new ArrayList<>();
+    for (PortalMenuItemDefinition definition : MenuLoader.loadMenuDefinitions()) {
+      if (!definition.isVisible()) {
+        continue;
+      }
+      SubMenuItem item = toHomepageSubMenuItem(definition, customItems, currentLanguage);
+      if (item != null) {
+        subMenuItems.add(item);
+      }
+    }
     return subMenuItems;
   }
 
-  private static void addProcessSubmenuItems(List<SubMenuItem> subMenuItems) {
-    if (PermissionUtils.checkAccessFullProcessListPermission()) {
-      subMenuItems.add(new ProcessSubMenuItem());
-    }
+  /**
+   * Maps a visible sidebar definition to its homepage candidate in sidebar order. Returns null when the
+   * definition is not a homepage candidate (hidden access, third-party app, unsupported built-in).
+   */
+  private static SubMenuItem toHomepageSubMenuItem(PortalMenuItemDefinition definition,
+      Map<String, SubMenuItem> customItems, String currentLanguage) {
+    return switch (definition.getSource()) {
+      case STANDARD -> toStandardSubMenuItem((StandardMenuItemDefinition) definition);
+      case DASHBOARD -> toMainDashboardSubMenuItem((DashboardMenuItemDefinition) definition, currentLanguage);
+      case CALLABLE, CUSTOM_MENU_CONFIGURATION ->
+        customItems.get(definition.getId());
+      default -> null;
+    };
+  }
+
+  private static SubMenuItem toStandardSubMenuItem(StandardMenuItemDefinition definition) {
+    return switch (definition.getStandardType()) {
+      case PROCESS -> PermissionUtils.checkAccessFullProcessListPermission() ? new ProcessSubMenuItem() : null;
+      case DASHBOARD -> defaultDashboardSubMenuItem();
+      default -> null;
+    };
+  }
+
+  private static SubMenuItem defaultDashboardSubMenuItem() {
+    SubMenuItem item = new SubMenuItem();
+    item.setId(HomepageType.DASHBOARD.name());
+    item.menuKind = MenuKind.DASHBOARD;
+    item.name = HomepageType.DASHBOARD.name();
+    item.label = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard");
+    item.link = PortalNavigator.getPortalStartUrl();
+    return item;
+  }
+
+  private static SubMenuItem toMainDashboardSubMenuItem(DashboardMenuItemDefinition definition,
+      String currentLanguage) {
+    Dashboard dashboard = definition.getDashboard();
+    return dashboard != null && DashboardUtils.canSessionUserAccessDashboard(dashboard)
+        ? convertDashboardToSubMenuItem(dashboard, currentLanguage)
+        : null;
   }
 
   private static SubMenuItem convertDashboardToSubMenuItem(Dashboard dashboard, String currentLanguage) {

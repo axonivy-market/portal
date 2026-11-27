@@ -10,6 +10,9 @@ The Axon Ivy Portal Dashboard is your central workspace and the first page you s
 successful login. It provides an at-a-glance view of your work with customizable widgets 
 showing tasks, cases, processes, and statistics.
 
+.. note::
+   Hiding the built-in **Dashboard** entry in the sidebar does not revoke dashboard permissions. It also does not hide public or private dashboard data. See :ref:`portal-configuration` for sidebar visibility.
+
 **Accessing Your Dashboard:**
 
 - Click **Dashboard** in the Portal navigation menu

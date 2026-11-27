@@ -92,7 +92,8 @@ public class GlobalSetting extends AbstractConfiguration {
       }
       return value;
     } else if (variable == GlobalVariable.DEFAULT_HOMEPAGE) {
-      return HomepageUtils.findDefaultHomepage().getLabel();
+      var defaultHomepage = HomepageUtils.findDefaultHomepage();
+      return defaultHomepage == null ? StringUtils.EMPTY : defaultHomepage.getLabel();
     } else if (variable.getType() == GlobalVariableType.EXTERNAL_SELECTION && MapUtils.isNotEmpty(variable.getExternalOptions())) {
       Object object = variable.getExternalOptions().get(value);
       return getDisplayValue(object);

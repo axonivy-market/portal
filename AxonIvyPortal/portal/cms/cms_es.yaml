@@ -1780,6 +1780,12 @@ Dialogs:
             TaskIFrameTitle: Marco de tareas
         page:
           MenuManagement:
+            Hide: Ocultar
+            Hidden: Oculto
+            Show: Mostrar
+            Visible: Visible
+            AtLeastOneMenuVisible: Al menos un elemento del menú debe permanecer visible.
+            Status: Estado
             AddNewMenu: Agrega un nuevo menú
             CallableMenuMessage: Este menú se genera mediante un proceso invocable y no se puede editar.
             CallableSourceHint: Este elemento se genera mediante un proceso invocable. Contacta a tu desarrollador para modificarlo.

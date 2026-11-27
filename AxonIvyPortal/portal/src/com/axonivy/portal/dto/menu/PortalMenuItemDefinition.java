@@ -34,6 +34,15 @@ public abstract class PortalMenuItemDefinition extends AbstractConfiguration imp
   private List<SecurityMemberDTO> permissionDTOs;
   private boolean isIncludedIconFamily;
   private String displayedPermission;
+  private boolean visible = true;
+
+  public boolean isVisible() {
+    return visible;
+  }
+
+  public void setVisible(boolean visible) {
+    this.visible = visible;
+  }
 
   protected String getCurrentLanguage() {
     return UserUtils.getUserLanguage();

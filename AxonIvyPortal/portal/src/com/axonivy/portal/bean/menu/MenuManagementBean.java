@@ -6,16 +6,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.ReorderEvent;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.enums.MenuKind;
+import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.dto.menu.CustomMenuItemDefinition;
 import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
 import com.axonivy.portal.enums.SidebarMode;
@@ -26,7 +25,14 @@ import com.axonivy.portal.menu.management.enums.MenuSource;
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.GrowlMessageService;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 @Named
 @ViewScoped
@@ -36,6 +42,7 @@ public class MenuManagementBean extends AbstractMenuBean {
   private PortalMenuItemDefinition selectedMenuDefinition;
   private SidebarMode sidebarMode;
   private boolean sidebarSettingsSaved;
+  private long visibleMenuCount;
 
   @PostConstruct
   public void init() {
@@ -49,7 +56,7 @@ public class MenuManagementBean extends AbstractMenuBean {
    * table getter lazy-loads on first access and tab entry triggers an explicit refresh.
    */
   public void loadMenus() {
-    menuDefinitions = MenuLoader.loadMenuDefinitions();
+    setMenuDefinitions(MenuLoader.loadMenuDefinitions());
     menuDefinitions.forEach(this::initDisplayPermissions);
   }
 
@@ -107,6 +114,69 @@ public class MenuManagementBean extends AbstractMenuBean {
         && !MenuSource.CALLABLE.equals(menuDefinition.getSource());
   }
 
+  public boolean canToggleMenuVisibility(PortalMenuItemDefinition menuDefinition) {
+    return menuDefinition.getSource() != null && StringUtils.isNotBlank(menuDefinition.getId());
+  }
+
+  public boolean isLastVisibleMenu(PortalMenuItemDefinition menuDefinition) {
+    getMenuDefinitions();
+    return menuDefinition != null && menuDefinition.isVisible() && visibleMenuCount == 1;
+  }
+
+  private PortalMenuItemDefinition findMenu(PortalMenuItemDefinition target) {
+    return getMenuDefinitions().stream()
+        .filter(menu -> menu.getSource() == target.getSource() && Strings.CS.equals(menu.getId(), target.getId()))
+        .findFirst()
+        .orElseThrow(() -> new PortalException("Menu entry is not in the Sidebar configuration"));
+  }
+
+  private boolean canRemoveVisibleMenu(PortalMenuItemDefinition menu) {
+    if (isLastVisibleMenu(menu)) {
+      showLastVisibleMenuWarning();
+      return false;
+    }
+    return true;
+  }
+
+  public void disableMenu(PortalMenuItemDefinition menuDefinition) {
+    setMenuVisibility(menuDefinition, false);
+  }
+
+  public void enableMenu(PortalMenuItemDefinition menuDefinition) {
+    setMenuVisibility(menuDefinition, true);
+  }
+
+  private void setMenuVisibility(PortalMenuItemDefinition menuDefinition, boolean visible) {
+    verifySidebarManagementPermission();
+    if (!canToggleMenuVisibility(menuDefinition)) {
+      throw new PortalException("Menu entry has no source or ID, so its sidebar visibility cannot be changed");
+    }
+    if (!visible) {
+      loadMenus();
+    }
+    PortalMenuItemDefinition menu = findMenu(menuDefinition);
+    if (!visible && !canRemoveVisibleMenu(menu)) {
+      return;
+    }
+    boolean previousVisibility = menu.isVisible();
+    menu.setVisible(visible);
+    try {
+      MenuLoader.persistManifest(menuDefinitions);
+    } catch (RuntimeException e) {
+      menu.setVisible(previousVisibility);
+      throw e;
+    }
+    setMenuDefinitions(menuDefinitions);
+    sidebarSettingsSaved = true;
+  }
+
+  protected void showLastVisibleMenuWarning() {
+    FacesContext.getCurrentInstance().addMessage(GrowlMessageService.PORTAL_GLOBAL_GROWL_MESSAGE,
+        FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN,
+            Ivy.cms().co("/Dialogs/com/axonivy/portal/page/MenuManagement/AtLeastOneMenuVisible"), null));
+    PrimeFaces.current().ajax().update(GrowlMessageService.PORTAL_GLOBAL_GROWL);
+  }
+
   public int getLastIndex() {
     List<PortalMenuItemDefinition> menus = getMenuDefinitions();
     return menus.isEmpty() ? 0 : menus.size() - 1;
@@ -114,7 +184,12 @@ public class MenuManagementBean extends AbstractMenuBean {
 
   public void removeMenu() {
     verifySidebarManagementPermission();
-    MenuRemovalHandler.removeMenu(getSelectedMenuDefinition());
+    loadMenus();
+    PortalMenuItemDefinition menu = findMenu(getSelectedMenuDefinition());
+    if (!canRemoveVisibleMenu(menu)) {
+      return;
+    }
+    MenuRemovalHandler.removeMenu(menu);
     // The loader prunes the stale manifest entry in memory only, so re-persist here —
     // an explicit admin action — to keep the stored order converged.
     loadMenus();
@@ -130,6 +205,8 @@ public class MenuManagementBean extends AbstractMenuBean {
 
   public void setMenuDefinitions(List<PortalMenuItemDefinition> menuDefinitions) {
     this.menuDefinitions = menuDefinitions;
+    visibleMenuCount = menuDefinitions == null ? 0
+        : menuDefinitions.stream().filter(PortalMenuItemDefinition::isVisible).count();
   }
 
   public PortalMenuItemDefinition getSelectedMenuDefinition() {

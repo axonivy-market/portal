@@ -8,9 +8,17 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start()",
+      "name" : "start(Boolean)",
       "config" : {
         "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "noHomepageAvailable", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "out.noHomepageAvailable" : "param.noHomepageAvailable"
+          }
+        },
         "guid" : "17065CC71CC27C23"
       },
       "visual" : {

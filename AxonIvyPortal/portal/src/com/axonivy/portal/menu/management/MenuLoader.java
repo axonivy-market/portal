@@ -67,6 +67,7 @@ public final class MenuLoader implements Serializable {
       if (def == null) {
         continue;
       }
+      def.setVisible(entry.visible());
       def.setIndex(ordered.size());
       ordered.add(def);
     }
@@ -81,8 +82,8 @@ public final class MenuLoader implements Serializable {
 
   public static void persistManifest(List<PortalMenuItemDefinition> ordered) {
     List<MenuOrderEntry> manifest = ordered.stream()
-        .map(def -> new MenuOrderEntry(def.getId(), def.getSource()))
-        .collect(Collectors.toList());
+        .map(def -> new MenuOrderEntry(def.getId(), def.getSource(), def.isVisible()))
+        .toList();
     MenuOrderService.getInstance().save(manifest);
   }
 
