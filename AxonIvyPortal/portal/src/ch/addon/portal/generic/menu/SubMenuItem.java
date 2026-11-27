@@ -4,7 +4,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 import com.axonivy.portal.components.enums.MenuKind;
-import com.axonivy.portal.menu.management.enums.MenuSource;
 
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivyteam.ivy.application.app.Application;
@@ -17,7 +16,6 @@ public class SubMenuItem {
   protected String icon;
   protected String label;
   protected String name;
-  protected MenuSource source;
   
   public String getId() {
     return id;
@@ -65,14 +63,6 @@ public class SubMenuItem {
   
   public void setName(String name) {
     this.name = name;
-  }
-
-  public MenuSource getSource() {
-    return source;
-  }
-
-  public void setSource(MenuSource source) {
-    this.source = source;
   }
 
   public String buildLink() {

@@ -25,7 +25,6 @@ import com.axonivy.portal.dto.menu.DashboardMenuItemDefinition;
 import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
 import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
 import com.axonivy.portal.menu.management.MenuLoader;
-import com.axonivy.portal.menu.management.enums.MenuSource;
 import com.axonivy.portal.service.CustomSubMenuItemService;
 import com.axonivy.portal.util.MenuUtils;
 
@@ -149,9 +148,9 @@ public class PortalMenuNavigator {
 
   private static List<SubMenuItem> getSubmenuList() {
     String currentLanguage = UserUtils.getUserLanguage();
-    Map<MenuRef, SubMenuItem> customItems = new HashMap<>();
+    Map<String, SubMenuItem> customItems = new HashMap<>();
     for (SubMenuItem item : CustomSubMenuItemService.findAll()) {
-      customItems.putIfAbsent(new MenuRef(item.getSource(), item.getId()), item);
+      customItems.putIfAbsent(item.getId(), item);
     }
 
     List<SubMenuItem> subMenuItems = new ArrayList<>();
@@ -161,7 +160,6 @@ public class PortalMenuNavigator {
       }
       SubMenuItem item = toHomepageSubMenuItem(definition, customItems, currentLanguage);
       if (item != null) {
-        item.setSource(definition.getSource());
         subMenuItems.add(item);
       }
     }
@@ -173,12 +171,12 @@ public class PortalMenuNavigator {
    * definition is not a homepage candidate (hidden access, third-party app, unsupported built-in).
    */
   private static SubMenuItem toHomepageSubMenuItem(PortalMenuItemDefinition definition,
-      Map<MenuRef, SubMenuItem> customItems, String currentLanguage) {
+      Map<String, SubMenuItem> customItems, String currentLanguage) {
     return switch (definition.getSource()) {
       case STANDARD -> toStandardSubMenuItem((StandardMenuItemDefinition) definition);
       case DASHBOARD -> toMainDashboardSubMenuItem((DashboardMenuItemDefinition) definition, currentLanguage);
       case CALLABLE, CUSTOM_MENU_CONFIGURATION ->
-        customItems.get(new MenuRef(definition.getSource(), definition.getId()));
+        customItems.get(definition.getId());
       default -> null;
     };
   }
@@ -208,8 +206,6 @@ public class PortalMenuNavigator {
         ? convertDashboardToSubMenuItem(dashboard, currentLanguage)
         : null;
   }
-
-  private record MenuRef(MenuSource source, String id) {}
 
   private static SubMenuItem convertDashboardToSubMenuItem(Dashboard dashboard, String currentLanguage) {
     SubMenuItem item = new SubMenuItem();

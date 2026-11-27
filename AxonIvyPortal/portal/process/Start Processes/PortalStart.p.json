@@ -2067,7 +2067,11 @@
                 "segment" : 0.88,
                 "offset" : { "x" : 49, "y" : -22 }
               } },
-            { "id" : "S60-f55", "to" : "S60-f56" },
+            { "id" : "S60-f55", "to" : "S60-f56", "via" : [ { "x" : 288, "y" : 353 } ], "label" : {
+                "name" : "no homepage",
+                "segment" : 1.5,
+                "offset" : { "x" : -3, "y" : -19 }
+              } },
             { "id" : "S60-f5", "to" : "S60-f12", "label" : {
                 "name" : "dashboard",
                 "segment" : 0.65,
@@ -2160,7 +2164,8 @@
             "dialog" : "com.axonivy.portal.page.NoAvailableHomepage:start()"
           },
           "visual" : {
-            "at" : { "x" : 488, "y" : 352 }
+            "at" : { "x" : 512, "y" : 353 },
+            "size" : { "width" : 176, "height" : 62 }
           }
         } ],
       "visual" : {

@@ -11,6 +11,7 @@ import java.util.Map;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
 
@@ -19,7 +20,6 @@ import ch.addon.portal.generic.menu.SubMenuItem;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import com.axonivy.portal.components.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -165,9 +165,6 @@ public class HomepageUtils {
     return homepage == null || homepage.getType() == HomepageType.DASHBOARD || isClickOnDashboard;
   }
 
-  /**
-   * No homepage candidate is available for an automatic route. Explicit dashboard requests keep their own routing.
-   */
   public static boolean isNoHomepageAvailable(Homepage homepage, boolean isClickOnDashboard,
       boolean isOpenDashboardFromLink) {
     return homepage == null && !isClickOnDashboard && !isOpenDashboardFromLink;
