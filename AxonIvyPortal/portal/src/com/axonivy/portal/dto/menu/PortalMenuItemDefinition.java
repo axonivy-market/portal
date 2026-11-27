@@ -36,7 +36,6 @@ public abstract class PortalMenuItemDefinition extends AbstractConfiguration imp
   private String displayedPermission;
   private boolean visible = true;
 
-  /** Effective sidebar visibility from the Portal.Menu.Order manifest; runtime metadata only. */
   public boolean isVisible() {
     return visible;
   }

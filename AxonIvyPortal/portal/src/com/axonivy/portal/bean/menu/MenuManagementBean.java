@@ -21,7 +21,6 @@ import com.axonivy.portal.enums.SidebarMode;
 import com.axonivy.portal.menu.management.MenuLoader;
 import com.axonivy.portal.menu.management.MenuRemovalHandler;
 import com.axonivy.portal.menu.management.enums.MenuSource;
-import com.axonivy.portal.service.MenuOrderService;
 
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -124,12 +123,15 @@ public class MenuManagementBean extends AbstractMenuBean {
     return menuDefinition != null && menuDefinition.isVisible() && visibleMenuCount == 1;
   }
 
-  private boolean canRemoveVisibleMenu(PortalMenuItemDefinition target) {
-    loadMenus();
-    boolean lastVisible = menuDefinitions.stream()
+  private PortalMenuItemDefinition findMenu(PortalMenuItemDefinition target) {
+    return getMenuDefinitions().stream()
         .filter(menu -> menu.getSource() == target.getSource() && Strings.CS.equals(menu.getId(), target.getId()))
-        .anyMatch(this::isLastVisibleMenu);
-    if (lastVisible) {
+        .findFirst()
+        .orElseThrow(() -> new PortalException("Menu entry is not in the Sidebar configuration"));
+  }
+
+  private boolean canRemoveVisibleMenu(PortalMenuItemDefinition menu) {
+    if (isLastVisibleMenu(menu)) {
       showLastVisibleMenuWarning();
       return false;
     }
@@ -149,11 +151,22 @@ public class MenuManagementBean extends AbstractMenuBean {
     if (!canToggleMenuVisibility(menuDefinition)) {
       throw new PortalException("Menu entry has no source or ID, so its sidebar visibility cannot be changed");
     }
-    if (!visible && !canRemoveVisibleMenu(menuDefinition)) {
+    if (!visible) {
+      loadMenus();
+    }
+    PortalMenuItemDefinition menu = findMenu(menuDefinition);
+    if (!visible && !canRemoveVisibleMenu(menu)) {
       return;
     }
-    MenuOrderService.getInstance().setVisibility(menuDefinition.getSource(), menuDefinition.getId(), visible);
-    loadMenus();
+    boolean previousVisibility = menu.isVisible();
+    menu.setVisible(visible);
+    try {
+      MenuLoader.persistManifest(menuDefinitions);
+    } catch (RuntimeException e) {
+      menu.setVisible(previousVisibility);
+      throw e;
+    }
+    setMenuDefinitions(menuDefinitions);
     sidebarSettingsSaved = true;
   }
 
@@ -171,10 +184,12 @@ public class MenuManagementBean extends AbstractMenuBean {
 
   public void removeMenu() {
     verifySidebarManagementPermission();
-    if (!canRemoveVisibleMenu(getSelectedMenuDefinition())) {
+    loadMenus();
+    PortalMenuItemDefinition menu = findMenu(getSelectedMenuDefinition());
+    if (!canRemoveVisibleMenu(menu)) {
       return;
     }
-    MenuRemovalHandler.removeMenu(getSelectedMenuDefinition());
+    MenuRemovalHandler.removeMenu(menu);
     // The loader prunes the stale manifest entry in memory only, so re-persist here —
     // an explicit admin action — to keep the stored order converged.
     loadMenus();

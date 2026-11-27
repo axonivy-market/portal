@@ -81,7 +81,7 @@ class TestHomepageUtils {
   @Test
   void loadHomepages_hiddenDashboard_isExcludedAsCandidate() {
     user.setProperty(UserProperty.HOMEPAGE, DASHBOARD);
-    menuOrderService.setVisibility(MenuSource.STANDARD, DASHBOARD, false);
+    saveDashboardVisibility(false);
 
     assertThat(HomepageUtils.loadHomepages()).extracting(Homepage::getName).doesNotContain(DASHBOARD);
     Homepage homepage = HomepageUtils.findHomepage();
@@ -91,12 +91,12 @@ class TestHomepageUtils {
   @Test
   void hiddenPersonalChoice_isKeptButIgnored_andReenablesAfterEnable() {
     user.setProperty(UserProperty.HOMEPAGE, DASHBOARD);
-    menuOrderService.setVisibility(MenuSource.STANDARD, DASHBOARD, false);
+    saveDashboardVisibility(false);
 
     assertThat(HomepageUtils.findHomepageInMyProfile().getName()).isEmpty();
     assertThat(user.getProperty(UserProperty.HOMEPAGE)).isEqualTo(DASHBOARD);
 
-    menuOrderService.setVisibility(MenuSource.STANDARD, DASHBOARD, true);
+    saveDashboardVisibility(true);
 
     assertThat(HomepageUtils.findHomepageInMyProfile().getName()).isEqualTo(DASHBOARD);
     assertThat(HomepageUtils.findHomepage().getName()).isEqualTo(DASHBOARD);
@@ -127,9 +127,13 @@ class TestHomepageUtils {
     menuOrderService.save(entries);
   }
 
+  private void saveDashboardVisibility(boolean visible) {
+    menuOrderService.save(List.of(new MenuOrderEntry(DASHBOARD, MenuSource.STANDARD, visible)));
+  }
+
   private void hideEverySidebarEntry() {
-    for (PortalMenuItemDefinition definition : MenuLoader.loadMenuDefinitions()) {
-      menuOrderService.setVisibility(definition.getSource(), definition.getId(), false);
-    }
+    List<PortalMenuItemDefinition> definitions = MenuLoader.loadMenuDefinitions();
+    definitions.forEach(definition -> definition.setVisible(false));
+    MenuLoader.persistManifest(definitions);
   }
 }

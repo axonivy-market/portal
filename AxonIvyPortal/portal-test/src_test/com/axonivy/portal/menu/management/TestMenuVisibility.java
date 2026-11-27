@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.portal.bean.menu.MenuManagementBean;
 import com.axonivy.portal.dto.menu.ExternalLinkMenuItemDefinition;
-import com.axonivy.portal.service.CustomSubMenuItemService;
 import com.axonivy.portal.dto.menu.MenuOrderEntry;
 import com.axonivy.portal.dto.menu.PortalMenuItemDefinition;
 import com.axonivy.portal.dto.menu.StandardMenuItemDefinition;
 import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
 import com.axonivy.portal.menu.management.enums.MenuSource;
+import com.axonivy.portal.service.CustomSubMenuItemService;
 import com.axonivy.portal.service.MenuOrderService;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -30,15 +30,14 @@ class TestMenuVisibility {
   }
 
   @Test
-  void persistManifest_staleReorder_keepsPersistedHiddenState() {
-    MenuOrderService.getInstance().save(List.of(
-        new MenuOrderEntry("DASHBOARD", MenuSource.STANDARD, false),
-        new MenuOrderEntry("PROCESS", MenuSource.STANDARD, true)));
+  void reorderHiddenMenu_savesNewOrderAndKeepsItHidden() {
+    PortalMenuItemDefinition dashboard = standard(StandardMenuItemDefinitionType.DASHBOARD, MenuSource.STANDARD);
+    dashboard.setVisible(false);
+    TestMenuBean bean = new TestMenuBean();
+    bean.setMenuDefinitions(List.of(
+        standard(StandardMenuItemDefinitionType.PROCESS, MenuSource.STANDARD), dashboard));
 
-    // The stale in-memory view still has Dashboard visible; the reorder must not revert it.
-    MenuLoader.persistManifest(List.of(
-        standard(StandardMenuItemDefinitionType.PROCESS, MenuSource.STANDARD),
-        standard(StandardMenuItemDefinitionType.DASHBOARD, MenuSource.STANDARD)));
+    bean.onRowReorder(null);
 
     List<MenuOrderEntry> saved = MenuOrderService.getInstance().findAll();
     assertThat(saved).extracting(MenuOrderEntry::getId).containsExactly("PROCESS", "DASHBOARD");
@@ -46,10 +45,8 @@ class TestMenuVisibility {
   }
 
   @Test
-  void persistManifest_unpersistedEntry_defaultsToVisible() {
-    MenuOrderService.getInstance().save(List.of());
+  void persistManifest_newlyDiscoveredEntry_defaultsToVisible() {
     PortalMenuItemDefinition discovered = standard(StandardMenuItemDefinitionType.DASHBOARD, MenuSource.STANDARD);
-    discovered.setVisible(false);
 
     MenuLoader.persistManifest(List.of(discovered));
 
@@ -139,8 +136,9 @@ class TestMenuVisibility {
     bean.disableMenu(standard(StandardMenuItemDefinitionType.DASHBOARD, MenuSource.STANDARD));
 
     assertThat(bean.lastVisibleMenuWarningShown).isFalse();
-    assertThat(MenuOrderService.getInstance().findAll()).extracting(MenuOrderEntry::visible)
-        .containsExactly(false, true);
+    List<MenuOrderEntry> saved = MenuOrderService.getInstance().findAll();
+    assertThat(saved).extracting(MenuOrderEntry::getId).containsExactly("DASHBOARD", "PROCESS");
+    assertThat(saved).extracting(MenuOrderEntry::visible).containsExactly(false, true);
   }
 
   @Test
@@ -155,6 +153,20 @@ class TestMenuVisibility {
     assertThat(bean.isSidebarSettingsSaved()).isTrue();
     assertThat(MenuOrderService.getInstance().findAll()).extracting(MenuOrderEntry::visible)
         .containsExactly(true, false);
+  }
+
+  @Test
+  void hideMenu_matchesSourceWhenTwoRowsShareAnId() {
+    MenuOrderService.getInstance().save(List.of(
+        new MenuOrderEntry("DASHBOARD", MenuSource.STANDARD),
+        new MenuOrderEntry("DASHBOARD", MenuSource.CALLABLE)));
+    TestMenuBean bean = new TestMenuBean();
+
+    bean.disableMenu(standard(StandardMenuItemDefinitionType.DASHBOARD, MenuSource.CALLABLE));
+
+    List<MenuOrderEntry> saved = MenuOrderService.getInstance().findAll();
+    assertThat(saved).extracting(MenuOrderEntry::getSource).containsExactly(MenuSource.STANDARD, MenuSource.CALLABLE);
+    assertThat(saved).extracting(MenuOrderEntry::visible).containsExactly(true, false);
   }
 
   private static class TestMenuBean extends MenuManagementBean {

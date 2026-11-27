@@ -61,12 +61,10 @@ public class MenuOrderEntry implements Serializable {
     this.visibility = visibility;
   }
 
-  /** The effective visibility. Not a bean property, so it is not serialized. */
   public boolean visible() {
     return !HIDDEN.equalsIgnoreCase(StringUtils.trim(visibility));
   }
 
-  /** The canonical stored value for the given visibility. */
   public static String toVisibilityValue(boolean visible) {
     return visible ? VISIBLE : HIDDEN;
   }

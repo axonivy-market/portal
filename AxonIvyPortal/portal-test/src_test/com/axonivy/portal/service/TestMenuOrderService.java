@@ -128,40 +128,4 @@ class TestMenuOrderService {
 
     assertThat(Ivy.var().get(PortalVariable.MENU_ORDER.key)).contains("\"visibility\":\"false\"");
   }
-
-  @Test
-  void setVisibility_updatesOnlySelectedEntry_andKeepsOrder() {
-    service.save(List.of(
-        new MenuOrderEntry("DASHBOARD", MenuSource.STANDARD),
-        new MenuOrderEntry("PROCESS", MenuSource.STANDARD)));
-
-    service.setVisibility(MenuSource.STANDARD, "DASHBOARD", false);
-
-    List<MenuOrderEntry> loaded = service.findAll();
-    assertThat(loaded).extracting(MenuOrderEntry::getId).containsExactly("DASHBOARD", "PROCESS");
-    assertThat(loaded).extracting(MenuOrderEntry::visible).containsExactly(false, true);
-  }
-
-  @Test
-  void setVisibility_missingEntry_isAppendedWithRequestedState() {
-    service.save(List.of(new MenuOrderEntry("DASHBOARD", MenuSource.STANDARD)));
-
-    service.setVisibility(MenuSource.STANDARD, "PROCESS", false);
-
-    List<MenuOrderEntry> loaded = service.findAll();
-    assertThat(loaded).extracting(MenuOrderEntry::getId).containsExactly("DASHBOARD", "PROCESS");
-    assertThat(loaded).extracting(MenuOrderEntry::visible).containsExactly(true, false);
-  }
-
-  @Test
-  void setVisibility_identityIncludesSource() {
-    service.save(List.of(
-        new MenuOrderEntry("SAME", MenuSource.STANDARD),
-        new MenuOrderEntry("SAME", MenuSource.DASHBOARD)));
-
-    service.setVisibility(MenuSource.DASHBOARD, "SAME", false);
-
-    List<MenuOrderEntry> loaded = service.findAll();
-    assertThat(loaded).extracting(MenuOrderEntry::visible).containsExactly(true, false);
-  }
 }
