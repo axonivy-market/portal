@@ -37,18 +37,18 @@
     <ui:define name="dialogFooter">
       <h:form prependId="false">
         <div class="w-full flex gap-2">
-          <p:commandButton id="leave-button"
-            actionListener="#{cc.attrs.leaveActionListener}" process="@this" update="@none"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leave')}"
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leave')}"
-            styleClass="mx-0 ui-leave-button #{cc.attrs.taskState == 'CREATED' ? 'w-full' : 'flex-1'}" oncomplete="#{cc.attrs.leaveOnComplete}" />
-          <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{cc.attrs.taskState != 'CREATED'}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
           <p:commandButton id="reserve-task-button" actionListener="#{cc.attrs.reserveActionListener}"
             process="@this" update="@none" rendered="#{cc.attrs.taskState != 'CREATED'}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
             styleClass="flex-1 mx-0 ui-reserve-task-button" oncomplete="#{cc.attrs.reserveOnComplete}" />
+          <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{cc.attrs.taskState != 'CREATED'}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
+          <p:commandButton id="leave-button"
+            actionListener="#{cc.attrs.leaveActionListener}" process="@this" update="@none"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leave')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leave')}"
+            styleClass="mx-0 ui-leave-button #{cc.attrs.taskState == 'CREATED' ? 'w-full' : 'flex-1'}" oncomplete="#{cc.attrs.leaveOnComplete}" />
         </div>
       </h:form>
     </ui:define>

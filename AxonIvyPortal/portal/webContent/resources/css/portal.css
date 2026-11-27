@@ -1991,13 +1991,15 @@ html:has(.layout-topbar) {
 }
 
 /* ============== DIALOG FOOTER - CONFIRMATION DIALOG ============================  **/
-.ui-leave-button {
+.ui-reserve-task-button,
+.statistic-preview-button {
   color: var(--text-color) !important;
-  background-color: var(--ui-leave-button-color) !important;
-  border: 1px solid var(--ui-leave-button-color) !important;
+  background-color: var(--ui-reserve-task-button-color) !important;
+  border: 1px solid var(--ui-reserve-task-button-color) !important;
 }
 .ui-leave-button,
-.ui-reserve-task-button {
+.ui-reserve-task-button,
+.statistic-preview-button {
   font-weight: 600;
 }
 .warning-before-leaving-task .ui-leave-button,
