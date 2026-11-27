@@ -1,20 +1,13 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-        "config:recommended"
+        "local>axonivy-market/renovate-config"
     ],
     "baseBranchPatterns": [
         "master",
-        "release/12.0",
-        "release/10.0"
+        "release/14.0",
+        "release/12.0"
     ],
-    "labels": [
-        "skip-changelog"
-    ],
-    "timezone": "Asia/Bangkok",
-    "schedule": ["before 5am on monday"],
-    "rebaseWhen": "never",
-    "semanticCommits": "disabled",
     "maven": {
         "fileMatch": [
             "(^|/|\\\\)pom\.xml$",
@@ -25,16 +18,31 @@
     },
     "packageRules": [
         {
-            "description": "Disable major upgrades for release branches",
+            "description": "Disable major and replacement upgrades for release/14.0 and release/12.0",
             "matchBaseBranches": [
-                "release/10.0",
+                "release/14.0",
                 "release/12.0"
             ],
             "matchUpdateTypes": [
-                "major"
+                "major",
+                "replacement"
             ],
-            "dependencyDashboardApproval": true,
             "enabled": false
+        },
+        {
+            "description": "Automerge only on master",
+            "matchBaseBranches": [
+                "master"
+            ],
+            "automerge": true
+        },
+        {
+            "description": "Disable automerge on release/14.0 and release/12.0",
+            "matchBaseBranches": [
+                "release/14.0",
+                "release/12.0"
+            ],
+            "automerge": false
         }
     ]
 }
