@@ -109,10 +109,13 @@ class TestHomepageUtils {
     Ivy.var().set(DEFAULT_HOMEPAGE_KEY, PROCESS);
 
     assertThat(HomepageUtils.loadHomepages()).isEmpty();
-    assertThat(HomepageUtils.findHomepage()).isNull();
+    Homepage homepage = HomepageUtils.findHomepage();
+    assertThat(homepage).isNull();
     assertThat(HomepageUtils.findDefaultHomepage()).isNull();
     assertThat(HomepageUtils.findHomepageInMyProfile().getName()).isEmpty();
-    assertThat(HomepageUtils.isNoHomepageAvailable(null, false, false)).isTrue();
+    assertThat(HomepageUtils.isNoHomepageAvailable(homepage, false, false)).isTrue();
+    assertThat(HomepageUtils.isNoHomepageAvailable(homepage, true, false)).isFalse();
+    assertThat(HomepageUtils.isNoHomepageAvailable(homepage, false, true)).isFalse();
   }
 
   private void clearHomepageChoices() {

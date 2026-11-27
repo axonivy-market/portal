@@ -8,9 +8,18 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start()",
+      "name" : "start(Boolean)",
       "config" : {
         "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "noHomepageAvailable", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "out.noHomepageAvailable" : "param.noHomepageAvailable",
+            "out.configurationUrl" : "param.noHomepageAvailable && ch.ivy.addon.portalkit.util.PermissionUtils.hasPortalSidebarConfigurationPermission() ? ch.ivy.addon.portal.generic.navigation.PortalNavigator.buildDashboardConfigurationUrl() : \"\""
+          }
+        },
         "guid" : "17065CC71CC27C23"
       },
       "visual" : {

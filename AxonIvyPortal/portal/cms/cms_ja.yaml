@@ -1770,7 +1770,6 @@ Dialogs:
             Show: 表示する
             Visible: 表示
             AtLeastOneMenuVisible: 少なくとも1つのメニュー項目を表示したままにする必要があります。
-            NoAvailableHomepage: 利用可能なホームページがありません。管理者にサイドバーへの表示またはアクセス権の付与を依頼してください。
             Status: ステータス
             AddNewMenu: 新しいメニューの追加
             CallableMenuMessage: このメニューは呼び出し可能プロセスによってプログラム的に生成されているため、編集できません。

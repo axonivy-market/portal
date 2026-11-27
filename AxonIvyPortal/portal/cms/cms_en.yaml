@@ -1776,7 +1776,6 @@ Dialogs:
             Show: Show
             Visible: Visible
             AtLeastOneMenuVisible: At least one menu item must remain visible.
-            NoAvailableHomepage: 'No homepage is available for you. Ask an administrator to show a sidebar entry or grant you access to it.'
             Status: Status
             AddNewMenu: Add new menu
             CallableMenuMessage: This menu is generated programmatically by a callable process and cannot be edited.

@@ -1784,7 +1784,6 @@ Dialogs:
             Show: Mostrar
             Visible: Visible
             AtLeastOneMenuVisible: Al menos un elemento del menú debe permanecer visible.
-            NoAvailableHomepage: 'No hay una página de inicio disponible para ti. Pide a un administrador que muestre una entrada en la barra lateral o que te conceda acceso.'
             Status: Estado
             AddNewMenu: Agrega un nuevo menú
             CallableMenuMessage: Este menú se genera mediante un proceso invocable y no se puede editar.
