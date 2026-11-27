@@ -29,6 +29,9 @@ on:
 jobs:
   build-document:
     runs-on: ubuntu-latest
+    outputs:
+      release_line: ${{ steps.get_version.outputs.release }}
+      artifact_version: ${{ steps.get_version.outputs.version }}
     steps:
       - uses: actions/checkout@v7
 
@@ -217,3 +220,32 @@ jobs:
           name: Documentation-${{ steps.get_version.outputs.version }}
           path: |
             Documentation/portal-guide/target/*.zip
+
+  update-pages-pin:
+    needs: build-document
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master' && needs.build-document.outputs.release_line == '14.0' }}
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Update the Pages pin on master
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT_VERSION: ${{ needs.build-document.outputs.artifact_version }}
+        run: |
+          gh workflow run update-portal-pages-version.yml --repo "$GITHUB_REPOSITORY" --ref master \
+            --raw-field release_line=14.0 --raw-field "artifact_version=$ARTIFACT_VERSION"
+
+  refresh-dev-pages:
+    needs: build-document
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master' && inputs.deploySnapshot && endsWith(needs.build-document.outputs.artifact_version, '-SNAPSHOT') }}
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Refresh GitHub Pages with the published SNAPSHOT
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run portal-documentation-pages.yml --repo "$GITHUB_REPOSITORY" --ref master \
+            --field publish=true --field refresh_dev=true

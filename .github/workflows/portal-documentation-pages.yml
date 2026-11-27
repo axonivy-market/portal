@@ -1,4 +1,9 @@
 name: Deploy Portal Documentation and Schemas to GitHub Pages
+run-name: >-
+  ${{ !(inputs.publish && github.ref == 'refs/heads/master') && 'Preview Portal Pages'
+      || (inputs.expected_release_version != '' && format('Publish Portal {0} to Pages', inputs.expected_release_version))
+      || (inputs.refresh_dev && 'Refresh dev documentation on Pages')
+      || 'Publish Portal documentation to Pages' }}
 
 on:
   workflow_dispatch:
@@ -11,9 +16,20 @@ on:
         description: 'Include the latest published Maven SNAPSHOT for the documentation revision'
         type: boolean
         default: true
+      refresh_dev:
+        description: 'Refresh dev documentation without changing live release versions'
+        type: boolean
+        default: false
+      expected_release_version:
+        description: 'Release pin to verify (set by Jenkins; leave blank for previews)'
+        type: string
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ (inputs.publish && github.ref == 'refs/heads/master') && 'portal-documentation-pages' || github.run_id }}
+  queue: max
 
 jobs:
   build:
@@ -44,9 +60,45 @@ jobs:
         run: python3 -m unittest discover -s build/portal-pages -v
 
       - name: Assemble release and optional development documentation
-        run: >-
-          mvn -U clean generate-resources -f build/portal-pages/pom.xml
-          -DincludeDev=${{ inputs.include_dev }}
+        env:
+          RELEASE_VERSION: ${{ inputs.expected_release_version }}
+          INCLUDE_DEV: ${{ inputs.refresh_dev || inputs.include_dev }}
+          REFRESH_DEV: ${{ inputs.refresh_dev }}
+        run: |
+          mvn_args=(-B -ntp -f build/portal-pages/pom.xml)
+          release_args=()
+          release_line=''
+          if [[ -n "$RELEASE_VERSION" ]]; then
+            release_line=$(cut -d. -f1,2 <<< "$RELEASE_VERSION")
+            mvn "${mvn_args[@]}" resources:copy-resources@write-release-manifest
+            if ! jq -e --arg line "$release_line" --arg version "$RELEASE_VERSION" \
+              '.[$line] == $version' target/portal-pages/portal/versions.json; then
+              echo '::error::The requested release is not pinned. Merge the Pages pin PR and dispatch a new run.'
+              exit 1
+            fi
+          fi
+
+          if [[ -n "$release_line" || "$REFRESH_DEV" == true ]]; then
+            # Pins merged for other releases may still be waiting for their Portal deployment.
+            live_versions=$(curl -fsS --retry 3 --max-time 30 \
+              "https://axonivy-market.github.io/portal/versions.json?run=$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT")
+            for major in 10 12 14; do
+              line="$major.0"
+              version=$(jq -er --arg line "$line" '.[$line]' <<< "$live_versions")
+              if [[ ! "$version" =~ ^${major}\.0\.[0-9]+(\.[0-9]+)?$ ]]; then
+                echo "::error::Unexpected live documentation version for $line: $version"
+                exit 1
+              fi
+              if [[ "$line" != "$release_line" ]]; then
+                release_args+=("-Dportal$major.version=$version")
+              elif [[ $(printf '%s\n' "$version" "$RELEASE_VERSION" | sort -V | tail -n 1) != "$RELEASE_VERSION" ]]; then
+                echo "::error::The requested release $RELEASE_VERSION is older than the live version $version."
+                exit 1
+              fi
+            done
+          fi
+
+          mvn "${mvn_args[@]}" -U clean generate-resources "-DincludeDev=$INCLUDE_DEV" "${release_args[@]}"
 
       - name: Unpack legacy LTS10 documentation
         run: bash build/portal-pages/download-lts10-documentation.sh
@@ -65,6 +117,22 @@ jobs:
           path: target/portal-pages/portal
           retention-days: 1
 
+      - name: Summarize the documentation in the Pages artifact
+        continue-on-error: true
+        run: |
+          site=target/portal-pages/portal
+          {
+            echo '### Documentation included in the Pages artifact'
+            echo
+            jq -r 'to_entries | sort_by(.key | split(".") | map(tonumber))[] | "- \(.key): `\(.value)`"' "$site/versions.json"
+            if [[ -d "$site/snapshot/dev" ]]; then
+              revision=$(mvn -B -ntp -N -q -f build/portal-pages/pom.xml help:evaluate -Dexpression=revision -DforceStdout -Dstyle.color=never)
+              printf -- '- Dev SNAPSHOT revision: `%s`\n' "$revision"
+            else
+              echo '- Dev documentation: not included'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
   deploy:
     if: ${{ inputs.publish && github.ref == 'refs/heads/master' }}
     needs: build
@@ -72,9 +140,6 @@ jobs:
     permissions:
       pages: write
       id-token: write
-    concurrency:
-      group: portal-documentation-pages
-      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
